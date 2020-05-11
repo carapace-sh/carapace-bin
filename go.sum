@@ -62,6 +62,8 @@ github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaO
 github.com/mattn/go-isatty v0.0.4/go.mod h1:M+lRXTBqGeGNdLjl/ufCoiOlB5xdOkqRJdNxMWT7Zi4=
 github.com/matttproud/golang_protobuf_extensions v1.0.1/go.mod h1:D8He9yQNgCq6Z5Ld7szi9bcBfOoFv/3dc6xSMkL2PC0=
 github.com/mitchellh/go-homedir v1.1.0/go.mod h1:SfyaCUpYCn1Vlf4IUYiD9fPX4A5wJrkLzIz1N1q0pr0=
+github.com/mitchellh/go-ps v1.0.0 h1:i6ampVEEF4wQFF+bkYfwYgY+F/uYJDktmvLPf7qIgjc=
+github.com/mitchellh/go-ps v1.0.0/go.mod h1:J4lOc8z8yJs6vUwklHw2XEIiT4z4C40KtWVN3nvg8Pg=
 github.com/mitchellh/mapstructure v1.1.2/go.mod h1:FVVH3fgwuzCH5S8UJGiWEs2h04kUh9fWfEaFds41c1Y=
 github.com/mwitkow/go-conntrack v0.0.0-20161129095857-cc309e4a2223/go.mod h1:qRWi+5nqEBWmkhHvq77mSJWrCKwh8bxhgT7d/eI7P4U=
 github.com/oklog/ulid v1.3.1/go.mod h1:CirwcVhetQ6Lv90oh/F+FBtV6XMibvdAFo93nm5qn4U=
@@ -87,6 +89,10 @@ github.com/rsteube/carapace v0.0.13 h1:mWuRZTAFmIyuIUWp9KA52XfjPgki0rojbWYQSSjih
 github.com/rsteube/carapace v0.0.13/go.mod h1:aOz85k53XSmXljF3xvsnje/5joN75jqWwl1aDAURhRQ=
 github.com/rsteube/carapace v0.0.14-0.20200419191343-d5c2c5746d69 h1:Q+t3Dbzecn0nJs7wtGwGzuKYxk4uYhB6zYhEqNfWLmU=
 github.com/rsteube/carapace v0.0.14-0.20200419191343-d5c2c5746d69/go.mod h1:aOz85k53XSmXljF3xvsnje/5joN75jqWwl1aDAURhRQ=
+github.com/rsteube/carapace v0.0.14 h1:k48kXY5aUS3GkEiV/GLJGKNmPSCBO67VbgxvR120sHw=
+github.com/rsteube/carapace v0.0.14/go.mod h1:aOz85k53XSmXljF3xvsnje/5joN75jqWwl1aDAURhRQ=
+github.com/rsteube/carapace v0.0.15 h1:gt0KRBEmCgHJLpRu6NKjmnyAiFX044tf09AObrCyR7o=
+github.com/rsteube/carapace v0.0.15/go.mod h1:tfaU/IFaXi4SlssOcNwtgytI7zSw+tVuGPXyQ+d6kPU=
 github.com/russross/blackfriday v1.5.2/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
 github.com/russross/blackfriday/v2 v2.0.1/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=
