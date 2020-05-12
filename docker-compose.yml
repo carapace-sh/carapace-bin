@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  build:
+    build: .
+    command: sh -c 'cd /carapace-completers && ls -d *_completer | xargs -I{} sh -c "cd {} && go build -gccgoflags=\"-s -w\" . && upx -9 {}"'
+    volumes:
+      - '.:/carapace-completers/'
+      - 'go:/go/'
+
+volumes:
+  go:
