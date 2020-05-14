@@ -83,6 +83,7 @@ func init() {
 		"build-file":              carapace.ActionFiles(""),
 		"console":                 carapace.ActionValues("plain", "auto", "rich", "verbose"),
 		"dependency-verification": carapace.ActionValues("strict", "lenient", "off"),
+		"exclude-task":            ActionTasks(),
 		"priority":                carapace.ActionValues("normal", "low"),
 		"project-cache-dir":       carapace.ActionDirectories(),
 		"project-dir":             carapace.ActionDirectories(),
@@ -91,28 +92,32 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			folder := "."
-			if rootCmd.Flag("project-dir").Changed {
-				folder = rootCmd.Flag("project-dir").Value.String()
-			}
-
-			var content []byte
-			var err error
-			if content, err = ioutil.ReadFile(folder + "/build.gradle"); err != nil {
-				if content, err = ioutil.ReadFile(folder + "/build.gradle.kts"); err != nil {
-					return carapace.ActionMessage("no build.gradle file present")
-				}
-			}
-			checksum := fmt.Sprintf("%x", sha1.Sum(content))
-
-			if tasks, err := tasks(checksum); err != nil {
-				return carapace.ActionMessage(err.Error())
-			} else {
-				return carapace.ActionValuesDescribed(tasks...)
-			}
-		}),
+		ActionTasks(),
 	)
+}
+
+func ActionTasks() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		folder := "."
+		if rootCmd.Flag("project-dir").Changed {
+			folder = rootCmd.Flag("project-dir").Value.String()
+		}
+
+		var content []byte
+		var err error
+		if content, err = ioutil.ReadFile(folder + "/build.gradle"); err != nil {
+			if content, err = ioutil.ReadFile(folder + "/build.gradle.kts"); err != nil {
+				return carapace.ActionMessage("no build.gradle file present")
+			}
+		}
+		checksum := fmt.Sprintf("%x", sha1.Sum(content))
+
+		if tasks, err := tasks(checksum); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			return carapace.ActionValuesDescribed(tasks...)
+		}
+	})
 }
 
 func tasks(checksum string) (tasks []string, err error) {
@@ -126,7 +131,7 @@ func tasks(checksum string) (tasks []string, err error) {
 }
 
 func saveTasks(filename string, tasks []string) (err error) {
-    var m []byte
+	var m []byte
 	if m, err = json.Marshal(tasks); err == nil {
 		if err = os.MkdirAll(filepath.Dir(filename), 0777); err == nil {
 			err = ioutil.WriteFile(filename, m, 0644)
@@ -136,11 +141,11 @@ func saveTasks(filename string, tasks []string) (err error) {
 }
 
 func loadTasks(filename string) (tasks []string, err error) {
-    var content []byte
+	var content []byte
 	if content, err = ioutil.ReadFile(filename); err == nil {
 		err = json.Unmarshal(content, &tasks)
 	}
-    return
+	return
 }
 
 func parseTasks() ([]string, error) {
