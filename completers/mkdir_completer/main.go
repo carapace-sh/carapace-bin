@@ -1,0 +1,7 @@
+package main
+
+import "github.com/rsteube/carapace-completers/completers/mkdir_completer/cmd"
+
+func main() {
+	cmd.Execute()
+}

@@ -18,6 +18,8 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+    carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.Flags().String("color", "", "Specify when to use colored output.")
 	rootCmd.Flags().String("decorations", "", "Specify when to use the decorations that have been specified via '--style'.")
 	rootCmd.Flags().BoolP("diff", "d", false, "Only show lines that have been added/removed/modified with respect to the Git index.")
@@ -43,10 +45,8 @@ func init() {
 	rootCmd.Flags().BoolP("unbuffered", "u", false, "This option exists for POSIX-compliance reasons ('u' is for 'unbuffered').")
 	rootCmd.Flags().BoolP("version", "V", false, "Show version information.")
 	rootCmd.Flags().String("wrap", "", "Specify the text-wrapping mode (*auto*, never, character).")
-}
 
-func init() {
-	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+    carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color":       carapace.ActionValues("auto", "never", "always"),
 		"decorations": carapace.ActionValues("auto", "never", "always"),
 		"italic-text": carapace.ActionValues("never", "always"),
