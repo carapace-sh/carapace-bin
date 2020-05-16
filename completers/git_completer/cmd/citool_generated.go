@@ -5,13 +5,13 @@ import (
 )
 
 var citoolCmd = &cobra.Command{
-	Use: "citool",
+	Use:   "citool",
 	Short: "Graphical alternative to git-commit",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(citoolCmd)
+	rootCmd.AddCommand(citoolCmd)
 }

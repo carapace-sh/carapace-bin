@@ -5,13 +5,13 @@ import (
 )
 
 var diff_filesCmd = &cobra.Command{
-	Use: "diff-files",
+	Use:   "diff-files",
 	Short: "Compares files in the working tree and the index",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(diff_filesCmd)
+	rootCmd.AddCommand(diff_filesCmd)
 }

@@ -5,10 +5,10 @@ import (
 )
 
 var send_emailCmd = &cobra.Command{
-	Use: "send-email",
+	Use:   "send-email",
 	Short: "Send a collection of patches as emails",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -70,5 +70,5 @@ func init() {
 	send_emailCmd.Flags().Bool("transfer-encoding", false, "<str>  * Transfer encoding to use (quoted-printable, 8bit, base64)")
 	send_emailCmd.Flags().Bool("validate", false, "* Perform patch sanity checks. Default on.")
 	send_emailCmd.Flags().Bool("xmailer", false, "* Add \"X-Mailer:\" header (default).")
-    rootCmd.AddCommand(send_emailCmd)
+	rootCmd.AddCommand(send_emailCmd)
 }

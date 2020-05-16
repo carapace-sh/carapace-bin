@@ -5,10 +5,10 @@ import (
 )
 
 var symbolic_refCmd = &cobra.Command{
-	Use: "symbolic-ref",
+	Use:   "symbolic-ref",
 	Short: "Read, modify and delete symbolic refs",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -16,5 +16,5 @@ func init() {
 	symbolic_refCmd.Flags().StringP("m", "m", "", "reason of the update")
 	symbolic_refCmd.Flags().BoolP("quiet", "q", false, "suppress error message for non-symbolic (detached) refs")
 	symbolic_refCmd.Flags().Bool("short", false, "shorten ref output")
-    rootCmd.AddCommand(symbolic_refCmd)
+	rootCmd.AddCommand(symbolic_refCmd)
 }

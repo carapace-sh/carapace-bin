@@ -5,10 +5,10 @@ import (
 )
 
 var resetCmd = &cobra.Command{
-	Use: "reset",
+	Use:   "reset",
 	Short: "Reset current HEAD to the specified state",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -23,5 +23,5 @@ func init() {
 	resetCmd.Flags().BoolP("quiet", "q", false, "be quiet, only report errors")
 	resetCmd.Flags().String("recurse-submodules", "", "control recursive updating of submodules")
 	resetCmd.Flags().Bool("soft", false, "reset only HEAD")
-    rootCmd.AddCommand(resetCmd)
+	rootCmd.AddCommand(resetCmd)
 }

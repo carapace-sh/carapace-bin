@@ -5,14 +5,14 @@ import (
 )
 
 var verify_commitCmd = &cobra.Command{
-	Use: "verify-commit",
+	Use:   "verify-commit",
 	Short: "Check the GPG signature of commits",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 	verify_commitCmd.Flags().Bool("raw", false, "print raw gpg status output")
 	verify_commitCmd.Flags().BoolP("verbose", "v", false, "print commit contents")
-    rootCmd.AddCommand(verify_commitCmd)
+	rootCmd.AddCommand(verify_commitCmd)
 }

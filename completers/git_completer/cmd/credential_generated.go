@@ -5,13 +5,13 @@ import (
 )
 
 var credentialCmd = &cobra.Command{
-	Use: "credential",
+	Use:   "credential",
 	Short: "Retrieve and store user credentials",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(credentialCmd)
+	rootCmd.AddCommand(credentialCmd)
 }

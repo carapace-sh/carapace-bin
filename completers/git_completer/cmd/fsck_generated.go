@@ -5,10 +5,10 @@ import (
 )
 
 var fsckCmd = &cobra.Command{
-	Use: "fsck",
+	Use:   "fsck",
 	Short: "Verifies the connectivity and validity of the objects in the database",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -25,5 +25,5 @@ func init() {
 	fsckCmd.Flags().Bool("tags", false, "report tags")
 	fsckCmd.Flags().Bool("unreachable", false, "show unreachable objects")
 	fsckCmd.Flags().BoolP("verbose", "v", false, "be verbose")
-    rootCmd.AddCommand(fsckCmd)
+	rootCmd.AddCommand(fsckCmd)
 }

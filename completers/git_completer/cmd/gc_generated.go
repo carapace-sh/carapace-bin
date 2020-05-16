@@ -5,10 +5,10 @@ import (
 )
 
 var gcCmd = &cobra.Command{
-	Use: "gc",
+	Use:   "gc",
 	Short: "Cleanup unnecessary files and optimize the local repository",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -18,5 +18,5 @@ func init() {
 	gcCmd.Flags().Bool("keep-largest-pack", false, "repack all other packs except the largest pack")
 	gcCmd.Flags().String("prune", "", "prune unreferenced objects")
 	gcCmd.Flags().BoolP("quiet", "q", false, "suppress progress reporting")
-    rootCmd.AddCommand(gcCmd)
+	rootCmd.AddCommand(gcCmd)
 }

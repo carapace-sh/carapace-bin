@@ -5,10 +5,10 @@ import (
 )
 
 var commit_treeCmd = &cobra.Command{
-	Use: "commit-tree",
+	Use:   "commit-tree",
 	Short: "Create a new commit object",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -16,5 +16,5 @@ func init() {
 	commit_treeCmd.Flags().StringP("m", "m", "", "commit message")
 	commit_treeCmd.Flags().StringP("p", "p", "", "id of a parent commit object")
 	commit_treeCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
-    rootCmd.AddCommand(commit_treeCmd)
+	rootCmd.AddCommand(commit_treeCmd)
 }

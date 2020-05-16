@@ -5,13 +5,13 @@ import (
 )
 
 var pack_redundantCmd = &cobra.Command{
-	Use: "pack-redundant",
+	Use:   "pack-redundant",
 	Short: "Find redundant pack files",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(pack_redundantCmd)
+	rootCmd.AddCommand(pack_redundantCmd)
 }

@@ -15,7 +15,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-    carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("changes", "c", false, "like verbose but report only when a change is made")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
@@ -27,11 +27,11 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "output a diagnostic for every file processed")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    carapace.Gen(rootCmd).PositionalCompletion(
-        carapace.ActionValues(""),
-    )
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionValues(""),
+	)
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(
-        carapace.ActionFiles(""),
-    )
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(""),
+	)
 }

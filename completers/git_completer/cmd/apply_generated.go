@@ -5,10 +5,10 @@ import (
 )
 
 var applyCmd = &cobra.Command{
-	Use: "apply",
+	Use:   "apply",
 	Short: "Apply a patch to files and/or to the index",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -40,5 +40,5 @@ func init() {
 	applyCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 	applyCmd.Flags().String("whitespace", "", "detect new or modified lines that have whitespace errors")
 	applyCmd.Flags().BoolP("z", "z", false, "paths are separated with NUL character")
-    rootCmd.AddCommand(applyCmd)
+	rootCmd.AddCommand(applyCmd)
 }

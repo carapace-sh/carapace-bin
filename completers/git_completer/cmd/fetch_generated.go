@@ -5,10 +5,10 @@ import (
 )
 
 var fetchCmd = &cobra.Command{
-	Use: "fetch",
+	Use:   "fetch",
 	Short: "Download objects and refs from another repository",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -45,5 +45,5 @@ func init() {
 	fetchCmd.Flags().BoolP("update-head-ok", "u", false, "allow updating of HEAD ref")
 	fetchCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
 	fetchCmd.Flags().Bool("write-commit-graph", false, "write the commit-graph after fetching")
-    rootCmd.AddCommand(fetchCmd)
+	rootCmd.AddCommand(fetchCmd)
 }

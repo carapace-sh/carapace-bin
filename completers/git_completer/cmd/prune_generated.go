@@ -5,10 +5,10 @@ import (
 )
 
 var pruneCmd = &cobra.Command{
-	Use: "prune",
+	Use:   "prune",
 	Short: "Prune all unreachable objects from the object database",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -17,5 +17,5 @@ func init() {
 	pruneCmd.Flags().BoolP("dry-run", "n", false, "do not remove, show only")
 	pruneCmd.Flags().Bool("progress", false, "show progress")
 	pruneCmd.Flags().BoolP("verbose", "v", false, "report pruned objects")
-    rootCmd.AddCommand(pruneCmd)
+	rootCmd.AddCommand(pruneCmd)
 }

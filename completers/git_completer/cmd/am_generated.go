@@ -5,10 +5,10 @@ import (
 )
 
 var amCmd = &cobra.Command{
-	Use: "am",
+	Use:   "am",
 	Short: "Apply a series of patches from a mailbox",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -44,5 +44,5 @@ func init() {
 	amCmd.Flags().BoolP("signoff", "s", false, "add a Signed-off-by line to the commit message")
 	amCmd.Flags().BoolP("utf8", "u", false, "recode into utf8 (default)")
 	amCmd.Flags().String("whitespace", "", "pass it through git-apply")
-    rootCmd.AddCommand(amCmd)
+	rootCmd.AddCommand(amCmd)
 }

@@ -5,10 +5,10 @@ import (
 )
 
 var update_refCmd = &cobra.Command{
-	Use: "update-ref",
+	Use:   "update-ref",
 	Short: "Update the object name stored in a ref safely",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -18,5 +18,5 @@ func init() {
 	update_refCmd.Flags().Bool("no-deref", false, "update <refname> not the one it points to")
 	update_refCmd.Flags().Bool("stdin", false, "read updates from stdin")
 	update_refCmd.Flags().BoolP("z", "z", false, "stdin has NUL-terminated arguments")
-    rootCmd.AddCommand(update_refCmd)
+	rootCmd.AddCommand(update_refCmd)
 }

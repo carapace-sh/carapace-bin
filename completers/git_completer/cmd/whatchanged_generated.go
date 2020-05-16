@@ -5,10 +5,10 @@ import (
 )
 
 var whatchangedCmd = &cobra.Command{
-	Use: "whatchanged",
+	Use:   "whatchanged",
 	Short: "Show logs with difference each commit introduces",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -19,5 +19,5 @@ func init() {
 	whatchangedCmd.Flags().BoolP("quiet", "q", false, "suppress diff output")
 	whatchangedCmd.Flags().Bool("source", false, "show source")
 	whatchangedCmd.Flags().Bool("use-mailmap", false, "Use mail map file")
-    rootCmd.AddCommand(whatchangedCmd)
+	rootCmd.AddCommand(whatchangedCmd)
 }

@@ -5,10 +5,10 @@ import (
 )
 
 var merge_fileCmd = &cobra.Command{
-	Use: "merge-file",
+	Use:   "merge-file",
 	Short: "Run a three-way file merge",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -20,5 +20,5 @@ func init() {
 	merge_fileCmd.Flags().BoolP("quiet", "q", false, "do not warn about conflicts")
 	merge_fileCmd.Flags().Bool("theirs", false, "for conflicts, use their version")
 	merge_fileCmd.Flags().Bool("union", false, "for conflicts, use a union version")
-    rootCmd.AddCommand(merge_fileCmd)
+	rootCmd.AddCommand(merge_fileCmd)
 }

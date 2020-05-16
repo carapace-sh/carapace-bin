@@ -5,10 +5,10 @@ import (
 )
 
 var checkout_indexCmd = &cobra.Command{
-	Use: "checkout-index",
+	Use:   "checkout-index",
 	Short: "Copy files from the index to the working tree",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -22,5 +22,5 @@ func init() {
 	checkout_indexCmd.Flags().Bool("temp", false, "write the content to temporary files")
 	checkout_indexCmd.Flags().BoolP("index", "u", false, "update stat information in the index file")
 	checkout_indexCmd.Flags().BoolP("z", "z", false, "paths are separated with NUL character")
-    rootCmd.AddCommand(checkout_indexCmd)
+	rootCmd.AddCommand(checkout_indexCmd)
 }

@@ -5,10 +5,10 @@ import (
 )
 
 var fast_exportCmd = &cobra.Command{
-	Use: "fast-export",
+	Use:   "fast-export",
 	Short: "Git data exporter",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -28,5 +28,5 @@ func init() {
 	fast_exportCmd.Flags().String("signed-tags", "", "select handling of signed tags")
 	fast_exportCmd.Flags().String("tag-of-filtered-object", "", "select handling of tags that tag filtered objects")
 	fast_exportCmd.Flags().Bool("use-done-feature", false, "Use the done feature to terminate the stream")
-    rootCmd.AddCommand(fast_exportCmd)
+	rootCmd.AddCommand(fast_exportCmd)
 }

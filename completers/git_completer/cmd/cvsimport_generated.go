@@ -5,13 +5,13 @@ import (
 )
 
 var cvsimportCmd = &cobra.Command{
-	Use: "cvsimport",
+	Use:   "cvsimport",
 	Short: "Salvage your data out of another SCM people love to hate",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(cvsimportCmd)
+	rootCmd.AddCommand(cvsimportCmd)
 }

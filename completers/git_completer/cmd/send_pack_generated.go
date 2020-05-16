@@ -5,10 +5,10 @@ import (
 )
 
 var send_packCmd = &cobra.Command{
-	Use: "send-pack",
+	Use:   "send-pack",
 	Short: "Push objects over Git protocol to another repository",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -30,5 +30,5 @@ func init() {
 	send_packCmd.Flags().Bool("stdin", false, "read refs from stdin")
 	send_packCmd.Flags().Bool("thin", false, "use thin pack")
 	send_packCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
-    rootCmd.AddCommand(send_packCmd)
+	rootCmd.AddCommand(send_packCmd)
 }

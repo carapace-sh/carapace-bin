@@ -5,13 +5,13 @@ import (
 )
 
 var diffCmd = &cobra.Command{
-	Use: "diff",
+	Use:   "diff",
 	Short: "Show changes between commits, commit and working tree, etc",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(diffCmd)
+	rootCmd.AddCommand(diffCmd)
 }

@@ -5,10 +5,10 @@ import (
 )
 
 var addCmd = &cobra.Command{
-	Use: "add",
+	Use:   "add",
 	Short: "Add file contents to the index",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -29,5 +29,5 @@ func init() {
 	addCmd.Flags().Bool("renormalize", false, "renormalize EOL of tracked files (implies -u)")
 	addCmd.Flags().BoolP("update", "u", false, "update tracked files")
 	addCmd.Flags().BoolP("verbose", "v", false, "be verbose")
-    rootCmd.AddCommand(addCmd)
+	rootCmd.AddCommand(addCmd)
 }

@@ -5,10 +5,10 @@ import (
 )
 
 var rmCmd = &cobra.Command{
-	Use: "rm",
+	Use:   "rm",
 	Short: "Remove files from the working tree and from the index",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -20,5 +20,5 @@ func init() {
 	rmCmd.Flags().String("pathspec-from-file", "", "read pathspec from file")
 	rmCmd.Flags().BoolP("quiet", "q", false, "do not list removed files")
 	rmCmd.Flags().BoolP("r", "r", false, "allow recursive removal")
-    rootCmd.AddCommand(rmCmd)
+	rootCmd.AddCommand(rmCmd)
 }

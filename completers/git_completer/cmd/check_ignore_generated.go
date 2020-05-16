@@ -5,10 +5,10 @@ import (
 )
 
 var check_ignoreCmd = &cobra.Command{
-	Use: "check-ignore",
+	Use:   "check-ignore",
 	Short: "Debug gitignore / exclude files",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -18,5 +18,5 @@ func init() {
 	check_ignoreCmd.Flags().Bool("stdin", false, "read file names from stdin")
 	check_ignoreCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 	check_ignoreCmd.Flags().BoolP("z", "z", false, "terminate input and output records by a NUL character")
-    rootCmd.AddCommand(check_ignoreCmd)
+	rootCmd.AddCommand(check_ignoreCmd)
 }

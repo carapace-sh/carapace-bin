@@ -15,7 +15,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-    carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("all", "a", false, "include pseudo, duplicate, inaccessible file systems")
 	rootCmd.Flags().StringP("block-size", "B", "", "scale sizes by SIZE before printing them")
@@ -36,7 +36,7 @@ func init() {
 	rootCmd.Flags().BoolP("v", "v", false, "(ignored)")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(
-        carapace.ActionFiles(""),
-    )
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(""),
+	)
 }

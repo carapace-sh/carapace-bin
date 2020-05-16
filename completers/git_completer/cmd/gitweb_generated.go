@@ -5,13 +5,13 @@ import (
 )
 
 var gitwebCmd = &cobra.Command{
-	Use: "gitweb",
+	Use:   "gitweb",
 	Short: "Git web interface (web frontend to Git repositories)",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(gitwebCmd)
+	rootCmd.AddCommand(gitwebCmd)
 }

@@ -5,10 +5,10 @@ import (
 )
 
 var cherry_pickCmd = &cobra.Command{
-	Use: "cherry-pick",
+	Use:   "cherry-pick",
 	Short: "Apply the changes introduced by some existing commits",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -30,5 +30,5 @@ func init() {
 	cherry_pickCmd.Flags().String("strategy", "", "merge strategy")
 	cherry_pickCmd.Flags().BoolP("x", "x", false, "append commit name")
 	cherry_pickCmd.Flags().BoolP("strategy-option", "X", false, "<option>    option for merge strategy")
-    rootCmd.AddCommand(cherry_pickCmd)
+	rootCmd.AddCommand(cherry_pickCmd)
 }

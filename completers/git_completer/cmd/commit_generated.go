@@ -5,10 +5,10 @@ import (
 )
 
 var commitCmd = &cobra.Command{
-	Use: "commit",
+	Use:   "commit",
 	Short: "Record changes to the repository",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -47,5 +47,5 @@ func init() {
 	commitCmd.Flags().StringP("untracked-files", "u", "", "show untracked files, optional modes: all, normal, no. (Default: all)")
 	commitCmd.Flags().BoolP("verbose", "v", false, "show diff in commit message template")
 	commitCmd.Flags().BoolP("null", "z", false, "terminate entries with NUL")
-    rootCmd.AddCommand(commitCmd)
+	rootCmd.AddCommand(commitCmd)
 }

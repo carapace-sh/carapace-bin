@@ -5,10 +5,10 @@ import (
 )
 
 var shortlogCmd = &cobra.Command{
-	Use: "shortlog",
+	Use:   "shortlog",
 	Short: "Summarize 'git log' output",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -17,5 +17,5 @@ func init() {
 	shortlogCmd.Flags().BoolP("numbered", "n", false, "sort output according to the number of commits per author")
 	shortlogCmd.Flags().BoolP("summary", "s", false, "Suppress commit descriptions, only provides commit count")
 	shortlogCmd.Flags().StringP("w", "w", "", "Linewrap output")
-    rootCmd.AddCommand(shortlogCmd)
+	rootCmd.AddCommand(shortlogCmd)
 }

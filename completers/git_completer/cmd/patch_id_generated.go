@@ -5,13 +5,13 @@ import (
 )
 
 var patch_idCmd = &cobra.Command{
-	Use: "patch-id",
+	Use:   "patch-id",
 	Short: "Compute unique ID for a patch",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(patch_idCmd)
+	rootCmd.AddCommand(patch_idCmd)
 }

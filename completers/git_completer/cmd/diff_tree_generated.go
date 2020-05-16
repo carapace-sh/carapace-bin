@@ -5,13 +5,13 @@ import (
 )
 
 var diff_treeCmd = &cobra.Command{
-	Use: "diff-tree",
+	Use:   "diff-tree",
 	Short: "Compares the content and mode of blobs found via two tree objects",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(diff_treeCmd)
+	rootCmd.AddCommand(diff_treeCmd)
 }

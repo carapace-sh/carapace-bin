@@ -5,10 +5,10 @@ import (
 )
 
 var restoreCmd = &cobra.Command{
-	Use: "restore",
+	Use:   "restore",
 	Short: "Restore working tree files",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -28,5 +28,5 @@ func init() {
 	restoreCmd.Flags().BoolP("source", "s", false, "<tree-ish>    which tree-ish to checkout from")
 	restoreCmd.Flags().BoolP("staged", "S", false, "restore the index")
 	restoreCmd.Flags().BoolP("worktree", "W", false, "restore the working tree (default)")
-    rootCmd.AddCommand(restoreCmd)
+	rootCmd.AddCommand(restoreCmd)
 }

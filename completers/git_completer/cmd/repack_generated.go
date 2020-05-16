@@ -5,10 +5,10 @@ import (
 )
 
 var repackCmd = &cobra.Command{
-	Use: "repack",
+	Use:   "repack",
 	Short: "Pack unpacked objects in a repository",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -31,5 +31,5 @@ func init() {
 	repackCmd.Flags().String("unpack-unreachable", "", "with -A, do not loosen objects older than this")
 	repackCmd.Flags().String("window-memory", "", "same as the above, but limit memory size instead of entries count")
 	repackCmd.Flags().String("window", "", "size of the window used for delta compression")
-    rootCmd.AddCommand(repackCmd)
+	rootCmd.AddCommand(repackCmd)
 }

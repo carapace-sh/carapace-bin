@@ -5,10 +5,10 @@ import (
 )
 
 var grepCmd = &cobra.Command{
-	Use: "grep",
+	Use:   "grep",
 	Short: "Print lines matching a pattern",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -59,5 +59,5 @@ func init() {
 	grepCmd.Flags().BoolP("function-context", "W", false, "show the surrounding function")
 	grepCmd.Flags().BoolP("word-regexp", "w", false, "match patterns only at word boundaries")
 	grepCmd.Flags().BoolP("null", "z", false, "print NUL after filenames")
-    rootCmd.AddCommand(grepCmd)
+	rootCmd.AddCommand(grepCmd)
 }

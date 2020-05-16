@@ -5,10 +5,10 @@ import (
 )
 
 var annotateCmd = &cobra.Command{
-	Use: "annotate",
+	Use:   "annotate",
 	Short: "Annotate file lines with commit information",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -39,5 +39,5 @@ func init() {
 	annotateCmd.Flags().BoolP("s", "s", false, "Suppress author name and timestamp (Default: off)")
 	annotateCmd.Flags().BoolP("t", "t", false, "Show raw timestamp (Default: off)")
 	annotateCmd.Flags().BoolP("w", "w", false, "Ignore whitespace differences")
-    rootCmd.AddCommand(annotateCmd)
+	rootCmd.AddCommand(annotateCmd)
 }

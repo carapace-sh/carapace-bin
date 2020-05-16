@@ -5,13 +5,13 @@ import (
 )
 
 var fetch_packCmd = &cobra.Command{
-	Use: "fetch-pack",
+	Use:   "fetch-pack",
 	Short: "Receive missing objects from another repository",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(fetch_packCmd)
+	rootCmd.AddCommand(fetch_packCmd)
 }

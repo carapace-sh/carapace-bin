@@ -5,10 +5,10 @@ import (
 )
 
 var rebaseCmd = &cobra.Command{
-	Use: "rebase",
+	Use:   "rebase",
 	Short: "Reapply commits on top of another base tip",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -47,5 +47,5 @@ func init() {
 	rebaseCmd.Flags().String("whitespace", "", "passed to 'git apply'")
 	rebaseCmd.Flags().BoolP("exec", "x", false, "<exec>     add exec lines after each commit of the editable list")
 	rebaseCmd.Flags().BoolP("strategy-option", "X", false, "<option>    pass the argument through to the merge strategy")
-    rootCmd.AddCommand(rebaseCmd)
+	rootCmd.AddCommand(rebaseCmd)
 }

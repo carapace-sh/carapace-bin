@@ -5,10 +5,10 @@ import (
 )
 
 var switchCmd = &cobra.Command{
-	Use: "switch",
+	Use:   "switch",
 	Short: "Switch branches",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -27,5 +27,5 @@ func init() {
 	switchCmd.Flags().BoolP("quiet", "q", false, "suppress progress reporting")
 	switchCmd.Flags().String("recurse-submodules", "", "control recursive updating of submodules")
 	switchCmd.Flags().BoolP("track", "t", false, "set upstream info for new branch")
-    rootCmd.AddCommand(switchCmd)
+	rootCmd.AddCommand(switchCmd)
 }

@@ -15,7 +15,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-    carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().String("abstract-unix-socket", "", "Connect via abstract Unix domain socket")
 	rootCmd.Flags().String("alt-svc", "", "name> Enable alt-svc with this cache file")

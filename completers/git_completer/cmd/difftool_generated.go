@@ -5,10 +5,10 @@ import (
 )
 
 var difftoolCmd = &cobra.Command{
-	Use: "difftool",
+	Use:   "difftool",
 	Short: "Show changes using common diff tools",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -21,5 +21,5 @@ func init() {
 	difftoolCmd.Flags().BoolP("tool", "t", false, "<tool>     use the specified diff tool")
 	difftoolCmd.Flags().BoolP("extcmd", "x", false, "<command>    specify a custom command for viewing diffs")
 	difftoolCmd.Flags().BoolP("no-prompt", "y", false, "do not prompt before launching a diff tool")
-    rootCmd.AddCommand(difftoolCmd)
+	rootCmd.AddCommand(difftoolCmd)
 }

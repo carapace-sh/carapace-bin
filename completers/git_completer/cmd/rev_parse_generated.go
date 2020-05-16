@@ -5,13 +5,13 @@ import (
 )
 
 var rev_parseCmd = &cobra.Command{
-	Use: "rev-parse",
+	Use:   "rev-parse",
 	Short: "Pick out and massage parameters",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(rev_parseCmd)
+	rootCmd.AddCommand(rev_parseCmd)
 }

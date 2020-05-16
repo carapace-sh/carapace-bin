@@ -5,10 +5,10 @@ import (
 )
 
 var rev_listCmd = &cobra.Command{
-	Use: "rev-list",
+	Use:   "rev-list",
 	Short: "Lists commit objects in reverse chronological order",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -45,5 +45,5 @@ func init() {
 	rev_listCmd.Flags().Bool("tags", false, "")
 	rev_listCmd.Flags().Bool("topo-order", false, "")
 	rev_listCmd.Flags().Bool("unpacked", false, "")
-    rootCmd.AddCommand(rev_listCmd)
+	rootCmd.AddCommand(rev_listCmd)
 }

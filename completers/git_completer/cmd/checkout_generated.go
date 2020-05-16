@@ -5,10 +5,10 @@ import (
 )
 
 var checkoutCmd = &cobra.Command{
-	Use: "checkout",
+	Use:   "checkout",
 	Short: "Switch branches or restore working tree files",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -34,5 +34,5 @@ func init() {
 	checkoutCmd.Flags().BoolP("quiet", "q", false, "suppress progress reporting")
 	checkoutCmd.Flags().String("recurse-submodules", "", "control recursive updating of submodules")
 	checkoutCmd.Flags().BoolP("track", "t", false, "set upstream info for new branch")
-    rootCmd.AddCommand(checkoutCmd)
+	rootCmd.AddCommand(checkoutCmd)
 }

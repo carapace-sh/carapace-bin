@@ -5,10 +5,10 @@ import (
 )
 
 var columnCmd = &cobra.Command{
-	Use: "column",
+	Use:   "column",
 	Short: "Display data in columns",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -19,5 +19,5 @@ func init() {
 	columnCmd.Flags().String("padding", "", "Padding space between columns")
 	columnCmd.Flags().String("raw-mode", "", "layout to use")
 	columnCmd.Flags().String("width", "", "Maximum width")
-    rootCmd.AddCommand(columnCmd)
+	rootCmd.AddCommand(columnCmd)
 }

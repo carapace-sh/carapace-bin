@@ -5,13 +5,13 @@ import (
 )
 
 var index_packCmd = &cobra.Command{
-	Use: "index-pack",
+	Use:   "index-pack",
 	Short: "Build pack index file for an existing packed archive",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(index_packCmd)
+	rootCmd.AddCommand(index_packCmd)
 }

@@ -5,13 +5,13 @@ import (
 )
 
 var mailinfoCmd = &cobra.Command{
-	Use: "mailinfo",
+	Use:   "mailinfo",
 	Short: "Extracts patch and authorship from a single e-mail message",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(mailinfoCmd)
+	rootCmd.AddCommand(mailinfoCmd)
 }

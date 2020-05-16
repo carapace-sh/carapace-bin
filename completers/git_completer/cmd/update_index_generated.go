@@ -5,10 +5,10 @@ import (
 )
 
 var update_indexCmd = &cobra.Command{
-	Use: "update-index",
+	Use:   "update-index",
 	Short: "Register file contents in the working tree to the index",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -46,5 +46,5 @@ func init() {
 	update_indexCmd.Flags().Bool("untracked-cache", false, "enable/disable untracked cache")
 	update_indexCmd.Flags().Bool("verbose", false, "report actions to standard output")
 	update_indexCmd.Flags().BoolP("z", "z", false, "with --stdin: input lines are terminated by null bytes")
-    rootCmd.AddCommand(update_indexCmd)
+	rootCmd.AddCommand(update_indexCmd)
 }

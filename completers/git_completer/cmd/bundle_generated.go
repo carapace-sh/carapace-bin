@@ -5,13 +5,13 @@ import (
 )
 
 var bundleCmd = &cobra.Command{
-	Use: "bundle",
+	Use:   "bundle",
 	Short: "Move objects and refs by archive",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 	bundleCmd.Flags().BoolP("verbose", "v", false, "be verbose; must be placed before a subcommand")
-    rootCmd.AddCommand(bundleCmd)
+	rootCmd.AddCommand(bundleCmd)
 }

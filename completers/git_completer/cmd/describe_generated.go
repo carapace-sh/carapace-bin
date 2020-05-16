@@ -5,10 +5,10 @@ import (
 )
 
 var describeCmd = &cobra.Command{
-	Use: "describe",
+	Use:   "describe",
 	Short: "Give an object a human readable name based on an available ref",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -26,5 +26,5 @@ func init() {
 	describeCmd.Flags().Bool("long", false, "always use long format")
 	describeCmd.Flags().String("match", "", "only consider tags matching <pattern>")
 	describeCmd.Flags().Bool("tags", false, "use any tag, even unannotated")
-    rootCmd.AddCommand(describeCmd)
+	rootCmd.AddCommand(describeCmd)
 }

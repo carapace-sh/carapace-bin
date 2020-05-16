@@ -6,10 +6,10 @@ import (
 )
 
 var cacheCmd = &cobra.Command{
-	Use:   "cache",
-	Short: "Modify the syntax-definition and theme cache",
-	Run:   func(cmd *cobra.Command, args []string) {},
-    Hidden: true, // TODO can't have arguments and subcommands on rootCmd at the same time in completion
+	Use:    "cache",
+	Short:  "Modify the syntax-definition and theme cache",
+	Run:    func(cmd *cobra.Command, args []string) {},
+	Hidden: true, // TODO can't have arguments and subcommands on rootCmd at the same time in completion
 }
 
 func init() {
@@ -19,10 +19,10 @@ func init() {
 	cacheCmd.Flags().BoolP("help", "h", false, "Prints help information")
 	cacheCmd.Flags().String("source", "", "Use a different directory to load syntaxes and themes from.")
 	cacheCmd.Flags().String("target", "", "Use a different directory to store the cached syntax and theme set.")
-    rootCmd.AddCommand(cacheCmd)
+	rootCmd.AddCommand(cacheCmd)
 
-    carapace.Gen(cacheCmd).FlagCompletion(carapace.ActionMap{
-        "source": carapace.ActionDirectories(),
-        "target": carapace.ActionDirectories(),
-    })
+	carapace.Gen(cacheCmd).FlagCompletion(carapace.ActionMap{
+		"source": carapace.ActionDirectories(),
+		"target": carapace.ActionDirectories(),
+	})
 }

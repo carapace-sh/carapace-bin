@@ -5,10 +5,10 @@ import (
 )
 
 var statusCmd = &cobra.Command{
-	Use: "status",
+	Use:   "status",
 	Short: "Show the working tree status",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -26,5 +26,5 @@ func init() {
 	statusCmd.Flags().StringP("untracked-files", "u", "", "show untracked files, optional modes: all, normal, no. (Default: all)")
 	statusCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 	statusCmd.Flags().BoolP("null", "z", false, "terminate entries with NUL")
-    rootCmd.AddCommand(statusCmd)
+	rootCmd.AddCommand(statusCmd)
 }

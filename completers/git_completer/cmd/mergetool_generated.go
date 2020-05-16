@@ -5,13 +5,13 @@ import (
 )
 
 var mergetoolCmd = &cobra.Command{
-	Use: "mergetool",
+	Use:   "mergetool",
 	Short: "Run merge conflict resolution tools to resolve merge conflicts",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(mergetoolCmd)
+	rootCmd.AddCommand(mergetoolCmd)
 }

@@ -5,10 +5,10 @@ import (
 )
 
 var blameCmd = &cobra.Command{
-	Use: "blame",
+	Use:   "blame",
 	Short: "Show what revision and author last modified each line of a file",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -39,5 +39,5 @@ func init() {
 	blameCmd.Flags().BoolP("s", "s", false, "Suppress author name and timestamp (Default: off)")
 	blameCmd.Flags().BoolP("t", "t", false, "Show raw timestamp (Default: off)")
 	blameCmd.Flags().BoolP("w", "w", false, "Ignore whitespace differences")
-    rootCmd.AddCommand(blameCmd)
+	rootCmd.AddCommand(blameCmd)
 }

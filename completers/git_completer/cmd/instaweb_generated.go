@@ -5,10 +5,10 @@ import (
 )
 
 var instawebCmd = &cobra.Command{
-	Use: "instaweb",
+	Use:   "instaweb",
 	Short: "Instantly browse your working repository in gitweb",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -20,5 +20,5 @@ func init() {
 	instawebCmd.Flags().Bool("restart", false, "restart the web server")
 	instawebCmd.Flags().Bool("start", false, "start the web server")
 	instawebCmd.Flags().Bool("stop", false, "stop the web server")
-    rootCmd.AddCommand(instawebCmd)
+	rootCmd.AddCommand(instawebCmd)
 }

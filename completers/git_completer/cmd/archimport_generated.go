@@ -5,13 +5,13 @@ import (
 )
 
 var archimportCmd = &cobra.Command{
-	Use: "archimport",
+	Use:   "archimport",
 	Short: "Import a GNU Arch repository into Git",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(archimportCmd)
+	rootCmd.AddCommand(archimportCmd)
 }

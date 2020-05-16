@@ -5,10 +5,10 @@ import (
 )
 
 var configCmd = &cobra.Command{
-	Use: "config",
+	Use:   "config",
 	Short: "Get and set repository or global options",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -44,5 +44,5 @@ func init() {
 	configCmd.Flags().Bool("unset", false, "remove a variable: name [value-regex]")
 	configCmd.Flags().Bool("worktree", false, "use per-worktree config file")
 	configCmd.Flags().BoolP("null", "z", false, "terminate values with NUL byte")
-    rootCmd.AddCommand(configCmd)
+	rootCmd.AddCommand(configCmd)
 }

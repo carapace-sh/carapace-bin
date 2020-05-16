@@ -5,10 +5,10 @@ import (
 )
 
 var format_patchCmd = &cobra.Command{
-	Use: "format-patch",
+	Use:   "format-patch",
 	Short: "Prepare patches for e-mail submission",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -46,5 +46,5 @@ func init() {
 	format_patchCmd.Flags().String("to", "", "add To: header")
 	format_patchCmd.Flags().BoolP("reroll-count", "v", false, "<n>    mark the series as Nth re-roll")
 	format_patchCmd.Flags().Bool("zero-commit", false, "output all-zero hash in From header")
-    rootCmd.AddCommand(format_patchCmd)
+	rootCmd.AddCommand(format_patchCmd)
 }

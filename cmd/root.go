@@ -65,7 +65,7 @@ var rootCmd = &cobra.Command{
 		w.Close()
 		out, _ := ioutil.ReadAll(r)
 		os.Stdout = old
-		fmt.Println(strings.Replace(string(out), "carapace-completers _carapace", "carapace-completers " + args[0], -1))
+		fmt.Println(strings.Replace(string(out), "carapace-completers _carapace", "carapace-completers "+args[0], -1))
 	},
 }
 

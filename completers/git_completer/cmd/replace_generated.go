@@ -5,10 +5,10 @@ import (
 )
 
 var replaceCmd = &cobra.Command{
-	Use: "replace",
+	Use:   "replace",
 	Short: "Create, list, delete refs to replace objects",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -20,5 +20,5 @@ func init() {
 	replaceCmd.Flags().BoolP("graft", "g", false, "change a commit's parents")
 	replaceCmd.Flags().BoolP("list", "l", false, "list replace refs")
 	replaceCmd.Flags().Bool("raw", false, "do not pretty-print contents for --edit")
-    rootCmd.AddCommand(replaceCmd)
+	rootCmd.AddCommand(replaceCmd)
 }

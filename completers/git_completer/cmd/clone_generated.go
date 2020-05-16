@@ -5,10 +5,10 @@ import (
 )
 
 var cloneCmd = &cobra.Command{
-	Use: "clone",
+	Use:   "clone",
 	Short: "Clone a repository into a new directory",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -45,5 +45,5 @@ func init() {
 	cloneCmd.Flags().String("template", "", "directory from which templates will be used")
 	cloneCmd.Flags().BoolP("upload-pack", "u", false, "<path>    path to git-upload-pack on the remote")
 	cloneCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
-    rootCmd.AddCommand(cloneCmd)
+	rootCmd.AddCommand(cloneCmd)
 }

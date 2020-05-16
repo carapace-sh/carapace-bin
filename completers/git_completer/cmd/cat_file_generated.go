@@ -5,10 +5,10 @@ import (
 )
 
 var cat_fileCmd = &cobra.Command{
-	Use: "cat-file",
+	Use:   "cat-file",
 	Short: "Provide content or type and size information for repository objects",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -26,5 +26,5 @@ func init() {
 	cat_fileCmd.Flags().Bool("textconv", false, "for blob objects, run textconv on object's content")
 	cat_fileCmd.Flags().BoolP("t", "t", false, "show object type")
 	cat_fileCmd.Flags().Bool("unordered", false, "do not order --batch-all-objects output")
-    rootCmd.AddCommand(cat_fileCmd)
+	rootCmd.AddCommand(cat_fileCmd)
 }

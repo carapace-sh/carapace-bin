@@ -5,13 +5,13 @@ import (
 )
 
 var cryptCmd = &cobra.Command{
-	Use: "crypt",
+	Use:   "crypt",
 	Short: "",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(cryptCmd)
+	rootCmd.AddCommand(cryptCmd)
 }

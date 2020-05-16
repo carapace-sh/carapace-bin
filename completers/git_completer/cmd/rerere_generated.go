@@ -5,13 +5,13 @@ import (
 )
 
 var rerereCmd = &cobra.Command{
-	Use: "rerere",
+	Use:   "rerere",
 	Short: "Reuse recorded resolution of conflicted merges",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 	rerereCmd.Flags().Bool("rerere-autoupdate", false, "register clean resolutions in index")
-    rootCmd.AddCommand(rerereCmd)
+	rootCmd.AddCommand(rerereCmd)
 }

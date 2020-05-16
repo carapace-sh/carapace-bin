@@ -5,10 +5,10 @@ import (
 )
 
 var interpret_trailersCmd = &cobra.Command{
-	Use: "interpret-trailers",
+	Use:   "interpret-trailers",
 	Short: "Add or parse structured information in commit messages",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -23,5 +23,5 @@ func init() {
 	interpret_trailersCmd.Flags().Bool("trim-empty", false, "trim empty trailers")
 	interpret_trailersCmd.Flags().Bool("unfold", false, "join whitespace-continued values")
 	interpret_trailersCmd.Flags().String("where", "", "where to place the new trailer")
-    rootCmd.AddCommand(interpret_trailersCmd)
+	rootCmd.AddCommand(interpret_trailersCmd)
 }

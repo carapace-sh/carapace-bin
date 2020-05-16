@@ -5,10 +5,10 @@ import (
 )
 
 var show_refCmd = &cobra.Command{
-	Use: "show-ref",
+	Use:   "show-ref",
 	Short: "List references in a local repository",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -21,5 +21,5 @@ func init() {
 	show_refCmd.Flags().StringP("hash", "s", "", "only show SHA1 hash using <n> digits")
 	show_refCmd.Flags().Bool("tags", false, "only show tags (can be combined with heads)")
 	show_refCmd.Flags().Bool("verify", false, "stricter reference checking, requires exact ref path")
-    rootCmd.AddCommand(show_refCmd)
+	rootCmd.AddCommand(show_refCmd)
 }

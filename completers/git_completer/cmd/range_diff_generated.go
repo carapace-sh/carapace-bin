@@ -5,10 +5,10 @@ import (
 )
 
 var range_diffCmd = &cobra.Command{
-	Use: "range-diff",
+	Use:   "range-diff",
 	Short: "Compare two commit ranges (e.g. two versions of a branch)",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -96,5 +96,5 @@ func init() {
 	range_diffCmd.Flags().String("ws-error-highlight", "", "highlight whitespace errors in the 'context', 'old' or 'new' lines in the diff")
 	range_diffCmd.Flags().StringP("dirstat", "X", "", "output the distribution of relative amount of changes for each sub-directory")
 	range_diffCmd.Flags().BoolP("z", "z", false, "do not munge pathnames and use NULs as output field terminators in --raw or --numstat")
-    rootCmd.AddCommand(range_diffCmd)
+	rootCmd.AddCommand(range_diffCmd)
 }

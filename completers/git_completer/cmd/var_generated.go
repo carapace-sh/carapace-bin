@@ -5,13 +5,13 @@ import (
 )
 
 var varCmd = &cobra.Command{
-	Use: "var",
+	Use:   "var",
 	Short: "Show a Git logical variable",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(varCmd)
+	rootCmd.AddCommand(varCmd)
 }

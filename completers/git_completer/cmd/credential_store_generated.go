@@ -5,13 +5,13 @@ import (
 )
 
 var credential_storeCmd = &cobra.Command{
-	Use: "credential-store",
+	Use:   "credential-store",
 	Short: "Helper to store credentials on disk",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 	credential_storeCmd.Flags().String("file", "", "fetch and store credentials in <path>")
-    rootCmd.AddCommand(credential_storeCmd)
+	rootCmd.AddCommand(credential_storeCmd)
 }

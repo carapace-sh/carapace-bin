@@ -18,7 +18,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-    carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().String("color", "", "Specify when to use colored output.")
 	rootCmd.Flags().String("decorations", "", "Specify when to use the decorations that have been specified via '--style'.")
@@ -46,7 +46,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show version information.")
 	rootCmd.Flags().String("wrap", "", "Specify the text-wrapping mode (*auto*, never, character).")
 
-    carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color":       carapace.ActionValues("auto", "never", "always"),
 		"decorations": carapace.ActionValues("auto", "never", "always"),
 		"italic-text": carapace.ActionValues("never", "always"),
@@ -56,9 +56,9 @@ func init() {
 		"wrap":        carapace.ActionValues("auto", "never", "character"),
 	})
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(
-      carapace.ActionFiles(""),
-    )
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(""),
+	)
 }
 
 func ActionLanguage() carapace.Action {

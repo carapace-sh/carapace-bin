@@ -5,10 +5,10 @@ import (
 )
 
 var name_revCmd = &cobra.Command{
-	Use: "name-rev",
+	Use:   "name-rev",
 	Short: "Find symbolic names for given revs",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -20,5 +20,5 @@ func init() {
 	name_revCmd.Flags().Bool("stdin", false, "read from stdin")
 	name_revCmd.Flags().Bool("tags", false, "only use tags to name the commits")
 	name_revCmd.Flags().Bool("undefined", false, "allow to print `undefined` names (default)")
-    rootCmd.AddCommand(name_revCmd)
+	rootCmd.AddCommand(name_revCmd)
 }

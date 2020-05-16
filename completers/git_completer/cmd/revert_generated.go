@@ -5,10 +5,10 @@ import (
 )
 
 var revertCmd = &cobra.Command{
-	Use: "revert",
+	Use:   "revert",
 	Short: "Revert some existing commits",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -25,5 +25,5 @@ func init() {
 	revertCmd.Flags().BoolP("signoff", "s", false, "add Signed-off-by:")
 	revertCmd.Flags().String("strategy", "", "merge strategy")
 	revertCmd.Flags().BoolP("strategy-option", "X", false, "<option>    option for merge strategy")
-    rootCmd.AddCommand(revertCmd)
+	rootCmd.AddCommand(revertCmd)
 }

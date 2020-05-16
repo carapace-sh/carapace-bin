@@ -5,10 +5,10 @@ import (
 )
 
 var ls_remoteCmd = &cobra.Command{
-	Use: "ls-remote",
+	Use:   "ls-remote",
 	Short: "List references in a remote repository",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -22,5 +22,5 @@ func init() {
 	ls_remoteCmd.Flags().Bool("symref", false, "show underlying ref in addition to the object pointed by it")
 	ls_remoteCmd.Flags().BoolP("tags", "t", false, "limit to tags")
 	ls_remoteCmd.Flags().String("upload-pack", "", "path of git-upload-pack on the remote host")
-    rootCmd.AddCommand(ls_remoteCmd)
+	rootCmd.AddCommand(ls_remoteCmd)
 }

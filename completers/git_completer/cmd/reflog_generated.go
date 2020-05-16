@@ -5,13 +5,13 @@ import (
 )
 
 var reflogCmd = &cobra.Command{
-	Use: "reflog",
+	Use:   "reflog",
 	Short: "Manage reflog information",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(reflogCmd)
+	rootCmd.AddCommand(reflogCmd)
 }

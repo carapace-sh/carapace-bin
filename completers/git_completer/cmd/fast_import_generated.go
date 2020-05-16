@@ -5,13 +5,13 @@ import (
 )
 
 var fast_importCmd = &cobra.Command{
-	Use: "fast-import",
+	Use:   "fast-import",
 	Short: "Backend for fast Git data importers",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(fast_importCmd)
+	rootCmd.AddCommand(fast_importCmd)
 }

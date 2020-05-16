@@ -5,10 +5,10 @@ import (
 )
 
 var helpCmd = &cobra.Command{
-	Use: "help",
+	Use:   "help",
 	Short: "Display help information about Git",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -19,5 +19,5 @@ func init() {
 	helpCmd.Flags().BoolP("man", "m", false, "show man page")
 	helpCmd.Flags().BoolP("verbose", "v", false, "print command description")
 	helpCmd.Flags().BoolP("web", "w", false, "show manual in web browser")
-    rootCmd.AddCommand(helpCmd)
+	rootCmd.AddCommand(helpCmd)
 }

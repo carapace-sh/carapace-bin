@@ -5,10 +5,10 @@ import (
 )
 
 var mergeCmd = &cobra.Command{
-	Use: "merge",
+	Use:   "merge",
 	Short: "Join two or more development histories together",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -39,5 +39,5 @@ func init() {
 	mergeCmd.Flags().Bool("verify-signatures", false, "verify that the named commit has a valid GPG signature")
 	mergeCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
 	mergeCmd.Flags().BoolP("strategy-option", "X", false, "<option=value>    option for selected merge strategy")
-    rootCmd.AddCommand(mergeCmd)
+	rootCmd.AddCommand(mergeCmd)
 }

@@ -5,13 +5,13 @@ import (
 )
 
 var mailsplitCmd = &cobra.Command{
-	Use: "mailsplit",
+	Use:   "mailsplit",
 	Short: "Simple UNIX mbox splitter program",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(mailsplitCmd)
+	rootCmd.AddCommand(mailsplitCmd)
 }

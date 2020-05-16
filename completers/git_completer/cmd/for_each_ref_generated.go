@@ -5,10 +5,10 @@ import (
 )
 
 var for_each_refCmd = &cobra.Command{
-	Use: "for-each-ref",
+	Use:   "for-each-ref",
 	Short: "Output information on each ref",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -26,5 +26,5 @@ func init() {
 	for_each_refCmd.Flags().String("sort", "", "field name to sort on")
 	for_each_refCmd.Flags().BoolP("shell", "s", false, "quote placeholders suitably for shells")
 	for_each_refCmd.Flags().Bool("tcl", false, "quote placeholders suitably for Tcl")
-    rootCmd.AddCommand(for_each_refCmd)
+	rootCmd.AddCommand(for_each_refCmd)
 }

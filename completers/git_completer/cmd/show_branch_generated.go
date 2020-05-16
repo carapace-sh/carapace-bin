@@ -5,10 +5,10 @@ import (
 )
 
 var show_branchCmd = &cobra.Command{
-	Use: "show-branch",
+	Use:   "show-branch",
 	Short: "Show branches and their commits",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -27,5 +27,5 @@ func init() {
 	show_branchCmd.Flags().Bool("sparse", false, "show merges reachable from only one tip")
 	show_branchCmd.Flags().Bool("topics", false, "show only commits not on the first branch")
 	show_branchCmd.Flags().Bool("topo-order", false, "show commits in topological order")
-    rootCmd.AddCommand(show_branchCmd)
+	rootCmd.AddCommand(show_branchCmd)
 }

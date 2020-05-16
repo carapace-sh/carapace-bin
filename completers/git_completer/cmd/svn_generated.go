@@ -5,13 +5,13 @@ import (
 )
 
 var svnCmd = &cobra.Command{
-	Use: "svn",
+	Use:   "svn",
 	Short: "Bidirectional operation between a Subversion repository and Git",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(svnCmd)
+	rootCmd.AddCommand(svnCmd)
 }

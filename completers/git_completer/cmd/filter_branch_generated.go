@@ -5,13 +5,13 @@ import (
 )
 
 var filter_branchCmd = &cobra.Command{
-	Use: "filter-branch",
+	Use:   "filter-branch",
 	Short: "Rewrite branches",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(filter_branchCmd)
+	rootCmd.AddCommand(filter_branchCmd)
 }

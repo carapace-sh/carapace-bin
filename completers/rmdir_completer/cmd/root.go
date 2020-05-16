@@ -15,7 +15,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-    carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().Bool("ignore-fail-on-non-empty", false, "each failure that is solely because a directory is non-empty")
@@ -23,7 +23,7 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "output a diagnostic for every directory processed")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(
-        carapace.ActionDirectories(),
-    )
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionDirectories(),
+	)
 }

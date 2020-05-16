@@ -5,10 +5,10 @@ import (
 )
 
 var pushCmd = &cobra.Command{
-	Use: "push",
+	Use:   "push",
 	Short: "Update remote refs along with associated objects",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -37,5 +37,5 @@ func init() {
 	pushCmd.Flags().Bool("thin", false, "use thin pack")
 	pushCmd.Flags().BoolP("set-upstream", "u", false, "set upstream for git pull/status")
 	pushCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
-    rootCmd.AddCommand(pushCmd)
+	rootCmd.AddCommand(pushCmd)
 }

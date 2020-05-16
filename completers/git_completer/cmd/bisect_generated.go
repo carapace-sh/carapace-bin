@@ -5,13 +5,13 @@ import (
 )
 
 var bisectCmd = &cobra.Command{
-	Use: "bisect",
+	Use:   "bisect",
 	Short: "Use binary search to find the commit that introduced a bug",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(bisectCmd)
+	rootCmd.AddCommand(bisectCmd)
 }

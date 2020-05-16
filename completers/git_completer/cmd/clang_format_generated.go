@@ -5,13 +5,13 @@ import (
 )
 
 var clang_formatCmd = &cobra.Command{
-	Use: "clang-format",
+	Use:   "clang-format",
 	Short: "",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(clang_formatCmd)
+	rootCmd.AddCommand(clang_formatCmd)
 }

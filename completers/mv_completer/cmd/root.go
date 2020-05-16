@@ -15,7 +15,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-    carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("b", "b", false, "like --backup but does not accept an argument")
 	rootCmd.Flags().String("backup", "", "make a backup of each existing destination file")

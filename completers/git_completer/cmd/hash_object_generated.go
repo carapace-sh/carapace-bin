@@ -5,10 +5,10 @@ import (
 )
 
 var hash_objectCmd = &cobra.Command{
-	Use: "hash-object",
+	Use:   "hash-object",
 	Short: "Compute object ID and optionally creates a blob from a file",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -19,5 +19,5 @@ func init() {
 	hash_objectCmd.Flags().Bool("stdin", false, "read the object from stdin")
 	hash_objectCmd.Flags().StringP("t", "t", "", "object type")
 	hash_objectCmd.Flags().BoolP("w", "w", false, "write the object into the object database")
-    rootCmd.AddCommand(hash_objectCmd)
+	rootCmd.AddCommand(hash_objectCmd)
 }

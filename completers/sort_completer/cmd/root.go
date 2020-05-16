@@ -15,7 +15,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-    carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().String("batch-size", "", "merge at most NMERGE inputs at once")
 	rootCmd.Flags().StringP("buffer-size", "S", "", "use SIZE for main memory buffer")
@@ -49,16 +49,16 @@ func init() {
 	rootCmd.Flags().BoolP("version-sort", "V", false, "natural sort of (version) numbers within text")
 	rootCmd.Flags().BoolP("zero-terminated", "z", false, "line delimiter is NUL, not newline")
 
-    carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-        "check": carapace.ActionValues("diagnose-first", "quiet", "silent"),
-        "compress-programm": carapace.ActionValues("bzip2", "gzip", "lzop", "xz"),
-        "files0-from": carapace.ActionFiles(""),
-        "sort": carapace.ActionValues("general-numeric", "human-numeric", "month", "numeric", "random", "version"),
-        "random-source": carapace.ActionFiles(""),
-        "temporary-directory": carapace.ActionDirectories(),
-    })
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"check":               carapace.ActionValues("diagnose-first", "quiet", "silent"),
+		"compress-programm":   carapace.ActionValues("bzip2", "gzip", "lzop", "xz"),
+		"files0-from":         carapace.ActionFiles(""),
+		"sort":                carapace.ActionValues("general-numeric", "human-numeric", "month", "numeric", "random", "version"),
+		"random-source":       carapace.ActionFiles(""),
+		"temporary-directory": carapace.ActionDirectories(),
+	})
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(
-      carapace.ActionFiles(""),
-    )
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(""),
+	)
 }

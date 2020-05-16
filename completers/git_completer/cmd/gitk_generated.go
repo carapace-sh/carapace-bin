@@ -5,13 +5,13 @@ import (
 )
 
 var gitkCmd = &cobra.Command{
-	Use: "gitk",
+	Use:   "gitk",
 	Short: "The Git repository browser",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(gitkCmd)
+	rootCmd.AddCommand(gitkCmd)
 }

@@ -5,10 +5,10 @@ import (
 )
 
 var ls_filesCmd = &cobra.Command{
-	Use: "ls-files",
+	Use:   "ls-files",
 	Short: "Show information about files in the index and the working tree",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -38,5 +38,5 @@ func init() {
 	ls_filesCmd.Flags().BoolP("exclude-from", "X", false, "<file>    exclude patterns are read from <file>")
 	ls_filesCmd.Flags().BoolP("exclude", "x", false, "<pattern>    skip files matching pattern")
 	ls_filesCmd.Flags().BoolP("z", "z", false, "paths are separated with NUL character")
-    rootCmd.AddCommand(ls_filesCmd)
+	rootCmd.AddCommand(ls_filesCmd)
 }

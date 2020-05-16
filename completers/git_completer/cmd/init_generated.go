@@ -5,10 +5,10 @@ import (
 )
 
 var initCmd = &cobra.Command{
-	Use: "init",
+	Use:   "init",
 	Short: "Create an empty Git repository or reinitialize an existing one",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -17,5 +17,5 @@ func init() {
 	initCmd.Flags().String("separate-git-dir", "", "separate git dir from working tree")
 	initCmd.Flags().String("shared", "", "specify that the git repository is to be shared amongst several users")
 	initCmd.Flags().String("template", "", "directory from which templates will be used")
-    rootCmd.AddCommand(initCmd)
+	rootCmd.AddCommand(initCmd)
 }

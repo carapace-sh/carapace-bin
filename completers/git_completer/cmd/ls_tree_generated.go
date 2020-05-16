@@ -5,10 +5,10 @@ import (
 )
 
 var ls_treeCmd = &cobra.Command{
-	Use: "ls-tree",
+	Use:   "ls-tree",
 	Short: "List the contents of a tree object",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -22,5 +22,5 @@ func init() {
 	ls_treeCmd.Flags().BoolP("r", "r", false, "recurse into subtrees")
 	ls_treeCmd.Flags().BoolP("t", "t", false, "show trees when recursing")
 	ls_treeCmd.Flags().BoolP("z", "z", false, "terminate entries with NUL byte")
-    rootCmd.AddCommand(ls_treeCmd)
+	rootCmd.AddCommand(ls_treeCmd)
 }

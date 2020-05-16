@@ -5,13 +5,13 @@ import (
 )
 
 var mktagCmd = &cobra.Command{
-	Use: "mktag",
+	Use:   "mktag",
 	Short: "Creates a tag object",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(mktagCmd)
+	rootCmd.AddCommand(mktagCmd)
 }

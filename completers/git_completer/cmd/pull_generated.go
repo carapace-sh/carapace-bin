@@ -5,10 +5,10 @@ import (
 )
 
 var pullCmd = &cobra.Command{
-	Use: "pull",
+	Use:   "pull",
 	Short: "Fetch from and integrate with another repository or a local branch",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -50,5 +50,5 @@ func init() {
 	pullCmd.Flags().Bool("verify-signatures", false, "verify that the named commit has a valid GPG signature")
 	pullCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
 	pullCmd.Flags().BoolP("strategy-option", "X", false, "<option=value>    option for selected merge strategy")
-    rootCmd.AddCommand(pullCmd)
+	rootCmd.AddCommand(pullCmd)
 }

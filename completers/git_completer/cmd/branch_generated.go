@@ -5,10 +5,10 @@ import (
 )
 
 var branchCmd = &cobra.Command{
-	Use: "branch",
+	Use:   "branch",
 	Short: "List, create, or delete branches",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -41,5 +41,5 @@ func init() {
 	branchCmd.Flags().Bool("unset-upstream", false, "unset the upstream info")
 	branchCmd.Flags().BoolP("set-upstream-to", "u", false, "<upstream>    change the upstream info")
 	branchCmd.Flags().BoolP("verbose", "v", false, "show hash and subject, give twice for upstream branch")
-    rootCmd.AddCommand(branchCmd)
+	rootCmd.AddCommand(branchCmd)
 }

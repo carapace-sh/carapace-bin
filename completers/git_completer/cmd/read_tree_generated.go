@@ -5,10 +5,10 @@ import (
 )
 
 var read_treeCmd = &cobra.Command{
-	Use: "read-tree",
+	Use:   "read-tree",
 	Short: "Reads tree information into the index",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -28,5 +28,5 @@ func init() {
 	read_treeCmd.Flags().Bool("trivial", false, "3-way merge if no file level merging required")
 	read_treeCmd.Flags().BoolP("u", "u", false, "update working tree with merge result")
 	read_treeCmd.Flags().BoolP("verbose", "v", false, "be verbose")
-    rootCmd.AddCommand(read_treeCmd)
+	rootCmd.AddCommand(read_treeCmd)
 }

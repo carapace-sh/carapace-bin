@@ -5,13 +5,13 @@ import (
 )
 
 var submoduleCmd = &cobra.Command{
-	Use: "submodule",
+	Use:   "submodule",
 	Short: "Initialize, update or inspect submodules",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 
-    rootCmd.AddCommand(submoduleCmd)
+	rootCmd.AddCommand(submoduleCmd)
 }

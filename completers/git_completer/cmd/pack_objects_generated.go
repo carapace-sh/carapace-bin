@@ -5,10 +5,10 @@ import (
 )
 
 var pack_objectsCmd = &cobra.Command{
-	Use: "pack-objects",
+	Use:   "pack-objects",
 	Short: "Create a packed archive of objects",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -51,5 +51,5 @@ func init() {
 	pack_objectsCmd.Flags().String("window-memory", "", "limit pack window by memory in addition to object limit")
 	pack_objectsCmd.Flags().String("window", "", "limit pack window by objects")
 	pack_objectsCmd.Flags().Bool("write-bitmap-index", false, "write a bitmap index together with the pack index")
-    rootCmd.AddCommand(pack_objectsCmd)
+	rootCmd.AddCommand(pack_objectsCmd)
 }

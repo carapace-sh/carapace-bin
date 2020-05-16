@@ -5,10 +5,10 @@ import (
 )
 
 var cleanCmd = &cobra.Command{
-	Use: "clean",
+	Use:   "clean",
 	Short: "Remove untracked files from the working tree",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -20,5 +20,5 @@ func init() {
 	cleanCmd.Flags().BoolP("quiet", "q", false, "do not print names of files removed")
 	cleanCmd.Flags().BoolP("x", "x", false, "remove ignored files, too")
 	cleanCmd.Flags().BoolP("X", "X", false, "remove only ignored files")
-    rootCmd.AddCommand(cleanCmd)
+	rootCmd.AddCommand(cleanCmd)
 }

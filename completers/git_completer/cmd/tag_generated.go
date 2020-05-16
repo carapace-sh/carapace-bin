@@ -5,10 +5,10 @@ import (
 )
 
 var tagCmd = &cobra.Command{
-	Use: "tag",
+	Use:   "tag",
 	Short: "Create, list, delete or verify a tag object signed with GPG",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -35,5 +35,5 @@ func init() {
 	tagCmd.Flags().BoolP("sign", "s", false, "annotated and GPG-signed tag")
 	tagCmd.Flags().BoolP("local-user", "u", false, "<key-id>    use another key to sign the tag")
 	tagCmd.Flags().BoolP("verify", "v", false, "verify tags")
-    rootCmd.AddCommand(tagCmd)
+	rootCmd.AddCommand(tagCmd)
 }

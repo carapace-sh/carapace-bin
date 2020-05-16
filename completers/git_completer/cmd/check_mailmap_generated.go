@@ -5,13 +5,13 @@ import (
 )
 
 var check_mailmapCmd = &cobra.Command{
-	Use: "check-mailmap",
+	Use:   "check-mailmap",
 	Short: "Show canonical names and email addresses of contacts",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 	check_mailmapCmd.Flags().Bool("stdin", false, "also read contacts from stdin")
-    rootCmd.AddCommand(check_mailmapCmd)
+	rootCmd.AddCommand(check_mailmapCmd)
 }

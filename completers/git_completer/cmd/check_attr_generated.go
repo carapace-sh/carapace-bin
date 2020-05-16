@@ -5,10 +5,10 @@ import (
 )
 
 var check_attrCmd = &cobra.Command{
-	Use: "check-attr",
+	Use:   "check-attr",
 	Short: "Display gitattributes information",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -16,5 +16,5 @@ func init() {
 	check_attrCmd.Flags().Bool("cached", false, "use .gitattributes only from the index")
 	check_attrCmd.Flags().Bool("stdin", false, "read file names from stdin")
 	check_attrCmd.Flags().BoolP("z", "z", false, "terminate input and output records by a NUL character")
-    rootCmd.AddCommand(check_attrCmd)
+	rootCmd.AddCommand(check_attrCmd)
 }

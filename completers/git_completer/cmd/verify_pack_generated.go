@@ -5,14 +5,14 @@ import (
 )
 
 var verify_packCmd = &cobra.Command{
-	Use: "verify-pack",
+	Use:   "verify-pack",
 	Short: "Validate packed Git archive files",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 	verify_packCmd.Flags().BoolP("stat-only", "s", false, "show statistics only")
 	verify_packCmd.Flags().BoolP("verbose", "v", false, "verbose")
-    rootCmd.AddCommand(verify_packCmd)
+	rootCmd.AddCommand(verify_packCmd)
 }

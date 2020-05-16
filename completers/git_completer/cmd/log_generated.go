@@ -5,10 +5,10 @@ import (
 )
 
 var logCmd = &cobra.Command{
-	Use: "log",
+	Use:   "log",
 	Short: "Show commit logs",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -19,5 +19,5 @@ func init() {
 	logCmd.Flags().BoolP("quiet", "q", false, "suppress diff output")
 	logCmd.Flags().Bool("source", false, "show source")
 	logCmd.Flags().Bool("use-mailmap", false, "Use mail map file")
-    rootCmd.AddCommand(logCmd)
+	rootCmd.AddCommand(logCmd)
 }

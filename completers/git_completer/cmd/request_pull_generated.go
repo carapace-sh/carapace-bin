@@ -5,13 +5,13 @@ import (
 )
 
 var request_pullCmd = &cobra.Command{
-	Use: "request-pull",
+	Use:   "request-pull",
 	Short: "Generates a summary of pending changes",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 	request_pullCmd.Flags().BoolP("p", "p", false, "show patch text as well")
-    rootCmd.AddCommand(request_pullCmd)
+	rootCmd.AddCommand(request_pullCmd)
 }

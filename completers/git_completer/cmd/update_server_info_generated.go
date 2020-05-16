@@ -5,13 +5,13 @@ import (
 )
 
 var update_server_infoCmd = &cobra.Command{
-	Use: "update-server-info",
+	Use:   "update-server-info",
 	Short: "Update auxiliary info file to help dumb servers",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
 	update_server_infoCmd.Flags().BoolP("force", "f", false, "update the info files from scratch")
-    rootCmd.AddCommand(update_server_infoCmd)
+	rootCmd.AddCommand(update_server_infoCmd)
 }

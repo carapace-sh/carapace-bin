@@ -5,10 +5,10 @@ import (
 )
 
 var showCmd = &cobra.Command{
-	Use: "show",
+	Use:   "show",
 	Short: "Show various types of objects",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -19,5 +19,5 @@ func init() {
 	showCmd.Flags().BoolP("quiet", "q", false, "suppress diff output")
 	showCmd.Flags().Bool("source", false, "show source")
 	showCmd.Flags().Bool("use-mailmap", false, "Use mail map file")
-    rootCmd.AddCommand(showCmd)
+	rootCmd.AddCommand(showCmd)
 }

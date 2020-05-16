@@ -5,10 +5,10 @@ import (
 )
 
 var archiveCmd = &cobra.Command{
-	Use: "archive",
+	Use:   "archive",
 	Short: "Create an archive of files from a named tree",
-    Run: func(cmd *cobra.Command, args []string) {
-    },
+	Run: func(cmd *cobra.Command, args []string) {
+	},
 }
 
 func init() {
@@ -23,5 +23,5 @@ func init() {
 	archiveCmd.Flags().String("remote", "", "retrieve the archive from remote repository <repo>")
 	archiveCmd.Flags().BoolP("verbose", "v", false, "report archived files on stderr")
 	archiveCmd.Flags().Bool("worktree-attributes", false, "read .gitattributes in working directory")
-    rootCmd.AddCommand(archiveCmd)
+	rootCmd.AddCommand(archiveCmd)
 }
