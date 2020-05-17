@@ -7,6 +7,40 @@ services:
     volumes:
       - '.:/carapace-completers/'
       - 'go:/go/'
+  bash:
+    build:
+      context: .
+      dockerfile: Dockerfile.bash
+    volumes:
+      - '.:/carapace-completers/'
+
+  elvish:
+    build:
+      context: .
+      dockerfile: Dockerfile.elvish
+    volumes:
+      - '.:/carapace-completers/'
+
+  fish:
+    build:
+      context: .
+      dockerfile: Dockerfile.fish
+    volumes:
+      - '.:/carapace-completers/'
+
+  powershell:
+    build:
+      context: .
+      dockerfile: Dockerfile.powershell
+    volumes:
+      - '.:/carapace-completers/'
+
+  zsh:
+    build:
+      context: .
+      dockerfile: Dockerfile.zsh
+    volumes:
+      - '.:/carapace-completers/'
 
 volumes:
   go:

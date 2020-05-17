@@ -17,20 +17,25 @@ var rootCmd = &cobra.Command{
 	ValidArgs: completers,
 	Run: func(cmd *cobra.Command, args []string) {
 		// TODO if len < thans sth (script generation)
-		old := os.Stdout
-		r, w, _ := os.Pipe()
-		os.Stdout = w
-
 		if len(args) > 0 {
-			os.Args[1] = "_carapace"
-		    executeCompleter(args[0])
-		}
+			old := os.Stdout
+			r, w, _ := os.Pipe()
+			os.Stdout = w
 
-		w.Close()
-		out, _ := ioutil.ReadAll(r)
-		os.Stdout = old
-		fmt.Println(strings.Replace(string(out), "carapace-completers _carapace", "carapace-completers "+args[0], -1))
+			completer := args[0]
+			os.Args[1] = "_carapace"
+			executeCompleter(completer)
+
+			w.Close()
+			out, _ := ioutil.ReadAll(r)
+			os.Stdout = old
+			fmt.Print(strings.Replace(string(out), "carapace-completers _carapace", "carapace-completers "+completer, -1))
+		}
 	},
+	FParseErrWhitelist: cobra.FParseErrWhitelist{
+		UnknownFlags: true,
+	},
+	DisableFlagParsing: true,
 }
 
 func Execute() error {
@@ -38,7 +43,7 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
-        carapace.ActionValues(completers...),
-        carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
-    )
+		carapace.ActionValues(completers...),
+		carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
+	)
 }

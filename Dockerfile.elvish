@@ -1,0 +1,17 @@
+FROM golang
+
+RUN curl https://dl.elv.sh/linux-amd64/elvish-v0.13.1.tar.gz | tar -xvz \
+ && mv elvish-* /usr/local/bin/elvish
+
+ENV PS1=$'%{\e[0;36m%}carapace %{\e[0m%}'
+
+RUN ln -s /carapace-completers/carapace-completers /usr/local/bin/carapace-completers
+
+RUN mkdir -p /root/.elvish/lib \
+ && echo "\
+carapace-completers _carapace elvish > /root/.elvish/lib/carapace-completers.elv\n\
+use carapace-completers" \
+  > /root/.elvish/rc.elv
+
+ENTRYPOINT [ "elvish" ]
+
