@@ -20,7 +20,7 @@ func init() {
 	rootCmd.Flags().String("batch-size", "", "merge at most NMERGE inputs at once")
 	rootCmd.Flags().StringP("buffer-size", "S", "", "use SIZE for main memory buffer")
 	rootCmd.Flags().StringP("C", "C", "", "--check=silent  like -c, but do not report first bad line")
-	rootCmd.Flags().StringP("check,", "c", "", "check for sorted input; do not sort")
+	rootCmd.Flags().StringP("check", "c", "", "check for sorted input; do not sort")
 	rootCmd.Flags().String("compress-program", "", "compress temporaries with PROG")
 	rootCmd.Flags().Bool("debug", false, "annotate the part of the line used to sort, and warn about questionable usage to stderr")
 	rootCmd.Flags().BoolP("dictionary-order", "d", false, "consider only blanks and alphanumeric characters")
@@ -51,7 +51,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"check":               carapace.ActionValues("diagnose-first", "quiet", "silent"),
-		"compress-programm":   carapace.ActionValues("bzip2", "gzip", "lzop", "xz"),
+		"compress-program":   carapace.ActionValues("bzip2", "gzip", "lzop", "xz"),
 		"files0-from":         carapace.ActionFiles(""),
 		"sort":                carapace.ActionValues("general-numeric", "human-numeric", "month", "numeric", "random", "version"),
 		"random-source":       carapace.ActionFiles(""),

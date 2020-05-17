@@ -93,6 +93,8 @@ github.com/rsteube/carapace v0.0.14 h1:k48kXY5aUS3GkEiV/GLJGKNmPSCBO67VbgxvR120s
 github.com/rsteube/carapace v0.0.14/go.mod h1:aOz85k53XSmXljF3xvsnje/5joN75jqWwl1aDAURhRQ=
 github.com/rsteube/carapace v0.0.15 h1:gt0KRBEmCgHJLpRu6NKjmnyAiFX044tf09AObrCyR7o=
 github.com/rsteube/carapace v0.0.15/go.mod h1:tfaU/IFaXi4SlssOcNwtgytI7zSw+tVuGPXyQ+d6kPU=
+github.com/rsteube/carapace v0.0.16-0.20200516202706-a0ce10f2d5be h1:WAMTUcS9Wz177hk6Mpv5YaTS/x2/WUQno4Qt0RxJ0eM=
+github.com/rsteube/carapace v0.0.16-0.20200516202706-a0ce10f2d5be/go.mod h1:tfaU/IFaXi4SlssOcNwtgytI7zSw+tVuGPXyQ+d6kPU=
 github.com/russross/blackfriday v1.5.2/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
 github.com/russross/blackfriday/v2 v2.0.1/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=

@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
@@ -23,7 +25,37 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "print a message for each created directory")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"mode": ActionMode(),
+	})
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionDirectories(),
 	)
+}
+
+// TODO bit hacky as empty delimiter not yet implemented (carapce should support multiple delimiters anyway: []rune)
+func ActionMode() carapace.Action {
+	return carapace.ActionMultiParts(' ', func(args, parts []string) []string {
+		current := rootCmd.Flag("mode").Value.String()
+		vals := []string{}
+		if !strings.ContainsAny(current, "+-=") {
+			for _, c := range "agou+-=" {
+				if !strings.ContainsRune(current, c) {
+					vals = append(vals, string(c))
+				}
+			}
+		} else {
+			currentMode := current[strings.LastIndexAny(current, "+-=")+1 : len(current)]
+			for _, c := range "gorstuwxX" {
+				if !strings.ContainsRune(currentMode, c) {
+					vals = append(vals, string(c))
+				}
+			}
+		}
+		for index, val := range vals {
+			vals[index] = current + val
+		}
+		return vals
+	})
 }
