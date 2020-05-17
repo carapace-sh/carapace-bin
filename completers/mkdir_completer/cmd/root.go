@@ -37,7 +37,7 @@ func init() {
 // TODO bit hacky as empty delimiter not yet implemented (carapce should support multiple delimiters anyway: []rune)
 func ActionMode() carapace.Action {
 	return carapace.ActionMultiParts(' ', func(args, parts []string) []string {
-		current := rootCmd.Flag("mode").Value.String()
+		current := carapace.CallbackValue
 		vals := []string{}
 		if !strings.ContainsAny(current, "+-=") {
 			for _, c := range "agou+-=" {
