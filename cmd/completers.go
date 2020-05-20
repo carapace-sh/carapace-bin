@@ -32,7 +32,7 @@ var completers = []string{
 	"curl",
 	"df",
 	"exa",
-	"git",
+//	"git",
 	"gradle",
 	"ln",
 	"mkdir",

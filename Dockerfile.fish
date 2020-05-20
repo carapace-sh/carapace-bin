@@ -9,13 +9,15 @@ function fish_prompt \n\
     echo -n 'carapace ' \n\
     set_color normal\n\
 end\n\
-carapace-completers _carapace fish | source" \
+carapace-completers _carapace fish | source\n\
+rm -f /usr/share/fish/completions/chown.fish\n\
+for c in (carapace-completers --list)\n\
+  complete --erase -c "\$c"\n\
+  carapace-completers \$c | source\n\
+end" \
        > /root/.config/fish/config.fish
-
-ENV PS1=$'%{\e[0;36m%}carapace %{\e[0m%}'
 
 RUN ln -s /carapace-completers/carapace-completers /usr/local/bin/carapace-completers
 
-
-ENTRYPOINT [ "fish" ]
+ENTRYPOINT [ "/usr/bin/fish" ]
 

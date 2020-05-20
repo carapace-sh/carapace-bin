@@ -56,7 +56,7 @@ func init() {
 }
 
 func ActionOwnerGroup() carapace.Action {
-	return carapace.ActionMultiParts(':', func(args []string, parts []string) []string {
+	return carapace.ActionMultiParts(":", func(args []string, parts []string) []string {
 		switch len(parts) {
 		case 0:
 			return Users()

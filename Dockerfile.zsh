@@ -9,8 +9,10 @@ zstyle ':completion:*' menu select \n\
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*' \n\
 \n\
 autoload -U compinit && compinit \n\
-source <(example _carapace zsh)" \
-       > /root/.zshrc
+source <(carapace-completers _carapace zsh) \n\
+for c in \$(carapace-completers --list); do\n\
+  source <(carapace-completers \$c)\n\
+done"  > /root/.zshrc
 
 RUN ln -s /carapace-completers/carapace-completers /usr/local/bin/carapace-completers
 

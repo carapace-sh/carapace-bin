@@ -33,7 +33,7 @@ func init() {
 	rootCmd.Flags().BoolP("link", "l", false, "hard link files instead of copying")
 	rootCmd.Flags().BoolP("no-clobber", "n", false, "do not overwrite an existing file (overrides a previous -i option)")
 	rootCmd.Flags().BoolP("no-dereference", "P", false, "never follow symbolic links in SOURCE")
-	rootCmd.Flags().String("no-preserve", "", "don't preserve the specified attributes")
+	rootCmd.Flags().StringSlice("no-preserve", []string{}, "don't preserve the specified attributes")
 	rootCmd.Flags().BoolP("no-target-directory", "T", false, "treat DEST as a normal file")
 	rootCmd.Flags().BoolP("one-file-system", "x", false, "stay on this file system")
 	rootCmd.Flags().BoolP("p", "p", false, "same as --preserve=mode,ownership,timestamps")
@@ -41,7 +41,7 @@ func init() {
 	rootCmd.Flags().StringSlice("preserve", []string{""}, "preserve the specified attributes (default: mode,ownership,timestamps), if possible additional attributes: context, links, xattr, all")
 	rootCmd.Flags().String("reflink", "", "control clone/CoW copies. See below")
 	rootCmd.Flags().Bool("remove-destination", false, "remove each existing destination file before attempting to open it (contrast with --force)")
-	rootCmd.Flags().String("sparse", "", "control creation of sparse files. See below")
+	rootCmd.Flags().String("sparse", "", "control creation of sparse files.")
 	rootCmd.Flags().Bool("strip-trailing-slashes", false, "remove any trailing slashes from each SOURCE argument")
 	rootCmd.Flags().StringP("suffix", "S", "", "override the usual backup suffix")
 	rootCmd.Flags().BoolP("symbolic-link", "s", false, "make symbolic links instead of copying")
@@ -51,7 +51,10 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"no-preserve":      carapace.ActionValues("all", "context", "links", "mode", "ownership", "timestamps", "xattr"),
 		"preserve":         carapace.ActionValues("all", "context", "links", "mode", "ownership", "timestamps", "xattr"),
+		"reflink":          carapace.ActionValues("alway", "auto"),
+		"sparse":           carapace.ActionValues("always", "auto", "never"),
 		"target-directory": carapace.ActionDirectories(),
 	})
 

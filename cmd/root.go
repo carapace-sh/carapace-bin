@@ -16,6 +16,10 @@ var rootCmd = &cobra.Command{
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers,
 	Run: func(cmd *cobra.Command, args []string) {
+		if os.Args[1] == "--list" {
+			fmt.Println(strings.Join(completers, "\n"))
+			return
+		}
 		// TODO if len < thans sth (script generation)
 		if len(args) > 0 {
 			old := os.Stdout
@@ -42,6 +46,8 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+	rootCmd.Flags().Bool("list", false, "list completers")
+
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValues(completers...),
 		carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),

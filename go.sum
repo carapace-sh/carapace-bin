@@ -61,6 +61,7 @@ github.com/magiconair/properties v1.8.0/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czP
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
 github.com/mattn/go-isatty v0.0.4/go.mod h1:M+lRXTBqGeGNdLjl/ufCoiOlB5xdOkqRJdNxMWT7Zi4=
 github.com/matttproud/golang_protobuf_extensions v1.0.1/go.mod h1:D8He9yQNgCq6Z5Ld7szi9bcBfOoFv/3dc6xSMkL2PC0=
+github.com/mitchellh/go-homedir v1.1.0 h1:lukF9ziXFxDFPkA1vsr5zpc1XuPDn/wFntq5mG+4E0Y=
 github.com/mitchellh/go-homedir v1.1.0/go.mod h1:SfyaCUpYCn1Vlf4IUYiD9fPX4A5wJrkLzIz1N1q0pr0=
 github.com/mitchellh/go-ps v1.0.0 h1:i6ampVEEF4wQFF+bkYfwYgY+F/uYJDktmvLPf7qIgjc=
 github.com/mitchellh/go-ps v1.0.0/go.mod h1:J4lOc8z8yJs6vUwklHw2XEIiT4z4C40KtWVN3nvg8Pg=
@@ -95,6 +96,10 @@ github.com/rsteube/carapace v0.0.15 h1:gt0KRBEmCgHJLpRu6NKjmnyAiFX044tf09AObrCyR
 github.com/rsteube/carapace v0.0.15/go.mod h1:tfaU/IFaXi4SlssOcNwtgytI7zSw+tVuGPXyQ+d6kPU=
 github.com/rsteube/carapace v0.0.16-0.20200516202706-a0ce10f2d5be h1:WAMTUcS9Wz177hk6Mpv5YaTS/x2/WUQno4Qt0RxJ0eM=
 github.com/rsteube/carapace v0.0.16-0.20200516202706-a0ce10f2d5be/go.mod h1:tfaU/IFaXi4SlssOcNwtgytI7zSw+tVuGPXyQ+d6kPU=
+github.com/rsteube/carapace v0.0.16-0.20200517202549-0b3460d78004 h1:67o6WI7AyxqEjj48uqDwf5sf+o0sqSrMlMyqv7beM/k=
+github.com/rsteube/carapace v0.0.16-0.20200517202549-0b3460d78004/go.mod h1:MW6dtBU0/zTdivRaQzlCHyceSHKzZP0xHqjXmgeSN5Y=
+github.com/rsteube/carapace v0.0.16-0.20200520224630-dda37b147062 h1:8BUuQYfH7EKj9wPaVvmZHxPvR6LQRdxnRs86GTBFtIc=
+github.com/rsteube/carapace v0.0.16-0.20200520224630-dda37b147062/go.mod h1:MW6dtBU0/zTdivRaQzlCHyceSHKzZP0xHqjXmgeSN5Y=
 github.com/russross/blackfriday v1.5.2/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
 github.com/russross/blackfriday/v2 v2.0.1/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=
