@@ -1,8 +1,9 @@
 package cmd
 
 import (
+	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"strings"
 
@@ -26,12 +27,20 @@ var rootCmd = &cobra.Command{
 			r, w, _ := os.Pipe()
 			os.Stdout = w
 
+			outC := make(chan string)
+			// copy the output in a separate goroutine so printing can't block indefinitely
+			go func() {
+				var buf bytes.Buffer
+				io.Copy(&buf, r)
+				outC <- buf.String()
+			}()
+
 			completer := args[0]
 			os.Args[1] = "_carapace"
 			executeCompleter(completer)
 
 			w.Close()
-			out, _ := ioutil.ReadAll(r)
+            out := <-outC
 			os.Stdout = old
 			fmt.Print(strings.Replace(string(out), "carapace _carapace", "carapace "+completer, -1))
 		}
