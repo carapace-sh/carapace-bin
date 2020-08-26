@@ -20,6 +20,25 @@ for glibc (ubuntu) version or invoke `go build` yourself - for smallest file siz
 
 ## completers
 
-- exa (works)
-- git (rough experiment)
-- gradle (works and has task caching)
+| completer | state |
+|-|-|
+| bat |  |
+| chgrp |  |
+| chmod |  |
+| chown |  |
+| cp |  |
+| curl |  |
+| df |  |
+| exa |  |
+| git |  |
+| gradle |  |
+| ln |  |
+| mkdir |  |
+| mv |  |
+| pkill |  |
+| rm |  |
+| rmdir |  |
+| sha1sum |  |
+| sort |  |
+| tee |  |
+| touch |  |
