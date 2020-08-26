@@ -3,7 +3,7 @@ version: '3'
 services:
   build:
     build: .
-    command: sh -c 'sh -c "cd /carapace-completers && go build -gccgoflags=\"-s -w\" . && upx -9 carapace-completers"'
+    command: sh -c 'sh -c "cd /carapace-completers/carapace && go build -gccgoflags=\"-s -w\" . && upx -9 carapace"'
     volumes:
       - '.:/carapace-completers/'
       - 'go:/go/'

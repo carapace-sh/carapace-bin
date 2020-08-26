@@ -11,7 +11,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:       "carapace-completers",
+	Use:       "carapace",
 	Short:     "",
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers,
@@ -33,7 +33,7 @@ var rootCmd = &cobra.Command{
 			w.Close()
 			out, _ := ioutil.ReadAll(r)
 			os.Stdout = old
-			fmt.Print(strings.Replace(string(out), "carapace-completers _carapace", "carapace-completers "+completer, -1))
+			fmt.Print(strings.Replace(string(out), "carapace _carapace", "carapace "+completer, -1))
 		}
 	},
 	FParseErrWhitelist: cobra.FParseErrWhitelist{
