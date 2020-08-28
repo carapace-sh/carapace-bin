@@ -17,7 +17,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("b", "b", false, "like --backup but does not accept an argument")
+	rootCmd.Flags().BoolS("b", "b", false, "like --backup but does not accept an argument")
 	rootCmd.Flags().String("backup", "", "make a backup of each existing destination file")
 	rootCmd.Flags().BoolP("directory", "d", false, "allow the superuser to attempt to hard link directories")
 	rootCmd.Flags().BoolP("force", "f", false, "remove existing destination files")

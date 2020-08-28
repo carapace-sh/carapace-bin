@@ -17,9 +17,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("H", "H", false, "if a command line argument is a symbolic link to a directory, traverse it")
-	rootCmd.Flags().BoolP("L", "L", false, "traverse every symbolic link to a directory encountered")
-	rootCmd.Flags().BoolP("P", "P", false, "do not traverse any symbolic links (default)")
+	rootCmd.Flags().BoolS("H", "H", false, "if a command line argument is a symbolic link to a directory, traverse it")
+	rootCmd.Flags().BoolS("L", "L", false, "traverse every symbolic link to a directory encountered")
+	rootCmd.Flags().BoolS("P", "P", false, "do not traverse any symbolic links (default)")
 	rootCmd.Flags().BoolP("changes", "c", false, "like verbose but report only when a change is made")
 	rootCmd.Flags().Bool("dereference", false, "affect the referent of each symbolic link (this is the default), rather than the symbolic link itself")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
