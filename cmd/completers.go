@@ -5,6 +5,7 @@ import (
 	chgrp "github.com/rsteube/carapace-completers/completers/chgrp_completer/cmd"
 	chmod "github.com/rsteube/carapace-completers/completers/chmod_completer/cmd"
 	chown "github.com/rsteube/carapace-completers/completers/chown_completer/cmd"
+	cksum "github.com/rsteube/carapace-completers/completers/cksum_completer/cmd"
 	cp "github.com/rsteube/carapace-completers/completers/cp_completer/cmd"
 	curl "github.com/rsteube/carapace-completers/completers/curl_completer/cmd"
 	df "github.com/rsteube/carapace-completers/completers/df_completer/cmd"
@@ -28,6 +29,7 @@ var completers = []string{
 	"chgrp",
 	"chmod",
 	"chown",
+	"cksum",
 	"cp",
 	"curl",
 	"df",
@@ -56,6 +58,8 @@ func executeCompleter(completer string) {
 		chmod.Execute()
 	case "chown":
 		chown.Execute()
+	case "cksum":
+		cksum.Execute()
 	case "cp":
 		cp.Execute()
 	case "curl":
