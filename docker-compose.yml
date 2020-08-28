@@ -8,37 +8,32 @@ services:
       - '.:/carapace-completers/'
       - 'go:/go/'
   bash:
-    build:
-      context: .
-      dockerfile: Dockerfile.bash
+    build: .
+    command: bash
     volumes:
       - '.:/carapace-completers/'
 
   elvish:
-    build:
-      context: .
-      dockerfile: Dockerfile.elvish
+    build: .
+    command: elvish
     volumes:
       - '.:/carapace-completers/'
 
   fish:
-    build:
-      context: .
-      dockerfile: Dockerfile.fish
+    build: .
+    command: fish
     volumes:
       - '.:/carapace-completers/'
 
   powershell:
-    build:
-      context: .
-      dockerfile: Dockerfile.powershell
+    build: .
+    command: pwsh
     volumes:
       - '.:/carapace-completers/'
 
   zsh:
-    build:
-      context: .
-      dockerfile: Dockerfile.zsh
+    build: .
+    command: zsh
     volumes:
       - '.:/carapace-completers/'
 
