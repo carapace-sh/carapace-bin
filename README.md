@@ -3,11 +3,11 @@
 Multi-shell multi-command argument completer based on [rsteube/carapace](https://github.com/rsteube/carapace).
 
 Supported shells:
-- bash
-- elvish
-- fish
-- powershell
-- zsh
+- [bash](https://www.gnu.org/software/bash/)
+- [elvish](https://elv.sh/)
+- [fish](https://fishshell.com/)
+- [powershell](https://microsoft.com/powershell)
+- [zsh](https://www.zsh.org/)
 
 
 ## build
