@@ -17,6 +17,7 @@ import (
 	dir "github.com/rsteube/carapace-completers/completers/dir_completer/cmd"
 	exa "github.com/rsteube/carapace-completers/completers/exa_completer/cmd"
 	expand "github.com/rsteube/carapace-completers/completers/expand_completer/cmd"
+	fmt "github.com/rsteube/carapace-completers/completers/fmt_completer/cmd"
 	git "github.com/rsteube/carapace-completers/completers/git_completer/cmd"
 	gradle "github.com/rsteube/carapace-completers/completers/gradle_completer/cmd"
 	install "github.com/rsteube/carapace-completers/completers/install_completer/cmd"
@@ -55,6 +56,7 @@ var completers = []string{
 	"dir",
 	"exa",
 	"expand",
+	"fmt",
 	"git",
 	"gradle",
 	"install",
@@ -110,6 +112,8 @@ func executeCompleter(completer string) {
 		exa.Execute()
 	case "expand":
 		expand.Execute()
+	case "fmt":
+		fmt.Execute()
 	case "git":
 		git.Execute()
 	case "gradle":
