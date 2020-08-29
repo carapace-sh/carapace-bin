@@ -20,6 +20,7 @@ import (
 	ls "github.com/rsteube/carapace-completers/completers/ls_completer/cmd"
 	mkdir "github.com/rsteube/carapace-completers/completers/mkdir_completer/cmd"
 	mkfifo "github.com/rsteube/carapace-completers/completers/mkfifo_completer/cmd"
+	mknod "github.com/rsteube/carapace-completers/completers/mknod_completer/cmd"
 	mv "github.com/rsteube/carapace-completers/completers/mv_completer/cmd"
 	pkill "github.com/rsteube/carapace-completers/completers/pkill_completer/cmd"
 	rm "github.com/rsteube/carapace-completers/completers/rm_completer/cmd"
@@ -50,6 +51,7 @@ var completers = []string{
 	"ls",
 	"mkdir",
 	"mkfifo",
+	"mknod",
 	"mv",
 	"pkill",
 	"rm",
@@ -100,6 +102,8 @@ func executeCompleter(completer string) {
 		mkdir.Execute()
 	case "mkfifo":
 		mkfifo.Execute()
+	case "mknod":
+		mknod.Execute()
 	case "mv":
 		mv.Execute()
 	case "pkill":
