@@ -35,6 +35,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+        "backup": carapace.ActionValues("existing", "nil", "none", "off", "numbered", "t", "simple", "never"),
 		"target-directory": carapace.ActionDirectories(),
 	})
 
