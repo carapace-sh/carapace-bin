@@ -21,6 +21,7 @@ import (
 	fold "github.com/rsteube/carapace-completers/completers/fold_completer/cmd"
 	git "github.com/rsteube/carapace-completers/completers/git_completer/cmd"
 	gradle "github.com/rsteube/carapace-completers/completers/gradle_completer/cmd"
+	head "github.com/rsteube/carapace-completers/completers/head_completer/cmd"
 	install "github.com/rsteube/carapace-completers/completers/install_completer/cmd"
 	ln "github.com/rsteube/carapace-completers/completers/ln_completer/cmd"
 	ls "github.com/rsteube/carapace-completers/completers/ls_completer/cmd"
@@ -61,6 +62,7 @@ var completers = []string{
 	"fold",
 	"git",
 	"gradle",
+	"head",
 	"install",
 	"ln",
 	"ls",
@@ -122,6 +124,8 @@ func executeCompleter(completer string) {
 		git.Execute()
 	case "gradle":
 		gradle.Execute()
+	case "head":
+		head.Execute()
 	case "install":
 		install.Execute()
 	case "ln":
