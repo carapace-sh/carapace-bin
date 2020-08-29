@@ -1,6 +1,13 @@
 # carapace-completers
 
-Currently a playground to test standalone mode of [rsteube/carapace](https://github.com/rsteube/carapace).
+Multi-shell multi-command argument completer based on [rsteube/carapace](https://github.com/rsteube/carapace).
+Supported shells:
+- bash
+- elvish
+- fish
+- powershell
+-zsh
+
 
 ## build
 
@@ -13,32 +20,6 @@ for glibc (ubuntu) version or invoke `go build` yourself - for smallest file siz
 ## generate completion
 
 ``
-[xxx_completer] _carapace [bash|elvish|fish|powershell|zsh]
+carapace [ln|mkdir|...] [bash|elvish|fish|powershell|zsh]
 ``
-
 (the completer binary needs to be added to PATH)
-
-## completers
-
-| completer | state |
-|-|-|
-| bat |  |
-| chgrp |  |
-| chmod |  |
-| chown |  |
-| cp |  |
-| curl |  |
-| df |  |
-| exa |  |
-| git |  |
-| gradle |  |
-| ln |  |
-| mkdir |  |
-| mv |  |
-| pkill |  |
-| rm |  |
-| rmdir |  |
-| sha1sum |  |
-| sort |  |
-| tee |  |
-| touch |  |
