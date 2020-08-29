@@ -2,6 +2,7 @@ package cmd
 
 import (
 	bat "github.com/rsteube/carapace-completers/completers/bat_completer/cmd"
+	cat "github.com/rsteube/carapace-completers/completers/cat_completer/cmd"
 	chgrp "github.com/rsteube/carapace-completers/completers/chgrp_completer/cmd"
 	chmod "github.com/rsteube/carapace-completers/completers/chmod_completer/cmd"
 	chown "github.com/rsteube/carapace-completers/completers/chown_completer/cmd"
@@ -36,6 +37,7 @@ import (
 
 var completers = []string{
 	"bat",
+	"cat",
 	"chgrp",
 	"chmod",
 	"chown",
@@ -72,6 +74,8 @@ func executeCompleter(completer string) {
 	switch completer {
 	case "bat":
 		bat.Execute()
+	case "cat":
+		cat.Execute()
 	case "chgrp":
 		chgrp.Execute()
 	case "chmod":
