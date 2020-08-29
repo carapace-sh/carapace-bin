@@ -26,6 +26,7 @@ import (
 	rm "github.com/rsteube/carapace-completers/completers/rm_completer/cmd"
 	rmdir "github.com/rsteube/carapace-completers/completers/rmdir_completer/cmd"
 	sha1sum "github.com/rsteube/carapace-completers/completers/sha1sum_completer/cmd"
+	shred "github.com/rsteube/carapace-completers/completers/shred_completer/cmd"
 	sort "github.com/rsteube/carapace-completers/completers/sort_completer/cmd"
 	tee "github.com/rsteube/carapace-completers/completers/tee_completer/cmd"
 	touch "github.com/rsteube/carapace-completers/completers/touch_completer/cmd"
@@ -57,6 +58,7 @@ var completers = []string{
 	"rm",
 	"rmdir",
 	"sha1sum",
+	"shred",
 	"sort",
 	"tee",
 	"touch",
@@ -114,6 +116,8 @@ func executeCompleter(completer string) {
 		rmdir.Execute()
 	case "sha1sum":
 		sha1sum.Execute()
+	case "shred":
+		shred.Execute()
 	case "sort":
 		sort.Execute()
 	case "tee":
