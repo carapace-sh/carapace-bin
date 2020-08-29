@@ -1,12 +1,13 @@
 # carapace-completers
 
 Multi-shell multi-command argument completer based on [rsteube/carapace](https://github.com/rsteube/carapace).
+
 Supported shells:
 - bash
 - elvish
 - fish
 - powershell
--zsh
+- zsh
 
 
 ## build
