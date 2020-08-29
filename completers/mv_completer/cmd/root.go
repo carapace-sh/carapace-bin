@@ -17,7 +17,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("b", "b", false, "like --backup but does not accept an argument")
+	rootCmd.Flags().BoolS("b", "b", false, "like --backup but does not accept an argument")
 	rootCmd.Flags().String("backup", "", "make a backup of each existing destination file")
 	rootCmd.Flags().BoolP("context", "Z", false, "set SELinux security context of destination file to default type")
 	rootCmd.Flags().BoolP("force", "f", false, "do not prompt before overwriting")
@@ -33,6 +33,16 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"backup": carapace.ActionValuesDescribed(
+			"none", "never make backups (even if --backup is given)",
+			"off", "never make backups (even if --backup is given)",
+			"numbered", "make numbered backups",
+			"t", "make numbered backups",
+			"existing", "numbered if numbered backups exist, simple otherwise",
+			"nil", "numbered if numbered backups exist, simple otherwise",
+			"simple", "always make simple backups",
+			"never", "always make simple backups",
+		),
 		"target-directory": carapace.ActionDirectories(),
 	})
 
