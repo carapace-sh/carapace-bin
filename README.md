@@ -1,4 +1,4 @@
-# carapace-completers
+# carapace-bin
 
 Multi-shell multi-command argument completer based on [rsteube/carapace](https://github.com/rsteube/carapace).
 
