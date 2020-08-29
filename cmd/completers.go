@@ -32,6 +32,7 @@ import (
 	mknod "github.com/rsteube/carapace-completers/completers/mknod_completer/cmd"
 	mv "github.com/rsteube/carapace-completers/completers/mv_completer/cmd"
 	nl "github.com/rsteube/carapace-completers/completers/nl_completer/cmd"
+	od "github.com/rsteube/carapace-completers/completers/od_completer/cmd"
 	pkill "github.com/rsteube/carapace-completers/completers/pkill_completer/cmd"
 	rm "github.com/rsteube/carapace-completers/completers/rm_completer/cmd"
 	rmdir "github.com/rsteube/carapace-completers/completers/rmdir_completer/cmd"
@@ -76,6 +77,7 @@ var completers = []string{
 	"mknod",
 	"mv",
 	"nl",
+	"od",
 	"pkill",
 	"rm",
 	"rmdir",
@@ -152,6 +154,8 @@ func executeCompleter(completer string) {
 		mv.Execute()
 	case "nl":
 		nl.Execute()
+	case "od":
+		od.Execute()
 	case "pkill":
 		pkill.Execute()
 	case "rm":
