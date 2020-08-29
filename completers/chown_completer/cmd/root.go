@@ -20,9 +20,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("H", "H", false, "if a command line argument is a symbolic link to a directory, traverse it")
-	rootCmd.Flags().BoolP("L", "L", false, "traverse every symbolic link to a directory encountered")
-	rootCmd.Flags().BoolP("P", "P", false, "do not traverse any symbolic links (default)")
+	rootCmd.Flags().BoolS("H", "H", false, "if a command line argument is a symbolic link to a directory, traverse it")
+	rootCmd.Flags().BoolS("L", "L", false, "traverse every symbolic link to a directory encountered")
+	rootCmd.Flags().BoolS("P", "P", false, "do not traverse any symbolic links (default)")
 	rootCmd.Flags().BoolP("changes", "c", false, "like verbose but report only when a change is made")
 	rootCmd.Flags().Bool("dereference", false, "affect the referent of each symbolic link")
 	rootCmd.Flags().String("from", "", "change the owner and/or group of each file only if its current owner and/or group match those specified here.")
@@ -37,6 +37,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+        "from": ActionOwnerGroup(),
 		"reference": carapace.ActionFiles(""),
 	})
 
