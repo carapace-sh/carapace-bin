@@ -17,15 +17,15 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("H", "H", false, "follow command-line symbolic links in SOURCE")
-	rootCmd.Flags().BoolP("Z", "Z", false, "set SELinux security context of destination file to default type")
+	rootCmd.Flags().BoolS("H", "H", false, "follow command-line symbolic links in SOURCE")
+	rootCmd.Flags().BoolS("Z", "Z", false, "set SELinux security context of destination file to default type")
 	rootCmd.Flags().BoolP("archive", "a", false, "same as -dR --preserve=all")
 	rootCmd.Flags().Bool("attributes-only", false, "don't copy the file data, just the attributes")
-	rootCmd.Flags().BoolP("b", "b", false, "like --backup but does not accept an argument")
+	rootCmd.Flags().BoolS("b", "b", false, "like --backup but does not accept an argument")
 	rootCmd.Flags().String("backup", "", "make a backup of each existing destination file")
 	rootCmd.Flags().String("context", "", "like -Z, or if CTX is specified then set the SELinux or SMACK security context to CTX")
 	rootCmd.Flags().Bool("copy-contents", false, "copy contents of special files when recursive")
-	rootCmd.Flags().BoolP("d", "d", false, "same as --no-dereference --preserve=links")
+	rootCmd.Flags().BoolS("d", "d", false, "same as --no-dereference --preserve=links")
 	rootCmd.Flags().BoolP("dereference", "L", false, "always follow symbolic links in SOURCE")
 	rootCmd.Flags().BoolP("force", "f", false, "if an existing destination file cannot be opened, remove it and try again (this option is ignored when the -n option is also used)")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
@@ -39,7 +39,7 @@ func init() {
 	rootCmd.Flags().BoolP("p", "p", false, "same as --preserve=mode,ownership,timestamps")
 	rootCmd.Flags().Bool("parents", false, "use full source file name under DIRECTORY")
 	rootCmd.Flags().StringSlice("preserve", []string{""}, "preserve the specified attributes (default: mode,ownership,timestamps), if possible additional attributes: context, links, xattr, all")
-	rootCmd.Flags().String("reflink", "", "control clone/CoW copies. See below")
+	rootCmd.Flags().String("reflink", "", "control clone/CoW copies")
 	rootCmd.Flags().Bool("remove-destination", false, "remove each existing destination file before attempting to open it (contrast with --force)")
 	rootCmd.Flags().String("sparse", "", "control creation of sparse files.")
 	rootCmd.Flags().Bool("strip-trailing-slashes", false, "remove any trailing slashes from each SOURCE argument")
@@ -51,6 +51,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"backup":           carapace.ActionValues("never", "nil", "none", "numbered", "off", "simple", "t"),
 		"no-preserve":      carapace.ActionValues("all", "context", "links", "mode", "ownership", "timestamps", "xattr"),
 		"preserve":         carapace.ActionValues("all", "context", "links", "mode", "ownership", "timestamps", "xattr"),
 		"reflink":          carapace.ActionValues("alway", "auto"),
