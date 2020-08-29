@@ -23,7 +23,7 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("human-readable", "h", false, "print sizes in powers of 1024 (e.g., 1023M)")
 	rootCmd.Flags().BoolP("inodes", "i", false, "list inode information instead of block usage")
-	rootCmd.Flags().BoolP("k", "k", false, "like --block-size=1K")
+	rootCmd.Flags().BoolS("k", "k", false, "like --block-size=1K")
 	rootCmd.Flags().BoolP("local", "l", false, "limit listing to local file systems")
 	rootCmd.Flags().Bool("no-sync", false, "do not invoke sync before getting usage info (default)")
 	rootCmd.Flags().String("output", "", "use the output format defined by FIELD_LIST, or print all fields if FIELD_LIST is omitted.")
@@ -33,8 +33,17 @@ func init() {
 	rootCmd.Flags().Bool("sync", false, "invoke sync before getting usage info")
 	rootCmd.Flags().Bool("total", false, "elide all entries insignificant to available space, and produce a grand total")
 	rootCmd.Flags().StringP("type", "t", "", "limit listing to file systems of type TYPE")
-	rootCmd.Flags().BoolP("v", "v", false, "(ignored)")
+	rootCmd.Flags().BoolS("v", "v", false, "(ignored)")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
+
+	types := []string{"adfs", "cgroup2", "efivarfs", "hfs", "pipefs", "securityfs", "ufs", "autofs", "configfs", "ext2", "hpfs", "proc", "sockfs", "vfat", "bdev", "cpuset", "ext3", "hugetlbfs", "pstore", "swap"}
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		// TODO should be lists of values (comma separated)
+		"output":       carapace.ActionValues("avail", "file", "fstype", "iavail", "ipcent", "itotal", "iused", "pcent", "size", "source", "target", "used"),
+		"type":         carapace.ActionValues(types...),
+		"exclude-type": carapace.ActionValues(types...),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(""),
