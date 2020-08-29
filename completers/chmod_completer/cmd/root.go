@@ -23,12 +23,24 @@ func init() {
 	rootCmd.Flags().Bool("preserve-root", false, "fail to operate recursively on '/'")
 	rootCmd.Flags().BoolP("recursive", "R", false, "change files and directories recursively")
 	rootCmd.Flags().String("reference", "", "use RFILE's mode instead of MODE values")
-	rootCmd.Flags().StringP("silent,", "f", "", "suppress most error messages")
+	rootCmd.Flags().BoolP("silent", "f", false, "suppress most error messages")
+	rootCmd.Flags().Bool("quiet", false, "suppress most error messages")
 	rootCmd.Flags().BoolP("verbose", "v", false, "output a diagnostic for every file processed")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"reference": carapace.ActionFiles(""),
+	})
+
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues(""),
+		carapace.ActionCallback(func(args []string) carapace.Action {
+			if rootCmd.Flag("reference").Changed {
+				return carapace.ActionFiles("")
+			} else {
+				// TODO complete MODE: '[ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+'
+				return carapace.ActionValues()
+			}
+		}),
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
