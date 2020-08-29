@@ -9,6 +9,7 @@ import (
 	cksum "github.com/rsteube/carapace-completers/completers/cksum_completer/cmd"
 	comm "github.com/rsteube/carapace-completers/completers/comm_completer/cmd"
 	cp "github.com/rsteube/carapace-completers/completers/cp_completer/cmd"
+	csplit "github.com/rsteube/carapace-completers/completers/csplit_completer/cmd"
 	curl "github.com/rsteube/carapace-completers/completers/curl_completer/cmd"
 	df "github.com/rsteube/carapace-completers/completers/df_completer/cmd"
 	dircolors "github.com/rsteube/carapace-completers/completers/dircolors_completer/cmd"
@@ -44,6 +45,7 @@ var completers = []string{
 	"cksum",
 	"comm",
 	"cp",
+	"csplit",
 	"curl",
 	"df",
 	"dircolors",
@@ -88,6 +90,8 @@ func executeCompleter(completer string) {
 		comm.Execute()
 	case "cp":
 		cp.Execute()
+	case "csplit":
+		csplit.Execute()
 	case "curl":
 		curl.Execute()
 	case "df":
