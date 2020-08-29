@@ -17,6 +17,7 @@ import (
 	gradle "github.com/rsteube/carapace-completers/completers/gradle_completer/cmd"
 	install "github.com/rsteube/carapace-completers/completers/install_completer/cmd"
 	ln "github.com/rsteube/carapace-completers/completers/ln_completer/cmd"
+	ls "github.com/rsteube/carapace-completers/completers/ls_completer/cmd"
 	mkdir "github.com/rsteube/carapace-completers/completers/mkdir_completer/cmd"
 	mv "github.com/rsteube/carapace-completers/completers/mv_completer/cmd"
 	pkill "github.com/rsteube/carapace-completers/completers/pkill_completer/cmd"
@@ -45,6 +46,7 @@ var completers = []string{
 	"gradle",
 	"install",
 	"ln",
+	"ls",
 	"mkdir",
 	"mv",
 	"pkill",
@@ -90,6 +92,8 @@ func executeCompleter(completer string) {
 		install.Execute()
 	case "ln":
 		ln.Execute()
+	case "ls":
+		ls.Execute()
 	case "mkdir":
 		mkdir.Execute()
 	case "mv":
