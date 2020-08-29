@@ -11,6 +11,7 @@ import (
 	curl "github.com/rsteube/carapace-completers/completers/curl_completer/cmd"
 	df "github.com/rsteube/carapace-completers/completers/df_completer/cmd"
 	dircolors "github.com/rsteube/carapace-completers/completers/dircolors_completer/cmd"
+	dir "github.com/rsteube/carapace-completers/completers/dir_completer/cmd"
 	exa "github.com/rsteube/carapace-completers/completers/exa_completer/cmd"
 	git "github.com/rsteube/carapace-completers/completers/git_completer/cmd"
 	gradle "github.com/rsteube/carapace-completers/completers/gradle_completer/cmd"
@@ -37,6 +38,7 @@ var completers = []string{
 	"curl",
 	"df",
 	"dircolors",
+	"dir",
 	"exa",
 	"git",
 	"gradle",
@@ -74,6 +76,8 @@ func executeCompleter(completer string) {
 		df.Execute()
 	case "dircolors":
 		dircolors.Execute()
+	case "dir":
+		dir.Execute()
 	case "exa":
 		exa.Execute()
 	case "git":
