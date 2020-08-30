@@ -52,6 +52,7 @@ import (
 	pinky "github.com/rsteube/carapace-bin/completers/pinky_completer/cmd"
 	pkill "github.com/rsteube/carapace-bin/completers/pkill_completer/cmd"
 	pr "github.com/rsteube/carapace-bin/completers/pr_completer/cmd"
+	printenv "github.com/rsteube/carapace-bin/completers/printenv_completer/cmd"
 	ptx "github.com/rsteube/carapace-bin/completers/ptx_completer/cmd"
 	rm "github.com/rsteube/carapace-bin/completers/rm_completer/cmd"
 	rmdir "github.com/rsteube/carapace-bin/completers/rmdir_completer/cmd"
@@ -125,6 +126,7 @@ var completers = []string{
 	"pinky",
 	"pkill",
 	"pr",
+	"printenv",
 	"ptx",
 	"rm",
 	"rmdir",
@@ -250,6 +252,8 @@ func executeCompleter(completer string) {
 		pkill.Execute()
 	case "pr":
 		pr.Execute()
+	case "printenv":
+		printenv.Execute()
 	case "ptx":
 		ptx.Execute()
 	case "rm":
