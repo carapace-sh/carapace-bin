@@ -23,11 +23,14 @@ import (
 	env "github.com/rsteube/carapace-bin/completers/env_completer/cmd"
 	exa "github.com/rsteube/carapace-bin/completers/exa_completer/cmd"
 	expand "github.com/rsteube/carapace-bin/completers/expand_completer/cmd"
+	expr "github.com/rsteube/carapace-bin/completers/expr_completer/cmd"
+	factor "github.com/rsteube/carapace-bin/completers/factor_completer/cmd"
 	fmt "github.com/rsteube/carapace-bin/completers/fmt_completer/cmd"
 	fold "github.com/rsteube/carapace-bin/completers/fold_completer/cmd"
 	git "github.com/rsteube/carapace-bin/completers/git_completer/cmd"
 	gradle "github.com/rsteube/carapace-bin/completers/gradle_completer/cmd"
 	head "github.com/rsteube/carapace-bin/completers/head_completer/cmd"
+	hostid "github.com/rsteube/carapace-bin/completers/hostid_completer/cmd"
 	install "github.com/rsteube/carapace-bin/completers/install_completer/cmd"
 	join "github.com/rsteube/carapace-bin/completers/join_completer/cmd"
 	ln "github.com/rsteube/carapace-bin/completers/ln_completer/cmd"
@@ -86,11 +89,14 @@ var completers = []string{
 	"env",
 	"exa",
 	"expand",
+	"expr",
+	"factor",
 	"fmt",
 	"fold",
 	"git",
 	"gradle",
 	"head",
+	"hostid",
 	"install",
 	"join",
 	"ln",
@@ -172,6 +178,10 @@ func executeCompleter(completer string) {
 		exa.Execute()
 	case "expand":
 		expand.Execute()
+	case "expr":
+		expr.Execute()
+	case "factor":
+		factor.Execute()
 	case "fmt":
 		fmt.Execute()
 	case "fold":
@@ -182,6 +192,8 @@ func executeCompleter(completer string) {
 		gradle.Execute()
 	case "head":
 		head.Execute()
+	case "hostid":
+		hostid.Execute()
 	case "install":
 		install.Execute()
 	case "join":
