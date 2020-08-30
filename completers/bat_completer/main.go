@@ -1,6 +1,6 @@
 package main
 
-import "github.com/rsteube/carapace-completers/completers/bat_completer/cmd"
+import "github.com/rsteube/carapace-bin/completers/bat_completer/cmd"
 
 func main() {
 	cmd.Execute()

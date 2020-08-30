@@ -1,4 +1,4 @@
-module github.com/rsteube/carapace-completers
+module github.com/rsteube/carapace-bin
 
 go 1.12
 
