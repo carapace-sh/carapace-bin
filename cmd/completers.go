@@ -18,6 +18,7 @@ import (
 	df "github.com/rsteube/carapace-bin/completers/df_completer/cmd"
 	dircolors "github.com/rsteube/carapace-bin/completers/dircolors_completer/cmd"
 	dir "github.com/rsteube/carapace-bin/completers/dir_completer/cmd"
+	dirname "github.com/rsteube/carapace-bin/completers/dirname_completer/cmd"
 	exa "github.com/rsteube/carapace-bin/completers/exa_completer/cmd"
 	expand "github.com/rsteube/carapace-bin/completers/expand_completer/cmd"
 	fmt "github.com/rsteube/carapace-bin/completers/fmt_completer/cmd"
@@ -78,6 +79,7 @@ var completers = []string{
 	"df",
 	"dircolors",
 	"dir",
+	"dirname",
 	"exa",
 	"expand",
 	"fmt",
@@ -156,6 +158,8 @@ func executeCompleter(completer string) {
 		dircolors.Execute()
 	case "dir":
 		dir.Execute()
+	case "dirname":
+		dirname.Execute()
 	case "exa":
 		exa.Execute()
 	case "expand":
