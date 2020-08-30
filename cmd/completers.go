@@ -31,6 +31,7 @@ import (
 	gradle "github.com/rsteube/carapace-bin/completers/gradle_completer/cmd"
 	head "github.com/rsteube/carapace-bin/completers/head_completer/cmd"
 	hostid "github.com/rsteube/carapace-bin/completers/hostid_completer/cmd"
+	id "github.com/rsteube/carapace-bin/completers/id_completer/cmd"
 	install "github.com/rsteube/carapace-bin/completers/install_completer/cmd"
 	join "github.com/rsteube/carapace-bin/completers/join_completer/cmd"
 	ln "github.com/rsteube/carapace-bin/completers/ln_completer/cmd"
@@ -97,6 +98,7 @@ var completers = []string{
 	"gradle",
 	"head",
 	"hostid",
+	"id",
 	"install",
 	"join",
 	"ln",
@@ -194,6 +196,8 @@ func executeCompleter(completer string) {
 		head.Execute()
 	case "hostid":
 		hostid.Execute()
+	case "id":
+		id.Execute()
 	case "install":
 		install.Execute()
 	case "join":
