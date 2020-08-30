@@ -1,9 +1,6 @@
 package cmd
 
 import (
-	"io/ioutil"
-	"strings"
-
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
@@ -37,7 +34,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-        "from": ActionOwnerGroup(),
+        "from": carapace.ActionUserGroup(),
 		"reference": carapace.ActionFiles(""),
 	})
 
@@ -46,7 +43,7 @@ func init() {
 			if rootCmd.Flag("reference").Changed {
 				return carapace.ActionFiles("")
 			} else {
-				return ActionOwnerGroup().Callback(args)
+				return carapace.ActionUserGroup().Callback(args)
 			}
 		}),
 	)
@@ -54,43 +51,4 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(""),
 	)
-}
-
-func ActionOwnerGroup() carapace.Action {
-	return carapace.ActionMultiParts(":", func(args []string, parts []string) []string {
-		switch len(parts) {
-		case 0:
-			return Users()
-		case 1:
-			return Groups()
-		default:
-			return []string{}
-		}
-	})
-}
-
-func Users() []string {
-	users := []string{}
-	if content, err := ioutil.ReadFile("/etc/passwd"); err == nil {
-		for _, entry := range strings.Split(string(content), "\n") {
-			user := strings.Split(entry, ":")[0]
-			if len(strings.TrimSpace(user)) > 0 {
-				users = append(users, user+":")
-			}
-		}
-	}
-	return users
-}
-
-func Groups() []string {
-	users := []string{}
-	if content, err := ioutil.ReadFile("/etc/group"); err == nil {
-		for _, entry := range strings.Split(string(content), "\n") {
-			user := strings.Split(entry, ":")[0]
-			if len(strings.TrimSpace(user)) > 0 {
-				users = append(users, user)
-			}
-		}
-	}
-	return users
 }
