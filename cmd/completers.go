@@ -54,6 +54,7 @@ import (
 	unexpand "github.com/rsteube/carapace-completers/completers/unexpand_completer/cmd"
 	uniq "github.com/rsteube/carapace-completers/completers/uniq_completer/cmd"
 	vdir "github.com/rsteube/carapace-completers/completers/vdir_completer/cmd"
+	wc "github.com/rsteube/carapace-completers/completers/wc_completer/cmd"
 )
 
 var completers = []string{
@@ -110,6 +111,7 @@ var completers = []string{
 	"unexpand",
 	"uniq",
 	"vdir",
+	"wc",
 }
 
 func executeCompleter(completer string) {
@@ -220,6 +222,8 @@ func executeCompleter(completer string) {
 		uniq.Execute()
 	case "vdir":
 		vdir.Execute()
+	case "wc":
+		wc.Execute()
 	}
 }
 
