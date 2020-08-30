@@ -49,6 +49,7 @@ import (
 	tail "github.com/rsteube/carapace-completers/completers/tail_completer/cmd"
 	tee "github.com/rsteube/carapace-completers/completers/tee_completer/cmd"
 	touch "github.com/rsteube/carapace-completers/completers/touch_completer/cmd"
+	tr "github.com/rsteube/carapace-completers/completers/tr_completer/cmd"
 	vdir "github.com/rsteube/carapace-completers/completers/vdir_completer/cmd"
 )
 
@@ -101,6 +102,7 @@ var completers = []string{
 	"tail",
 	"tee",
 	"touch",
+	"tr",
 	"vdir",
 }
 
@@ -202,6 +204,8 @@ func executeCompleter(completer string) {
 		tee.Execute()
 	case "touch":
 		touch.Execute()
+	case "tr":
+		tr.Execute()
 	case "vdir":
 		vdir.Execute()
 	}
