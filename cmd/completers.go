@@ -34,6 +34,7 @@ import (
 	id "github.com/rsteube/carapace-bin/completers/id_completer/cmd"
 	install "github.com/rsteube/carapace-bin/completers/install_completer/cmd"
 	join "github.com/rsteube/carapace-bin/completers/join_completer/cmd"
+	link "github.com/rsteube/carapace-bin/completers/link_completer/cmd"
 	ln "github.com/rsteube/carapace-bin/completers/ln_completer/cmd"
 	ls "github.com/rsteube/carapace-bin/completers/ls_completer/cmd"
 	md5sum "github.com/rsteube/carapace-bin/completers/md5sum_completer/cmd"
@@ -101,6 +102,7 @@ var completers = []string{
 	"id",
 	"install",
 	"join",
+	"link",
 	"ln",
 	"ls",
 	"md5sum",
@@ -202,6 +204,8 @@ func executeCompleter(completer string) {
 		install.Execute()
 	case "join":
 		join.Execute()
+	case "link":
+		link.Execute()
 	case "ln":
 		ln.Execute()
 	case "ls":
