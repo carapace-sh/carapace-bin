@@ -35,6 +35,7 @@ import (
 	od "github.com/rsteube/carapace-completers/completers/od_completer/cmd"
 	paste "github.com/rsteube/carapace-completers/completers/paste_completer/cmd"
 	pkill "github.com/rsteube/carapace-completers/completers/pkill_completer/cmd"
+	ptx "github.com/rsteube/carapace-completers/completers/ptx_completer/cmd"
 	rm "github.com/rsteube/carapace-completers/completers/rm_completer/cmd"
 	rmdir "github.com/rsteube/carapace-completers/completers/rmdir_completer/cmd"
 	sha1sum "github.com/rsteube/carapace-completers/completers/sha1sum_completer/cmd"
@@ -81,6 +82,7 @@ var completers = []string{
 	"od",
 	"paste",
 	"pkill",
+	"ptx",
 	"rm",
 	"rmdir",
 	"sha1sum",
@@ -162,6 +164,8 @@ func executeCompleter(completer string) {
 		paste.Execute()
 	case "pkill":
 		pkill.Execute()
+	case "ptx":
+		ptx.Execute()
 	case "rm":
 		rm.Execute()
 	case "rmdir":
