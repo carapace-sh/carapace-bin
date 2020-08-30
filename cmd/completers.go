@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	basename "github.com/rsteube/carapace-completers/completers/basename_completer/cmd"
 	bat "github.com/rsteube/carapace-completers/completers/bat_completer/cmd"
 	cat "github.com/rsteube/carapace-completers/completers/cat_completer/cmd"
 	chgrp "github.com/rsteube/carapace-completers/completers/chgrp_completer/cmd"
@@ -58,6 +59,7 @@ import (
 )
 
 var completers = []string{
+	"basename",
 	"bat",
 	"cat",
 	"chgrp",
@@ -116,6 +118,8 @@ var completers = []string{
 
 func executeCompleter(completer string) {
 	switch completer {
+	case "basename":
+		basename.Execute()
 	case "bat":
 		bat.Execute()
 	case "cat":
