@@ -48,6 +48,8 @@ import (
 	nohup "github.com/rsteube/carapace-bin/completers/nohup_completer/cmd"
 	od "github.com/rsteube/carapace-bin/completers/od_completer/cmd"
 	paste "github.com/rsteube/carapace-bin/completers/paste_completer/cmd"
+	pathchk "github.com/rsteube/carapace-bin/completers/pathchk_completer/cmd"
+	pinky "github.com/rsteube/carapace-bin/completers/pinky_completer/cmd"
 	pkill "github.com/rsteube/carapace-bin/completers/pkill_completer/cmd"
 	pr "github.com/rsteube/carapace-bin/completers/pr_completer/cmd"
 	ptx "github.com/rsteube/carapace-bin/completers/ptx_completer/cmd"
@@ -119,6 +121,8 @@ var completers = []string{
 	"nohup",
 	"od",
 	"paste",
+	"pathchk",
+	"pinky",
 	"pkill",
 	"pr",
 	"ptx",
@@ -238,6 +242,10 @@ func executeCompleter(completer string) {
 		od.Execute()
 	case "paste":
 		paste.Execute()
+	case "pathchk":
+		pathchk.Execute()
+	case "pinky":
+		pinky.Execute()
 	case "pkill":
 		pkill.Execute()
 	case "pr":
