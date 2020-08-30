@@ -52,6 +52,7 @@ import (
 	tr "github.com/rsteube/carapace-completers/completers/tr_completer/cmd"
 	tsort "github.com/rsteube/carapace-completers/completers/tsort_completer/cmd"
 	unexpand "github.com/rsteube/carapace-completers/completers/unexpand_completer/cmd"
+	uniq "github.com/rsteube/carapace-completers/completers/uniq_completer/cmd"
 	vdir "github.com/rsteube/carapace-completers/completers/vdir_completer/cmd"
 )
 
@@ -107,6 +108,7 @@ var completers = []string{
 	"tr",
 	"tsort",
 	"unexpand",
+	"uniq",
 	"vdir",
 }
 
@@ -214,6 +216,8 @@ func executeCompleter(completer string) {
 		tsort.Execute()
 	case "unexpand":
 		unexpand.Execute()
+	case "uniq":
+		uniq.Execute()
 	case "vdir":
 		vdir.Execute()
 	}
