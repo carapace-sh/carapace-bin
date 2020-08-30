@@ -20,6 +20,7 @@ import (
 	dir "github.com/rsteube/carapace-bin/completers/dir_completer/cmd"
 	dirname "github.com/rsteube/carapace-bin/completers/dirname_completer/cmd"
 	du "github.com/rsteube/carapace-bin/completers/du_completer/cmd"
+	env "github.com/rsteube/carapace-bin/completers/env_completer/cmd"
 	exa "github.com/rsteube/carapace-bin/completers/exa_completer/cmd"
 	expand "github.com/rsteube/carapace-bin/completers/expand_completer/cmd"
 	fmt "github.com/rsteube/carapace-bin/completers/fmt_completer/cmd"
@@ -82,6 +83,7 @@ var completers = []string{
 	"dir",
 	"dirname",
 	"du",
+	"env",
 	"exa",
 	"expand",
 	"fmt",
@@ -164,6 +166,8 @@ func executeCompleter(completer string) {
 		dirname.Execute()
 	case "du":
 		du.Execute()
+	case "env":
+		env.Execute()
 	case "exa":
 		exa.Execute()
 	case "expand":
