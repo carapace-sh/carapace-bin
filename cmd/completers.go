@@ -51,6 +51,7 @@ import (
 	touch "github.com/rsteube/carapace-completers/completers/touch_completer/cmd"
 	tr "github.com/rsteube/carapace-completers/completers/tr_completer/cmd"
 	tsort "github.com/rsteube/carapace-completers/completers/tsort_completer/cmd"
+	unexpand "github.com/rsteube/carapace-completers/completers/unexpand_completer/cmd"
 	vdir "github.com/rsteube/carapace-completers/completers/vdir_completer/cmd"
 )
 
@@ -105,6 +106,7 @@ var completers = []string{
 	"touch",
 	"tr",
 	"tsort",
+	"unexpand",
 	"vdir",
 }
 
@@ -210,6 +212,8 @@ func executeCompleter(completer string) {
 		tr.Execute()
 	case "tsort":
 		tsort.Execute()
+	case "unexpand":
+		unexpand.Execute()
 	case "vdir":
 		vdir.Execute()
 	}
