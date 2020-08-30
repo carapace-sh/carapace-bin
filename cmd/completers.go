@@ -54,6 +54,7 @@ import (
 	pr "github.com/rsteube/carapace-bin/completers/pr_completer/cmd"
 	printenv "github.com/rsteube/carapace-bin/completers/printenv_completer/cmd"
 	ptx "github.com/rsteube/carapace-bin/completers/ptx_completer/cmd"
+	readlink "github.com/rsteube/carapace-bin/completers/readlink_completer/cmd"
 	rm "github.com/rsteube/carapace-bin/completers/rm_completer/cmd"
 	rmdir "github.com/rsteube/carapace-bin/completers/rmdir_completer/cmd"
 	sha1sum "github.com/rsteube/carapace-bin/completers/sha1sum_completer/cmd"
@@ -128,6 +129,7 @@ var completers = []string{
 	"pr",
 	"printenv",
 	"ptx",
+	"readlink",
 	"rm",
 	"rmdir",
 	"sha1sum",
@@ -256,6 +258,8 @@ func executeCompleter(completer string) {
 		printenv.Execute()
 	case "ptx":
 		ptx.Execute()
+	case "readlink":
+		readlink.Execute()
 	case "rm":
 		rm.Execute()
 	case "rmdir":
