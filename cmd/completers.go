@@ -14,6 +14,7 @@ import (
 	csplit "github.com/rsteube/carapace-bin/completers/csplit_completer/cmd"
 	curl "github.com/rsteube/carapace-bin/completers/curl_completer/cmd"
 	cut "github.com/rsteube/carapace-bin/completers/cut_completer/cmd"
+	date "github.com/rsteube/carapace-bin/completers/date_completer/cmd"
 	df "github.com/rsteube/carapace-bin/completers/df_completer/cmd"
 	dircolors "github.com/rsteube/carapace-bin/completers/dircolors_completer/cmd"
 	dir "github.com/rsteube/carapace-bin/completers/dir_completer/cmd"
@@ -73,6 +74,7 @@ var completers = []string{
 	"csplit",
 	"curl",
 	"cut",
+	"date",
 	"df",
 	"dircolors",
 	"dir",
@@ -146,6 +148,8 @@ func executeCompleter(completer string) {
 		curl.Execute()
 	case "cut":
 		cut.Execute()
+	case "date":
+		date.Execute()
 	case "df":
 		df.Execute()
 	case "dircolors":
