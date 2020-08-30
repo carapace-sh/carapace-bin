@@ -10,11 +10,8 @@ RUN apt-get install -y fish \
                        powershell \
                        zsh
 
-RUN apt-get install -y gradle \
-                       exa
-
 ENV GOPATH /go
-RUN ln -s /carapace-completers/carapace/carapace /usr/local/bin/carapace
+RUN ln -s /carapace-bin/carapace/carapace /usr/local/bin/carapace
 
 # bash
 RUN echo "\n\
