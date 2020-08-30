@@ -36,13 +36,16 @@ import (
 	join "github.com/rsteube/carapace-bin/completers/join_completer/cmd"
 	link "github.com/rsteube/carapace-bin/completers/link_completer/cmd"
 	ln "github.com/rsteube/carapace-bin/completers/ln_completer/cmd"
+	logname "github.com/rsteube/carapace-bin/completers/logname_completer/cmd"
 	ls "github.com/rsteube/carapace-bin/completers/ls_completer/cmd"
 	md5sum "github.com/rsteube/carapace-bin/completers/md5sum_completer/cmd"
 	mkdir "github.com/rsteube/carapace-bin/completers/mkdir_completer/cmd"
 	mkfifo "github.com/rsteube/carapace-bin/completers/mkfifo_completer/cmd"
 	mknod "github.com/rsteube/carapace-bin/completers/mknod_completer/cmd"
 	mv "github.com/rsteube/carapace-bin/completers/mv_completer/cmd"
+	nice "github.com/rsteube/carapace-bin/completers/nice_completer/cmd"
 	nl "github.com/rsteube/carapace-bin/completers/nl_completer/cmd"
+	nohup "github.com/rsteube/carapace-bin/completers/nohup_completer/cmd"
 	od "github.com/rsteube/carapace-bin/completers/od_completer/cmd"
 	paste "github.com/rsteube/carapace-bin/completers/paste_completer/cmd"
 	pkill "github.com/rsteube/carapace-bin/completers/pkill_completer/cmd"
@@ -104,13 +107,16 @@ var completers = []string{
 	"join",
 	"link",
 	"ln",
+	"logname",
 	"ls",
 	"md5sum",
 	"mkdir",
 	"mkfifo",
 	"mknod",
 	"mv",
+	"nice",
 	"nl",
+	"nohup",
 	"od",
 	"paste",
 	"pkill",
@@ -208,6 +214,8 @@ func executeCompleter(completer string) {
 		link.Execute()
 	case "ln":
 		ln.Execute()
+	case "logname":
+		logname.Execute()
 	case "ls":
 		ls.Execute()
 	case "md5sum":
@@ -220,8 +228,12 @@ func executeCompleter(completer string) {
 		mknod.Execute()
 	case "mv":
 		mv.Execute()
+	case "nice":
+		nice.Execute()
 	case "nl":
 		nl.Execute()
+	case "nohup":
+		nohup.Execute()
 	case "od":
 		od.Execute()
 	case "paste":
