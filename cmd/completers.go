@@ -45,6 +45,7 @@ import (
 	split "github.com/rsteube/carapace-completers/completers/split_completer/cmd"
 	sum "github.com/rsteube/carapace-completers/completers/sum_completer/cmd"
 	sync "github.com/rsteube/carapace-completers/completers/sync_completer/cmd"
+	tac "github.com/rsteube/carapace-completers/completers/tac_completer/cmd"
 	tee "github.com/rsteube/carapace-completers/completers/tee_completer/cmd"
 	touch "github.com/rsteube/carapace-completers/completers/touch_completer/cmd"
 	vdir "github.com/rsteube/carapace-completers/completers/vdir_completer/cmd"
@@ -95,6 +96,7 @@ var completers = []string{
 	"split",
 	"sum",
 	"sync",
+	"tac",
 	"tee",
 	"touch",
 	"vdir",
@@ -190,6 +192,8 @@ func executeCompleter(completer string) {
 		sum.Execute()
 	case "sync":
 		sync.Execute()
+	case "tac":
+		tac.Execute()
 	case "tee":
 		tee.Execute()
 	case "touch":
