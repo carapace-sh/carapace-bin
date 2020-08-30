@@ -10,13 +10,15 @@ Supported shells:
 - [Zsh](https://www.zsh.org/)
 
 
-## build
+## Example
 
 ```
 docker-compose run --rm build
+docker-compose run --rm [bash|elvish|fish|powershell|zsh]
+[ln|mkdir|chown...] <TAB>
 ```
 
-for glibc (ubuntu) version or invoke `go build` yourself - for smallest file size (300kb instead of 6mb) use gccgo with flags "-s -w" and upx (upx slows down invocation but should still be fast enough).
+for smallest file size (300kb instead of 6mb) use gccgo with flags "-s -w" and upx (upx slows down invocation but should still be fast enough).
 
 ## generate completion
 
