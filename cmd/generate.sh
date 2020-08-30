@@ -7,7 +7,7 @@ echo "package cmd
 import ("
 
 for completer in $completers; do
-    echo "	${completer} \"github.com/rsteube/carapace-completers/completers/${completer}_completer/cmd\""
+    echo "	${completer} \"github.com/rsteube/carapace-bin/completers/${completer}_completer/cmd\""
 done
 
 echo ")

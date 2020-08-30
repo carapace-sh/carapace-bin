@@ -1,6 +1,6 @@
 package main
 
-import "github.com/rsteube/carapace-completers/completers/csplit_completer/cmd"
+import "github.com/rsteube/carapace-bin/completers/csplit_completer/cmd"
 
 func main() {
 	cmd.Execute()

@@ -3,39 +3,39 @@ version: '3'
 services:
   build:
     build: .
-    command: sh -c 'sh -c "cd /carapace-completers/carapace && go build -ldflags=\"-s -w\" ."'
+    command: sh -c 'sh -c "cd /carapace-bin/carapace && go build -ldflags=\"-s -w\" ."'
     volumes:
-      - '.:/carapace-completers/'
+      - '.:/carapace-bin/'
       - 'go:/go/'
   bash:
     build: .
     command: bash
     volumes:
-      - '.:/carapace-completers/'
+      - '.:/carapace-bin/'
 
   elvish:
     build: .
     command: elvish
     volumes:
-      - '.:/carapace-completers/'
+      - '.:/carapace-bin/'
 
   fish:
     build: .
     command: fish
     volumes:
-      - '.:/carapace-completers/'
+      - '.:/carapace-bin/'
 
   powershell:
     build: .
     command: pwsh
     volumes:
-      - '.:/carapace-completers/'
+      - '.:/carapace-bin/'
 
   zsh:
     build: .
     command: zsh
     volumes:
-      - '.:/carapace-completers/'
+      - '.:/carapace-bin/'
 
 volumes:
   go:
