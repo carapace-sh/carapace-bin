@@ -72,8 +72,12 @@ import (
 	touch "github.com/rsteube/carapace-bin/completers/touch_completer/cmd"
 	tr "github.com/rsteube/carapace-bin/completers/tr_completer/cmd"
 	tsort "github.com/rsteube/carapace-bin/completers/tsort_completer/cmd"
+	tty "github.com/rsteube/carapace-bin/completers/tty_completer/cmd"
+	uname "github.com/rsteube/carapace-bin/completers/uname_completer/cmd"
 	unexpand "github.com/rsteube/carapace-bin/completers/unexpand_completer/cmd"
 	uniq "github.com/rsteube/carapace-bin/completers/uniq_completer/cmd"
+	unlink "github.com/rsteube/carapace-bin/completers/unlink_completer/cmd"
+	users "github.com/rsteube/carapace-bin/completers/users_completer/cmd"
 	vdir "github.com/rsteube/carapace-bin/completers/vdir_completer/cmd"
 	wc "github.com/rsteube/carapace-bin/completers/wc_completer/cmd"
 )
@@ -150,8 +154,12 @@ var completers = []string{
 	"touch",
 	"tr",
 	"tsort",
+	"tty",
+	"uname",
 	"unexpand",
 	"uniq",
+	"unlink",
+	"users",
 	"vdir",
 	"wc",
 }
@@ -300,10 +308,18 @@ func executeCompleter(completer string) {
 		tr.Execute()
 	case "tsort":
 		tsort.Execute()
+	case "tty":
+		tty.Execute()
+	case "uname":
+		uname.Execute()
 	case "unexpand":
 		unexpand.Execute()
 	case "uniq":
 		uniq.Execute()
+	case "unlink":
+		unlink.Execute()
+	case "users":
+		users.Execute()
 	case "vdir":
 		vdir.Execute()
 	case "wc":
