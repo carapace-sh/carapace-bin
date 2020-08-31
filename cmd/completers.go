@@ -57,10 +57,13 @@ import (
 	readlink "github.com/rsteube/carapace-bin/completers/readlink_completer/cmd"
 	rm "github.com/rsteube/carapace-bin/completers/rm_completer/cmd"
 	rmdir "github.com/rsteube/carapace-bin/completers/rmdir_completer/cmd"
+	seq "github.com/rsteube/carapace-bin/completers/seq_completer/cmd"
 	sha1sum "github.com/rsteube/carapace-bin/completers/sha1sum_completer/cmd"
 	shred "github.com/rsteube/carapace-bin/completers/shred_completer/cmd"
+	sleep "github.com/rsteube/carapace-bin/completers/sleep_completer/cmd"
 	sort "github.com/rsteube/carapace-bin/completers/sort_completer/cmd"
 	split "github.com/rsteube/carapace-bin/completers/split_completer/cmd"
+	stat "github.com/rsteube/carapace-bin/completers/stat_completer/cmd"
 	sum "github.com/rsteube/carapace-bin/completers/sum_completer/cmd"
 	sync "github.com/rsteube/carapace-bin/completers/sync_completer/cmd"
 	tac "github.com/rsteube/carapace-bin/completers/tac_completer/cmd"
@@ -132,10 +135,13 @@ var completers = []string{
 	"readlink",
 	"rm",
 	"rmdir",
+	"seq",
 	"sha1sum",
 	"shred",
+	"sleep",
 	"sort",
 	"split",
+	"stat",
 	"sum",
 	"sync",
 	"tac",
@@ -264,14 +270,20 @@ func executeCompleter(completer string) {
 		rm.Execute()
 	case "rmdir":
 		rmdir.Execute()
+	case "seq":
+		seq.Execute()
 	case "sha1sum":
 		sha1sum.Execute()
 	case "shred":
 		shred.Execute()
+	case "sleep":
+		sleep.Execute()
 	case "sort":
 		sort.Execute()
 	case "split":
 		split.Execute()
+	case "stat":
+		stat.Execute()
 	case "sum":
 		sum.Execute()
 	case "sync":
