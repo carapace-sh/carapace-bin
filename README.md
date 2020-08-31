@@ -27,7 +27,7 @@ cd carapace && go build -ldflags="-s -w"
 ```
 For smallest file size (300kb instead of 6mb) use gccgo with flags "-s -w" and upx (upx slows down invocation but should still be fast enough).
 
-Completers can also be build separately:
+Completers can also be built separately:
 ```sh
 cd completers/ln_completer && go build -ldflags="-s -w"
 ./ln_completer _carapace
