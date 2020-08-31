@@ -31,7 +31,7 @@ commands:
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.15
+      - image: circleci/golang:latest
         environment:
           GO111MODULE: "on"
     steps:
