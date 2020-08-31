@@ -2,9 +2,10 @@ version: 2.1
 workflows:
   main:
     jobs:
-      - go-current
-      - go-previous
-      - go-latest
+      - build:
+          filters:
+            tags:
+              ignore: /.*/
   tags:
     jobs:
       - release:
@@ -14,9 +15,6 @@ workflows:
               ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)*(-.*)*/
-references:
-  workspace: &workspace
-    /go/src/github.com/rsteube/carapace-bin
 
 commands:
   run_tests:
@@ -31,37 +29,21 @@ commands:
             go vet
 
 jobs:
-  go-current:
+  build:
     docker:
-      - image: circleci/golang:1.15
+      - image: circleci/golang:latest
         environment:
           GO111MODULE: "on"
-    working_directory: *workspace
     steps:
       - checkout
       - run_tests
       - run:
           name: "Check formatting"
           command: diff -u <(echo -n) <(gofmt -d -s .)
-  go-previous:
-    docker:
-      - image: circleci/golang:1.14
-        environment:
-          GO111MODULE: "on"
-    working_directory: *workspace
-    steps:
-      - checkout
-      - run_tests
-  go-latest:
-    docker:
-      - image: circleci/golang:latest
-    working_directory: *workspace
-    steps:
-      - checkout
-      - run_tests
   release:
     docker:
       - image: circleci/golang:1.15
     steps:
       - checkout
+      - run: cd carapace
       - run: curl -sL https://git.io/goreleaser | bash
