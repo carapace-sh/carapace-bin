@@ -1,5 +1,7 @@
 # carapace-bin
 
+[![CircleCI](https://circleci.com/gh/rsteube/carapace-bin.svg?style=svg)](https://circleci.com/gh/rsteube/carapace-bin)
+
 Multi-shell multi-command argument completer based on [rsteube/carapace](https://github.com/rsteube/carapace).
 
 Supported shells:
