@@ -11,6 +11,9 @@ Supported shells:
 - [Powershell](https://microsoft.com/powershell)
 - [Zsh](https://www.zsh.org/)
 
+## Status
+
+A major part of the completers has been generated from help pages so there will be some quirks here and there. Also completion depends on what [rsteube/carapace](https://github.com/rsteube/carapace) is capable of so far which by itself is also limited by [spf13/pflag](https://github.com/spf13/pflag/) (e.g. shorthand-only flags are currently only possible due to [PR 256](https://github.com/spf13/pflag/pull/256)).
 
 ## Example
 
