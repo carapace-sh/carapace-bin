@@ -46,7 +46,7 @@ func ActionMode() carapace.Action {
 				}
 			}
 		} else {
-			currentMode := current[strings.LastIndexAny(current, "+-=")+1 : len(current)]
+			currentMode := current[strings.LastIndexAny(current, "+-=")+1:]
 			for _, c := range "gorstuwxX" {
 				if !strings.ContainsRune(currentMode, c) {
 					vals = append(vals, string(c))
