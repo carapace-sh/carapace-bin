@@ -1,5 +1,19 @@
 version: 2.1
-
+workflows:
+  main:
+    jobs:
+      - go-current
+      - go-previous
+      - go-latest
+  tags:
+    jobs:
+      - release:
+          # Only run this job on git tag pushes
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*(-.*)*/
 references:
   workspace: &workspace
     /go/src/github.com/rsteube/carapace-bin
@@ -45,11 +59,9 @@ jobs:
     steps:
       - checkout
       - run_tests
-
-workflows:
-  version: 2
-  main:
-    jobs:
-      - go-current
-      - go-previous
-      - go-latest
+  release:
+    docker:
+      - image: circleci/golang:1.15
+    steps:
+      - checkout
+      - run: curl -sL https://git.io/goreleaser | bash
