@@ -20,16 +20,22 @@ docker-compose run --rm [bash|elvish|fish|powershell|zsh]
 
 for smallest file size (300kb instead of 6mb) use gccgo with flags "-s -w" and upx (upx slows down invocation but should still be fast enough).
 
-## generate completion
+## Generate completion
 
-``
+- completion for carapace itself
+```sh
+carapace _carapace [bash|elvish|fish|powershell|zsh]
+```
+- Completion for commands
+```sh
 carapace [ln|mkdir|...] [bash|elvish|fish|powershell|zsh]
-``
-(the completer binary needs to be added to PATH)
+```
+If the shell is left out carapace will try to determine the current shell by the parent process name.
+The completer binary itself needs to be added to PATH.
 
-# Creating completers
+## Creating completers
 [caraparse](https://github.com/rsteube/carapace/tree/support-shorthand-only-flags/caraparse) is a helper tool that uses regex to parse gnu help pages.
-Due to strong inconsistencies between these the results may differ, but generally give a good head start.
+Due to strong inconsistencies between these the results may differ but generally give a good head start.
 
 - copy a completer for simplicity
 ```sh
