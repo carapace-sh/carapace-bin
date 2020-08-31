@@ -30,7 +30,7 @@ For smallest file size (300kb instead of 6mb) use gccgo with flags "-s -w" and u
 Completers can also be built separately:
 ```sh
 cd completers/ln_completer && go build -ldflags="-s -w"
-./ln_completer _carapace
+./ln_completer _carapace [bash|elvish|fish|powershell|zsh]
 ```
 
 ## Generate completion
