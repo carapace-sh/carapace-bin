@@ -23,10 +23,10 @@ func init() {
 	rootCmd.Flags().StringP("mode", "m", "", "set file permission bits to MODE, not a=rw - umask")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    // TODO complete mode
+	// TODO complete mode
 
-    carapace.Gen(rootCmd).PositionalCompletion(
-      carapace.ActionValues(),
-      carapace.ActionValuesDescribed("b", "block (buffered) special file", "c", "FIFO", "u", "character (unbuffered) special file", "p", "character (unbuffered) special file"),
-  )
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionValues(),
+		carapace.ActionValuesDescribed("b", "block (buffered) special file", "c", "FIFO", "u", "character (unbuffered) special file", "p", "character (unbuffered) special file"),
+	)
 }

@@ -16,8 +16,8 @@ import (
 	cut "github.com/rsteube/carapace-bin/completers/cut_completer/cmd"
 	date "github.com/rsteube/carapace-bin/completers/date_completer/cmd"
 	df "github.com/rsteube/carapace-bin/completers/df_completer/cmd"
-	dircolors "github.com/rsteube/carapace-bin/completers/dircolors_completer/cmd"
 	dir "github.com/rsteube/carapace-bin/completers/dir_completer/cmd"
+	dircolors "github.com/rsteube/carapace-bin/completers/dircolors_completer/cmd"
 	dirname "github.com/rsteube/carapace-bin/completers/dirname_completer/cmd"
 	du "github.com/rsteube/carapace-bin/completers/du_completer/cmd"
 	env "github.com/rsteube/carapace-bin/completers/env_completer/cmd"
@@ -298,4 +298,3 @@ func executeCompleter(completer string) {
 		wc.Execute()
 	}
 }
-

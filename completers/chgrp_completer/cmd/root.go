@@ -33,18 +33,18 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "output a diagnostic for every file processed")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-        "reference": carapace.ActionFiles(""),
-    })
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"reference": carapace.ActionFiles(""),
+	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-        carapace.ActionCallback(func(args []string) carapace.Action {
-            if rootCmd.Flag("reference").Changed {
-              return carapace.ActionFiles("")
-            } else {
-		      return carapace.ActionGroups()
-            }
-        }),
+		carapace.ActionCallback(func(args []string) carapace.Action {
+			if rootCmd.Flag("reference").Changed {
+				return carapace.ActionFiles("")
+			} else {
+				return carapace.ActionGroups()
+			}
+		}),
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

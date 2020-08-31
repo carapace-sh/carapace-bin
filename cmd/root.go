@@ -40,7 +40,7 @@ var rootCmd = &cobra.Command{
 			executeCompleter(completer)
 
 			w.Close()
-            out := <-outC
+			out := <-outC
 			os.Stdout = old
 			fmt.Print(strings.Replace(string(out), "carapace _carapace", "carapace "+completer, -1))
 		}

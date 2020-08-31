@@ -32,9 +32,9 @@ func init() {
 	rootCmd.Flags().BoolP("zero-terminated", "z", false, "line delimiter is NUL, not newline")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-      "all-repeated": carapace.ActionValues("none", "prepend", "separate"),
-      "group": carapace.ActionValues("append", "both", "prepend", "separate"),
-    })
+		"all-repeated": carapace.ActionValues("none", "prepend", "separate"),
+		"group":        carapace.ActionValues("append", "both", "prepend", "separate"),
+	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionFiles(""),

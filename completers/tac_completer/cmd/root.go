@@ -23,5 +23,5 @@ func init() {
 	rootCmd.Flags().StringP("separator", "s", "", "use STRING as the separator instead of newline")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
 }

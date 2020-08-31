@@ -34,12 +34,12 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 	rootCmd.Flags().BoolP("zero-terminated", "z", false, "line delimiter is NUL, not newline")
 
-    carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-        "follow": carapace.ActionValues("descriptor", "name"),
-        "pid": ActionPids(),
-    })
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"follow": carapace.ActionValues("descriptor", "name"),
+		"pid":    ActionPids(),
+	})
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
 }
 
 func ActionPids() carapace.Action {

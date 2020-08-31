@@ -53,7 +53,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			if rootCmd.Flag("traditional").Changed {
-			  return carapace.ActionMessage("traditional mode only allows [INPUT [OUTPUT]]]")
+				return carapace.ActionMessage("traditional mode only allows [INPUT [OUTPUT]]]")
 			} else {
 				return carapace.ActionFiles("")
 			}

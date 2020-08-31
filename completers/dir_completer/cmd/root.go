@@ -76,11 +76,11 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 	rootCmd.Flags().StringP("width", "w", "", "set output width to COLS.  0 means no limit")
 
-    carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-      // TODO custom + format
-      "time": carapace.ActionValues("full-iso", "long-iso", "iso", "locale"),
-      "color": carapace.ActionValues("always", "auto", "never"),
-    })
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		// TODO custom + format
+		"time":  carapace.ActionValues("full-iso", "long-iso", "iso", "locale"),
+		"color": carapace.ActionValues("always", "auto", "never"),
+	})
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
 }

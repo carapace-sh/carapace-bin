@@ -23,5 +23,5 @@ func init() {
 	rootCmd.Flags().Bool("portability", false, "check for all POSIX systems (equivalent to -p -P)")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
 }

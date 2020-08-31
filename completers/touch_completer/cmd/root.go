@@ -34,5 +34,5 @@ func init() {
 		"time":      carapace.ActionValues("access", "atime", "modify", "mtime", "use"),
 	})
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
 }

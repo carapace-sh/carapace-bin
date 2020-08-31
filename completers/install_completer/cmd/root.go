@@ -39,13 +39,13 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "print the name of each directory as it is created")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-      // TODO complete mode
-      "group": carapace.ActionGroups(),
-      "owner": carapace.ActionUsers(),
-      "strip-program": carapace.ActionDirectories(),
-      "target-directory": carapace.ActionDirectories(),
-    })
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		// TODO complete mode
+		"group":            carapace.ActionGroups(),
+		"owner":            carapace.ActionUsers(),
+		"strip-program":    carapace.ActionDirectories(),
+		"target-directory": carapace.ActionDirectories(),
+	})
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionDirectories())
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionDirectories())
 }
