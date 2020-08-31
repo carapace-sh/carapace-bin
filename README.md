@@ -49,7 +49,7 @@ carapace [ln|mkdir|...] [bash|elvish|fish|powershell|zsh]
 ```sh
 carapace --list
 ```
-If the shell is left out carapace will try to determine the current shell by the parent process name.
+If the shell is left out carapace will try to determine it by the parent process name.
 
 ## Creating completers
 [caraparse](https://github.com/rsteube/carapace/tree/support-shorthand-only-flags/caraparse) is a helper tool that uses regex to parse gnu help pages.
