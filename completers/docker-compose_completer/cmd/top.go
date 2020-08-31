@@ -1,0 +1,20 @@
+package cmd
+
+import (
+	"github.com/rsteube/carapace"
+	"github.com/spf13/cobra"
+)
+
+var topCmd = &cobra.Command{
+	Use:   "top",
+	Short: "Display the running processes",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(rootCmd).Standalone()
+
+	rootCmd.AddCommand(topCmd)
+
+	carapace.Gen(topCmd).PositionalAnyCompletion(ActionServices())
+}

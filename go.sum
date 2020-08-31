@@ -81,10 +81,8 @@ github.com/prometheus/procfs v0.0.0-20181005140218-185b4288413d/go.mod h1:c3At6R
 github.com/prometheus/procfs v0.0.0-20190507164030-5867b95ac084/go.mod h1:TjEm7ze935MbeOT/UhFTIMYKhuLP4wbCsTZCD3I8kEA=
 github.com/prometheus/tsdb v0.7.1/go.mod h1:qhTCs0VvXwvX/y3TZrWD7rabWM+ijKTux40TwIPHuXU=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
-github.com/rsteube/carapace v0.0.17-0.20200830151704-26070a312697 h1:2UYXqfCtFJcCIHc2DzKTbFEI6hIS3M0dOVAcyMtPElw=
-github.com/rsteube/carapace v0.0.17-0.20200830151704-26070a312697/go.mod h1:wIpMkSiUR71qmwdh53z/uDbHLpHKUZwUFiKtsYTwtbw=
-github.com/rsteube/carapace v0.0.17-0.20200901123933-e08979c3dba8 h1:URkJubXQ7L0jDzwGega2S0m7iwKzp9w8AjREVqrdh4g=
-github.com/rsteube/carapace v0.0.17-0.20200901123933-e08979c3dba8/go.mod h1:wIpMkSiUR71qmwdh53z/uDbHLpHKUZwUFiKtsYTwtbw=
+github.com/rsteube/carapace v0.0.17-0.20200901140803-0dea8a0a356b h1:oKoVNkmd/rMS+JyBcKNedNB1oVPdc2H89yT4tBbNq5A=
+github.com/rsteube/carapace v0.0.17-0.20200901140803-0dea8a0a356b/go.mod h1:wIpMkSiUR71qmwdh53z/uDbHLpHKUZwUFiKtsYTwtbw=
 github.com/russross/blackfriday/v2 v2.0.1/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=
 github.com/sergi/go-diff v1.1.0/go.mod h1:STckp+ISIX8hZLjrqAeVduY0gWCT9IjLuqbuNXdaHfM=
@@ -150,4 +148,6 @@ gopkg.in/yaml.v2 v2.0.0-20170812160011-eb3733d160e7/go.mod h1:JAlM8MvJe8wmxCU4Bl
 gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
 gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
 gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
+gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776 h1:tQIYjPdBoyREyB9XMu+nnTclpTYkz2zFM+lzLJFO4gQ=
+gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
 honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=

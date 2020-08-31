@@ -7,7 +7,7 @@ echo "package cmd
 import ("
 
 for completer in $completers; do
-    echo "	${completer} \"github.com/rsteube/carapace-bin/completers/${completer}_completer/cmd\""
+    echo "	${completer//-/_} \"github.com/rsteube/carapace-bin/completers/${completer}_completer/cmd\""
 done
 
 echo ")
@@ -25,7 +25,7 @@ func executeCompleter(completer string) {
 
 
 for completer in $completers; do
-    echo -e "	case \"${completer}\":\n		${completer}.Execute()"
+    echo -e "	case \"${completer}\":\n		${completer//-/_}.Execute()"
 done
 
 echo "	}
