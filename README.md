@@ -72,7 +72,7 @@ ln --help | caraparse -n ln > completers/ln_completer/cmd/root.go
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionDirectories(),
+		carapace.ActionFiles(""),
 	)
 ```
 - run the generator

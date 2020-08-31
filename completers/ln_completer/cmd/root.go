@@ -40,6 +40,6 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionDirectories(),
+		carapace.ActionFiles(""),
 	)
 }
