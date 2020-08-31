@@ -23,8 +23,8 @@ func init() {
 	rootCmd.Flags().String("userspec", "", "specify user and group (ID or name) to use")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-        "groups": carapace.ActionGroups(),
-        "userspec": carapace.ActionUserGroup(),
-    })
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"groups":   carapace.ActionGroups(),
+		"userspec": carapace.ActionUserGroup(),
+	})
 }

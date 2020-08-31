@@ -23,7 +23,7 @@ func init() {
 	rootCmd.Flags().StringP("mode", "m", "", "set file permission bits to MODE, not a=rw - umask")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    // TODO complete mode
+	// TODO complete mode
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
 }

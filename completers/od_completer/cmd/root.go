@@ -35,7 +35,7 @@ func init() {
 			"x", "hexadecimal",
 		),
 		"endian": carapace.ActionValues("big", "little"),
-        // TODO complete format (this is incomplete, compare with zsh completions)
+		// TODO complete format (this is incomplete, compare with zsh completions)
 		"format": carapace.ActionValuesDescribed(
 			"a", "named character",
 			"c", "character (C-style escape)",
@@ -47,5 +47,5 @@ func init() {
 		),
 	})
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
 }

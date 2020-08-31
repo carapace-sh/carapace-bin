@@ -30,5 +30,5 @@ func init() {
 	rootCmd.Flags().BoolP("squeeze-blank", "s", false, "suppress repeated empty output lines")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
 }

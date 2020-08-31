@@ -20,7 +20,7 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-    carapace.Gen(rootCmd).PositionalCompletion(
-      carapace.ActionFiles(""),
-    )
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionFiles(""),
+	)
 }
