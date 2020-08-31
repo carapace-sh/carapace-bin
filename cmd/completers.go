@@ -80,6 +80,9 @@ import (
 	users "github.com/rsteube/carapace-bin/completers/users_completer/cmd"
 	vdir "github.com/rsteube/carapace-bin/completers/vdir_completer/cmd"
 	wc "github.com/rsteube/carapace-bin/completers/wc_completer/cmd"
+	who "github.com/rsteube/carapace-bin/completers/who_completer/cmd"
+	whoami "github.com/rsteube/carapace-bin/completers/whoami_completer/cmd"
+	yes "github.com/rsteube/carapace-bin/completers/yes_completer/cmd"
 )
 
 var completers = []string{
@@ -162,6 +165,9 @@ var completers = []string{
 	"users",
 	"vdir",
 	"wc",
+	"whoami",
+	"who",
+	"yes",
 }
 
 func executeCompleter(completer string) {
@@ -324,5 +330,11 @@ func executeCompleter(completer string) {
 		vdir.Execute()
 	case "wc":
 		wc.Execute()
+	case "whoami":
+		whoami.Execute()
+	case "who":
+		who.Execute()
+	case "yes":
+		yes.Execute()
 	}
 }
