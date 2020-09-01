@@ -57,6 +57,7 @@ import (
 	printenv "github.com/rsteube/carapace-bin/completers/printenv_completer/cmd"
 	ptx "github.com/rsteube/carapace-bin/completers/ptx_completer/cmd"
 	readlink "github.com/rsteube/carapace-bin/completers/readlink_completer/cmd"
+	rg "github.com/rsteube/carapace-bin/completers/rg_completer/cmd"
 	rm "github.com/rsteube/carapace-bin/completers/rm_completer/cmd"
 	rmdir "github.com/rsteube/carapace-bin/completers/rmdir_completer/cmd"
 	sed "github.com/rsteube/carapace-bin/completers/sed_completer/cmd"
@@ -145,6 +146,7 @@ var completers = []string{
 	"printenv",
 	"ptx",
 	"readlink",
+	"rg",
 	"rm",
 	"rmdir",
 	"sed",
@@ -290,6 +292,8 @@ func executeCompleter(completer string) {
 		ptx.Execute()
 	case "readlink":
 		readlink.Execute()
+	case "rg":
+		rg.Execute()
 	case "rm":
 		rm.Execute()
 	case "rmdir":
