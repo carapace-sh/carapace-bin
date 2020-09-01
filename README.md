@@ -55,7 +55,7 @@ carapace --list
 If the shell is left out carapace will try to determine it by the parent process name.
 
 ## Creating completers
-[caraparse](https://github.com/rsteube/carapace/tree/support-shorthand-only-flags/caraparse) is a helper tool that uses regex to parse gnu help pages.
+[caraparse](/caraparse) is a helper tool that uses regex to parse gnu help pages.
 Due to strong inconsistencies between these the results may differ but generally give a good head start.
 
 - copy a completer for simplicity
@@ -80,7 +80,7 @@ ln --help | caraparse -n ln > completers/ln_completer/cmd/root.go
 ```
 - run the generator
 ```sh
-cd cmd && ./generate.sh > completers.go
+cd carapace/cmd && ./generate.sh > completers.go
 ```
 - build & test
 ```sh
