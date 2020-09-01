@@ -12,7 +12,7 @@ var pushCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(pushCmd).Standalone()
 
 	pushCmd.Flags().Bool("ignore-push-failures", false, "Push what it can and ignores images with push failures.")
 	rootCmd.AddCommand(pushCmd)

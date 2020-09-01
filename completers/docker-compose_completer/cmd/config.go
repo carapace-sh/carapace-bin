@@ -12,7 +12,7 @@ var configCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(configCmd).Standalone()
 
 	configCmd.Flags().String("hash", "", "Print the service config hash, one per line.")
 	configCmd.Flags().Bool("no-interpolate", false, "Don't interpolate environment variables")

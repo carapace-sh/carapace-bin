@@ -12,7 +12,7 @@ var runCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(runCmd).Standalone()
 
 	runCmd.Flags().StringS("e", "e", "", "Set an environment variable (can be used multiple times)")
 	runCmd.Flags().BoolS("T", "T", false, "Disable pseudo-tty allocation. By default `docker-compose run`")

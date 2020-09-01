@@ -12,7 +12,7 @@ var upCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(upCmd).Standalone()
 
 	upCmd.Flags().Bool("abort-on-container-exit", false, "Stops all containers if any container was")
 	upCmd.Flags().Bool("abort-on-container-exit.", false, "")

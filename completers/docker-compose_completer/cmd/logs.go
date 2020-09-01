@@ -12,7 +12,7 @@ var logsCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(logsCmd).Standalone()
 
 	logsCmd.Flags().BoolP("follow", "f", false, "Follow log output.")
 	logsCmd.Flags().Bool("no-color", false, "Produce monochrome output.")

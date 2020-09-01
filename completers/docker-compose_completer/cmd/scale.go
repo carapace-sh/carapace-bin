@@ -12,7 +12,7 @@ var scaleCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(scaleCmd).Standalone()
 
 	scaleCmd.Flags().StringP("timeout", "t", "", "Specify a shutdown timeout in seconds.")
 	rootCmd.AddCommand(scaleCmd)

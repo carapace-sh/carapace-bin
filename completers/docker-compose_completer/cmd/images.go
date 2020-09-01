@@ -12,7 +12,7 @@ var imagesCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(imagesCmd).Standalone()
 
 	imagesCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")
 	rootCmd.AddCommand(imagesCmd)

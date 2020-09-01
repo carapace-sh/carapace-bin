@@ -12,7 +12,7 @@ var createCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(createCmd).Standalone()
 
 	createCmd.Flags().Bool("build", false, "Build images before creating containers.")
 	createCmd.Flags().Bool("force-recreate", false, "Recreate containers even if their configuration and")

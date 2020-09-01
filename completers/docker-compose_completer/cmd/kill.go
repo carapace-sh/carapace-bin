@@ -12,7 +12,7 @@ var killCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(killCmd).Standalone()
 
 	killCmd.Flags().StringS("s", "s", "", "SIGNAL to send to the container.")
 	rootCmd.AddCommand(killCmd)

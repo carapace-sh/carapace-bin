@@ -12,7 +12,7 @@ var rmCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(rmCmd).Standalone()
 
 	rmCmd.Flags().BoolS("v", "v", false, "Remove any anonymous volumes attached to containers")
 	rmCmd.Flags().BoolP("all", "a", false, "Deprecated - no effect.")

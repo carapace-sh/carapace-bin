@@ -12,7 +12,7 @@ var portCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(portCmd).Standalone()
 
 	portCmd.Flags().String("index", "", "index of the container if there are multiple")
 	portCmd.Flags().String("protocol", "", "tcp or udp [default: tcp]")

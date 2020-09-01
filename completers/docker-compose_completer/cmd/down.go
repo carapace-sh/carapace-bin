@@ -12,7 +12,7 @@ var downCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(downCmd).Standalone()
 
 	downCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the")
 	downCmd.Flags().String("rmi", "", "Remove images. Type must be one of:")

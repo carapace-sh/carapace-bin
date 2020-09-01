@@ -12,7 +12,7 @@ var psCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(psCmd).Standalone()
 
 	psCmd.Flags().BoolP("all", "a", false, "Show all stopped containers (including those created by the run command)")
 	psCmd.Flags().String("filter", "", "Filter services by a property")

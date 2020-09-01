@@ -12,7 +12,7 @@ var buildCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(buildCmd).Standalone()
 
 	buildCmd.Flags().String("build-arg", "", "Set build-time variables for services.")
 	buildCmd.Flags().Bool("compress", false, "Compress the build context using gzip.")

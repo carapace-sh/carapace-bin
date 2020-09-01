@@ -12,7 +12,7 @@ var eventsCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(eventsCmd).Standalone()
 
 	eventsCmd.Flags().Bool("json", false, "Output events as a stream of json objects")
 	rootCmd.AddCommand(eventsCmd)

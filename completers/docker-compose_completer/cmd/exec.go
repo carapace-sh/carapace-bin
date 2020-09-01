@@ -12,7 +12,7 @@ var execCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(execCmd).Standalone()
 
 	execCmd.Flags().BoolS("T", "T", false, "Disable pseudo-tty allocation. By default `docker-compose exec`")
 	execCmd.Flags().BoolP("detach", "d", false, "Detached mode: Run command in the background.")

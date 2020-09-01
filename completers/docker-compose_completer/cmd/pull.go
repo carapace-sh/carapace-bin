@@ -12,7 +12,7 @@ var pullCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(pullCmd).Standalone()
 
 	pullCmd.Flags().Bool("ignore-pull-failures", false, "Pull what it can and ignores images with pull failures.")
 	pullCmd.Flags().Bool("include-deps", false, "Also pull services declared as dependencies")

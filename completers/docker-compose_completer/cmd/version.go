@@ -12,7 +12,7 @@ var versionCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rootCmd).Standalone()
+	carapace.Gen(versionCmd).Standalone()
 
 	versionCmd.Flags().Bool("short", false, "Shows only Compose's version number.")
 	rootCmd.AddCommand(versionCmd)
