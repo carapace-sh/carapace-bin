@@ -36,9 +36,9 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"unset":          ActionEnvironmentVariables(),
 		"chdir":          carapace.ActionDirectories(),
-		"block-signal":   ActionSignals(),
-		"default-signal": ActionSignals(),
-		"ignore-signal":  ActionSignals(),
+		"block-signal":   carapace.ActionKillSignals(),
+		"default-signal": carapace.ActionKillSignals(),
+		"ignore-signal":  carapace.ActionKillSignals(),
 	})
 }
 
@@ -52,8 +52,4 @@ func ActionEnvironmentVariables() carapace.Action {
 		}
 		return carapace.ActionValues(vars...)
 	})
-}
-
-func ActionSignals() carapace.Action {
-	return carapace.ActionValues("ABRT", "CHLD", "HUP", "KILL", "PROF", "SEGV", "SYS", "TSTP", "URG", "VTALRM", "XFSZ", "ALRM", "CONT", "ILL", "PIPE", "PWR", "STKFLT", "TERM", "TTIN", "USR1", "WINCH", "BUS", "FPE", "INT", "POLL", "QUIT", "STOP", "TRAP", "TTOU", "USR2", "XCPU")
 }

@@ -46,7 +46,7 @@ func init() {
 		"euid":    carapace.ActionUsers(),
 		"group":   carapace.ActionGroups(),
 		"nslist":  carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts"),
-		"signal":  carapace.ActionValues("ABRT", "CHLD", "HUP", "KILL", "PROF", "SEGV", "SYS", "TSTP", "URG", "VTALRM", "XFSZ", "ALRM", "CONT", "ILL", "PIPE", "PWR", "STKFLT", "TERM", "TTIN", "USR1", "WINCH", "BUS", "FPE", "INT", "POLL", "QUIT", "STOP", "TRAP", "TTOU", "USR2", "XCPU"),
+		"signal":  carapace.ActionKillSignals(),
 		"pidfile": carapace.ActionFiles(""),
 	})
 
