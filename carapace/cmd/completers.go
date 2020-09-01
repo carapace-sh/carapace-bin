@@ -58,6 +58,7 @@ import (
 	readlink "github.com/rsteube/carapace-bin/completers/readlink_completer/cmd"
 	rm "github.com/rsteube/carapace-bin/completers/rm_completer/cmd"
 	rmdir "github.com/rsteube/carapace-bin/completers/rmdir_completer/cmd"
+	sed "github.com/rsteube/carapace-bin/completers/sed_completer/cmd"
 	seq "github.com/rsteube/carapace-bin/completers/seq_completer/cmd"
 	sha1sum "github.com/rsteube/carapace-bin/completers/sha1sum_completer/cmd"
 	shred "github.com/rsteube/carapace-bin/completers/shred_completer/cmd"
@@ -144,6 +145,7 @@ var completers = []string{
 	"readlink",
 	"rm",
 	"rmdir",
+	"sed",
 	"seq",
 	"sha1sum",
 	"shred",
@@ -288,6 +290,8 @@ func executeCompleter(completer string) {
 		rm.Execute()
 	case "rmdir":
 		rmdir.Execute()
+	case "sed":
+		sed.Execute()
 	case "seq":
 		seq.Execute()
 	case "sha1sum":
