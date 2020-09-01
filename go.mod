@@ -6,9 +6,11 @@ require (
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/rsteube/carapace v0.0.17
 	github.com/spf13/cobra v1.0.0
+	gopkg.in/yaml.v2 v2.2.4
+	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 )
 
 // use the shorthand PR
-replace github.com/rsteube/carapace v0.0.17 => github.com/rsteube/carapace v0.0.17-0.20200901123933-e08979c3dba8
+replace github.com/rsteube/carapace v0.0.17 => github.com/rsteube/carapace v0.0.17-0.20200901140803-0dea8a0a356b
 
 replace github.com/spf13/pflag v1.0.5 => github.com/cornfeedhobo/pflag v1.0.2-0.20200824165833-dd6f6588b61d

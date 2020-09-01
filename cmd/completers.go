@@ -19,6 +19,7 @@ import (
 	dir "github.com/rsteube/carapace-bin/completers/dir_completer/cmd"
 	dircolors "github.com/rsteube/carapace-bin/completers/dircolors_completer/cmd"
 	dirname "github.com/rsteube/carapace-bin/completers/dirname_completer/cmd"
+	docker_compose "github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd"
 	du "github.com/rsteube/carapace-bin/completers/du_completer/cmd"
 	env "github.com/rsteube/carapace-bin/completers/env_completer/cmd"
 	exa "github.com/rsteube/carapace-bin/completers/exa_completer/cmd"
@@ -104,6 +105,7 @@ var completers = []string{
 	"dircolors",
 	"dir",
 	"dirname",
+	"docker-compose",
 	"du",
 	"env",
 	"exa",
@@ -208,6 +210,8 @@ func executeCompleter(completer string) {
 		dir.Execute()
 	case "dirname":
 		dirname.Execute()
+	case "docker-compose":
+		docker_compose.Execute()
 	case "du":
 		du.Execute()
 	case "env":
