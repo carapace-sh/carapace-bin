@@ -30,6 +30,7 @@ import (
 	fold "github.com/rsteube/carapace-bin/completers/fold_completer/cmd"
 	git "github.com/rsteube/carapace-bin/completers/git_completer/cmd"
 	gradle "github.com/rsteube/carapace-bin/completers/gradle_completer/cmd"
+	grep "github.com/rsteube/carapace-bin/completers/grep_completer/cmd"
 	head "github.com/rsteube/carapace-bin/completers/head_completer/cmd"
 	hostid "github.com/rsteube/carapace-bin/completers/hostid_completer/cmd"
 	id "github.com/rsteube/carapace-bin/completers/id_completer/cmd"
@@ -117,6 +118,7 @@ var completers = []string{
 	"fold",
 	"git",
 	"gradle",
+	"grep",
 	"head",
 	"hostid",
 	"id",
@@ -234,6 +236,8 @@ func executeCompleter(completer string) {
 		git.Execute()
 	case "gradle":
 		gradle.Execute()
+	case "grep":
+		grep.Execute()
 	case "head":
 		head.Execute()
 	case "hostid":

@@ -23,7 +23,7 @@ func init() {
 	rootCmd.Flags().Bool("follow-symlinks", false, "follow symlinks when processing in place")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().StringP("in-place", "i", "", "edit files in place (makes backup if SUFFIX supplied)")
-	rootCmd.Flags().StringP("line-length", "l", "", "specify the desired line-wrap length for the `l' command")
+	rootCmd.Flags().StringP("line-length", "l", "", "specify the desired line-wrap length for the l command")
 	rootCmd.Flags().BoolP("null-data", "z", false, "separate lines by NUL characters")
 	rootCmd.Flags().Bool("posix", false, "disable all GNU extensions")
 	rootCmd.Flags().StringP("quiet", "n", "", "suppress automatic printing of pattern space")
