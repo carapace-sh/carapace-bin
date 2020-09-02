@@ -11,6 +11,6 @@ require (
 )
 
 // use the shorthand PR
-replace github.com/rsteube/carapace v0.0.17 => github.com/rsteube/carapace v0.0.17-0.20200901191454-d9ad00575d35
+replace github.com/rsteube/carapace v0.0.17 => github.com/rsteube/carapace v0.0.17-0.20200902095507-4a5937d65250
 
 replace github.com/spf13/pflag v1.0.5 => github.com/cornfeedhobo/pflag v1.0.2-0.20200824165833-dd6f6588b61d
