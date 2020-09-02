@@ -3,6 +3,7 @@ module github.com/rsteube/carapace-bin
 go 1.12
 
 require (
+	github.com/go-git/go-git/v5 v5.1.0
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/rsteube/carapace v0.0.17
 	github.com/spf13/cobra v1.0.0
