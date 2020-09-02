@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -14,6 +15,8 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+	carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.Flags().BoolP("accessed", "u", false, "use the accessed timestamp field")
 	rootCmd.Flags().BoolP("across", "x", false, "sort the grid across, rather than downwards")
 	rootCmd.Flags().BoolP("all", "a", false, "show hidden and 'dot' files")
@@ -47,7 +50,19 @@ func init() {
 	rootCmd.Flags().BoolP("reverse", "r", false, "reverse the sort order")
 	rootCmd.Flags().StringP("sort", "s", "", "which field to sort by")
 	rootCmd.Flags().StringP("time", "t", "", "which timestamp field to list (modified, accessed, created)")
-	rootCmd.Flags().Bool("time-style", false, "how to format timestamps (default, iso, long-iso, full-iso)")
+	rootCmd.Flags().String("time-style", "", "how to format timestamps (default, iso, long-iso, full-iso)")
 	rootCmd.Flags().BoolP("tree", "T", false, "recurse into directories as a tree")
 	rootCmd.Flags().BoolP("version", "v", false, "show version of exa")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"color":      carapace.ActionValues("always", "auto", "never"),
+		"colour":     carapace.ActionValues("always", "auto", "never"),
+		"sort":       carapace.ActionValues("name", "Name", "size", "extension", "Extension", "modified", "changed", "accessed", "created", "inode", "type", "none"),
+		"time":       carapace.ActionValues("modified", "accessed", "created"),
+		"time-style": carapace.ActionValues("default", "iso", "long-iso", "full-iso"),
+	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(""),
+	)
 }
