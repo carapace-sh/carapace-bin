@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -35,4 +37,6 @@ func init() {
 	checkoutCmd.Flags().String("recurse-submodules", "", "control recursive updating of submodules")
 	checkoutCmd.Flags().BoolP("track", "t", false, "set upstream info for new branch")
 	rootCmd.AddCommand(checkoutCmd)
+
+	carapace.Gen(checkoutCmd).PositionalCompletion(action.ActionBranches())
 }
