@@ -43,11 +43,12 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"euid":    carapace.ActionUsers(),
-		"group":   carapace.ActionGroups(),
-		"nslist":  carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts"),
-		"signal":  carapace.ActionKillSignals(),
-		"pidfile": carapace.ActionFiles(""),
+		"euid":      carapace.ActionUsers(),
+		"group":     carapace.ActionGroups(),
+		"nslist":    carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts"),
+		"pidfile":   carapace.ActionFiles(""),
+		"runstates": ActionProcessStates(),
+		"signal":    carapace.ActionKillSignals(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
@@ -67,4 +68,18 @@ func ActionExecutables() carapace.Action {
 			return carapace.ActionValues(executables...)
 		}
 	})
+}
+
+func ActionProcessStates() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"D", "uninterruptible sleep (usually IO)",
+		"I", "Idle kernel thread",
+		"R", "running or runnable (on run queue)",
+		"S", "interruptible sleep (waiting for an event to complete)",
+		"T", "stopped by job control signal",
+		"W", "paging (not valid since the 2.6.xx kernel)",
+		"X", "dead (should never be seen)",
+		"Z", "defunct (zombie) process, terminated but not reaped by its parent",
+		"t", "stopped by debugger during the tracing",
+	)
 }
