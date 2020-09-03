@@ -34,29 +34,31 @@ func ActionRegions() carapace.Action {
 }
 
 func ActionProfiles() carapace.Action {
-	profiles := []string{}
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		profiles := []string{}
 
-	// TODO support windows
-	if path, err := homedir.Expand("~/.aws/config"); err != nil {
-		return carapace.ActionMessage(err.Error())
-	} else {
-		if cfg, err := ini.Load(path); err != nil {
+		// TODO support windows
+		if path, err := homedir.Expand("~/.aws/config"); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
-			for _, section := range cfg.Sections() {
-				if strings.HasPrefix(section.Name(), "profile ") {
-					profiles = append(profiles, strings.TrimPrefix(section.Name(), "profile "))
-					if key, err := section.GetKey("region"); err != nil {
-						profiles = append(profiles, "")
-					} else {
-						profiles = append(profiles, key.String())
+			if cfg, err := ini.Load(path); err != nil {
+				return carapace.ActionMessage(err.Error())
+			} else {
+				for _, section := range cfg.Sections() {
+					if strings.HasPrefix(section.Name(), "profile ") {
+						profiles = append(profiles, strings.TrimPrefix(section.Name(), "profile "))
+						if key, err := section.GetKey("region"); err != nil {
+							profiles = append(profiles, "")
+						} else {
+							profiles = append(profiles, key.String())
+						}
 					}
 				}
+				if len(profiles) == 0 {
+					profiles = append(profiles, "default", "")
+				}
+				return carapace.ActionValuesDescribed(profiles...)
 			}
-			if len(profiles) == 0 {
-				profiles = append(profiles, "default", "")
-			}
-			return carapace.ActionValuesDescribed(profiles...)
 		}
-	}
+	})
 }
