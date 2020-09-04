@@ -119,3 +119,14 @@ func ActionContexts() carapace.Action {
 		}
 	})
 }
+
+func ActionNetworks() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("docker", "network", "ls", "--format", "{{.Name}}\n{{.Driver}}/{{.Scope}}").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			vals := strings.Split(string(output), "\n")
+			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
+		}
+	})
+}
