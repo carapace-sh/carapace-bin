@@ -64,7 +64,10 @@ func init() {
 	executeFunction := ""
 	parent := ""
 	if c.Parent != "" {
-		parent = fmt.Sprintf("\n    %v.AddCommand(%v)", c.Parent, cmdName)
+		if c.Parent != "root" {
+			cmdName = c.Parent + "_" + cmdName
+		}
+		parent = fmt.Sprintf("\n	%vCmd.AddCommand(%v)", c.Parent, cmdName)
 	} else {
 		cmdName = "rootCmd"
 		executeFunction = `
