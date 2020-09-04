@@ -108,3 +108,14 @@ func ActionDetachKeys() carapace.Action {
 	// "detach-keys": carapace.ActionValues("{a-z}", `ctrl-\`, "ctrl-@", "ctrl-[", "ctrl-]",  "ctrl-^", "ctrl-_", "ctrl-{a-z}"),
 	return carapace.ActionValues()
 }
+
+func ActionContexts() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("docker", "context", "ls", "--format", "{{.Name}}\n{{.Description}}").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			vals := strings.Split(string(output), "\n")
+			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
+		}
+	})
+}
