@@ -130,3 +130,14 @@ func ActionNetworks() carapace.Action {
 		}
 	})
 }
+
+func ActionNodes() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("docker", "node", "ls", "--format", "{{.ID}}\n{{.Hostname}} {{.ManagerStatus}}").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			vals := strings.Split(string(output), "\n")
+			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
+		}
+	})
+}
