@@ -1,6 +1,10 @@
 package cmd
 
 import (
+	"os/exec"
+	"regexp"
+	"strings"
+
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
@@ -183,9 +187,30 @@ func init() {
 		"convert-subs":    carapace.ActionValues("srt", "ass", "vtt", "lrc"),
 		"cookies":         carapace.ActionFiles(""),
 		"ffmpeg-location": carapace.ActionFiles(""),
+		"format":          ActionFormats(),
 		"recode-video":    carapace.ActionValues("mp4", "flv", "ogg", "webm", "mkv", "avi"),
 		"sub-format":      carapace.ActionValues("ass", "srt", "best"),
+	})
+}
 
-		// TODO complete format using result of `yotube-dl --list-formats "url"`
+func ActionFormats() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if len(args) == 0 {
+			return carapace.ActionMessage("missing url")
+		} else if output, err := exec.Command("youtube-dl", "--list-formats", args[0]).Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			lines := strings.Split(string(output), "\n")
+			pattern := regexp.MustCompile(`^(?P<format>[0-9]+) +(?P<description>.*)$`)
+
+			vals := make([]string, 0)
+			for _, line := range lines {
+				if pattern.MatchString(line) {
+					m := pattern.FindStringSubmatch(line)
+					vals = append(vals, m[1], m[2])
+				}
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		}
 	})
 }
