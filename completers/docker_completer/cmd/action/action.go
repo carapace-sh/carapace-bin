@@ -141,3 +141,14 @@ func ActionNodes() carapace.Action {
 		}
 	})
 }
+
+func ActionPlugins() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("docker", "plugin", "ls", "--format", "{{.Name}}\n{{.Description}}").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			vals := strings.Split(string(output), "\n")
+			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
+		}
+	})
+}
