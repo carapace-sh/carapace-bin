@@ -95,3 +95,5 @@ cd carapace/cmd && ./generate.sh > completers.go
 docker-compose run --rm build
 docker-compose run --rm [bash|elvish|fish|powershell|zsh]
 ```
+
+[![asciicast](https://asciinema.org/a/357895.svg)](https://asciinema.org/a/357895)
