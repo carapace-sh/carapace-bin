@@ -174,3 +174,18 @@ func ActionSerices() carapace.Action {
 		}
 	})
 }
+
+func ActionStacks(orchestrator string) carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		arguments := []string{"stack", "ls", "--format", "{{.Name}}\n{{.Services}} on {{.Orchestrator}}"}
+		if orchestrator == "swarm" || orchestrator == "kubernetes" {
+			arguments = append(arguments, "--orchestrator", orchestrator)
+		}
+		if output, err := exec.Command("docker", arguments...).Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			vals := strings.Split(string(output), "\n")
+			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
+		}
+	})
+}
