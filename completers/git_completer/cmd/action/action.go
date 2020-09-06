@@ -27,6 +27,22 @@ func ActionRemotes() carapace.Action {
 	})
 }
 
+func ActionRemoteBranches() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("git", "branch", "--remote", "--format", "%(refname)").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			refs := make([]string, 0)
+			for _, line := range strings.Split(string(output), "\n") {
+				if len(line) > 14 {
+					refs = append(refs, line[13:])
+				}
+			}
+			return carapace.ActionValues(refs...)
+		}
+	})
+}
+
 // TODO multiparts action to complete step by step
 func ActionUnstagedChanges() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
