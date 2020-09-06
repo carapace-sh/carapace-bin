@@ -31,6 +31,17 @@ func ActionContainers() carapace.Action {
 	})
 }
 
+func ActionRepositories() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("docker", "images", "--format", "{{.Repository}})").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			vals := strings.Split(string(output), "\n")
+			return carapace.ActionValues(vals[:len(vals)-1]...)
+		}
+	})
+}
+
 func ActionRepositoryTags() carapace.Action {
 	return carapace.ActionMultiParts(":", func(args []string, parts []string) []string {
 		if output, err := exec.Command("docker", "image", "ls", "--format", "{{.Repository}}:{{.Tag}}", "--filter", "dangling=false").Output(); err != nil {
