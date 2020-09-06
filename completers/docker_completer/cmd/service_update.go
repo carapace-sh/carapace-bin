@@ -108,6 +108,6 @@ func init() {
 	})
 
 	carapace.Gen(service_updateCmd).PositionalCompletion(
-		action.ActionSerices(),
+		action.ActionServices(),
 	)
 }

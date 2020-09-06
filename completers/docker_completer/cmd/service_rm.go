@@ -17,5 +17,5 @@ func init() {
 
 	serviceCmd.AddCommand(service_rmCmd)
 
-	carapace.Gen(service_rmCmd).PositionalAnyCompletion(action.ActionSerices())
+	carapace.Gen(service_rmCmd).PositionalAnyCompletion(action.ActionServices())
 }
