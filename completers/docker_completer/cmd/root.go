@@ -47,13 +47,13 @@ func init() {
 	rootCmd.AddCommand(container_execCmd)
 	rootCmd.AddCommand(container_exportCmd)
 	rootCmd.AddCommand(image_historyCmd)
+	imagesCmd := image_lsCmd
+	imagesCmd.Use = "images"
+	rootCmd.AddCommand(imagesCmd)
 	rootCmd.AddCommand(image_importCmd)
 	rootCmd.AddCommand(system_infoCmd)
-	// TODO docker inspect command
 	rootCmd.AddCommand(container_killCmd)
 	rootCmd.AddCommand(image_loadCmd)
-	// TODO docker login command
-	// TODO docker logout command
 	rootCmd.AddCommand(container_logsCmd)
 	rootCmd.AddCommand(container_pauseCmd)
 	rootCmd.AddCommand(container_portCmd)
@@ -70,7 +70,6 @@ func init() {
 	rootCmd.AddCommand(rmiCmd)
 	rootCmd.AddCommand(container_runCmd)
 	rootCmd.AddCommand(image_saveCmd)
-	// TODO docker search command
 	rootCmd.AddCommand(container_startCmd)
 	rootCmd.AddCommand(container_statsCmd)
 	rootCmd.AddCommand(container_stopCmd)
