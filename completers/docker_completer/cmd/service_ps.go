@@ -22,5 +22,5 @@ func init() {
 	service_psCmd.Flags().BoolP("quiet", "q", false, "Only display task IDs")
 	serviceCmd.AddCommand(service_psCmd)
 
-	carapace.Gen(service_psCmd).PositionalAnyCompletion(action.ActionSerices())
+	carapace.Gen(service_psCmd).PositionalAnyCompletion(action.ActionServices())
 }

@@ -18,5 +18,5 @@ func init() {
 	service_scaleCmd.Flags().BoolP("detach", "d", false, "Exit immediately instead of waiting for the service to converge")
 	serviceCmd.AddCommand(service_scaleCmd)
 
-	carapace.Gen(service_scaleCmd).PositionalAnyCompletion(action.ActionSerices())
+	carapace.Gen(service_scaleCmd).PositionalAnyCompletion(action.ActionServices())
 }

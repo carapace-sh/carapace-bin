@@ -20,6 +20,6 @@ func init() {
 	serviceCmd.AddCommand(service_rollbackCmd)
 
 	carapace.Gen(service_rollbackCmd).PositionalCompletion(
-		action.ActionSerices(),
+		action.ActionServices(),
 	)
 }

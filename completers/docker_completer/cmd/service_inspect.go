@@ -19,5 +19,5 @@ func init() {
 	service_inspectCmd.Flags().Bool("pretty", false, "Print the information in a human friendly format")
 	serviceCmd.AddCommand(service_inspectCmd)
 
-	carapace.Gen(service_inspectCmd).PositionalAnyCompletion(action.ActionSerices())
+	carapace.Gen(service_inspectCmd).PositionalAnyCompletion(action.ActionServices())
 }

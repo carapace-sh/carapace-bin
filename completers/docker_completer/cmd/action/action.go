@@ -175,9 +175,20 @@ func ActionSecrets() carapace.Action {
 	})
 }
 
-func ActionSerices() carapace.Action {
+func ActionServices() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("docker", "service", "ls", "--format", "{{.Name}}\n{{.Image}} {{.Mode}} {{.Replicas}}").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			vals := strings.Split(string(output), "\n")
+			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
+		}
+	})
+}
+
+func ActionVolumes() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("docker", "volume", "ls", "--format", "{{.Name}}\n{{.Driver}}").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			vals := strings.Split(string(output), "\n")

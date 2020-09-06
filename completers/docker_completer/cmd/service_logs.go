@@ -27,6 +27,6 @@ func init() {
 	serviceCmd.AddCommand(service_logsCmd)
 
 	carapace.Gen(service_logsCmd).PositionalCompletion(
-		action.ActionSerices(),
+		action.ActionServices(),
 	)
 }
