@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	asciinema "github.com/rsteube/carapace-bin/completers/asciinema_completer/cmd"
 	basename "github.com/rsteube/carapace-bin/completers/basename_completer/cmd"
 	bat "github.com/rsteube/carapace-bin/completers/bat_completer/cmd"
 	cat "github.com/rsteube/carapace-bin/completers/cat_completer/cmd"
@@ -92,6 +93,7 @@ import (
 )
 
 var completers = []string{
+	"asciinema",
 	"basename",
 	"bat",
 	"cat",
@@ -184,6 +186,8 @@ var completers = []string{
 
 func executeCompleter(completer string) {
 	switch completer {
+	case "asciinema":
+		asciinema.Execute()
 	case "basename":
 		basename.Execute()
 	case "bat":
