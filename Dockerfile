@@ -46,7 +46,12 @@ RUN mkdir -p /root/.elvish/lib \
  && echo "\
 carapace _carapace elvish > /root/.elvish/lib/carapace.elv\n\
 use carapace\n\
-carapace --list | each [c]{ carapace \$c > /tmp/\$c; -source /tmp/\$c }" \
+carapace --list | each [c]{\n\
+    edit:completion:arg-completer[\$c] = [@arg]{\n\
+        carapace \$c > /tmp/carapace_\$c; -source /tmp/carapace_\$c\n\
+        \$edit:completion:arg-completer[\$c] \$@arg\n\
+    }\n\
+}" \
   > /root/.elvish/rc.elv
 
 # powershell
