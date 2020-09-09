@@ -50,6 +50,7 @@ import (
 	nice "github.com/rsteube/carapace-bin/completers/nice_completer/cmd"
 	nl "github.com/rsteube/carapace-bin/completers/nl_completer/cmd"
 	nohup "github.com/rsteube/carapace-bin/completers/nohup_completer/cmd"
+	nvim "github.com/rsteube/carapace-bin/completers/nvim_completer/cmd"
 	od "github.com/rsteube/carapace-bin/completers/od_completer/cmd"
 	paste "github.com/rsteube/carapace-bin/completers/paste_completer/cmd"
 	pathchk "github.com/rsteube/carapace-bin/completers/pathchk_completer/cmd"
@@ -142,6 +143,7 @@ var completers = []string{
 	"nice",
 	"nl",
 	"nohup",
+	"nvim",
 	"od",
 	"paste",
 	"pathchk",
@@ -284,6 +286,8 @@ func executeCompleter(completer string) {
 		nl.Execute()
 	case "nohup":
 		nohup.Execute()
+	case "nvim":
+		nvim.Execute()
 	case "od":
 		od.Execute()
 	case "paste":
