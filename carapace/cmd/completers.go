@@ -9,6 +9,7 @@ import (
 	chmod "github.com/rsteube/carapace-bin/completers/chmod_completer/cmd"
 	chown "github.com/rsteube/carapace-bin/completers/chown_completer/cmd"
 	chroot "github.com/rsteube/carapace-bin/completers/chroot_completer/cmd"
+	chsh "github.com/rsteube/carapace-bin/completers/chsh_completer/cmd"
 	cksum "github.com/rsteube/carapace-bin/completers/cksum_completer/cmd"
 	comm "github.com/rsteube/carapace-bin/completers/comm_completer/cmd"
 	cp "github.com/rsteube/carapace-bin/completers/cp_completer/cmd"
@@ -102,6 +103,7 @@ var completers = []string{
 	"chmod",
 	"chown",
 	"chroot",
+	"chsh",
 	"cksum",
 	"comm",
 	"cp",
@@ -204,6 +206,8 @@ func executeCompleter(completer string) {
 		chown.Execute()
 	case "chroot":
 		chroot.Execute()
+	case "chsh":
+		chsh.Execute()
 	case "cksum":
 		cksum.Execute()
 	case "comm":
