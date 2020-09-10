@@ -76,6 +76,7 @@ import (
 	sync "github.com/rsteube/carapace-bin/completers/sync_completer/cmd"
 	tac "github.com/rsteube/carapace-bin/completers/tac_completer/cmd"
 	tail "github.com/rsteube/carapace-bin/completers/tail_completer/cmd"
+	tar "github.com/rsteube/carapace-bin/completers/tar_completer/cmd"
 	tee "github.com/rsteube/carapace-bin/completers/tee_completer/cmd"
 	touch "github.com/rsteube/carapace-bin/completers/touch_completer/cmd"
 	tr "github.com/rsteube/carapace-bin/completers/tr_completer/cmd"
@@ -170,6 +171,7 @@ var completers = []string{
 	"sync",
 	"tac",
 	"tail",
+	"tar",
 	"tee",
 	"touch",
 	"tr",
@@ -340,6 +342,8 @@ func executeCompleter(completer string) {
 		tac.Execute()
 	case "tail":
 		tail.Execute()
+	case "tar":
+		tar.Execute()
 	case "tee":
 		tee.Execute()
 	case "touch":
