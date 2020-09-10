@@ -34,6 +34,8 @@ import (
 	git "github.com/rsteube/carapace-bin/completers/git_completer/cmd"
 	gradle "github.com/rsteube/carapace-bin/completers/gradle_completer/cmd"
 	grep "github.com/rsteube/carapace-bin/completers/grep_completer/cmd"
+	gunzip "github.com/rsteube/carapace-bin/completers/gunzip_completer/cmd"
+	gzip "github.com/rsteube/carapace-bin/completers/gzip_completer/cmd"
 	head "github.com/rsteube/carapace-bin/completers/head_completer/cmd"
 	hostid "github.com/rsteube/carapace-bin/completers/hostid_completer/cmd"
 	id "github.com/rsteube/carapace-bin/completers/id_completer/cmd"
@@ -129,6 +131,8 @@ var completers = []string{
 	"git",
 	"gradle",
 	"grep",
+	"gunzip",
+	"gzip",
 	"head",
 	"hostid",
 	"id",
@@ -258,6 +262,10 @@ func executeCompleter(completer string) {
 		gradle.Execute()
 	case "grep":
 		grep.Execute()
+	case "gunzip":
+		gunzip.Execute()
+	case "gzip":
+		gzip.Execute()
 	case "head":
 		head.Execute()
 	case "hostid":
