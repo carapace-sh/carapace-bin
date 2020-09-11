@@ -29,6 +29,22 @@ func ActionRemotes() carapace.Action {
 	})
 }
 
+func ActionRemoteBranches(remote string) carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if branches, err := Branches(RefOption{RemoteBranches: true}); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			vals := make([]string, 0)
+			for _, branch := range branches {
+				if strings.HasPrefix(branch.Name, remote) {
+					vals = append(vals, strings.TrimPrefix(branch.Name, remote+"/"), branch.Message)
+				}
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		}
+	})
+}
+
 type RefOption struct {
 	LocalBranches  bool
 	RemoteBranches bool
