@@ -49,14 +49,14 @@ func init() {
 
 	carapace.Gen(branchCmd).FlagCompletion(carapace.ActionMap{
 		"color":           carapace.ActionValues("always", "auto", "never"),
-		"contains":        action.ActionCommits(),
-		"D":               action.ActionLocalBranches(),
-		"delete":          action.ActionLocalBranches(),
-		"merged":          action.ActionCommits(),
-		"no-contains":     action.ActionCommits(),
-		"no-merged":       action.ActionCommits(),
-		"points-at":       action.ActionRemoteBranches(),
-		"set-upstream-to": action.ActionRemoteBranches(),
+		"contains":        action.ActionRefs(action.RefOptionDefault),
+		"D":               action.ActionRefs(action.RefOptionDefault),
+		"delete":          action.ActionRefs(action.RefOption{LocalBranches: true, RemoteBranches: true}),
+		"merged":          action.ActionRefs(action.RefOptionDefault),
+		"no-contains":     action.ActionRefs(action.RefOptionDefault),
+		"no-merged":       action.ActionRefs(action.RefOptionDefault),
+		"points-at":       action.ActionRefs(action.RefOption{RemoteBranches: true, Tags: true}),
+		"set-upstream-to": action.ActionRefs(action.RefOption{RemoteBranches: true, Tags: true}),
 		"sort":            action.ActionFieldNames(),
 	})
 
@@ -75,7 +75,7 @@ func init() {
 					branchCmd.Flag("copy").Changed ||
 					branchCmd.Flag("delete").Changed ||
 					branchCmd.Flag("edit-description").Changed {
-					return action.ActionLocalBranches()
+					return action.ActionRefs(action.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true})
 				}
 			case 1:
 				if branchCmd.Flag("M").Changed ||
@@ -84,16 +84,15 @@ func init() {
 					branchCmd.Flag("move").Changed ||
 					branchCmd.Flag("copy").Changed ||
 					branchCmd.Flag("delete").Changed {
-					return action.ActionLocalBranches()
+					return action.ActionRefs(action.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true})
 				}
 			default:
 				if branchCmd.Flag("D").Changed ||
 					branchCmd.Flag("delete").Changed {
-					return action.ActionLocalBranches()
+					return action.ActionRefs(action.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true})
 				}
 			}
 			return carapace.ActionValues()
 		}),
 	)
-
 }
