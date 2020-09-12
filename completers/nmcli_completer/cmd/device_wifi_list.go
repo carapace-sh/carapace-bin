@@ -1,0 +1,38 @@
+package cmd
+
+import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/nmcli_completer/cmd/action"
+	"github.com/spf13/cobra"
+)
+
+var device_wifi_wifi_listCmd = &cobra.Command{
+	Use:   "list",
+	Short: "List available Wi-Fi access points",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(device_wifi_wifi_listCmd).Standalone()
+
+	device_wifi_wifi_listCmd.Flags().String("rescan", "", "trigger new Wi-Fi scan")
+	device_wifiCmd.AddCommand(device_wifi_wifi_listCmd)
+
+	carapace.Gen(device_wifi_wifi_listCmd).FlagCompletion(carapace.ActionMap{
+		"rescan": carapace.ActionValues("yes", "no", "auto"),
+	})
+
+	carapace.Gen(device_wifi_wifi_listCmd).PositionalCompletion(
+		carapace.ActionValues("ifname", "bssid"),
+		carapace.ActionCallback(func(args []string) carapace.Action {
+			switch args[0] {
+			case "ifname":
+				return action.ActionDevices("")
+			case "bssid":
+				return action.ActionBssids()
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	)
+}
