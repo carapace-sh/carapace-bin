@@ -45,6 +45,16 @@ func ActionRemoteBranches(remote string) carapace.Action {
 	})
 }
 
+func ActionCurrentBranch() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("git", "branch", "--show-current").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			return carapace.ActionValues(strings.Split(string(output), "\n")[0])
+		}
+	})
+}
+
 type RefOption struct {
 	LocalBranches  bool
 	RemoteBranches bool
