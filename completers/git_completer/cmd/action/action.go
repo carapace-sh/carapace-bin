@@ -154,30 +154,33 @@ func Commits(refOption RefOption) ([]Commit, error) {
 }
 
 func ActionRefs(refOption RefOption) carapace.Action {
-	vals := make([]string, 0)
-	if branches, err := Branches(refOption); err != nil {
-		return carapace.ActionMessage(err.Error())
-	} else {
-		for _, branch := range branches {
-			vals = append(vals, branch.Name, branch.Message)
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		vals := make([]string, 0)
+		if branches, err := Branches(refOption); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			for _, branch := range branches {
+				vals = append(vals, branch.Name, branch.Message)
+			}
 		}
-	}
-	if commits, err := Commits(refOption); err != nil {
-		return carapace.ActionMessage(err.Error())
-	} else {
-		for _, commit := range commits {
-			vals = append(vals, commit.Ref, commit.Message)
+		if commits, err := Commits(refOption); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			for _, commit := range commits {
+				vals = append(vals, commit.Ref, commit.Message)
+			}
 		}
-	}
-	if tags, err := Tags(refOption); err != nil {
-		return carapace.ActionMessage(err.Error())
-	} else {
-		for _, tag := range tags {
-			vals = append(vals, tag.Name, tag.Message)
+		if tags, err := Tags(refOption); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			for _, tag := range tags {
+				vals = append(vals, tag.Name, tag.Message)
+			}
 		}
-	}
 
-	return carapace.ActionValuesDescribed(vals...)
+		return carapace.ActionValuesDescribed(vals...)
+
+	})
 }
 
 // TODO multiparts action to complete step by step
