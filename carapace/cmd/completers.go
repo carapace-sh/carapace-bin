@@ -46,6 +46,7 @@ import (
 	logname "github.com/rsteube/carapace-bin/completers/logname_completer/cmd"
 	ls "github.com/rsteube/carapace-bin/completers/ls_completer/cmd"
 	md5sum "github.com/rsteube/carapace-bin/completers/md5sum_completer/cmd"
+	meld "github.com/rsteube/carapace-bin/completers/meld_completer/cmd"
 	mkdir "github.com/rsteube/carapace-bin/completers/mkdir_completer/cmd"
 	mkfifo "github.com/rsteube/carapace-bin/completers/mkfifo_completer/cmd"
 	mknod "github.com/rsteube/carapace-bin/completers/mknod_completer/cmd"
@@ -143,6 +144,7 @@ var completers = []string{
 	"logname",
 	"ls",
 	"md5sum",
+	"meld",
 	"mkdir",
 	"mkfifo",
 	"mknod",
@@ -286,6 +288,8 @@ func executeCompleter(completer string) {
 		ls.Execute()
 	case "md5sum":
 		md5sum.Execute()
+	case "meld":
+		meld.Execute()
 	case "mkdir":
 		mkdir.Execute()
 	case "mkfifo":
