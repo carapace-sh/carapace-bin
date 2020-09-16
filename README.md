@@ -20,7 +20,6 @@ A major part of the completers has been generated from help pages so there will 
 Notable shortcomings:
 - no support for long shorthands (e.g. `-ldflags`)
 - no support for combined shorthands (e.g. `tar -xzvf`)
-- no support for flags with `=` (e.g. `-f="/few"`)  
 - no decent support yet for list of values (e.g. "a,b,c"), but is possible with ActionMultiParts
 
 ## Example
