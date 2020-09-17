@@ -32,6 +32,7 @@ import (
 	fmt "github.com/rsteube/carapace-bin/completers/fmt_completer/cmd"
 	fold "github.com/rsteube/carapace-bin/completers/fold_completer/cmd"
 	git "github.com/rsteube/carapace-bin/completers/git_completer/cmd"
+	gofmt "github.com/rsteube/carapace-bin/completers/gofmt_completer/cmd"
 	gradle "github.com/rsteube/carapace-bin/completers/gradle_completer/cmd"
 	grep "github.com/rsteube/carapace-bin/completers/grep_completer/cmd"
 	gunzip "github.com/rsteube/carapace-bin/completers/gunzip_completer/cmd"
@@ -130,6 +131,7 @@ var completers = []string{
 	"fmt",
 	"fold",
 	"git",
+	"gofmt",
 	"gradle",
 	"grep",
 	"gunzip",
@@ -260,6 +262,8 @@ func executeCompleter(completer string) {
 		fold.Execute()
 	case "git":
 		git.Execute()
+	case "gofmt":
+		gofmt.Execute()
 	case "gradle":
 		gradle.Execute()
 	case "grep":
