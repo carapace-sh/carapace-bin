@@ -42,7 +42,9 @@ var rootCmd = &cobra.Command{
 			w.Close()
 			out := <-outC
 			os.Stdout = old
-			fmt.Print(strings.Replace(string(out), "carapace _carapace", "carapace "+completer, -1))
+			patched := strings.Replace(string(out), "carapace _carapace", "carapace "+completer, -1)         // general callback
+			patched = strings.Replace(patched, "'carapace', '_carapace'", "'carapace', '"+completer+"'", -1) // xonsh callback
+			fmt.Print(patched)
 		}
 	},
 	FParseErrWhitelist: cobra.FParseErrWhitelist{

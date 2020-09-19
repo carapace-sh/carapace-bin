@@ -8,6 +8,7 @@ RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod
 RUN apt-get install -y fish \
                        elvish \
                        powershell \
+                       python3-pip \
                        zsh
 
 ENV GOPATH /go
@@ -54,6 +55,22 @@ carapace --list | each [c]{\n\
 }" \
   > /root/.elvish/rc.elv
 
+# oil
+RUN curl https://www.oilshell.org/download/oil-0.8.0.tar.gz | tar -xvz \
+ && cd oil-*/ \
+ && ./configure \
+ && make \
+ && ./install
+
+RUN mkdir -p ~/.config/oil \
+ && echo "\n\
+PS1=$'\e[0;36mcarapace \e[0m'\n\
+source <(carapace _carapace)\n\
+for c in \$(carapace --list); do\n\
+  source <(carapace \$c)\n\
+done" \
+       > ~/.config/oil/oshrc
+
 # powershell
 RUN mkdir -p /root/.config/powershell \
  && echo "\n\
@@ -62,6 +79,18 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete\n\
 carapace _carapace powershell | out-string | Invoke-Expression\n\
 carapace --list | foreach { carapace \$_ | Out-String | Invoke-Expression} " \
        > /root/.config/powershell/Microsoft.PowerShell_profile.ps1
+
+# xonsh
+RUN pip3 install --no-cache-dir --disable-pip-version-check xonsh \
+ && ln -s $(which xonsh) /usr/bin/xonsh
+
+RUN mkdir -p ~/.config/xonsh \
+ && echo "\n\
+\$COMPLETIONS_CONFIRM=True\n\
+exec(\$(carapace _carapace xonsh)) \n\
+for \$c in \$(carapace --list).split('\\\n'):\n\
+    exec(\$(carapace \$c))"\
+  > ~/.config/xonsh/rc.xsh
 
 # zsh
 RUN echo "\n\
