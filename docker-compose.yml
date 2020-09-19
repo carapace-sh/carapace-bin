@@ -24,10 +24,22 @@ services:
     command: fish
     volumes:
       - '.:/carapace-bin/'
+  
+  oil: 
+    build: .
+    command: osh
+    volumes:
+      - '.:/carapace-bin/'
 
   powershell:
     build: .
     command: pwsh
+    volumes:
+      - '.:/carapace-bin/'
+  
+  xonsh: 
+    build: .
+    command: xonsh
     volumes:
       - '.:/carapace-bin/'
 

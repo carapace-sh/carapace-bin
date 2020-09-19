@@ -10,7 +10,9 @@ Supported shells:
 - [Bash](https://www.gnu.org/software/bash/)
 - [Elvish](https://elv.sh/)
 - [Fish](https://fishshell.com/)
+- [Oil](http://www.oilshell.org/) *broken* ([carapace#86](https://github.com/rsteube/carapace/issues/86))
 - [Powershell](https://microsoft.com/powershell)
+- [Xonsh](https://xon.sh/) *experimental*
 - [Zsh](https://www.zsh.org/)
 
 ## Status
@@ -26,7 +28,7 @@ Notable shortcomings:
 
 ```
 docker-compose run --rm build
-docker-compose run --rm [bash|elvish|fish|powershell|zsh]
+docker-compose run --rm [bash|elvish|fish|oil|powershell|xonsh|zsh]
 [ln|mkdir|chown...] <TAB>
 ```
 
@@ -40,7 +42,7 @@ For smallest file size (300kb instead of 6mb) use gccgo with flags "-s -w" and u
 Completers can also be built separately:
 ```sh
 cd completers/ln_completer && go build -ldflags="-s -w"
-./ln_completer _carapace [bash|elvish|fish|powershell|zsh]
+./ln_completer _carapace [bash|elvish|fish|oil|powershell|xonsh|zsh]
 ```
 
 ## Generate completion
@@ -49,11 +51,11 @@ Ensure carapace is added to PATH.
 
 - completion for carapace itself
 ```sh
-carapace _carapace [bash|elvish|fish|powershell|zsh]
+carapace _carapace [bash|elvish|fish|oil|powershell|xonsh|zsh]
 ```
 - completion for commands
 ```sh
-carapace [ln|mkdir|...] [bash|elvish|fish|powershell|zsh]
+carapace [ln|mkdir|...] [bash|elvish|fish|oil|powershell|xonsh|zsh]
 ```
 - list completions
 ```sh
@@ -92,7 +94,7 @@ cd carapace/cmd && ./generate.sh > completers.go
 - build & test
 ```sh
 docker-compose run --rm build
-docker-compose run --rm [bash|elvish|fish|powershell|zsh]
+docker-compose run --rm [bash|elvish|fish|oil|powershell|xonsh|zsh]
 ```
 
 [![asciicast](https://asciinema.org/a/357895.svg)](https://asciinema.org/a/357895)
