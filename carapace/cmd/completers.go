@@ -96,6 +96,7 @@ import (
 	who "github.com/rsteube/carapace-bin/completers/who_completer/cmd"
 	whoami "github.com/rsteube/carapace-bin/completers/whoami_completer/cmd"
 	yes "github.com/rsteube/carapace-bin/completers/yes_completer/cmd"
+	yj "github.com/rsteube/carapace-bin/completers/yj_completer/cmd"
 	youtube_dl "github.com/rsteube/carapace-bin/completers/youtube-dl_completer/cmd"
 )
 
@@ -195,6 +196,7 @@ var completers = []string{
 	"whoami",
 	"who",
 	"yes",
+	"yj",
 	"youtube-dl",
 }
 
@@ -390,6 +392,8 @@ func executeCompleter(completer string) {
 		who.Execute()
 	case "yes":
 		yes.Execute()
+	case "yj":
+		yj.Execute()
 	case "youtube-dl":
 		youtube_dl.Execute()
 	}
