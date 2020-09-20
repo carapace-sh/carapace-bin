@@ -1,10 +1,8 @@
 package cmd
 
 import (
-	"os"
-	"strings"
-
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -34,22 +32,10 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"unset":          ActionEnvironmentVariables(),
+		"unset":          os.ActionEnvironmentVariables(),
 		"chdir":          carapace.ActionDirectories(),
 		"block-signal":   carapace.ActionKillSignals(),
 		"default-signal": carapace.ActionKillSignals(),
 		"ignore-signal":  carapace.ActionKillSignals(),
-	})
-}
-
-func ActionEnvironmentVariables() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
-		env := os.Environ()
-		vars := make([]string, len(env))
-		for index, e := range os.Environ() {
-			pair := strings.SplitN(e, "=", 2)
-			vars[index] = pair[0]
-		}
-		return carapace.ActionValues(vars...)
 	})
 }

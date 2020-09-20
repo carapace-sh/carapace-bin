@@ -76,6 +76,7 @@ import (
 	sort "github.com/rsteube/carapace-bin/completers/sort_completer/cmd"
 	split "github.com/rsteube/carapace-bin/completers/split_completer/cmd"
 	stat "github.com/rsteube/carapace-bin/completers/stat_completer/cmd"
+	sudo "github.com/rsteube/carapace-bin/completers/sudo_completer/cmd"
 	sum "github.com/rsteube/carapace-bin/completers/sum_completer/cmd"
 	sync "github.com/rsteube/carapace-bin/completers/sync_completer/cmd"
 	tac "github.com/rsteube/carapace-bin/completers/tac_completer/cmd"
@@ -176,6 +177,7 @@ var completers = []string{
 	"sort",
 	"split",
 	"stat",
+	"sudo",
 	"sum",
 	"sync",
 	"tac",
@@ -352,6 +354,8 @@ func executeCompleter(completer string) {
 		split.Execute()
 	case "stat":
 		stat.Execute()
+	case "sudo":
+		sudo.Execute()
 	case "sum":
 		sum.Execute()
 	case "sync":
