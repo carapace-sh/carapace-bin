@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	ps "github.com/mitchellh/go-ps"
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -47,39 +47,11 @@ func init() {
 		"group":     carapace.ActionGroups(),
 		"nslist":    carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts"),
 		"pidfile":   carapace.ActionFiles(""),
-		"runstates": ActionProcessStates(),
+		"runstates": os.ActionProcessStates(),
 		"signal":    carapace.ActionKillSignals(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		ActionExecutables(),
-	)
-}
-
-func ActionExecutables() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if processes, err := ps.Processes(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			executables := make([]string, 0)
-			for _, process := range processes {
-				executables = append(executables, process.Executable())
-			}
-			return carapace.ActionValues(executables...)
-		}
-	})
-}
-
-func ActionProcessStates() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"D", "uninterruptible sleep (usually IO)",
-		"I", "Idle kernel thread",
-		"R", "running or runnable (on run queue)",
-		"S", "interruptible sleep (waiting for an event to complete)",
-		"T", "stopped by job control signal",
-		"W", "paging (not valid since the 2.6.xx kernel)",
-		"X", "dead (should never be seen)",
-		"Z", "defunct (zombie) process, terminated but not reaped by its parent",
-		"t", "stopped by debugger during the tracing",
+		os.ActionProcessExecutables(),
 	)
 }
