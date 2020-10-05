@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -41,8 +42,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		// TODO complete mode
-		"group":            carapace.ActionGroups(),
-		"owner":            carapace.ActionUsers(),
+		"group":            os.ActionGroups(),
+		"owner":            os.ActionUsers(),
 		"strip-program":    carapace.ActionDirectories(),
 		"target-directory": carapace.ActionDirectories(),
 	})

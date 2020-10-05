@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
@@ -119,13 +120,13 @@ func init() {
 		"detach-keys":  action.ActionDetachKeys(),
 		"device":       carapace.ActionFiles(""),
 		"env-file":     carapace.ActionFiles(""),
-		"group-add":    carapace.ActionGroups(),
+		"group-add":    os.ActionGroups(),
 		"isolation":    carapace.ActionValues("default", "hyperv", "process"),
 		"label-file":   carapace.ActionFiles(""),
 		"log-driver":   action.ActionLogDrivers(),
 		"network":      carapace.ActionValues("bridge", "container", "host", "none"),
 		"pid":          carapace.ActionValues("container", "host"),
-		"user":         carapace.ActionUsers(),
+		"user":         os.ActionUsers(),
 	})
 
 	carapace.Gen(container_runCmd).PositionalCompletion(

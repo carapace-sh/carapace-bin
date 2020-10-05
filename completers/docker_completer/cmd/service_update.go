@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
@@ -102,9 +103,9 @@ func init() {
 	serviceCmd.AddCommand(service_updateCmd)
 
 	carapace.Gen(service_updateCmd).FlagCompletion(carapace.ActionMap{
-		"group-add":  carapace.ActionGroups(),
+		"group-add":  os.ActionGroups(),
 		"log-driver": action.ActionLogDrivers(),
-		"user":       carapace.ActionUsers(),
+		"user":       os.ActionUsers(),
 	})
 
 	carapace.Gen(service_updateCmd).PositionalCompletion(

@@ -1,10 +1,8 @@
 package cmd
 
 import (
-	"os/exec"
-	"strings"
-
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -26,14 +24,6 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "display version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"shell": ActionShells(),
+		"shell": os.ActionShells(),
 	})
-}
-
-func ActionShells() carapace.Action {
-	if output, err := exec.Command("chsh", "--list-shells").Output(); err != nil {
-		return carapace.ActionMessage(err.Error())
-	} else {
-		return carapace.ActionValues(strings.Split(string(output), "\n")...)
-	}
 }

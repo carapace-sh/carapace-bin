@@ -3,6 +3,7 @@ package os
 import (
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"strings"
 
 	ps "github.com/mitchellh/go-ps"
@@ -26,13 +27,17 @@ func ActionGroups() carapace.Action {
 		groups := []string{}
 		if content, err := ioutil.ReadFile("/etc/group"); err == nil {
 			for _, entry := range strings.Split(string(content), "\n") {
-				group := strings.Split(entry, ":")[0]
-				if len(strings.TrimSpace(group)) > 0 {
-					groups = append(groups, group)
+				splitted := strings.Split(entry, ":")
+				if len(splitted) > 2 {
+					group := splitted[0]
+					id := splitted[2]
+					if len(strings.TrimSpace(group)) > 0 {
+						groups = append(groups, group, id)
+					}
 				}
 			}
 		}
-		return carapace.ActionValues(groups...)
+		return carapace.ActionValuesDescribed(groups...)
 	})
 }
 
@@ -105,12 +110,39 @@ func ActionUsers() carapace.Action {
 		users := []string{}
 		if content, err := ioutil.ReadFile("/etc/passwd"); err == nil {
 			for _, entry := range strings.Split(string(content), "\n") {
-				user := strings.Split(entry, ":")[0]
-				if len(strings.TrimSpace(user)) > 0 {
-					users = append(users, user)
+				splitted := strings.Split(entry, ":")
+				if len(splitted) > 2 {
+					user := splitted[0]
+					id := splitted[2]
+					if len(strings.TrimSpace(user)) > 0 {
+						users = append(users, user, id)
+					}
 				}
 			}
 		}
-		return carapace.ActionValues(users...)
+		return carapace.ActionValuesDescribed(users...)
+	})
+}
+
+func ActionUserGroup() carapace.Action {
+	return carapace.ActionMultiParts(":", func(args []string, parts []string) carapace.Action {
+		switch len(parts) {
+		case 0:
+			return ActionUsers().Suffix(":", args)
+		case 1:
+			return ActionGroups()
+		default:
+			return carapace.ActionValues()
+		}
+	})
+}
+
+func ActionShells() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("chsh", "--list-shells").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			return carapace.ActionValues(strings.Split(string(output), "\n")...)
+		}
 	})
 }

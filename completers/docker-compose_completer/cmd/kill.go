@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(killCmd)
 
 	carapace.Gen(killCmd).FlagCompletion(carapace.ActionMap{
-		"s": carapace.ActionKillSignals(),
+		"s": os.ActionKillSignals(),
 	})
 }

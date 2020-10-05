@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +23,7 @@ func init() {
 	rootCmd.AddCommand(execCmd)
 
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
-		"user": carapace.ActionUsers(),
+		"user": os.ActionUsers(),
 	})
 
 	carapace.Gen(execCmd).PositionalCompletion(

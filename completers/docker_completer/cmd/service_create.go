@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
@@ -90,10 +91,10 @@ func init() {
 	carapace.Gen(service_createCmd).FlagCompletion(carapace.ActionMap{
 		"endpoint-mode": carapace.ActionValues("vip", "dnsrr"),
 		"env-file":      carapace.ActionFiles(""),
-		"group":         carapace.ActionGroups(),
+		"group":         os.ActionGroups(),
 		"isolation":     carapace.ActionValues("default", "hyperv", "process"),
 		"log-driver":    action.ActionLogDrivers(),
 		"mode":          carapace.ActionValues("replicated", "global"),
-		"user":          carapace.ActionUsers(),
+		"user":          os.ActionUsers(),
 	})
 }

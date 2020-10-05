@@ -43,12 +43,12 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"euid":      carapace.ActionUsers(),
-		"group":     carapace.ActionGroups(),
+		"euid":      os.ActionUsers(),
+		"group":     os.ActionGroups(),
 		"nslist":    carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts"),
 		"pidfile":   carapace.ActionFiles(""),
 		"runstates": os.ActionProcessStates(),
-		"signal":    carapace.ActionKillSignals(),
+		"signal":    os.ActionKillSignals(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

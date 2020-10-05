@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -29,6 +30,6 @@ func init() {
 	rootCmd.Flags().BoolP("zero", "z", false, "delimit entries with NUL characters, not whitespace;")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionUsers(),
+		os.ActionUsers(),
 	)
 }
