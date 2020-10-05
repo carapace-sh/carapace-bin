@@ -5,7 +5,8 @@ RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod
  && dpkg -i packages-microsoft-prod.deb \
  && apt-get update
 
-RUN apt-get install -y fish \
+RUN apt-get install -y bash-completion \ 
+                       fish \
                        elvish \
                        powershell \
                        python3-pip \
@@ -17,6 +18,7 @@ RUN ln -s /carapace-bin/carapace/carapace /usr/local/bin/carapace
 # bash
 RUN echo "\n\
 PS1=$'\e[0;36mcarapace \e[0m'\n\
+source /usr/share/bash-completion/bash_completion \n\
 source <(carapace _carapace bash)\n\
 for c in \$(carapace --list); do\n\
   source <(carapace \$c)\n\
@@ -65,6 +67,7 @@ RUN curl https://www.oilshell.org/download/oil-0.8.0.tar.gz | tar -xvz \
 RUN mkdir -p ~/.config/oil \
  && echo "\n\
 PS1=$'\e[0;36mcarapace \e[0m'\n\
+source /usr/share/bash-completion/bash_completion \n\
 source <(carapace _carapace)\n\
 for c in \$(carapace --list); do\n\
   source <(carapace \$c)\n\

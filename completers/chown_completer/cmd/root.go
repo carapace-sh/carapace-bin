@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -34,7 +35,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"from":      carapace.ActionUserGroup(),
+		"from":      os.ActionUserGroup(),
 		"reference": carapace.ActionFiles(""),
 	})
 
@@ -43,7 +44,7 @@ func init() {
 			if rootCmd.Flag("reference").Changed {
 				return carapace.ActionFiles("")
 			} else {
-				return carapace.ActionUserGroup().Callback(args)
+				return os.ActionUserGroup().Callback(args)
 			}
 		}),
 	)

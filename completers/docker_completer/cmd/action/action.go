@@ -43,9 +43,9 @@ func ActionRepositories() carapace.Action {
 }
 
 func ActionRepositoryTags() carapace.Action {
-	return carapace.ActionMultiParts(":", func(args []string, parts []string) []string {
+	return carapace.ActionMultiParts(":", func(args []string, parts []string) carapace.Action {
 		if output, err := exec.Command("docker", "image", "ls", "--format", "{{.Repository}}:{{.Tag}}", "--filter", "dangling=false").Output(); err != nil {
-			return []string{}
+			return carapace.ActionMessage(err.Error())
 		} else {
 			// TODO add checks to not cause an out of bounds error
 			vals := strings.Split(string(output), "\n")
@@ -57,7 +57,7 @@ func ActionRepositoryTags() carapace.Action {
 						reposWithSuffix[index] = strings.SplitAfter(val, ":")[0]
 					}
 				}
-				return reposWithSuffix
+				return carapace.ActionValues(reposWithSuffix...)
 			case 1:
 				tags := make([]string, 0)
 				for _, val := range vals[:len(vals)-1] {
@@ -66,9 +66,9 @@ func ActionRepositoryTags() carapace.Action {
 						tags = append(tags, tag)
 					}
 				}
-				return tags
+				return carapace.ActionValues(tags...)
 			default:
-				return []string{}
+				return carapace.ActionValues()
 			}
 		}
 	})
@@ -76,22 +76,22 @@ func ActionRepositoryTags() carapace.Action {
 
 // TODO not yet working - also needs multiple characters to split on `:` `/`
 func ActionContainerPath() carapace.Action {
-	return carapace.ActionMultiParts(":", func(args []string, parts []string) []string {
+	return carapace.ActionMultiParts(":", func(args []string, parts []string) carapace.Action {
 		switch len(parts) {
 		case 0:
 			// TODO add description support
 			//if output, err := exec.Command("docker", "container", "ls", "--format", "{{.Names}}:\n{{.Image}} ({{.Status}})").Output(); err != nil {
 			if output, err := exec.Command("docker", "container", "ls", "--format", "{{.Names}}:").Output(); err != nil {
-				return []string{}
+				return carapace.ActionValues()
 			} else {
 				vals := strings.Split(string(output), "\n")
-				return vals[:len(vals)-1]
+				return carapace.ActionValues(vals[:len(vals)-1]...)
 			}
 		default:
 			if output, err := exec.Command("docker", "exec", parts[0], "ls", filepath.Dir(strings.Join(parts[1:], "/"))).Output(); err != nil {
-				return []string{}
+				return carapace.ActionValues()
 			} else {
-				return strings.Split(string(output), "\n")
+				return carapace.ActionValues(strings.Split(string(output), "\n")...)
 			}
 		}
 	})

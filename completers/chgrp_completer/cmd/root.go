@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -42,7 +43,7 @@ func init() {
 			if rootCmd.Flag("reference").Changed {
 				return carapace.ActionFiles("")
 			} else {
-				return carapace.ActionGroups()
+				return os.ActionGroups()
 			}
 		}),
 	)

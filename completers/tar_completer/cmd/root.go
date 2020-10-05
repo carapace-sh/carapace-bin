@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -204,14 +205,14 @@ func init() {
 		"file":                     carapace.ActionFiles(""),
 		"files-from":               carapace.ActionFiles(""),
 		"format":                   carapace.ActionValues("gnu", "oldgnu", "pax", "posix", "ustar", "v7"),
-		"group":                    carapace.ActionGroups(),
+		"group":                    os.ActionGroups(),
 		"group-map":                carapace.ActionFiles(""),
 		"index-file":               carapace.ActionFiles(""),
 		"info-script":              carapace.ActionFiles(""),
 		"mtime":                    carapace.ActionFiles(""),
 		"new-volume-script":        carapace.ActionFiles(""),
 		"newer":                    carapace.ActionFiles(""),
-		"owner":                    carapace.ActionUsers(),
+		"owner":                    os.ActionUsers(),
 		"owner-map":                carapace.ActionFiles(""),
 		"quoting-style":            carapace.ActionValues("c", "clocale", "c-maybe", "escape", "literal", "locale", "shell", "shell-always"),
 		"to-command":               carapace.ActionFiles(""),

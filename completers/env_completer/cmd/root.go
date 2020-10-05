@@ -34,8 +34,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"unset":          os.ActionEnvironmentVariables(),
 		"chdir":          carapace.ActionDirectories(),
-		"block-signal":   carapace.ActionKillSignals(),
-		"default-signal": carapace.ActionKillSignals(),
-		"ignore-signal":  carapace.ActionKillSignals(),
+		"block-signal":   os.ActionKillSignals(),
+		"default-signal": os.ActionKillSignals(),
+		"ignore-signal":  os.ActionKillSignals(),
 	})
 }
