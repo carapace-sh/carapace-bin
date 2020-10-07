@@ -1,3 +1,4 @@
+// package fs contains filesystem related actions
 package fs
 
 import (
@@ -9,6 +10,7 @@ import (
 )
 
 // ActionMounts completes file system mounts
+// TODO provide example
 func ActionMounts() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("mount").Output(); err != nil {

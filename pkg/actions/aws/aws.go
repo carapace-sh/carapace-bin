@@ -1,3 +1,4 @@
+// package aws contains amazon web services related actions
 package aws
 
 import (
@@ -9,6 +10,7 @@ import (
 )
 
 // ActionRegions completes region names
+// TODO provide example
 func ActionRegions() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"af-south-1", "Africa (Cape Town)",
@@ -35,6 +37,7 @@ func ActionRegions() carapace.Action {
 }
 
 // ActionProfiles completes configuration profile names
+// TODO provide example
 func ActionProfiles() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		profiles := []string{}

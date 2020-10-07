@@ -1,3 +1,4 @@
+// package net contains network related actions
 package net
 
 import (
@@ -12,6 +13,8 @@ import (
 )
 
 // ActionHosts completes known hosts
+//   192.168.1.1
+//   pihole
 func ActionHosts() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		hosts := []string{}
@@ -32,6 +35,8 @@ func ActionHosts() carapace.Action {
 }
 
 // ActionNetInterfaces completes network interface names
+//   docker0
+//   lo
 func ActionNetInterfaces() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("ifconfig").Output(); err != nil {
