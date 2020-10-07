@@ -1,3 +1,4 @@
+// package os contains actions related to the operating system
 package os
 
 import (
@@ -12,6 +13,8 @@ import (
 )
 
 // ActionEnvironmentVariables completes environment values
+//   SHELL (/bin/elvish)
+//   LANG (en_US.utf8)
 func ActionEnvironmentVariables() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		env := os.Environ()
@@ -30,6 +33,8 @@ func ActionEnvironmentVariables() carapace.Action {
 }
 
 // ActionGroups completes system group names
+//    root (0)
+//    ssh (101)
 func ActionGroups() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		groups := []string{}
@@ -50,6 +55,8 @@ func ActionGroups() carapace.Action {
 }
 
 // ActionKillSignals completes linux kill signals
+//   ABRT (Abnormal termination)
+//   STOP (Stop process, unblockable)
 func ActionKillSignals() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"ABRT", "Abnormal termination",
@@ -87,6 +94,8 @@ func ActionKillSignals() carapace.Action {
 }
 
 // ActionProcessExecutables completes executable names of current processes
+//   NetworkManager (439)
+//   cupsd (454)
 func ActionProcessExecutables() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if processes, err := ps.Processes(); err != nil {
@@ -102,6 +111,8 @@ func ActionProcessExecutables() carapace.Action {
 }
 
 // ActionProcessStates completes linux process states
+//   I (Idle kernel thread)
+//   R (running or runnable on run queue)
 func ActionProcessStates() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"D", "uninterruptible sleep (usually IO)",
@@ -117,6 +128,8 @@ func ActionProcessStates() carapace.Action {
 }
 
 // ActionUsers completes system user names
+//   root (0)
+//   daemon (1)
 func ActionUsers() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		users := []string{}
@@ -137,6 +150,8 @@ func ActionUsers() carapace.Action {
 }
 
 // ActionUserGroup completes system user:group separately
+//   bin:audio
+//   lp:list
 func ActionUserGroup() carapace.Action {
 	return carapace.ActionMultiParts(":", func(args []string, parts []string) carapace.Action {
 		switch len(parts) {
@@ -151,6 +166,8 @@ func ActionUserGroup() carapace.Action {
 }
 
 // ActionShells completes available terminal shells
+//   /bin/elvish
+//   /bin/bash
 func ActionShells() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("chsh", "--list-shells").Output(); err != nil {
