@@ -118,6 +118,8 @@ github.com/rsteube/carapace v0.0.24-0.20201004223900-a4f3fecde5e2 h1:PNFGjwCW6vo
 github.com/rsteube/carapace v0.0.24-0.20201004223900-a4f3fecde5e2/go.mod h1:MW6dtBU0/zTdivRaQzlCHyceSHKzZP0xHqjXmgeSN5Y=
 github.com/rsteube/carapace v0.1.0 h1:MGwcFwcpIkGfxEb1WxV0i9JyO51McqqdQ+WhQqSJvv4=
 github.com/rsteube/carapace v0.1.0/go.mod h1:MW6dtBU0/zTdivRaQzlCHyceSHKzZP0xHqjXmgeSN5Y=
+github.com/rsteube/carapace v0.1.1 h1:bLhb+tUcUhXMHDfqn+MnXC8OvuCxptfGBZVf6Ct9XKk=
+github.com/rsteube/carapace v0.1.1/go.mod h1:MW6dtBU0/zTdivRaQzlCHyceSHKzZP0xHqjXmgeSN5Y=
 github.com/russross/blackfriday/v2 v2.0.1/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=
 github.com/sergi/go-diff v1.1.0/go.mod h1:STckp+ISIX8hZLjrqAeVduY0gWCT9IjLuqbuNXdaHfM=
