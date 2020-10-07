@@ -44,7 +44,7 @@ func init() {
 			if rootCmd.Flag("reference").Changed {
 				return carapace.ActionFiles("")
 			} else {
-				return os.ActionUserGroup().Callback(args)
+				return os.ActionUserGroup()
 			}
 		}),
 	)
