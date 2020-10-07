@@ -17,12 +17,7 @@ Supported shells:
 
 ## Status
 
-A major part of the completers has been generated from help pages so there will be some quirks here and there. Also completion depends on what [rsteube/carapace](https://github.com/rsteube/carapace) is capable of so far which by itself is limited by [spf13/pflag](https://github.com/spf13/pflag/) (e.g. shorthand-only flags are currently only possible due to [PR 256](https://github.com/spf13/pflag/pull/256)).
-
-Notable shortcomings:
-- no support for long shorthands (e.g. `-ldflags`)
-- no support for combined shorthands (e.g. `tar -xzvf`)
-- no decent support yet for list of values (e.g. "a,b,c"), but is possible with ActionMultiParts
+A major part of the completers has been generated from help pages so there will be some quirks here and there. Also completion depends on what [rsteube/carapace](https://github.com/rsteube/carapace) is capable of so far.
 
 ## Example
 
