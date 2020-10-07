@@ -24,7 +24,7 @@ commands:
           command: |
             go get -t -v ./...
             PATH=$PATH:$PWD/bin go test -v ./...
-            cd carapace
+            cd cmd/carapace
             go build
             go vet
 
@@ -45,4 +45,4 @@ jobs:
       - image: circleci/golang:1.15
     steps:
       - checkout
-      - run: cd carapace && curl -sL https://git.io/goreleaser | bash
+      - run: cd cmd/carapace && curl -sL https://git.io/goreleaser | bash

@@ -62,27 +62,31 @@ func init() {
 }
 
 func ActionLanguage() carapace.Action {
-	if output, err := exec.Command("bat", "--list-languages").Output(); err != nil {
-		return carapace.ActionMessage(err.Error())
-	} else {
-		values := make([]string, 0)
-		for _, line := range strings.Split(string(output), "\n") {
-			// TODO fix ':' character in carapace
-			splitted := strings.Split(line, ":")
-			if len(splitted) == 1 {
-				values = append(values, splitted[0], "")
-			} else if len(splitted) > 1 {
-				values = append(values, splitted[0], splitted[1])
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("bat", "--list-languages").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			values := make([]string, 0)
+			for _, line := range strings.Split(string(output), "\n") {
+				// TODO fix ':' character in carapace
+				splitted := strings.Split(line, ":")
+				if len(splitted) == 1 {
+					values = append(values, splitted[0], "")
+				} else if len(splitted) > 1 {
+					values = append(values, splitted[0], splitted[1])
+				}
 			}
+			return carapace.ActionValuesDescribed(values...)
 		}
-		return carapace.ActionValuesDescribed(values...)
-	}
+	})
 }
 
 func ActionTheme() carapace.Action {
-	if output, err := exec.Command("bat", "--list-themes").Output(); err != nil {
-		return carapace.ActionMessage(err.Error())
-	} else {
-		return carapace.ActionValues(strings.Split(string(output), "\n")...)
-	}
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("bat", "--list-themes").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			return carapace.ActionValues(strings.Split(string(output), "\n")...)
+		}
+	})
 }

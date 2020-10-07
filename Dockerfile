@@ -13,7 +13,7 @@ RUN apt-get install -y bash-completion \
                        zsh
 
 ENV GOPATH /go
-RUN ln -s /carapace-bin/carapace/carapace /usr/local/bin/carapace
+RUN ln -s /carapace-bin/cmd/carapace/carapace /usr/local/bin/carapace
 
 # bash
 RUN echo "\n\
