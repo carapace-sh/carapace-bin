@@ -8,6 +8,7 @@ import (
 	"gopkg.in/ini.v1"
 )
 
+// ActionRegions completes region names
 func ActionRegions() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"af-south-1", "Africa (Cape Town)",
@@ -33,6 +34,7 @@ func ActionRegions() carapace.Action {
 	)
 }
 
+// ActionProfiles completes configuration profile names
 func ActionProfiles() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		profiles := []string{}

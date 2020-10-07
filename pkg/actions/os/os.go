@@ -4,24 +4,32 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"strconv"
 	"strings"
 
 	ps "github.com/mitchellh/go-ps"
 	"github.com/rsteube/carapace"
 )
 
+// ActionEnvironmentVariables completes environment values
 func ActionEnvironmentVariables() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		env := os.Environ()
-		vars := make([]string, len(env))
+		vars := make([]string, len(env)*2)
 		for index, e := range os.Environ() {
 			pair := strings.SplitN(e, "=", 2)
-			vars[index] = pair[0]
+			vars[index*2] = pair[0]
+			if len(pair[1]) > 40 {
+				vars[(index*2)+1] = pair[1][:37] + "..."
+			} else {
+				vars[(index*2)+1] = pair[1]
+			}
 		}
-		return carapace.ActionValues(vars...)
+		return carapace.ActionValuesDescribed(vars...)
 	})
 }
 
+// ActionGroups completes system group names
 func ActionGroups() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		groups := []string{}
@@ -41,6 +49,7 @@ func ActionGroups() carapace.Action {
 	})
 }
 
+// ActionKillSignals completes linux kill signals
 func ActionKillSignals() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"ABRT", "Abnormal termination",
@@ -77,6 +86,7 @@ func ActionKillSignals() carapace.Action {
 	)
 }
 
+// ActionProcessExecutables completes executable names of current processes
 func ActionProcessExecutables() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if processes, err := ps.Processes(); err != nil {
@@ -84,13 +94,14 @@ func ActionProcessExecutables() carapace.Action {
 		} else {
 			executables := make([]string, 0)
 			for _, process := range processes {
-				executables = append(executables, process.Executable())
+				executables = append(executables, process.Executable(), strconv.Itoa(process.Pid()))
 			}
-			return carapace.ActionValues(executables...)
+			return carapace.ActionValuesDescribed(executables...)
 		}
 	})
 }
 
+// ActionProcessStates completes linux process states
 func ActionProcessStates() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"D", "uninterruptible sleep (usually IO)",
@@ -105,6 +116,7 @@ func ActionProcessStates() carapace.Action {
 	)
 }
 
+// ActionUsers completes system user names
 func ActionUsers() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		users := []string{}
@@ -124,6 +136,7 @@ func ActionUsers() carapace.Action {
 	})
 }
 
+// ActionUserGroup completes system user:group separately
 func ActionUserGroup() carapace.Action {
 	return carapace.ActionMultiParts(":", func(args []string, parts []string) carapace.Action {
 		switch len(parts) {
@@ -137,6 +150,7 @@ func ActionUserGroup() carapace.Action {
 	})
 }
 
+// ActionShells completes available terminal shells
 func ActionShells() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("chsh", "--list-shells").Output(); err != nil {

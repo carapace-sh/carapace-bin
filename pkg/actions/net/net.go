@@ -11,6 +11,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionHosts completes known hosts
 func ActionHosts() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		hosts := []string{}
@@ -30,6 +31,7 @@ func ActionHosts() carapace.Action {
 	})
 }
 
+// ActionNetInterfaces completes network interface names
 func ActionNetInterfaces() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("ifconfig").Output(); err != nil {

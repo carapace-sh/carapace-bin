@@ -8,6 +8,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionMounts completes file system mounts
 func ActionMounts() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("mount").Output(); err != nil {
