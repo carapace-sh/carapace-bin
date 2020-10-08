@@ -1,6 +1,7 @@
 # carapace-bin
 
 [![CircleCI](https://circleci.com/gh/rsteube/carapace-bin.svg?style=svg)](https://circleci.com/gh/rsteube/carapace-bin)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/rsteube/carapace-bin/actions)](https://pkg.go.dev/github.com/rsteube/carapace-bin/actions)
 
 Multi-shell multi-command argument completer based on [rsteube/carapace](https://github.com/rsteube/carapace).
 
