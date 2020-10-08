@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/rsteube/carapace-bin.svg?style=svg)](https://circleci.com/gh/rsteube/carapace-bin)
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/rsteube/carapace-bin/actions)](https://pkg.go.dev/github.com/rsteube/carapace-bin/actions)
+[![GoReportCard](https://goreportcard.com/badge/github.com/rsteube/carapace-bin)](https://goreportcard.com/report/github.com/rsteube/carapace-bin)
 
 Multi-shell multi-command argument completer based on [rsteube/carapace](https://github.com/rsteube/carapace).
 
