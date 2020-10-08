@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/nmcli_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +19,7 @@ func init() {
 
 	carapace.Gen(device_wifi_rescanCmd).PositionalCompletion(
 		carapace.ActionValues("ifname"),
-		action.ActionDevices("wifi"),
+		net.ActionDevices(net.IncludedDevices{Wifi: true}),
 	)
 
 	carapace.Gen(device_wifi_rescanCmd).PositionalAnyCompletion(
@@ -27,7 +27,7 @@ func init() {
 			if len(args)%2 == 0 {
 				return carapace.ActionValues("ssid")
 			} else {
-				return action.ActionSsids()
+				return net.ActionSsids()
 			}
 		}),
 	)

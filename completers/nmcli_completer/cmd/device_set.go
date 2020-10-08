@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/nmcli_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -18,7 +19,7 @@ func init() {
 	deviceCmd.AddCommand(device_setCmd)
 
 	carapace.Gen(device_setCmd).PositionalCompletion(
-		action.ActionDevices(""),
+		net.ActionDevices(net.AllDevices),
 		carapace.ActionValues("autoconnect", "managed"),
 		action.ActionYesNo(),
 		carapace.ActionValues("autoconnect", "managed"),
