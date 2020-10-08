@@ -60,7 +60,7 @@ carapace --list
 If the shell is left out carapace will try to determine it by the parent process name.
 
 ## Creating completers
-[caraparse](/caraparse) is a helper tool that uses regex to parse gnu help pages.
+[caraparse](/cmd/caraparse) is a helper tool that uses regex to parse gnu help pages.
 Due to strong inconsistencies between these the results may differ but generally give a good head start.
 
 - copy a completer for simplicity
