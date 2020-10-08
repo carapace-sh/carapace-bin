@@ -177,3 +177,32 @@ func ActionShells() carapace.Action {
 		}
 	})
 }
+
+// ActionPathExecutables completes executable files from PATH
+//   nvim
+//   chmod
+func ActionPathExecutables() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		executables := make(map[string]bool)
+
+		for _, folder := range strings.Split(os.Getenv("PATH"), ":") {
+			if files, err := ioutil.ReadDir(folder); err == nil {
+				for _, f := range files {
+					if f.Mode().IsRegular() && isExecAny(f.Mode()) {
+						executables[f.Name()] = true
+					}
+				}
+			}
+		}
+
+		vals := make([]string, 0)
+		for executable := range executables {
+			vals = append(vals, executable)
+		}
+		return carapace.ActionValues(vals...)
+	})
+}
+
+func isExecAny(mode os.FileMode) bool {
+	return mode&0111 != 0
+}
