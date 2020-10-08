@@ -1,6 +1,6 @@
 #!/bin/bash
 
-completers=$(cd ../../completers && ls -d * | sed 's/_completer//')
+completers=$(cd ../../../completers && ls -d * | sed 's/_completer//')
 
 echo "package cmd
 

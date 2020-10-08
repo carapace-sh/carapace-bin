@@ -54,6 +54,7 @@ import (
 	mv "github.com/rsteube/carapace-bin/completers/mv_completer/cmd"
 	nice "github.com/rsteube/carapace-bin/completers/nice_completer/cmd"
 	nl "github.com/rsteube/carapace-bin/completers/nl_completer/cmd"
+	nmcli "github.com/rsteube/carapace-bin/completers/nmcli_completer/cmd"
 	nohup "github.com/rsteube/carapace-bin/completers/nohup_completer/cmd"
 	nvim "github.com/rsteube/carapace-bin/completers/nvim_completer/cmd"
 	od "github.com/rsteube/carapace-bin/completers/od_completer/cmd"
@@ -155,6 +156,7 @@ var completers = []string{
 	"mv",
 	"nice",
 	"nl",
+	"nmcli",
 	"nohup",
 	"nvim",
 	"od",
@@ -310,6 +312,8 @@ func executeCompleter(completer string) {
 		nice.Execute()
 	case "nl":
 		nl.Execute()
+	case "nmcli":
+		nmcli.Execute()
 	case "nohup":
 		nohup.Execute()
 	case "nvim":
