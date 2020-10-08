@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/nmcli_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +19,7 @@ func init() {
 
 	carapace.Gen(device_wifi_hotspotCmd).PositionalCompletion(
 		carapace.ActionValues("ifname"),
-		action.ActionDevices("wifi"),
+		net.ActionDevices(net.IncludedDevices{Wifi: true}),
 		carapace.ActionValues("con-name"),
 		carapace.ActionValues(""),
 		carapace.ActionValues("ssid"),

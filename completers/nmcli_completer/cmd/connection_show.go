@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/nmcli_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -20,5 +20,5 @@ func init() {
 
 	connectionCmd.AddCommand(connection_showCmd)
 
-	carapace.Gen(connection_showCmd).PositionalAnyCompletion(action.ActionConnections())
+	carapace.Gen(connection_showCmd).PositionalAnyCompletion(net.ActionConnections())
 }

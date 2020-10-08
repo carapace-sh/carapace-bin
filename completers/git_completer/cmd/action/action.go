@@ -24,7 +24,8 @@ func ActionRemotes() carapace.Action {
 		if output, err := exec.Command("git", "remote").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
-			return carapace.ActionValues(strings.Split(string(output), "\n")...)
+			lines := strings.Split(string(output), "\n")
+			return carapace.ActionValues(lines[:len(lines)-1]...)
 		}
 	})
 }

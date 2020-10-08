@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/nmcli_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -27,9 +27,9 @@ func init() {
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			switch args[0] {
 			case "ifname":
-				return action.ActionDevices("")
+				return net.ActionDevices(net.IncludedDevices{Wifi: true})
 			case "bssid":
-				return action.ActionBssids()
+				return net.ActionBssids()
 			default:
 				return carapace.ActionValues()
 			}

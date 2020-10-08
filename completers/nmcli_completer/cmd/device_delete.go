@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/nmcli_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +17,5 @@ func init() {
 
 	deviceCmd.AddCommand(device_deleteCmd)
 
-	carapace.Gen(device_deleteCmd).PositionalAnyCompletion(action.ActionDevices(""))
+	carapace.Gen(device_deleteCmd).PositionalAnyCompletion(net.ActionDevices(net.AllDevices))
 }
