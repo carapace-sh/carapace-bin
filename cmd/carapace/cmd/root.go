@@ -1,5 +1,7 @@
 package cmd
 
+//go:generate go run ../../generate/gen.go
+
 import (
 	"bytes"
 	"fmt"
