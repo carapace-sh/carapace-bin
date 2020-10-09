@@ -180,7 +180,7 @@ func ActionBssids() carapace.Action {
 	})
 }
 
-// ActionBssids completes SSID's of local wifi networks
+// ActionSsids completes SSID's of local wifi networks
 //   somewifi (AA:BB:CC:DD:EE:FF)
 //   anotherwifi (AA:BB:CC:DD:EE:11)
 func ActionSsids() carapace.Action {
