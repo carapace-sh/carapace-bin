@@ -32,7 +32,7 @@ docker-compose run --rm [bash|elvish|fish|oil|powershell|xonsh|zsh]
 ## Build
 
 ```sh
-cd cmd/carapace && go build -ldflags="-s -w"
+cd cmd/carapace && go generate ./... && go build -ldflags="-s -w"
 ```
 For smallest file size (300kb instead of 6mb) use gccgo with flags "-s -w" and upx (upx slows down invocation but should still be fast enough).
 
