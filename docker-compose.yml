@@ -3,7 +3,7 @@ version: '3'
 services:
   build:
     build: .
-    command: sh -c 'sh -c "cd /carapace-bin/cmd/carapace && go build -ldflags=\"-s -w\" ."'
+    command: sh -c 'sh -c "cd /carapace-bin/cmd/carapace && go generate ./... && go build -ldflags=\"-s -w\" ."'
     volumes:
       - '.:/carapace-bin/'
       - 'go:/go/'
