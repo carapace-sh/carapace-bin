@@ -49,9 +49,9 @@ func executeCompleter(completer string) {
 }
 
 func varName(name string) string {
-    if name == "go" {
-        return "_go"
-    }
+	if name == "go" {
+		return "_go"
+	}
 	return strings.Replace(name, "-", "_", -1)
 }
 
