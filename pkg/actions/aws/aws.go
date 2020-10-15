@@ -10,7 +10,8 @@ import (
 )
 
 // ActionRegions completes region names
-// TODO provide example
+//   eu-south-1 (Europe Milan)
+//   ap-east-1 (Asia Pacific Hong Kong)
 func ActionRegions() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"af-south-1", "Africa (Cape Town)",
@@ -37,7 +38,8 @@ func ActionRegions() carapace.Action {
 }
 
 // ActionProfiles completes configuration profile names
-// TODO provide example
+//   someprofile (eu-central-1)
+//   anotherprofile (us-east-1)
 func ActionProfiles() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		profiles := []string{}

@@ -10,7 +10,8 @@ import (
 )
 
 // ActionMounts completes file system mounts
-// TODO provide example
+//   /boot/efi (/dev/sda1)
+//   /dev (dev)
 func ActionMounts() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("mount").Output(); err != nil {
