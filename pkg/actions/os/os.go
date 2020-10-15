@@ -110,6 +110,23 @@ func ActionProcessExecutables() carapace.Action {
 	})
 }
 
+// ActionProcessIds completes proces IDs
+//   439 (NetworkManager)
+//   454 (cupsd)
+func ActionProcessIds() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if processes, err := ps.Processes(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			ids := make([]string, 0)
+			for _, process := range processes {
+				ids = append(ids, strconv.Itoa(process.Pid()), process.Executable())
+			}
+			return carapace.ActionValuesDescribed(ids...)
+		}
+	})
+}
+
 // ActionProcessStates completes linux process states
 //   I (Idle kernel thread)
 //   R (running or runnable on run queue)
