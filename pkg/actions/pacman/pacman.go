@@ -1,3 +1,4 @@
+// package pacman contains actions related to the arch package manager:w
 package pacman
 
 import (
@@ -9,6 +10,9 @@ import (
 	"gopkg.in/ini.v1"
 )
 
+// ActionRepositories completion package repositories
+//   extra
+//   multilib
 func ActionRepositories() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		loadOptions := ini.LoadOptions{}
@@ -32,7 +36,7 @@ type PackageOption struct {
 	Explicit bool
 }
 
-func (o PackageOption) Format() []string {
+func (o PackageOption) format() []string {
 	options := []string{"-Qq"}
 	if o.Explicit {
 		options[0] = options[0] + "e"
@@ -42,9 +46,12 @@ func (o PackageOption) Format() []string {
 	return options
 }
 
+// ActionPackages completes package names
+//   gnome-common
+//   gstreamer
 func ActionPackages(option PackageOption) carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if output, err := exec.Command("pacman", option.Format()...).Output(); err != nil {
+		if output, err := exec.Command("pacman", option.format()...).Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			lines := strings.Split(string(output), "\n")
@@ -53,6 +60,9 @@ func ActionPackages(option PackageOption) carapace.Action {
 	})
 }
 
+// ActionPackageGroups completes package group names
+//   i3-manjaro
+//   linux49-extramodules
 func ActionPackageGroups() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("sh", "-c", "pacman -Qg | cut -d' ' -f1 | sort |  uniq").Output(); err != nil {
