@@ -67,7 +67,7 @@ RUN curl https://www.oilshell.org/download/oil-0.8.0.tar.gz | tar -xvz \
 RUN mkdir -p ~/.config/oil \
  && echo "\n\
 PS1=$'\e[0;36mcarapace \e[0m'\n\
-source /usr/share/bash-completion/bash_completion \n\
+source <(sed 's/let \"OPTIND += 1\"/(( OPTIND += 1 ))/' /usr/share/bash-completion/bash_completion)\n\
 source <(carapace _carapace)\n\
 for c in \$(carapace --list); do\n\
   source <(carapace \$c)\n\
