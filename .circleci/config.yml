@@ -45,5 +45,5 @@ jobs:
     docker:
       - image: circleci/golang:1.15
     steps:
-      - checkout
-      - run: cd cmd/carapace && curl -sL https://git.io/goreleaser | bash
+      - checkout 
+      - run: cd cmd/carapace && go generate ./... && curl -sL https://git.io/goreleaser | bash
