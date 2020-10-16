@@ -41,5 +41,9 @@ func init() {
 		"pathspec-from-file": carapace.ActionFiles(""),
 	})
 
-	carapace.Gen(addCmd).PositionalAnyCompletion(action.ActionUnstagedChanges())
+	carapace.Gen(addCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(args []string) carapace.Action {
+			return action.ActionUnstagedChanges().Invoke(args).Filter(args).ToA()
+		}),
+	)
 }
