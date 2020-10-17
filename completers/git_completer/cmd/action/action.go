@@ -184,8 +184,8 @@ func ActionRefs(refOption RefOption) carapace.Action {
 	})
 }
 
-// TODO multiparts action to complete step by step
 func ActionUnstagedChanges() carapace.Action {
+	// TODO multiparts action to complete step by step
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("git", "status", "--porcelain").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())

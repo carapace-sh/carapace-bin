@@ -41,6 +41,9 @@ jobs:
       - run:
           name: "Check formatting"
           command: diff -u <(echo -n) <(gofmt -d -s .)
+      - run:
+          name: "staticcheck"
+          command: go get honnef.co/go/tools/cmd/staticcheck && staticcheck ./...
   release:
     docker:
       - image: circleci/golang:1.15

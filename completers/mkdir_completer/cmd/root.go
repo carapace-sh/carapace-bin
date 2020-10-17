@@ -34,8 +34,8 @@ func init() {
 	)
 }
 
-// TODO bit hacky as empty delimiter not yet implemented (carapce should support multiple delimiters anyway: []rune)
 func ActionMode() carapace.Action {
+	// TODO bit hacky as empty delimiter not yet implemented (carapce should support multiple delimiters anyway: []rune)
 	return carapace.ActionMultiParts("", func(args, parts []string) carapace.Action {
 		current := carapace.CallbackValue
 		vals := []string{}

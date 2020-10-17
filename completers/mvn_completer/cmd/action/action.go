@@ -45,9 +45,9 @@ func (a Artifact) Location(repository string) string {
 	return fmt.Sprintf("%v/%v/%v/%v/%v-%v.jar", repository, strings.Replace(a.GroupId, ".", "/", -1), a.ArtifactId, a.Version, a.ArtifactId, a.Version)
 }
 
-// TODO parent pom plugins
-// TODO plugins locatad in pluginmanagement and profiles
 type Project struct {
+	// TODO parent pom plugins
+	// TODO plugins locatad in pluginmanagement and profiles
 	XMLName  xml.Name   `xml:"project"`
 	Plugins  []Artifact `xml:"build>plugins>plugin"`
 	Profiles []string   `xml:"profiles>profile>id"`
@@ -61,8 +61,8 @@ func repositoryLocation() string {
 	return "" // TODO handle error
 }
 
-// TODO caching
 func ActionGoalsAndPhases(file string) carapace.Action {
+	// TODO caching
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if project, err := loadProject(file); err != nil {
 			return carapace.ActionMessage(err.Error())
@@ -188,7 +188,7 @@ func loadPlugin(file string) (plugin *Plugin) {
 				if pluginFile, err := f.Open(); err == nil {
 					defer pluginFile.Close()
 					if content, err := ioutil.ReadAll(pluginFile); err == nil {
-						err = xml.Unmarshal(content, &plugin)
+						_ = xml.Unmarshal(content, &plugin)
 					}
 				}
 			}
