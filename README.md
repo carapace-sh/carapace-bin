@@ -29,12 +29,43 @@ docker-compose run --rm [bash|elvish|fish|oil|powershell|xonsh|zsh]
 [ln|mkdir|chown...] <TAB>
 ```
 
+## Getting Startet
+
+Ensure carapace is added to PATH.
+
+```sh
+# bash
+source <(carapace _carapace)
+
+# elvish
+eval (carapace _carapace|slurp)
+
+# fish
+for c in (carapace --list)
+  complete --erase -c "\$c"
+end
+carapace _carapace fish | source
+
+# oil
+source <(carapace _carapace)
+
+# powershell
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+carapace _carapace | Out-String | Invoke-Expression
+
+# xonsh
+COMPLETIONS_CONFIRM=True
+exec($(carapace _carapace xonsh))
+
+# zsh
+source <(carapace _carapace zsh)
+```
+
 ## Build
 
 ```sh
 cd cmd/carapace && go generate ./... && go build -ldflags="-s -w"
 ```
-For smallest file size (300kb instead of 6mb) use gccgo with flags "-s -w" and upx (upx slows down invocation but should still be fast enough).
 
 Completers can also be built separately:
 ```sh
@@ -46,10 +77,6 @@ cd completers/ln_completer && go build -ldflags="-s -w"
 
 Ensure carapace is added to PATH.
 
-- completion for carapace itself
-```sh
-carapace _carapace [bash|elvish|fish|oil|powershell|xonsh|zsh]
-```
 - completion for commands
 ```sh
 carapace [ln|mkdir|...] [bash|elvish|fish|oil|powershell|xonsh|zsh]

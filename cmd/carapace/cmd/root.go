@@ -9,45 +9,53 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:       "carapace",
-	Short:     "",
+	Use:   "carapace [flags] [COMPLETER] [bash|elvish|fish|oil|powershell|xonsh|zsh]",
+	Short: `multi-shell multi-command argument completer`,
+	Example: `
+  bash:       source <(carapace _carapace)
+  elvish:     eval (carapace _carapace|slurp)
+  fish:       carapace _carapace | source
+  oil:        source <(carapace _carapace)
+  powershell: carapace _carapace | Out-String | Invoke-Expression
+  xonsh:      exec($(carapace _carapace))
+`,
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers,
 	Run: func(cmd *cobra.Command, args []string) {
-		if os.Args[1] == "--list" {
+		// since flag parsing is disabled do this manually
+		switch args[0] {
+		case "-h":
+			cmd.Usage()
+		case "--help":
+			cmd.Usage()
+		case "--list":
 			fmt.Println(strings.Join(completers, "\n"))
-			return
+		case "_carapace":
+			switch determineShell() {
+			case "bash":
+				fmt.Println(bash(completers))
+			case "elvish":
+				fmt.Println(elvish(completers))
+			case "fish":
+				fmt.Println(fish(completers))
+			case "oil":
+				fmt.Println(bash(completers))
+			case "powershell":
+				fmt.Println(powershell(completers))
+			case "xonsh":
+				fmt.Println(xonsh(completers))
+			case "zsh":
+				fmt.Println(zsh(completers))
+			}
+			// TODO lazy completion script for all completers
+		default:
+			invokeCompleter(args[0])
 		}
-		// TODO if len < thans sth (script generation)
-		if len(args) > 0 {
-			old := os.Stdout
-			r, w, _ := os.Pipe()
-			os.Stdout = w
 
-			outC := make(chan string)
-			// copy the output in a separate goroutine so printing can't block indefinitely
-			go func() {
-				var buf bytes.Buffer
-				io.Copy(&buf, r)
-				outC <- buf.String()
-			}()
-
-			completer := args[0]
-			os.Args[1] = "_carapace"
-			executeCompleter(completer)
-
-			w.Close()
-			out := <-outC
-			os.Stdout = old
-			patched := strings.Replace(string(out), "carapace _carapace", "carapace "+completer, -1)         // general callback
-			patched = strings.Replace(patched, "'carapace', '_carapace'", "'carapace', '"+completer+"'", -1) // xonsh callback
-			fmt.Print(patched)
-		}
 	},
 	FParseErrWhitelist: cobra.FParseErrWhitelist{
 		UnknownFlags: true,
@@ -55,14 +63,35 @@ var rootCmd = &cobra.Command{
 	DisableFlagParsing: true,
 }
 
+func invokeCompleter(completer string) {
+	old := os.Stdout
+	r, w, _ := os.Pipe()
+	os.Stdout = w
+
+	outC := make(chan string)
+	// copy the output in a separate goroutine so printing can't block indefinitely
+	go func() {
+		var buf bytes.Buffer
+		io.Copy(&buf, r)
+		outC <- buf.String()
+	}()
+
+	os.Args[1] = "_carapace"
+	executeCompleter(completer)
+
+	w.Close()
+	out := <-outC
+	os.Stdout = old
+	patched := strings.Replace(string(out), "carapace _carapace", "carapace "+completer, -1)         // general callback
+	patched = strings.Replace(patched, "'carapace', '_carapace'", "'carapace', '"+completer+"'", -1) // xonsh callback
+	fmt.Print(patched)
+
+}
+
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	rootCmd.Flags().Bool("list", false, "list completers")
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues(completers...),
-		carapace.ActionValues("bash", "elvish", "fish", "oil", "powershell", "xonsh", "zsh"),
-	)
 }
