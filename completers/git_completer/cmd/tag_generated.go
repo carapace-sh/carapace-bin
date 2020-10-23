@@ -27,7 +27,7 @@ func init() {
 	tagCmd.Flags().BoolP("list", "l", false, "list tag names")
 	tagCmd.Flags().String("merged", "", "print only tags that are merged")
 	tagCmd.Flags().BoolP("message", "m", false, "<message>    tag message")
-	tagCmd.Flags().StringP("n", "n", "", "print <n> lines of each tag message")
+	tagCmd.Flags().StringS("n", "n", "", "print <n> lines of each tag message")
 	tagCmd.Flags().String("no-contains", "", "print only tags that don't contain the commit")
 	tagCmd.Flags().String("no-merged", "", "print only tags that are not merged")
 	tagCmd.Flags().String("points-at", "", "print only tags of the object")

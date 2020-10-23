@@ -15,6 +15,6 @@ func init() {
 	check_attrCmd.Flags().BoolP("all", "a", false, "report all attributes set on file")
 	check_attrCmd.Flags().Bool("cached", false, "use .gitattributes only from the index")
 	check_attrCmd.Flags().Bool("stdin", false, "read file names from stdin")
-	check_attrCmd.Flags().BoolP("z", "z", false, "terminate input and output records by a NUL character")
+	check_attrCmd.Flags().BoolS("z", "z", false, "terminate input and output records by a NUL character")
 	rootCmd.AddCommand(check_attrCmd)
 }

@@ -16,7 +16,7 @@ func init() {
 	rebaseCmd.Flags().Bool("apply", false, "use apply strategies to rebase")
 	rebaseCmd.Flags().Bool("autosquash", false, "move commits that begin with squash!/fixup! under -i")
 	rebaseCmd.Flags().Bool("autostash", false, "automatically stash/stash pop before and after")
-	rebaseCmd.Flags().StringP("C", "C", "", "passed to 'git apply'")
+	rebaseCmd.Flags().StringS("C", "C", "", "passed to 'git apply'")
 	rebaseCmd.Flags().Bool("committer-date-is-author-date", false, "passed to 'git am'")
 	rebaseCmd.Flags().Bool("continue", false, "continue")
 	rebaseCmd.Flags().Bool("edit-todo", false, "edit the todo list during an interactive rebase")

@@ -19,6 +19,6 @@ func init() {
 	rmCmd.Flags().Bool("pathspec-file-nul", false, "with --pathspec-from-file, pathspec elements are separated with NUL character")
 	rmCmd.Flags().String("pathspec-from-file", "", "read pathspec from file")
 	rmCmd.Flags().BoolP("quiet", "q", false, "do not list removed files")
-	rmCmd.Flags().BoolP("r", "r", false, "allow recursive removal")
+	rmCmd.Flags().BoolS("r", "r", false, "allow recursive removal")
 	rootCmd.AddCommand(rmCmd)
 }

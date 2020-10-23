@@ -12,9 +12,9 @@ var commit_treeCmd = &cobra.Command{
 }
 
 func init() {
-	commit_treeCmd.Flags().StringP("F", "F", "", "read commit log message from file")
-	commit_treeCmd.Flags().StringP("m", "m", "", "commit message")
-	commit_treeCmd.Flags().StringP("p", "p", "", "id of a parent commit object")
+	commit_treeCmd.Flags().StringS("F", "F", "", "read commit log message from file")
+	commit_treeCmd.Flags().StringS("m", "m", "", "commit message")
+	commit_treeCmd.Flags().StringS("p", "p", "", "id of a parent commit object")
 	commit_treeCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
 	rootCmd.AddCommand(commit_treeCmd)
 }

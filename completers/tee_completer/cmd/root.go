@@ -21,7 +21,7 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("ignore-interrupts", "i", false, "ignore interrupt signals")
 	rootCmd.Flags().String("output-error", "", "set behavior on write error.")
-	rootCmd.Flags().BoolP("p", "p", false, "diagnose errors writing to non pipes")
+	rootCmd.Flags().BoolS("p", "p", false, "diagnose errors writing to non pipes")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

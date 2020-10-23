@@ -14,7 +14,7 @@ var amCmd = &cobra.Command{
 func init() {
 	amCmd.Flags().BoolP("3way", "3", false, "allow fall back on 3way merging if needed")
 	amCmd.Flags().Bool("abort", false, "restore the original branch and abort the patching operation.")
-	amCmd.Flags().StringP("C", "C", "", "pass it through git-apply")
+	amCmd.Flags().StringS("C", "C", "", "pass it through git-apply")
 	amCmd.Flags().Bool("committer-date-is-author-date", false, "lie about committer date")
 	amCmd.Flags().Bool("continue", false, "continue applying patches after resolving a conflict")
 	amCmd.Flags().BoolP("scissors", "c", false, "strip everything before a scissors line")
@@ -31,7 +31,7 @@ func init() {
 	amCmd.Flags().BoolP("message-id", "m", false, "pass -m flag to git-mailinfo")
 	amCmd.Flags().Bool("no-keep-cr", false, "do not pass --keep-cr flag to git-mailsplit independent of am.keepcr")
 	amCmd.Flags().String("patch-format", "", "format the patch(es) are in")
-	amCmd.Flags().StringP("p", "p", "", "pass it through git-apply")
+	amCmd.Flags().StringS("p", "p", "", "pass it through git-apply")
 	amCmd.Flags().BoolP("quiet", "q", false, "be quiet")
 	amCmd.Flags().Bool("quit", false, "abort the patching operation but keep HEAD where it is.")
 	amCmd.Flags().Bool("reject", false, "pass it through git-apply")
