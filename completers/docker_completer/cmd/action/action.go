@@ -74,8 +74,8 @@ func ActionRepositoryTags() carapace.Action {
 	})
 }
 
-// TODO not yet working - also needs multiple characters to split on `:` `/`
 func ActionContainerPath() carapace.Action {
+	// TODO not yet working - also needs multiple characters to split on `:` `/`
 	return carapace.ActionMultiParts(":", func(args []string, parts []string) carapace.Action {
 		switch len(parts) {
 		case 0:
