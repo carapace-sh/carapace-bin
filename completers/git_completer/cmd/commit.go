@@ -63,7 +63,7 @@ func init() {
 		"pathspec-from-file": carapace.ActionFiles(""),
 		"reedit-message":     action.ActionRefs(action.RefOption{Commits: 100}),
 		"reuse-message":      action.ActionRefs(action.RefOption{Commits: 100}),
-		"sqash":              action.ActionRefs(action.RefOption{Commits: 100}),
+		"squash":             action.ActionRefs(action.RefOption{Commits: 100}),
 		"template":           carapace.ActionFiles(""),
 		"untracked-files":    carapace.ActionValues("all", "normal", "no"),
 	})
