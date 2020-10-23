@@ -251,3 +251,57 @@ func ActionFieldNames() carapace.Action {
 		"version:refname", "sort by versions",
 	)
 }
+
+func ActionCleanupMode() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"strip", "strip empty lines and trailing whitespace",
+		"whitespace", "same as strip except #commentary is not removed",
+		"verbatim", "do not change the message at all",
+		"scissors", "same as whitespace except that everything from (and including) the line found below is truncated",
+		"default", " Same as strip if the message is to be edited. Otherwise whitespace",
+	)
+}
+
+func ActionGpgKeyIds() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("sh", "-c", "gpg --list-keys --with-colons | awk -F: '/^pub:|^uid:/ { print $5 $10}'").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			lines := strings.Split(string(output), "\n")
+			return carapace.ActionValuesDescribed(lines[:len(lines)-1]...)
+		}
+	})
+}
+
+func ActionMergeStrategy() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"octopus", "resolve cases with more than two heads",
+		"ours", "auto-resolve cleanly by favoring our version",
+		"recursive", "recursively resolve two heads using a 3-way merge algorithm",
+		"resolve", "resolve two heads using a 3-way merge algorithm",
+		"subtree", "modified recursive straty with tree adjustment",
+	)
+}
+
+func ActionMergeStrategyOptions(strategy string) carapace.Action {
+	switch strategy {
+	case "recursive":
+		return carapace.ActionValuesDescribed(
+			"ours", "auto-resolve favoring ours",
+			"theirs", "auto-resolve favoring theirs",
+			"patience", "spend extra time to avoid mismerges",
+			"diff-algorithm=", "set dif allgorithm",
+			"ignore-space-change", "ignore space change",
+			"ignore-all-space", "ignore all space",
+			"ignore-space-at-eol", "ignore <space> at end of line",
+			"ignore-cr-at-eol", "ignore <cr> at end of line",
+			"renormalize", "enable renormalize",
+			"no-renormalize", "disable renormalize",
+			"no-renames", "turn off rename detection",
+			"find-renames", "turn on rename detection",
+			"subtree", "advance subtree stratebgy",
+		)
+	default:
+		return carapace.ActionValues()
+	}
+}
