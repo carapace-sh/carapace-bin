@@ -32,7 +32,7 @@ func init() {
 	update_indexCmd.Flags().Bool("no-assume-unchanged", false, "clear assumed-unchanged bit")
 	update_indexCmd.Flags().Bool("no-fsmonitor-valid", false, "clear fsmonitor valid bit")
 	update_indexCmd.Flags().Bool("no-skip-worktree", false, "clear skip-worktree bit")
-	update_indexCmd.Flags().BoolP("q", "q", false, "continue refresh even when index needs update")
+	update_indexCmd.Flags().BoolS("q", "q", false, "continue refresh even when index needs update")
 	update_indexCmd.Flags().Bool("really-refresh", false, "like --refresh, but ignore assume-unchanged setting")
 	update_indexCmd.Flags().Bool("refresh", false, "refresh stat information")
 	update_indexCmd.Flags().Bool("remove", false, "notice files missing from worktree")
@@ -45,6 +45,6 @@ func init() {
 	update_indexCmd.Flags().Bool("unresolve", false, "repopulate stages #2 and #3 for the listed paths")
 	update_indexCmd.Flags().Bool("untracked-cache", false, "enable/disable untracked cache")
 	update_indexCmd.Flags().Bool("verbose", false, "report actions to standard output")
-	update_indexCmd.Flags().BoolP("z", "z", false, "with --stdin: input lines are terminated by null bytes")
+	update_indexCmd.Flags().BoolS("z", "z", false, "with --stdin: input lines are terminated by null bytes")
 	rootCmd.AddCommand(update_indexCmd)
 }

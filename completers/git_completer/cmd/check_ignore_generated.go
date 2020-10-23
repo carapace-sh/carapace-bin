@@ -17,6 +17,6 @@ func init() {
 	check_ignoreCmd.Flags().BoolP("quiet", "q", false, "suppress progress reporting")
 	check_ignoreCmd.Flags().Bool("stdin", false, "read file names from stdin")
 	check_ignoreCmd.Flags().BoolP("verbose", "v", false, "be verbose")
-	check_ignoreCmd.Flags().BoolP("z", "z", false, "terminate input and output records by a NUL character")
+	check_ignoreCmd.Flags().BoolS("z", "z", false, "terminate input and output records by a NUL character")
 	rootCmd.AddCommand(check_ignoreCmd)
 }

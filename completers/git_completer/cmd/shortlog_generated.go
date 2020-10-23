@@ -16,6 +16,6 @@ func init() {
 	shortlogCmd.Flags().BoolP("email", "e", false, "Show the email address of each author")
 	shortlogCmd.Flags().BoolP("numbered", "n", false, "sort output according to the number of commits per author")
 	shortlogCmd.Flags().BoolP("summary", "s", false, "Suppress commit descriptions, only provides commit count")
-	shortlogCmd.Flags().StringP("w", "w", "", "Linewrap output")
+	shortlogCmd.Flags().StringS("w", "w", "", "Linewrap output")
 	rootCmd.AddCommand(shortlogCmd)
 }

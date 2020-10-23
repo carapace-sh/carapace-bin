@@ -15,7 +15,7 @@ func init() {
 	whatchangedCmd.Flags().String("decorate", "", "decorate options")
 	whatchangedCmd.Flags().String("decorate-refs-exclude", "", "do not decorate refs that match <pattern>")
 	whatchangedCmd.Flags().String("decorate-refs", "", "only decorate refs that match <pattern>")
-	whatchangedCmd.Flags().StringP("L", "L", "", "Process line range n,m in file, counting from 1")
+	whatchangedCmd.Flags().StringS("L", "L", "", "Process line range n,m in file, counting from 1")
 	whatchangedCmd.Flags().BoolP("quiet", "q", false, "suppress diff output")
 	whatchangedCmd.Flags().Bool("source", false, "show source")
 	whatchangedCmd.Flags().Bool("use-mailmap", false, "Use mail map file")

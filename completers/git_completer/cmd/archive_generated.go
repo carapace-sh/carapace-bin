@@ -12,9 +12,9 @@ var archiveCmd = &cobra.Command{
 }
 
 func init() {
-	archiveCmd.Flags().BoolP("0", "0", false, "store only")
-	archiveCmd.Flags().BoolP("1", "1", false, "compress faster")
-	archiveCmd.Flags().BoolP("9", "9", false, "compress better")
+	archiveCmd.Flags().BoolS("0", "0", false, "store only")
+	archiveCmd.Flags().BoolS("1", "1", false, "compress faster")
+	archiveCmd.Flags().BoolS("9", "9", false, "compress better")
 	archiveCmd.Flags().String("exec", "", "path to the remote git-upload-archive command")
 	archiveCmd.Flags().String("format", "", "archive format")
 	archiveCmd.Flags().BoolP("list", "l", false, "list supported archive formats")

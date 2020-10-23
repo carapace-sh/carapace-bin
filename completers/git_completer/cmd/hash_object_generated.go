@@ -17,7 +17,7 @@ func init() {
 	hash_objectCmd.Flags().String("path", "", "process file as it were from this path")
 	hash_objectCmd.Flags().Bool("stdin-paths", false, "read file names from stdin")
 	hash_objectCmd.Flags().Bool("stdin", false, "read the object from stdin")
-	hash_objectCmd.Flags().StringP("t", "t", "", "object type")
-	hash_objectCmd.Flags().BoolP("w", "w", false, "write the object into the object database")
+	hash_objectCmd.Flags().StringS("t", "t", "", "object type")
+	hash_objectCmd.Flags().BoolS("w", "w", false, "write the object into the object database")
 	rootCmd.AddCommand(hash_objectCmd)
 }

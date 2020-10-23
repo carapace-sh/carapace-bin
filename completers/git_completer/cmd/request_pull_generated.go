@@ -12,6 +12,6 @@ var request_pullCmd = &cobra.Command{
 }
 
 func init() {
-	request_pullCmd.Flags().BoolP("p", "p", false, "show patch text as well")
+	request_pullCmd.Flags().BoolS("p", "p", false, "show patch text as well")
 	rootCmd.AddCommand(request_pullCmd)
 }

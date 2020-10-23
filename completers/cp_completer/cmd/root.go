@@ -36,7 +36,7 @@ func init() {
 	rootCmd.Flags().StringSlice("no-preserve", []string{}, "don't preserve the specified attributes")
 	rootCmd.Flags().BoolP("no-target-directory", "T", false, "treat DEST as a normal file")
 	rootCmd.Flags().BoolP("one-file-system", "x", false, "stay on this file system")
-	rootCmd.Flags().BoolP("p", "p", false, "same as --preserve=mode,ownership,timestamps")
+	rootCmd.Flags().BoolS("p", "p", false, "same as --preserve=mode,ownership,timestamps")
 	rootCmd.Flags().Bool("parents", false, "use full source file name under DIRECTORY")
 	rootCmd.Flags().StringSlice("preserve", []string{""}, "preserve the specified attributes (default: mode,ownership,timestamps), if possible additional attributes: context, links, xattr, all")
 	rootCmd.Flags().String("reflink", "", "control clone/CoW copies")

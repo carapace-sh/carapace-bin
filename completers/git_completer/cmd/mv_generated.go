@@ -13,7 +13,7 @@ var mvCmd = &cobra.Command{
 
 func init() {
 	mvCmd.Flags().BoolP("force", "f", false, "force move/rename even if target exists")
-	mvCmd.Flags().BoolP("k", "k", false, "skip move/rename errors")
+	mvCmd.Flags().BoolS("k", "k", false, "skip move/rename errors")
 	mvCmd.Flags().BoolP("dry-run", "n", false, "dry run")
 	mvCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 	rootCmd.AddCommand(mvCmd)

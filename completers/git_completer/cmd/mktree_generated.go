@@ -14,6 +14,6 @@ var mktreeCmd = &cobra.Command{
 func init() {
 	mktreeCmd.Flags().Bool("batch", false, "allow creation of more than one tree")
 	mktreeCmd.Flags().Bool("missing", false, "allow missing objects")
-	mktreeCmd.Flags().BoolP("z", "z", false, "input is NUL terminated")
+	mktreeCmd.Flags().BoolS("z", "z", false, "input is NUL terminated")
 	rootCmd.AddCommand(mktreeCmd)
 }
