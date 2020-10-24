@@ -30,9 +30,6 @@ function fish_prompt \n\
     echo -n 'carapace ' \n\
     set_color normal\n\
 end\n\
-for c in (carapace --list)\n\
-  complete --erase -c "\$c"\n\
-end\n\
 carapace _carapace fish | source" \
        > /root/.config/fish/config.fish
 
