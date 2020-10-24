@@ -19,10 +19,7 @@ RUN ln -s /carapace-bin/cmd/carapace/carapace /usr/local/bin/carapace
 RUN echo "\n\
 PS1=$'\e[0;36mcarapace \e[0m'\n\
 source /usr/share/bash-completion/bash_completion \n\
-source <(carapace _carapace bash)\n\
-for c in \$(carapace --list); do\n\
-  source <(carapace \$c)\n\
-done" \
+source <(carapace _carapace)" \
        > /root/.bashrc
 
 # fish
@@ -33,28 +30,19 @@ function fish_prompt \n\
     echo -n 'carapace ' \n\
     set_color normal\n\
 end\n\
-carapace _carapace fish | source\n\
-rm -f /usr/share/fish/completions/chown.fish\n\
 for c in (carapace --list)\n\
   complete --erase -c "\$c"\n\
-  carapace \$c | source\n\
-end" \
+end\n\
+carapace _carapace fish | source" \
        > /root/.config/fish/config.fish
 
 # elvish
-RUN curl https://dl.elv.sh/linux-amd64/elvish-v0.14.1.tar.gz | tar -xvz \
+RUN curl https://dl.elv.sh/linux-amd64/elvish-HEAD.tar.gz | tar -xvz \
  && mv elvish-* /usr/local/bin/elvish
 
 RUN mkdir -p /root/.elvish/lib \
  && echo "\
-carapace _carapace elvish > /root/.elvish/lib/carapace.elv\n\
-use carapace\n\
-carapace --list | each [c]{\n\
-    edit:completion:arg-completer[\$c] = [@arg]{\n\
-        carapace \$c > /tmp/carapace_\$c; -source /tmp/carapace_\$c\n\
-        \$edit:completion:arg-completer[\$c] \$@arg\n\
-    }\n\
-}" \
+eval (carapace _carapace|slurp)" \
   > /root/.elvish/rc.elv
 
 # oil
@@ -68,10 +56,7 @@ RUN mkdir -p ~/.config/oil \
  && echo "\n\
 PS1=$'\e[0;36mcarapace \e[0m'\n\
 source <(sed 's/let \"OPTIND += 1\"/(( OPTIND += 1 ))/' /usr/share/bash-completion/bash_completion)\n\
-source <(carapace _carapace)\n\
-for c in \$(carapace --list); do\n\
-  source <(carapace \$c)\n\
-done" \
+source <(carapace _carapace)" \
        > ~/.config/oil/oshrc
 
 # powershell
@@ -79,8 +64,7 @@ RUN mkdir -p /root/.config/powershell \
  && echo "\n\
 function prompt {Write-Host \"carapace\" -NoNewLine -ForegroundColor 3; return \" \"}\n\
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete\n\
-carapace _carapace powershell | out-string | Invoke-Expression\n\
-carapace --list | foreach { carapace \$_ | Out-String | Invoke-Expression} " \
+carapace _carapace | out-string | Invoke-Expression" \
        > /root/.config/powershell/Microsoft.PowerShell_profile.ps1
 
 # xonsh
@@ -90,9 +74,7 @@ RUN pip3 install --no-cache-dir --disable-pip-version-check xonsh \
 RUN mkdir -p ~/.config/xonsh \
  && echo "\n\
 \$COMPLETIONS_CONFIRM=True\n\
-exec(\$(carapace _carapace xonsh)) \n\
-for \$c in \$(carapace --list).split('\\\n'):\n\
-    exec(\$(carapace \$c))"\
+exec(\$(carapace _carapace xonsh))"\
   > ~/.config/xonsh/rc.xsh
 
 # zsh
