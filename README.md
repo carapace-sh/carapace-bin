@@ -41,9 +41,6 @@ source <(carapace _carapace)
 eval (carapace _carapace|slurp)
 
 # fish
-for c in (carapace --list)
-  complete --erase -c "\$c"
-end
 carapace _carapace fish | source
 
 # oil
