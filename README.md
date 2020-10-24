@@ -29,7 +29,7 @@ docker-compose run --rm [bash|elvish|fish|oil|powershell|xonsh|zsh]
 [ln|mkdir|chown...] <TAB>
 ```
 
-## Getting Startet
+## Getting Started
 
 Ensure carapace is added to PATH.
 
