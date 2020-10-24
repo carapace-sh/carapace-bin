@@ -34,27 +34,27 @@ docker-compose run --rm [bash|elvish|fish|oil|powershell|xonsh|zsh]
 Ensure carapace is added to PATH.
 
 ```sh
-# bash
+# bash (~/.bashrc)
 source <(carapace _carapace)
 
-# elvish
+# elvish (~/.elvish/rc.elv)
 eval (carapace _carapace|slurp)
 
-# fish
-carapace _carapace fish | source
+# fish (~/.config/fish/config.fish)
+carapace _carapace | source
 
-# oil
+# oil (~/.config/oil/oshrc)
 source <(carapace _carapace)
 
-# powershell
+# powershell (~/.config/powershell/Microsoft.PowerShell_profile.ps1)
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
 
-# xonsh
+# xonsh (~/.config/xonsh/rc.xsh)
 COMPLETIONS_CONFIRM=True
 exec($(carapace _carapace xonsh))
 
-# zsh
+# zsh (~/.zshrc)
 source <(carapace _carapace zsh)
 ```
 
