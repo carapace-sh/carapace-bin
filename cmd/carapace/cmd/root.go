@@ -22,6 +22,7 @@ var rootCmd = &cobra.Command{
   oil:        source <(carapace _carapace)
   powershell: carapace _carapace | Out-String | Invoke-Expression
   xonsh:      exec($(carapace _carapace))
+  zsh:        source <(carapace _carapace)
 `,
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers,
