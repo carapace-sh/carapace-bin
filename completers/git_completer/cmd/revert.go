@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -34,7 +35,7 @@ func init() {
 
 	carapace.Gen(revertCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":  action.ActionCleanupMode(),
-		"gpg-sign": action.ActionGpgKeyIds(),
+		"gpg-sign": os.ActionGpgKeyIds(),
 		"strategy": action.ActionMergeStrategy(),
 		"strategy-option": carapace.ActionCallback(func(args []string) carapace.Action {
 			return action.ActionMergeStrategyOptions(revertCmd.Flag("strategy").Value.String())
