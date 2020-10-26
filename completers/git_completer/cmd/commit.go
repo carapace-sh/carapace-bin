@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -59,7 +60,7 @@ func init() {
 		"cleanup":            action.ActionCleanupMode(),
 		"file":               carapace.ActionFiles(""),
 		"fixup":              action.ActionRefs(action.RefOption{Commits: 100}),
-		"gpg-sign":           action.ActionGpgKeyIds(),
+		"gpg-sign":           os.ActionGpgKeyIds(),
 		"pathspec-from-file": carapace.ActionFiles(""),
 		"reedit-message":     action.ActionRefs(action.RefOption{Commits: 100}),
 		"reuse-message":      action.ActionRefs(action.RefOption{Commits: 100}),

@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -58,7 +59,7 @@ func init() {
 
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
 		"empty":         carapace.ActionValues("drop", "keep", "ask"),
-		"gpg-sign":      action.ActionGpgKeyIds(),
+		"gpg-sign":      os.ActionGpgKeyIds(),
 		"onto":          action.ActionRefs(action.RefOptionDefault),
 		"rebase-merges": carapace.ActionValues("rebase-cousins", "no-rebase-cousins"),
 		"strategy":      action.ActionMergeStrategy(),

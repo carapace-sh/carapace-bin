@@ -262,17 +262,6 @@ func ActionCleanupMode() carapace.Action {
 	)
 }
 
-func ActionGpgKeyIds() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if output, err := exec.Command("sh", "-c", "gpg --list-keys --with-colons | awk -F: '/^pub:|^uid:/ { print $5 $10}'").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			lines := strings.Split(string(output), "\n")
-			return carapace.ActionValuesDescribed(lines[:len(lines)-1]...)
-		}
-	})
-}
-
 func ActionMergeStrategy() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"octopus", "resolve cases with more than two heads",

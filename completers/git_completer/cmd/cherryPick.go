@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -41,7 +42,7 @@ func init() {
 
 	carapace.Gen(cherryPickCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":  action.ActionCleanupMode(),
-		"gpg-sign": action.ActionGpgKeyIds(),
+		"gpg-sign": os.ActionGpgKeyIds(),
 		"mainline": carapace.ActionValues("1", "2", "3", "4", "5"),
 		"strategy": action.ActionMergeStrategy(),
 		"strategy-option": carapace.ActionCallback(func(args []string) carapace.Action {
