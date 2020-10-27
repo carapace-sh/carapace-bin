@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/spf13/cobra"
 )
 
@@ -47,13 +47,13 @@ func init() {
 	})
 
 	carapace.Gen(pushCmd).PositionalCompletion(
-		action.ActionRemotes(),
+		git.ActionRemotes(),
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			if pushCmd.Flag("set-upstream").Changed {
 				// if set-upstream is set the desired remote branch is likely named the same as the current
-				return action.ActionCurrentBranch()
+				return git.ActionCurrentBranch()
 			} else {
-				return action.ActionRemoteBranches(args[0])
+				return git.ActionRemoteBranches(args[0])
 			}
 		}),
 	)

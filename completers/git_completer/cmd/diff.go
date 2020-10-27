@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/spf13/cobra"
 )
 
@@ -124,7 +124,7 @@ func init() {
 					return carapace.ActionFiles("")
 				}
 			}
-			return action.ActionRefs(action.RefOptionDefault)
+			return git.ActionRefs(git.RefOptionDefault)
 		}),
 	)
 }

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/spf13/cobra"
 )
 
@@ -36,9 +36,9 @@ func init() {
 	carapace.Gen(restoreCmd).FlagCompletion(carapace.ActionMap{
 		"conflict":           carapace.ActionValues("merge", "diff3"),
 		"pathspec-from-file": carapace.ActionFiles(""),
-		"recurse-submodules": action.ActionRefs(action.RefOptionDefault),
-		"source":             action.ActionRefs(action.RefOptionDefault),
+		"recurse-submodules": git.ActionRefs(git.RefOptionDefault),
+		"source":             git.ActionRefs(git.RefOptionDefault),
 	})
 
-	carapace.Gen(restoreCmd).PositionalAnyCompletion(action.ActionUnstagedChanges())
+	carapace.Gen(restoreCmd).PositionalAnyCompletion(git.ActionUnstagedChanges())
 }

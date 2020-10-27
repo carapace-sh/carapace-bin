@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
@@ -57,14 +57,14 @@ func init() {
 	commitCmd.Flag("untracked-files").NoOptDefVal = " "
 
 	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup":            action.ActionCleanupMode(),
+		"cleanup":            git.ActionCleanupMode(),
 		"file":               carapace.ActionFiles(""),
-		"fixup":              action.ActionRefs(action.RefOption{Commits: 100}),
+		"fixup":              git.ActionRefs(git.RefOption{Commits: 100}),
 		"gpg-sign":           os.ActionGpgKeyIds(),
 		"pathspec-from-file": carapace.ActionFiles(""),
-		"reedit-message":     action.ActionRefs(action.RefOption{Commits: 100}),
-		"reuse-message":      action.ActionRefs(action.RefOption{Commits: 100}),
-		"squash":             action.ActionRefs(action.RefOption{Commits: 100}),
+		"reedit-message":     git.ActionRefs(git.RefOption{Commits: 100}),
+		"reuse-message":      git.ActionRefs(git.RefOption{Commits: 100}),
+		"squash":             git.ActionRefs(git.RefOption{Commits: 100}),
 		"template":           carapace.ActionFiles(""),
 		"untracked-files":    carapace.ActionValues("all", "normal", "no"),
 	})
