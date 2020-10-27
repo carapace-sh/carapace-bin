@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/spf13/cobra"
 )
 
@@ -42,15 +42,15 @@ func init() {
 	rootCmd.AddCommand(checkoutCmd)
 
 	carapace.Gen(checkoutCmd).FlagCompletion(carapace.ActionMap{
-		"b":                  action.ActionRefs(action.RefOption{LocalBranches: true}),
-		"B":                  action.ActionRefs(action.RefOption{LocalBranches: true}),
+		"b":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"B":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
 		"conflict":           carapace.ActionValues("merge", "diff3"),
-		"orphan":             action.ActionRefs(action.RefOption{LocalBranches: true, RemoteBranches: true}),
+		"orphan":             git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
 		"pathspec-from-file": carapace.ActionFiles(""),
 	})
 
 	carapace.Gen(checkoutCmd).PositionalCompletion(
-		action.ActionRefs(action.RefOptionDefault),
+		git.ActionRefs(git.RefOptionDefault),
 	)
 
 	carapace.Gen(checkoutCmd).PositionalAnyCompletion(

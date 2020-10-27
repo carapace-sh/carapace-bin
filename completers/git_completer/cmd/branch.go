@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/spf13/cobra"
 )
 
@@ -49,15 +49,15 @@ func init() {
 
 	carapace.Gen(branchCmd).FlagCompletion(carapace.ActionMap{
 		"color":           carapace.ActionValues("always", "auto", "never"),
-		"contains":        action.ActionRefs(action.RefOptionDefault),
-		"D":               action.ActionRefs(action.RefOptionDefault),
-		"delete":          action.ActionRefs(action.RefOption{LocalBranches: true, RemoteBranches: true}),
-		"merged":          action.ActionRefs(action.RefOptionDefault),
-		"no-contains":     action.ActionRefs(action.RefOptionDefault),
-		"no-merged":       action.ActionRefs(action.RefOptionDefault),
-		"points-at":       action.ActionRefs(action.RefOption{RemoteBranches: true, Tags: true}),
-		"set-upstream-to": action.ActionRefs(action.RefOption{RemoteBranches: true, Tags: true}),
-		"sort":            action.ActionFieldNames(),
+		"contains":        git.ActionRefs(git.RefOptionDefault),
+		"D":               git.ActionRefs(git.RefOptionDefault),
+		"delete":          git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
+		"merged":          git.ActionRefs(git.RefOptionDefault),
+		"no-contains":     git.ActionRefs(git.RefOptionDefault),
+		"no-merged":       git.ActionRefs(git.RefOptionDefault),
+		"points-at":       git.ActionRefs(git.RefOption{RemoteBranches: true, Tags: true}),
+		"set-upstream-to": git.ActionRefs(git.RefOption{RemoteBranches: true, Tags: true}),
+		"sort":            git.ActionFieldNames(),
 	})
 
 	carapace.Gen(branchCmd).PositionalAnyCompletion(
@@ -75,7 +75,7 @@ func init() {
 					branchCmd.Flag("copy").Changed ||
 					branchCmd.Flag("delete").Changed ||
 					branchCmd.Flag("edit-description").Changed {
-					return action.ActionRefs(action.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true})
+					return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true})
 				}
 			case 1:
 				if branchCmd.Flag("M").Changed ||
@@ -84,12 +84,12 @@ func init() {
 					branchCmd.Flag("move").Changed ||
 					branchCmd.Flag("copy").Changed ||
 					branchCmd.Flag("delete").Changed {
-					return action.ActionRefs(action.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true})
+					return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true})
 				}
 			default:
 				if branchCmd.Flag("D").Changed ||
 					branchCmd.Flag("delete").Changed {
-					return action.ActionRefs(action.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true})
+					return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true})
 				}
 			}
 			return carapace.ActionValues()

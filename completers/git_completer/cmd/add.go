@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/spf13/cobra"
 )
 
@@ -43,7 +43,7 @@ func init() {
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionUnstagedChanges().Invoke(args).Filter(args).ToA()
+			return git.ActionUnstagedChanges().Invoke(args).Filter(args).ToA()
 		}),
 	)
 }

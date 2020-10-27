@@ -1,11 +1,9 @@
-package action
+package git
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
-	"strconv"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -19,6 +17,9 @@ func rootDir() (string, error) {
 	}
 }
 
+// ActionRemotes completes remote names
+//   origin
+//   upstream
 func ActionRemotes() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if output, err := exec.Command("git", "remote").Output(); err != nil {
@@ -26,32 +27,6 @@ func ActionRemotes() carapace.Action {
 		} else {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[:len(lines)-1]...)
-		}
-	})
-}
-
-func ActionRemoteBranches(remote string) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if branches, err := Branches(RefOption{RemoteBranches: true}); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			vals := make([]string, 0)
-			for _, branch := range branches {
-				if strings.HasPrefix(branch.Name, remote) {
-					vals = append(vals, strings.TrimPrefix(branch.Name, remote+"/"), branch.Message)
-				}
-			}
-			return carapace.ActionValuesDescribed(vals...)
-		}
-	})
-}
-
-func ActionCurrentBranch() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if output, err := exec.Command("git", "branch", "--show-current").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			return carapace.ActionValues(strings.Split(string(output), "\n")[0])
 		}
 	})
 }
@@ -70,108 +45,27 @@ var RefOptionDefault = RefOption{
 	Tags:           true,
 }
 
-type Branch struct {
-	Name    string
-	Message string
-}
-
-func Branches(refOption RefOption) ([]Branch, error) {
-	args := []string{"branch", "--format", "%(refname)\n%(subject)"}
-	if refOption.LocalBranches && refOption.RemoteBranches {
-		args = append(args, "--all")
-	} else if !refOption.LocalBranches && refOption.RemoteBranches {
-		args = append(args, "--remote")
-	} else if !refOption.LocalBranches && !refOption.RemoteBranches {
-		return []Branch{}, nil
-	}
-
-	if output, err := exec.Command("git", args...).Output(); err != nil {
-		return nil, err
-	} else {
-		lines := strings.Split(string(output), "\n")
-		branches := make([]Branch, len(lines)/2)
-		for index, line := range lines[:len(lines)-1] {
-			if index%2 == 0 {
-				trimmed := strings.TrimPrefix(line, "refs/heads/")
-				trimmed = strings.TrimPrefix(trimmed, "refs/remotes/")
-				branches[index/2] = Branch{trimmed, lines[index+1]}
-			}
-		}
-		return branches, err
-	}
-}
-
-type Tag struct {
-	Name    string
-	Message string
-}
-
-func Tags(refOption RefOption) ([]Tag, error) {
-	if !refOption.Tags {
-		return []Tag{}, nil
-	}
-
-	if output, err := exec.Command("git", "tag", "--format", "%(refname)\n%(subject)").Output(); err != nil {
-		return nil, err
-	} else {
-		lines := strings.Split(string(output), "\n")
-		tags := make([]Tag, len(lines)/2)
-		for index, line := range lines[:len(lines)-1] {
-			if index%2 == 0 {
-				tags[index/2] = Tag{strings.TrimPrefix(line, "refs/tags/"), lines[index+1]}
-			}
-		}
-		return tags, err
-	}
-}
-
-type Commit struct {
-	Ref     string
-	Message string
-}
-
-func Commits(refOption RefOption) ([]Commit, error) {
-	if refOption.Commits <= 0 {
-		return []Commit{}, nil
-	}
-
-	if output, err := exec.Command("git", "log", "--pretty=tformat:%h   %<(64,trunc)%s", "--all", "--max-count", strconv.Itoa(refOption.Commits)).Output(); err != nil {
-		return nil, err
-	} else {
-		lines := strings.Split(string(output), "\n")
-		commits := make([]Commit, 0)
-		for index, line := range lines[:len(lines)-1] {
-			if len(line) > 10 { // TODO duh?
-				commits = append(commits, Commit{line[:7], strings.TrimSpace(line[10:])})
-				if index == 0 {
-					commits = append(commits, Commit{"HEAD", strings.TrimSpace(line[10:])}) // TOD fix this
-				} else {
-					commits = append(commits, Commit{"HEAD~" + fmt.Sprintf("%0"+strconv.Itoa(len(strconv.Itoa(refOption.Commits))-1)+"d", index), strings.TrimSpace(line[10:])}) // TOD fix this
-				}
-			}
-		}
-		return commits, nil
-	}
-}
-
+// ActionRefs completes git references (commits, branches, tags)
+//   HEAD~1 (last commit msg)
+//   v0.0.1 (last commit msg)
 func ActionRefs(refOption RefOption) carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		vals := make([]string, 0)
-		if branches, err := Branches(refOption); err != nil {
+		if branches, err := branches(refOption); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, branch := range branches {
 				vals = append(vals, branch.Name, branch.Message)
 			}
 		}
-		if commits, err := Commits(refOption); err != nil {
+		if commits, err := commits(refOption); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, commit := range commits {
 				vals = append(vals, commit.Ref, commit.Message)
 			}
 		}
-		if tags, err := Tags(refOption); err != nil {
+		if tags, err := tags(refOption); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, tag := range tags {
@@ -184,6 +78,9 @@ func ActionRefs(refOption RefOption) carapace.Action {
 	})
 }
 
+// ActionUnstagedChanges completes unstaged changes
+//   fileA ( M)
+//   pathA/fileB (??)
 func ActionUnstagedChanges() carapace.Action {
 	// TODO multiparts action to complete step by step
 	return carapace.ActionCallback(func(args []string) carapace.Action {
@@ -213,6 +110,9 @@ func ActionUnstagedChanges() carapace.Action {
 	})
 }
 
+// ActionFieldNames completes field names
+//   author (the author header-field)
+//   body (the body of the message)
 func ActionFieldNames() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"authordate", "the date component of the author header-field",
@@ -252,6 +152,9 @@ func ActionFieldNames() carapace.Action {
 	)
 }
 
+// ActionCleanupMode completes cleanup modes
+//   strip (strip empty lines and trailing whitespace)
+//   whitespace (same as strip except #commentary is not removed)
 func ActionCleanupMode() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"strip", "strip empty lines and trailing whitespace",
@@ -262,6 +165,9 @@ func ActionCleanupMode() carapace.Action {
 	)
 }
 
+// ActionMergeStrategy completes merge strategies
+//   octopus (resolve cases with more than two heads)
+//   ours (auto-resolve cleanly by favoring our version)
 func ActionMergeStrategy() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"octopus", "resolve cases with more than two heads",
@@ -272,6 +178,9 @@ func ActionMergeStrategy() carapace.Action {
 	)
 }
 
+// ActionMergeStrategyOptions completes merge strategy options
+//   ours (auto-resolve favoring ours)
+//   theirs (auto-resolve favoring theirs)
 func ActionMergeStrategyOptions(strategy string) carapace.Action {
 	switch strategy {
 	case "recursive":
@@ -293,22 +202,4 @@ func ActionMergeStrategyOptions(strategy string) carapace.Action {
 	default:
 		return carapace.ActionValues()
 	}
-}
-
-func ActionStashes() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if output, err := exec.Command("git", "stash", "list").Output(); err != nil {
-			return carapace.ActionValues(err.Error())
-		} else {
-			lines := strings.Split(string(output), "\n")
-			vals := make([]string, (len(lines)-1)*2)
-
-			for index, line := range lines[:len(lines)-1] {
-				splitted := strings.SplitN(line, ": ", 2)
-				vals[index*2] = splitted[0]
-				vals[(index*2)+1] = splitted[1]
-			}
-			return carapace.ActionValuesDescribed(vals...)
-		}
-	})
 }

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
@@ -34,13 +34,13 @@ func init() {
 	revertCmd.Flag("gpg-sign").NoOptDefVal = " "
 
 	carapace.Gen(revertCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup":  action.ActionCleanupMode(),
+		"cleanup":  git.ActionCleanupMode(),
 		"gpg-sign": os.ActionGpgKeyIds(),
-		"strategy": action.ActionMergeStrategy(),
+		"strategy": git.ActionMergeStrategy(),
 		"strategy-option": carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionMergeStrategyOptions(revertCmd.Flag("strategy").Value.String())
+			return git.ActionMergeStrategyOptions(revertCmd.Flag("strategy").Value.String())
 		}),
 	})
 
-	carapace.Gen(revertCmd).PositionalAnyCompletion(action.ActionRefs(action.RefOptionDefault))
+	carapace.Gen(revertCmd).PositionalAnyCompletion(git.ActionRefs(git.RefOptionDefault))
 }

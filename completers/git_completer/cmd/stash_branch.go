@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/spf13/cobra"
 )
 
@@ -18,7 +18,7 @@ func init() {
 	stashCmd.AddCommand(stash_branchCmd)
 
 	carapace.Gen(stash_branchCmd).PositionalCompletion(
-		action.ActionRefs(action.RefOption{LocalBranches: true}),
-		action.ActionStashes(),
+		git.ActionRefs(git.RefOption{LocalBranches: true}),
+		git.ActionStashes(),
 	)
 }

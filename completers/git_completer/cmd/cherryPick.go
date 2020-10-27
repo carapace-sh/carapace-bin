@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
@@ -41,12 +41,12 @@ func init() {
 	cherryPickCmd.Flag("gpg-sign").NoOptDefVal = " "
 
 	carapace.Gen(cherryPickCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup":  action.ActionCleanupMode(),
+		"cleanup":  git.ActionCleanupMode(),
 		"gpg-sign": os.ActionGpgKeyIds(),
 		"mainline": carapace.ActionValues("1", "2", "3", "4", "5"),
-		"strategy": action.ActionMergeStrategy(),
+		"strategy": git.ActionMergeStrategy(),
 		"strategy-option": carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionMergeStrategyOptions(cherryPickCmd.Flag("strategy").Value.String())
+			return git.ActionMergeStrategyOptions(cherryPickCmd.Flag("strategy").Value.String())
 		}),
 	})
 
@@ -54,7 +54,7 @@ func init() {
 		// TODO `...` divider not yet working
 		carapace.ActionMultiParts("...", func(args, parts []string) carapace.Action {
 			if len(parts) < 2 {
-				return action.ActionRefs(action.RefOptionDefault)
+				return git.ActionRefs(git.RefOptionDefault)
 			}
 			return carapace.ActionValues()
 		}),
