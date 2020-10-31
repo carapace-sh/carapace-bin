@@ -12,6 +12,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -96,20 +97,29 @@ func init() {
 	)
 }
 
+func locateBuildConfig() (target string, err error) {
+	folder := "."
+	if rootCmd.Flag("project-dir").Changed {
+		folder = rootCmd.Flag("project-dir").Value.String()
+	}
+
+	if target, err = util.FindReverse(folder, "build.gradle"); err != nil {
+		target, err = util.FindReverse(folder, "build.gradle.kts")
+	}
+	return
+}
+
 func ActionTasks() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
-		folder := "."
-		if rootCmd.Flag("project-dir").Changed {
-			folder = rootCmd.Flag("project-dir").Value.String()
-		}
-
 		var content []byte
-		var err error
-		if content, err = ioutil.ReadFile(folder + "/build.gradle"); err != nil {
-			if content, err = ioutil.ReadFile(folder + "/build.gradle.kts"); err != nil {
-				return carapace.ActionMessage("no build.gradle file present")
+		if target, err := locateBuildConfig(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			if content, err = ioutil.ReadFile(target); err != nil {
+				return carapace.ActionMessage(err.Error())
 			}
 		}
+
 		checksum := fmt.Sprintf("%x", sha1.Sum(content))
 
 		if tasks, err := tasks(checksum); err != nil {
