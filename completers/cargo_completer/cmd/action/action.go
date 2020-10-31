@@ -4,9 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"os/exec"
 	"strings"
 
+	"github.com/mitchellh/go-homedir"
 	"github.com/pelletier/go-toml"
 	"github.com/spf13/cobra"
 
@@ -175,5 +177,53 @@ func ActionProfiles(cmd *cobra.Command) carapace.Action {
 			profiles = append(profiles, key)
 		}
 		return carapace.ActionValues(profiles...)
+	})
+}
+
+type config struct {
+	Registries map[string]struct {
+		Index string
+	}
+}
+
+func parseConfig(path string) (c config, err error) {
+	var content []byte
+	if content, err = ioutil.ReadFile(path); err == nil {
+		err = toml.Unmarshal(content, &c)
+	}
+	return
+}
+
+func ActionRegistries() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		registries := make(map[string]string)
+
+		cargo_home := os.Getenv("CARGO_HOME")
+		if cargo_home == "" {
+			cargo_home = "~"
+		}
+
+		if path, err := homedir.Expand(cargo_home + "/.cargo/config.toml"); err == nil {
+			if c, err := parseConfig(path); err == nil {
+				for key, value := range c.Registries {
+					registries[key] = value.Index
+				}
+			}
+
+		}
+
+		if path, err := util.FindReverse("", "config.toml"); err == nil {
+			if c, err := parseConfig(path); err == nil {
+				for key, value := range c.Registries {
+					registries[key] = value.Index
+				}
+			}
+		}
+
+		vals := make([]string, 0)
+		for key, value := range registries {
+			vals = append(vals, key, value)
+		}
+		return carapace.ActionValuesDescribed(vals...)
 	})
 }
