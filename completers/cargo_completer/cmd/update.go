@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,10 @@ func init() {
 	updateCmd.Flags().BoolP("quiet", "q", false, "No output printed to stdout")
 	updateCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
 	rootCmd.AddCommand(updateCmd)
+
+	carapace.Gen(updateCmd).FlagCompletion(carapace.ActionMap{
+		"color":         action.ActionColorModes(),
+		"manifest-path": carapace.ActionFiles(""),
+		"package":       action.ActionDependencies(updateCmd),
+	})
 }
