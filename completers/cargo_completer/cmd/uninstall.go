@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,17 @@ func init() {
 	uninstallCmd.Flags().String("root", "", "Directory to uninstall packages from")
 	uninstallCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
 	rootCmd.AddCommand(uninstallCmd)
+
+	carapace.Gen(uninstallCmd).FlagCompletion(carapace.ActionMap{
+		// TODO bin
+		"color":   action.ActionColorModes(),
+		"package": action.ActionInstalledPackages(uninstallCmd.Flag("root").Value.String()),
+		"root":    carapace.ActionDirectories(),
+	})
+
+	carapace.Gen(uninstallCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(args []string) carapace.Action {
+			return action.ActionInstalledPackages(uninstallCmd.Flag("root").Value.String()).Invoke(args).Filter(args).ToA()
+		}),
+	)
 }

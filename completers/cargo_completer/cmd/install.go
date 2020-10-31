@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -47,4 +48,22 @@ func init() {
 	installCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
 	installCmd.Flags().String("version", "", "Specify a version to install")
 	rootCmd.AddCommand(installCmd)
+
+	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
+		"bin": action.ActionTargets(installCmd, action.TargetOpts{Bin: true}),
+		// TODO "branch"
+		"color":   action.ActionColorModes(),
+		"example": action.ActionTargets(installCmd, action.TargetOpts{Example: true}),
+		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
+			return action.ActionFeatures(installCmd).Invoke(args).Filter(parts).ToA()
+		}),
+		"path":     carapace.ActionFiles(""),
+		"profile":  action.ActionProfiles(installCmd),
+		"registry": action.ActionRegistries(),
+		// TODO rev
+		"root": carapace.ActionDirectories(),
+		// TODO tag
+		"target-dir": carapace.ActionDirectories(),
+		// TODO version
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -36,4 +37,14 @@ func init() {
 	publishCmd.Flags().String("token", "", "Token to use when uploading")
 	publishCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
 	rootCmd.AddCommand(publishCmd)
+
+	carapace.Gen(publishCmd).FlagCompletion(carapace.ActionMap{
+		"color": action.ActionColorModes(),
+		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
+			return action.ActionFeatures(publishCmd).Invoke(args).Filter(parts).ToA()
+		}),
+		"manifest-path": carapace.ActionFiles(""),
+		"registry":      action.ActionRegistries(),
+		"target-dir":    carapace.ActionDirectories(),
+	})
 }
