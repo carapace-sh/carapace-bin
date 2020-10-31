@@ -11,6 +11,7 @@ import (
 
 	"github.com/mitchellh/go-homedir"
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/util"
 )
 
 type Plugin struct {
@@ -160,15 +161,7 @@ func locatePom(file string) (pom string) {
 	if file != "" {
 		return file
 	}
-	if wd, err := os.Getwd(); err == nil {
-		for {
-			pom = wd + "/pom.xml"
-			if _, err := os.Stat(pom); err == nil || wd == "/" || wd == "." {
-				break
-			}
-			wd = filepath.Dir(wd)
-		}
-	}
+	pom, _ = util.FindReverse("", "pom.xml")
 	return
 }
 
