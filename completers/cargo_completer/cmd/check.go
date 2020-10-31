@@ -51,8 +51,17 @@ func init() {
 	rootCmd.AddCommand(checkCmd)
 
 	carapace.Gen(checkCmd).FlagCompletion(carapace.ActionMap{
-		"color":         action.ActionColorModes(),
-		"manifest-path": carapace.ActionFiles(""),
-		"target-dir":    carapace.ActionDirectories(),
+		"bench":          action.ActionTargets(checkCmd, action.TargetOpts{Bench: true}),
+		"bin":            action.ActionTargets(checkCmd, action.TargetOpts{Bin: true}),
+		"color":          action.ActionColorModes(),
+		"example":        action.ActionTargets(checkCmd, action.TargetOpts{Example: true}),
+		"exclude":        action.ActionWorkspaceMembers(checkCmd),
+		"features":       action.ActionFeatures(checkCmd),
+		"manifest-path":  carapace.ActionFiles(""),
+		"message-format": action.ActionMessageFormats(),
+		"package":        action.ActionDependencies(buildCmd),
+		"profile":        action.ActionProfiles(checkCmd),
+		"target-dir":     carapace.ActionDirectories(),
+		"test":           action.ActionTargets(checkCmd, action.TargetOpts{Test: true}),
 	})
 }
