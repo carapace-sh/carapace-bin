@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,9 +27,16 @@ func init() {
 	initCmd.Flags().Bool("offline", false, "Run without accessing the network")
 	initCmd.Flags().BoolP("quiet", "q", false, "No output printed to stdout")
 	initCmd.Flags().String("registry", "", "Registry to use")
-	initCmd.Flags().String("vcs", "", "Initialize a new repository for the given version control system (git, hg, pijul, or")
+	initCmd.Flags().String("vcs", "", "Initialize a new repository for the given version control system")
 	initCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
 	rootCmd.AddCommand(initCmd)
+
+	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
+		"color":    action.ActionColorModes(),
+		"edition":  carapace.ActionValues("2015", "2018"),
+		"registry": action.ActionRegistries(),
+		"vcs":      carapace.ActionValues("git", "hg", "pijul", "vcs", "none"),
+	})
 
 	carapace.Gen(initCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
