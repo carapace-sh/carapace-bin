@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,9 @@ func init() {
 	searchCmd.Flags().String("registry", "", "Registry to use")
 	searchCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
 	rootCmd.AddCommand(searchCmd)
+
+	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{
+		"color":    action.ActionColorModes(),
+		"registry": action.ActionRegistries(),
+	})
 }
