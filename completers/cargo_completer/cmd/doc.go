@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -43,4 +44,18 @@ func init() {
 	docCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
 	docCmd.Flags().Bool("workspace", false, "Document all packages in the workspace")
 	rootCmd.AddCommand(docCmd)
+
+	carapace.Gen(docCmd).FlagCompletion(carapace.ActionMap{
+		"bin":     action.ActionTargets(docCmd, action.TargetOpts{Bin: true}),
+		"color":   action.ActionColorModes(),
+		"exclude": action.ActionWorkspaceMembers(docCmd),
+		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
+			return action.ActionFeatures(docCmd).Invoke(args).Filter(parts).ToA()
+		}),
+		"manifest-path":  carapace.ActionFiles(""),
+		"message-format": action.ActionMessageFormats(),
+		"package":        action.ActionDependencies(docCmd),
+		"profile":        action.ActionProfiles(docCmd),
+		"target-dir":     carapace.ActionDirectories(),
+	})
 }
