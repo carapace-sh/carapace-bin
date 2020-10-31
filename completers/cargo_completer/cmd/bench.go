@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -47,4 +48,20 @@ func init() {
 	benchCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
 	benchCmd.Flags().Bool("workspace", false, "Benchmark all packages in the workspace")
 	rootCmd.AddCommand(benchCmd)
+
+	carapace.Gen(benchCmd).FlagCompletion(carapace.ActionMap{
+		"bench":   action.ActionTargets(benchCmd, action.TargetOpts{Bench: true}),
+		"bin":     action.ActionTargets(benchCmd, action.TargetOpts{Bin: true}),
+		"color":   action.ActionColorModes(),
+		"example": action.ActionTargets(benchCmd, action.TargetOpts{Example: true}),
+		"exclude": action.ActionWorkspaceMembers(benchCmd),
+		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
+			return action.ActionFeatures(benchCmd).Invoke(args).Filter(parts).ToA()
+		}),
+		"manifest-path":  carapace.ActionFiles(""),
+		"message-format": action.ActionMessageFormats(),
+		"package":        action.ActionDependencies(benchCmd),
+		"target-dir":     carapace.ActionDirectories(),
+		"test":           action.ActionTargets(benchCmd, action.TargetOpts{Test: true}),
+	})
 }
