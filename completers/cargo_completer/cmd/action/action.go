@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"regexp"
 	"strings"
 
 	"github.com/mitchellh/go-homedir"
@@ -225,5 +226,29 @@ func ActionRegistries() carapace.Action {
 			vals = append(vals, key, value)
 		}
 		return carapace.ActionValuesDescribed(vals...)
+	})
+}
+
+func ActionInstalledPackages(root string) carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		opts := []string{"install", "--list"}
+		if root != "" {
+			opts = append(args, "--root", root)
+		}
+
+		if output, err := exec.Command("cargo", opts...).Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			re := regexp.MustCompile(`(?P<package>^[^ ]+) (?P<version>[^:]+):$`)
+			vals := make([]string, 0)
+
+			for _, line := range strings.Split(string(output), "\n") {
+				if re.MatchString(line) {
+					matches := re.FindStringSubmatch(line)
+					vals = append(vals, matches[1], matches[2])
+				}
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		}
 	})
 }
