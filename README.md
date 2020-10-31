@@ -110,7 +110,7 @@ ln --help | caraparse -n ln > completers/ln_completer/cmd/root.go
 ```
 - run the generator
 ```sh
-cd carapace/cmd && ./generate.sh > completers.go
+go generate ./...
 ```
 - build & test
 ```sh
