@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -37,4 +38,18 @@ func init() {
 	runCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	runCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
 	rootCmd.AddCommand(runCmd)
+
+	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
+		"bin":     action.ActionTargets(runCmd, action.TargetOpts{Bin: true}),
+		"color":   action.ActionColorModes(),
+		"example": action.ActionTargets(runCmd, action.TargetOpts{Example: true}),
+		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
+			return action.ActionFeatures(runCmd).Invoke(args).Filter(parts).ToA()
+		}),
+		"manifest-path":  carapace.ActionFiles(""),
+		"message-format": action.ActionMessageFormats(),
+		"package":        action.ActionDependencies(runCmd),
+		"profile":        action.ActionProfiles(runCmd),
+		"target-dir":     carapace.ActionDirectories(),
+	})
 }
