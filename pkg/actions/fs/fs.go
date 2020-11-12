@@ -2,6 +2,7 @@
 package fs
 
 import (
+	"archive/zip"
 	"io/ioutil"
 	"os/exec"
 	"regexp"
@@ -46,6 +47,24 @@ func ActionSubDirectories(path string) carapace.Action {
 				}
 			}
 			return carapace.ActionValues(dirs...)
+		}
+	})
+}
+
+// ActionZipFileContents completes contents of given zip file
+//   fileA
+//   dirA/fileB
+func ActionZipFileContents(file string) carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if reader, err := zip.OpenReader(file); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			defer reader.Close()
+			vals := make([]string, 0)
+			for _, f := range reader.File {
+				vals = append(vals, f.Name)
+			}
+			return carapace.ActionValues(vals...).Invoke(args).ToMultipartsA("/")
 		}
 	})
 }
