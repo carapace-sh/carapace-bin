@@ -41,6 +41,7 @@ source <(carapace _carapace)
 eval (carapace _carapace|slurp)
 
 # fish (~/.config/fish/config.fish)
+mkdir -p ~/.config/fish/completions
 carapace --list | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
 carapace _carapace | source
 

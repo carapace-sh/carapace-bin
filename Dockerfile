@@ -30,6 +30,8 @@ function fish_prompt \n\
     echo -n 'carapace ' \n\
     set_color normal\n\
 end\n\
+mkdir -p ~/.config/fish/completions\n\
+carapace --list | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)\n\
 carapace _carapace fish | source" \
        > /root/.config/fish/config.fish
 
