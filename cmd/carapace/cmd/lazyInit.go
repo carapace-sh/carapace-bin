@@ -42,9 +42,8 @@ end
 `
 	complete := make([]string, len(completers))
 	for index, completer := range completers {
-		complete[index] = fmt.Sprintf(`complete --do-complete='%v ' > /dev/null
-complete --erase -c '%v'
-complete -c '%v' -f -a '(_carapace_lazy %v)'`, completer, completer, completer, completer)
+		complete[index] = fmt.Sprintf(` complete --erase -c '%v'
+complete -c '%v' -f -a '(_carapace_lazy %v)'`, completer, completer, completer)
 	}
 	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
 }
