@@ -23,7 +23,12 @@ func init() {
 	image_lsCmd.Flags().BoolP("quiet", "q", false, "Only show numeric IDs")
 	imageCmd.AddCommand(image_lsCmd)
 
-	carapace.Gen(image_lsCmd).PositionalCompletion(
-		action.ActionRepositoryTags(),
-	)
+	rootAlias(image_lsCmd, func(cmd *cobra.Command, isAlias bool) {
+		if isAlias {
+			cmd.Use = "images"
+		}
+		carapace.Gen(cmd).PositionalCompletion(
+			action.ActionRepositoryTags(),
+		)
+	})
 }

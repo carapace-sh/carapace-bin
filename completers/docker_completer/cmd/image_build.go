@@ -51,15 +51,17 @@ func init() {
 	image_buildCmd.Flags().String("ulimit", "", "Ulimit options (default [])")
 	imageCmd.AddCommand(image_buildCmd)
 
-	carapace.Gen(image_buildCmd).FlagCompletion(carapace.ActionMap{
-		"file":      carapace.ActionFiles(""),
-		"iidfile":   carapace.ActionFiles(""),
-		"isolation": carapace.ActionValues("default", "hyperv", "process"),
-		"network":   carapace.ActionValues("bridge", "container", "host", "none"),
-		"progress":  carapace.ActionValues("auto", "plain", "tty"),
-	})
+	rootAlias(image_buildCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+			"file":      carapace.ActionFiles(""),
+			"iidfile":   carapace.ActionFiles(""),
+			"isolation": carapace.ActionValues("default", "hyperv", "process"),
+			"network":   carapace.ActionValues("bridge", "container", "host", "none"),
+			"progress":  carapace.ActionValues("auto", "plain", "tty"),
+		})
 
-	carapace.Gen(image_buildCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
-	)
+		carapace.Gen(cmd).PositionalCompletion(
+			carapace.ActionFiles(""),
+		)
+	})
 }

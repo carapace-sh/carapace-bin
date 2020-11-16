@@ -21,7 +21,9 @@ func init() {
 	image_historyCmd.Flags().BoolP("quiet", "q", false, "Only show numeric IDs")
 	imageCmd.AddCommand(image_historyCmd)
 
-	carapace.Gen(image_historyCmd).PositionalCompletion(
-		action.ActionRepositoryTags(),
-	)
+	rootAlias(image_historyCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalCompletion(
+			action.ActionRepositoryTags(),
+		)
+	})
 }

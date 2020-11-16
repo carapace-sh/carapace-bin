@@ -18,5 +18,7 @@ func init() {
 	container_restartCmd.Flags().StringP("time", "t", "", "Seconds to wait for stop before killing the container (default 10)")
 	containerCmd.AddCommand(container_restartCmd)
 
-	carapace.Gen(container_restartCmd).PositionalAnyCompletion(action.ActionContainers())
+	rootAlias(container_restartCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalAnyCompletion(action.ActionContainers())
+	})
 }

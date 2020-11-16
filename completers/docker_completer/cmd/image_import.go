@@ -20,8 +20,10 @@ func init() {
 	image_importCmd.Flags().String("platform", "", "Set platform if server is multi-platform capable")
 	imageCmd.AddCommand(image_importCmd)
 
-	carapace.Gen(image_importCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
-		action.ActionRepositoryTags(),
-	)
+	rootAlias(image_importCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalCompletion(
+			carapace.ActionFiles(""),
+			action.ActionRepositoryTags(),
+		)
+	})
 }

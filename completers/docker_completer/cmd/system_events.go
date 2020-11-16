@@ -19,4 +19,6 @@ func init() {
 	system_eventsCmd.Flags().String("since", "", "Show all events created since timestamp")
 	system_eventsCmd.Flags().String("until", "", "Stream events until this timestamp")
 	systemCmd.AddCommand(system_eventsCmd)
+
+	rootAlias(system_eventsCmd, func(cmd *cobra.Command, isAlias bool) {})
 }

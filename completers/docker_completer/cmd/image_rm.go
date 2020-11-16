@@ -19,5 +19,10 @@ func init() {
 	image_rmCmd.Flags().Bool("no-prune", false, "Do not delete untagged parents")
 	imageCmd.AddCommand(image_rmCmd)
 
-	carapace.Gen(image_rmCmd).PositionalAnyCompletion(action.ActionRepositoryTags())
+	rootAlias(image_rmCmd, func(cmd *cobra.Command, isAlias bool) {
+		if isAlias {
+			cmd.Use = "rmi"
+		}
+		carapace.Gen(cmd).PositionalAnyCompletion(action.ActionRepositoryTags())
+	})
 }

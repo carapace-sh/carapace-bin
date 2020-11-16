@@ -18,7 +18,9 @@ func init() {
 	image_pushCmd.Flags().Bool("disable-content-trust", false, "Skip image signing (default true)")
 	imageCmd.AddCommand(image_pushCmd)
 
-	carapace.Gen(image_pushCmd).PositionalCompletion(
-		action.ActionRepositoryTags(),
-	)
+	rootAlias(image_pushCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalCompletion(
+			action.ActionRepositoryTags(),
+		)
+	})
 }

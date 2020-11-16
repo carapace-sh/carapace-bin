@@ -17,5 +17,7 @@ func init() {
 
 	containerCmd.AddCommand(container_waitCmd)
 
-	carapace.Gen(container_waitCmd).PositionalAnyCompletion(action.ActionContainers())
+	rootAlias(container_waitCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalAnyCompletion(action.ActionContainers())
+	})
 }

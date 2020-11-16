@@ -19,6 +19,8 @@ func init() {
 	container_cpCmd.Flags().BoolP("follow-link", "L", false, "Always follow symbol link in SRC_PATH")
 	containerCmd.AddCommand(container_cpCmd)
 
-	// TODO local/containerpath container/localpath (conditional via callback)
-	carapace.Gen(container_cpCmd).PositionalCompletion(action.ActionContainerPath())
+	rootAlias(container_cpCmd, func(cmd *cobra.Command, isAlias bool) {
+		// TODO local/containerpath container/localpath (conditional via callback)
+		carapace.Gen(cmd).PositionalCompletion(action.ActionContainerPath())
+	})
 }

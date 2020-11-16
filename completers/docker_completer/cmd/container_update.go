@@ -32,9 +32,11 @@ func init() {
 	container_updateCmd.Flags().String("restart", "", "Restart policy to apply when a container exits")
 	containerCmd.AddCommand(container_updateCmd)
 
-	carapace.Gen(container_updateCmd).FlagCompletion(carapace.ActionMap{
-		"restart": carapace.ActionValues("always", "no", "on-failure", "unless-stopped"),
-	})
+	rootAlias(container_updateCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+			"restart": carapace.ActionValues("always", "no", "on-failure", "unless-stopped"),
+		})
 
-	carapace.Gen(container_updateCmd).PositionalAnyCompletion(action.ActionContainers())
+		carapace.Gen(cmd).PositionalAnyCompletion(action.ActionContainers())
+	})
 }

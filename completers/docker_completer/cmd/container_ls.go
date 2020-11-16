@@ -24,7 +24,14 @@ func init() {
 	container_lsCmd.Flags().BoolP("size", "s", false, "Display total file sizes")
 	containerCmd.AddCommand(container_lsCmd)
 
-	carapace.Gen(container_lsCmd).FlagCompletion(carapace.ActionMap{
-		"filter": carapace.ActionValues("ancestor=", "exited=", "health=", "label=", "network=", "since=", "volume=", "before=", "expose=", "id=", "name=", "publish=", "status="),
+	rootAlias(container_lsCmd, func(cmd *cobra.Command, isAlias bool) {
+		if isAlias {
+			cmd.Use = "ps"
+		}
+
+		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+			"filter": carapace.ActionValues("ancestor=", "exited=", "health=", "label=", "network=", "since=", "volume=", "before=", "expose=", "id=", "name=", "publish=", "status="),
+		})
+
 	})
 }

@@ -21,5 +21,7 @@ func init() {
 	image_pullCmd.Flags().BoolP("quiet", "q", false, "Suppress verbose output")
 	imageCmd.AddCommand(image_pullCmd)
 
-	carapace.Gen(image_pullCmd).PositionalCompletion(action.ActionRepositoryTags())
+	rootAlias(image_pullCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalCompletion(action.ActionRepositoryTags())
+	})
 }
