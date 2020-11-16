@@ -18,5 +18,7 @@ func init() {
 	container_stopCmd.Flags().StringP("time", "t", "", "Seconds to wait for stop before killing it (default 10)")
 	containerCmd.AddCommand(container_stopCmd)
 
-	carapace.Gen(container_stopCmd).PositionalAnyCompletion(action.ActionContainers())
+	rootAlias(container_stopCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalAnyCompletion(action.ActionContainers())
+	})
 }

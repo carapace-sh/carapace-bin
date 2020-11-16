@@ -45,7 +45,7 @@ eval (carapace _carapace|slurp)" \
   > /root/.elvish/rc.elv
 
 # oil
-RUN curl https://www.oilshell.org/download/oil-0.8.0.tar.gz | tar -xvz \
+RUN curl https://www.oilshell.org/download/oil-0.8.4.tar.gz | tar -xvz \
  && cd oil-*/ \
  && ./configure \
  && make \

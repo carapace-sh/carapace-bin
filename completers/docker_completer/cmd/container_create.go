@@ -109,23 +109,25 @@ func init() {
 	container_createCmd.Flags().StringP("workdir", "w", "", "Working directory inside the container")
 	containerCmd.AddCommand(container_createCmd)
 
-	carapace.Gen(container_createCmd).FlagCompletion(carapace.ActionMap{
-		"attach":       carapace.ActionValues("STDERR", "STDIN", "STDOUT"),
-		"blkio-weight": carapace.ActionValues("10", "100", "500", "1000"),
-		"cidfile":      carapace.ActionFiles(""),
-		"cpu-shares":   carapace.ActionValues("0", "10", "100", "200", "500", "800", "1000"),
-		"device":       carapace.ActionFiles(""),
-		"env-file":     carapace.ActionFiles(""),
-		"group-add":    os.ActionGroups(),
-		"isolation":    carapace.ActionValues("default", "hyperv", "process"),
-		"label-file":   carapace.ActionFiles(""),
-		"log-driver":   action.ActionLogDrivers(),
-		"network":      carapace.ActionValues("bridge", "container", "host", "none"),
-		"pid":          carapace.ActionValues("container", "host"),
-		"user":         os.ActionUsers(),
-	})
+	rootAlias(container_createCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+			"attach":       carapace.ActionValues("STDERR", "STDIN", "STDOUT"),
+			"blkio-weight": carapace.ActionValues("10", "100", "500", "1000"),
+			"cidfile":      carapace.ActionFiles(""),
+			"cpu-shares":   carapace.ActionValues("0", "10", "100", "200", "500", "800", "1000"),
+			"device":       carapace.ActionFiles(""),
+			"env-file":     carapace.ActionFiles(""),
+			"group-add":    os.ActionGroups(),
+			"isolation":    carapace.ActionValues("default", "hyperv", "process"),
+			"label-file":   carapace.ActionFiles(""),
+			"log-driver":   action.ActionLogDrivers(),
+			"network":      carapace.ActionValues("bridge", "container", "host", "none"),
+			"pid":          carapace.ActionValues("container", "host"),
+			"user":         os.ActionUsers(),
+		})
 
-	carapace.Gen(container_createCmd).PositionalCompletion(
-		action.ActionRepositoryTags(),
-	)
+		carapace.Gen(cmd).PositionalCompletion(
+			action.ActionRepositoryTags(),
+		)
+	})
 }

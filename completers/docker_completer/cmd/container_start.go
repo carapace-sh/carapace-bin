@@ -22,8 +22,11 @@ func init() {
 	container_startCmd.Flags().BoolP("interactive", "i", false, "Attach container's STDIN")
 	containerCmd.AddCommand(container_startCmd)
 
-	carapace.Gen(container_startCmd).FlagCompletion(carapace.ActionMap{
-		// TODO checkpoint completion
-		"detach-keys": action.ActionDetachKeys(),
+	rootAlias(container_startCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+			// TODO checkpoint completion
+			"detach-keys": action.ActionDetachKeys(),
+		})
+
 	})
 }

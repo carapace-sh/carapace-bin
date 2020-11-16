@@ -23,7 +23,9 @@ func init() {
 	container_logsCmd.Flags().String("until", "", "Show logs before a timestamp (e.g. 2013-01-02T13:23:37) or relative")
 	containerCmd.AddCommand(container_logsCmd)
 
-	carapace.Gen(container_logsCmd).PositionalCompletion(
-		action.ActionContainers(),
-	)
+	rootAlias(container_logsCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalCompletion(
+			action.ActionContainers(),
+		)
+	})
 }

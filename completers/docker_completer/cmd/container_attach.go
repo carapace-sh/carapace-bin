@@ -20,11 +20,13 @@ func init() {
 	container_attachCmd.Flags().Bool("sig-proxy", false, "Proxy all received signals to the process (default true)")
 	containerCmd.AddCommand(container_attachCmd)
 
-	carapace.Gen(container_attachCmd).FlagCompletion(carapace.ActionMap{
-		"detach-keys": action.ActionDetachKeys(),
-	})
+	rootAlias(container_attachCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+			"detach-keys": action.ActionDetachKeys(),
+		})
 
-	carapace.Gen(container_attachCmd).PositionalCompletion(
-		action.ActionContainers(),
-	)
+		carapace.Gen(cmd).PositionalCompletion(
+			action.ActionContainers(),
+		)
+	})
 }

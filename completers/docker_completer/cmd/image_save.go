@@ -18,9 +18,11 @@ func init() {
 	image_saveCmd.Flags().StringP("output", "o", "", "Write to a file, instead of STDOUT")
 	imageCmd.AddCommand(image_saveCmd)
 
-	carapace.Gen(image_saveCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionFiles(""),
-	})
+	rootAlias(image_saveCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+			"output": carapace.ActionFiles(""),
+		})
 
-	carapace.Gen(image_saveCmd).PositionalAnyCompletion(action.ActionRepositoryTags())
+		carapace.Gen(cmd).PositionalAnyCompletion(action.ActionRepositoryTags())
+	})
 }

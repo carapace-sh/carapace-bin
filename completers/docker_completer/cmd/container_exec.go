@@ -26,12 +26,14 @@ func init() {
 	container_execCmd.Flags().StringP("workdir", "w", "", "Working directory inside the container")
 	containerCmd.AddCommand(container_execCmd)
 
-	carapace.Gen(container_execCmd).FlagCompletion(carapace.ActionMap{
-		"detach-keys": action.ActionDetachKeys(),
-		"user":        os.ActionUserGroup(),
-	})
+	rootAlias(container_execCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+			"detach-keys": action.ActionDetachKeys(),
+			"user":        os.ActionUserGroup(),
+		})
 
-	carapace.Gen(container_execCmd).PositionalCompletion(
-		action.ActionContainers(),
-	)
+		carapace.Gen(cmd).PositionalCompletion(
+			action.ActionContainers(),
+		)
+	})
 }

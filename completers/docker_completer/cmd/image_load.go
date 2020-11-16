@@ -18,7 +18,9 @@ func init() {
 	image_loadCmd.Flags().BoolP("quiet", "q", false, "Suppress the load output")
 	imageCmd.AddCommand(image_loadCmd)
 
-	carapace.Gen(image_loadCmd).FlagCompletion(carapace.ActionMap{
-		"input": carapace.ActionFiles(""),
+	rootAlias(image_loadCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+			"input": carapace.ActionFiles(""),
+		})
 	})
 }

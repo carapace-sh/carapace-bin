@@ -21,5 +21,7 @@ func init() {
 	container_statsCmd.Flags().Bool("no-trunc", false, "Do not truncate output")
 	containerCmd.AddCommand(container_statsCmd)
 
-	carapace.Gen(container_statsCmd).PositionalAnyCompletion(action.ActionContainers())
+	rootAlias(container_statsCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalAnyCompletion(action.ActionContainers())
+	})
 }

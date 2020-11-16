@@ -20,5 +20,7 @@ func init() {
 	container_rmCmd.Flags().BoolP("volumes", "v", false, "Remove anonymous volumes associated with the container")
 	containerCmd.AddCommand(container_rmCmd)
 
-	carapace.Gen(container_rmCmd).PositionalAnyCompletion(action.ActionContainers())
+	rootAlias(container_rmCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalAnyCompletion(action.ActionContainers())
+	})
 }

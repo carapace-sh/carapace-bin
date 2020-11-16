@@ -18,7 +18,9 @@ func init() {
 	container_exportCmd.Flags().StringP("output", "o", "", "Write to a file, instead of STDOUT")
 	containerCmd.AddCommand(container_exportCmd)
 
-	carapace.Gen(container_exportCmd).PositionalCompletion(
-		action.ActionContainers(),
-	)
+	rootAlias(container_exportCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalCompletion(
+			action.ActionContainers(),
+		)
+	})
 }

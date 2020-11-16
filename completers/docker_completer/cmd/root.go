@@ -36,47 +36,13 @@ func init() {
 		"tlscert":   carapace.ActionFiles(""),
 		"tlskey":    carapace.ActionFiles(""),
 	})
+}
 
-	// TODO breaks completion needs somehow be duplicated (actions must be registered under the correct name)
-	//rootCmd.AddCommand(container_attachCmd)
-	//rootCmd.AddCommand(image_buildCmd)
-	//rootCmd.AddCommand(container_commitCmd)
-	//rootCmd.AddCommand(container_cpCmd)
-	//rootCmd.AddCommand(container_createCmd)
-	//rootCmd.AddCommand(container_diffCmd)
-	//rootCmd.AddCommand(system_eventsCmd)
-	//rootCmd.AddCommand(container_execCmd)
-	//rootCmd.AddCommand(container_exportCmd)
-	//rootCmd.AddCommand(image_historyCmd)
-	//imagesCmd := image_lsCmd
-	//imagesCmd.Use = "images"
-	//rootCmd.AddCommand(imagesCmd)
-	//rootCmd.AddCommand(image_importCmd)
-	//rootCmd.AddCommand(system_infoCmd)
-	//rootCmd.AddCommand(container_killCmd)
-	//rootCmd.AddCommand(image_loadCmd)
-	//rootCmd.AddCommand(container_logsCmd)
-	//rootCmd.AddCommand(container_pauseCmd)
-	//rootCmd.AddCommand(container_portCmd)
-	//psCmd := container_lsCmd
-	//psCmd.Use = "ps"
-	//rootCmd.AddCommand(psCmd)
-	//rootCmd.AddCommand(image_pullCmd)
-	//rootCmd.AddCommand(image_pushCmd)
-	//rootCmd.AddCommand(container_renameCmd)
-	//rootCmd.AddCommand(container_restartCmd)
-	//rootCmd.AddCommand(container_rmCmd)
-	//rmiCmd := image_rmCmd
-	//rmiCmd.Use = "rmi"
-	//rootCmd.AddCommand(rmiCmd)
-	//rootCmd.AddCommand(container_runCmd)
-	//rootCmd.AddCommand(image_saveCmd)
-	//rootCmd.AddCommand(container_startCmd)
-	//rootCmd.AddCommand(container_statsCmd)
-	//rootCmd.AddCommand(container_stopCmd)
-	//rootCmd.AddCommand(image_tagCmd)
-	//rootCmd.AddCommand(container_topCmd)
-	//rootCmd.AddCommand(container_unpauseCmd)
-	//rootCmd.AddCommand(container_updateCmd)
-	//rootCmd.AddCommand(container_waitCmd)
+func rootAlias(cmd *cobra.Command, initCompletion func(cmd *cobra.Command, isAlias bool)) {
+	aliasCmd := cmd
+	rootCmd.AddCommand(aliasCmd)
+
+	for i, c := range []*cobra.Command{cmd, aliasCmd} {
+		initCompletion(c, i == 1)
+	}
 }

@@ -17,8 +17,10 @@ func init() {
 
 	imageCmd.AddCommand(image_tagCmd)
 
-	carapace.Gen(image_tagCmd).PositionalCompletion(
-		action.ActionRepositoryTags(),
-		action.ActionRepositoryTags(),
-	)
+	rootAlias(image_tagCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).PositionalCompletion(
+			action.ActionRepositoryTags(),
+			action.ActionRepositoryTags(),
+		)
+	})
 }

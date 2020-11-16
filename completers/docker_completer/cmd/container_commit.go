@@ -21,12 +21,14 @@ func init() {
 	container_commitCmd.Flags().BoolP("pause", "p", false, "Pause container during commit (default true)")
 	containerCmd.AddCommand(container_commitCmd)
 
-	carapace.Gen(container_commitCmd).FlagCompletion(carapace.ActionMap{
-		"change": carapace.ActionFiles(""),
-	})
+	rootAlias(container_commitCmd, func(cmd *cobra.Command, isAlias bool) {
+		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+			"change": carapace.ActionFiles(""),
+		})
 
-	carapace.Gen(container_commitCmd).PositionalCompletion(
-		action.ActionContainers(),
-		action.ActionRepositoryTags(),
-	)
+		carapace.Gen(cmd).PositionalCompletion(
+			action.ActionContainers(),
+			action.ActionRepositoryTags(),
+		)
+	})
 }
