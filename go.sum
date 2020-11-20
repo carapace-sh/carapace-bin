@@ -171,8 +171,8 @@ github.com/prometheus/procfs v0.0.0-20190507164030-5867b95ac084/go.mod h1:TjEm7z
 github.com/prometheus/tsdb v0.7.1/go.mod h1:qhTCs0VvXwvX/y3TZrWD7rabWM+ijKTux40TwIPHuXU=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
-github.com/rsteube/carapace v0.1.7 h1:0Xx0QrAxlzkwWmanumwBuLsQ6ZFK3p7/nCtHRx+Ts7w=
-github.com/rsteube/carapace v0.1.7/go.mod h1:MW6dtBU0/zTdivRaQzlCHyceSHKzZP0xHqjXmgeSN5Y=
+github.com/rsteube/carapace v0.1.12 h1:lcYRhAzemMjQsJSW9C+wr6ihtP7wPx3mPZjGtVBoeWI=
+github.com/rsteube/carapace v0.1.12/go.mod h1:MW6dtBU0/zTdivRaQzlCHyceSHKzZP0xHqjXmgeSN5Y=
 github.com/russross/blackfriday/v2 v2.0.1/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/ryanuber/columnize v0.0.0-20160712163229-9b3edd62028f/go.mod h1:sm1tb6uqfes/u+d4ooFouqFdy9/2g9QGwK3SQygK0Ts=
 github.com/sean-/seed v0.0.0-20170313163322-e2103e2c3529/go.mod h1:DxrIzT+xaE7yg65j358z/aeFdxmN0P9QXhEzd20vsDc=
