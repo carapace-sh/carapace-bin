@@ -10,7 +10,7 @@ import (
 	"github.com/mitchellh/go-ps"
 )
 
-func bash(completers []string) string {
+func bash_lazy(completers []string) string {
 	snippet := `_carapace_lazy() {
   source <(carapace $1 bash)
    $"_$1_completions"
@@ -20,7 +20,7 @@ complete -F _carapace_lazy %v
 	return fmt.Sprintf(snippet, strings.Join(completers, " "))
 }
 
-func elvish(completers []string) string {
+func elvish_lazy(completers []string) string {
 	snippet := `put %v | each [c]{
     edit:completion:arg-completer[$c] = [@arg]{
         edit:completion:arg-completer[$c] = [@arg]{}
@@ -32,7 +32,7 @@ func elvish(completers []string) string {
 	return fmt.Sprintf(snippet, strings.Join(completers, " "))
 }
 
-func fish(completers []string) string {
+func fish_lazy(completers []string) string {
 	snippet := `function _carapace_lazy
    complete -c $argv[1] -e
    carapace $argv[1] fish | source
@@ -48,7 +48,7 @@ complete -c '%v' -f -a '(_carapace_lazy %v)'`, completer, completer, completer)
 	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
 }
 
-func powershell(completers []string) string {
+func powershell_lazy(completers []string) string {
 	snippet := `$_carapace_lazy = {
     param($wordToComplete, $commandAst, $cursorPosition)
     $completer = $commandAst.CommandElements[0].Value
@@ -64,7 +64,7 @@ func powershell(completers []string) string {
 	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
 }
 
-func xonsh(completers []string) string {
+func xonsh_lazy(completers []string) string {
 	snippet := `from shlex import split
 import re
 import pathlib
@@ -92,7 +92,7 @@ _add_one_completer('carapace_lazy', _carapace_lazy, 'start')
 	return fmt.Sprintf(snippet, strings.Join(complete, ", "))
 }
 
-func zsh(completers []string) string {
+func zsh_lazy(completers []string) string {
 	snippet := `function _carapace_lazy {
     source <(carapace $words[1] zsh)
 }
