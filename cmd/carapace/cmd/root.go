@@ -38,19 +38,19 @@ var rootCmd = &cobra.Command{
 		case "_carapace":
 			switch determineShell() {
 			case "bash":
-				fmt.Println(bash(completers))
+				fmt.Println(bash_lazy(completers))
 			case "elvish":
-				fmt.Println(elvish(completers))
+				fmt.Println(elvish_lazy(completers))
 			case "fish":
-				fmt.Println(fish(completers))
+				fmt.Println(fish_lazy(completers))
 			case "oil":
-				fmt.Println(bash(completers))
+				fmt.Println(bash_lazy(completers))
 			case "powershell":
-				fmt.Println(powershell(completers))
+				fmt.Println(powershell_lazy(completers))
 			case "xonsh":
-				fmt.Println(xonsh(completers))
+				fmt.Println(xonsh_lazy(completers))
 			case "zsh":
-				fmt.Println(zsh(completers))
+				fmt.Println(zsh_lazy(completers))
 			}
 			// TODO lazy completion script for all completers
 		default:
