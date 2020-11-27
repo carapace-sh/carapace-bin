@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/spf13/cobra"
 )
 
@@ -45,4 +47,8 @@ func init() {
 	configCmd.Flags().Bool("worktree", false, "use per-worktree config file")
 	configCmd.Flags().BoolP("null", "z", false, "terminate values with NUL byte")
 	rootCmd.AddCommand(configCmd)
+
+	carapace.Gen(configCmd).PositionalCompletion(
+		git.ActionConfigs(),
+	)
 }
