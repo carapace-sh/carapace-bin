@@ -41,6 +41,7 @@ func init() {
 	carapace.Gen(getCmd).FlagCompletion(carapace.ActionMap{
 		"filename":  carapace.ActionFiles(""),
 		"kustomize": carapace.ActionDirectories(),
+		"output":    carapace.ActionValues("json", "yaml", "wide", "custom-columns=", "custom-columns-file=", "go-template=", "go-template-file=", "jsonpath=", "jsonpath-file="),
 		"template":  carapace.ActionFiles(""),
 	})
 

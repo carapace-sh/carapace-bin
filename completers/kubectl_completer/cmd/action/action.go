@@ -9,11 +9,14 @@ import (
 
 func ActionApiResources() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if output, err := exec.Command("kubectl", "api-resources", "--output=name").Output(); err != nil {
+		if output, err := exec.Command("kubectl", "api-resources", "--output=name", "--cached").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			lines := strings.Split(string(output), "\n")
-			return carapace.ActionValues(lines...)
+			for index, line := range lines {
+				lines[index] = strings.SplitN(line, ".", 2)[0]
+			}
+			return carapace.ActionValues(lines[:len(lines)-1]...)
 		}
 	})
 }
