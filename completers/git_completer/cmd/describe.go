@@ -1,18 +1,21 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/spf13/cobra"
 )
 
 var describeCmd = &cobra.Command{
 	Use:   "describe",
 	Short: "Give an object a human readable name based on an available ref",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	describeCmd.Flags().String("abbrev", "", "use <n> digits to display SHA-1s")
+	carapace.Gen(describeCmd).Standalone()
+
+	describeCmd.Flags().String("abbrev", "", "use <n> digits to display object names")
 	describeCmd.Flags().Bool("all", false, "use any ref")
 	describeCmd.Flags().Bool("always", false, "show abbreviated commit object as fallback")
 	describeCmd.Flags().String("broken", "", "append <mark> on broken working tree (default: \"-broken\")")
@@ -27,4 +30,18 @@ func init() {
 	describeCmd.Flags().String("match", "", "only consider tags matching <pattern>")
 	describeCmd.Flags().Bool("tags", false, "use any tag, even unannotated")
 	rootCmd.AddCommand(describeCmd)
+
+	describeCmd.Flag("abbrev").NoOptDefVal = "8"
+	describeCmd.Flag("dirty").NoOptDefVal = "-dirty"
+	describeCmd.Flag("broken").NoOptDefVal = "-broken"
+
+	carapace.Gen(describeCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(args []string) carapace.Action {
+			if describeCmd.Flag("dirty").Changed || describeCmd.Flag("broken").Changed {
+				return carapace.ActionValues()
+			} else {
+				return git.ActionRefs(git.RefOptionDefault)
+			}
+		}),
+	)
 }
