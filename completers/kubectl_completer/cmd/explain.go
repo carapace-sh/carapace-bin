@@ -8,7 +8,7 @@ import (
 
 var explainCmd = &cobra.Command{
 	Use:   "explain",
-	Short: "",
+	Short: "Documentation of resources",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
