@@ -15,8 +15,8 @@ var explainCmd = &cobra.Command{
 func init() {
 	carapace.Gen(explainCmd).Standalone()
 
-	explainCmd.Flags().String("api-version", "", "get different explanations for particular API version")
-	explainCmd.Flags().Bool("recursive", false, "print the fields of fields")
+	explainCmd.Flags().String("api-version", "", "Get different explanations for particular API version (API group/version)")
+	explainCmd.Flags().Bool("recursive", false, "Print the fields of fields (Currently only 1 level deep)")
 	rootCmd.AddCommand(explainCmd)
 
 	carapace.Gen(explainCmd).PositionalCompletion(
