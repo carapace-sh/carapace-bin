@@ -1,0 +1,3 @@
+_kubectl__api-versions
+api-versions
+Print the supported API versions on the server, in the form of "group/version"

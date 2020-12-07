@@ -1,0 +1,5 @@
+_kubectl__explain
+explain
+Documentation of resources
+--api-version VAL  Get different explanations for particular API version (API group/version)
+--recursive   Print the fields of fields (Currently only 1 level deep)

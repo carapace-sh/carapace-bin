@@ -1,0 +1,4 @@
+_kubectl__plugin__list
+list
+list all visible plugin executables on a user's PATH
+--name-only   If true, display only the binary name of each plugin, rather than its full path

@@ -1,0 +1,3 @@
+_kubectl__cluster-info
+cluster-info
+Display cluster info

@@ -1,0 +1,27 @@
+_kubectl__expose
+expose
+Take a replication controller, service, deployment or pod and expose it as a new Kubernetes Service
+--allow-missing-template-keys   If true, ignore any errors in templates when a field or map key is missing in the template. Only app
+--cluster-ip VAL  ClusterIP to be assigned to the service. Leave empty to auto-allocate, or set to 'None' to create a 
+--container-port VAL  Synonym for --target-port
+--dry-run VAL  Must be "none", "server", or "client". If client strategy, only print the object that would be sent,
+--external-ip VAL  Additional external IP address (not managed by Kubernetes) to accept for the service. If this IP is 
+--field-manager VAL  Name of the manager used to track field ownership.
+-f, --filename VAL  Filename, directory, or URL to files identifying the resource to expose a service
+--generator VAL  The name of the API generator to use. There are 2 generators: 'service/v1' and 'service/v2'. The onl
+-k, --kustomize VAL  Process the kustomization directory. This flag can't be used together with -f or -R.
+-l, --labels VAL  Labels to apply to the service created by this call.
+--load-balancer-ip VAL  IP to assign to the LoadBalancer. If empty, an ephemeral IP will be created and used (cloud-provider
+--name VAL  The name for the newly created object.
+-o, --output VAL  Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|js
+--overrides VAL  An inline JSON override for the generated object. If this is non-empty, it is used to override the g
+--port VAL  The port that the service should serve on. Copied from the resource being exposed, if unspecified
+--protocol VAL  The network protocol for the service to be created. Default is 'TCP'.
+--record   Record current kubectl command in the resource annotation. If set to false, do not record the comman
+-R, --recursive   Process the directory used in -f, --filename recursively. Useful when you want to manage related man
+--save-config   If true, the configuration of current object will be saved in its annotation. Otherwise, the annotat
+--selector VAL  A label selector to use for this service. Only equality-based selector requirements are supported. I
+--session-affinity VAL  If non-empty, set the session affinity for the service to this; legal values: 'None', 'ClientIP'
+--target-port VAL  Name or number for the port on the container that the service should direct traffic to. Optional.
+--template VAL  Template string or path to template file to use when -o=go-template, -o=go-template-file. The templa
+--type VAL  Type for this service: ClusterIP, NodePort, LoadBalancer, or ExternalName. Default is 'ClusterIP'.

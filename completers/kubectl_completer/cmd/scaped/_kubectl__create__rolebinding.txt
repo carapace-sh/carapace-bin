@@ -1,0 +1,14 @@
+_kubectl__create__rolebinding
+rolebinding
+Create a RoleBinding for a particular Role or ClusterRole
+--allow-missing-template-keys   If true, ignore any errors in templates when a field or map key is missing in the template. Only app
+--clusterrole VAL  ClusterRole this RoleBinding should reference
+--dry-run VAL  Must be "none", "server", or "client". If client strategy, only print the object that would be sent,
+--field-manager VAL  Name of the manager used to track field ownership.
+--group VAL  Groups to bind to the role
+-o, --output VAL  Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|js
+--role VAL  Role this RoleBinding should reference
+--save-config   If true, the configuration of current object will be saved in its annotation. Otherwise, the annotat
+--serviceaccount VAL  Service accounts to bind to the role, in the format <namespace>:<name>
+--template VAL  Template string or path to template file to use when -o=go-template, -o=go-template-file. The templa
+--validate   If true, use a schema to validate the input before sending it

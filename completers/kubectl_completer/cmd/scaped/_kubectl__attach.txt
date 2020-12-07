@@ -1,0 +1,7 @@
+_kubectl__attach
+attach
+Attach to a running container
+-c, --container VAL  Container name. If omitted, the first container in the pod will be chosen
+--pod-running-timeout VAL  The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running
+-i, --stdin   Pass stdin to the container
+-t, --tty   Stdin is a TTY

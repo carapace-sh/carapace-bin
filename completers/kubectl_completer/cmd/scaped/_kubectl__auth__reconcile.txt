@@ -1,0 +1,12 @@
+_kubectl__auth__reconcile
+reconcile
+Reconciles rules for RBAC Role, RoleBinding, ClusterRole, and ClusterRole binding objects
+--allow-missing-template-keys   If true, ignore any errors in templates when a field or map key is missing in the template. Only app
+--dry-run VAL  Must be "none", "server", or "client". If client strategy, only print the object that would be sent,
+-f, --filename VAL  Filename, directory, or URL to files identifying the resource to reconcile.
+-k, --kustomize VAL  Process the kustomization directory. This flag can't be used together with -f or -R.
+-o, --output VAL  Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|js
+-R, --recursive   Process the directory used in -f, --filename recursively. Useful when you want to manage related man
+--remove-extra-permissions   If true, removes extra permissions added to roles
+--remove-extra-subjects   If true, removes extra subjects added to rolebindings
+--template VAL  Template string or path to template file to use when -o=go-template, -o=go-template-file. The templa

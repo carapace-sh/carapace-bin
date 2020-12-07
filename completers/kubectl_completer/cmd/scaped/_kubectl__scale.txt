@@ -1,0 +1,17 @@
+_kubectl__scale
+scale
+Set a new size for a Deployment, ReplicaSet or Replication Controller
+--all   Select all resources in the namespace of the specified resource types
+--allow-missing-template-keys   If true, ignore any errors in templates when a field or map key is missing in the template. Only app
+--current-replicas VAL  Precondition for current size. Requires that the current size of the resource match this value in or
+--dry-run VAL  Must be "none", "server", or "client". If client strategy, only print the object that would be sent,
+-f, --filename VAL  Filename, directory, or URL to files identifying the resource to set a new size
+-k, --kustomize VAL  Process the kustomization directory. This flag can't be used together with -f or -R.
+-o, --output VAL  Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|js
+--record   Record current kubectl command in the resource annotation. If set to false, do not record the comman
+-R, --recursive   Process the directory used in -f, --filename recursively. Useful when you want to manage related man
+--replicas VAL  The new desired number of replicas. Required.
+--resource-version VAL  Precondition for resource version. Requires that the current resource version match this value in or
+-l, --selector VAL  Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
+--template VAL  Template string or path to template file to use when -o=go-template, -o=go-template-file. The templa
+--timeout VAL  The length of time to wait before giving up on a scale operation, zero means don't wait. Any other v

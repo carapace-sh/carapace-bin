@@ -1,0 +1,10 @@
+_kubectl__top__node
+node
+Display Resource (CPU/Memory/Storage) usage of nodes
+--heapster-namespace VAL  Namespace Heapster service is located in
+--heapster-port VAL  Port name in service to use
+--heapster-scheme VAL  Scheme (http or https) to connect to Heapster as
+--heapster-service VAL  Name of Heapster service
+--no-headers   If present, print output without headers
+-l, --selector VAL  Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
+--sort-by VAL  If non-empty, sort nodes list using specified field. The field can be either 'cpu' or 'memory'.

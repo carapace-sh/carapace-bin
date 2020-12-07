@@ -1,0 +1,15 @@
+_kubectl__wait
+wait
+Experimental: Wait for a specific condition on one or many resources.
+--all   Select all resources in the namespace of the specified resource types
+-A, --all-namespaces   If present, list the requested object(s) across all namespaces. Namespace in current context is igno
+--allow-missing-template-keys   If true, ignore any errors in templates when a field or map key is missing in the template. Only app
+--field-selector VAL  Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1
+-f, --filename VAL  identifying the resource.
+--for VAL  The condition to wait on: [delete|condition=condition-name].
+--local   If true, annotation will NOT contact api-server but run locally.
+-o, --output VAL  Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|js
+-R, --recursive   Process the directory used in -f, --filename recursively. Useful when you want to manage related man
+-l, --selector VAL  Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
+--template VAL  Template string or path to template file to use when -o=go-template, -o=go-template-file. The templa
+--timeout VAL  The length of time to wait before giving up.  Zero means check once and don't wait, negative means w
