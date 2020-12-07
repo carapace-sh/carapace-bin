@@ -31,3 +31,11 @@ func ActionResources(types string) carapace.Action {
 		}
 	})
 }
+
+func ActionDryRunOptions() carapace.Action {
+	return carapace.ActionValues("none", "server", "client")
+}
+
+func ActionOutputFormats() carapace.Action {
+	return carapace.ActionValues("json", "yaml", "name", "go-template", "go-template-file", "template", "templatefile", "jsonpath", "jsonpath-as-json", "jsonpath-file")
+}
