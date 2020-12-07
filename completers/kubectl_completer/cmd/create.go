@@ -33,7 +33,7 @@ func init() {
 	rootCmd.AddCommand(createCmd)
 
 	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":   action.ActionDryRunOptions(),
+		"dry-run":   action.ActionDryRunModes(),
 		"filename":  carapace.ActionFiles(""),
 		"kustomize": carapace.ActionDirectories(),
 		"output":    action.ActionOutputFormats(),
