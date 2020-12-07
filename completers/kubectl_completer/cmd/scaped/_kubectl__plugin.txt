@@ -1,0 +1,3 @@
+_kubectl__plugin
+plugin
+Provides utilities for interacting with plugins.

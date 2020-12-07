@@ -1,0 +1,6 @@
+_kubectl__version
+version
+Print the client and server version information
+--client   If true, shows client version only (no server required).
+-o, --output VAL  One of 'yaml' or 'json'.
+--short   If true, print just the version number.

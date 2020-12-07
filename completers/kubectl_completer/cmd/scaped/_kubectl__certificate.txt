@@ -1,0 +1,3 @@
+_kubectl__certificate
+certificate
+Modify certificate resources.

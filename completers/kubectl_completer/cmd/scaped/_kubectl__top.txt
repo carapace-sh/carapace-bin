@@ -1,0 +1,3 @@
+_kubectl__top
+top
+Display Resource (CPU/Memory/Storage) usage.

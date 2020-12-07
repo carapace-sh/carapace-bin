@@ -1,0 +1,3 @@
+_kubectl__config__get-clusters
+get-clusters
+Display clusters defined in the kubeconfig

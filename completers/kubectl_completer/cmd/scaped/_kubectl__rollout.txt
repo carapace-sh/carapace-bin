@@ -1,0 +1,3 @@
+_kubectl__rollout
+rollout
+Manage the rollout of a resource

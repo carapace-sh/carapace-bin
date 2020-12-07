@@ -1,0 +1,3 @@
+_kubectl__options
+options
+Print the list of flags inherited by all commands

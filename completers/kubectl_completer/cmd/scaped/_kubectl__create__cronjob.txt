@@ -1,0 +1,13 @@
+_kubectl__create__cronjob
+cronjob
+Create a cronjob with the specified name.
+--allow-missing-template-keys   If true, ignore any errors in templates when a field or map key is missing in the template. Only app
+--dry-run VAL  Must be "none", "server", or "client". If client strategy, only print the object that would be sent,
+--field-manager VAL  Name of the manager used to track field ownership.
+--image VAL  Image name to run.
+-o, --output VAL  Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|js
+--restart VAL  job's restart policy. supported values: OnFailure, Never
+--save-config   If true, the configuration of current object will be saved in its annotation. Otherwise, the annotat
+--schedule VAL  A schedule in the Cron format the job should be run with.
+--template VAL  Template string or path to template file to use when -o=go-template, -o=go-template-file. The templa
+--validate   If true, use a schema to validate the input before sending it

@@ -1,0 +1,16 @@
+_kubectl__set__subject
+subject
+Update User, Group or ServiceAccount in a RoleBinding/ClusterRoleBinding
+--all   Select all resources, including uninitialized ones, in the namespace of the specified resource types
+--allow-missing-template-keys   If true, ignore any errors in templates when a field or map key is missing in the template. Only app
+--dry-run VAL  Must be "none", "server", or "client". If client strategy, only print the object that would be sent,
+--field-manager VAL  Name of the manager used to track field ownership.
+-f, --filename VAL  Filename, directory, or URL to files the resource to update the subjects
+--group VAL  Groups to bind to the role
+-k, --kustomize VAL  Process the kustomization directory. This flag can't be used together with -f or -R.
+--local   If true, set subject will NOT contact api-server but run locally.
+-o, --output VAL  Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|js
+-R, --recursive   Process the directory used in -f, --filename recursively. Useful when you want to manage related man
+-l, --selector VAL  Selector (label query) to filter on, not including uninitialized ones, supports '=', '==', and '!='.
+--serviceaccount VAL  Service accounts to bind to the role
+--template VAL  Template string or path to template file to use when -o=go-template, -o=go-template-file. The templa

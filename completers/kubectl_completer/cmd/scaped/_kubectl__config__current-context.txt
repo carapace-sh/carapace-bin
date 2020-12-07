@@ -1,0 +1,3 @@
+_kubectl__config__current-context
+current-context
+Displays the current-context

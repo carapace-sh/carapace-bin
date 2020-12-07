@@ -1,0 +1,9 @@
+_kubectl__apply__set-last-applied
+set-last-applied
+Set the last-applied-configuration annotation on a live object to match the contents of a file.
+--allow-missing-template-keys   If true, ignore any errors in templates when a field or map key is missing in the template. Only app
+--create-annotation   Will create 'last-applied-configuration' annotations if current objects doesn't have one
+--dry-run VAL  Must be "none", "server", or "client". If client strategy, only print the object that would be sent,
+-f, --filename VAL  Filename, directory, or URL to files that contains the last-applied-configuration annotations
+-o, --output VAL  Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|js
+--template VAL  Template string or path to template file to use when -o=go-template, -o=go-template-file. The templa

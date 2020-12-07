@@ -1,0 +1,3 @@
+_kubectl__config__rename-context
+rename-context
+Renames a context from the kubeconfig file.

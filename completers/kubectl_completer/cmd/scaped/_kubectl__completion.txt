@@ -1,0 +1,3 @@
+_kubectl__completion
+completion
+Output shell completion code for the specified shell (bash or zsh)

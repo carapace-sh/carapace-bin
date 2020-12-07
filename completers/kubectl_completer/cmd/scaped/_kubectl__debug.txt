@@ -1,0 +1,18 @@
+_kubectl__debug
+debug
+Create debugging sessions for troubleshooting workloads and nodes
+--arguments-only   If specified, everything after -- will be passed to the new container as Args instead of Command.
+--attach   If true, wait for the container to start running, and then attach as if 'kubectl attach ...' were ca
+-c, --container VAL  Container name to use for debug container.
+--copy-to VAL  Create a copy of the target Pod with this name.
+--env VAL  Environment variables to set in the container.
+--image VAL  Container image to use for debug container.
+--image-pull-policy VAL  The image pull policy for the container. If left empty, this value will not be specified by the clie
+--quiet   If true, suppress informational messages.
+--replace   When used with '--copy-to', delete the original Pod.
+--same-node   When used with '--copy-to', schedule the copy of target Pod on the same node.
+--set-image VAL  When used with '--copy-to', a list of name=image pairs for changing container images, similar to how
+--share-processes   When used with '--copy-to', enable process namespace sharing in the copy.
+-i, --stdin   Keep stdin open on the container(s) in the pod, even if nothing is attached.
+--target VAL  When using an ephemeral container, target processes in this container name.
+-t, --tty   Allocate a TTY for the debugging container.

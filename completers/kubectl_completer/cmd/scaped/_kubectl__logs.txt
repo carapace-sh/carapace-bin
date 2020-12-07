@@ -1,0 +1,18 @@
+_kubectl__logs
+logs
+Print the logs for a container in a pod
+--all-containers   Get all containers' logs in the pod(s).
+-c, --container VAL  Print the logs of this container
+-f, --follow   Specify if the logs should be streamed.
+--ignore-errors   If watching / following pod logs, allow for any errors that occur to be non-fatal
+--insecure-skip-tls-verify-backend   Skip verifying the identity of the kubelet that logs are requested from.  In theory, an attacker cou
+--limit-bytes VAL  Maximum bytes of logs to return. Defaults to no limit.
+--max-log-requests VAL  Specify maximum number of concurrent logs to follow when using by a selector. Defaults to 5.
+--pod-running-timeout VAL  The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running
+--prefix   Prefix each log line with the log source (pod name and container name)
+-p, --previous   If true, print the logs for the previous instance of the container in a pod if it exists.
+-l, --selector VAL  Selector (label query) to filter on.
+--since VAL  Only return logs newer than a relative duration like 5s, 2m, or 3h. Defaults to all logs. Only one o
+--since-time VAL  Only return logs after a specific date (RFC3339). Defaults to all logs. Only one of since-time / sin
+--tail VAL  Lines of recent log file to display. Defaults to -1 with no selector, showing all log lines otherwis
+--timestamps   Include timestamps on each line in the log output

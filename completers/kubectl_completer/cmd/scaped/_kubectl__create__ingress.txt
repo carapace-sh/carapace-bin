@@ -1,0 +1,14 @@
+_kubectl__create__ingress
+ingress
+Create an ingress with the specified name.
+--allow-missing-template-keys   If true, ignore any errors in templates when a field or map key is missing in the template. Only app
+--annotation VAL  Annotation to insert in the ingress object, in the format annotation=value
+--class VAL  Ingress Class to be used
+--default-backend VAL  Default service for backend, in format of svcname:port
+--dry-run VAL  Must be "none", "server", or "client". If client strategy, only print the object that would be sent,
+--field-manager VAL  Name of the manager used to track field ownership.
+-o, --output VAL  Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|js
+--rule VAL  Rule in format host/path=service:port[,tls=secretname]. Paths containing the leading character '*' a
+--save-config   If true, the configuration of current object will be saved in its annotation. Otherwise, the annotat
+--template VAL  Template string or path to template file to use when -o=go-template, -o=go-template-file. The templa
+--validate   If true, use a schema to validate the input before sending it
