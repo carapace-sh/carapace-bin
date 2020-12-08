@@ -32,10 +32,14 @@ func ActionResources(types string) carapace.Action {
 	})
 }
 
-func ActionDryRunOptions() carapace.Action {
+func ActionDryRunModes() carapace.Action {
 	return carapace.ActionValues("none", "server", "client")
 }
 
 func ActionOutputFormats() carapace.Action {
 	return carapace.ActionValues("json", "yaml", "name", "go-template", "go-template-file", "template", "templatefile", "jsonpath", "jsonpath-as-json", "jsonpath-file")
+}
+
+func ActionResourceVerbs() carapace.Action {
+	return carapace.ActionValues("get", "list", "create", "update", "patch", "watch", "delete", "deletecollection")
 }

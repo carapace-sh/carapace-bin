@@ -60,7 +60,7 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":           action.ActionDryRunOptions(),
+		"dry-run":           action.ActionDryRunModes(),
 		"image-pull-policy": carapace.ActionValues("Never", "Always", "IfNotPresent"),
 		"kustomize":         carapace.ActionDirectories(),
 		"output":            action.ActionOutputFormats(),
