@@ -43,3 +43,16 @@ func ActionOutputFormats() carapace.Action {
 func ActionResourceVerbs() carapace.Action {
 	return carapace.ActionValues("get", "list", "create", "update", "patch", "watch", "delete", "deletecollection")
 }
+
+func ActionNamespaceServiceAccounts() carapace.Action {
+	return carapace.ActionMultiParts(":", func(args, parts []string) carapace.Action {
+		switch len(parts) {
+		case 0:
+			return ActionResources("", "namespaces").Invoke(args).Suffix(":").ToA()
+		case 1:
+			return ActionResources(parts[0], "serviceaccounts")
+		default:
+			return carapace.ActionValues()
+		}
+	})
+}
