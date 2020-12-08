@@ -56,3 +56,16 @@ func ActionNamespaceServiceAccounts() carapace.Action {
 		}
 	})
 }
+
+func ActionApiResourceResources() carapace.Action {
+	return carapace.ActionMultiParts("/", func(args, parts []string) carapace.Action {
+		switch len(parts) {
+		case 0:
+			return ActionApiResources().Invoke(args).Suffix("/").ToA()
+		case 1:
+			return ActionResources("", parts[0])
+		default:
+			return carapace.ActionValues()
+		}
+	})
+}
