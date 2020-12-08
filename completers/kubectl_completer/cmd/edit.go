@@ -37,15 +37,6 @@ func init() {
 	})
 
 	carapace.Gen(editCmd).PositionalCompletion(
-		carapace.ActionMultiParts("/", func(args, parts []string) carapace.Action {
-			switch len(parts) {
-			case 0:
-				return action.ActionApiResources().Invoke(args).Suffix("/").ToA()
-			case 1:
-				return action.ActionResources("", parts[0])
-			default:
-				return carapace.ActionValues()
-			}
-		}),
+		action.ActionApiResourceResources(),
 	)
 }
