@@ -21,9 +21,9 @@ func ActionApiResources() carapace.Action {
 	})
 }
 
-func ActionResources(types string) carapace.Action {
+func ActionResources(namespace string, types string) carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if output, err := exec.Command("kubectl", "get", "-o", "go-template={{range .items}}{{.metadata.name}}\n{{.kind}}\n{{end}}", types).Output(); err != nil {
+		if output, err := exec.Command("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range .items}}{{.metadata.name}}\n{{.kind}}\n{{end}}", types).Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			lines := strings.Split(string(output), "\n")

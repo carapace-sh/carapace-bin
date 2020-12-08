@@ -54,7 +54,7 @@ func init() {
 
 	carapace.Gen(getCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionResources(args[0]).Invoke(args).Filter(args[1:]).ToA()
+			return action.ActionResources("", args[0]).Invoke(args).Filter(args[1:]).ToA()
 		}),
 	)
 }
