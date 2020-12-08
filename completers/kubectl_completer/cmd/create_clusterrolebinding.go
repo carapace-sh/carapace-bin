@@ -28,19 +28,10 @@ func init() {
 	createCmd.AddCommand(create_clusterrolebindingCmd)
 
 	carapace.Gen(create_clusterrolebindingCmd).FlagCompletion(carapace.ActionMap{
-		"clusterrole": action.ActionResources("", "clusterrole"),
-		"dry-run":     action.ActionDryRunModes(),
-		"output":      action.ActionOutputFormats(),
-		"serviceaccount": carapace.ActionMultiParts(":", func(args, parts []string) carapace.Action {
-			switch len(parts) {
-			case 0:
-				return action.ActionResources("", "namespaces").Invoke(args).Suffix(":").ToA()
-			case 1:
-				return action.ActionResources(parts[0], "serviceaccounts")
-			default:
-				return carapace.ActionValues()
-			}
-		}),
-		"template": carapace.ActionFiles(""),
+		"clusterrole":    action.ActionResources("", "clusterrole"),
+		"dry-run":        action.ActionDryRunModes(),
+		"output":         action.ActionOutputFormats(),
+		"serviceaccount": action.ActionNamespaceServiceAccounts(),
+		"template":       carapace.ActionFiles(""),
 	})
 }
