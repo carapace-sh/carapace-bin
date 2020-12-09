@@ -80,3 +80,14 @@ func ActionContainers(namespace string, resource string) carapace.Action {
 		}
 	})
 }
+
+func ActionLabels(namespace string, resource string) carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range $key, $value := .metadata.labels}}{{$key}}\n{{$value}}\n{{end}}", resource).Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			lines := strings.Split(string(output), "\n")
+			return carapace.ActionValuesDescribed(lines[:len(lines)-1]...)
+		}
+	})
+}
