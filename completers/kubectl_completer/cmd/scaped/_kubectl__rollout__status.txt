@@ -1,9 +1,0 @@
-_kubectl__rollout__status
-status
-Show the status of the rollout
--f, --filename VAL  Filename, directory, or URL to files identifying the resource to get from a server.
--k, --kustomize VAL  Process the kustomization directory. This flag can't be used together with -f or -R.
--R, --recursive   Process the directory used in -f, --filename recursively. Useful when you want to manage related man
---revision VAL  Pin to a specific revision for showing its status. Defaults to 0 (last revision).
---timeout VAL  The length of time to wait before ending watch, zero means never. Any other values should contain a 
--w, --watch   Watch the status of the rollout until it's done.

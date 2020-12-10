@@ -1,3 +1,0 @@
-_kubectl__config__delete-cluster
-delete-cluster
-Delete the specified cluster from the kubeconfig

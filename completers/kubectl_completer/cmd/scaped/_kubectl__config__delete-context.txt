@@ -1,3 +1,0 @@
-_kubectl__config__delete-context
-delete-context
-Delete the specified context from the kubeconfig

@@ -1,3 +1,0 @@
-_kubectl__config__get-users
-get-users
-Display users defined in the kubeconfig

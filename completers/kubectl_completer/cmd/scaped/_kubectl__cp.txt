@@ -1,5 +1,0 @@
-_kubectl__cp
-cp
-Copy files and directories to and from containers.
--c, --container VAL  Container name. If omitted, the first container in the pod will be chosen
---no-preserve   The copied file/directory's ownership and permissions will not be preserved in the container

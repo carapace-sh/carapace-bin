@@ -1,3 +1,0 @@
-_kubectl__kustomize
-kustomize
-Build a kustomization target from a directory or a remote url.

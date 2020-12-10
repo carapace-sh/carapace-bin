@@ -1,3 +1,0 @@
-_kubectl__create__service
-service
-Create a service using specified subcommand.

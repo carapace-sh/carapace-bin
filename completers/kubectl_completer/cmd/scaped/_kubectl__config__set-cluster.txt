@@ -1,4 +1,0 @@
-_kubectl__config__set-cluster
-set-cluster
-Sets a cluster entry in kubeconfig
---embed-certs VAL  embed-certs for the cluster entry in kubeconfig

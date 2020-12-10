@@ -1,3 +1,0 @@
-_kubectl__config__delete-user
-delete-user
-Delete the specified user from the kubeconfig

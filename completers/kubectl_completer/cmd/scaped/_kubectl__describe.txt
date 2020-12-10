@@ -1,9 +1,0 @@
-_kubectl__describe
-describe
-Show details of a specific resource or group of resources
--A, --all-namespaces   If present, list the requested object(s) across all namespaces. Namespace in current context is igno
--f, --filename VAL  Filename, directory, or URL to files containing the resource to describe
--k, --kustomize VAL  Process the kustomization directory. This flag can't be used together with -f or -R.
--R, --recursive   Process the directory used in -f, --filename recursively. Useful when you want to manage related man
--l, --selector VAL  Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
---show-events   If true, display events related to the described object.
