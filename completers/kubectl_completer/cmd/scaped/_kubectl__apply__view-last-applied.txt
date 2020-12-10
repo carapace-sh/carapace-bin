@@ -1,9 +1,0 @@
-_kubectl__apply__view-last-applied
-view-last-applied
-View latest last-applied-configuration annotations of a resource/object
---all   Select all resources in the namespace of the specified resource types
--f, --filename VAL  Filename, directory, or URL to files that contains the last-applied-configuration annotations
--k, --kustomize VAL  Process the kustomization directory. This flag can't be used together with -f or -R.
--o, --output VAL  Output format. Must be one of yaml|json
--R, --recursive   Process the directory used in -f, --filename recursively. Useful when you want to manage related man
--l, --selector VAL  Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)

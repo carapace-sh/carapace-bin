@@ -1,4 +1,0 @@
-_kubectl__config__set-context
-set-context
-Sets a context entry in kubeconfig
---current   Modify the current context

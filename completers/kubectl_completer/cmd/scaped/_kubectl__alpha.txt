@@ -1,3 +1,0 @@
-_kubectl__alpha
-alpha
-Commands for features in alpha

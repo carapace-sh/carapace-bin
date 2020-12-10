@@ -1,5 +1,0 @@
-_kubectl__port-forward
-port-forward
-Forward one or more local ports to a pod
---address VAL  Addresses to listen on (comma separated). Only accepts IP addresses or localhost as a value. When lo
---pod-running-timeout VAL  The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running

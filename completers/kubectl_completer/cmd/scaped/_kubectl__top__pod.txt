@@ -1,8 +1,0 @@
-_kubectl__top__pod
-pod
-Display Resource (CPU/Memory/Storage) usage of pods
--A, --all-namespaces   If present, list the requested object(s) across all namespaces. Namespace in current context is igno
---containers   If present, print usage of containers within a pod.
---no-headers   If present, print output without headers.
--l, --selector VAL  Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
---sort-by VAL  If non-empty, sort pods list using specified field. The field can be either 'cpu' or 'memory'.

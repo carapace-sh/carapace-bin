@@ -1,5 +1,0 @@
-_kubectl__uncordon
-uncordon
-Mark node as schedulable
---dry-run VAL  Must be "none", "server", or "client". If client strategy, only print the object that would be sent,
--l, --selector VAL  Selector (label query) to filter on

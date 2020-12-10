@@ -1,3 +1,0 @@
-_kubectl__config
-config
-Modify kubeconfig files
