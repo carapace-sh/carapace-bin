@@ -129,3 +129,25 @@ func ActionApiGroups() carapace.Action {
 		"storage.k8s.io",
 	)
 }
+
+func ActionClusters() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("kubectl", "config", "get-clusters").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			lines := strings.Split(string(output), "\n")
+			return carapace.ActionValues(lines[1 : len(lines)-1]...)
+		}
+	})
+}
+
+func ActionContexts() carapace.Action {
+	return carapace.ActionCallback(func(args []string) carapace.Action {
+		if output, err := exec.Command("kubectl", "config", "get-contexts", "-o", "name").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			lines := strings.Split(string(output), "\n")
+			return carapace.ActionValues(lines[:len(lines)-1]...)
+		}
+	})
+}
