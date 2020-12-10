@@ -102,3 +102,30 @@ func ActionAnnotations(namespace string, resource string) carapace.Action {
 		}
 	})
 }
+
+func ActionApiGroups() carapace.Action {
+	return carapace.ActionValues(
+		"admissionregistration.k8s.io",
+		"apiextensions.k8s.io",
+		"apiregistration.k8s.io",
+		"apps",
+		"authentication.k8s.io",
+		"authorization.k8s.io",
+		"autoscaling",
+		"batch",
+		"certificates.k8s.io",
+		"coordination.k8s.io",
+		"core",
+		"discovery.k8s.io",
+		"events.k8s.io",
+		"extensions",
+		"flowcontrol.apiserver.k8s.io",
+		"networking.k8s.io",
+		"node.k8s.io",
+		"policy",
+		"rbac.authorization.k8s.io",
+		"scheduling.k8s.io",
+		"settings.k8s.io",
+		"storage.k8s.io",
+	)
+}
