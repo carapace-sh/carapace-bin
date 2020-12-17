@@ -25,7 +25,7 @@ func init() {
 
 	carapace.Gen(target_addCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionTargets(false).Invoke(args).Filter(args).ToMultipartsA("-")
+			return action.ActionTargets(false).Invoke(args).Filter(args).ToMultiPartsA("-")
 		}),
 	)
 }

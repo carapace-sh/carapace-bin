@@ -20,10 +20,10 @@ func init() {
 
 	carapace.Gen(cpCmd).PositionalCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionPassNames().Invoke(args).ToMultipartsA("/")
+			return action.ActionPassNames().Invoke(args).ToMultiPartsA("/")
 		}),
 		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionPassNames().Invoke(args).ToMultipartsA("/")
+			return action.ActionPassNames().Invoke(args).ToMultiPartsA("/")
 		}),
 	)
 }

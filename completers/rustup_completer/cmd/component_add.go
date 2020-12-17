@@ -22,7 +22,7 @@ func init() {
 
 	carapace.Gen(component_addCmd).FlagCompletion(carapace.ActionMap{
 		"target": carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionTargets(false).Invoke(args).ToMultipartsA("-")
+			return action.ActionTargets(false).Invoke(args).ToMultiPartsA("-")
 		}),
 		"toolchain": action.ActionToolchains(),
 	})

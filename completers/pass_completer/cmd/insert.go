@@ -21,7 +21,7 @@ func init() {
 
 	carapace.Gen(insertCmd).PositionalCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionPassNames().Invoke(args).ToMultipartsA("/")
+			return action.ActionPassNames().Invoke(args).ToMultiPartsA("/")
 		}),
 	)
 }
