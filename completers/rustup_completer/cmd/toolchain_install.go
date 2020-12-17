@@ -30,7 +30,7 @@ func init() {
 		}),
 		"profile": carapace.ActionValues("minimal", "default", "complete"),
 		"target": carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionTargets(false).Invoke(args).ToMultipartsA("-")
+			return action.ActionTargets(false).Invoke(args).ToMultiPartsA("-")
 		}),
 	})
 

@@ -19,7 +19,7 @@ func init() {
 
 	carapace.Gen(editCmd).PositionalCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionPassNames().Invoke(args).ToMultipartsA("/")
+			return action.ActionPassNames().Invoke(args).ToMultiPartsA("/")
 		}),
 	)
 }

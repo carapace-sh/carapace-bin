@@ -15,11 +15,11 @@ func ActionConfigs() carapace.Action {
 		} else {
 			vals := make([]string, 0)
 			for _, line := range strings.Split(string(output), "\n") {
-				if line != "" && !strings.ContainsAny(line, "<>*") {
+				if line != "" && !strings.ContainsAny(line, "<>*") && !strings.Contains(line, "git help config") {
 					vals = append(vals, line)
 				}
 			}
-			return carapace.ActionValues(vals...).Invoke(args).ToMultipartsA(".")
+			return carapace.ActionValues(vals...).Invoke(args).ToMultiPartsA(".")
 		}
 	})
 }

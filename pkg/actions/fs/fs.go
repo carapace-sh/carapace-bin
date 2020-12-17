@@ -64,7 +64,7 @@ func ActionZipFileContents(file string) carapace.Action {
 			for _, f := range reader.File {
 				vals = append(vals, f.Name)
 			}
-			return carapace.ActionValues(vals...).Invoke(args).ToMultipartsA("/")
+			return carapace.ActionValues(vals...).Invoke(args).ToMultiPartsA("/")
 		}
 	})
 }
