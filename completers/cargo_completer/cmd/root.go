@@ -43,7 +43,7 @@ func init() {
 			if output, err := exec.Command("cargo", "--list").Output(); err != nil {
 				// TODO handle error
 			} else {
-				re := regexp.MustCompile(`^    (?P<command>\w+) +(?P<description>.*)$`)
+				re := regexp.MustCompile(`^    (?P<command>\w+)( +(?P<description>.*))?$`)
 				installedCommands := make(map[string]bool)
 
 				for _, line := range strings.Split(string(output), "\n") {
