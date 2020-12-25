@@ -60,9 +60,9 @@ func ActionZipFileContents(file string) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			defer reader.Close()
-			vals := make([]string, 0)
-			for _, f := range reader.File {
-				vals = append(vals, f.Name)
+			vals := make([]string, len(reader.File))
+			for index, f := range reader.File {
+				vals[index] = f.Name
 			}
 			return carapace.ActionValues(vals...).Invoke(args).ToMultiPartsA("/")
 		}
