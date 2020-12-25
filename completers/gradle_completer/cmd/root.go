@@ -1,18 +1,13 @@
 package cmd
 
 import (
-	"crypto/sha1"
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"os"
 	"os/exec"
-	"path/filepath"
 	"regexp"
 	"strings"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/cache"
 	"github.com/spf13/cobra"
 )
 
@@ -111,51 +106,18 @@ func locateBuildConfig() (target string, err error) {
 
 func ActionTasks() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
-		var content []byte
-		if target, err := locateBuildConfig(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			if content, err = ioutil.ReadFile(target); err != nil {
-				return carapace.ActionMessage(err.Error())
-			}
-		}
-
-		checksum := fmt.Sprintf("%x", sha1.Sum(content))
-
-		if tasks, err := tasks(checksum); err != nil {
+		if tasks, err := parseTasks(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			return carapace.ActionValuesDescribed(tasks...)
 		}
+	}).Cache(-1, func() (string, error) {
+		if buildConfig, err := locateBuildConfig(); err != nil {
+			return "", err
+		} else {
+			return cache.FileChecksum(buildConfig)()
+		}
 	})
-}
-
-func tasks(checksum string) (tasks []string, err error) {
-	filename := fmt.Sprintf("%v/gradle_completer/%v", os.TempDir(), checksum)
-	if tasks, err = loadTasks(filename); err != nil {
-		if tasks, err = parseTasks(); err == nil {
-			err = saveTasks(filename, tasks)
-		}
-	}
-	return
-}
-
-func saveTasks(filename string, tasks []string) (err error) {
-	var m []byte
-	if m, err = json.Marshal(tasks); err == nil {
-		if err = os.MkdirAll(filepath.Dir(filename), 0777); err == nil {
-			err = ioutil.WriteFile(filename, m, 0644)
-		}
-	}
-	return
-}
-
-func loadTasks(filename string) (tasks []string, err error) {
-	var content []byte
-	if content, err = ioutil.ReadFile(filename); err == nil {
-		err = json.Unmarshal(content, &tasks)
-	}
-	return
 }
 
 func parseTasks() ([]string, error) {
