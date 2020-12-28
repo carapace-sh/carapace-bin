@@ -44,7 +44,7 @@ var rootCmd = &cobra.Command{
 			case "fish":
 				fmt.Println(fish_lazy(completers))
 			case "oil":
-				fmt.Println(bash_lazy(completers))
+				fmt.Println(oil_lazy(completers))
 			case "powershell":
 				fmt.Println(powershell_lazy(completers))
 			case "xonsh":

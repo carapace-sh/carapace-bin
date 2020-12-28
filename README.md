@@ -12,7 +12,7 @@ Supported shells:
 - [Bash](https://www.gnu.org/software/bash/)
 - [Elvish](https://elv.sh/)
 - [Fish](https://fishshell.com/)
-- [Oil](http://www.oilshell.org/) *broken* ([carapace#86](https://github.com/rsteube/carapace/issues/86))
+- [Oil](http://www.oilshell.org/)
 - [Powershell](https://microsoft.com/powershell)
 - [Xonsh](https://xon.sh/)
 - [Zsh](https://www.zsh.org/)
