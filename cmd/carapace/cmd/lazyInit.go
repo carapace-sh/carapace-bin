@@ -48,6 +48,16 @@ complete -c '%v' -f -a '(_carapace_lazy %v)'`, completer, completer, completer)
 	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
 }
 
+func oil_lazy(completers []string) string {
+	snippet := `_carapace_lazy() {
+  source <(carapace $1 oil)
+   $"_$1_completion"
+}
+complete -F _carapace_lazy %v
+`
+	return fmt.Sprintf(snippet, strings.Join(completers, " "))
+}
+
 func powershell_lazy(completers []string) string {
 	snippet := `$_carapace_lazy = {
     param($wordToComplete, $commandAst, $cursorPosition)
