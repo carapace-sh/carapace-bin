@@ -27,7 +27,7 @@ func init() {
 	rootCmd.Flags().StringP("lines", "n", "", "output the last NUM lines, instead of the last 10;")
 	rootCmd.Flags().String("max-unchanged-stats", "", "")
 	rootCmd.Flags().String("pid", "", "with -f, terminate after process ID, PID dies")
-	rootCmd.Flags().StringP("quiet,", "q", "", "never output headers giving file names")
+	rootCmd.Flags().StringP("quiet", "q", "", "never output headers giving file names")
 	rootCmd.Flags().Bool("retry", false, "keep trying to open a file if it is inaccessible")
 	rootCmd.Flags().StringP("sleep-interval", "s", "", "with -f, sleep for approximately N seconds")
 	rootCmd.Flags().BoolP("verbose", "v", false, "always output headers giving file names")
