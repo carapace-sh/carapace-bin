@@ -1,18 +1,5 @@
-FROM golang
+FROM rsteube/carapace
 
-# shells
-RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb \
- && dpkg -i packages-microsoft-prod.deb \
- && apt-get update
-
-RUN apt-get install -y bash-completion \ 
-                       fish \
-                       elvish \
-                       powershell \
-                       python3-pip \
-                       zsh
-
-ENV GOPATH /go
 RUN ln -s /carapace-bin/cmd/carapace/carapace /usr/local/bin/carapace
 
 # bash
@@ -36,25 +23,15 @@ carapace _carapace fish | source" \
        > /root/.config/fish/config.fish
 
 # elvish
-RUN curl https://dl.elv.sh/linux-amd64/elvish-HEAD.tar.gz | tar -xvz \
- && mv elvish-* /usr/local/bin/elvish
-
 RUN mkdir -p /root/.elvish/lib \
  && echo "\
 eval (carapace _carapace|slurp)" \
   > /root/.elvish/rc.elv
 
 # oil
-RUN curl https://www.oilshell.org/download/oil-0.8.4.tar.gz | tar -xvz \
- && cd oil-*/ \
- && ./configure \
- && make \
- && ./install
-
 RUN mkdir -p ~/.config/oil \
  && echo "\n\
 PS1=$'\e[0;36mcarapace \e[0m'\n\
-source <(sed 's/let \"OPTIND += 1\"/(( OPTIND += 1 ))/' /usr/share/bash-completion/bash_completion)\n\
 source <(carapace _carapace)" \
        > ~/.config/oil/oshrc
 
@@ -67,9 +44,6 @@ carapace _carapace | out-string | Invoke-Expression" \
        > /root/.config/powershell/Microsoft.PowerShell_profile.ps1
 
 # xonsh
-RUN pip3 install --no-cache-dir --disable-pip-version-check xonsh \
- && ln -s $(which xonsh) /usr/bin/xonsh
-
 RUN mkdir -p ~/.config/xonsh \
  && echo "\n\
 \$COMPLETIONS_CONFIRM=True\n\

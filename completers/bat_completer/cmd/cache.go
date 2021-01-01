@@ -9,7 +9,7 @@ var cacheCmd = &cobra.Command{
 	Use:    "cache",
 	Short:  "Modify the syntax-definition and theme cache",
 	Run:    func(cmd *cobra.Command, args []string) {},
-	Hidden: true, // TODO can't have arguments and subcommands on rootCmd at the same time in completion
+	Hidden: true,
 }
 
 func init() {

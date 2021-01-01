@@ -13,7 +13,7 @@ import (
 func bash_lazy(completers []string) string {
 	snippet := `_carapace_lazy() {
   source <(carapace $1 bash)
-   $"_$1_completions"
+   $"_$1_completion"
 }
 complete -F _carapace_lazy %v
 `
@@ -63,7 +63,7 @@ func powershell_lazy(completers []string) string {
     param($wordToComplete, $commandAst, $cursorPosition)
     $completer = $commandAst.CommandElements[0].Value
     carapace $completer powershell | Out-String | Invoke-Expression
-    & (Get-Variable -name "_${completer}_completer").Value $wordToComplete $commandAst $cursorPosition
+    & (Get-Item "Function:_${completer}_completer") $wordToComplete $commandAst $cursorPosition
 }
 %v
 `
