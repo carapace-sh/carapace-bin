@@ -20,5 +20,5 @@ func init() {
 	psCmd.Flags().Bool("services", false, "Display services")
 	rootCmd.AddCommand(psCmd)
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(ActionServices())
+	carapace.Gen(psCmd).PositionalAnyCompletion(ActionServices())
 }
