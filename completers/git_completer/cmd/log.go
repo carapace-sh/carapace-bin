@@ -40,12 +40,17 @@ func init() {
 
 	carapace.Gen(logCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
-			// TODO fix callbackvalue not being set for positional
-			//if strings.HasPrefix(carapace.CallbackValue, ".") {
-			if len(args) > 0 && strings.HasPrefix(args[len(args)-1], ".") {
+			if strings.HasPrefix(carapace.CallbackValue, ".") {
+				// TODO ActionFiles needs to support `./` as directory
 				return carapace.ActionFiles("")
 			} else {
-				return git.ActionRefs(git.RefOptionDefault)
+				return carapace.ActionMultiParts("...", func(args, parts []string) carapace.Action {
+					if len(parts) < 2 {
+						return git.ActionRefs(git.RefOptionDefault)
+					} else {
+						return carapace.ActionValues()
+					}
+				})
 			}
 		}),
 	)
