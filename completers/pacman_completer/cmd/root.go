@@ -22,7 +22,7 @@ func init() {
 
 	cmd, _, _ := rootCmd.Find([]string{"_carapace"})
 	cmd.PreRun = func(cmd *cobra.Command, args []string) {
-		if len(args) < 4 || (len(args) == 4 && regexp.MustCompile("^--?").MatchString(args[3])) {
+		if len(args) < 4 || (len(args) == 4 && regexp.MustCompile("^-$|^--").MatchString(args[3])) {
 			rootCmd.Flags().BoolP("database", "D", false, "Operate on the package database")
 			rootCmd.Flags().BoolP("deptest", "T", false, "Check dependencies")
 			rootCmd.Flags().BoolP("files", "F", false, "Query the files database")
