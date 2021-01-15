@@ -63,6 +63,8 @@ func init() {
 					return carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
 						return actionOFlags().Invoke(args).Filter(parts).ToA()
 					})
+				case "status":
+					return carapace.ActionValues("none", "noxfer", "progress")
 				default:
 					return carapace.ActionValues()
 				}
