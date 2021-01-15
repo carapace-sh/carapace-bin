@@ -190,7 +190,8 @@ func ActionShells() carapace.Action {
 		if output, err := exec.Command("chsh", "--list-shells").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
-			return carapace.ActionValues(strings.Split(string(output), "\n")...)
+			lines := strings.Split(string(output), "\n")
+			return carapace.ActionValues(lines[:len(lines)-1]...)
 		}
 	})
 }
