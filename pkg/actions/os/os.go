@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -223,4 +224,22 @@ func ActionPathExecutables() carapace.Action {
 
 func isExecAny(mode os.FileMode) bool {
 	return mode&0111 != 0
+}
+
+// ActionDisplays completes x displays
+//   :0
+//   :1
+func ActionDisplays() carapace.Action {
+	if output, err := exec.Command("w", "-hsu").Output(); err != nil {
+		return carapace.ActionMessage(err.Error())
+	} else {
+		vals := make([]string, 0)
+		r := regexp.MustCompile("/usr/lib/Xorg (?P<display>:[0-9]+)")
+		for _, line := range strings.Split(string(output), "\n") {
+			if r.MatchString(line) {
+				vals = append(vals, r.FindStringSubmatch(line)[1])
+			}
+		}
+		return carapace.ActionValues(vals...)
+	}
 }
