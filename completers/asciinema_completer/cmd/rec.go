@@ -28,10 +28,10 @@ func init() {
 	rootCmd.AddCommand(recCmd)
 
 	carapace.Gen(recCmd).FlagCompletion(carapace.ActionMap{
-		"command": carapace.ActionFiles(""), // TODO PATH binaries
+		"command": carapace.ActionFiles(), // TODO PATH binaries
 	})
 
 	carapace.Gen(recCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

@@ -31,7 +31,7 @@ func init() {
 		"dry-run":  action.ActionDryRunModes(),
 		"output":   action.ActionOutputFormats(),
 		"resource": action.ActionApiResources(),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 		"verb":     action.ActionResourceVerbs(),
 	})
 }

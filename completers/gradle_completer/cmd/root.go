@@ -76,7 +76,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"build-file":              carapace.ActionFiles(""),
+		"build-file":              carapace.ActionFiles(),
 		"console":                 carapace.ActionValues("plain", "auto", "rich", "verbose"),
 		"dependency-verification": carapace.ActionValues("strict", "lenient", "off"),
 		"exclude-task":            ActionTasks(),

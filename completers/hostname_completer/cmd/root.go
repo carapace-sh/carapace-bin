@@ -29,6 +29,6 @@ func init() {
 	rootCmd.Flags().StringP("yp,", "y", "", "NIS/YP domain name")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"file": carapace.ActionFiles(""),
+		"file": carapace.ActionFiles(),
 	})
 }

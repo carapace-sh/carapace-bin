@@ -32,6 +32,6 @@ func init() {
 		"dry-run":        action.ActionDryRunModes(),
 		"output":         action.ActionOutputFormats(),
 		"serviceaccount": action.ActionNamespaceServiceAccounts(),
-		"template":       carapace.ActionFiles(""),
+		"template":       carapace.ActionFiles(),
 	})
 }

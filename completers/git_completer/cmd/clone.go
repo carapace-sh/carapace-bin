@@ -50,7 +50,7 @@ func init() {
 	rootCmd.AddCommand(cloneCmd)
 
 	carapace.Gen(cloneCmd).FlagCompletion(carapace.ActionMap{
-		"separate-git-dir": carapace.ActionFiles(""),
+		"separate-git-dir": carapace.ActionFiles(),
 		"template":         carapace.ActionDirectories(),
 	})
 

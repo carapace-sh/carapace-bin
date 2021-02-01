@@ -31,6 +31,6 @@ func init() {
 	rootCmd.Flags().BoolP("zero", "z", false, "end each output line with NUL, not newline,")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

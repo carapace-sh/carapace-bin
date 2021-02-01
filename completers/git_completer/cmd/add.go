@@ -38,7 +38,7 @@ func init() {
 	rootCmd.AddCommand(addCmd)
 
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
-		"pathspec-from-file": carapace.ActionFiles(""),
+		"pathspec-from-file": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(

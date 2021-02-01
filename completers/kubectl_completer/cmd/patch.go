@@ -32,11 +32,11 @@ func init() {
 
 	carapace.Gen(patchCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":    action.ActionDryRunModes(),
-		"filename":   carapace.ActionFiles(""),
+		"filename":   carapace.ActionFiles(),
 		"kustomize":  carapace.ActionDirectories(),
 		"output":     action.ActionOutputFormats(),
-		"patch-file": carapace.ActionFiles(""),
-		"template":   carapace.ActionFiles(""),
+		"patch-file": carapace.ActionFiles(),
+		"template":   carapace.ActionFiles(),
 		"type":       carapace.ActionValues("json", "merge", "strategic"),
 	})
 

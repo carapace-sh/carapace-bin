@@ -24,5 +24,5 @@ func init() {
 		"z": carapace.ActionValues("any", "none", "brotli"),
 	})
 
-	carapace.Gen(pushCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(pushCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

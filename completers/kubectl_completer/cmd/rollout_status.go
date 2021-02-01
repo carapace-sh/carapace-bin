@@ -24,7 +24,7 @@ func init() {
 	rolloutCmd.AddCommand(rollout_statusCmd)
 
 	carapace.Gen(rollout_statusCmd).FlagCompletion(carapace.ActionMap{
-		"filename":  carapace.ActionFiles(""),
+		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
 	})
 

@@ -19,6 +19,6 @@ func init() {
 
 	carapace.Gen(connection_exportCmd).PositionalCompletion(
 		net.ActionConnections(),
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

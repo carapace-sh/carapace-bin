@@ -36,5 +36,5 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "verbose mode")
 	rootCmd.Flags().BoolP("version", "V", false, "display version number")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

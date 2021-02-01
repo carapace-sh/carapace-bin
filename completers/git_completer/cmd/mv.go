@@ -20,5 +20,5 @@ func init() {
 	mvCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 	rootCmd.AddCommand(mvCmd)
 
-	carapace.Gen(mvCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(mvCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

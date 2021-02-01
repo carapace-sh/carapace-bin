@@ -47,5 +47,5 @@ func init() {
 	rootCmd.Flags().BoolS("e", "e", false, "encrypt")
 	rootCmd.Flags().StringS("n", "n", "", "don't compress these suffixes")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

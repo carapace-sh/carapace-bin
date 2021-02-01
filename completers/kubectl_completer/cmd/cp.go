@@ -48,7 +48,7 @@ func init() {
 func ActionPathOrContainer() carapace.Action {
 	return carapace.ActionCallback(func(args []string) carapace.Action {
 		if isFileCompletion(carapace.CallbackValue) {
-			return carapace.ActionFiles("")
+			return carapace.ActionFiles()
 		} else {
 			return carapace.ActionMultiParts("/", func(args, parts []string) carapace.Action {
 				switch len(parts) {

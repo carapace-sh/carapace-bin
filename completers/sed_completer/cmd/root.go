@@ -36,18 +36,18 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"file": carapace.ActionFiles(""),
+		"file": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			if rootCmd.Flag("expression").Changed || rootCmd.Flag("file").Changed {
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			} else {
 				return carapace.ActionValues()
 			}
 		}),
 	)
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

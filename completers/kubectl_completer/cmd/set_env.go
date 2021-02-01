@@ -38,10 +38,10 @@ func init() {
 
 	carapace.Gen(set_envCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":  action.ActionDryRunModes(),
-		"filename": carapace.ActionFiles(""),
+		"filename": carapace.ActionFiles(),
 		"from":     action.ActionApiResourceResources(),
 		"output":   action.ActionOutputFormats(),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(set_envCmd).PositionalCompletion(

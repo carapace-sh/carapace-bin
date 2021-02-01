@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(playCmd)
 
 	carapace.Gen(playCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

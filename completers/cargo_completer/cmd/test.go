@@ -62,7 +62,7 @@ func init() {
 			return action.ActionFeatures(testCmd).Invoke(args).Filter(parts).ToA()
 		}),
 		"exclude":        action.ActionWorkspaceMembers(testCmd),
-		"manifest-path":  carapace.ActionFiles(""),
+		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(testCmd),
 		"profile":        action.ActionProfiles(testCmd),

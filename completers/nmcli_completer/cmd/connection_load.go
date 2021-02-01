@@ -16,5 +16,5 @@ func init() {
 
 	connectionCmd.AddCommand(connection_loadCmd)
 
-	carapace.Gen(connection_loadCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(connection_loadCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

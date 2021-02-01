@@ -44,9 +44,9 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"colorscheme": carapace.ActionValues("Cornfield", "Metallic", "Sunset", "Starnight", "BeforeDawn", "Nature", "DeepOcean", "Solarized", "Tomorrow", "Tomorrow Night", "Monotone"),
-		"d":           carapace.ActionFiles(""),
-		"o":           carapace.ActionFiles(""),
-		"p":           carapace.ActionFiles(""),
+		"d":           carapace.ActionFiles(),
+		"o":           carapace.ActionFiles(),
+		"p":           carapace.ActionFiles(),
 		"view":        carapace.ActionValues("axes", "crosshairs", "edges", "scales", "wireframe"),
 	})
 

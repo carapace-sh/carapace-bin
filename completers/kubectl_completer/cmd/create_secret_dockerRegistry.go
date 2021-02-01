@@ -33,8 +33,8 @@ func init() {
 
 	carapace.Gen(create_secret_dockerRegistryCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":   action.ActionDryRunModes(),
-		"from-file": carapace.ActionFiles(""),
+		"from-file": carapace.ActionFiles(),
 		"output":    action.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(""),
+		"template":  carapace.ActionFiles(),
 	})
 }

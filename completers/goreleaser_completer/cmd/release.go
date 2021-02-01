@@ -30,6 +30,6 @@ func init() {
 	rootCmd.AddCommand(releaseCmd)
 
 	carapace.Gen(releaseCmd).FlagCompletion(carapace.ActionMap{
-		"config": carapace.ActionFiles(""),
+		"config": carapace.ActionFiles(),
 	})
 }

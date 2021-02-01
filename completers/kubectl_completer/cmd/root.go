@@ -55,13 +55,13 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cache-dir":             carapace.ActionDirectories(),
-		"certificate-authority": carapace.ActionFiles(""),
-		"client-certificate":    carapace.ActionFiles(""),
-		"client-key":            carapace.ActionFiles(""),
-		"kubeconfig":            carapace.ActionFiles(""),
+		"certificate-authority": carapace.ActionFiles(),
+		"client-certificate":    carapace.ActionFiles(),
+		"client-key":            carapace.ActionFiles(),
+		"kubeconfig":            carapace.ActionFiles(),
 		"log-dir":               carapace.ActionDirectories(),
-		"log-file":              carapace.ActionFiles(""),
-		"profile-output":        carapace.ActionFiles(""),
+		"log-file":              carapace.ActionFiles(),
+		"profile-output":        carapace.ActionFiles(),
 		// TODO add completions for kubeconfig based flags
 	})
 }

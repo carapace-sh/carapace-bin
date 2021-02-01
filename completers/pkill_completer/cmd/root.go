@@ -46,7 +46,7 @@ func init() {
 		"euid":      os.ActionUsers(),
 		"group":     os.ActionGroups(),
 		"nslist":    carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts"),
-		"pidfile":   carapace.ActionFiles(""),
+		"pidfile":   carapace.ActionFiles(),
 		"runstates": os.ActionProcessStates(),
 		"signal":    os.ActionKillSignals(),
 	})

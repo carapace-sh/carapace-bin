@@ -45,7 +45,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"L":         carapace.ActionDirectories(),
-		"from-file": carapace.ActionFiles(""),
+		"from-file": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
@@ -53,7 +53,7 @@ func init() {
 			if rootCmd.Flag("args").Changed || rootCmd.Flag("jsonargs").Changed {
 				return carapace.ActionValues()
 			} else {
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			}
 		}),
 	)

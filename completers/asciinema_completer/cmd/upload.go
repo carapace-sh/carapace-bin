@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(uploadCmd)
 
 	carapace.Gen(uploadCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

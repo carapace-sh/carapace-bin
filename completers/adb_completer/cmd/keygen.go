@@ -17,6 +17,6 @@ func init() {
 	rootCmd.AddCommand(keygenCmd)
 
 	carapace.Gen(keygenCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

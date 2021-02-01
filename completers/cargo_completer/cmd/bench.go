@@ -58,7 +58,7 @@ func init() {
 		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
 			return action.ActionFeatures(benchCmd).Invoke(args).Filter(parts).ToA()
 		}),
-		"manifest-path":  carapace.ActionFiles(""),
+		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(benchCmd),
 		"target-dir":     carapace.ActionDirectories(),

@@ -64,7 +64,7 @@ func init() {
 		"file":              carapace.ActionFiles(".xml"),
 		"global-settings":   carapace.ActionFiles(".xml"),
 		"global-toolchains": carapace.ActionFiles(".xml"),
-		"log-file":          carapace.ActionFiles(""),
+		"log-file":          carapace.ActionFiles(),
 		"settings":          carapace.ActionFiles(".xml"),
 		"toolchains":        carapace.ActionFiles(".xml"),
 	})

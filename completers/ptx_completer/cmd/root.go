@@ -40,14 +40,14 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"format":      carapace.ActionValues("roff", "tex"),
-		"break-file":  carapace.ActionFiles(""),
-		"ignore-file": carapace.ActionFiles(""),
-		"only-file":   carapace.ActionFiles(""),
+		"break-file":  carapace.ActionFiles(),
+		"ignore-file": carapace.ActionFiles(),
+		"only-file":   carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
+		carapace.ActionFiles(),
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
@@ -55,7 +55,7 @@ func init() {
 			if rootCmd.Flag("traditional").Changed {
 				return carapace.ActionMessage("traditional mode only allows [INPUT [OUTPUT]]]")
 			} else {
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			}
 		}),
 	)

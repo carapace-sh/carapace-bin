@@ -82,5 +82,5 @@ func init() {
 		"color": carapace.ActionValues("always", "auto", "never"),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

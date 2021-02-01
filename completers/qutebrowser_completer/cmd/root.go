@@ -42,7 +42,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"backend":   carapace.ActionValues("webkit", "webengine"),
 		"basedir":   carapace.ActionDirectories(),
-		"config-py": carapace.ActionFiles(""),
+		"config-py": carapace.ActionFiles(),
 		"loglevel":  carapace.ActionValues("critical", "error", "warning", "info", "debug", "vdebug"),
 		"target":    carapace.ActionValues("auto", "tab", "tab-bg", "tab-silent", "tab-bg-silent", "window"),
 	})

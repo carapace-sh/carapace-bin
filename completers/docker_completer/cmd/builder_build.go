@@ -52,7 +52,7 @@ func init() {
 	builderCmd.AddCommand(builder_buildCmd)
 
 	carapace.Gen(builder_buildCmd).FlagCompletion(carapace.ActionMap{
-		"file":     carapace.ActionFiles(""),
+		"file":     carapace.ActionFiles(),
 		"progress": carapace.ActionValues("auto", "plain", "tty"),
 	})
 

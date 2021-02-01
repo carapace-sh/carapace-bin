@@ -23,7 +23,7 @@ func init() {
 
 	rootAlias(container_commitCmd, func(cmd *cobra.Command, isAlias bool) {
 		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-			"change": carapace.ActionFiles(""),
+			"change": carapace.ActionFiles(),
 		})
 
 		carapace.Gen(cmd).PositionalCompletion(

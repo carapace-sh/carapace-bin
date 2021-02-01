@@ -31,8 +31,8 @@ func init() {
 
 	carapace.Gen(create_configmapCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":       action.ActionDryRunModes(),
-		"from-env-file": carapace.ActionFiles(""),
+		"from-env-file": carapace.ActionFiles(),
 		"output":        action.ActionOutputFormats(),
-		"template":      carapace.ActionFiles(""),
+		"template":      carapace.ActionFiles(),
 	})
 }

@@ -32,11 +32,11 @@ func init() {
 
 	carapace.Gen(set_subjectCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":        action.ActionDryRunModes(),
-		"filename":       carapace.ActionFiles(""),
+		"filename":       carapace.ActionFiles(),
 		"kustomize":      carapace.ActionDirectories(),
 		"output":         action.ActionOutputFormats(),
 		"serviceaccount": action.ActionNamespaceServiceAccounts(),
-		"template":       carapace.ActionFiles(""),
+		"template":       carapace.ActionFiles(),
 	})
 
 	carapace.Gen(set_subjectCmd).PositionalCompletion(

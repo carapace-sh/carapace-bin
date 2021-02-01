@@ -45,8 +45,8 @@ func initSyncCmd(cmd *cobra.Command) {
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"arch":    carapace.ActionValues("i686", "x86_64"),
 		"color":   carapace.ActionValues("auto", "never", "always"),
-		"config":  carapace.ActionFiles(""),
-		"dbpath":  carapace.ActionFiles(""),
+		"config":  carapace.ActionFiles(),
+		"dbpath":  carapace.ActionFiles(),
 		"gpgdir":  carapace.ActionDirectories(),
 		"hookdir": carapace.ActionDirectories(),
 		// TODO ignore

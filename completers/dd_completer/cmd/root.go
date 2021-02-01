@@ -52,13 +52,13 @@ func init() {
 						return actionConvs().Invoke(args).Filter(parts).ToA()
 					})
 				case "if":
-					return carapace.ActionFiles("")
+					return carapace.ActionFiles()
 				case "iflag":
 					return carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
 						return actionIFlags().Invoke(args).Filter(parts).ToA()
 					})
 				case "of":
-					return carapace.ActionFiles("")
+					return carapace.ActionFiles()
 				case "oflag":
 					return carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
 						return actionOFlags().Invoke(args).Filter(parts).ToA()

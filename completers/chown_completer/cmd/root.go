@@ -36,13 +36,13 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"from":      os.ActionUserGroup(),
-		"reference": carapace.ActionFiles(""),
+		"reference": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			if rootCmd.Flag("reference").Changed {
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			} else {
 				return os.ActionUserGroup()
 			}
@@ -50,6 +50,6 @@ func init() {
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

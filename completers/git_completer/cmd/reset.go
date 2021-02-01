@@ -33,7 +33,7 @@ func init() {
 	resetCmd.Flag("recurse-submodules").NoOptDefVal = " "
 
 	carapace.Gen(resetCmd).FlagCompletion(carapace.ActionMap{
-		"pathspec-from-file": carapace.ActionFiles(""),
+		"pathspec-from-file": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(resetCmd).PositionalCompletion(
@@ -44,7 +44,7 @@ func init() {
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			for _, arg := range os.Args {
 				if arg == "--" {
-					return carapace.ActionFiles("")
+					return carapace.ActionFiles()
 				}
 			}
 			return carapace.ActionValues()

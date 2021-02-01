@@ -53,15 +53,15 @@ func init() {
 
 	rootAlias(image_buildCmd, func(cmd *cobra.Command, isAlias bool) {
 		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-			"file":      carapace.ActionFiles(""),
-			"iidfile":   carapace.ActionFiles(""),
+			"file":      carapace.ActionFiles(),
+			"iidfile":   carapace.ActionFiles(),
 			"isolation": carapace.ActionValues("default", "hyperv", "process"),
 			"network":   carapace.ActionValues("bridge", "container", "host", "none"),
 			"progress":  carapace.ActionValues("auto", "plain", "tty"),
 		})
 
 		carapace.Gen(cmd).PositionalCompletion(
-			carapace.ActionFiles(""),
+			carapace.ActionFiles(),
 		)
 	})
 }

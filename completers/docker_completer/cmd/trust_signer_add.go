@@ -19,7 +19,7 @@ func init() {
 	trust_signerCmd.AddCommand(trust_signer_addCmd)
 
 	carapace.Gen(trust_signer_addCmd).FlagCompletion(carapace.ActionMap{
-		"key": carapace.ActionFiles(""),
+		"key": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(trust_signer_addCmd).PositionalAnyCompletion(action.ActionRepositories())

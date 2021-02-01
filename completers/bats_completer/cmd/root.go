@@ -23,5 +23,5 @@ func init() {
 	rootCmd.Flags().BoolP("tap", "t", false, "Show results in TAP format")
 	rootCmd.Flags().BoolP("version", "v", false, "Display the version number")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

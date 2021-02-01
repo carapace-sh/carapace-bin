@@ -34,7 +34,7 @@ func init() {
 
 	carapace.Gen(cleanCmd).FlagCompletion(carapace.ActionMap{
 		"color":         action.ActionColorModes(),
-		"manifest-path": carapace.ActionFiles(""),
+		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(cleanCmd),
 		"profile":       action.ActionProfiles(cleanCmd),
 		"target-dir":    carapace.ActionDirectories(),

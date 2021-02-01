@@ -29,7 +29,7 @@ func init() {
 	rootCmd.Flags().BoolP("zero-terminated", "z", false, "line delimiter is NUL, not newline")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
+		carapace.ActionFiles(),
 	)
 }

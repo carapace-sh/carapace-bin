@@ -26,6 +26,6 @@ func init() {
 	stashCmd.AddCommand(stash_pushCmd)
 
 	carapace.Gen(stash_pushCmd).FlagCompletion(carapace.ActionMap{
-		"pathspec-from-file": carapace.ActionFiles(""),
+		"pathspec-from-file": carapace.ActionFiles(),
 	})
 }

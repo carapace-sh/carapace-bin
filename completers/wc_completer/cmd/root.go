@@ -27,7 +27,7 @@ func init() {
 	rootCmd.Flags().BoolP("words", "w", false, "print the word counts")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"files0-from": carapace.ActionFiles(""),
+		"files0-from": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
@@ -35,7 +35,7 @@ func init() {
 			if rootCmd.Flag("files0-from").Changed {
 				return carapace.ActionMessage("files0-from used")
 			} else {
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			}
 		}),
 	)

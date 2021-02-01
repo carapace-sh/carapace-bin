@@ -25,10 +25,10 @@ func init() {
 	rolloutCmd.AddCommand(rollout_resumeCmd)
 
 	carapace.Gen(rollout_resumeCmd).FlagCompletion(carapace.ActionMap{
-		"filename":  carapace.ActionFiles(""),
+		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
 		"output":    action.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(""),
+		"template":  carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rollout_resumeCmd).PositionalCompletion(

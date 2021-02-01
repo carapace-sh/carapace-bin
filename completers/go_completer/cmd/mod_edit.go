@@ -28,6 +28,6 @@ func init() {
 	modCmd.AddCommand(mod_editCmd)
 
 	carapace.Gen(mod_editCmd).FlagCompletion(carapace.ActionMap{
-		"module": carapace.ActionFiles(""),
+		"module": carapace.ActionFiles(),
 	})
 }

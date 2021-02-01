@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(catCmd)
 
 	carapace.Gen(catCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

@@ -28,6 +28,6 @@ func init() {
 		"namespaces":       action.ActionResources("", "namespaces"),
 		"output":           action.ActionOutputFormats(),
 		"output-directory": carapace.ActionDirectories(),
-		"template":         carapace.ActionFiles(""),
+		"template":         carapace.ActionFiles(),
 	})
 }

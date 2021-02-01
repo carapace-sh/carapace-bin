@@ -22,5 +22,5 @@ func init() {
 	rootCmd.Flags().StringP("tabs", "t", "", "have tabs N characters apart, not 8. use comma separated list of tab positions")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

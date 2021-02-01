@@ -30,8 +30,8 @@ func init() {
 	rootCmd.AddCommand(waitCmd)
 
 	carapace.Gen(waitCmd).FlagCompletion(carapace.ActionMap{
-		"filename": carapace.ActionFiles(""),
+		"filename": carapace.ActionFiles(),
 		"output":   action.ActionOutputFormats(),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 	})
 }

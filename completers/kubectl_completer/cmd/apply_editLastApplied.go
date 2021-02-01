@@ -27,10 +27,10 @@ func init() {
 	applyCmd.AddCommand(apply_editLastAppliedCmd)
 
 	carapace.Gen(apply_editLastAppliedCmd).FlagCompletion(carapace.ActionMap{
-		"filename":  carapace.ActionFiles(""),
+		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
 		"output":    action.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(""),
+		"template":  carapace.ActionFiles(),
 	})
 
 	carapace.Gen(apply_editLastAppliedCmd).PositionalCompletion(

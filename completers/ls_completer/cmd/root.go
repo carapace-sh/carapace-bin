@@ -87,5 +87,5 @@ func init() {
 		"time-style":      carapace.ActionValues("full-iso", "iso", "locale", "long-iso"),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

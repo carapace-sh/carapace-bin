@@ -19,7 +19,7 @@ func init() {
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		"schema": carapace.ActionFiles(""),
+		"schema": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(testCmd).PositionalCompletion(

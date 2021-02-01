@@ -26,8 +26,8 @@ func init() {
 	rootCmd.Flags().String("cpuprofile", "", "write cpu profile to this file")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"cpuprofile": carapace.ActionFiles(""),
+		"cpuprofile": carapace.ActionFiles(),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

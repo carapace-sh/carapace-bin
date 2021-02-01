@@ -58,14 +58,14 @@ func init() {
 
 	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":            git.ActionCleanupMode(),
-		"file":               carapace.ActionFiles(""),
+		"file":               carapace.ActionFiles(),
 		"fixup":              git.ActionRefs(git.RefOption{Commits: 100}),
 		"gpg-sign":           os.ActionGpgKeyIds(),
-		"pathspec-from-file": carapace.ActionFiles(""),
+		"pathspec-from-file": carapace.ActionFiles(),
 		"reedit-message":     git.ActionRefs(git.RefOption{Commits: 100}),
 		"reuse-message":      git.ActionRefs(git.RefOption{Commits: 100}),
 		"squash":             git.ActionRefs(git.RefOption{Commits: 100}),
-		"template":           carapace.ActionFiles(""),
+		"template":           carapace.ActionFiles(),
 		"untracked-files":    carapace.ActionValues("all", "normal", "no"),
 	})
 }

@@ -25,9 +25,9 @@ func init() {
 	certificateCmd.AddCommand(certificate_approveCmd)
 
 	carapace.Gen(certificate_approveCmd).FlagCompletion(carapace.ActionMap{
-		"filename":  carapace.ActionFiles(""),
+		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
 		"output":    action.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(""),
+		"template":  carapace.ActionFiles(),
 	})
 }

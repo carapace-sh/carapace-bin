@@ -27,9 +27,9 @@ func init() {
 	// TODO a lot more options listed by `mpv --list-options`
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"playlist": carapace.ActionFiles(""),
-		"sub-file": carapace.ActionFiles(""),
+		"playlist": carapace.ActionFiles(),
+		"sub-file": carapace.ActionFiles(),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

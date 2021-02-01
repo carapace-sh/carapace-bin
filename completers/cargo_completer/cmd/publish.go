@@ -43,7 +43,7 @@ func init() {
 		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
 			return action.ActionFeatures(publishCmd).Invoke(args).Filter(parts).ToA()
 		}),
-		"manifest-path": carapace.ActionFiles(""),
+		"manifest-path": carapace.ActionFiles(),
 		"registry":      action.ActionRegistries(),
 		"target-dir":    carapace.ActionDirectories(),
 	})

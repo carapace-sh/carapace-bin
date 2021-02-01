@@ -38,17 +38,17 @@ func init() {
 		"checks": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
 			return ActionChecks().Invoke(args).Filter(parts).ToA()
 		}),
-		"debug.cpuprofile":        carapace.ActionFiles(""),
-		"debug.measure-analyzers": carapace.ActionFiles(""),
-		"debug.memprofile":        carapace.ActionFiles(""),
-		"debug.unused-graph":      carapace.ActionFiles(""),
+		"debug.cpuprofile":        carapace.ActionFiles(),
+		"debug.measure-analyzers": carapace.ActionFiles(),
+		"debug.memprofile":        carapace.ActionFiles(),
+		"debug.unused-graph":      carapace.ActionFiles(),
 		"explain":                 ActionChecks(),
 		"fail": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
 			return ActionChecks().Invoke(args).Filter(parts).ToA()
 		}),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }
 
 func ActionChecks() carapace.Action {

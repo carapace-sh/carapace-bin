@@ -19,6 +19,6 @@ func init() {
 
 	carapace.Gen(context_importCmd).PositionalCompletion(
 		action.ActionContexts(),
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }
