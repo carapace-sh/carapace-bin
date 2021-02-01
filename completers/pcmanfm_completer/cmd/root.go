@@ -40,11 +40,12 @@ func init() {
 	rootCmd.Flags().StringP("set-wallpaper", "w", "", "Set desktop wallpaper from image FILE")
 	rootCmd.Flags().String("show-pref", "", "Open Preferences dialog on the page N")
 	rootCmd.Flags().Bool("sync", false, "Make X calls synchronous")
-	rootCmd.Flags().String("wallpaper-mode", "", "Set mode of desktop wallpaper. MODE=(color|stretch|fit|crop|center|tile|screen)")
+	rootCmd.Flags().String("wallpaper-mode", "", "Set mode of desktop wallpaper")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"set-wallpaper": carapace.ActionFiles(),
-		"display":       os.ActionDisplays(),
+		"set-wallpaper":  carapace.ActionFiles(),
+		"display":        os.ActionDisplays(),
+		"wallpaper-mode": carapace.ActionValues("color", "stretch", "fit", "crop", "center", "tile", "screen"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
