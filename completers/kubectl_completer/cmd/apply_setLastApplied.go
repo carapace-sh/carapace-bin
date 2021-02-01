@@ -25,8 +25,8 @@ func init() {
 
 	carapace.Gen(setLastAppliedCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":  action.ActionDryRunModes(),
-		"filename": carapace.ActionFiles(""),
+		"filename": carapace.ActionFiles(),
 		"output":   action.ActionOutputFormats(),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 	})
 }

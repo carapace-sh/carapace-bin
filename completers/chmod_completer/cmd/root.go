@@ -29,13 +29,13 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"reference": carapace.ActionFiles(""),
+		"reference": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			if rootCmd.Flag("reference").Changed {
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			} else {
 				// TODO complete MODE: '[ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+'
 				return carapace.ActionValues()
@@ -44,6 +44,6 @@ func init() {
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

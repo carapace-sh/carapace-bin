@@ -41,6 +41,6 @@ func init() {
 	})
 
 	carapace.Gen(exportCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

@@ -135,8 +135,8 @@ func init() {
 			"default", "use default engine",
 			"pcre2", "identical to --pcre2",
 		),
-		"file":        carapace.ActionFiles(""),
-		"ignore-file": carapace.ActionFiles(""),
+		"file":        carapace.ActionFiles(),
+		"ignore-file": carapace.ActionFiles(),
 		"sort": carapace.ActionValuesDescribed(
 			"accessed", "sort by last accessed time",
 			"created", "sort by creation time",
@@ -160,14 +160,14 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			if rootCmd.Flag("regexp").Changed || rootCmd.Flag("file").Changed {
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			} else {
 				return carapace.ActionValues()
 			}
 		}),
 	)
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }
 
 func ActionTypes() carapace.Action {

@@ -23,5 +23,5 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 	rootCmd.Flags().StringP("width", "w", "", "use WIDTH columns instead of 80")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

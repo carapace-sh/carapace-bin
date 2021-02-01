@@ -45,5 +45,5 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 	rootCmd.Flags().StringP("width", "w", "", "set page width to PAGE_WIDTH (72) characters")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

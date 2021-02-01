@@ -17,6 +17,6 @@ func init() {
 	rootCmd.AddCommand(bugreportCmd)
 
 	carapace.Gen(bugreportCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

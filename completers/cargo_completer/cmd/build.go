@@ -61,7 +61,7 @@ func init() {
 		}),
 		"exclude":        action.ActionWorkspaceMembers(buildCmd),
 		"message-format": action.ActionMessageFormats(),
-		"manifest-path":  carapace.ActionFiles(""),
+		"manifest-path":  carapace.ActionFiles(),
 		"out-dir":        carapace.ActionDirectories(),
 		"package":        action.ActionDependencies(buildCmd),
 		"profile":        action.ActionProfiles(buildCmd),

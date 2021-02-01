@@ -280,7 +280,7 @@ func init() {
 			"240", "very low definition (240 lines)",
 		),
 		"verbose": carapace.ActionValues("0", "1", "2"),
-		"pidfile": carapace.ActionFiles(""),
+		"pidfile": carapace.ActionFiles(),
 		"hotkeys-y-wheel-mode": carapace.ActionValuesDescribed(
 			"-1", "Ignore",
 			"0", "Volume control",
@@ -293,10 +293,10 @@ func init() {
 			"2", "Position control",
 			"3", "Position control reversed",
 		),
-		"config":        carapace.ActionFiles(""),
-		"snapshot-path": carapace.ActionFiles(""),
-		"sub-file":      carapace.ActionFiles(""),
+		"config":        carapace.ActionFiles(),
+		"snapshot-path": carapace.ActionFiles(),
+		"sub-file":      carapace.ActionFiles(),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

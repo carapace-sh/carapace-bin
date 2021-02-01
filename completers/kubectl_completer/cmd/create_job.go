@@ -30,6 +30,6 @@ func init() {
 		"dry-run":  action.ActionDryRunModes(),
 		"from":     action.ActionResources("", "cronjobs"),
 		"output":   action.ActionOutputFormats(),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 	})
 }

@@ -43,10 +43,10 @@ func init() {
 
 	carapace.Gen(exposeCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":   action.ActionDryRunModes(),
-		"filename":  carapace.ActionFiles(""),
+		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
 		"output":    action.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(""),
+		"template":  carapace.ActionFiles(),
 		"type":      carapace.ActionValues("ClusterIP", "NodePort", "LoadBalancer", "ExternalName"),
 	})
 

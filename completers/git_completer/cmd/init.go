@@ -27,7 +27,7 @@ func init() {
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
 		"object-format":    carapace.ActionValues("sha1", "sha256"),
-		"separate-git-dir": carapace.ActionFiles(""),
+		"separate-git-dir": carapace.ActionFiles(),
 		"shared": carapace.ActionValuesDescribed(
 			"false", "use permissions reported by umask",
 			"true", "make the repository group-writable",
@@ -40,5 +40,5 @@ func init() {
 		"template": carapace.ActionDirectories(),
 	})
 
-	carapace.Gen(initCmd).PositionalCompletion(carapace.ActionFiles(""))
+	carapace.Gen(initCmd).PositionalCompletion(carapace.ActionFiles())
 }

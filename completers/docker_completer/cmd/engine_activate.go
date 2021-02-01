@@ -25,6 +25,6 @@ func init() {
 	engineCmd.AddCommand(engine_activateCmd)
 
 	carapace.Gen(engine_activateCmd).FlagCompletion(carapace.ActionMap{
-		"license": carapace.ActionFiles(""),
+		"license": carapace.ActionFiles(),
 	})
 }

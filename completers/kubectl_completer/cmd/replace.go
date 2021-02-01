@@ -36,9 +36,9 @@ func init() {
 	carapace.Gen(replaceCmd).FlagCompletion(carapace.ActionMap{
 		"cascade":   carapace.ActionValues("background", "orphan", "foreground"),
 		"dry-run":   action.ActionDryRunModes(),
-		"filename":  carapace.ActionFiles(""),
+		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
 		"output":    action.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(""),
+		"template":  carapace.ActionFiles(),
 	})
 }

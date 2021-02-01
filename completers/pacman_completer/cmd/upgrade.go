@@ -37,8 +37,8 @@ func initUpgradeCmd(cmd *cobra.Command) {
 		"arch": carapace.ActionValues("i686", "x86_64"),
 		// TODO assume-installed
 		"color":   carapace.ActionValues("auto", "never", "always"),
-		"config":  carapace.ActionFiles(""),
-		"dbpath":  carapace.ActionFiles(""),
+		"config":  carapace.ActionFiles(),
+		"dbpath":  carapace.ActionFiles(),
 		"gpgdir":  carapace.ActionDirectories(),
 		"hookdir": carapace.ActionDirectories(),
 		// TODO ignore
@@ -47,5 +47,5 @@ func initUpgradeCmd(cmd *cobra.Command) {
 		"root": carapace.ActionDirectories(),
 	})
 
-	carapace.Gen(cmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(cmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

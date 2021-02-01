@@ -57,7 +57,7 @@ func init() {
 		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
 			return action.ActionFeatures(installCmd).Invoke(args).Filter(parts).ToA()
 		}),
-		"path":     carapace.ActionFiles(""),
+		"path":     carapace.ActionFiles(),
 		"profile":  action.ActionProfiles(installCmd),
 		"registry": action.ActionRegistries(),
 		// TODO rev

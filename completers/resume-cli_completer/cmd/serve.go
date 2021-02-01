@@ -24,7 +24,7 @@ func init() {
 
 	carapace.Gen(serveCmd).FlagCompletion(carapace.ActionMap{
 		"dir":    carapace.ActionDirectories(),
-		"resume": carapace.ActionFiles(""),
+		"resume": carapace.ActionFiles(),
 		"theme": carapace.ActionValues(
 			"jsonresume-theme-class",
 			"jsonresume-theme-classy",

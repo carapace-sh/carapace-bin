@@ -36,8 +36,8 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Show version information ")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"init-file": carapace.ActionFiles(""),
-		"rcfile":    carapace.ActionFiles(""),
+		"init-file": carapace.ActionFiles(),
+		"rcfile":    carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
@@ -45,7 +45,7 @@ func init() {
 			if rootCmd.Flag("c").Changed || rootCmd.Flag("s").Changed {
 				return carapace.ActionValues()
 			} else {
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			}
 		}),
 	)

@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
-		"config": carapace.ActionFiles(""),
+		"config": carapace.ActionFiles(),
 	})
 }

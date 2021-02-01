@@ -18,6 +18,6 @@ func init() {
 	connectionCmd.AddCommand(connection_importCmd)
 
 	carapace.Gen(connection_importCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

@@ -142,11 +142,11 @@ var options = map[string]map[string]carapace.Action{
 		"master": carapace.ActionValues(),
 	},
 	"team": {
-		"config": carapace.ActionFiles(""),
+		"config": carapace.ActionFiles(),
 	},
 	"team-slave": {
 		"master": carapace.ActionValues(),
-		"config": carapace.ActionFiles(""),
+		"config": carapace.ActionFiles(),
 	},
 	"bridge": {
 		"stp":                action.ActionYesNo(),

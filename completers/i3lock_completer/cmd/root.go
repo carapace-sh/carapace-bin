@@ -31,7 +31,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "Display the version of your i3lock")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"image":   carapace.ActionFiles(""),
+		"image":   carapace.ActionFiles(),
 		"pointer": carapace.ActionValues("default", "win"),
 	})
 }

@@ -42,7 +42,7 @@ func init() {
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			if strings.HasPrefix(carapace.CallbackValue, ".") {
 				// TODO ActionFiles needs to support `./` as directory
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			} else {
 				return carapace.ActionMultiParts("...", func(args, parts []string) carapace.Action {
 					if len(parts) < 2 {

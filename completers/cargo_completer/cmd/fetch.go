@@ -28,7 +28,7 @@ func init() {
 	rootCmd.AddCommand(fetchCmd)
 
 	carapace.Gen(fetchCmd).FlagCompletion(carapace.ActionMap{
-		"manifest-path": carapace.ActionFiles(""),
+		"manifest-path": carapace.ActionFiles(),
 		"color":         action.ActionColorModes(),
 	})
 }

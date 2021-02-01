@@ -27,9 +27,9 @@ func init() {
 	rootCmd.AddCommand(convertCmd)
 
 	carapace.Gen(convertCmd).FlagCompletion(carapace.ActionMap{
-		"filename":  carapace.ActionFiles(""),
+		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
 		"output":    action.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(""),
+		"template":  carapace.ActionFiles(),
 	})
 }

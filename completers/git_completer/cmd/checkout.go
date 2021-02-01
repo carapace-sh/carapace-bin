@@ -46,7 +46,7 @@ func init() {
 		"B":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
 		"conflict":           carapace.ActionValues("merge", "diff3"),
 		"orphan":             git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
-		"pathspec-from-file": carapace.ActionFiles(""),
+		"pathspec-from-file": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(checkoutCmd).PositionalCompletion(
@@ -59,7 +59,7 @@ func init() {
 			// so just search the full command line for it and assume it's the divider
 			for _, arg := range os.Args {
 				if arg == "--" {
-					return carapace.ActionFiles("") // TODO files from branch?
+					return carapace.ActionFiles() // TODO files from branch?
 				}
 			}
 			return carapace.ActionValues()

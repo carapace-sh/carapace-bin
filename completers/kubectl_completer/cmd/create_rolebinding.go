@@ -34,6 +34,6 @@ func init() {
 		"output":         action.ActionOutputFormats(),
 		"role":           action.ActionResources("", "roles"),
 		"serviceaccount": action.ActionNamespaceServiceAccounts(),
-		"template":       carapace.ActionFiles(""),
+		"template":       carapace.ActionFiles(),
 	})
 }

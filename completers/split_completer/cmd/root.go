@@ -36,6 +36,6 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

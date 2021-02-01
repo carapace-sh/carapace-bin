@@ -18,6 +18,6 @@ func init() {
 	trust_keyCmd.AddCommand(trust_key_loadCmd)
 
 	carapace.Gen(trust_key_loadCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

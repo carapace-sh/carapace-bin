@@ -25,5 +25,5 @@ func init() {
 	rootCmd.Flags().String("bourne-shell", "", "output Bourne shell code to set LS_COLORS")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-	carapace.Gen(rootCmd).PositionalCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalCompletion(carapace.ActionFiles())
 }

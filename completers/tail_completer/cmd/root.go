@@ -41,7 +41,7 @@ func init() {
 		"pid":    ActionPids(),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }
 
 func ActionPids() carapace.Action {

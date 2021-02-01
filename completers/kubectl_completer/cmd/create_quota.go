@@ -29,6 +29,6 @@ func init() {
 	carapace.Gen(create_quotaCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":  action.ActionDryRunModes(),
 		"output":   action.ActionOutputFormats(),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 	})
 }

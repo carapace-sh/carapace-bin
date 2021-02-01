@@ -46,7 +46,7 @@ func init() {
 		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
 			return action.ActionFeatures(runCmd).Invoke(args).Filter(parts).ToA()
 		}),
-		"manifest-path":  carapace.ActionFiles(""),
+		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(runCmd),
 		"profile":        action.ActionProfiles(runCmd),

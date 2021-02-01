@@ -55,7 +55,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"p":      carapace.ActionFiles(""),
-		"config": carapace.ActionFiles(""),
+		"p":      carapace.ActionFiles(),
+		"config": carapace.ActionFiles(),
 	})
 }

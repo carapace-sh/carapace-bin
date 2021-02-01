@@ -37,6 +37,6 @@ func init() {
 	rootCmd.Flags().BoolP("writable", "w", false, "same as -T")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

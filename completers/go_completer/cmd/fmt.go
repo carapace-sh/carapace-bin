@@ -19,5 +19,5 @@ func init() {
 	fmtCmd.Flags().Bool("mod", false, "set module download mode")
 	rootCmd.AddCommand(fmtCmd)
 
-	carapace.Gen(fmtCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(fmtCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

@@ -29,7 +29,7 @@ func init() {
 	carapace.Gen(taintCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":  action.ActionDryRunModes(),
 		"output":   action.ActionOutputFormats(),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(taintCmd).PositionalCompletion(

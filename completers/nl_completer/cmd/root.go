@@ -42,7 +42,7 @@ func init() {
 		),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }
 
 func ActionNumbering() carapace.Action {

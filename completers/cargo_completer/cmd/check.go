@@ -57,7 +57,7 @@ func init() {
 		"example":        action.ActionTargets(checkCmd, action.TargetOpts{Example: true}),
 		"exclude":        action.ActionWorkspaceMembers(checkCmd),
 		"features":       action.ActionFeatures(checkCmd),
-		"manifest-path":  carapace.ActionFiles(""),
+		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(buildCmd),
 		"profile":        action.ActionProfiles(checkCmd),

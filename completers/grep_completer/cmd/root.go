@@ -67,11 +67,11 @@ func init() {
 	rootCmd.Flags().BoolP("word-regexp", "w", false, "match only whole words")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"file":         carapace.ActionFiles(""),
+		"file":         carapace.ActionFiles(),
 		"binary-files": carapace.ActionValues("binary", "test", "without-match"),
 		"directories":  carapace.ActionValues("read", "recurse", "skip"),
 		"devices":      carapace.ActionValues("read", "skip"),
-		"exclude-from": carapace.ActionFiles(""),
+		"exclude-from": carapace.ActionFiles(),
 		"color":        carapace.ActionValues("always", "never", "auto"),
 		"colour":       carapace.ActionValues("always", "never", "auto"),
 	})
@@ -79,12 +79,12 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			if rootCmd.Flag("file").Changed {
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			} else {
 				return carapace.ActionValues()
 			}
 		}),
 	)
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

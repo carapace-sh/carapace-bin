@@ -42,6 +42,6 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "Print Firefox version.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"profile": carapace.ActionFiles(""),
+		"profile": carapace.ActionFiles(),
 	})
 }

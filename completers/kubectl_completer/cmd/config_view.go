@@ -26,6 +26,6 @@ func init() {
 
 	carapace.Gen(config_viewCmd).FlagCompletion(carapace.ActionMap{
 		"output":   action.ActionOutputFormats(),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 	})
 }

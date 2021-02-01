@@ -24,5 +24,5 @@ func init() {
 	rootCmd.Flags().Bool("single-instance", false, "run a single instance only")
 	rootCmd.Flags().Bool("version", false, "show program's version number and exit")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

@@ -22,6 +22,6 @@ func init() {
 
 	carapace.Gen(secret_createCmd).PositionalCompletion(
 		action.ActionSecrets(),
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

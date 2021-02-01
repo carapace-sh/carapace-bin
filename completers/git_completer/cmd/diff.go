@@ -112,7 +112,7 @@ func init() {
 		"color-moved":    ActionColorMovedModes(),
 		"color-moved-ws": ActionColorMovedWsModes(),
 		"diff-algorithm": ActionDiffAlgorithms(),
-		"output":         carapace.ActionFiles(""),
+		"output":         carapace.ActionFiles(),
 		"submodule":      carapace.ActionValues("short", "long", "log"),
 		"word-diff":      ActionWordDiffModes(),
 	})
@@ -121,7 +121,7 @@ func init() {
 		carapace.ActionCallback(func(args []string) carapace.Action {
 			for _, arg := range os.Args {
 				if arg == "--" {
-					return carapace.ActionFiles("")
+					return carapace.ActionFiles()
 				}
 			}
 			return git.ActionRefs(git.RefOptionDefault)

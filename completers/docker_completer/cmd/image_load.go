@@ -20,7 +20,7 @@ func init() {
 
 	rootAlias(image_loadCmd, func(cmd *cobra.Command, isAlias bool) {
 		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-			"input": carapace.ActionFiles(""),
+			"input": carapace.ActionFiles(),
 		})
 	})
 }

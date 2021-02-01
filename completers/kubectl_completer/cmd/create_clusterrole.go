@@ -32,7 +32,7 @@ func init() {
 	carapace.Gen(create_clusterroleCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":  action.ActionDryRunModes(),
 		"output":   action.ActionOutputFormats(),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 		"verb":     action.ActionResourceVerbs(),
 	})
 }

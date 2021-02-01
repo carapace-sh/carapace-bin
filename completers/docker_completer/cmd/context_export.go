@@ -20,6 +20,6 @@ func init() {
 
 	carapace.Gen(context_exportCmd).PositionalCompletion(
 		action.ActionContexts(),
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
 	)
 }

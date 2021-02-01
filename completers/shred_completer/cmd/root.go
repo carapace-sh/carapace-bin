@@ -30,7 +30,7 @@ func init() {
 	rootCmd.Flags().BoolP("zero", "z", false, "add a final overwrite with zeros to hide shredding")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"random-source": carapace.ActionFiles(""),
+		"random-source": carapace.ActionFiles(),
 		"remove": carapace.ActionValuesDescribed(
 			"unlink", "use standard unlink call",
 			"wipe", "like unlink, but obfuscate bytes in name first",
@@ -38,5 +38,5 @@ func init() {
 		),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

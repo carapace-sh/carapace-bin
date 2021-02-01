@@ -22,7 +22,7 @@ func init() {
 
 	rootAlias(image_importCmd, func(cmd *cobra.Command, isAlias bool) {
 		carapace.Gen(cmd).PositionalCompletion(
-			carapace.ActionFiles(""),
+			carapace.ActionFiles(),
 			action.ActionRepositoryTags(),
 		)
 	})

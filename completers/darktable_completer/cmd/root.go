@@ -45,5 +45,5 @@ func init() {
 		"tmpdir":        carapace.ActionDirectories(),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

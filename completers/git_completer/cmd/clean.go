@@ -24,5 +24,5 @@ func init() {
 	cleanCmd.Flags().BoolP("quiet", "q", false, "do not print names of files removed")
 	rootCmd.AddCommand(cleanCmd)
 
-	carapace.Gen(cleanCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(cleanCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

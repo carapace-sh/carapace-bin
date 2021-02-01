@@ -22,5 +22,5 @@ func init() {
 	rootCmd.Flags().BoolP("sysv", "s", false, "use System V sum algorithm, use 512 bytes blocks")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

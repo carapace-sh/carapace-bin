@@ -37,14 +37,14 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cachedir":    carapace.ActionDirectories(),
-		"choosedir":   carapace.ActionFiles(""),
-		"choosefile":  carapace.ActionFiles(""),
-		"choosefiles": carapace.ActionFiles(""),
+		"choosedir":   carapace.ActionFiles(),
+		"choosefile":  carapace.ActionFiles(),
+		"choosefiles": carapace.ActionFiles(),
 		"copy-config": carapace.ActionValues("all", "rc", "rifle", "commands", "commands_full", "scope"),
 		"datadir":     carapace.ActionDirectories(),
-		"logfile":     carapace.ActionFiles(""),
-		"selectfile":  carapace.ActionFiles(""),
+		"logfile":     carapace.ActionFiles(),
+		"selectfile":  carapace.ActionFiles(),
 	})
 
-	carapace.Gen(rootCmd).PositionalCompletion(carapace.ActionFiles(""))
+	carapace.Gen(rootCmd).PositionalCompletion(carapace.ActionFiles())
 }

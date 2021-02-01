@@ -29,13 +29,13 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "show program's version number and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"comparison-file": carapace.ActionFiles(""),
-		"output":          carapace.ActionFiles(""),
+		"comparison-file": carapace.ActionFiles(),
+		"output":          carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionFiles(""),
-		carapace.ActionFiles(""),
-		carapace.ActionFiles(""),
+		carapace.ActionFiles(),
+		carapace.ActionFiles(),
+		carapace.ActionFiles(),
 	)
 }

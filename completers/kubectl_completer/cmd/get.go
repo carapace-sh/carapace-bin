@@ -40,10 +40,10 @@ func init() {
 	rootCmd.AddCommand(getCmd)
 
 	carapace.Gen(getCmd).FlagCompletion(carapace.ActionMap{
-		"filename":  carapace.ActionFiles(""),
+		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
 		"output":    action.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(""),
+		"template":  carapace.ActionFiles(),
 	})
 
 	carapace.Gen(getCmd).PositionalCompletion(

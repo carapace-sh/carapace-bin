@@ -50,7 +50,7 @@ func init() {
 
 	carapace.Gen(mergeCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":  git.ActionCleanupMode(),
-		"file":     carapace.ActionFiles(""),
+		"file":     carapace.ActionFiles(),
 		"gpg-sign": os.ActionGpgKeyIds(),
 		"strategy": git.ActionMergeStrategy(),
 		"strategy-option": carapace.ActionCallback(func(args []string) carapace.Action {

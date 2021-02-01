@@ -24,7 +24,7 @@ func init() {
 	applyCmd.AddCommand(apply_viewLastAppliedCmd)
 
 	carapace.Gen(apply_viewLastAppliedCmd).FlagCompletion(carapace.ActionMap{
-		"filename":  carapace.ActionFiles(""),
+		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
 		"output":    action.ActionOutputFormats(),
 	})

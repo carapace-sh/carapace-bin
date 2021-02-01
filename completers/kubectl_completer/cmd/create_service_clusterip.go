@@ -30,6 +30,6 @@ func init() {
 		"clusterip": carapace.ActionValues("None"),
 		"dry-run":   action.ActionDryRunModes(),
 		"output":    action.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(""),
+		"template":  carapace.ActionFiles(),
 	})
 }

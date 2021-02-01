@@ -31,6 +31,6 @@ func init() {
 		"dry-run":  action.ActionDryRunModes(),
 		"output":   action.ActionOutputFormats(),
 		"restart":  carapace.ActionValues("OnFailure", "Never"),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 	})
 }

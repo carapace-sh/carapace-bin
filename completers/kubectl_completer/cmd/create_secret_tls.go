@@ -29,10 +29,10 @@ func init() {
 	create_secretCmd.AddCommand(create_secret_tlsCmd)
 
 	carapace.Gen(create_secret_tlsCmd).FlagCompletion(carapace.ActionMap{
-		"cert":     carapace.ActionFiles(""),
+		"cert":     carapace.ActionFiles(),
 		"dry-run":  action.ActionDryRunModes(),
-		"key":      carapace.ActionFiles(""),
+		"key":      carapace.ActionFiles(),
 		"output":   action.ActionOutputFormats(),
-		"template": carapace.ActionFiles(""),
+		"template": carapace.ActionFiles(),
 	})
 }

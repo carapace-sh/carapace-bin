@@ -65,6 +65,6 @@ func init() {
 		"kustomize":         carapace.ActionDirectories(),
 		"output":            action.ActionOutputFormats(),
 		"restart":           carapace.ActionValues("Always", "OnFailure", "Never"),
-		"template":          carapace.ActionFiles(""),
+		"template":          carapace.ActionFiles(),
 	})
 }

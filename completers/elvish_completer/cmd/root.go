@@ -36,11 +36,11 @@ func init() {
 	rootCmd.Flags().Bool("web", false, "run backend of web interface")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"bin":        carapace.ActionFiles(""),
-		"cpuprofile": carapace.ActionFiles(""),
-		"db":         carapace.ActionFiles(""),
-		"log":        carapace.ActionFiles(""),
-		"sock":       carapace.ActionFiles(""),
+		"bin":        carapace.ActionFiles(),
+		"cpuprofile": carapace.ActionFiles(),
+		"db":         carapace.ActionFiles(),
+		"log":        carapace.ActionFiles(),
+		"sock":       carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
@@ -48,7 +48,7 @@ func init() {
 			if rootCmd.Flag("c").Changed {
 				return carapace.ActionValues()
 			} else {
-				return carapace.ActionFiles("")
+				return carapace.ActionFiles()
 			}
 		}),
 	)
