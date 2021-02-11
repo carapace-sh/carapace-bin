@@ -99,7 +99,16 @@ func actionTargets() carapace.Action {
 			r := regexp.MustCompile(`^(?P<target>[a-zA-Z0-9][^$#\/\t=]*):([^=]|$)`)
 
 			vals := make([]string, 0)
+			skip := false
 			for _, line := range lines {
+				if strings.HasPrefix(line, "# Not a target:") {
+					skip = true
+					continue
+				} else if skip {
+					skip = false
+					continue
+				}
+
 				if r.MatchString(line) {
 					vals = append(vals, r.FindStringSubmatch(line)[1])
 				}
