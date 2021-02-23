@@ -70,7 +70,7 @@ func init() {
 		// "B"
 		// "b"
 		"c": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return ActionCipehers().Invoke(args).Filter(parts).ToA()
+			return ActionCiphers().Invoke(args).Filter(parts).ToA()
 		}),
 		// "D"
 		"E": carapace.ActionFiles(),
@@ -88,7 +88,7 @@ func init() {
 			"exit", "request the master to exit",
 			"stop", "request the master to stop accepting further multiplexing requests",
 		),
-		"o": ActionOptons(),
+		"o": ActionOptions(),
 		// "p"
 		"Q": ActionQueryOptions(),
 		// "R"
@@ -109,13 +109,13 @@ func init() {
 	)
 }
 
-func ActionCipehers() carapace.Action {
+func ActionCiphers() carapace.Action {
 	return carapace.ActionValues(
 		"3des-cbc", "aes128-cbc", "aes192-cbc", "aes256-cbc", "aes128-ctr", "aes192-ctr", "aes256-ctr", "arcfour128", "arcfour256", "arcfour", "blowfish-cbc", "cast128-cbc",
 	)
 }
 
-func ActionOptons() carapace.Action {
+func ActionOptions() carapace.Action {
 	return carapace.ActionMultiParts("=", func(args, parts []string) carapace.Action {
 		options := map[string]carapace.Action{
 			"AddKeysToAgent":                   carapace.ActionValues(),
