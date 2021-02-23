@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -93,6 +96,17 @@ func init() {
 		// "W"
 		// "w"
 	})
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionCallback(func(args []string) carapace.Action {
+			if strings.Contains(carapace.CallbackValue, "@") {
+				prefix := strings.SplitN(carapace.CallbackValue, "@", 2)[0]
+				return net.ActionHosts().Invoke(args).Prefix(prefix + "@").ToA()
+			} else {
+				return net.ActionHosts()
+			}
+		}),
+	)
 }
 
 func ActionCipehers() carapace.Action {
