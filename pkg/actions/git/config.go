@@ -8,7 +8,7 @@ import (
 )
 
 func ActionConfigs() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO support different git folder
 		if output, err := exec.Command("git", "help", "--config").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
@@ -19,7 +19,7 @@ func ActionConfigs() carapace.Action {
 					vals = append(vals, line)
 				}
 			}
-			return carapace.ActionValues(vals...).Invoke(args).ToMultiPartsA(".")
+			return carapace.ActionValues(vals...).Invoke(c).ToMultiPartsA(".")
 		}
 	})
 }

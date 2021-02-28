@@ -43,8 +43,8 @@ func init() {
 		"bin":     action.ActionTargets(runCmd, action.TargetOpts{Bin: true}),
 		"color":   action.ActionColorModes(),
 		"example": action.ActionTargets(runCmd, action.TargetOpts{Example: true}),
-		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return action.ActionFeatures(runCmd).Invoke(args).Filter(parts).ToA()
+		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionFeatures(runCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),

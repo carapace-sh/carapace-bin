@@ -24,8 +24,8 @@ func init() {
 
 	carapace.Gen(device_wifi_wifi_listCmd).PositionalCompletion(
 		carapace.ActionValues("ifname", "bssid"),
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			switch args[0] {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			switch c.Args[0] {
 			case "ifname":
 				return net.ActionDevices(net.IncludedDevices{Wifi: true})
 			case "bssid":

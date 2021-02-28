@@ -23,7 +23,7 @@ func init() {
 	})
 
 	carapace.Gen(stack_rmCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if stack_rmCmd.Flag("orchestrator").Changed {
 				return action.ActionStacks(stack_rmCmd.Flag("orchestrator").Value.String())
 			} else {

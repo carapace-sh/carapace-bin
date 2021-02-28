@@ -22,10 +22,10 @@ func init() {
 
 	carapace.Gen(portForwardCmd).PositionalCompletion(
 		action.ActionApiResourceResources(),
-		carapace.ActionMultiParts(":", func(args, parts []string) carapace.Action {
-			switch len(parts) {
+		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
 			case 0:
-				return net.ActionPorts().Invoke(args).Suffix(":").ToA()
+				return net.ActionPorts().Invoke(c).Suffix(":").ToA()
 			case 1:
 				return net.ActionPorts()
 			default:

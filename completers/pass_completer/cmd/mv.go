@@ -19,11 +19,11 @@ func init() {
 	rootCmd.AddCommand(mvCmd)
 
 	carapace.Gen(mvCmd).PositionalCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionPassNames().Invoke(args).ToMultiPartsA("/")
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionPassNames().Invoke(c).ToMultiPartsA("/")
 		}),
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionPassNames().Invoke(args).ToMultiPartsA("/")
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionPassNames().Invoke(c).ToMultiPartsA("/")
 		}),
 	)
 }

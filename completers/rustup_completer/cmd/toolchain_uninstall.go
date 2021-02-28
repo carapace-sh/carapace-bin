@@ -19,8 +19,8 @@ func init() {
 	toolchainCmd.AddCommand(toolchain_uninstallCmd)
 
 	carapace.Gen(toolchain_uninstallCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionToolchains().Invoke(args).Filter(args).ToA()
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionToolchains().Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

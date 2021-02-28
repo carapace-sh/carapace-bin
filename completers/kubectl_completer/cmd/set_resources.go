@@ -41,18 +41,18 @@ func init() {
 	})
 
 	carapace.Gen(set_resourcesCmd).PositionalCompletion(
-		carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
+		carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			if set_resourcesCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {
 				return action.ActionApiResources()
 			}
 		}),
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if set_resourcesCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {
-				return action.ActionResources("", args[0])
+				return action.ActionResources("", c.Args[0])
 			}
 		}),
 	)

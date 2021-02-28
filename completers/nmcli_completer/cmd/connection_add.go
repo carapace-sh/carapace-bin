@@ -37,28 +37,28 @@ func ActionTypes() carapace.Action {
 }
 
 func ActionOption() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		typeOptions := map[string]carapace.Action{}
 		for key, value := range options["common"] { // add common options
 			typeOptions[key] = value
 		}
-		for key, value := range options[args[1]] { // add type options (assuming type is declared at arg[1])
+		for key, value := range options[c.Args[1]] { // add type options (assuming type is declared at arg[1])
 			typeOptions[key] = value
 		}
-		for index, arg := range args { // remove already declared options (but leave the last/current one)
-			if index%2 == 0 && index < len(args)-1 {
+		for index, arg := range c.Args { // remove already declared options (but leave the last/current one)
+			if index%2 == 0 && index < len(c.Args)-1 {
 				delete(typeOptions, arg)
 			}
 		}
 
-		if len(args)%2 == 0 { // complete option names
+		if len(c.Args)%2 == 0 { // complete option names
 			vals := make([]string, 0)
 			for key := range typeOptions {
 				vals = append(vals, key)
 			}
 			return carapace.ActionValues(vals...)
 		} else { // complete option values
-			optionName := args[len(args)-1]
+			optionName := c.Args[len(c.Args)-1]
 			if action, ok := typeOptions[optionName]; !ok {
 				return carapace.ActionMessage("unknown option: " + optionName)
 			} else {

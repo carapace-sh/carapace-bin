@@ -85,8 +85,8 @@ func init() {
 
 	carapace.Gen(pullCmd).PositionalCompletion(
 		git.ActionRemotes(),
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return git.ActionRemoteBranches(args[0])
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return git.ActionRemoteBranches(c.Args[0])
 		}),
 	)
 }

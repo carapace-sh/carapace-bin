@@ -33,8 +33,8 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "Print version info")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"pid": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return os.ActionProcessIds().Invoke(args).Filter(parts).ToA()
+		"pid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return os.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"sort-key": ActionSortKeys(),
 		"user":     os.ActionUsers(),
@@ -42,7 +42,7 @@ func init() {
 }
 
 func ActionSortKeys() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("htop", "--sort-key", "help").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

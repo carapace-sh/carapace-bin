@@ -22,12 +22,12 @@ func init() {
 	rootCmd.AddCommand(cpCmd)
 
 	carapace.Gen(cpCmd).FlagCompletion(carapace.ActionMap{
-		"container": carapace.ActionCallback(func(args []string) carapace.Action {
+		"container": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			resource := ""
-			if len(args) > 0 && !isFileCompletion(args[0]) {
-				resource = args[0]
-			} else if len(args) > 1 && !isFileCompletion(args[1]) {
-				resource = args[1]
+			if len(c.Args) > 0 && !isFileCompletion(c.Args[0]) {
+				resource = c.Args[0]
+			} else if len(c.Args) > 1 && !isFileCompletion(c.Args[1]) {
+				resource = c.Args[1]
 			}
 			splitted := strings.SplitN(strings.SplitN(resource, ":", 2)[0], "/", 2)
 
@@ -46,16 +46,16 @@ func init() {
 }
 
 func ActionPathOrContainer() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if isFileCompletion(carapace.CallbackValue) {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if isFileCompletion(c.CallbackValue) {
 			return carapace.ActionFiles()
 		} else {
-			return carapace.ActionMultiParts("/", func(args, parts []string) carapace.Action {
-				switch len(parts) {
+			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
 				case 0:
-					return action.ActionResources("", "namespaces").Invoke(args).Suffix("/").ToA()
+					return action.ActionResources("", "namespaces").Invoke(c).Suffix("/").ToA()
 				case 1:
-					return action.ActionResources(parts[0], "pods").Invoke(args).Suffix(":").ToA()
+					return action.ActionResources(c.Parts[0], "pods").Invoke(c).Suffix(":").ToA()
 				default:
 					return carapace.ActionValues()
 				}

@@ -54,7 +54,7 @@ func init() {
 	)
 
 	carapace.Gen(checkoutCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			// the first `--` is currently not detected as positional argument,
 			// so just search the full command line for it and assume it's the divider
 			for _, arg := range os.Args {

@@ -48,12 +48,12 @@ func init() {
 
 	carapace.Gen(pushCmd).PositionalCompletion(
 		git.ActionRemotes(),
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if pushCmd.Flag("set-upstream").Changed {
 				// if set-upstream is set the desired remote branch is likely named the same as the current
 				return git.ActionCurrentBranch()
 			} else {
-				return git.ActionRemoteBranches(args[0])
+				return git.ActionRemoteBranches(c.Args[0])
 			}
 		}),
 	)

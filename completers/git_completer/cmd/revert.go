@@ -37,7 +37,7 @@ func init() {
 		"cleanup":  git.ActionCleanupMode(),
 		"gpg-sign": os.ActionGpgKeyIds(),
 		"strategy": git.ActionMergeStrategy(),
-		"strategy-option": carapace.ActionCallback(func(args []string) carapace.Action {
+		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(revertCmd.Flag("strategy").Value.String())
 		}),
 	})

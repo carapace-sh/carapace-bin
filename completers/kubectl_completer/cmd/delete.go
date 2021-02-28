@@ -41,11 +41,11 @@ func init() {
 	})
 
 	carapace.Gen(deleteCmd).PositionalCompletion(
-		carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return action.ActionApiResources().Invoke(args).Filter(parts).ToA()
+		carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionApiResources().Invoke(c).Filter(c.Parts).ToA()
 		}),
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionResources("", args[0])
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionResources("", c.Args[0])
 		}),
 	)
 }

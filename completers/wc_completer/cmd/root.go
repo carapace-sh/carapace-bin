@@ -31,7 +31,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("files0-from").Changed {
 				return carapace.ActionMessage("files0-from used")
 			} else {

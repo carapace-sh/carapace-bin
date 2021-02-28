@@ -58,8 +58,8 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "Display version information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"activate-profiles": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return action.ActionProfiles(rootCmd.Flag("file").Value.String()).Invoke(args).Filter(parts).ToA()
+		"activate-profiles": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionProfiles(rootCmd.Flag("file").Value.String()).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"file":              carapace.ActionFiles(".xml"),
 		"global-settings":   carapace.ActionFiles(".xml"),
@@ -70,8 +70,8 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionGoalsAndPhases(rootCmd.Flag("file").Value.String()).Invoke(args).Filter(args).ToA()
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionGoalsAndPhases(rootCmd.Flag("file").Value.String()).Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

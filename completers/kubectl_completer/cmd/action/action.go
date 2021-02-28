@@ -8,7 +8,7 @@ import (
 )
 
 func ActionApiResources() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("kubectl", "api-resources", "--output=name", "--cached").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -22,7 +22,7 @@ func ActionApiResources() carapace.Action {
 }
 
 func ActionResources(namespace string, types string) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range .items}}{{.metadata.name}}\n{{.kind}}\n{{end}}", types).Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -45,12 +45,12 @@ func ActionResourceVerbs() carapace.Action {
 }
 
 func ActionNamespaceServiceAccounts() carapace.Action {
-	return carapace.ActionMultiParts(":", func(args, parts []string) carapace.Action {
-		switch len(parts) {
+	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
 		case 0:
-			return ActionResources("", "namespaces").Invoke(args).Suffix(":").ToA()
+			return ActionResources("", "namespaces").Invoke(c).Suffix(":").ToA()
 		case 1:
-			return ActionResources(parts[0], "serviceaccounts")
+			return ActionResources(c.Parts[0], "serviceaccounts")
 		default:
 			return carapace.ActionValues()
 		}
@@ -58,12 +58,12 @@ func ActionNamespaceServiceAccounts() carapace.Action {
 }
 
 func ActionApiResourceResources() carapace.Action {
-	return carapace.ActionMultiParts("/", func(args, parts []string) carapace.Action {
-		switch len(parts) {
+	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
 		case 0:
-			return ActionApiResources().Invoke(args).Suffix("/").ToA()
+			return ActionApiResources().Invoke(c).Suffix("/").ToA()
 		case 1:
-			return ActionResources("", parts[0])
+			return ActionResources("", c.Parts[0])
 		default:
 			return carapace.ActionValues()
 		}
@@ -71,7 +71,7 @@ func ActionApiResourceResources() carapace.Action {
 }
 
 func ActionContainers(namespace string, resource string) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range .spec.containers}}{{.name}}\n{{end}}", resource).Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -82,7 +82,7 @@ func ActionContainers(namespace string, resource string) carapace.Action {
 }
 
 func ActionLabels(namespace string, resource string) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range $key, $value := .metadata.labels}}{{$key}}\n{{$value}}\n{{end}}", resource).Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -93,7 +93,7 @@ func ActionLabels(namespace string, resource string) carapace.Action {
 }
 
 func ActionAnnotations(namespace string, resource string) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range $key, $value := .metadata.annotations}}{{$key}}\n{{$value}}\n{{end}}", resource).Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -131,7 +131,7 @@ func ActionApiGroups() carapace.Action {
 }
 
 func ActionClusters() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("kubectl", "config", "get-clusters").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -142,7 +142,7 @@ func ActionClusters() carapace.Action {
 }
 
 func ActionContexts() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("kubectl", "config", "get-contexts", "-o", "name").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

@@ -64,7 +64,7 @@ func repositoryLocation() string {
 
 func ActionGoalsAndPhases(file string) carapace.Action {
 	// TODO caching
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if project, err := loadProject(file); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -148,7 +148,7 @@ func defaultGoalsAndPhases() (goals map[string]string) {
 }
 
 func ActionProfiles(file string) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if project, err := loadProject(file); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

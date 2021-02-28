@@ -27,8 +27,8 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
-		"ignore": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return pacman.ActionPackages(pacman.PackageOption{}).Invoke(args).Filter(parts).ToA()
+		"ignore": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return pacman.ActionPackages(pacman.PackageOption{}).Invoke(c).Filter(c.Parts).ToA()
 		}),
 	})
 

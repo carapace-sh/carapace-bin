@@ -41,7 +41,7 @@ func init() {
 	)
 
 	carapace.Gen(resetCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			for _, arg := range os.Args {
 				if arg == "--" {
 					return carapace.ActionFiles()

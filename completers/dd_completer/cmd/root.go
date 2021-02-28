@@ -23,11 +23,11 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionMultiParts("=", func(args, parts []string) carapace.Action {
-			switch len(parts) {
+		carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
 			case 0:
-				keys := make([]string, len(args))
-				for index, arg := range args {
+				keys := make([]string, len(c.Args))
+				for index, arg := range c.Args {
 					keys[index] = strings.Split(arg, "=")[0]
 				}
 				return carapace.ActionValuesDescribed(
@@ -44,24 +44,24 @@ func init() {
 					"seek", "skip N obs-sized blocks at start of output",
 					"skip", "skip N ibs-sized blocks at start of input",
 					"status", "The LEVEL of information to print to stderr",
-				).Invoke(args).Filter(keys).Suffix("=").ToA()
+				).Invoke(c).Filter(keys).Suffix("=").ToA()
 			case 1:
-				switch parts[0] {
+				switch c.Parts[0] {
 				case "conv":
-					return carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-						return actionConvs().Invoke(args).Filter(parts).ToA()
+					return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+						return actionConvs().Invoke(c).Filter(c.Parts).ToA()
 					})
 				case "if":
 					return carapace.ActionFiles()
 				case "iflag":
-					return carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-						return actionIFlags().Invoke(args).Filter(parts).ToA()
+					return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+						return actionIFlags().Invoke(c).Filter(c.Parts).ToA()
 					})
 				case "of":
 					return carapace.ActionFiles()
 				case "oflag":
-					return carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-						return actionOFlags().Invoke(args).Filter(parts).ToA()
+					return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+						return actionOFlags().Invoke(c).Filter(c.Parts).ToA()
 					})
 				case "status":
 					return carapace.ActionValues("none", "noxfer", "progress")

@@ -44,8 +44,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"gid": os.ActionGroups(),
-		"groups": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return os.ActionGroups().Invoke(args).Filter(parts).ToA()
+		"groups": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"home":   carapace.ActionDirectories(),
 		"prefix": carapace.ActionDirectories(),

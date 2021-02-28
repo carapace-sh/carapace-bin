@@ -51,8 +51,8 @@ func init() {
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return fs.ActionZipFileContents(args[0])
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return fs.ActionZipFileContents(c.Args[0])
 		}),
 	)
 }

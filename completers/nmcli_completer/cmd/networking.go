@@ -18,8 +18,8 @@ func init() {
 
 	carapace.Gen(networkingCmd).PositionalCompletion(
 		carapace.ActionValues("on", "off", "connectivity"),
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			if args[0] == "connectivity" {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if c.Args[0] == "connectivity" {
 				return carapace.ActionValues("check")
 			} else {
 				return carapace.ActionValues()

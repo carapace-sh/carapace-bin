@@ -41,8 +41,8 @@ func init() {
 }
 
 func ActionMultiFields() carapace.Action {
-	return carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-		return ActionFields().Invoke(args).Filter(parts).Suffix(",").ToA()
+	return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		return ActionFields().Invoke(c).Filter(c.Parts).Suffix(",").ToA()
 	})
 }
 

@@ -194,10 +194,10 @@ func init() {
 }
 
 func ActionFormats() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if len(args) == 0 {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if len(c.Args) == 0 {
 			return carapace.ActionMessage("missing url")
-		} else if output, err := exec.Command("youtube-dl", "--list-formats", args[0]).Output(); err != nil {
+		} else if output, err := exec.Command("youtube-dl", "--list-formats", c.Args[0]).Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			lines := strings.Split(string(output), "\n")

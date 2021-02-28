@@ -30,7 +30,7 @@ func init() {
 	})
 
 	carapace.Gen(apply_viewLastAppliedCmd).PositionalCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if apply_editLastAppliedCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {

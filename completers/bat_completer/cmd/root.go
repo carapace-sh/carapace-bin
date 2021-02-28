@@ -62,7 +62,7 @@ func init() {
 }
 
 func ActionLanguage() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("bat", "--list-languages").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -82,7 +82,7 @@ func ActionLanguage() carapace.Action {
 }
 
 func ActionTheme() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("bat", "--list-themes").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

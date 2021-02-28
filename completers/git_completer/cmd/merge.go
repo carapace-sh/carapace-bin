@@ -53,14 +53,14 @@ func init() {
 		"file":     carapace.ActionFiles(),
 		"gpg-sign": os.ActionGpgKeyIds(),
 		"strategy": git.ActionMergeStrategy(),
-		"strategy-option": carapace.ActionCallback(func(args []string) carapace.Action {
+		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(mergeCmd.Flag("strategy").Value.String())
 		}),
 	})
 
 	carapace.Gen(mergeCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return git.ActionRefs(git.RefOptionDefault).Invoke(args).Filter(args).ToA()
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return git.ActionRefs(git.RefOptionDefault).Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

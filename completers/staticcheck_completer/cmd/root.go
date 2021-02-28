@@ -35,16 +35,16 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Print version and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"checks": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return ActionChecks().Invoke(args).Filter(parts).ToA()
+		"checks": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return ActionChecks().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"debug.cpuprofile":        carapace.ActionFiles(),
 		"debug.measure-analyzers": carapace.ActionFiles(),
 		"debug.memprofile":        carapace.ActionFiles(),
 		"debug.unused-graph":      carapace.ActionFiles(),
 		"explain":                 ActionChecks(),
-		"fail": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return ActionChecks().Invoke(args).Filter(parts).ToA()
+		"fail": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return ActionChecks().Invoke(c).Filter(c.Parts).ToA()
 		}),
 	})
 

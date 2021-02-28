@@ -24,13 +24,13 @@ func init() {
 	listCmd.Flags().BoolP("repos", "r", false, "list all packages available in the given repos")
 	rootCmd.AddCommand(listCmd)
 
-	carapace.Gen(listCmd).PositionalAnyCompletion(carapace.ActionCallback(func(args []string) carapace.Action {
+	carapace.Gen(listCmd).PositionalAnyCompletion(carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if listCmd.Flag("groups").Changed {
-			return pacman.ActionPackageGroups().Invoke(args).Filter(args).ToA()
+			return pacman.ActionPackageGroups().Invoke(c).Filter(c.Args).ToA()
 		} else if listCmd.Flag("repos").Changed {
-			return pacman.ActionRepositories().Invoke(args).Filter(args).ToA()
+			return pacman.ActionRepositories().Invoke(c).Filter(c.Args).ToA()
 		} else if listCmd.Flag("files").Changed {
-			return pacman.ActionPackages(pacman.PackageOption{}).Invoke(args).Filter(args).ToA()
+			return pacman.ActionPackages(pacman.PackageOption{}).Invoke(c).Filter(c.Args).ToA()
 		} else {
 			return carapace.ActionValues()
 		}

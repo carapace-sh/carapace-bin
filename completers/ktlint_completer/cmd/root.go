@@ -42,8 +42,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"editorconfig": carapace.ActionFiles(".editorconfig"),
 		"color-name":   carapace.ActionValues("WHITE", "LIGHT_GRAY", "GRAY", "DARK_GRAY", "BLACK", "RED", "PINK", "ORANGE", "YELLOW", "GREEN", "MAGENTA", "CYAN", "BLUE"),
-		"disabled_rules": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return ActionRules().Invoke(args).Filter(parts).ToA()
+		"disabled_rules": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return ActionRules().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"reporter": carapace.ActionValues("plain", "plain?group_by_file", "json", "checkstyle", "html"),
 		"ruleset":  carapace.ActionFiles(".jar"),

@@ -26,7 +26,7 @@ func init() {
 }
 
 func ActionTools() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("go", "tool").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

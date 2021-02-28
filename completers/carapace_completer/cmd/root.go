@@ -30,7 +30,7 @@ func init() {
 }
 
 func ActionCompleters() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("carapace", "--list").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

@@ -10,7 +10,7 @@ import (
 )
 
 func ActionConfigs() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "config", "ls", "--format", "{{.Name}}\nupdated {{.UpdatedAt}}").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -21,7 +21,7 @@ func ActionConfigs() carapace.Action {
 }
 
 func ActionContainers() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -32,7 +32,7 @@ func ActionContainers() carapace.Action {
 }
 
 func ActionRepositories() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "images", "--format", "{{.Repository}})").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -43,13 +43,13 @@ func ActionRepositories() carapace.Action {
 }
 
 func ActionRepositoryTags() carapace.Action {
-	return carapace.ActionMultiParts(":", func(args []string, parts []string) carapace.Action {
+	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "image", "ls", "--format", "{{.Repository}}:{{.Tag}}", "--filter", "dangling=false").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			// TODO add checks to not cause an out of bounds error
 			vals := strings.Split(string(output), "\n")
-			switch len(parts) {
+			switch len(c.Parts) {
 			case 0:
 				reposWithSuffix := make([]string, len(vals))
 				for index, val := range vals[:len(vals)-1] {
@@ -61,7 +61,7 @@ func ActionRepositoryTags() carapace.Action {
 			case 1:
 				tags := make([]string, 0)
 				for _, val := range vals[:len(vals)-1] {
-					if strings.HasPrefix(val, parts[0]) {
+					if strings.HasPrefix(val, c.Parts[0]) {
 						tag := strings.Split(val, ":")[1]
 						tags = append(tags, tag)
 					}
@@ -76,8 +76,8 @@ func ActionRepositoryTags() carapace.Action {
 
 func ActionContainerPath() carapace.Action {
 	// TODO not yet working - also needs multiple characters to split on `:` `/`
-	return carapace.ActionMultiParts(":", func(args []string, parts []string) carapace.Action {
-		switch len(parts) {
+	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
 		case 0:
 			// TODO add description support
 			//if output, err := exec.Command("docker", "container", "ls", "--format", "{{.Names}}:\n{{.Image}} ({{.Status}})").Output(); err != nil {
@@ -88,7 +88,7 @@ func ActionContainerPath() carapace.Action {
 				return carapace.ActionValues(vals[:len(vals)-1]...)
 			}
 		default:
-			if output, err := exec.Command("docker", "exec", parts[0], "ls", filepath.Dir(strings.Join(parts[1:], "/"))).Output(); err != nil {
+			if output, err := exec.Command("docker", "exec", c.Parts[0], "ls", filepath.Dir(strings.Join(c.Parts[1:], "/"))).Output(); err != nil {
 				return carapace.ActionValues()
 			} else {
 				return carapace.ActionValues(strings.Split(string(output), "\n")...)
@@ -121,7 +121,7 @@ func ActionDetachKeys() carapace.Action {
 }
 
 func ActionContexts() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "context", "ls", "--format", "{{.Name}}\n{{.Description}}").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -132,7 +132,7 @@ func ActionContexts() carapace.Action {
 }
 
 func ActionNetworks() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "network", "ls", "--format", "{{.Name}}\n{{.Driver}}/{{.Scope}}").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -143,7 +143,7 @@ func ActionNetworks() carapace.Action {
 }
 
 func ActionNodes() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "node", "ls", "--format", "{{.ID}}\n{{.Hostname}} {{.ManagerStatus}}").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -154,7 +154,7 @@ func ActionNodes() carapace.Action {
 }
 
 func ActionPlugins() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "plugin", "ls", "--format", "{{.Name}}\n{{.Description}}").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -165,7 +165,7 @@ func ActionPlugins() carapace.Action {
 }
 
 func ActionSecrets() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "secret", "ls", "--format", "{{.Name}}\nupdated {{.UpdatedAt}}").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -176,7 +176,7 @@ func ActionSecrets() carapace.Action {
 }
 
 func ActionServices() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "service", "ls", "--format", "{{.Name}}\n{{.Image}} {{.Mode}} {{.Replicas}}").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -187,7 +187,7 @@ func ActionServices() carapace.Action {
 }
 
 func ActionVolumes() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("docker", "volume", "ls", "--format", "{{.Name}}\n{{.Driver}}").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -198,7 +198,7 @@ func ActionVolumes() carapace.Action {
 }
 
 func ActionStacks(orchestrator string) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		arguments := []string{"stack", "ls", "--format", "{{.Name}}\n{{.Services}} on {{.Orchestrator}}"}
 		if orchestrator == "swarm" || orchestrator == "kubernetes" {
 			arguments = append(arguments, "--orchestrator", orchestrator)

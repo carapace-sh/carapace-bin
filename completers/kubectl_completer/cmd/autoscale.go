@@ -42,8 +42,8 @@ func init() {
 
 	carapace.Gen(autoscaleCmd).PositionalCompletion(
 		carapace.ActionValues("deployments", "replicasets", "replicationcontrollers"),
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionResources("", args[0])
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionResources("", c.Args[0])
 		}),
 	)
 }
