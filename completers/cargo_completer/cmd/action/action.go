@@ -101,21 +101,21 @@ func (t *TargetOpts) Includes(kinds []string) bool {
 }
 
 func readManifestAction(cmd *cobra.Command, f func(m manifestJson, args []string) carapace.Action) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if m, err := readManifest(cmd); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
-			return f(m, args)
+			return f(m, c.Args)
 		}
 	})
 }
 
 func parseManifestAction(cmd *cobra.Command, f func(m manifestToml, args []string) carapace.Action) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if m, err := parseManifest(cmd); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
-			return f(m, args)
+			return f(m, c.Args)
 		}
 	})
 }
@@ -196,7 +196,7 @@ func parseConfig(path string) (c config, err error) {
 }
 
 func ActionRegistries() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		registries := make(map[string]string)
 
 		cargo_home := os.Getenv("CARGO_HOME")
@@ -230,10 +230,10 @@ func ActionRegistries() carapace.Action {
 }
 
 func ActionInstalledPackages(root string) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		opts := []string{"install", "--list"}
 		if root != "" {
-			opts = append(args, "--root", root)
+			opts = append(c.Args, "--root", root)
 		}
 
 		if output, err := exec.Command("cargo", opts...).Output(); err != nil {

@@ -42,28 +42,28 @@ func init() {
 	})
 
 	carapace.Gen(labelCmd).PositionalCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if labelCmd.Flag("filename").Changed {
 				return carapace.ActionValues() // TODO get labels for file
 			} else {
 				return action.ActionApiResources()
 			}
 		}),
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if labelCmd.Flag("all").Changed {
 				return carapace.ActionValues()
 			} else {
-				return action.ActionResources("", args[0])
+				return action.ActionResources("", c.Args[0])
 			}
 		}),
 	)
 
 	carapace.Gen(labelCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if labelCmd.Flag("filename").Changed || labelCmd.Flag("all").Changed {
 				return carapace.ActionValues() // TODO support labels for file
 			} else {
-				return action.ActionLabels("", args[0]+"/"+args[1])
+				return action.ActionLabels("", c.Args[0]+"/"+c.Args[1])
 			}
 		}),
 	)

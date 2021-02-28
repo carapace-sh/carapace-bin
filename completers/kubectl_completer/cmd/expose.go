@@ -52,8 +52,8 @@ func init() {
 
 	carapace.Gen(exposeCmd).PositionalCompletion(
 		carapace.ActionValues("pod", "service", "replicationcontroller", "deployment", "replicaset"),
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionResources("", args[0])
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionResources("", c.Args[0])
 		}),
 	)
 }

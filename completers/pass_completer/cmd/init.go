@@ -19,8 +19,8 @@ func init() {
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return os.ActionGpgKeyIds().Invoke(args).Filter(args).ToA()
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return os.ActionGpgKeyIds().Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

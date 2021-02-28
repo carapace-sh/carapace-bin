@@ -40,8 +40,8 @@ func init() {
 
 	carapace.Gen(publishCmd).FlagCompletion(carapace.ActionMap{
 		"color": action.ActionColorModes(),
-		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return action.ActionFeatures(publishCmd).Invoke(args).Filter(parts).ToA()
+		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionFeatures(publishCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"manifest-path": carapace.ActionFiles(),
 		"registry":      action.ActionRegistries(),

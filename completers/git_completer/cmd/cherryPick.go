@@ -45,15 +45,15 @@ func init() {
 		"gpg-sign": os.ActionGpgKeyIds(),
 		"mainline": carapace.ActionValues("1", "2", "3", "4", "5"),
 		"strategy": git.ActionMergeStrategy(),
-		"strategy-option": carapace.ActionCallback(func(args []string) carapace.Action {
+		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(cherryPickCmd.Flag("strategy").Value.String())
 		}),
 	})
 
 	carapace.Gen(cherryPickCmd).PositionalAnyCompletion(
 		// TODO `...` divider not yet working
-		carapace.ActionMultiParts("...", func(args, parts []string) carapace.Action {
-			if len(parts) < 2 {
+		carapace.ActionMultiParts("...", func(c carapace.Context) carapace.Action {
+			if len(c.Parts) < 2 {
 				return git.ActionRefs(git.RefOptionDefault)
 			}
 			return carapace.ActionValues()

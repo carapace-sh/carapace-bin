@@ -32,8 +32,8 @@ func initDeptestCmd(cmd *cobra.Command) {
 	})
 
 	carapace.Gen(cmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return pacman.ActionPackages(pacman.PackageOption{}).Invoke(args).Filter(args).ToA()
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return pacman.ActionPackages(pacman.PackageOption{}).Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

@@ -36,7 +36,7 @@ func init() {
 	describeCmd.Flag("broken").NoOptDefVal = "-broken"
 
 	carapace.Gen(describeCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if describeCmd.Flag("dirty").Changed || describeCmd.Flag("broken").Changed {
 				return carapace.ActionValues()
 			} else {

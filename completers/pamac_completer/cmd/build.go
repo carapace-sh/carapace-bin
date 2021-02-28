@@ -27,7 +27,7 @@ func init() {
 		"builddir": carapace.ActionDirectories(),
 	})
 
-	carapace.Gen(buildCmd).PositionalAnyCompletion(carapace.ActionCallback(func(args []string) carapace.Action {
-		return pacman.ActionPackages(pacman.PackageOption{}).Invoke(args).Filter(args).ToA()
+	carapace.Gen(buildCmd).PositionalAnyCompletion(carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return pacman.ActionPackages(pacman.PackageOption{}).Invoke(c).Filter(c.Args).ToA()
 	}))
 }

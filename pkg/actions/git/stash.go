@@ -11,7 +11,7 @@ import (
 //   stash@{0} (WIP on branchA: ABCDEF1 last commit msg)
 //   stash@{1} (WIP on branchB: ABCDEF2 last commit msg)
 func ActionStashes() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("git", "stash", "list").Output(); err != nil {
 			return carapace.ActionValues(err.Error())
 		} else {

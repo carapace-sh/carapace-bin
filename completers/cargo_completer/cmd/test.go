@@ -58,8 +58,8 @@ func init() {
 		"bin":     action.ActionTargets(testCmd, action.TargetOpts{Bin: true}),
 		"color":   action.ActionColorModes(),
 		"example": action.ActionTargets(testCmd, action.TargetOpts{Example: true}),
-		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return action.ActionFeatures(testCmd).Invoke(args).Filter(parts).ToA()
+		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionFeatures(testCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"exclude":        action.ActionWorkspaceMembers(testCmd),
 		"manifest-path":  carapace.ActionFiles(),

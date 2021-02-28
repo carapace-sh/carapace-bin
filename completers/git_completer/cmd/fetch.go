@@ -51,9 +51,9 @@ func init() {
 	rootCmd.AddCommand(fetchCmd)
 
 	carapace.Gen(fetchCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if !fetchCmd.Flag("all").Changed {
-				return git.ActionRemotes().Invoke(args).Filter(args).ToA()
+				return git.ActionRemotes().Invoke(c).Filter(c.Args).ToA()
 			} else {
 				return carapace.ActionValues()
 			}

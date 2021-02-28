@@ -20,8 +20,8 @@ func init() {
 	rootCmd.AddCommand(rmCmd)
 
 	carapace.Gen(rmCmd).PositionalCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionPassNames().Invoke(args).ToMultiPartsA("/")
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionPassNames().Invoke(c).ToMultiPartsA("/")
 		}),
 	)
 }

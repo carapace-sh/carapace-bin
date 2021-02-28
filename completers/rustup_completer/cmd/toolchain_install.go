@@ -25,18 +25,18 @@ func init() {
 	toolchainCmd.AddCommand(toolchain_installCmd)
 
 	carapace.Gen(toolchain_installCmd).FlagCompletion(carapace.ActionMap{
-		"component": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return action.ActionAvailableComponents().Invoke(args).Filter(parts).ToA()
+		"component": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionAvailableComponents().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"profile": carapace.ActionValues("minimal", "default", "complete"),
-		"target": carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionTargets(false).Invoke(args).ToMultiPartsA("-")
+		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionTargets(false).Invoke(c).ToMultiPartsA("-")
 		}),
 	})
 
 	carapace.Gen(toolchain_installCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return carapace.ActionValues("beta", "nightly", "stable").Invoke(args).Filter(args).ToA()
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return carapace.ActionValues("beta", "nightly", "stable").Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

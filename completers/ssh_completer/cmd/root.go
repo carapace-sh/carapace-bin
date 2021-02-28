@@ -69,8 +69,8 @@ func init() {
 		// TODO complete bindings
 		// "B"
 		// "b"
-		"c": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return ActionCiphers().Invoke(args).Filter(parts).ToA()
+		"c": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return ActionCiphers().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		// "D"
 		"E": carapace.ActionFiles(),
@@ -98,10 +98,10 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			if strings.Contains(carapace.CallbackValue, "@") {
-				prefix := strings.SplitN(carapace.CallbackValue, "@", 2)[0]
-				return net.ActionHosts().Invoke(args).Prefix(prefix + "@").ToA()
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if strings.Contains(c.CallbackValue, "@") {
+				prefix := strings.SplitN(c.CallbackValue, "@", 2)[0]
+				return net.ActionHosts().Invoke(c).Prefix(prefix + "@").ToA()
 			} else {
 				return net.ActionHosts()
 			}
@@ -116,7 +116,7 @@ func ActionCiphers() carapace.Action {
 }
 
 func ActionOptions() carapace.Action {
-	return carapace.ActionMultiParts("=", func(args, parts []string) carapace.Action {
+	return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 		options := map[string]carapace.Action{
 			"AddKeysToAgent":                   carapace.ActionValues(),
 			"AddressFamily":                    carapace.ActionValues("any", "inet", "inet6"),
@@ -203,15 +203,15 @@ func ActionOptions() carapace.Action {
 			"XAuthLocation":                    carapace.ActionFiles(),
 		}
 
-		switch len(parts) {
+		switch len(c.Parts) {
 		case 0:
 			keys := make([]string, 0, len(options))
 			for key := range options {
 				keys = append(keys, key)
 			}
-			return carapace.ActionValues(keys...).Invoke(args).Suffix("=").ToA()
+			return carapace.ActionValues(keys...).Invoke(c).Suffix("=").ToA()
 		case 1:
-			if val, ok := options[parts[0]]; ok {
+			if val, ok := options[c.Parts[0]]; ok {
 				return val
 			} else {
 				return carapace.ActionValues()

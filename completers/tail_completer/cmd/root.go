@@ -45,7 +45,7 @@ func init() {
 }
 
 func ActionPids() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if processes, err := ps.Processes(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

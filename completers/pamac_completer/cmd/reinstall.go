@@ -22,7 +22,7 @@ func init() {
 	reinstallCmd.Flags().String("overwrite", "", "overwrite conflicting files, multiple patterns can be")
 	rootCmd.AddCommand(reinstallCmd)
 
-	carapace.Gen(reinstallCmd).PositionalAnyCompletion(carapace.ActionCallback(func(args []string) carapace.Action {
-		return pacman.ActionPackages(pacman.PackageOption{Explicit: true}).Invoke(args).Filter(args).ToA() // TODO groups as well
+	carapace.Gen(reinstallCmd).PositionalAnyCompletion(carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return pacman.ActionPackages(pacman.PackageOption{Explicit: true}).Invoke(c).Filter(c.Args).ToA() // TODO groups as well
 	}))
 }

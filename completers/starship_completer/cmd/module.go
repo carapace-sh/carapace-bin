@@ -32,7 +32,7 @@ func init() {
 	})
 
 	carapace.Gen(moduleCmd).PositionalCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if output, err := exec.Command("starship", "module", "--list").Output(); err != nil {
 				return carapace.ActionMessage(err.Error())
 			} else {

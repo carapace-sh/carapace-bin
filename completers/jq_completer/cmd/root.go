@@ -49,7 +49,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("args").Changed || rootCmd.Flag("jsonargs").Changed {
 				return carapace.ActionValues()
 			} else {

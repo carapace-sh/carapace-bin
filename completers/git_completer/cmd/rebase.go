@@ -63,14 +63,14 @@ func init() {
 		"onto":          git.ActionRefs(git.RefOptionDefault),
 		"rebase-merges": carapace.ActionValues("rebase-cousins", "no-rebase-cousins"),
 		"strategy":      git.ActionMergeStrategy(),
-		"strategy-option": carapace.ActionCallback(func(args []string) carapace.Action {
+		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(rebaseCmd.Flag("strategy").Value.String())
 		}),
 		"whitespace": carapace.ActionValues("nowarn", "warn", "fix", "error", "error-all"),
 	})
 
 	carapace.Gen(rebaseCmd).PositionalCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if !rebaseCmd.Flag("continue").Changed &&
 				!rebaseCmd.Flag("abort").Changed &&
 				!rebaseCmd.Flag("skip").Changed &&

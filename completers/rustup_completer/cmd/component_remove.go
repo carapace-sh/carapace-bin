@@ -21,14 +21,14 @@ func init() {
 	componentCmd.AddCommand(component_removeCmd)
 
 	carapace.Gen(component_removeCmd).FlagCompletion(carapace.ActionMap{
-		"target": carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionTargets(false).Invoke(args).ToMultiPartsA("-")
+		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionTargets(false).Invoke(c).ToMultiPartsA("-")
 		}),
 		"toolchain": action.ActionToolchains(),
 	})
 
 	carapace.Gen(component_removeCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionComponents(true)
 		}),
 	)

@@ -40,7 +40,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("reference").Changed {
 				return carapace.ActionFiles()
 			} else {

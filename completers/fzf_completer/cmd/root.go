@@ -74,8 +74,8 @@ func init() {
 		"color":  carapace.ActionValues("dark", "light", "16", "bw"),
 		"info":   carapace.ActionValues("default", "inline", "hidden"),
 		"layout": carapace.ActionValues("default", "reverse", "reverse-list"),
-		"tiebreak": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return carapace.ActionValues("length", "begin", "end", "index").Invoke(args).Filter(parts).ToA()
+		"tiebreak": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionValues("length", "begin", "end", "index").Invoke(c).Filter(c.Parts).ToA()
 		}),
 	})
 }

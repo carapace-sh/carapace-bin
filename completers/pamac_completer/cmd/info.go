@@ -19,7 +19,7 @@ func init() {
 	infoCmd.Flags().Bool("no-aur", false, "do not search in AUR")
 	rootCmd.AddCommand(infoCmd)
 
-	carapace.Gen(infoCmd).PositionalAnyCompletion(carapace.ActionCallback(func(args []string) carapace.Action {
-		return pacman.ActionPackages(pacman.PackageOption{}).Invoke(args).Filter(args).ToA()
+	carapace.Gen(infoCmd).PositionalAnyCompletion(carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return pacman.ActionPackages(pacman.PackageOption{}).Invoke(c).Filter(c.Args).ToA()
 	}))
 }

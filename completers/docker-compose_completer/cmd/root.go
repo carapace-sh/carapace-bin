@@ -52,7 +52,7 @@ func init() {
 }
 
 func ActionServices() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if services, _, err := loadFile(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -62,7 +62,7 @@ func ActionServices() carapace.Action {
 }
 
 func ActionVolumes() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if _, volumes, err := loadFile(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

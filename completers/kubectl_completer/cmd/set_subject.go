@@ -41,8 +41,8 @@ func init() {
 
 	carapace.Gen(set_subjectCmd).PositionalCompletion(
 		carapace.ActionValues("rolebinding", "clusterrolebinding"),
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionResources("", args[0])
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionResources("", c.Args[0])
 		}),
 	)
 }

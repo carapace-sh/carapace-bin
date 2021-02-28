@@ -41,7 +41,7 @@ func ActionRegions() carapace.Action {
 //   someprofile (eu-central-1)
 //   anotherprofile (us-east-1)
 func ActionProfiles() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		profiles := []string{}
 
 		// TODO support windows

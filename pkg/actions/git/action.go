@@ -21,7 +21,7 @@ func rootDir() (string, error) {
 //   origin
 //   upstream
 func ActionRemotes() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("git", "remote").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -49,7 +49,7 @@ var RefOptionDefault = RefOption{
 //   HEAD~1 (last commit msg)
 //   v0.0.1 (last commit msg)
 func ActionRefs(refOption RefOption) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := make([]string, 0)
 		if branches, err := branches(refOption); err != nil {
 			return carapace.ActionMessage(err.Error())
@@ -83,7 +83,7 @@ func ActionRefs(refOption RefOption) carapace.Action {
 //   pathA/fileB (??)
 func ActionUnstagedChanges() carapace.Action {
 	// TODO multiparts action to complete step by step
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("git", "status", "--porcelain").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

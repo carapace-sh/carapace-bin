@@ -19,7 +19,7 @@ func passwordStore() (string, error) {
 }
 
 func ActionPassDirectories() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if path, err := passwordStore(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -29,7 +29,7 @@ func ActionPassDirectories() carapace.Action {
 }
 
 func ActionPassNames() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if path, err := passwordStore(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

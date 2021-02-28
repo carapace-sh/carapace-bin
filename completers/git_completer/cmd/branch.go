@@ -61,8 +61,8 @@ func init() {
 	})
 
 	carapace.Gen(branchCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			switch len(args) {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			switch len(c.Args) {
 			case 0:
 				if branchCmd.Flag("set-upstream-to").Changed ||
 					branchCmd.Flag("track").Changed ||

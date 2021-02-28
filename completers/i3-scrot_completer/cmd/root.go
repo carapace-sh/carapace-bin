@@ -23,7 +23,7 @@ func init() {
 	rootCmd.Flags().BoolP("window", "w", false, "active window")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("desk").Changed || rootCmd.Flag("window").Changed {
 				return carapace.ActionValues("1", "2", "3", "4", "5")
 			} else {

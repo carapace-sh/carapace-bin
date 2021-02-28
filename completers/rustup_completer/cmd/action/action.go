@@ -9,7 +9,7 @@ import (
 )
 
 func ActionToolchains() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("rustup", "toolchain", "list").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -28,7 +28,7 @@ func ActionToolchains() carapace.Action {
 }
 
 func ActionTargets(installedOnly bool) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		opts := []string{"target", "list"}
 		if installedOnly {
 			opts = append(opts, "--installed")
@@ -52,7 +52,7 @@ func ActionTargets(installedOnly bool) carapace.Action {
 }
 
 func ActionComponents(installedOnly bool) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		opts := []string{"component", "list"}
 		if installedOnly {
 			opts = append(opts, "--installed")
@@ -95,7 +95,7 @@ func ActionAvailableComponents() carapace.Action {
 }
 
 func ActionOverrides() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("rustup", "override", "list").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

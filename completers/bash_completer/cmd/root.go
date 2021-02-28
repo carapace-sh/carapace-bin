@@ -41,7 +41,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("c").Changed || rootCmd.Flag("s").Changed {
 				return carapace.ActionValues()
 			} else {

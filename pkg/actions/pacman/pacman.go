@@ -14,7 +14,7 @@ import (
 //   extra
 //   multilib
 func ActionRepositories() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		loadOptions := ini.LoadOptions{}
 		loadOptions.AllowBooleanKeys = true
 		loadOptions.UnparseableSections = []string{"options"}
@@ -36,12 +36,12 @@ type PackageOption struct {
 	Explicit bool
 }
 
-func (o PackageOption) format() []string {
+func (o PackageOption) format(callbackValue string) []string {
 	options := []string{"-Qq"}
 	if o.Explicit {
 		options[0] = options[0] + "e"
 	} else {
-		options = []string{options[0] + "s", fmt.Sprintf("^%v", carapace.CallbackValue)}
+		options = []string{options[0] + "s", fmt.Sprintf("^%v", callbackValue)}
 	}
 	return options
 }
@@ -50,8 +50,8 @@ func (o PackageOption) format() []string {
 //   gnome-common
 //   gstreamer
 func ActionPackages(option PackageOption) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
-		if output, err := exec.Command("pacman", option.format()...).Output(); err != nil {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if output, err := exec.Command("pacman", option.format(c.CallbackValue)...).Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			lines := strings.Split(string(output), "\n")
@@ -64,7 +64,7 @@ func ActionPackages(option PackageOption) carapace.Action {
 //   i3-manjaro
 //   linux49-extramodules
 func ActionPackageGroups() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("sh", "-c", "pacman -Qg | cut -d' ' -f1 | sort |  uniq").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

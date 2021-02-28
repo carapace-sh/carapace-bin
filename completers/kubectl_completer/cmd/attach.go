@@ -22,11 +22,11 @@ func init() {
 	rootCmd.AddCommand(attachCmd)
 
 	carapace.Gen(attachCmd).FlagCompletion(carapace.ActionMap{
-		"container": carapace.ActionCallback(func(args []string) carapace.Action {
-			if len(args) == 0 {
+		"container": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) == 0 {
 				return carapace.ActionMessage("no resource specified")
 			} else {
-				return action.ActionContainers("", args[0])
+				return action.ActionContainers("", c.Args[0])
 			}
 		}),
 	})

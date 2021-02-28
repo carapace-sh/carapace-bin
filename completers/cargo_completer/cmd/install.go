@@ -54,8 +54,8 @@ func init() {
 		// TODO "branch"
 		"color":   action.ActionColorModes(),
 		"example": action.ActionTargets(installCmd, action.TargetOpts{Example: true}),
-		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return action.ActionFeatures(installCmd).Invoke(args).Filter(parts).ToA()
+		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionFeatures(installCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"path":     carapace.ActionFiles(),
 		"profile":  action.ActionProfiles(installCmd),

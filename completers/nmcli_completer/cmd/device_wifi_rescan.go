@@ -23,8 +23,8 @@ func init() {
 	)
 
 	carapace.Gen(device_wifi_rescanCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			if len(args)%2 == 0 {
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args)%2 == 0 {
 				return carapace.ActionValues("ssid")
 			} else {
 				return net.ActionSsids()

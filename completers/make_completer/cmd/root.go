@@ -75,14 +75,14 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return actionTargets().Invoke(args).Filter(args).ToA()
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return actionTargets().Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }
 
 func actionTargets() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		file := "Makefile"
 		if rootCmd.Flag("directory").Changed {
 			file = fmt.Sprintf("%v/Makefile", rootCmd.Flag("directory").Value.String())

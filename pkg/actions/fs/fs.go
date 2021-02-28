@@ -15,7 +15,7 @@ import (
 //   /boot/efi (/dev/sda1)
 //   /dev (dev)
 func ActionMounts() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("mount").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -36,8 +36,8 @@ func ActionMounts() carapace.Action {
 //   subdir/subsubdir
 //   subdir/subsubder2
 func ActionSubDirectories(path string) carapace.Action {
-	return carapace.ActionMultiParts("/", func(args, parts []string) carapace.Action {
-		if files, err := ioutil.ReadDir(path + "/" + strings.Join(parts, "/") + "/"); err != nil {
+	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
+		if files, err := ioutil.ReadDir(path + "/" + strings.Join(c.Parts, "/") + "/"); err != nil {
 			return carapace.ActionValues()
 		} else {
 			dirs := make([]string, 0)
@@ -55,7 +55,7 @@ func ActionSubDirectories(path string) carapace.Action {
 //   fileA
 //   dirA/fileB
 func ActionZipFileContents(file string) carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if reader, err := zip.OpenReader(file); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -64,7 +64,7 @@ func ActionZipFileContents(file string) carapace.Action {
 			for index, f := range reader.File {
 				vals[index] = f.Name
 			}
-			return carapace.ActionValues(vals...).Invoke(args).ToMultiPartsA("/")
+			return carapace.ActionValues(vals...).Invoke(c).ToMultiPartsA("/")
 		}
 	})
 }

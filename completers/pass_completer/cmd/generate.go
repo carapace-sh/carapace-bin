@@ -22,8 +22,8 @@ func init() {
 	rootCmd.AddCommand(generateCmd)
 
 	carapace.Gen(generateCmd).PositionalCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionPassNames().Invoke(args).ToMultiPartsA("/")
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionPassNames().Invoke(c).ToMultiPartsA("/")
 		}),
 		carapace.ActionValues("8", "12", "16", "20", "24", "28", "32"),
 	)

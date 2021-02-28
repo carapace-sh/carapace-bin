@@ -105,7 +105,7 @@ func locateBuildConfig() (target string, err error) {
 }
 
 func ActionTasks() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if tasks, err := parseTasks(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {

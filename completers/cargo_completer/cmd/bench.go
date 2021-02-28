@@ -55,8 +55,8 @@ func init() {
 		"color":   action.ActionColorModes(),
 		"example": action.ActionTargets(benchCmd, action.TargetOpts{Example: true}),
 		"exclude": action.ActionWorkspaceMembers(benchCmd),
-		"features": carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return action.ActionFeatures(benchCmd).Invoke(args).Filter(parts).ToA()
+		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionFeatures(benchCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),

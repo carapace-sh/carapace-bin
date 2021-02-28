@@ -47,14 +47,14 @@ func init() {
 	})
 
 	carapace.Gen(getCmd).PositionalCompletion(
-		carapace.ActionMultiParts(",", func(args, parts []string) carapace.Action {
-			return action.ActionApiResources().Invoke(args).Filter(parts).ToA()
+		carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionApiResources().Invoke(c).Filter(c.Parts).ToA()
 		}),
 	)
 
 	carapace.Gen(getCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(args []string) carapace.Action {
-			return action.ActionResources("", args[0]).Invoke(args).Filter(args[1:]).ToA()
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionResources("", c.Args[0]).Invoke(c).Filter(c.Args[1:]).ToA()
 		}),
 	)
 }

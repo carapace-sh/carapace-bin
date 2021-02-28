@@ -17,7 +17,7 @@ import (
 //   SHELL (/bin/elvish)
 //   LANG (en_US.utf8)
 func ActionEnvironmentVariables() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		env := os.Environ()
 		vars := make([]string, len(env)*2)
 		for index, e := range os.Environ() {
@@ -37,7 +37,7 @@ func ActionEnvironmentVariables() carapace.Action {
 //    root (0)
 //    ssh (101)
 func ActionGroups() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		groups := []string{}
 		if content, err := ioutil.ReadFile("/etc/group"); err == nil {
 			for _, entry := range strings.Split(string(content), "\n") {
@@ -98,7 +98,7 @@ func ActionKillSignals() carapace.Action {
 //   NetworkManager (439)
 //   cupsd (454)
 func ActionProcessExecutables() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if processes, err := ps.Processes(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -115,7 +115,7 @@ func ActionProcessExecutables() carapace.Action {
 //   439 (NetworkManager)
 //   454 (cupsd)
 func ActionProcessIds() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if processes, err := ps.Processes(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -149,7 +149,7 @@ func ActionProcessStates() carapace.Action {
 //   root (0)
 //   daemon (1)
 func ActionUsers() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		users := []string{}
 		if content, err := ioutil.ReadFile("/etc/passwd"); err == nil {
 			for _, entry := range strings.Split(string(content), "\n") {
@@ -171,10 +171,10 @@ func ActionUsers() carapace.Action {
 //   bin:audio
 //   lp:list
 func ActionUserGroup() carapace.Action {
-	return carapace.ActionMultiParts(":", func(args []string, parts []string) carapace.Action {
-		switch len(parts) {
+	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
 		case 0:
-			return ActionUsers().Invoke(args).Suffix(":").ToA()
+			return ActionUsers().Invoke(c).Suffix(":").ToA()
 		case 1:
 			return ActionGroups()
 		default:
@@ -187,7 +187,7 @@ func ActionUserGroup() carapace.Action {
 //   /bin/elvish
 //   /bin/bash
 func ActionShells() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if output, err := exec.Command("chsh", "--list-shells").Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
@@ -201,7 +201,7 @@ func ActionShells() carapace.Action {
 //   nvim
 //   chmod
 func ActionPathExecutables() carapace.Action {
-	return carapace.ActionCallback(func(args []string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		executables := make(map[string]bool)
 
 		for _, folder := range strings.Split(os.Getenv("PATH"), ":") {
