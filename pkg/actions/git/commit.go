@@ -17,7 +17,7 @@ func commits(refOption RefOption) ([]commit, error) {
 		return []commit{}, nil
 	}
 
-	if output, err := exec.Command("git", "log", "--pretty=tformat:%h   %<(64,trunc)%s", "--all", "--max-count", strconv.Itoa(refOption.Commits)).Output(); err != nil {
+	if output, err := exec.Command("git", "log", "--pretty=tformat:%h   %<(64,trunc)%s", "--max-count", strconv.Itoa(refOption.Commits)).Output(); err != nil {
 		return nil, err
 	} else {
 		lines := strings.Split(string(output), "\n")
