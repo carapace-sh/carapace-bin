@@ -27,7 +27,7 @@ services:
   
   oil:
     build: .
-    command: osh
+    command: osh --completion-display minimal
     volumes:
       - '.:/carapace-bin/'
 

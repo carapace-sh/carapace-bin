@@ -30,10 +30,8 @@ eval (carapace _carapace|slurp)" \
 
 # oil
 RUN mkdir -p ~/.config/oil \
- && echo "\n\
-PS1=$'\e[0;36mcarapace \e[0m'\n\
-source <(carapace _carapace)" \
-       > ~/.config/oil/oshrc
+ && echo "source <(carapace _carapace)" \
+    > ~/.config/oil/oshrc
 
 # powershell
 RUN mkdir -p /root/.config/powershell \
