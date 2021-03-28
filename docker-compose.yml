@@ -1,53 +1,56 @@
 version: '3'
 
 services:
-  build:
-    build: .
+  build: &base
+    image: rsteube/carapace:0.5.1
     command: sh -c 'sh -c "cd /carapace-bin/cmd/carapace && go generate ./... && go build -ldflags=\"-s -w\" ."'
+    environment:
+      TARGET: /carapace-bin/cmd/carapace/carapace
     volumes:
       - '.:/carapace-bin/'
-      - 'go:/go/'
+      - 'go:/home/circleci/go/'
+
   bash:
-    build: .
+    <<: *base
     command: bash
-    volumes:
-      - '.:/carapace-bin/'
 
   elvish:
-    build: .
+    <<: *base
     command: elvish
-    volumes:
-      - '.:/carapace-bin/'
 
   fish:
-    build: .
+    <<: *base
     command: fish
-    volumes:
-      - '.:/carapace-bin/'
+  
+  ion:
+    <<: *base
+    command: ion
+  
+  nushell:
+    <<: *base
+    command: nu
   
   oil:
-    build: .
+    <<: *base
     command: osh --completion-display minimal
-    volumes:
-      - '.:/carapace-bin/'
 
   powershell:
-    build: .
+    <<: *base
     command: pwsh
-    volumes:
-      - '.:/carapace-bin/'
   
   xonsh: 
-    build: .
+    <<: *base
     command: xonsh
-    volumes:
-      - '.:/carapace-bin/'
 
   zsh:
-    build: .
+    <<: *base
     command: zsh
-    volumes:
-      - '.:/carapace-bin/'
+
+  test:
+    <<: *base
+    working_dir: /carapace
+    command: go test -v ./...
+
 
 volumes:
   go:
