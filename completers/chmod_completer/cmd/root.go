@@ -38,11 +38,7 @@ func init() {
 			if rootCmd.Flag("reference").Changed {
 				return carapace.ActionFiles()
 			} else {
-				// TODO complete MODE: '[ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+'
-				// TODO numeric
-				return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-					return fs.ActionFileModesSymbolic()
-				})
+				return fs.ActionFileModes()
 			}
 		}),
 	)

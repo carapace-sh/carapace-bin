@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"regexp"
 	"strings"
+	"unicode"
 
 	"github.com/rsteube/carapace"
 )
@@ -102,5 +103,47 @@ func ActionFileModesSymbolic() carapace.Action {
 				"t", "sticky",
 			).Invoke(c).Filter(c.Parts).Filter([]string{c.CallbackValue[len(c.CallbackValue)-1:]}).ToA()
 		}
+	})
+}
+
+// ActionFileModesNumeric completes symbolic file modes
+//   644
+//   755
+func ActionFileModesNumeric() carapace.Action {
+	return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
+		if len(c.Parts) < 2 {
+			return carapace.ActionValuesDescribed(
+				"7", "read, write and execute",
+				"6", "read and write",
+				"5", "read and execute",
+				"4", "read only",
+				"3", "write and execute",
+				"2", "write only",
+				"1", "execute only",
+				"0", "none",
+			)
+		} else {
+			return carapace.ActionValues()
+		}
+	})
+}
+
+// ActionFileModes completes numeric or symbolic file modes
+//   644
+//   a+rw
+func ActionFileModes() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		a := carapace.ActionValues().Invoke(c)
+		if len(c.CallbackValue) == 0 || !unicode.IsDigit([]rune(c.CallbackValue)[0]) {
+			symbolic := carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				return ActionFileModesSymbolic()
+			}).Invoke(c)
+			a = a.Merge(symbolic)
+		}
+		if len(c.CallbackValue) == 0 || unicode.IsDigit([]rune(c.CallbackValue)[0]) {
+			numeric := ActionFileModesNumeric().Invoke(c)
+			a = a.Merge(numeric)
+		}
+		return a.ToA()
 	})
 }
