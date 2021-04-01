@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
@@ -209,6 +210,7 @@ func init() {
 		"group-map":                carapace.ActionFiles(),
 		"index-file":               carapace.ActionFiles(),
 		"info-script":              carapace.ActionFiles(),
+		"mode":                     fs.ActionFileModesSymbolic(),
 		"mtime":                    carapace.ActionFiles(),
 		"new-volume-script":        carapace.ActionFiles(),
 		"newer":                    carapace.ActionFiles(),

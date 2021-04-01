@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +24,9 @@ func init() {
 	rootCmd.Flags().StringP("mode", "m", "", "set file permission bits to MODE, not a=rw - umask")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-	// TODO complete mode
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"mode": fs.ActionFileModes(),
+	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValues(),
