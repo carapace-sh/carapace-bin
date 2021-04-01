@@ -1,9 +1,8 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/spf13/cobra"
 )
 
@@ -26,36 +25,10 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"mode": ActionMode(),
+		"mode": fs.ActionFileModes(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionDirectories(),
 	)
-}
-
-func ActionMode() carapace.Action {
-	// TODO bit hacky as empty delimiter not yet implemented (carapce should support multiple delimiters anyway: []rune)
-	return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
-		current := c.CallbackValue
-		vals := []string{}
-		if !strings.ContainsAny(current, "+-=") {
-			for _, c := range "agou+-=" {
-				if !strings.ContainsRune(current, c) {
-					vals = append(vals, string(c))
-				}
-			}
-		} else {
-			currentMode := current[strings.LastIndexAny(current, "+-=")+1:]
-			for _, c := range "gorstuwxX" {
-				if !strings.ContainsRune(currentMode, c) {
-					vals = append(vals, string(c))
-				}
-			}
-		}
-		//for index, val := range vals {
-		//	vals[index] = current + val
-		//}
-		return carapace.ActionValues(vals...)
-	})
 }
