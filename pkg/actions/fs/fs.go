@@ -106,7 +106,7 @@ func ActionFileModesSymbolic() carapace.Action {
 	})
 }
 
-// ActionFileModesNumeric completes symbolic file modes
+// ActionFileModesNumeric completes numeric file modes
 //   644
 //   755
 func ActionFileModesNumeric() carapace.Action {
