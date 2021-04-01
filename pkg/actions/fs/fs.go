@@ -68,3 +68,39 @@ func ActionZipFileContents(file string) carapace.Action {
 		}
 	})
 }
+
+// ActionFileModesSymbolic completes symbolic file modes
+//   a+rw
+//   g=rx
+func ActionFileModesSymbolic() carapace.Action {
+	return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
+		if !strings.ContainsAny(c.CallbackValue, "+-=") {
+			classes := carapace.ActionValuesDescribed(
+				"u", "user",
+				"g", "group",
+				"o", "other",
+				"a", "all",
+			).Invoke(c)
+
+			if c.CallbackValue != "" {
+				operators := carapace.ActionValuesDescribed(
+					"u", "user",
+					"+", "adds the specified modes to the specified classes",
+					"-", "removes the specified modes from the specified classes",
+					"=", "the modes specified are to be made the exact modes for the specified classes",
+				).Invoke(c)
+				return classes.Merge(operators).Filter(c.Parts).Filter([]string{c.CallbackValue[len(c.CallbackValue)-1:]}).ToA()
+			}
+			return classes.Filter(c.Parts).ToA()
+		} else {
+			return carapace.ActionValuesDescribed(
+				"r", "read",
+				"w", "write",
+				"x", "execute",
+				"X", "special execute",
+				"s", "setuid/gid",
+				"t", "sticky",
+			).Invoke(c).Filter(c.Parts).Filter([]string{c.CallbackValue[len(c.CallbackValue)-1:]}).ToA()
+		}
+	})
+}
