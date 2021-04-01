@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/spf13/cobra"
 )
 
@@ -38,7 +39,10 @@ func init() {
 				return carapace.ActionFiles()
 			} else {
 				// TODO complete MODE: '[ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+'
-				return carapace.ActionValues()
+				// TODO numeric
+				return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+					return fs.ActionFileModesSymbolic()
+				})
 			}
 		}),
 	)
