@@ -81,7 +81,7 @@ func init() {
 
 func ActionManPages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("man", "-k", "").Output(); err != nil {
+		if output, err := exec.Command("man", "-k", c.CallbackValue).Output(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			r := regexp.MustCompile(`^(?P<name>.*) \(\d+\) +- (?P<description>.*)$`)
