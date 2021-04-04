@@ -89,7 +89,9 @@ func init() {
 			"exit", "request the master to exit",
 			"stop", "request the master to stop accepting further multiplexing requests",
 		),
-		"o": ssh.ActionOptions(),
+		"o": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return ssh.ActionOptions()
+		}),
 		// "p"
 		"Q": ActionQueryOptions(),
 		// "R"
