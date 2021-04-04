@@ -3,6 +3,7 @@ package fs
 
 import (
 	"archive/zip"
+	"fmt"
 	"io/ioutil"
 	"os/exec"
 	"regexp"
@@ -145,5 +146,25 @@ func ActionFileModes() carapace.Action {
 			a = a.Merge(numeric)
 		}
 		return a.ToA()
+	})
+}
+
+// ActionBlockDevices completes block devices
+//   /dev/sda (10G)
+//   /dev/sda1 (2G Linux swap)
+func ActionBlockDevices() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if output, err := exec.Command("lsblk", "-o", "PATH,SIZE,PARTTYPENAME").Output(); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			lines := strings.Split(string(output), "\n")
+
+			vals := make([]string, 0)
+			for _, line := range lines[1 : len(lines)-1] {
+				splitted := strings.SplitN(line, " ", 3)
+				vals = append(vals, splitted[0], strings.TrimSpace(fmt.Sprintf("%v %v", strings.TrimSpace(splitted[1]), strings.TrimSpace(splitted[2]))))
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		}
 	})
 }
