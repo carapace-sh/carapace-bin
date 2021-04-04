@@ -12,7 +12,7 @@ func ActionCiphers() carapace.Action {
 	)
 }
 
-// ActionOptions completies options and they values
+// ActionOptions completes options and their values
 //   AddKeysToAgent
 //   AddressFamily=inet
 func ActionOptions() carapace.Action {
