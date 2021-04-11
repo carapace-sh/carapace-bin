@@ -98,7 +98,7 @@ func ActionMediaTypes() carapace.Action {
 	})
 }
 
-// ActionContentEncodingTokens completion content encoding tokens
+// ActionContentEncodingTokens completes content encoding tokens
 //   br (Brotli)
 //   gzip (GNU zip format)
 func ActionContentEncodingTokens() carapace.Action {
@@ -111,5 +111,20 @@ func ActionContentEncodingTokens() carapace.Action {
 		"identity", "No transformation is used.",
 		"pack200-gzip", "Network Transfer Format for Java Archives",
 		"zstd", "Zstandard compression",
+	)
+}
+
+// ActionRequestMethods completes request methods
+func ActionRequestMethods() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"GET", "The GET method requests a representation of the specified resource.",
+		"HEAD", "The HEAD method asks for a response identical to that of a GET request, but without the response body.",
+		"POST", "The POST method is used to submit an entity to the specified resource.",
+		"PUT", "The PUT method replaces all current representations of the target resource with the request payload.",
+		"DELETE", "The DELETE method deletes the specified resource.",
+		"CONNECT", "The CONNECT method establishes a tunnel to the server identified by the target resource.",
+		"OPTIONS", "The OPTIONS method is used to describe the communication options for the target resource.",
+		"TRACE", "The TRACE method performs a message loop-back test along the path to the target resource.",
+		"PATCH", "The PATCH method is used to apply partial modifications to a resource.",
 	)
 }
