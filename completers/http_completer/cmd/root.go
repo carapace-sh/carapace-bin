@@ -88,7 +88,24 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues(),
+		http.ActionRequestMethods(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			requestMethods := map[string]bool{
+				"GET":     true,
+				"HEAD":    true,
+				"POST":    true,
+				"PUT":     true,
+				"DELETE":  true,
+				"CONNECT": true,
+				"OPTIONS": true,
+				"TRACE":   true,
+				"PATCH":   true,
+			}
+			if _, ok := requestMethods[c.Args[0]]; ok {
+				return carapace.ActionValues() // arg[1] is url
+			}
+			return ActionRequestItem()
+		}),
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
