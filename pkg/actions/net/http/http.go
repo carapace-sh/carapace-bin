@@ -6,7 +6,6 @@ import "github.com/rsteube/carapace"
 // ActionHttpRequestHeaderNames completes http reqest header names
 //   Accept-Charset (Character sets that are acceptable.)
 //   Accept-Datetime (Acceptable version in time.)
-
 func ActionHttpRequestHeaderNames() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"A-IM", "Acceptable instance-manipulations for the request.[10]",
@@ -51,6 +50,41 @@ func ActionHttpRequestHeaderNames() carapace.Action {
 		"Via", "Informs the server of proxies through which the request was sent.",
 		"Warning", "A general warning about possible problems with the entity body.",
 	)
+}
+
+// ActionHttpRequestHeaderValues completes values for given request header
+//   ActionHttpRequestHeaderValues("Accept")
+//   ActionHttpRequestHeaderValues("Accept-Encoding")
+func ActionHttpRequestHeaderValues(header string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		switch header {
+		// TODO complete more headers
+		case "Accept":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				return ActionMediaTypes()
+			})
+		case "Accept-Encoding":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				return ActionContentEncodingTokens().Invoke(c).Filter(c.Parts).ToA()
+			})
+		case "Content-Encoding":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				return ActionContentEncodingTokens().Invoke(c).Filter(c.Parts).ToA()
+			})
+		case "Content-Type":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				return ActionMediaTypes()
+			})
+		case "Cache-Control":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				return ActionCacheControlRequestDirectives()
+			})
+		case "Transfer-Encoding":
+			return ActionTransferEncodingTokens()
+		default:
+			return carapace.ActionValues()
+		}
+	})
 }
 
 // ActionMediaTypes completes media types
@@ -114,7 +148,21 @@ func ActionContentEncodingTokens() carapace.Action {
 	)
 }
 
+// ActionTransferEncodingTokens completes transfer encoding tokens
+//   chunked (Transfer in a series of chunks)
+//   gzip (GZIP file format)
+func ActionTransferEncodingTokens() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"chunked", "Transfer in a series of chunks",
+		"compress", "UNIX \"compress\" data format",
+		"deflate", "\"deflate\" compressed data",
+		"gzip", "GZIP file format",
+	)
+}
+
 // ActionRequestMethods completes request methods
+//   DELETE (The DELETE method deletes the specified resource.)
+//   GET (The GET method requests a representation of the specified resource.)
 func ActionRequestMethods() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"GET", "The GET method requests a representation of the specified resource.",
@@ -127,4 +175,26 @@ func ActionRequestMethods() carapace.Action {
 		"TRACE", "The TRACE method performs a message loop-back test along the path to the target resource.",
 		"PATCH", "The PATCH method is used to apply partial modifications to a resource.",
 	)
+}
+
+// ActionCacheControlRequestDirectives completes Cache-Control directives for a request
+//   no-store (The response may not be stored in any cache.)
+//   no-transform (An intermediate cache or proxy cannot edit the response body.)
+func ActionCacheControlRequestDirectives() carapace.Action {
+	return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			return carapace.ActionValuesDescribed(
+				"max-age=", "The maximum amount of time a resource is considered fresh.",
+				"max-stale", "Indicates the client will accept a stale response.",
+				"min-fresh=", "Indicates the client wants a response that will still be fresh for at least the specified number of seconds.",
+				"no-cache", "The response may be stored by any cache, even if the response is normally non-cacheable.",
+				"no-store", "The response may not be stored in any cache.",
+				"no-transform", "An intermediate cache or proxy cannot edit the response body.",
+				"only-if-cached", "Set by the client to indicate \"do not use the network\" for the response.",
+			)
+		default:
+			return carapace.ActionValues("")
+		}
+	})
 }

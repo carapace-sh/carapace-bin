@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -176,40 +177,41 @@ func ActionFormatOptions() carapace.Action {
 	})
 }
 
+func determineSeparator(callbackValue string) (result string, err error) {
+	resultIndex := len(callbackValue)
+	for _, separator := range []string{"==", "=@", "@", "=", ":=@", ":=", ":"} {
+		if index := strings.Index(callbackValue, separator); index != -1 && index < resultIndex {
+			resultIndex = index
+			result = separator
+		}
+	}
+
+	if result == "" {
+		err = errors.New("contains no separator")
+	}
+	return
+}
+
 func ActionRequestItem() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		for _, separator := range []string{"==", "=@", "@", "=", ":=@", ":=", ":"} {
-			if strings.Contains(c.CallbackValue, separator) {
-				return carapace.ActionMultiParts(separator, func(c carapace.Context) carapace.Action {
-					switch len(c.Parts) {
-					case 1:
-						switch separator {
-						case "=@":
-							return carapace.ActionFiles()
-						case ":=@":
-							return carapace.ActionFiles()
-						case ":":
-							switch c.Parts[0] {
-							// TODO complete more headers
-							case "Accept":
-								return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-									return http.ActionMediaTypes()
-								})
-							case "Accept-Encoding":
-								return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-									return http.ActionContentEncodingTokens()
-								})
-							default:
-								return carapace.ActionValues()
-							}
-						default:
-							return carapace.ActionValues()
-						}
+		if separator, err := determineSeparator(c.CallbackValue); err == nil {
+			return carapace.ActionMultiParts(separator, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 1:
+					switch separator {
+					case "=@":
+						return carapace.ActionFiles()
+					case ":=@":
+						return carapace.ActionFiles()
+					case ":":
+						return http.ActionHttpRequestHeaderValues(c.Parts[0])
 					default:
 						return carapace.ActionValues()
 					}
-				})
-			}
+				default:
+					return carapace.ActionValues()
+				}
+			})
 		}
 
 		context := c
