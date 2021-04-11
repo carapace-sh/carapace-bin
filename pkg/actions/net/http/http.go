@@ -67,6 +67,14 @@ func ActionHttpRequestHeaderValues(header string) carapace.Action {
 			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 				return ActionContentEncodingTokens().Invoke(c).Filter(c.Parts).ToA()
 			})
+		case "Accept-Language":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				return ActionLanguages()
+			})
+		case "Cache-Control":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				return ActionCacheControlRequestDirectives()
+			})
 		case "Content-Encoding":
 			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 				return ActionContentEncodingTokens().Invoke(c).Filter(c.Parts).ToA()
@@ -75,12 +83,10 @@ func ActionHttpRequestHeaderValues(header string) carapace.Action {
 			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 				return ActionMediaTypes()
 			})
-		case "Cache-Control":
-			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return ActionCacheControlRequestDirectives()
-			})
 		case "Transfer-Encoding":
 			return ActionTransferEncodingTokens()
+		case "User-Agent":
+			return ActionUserAgents()
 		default:
 			return carapace.ActionValues()
 		}
@@ -195,6 +201,237 @@ func ActionCacheControlRequestDirectives() carapace.Action {
 			)
 		default:
 			return carapace.ActionValues("")
+		}
+	})
+}
+
+// ActionUserAgents completes common user agents
+//   curl/7.35.0 (Curl)
+//   Lynx/2.8.8pre.4 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/2.12.23 (Lynx)
+func ActionUserAgents() carapace.Action {
+	// https://www.networkinghowtos.com/howto/common-user-agent-list/
+	return carapace.ActionValuesDescribed(
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36", "Google Chrome",
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0", "Mozilla Firefox",
+		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393", "Microsoft Edge",
+		"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)", "Microsoft Internet Explorer 6 / IE 6",
+		"Mozilla/5.0 (Windows; U; MSIE 7.0; Windows NT 6.0; en-US)", "Microsoft Internet Explorer 7 / IE 7",
+		"Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)", "Microsoft Internet Explorer 8 / IE 8",
+		"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0;  Trident/5.0)", "Microsoft Internet Explorer 9 / IE 9",
+		"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0; MDDCJS)", "Microsoft Internet Explorer 10 / IE 10",
+		"Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko", "Microsoft Internet Explorer 11 / IE 11",
+		"Mozilla/5.0 (iPad; CPU OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4", "Apple iPad",
+		"Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1", "Apple iPhone",
+		"Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)", "Googlebot (Google Search Engine Bot)",
+		"Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)", "Bing Bot (Bing Search Engine Bot)",
+		"Mozilla/5.0 (Linux; Android 6.0.1; SAMSUNG SM-G570Y Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36", "Samsung Phone",
+		"Mozilla/5.0 (Linux; Android 5.0; SAMSUNG SM-N900 Build/LRX21V) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.1 Chrome/34.0.1847.76 Mobile Safari/537.36", "Samsung Galaxy Note 3",
+		"Mozilla/5.0 (Linux; Android 6.0.1; SAMSUNG SM-N910F Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36", "Samsung Galaxy Note 4",
+		"Mozilla/5.0 (Linux; U; Android-4.0.3; en-us; Galaxy Nexus Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.75 Mobile Safari/535.7", "Google Nexus",
+		"Mozilla/5.0 (Linux; Android 7.0; HTC 10 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.83 Mobile Safari/537.36", "HTC",
+		"curl/7.35.0", "Curl",
+		"Wget/1.15 (linux-gnu)", "Wget",
+		"Lynx/2.8.8pre.4 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/2.12.23", "Lynx",
+	)
+}
+
+// ActionLanguages completes languages
+//   av (Avaric)
+//   da (Danish)
+func ActionLanguages() carapace.Action {
+	return carapace.ActionMultiParts("-", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			return carapace.ActionValuesDescribed(
+				"ab", "Abkhazian",
+				"aa", "Afar",
+				"af", "Afrikaans",
+				"ak", "Akan",
+				"sq", "Albanian",
+				"am", "Amharic",
+				"ar", "Arabic",
+				"an", "Aragonese",
+				"hy", "Armenian",
+				"as", "Assamese",
+				"av", "Avaric",
+				"ae", "Avestan",
+				"ay", "Aymara",
+				"az", "Azerbaijani",
+				"bm", "Bambara",
+				"ba", "Bashkir",
+				"eu", "Basque",
+				"be", "Belarusian",
+				"bn", "Bengali",
+				"bh", "Bihari languages",
+				"bi", "Bislama",
+				"bs", "Bosnian",
+				"br", "Breton",
+				"bg", "Bulgarian",
+				"my", "Burmese",
+				"ca", "Catalan, Valencian",
+				"ch", "Chamorro",
+				"ce", "Chechen",
+				"ny", "Chichewa, Chewa, Nyanja",
+				"zh", "Chinese",
+				"cv", "Chuvash",
+				"kw", "Cornish",
+				"co", "Corsican",
+				"cr", "Cree",
+				"hr", "Croatian",
+				"cs", "Czech",
+				"da", "Danish",
+				"dv", "Divehi, Dhivehi, Maldivian",
+				"nl", "Dutch, Flemish",
+				"dz", "Dzongkha",
+				"en", "English",
+				"eo", "Esperanto",
+				"et", "Estonian",
+				"ee", "Ewe",
+				"fo", "Faroese",
+				"fj", "Fijian",
+				"fi", "Finnish",
+				"fr", "French",
+				"ff", "Fulah",
+				"gl", "Galician",
+				"ka", "Georgian",
+				"de", "German",
+				"el", "Greek, Modern (1453–)",
+				"gn", "Guarani",
+				"gu", "Gujarati",
+				"ht", "Haitian, Haitian Creole",
+				"ha", "Hausa",
+				"he", "Hebrew",
+				"hz", "Herero",
+				"hi", "Hindi",
+				"ho", "Hiri Motu",
+				"hu", "Hungarian",
+				"ia", "Interlingua (International Auxiliary Language Association)",
+				"id", "Indonesian",
+				"ie", "Interlingue, Occidental",
+				"ga", "Irish",
+				"ig", "Igbo",
+				"ik", "Inupiaq",
+				"io", "Ido",
+				"is", "Icelandic",
+				"it", "Italian",
+				"iu", "Inuktitut",
+				"ja", "Japanese",
+				"jv", "Javanese",
+				"kl", "Kalaallisut, Greenlandic",
+				"kn", "Kannada",
+				"kr", "Kanuri",
+				"ks", "Kashmiri",
+				"kk", "Kazakh",
+				"km", "Central Khmer",
+				"ki", "Kikuyu, Gikuyu",
+				"rw", "Kinyarwanda",
+				"ky", "Kirghiz, Kyrgyz",
+				"kv", "Komi",
+				"kg", "Kongo",
+				"ko", "Korean",
+				"ku", "Kurdish",
+				"kj", "Kuanyama, Kwanyama",
+				"la", "Latin",
+				"lb", "Luxembourgish, Letzeburgesch",
+				"lg", "Ganda",
+				"li", "Limburgan, Limburger, Limburgish",
+				"ln", "Lingala",
+				"lo", "Lao",
+				"lt", "Lithuanian",
+				"lu", "Luba-Katanga",
+				"lv", "Latvian",
+				"gv", "Manx",
+				"mk", "Macedonian",
+				"mg", "Malagasy",
+				"ms", "Malay",
+				"ml", "Malayalam",
+				"mt", "Maltese",
+				"mi", "Māori",
+				"mr", "Marathi",
+				"mh", "Marshallese",
+				"mn", "Mongolian",
+				"na", "Nauru",
+				"nv", "Navajo, Navaho",
+				"nd", "North Ndebele",
+				"ne", "Nepali",
+				"ng", "Ndonga",
+				"nb", "Norwegian Bokmål",
+				"nn", "Norwegian Nynorsk",
+				"no", "Norwegian",
+				"ii", "Sichuan Yi, Nuosu",
+				"nr", "South Ndebele",
+				"oc", "Occitan",
+				"oj", "Ojibwa",
+				"cu", "Church Slavic, Old Slavonic, Church Slavonic, Old Bulgarian, Old Church Slavonic",
+				"om", "Oromo",
+				"or", "Oriya",
+				"os", "Ossetian, Ossetic",
+				"pa", "Punjabi, Panjabi",
+				"pi", "Pali",
+				"fa", "Persian",
+				"pl", "Polish",
+				"ps", "Pashto, Pushto",
+				"pt", "Portuguese",
+				"qu", "Quechua",
+				"rm", "Romansh",
+				"rn", "Rundi",
+				"ro", "Romanian, Moldavian, Moldovan",
+				"ru", "Russian",
+				"sa", "Sanskrit",
+				"sc", "Sardinian",
+				"sd", "Sindhi",
+				"se", "Northern Sami",
+				"sm", "Samoan",
+				"sg", "Sango",
+				"sr", "Serbian",
+				"gd", "Gaelic, Scottish Gaelic",
+				"sn", "Shona",
+				"si", "Sinhala, Sinhalese",
+				"sk", "Slovak",
+				"sl", "Slovenian",
+				"so", "Somali",
+				"st", "Southern Sotho",
+				"es", "Spanish, Castilian",
+				"su", "Sundanese",
+				"sw", "Swahili",
+				"ss", "Swati",
+				"sv", "Swedish",
+				"ta", "Tamil",
+				"te", "Telugu",
+				"tg", "Tajik",
+				"th", "Thai",
+				"ti", "Tigrinya",
+				"bo", "Tibetan",
+				"tk", "Turkmen",
+				"tl", "Tagalog",
+				"tn", "Tswana",
+				"to", "Tonga (Tonga Islands)",
+				"tr", "Turkish",
+				"ts", "Tsonga",
+				"tt", "Tatar",
+				"tw", "Twi",
+				"ty", "Tahitian",
+				"ug", "Uighur, Uyghur",
+				"uk", "Ukrainian",
+				"ur", "Urdu",
+				"uz", "Uzbek",
+				"ve", "Venda",
+				"vi", "Vietnamese",
+				"vo", "Volapük",
+				"wa", "Walloon",
+				"cy", "Welsh",
+				"wo", "Wolof",
+				"fy", "Western Frisian",
+				"xh", "Xhosa",
+				"yi", "Yiddish",
+				"yo", "Yoruba",
+				"za", "Zhuang, Chuang",
+				"zu", "Zulu",
+			)
+		case 1:
+			return carapace.ActionValues()
+		default:
+			return carapace.ActionValues()
 		}
 	})
 }
