@@ -17,6 +17,13 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
+// ExecuteHttps replace Use with `https` before execution (https alias command for httpie)
+func ExecuteHttps() error {
+	rootCmd.Use = "https" // TODO works for now
+	return rootCmd.Execute()
+}
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
