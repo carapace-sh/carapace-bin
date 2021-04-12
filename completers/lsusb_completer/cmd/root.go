@@ -1,12 +1,8 @@
 package cmd
 
 import (
-	"fmt"
-	"os/exec"
-	"regexp"
-	"strings"
-
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/os/usb"
 	"github.com/spf13/cobra"
 )
 
@@ -31,50 +27,12 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show version of program")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"s": ActionDevices(),
-		"d": ActionProducts(),
+		"s": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return usb.ActionDeviceNumbers().Invoke(c).ToMultiPartsA(":")
+		}),
+		"d": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return usb.ActionProductNumbers().Invoke(c).ToMultiPartsA(":")
+		}),
 		"D": carapace.ActionFiles(),
-	})
-}
-
-func ActionDevices() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if output, err := exec.Command("lsusb").Output(); err != nil {
-				return carapace.ActionMessage(err.Error())
-			} else {
-				r := regexp.MustCompile(`^Bus (?P<bus>\d+) Device (?P<device>\d+): ID (?P<vendor>[^ ]+):(?P<product>[^ ]+) (?P<name>.*)$`)
-
-				vals := make([]string, 0)
-				for _, line := range strings.Split(string(output), "\n") {
-					if r.MatchString(line) {
-						matches := r.FindStringSubmatch(line)
-						vals = append(vals, fmt.Sprintf("%v:%v", matches[1], matches[2]), matches[5])
-					}
-				}
-				return carapace.ActionValuesDescribed(vals...)
-			}
-		}).Invoke(c).ToMultiPartsA(":")
-	})
-}
-
-func ActionProducts() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if output, err := exec.Command("lsusb").Output(); err != nil {
-				return carapace.ActionMessage(err.Error())
-			} else {
-				r := regexp.MustCompile(`^Bus (?P<bus>\d+) Device (?P<device>\d+): ID (?P<vendor>[^ ]+):(?P<product>[^ ]+) (?P<name>.*)$`)
-
-				vals := make([]string, 0)
-				for _, line := range strings.Split(string(output), "\n") {
-					if r.MatchString(line) {
-						matches := r.FindStringSubmatch(line)
-						vals = append(vals, fmt.Sprintf("%v:%v", matches[3], matches[4]), matches[5])
-					}
-				}
-				return carapace.ActionValuesDescribed(vals...)
-			}
-		}).Invoke(c).ToMultiPartsA(":")
 	})
 }
