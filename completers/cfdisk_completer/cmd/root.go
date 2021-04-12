@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/spf13/cobra"
 )
 
@@ -32,6 +33,14 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionFiles(),
+		ActionBlockDevicesAndFiles(),
 	)
+}
+
+func ActionBlockDevicesAndFiles() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		blockDevices := fs.ActionBlockDevices().Invoke(c)
+		files := carapace.ActionFiles().Invoke(c)
+		return blockDevices.Merge(files).ToA()
+	})
 }
