@@ -76,7 +76,7 @@ func ActionZipFileContents(file string) carapace.Action {
 //   g=rx
 func ActionFileModesSymbolic() carapace.Action {
 	return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
-		if !strings.ContainsAny(c.CallbackValue, "+-=") {
+		if !strings.ContainsAny(strings.Join(c.Parts, ""), "+-=") {
 			classes := carapace.ActionValuesDescribed(
 				"u", "user",
 				"g", "group",
@@ -84,14 +84,13 @@ func ActionFileModesSymbolic() carapace.Action {
 				"a", "all",
 			).Invoke(c)
 
-			if c.CallbackValue != "" {
+			if len(c.Parts) > 0 {
 				operators := carapace.ActionValuesDescribed(
-					"u", "user",
 					"+", "adds the specified modes to the specified classes",
 					"-", "removes the specified modes from the specified classes",
 					"=", "the modes specified are to be made the exact modes for the specified classes",
 				).Invoke(c)
-				return classes.Merge(operators).Filter(c.Parts).Filter([]string{c.CallbackValue[len(c.CallbackValue)-1:]}).ToA()
+				return classes.Merge(operators).Filter(c.Parts).ToA()
 			}
 			return classes.Filter(c.Parts).ToA()
 		} else {
@@ -102,7 +101,7 @@ func ActionFileModesSymbolic() carapace.Action {
 				"X", "special execute",
 				"s", "setuid/gid",
 				"t", "sticky",
-			).Invoke(c).Filter(c.Parts).Filter([]string{c.CallbackValue[len(c.CallbackValue)-1:]}).ToA()
+			).Invoke(c).Filter(c.Parts).ToA()
 		}
 	})
 }
