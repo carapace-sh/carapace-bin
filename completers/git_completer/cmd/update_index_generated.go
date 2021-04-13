@@ -13,6 +13,7 @@ var update_indexCmd = &cobra.Command{
 
 func init() {
 	update_indexCmd.Flags().Bool("add", false, "do not ignore new files")
+	update_indexCmd.Flags().BoolP("again", "g", false, "only update entries that differ from HEAD")
 	update_indexCmd.Flags().Bool("assume-unchanged", false, "mark files as \"not changing\"")
 	update_indexCmd.Flags().String("cacheinfo", "", "add the specified entry to the index")
 	update_indexCmd.Flags().String("chmod", "", "override the executable bit of the listed files")
@@ -22,7 +23,6 @@ func init() {
 	update_indexCmd.Flags().Bool("force-write-index", false, "write out the index even if is not flagged as changed")
 	update_indexCmd.Flags().Bool("fsmonitor", false, "enable or disable file system monitor")
 	update_indexCmd.Flags().Bool("fsmonitor-valid", false, "mark files as fsmonitor valid")
-	update_indexCmd.Flags().BoolP("again", "g", false, "only update entries that differ from HEAD")
 	update_indexCmd.Flags().Bool("ignore-missing", false, "ignore files missing from worktree")
 	update_indexCmd.Flags().Bool("ignore-skip-worktree-entries", false, "do not touch index-only entries")
 	update_indexCmd.Flags().Bool("ignore-submodules", false, "refresh: ignore submodules")

@@ -17,7 +17,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringS("p", "p", "", "Use an alternate build script (instead of 'PKGBUILD')")
 	rootCmd.Flags().Bool("allsource", false, "Generate a source-only tarball including downloaded sources")
 	rootCmd.Flags().Bool("asdeps", false, "Install packages as non-explicitly installed")
 	rootCmd.Flags().Bool("check", false, "Run the check() function in the PKGBUILD")
@@ -41,6 +40,7 @@ func init() {
 	rootCmd.Flags().Bool("noprepare", false, "Do not run the prepare() function in the PKGBUILD")
 	rootCmd.Flags().Bool("noprogressbar", false, "Do not show a progress bar when downloading files")
 	rootCmd.Flags().Bool("nosign", false, "Do not create a signature for the package")
+	rootCmd.Flags().StringS("p", "p", "", "Use an alternate build script (instead of 'PKGBUILD')")
 	rootCmd.Flags().Bool("packagelist", false, "Only list package filepaths that would be produced")
 	rootCmd.Flags().Bool("printsrcinfo", false, "Print the generated SRCINFO and exit")
 	rootCmd.Flags().BoolP("repackage", "R", false, "Repackage contents of the package without rebuilding")

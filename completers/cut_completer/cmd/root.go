@@ -17,7 +17,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("n", "n", false, "(ignored)")
 	rootCmd.Flags().BoolS("M", "M", false, "from first to M'th (included) byte, character or field")
 	rootCmd.Flags().StringP("bytes", "b", "", "select only these bytes")
 	rootCmd.Flags().StringP("characters", "c", "", "select only these characters")
@@ -25,6 +24,7 @@ func init() {
 	rootCmd.Flags().StringP("delimiter", "d", "", "use DELIM instead of TAB for field delimiter")
 	rootCmd.Flags().StringP("fields", "f", "", "select only these fields;  also print any line")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
+	rootCmd.Flags().BoolS("n", "n", false, "(ignored)")
 	rootCmd.Flags().BoolP("only-delimited", "s", false, "do not print lines not containing delimiters")
 	rootCmd.Flags().String("output-delimiter", "", "use STRING as the output delimiter")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")

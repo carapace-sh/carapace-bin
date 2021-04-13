@@ -14,12 +14,12 @@ var read_treeCmd = &cobra.Command{
 func init() {
 	read_treeCmd.Flags().Bool("aggressive", false, "3-way merge in presence of adds and removes")
 	read_treeCmd.Flags().Bool("debug-unpack", false, "debug unpack-trees")
+	read_treeCmd.Flags().BoolP("dry-run", "n", false, "don't update the index or the work tree")
 	read_treeCmd.Flags().Bool("empty", false, "only empty the index")
 	read_treeCmd.Flags().String("exclude-per-directory", "", "allow explicitly ignored files to be overwritten")
 	read_treeCmd.Flags().BoolS("i", "i", false, "don't check the working tree after merging")
 	read_treeCmd.Flags().String("index-output", "", "write resulting index to <file>")
 	read_treeCmd.Flags().BoolS("m", "m", false, "perform a merge in addition to a read")
-	read_treeCmd.Flags().BoolP("dry-run", "n", false, "don't update the index or the work tree")
 	read_treeCmd.Flags().Bool("no-sparse-checkout", false, "skip applying sparse checkout filter")
 	read_treeCmd.Flags().String("prefix", "", "read the tree into the index under <subdirectory>/")
 	read_treeCmd.Flags().BoolP("quiet", "q", false, "suppress feedback messages")

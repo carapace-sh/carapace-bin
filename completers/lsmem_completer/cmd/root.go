@@ -26,8 +26,8 @@ func init() {
 	rootCmd.Flags().Bool("output-all", false, "output all columns")
 	rootCmd.Flags().BoolP("pairs", "P", false, "use key=\"value\" output format")
 	rootCmd.Flags().BoolP("raw", "r", false, "use raw output format")
-	rootCmd.Flags().String("summary", "", "print summary information")
 	rootCmd.Flags().StringP("split", "S", "", "split ranges by specified columns")
+	rootCmd.Flags().String("summary", "", "print summary information")
 	rootCmd.Flags().StringP("sysroot", "s", "", "use the specified directory as system root")
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 

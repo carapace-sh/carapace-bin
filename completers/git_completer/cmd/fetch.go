@@ -15,7 +15,6 @@ var fetchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(fetchCmd).Standalone()
 
-	fetchCmd.Flags().BoolS("n", "n", false, "do not fetch all tags (--no-tags)")
 	fetchCmd.Flags().Bool("all", false, "fetch from all remotes")
 	fetchCmd.Flags().BoolP("append", "a", false, "append to .git/FETCH_HEAD instead of overwriting")
 	fetchCmd.Flags().Bool("auto-gc", false, "run 'gc --auto' after fetching")
@@ -29,6 +28,7 @@ func init() {
 	fetchCmd.Flags().StringP("jobs", "j", "", "number of submodules fetched in parallel")
 	fetchCmd.Flags().BoolP("keep", "k", false, "keep downloaded pack")
 	fetchCmd.Flags().BoolP("multiple", "m", false, "fetch from multiple remotes")
+	fetchCmd.Flags().BoolS("n", "n", false, "do not fetch all tags (--no-tags)")
 	fetchCmd.Flags().String("negotiation-tip", "", "report that we have only objects reachable from this object")
 	fetchCmd.Flags().Bool("progress", false, "force progress reporting")
 	fetchCmd.Flags().BoolP("prune", "p", false, "prune remote-tracking branches no longer on remote")

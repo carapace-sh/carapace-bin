@@ -27,10 +27,10 @@ func init() {
 	rootCmd.Flags().BoolP("no-dereference", "h", false, "affect symbolic links instead of any referenced file (useful only on systems that can change the ownership of a symlink)")
 	rootCmd.Flags().Bool("no-preserve-root", false, "do not treat '/' specially (the default)")
 	rootCmd.Flags().Bool("preserve-root", false, "fail to operate recursively on '/'")
+	rootCmd.Flags().Bool("quiet", false, "suppress most error messages")
 	rootCmd.Flags().BoolP("recursive", "R", false, "operate on files and directories recursively")
 	rootCmd.Flags().String("reference", "", "use RFILE's group rather than specifying a GROUP value")
 	rootCmd.Flags().BoolP("silent", "f", false, "suppress most error messages")
-	rootCmd.Flags().Bool("quiet", false, "suppress most error messages")
 	rootCmd.Flags().BoolP("verbose", "v", false, "output a diagnostic for every file processed")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 

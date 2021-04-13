@@ -13,8 +13,8 @@ var pack_objectsCmd = &cobra.Command{
 
 func init() {
 	pack_objectsCmd.Flags().Bool("all", false, "include objects reachable from any reference")
-	pack_objectsCmd.Flags().Bool("all-progress-implied", false, "similar to --all-progress when progress meter is shown")
 	pack_objectsCmd.Flags().Bool("all-progress", false, "show progress meter during object writing phase")
+	pack_objectsCmd.Flags().Bool("all-progress-implied", false, "similar to --all-progress when progress meter is shown")
 	pack_objectsCmd.Flags().String("compression", "", "pack compression level")
 	pack_objectsCmd.Flags().Bool("delta-base-offset", false, "use OFS_DELTA objects")
 	pack_objectsCmd.Flags().Bool("delta-islands", false, "respect islands during delta compression")
@@ -24,8 +24,8 @@ func init() {
 	pack_objectsCmd.Flags().Bool("honor-pack-keep", false, "ignore packs that have companion .keep file")
 	pack_objectsCmd.Flags().Bool("include-tag", false, "include tag objects that refer to objects to be packed")
 	pack_objectsCmd.Flags().Bool("incremental", false, "ignore packed objects")
-	pack_objectsCmd.Flags().Bool("indexed-objects", false, "include objects referred to by the index")
 	pack_objectsCmd.Flags().String("index-version", "", "write the pack index file in the specified idx format version")
+	pack_objectsCmd.Flags().Bool("indexed-objects", false, "include objects referred to by the index")
 	pack_objectsCmd.Flags().String("keep-pack", "", "ignore this pack")
 	pack_objectsCmd.Flags().Bool("keep-true-parents", false, "do not hide commits by grafts")
 	pack_objectsCmd.Flags().Bool("keep-unreachable", false, "keep unreachable objects")
@@ -45,11 +45,11 @@ func init() {
 	pack_objectsCmd.Flags().Bool("stdout", false, "output pack to stdout")
 	pack_objectsCmd.Flags().Bool("thin", false, "create thin packs")
 	pack_objectsCmd.Flags().String("threads", "", "use threads when searching for best delta matches")
-	pack_objectsCmd.Flags().Bool("unpacked", false, "limit the objects to those that are not yet packed")
 	pack_objectsCmd.Flags().String("unpack-unreachable", "", "unpack unreachable objects newer than <time>")
+	pack_objectsCmd.Flags().Bool("unpacked", false, "limit the objects to those that are not yet packed")
 	pack_objectsCmd.Flags().Bool("use-bitmap-index", false, "use a bitmap index if available to speed up counting objects")
-	pack_objectsCmd.Flags().String("window-memory", "", "limit pack window by memory in addition to object limit")
 	pack_objectsCmd.Flags().String("window", "", "limit pack window by objects")
+	pack_objectsCmd.Flags().String("window-memory", "", "limit pack window by memory in addition to object limit")
 	pack_objectsCmd.Flags().Bool("write-bitmap-index", false, "write a bitmap index together with the pack index")
 	rootCmd.AddCommand(pack_objectsCmd)
 }

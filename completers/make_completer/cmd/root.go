@@ -22,11 +22,11 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("d", "d", false, "Print lots of debugging information.")
 	rootCmd.Flags().BoolP("always-make", "B", false, "Unconditionally make all targets.")
 	rootCmd.Flags().String("assume-new", "", "Consider FILE to be infinitely new.")
 	rootCmd.Flags().String("assume-old", "", "Consider FILE to be very old and don't remake it.")
 	rootCmd.Flags().BoolP("check-symlink-times", "L", false, "Use the latest mtime between symlinks and target.")
+	rootCmd.Flags().BoolS("d", "d", false, "Print lots of debugging information.")
 	rootCmd.Flags().String("debug", "", "Print various types of debugging information.")
 	rootCmd.Flags().StringP("directory", "C", "", "Change to DIRECTORY before doing anything.")
 	rootCmd.Flags().Bool("dry-run", false, "Don't actually run any recipe; just print them.")

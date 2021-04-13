@@ -17,14 +17,14 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("h", "h", false, "Display help.")
-	rootCmd.Flags().BoolS("v", "v", false, "Display version.")
-	rootCmd.Flags().StringS("s", "s", "", "Save the fakeroot environment to save-file on exit.")
-	rootCmd.Flags().StringS("i", "i", "", "Load a fakeroot environment previously saved using -s from load-file.")
 	rootCmd.Flags().StringS("b", "b", "", "Specify  fd  base  (TCP  mode only).")
 	rootCmd.Flags().String("faked", "", "Specify an alternative binary to use as faked.")
+	rootCmd.Flags().BoolS("h", "h", false, "Display help.")
+	rootCmd.Flags().StringS("i", "i", "", "Load a fakeroot environment previously saved using -s from load-file.")
 	rootCmd.Flags().StringP("lib", "l", "", "Specify an alternative wrapper library.")
+	rootCmd.Flags().StringS("s", "s", "", "Save the fakeroot environment to save-file on exit.")
 	rootCmd.Flags().BoolP("unknown-is-real", "u", false, "Use the real ownership of files previously unknown to fakeroot.")
+	rootCmd.Flags().BoolS("v", "v", false, "Display version.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"s":     carapace.ActionFiles(),

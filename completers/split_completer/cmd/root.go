@@ -17,10 +17,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("x", "x", false, "use hex suffixes starting at 0, not alphabetic")
-	rootCmd.Flags().BoolS("d", "d", false, "use numeric suffixes starting at 0, not alphabetic")
 	rootCmd.Flags().String("additional-suffix", "", "append an additional SUFFIX to file names")
 	rootCmd.Flags().StringP("bytes", "b", "", "put SIZE bytes per output file")
+	rootCmd.Flags().BoolS("d", "d", false, "use numeric suffixes starting at 0, not alphabetic")
 	rootCmd.Flags().BoolP("elide-empty-files", "e", false, "do not generate empty output files with '-n'")
 	rootCmd.Flags().String("filter", "", "write to shell COMMAND; file name is $FILE")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
@@ -34,6 +33,7 @@ func init() {
 	rootCmd.Flags().BoolP("unbuffered", "u", false, "immediately copy input to output with '-n r/...'")
 	rootCmd.Flags().Bool("verbose", false, "print a diagnostic just before each")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
+	rootCmd.Flags().BoolS("x", "x", false, "use hex suffixes starting at 0, not alphabetic")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionFiles(),

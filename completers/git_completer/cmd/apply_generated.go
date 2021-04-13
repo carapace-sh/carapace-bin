@@ -13,12 +13,12 @@ var applyCmd = &cobra.Command{
 
 func init() {
 	applyCmd.Flags().BoolP("3way", "3", false, "attempt three-way merge if a patch does not apply")
+	applyCmd.Flags().StringS("C", "C", "", "ensure at least <n> lines of context match")
 	applyCmd.Flags().Bool("allow-overlap", false, "allow overlapping hunks")
 	applyCmd.Flags().Bool("apply", false, "also apply the patch (use with --stat/--summary/--check)")
 	applyCmd.Flags().String("build-fake-ancestor", "", "build a temporary index based on embedded index information")
 	applyCmd.Flags().Bool("cached", false, "apply a patch without touching the working tree")
 	applyCmd.Flags().Bool("check", false, "instead of applying the patch, see if the patch is applicable")
-	applyCmd.Flags().StringS("C", "C", "", "ensure at least <n> lines of context match")
 	applyCmd.Flags().String("directory", "", "prepend <root> to all filenames")
 	applyCmd.Flags().String("exclude", "", "don't apply changes matching the given path")
 	applyCmd.Flags().Bool("ignore-space-change", false, "ignore changes in whitespace when finding context")

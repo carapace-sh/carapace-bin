@@ -15,9 +15,9 @@ var branchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(branchCmd).Standalone()
 
+	branchCmd.Flags().BoolS("C", "C", false, "Shortcut for --copy --force.")
 	branchCmd.Flags().BoolS("D", "D", false, "Shortcut for --delete --force.")
 	branchCmd.Flags().BoolS("M", "M", false, "Shortcut for --move --force.")
-	branchCmd.Flags().BoolS("C", "C", false, "Shortcut for --copy --force.")
 	branchCmd.Flags().String("abbrev", "", "Alter the sha1s minimum display length in the output listing.")
 	branchCmd.Flags().BoolP("all", "a", false, "List both remote-tracking branches and local branches.")
 	branchCmd.Flags().String("color", "", "Color branches to highlight current, local, and remote-tracking branches.")

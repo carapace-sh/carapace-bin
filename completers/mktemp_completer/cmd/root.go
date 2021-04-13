@@ -17,12 +17,12 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("t", "t", false, "interpret TEMPLATE as a single file name component")
 	rootCmd.Flags().BoolP("directory", "d", false, "create a directory, not a file")
 	rootCmd.Flags().BoolP("dry-run", "u", false, "do not create anything; merely print a name (unsafe)")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("quiet", "q", false, "suppress diagnostics about file/dir-creation failure")
 	rootCmd.Flags().String("suffix", "", "append SUFF to TEMPLATE")
+	rootCmd.Flags().BoolS("t", "t", false, "interpret TEMPLATE as a single file name component")
 	rootCmd.Flags().StringP("tmpdir", "p", "", "interpret TEMPLATE relative to DIR")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 

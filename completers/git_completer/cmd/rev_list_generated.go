@@ -12,8 +12,8 @@ var rev_listCmd = &cobra.Command{
 }
 
 func init() {
-	rev_listCmd.Flags().Bool("abbrev-commit", false, "")
 	rev_listCmd.Flags().String("abbrev", "", "| --no-abbrev")
+	rev_listCmd.Flags().Bool("abbrev-commit", false, "")
 	rev_listCmd.Flags().Bool("all", false, "")
 	rev_listCmd.Flags().Bool("bisect", false, "")
 	rev_listCmd.Flags().Bool("bisect-all", false, "")

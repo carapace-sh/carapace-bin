@@ -15,8 +15,8 @@ var insertCmd = &cobra.Command{
 func init() {
 	carapace.Gen(insertCmd).Standalone()
 	insertCmd.Flags().BoolP("echo", "e", false, "echo the password back to the console")
-	insertCmd.Flags().BoolP("multiline", "m", false, "multiline entry")
 	insertCmd.Flags().BoolP("force", "f", false, "overwrite existing entry without prompt")
+	insertCmd.Flags().BoolP("multiline", "m", false, "multiline entry")
 	rootCmd.AddCommand(insertCmd)
 
 	carapace.Gen(insertCmd).PositionalCompletion(

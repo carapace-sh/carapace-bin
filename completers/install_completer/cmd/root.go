@@ -18,11 +18,11 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("b", "b", false, "like --backup but does not accept an argument")
-	rootCmd.Flags().BoolS("c", "c", false, "(ignored)")
 	rootCmd.Flags().BoolS("D", "D", false, "create all leading components of DEST except the last,")
 	rootCmd.Flags().BoolS("Z", "Z", false, "set SELinux security context of destination")
+	rootCmd.Flags().BoolS("b", "b", false, "like --backup but does not accept an argument")
 	rootCmd.Flags().String("backup", "", "make a backup of each existing destination file")
+	rootCmd.Flags().BoolS("c", "c", false, "(ignored)")
 	rootCmd.Flags().BoolP("compare", "C", false, "compare each pair of source and destination files, and")
 	rootCmd.Flags().String("context", "", "like -Z, or if CTX is specified then set the")
 	rootCmd.Flags().BoolP("directory", "d", false, "treat all arguments as directory names; create all")

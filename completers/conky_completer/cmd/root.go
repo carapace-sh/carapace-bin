@@ -19,9 +19,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringP("alignment", "a", "", "text alignment on screen")
-	rootCmd.Flags().StringS("x", "x", "", "x position")
-	rootCmd.Flags().StringS("i", "i", "", "number of times to update conky (and quit)")
-	rootCmd.Flags().StringS("y", "y", "", "y position")
 	rootCmd.Flags().StringP("config", "c", "", "config file to load")
 	rootCmd.Flags().BoolP("daemonize", "d", false, "daemonize, fork to background")
 	rootCmd.Flags().BoolP("debug", "D", false, "increase debugging output, ie. -DD for more debugging")
@@ -29,6 +26,7 @@ func init() {
 	rootCmd.Flags().BoolP("double-buffer", "b", false, "double buffer (prevents flickering)")
 	rootCmd.Flags().StringP("font", "f", "", "font to use")
 	rootCmd.Flags().BoolP("help", "h", false, "help")
+	rootCmd.Flags().StringS("i", "i", "", "number of times to update conky (and quit)")
 	rootCmd.Flags().StringP("interval", "u", "", "update interval")
 	rootCmd.Flags().BoolP("own-window", "o", false, "create own window to draw")
 	rootCmd.Flags().StringP("pause", "p", "", "pause for SECS seconds at startup before doing anything")
@@ -37,7 +35,9 @@ func init() {
 	rootCmd.Flags().StringP("text", "t", "", "text to render, remember single quotes, like -t '$uptime'")
 	rootCmd.Flags().BoolP("version", "v", false, "version")
 	rootCmd.Flags().StringP("window-id", "w", "", "window id to draw")
+	rootCmd.Flags().StringS("x", "x", "", "x position")
 	rootCmd.Flags().StringP("xinerama-head", "m", "", "Xinerama monitor index (0=first)")
+	rootCmd.Flags().StringS("y", "y", "", "y position")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),

@@ -17,7 +17,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("u", "u", false, "deallocate and remove file after overwriting")
 	rootCmd.Flags().BoolP("exact", "x", false, "do not round file sizes up to the next full block;")
 	rootCmd.Flags().BoolP("force", "f", false, "change permissions to allow writing if necessary")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
@@ -25,6 +24,7 @@ func init() {
 	rootCmd.Flags().String("random-source", "", "get random bytes from FILE")
 	rootCmd.Flags().String("remove", "", "like -u but give control on HOW to delete;  See below")
 	rootCmd.Flags().StringP("size", "s", "", "shred this many bytes (suffixes like K, M, G accepted)")
+	rootCmd.Flags().BoolS("u", "u", false, "deallocate and remove file after overwriting")
 	rootCmd.Flags().BoolP("verbose", "v", false, "show progress")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 	rootCmd.Flags().BoolP("zero", "z", false, "add a final overwrite with zeros to hide shredding")

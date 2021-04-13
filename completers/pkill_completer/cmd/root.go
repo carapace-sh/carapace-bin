@@ -36,7 +36,6 @@ func init() {
 	rootCmd.Flags().StringP("pidfile", "F", "", "read PIDs from file")
 	rootCmd.Flags().StringP("runstates", "r", "", "match runstates [D,S,Z,...]")
 	rootCmd.Flags().StringP("session", "s", "", "match session IDs")
-	//rootCmd.Flags().StringP("signal", "<sig>", "", "signal to send (either number or name)")
 	rootCmd.Flags().String("signal", "", "signal to send (either number or name)")
 	rootCmd.Flags().StringP("terminal", "t", "", "match by controlling terminal")
 	rootCmd.Flags().StringP("uid", "U", "", "match by real IDs")

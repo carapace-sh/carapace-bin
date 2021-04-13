@@ -17,11 +17,11 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("n", "n", false, "Do not covert inf, -inf, and NaN to/from strings (YAML or TOML only)")
 	rootCmd.Flags().BoolS("e", "e", false, "Escape HTML (JSON out only)")
+	rootCmd.Flags().BoolS("h", "h", false, "Show this help message")
 	rootCmd.Flags().BoolS("i", "i", false, "Indent output (JSON or TOML out only)")
 	rootCmd.Flags().BoolS("k", "k", false, "Attempt to parse keys as objects or numbers types (YAML out only)")
-	rootCmd.Flags().BoolS("h", "h", false, "Show this help message")
+	rootCmd.Flags().BoolS("n", "n", false, "Do not covert inf, -inf, and NaN to/from strings (YAML or TOML only)")
 	rootCmd.Flags().BoolS("v", "v", false, "Show version")
 
 	carapace.Gen(rootCmd).PositionalCompletion(

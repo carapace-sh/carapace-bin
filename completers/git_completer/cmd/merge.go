@@ -16,7 +16,6 @@ var mergeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mergeCmd).Standalone()
 
-	mergeCmd.Flags().BoolS("n", "n", false, "do not show a diffstat at the end of the merge")
 	mergeCmd.Flags().Bool("abort", false, "abort the current in-progress merge")
 	mergeCmd.Flags().Bool("allow-unrelated-histories", false, "allow merging unrelated histories")
 	mergeCmd.Flags().Bool("autostash", false, "automatically stash/stash pop before and after")
@@ -30,6 +29,7 @@ func init() {
 	mergeCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
 	mergeCmd.Flags().String("log", "", "add (at most <n>) entries from shortlog to merge commit message")
 	mergeCmd.Flags().StringP("message", "m", "", "merge commit message")
+	mergeCmd.Flags().BoolS("n", "n", false, "do not show a diffstat at the end of the merge")
 	mergeCmd.Flags().Bool("no-verify", false, "bypass pre-merge-commit and commit-msg hooks")
 	mergeCmd.Flags().Bool("overwrite-ignore", false, "update ignored files (default)")
 	mergeCmd.Flags().Bool("progress", false, "force progress reporting")
