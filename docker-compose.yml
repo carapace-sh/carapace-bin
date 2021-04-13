@@ -48,8 +48,18 @@ services:
 
   test:
     <<: *base
-    working_dir: /carapace
+    working_dir: /carapace-bin
     command: go test -v ./...
+  
+  lint:
+    <<: *base
+    working_dir: /carapace-bin
+    command: bash -c 'go run ./cmd/caralint completers/*/cmd/*.go'
+  
+  fmt:
+    <<: *base
+    working_dir: /carapace-bin
+    command: bash -c 'go run ./cmd/carafmt completers/*/cmd/*.go'
 
 
 volumes:

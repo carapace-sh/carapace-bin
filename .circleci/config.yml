@@ -44,6 +44,9 @@ jobs:
       - run:
           name: "staticcheck"
           command: go get honnef.co/go/tools/cmd/staticcheck && staticcheck ./...
+      - run:
+          name: "caralint"
+          command: go run ./cmd/caralint completers/*/cmd/*.go
   release:
     docker:
       - image: circleci/golang:1.15
