@@ -18,6 +18,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("H", "H", false, "follow command-line symbolic links in SOURCE")
+	rootCmd.Flags().BoolS("R", "R", false, "copy directories recursively")
 	rootCmd.Flags().BoolS("Z", "Z", false, "set SELinux security context of destination file to default type")
 	rootCmd.Flags().BoolP("archive", "a", false, "same as -dR --preserve=all")
 	rootCmd.Flags().Bool("attributes-only", false, "don't copy the file data, just the attributes")
@@ -40,7 +41,6 @@ func init() {
 	rootCmd.Flags().Bool("parents", false, "use full source file name under DIRECTORY")
 	rootCmd.Flags().StringSlice("preserve", []string{""}, "preserve the specified attributes (default: mode,ownership,timestamps), if possible additional attributes: context, links, xattr, all")
 	rootCmd.Flags().BoolP("recursive", "r", false, "copy directories recursively")
-	rootCmd.Flags().BoolS("R", "R", false, "copy directories recursively")
 	rootCmd.Flags().String("reflink", "", "control clone/CoW copies")
 	rootCmd.Flags().Bool("remove-destination", false, "remove each existing destination file before attempting to open it (contrast with --force)")
 	rootCmd.Flags().String("sparse", "", "control creation of sparse files.")

@@ -21,12 +21,12 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringS("c", "c", "", "Set value for parameter CONFIGVAR to VALUE.")
-	rootCmd.Flags().StringS("l", "l", "", "The language or script to use.")
 	rootCmd.Flags().String("dpi", "", "Specify the resolution N in DPI for the input image(s).")
 	rootCmd.Flags().BoolP("help", "h", false, "Show help message.")
 	rootCmd.Flags().Bool("help-extra", false, "Show extra help for advanced users.")
 	rootCmd.Flags().Bool("help-oem", false, "Show OCR Engine modes.")
 	rootCmd.Flags().Bool("help-psm", false, "Show page segmentation modes.")
+	rootCmd.Flags().StringS("l", "l", "", "The language or script to use.")
 	rootCmd.Flags().Bool("list-langs", false, "List available languages for tesseract engine.")
 	rootCmd.Flags().String("oem", "", "Specify OCR Engine mode.")
 	rootCmd.Flags().Bool("print-parameters", false, "Print tesseract parameters.")

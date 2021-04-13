@@ -18,6 +18,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("I", "I", false, "prompt once before removing more than three files, or when removing recursively")
+	rootCmd.Flags().BoolS("R", "R", false, "remove directories and their contents recursively")
 	rootCmd.Flags().BoolP("dir", "d", false, "remove empty directories")
 	rootCmd.Flags().BoolP("force", "f", false, "ignore nonexistent files and arguments, never prompt")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
@@ -27,7 +28,6 @@ func init() {
 	rootCmd.Flags().Bool("one-file-system", false, "when removing a hierarchy recursively, skip any directory that is on a file system different from that of the corresponding command line argument")
 	rootCmd.Flags().String("preserve-root", "", "do not remove '/' (default); with 'all', reject any command line argument on a separate device from its parent")
 	rootCmd.Flags().BoolP("recursive", "r", false, "remove directories and their contents recursively")
-	rootCmd.Flags().BoolS("R", "R", false, "remove directories and their contents recursively")
 	rootCmd.Flags().BoolP("verbose", "v", false, "explain what is being done")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 

@@ -17,11 +17,8 @@ var diffCmd = &cobra.Command{
 func init() {
 	carapace.Gen(diffCmd).Standalone()
 
-	diffCmd.Flags().StringS("l", "l", "", "prevent rename/copy detection from running if the number of rename/copy targets exceeds the specified number")
-	diffCmd.Flags().BoolS("u", "u", false, "Generate patch")
-	diffCmd.Flags().BoolS("z", "z", false, "do not munge pathnames and use NULs as output field terminators")
-	diffCmd.Flags().StringS("O", "O", "", "Control the order in which files appear in the output.")
 	diffCmd.Flags().BoolS("0", "0", false, "Omit diff output for unmerged entries")
+	diffCmd.Flags().StringS("O", "O", "", "Control the order in which files appear in the output.")
 	diffCmd.Flags().BoolS("R", "R", false, "Swap two inputs")
 	diffCmd.Flags().StringS("S", "S", "", "Look for differences that change the number of occurrences of the specified string")
 	diffCmd.Flags().String("abbrev", "", "show only a partial prefix")
@@ -60,6 +57,7 @@ func init() {
 	diffCmd.Flags().String("inter-hunk-context", "", "Show the context between diff hunks")
 	diffCmd.Flags().BoolP("irreversible-delete", "D", false, "Omit the preimage for deletes")
 	diffCmd.Flags().Bool("ita-invisible-in-index", false, "this option makes the entry appear as a new file")
+	diffCmd.Flags().StringS("l", "l", "", "prevent rename/copy detection from running if the number of rename/copy targets exceeds the specified number")
 	diffCmd.Flags().String("line-prefix", "", "Prepend an additional prefix to every line of output.")
 	diffCmd.Flags().Bool("minimal", false, "Spend extra time to make sure the smallest possible diff is produced.")
 	diffCmd.Flags().Bool("name-only", false, "Show only names of changed files.")
@@ -97,10 +95,12 @@ func init() {
 	diffCmd.Flags().BoolP("text", "a", false, "Treat all files as text.")
 	diffCmd.Flags().String("textconv,", "", "Allow (or disallow) external text conversion filters to be run when comparing binary files")
 	diffCmd.Flags().BoolP("theirs", "3", false, "compare with their branch")
+	diffCmd.Flags().BoolS("u", "u", false, "Generate patch")
 	diffCmd.Flags().StringP("unified", "U", "", "Generate diffs with <n> lines of context instead of the usual three.")
 	diffCmd.Flags().String("word-diff", "", "Show a word diff, using the <mode> to delimit changed words.")
 	diffCmd.Flags().String("word-diff-regex", "", "Use <regex> to decide what a word is")
 	diffCmd.Flags().String("ws-error-highlight", "", "Highlight whitespace errors in the context, old or new lines of the diff")
+	diffCmd.Flags().BoolS("z", "z", false, "do not munge pathnames and use NULs as output field terminators")
 	rootCmd.AddCommand(diffCmd)
 
 	diffCmd.Flag("color-moved").NoOptDefVal = "default"

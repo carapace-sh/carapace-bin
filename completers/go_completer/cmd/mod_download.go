@@ -14,7 +14,7 @@ var mod_downloadCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mod_downloadCmd).Standalone()
 
-	mod_downloadCmd.Flags().BoolS("x", "x", false, "print the commands download executes")
 	mod_downloadCmd.Flags().Bool("json", false, "print a sequence of JSON objects")
+	mod_downloadCmd.Flags().BoolS("x", "x", false, "print the commands download executes")
 	modCmd.AddCommand(mod_downloadCmd)
 }

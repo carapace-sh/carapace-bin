@@ -15,8 +15,8 @@ func init() {
 	carapace.Gen(exportCmd).Standalone()
 	exportCmd.Flags().BoolP("force", "F", false, "bypass schema testing")
 	exportCmd.Flags().StringP("format", "f", "", "output format")
-	exportCmd.Flags().StringP("theme", "t", "", "theme name")
 	exportCmd.Flags().BoolP("help", "h", false, "display help for command")
+	exportCmd.Flags().StringP("theme", "t", "", "theme name")
 
 	rootCmd.AddCommand(exportCmd)
 

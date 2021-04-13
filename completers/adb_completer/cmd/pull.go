@@ -14,9 +14,9 @@ var pullCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pullCmd).Standalone()
 
+	pullCmd.Flags().BoolS("Z", "Z", false, "disable compression")
 	pullCmd.Flags().BoolS("a", "a", false, "preserve file timestamp and mode")
 	pullCmd.Flags().StringS("z", "z", "", "enable compression with a specified algorithm (any, none, brotli)")
-	pullCmd.Flags().BoolS("Z", "Z", false, "disable compression")
 	rootCmd.AddCommand(pullCmd)
 
 	carapace.Gen(pullCmd).FlagCompletion(carapace.ActionMap{

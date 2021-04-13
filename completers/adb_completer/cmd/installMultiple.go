@@ -14,13 +14,13 @@ var installMultipleCmd = &cobra.Command{
 func init() {
 	carapace.Gen(installMultipleCmd).Standalone()
 
-	installMultipleCmd.Flags().BoolS("l", "l", false, "TODO no flag description")
-	installMultipleCmd.Flags().BoolS("s", "s", false, "TODO no flag description")
 	installMultipleCmd.Flags().BoolS("d", "d", false, "TODO no flag description")
-	installMultipleCmd.Flags().BoolS("r", "r", false, "replace existing application")
-	installMultipleCmd.Flags().BoolS("t", "t", false, "allow test packages")
 	installMultipleCmd.Flags().BoolS("g", "g", false, "grant all runtime permissions")
 	installMultipleCmd.Flags().Bool("instant", false, "cause the app to be installed as an ephemeral install app")
+	installMultipleCmd.Flags().BoolS("l", "l", false, "TODO no flag description")
+	installMultipleCmd.Flags().BoolS("r", "r", false, "replace existing application")
+	installMultipleCmd.Flags().BoolS("s", "s", false, "TODO no flag description")
+	installMultipleCmd.Flags().BoolS("t", "t", false, "allow test packages")
 	rootCmd.AddCommand(installMultipleCmd)
 
 	carapace.Gen(installMultipleCmd).PositionalAnyCompletion(

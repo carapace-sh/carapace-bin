@@ -26,8 +26,8 @@ func init() {
 	rootCmd.Flags().String("rfc-3339", "", "output date/time in RFC 3339 format.")
 	rootCmd.Flags().BoolP("rfc-email", "R", false, "output date and time in RFC 5322 format.")
 	rootCmd.Flags().StringP("set", "s", "", "set time described by STRING")
-	rootCmd.Flags().StringP("utc,", "u", "", "print or set Coordinated Universal Time (UTC)")
 	rootCmd.Flags().String("universal", "", "print or set Coordinated Universal Time (UTC)")
+	rootCmd.Flags().StringP("utc,", "u", "", "print or set Coordinated Universal Time (UTC)")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

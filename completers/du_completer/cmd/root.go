@@ -17,9 +17,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("k", "k", false, "like --block-size=1K")
 	rootCmd.Flags().BoolS("H", "H", false, "equivalent to --dereference-args (-D)")
-	rootCmd.Flags().BoolS("m", "m", false, "like --block-size=1M")
 	rootCmd.Flags().BoolP("all", "a", false, "write counts for all files, not just directories")
 	rootCmd.Flags().Bool("apparent-size", false, "print apparent sizes, rather than disk usage; although")
 	rootCmd.Flags().StringP("block-size", "B", "", "scale sizes by SIZE before printing them; e.g.,")
@@ -33,6 +31,8 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("human-readable", "h", false, "print sizes in human readable format (e.g., 1K 234M 2G)")
 	rootCmd.Flags().Bool("inodes", false, "list inode usage information instead of block usage")
+	rootCmd.Flags().BoolS("k", "k", false, "like --block-size=1K")
+	rootCmd.Flags().BoolS("m", "m", false, "like --block-size=1M")
 	rootCmd.Flags().StringP("max-depth", "d", "", "print the total for a directory (or file, with --all)")
 	rootCmd.Flags().BoolP("no-dereference", "P", false, "don't follow any symbolic links (this is the default)")
 	rootCmd.Flags().BoolP("null", "0", false, "end each output line with NUL, not newline")

@@ -16,7 +16,6 @@ var cherryPickCmd = &cobra.Command{
 func init() {
 	carapace.Gen(cherryPickCmd).Standalone()
 
-	cherryPickCmd.Flags().BoolS("x", "x", false, "append cherry-pick source to original commit message")
 	cherryPickCmd.Flags().Bool("abort", false, "cancel the operation and return to the pre-sequence state")
 	cherryPickCmd.Flags().Bool("allow-empty", false, "preserve empty commits")
 	cherryPickCmd.Flags().Bool("allow-empty-message", false, "allow empty commit message")
@@ -36,6 +35,7 @@ func init() {
 	cherryPickCmd.Flags().Bool("skip", false, "skip the current commit")
 	cherryPickCmd.Flags().String("strategy", "", "use the given merge strategy")
 	cherryPickCmd.Flags().StringP("strategy-option", "X", "", "pass the merge strategy-specific option through to the merge strategy")
+	cherryPickCmd.Flags().BoolS("x", "x", false, "append cherry-pick source to original commit message")
 	rootCmd.AddCommand(cherryPickCmd)
 
 	cherryPickCmd.Flag("gpg-sign").NoOptDefVal = " "

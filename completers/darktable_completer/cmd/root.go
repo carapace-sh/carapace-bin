@@ -17,11 +17,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringS("t", "t", "", "num openmp threads")
-	rootCmd.Flags().StringS("d", "d", "", "enable debug output")
 	rootCmd.Flags().String("cachedir", "", "user cache directory")
 	rootCmd.Flags().String("conf", "", "override config values")
 	rootCmd.Flags().String("configdir", "", "user config directory")
+	rootCmd.Flags().StringS("d", "d", "", "enable debug output")
 	rootCmd.Flags().String("datadir", "", "data directory")
 	rootCmd.Flags().Bool("disable-opencl", false, "prevent OpenCL initialization")
 	rootCmd.Flags().BoolP("help", "h", false, "")
@@ -30,6 +29,7 @@ func init() {
 	rootCmd.Flags().String("luacmd", "", "lua command")
 	rootCmd.Flags().String("moduledir", "", "module directory")
 	rootCmd.Flags().String("noiseprofiles", "", "noiseprofiles json file")
+	rootCmd.Flags().StringS("t", "t", "", "num openmp threads")
 	rootCmd.Flags().String("tmpdir", "", "tmp directory")
 	rootCmd.Flags().Bool("version", false, "print version number")
 

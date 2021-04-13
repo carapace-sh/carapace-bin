@@ -14,7 +14,6 @@ var rmCmd = &cobra.Command{
 func init() {
 	carapace.Gen(rmCmd).Standalone()
 
-	rmCmd.Flags().BoolS("r", "r", false, "allow recursive removal")
 	rmCmd.Flags().Bool("cached", false, "only remove from the index")
 	rmCmd.Flags().BoolP("dry-run", "n", false, "dry run")
 	rmCmd.Flags().BoolP("force", "f", false, "override the up-to-date check")
@@ -22,6 +21,7 @@ func init() {
 	rmCmd.Flags().Bool("pathspec-file-nul", false, "pathspec elements are separated with NUL character")
 	rmCmd.Flags().String("pathspec-from-file", "", "read pathspec from file")
 	rmCmd.Flags().BoolP("quiet", "q", false, "do not list removed files")
+	rmCmd.Flags().BoolS("r", "r", false, "allow recursive removal")
 	rootCmd.AddCommand(rmCmd)
 
 	carapace.Gen(rmCmd).FlagCompletion(carapace.ActionMap{

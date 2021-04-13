@@ -15,7 +15,6 @@ var pullCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pullCmd).Standalone()
 
-	pullCmd.Flags().BoolS("n", "n", false, "do not show a diffstat at the end of the merge")
 	pullCmd.Flags().Bool("all", false, "fetch from all remotes")
 	pullCmd.Flags().Bool("allow-unrelated-histories", false, "allow merging unrelated histories")
 	pullCmd.Flags().BoolP("append", "a", false, "append to .git/FETCH_HEAD instead of overwriting")
@@ -35,6 +34,7 @@ func init() {
 	pullCmd.Flags().StringP("jobs", "j", "", "number of submodules pulled in parallel")
 	pullCmd.Flags().BoolP("keep", "k", false, "keep downloaded pack")
 	pullCmd.Flags().String("log", "", "add (at most <n>) entries from shortlog to merge commit message")
+	pullCmd.Flags().BoolS("n", "n", false, "do not show a diffstat at the end of the merge")
 	pullCmd.Flags().String("negotiation-tip", "", "report that we have only objects reachable from this object")
 	pullCmd.Flags().Bool("progress", false, "force progress reporting")
 	pullCmd.Flags().BoolP("prune", "p", false, "prune remote-tracking branches no longer on remote")

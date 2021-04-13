@@ -17,15 +17,13 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("v", "v", false, "Verbose output seems to be the default mode in ping.")
-	rootCmd.Flags().BoolS("R", "R", false, "Record route mode is not allowed in prettyping.")
-	rootCmd.Flags().BoolS("q", "q", false, "Quiet output is not allowed in prettyping.")
-	rootCmd.Flags().BoolS("f", "f", false, "Flood mode is not allowed in prettyping.")
-	rootCmd.Flags().BoolS("a", "a", false, "Audible ping is not implemented yet.")
 	rootCmd.Flags().BoolS("6", "6", false, "Shortcut for: --pingbin ping6")
+	rootCmd.Flags().BoolS("R", "R", false, "Record route mode is not allowed in prettyping.")
+	rootCmd.Flags().BoolS("a", "a", false, "Audible ping is not implemented yet.")
 	rootCmd.Flags().String("awkbin", "", "Override the awk interpreter.")
 	rootCmd.Flags().Bool("color", false, "Enable color output.")
 	rootCmd.Flags().String("columns", "", "Override auto-detection of terminal dimensions.")
+	rootCmd.Flags().BoolS("f", "f", false, "Flood mode is not allowed in prettyping.")
 	rootCmd.Flags().String("last", "", "Use the last \"n\" pings at the statistics line.")
 	rootCmd.Flags().Bool("legend", false, "Enable/disable the latency legend.")
 	rootCmd.Flags().String("lines", "", "Override auto-detection of terminal dimensions.")
@@ -36,10 +34,12 @@ func init() {
 	rootCmd.Flags().Bool("noterminal", false, "Force the output designed to a terminal.")
 	rootCmd.Flags().Bool("nounicode", false, "Disable unicode characters.")
 	rootCmd.Flags().String("pingbin", "", "Override the ping tool.")
+	rootCmd.Flags().BoolS("q", "q", false, "Quiet output is not allowed in prettyping.")
 	rootCmd.Flags().String("rttmax", "", "Maximum RTT represented in the unicode graph.")
 	rootCmd.Flags().String("rttmin", "", "Minimum RTT represented in the unicode graph.")
 	rootCmd.Flags().Bool("terminal", false, "Force the output designed to a terminal.")
 	rootCmd.Flags().Bool("unicode", false, "Enable unicode characters.")
+	rootCmd.Flags().BoolS("v", "v", false, "Verbose output seems to be the default mode in ping.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"awkbin":  carapace.ActionFiles(),

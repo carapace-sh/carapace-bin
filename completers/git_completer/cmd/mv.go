@@ -14,9 +14,9 @@ var mvCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mvCmd).Standalone()
 
-	mvCmd.Flags().BoolS("k", "k", false, "skip move/rename errors")
 	mvCmd.Flags().BoolP("dry-run", "n", false, "dry run")
 	mvCmd.Flags().BoolP("force", "f", false, "force move/rename even if target exists")
+	mvCmd.Flags().BoolS("k", "k", false, "skip move/rename errors")
 	mvCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 	rootCmd.AddCommand(mvCmd)
 

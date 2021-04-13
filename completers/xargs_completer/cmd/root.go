@@ -17,7 +17,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringS("l", "l", "", "similar to -L but defaults to at most one non- blank input line")
 	rootCmd.Flags().StringS("E", "E", "", "set logical EOF string")
 	rootCmd.Flags().StringS("I", "I", "", "same as --replace=R")
 	rootCmd.Flags().StringP("arg-file", "a", "", "read arguments from FILE")
@@ -26,6 +25,7 @@ func init() {
 	rootCmd.Flags().BoolP("exit", "x", false, "exit if the size (see -s) is exceeded")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("interactive", "p", false, "prompt before running commands")
+	rootCmd.Flags().StringS("l", "l", "", "similar to -L but defaults to at most one non- blank input line")
 	rootCmd.Flags().StringP("max-args", "n", "", "use at most MAX-ARGS arguments per command line")
 	rootCmd.Flags().StringP("max-chars", "s", "", "limit length of command line to MAX-CHARS")
 	rootCmd.Flags().StringP("max-lines", "L", "", "use at most MAX-LINES non-blank input lines per command line")

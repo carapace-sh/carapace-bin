@@ -17,8 +17,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringS("c", "c", "", "Run a single command and exit.")
 	rootCmd.Flags().StringS("D", "D", "", "Define an environment variable")
+	rootCmd.Flags().StringS("c", "c", "", "Run a single command and exit.")
 	rootCmd.Flags().Bool("cache-everything", false, "Use a cache, even for interactive commands.")
 	rootCmd.Flags().BoolP("help", "h", false, "Show help and exit.")
 	rootCmd.Flags().BoolP("interactive", "i", false, "Force running in interactive mode.")

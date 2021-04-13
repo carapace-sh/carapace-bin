@@ -18,7 +18,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().String("unhandled-rejections", "", "Define the behavior for unhandled rejections.")
 	rootCmd.Flags().Bool("abort-on-uncaught-exception", false, "Aborting instead of exiting causes a core file to be generated for analysis.")
 	rootCmd.Flags().BoolP("check", "c", false, "Check the script's syntax without executing it.")
 	rootCmd.Flags().Bool("completion-bash", false, "Print source-able bash completion script for Node.js.")
@@ -109,6 +108,7 @@ func init() {
 	rootCmd.Flags().Bool("trace-uncaught", false, "Print stack traces for uncaught exceptions.")
 	rootCmd.Flags().Bool("trace-warnings", false, "Print stack traces for process warnings (including deprecations).")
 	rootCmd.Flags().Bool("track-heap-objects", false, "Track heap object allocations for heap snapshots.")
+	rootCmd.Flags().String("unhandled-rejections", "", "Define the behavior for unhandled rejections.")
 	rootCmd.Flags().Bool("use-bundled-ca", false, "Use bundled Mozilla CA store as supplied by current Node.js version or use OpenSSL's default CA store.")
 	rootCmd.Flags().String("use-largepages", "", "Re-map the Node.js static code to large memory pages at startup.")
 	rootCmd.Flags().Bool("use-openssl-ca", false, "Use bundled Mozilla CA store as supplied by current Node.js version or use OpenSSL's default CA store.")

@@ -14,12 +14,12 @@ var send_packCmd = &cobra.Command{
 func init() {
 	send_packCmd.Flags().Bool("all", false, "push all refs")
 	send_packCmd.Flags().Bool("atomic", false, "request atomic transaction on remote side")
+	send_packCmd.Flags().BoolP("dry-run", "n", false, "dry run")
 	send_packCmd.Flags().String("exec", "", "receive pack program")
 	send_packCmd.Flags().BoolP("force", "f", false, "force updates")
 	send_packCmd.Flags().String("force-with-lease", "", "require old value of ref to be at this value")
 	send_packCmd.Flags().Bool("helper-status", false, "print status from remote helper")
 	send_packCmd.Flags().Bool("mirror", false, "mirror all refs")
-	send_packCmd.Flags().BoolP("dry-run", "n", false, "dry run")
 	send_packCmd.Flags().Bool("progress", false, "force progress reporting")
 	send_packCmd.Flags().String("push-option", "", "option to transmit")
 	send_packCmd.Flags().BoolP("quiet", "q", false, "be more quiet")

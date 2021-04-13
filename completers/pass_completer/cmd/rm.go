@@ -14,8 +14,8 @@ var rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(rmCmd).Standalone()
-	rmCmd.Flags().BoolP("recursive", "r", false, "remove recursively")
 	rmCmd.Flags().BoolP("force", "f", false, "remove forcefully")
+	rmCmd.Flags().BoolP("recursive", "r", false, "remove recursively")
 
 	rootCmd.AddCommand(rmCmd)
 

@@ -17,11 +17,11 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringS("O", "O", "", "generate output as roff directives")
+	rootCmd.Flags().StringS("T", "T", "", "generate output as TeX directives")
 	rootCmd.Flags().BoolP("auto-reference", "A", false, "output automatically generated references")
 	rootCmd.Flags().StringP("break-file", "b", "", "word break characters in this FILE")
 	rootCmd.Flags().StringP("flag-truncation", "F", "", "use STRING for flagging line truncations.")
-	rootCmd.Flags().StringS("T", "T", "", "generate output as TeX directives")
-	rootCmd.Flags().StringS("O", "O", "", "generate output as roff directives")
 	rootCmd.Flags().String("format", "", "generate output as given directives")
 	rootCmd.Flags().StringP("gap-size", "g", "", "gap size in columns between output fields")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")

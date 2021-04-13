@@ -18,7 +18,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringS("z", "z", "", "set compress level to N (0 disables)")
 	rootCmd.Flags().BoolP("armor", "a", false, "create ascii armored output")
 	rootCmd.Flags().Bool("card-status", false, "print the card status")
 	rootCmd.Flags().Bool("change-passphrase", false, "change a passphrase")
@@ -69,6 +68,7 @@ func init() {
 	rootCmd.Flags().Bool("update-trustdb", false, "update the trust database")
 	rootCmd.Flags().BoolP("verbose", "v", false, "verbose")
 	rootCmd.Flags().Bool("verify", false, "verify a signature")
+	rootCmd.Flags().StringS("z", "z", "", "set compress level to N (0 disables)")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"recipient":   os.ActionUsers(),

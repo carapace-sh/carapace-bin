@@ -18,7 +18,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
-	rootCmd.Flags().BoolP("silent", "s", false, "print nothing, only return an exit status")
 	rootCmd.Flags().Bool("quiet", false, "print nothing, only return an exit status")
+	rootCmd.Flags().BoolP("silent", "s", false, "print nothing, only return an exit status")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 }

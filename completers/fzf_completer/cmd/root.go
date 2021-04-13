@@ -17,7 +17,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("i", "i", false, "Case-insensitive match")
 	rootCmd.Flags().String("algo", "", "Fuzzy matching algorithm")
 	rootCmd.Flags().Bool("ansi", false, "Enable processing of ANSI color codes")
 	rootCmd.Flags().String("bind", "", "Custom key bindings")
@@ -37,6 +36,7 @@ func init() {
 	rootCmd.Flags().String("history", "", "History file")
 	rootCmd.Flags().String("history-size", "", "Maximum number of history entries")
 	rootCmd.Flags().String("hscroll-off", "", "Number of screen columns to keep to the right")
+	rootCmd.Flags().BoolS("i", "i", false, "Case-insensitive match")
 	rootCmd.Flags().String("info", "", "Finder info style [default|inline|hidden]")
 	rootCmd.Flags().String("jump-labels", "", "Label characters for jump and jump-accept")
 	rootCmd.Flags().Bool("keep-right", false, "Keep the right end of the line visible on overflow")

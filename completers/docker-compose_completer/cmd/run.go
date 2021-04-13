@@ -14,9 +14,9 @@ var runCmd = &cobra.Command{
 func init() {
 	carapace.Gen(runCmd).Standalone()
 
-	runCmd.Flags().StringS("e", "e", "", "Set an environment variable (can be used multiple times)")
 	runCmd.Flags().BoolS("T", "T", false, "Disable pseudo-tty allocation. By default `docker-compose run`")
 	runCmd.Flags().BoolP("detach", "d", false, "Detached mode: Run container in the background, print")
+	runCmd.Flags().StringS("e", "e", "", "Set an environment variable (can be used multiple times)")
 	runCmd.Flags().String("entrypoint", "", "Override the entrypoint of the image.")
 	runCmd.Flags().StringP("label", "l", "", "Add or override a label (can be used multiple times)")
 	runCmd.Flags().String("name", "", "Assign a name to the container")

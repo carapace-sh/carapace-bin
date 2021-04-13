@@ -19,7 +19,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("o", "o", false, "when creating, same as --old-archive; when extracting, same as --no-same-owner")
 	rootCmd.Flags().BoolP("absolute-names", "P", false, "don't strip leading '/'s from file names")
 	rootCmd.Flags().Bool("acls", false, "Enable the POSIX ACLs support")
 	rootCmd.Flags().String("add-file", "", "add given FILE to the archive")
@@ -121,6 +120,7 @@ func init() {
 	rootCmd.Flags().Bool("no-xattrs", false, "Disable extended attributes support")
 	rootCmd.Flags().Bool("null", false, "reads null-terminated names; implies")
 	rootCmd.Flags().Bool("numeric-owner", false, "always use numbers for user/group names")
+	rootCmd.Flags().BoolS("o", "o", false, "when creating, same as --old-archive; when extracting, same as --no-same-owner")
 	rootCmd.Flags().String("occurrence", "", "process only the NUMBERth occurrence of each file in the archive")
 	rootCmd.Flags().Bool("old-archive", false, "same as --format=v7")
 	rootCmd.Flags().Bool("one-file-system", false, "stay in local file system when creating archive")

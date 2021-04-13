@@ -14,7 +14,6 @@ var statusCmd = &cobra.Command{
 func init() {
 	carapace.Gen(statusCmd).Standalone()
 
-	statusCmd.Flags().BoolS("z", "z", false, "Terminate entries with NUL, instead of LF.")
 	statusCmd.Flags().Bool("ahead-behind", false, "display detailed ahead/behind counts for the branch relative to its upstream branch")
 	statusCmd.Flags().BoolP("branch", "b", false, "Show the branch and tracking info even in short-format.")
 	statusCmd.Flags().String("column", "", "Display untracked files in columns.")
@@ -31,6 +30,7 @@ func init() {
 	statusCmd.Flags().Bool("show-stash", false, "Show the number of entries currently stashed away.")
 	statusCmd.Flags().StringP("untracked-files", "u", "", "Show untracked files")
 	statusCmd.Flags().BoolP("verbose", "v", false, "also show the textual changes")
+	statusCmd.Flags().BoolS("z", "z", false, "Terminate entries with NUL, instead of LF.")
 	rootCmd.AddCommand(statusCmd)
 
 	statusCmd.Flag("column").NoOptDefVal = " "

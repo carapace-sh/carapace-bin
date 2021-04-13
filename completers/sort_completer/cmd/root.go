@@ -17,9 +17,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringS("C", "C", "", "--check=silent  like -c, but do not report first bad line")
 	rootCmd.Flags().String("batch-size", "", "merge at most NMERGE inputs at once")
 	rootCmd.Flags().StringP("buffer-size", "S", "", "use SIZE for main memory buffer")
-	rootCmd.Flags().StringS("C", "C", "", "--check=silent  like -c, but do not report first bad line")
 	rootCmd.Flags().StringP("check", "c", "", "check for sorted input; do not sort")
 	rootCmd.Flags().String("compress-program", "", "compress temporaries with PROG")
 	rootCmd.Flags().Bool("debug", false, "annotate the part of the line used to sort, and warn about questionable usage to stderr")
