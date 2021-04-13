@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	lint "github.com/rsteube/carapace-bin/cmd/caralint/cmd"
 	"github.com/spf13/cobra"
 )
 
@@ -20,12 +21,14 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		exitCode := 0
 		for _, arg := range args {
-			if tmpfile, err := format(arg); err != nil {
-				println(err.Error())
-				exitCode = 1
-			} else {
-				if err := os.Rename(tmpfile, arg); err != nil {
+			if err := lint.Lint(arg); err != nil {
+				if tmpfile, err := format(arg); err != nil {
 					println(err.Error())
+					exitCode = 1
+				} else {
+					if err := os.Rename(tmpfile, arg); err != nil {
+						println(err.Error())
+					}
 				}
 			}
 		}

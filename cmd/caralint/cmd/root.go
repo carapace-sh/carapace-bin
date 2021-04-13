@@ -18,7 +18,7 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		exitCode := 0
 		for _, arg := range args {
-			if err := lint(arg); err != nil {
+			if err := Lint(arg); err != nil {
 				println(err.Error())
 				exitCode = 1
 			}
@@ -37,7 +37,7 @@ func init() {
 	)
 }
 
-func lint(path string) error {
+func Lint(path string) error {
 	if !strings.HasSuffix(path, ".go") {
 		return nil
 	}
