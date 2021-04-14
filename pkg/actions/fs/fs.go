@@ -84,12 +84,15 @@ func ActionFileModesSymbolic() carapace.Action {
 				"a", "all",
 			).Invoke(c)
 
-			operators := carapace.ActionValuesDescribed(
-				"+", "adds the specified modes to the specified classes",
-				"-", "removes the specified modes from the specified classes",
-				"=", "the modes specified are to be made the exact modes for the specified classes",
-			).Invoke(c)
-			return classes.Merge(operators).Filter(c.Parts).ToA()
+			if len(c.Parts) > 0 {
+				operators := carapace.ActionValuesDescribed(
+					"+", "adds the specified modes to the specified classes",
+					"-", "removes the specified modes from the specified classes",
+					"=", "the modes specified are to be made the exact modes for the specified classes",
+				).Invoke(c)
+				return classes.Merge(operators).Filter(c.Parts).ToA()
+			}
+			return classes.Filter(c.Parts).ToA()
 		} else {
 			return carapace.ActionValuesDescribed(
 				"r", "read",
