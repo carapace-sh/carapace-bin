@@ -84,15 +84,12 @@ func ActionFileModesSymbolic() carapace.Action {
 				"a", "all",
 			).Invoke(c)
 
-			if len(c.Parts) > 0 {
-				operators := carapace.ActionValuesDescribed(
-					"+", "adds the specified modes to the specified classes",
-					"-", "removes the specified modes from the specified classes",
-					"=", "the modes specified are to be made the exact modes for the specified classes",
-				).Invoke(c)
-				return classes.Merge(operators).Filter(c.Parts).ToA()
-			}
-			return classes.Filter(c.Parts).ToA()
+			operators := carapace.ActionValuesDescribed(
+				"+", "adds the specified modes to the specified classes",
+				"-", "removes the specified modes from the specified classes",
+				"=", "the modes specified are to be made the exact modes for the specified classes",
+			).Invoke(c)
+			return classes.Merge(operators).Filter(c.Parts).ToA()
 		} else {
 			return carapace.ActionValuesDescribed(
 				"r", "read",
@@ -111,7 +108,7 @@ func ActionFileModesSymbolic() carapace.Action {
 //   755
 func ActionFileModesNumeric() carapace.Action {
 	return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
-		if len(c.Parts) < 2 {
+		if len(c.Parts) < 3 {
 			return carapace.ActionValuesDescribed(
 				"7", "read, write and execute",
 				"6", "read and write",
