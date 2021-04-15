@@ -19,6 +19,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringP("delay", "d", "", "Set the delay between updates, in tenths of seconds")

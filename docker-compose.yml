@@ -59,6 +59,7 @@ services:
   fmt:
     <<: *base
     working_dir: /carapace-bin
+    user: 1000:1000
     command: bash -c 'go run ./cmd/carafmt completers/*/cmd/*.go'
 
 
