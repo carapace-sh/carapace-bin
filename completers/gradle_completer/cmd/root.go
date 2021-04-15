@@ -22,6 +22,7 @@ func Execute() error {
 }
 
 func init() {
+	carapace.Gen(rootCmd).Root()
 	rootCmd.Flags().Bool("build-cache", false, "Enables the Gradle build cache. Gradle will try to reuse outputs from previous builds.")
 	rootCmd.Flags().StringP("build-file", "b", "", "Specify the build file.")
 	rootCmd.Flags().Bool("configure-on-demand", false, "Configure necessary projects only. Gradle will attempt to reduce configuration time for large multi-project builds. [incubating]")
@@ -73,6 +74,7 @@ func init() {
 }
 
 func init() {
+	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

@@ -16,6 +16,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("absolute-path", "a", false, "Show absolute instead of relative paths")

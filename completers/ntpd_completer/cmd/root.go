@@ -17,6 +17,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("!", "!", false, "extended usage information passed thru pager")

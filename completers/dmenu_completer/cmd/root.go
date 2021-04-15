@@ -15,6 +15,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("b", "b", false, "dmenu appears at the bottom of the screen.")

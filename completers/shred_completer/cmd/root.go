@@ -15,6 +15,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("exact", "x", false, "do not round file sizes up to the next full block;")

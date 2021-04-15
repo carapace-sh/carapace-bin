@@ -19,6 +19,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("abort-on-error", false, "Abort downloading of further videos (in the")

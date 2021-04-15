@@ -15,6 +15,7 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().BoolP("help", "h", false, "display help for command")
 	rootCmd.Flags().BoolP("version", "V", false, "output the version number")
