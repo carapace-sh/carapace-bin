@@ -16,7 +16,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("D", "D", false, "create all leading components of DEST except the last,")

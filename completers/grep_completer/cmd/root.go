@@ -15,7 +15,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("I", "I", false, "equivalent to --binary-files=without-match")

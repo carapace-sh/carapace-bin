@@ -15,7 +15,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("C", "C", false, "Check configuration and then exit.")

@@ -15,7 +15,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("all", "a", false, "Scan the entire file, not just the data section [default]")

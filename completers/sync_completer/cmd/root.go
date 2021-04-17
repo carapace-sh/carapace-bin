@@ -15,7 +15,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("data", "d", false, "sync only file data, no unneeded metadata")

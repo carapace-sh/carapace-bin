@@ -16,7 +16,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("bytes", false, "print SIZE in bytes rather than in human readable format")

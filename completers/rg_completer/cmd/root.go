@@ -15,7 +15,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 	//TODO descriptions are a mess
 	rootCmd.Flags().StringP("after-context", "A", "", "Show NUM lines after each match.")
