@@ -14,7 +14,6 @@ func Execute() error {
 }
 
 func init() {
-	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().StringS("C", "C", "", "run as if git was started in given path")
 	rootCmd.Flags().Bool("bare", false, "use $PWD as repository")

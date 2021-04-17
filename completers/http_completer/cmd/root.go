@@ -26,7 +26,6 @@ func ExecuteHttps() error {
 }
 
 func init() {
-	carapace.Gen(rootCmd).Root()
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("all", false, "Show any intermediary requests/responses as well.")
