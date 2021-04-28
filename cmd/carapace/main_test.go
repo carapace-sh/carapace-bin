@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/rsteube/carapace"
 	"testing"
+
+	"github.com/rsteube/carapace"
 )
 
 func TestCarapace(t *testing.T) {

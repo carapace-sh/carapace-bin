@@ -3,7 +3,6 @@ package usb
 
 import (
 	"fmt"
-	"os/exec"
 	"regexp"
 	"strings"
 
@@ -15,9 +14,7 @@ import (
 //   002:001 (Linux Foundation 3.0 root hub)
 func ActionDeviceNumbers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("lsusb").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("lsusb")(func(output []byte) carapace.Action {
 			r := regexp.MustCompile(`^Bus (?P<bus>\d+) Device (?P<device>\d+): ID (?P<vendor>[^ ]+):(?P<product>[^ ]+) (?P<name>.*)$`)
 
 			vals := make([]string, 0)
@@ -28,7 +25,7 @@ func ActionDeviceNumbers() carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }
 
@@ -37,9 +34,7 @@ func ActionDeviceNumbers() carapace.Action {
 //   1d6b:0002 (Linux Foundation 2.0 root hub)
 func ActionProductNumbers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("lsusb").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("lsusb")(func(output []byte) carapace.Action {
 			r := regexp.MustCompile(`^Bus (?P<bus>\d+) Device (?P<device>\d+): ID (?P<vendor>[^ ]+):(?P<product>[^ ]+) (?P<name>.*)$`)
 
 			vals := make([]string, 0)
@@ -50,6 +45,6 @@ func ActionProductNumbers() carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }

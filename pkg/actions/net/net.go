@@ -110,9 +110,7 @@ var AllDevices = IncludedDevices{
 func ActionDevices(includedDevices IncludedDevices) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if _, err := exec.LookPath("nmcli"); err == nil {
-			if output, err := exec.Command("nmcli", "--terse", "--fields", "device,type", "device", "status").Output(); err != nil {
-				return carapace.ActionMessage(err.Error())
-			} else {
+			return carapace.ActionExecCommand("nmcli", "--terse", "--fields", "device,type", "device", "status")(func(output []byte) carapace.Action {
 				lines := strings.Split(string(output), "\n")
 				vals := make([]string, 0)
 				for _, line := range lines[:len(lines)-1] {
@@ -122,12 +120,10 @@ func ActionDevices(includedDevices IncludedDevices) carapace.Action {
 					}
 				}
 				return carapace.ActionValuesDescribed(vals...)
-			}
+			})
 		} else if _, err := exec.LookPath("ifconfig"); err == nil {
 			// fallback to basic ifconfig if nmcli is not available
-			if output, err := exec.Command("ifconfig").Output(); err != nil {
-				return carapace.ActionMessage(err.Error())
-			} else {
+			return carapace.ActionExecCommand("ifconfig")(func(output []byte) carapace.Action {
 				interfaces := []string{}
 				r := regexp.MustCompile("^[0-9a-zA-Z]")
 				for _, line := range strings.Split(string(output), "\n") {
@@ -136,7 +132,7 @@ func ActionDevices(includedDevices IncludedDevices) carapace.Action {
 					}
 				}
 				return carapace.ActionValues(interfaces...)
-			}
+			})
 		}
 		return carapace.ActionMessage("neither nmcli nor ifconfig available")
 	})
@@ -147,9 +143,7 @@ func ActionDevices(includedDevices IncludedDevices) carapace.Action {
 //   private (vpn abcdefgh-hijk-lmnop-qert-012345678901)
 func ActionConnections() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("nmcli", "--terse", "connection", "show").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("nmcli", "--terse", "connection", "show")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			vals := make([]string, (len(lines)-1)*2)
 			for index, line := range lines[:len(lines)-1] {
@@ -158,7 +152,7 @@ func ActionConnections() carapace.Action {
 				vals[index*2+1] = parts[2] + " " + parts[1]
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }
 
@@ -167,9 +161,7 @@ func ActionConnections() carapace.Action {
 //   AA:BB:CC:DD:EE:11 (anotherwifi)
 func ActionBssids() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("nmcli", "--terse", "--fields", "bssid,ssid", "device", "wifi", "list").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("nmcli", "--terse", "--fields", "bssid,ssid", "device", "wifi", "list")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			vals := make([]string, (len(lines)-1)*2)
 			for index, line := range lines[:len(lines)-1] {
@@ -177,7 +169,7 @@ func ActionBssids() carapace.Action {
 				vals[index*2+1] = line[23:]
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }
 
@@ -186,9 +178,7 @@ func ActionBssids() carapace.Action {
 //   anotherwifi (AA:BB:CC:DD:EE:11)
 func ActionSsids() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("nmcli", "--terse", "--fields", "bssid,ssid", "device", "wifi", "list").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("nmcli", "--terse", "--fields", "bssid,ssid", "device", "wifi", "list")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			vals := make([]string, 0)
 			for _, line := range lines[:len(lines)-1] {
@@ -197,6 +187,6 @@ func ActionSsids() carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }

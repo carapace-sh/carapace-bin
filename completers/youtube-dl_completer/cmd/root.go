@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"os/exec"
 	"regexp"
 	"strings"
 
@@ -197,20 +196,20 @@ func ActionFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if len(c.Args) == 0 {
 			return carapace.ActionMessage("missing url")
-		} else if output, err := exec.Command("youtube-dl", "--list-formats", c.Args[0]).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
 		} else {
-			lines := strings.Split(string(output), "\n")
-			pattern := regexp.MustCompile(`^(?P<format>[0-9]+) +(?P<description>.*)$`)
+			return carapace.ActionExecCommand("youtube-dl", "--list-formats", c.Args[0])(func(output []byte) carapace.Action {
+				lines := strings.Split(string(output), "\n")
+				pattern := regexp.MustCompile(`^(?P<format>[0-9]+) +(?P<description>.*)$`)
 
-			vals := make([]string, 0)
-			for _, line := range lines {
-				if pattern.MatchString(line) {
-					m := pattern.FindStringSubmatch(line)
-					vals = append(vals, m[1], m[2])
+				vals := make([]string, 0)
+				for _, line := range lines {
+					if pattern.MatchString(line) {
+						m := pattern.FindStringSubmatch(line)
+						vals = append(vals, m[1], m[2])
+					}
 				}
-			}
-			return carapace.ActionValuesDescribed(vals...)
+				return carapace.ActionValuesDescribed(vals...)
+			})
 		}
 	})
 }

@@ -4,7 +4,6 @@ package os
 import (
 	"io/ioutil"
 	"os"
-	"os/exec"
 	"regexp"
 	"strconv"
 	"strings"
@@ -188,12 +187,10 @@ func ActionUserGroup() carapace.Action {
 //   /bin/bash
 func ActionShells() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("chsh", "--list-shells").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("chsh", "--list-shells")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[:len(lines)-1]...)
-		}
+		})
 	})
 }
 
@@ -231,9 +228,7 @@ func isExecAny(mode os.FileMode) bool {
 //   :1
 func ActionDisplays() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("w", "-hsu").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("w", "-hsu")(func(output []byte) carapace.Action {
 			vals := make([]string, 0)
 			r := regexp.MustCompile("/usr/lib/Xorg (?P<display>:[0-9]+)")
 			for _, line := range strings.Split(string(output), "\n") {
@@ -242,7 +237,7 @@ func ActionDisplays() carapace.Action {
 				}
 			}
 			return carapace.ActionValues(vals...)
-		}
+		})
 	})
 }
 

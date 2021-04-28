@@ -1,7 +1,6 @@
 package action
 
 import (
-	"os/exec"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -9,26 +8,22 @@ import (
 
 func ActionApiResources() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("kubectl", "api-resources", "--output=name", "--cached").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("kubectl", "api-resources", "--output=name", "--cached")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			for index, line := range lines {
 				lines[index] = strings.SplitN(line, ".", 2)[0]
 			}
 			return carapace.ActionValues(lines[:len(lines)-1]...)
-		}
+		})
 	})
 }
 
 func ActionResources(namespace string, types string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range .items}}{{.metadata.name}}\n{{.kind}}\n{{end}}", types).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range .items}}{{.metadata.name}}\n{{.kind}}\n{{end}}", types)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(lines[:len(lines)-1]...)
-		}
+		})
 	})
 }
 
@@ -72,34 +67,28 @@ func ActionApiResourceResources() carapace.Action {
 
 func ActionContainers(namespace string, resource string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range .spec.containers}}{{.name}}\n{{end}}", resource).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range .spec.containers}}{{.name}}\n{{end}}", resource)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[:len(lines)-1]...)
-		}
+		})
 	})
 }
 
 func ActionLabels(namespace string, resource string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range $key, $value := .metadata.labels}}{{$key}}\n{{$value}}\n{{end}}", resource).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range $key, $value := .metadata.labels}}{{$key}}\n{{$value}}\n{{end}}", resource)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(lines[:len(lines)-1]...)
-		}
+		})
 	})
 }
 
 func ActionAnnotations(namespace string, resource string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range $key, $value := .metadata.annotations}}{{$key}}\n{{$value}}\n{{end}}", resource).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("kubectl", "--namespace", namespace, "get", "-o", "go-template={{range $key, $value := .metadata.annotations}}{{$key}}\n{{$value}}\n{{end}}", resource)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(lines[:len(lines)-1]...)
-		}
+		})
 	})
 }
 
@@ -132,22 +121,18 @@ func ActionApiGroups() carapace.Action {
 
 func ActionClusters() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("kubectl", "config", "get-clusters").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("kubectl", "config", "get-clusters")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[1 : len(lines)-1]...)
-		}
+		})
 	})
 }
 
 func ActionContexts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("kubectl", "config", "get-contexts", "-o", "name").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("kubectl", "config", "get-contexts", "-o", "name")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[:len(lines)-1]...)
-		}
+		})
 	})
 }
