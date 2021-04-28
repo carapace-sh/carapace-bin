@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"encoding/json"
-	"os/exec"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -43,9 +42,7 @@ func init() {
 
 func ActionCommands() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("tldr", "--list").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("tldr", "--list")(func(output []byte) carapace.Action {
 			var commands []string
 			fixedOutput := strings.Replace(string(output), `'`, `"`, -1)
 			if err := json.Unmarshal([]byte(fixedOutput), &commands); err != nil {
@@ -57,6 +54,6 @@ func ActionCommands() carapace.Action {
 					return carapace.ActionValues(commands...)
 				}
 			}
-		}
+		})
 	})
 }

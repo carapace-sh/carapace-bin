@@ -3,7 +3,6 @@ package action
 import (
 	"encoding/json"
 	"fmt"
-	"os/exec"
 	"regexp"
 	"strings"
 
@@ -18,9 +17,7 @@ type pkg struct {
 
 func ActionInstalledPackages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("pip", "list", "--format", "json").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("pip", "list", "--format", "json")(func(output []byte) carapace.Action {
 			var packages []pkg
 			json.Unmarshal(output, &packages)
 
@@ -30,16 +27,14 @@ func ActionInstalledPackages() carapace.Action {
 				vals[index*2+1] = p.Version
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }
 
 func ActionRemotePackages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO pip search currently disabled due to load - basic workaround without paging
-		if output, err := exec.Command("curl", fmt.Sprintf("https://pypi.org/search/?q=%v", c.CallbackValue)).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("curl", fmt.Sprintf("https://pypi.org/search/?q=%v", c.CallbackValue))(func(output []byte) carapace.Action {
 			re := regexp.MustCompile(`class="package-snippet__(name|description)">(?P<val>.*)<`)
 
 			vals := make([]string, 0)
@@ -54,7 +49,7 @@ func ActionRemotePackages() carapace.Action {
 			} else {
 				return carapace.ActionValuesDescribed(vals...)
 			}
-		}
+		})
 	})
 }
 
@@ -72,9 +67,7 @@ func ActionConfigValues(cmd *cobra.Command) carapace.Action {
 			}
 			args = append(args, "list")
 
-			if output, err := exec.Command("pip", args...).Output(); err != nil {
-				return carapace.ActionMessage(err.Error())
-			} else {
+			return carapace.ActionExecCommand("pip", args...)(func(output []byte) carapace.Action {
 				lines := strings.Split(string(output), "\n")
 
 				vals := make([]string, (len(lines)-1)*2)
@@ -84,7 +77,7 @@ func ActionConfigValues(cmd *cobra.Command) carapace.Action {
 					vals[index*2+1] = splitted[1]
 				}
 				return carapace.ActionValuesDescribed(vals...)
-			}
+			})
 		}).Invoke(c).ToMultiPartsA(".")
 	})
 }

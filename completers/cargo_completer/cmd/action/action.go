@@ -236,9 +236,7 @@ func ActionInstalledPackages(root string) carapace.Action {
 			opts = append(c.Args, "--root", root)
 		}
 
-		if output, err := exec.Command("cargo", opts...).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("cargo", opts...)(func(output []byte) carapace.Action {
 			re := regexp.MustCompile(`(?P<package>^[^ ]+) (?P<version>[^:]+):$`)
 			vals := make([]string, 0)
 
@@ -249,6 +247,6 @@ func ActionInstalledPackages(root string) carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }

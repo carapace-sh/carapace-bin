@@ -3,7 +3,6 @@ package pacman
 
 import (
 	"fmt"
-	"os/exec"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -51,12 +50,10 @@ func (o PackageOption) format(callbackValue string) []string {
 //   gstreamer
 func ActionPackages(option PackageOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("pacman", option.format(c.CallbackValue)...).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("pacman", option.format(c.CallbackValue)...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[:len(lines)-1]...)
-		}
+		})
 	})
 }
 
@@ -65,11 +62,9 @@ func ActionPackages(option PackageOption) carapace.Action {
 //   linux49-extramodules
 func ActionPackageGroups() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("sh", "-c", "pacman -Qg | cut -d' ' -f1 | sort |  uniq").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("sh", "-c", "pacman -Qg | cut -d' ' -f1 | sort |  uniq")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[:len(lines)-1]...)
-		}
+		})
 	})
 }

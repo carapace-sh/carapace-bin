@@ -21,13 +21,9 @@ func rootDir() (string, error) {
 //   origin
 //   upstream
 func ActionRemotes() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("git", "remote").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			lines := strings.Split(string(output), "\n")
-			return carapace.ActionValues(lines[:len(lines)-1]...)
-		}
+	return carapace.ActionExecCommand("git", "remote")(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+		return carapace.ActionValues(lines[:len(lines)-1]...)
 	})
 }
 
@@ -84,9 +80,7 @@ func ActionRefs(refOption RefOption) carapace.Action {
 func ActionUnstagedChanges() carapace.Action {
 	// TODO multiparts action to complete step by step
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("git", "status", "--porcelain").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("git", "status", "--porcelain")(func(output []byte) carapace.Action {
 			if root, err := rootDir(); err != nil {
 				return carapace.ActionMessage(err.Error())
 			} else {
@@ -106,7 +100,7 @@ func ActionUnstagedChanges() carapace.Action {
 					return carapace.ActionValuesDescribed(untracked...)
 				}
 			}
-		}
+		})
 	})
 }
 

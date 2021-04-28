@@ -1,7 +1,6 @@
 package action
 
 import (
-	"os/exec"
 	"path/filepath"
 
 	"strings"
@@ -11,42 +10,34 @@ import (
 
 func ActionConfigs() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "config", "ls", "--format", "{{.Name}}\nupdated {{.UpdatedAt}}").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "config", "ls", "--format", "{{.Name}}\nupdated {{.UpdatedAt}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }
 
 func ActionContainers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }
 
 func ActionRepositories() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "images", "--format", "{{.Repository}})").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "images", "--format", "{{.Repository}})")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValues(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }
 
 func ActionRepositoryTags() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "image", "ls", "--format", "{{.Repository}}:{{.Tag}}", "--filter", "dangling=false").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "image", "ls", "--format", "{{.Repository}}:{{.Tag}}", "--filter", "dangling=false")(func(output []byte) carapace.Action {
 			// TODO add checks to not cause an out of bounds error
 			vals := strings.Split(string(output), "\n")
 			switch len(c.Parts) {
@@ -70,7 +61,7 @@ func ActionRepositoryTags() carapace.Action {
 			default:
 				return carapace.ActionValues()
 			}
-		}
+		})
 	})
 }
 
@@ -81,18 +72,14 @@ func ActionContainerPath() carapace.Action {
 		case 0:
 			// TODO add description support
 			//if output, err := exec.Command("docker", "container", "ls", "--format", "{{.Names}}:\n{{.Image}} ({{.Status}})").Output(); err != nil {
-			if output, err := exec.Command("docker", "container", "ls", "--format", "{{.Names}}:").Output(); err != nil {
-				return carapace.ActionValues()
-			} else {
+			return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}:")(func(output []byte) carapace.Action {
 				vals := strings.Split(string(output), "\n")
 				return carapace.ActionValues(vals[:len(vals)-1]...)
-			}
+			})
 		default:
-			if output, err := exec.Command("docker", "exec", c.Parts[0], "ls", filepath.Dir(strings.Join(c.Parts[1:], "/"))).Output(); err != nil {
-				return carapace.ActionValues()
-			} else {
+			return carapace.ActionExecCommand("docker", "exec", c.Parts[0], "ls", filepath.Dir(strings.Join(c.Parts[1:], "/")))(func(output []byte) carapace.Action {
 				return carapace.ActionValues(strings.Split(string(output), "\n")...)
-			}
+			})
 		}
 	})
 }
@@ -122,78 +109,64 @@ func ActionDetachKeys() carapace.Action {
 
 func ActionContexts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "context", "ls", "--format", "{{.Name}}\n{{.Description}}").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "context", "ls", "--format", "{{.Name}}\n{{.Description}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }
 
 func ActionNetworks() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "network", "ls", "--format", "{{.Name}}\n{{.Driver}}/{{.Scope}}").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "network", "ls", "--format", "{{.Name}}\n{{.Driver}}/{{.Scope}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }
 
 func ActionNodes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "node", "ls", "--format", "{{.ID}}\n{{.Hostname}} {{.ManagerStatus}}").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "node", "ls", "--format", "{{.ID}}\n{{.Hostname}} {{.ManagerStatus}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }
 
 func ActionPlugins() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "plugin", "ls", "--format", "{{.Name}}\n{{.Description}}").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "plugin", "ls", "--format", "{{.Name}}\n{{.Description}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }
 
 func ActionSecrets() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "secret", "ls", "--format", "{{.Name}}\nupdated {{.UpdatedAt}}").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "secret", "ls", "--format", "{{.Name}}\nupdated {{.UpdatedAt}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }
 
 func ActionServices() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "service", "ls", "--format", "{{.Name}}\n{{.Image}} {{.Mode}} {{.Replicas}}").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "service", "ls", "--format", "{{.Name}}\n{{.Image}} {{.Mode}} {{.Replicas}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }
 
 func ActionVolumes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("docker", "volume", "ls", "--format", "{{.Name}}\n{{.Driver}}").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", "volume", "ls", "--format", "{{.Name}}\n{{.Driver}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }
 
@@ -203,11 +176,9 @@ func ActionStacks(orchestrator string) carapace.Action {
 		if orchestrator == "swarm" || orchestrator == "kubernetes" {
 			arguments = append(arguments, "--orchestrator", orchestrator)
 		}
-		if output, err := exec.Command("docker", arguments...).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("docker", arguments...)(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}
+		})
 	})
 }

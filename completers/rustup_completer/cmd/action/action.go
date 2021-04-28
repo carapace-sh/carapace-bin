@@ -1,7 +1,6 @@
 package action
 
 import (
-	"os/exec"
 	"regexp"
 	"strings"
 
@@ -10,9 +9,7 @@ import (
 
 func ActionToolchains() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("rustup", "toolchain", "list").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("rustup", "toolchain", "list")(func(output []byte) carapace.Action {
 			vals := make([]string, 0)
 
 			re := regexp.MustCompile(`^(?P<toolchain>[^ ]+)( \((?P<info>.*)\))?$`)
@@ -23,7 +20,7 @@ func ActionToolchains() carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }
 
@@ -34,9 +31,7 @@ func ActionTargets(installedOnly bool) carapace.Action {
 			opts = append(opts, "--installed")
 		}
 
-		if output, err := exec.Command("rustup", opts...).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("rustup", opts...)(func(output []byte) carapace.Action {
 			vals := make([]string, 0)
 
 			re := regexp.MustCompile(`^(?P<target>[^ ]+)( \((?P<info>.*)\))?$`)
@@ -47,7 +42,7 @@ func ActionTargets(installedOnly bool) carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }
 
@@ -58,9 +53,7 @@ func ActionComponents(installedOnly bool) carapace.Action {
 			opts = append(opts, "--installed")
 		}
 
-		if output, err := exec.Command("rustup", opts...).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("rustup", opts...)(func(output []byte) carapace.Action {
 			vals := make([]string, 0)
 
 			re := regexp.MustCompile(`^(?P<target>[^ ]+)( \((?P<info>.*)\))?$`)
@@ -71,7 +64,7 @@ func ActionComponents(installedOnly bool) carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }
 
@@ -96,9 +89,7 @@ func ActionAvailableComponents() carapace.Action {
 
 func ActionOverrides() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("rustup", "override", "list").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("rustup", "override", "list")(func(output []byte) carapace.Action {
 			vals := make([]string, 0)
 
 			re := regexp.MustCompile(`^(?P<path>.*)\t(?P<toolchain>[^ ]+)$`)
@@ -109,6 +100,6 @@ func ActionOverrides() carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }

@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"os/exec"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -63,9 +62,7 @@ func init() {
 
 func ActionLanguage() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("bat", "--list-languages").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("bat", "--list-languages")(func(output []byte) carapace.Action {
 			values := make([]string, 0)
 			for _, line := range strings.Split(string(output), "\n") {
 				// TODO fix ':' character in carapace
@@ -77,16 +74,14 @@ func ActionLanguage() carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(values...)
-		}
+		})
 	})
 }
 
 func ActionTheme() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("bat", "--list-themes").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("bat", "--list-themes")(func(output []byte) carapace.Action {
 			return carapace.ActionValues(strings.Split(string(output), "\n")...)
-		}
+		})
 	})
 }

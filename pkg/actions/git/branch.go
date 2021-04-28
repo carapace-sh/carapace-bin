@@ -29,12 +29,8 @@ func ActionRemoteBranches(remote string) carapace.Action {
 // ActionCurrentBranch completes the current branch
 //   currentBranch
 func ActionCurrentBranch() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("git", "branch", "--show-current").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			return carapace.ActionValues(strings.Split(string(output), "\n")[0])
-		}
+	return carapace.ActionExecCommand("git", "branch", "--show-current")(func(output []byte) carapace.Action {
+		return carapace.ActionValues(strings.Split(string(output), "\n")[0])
 	})
 }
 

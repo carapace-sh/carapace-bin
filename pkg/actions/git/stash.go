@@ -1,7 +1,6 @@
 package git
 
 import (
-	"os/exec"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -12,9 +11,7 @@ import (
 //   stash@{1} (WIP on branchB: ABCDEF2 last commit msg)
 func ActionStashes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("git", "stash", "list").Output(); err != nil {
-			return carapace.ActionValues(err.Error())
-		} else {
+		return carapace.ActionExecCommand("git", "stash", "list")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			vals := make([]string, (len(lines)-1)*2)
 
@@ -24,6 +21,6 @@ func ActionStashes() carapace.Action {
 				vals[(index*2)+1] = splitted[1]
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }

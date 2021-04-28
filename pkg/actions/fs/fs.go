@@ -5,7 +5,6 @@ import (
 	"archive/zip"
 	"fmt"
 	"io/ioutil"
-	"os/exec"
 	"regexp"
 	"strings"
 	"unicode"
@@ -18,9 +17,7 @@ import (
 //   /dev (dev)
 func ActionMounts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("mount").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("mount")(func(output []byte) carapace.Action {
 			re := regexp.MustCompile(`^(?P<target>\S+) on (?P<mountt>\S+) type (?P<type>\S+) (?P<mode>.+)`)
 			mounts := make([]string, 0)
 			for _, line := range strings.Split(string(output), "\n") {
@@ -30,7 +27,7 @@ func ActionMounts() carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(mounts...)
-		}
+		})
 	})
 }
 
@@ -153,9 +150,7 @@ func ActionFileModes() carapace.Action {
 //   /dev/sda1 (2G Linux swap)
 func ActionBlockDevices() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("lsblk", "-o", "PATH,SIZE,PARTTYPENAME").Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("lsblk", "-o", "PATH,SIZE,PARTTYPENAME")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
 			vals := make([]string, 0)
@@ -164,6 +159,6 @@ func ActionBlockDevices() carapace.Action {
 				vals = append(vals, splitted[0], strings.TrimSpace(fmt.Sprintf("%v %v", strings.TrimSpace(splitted[1]), strings.TrimSpace(splitted[2]))))
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }

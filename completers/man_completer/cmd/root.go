@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"os/exec"
 	"regexp"
 	"strings"
 
@@ -81,9 +80,7 @@ func init() {
 
 func ActionManPages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if output, err := exec.Command("man", "-k", c.CallbackValue).Output(); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
+		return carapace.ActionExecCommand("man", "-k", c.CallbackValue)(func(output []byte) carapace.Action {
 			r := regexp.MustCompile(`^(?P<name>.*) \(\d+\) +- (?P<description>.*)$`)
 
 			vals := make([]string, 0)
@@ -94,6 +91,6 @@ func ActionManPages() carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}
+		})
 	})
 }
