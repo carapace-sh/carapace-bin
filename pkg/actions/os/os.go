@@ -22,11 +22,7 @@ func ActionEnvironmentVariables() carapace.Action {
 		for index, e := range os.Environ() {
 			pair := strings.SplitN(e, "=", 2)
 			vars[index*2] = pair[0]
-			if len(pair[1]) > 40 {
-				vars[(index*2)+1] = pair[1][:37] + "..."
-			} else {
-				vars[(index*2)+1] = pair[1]
-			}
+			vars[(index*2)+1] = pair[1]
 		}
 		return carapace.ActionValuesDescribed(vars...)
 	})
