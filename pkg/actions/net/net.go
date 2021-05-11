@@ -165,7 +165,7 @@ func ActionBssids() carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			vals := make([]string, (len(lines)-1)*2)
 			for index, line := range lines[:len(lines)-1] {
-				vals[index*2] = line[:22]
+				vals[index*2] = strings.Replace(line[:22], `\:`, `:`, -1)
 				vals[index*2+1] = line[23:]
 			}
 			return carapace.ActionValuesDescribed(vals...)
@@ -183,7 +183,7 @@ func ActionSsids() carapace.Action {
 			vals := make([]string, 0)
 			for _, line := range lines[:len(lines)-1] {
 				if ssid := line[23:]; ssid != "" {
-					vals = append(vals, line[23:], line[:22])
+					vals = append(vals, line[23:], strings.Replace(line[:22], `\:`, `:`, -1))
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
