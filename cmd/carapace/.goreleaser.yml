@@ -16,7 +16,7 @@ archives:
       windows: Windows
       386: i386
       amd64: x86_64
-    name_template: "example_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    name_template: "carapace_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
 checksum:
   name_template: 'checksums.txt'
 snapshot:
