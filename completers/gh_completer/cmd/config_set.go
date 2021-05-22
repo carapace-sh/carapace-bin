@@ -36,7 +36,7 @@ func init() {
 			case "prompt":
 				return carapace.ActionValues("enabled", "disabled")
 			case "pager":
-				return carapace.ActionValues("bat --style header,grid", "more", "most", "less")
+				return carapace.ActionValues("bat --style grid", "more", "most", "less")
 			default:
 				return carapace.ActionValues()
 			}
