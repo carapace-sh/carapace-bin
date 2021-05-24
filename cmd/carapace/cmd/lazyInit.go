@@ -4,10 +4,7 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 	"strings"
-
-	"github.com/mitchellh/go-ps"
 )
 
 func bash_lazy(completers []string) string {
@@ -109,32 +106,4 @@ func zsh_lazy(completers []string) string {
 compdef _carapace_lazy %v
 `
 	return fmt.Sprintf(snippet, strings.Join(completers, " "))
-}
-
-func determineShell() string {
-	process, _ := ps.FindProcess(os.Getpid())
-	for {
-		if parentProcess, err := ps.FindProcess(process.PPid()); err != nil {
-			return ""
-		} else {
-			switch parentProcess.Executable() {
-			case "bash":
-				return "bash"
-			case "elvish":
-				return "elvish"
-			case "fish":
-				return "fish"
-			case "osh":
-				return "oil"
-			case "pwsh":
-				return "powershell"
-			case "xonsh":
-				return "xonsh"
-			case "zsh":
-				return "zsh"
-			default:
-				return ""
-			}
-		}
-	}
 }

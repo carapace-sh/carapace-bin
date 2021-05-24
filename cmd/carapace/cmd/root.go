@@ -7,8 +7,10 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"strings"
 
+	"github.com/rsteube/carapace/pkg/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -36,7 +38,11 @@ var rootCmd = &cobra.Command{
 		case "--list":
 			fmt.Println(strings.Join(completers, "\n"))
 		case "_carapace":
-			switch determineShell() {
+			shell := ps.DetermineShell()
+			if len(args) > 1 {
+				shell = args[1]
+			}
+			switch shell {
 			case "bash":
 				fmt.Println(bash_lazy(completers))
 			case "elvish":
@@ -51,8 +57,9 @@ var rootCmd = &cobra.Command{
 				fmt.Println(xonsh_lazy(completers))
 			case "zsh":
 				fmt.Println(zsh_lazy(completers))
+			default:
+				fmt.Fprintln(os.Stderr, "could not determine shell")
 			}
-			// TODO lazy completion script for all completers
 		default:
 			invokeCompleter(args[0])
 		}
@@ -83,8 +90,14 @@ func invokeCompleter(completer string) {
 	w.Close()
 	out := <-outC
 	os.Stdout = old
-	patched := strings.Replace(string(out), "carapace _carapace", "carapace "+completer, -1)         // general callback
-	patched = strings.Replace(patched, "'carapace', '_carapace'", "'carapace', '"+completer+"'", -1) // xonsh callback
+
+	executable, err := os.Executable()
+	if err != nil {
+		panic(err.Error()) // TODO exit with error message
+	}
+	executableName := filepath.Base(executable)
+	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v %v", executableName, completer), -1)      // general callback
+	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '%v'", executableName, completer), -1) // xonsh callback
 	fmt.Print(patched)
 
 }
