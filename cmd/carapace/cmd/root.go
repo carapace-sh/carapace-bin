@@ -17,7 +17,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "carapace [flags] [COMPLETER] [bash|elvish|fish|oil|powershell|xonsh|zsh]",
 	Short: `multi-shell multi-command argument completer`,
-	Example: `    Single completer:
+	Example: fmt.Sprintf(`    Single completer:
       bash:       source <(carapace chmod bash)
       elvish:     eval (carapace chmod elvish|slurp)
       fish:       carapace chmod fish | source
@@ -36,7 +36,8 @@ var rootCmd = &cobra.Command{
       zsh:        source <(carapace _carapace zsh)
 
     Shell parameter is optional and if left out carapace will try to detect it by parent process name.
-`,
+    Some completions are cached at [%v/carapace].
+`, os.TempDir()),
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers,
 	Run: func(cmd *cobra.Command, args []string) {
