@@ -21,6 +21,7 @@ func init() {
 
 	rootCmd.Flags().BoolP("help", "h", false, "help for carapace")
 	rootCmd.Flags().Bool("list", false, "list completers")
+	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		ActionCompleters(),

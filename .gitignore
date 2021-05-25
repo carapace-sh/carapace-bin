@@ -1,4 +1,5 @@
 completers/*/*_completer
 cmd/carapace/carapace
+cmd/carapace/dist
 cmd/carapace/cmd/completers.go
 cmd/caraparse/caraparse

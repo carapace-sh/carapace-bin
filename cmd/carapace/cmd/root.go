@@ -17,14 +17,25 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "carapace [flags] [COMPLETER] [bash|elvish|fish|oil|powershell|xonsh|zsh]",
 	Short: `multi-shell multi-command argument completer`,
-	Example: `
-  bash:       source <(carapace _carapace)
-  elvish:     eval (carapace _carapace|slurp)
-  fish:       carapace _carapace | source
-  oil:        source <(carapace _carapace)
-  powershell: carapace _carapace | Out-String | Invoke-Expression
-  xonsh:      exec($(carapace _carapace))
-  zsh:        source <(carapace _carapace)
+	Example: `    Single completer:
+      bash:       source <(carapace chmod bash)
+      elvish:     eval (carapace chmod elvish|slurp)
+      fish:       carapace chmod fish | source
+      oil:        source <(carapace chmod | oil)
+      powershell: carapace chmod powershell | Out-String | Invoke-Expression
+      xonsh:      exec($(carapace chmod xonsh))
+      zsh:        source <(carapace chmod zsh)
+
+    All completers:
+      bash:       source <(carapace _carapace bash)
+      elvish:     eval (carapace _carapace elvish | slurp)
+      fish:       carapace _carapace fish | source
+      oil:        source <(carapace _carapace oil)
+      powershell: carapace _carapace powershell | Out-String | Invoke-Expression
+      xonsh:      exec($(carapace _carapace xonsh))
+      zsh:        source <(carapace _carapace zsh)
+
+    Shell parameter is optional and if left out carapace will try to detect it by parent process name.
 `,
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers,
@@ -32,9 +43,13 @@ var rootCmd = &cobra.Command{
 		// since flag parsing is disabled do this manually
 		switch args[0] {
 		case "-h":
-			cmd.Usage()
+			cmd.Help()
 		case "--help":
-			cmd.Usage()
+			cmd.Help()
+		case "-v":
+			println(cmd.Version)
+		case "--version":
+			println(cmd.Version)
 		case "--list":
 			fmt.Println(strings.Join(completers, "\n"))
 		case "_carapace":
@@ -102,7 +117,8 @@ func invokeCompleter(completer string) {
 
 }
 
-func Execute() error {
+func Execute(version string) error {
+	rootCmd.Version = version
 	return rootCmd.Execute()
 }
 
