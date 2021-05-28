@@ -39,11 +39,11 @@ func ActionRepositoryTags() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "image", "ls", "--format", "{{.Repository}}:{{.Tag}}", "--filter", "dangling=false")(func(output []byte) carapace.Action {
 			// TODO add checks to not cause an out of bounds error
-			vals := strings.Split(string(output), "\n")
+			lines := strings.Split(string(output), "\n")
 			switch len(c.Parts) {
 			case 0:
-				reposWithSuffix := make([]string, len(vals))
-				for index, val := range vals[:len(vals)-1] {
+				reposWithSuffix := make([]string, len(lines)-1)
+				for index, val := range lines[:len(lines)-1] {
 					if val != " " {
 						reposWithSuffix[index] = strings.SplitAfter(val, ":")[0]
 					}
@@ -51,7 +51,7 @@ func ActionRepositoryTags() carapace.Action {
 				return carapace.ActionValues(reposWithSuffix...)
 			case 1:
 				tags := make([]string, 0)
-				for _, val := range vals[:len(vals)-1] {
+				for _, val := range lines[:len(lines)-1] {
 					if strings.HasPrefix(val, c.Parts[0]) {
 						tag := strings.Split(val, ":")[1]
 						tags = append(tags, tag)
