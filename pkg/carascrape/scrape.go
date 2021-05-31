@@ -36,8 +36,17 @@ var %vCmd = &cobra.Command{
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
-func init() {
 `, cmdVarName(cmd), cmd.Name(), cmd.Short)
+
+	if !cmd.HasParent() {
+		fmt.Fprintf(out, `func Execute() error {
+	return rootCmd.Execute()
+}
+
+`)
+	}
+
+	fmt.Fprintln(out, `func init() {`)
 
 	cmd.LocalFlags().VisitAll(func(f *pflag.Flag) {
 		isShortHand := f.Shorthand != ""
