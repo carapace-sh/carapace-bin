@@ -13,16 +13,22 @@ var secret_removeCmd = &cobra.Command{
 }
 
 func init() {
+	secret_removeCmd.Flags().StringP("env", "e", "", "Remove a secret for an environment")
 	secret_removeCmd.Flags().StringP("org", "o", "", "List secrets for an organization")
 	secretCmd.AddCommand(secret_removeCmd)
 
 	carapace.Gen(secret_removeCmd).FlagCompletion(carapace.ActionMap{
 		"org": action.ActionUsers(secret_removeCmd, action.UserOpts{Organizations: true}),
+		"env": action.ActionEnvironments(secret_removeCmd),
 	})
 
 	carapace.Gen(secret_removeCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionSecrets(secret_removeCmd, secret_removeCmd.Flag("org").Value.String())
+			return action.ActionSecrets(secret_removeCmd, action.SecretOpts{
+				Org: secret_removeCmd.Flag("org").Value.String(),
+				Env: secret_removeCmd.Flag("env").Value.String(),
+			},
+			)
 		}),
 	)
 }
