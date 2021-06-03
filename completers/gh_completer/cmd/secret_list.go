@@ -13,10 +13,12 @@ var secret_listCmd = &cobra.Command{
 }
 
 func init() {
+	secret_listCmd.Flags().StringP("env", "e", "", "List secrets for an environment")
 	secret_listCmd.Flags().StringP("org", "o", "", "List secrets for an organization")
 	secretCmd.AddCommand(secret_listCmd)
 
 	carapace.Gen(secret_listCmd).FlagCompletion(carapace.ActionMap{
 		"org": action.ActionUsers(secret_listCmd, action.UserOpts{Organizations: true}),
+		"env": action.ActionEnvironments(secret_listCmd),
 	})
 }

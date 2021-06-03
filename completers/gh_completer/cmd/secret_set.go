@@ -14,6 +14,7 @@ var secret_setCmd = &cobra.Command{
 
 func init() {
 	secret_setCmd.Flags().StringP("body", "b", "", "A value for the secret. Reads from STDIN if not specified.")
+	secret_setCmd.Flags().StringP("env", "e", "", "Set a secret for an organization")
 	secret_setCmd.Flags().StringP("org", "o", "", "List secrets for an organization")
 	secret_setCmd.Flags().StringSliceP("repos", "r", []string{}, "List of repository names for `selected` visibility")
 	secret_setCmd.Flags().StringP("visibility", "v", "private", "Set visibility for an organization secret: `all`, `private`, or `selected`")
@@ -21,6 +22,7 @@ func init() {
 
 	carapace.Gen(secret_setCmd).FlagCompletion(carapace.ActionMap{
 		"org": action.ActionUsers(secret_setCmd, action.UserOpts{Organizations: true}),
+		"env": action.ActionEnvironments(secret_setCmd),
 		"repos": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionOwnerRepositories(secret_setCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
@@ -28,6 +30,12 @@ func init() {
 	})
 
 	carapace.Gen(secret_setCmd).PositionalCompletion(
-		action.ActionSecrets(secret_setCmd, secret_setCmd.Flag("org").Value.String()),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionSecrets(secret_setCmd, action.SecretOpts{
+				Org: secret_setCmd.Flag("org").Value.String(),
+				Env: secret_setCmd.Flag("env").Value.String(),
+			},
+			)
+		}),
 	)
 }
