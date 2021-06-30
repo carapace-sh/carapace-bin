@@ -25,7 +25,7 @@ A major part of the completers has been generated from help pages so there will 
 
 ```
 docker-compose run --rm build
-docker-compose run --rm [bash|elvish|fish|oil|powershell|xonsh|zsh]
+docker-compose run --rm [bash|elvish|fish|ion|nushell|oil|powershell|xonsh|zsh]
 [ln|mkdir|chown...] <TAB>
 ```
 
