@@ -95,6 +95,8 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				actions = append(actions, ActionGists(cmd).Invoke(c))
 			case "{gitignore_name}":
 				actions = append(actions, ActionGitignoreTemplates(cmd).Invoke(c))
+			case "{license}":
+				actions = append(actions, ActionLicenses(cmd).Invoke(c))
 			case "{issue_number}":
 				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
 				actions = append(actions, ActionIssues(cmd, IssueOpts{Open: true, Closed: true}).Invoke(c))
