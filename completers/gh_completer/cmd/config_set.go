@@ -26,6 +26,7 @@ func init() {
 			"editor", "What editor gh should run when creating issues, pull requests, etc.",
 			"prompt", "toggle interactive prompting in the terminal",
 			"pager", "the terminal pager program to send standard output to",
+			"http_unix_socket", "the path to a unix socket through which to make HTTP connection",
 		),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch c.Args[0] {
@@ -37,6 +38,8 @@ func init() {
 				return carapace.ActionValues("enabled", "disabled")
 			case "pager":
 				return carapace.ActionValues("bat --style grid", "more", "most", "less")
+			case "http_unix_socket":
+				return carapace.ActionFiles()
 			default:
 				return carapace.ActionValues()
 			}
