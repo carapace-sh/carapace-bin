@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -12,4 +14,8 @@ var addons_configureCmd = &cobra.Command{
 
 func init() {
 	addonsCmd.AddCommand(addons_configureCmd)
+
+	carapace.Gen(addons_configureCmd).PositionalCompletion(
+		action.ActionAddons(),
+	)
 }

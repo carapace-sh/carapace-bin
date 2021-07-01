@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 

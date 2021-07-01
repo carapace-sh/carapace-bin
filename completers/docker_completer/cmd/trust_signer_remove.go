@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ func init() {
 	trust_signer_removeCmd.Flags().BoolP("force", "f", false, "Do not prompt for confirmation before removing the most recent signer")
 	trust_signerCmd.AddCommand(trust_signer_removeCmd)
 
-	carapace.Gen(trust_signer_removeCmd).PositionalAnyCompletion(action.ActionRepositories())
+	carapace.Gen(trust_signer_removeCmd).PositionalAnyCompletion(docker.ActionRepositories())
 }

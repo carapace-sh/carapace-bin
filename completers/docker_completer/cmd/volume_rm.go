@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ func init() {
 	volume_rmCmd.Flags().BoolP("force", "f", false, "Force the removal of one or more volumes")
 	volumeCmd.AddCommand(volume_rmCmd)
 
-	carapace.Gen(volume_rmCmd).PositionalAnyCompletion(action.ActionVolumes())
+	carapace.Gen(volume_rmCmd).PositionalAnyCompletion(docker.ActionVolumes())
 }

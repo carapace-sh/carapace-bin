@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +17,5 @@ func init() {
 
 	nodeCmd.AddCommand(node_demoteCmd)
 
-	carapace.Gen(node_demoteCmd).PositionalAnyCompletion(action.ActionNodes())
+	carapace.Gen(node_demoteCmd).PositionalAnyCompletion(docker.ActionNodes())
 }

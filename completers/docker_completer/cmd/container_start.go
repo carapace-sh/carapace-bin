@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -25,7 +25,7 @@ func init() {
 	rootAlias(container_startCmd, func(cmd *cobra.Command, isAlias bool) {
 		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 			// TODO checkpoint completion
-			"detach-keys": action.ActionDetachKeys(),
+			"detach-keys": docker.ActionDetachKeys(),
 		})
 
 	})

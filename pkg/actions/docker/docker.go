@@ -1,4 +1,4 @@
-package action
+package docker
 
 import (
 	"path/filepath"

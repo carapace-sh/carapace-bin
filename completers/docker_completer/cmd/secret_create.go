@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +21,7 @@ func init() {
 	secretCmd.AddCommand(secret_createCmd)
 
 	carapace.Gen(secret_createCmd).PositionalCompletion(
-		action.ActionSecrets(),
+		docker.ActionSecrets(),
 		carapace.ActionFiles(),
 	)
 }

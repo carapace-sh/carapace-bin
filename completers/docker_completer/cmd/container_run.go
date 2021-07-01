@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
@@ -118,20 +118,20 @@ func init() {
 			"blkio-weight": carapace.ActionValues("10", "100", "500", "1000"),
 			"cidfile":      carapace.ActionFiles(),
 			"cpu-shares":   carapace.ActionValues("0", "10", "100", "200", "500", "800", "1000"),
-			"detach-keys":  action.ActionDetachKeys(),
+			"detach-keys":  docker.ActionDetachKeys(),
 			"device":       carapace.ActionFiles(),
 			"env-file":     carapace.ActionFiles(),
 			"group-add":    os.ActionGroups(),
 			"isolation":    carapace.ActionValues("default", "hyperv", "process"),
 			"label-file":   carapace.ActionFiles(),
-			"log-driver":   action.ActionLogDrivers(),
+			"log-driver":   docker.ActionLogDrivers(),
 			"network":      carapace.ActionValues("bridge", "container", "host", "none"),
 			"pid":          carapace.ActionValues("container", "host"),
 			"user":         os.ActionUsers(),
 		})
 
 		carapace.Gen(cmd).PositionalCompletion(
-			action.ActionRepositoryTags(),
+			docker.ActionRepositoryTags(),
 		)
 	})
 }

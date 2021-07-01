@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -22,5 +22,5 @@ func init() {
 	service_psCmd.Flags().BoolP("quiet", "q", false, "Only display task IDs")
 	serviceCmd.AddCommand(service_psCmd)
 
-	carapace.Gen(service_psCmd).PositionalAnyCompletion(action.ActionServices())
+	carapace.Gen(service_psCmd).PositionalAnyCompletion(docker.ActionServices())
 }

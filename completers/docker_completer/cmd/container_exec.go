@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
@@ -28,12 +28,12 @@ func init() {
 
 	rootAlias(container_execCmd, func(cmd *cobra.Command, isAlias bool) {
 		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-			"detach-keys": action.ActionDetachKeys(),
+			"detach-keys": docker.ActionDetachKeys(),
 			"user":        os.ActionUserGroup(),
 		})
 
 		carapace.Gen(cmd).PositionalCompletion(
-			action.ActionContainers(),
+			docker.ActionContainers(),
 		)
 	})
 }

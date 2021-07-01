@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ func init() {
 	node_rmCmd.Flags().BoolP("force", "f", false, "Force remove a node from the swarm")
 	nodeCmd.AddCommand(node_rmCmd)
 
-	carapace.Gen(node_rmCmd).PositionalAnyCompletion(action.ActionNodes())
+	carapace.Gen(node_rmCmd).PositionalAnyCompletion(docker.ActionNodes())
 }
