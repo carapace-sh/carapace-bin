@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +19,9 @@ func init() {
 	logsCmd.Flags().String("node", "", "The node to get logs from. Defaults to the primary control plane.")
 	logsCmd.Flags().Bool("problems", false, "Show only log entries which point to known problems")
 	rootCmd.AddCommand(logsCmd)
+
+	carapace.Gen(logsCmd).FlagCompletion(carapace.ActionMap{
+		"file": carapace.ActionFiles(),
+		"node": action.ActionNodes(),
+	})
 }
