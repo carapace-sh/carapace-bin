@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +22,6 @@ func init() {
 	imageCmd.AddCommand(image_pullCmd)
 
 	rootAlias(image_pullCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalCompletion(action.ActionRepositoryTags())
+		carapace.Gen(cmd).PositionalCompletion(docker.ActionRepositoryTags())
 	})
 }

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +19,7 @@ func init() {
 	contextCmd.AddCommand(context_exportCmd)
 
 	carapace.Gen(context_exportCmd).PositionalCompletion(
-		action.ActionContexts(),
+		docker.ActionContexts(),
 		carapace.ActionFiles(),
 	)
 }

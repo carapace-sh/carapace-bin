@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -25,9 +25,9 @@ func init() {
 	carapace.Gen(stack_rmCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if stack_rmCmd.Flag("orchestrator").Changed {
-				return action.ActionStacks(stack_rmCmd.Flag("orchestrator").Value.String())
+				return docker.ActionStacks(stack_rmCmd.Flag("orchestrator").Value.String())
 			} else {
-				return action.ActionStacks("all")
+				return docker.ActionStacks("all")
 			}
 		}),
 	)

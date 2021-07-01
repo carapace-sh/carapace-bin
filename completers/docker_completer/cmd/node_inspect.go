@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -19,5 +19,5 @@ func init() {
 	node_inspectCmd.Flags().Bool("pretty", false, "Print the information in a human friendly format")
 	nodeCmd.AddCommand(node_inspectCmd)
 
-	carapace.Gen(node_inspectCmd).PositionalAnyCompletion(action.ActionNodes())
+	carapace.Gen(node_inspectCmd).PositionalAnyCompletion(docker.ActionNodes())
 }

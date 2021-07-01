@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ func init() {
 	plugin_rmCmd.Flags().BoolP("force", "f", false, "Force the removal of an active plugin")
 	pluginCmd.AddCommand(plugin_rmCmd)
 
-	carapace.Gen(plugin_rmCmd).PositionalAnyCompletion(action.ActionPlugins())
+	carapace.Gen(plugin_rmCmd).PositionalAnyCompletion(docker.ActionPlugins())
 }

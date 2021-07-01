@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +19,8 @@ func init() {
 	addons_openCmd.Flags().Bool("url", false, "Display the Kubernetes addons URL in the CLI instead of opening it in the default browser")
 	addons_openCmd.Flags().Int("wait", 2, "Amount of time to wait for service in seconds")
 	addonsCmd.AddCommand(addons_openCmd)
+
+	carapace.Gen(addons_openCmd).PositionalCompletion(
+		action.ActionAddons(),
+	)
 }

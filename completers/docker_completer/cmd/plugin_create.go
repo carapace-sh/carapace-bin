@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +19,7 @@ func init() {
 	pluginCmd.AddCommand(plugin_createCmd)
 
 	carapace.Gen(plugin_createCmd).PositionalCompletion(
-		action.ActionPlugins(),
+		docker.ActionPlugins(),
 		carapace.ActionDirectories(),
 	)
 }

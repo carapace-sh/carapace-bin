@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ func init() {
 	service_scaleCmd.Flags().BoolP("detach", "d", false, "Exit immediately instead of waiting for the service to converge")
 	serviceCmd.AddCommand(service_scaleCmd)
 
-	carapace.Gen(service_scaleCmd).PositionalAnyCompletion(action.ActionServices())
+	carapace.Gen(service_scaleCmd).PositionalAnyCompletion(docker.ActionServices())
 }

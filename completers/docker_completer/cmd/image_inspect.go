@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ func init() {
 	image_inspectCmd.Flags().StringP("format", "f", "", "Format the output using the given Go template")
 	imageCmd.AddCommand(image_inspectCmd)
 
-	carapace.Gen(image_inspectCmd).PositionalAnyCompletion(action.ActionRepositoryTags())
+	carapace.Gen(image_inspectCmd).PositionalAnyCompletion(docker.ActionRepositoryTags())
 }

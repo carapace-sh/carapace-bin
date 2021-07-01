@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -31,6 +31,6 @@ func init() {
 	})
 
 	carapace.Gen(stack_deployCmd).PositionalCompletion(
-		action.ActionStacks("all"),
+		docker.ActionStacks("all"),
 	)
 }

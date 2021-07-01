@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -19,5 +19,5 @@ func init() {
 	network_inspectCmd.Flags().BoolP("verbose", "v", false, "Verbose output for diagnostics")
 	networkCmd.AddCommand(network_inspectCmd)
 
-	carapace.Gen(network_inspectCmd).PositionalAnyCompletion(action.ActionNetworks())
+	carapace.Gen(network_inspectCmd).PositionalAnyCompletion(docker.ActionNetworks())
 }

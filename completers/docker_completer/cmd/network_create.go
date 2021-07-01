@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -34,11 +34,11 @@ func init() {
 	networkCmd.AddCommand(network_createCmd)
 
 	carapace.Gen(network_createCmd).FlagCompletion(carapace.ActionMap{
-		"config-from": action.ActionNetworks(),
+		"config-from": docker.ActionNetworks(),
 		"driver":      carapace.ActionValues("bridge", "host", "null", "overlay"),
 	})
 
 	carapace.Gen(network_createCmd).PositionalCompletion(
-		action.ActionNetworks(),
+		docker.ActionNetworks(),
 	)
 }

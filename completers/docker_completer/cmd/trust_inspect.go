@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ func init() {
 	trust_inspectCmd.Flags().Bool("pretty", false, "Print the information in a human friendly format")
 	trustCmd.AddCommand(trust_inspectCmd)
 
-	carapace.Gen(trust_inspectCmd).PositionalAnyCompletion(action.ActionRepositoryTags())
+	carapace.Gen(trust_inspectCmd).PositionalAnyCompletion(docker.ActionRepositoryTags())
 }
