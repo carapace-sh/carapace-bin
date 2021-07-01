@@ -1,6 +1,10 @@
 package cmd
 
 import (
+	"strings"
+
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +20,14 @@ func init() {
 	image_loadCmd.Flags().Bool("pull", false, "Pull the remote image (no caching)")
 	image_loadCmd.Flags().Bool("remote", false, "Cache image from remote registry")
 	imageCmd.AddCommand(image_loadCmd)
+
+	carapace.Gen(image_loadCmd).PositionalCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if strings.HasPrefix(c.CallbackValue, "/") ||
+				strings.HasPrefix(c.CallbackValue, ".") {
+				return carapace.ActionFiles()
+			}
+			return docker.ActionRepositoryTags()
+		}),
+	)
 }

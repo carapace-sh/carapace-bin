@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -12,4 +14,8 @@ var image_rmCmd = &cobra.Command{
 
 func init() {
 	imageCmd.AddCommand(image_rmCmd)
+
+	carapace.Gen(image_rmCmd).PositionalCompletion(
+		action.ActionImages(),
+	)
 }
