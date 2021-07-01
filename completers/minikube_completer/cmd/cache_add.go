@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -13,4 +15,8 @@ var cache_addCmd = &cobra.Command{
 func init() {
 	cache_addCmd.Flags().Bool("", false, "Add image to cache for all running minikube clusters")
 	cacheCmd.AddCommand(cache_addCmd)
+
+	carapace.Gen(cache_addCmd).PositionalCompletion(
+		docker.ActionRepositoryTags(),
+	)
 }
