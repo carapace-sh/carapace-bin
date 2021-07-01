@@ -1,6 +1,12 @@
 package cmd
 
 import (
+	"path/filepath"
+	"strings"
+
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/fs"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +27,33 @@ func init() {
 	mountCmd.Flags().String("type", "9p", "Specify the mount filesystem type (supported types: 9p)")
 	mountCmd.Flags().String("uid", "docker", "Default user id used for the mount")
 	rootCmd.AddCommand(mountCmd)
+
+	carapace.Gen(mountCmd).FlagCompletion(carapace.ActionMap{
+		"gid":  os.ActionGroups(),
+		"mode": fs.ActionFileModesNumeric(),
+		"type": carapace.ActionValues("9p"),
+		"uid":  os.ActionUsers(),
+	})
+
+	carapace.Gen(mountCmd).PositionalCompletion(
+		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionDirectories()
+			case 1:
+				path := filepath.Dir(c.CallbackValue)
+				if path == "" {
+					path = "/"
+				}
+				return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
+					return carapace.ActionExecCommand("minikube", "ssh", "ls", `\-1`, `\-p`, path)(func(output []byte) carapace.Action {
+						lines := strings.Split(string(output), "\n")
+						return carapace.ActionValues(lines[:len(lines)-1]...)
+					})
+				})
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	)
 }
