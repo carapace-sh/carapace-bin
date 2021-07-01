@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	dockerEnvCmd.Flags().Bool("ssh-host", false, "Use SSH connection instead of HTTPS (port 2376)")
 	dockerEnvCmd.Flags().BoolP("unset", "u", false, "Unset variables instead of setting them")
 	rootCmd.AddCommand(dockerEnvCmd)
+
+	carapace.Gen(dockerEnvCmd).FlagCompletion(carapace.ActionMap{
+		"shell": carapace.ActionValues("fish", "cmd", "powershell", "tcsh", "bash", "zsh", "auto-detect"),
+	})
 }

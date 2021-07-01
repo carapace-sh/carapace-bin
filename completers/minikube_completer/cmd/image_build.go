@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,12 @@ func init() {
 	image_buildCmd.Flags().Bool("push", false, "Push the new image (requires tag)")
 	image_buildCmd.Flags().StringP("tag", "t", "", "Tag to apply to the new image (optional)")
 	imageCmd.AddCommand(image_buildCmd)
+
+	carapace.Gen(image_buildCmd).FlagCompletion(carapace.ActionMap{
+		"file": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(image_buildCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }
