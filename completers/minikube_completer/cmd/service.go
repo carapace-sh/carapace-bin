@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +20,8 @@ func init() {
 	serviceCmd.Flags().Bool("url", false, "Display the Kubernetes service URL in the CLI instead of opening it in the default browser")
 	serviceCmd.Flags().Int("wait", 2, "Amount of time to wait for a service in seconds")
 	rootCmd.AddCommand(serviceCmd)
+
+	carapace.Gen(serviceCmd).FlagCompletion(carapace.ActionMap{
+		"namespace": action.ActionNamespaces(),
+	})
 }

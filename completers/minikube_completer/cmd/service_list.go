@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -13,4 +15,8 @@ var service_listCmd = &cobra.Command{
 func init() {
 	service_listCmd.Flags().StringP("namespace", "n", "", "The services namespace")
 	serviceCmd.AddCommand(service_listCmd)
+
+	carapace.Gen(service_listCmd).FlagCompletion(carapace.ActionMap{
+		"namespace": action.ActionNamespaces(),
+	})
 }
