@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -34,4 +36,9 @@ podman-env: {{.PodManEnv}}
 	statusCmd.Flags().StringP("watch", "w", "1s", "Continuously listing/getting the status with optional interval duration.")
 	statusCmd.Flag("watch").NoOptDefVal = "1s"
 	rootCmd.AddCommand(statusCmd)
+
+	carapace.Gen(statusCmd).FlagCompletion(carapace.ActionMap{
+		"node":   action.ActionNodes(),
+		"output": carapace.ActionValues("json", "text"),
+	})
 }

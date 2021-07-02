@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	stopCmd.Flags().StringP("output", "o", "text", "Format to print stdout in. Options include: [text,json]")
 	stopCmd.Flags().String("schedule", "0s", "Set flag to stop cluster after a set amount of time (e.g. --schedule=5m)")
 	rootCmd.AddCommand(stopCmd)
+
+	carapace.Gen(stopCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

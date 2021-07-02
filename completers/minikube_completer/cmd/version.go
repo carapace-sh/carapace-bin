@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -14,4 +15,8 @@ func init() {
 	versionCmd.Flags().StringP("output", "o", "", "One of 'yaml' or 'json'.")
 	versionCmd.Flags().Bool("short", false, "Print just the version number.")
 	rootCmd.AddCommand(versionCmd)
+
+	carapace.Gen(versionCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("yaml", "json"),
+	})
 }
