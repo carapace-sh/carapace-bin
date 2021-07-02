@@ -1,6 +1,13 @@
 package cmd
 
 import (
+	"strings"
+
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/docker"
+	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -63,7 +70,7 @@ func init() {
 	startCmd.Flags().String("listen-address", "", "IP Address to use to expose ports (docker and podman driver only)")
 	startCmd.Flags().String("memory", "", "Amount of RAM to allocate to Kubernetes (format: <number>[<unit>], where unit = b, k, m or g). Use \"max\" to use the maximum amount of memory.")
 	startCmd.Flags().Bool("mount", false, "This will start the mount daemon and automatically mount files into minikube.")
-	startCmd.Flags().String("mount-string", "/home/rsteube:/minikube-host", "The argument to pass the minikube mount command on start.")
+	startCmd.Flags().String("mount-string", "/home/user:/minikube-host", "The argument to pass the minikube mount command on start.")
 	startCmd.Flags().String("namespace", "default", "The named space to activate after start")
 	startCmd.Flags().String("nat-nic-type", "virtio", "NIC Type used for nat network. One of Am79C970A, Am79C973, 82540EM, 82543GC, 82545EM, or virtio (virtualbox driver only)")
 	startCmd.Flags().Bool("native-ssh", true, "Use native Golang SSH client (default true). Set to 'false' to use the command line 'ssh' command when accessing the docker machine. Useful for the machine drivers when they will not start with 'Waiting for SSH'.")
@@ -89,4 +96,47 @@ func init() {
 	startCmd.Flags().StringSlice("wait", []string{"apiserver", "system_pods"}, "comma separated list of Kubernetes components to verify and wait for after starting a cluster. defaults to \"apiserver,system_pods\", available options: \"apiserver,system_pods,default_sa,apps_running,node_ready,kubelet\" . other acceptable values are 'all' or 'none', 'true' and 'false'")
 	startCmd.Flags().String("wait-timeout", "6m0s", "max time to wait per Kubernetes or host to be healthy.")
 	rootCmd.AddCommand(startCmd)
+
+	carapace.Gen(startCmd).FlagCompletion(carapace.ActionMap{
+		"addons": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionAddons().Invoke(c).Filter(c.Parts).ToA()
+		}),
+		"base-image": docker.ActionRepositoryTags(),
+		"cni": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if strings.HasPrefix(c.CallbackValue, "/") ||
+				strings.HasPrefix(c.CallbackValue, ".") {
+				return carapace.ActionFiles()
+			}
+			return carapace.ActionValues("auto", "bridge", "calico", "cilium", "flannel", "kindnet")
+		}),
+		"container-runtime":  carapace.ActionValues("docker", "cri-o", "containerd"),
+		"cri-socket":         carapace.ActionFiles(),
+		"driver":             carapace.ActionValues("virtualbox", "vmwarefusion", "kvm2", "vmware", "none", "docker", "podman", "ssh", "auto-detect"),
+		"host-only-nic-type": carapace.ActionValues("Am79C970A", "Am79C973", "82540EM", "82543GC", "82545EM", "virtio"),
+		"hyperkit-vpnkit-sock": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if strings.HasPrefix(c.CallbackValue, "/") ||
+				strings.HasPrefix(c.CallbackValue, ".") {
+				return carapace.ActionFiles()
+			}
+			return carapace.ActionValues("auto")
+		}),
+		"image-mirror-country": http.ActionLanguages(), // TODO country codes the same?
+		"mount-string": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionFiles()
+			case 1:
+				return carapace.ActionValues("/minikube-host")
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+		"nat-nic-type": carapace.ActionValues("Am79C970A", "Am79C973", "82540EM", "82543GC", "82545EM", "virtio"),
+		"output":       carapace.ActionValues("text", "json"),
+		"ssh-key":      carapace.ActionFiles(),
+		"ssh-user":     os.ActionUsers(),
+		"wait": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionValues("apiserver", "system_pods", "default_sa", "apps_running", "node_ready", "kubelet", "all", "none").Invoke(c).Filter(c.Parts).ToA()
+		}),
+	})
 }
