@@ -36,7 +36,7 @@ func init() {
 		"assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionProjectMembers(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"author": action.ActionProjectMembers(mr_listCmd),
+		"author": action.ActionUsers(mr_listCmd),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionLabels(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
