@@ -104,9 +104,7 @@ func ActionLogDrivers() carapace.Action {
 }
 
 func ActionDetachKeys() carapace.Action {
-	// TODO needs better escaping in carapace to work
-	// "detach-keys": carapace.ActionValues("{a-z}", `ctrl-\`, "ctrl-@", "ctrl-[", "ctrl-]",  "ctrl-^", "ctrl-_", "ctrl-{a-z}"),
-	return carapace.ActionValues()
+	return carapace.ActionValues("{a-z}", `ctrl-\`, "ctrl-@", "ctrl-[", "ctrl-]", "ctrl-^", "ctrl-_", "ctrl-{a-z}")
 }
 
 func ActionContexts() carapace.Action {
