@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/net/api"
+	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
 	"github.com/spf13/cobra"
 )
 
@@ -38,7 +38,7 @@ func ActionApiPreviews() carapace.Action {
 }
 
 func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
-	return api.ActionApiPaths(v3Paths, `{(.*)}`, func(c carapace.Context, matchedData map[string]string, segment string) carapace.Action {
+	return http.ActionApiPaths(v3Paths, `{(.*)}`, func(c carapace.Context, matchedData map[string]string, segment string) carapace.Action {
 		switch segment {
 		// TODO completion for other placeholders
 		case "{archive_format}":
