@@ -1,6 +1,9 @@
 package action
 
 import (
+	"fmt"
+	"net/url"
+
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
@@ -12,16 +15,14 @@ type label struct {
 
 func ActionLabels(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		//repo := "" // TODO from config or var
-
 		var queryResult []label
-		return actionApi(cmd, "projects/:fullpath/labels", &queryResult, func() carapace.Action {
+		return actionApi(cmd, fmt.Sprintf("projects/:fullpath/labels?per_page=100&search=%v", url.QueryEscape(c.CallbackValue)), &queryResult, func() carapace.Action {
 			vals := make([]string, 0, len(queryResult)*2)
 			for _, label := range queryResult {
 				vals = append(vals, label.Name, label.Description)
 			}
 			return carapace.ActionValuesDescribed(vals...)
-			//}).Cache(1*time.Hour, cache.String(repo.FullName()))
+			//}).Cache(1*time.Hour, cache.String(repo.FullName())) // TODO paginate instead of search and re-add caching
 		})
 	})
 }
