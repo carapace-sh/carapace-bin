@@ -28,7 +28,7 @@ func init() {
 	installCmd.Flags().BoolP("generate-name", "g", false, "generate the name (and omit the NAME parameter)")
 	installCmd.Flags().Bool("insecure-skip-tls-verify", false, "skip tls certificate checks for the chart download")
 	installCmd.Flags().String("key-file", "", "identify HTTPS client using this SSL key file")
-	installCmd.Flags().String("keyring", "/home/rsteube/.gnupg/pubring.gpg", "location of public keys used for verification")
+	installCmd.Flags().String("keyring", "/home/user/.gnupg/pubring.gpg", "location of public keys used for verification")
 	installCmd.Flags().String("name-template", "", "specify template used to name the release")
 	installCmd.Flags().Bool("no-hooks", false, "prevent hooks from running during install")
 	installCmd.Flags().StringP("output", "o", "table", "prints the output in the specified format. Allowed values: table, json, yaml")

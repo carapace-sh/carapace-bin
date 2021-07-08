@@ -21,7 +21,7 @@ func init() {
 	pullCmd.Flags().Bool("devel", false, "use development versions, too. Equivalent to version '>0.0.0-0'. If --version is set, this is ignored.")
 	pullCmd.Flags().Bool("insecure-skip-tls-verify", false, "skip tls certificate checks for the chart download")
 	pullCmd.Flags().String("key-file", "", "identify HTTPS client using this SSL key file")
-	pullCmd.Flags().String("keyring", "/home/rsteube/.gnupg/pubring.gpg", "location of public keys used for verification")
+	pullCmd.Flags().String("keyring", "/home/user/.gnupg/pubring.gpg", "location of public keys used for verification")
 	pullCmd.Flags().Bool("pass-credentials", false, "pass credentials to all domains")
 	pullCmd.Flags().String("password", "", "chart repository password where to locate the requested chart")
 	pullCmd.Flags().Bool("prov", false, "fetch the provenance file, but don't perform verification")
