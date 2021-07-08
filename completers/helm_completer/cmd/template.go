@@ -29,7 +29,7 @@ func init() {
 	templateCmd.Flags().Bool("insecure-skip-tls-verify", false, "skip tls certificate checks for the chart download")
 	templateCmd.Flags().Bool("is-upgrade", false, "set .Release.IsUpgrade instead of .Release.IsInstall")
 	templateCmd.Flags().String("key-file", "", "identify HTTPS client using this SSL key file")
-	templateCmd.Flags().String("keyring", "/home/rsteube/.gnupg/pubring.gpg", "location of public keys used for verification")
+	templateCmd.Flags().String("keyring", "/home/user/.gnupg/pubring.gpg", "location of public keys used for verification")
 	templateCmd.Flags().String("kube-version", "", "Kubernetes version used for Capabilities.KubeVersion")
 	templateCmd.Flags().String("name-template", "", "specify template used to name the release")
 	templateCmd.Flags().Bool("no-hooks", false, "prevent hooks from running during install")

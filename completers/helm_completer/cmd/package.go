@@ -16,7 +16,7 @@ func init() {
 	packageCmd.Flags().BoolP("dependency-update", "u", false, "update dependencies from \"Chart.yaml\" to dir \"charts/\" before packaging")
 	packageCmd.Flags().StringP("destination", "d", ".", "location to write the chart.")
 	packageCmd.Flags().String("key", "", "name of the key to use when signing. Used if --sign is true")
-	packageCmd.Flags().String("keyring", "/home/rsteube/.gnupg/pubring.gpg", "location of a public keyring")
+	packageCmd.Flags().String("keyring", "/home/user/.gnupg/pubring.gpg", "location of a public keyring")
 	packageCmd.Flags().String("passphrase-file", "", "location of a file which contains the passphrase for the signing key. Use \"-\" in order to read from stdin.")
 	packageCmd.Flags().Bool("sign", false, "use a PGP private key to sign this package")
 	packageCmd.Flags().String("version", "", "set the version on the chart to this semver version")

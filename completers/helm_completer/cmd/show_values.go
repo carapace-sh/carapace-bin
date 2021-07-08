@@ -21,7 +21,7 @@ func init() {
 	show_valuesCmd.Flags().Bool("insecure-skip-tls-verify", false, "skip tls certificate checks for the chart download")
 	show_valuesCmd.Flags().String("jsonpath", "", "supply a JSONPath expression to filter the output")
 	show_valuesCmd.Flags().String("key-file", "", "identify HTTPS client using this SSL key file")
-	show_valuesCmd.Flags().String("keyring", "/home/rsteube/.gnupg/pubring.gpg", "location of public keys used for verification")
+	show_valuesCmd.Flags().String("keyring", "/home/user/.gnupg/pubring.gpg", "location of public keys used for verification")
 	show_valuesCmd.Flags().Bool("pass-credentials", false, "pass credentials to all domains")
 	show_valuesCmd.Flags().String("password", "", "chart repository password where to locate the requested chart")
 	show_valuesCmd.Flags().String("repo", "", "chart repository url where to locate the requested chart")

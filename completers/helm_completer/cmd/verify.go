@@ -12,7 +12,7 @@ var verifyCmd = &cobra.Command{
 }
 
 func init() {
-	verifyCmd.Flags().String("keyring", "/home/rsteube/.gnupg/pubring.gpg", "keyring containing public keys")
+	verifyCmd.Flags().String("keyring", "/home/user/.gnupg/pubring.gpg", "keyring containing public keys")
 	rootCmd.AddCommand(verifyCmd)
 
 	carapace.Gen(verifyCmd).FlagCompletion(carapace.ActionMap{

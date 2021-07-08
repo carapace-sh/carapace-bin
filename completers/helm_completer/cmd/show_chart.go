@@ -20,7 +20,7 @@ func init() {
 	show_chartCmd.Flags().Bool("devel", false, "use development versions, too. Equivalent to version '>0.0.0-0'. If --version is set, this is ignored")
 	show_chartCmd.Flags().Bool("insecure-skip-tls-verify", false, "skip tls certificate checks for the chart download")
 	show_chartCmd.Flags().String("key-file", "", "identify HTTPS client using this SSL key file")
-	show_chartCmd.Flags().String("keyring", "/home/rsteube/.gnupg/pubring.gpg", "location of public keys used for verification")
+	show_chartCmd.Flags().String("keyring", "/home/user/.gnupg/pubring.gpg", "location of public keys used for verification")
 	show_chartCmd.Flags().Bool("pass-credentials", false, "pass credentials to all domains")
 	show_chartCmd.Flags().String("password", "", "chart repository password where to locate the requested chart")
 	show_chartCmd.Flags().String("repo", "", "chart repository url where to locate the requested chart")
