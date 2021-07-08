@@ -22,7 +22,6 @@ func init() {
 	containerCmd.AddCommand(container_cpCmd)
 
 	rootAlias(container_cpCmd, func(cmd *cobra.Command, isAlias bool) {
-		// TODO local/containerpath container/localpath (conditional via callback)
 		carapace.Gen(cmd).PositionalCompletion(
 			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 				if strings.HasPrefix(c.CallbackValue, ".") ||
