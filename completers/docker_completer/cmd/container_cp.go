@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/spf13/cobra"
@@ -21,6 +23,21 @@ func init() {
 
 	rootAlias(container_cpCmd, func(cmd *cobra.Command, isAlias bool) {
 		// TODO local/containerpath container/localpath (conditional via callback)
-		carapace.Gen(cmd).PositionalCompletion(docker.ActionContainerPath())
+		carapace.Gen(cmd).PositionalCompletion(
+			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+				if strings.HasPrefix(c.CallbackValue, ".") ||
+					strings.HasPrefix(c.CallbackValue, "/") {
+					return carapace.ActionFiles()
+				}
+				return docker.ActionContainerPath()
+			}),
+			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+				if strings.HasPrefix(c.Args[0], ".") ||
+					strings.HasPrefix(c.Args[0], "/") {
+					return docker.ActionContainerPath()
+				}
+				return carapace.ActionFiles()
+			}),
+		)
 	})
 }

@@ -66,19 +66,21 @@ func ActionRepositoryTags() carapace.Action {
 }
 
 func ActionContainerPath() carapace.Action {
-	// TODO not yet working - also needs multiple characters to split on `:` `/`
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			// TODO add description support
-			//if output, err := exec.Command("docker", "container", "ls", "--format", "{{.Names}}:\n{{.Image}} ({{.Status}})").Output(); err != nil {
-			return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}:")(func(output []byte) carapace.Action {
+			return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})")(func(output []byte) carapace.Action {
 				vals := strings.Split(string(output), "\n")
-				return carapace.ActionValues(vals[:len(vals)-1]...)
+				return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Invoke(c).Suffix(":").ToA()
 			})
 		default:
-			return carapace.ActionExecCommand("docker", "exec", c.Parts[0], "ls", filepath.Dir(strings.Join(c.Parts[1:], "/")))(func(output []byte) carapace.Action {
-				return carapace.ActionValues(strings.Split(string(output), "\n")...)
+			container := c.Parts[0]
+			path := filepath.Dir(c.CallbackValue)
+			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
+				return carapace.ActionExecCommand("docker", "exec", container, "ls", "-1", "-p", path)(func(output []byte) carapace.Action {
+					lines := strings.Split(string(output), "\n")
+					return carapace.ActionValues(lines[:len(lines)-1]...)
+				})
 			})
 		}
 	})
