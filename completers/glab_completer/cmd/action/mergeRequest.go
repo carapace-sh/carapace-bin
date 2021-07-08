@@ -22,7 +22,7 @@ func ActionMergeRequests(cmd *cobra.Command, state string) carapace.Action {
 		}
 
 		var queryResult []mergeRequest
-		return actionApi(cmd, fmt.Sprintf("projects/:fullpath/merge_requests?order_by=updated_at&per_page=100%v", stateQuery), queryResult, func() carapace.Action {
+		return actionApi(cmd, fmt.Sprintf("projects/:fullpath/merge_requests?order_by=updated_at&per_page=100%v", stateQuery), &queryResult, func() carapace.Action {
 			vals := make([]string, 0, len(queryResult)*2)
 			for _, mr := range queryResult {
 				vals = append(vals, strconv.Itoa(mr.Iid), mr.Title)
