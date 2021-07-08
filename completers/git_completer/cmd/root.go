@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/git"
 	"github.com/spf13/cobra"
 )
 
@@ -33,7 +34,14 @@ func init() {
 	rootCmd.Flags().String("work-tree", "", "path to working tree")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"c":         carapace.ActionMessage("TODO"), // TODO ActionMultiparts with callback for config values (git help --config)
+		"c": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return git.ActionConfigs()
+			default:
+				return carapace.ActionValues()
+			}
+		}),
 		"C":         carapace.ActionDirectories(),
 		"exec-path": carapace.ActionDirectories(),
 		"git-dir":   carapace.ActionDirectories(),
