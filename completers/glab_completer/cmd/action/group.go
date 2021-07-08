@@ -18,7 +18,7 @@ func ActionGroups(cmd *cobra.Command) carapace.Action {
 		query := fmt.Sprintf(`groups?all_available=true&search=%v`, url.QueryEscape(c.CallbackValue))
 
 		var queryResult []group
-		return actionApi(cmd, query, queryResult, func() carapace.Action {
+		return actionApi(cmd, query, &queryResult, func() carapace.Action {
 			vals := make([]string, 0, len(queryResult)*2)
 			for _, group := range queryResult {
 				vals = append(vals, group.Path, group.Description)
