@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,5 +21,7 @@ func init() {
 	rmCmd.Flags().BoolS("v", "v", false, "Remove any anonymous volumes attached to containers")
 	rootCmd.AddCommand(rmCmd)
 
-	carapace.Gen(rmCmd).PositionalAnyCompletion(ActionServices())
+	carapace.Gen(rmCmd).PositionalAnyCompletion(
+		action.ActionServices(rmCmd),
+	)
 }

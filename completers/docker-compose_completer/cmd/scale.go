@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(scaleCmd)
 
 	carapace.Gen(scaleCmd).PositionalAnyCompletion(
-		ActionServices(), // TODO Multiparts Action/ or simply add = suffix
+		action.ActionServices(scaleCmd), // TODO Multiparts Action/ or simply add = suffix
 	)
 }

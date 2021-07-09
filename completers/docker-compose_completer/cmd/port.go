@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +24,7 @@ func init() {
 	})
 
 	carapace.Gen(portCmd).PositionalCompletion(
-		ActionServices(),
+		action.ActionServices(portCmd),
 		carapace.ActionMessage("TODO: read ports form serice (first agument)"),
 	)
 }

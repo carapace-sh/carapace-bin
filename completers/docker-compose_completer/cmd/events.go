@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +18,7 @@ func init() {
 	eventsCmd.Flags().Bool("json", false, "Output events as a stream of json objects")
 	rootCmd.AddCommand(eventsCmd)
 
-	carapace.Gen(eventsCmd).PositionalAnyCompletion(ActionServices())
+	carapace.Gen(eventsCmd).PositionalAnyCompletion(
+		action.ActionServices(eventsCmd),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +18,7 @@ func init() {
 	pushCmd.Flags().Bool("ignore-push-failures", false, "Push what it can and ignores images with push failures.")
 	rootCmd.AddCommand(pushCmd)
 
-	carapace.Gen(pushCmd).PositionalAnyCompletion(ActionServices())
+	carapace.Gen(pushCmd).PositionalAnyCompletion(
+		action.ActionServices(pushCmd),
+	)
 }

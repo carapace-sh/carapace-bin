@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,6 +26,6 @@ func init() {
 			"all", "Remove all images used by any service.",
 			"local", "Remove only images that don't have a custom tag set by the image field.",
 		),
-		"volumes": ActionVolumes(),
+		"volumes": action.ActionVolumes(downCmd),
 	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,5 +21,7 @@ func init() {
 	createCmd.Flags().Bool("no-recreate", false, "If containers already exist, don't recreate them.")
 	rootCmd.AddCommand(createCmd)
 
-	carapace.Gen(createCmd).PositionalAnyCompletion(ActionServices())
+	carapace.Gen(createCmd).PositionalAnyCompletion(
+		action.ActionServices(createCmd),
+	)
 }

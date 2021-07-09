@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,5 +21,7 @@ func init() {
 	logsCmd.Flags().BoolP("timestamps", "t", false, "Show timestamps.")
 	rootCmd.AddCommand(logsCmd)
 
-	carapace.Gen(logsCmd).PositionalAnyCompletion(ActionServices())
+	carapace.Gen(logsCmd).PositionalAnyCompletion(
+		action.ActionServices(logsCmd),
+	)
 }

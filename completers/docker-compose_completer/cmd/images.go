@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +18,7 @@ func init() {
 	imagesCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")
 	rootCmd.AddCommand(imagesCmd)
 
-	carapace.Gen(imagesCmd).PositionalAnyCompletion(ActionServices())
+	carapace.Gen(imagesCmd).PositionalAnyCompletion(
+		action.ActionServices(imagesCmd),
+	)
 }
