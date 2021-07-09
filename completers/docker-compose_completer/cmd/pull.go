@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,5 +22,7 @@ func init() {
 	pullCmd.Flags().BoolP("quiet", "q", false, "Pull without printing progress information")
 	rootCmd.AddCommand(pullCmd)
 
-	carapace.Gen(pullCmd).PositionalAnyCompletion(ActionServices())
+	carapace.Gen(pullCmd).PositionalAnyCompletion(
+		action.ActionServices(pullCmd),
+	)
 }

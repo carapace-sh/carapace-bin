@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,5 +17,7 @@ func init() {
 
 	rootCmd.AddCommand(unpauseCmd)
 
-	carapace.Gen(unpauseCmd).PositionalAnyCompletion(ActionServices())
+	carapace.Gen(unpauseCmd).PositionalAnyCompletion(
+		action.ActionServices(unpauseCmd),
+	)
 }

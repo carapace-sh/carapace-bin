@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -35,8 +36,10 @@ func init() {
 	rootCmd.AddCommand(upCmd)
 
 	carapace.Gen(upCmd).FlagCompletion(carapace.ActionMap{
-		"exit-code-from": ActionServices(),
+		"exit-code-from": action.ActionServices(upCmd),
 	})
 
-	carapace.Gen(upCmd).PositionalAnyCompletion(ActionServices())
+	carapace.Gen(upCmd).PositionalAnyCompletion(
+		action.ActionServices(upCmd),
+	)
 }
