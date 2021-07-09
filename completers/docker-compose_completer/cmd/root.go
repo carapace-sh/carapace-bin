@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "docker-compose",
-	Short: "",
+	Short: "Define and run multi-container applications with Docker",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

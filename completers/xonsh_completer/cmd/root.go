@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "xonsh",
-	Short: "",
+	Short: "Python-powered shell",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

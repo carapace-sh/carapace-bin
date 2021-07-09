@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "printenv",
-	Short: "",
+	Short: "print all or part of environment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "groupadd",
-	Short: "",
+	Short: "create a new group",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "unzip",
-	Short: "",
+	Short: "list, test and extract compressed files in a ZIP archive",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

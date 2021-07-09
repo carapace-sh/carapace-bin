@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "node",
-	Short: "",
+	Short: "server-side JavaScript runtime",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "alsamixer",
-	Short: "",
+	Short: "soundcard mixer for ALSA soundcard driver, with ncurses interface",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

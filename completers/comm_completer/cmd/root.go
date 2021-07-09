@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "comm",
-	Short: "",
+	Short: "compare two sorted files line by line",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

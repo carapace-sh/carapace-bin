@@ -13,7 +13,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "gradle",
-	Short: "",
+	Short: "Gradle Build Tool",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

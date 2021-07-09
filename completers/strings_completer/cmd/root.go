@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "strings",
-	Short: "",
+	Short: "print the sequences of printable characters in files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

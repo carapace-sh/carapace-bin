@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "env",
-	Short: "",
+	Short: "run a program in a modified environment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

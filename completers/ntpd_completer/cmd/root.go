@@ -9,7 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "ntpd",
-	Short: "",
+	Short: "NTP daemon program",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

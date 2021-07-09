@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "df",
-	Short: "",
+	Short: "report file system disk space usage",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

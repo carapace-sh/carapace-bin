@@ -10,7 +10,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "pacman",
-	Short: "",
+	Short: "package manager utility",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

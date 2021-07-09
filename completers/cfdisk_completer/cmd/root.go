@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "cfdisk",
-	Short: "",
+	Short: "display or manipulate a disk partition table",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

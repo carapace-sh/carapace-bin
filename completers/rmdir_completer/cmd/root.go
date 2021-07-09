@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "rmdir",
-	Short: "",
+	Short: "remove empty directories",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "sha1sum",
-	Short: "",
+	Short: "compute and check SHA1 message digest",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "dmenu",
-	Short: "",
+	Short: "dynamic menu",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "resume-cli",
-	Short: "",
+	Short: "command line tool for JSON Resume",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

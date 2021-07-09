@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "chown",
-	Short: "",
+	Short: "change file owner and group",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

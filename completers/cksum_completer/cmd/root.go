@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "cksum",
-	Short: "",
+	Short: "checksum and count the bytes in a file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

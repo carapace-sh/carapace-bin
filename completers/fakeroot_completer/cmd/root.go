@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "fakeroot",
-	Short: "",
+	Short: "run a command in an environment faking root privileges for file manipulation",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "tty",
-	Short: "",
+	Short: "print the file name of the terminal connected to standard input",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

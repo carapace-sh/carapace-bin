@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "lscpu",
-	Short: "",
+	Short: "display information about the CPU architecture",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

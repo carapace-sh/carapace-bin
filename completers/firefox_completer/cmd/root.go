@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "firefox",
-	Short: "",
+	Short: "Firefox Browser",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

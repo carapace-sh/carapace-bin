@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "fmt",
-	Short: "",
+	Short: "simple optimal text formatter",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

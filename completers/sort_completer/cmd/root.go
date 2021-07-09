@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "sort",
-	Short: "",
+	Short: "sort lines of text files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

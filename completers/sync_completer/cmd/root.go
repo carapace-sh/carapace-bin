@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "sync",
-	Short: "",
+	Short: "Synchronize cached writes to persistent storage",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

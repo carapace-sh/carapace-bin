@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "ion",
-	Short: "",
+	Short: "The Ion Shell",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

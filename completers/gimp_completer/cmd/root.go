@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "gimp",
-	Short: "",
+	Short: "an image manipulation and paint program",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

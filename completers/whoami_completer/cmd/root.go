@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "whoami",
-	Short: "",
+	Short: "print effective userid",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

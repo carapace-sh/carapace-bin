@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "npm",
-	Short: "",
+	Short: "the package manager for JavaScript",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

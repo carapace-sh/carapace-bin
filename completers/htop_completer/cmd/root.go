@@ -10,7 +10,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "htop",
-	Short: "",
+	Short: "interactive process viewer",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

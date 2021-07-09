@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "groups",
-	Short: "",
+	Short: "display current group names",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

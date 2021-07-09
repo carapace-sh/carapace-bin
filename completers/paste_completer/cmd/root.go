@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "paste",
-	Short: "",
+	Short: "merge lines of files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

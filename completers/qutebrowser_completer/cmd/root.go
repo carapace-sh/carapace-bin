@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "qutebrowser",
-	Short: "",
+	Short: "a keyboard-driven, vim-like browser based on PyQt5",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "mknod",
-	Short: "",
+	Short: "make block or character special files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

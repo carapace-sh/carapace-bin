@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "i3exit",
-	Short: "",
+	Short: "exit-script for i3",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "useradd",
-	Short: "",
+	Short: "create a new user or update default new user information",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

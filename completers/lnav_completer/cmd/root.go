@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "lnav",
-	Short: "",
+	Short: "ncurses-based log file viewer",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "install",
-	Short: "",
+	Short: "copy files and set attributes",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

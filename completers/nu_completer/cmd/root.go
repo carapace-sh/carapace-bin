@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "nu",
-	Short: "",
+	Short: "Nushell",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

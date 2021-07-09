@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "viewnior",
-	Short: "",
+	Short: "simple, fast and elegant image viewer",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

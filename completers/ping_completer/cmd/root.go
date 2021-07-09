@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "ping",
-	Short: "",
+	Short: "send ICMP ECHO_REQUEST to network hosts",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

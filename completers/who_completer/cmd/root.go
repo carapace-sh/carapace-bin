@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "who",
-	Short: "",
+	Short: "show who is logged on",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

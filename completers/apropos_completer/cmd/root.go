@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "apropos",
-	Short: "",
+	Short: "search the manual page names and descriptions",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

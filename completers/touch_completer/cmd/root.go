@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "touch",
-	Short: "",
+	Short: "change file timestamps",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

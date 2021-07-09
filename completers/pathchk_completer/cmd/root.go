@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "pathchk",
-	Short: "",
+	Short: "check whether file names are valid or portable",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

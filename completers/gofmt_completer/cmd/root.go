@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "gofmt",
-	Short: "",
+	Short: "format Go source code",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

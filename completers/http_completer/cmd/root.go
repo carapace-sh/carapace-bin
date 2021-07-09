@@ -11,7 +11,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "http",
-	Short: "",
+	Short: "command-line HTTP client for the API era",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

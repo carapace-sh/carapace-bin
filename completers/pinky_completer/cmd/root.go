@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "pinky",
-	Short: "",
+	Short: "lightweight finger",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

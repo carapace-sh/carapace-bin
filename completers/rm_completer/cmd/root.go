@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "rm",
-	Short: "",
+	Short: "remove files or directories",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

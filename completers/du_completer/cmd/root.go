@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "du",
-	Short: "",
+	Short: "estimate file space usage",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "ncdu",
-	Short: "",
+	Short: "NCurses Disk Usage",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

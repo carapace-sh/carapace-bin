@@ -9,7 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "tesseract",
-	Short: "",
+	Short: "command-line OCR engine",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

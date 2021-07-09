@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "stat",
-	Short: "",
+	Short: "display file or file system status",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,7 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "dd",
-	Short: "",
+	Short: "convert and copy a file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

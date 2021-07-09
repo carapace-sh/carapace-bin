@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "dir",
-	Short: "",
+	Short: "list directory contents",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

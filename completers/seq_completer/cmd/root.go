@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "seq",
-	Short: "",
+	Short: "print a sequence of numbers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

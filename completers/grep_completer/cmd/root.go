@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "grep",
-	Short: "",
+	Short: "print lines that match patterns",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

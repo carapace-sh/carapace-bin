@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "readlink",
-	Short: "",
+	Short: "print resolved symbolic links or canonical file names",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

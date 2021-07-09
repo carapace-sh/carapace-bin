@@ -10,7 +10,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "tldr",
-	Short: "",
+	Short: "Python command line client for tldr",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

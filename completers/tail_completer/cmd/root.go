@@ -10,7 +10,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "tail",
-	Short: "",
+	Short: "output the last part of files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

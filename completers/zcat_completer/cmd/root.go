@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "zcat",
-	Short: "",
+	Short: "compress or expand files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

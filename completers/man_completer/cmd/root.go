@@ -10,7 +10,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "man",
-	Short: "",
+	Short: "an interface to the system reference manuals",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

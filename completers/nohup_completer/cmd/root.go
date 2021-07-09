@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "nohup",
-	Short: "",
+	Short: "run a command immune to hangups, with output to a non-tty",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

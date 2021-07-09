@@ -9,7 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "mosh",
-	Short: "",
+	Short: "mobile shell with roaming and intelligent local echo",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
