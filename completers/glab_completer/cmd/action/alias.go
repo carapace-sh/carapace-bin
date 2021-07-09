@@ -8,7 +8,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func loadAliases() (aliases map[string]string, err error) {
+func LoadAliases() (aliases map[string]string, err error) {
 	var dir string
 	if dir, err = os.UserConfigDir(); err == nil {
 		var content []byte
@@ -21,7 +21,7 @@ func loadAliases() (aliases map[string]string, err error) {
 
 func ActionAliases() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		aliases, err := loadAliases()
+		aliases, err := LoadAliases()
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
