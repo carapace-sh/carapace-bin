@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "md5sum",
-	Short: "",
+	Short: "compute and check MD5 message digest",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

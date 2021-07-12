@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "basename",
-	Short: "",
+	Short: "strip directory and suffix from filenames",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

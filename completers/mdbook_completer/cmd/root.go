@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "mdbook",
-	Short: "",
+	Short: "Creates a book from markdown files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

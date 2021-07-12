@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "stty",
-	Short: "",
+	Short: "change and print terminal line settings",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

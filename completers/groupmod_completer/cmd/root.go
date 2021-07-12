@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "groupmod",
-	Short: "",
+	Short: "modify a group definition on the system",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

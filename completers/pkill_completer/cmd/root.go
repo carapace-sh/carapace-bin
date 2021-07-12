@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "pkill",
-	Short: "",
+	Short: "look up for processes based on name and other attributes",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

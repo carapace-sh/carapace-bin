@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "id",
-	Short: "",
+	Short: "Print user and group information",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

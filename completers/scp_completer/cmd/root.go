@@ -9,7 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "scp",
-	Short: "",
+	Short: "OpenSSH secure file copy",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

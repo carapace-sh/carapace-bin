@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "split",
-	Short: "",
+	Short: "split a file into pieces",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

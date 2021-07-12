@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "userdel",
-	Short: "",
+	Short: "delete a user account and related files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

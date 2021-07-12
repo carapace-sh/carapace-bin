@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "lsmem",
-	Short: "",
+	Short: "list the ranges of available memory with their online status",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "groupmems",
-	Short: "",
+	Short: "administer members of a user's primary group",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

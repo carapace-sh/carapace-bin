@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "tac",
-	Short: "",
+	Short: "concatenate and print files in reverse",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

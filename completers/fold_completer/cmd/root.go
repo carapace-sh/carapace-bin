@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "fold",
-	Short: "",
+	Short: "wrap each input line to fit in specified width",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

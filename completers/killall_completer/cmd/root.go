@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "killall",
-	Short: "",
+	Short: "kill processes by name",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

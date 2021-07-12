@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "pip",
-	Short: "",
+	Short: "package manager for Python packages",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

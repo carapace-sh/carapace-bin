@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "expr",
-	Short: "",
+	Short: "evaluate expressions",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "uname",
-	Short: "",
+	Short: "print system information",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

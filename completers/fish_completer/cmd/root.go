@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "fish",
-	Short: "",
+	Short: "the friendly interactive shell",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

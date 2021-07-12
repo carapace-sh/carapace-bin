@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "lsblk",
-	Short: "",
+	Short: "list block devices",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -12,7 +12,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "make",
-	Short: "",
+	Short: "GNU make utility to maintain groups of programs",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "hostid",
-	Short: "",
+	Short: "print the numeric identifier for the current host",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

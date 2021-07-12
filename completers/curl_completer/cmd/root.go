@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "curl",
-	Short: "",
+	Short: "transfer a URL",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

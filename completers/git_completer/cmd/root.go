@@ -7,7 +7,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use: "git",
+	Use:   "git",
+	Short: "the stupid content tracker",
 }
 
 func Execute() error {

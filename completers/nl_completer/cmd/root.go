@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "nl",
-	Short: "",
+	Short: "number lines of files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

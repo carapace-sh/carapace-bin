@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "sleep",
-	Short: "",
+	Short: "delay for a specified amount of time",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

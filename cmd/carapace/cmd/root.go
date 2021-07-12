@@ -8,6 +8,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/rsteube/carapace/pkg/ps"
@@ -52,7 +53,7 @@ var rootCmd = &cobra.Command{
 		case "--version":
 			println(cmd.Version)
 		case "--list":
-			fmt.Println(strings.Join(completers, "\n"))
+			printCompleters()
 		case "_carapace":
 			shell := ps.DetermineShell()
 			if len(args) > 1 {
@@ -85,6 +86,19 @@ var rootCmd = &cobra.Command{
 		UnknownFlags: true,
 	},
 	DisableFlagParsing: true,
+}
+
+func printCompleters() {
+	maxlen := 0
+	for _, name := range completers {
+		if len := len(name); len > maxlen {
+			maxlen = len
+		}
+	}
+
+	for _, name := range completers {
+		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, descriptions[name])
+	}
 }
 
 func invokeCompleter(completer string) {

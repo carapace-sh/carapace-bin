@@ -9,7 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "sftp",
-	Short: "",
+	Short: "OpenSSH secure file transfer",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

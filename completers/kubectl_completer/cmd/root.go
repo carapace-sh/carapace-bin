@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "kubectl",
-	Short: "",
+	Short: "kubectl controls the Kubernetes cluster manager",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

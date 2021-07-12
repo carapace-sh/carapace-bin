@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "wc",
-	Short: "",
+	Short: "print newline, word, and byte counts for each file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

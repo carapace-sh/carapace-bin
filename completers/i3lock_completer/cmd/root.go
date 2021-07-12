@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "i3lock",
-	Short: "",
+	Short: "improved screen locker",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

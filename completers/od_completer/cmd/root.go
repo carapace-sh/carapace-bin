@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "od",
-	Short: "",
+	Short: "dump files in octal and other formats",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

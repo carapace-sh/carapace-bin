@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"regexp"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -9,7 +10,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "carapace",
-	Short: "",
+	Short: "multi-shell multi-command argument completer",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -33,7 +34,17 @@ func ActionCompleters() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("carapace", "--list")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
-			return carapace.ActionValues(lines[:len(lines)-1]...)
+			re := regexp.MustCompile("^(?P<name>[^ ]+) +(?P<description>.*)$")
+
+			vals := make([]string, 0)
+			for _, line := range lines {
+				if re.MatchString(line) {
+					matched := re.FindStringSubmatch(line)
+					//vals = append(vals, matched[1], matched[2])
+					vals = append(vals, matched[1])
+				}
+			}
+			return carapace.ActionValues(vals...)
 		})
 	})
 }

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "helmsman",
-	Short: "",
+	Short: "Helmsman is a Helm Charts as Code tool",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

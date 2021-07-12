@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "ftp",
-	Short: "",
+	Short: "File Transfer Protocol client",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "uniq",
-	Short: "",
+	Short: "report or omit repeated lines",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

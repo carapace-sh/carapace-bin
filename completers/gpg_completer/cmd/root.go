@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "gpg",
-	Short: "",
+	Short: "OpenPGP encryption and signing tool",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "mcomix",
-	Short: "",
+	Short: "GTK Comic Book Viewer",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "rustup",
-	Short: "",
+	Short: "installer for the systems programming language Rust",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "date",
-	Short: "",
+	Short: "print or set the system date and time",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "rg",
-	Short: "",
+	Short: "recursively search current directory for lines matching a pattern",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

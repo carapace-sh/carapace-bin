@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "mv",
-	Short: "",
+	Short: "move (rename) files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

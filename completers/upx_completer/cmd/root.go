@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "upx",
-	Short: "",
+	Short: "compress or expand executable files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

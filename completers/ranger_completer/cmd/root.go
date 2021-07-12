@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "ranger",
-	Short: "",
+	Short: "visual file manager",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

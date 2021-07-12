@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "users",
-	Short: "",
+	Short: "print the user names of users currently logged in to the current host",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

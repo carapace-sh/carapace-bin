@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "adb",
-	Short: "",
+	Short: "Android Debug Bridge",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

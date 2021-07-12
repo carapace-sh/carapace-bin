@@ -9,7 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "bat",
-	Short: "",
+	Short: "a cat clone with syntax highlighting and Git integration",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

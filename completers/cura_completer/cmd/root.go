@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "cura",
-	Short: "",
+	Short: "Powerful, easy-to-use 3D printing software",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

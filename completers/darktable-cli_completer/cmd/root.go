@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "darktable-cli",
-	Short: "",
+	Short: "a command line darktable variant",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

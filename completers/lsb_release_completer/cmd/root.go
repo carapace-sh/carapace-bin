@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "lsb_release",
-	Short: "",
+	Short: "prints certain LSB (Linux Standard Base) and Distribution information",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

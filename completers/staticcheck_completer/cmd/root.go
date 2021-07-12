@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "staticcheck",
-	Short: "",
+	Short: "The advanced Go linter",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

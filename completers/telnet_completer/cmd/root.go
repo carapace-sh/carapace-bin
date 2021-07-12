@@ -9,7 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "telnet",
-	Short: "",
+	Short: "User interface to TELNET",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

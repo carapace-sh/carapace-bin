@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "pamac",
-	Short: "",
+	Short: "package manager utility",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

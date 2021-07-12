@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "mpv",
-	Short: "",
+	Short: "a media player",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

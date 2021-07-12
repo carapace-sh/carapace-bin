@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "groupdel",
-	Short: "",
+	Short: "delete a group",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

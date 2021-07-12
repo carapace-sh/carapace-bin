@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "hostname",
-	Short: "",
+	Short: "show or set system host name",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

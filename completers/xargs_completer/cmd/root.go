@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "xargs",
-	Short: "",
+	Short: "build and execute command lines from standard input",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

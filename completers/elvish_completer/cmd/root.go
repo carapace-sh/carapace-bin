@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "elvish",
-	Short: "",
+	Short: "expressive programming language and a versatile interactive shell",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

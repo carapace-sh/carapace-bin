@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "dos2unix",
-	Short: "",
+	Short: "DOS/Mac to Unix and vice versa text file format converter",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

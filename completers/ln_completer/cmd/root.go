@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "ln",
-	Short: "",
+	Short: "make links between files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

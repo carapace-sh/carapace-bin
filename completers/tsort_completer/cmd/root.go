@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "tsort",
-	Short: "",
+	Short: "perform topological sort",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

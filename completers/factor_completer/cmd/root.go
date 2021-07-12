@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "factor",
-	Short: "",
+	Short: "factor numbers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "usermod",
-	Short: "",
+	Short: "modify a user account",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

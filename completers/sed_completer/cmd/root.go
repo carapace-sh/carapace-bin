@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "sed",
-	Short: "",
+	Short: "stream editor for filtering and transforming text",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

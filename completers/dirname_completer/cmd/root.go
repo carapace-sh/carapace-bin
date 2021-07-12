@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "dirname",
-	Short: "",
+	Short: "strip last component from file name",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

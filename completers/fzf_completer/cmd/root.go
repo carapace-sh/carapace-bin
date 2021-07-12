@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "fzf",
-	Short: "",
+	Short: "a command-line fuzzy finder",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

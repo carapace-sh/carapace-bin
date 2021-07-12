@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "head",
-	Short: "",
+	Short: "output the first part of files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

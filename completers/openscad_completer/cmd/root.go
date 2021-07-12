@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "openscad",
-	Short: "",
+	Short: "script file based graphical CAD environment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

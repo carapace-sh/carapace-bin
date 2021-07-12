@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "nice",
-	Short: "",
+	Short: "run a program with modified scheduling priority",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
