@@ -35,8 +35,7 @@ func init() {
 	linkCmd.Flags().Bool("save-peer", false, "Package will appear in your `peerDependencies`")
 	linkCmd.Flags().Bool("save-prod", false, "Package will appear in your `dependencies`.")
 	linkCmd.Flags().Bool("strict-peer-deps", false, "Fail and abort for any conflicting `peerDependencies`")
-	linkCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	linkCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(linkCmd)
 	rootCmd.AddCommand(linkCmd)
 
 	carapace.Gen(linkCmd).FlagCompletion(carapace.ActionMap{

@@ -15,7 +15,7 @@ var explainCmd = &cobra.Command{
 func init() {
 	carapace.Gen(explainCmd).Standalone()
 	explainCmd.Flags().Bool("json", false, "output as json")
-	// TODO workspace flags
+	addWorkspaceFlags(explainCmd)
 
 	rootCmd.AddCommand(explainCmd)
 

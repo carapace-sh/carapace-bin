@@ -20,8 +20,7 @@ func init() {
 	uninstallCmd.Flags().Bool("save-optional", false, "Package will appear in your `optionalDependencies`")
 	uninstallCmd.Flags().Bool("save-peer", false, "Package will appear in your `peerDependencies`")
 	uninstallCmd.Flags().Bool("save-prod", false, "Package will appear in your `dependencies`.")
-	uninstallCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	uninstallCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(uninstallCmd)
 
 	rootCmd.AddCommand(uninstallCmd)
 

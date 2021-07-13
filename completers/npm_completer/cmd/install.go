@@ -35,8 +35,7 @@ func init() {
 	installCmd.Flags().Bool("save-peer", false, "Package will appear in your `peerDependencies`")
 	installCmd.Flags().Bool("save-prod", false, "Package will appear in your `dependencies`.")
 	installCmd.Flags().Bool("strict-peer-deps", false, "Fail and abort for any conflicting `peerDependencies`")
-	installCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	installCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(installCmd)
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).PositionalCompletion(

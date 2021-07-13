@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/npm_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,13 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.PersistentFlags().String("registry", "", "set registry to use")
+}
+
+func addWorkspaceFlags(cmd *cobra.Command) {
+	cmd.Flags().StringArrayP("workspace", "w", []string{""}, "Enable running a command in the context of the given workspace")
+	cmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+
+	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+		"workspace": action.ActionWorkspaces(),
+	})
 }

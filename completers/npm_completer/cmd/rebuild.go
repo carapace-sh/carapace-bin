@@ -17,8 +17,7 @@ func init() {
 	rebuildCmd.Flags().Bool("bin-links", false, "crete symlinks for package executables")
 	rebuildCmd.Flags().BoolP("global", "g", false, "operate globally")
 	rebuildCmd.Flags().Bool("ignore-scripts", false, "do not run scripts specified in package.json")
-	rebuildCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	rebuildCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(rebuildCmd)
 
 	rootCmd.AddCommand(rebuildCmd)
 

@@ -85,7 +85,8 @@ func ActionPackageTags(cmd *cobra.Command, pkg string) carapace.Action {
 }
 
 type packageJson struct {
-	Scripts map[string]string
+	Scripts    map[string]string
+	Workspaces []string
 }
 
 func loadPackageJson() (pj packageJson, err error) {

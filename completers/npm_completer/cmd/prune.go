@@ -17,8 +17,7 @@ func init() {
 	pruneCmd.Flags().Bool("dry-run", false, "only report changes")
 	pruneCmd.Flags().Bool("json", false, "output as json")
 	pruneCmd.Flags().StringArray("omit", []string{""}, "omit package type")
-	pruneCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	pruneCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(pruneCmd)
 
 	rootCmd.AddCommand(pruneCmd)
 

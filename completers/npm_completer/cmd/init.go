@@ -16,9 +16,8 @@ func init() {
 	initCmd.Flags().BoolP("force", "f", false, "remove various protections against unfortunate side effects")
 	initCmd.Flags().Bool("if-present", false, "")
 	initCmd.Flags().Bool("scope", false, "create scoped package")
-	initCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
 	initCmd.Flags().BoolP("yes", "y", false, "automatically answer yes to any prompts")
+	addWorkspaceFlags(initCmd)
 
 	rootCmd.AddCommand(initCmd)
-
 }

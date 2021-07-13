@@ -13,8 +13,7 @@ var distTagCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(distTagCmd).Standalone()
-	distTag_addCmd.PersistentFlags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	distTag_addCmd.PersistentFlags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(distTagCmd)
 
 	rootCmd.AddCommand(distTagCmd)
 }

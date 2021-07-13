@@ -15,8 +15,7 @@ var repoCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repoCmd).Standalone()
 	repoCmd.Flags().String("browser", "", "browser to user")
-	repoCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	repoCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(repoCmd)
 
 	rootCmd.AddCommand(repoCmd)
 

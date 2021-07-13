@@ -25,8 +25,7 @@ func init() {
 	updateCmd.Flags().StringArray("omit", []string{}, "omit dependency types")
 	updateCmd.Flags().Bool("package-lock", false, "Only update package-lock.json")
 	updateCmd.Flags().Bool("strict-peer-deps", false, "Fail and abort for any conflicting `peerDependencies`")
-	updateCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	updateCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(updateCmd)
 
 	rootCmd.AddCommand(updateCmd)
 

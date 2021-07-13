@@ -17,9 +17,8 @@ func init() {
 	fundCmd.Flags().String("browser", "", "browser to use")
 	fundCmd.Flags().Bool("json", false, "output as json")
 	fundCmd.Flags().Bool("unicode", false, "use unicode characters in output")
-	fundCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	fundCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
 	fundCmd.Flags().Int("which", 1, "index of funding source to open")
+	addWorkspaceFlags(fundCmd)
 
 	rootCmd.AddCommand(fundCmd)
 

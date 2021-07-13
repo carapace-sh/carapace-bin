@@ -19,8 +19,7 @@ func init() {
 	versionCmd.Flags().Bool("json", false, "output as json")
 	versionCmd.Flags().String("prerelease-id", "", "prerelease identififer")
 	versionCmd.Flags().Bool("sign-git-tag", false, "sign with gpg signature")
-	versionCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	versionCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(versionCmd)
 
 	rootCmd.AddCommand(versionCmd)
 

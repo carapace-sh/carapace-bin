@@ -21,8 +21,7 @@ func init() {
 	findDupesCmd.Flags().StringArray("omit", []string{}, "omit dependency type")
 	findDupesCmd.Flags().Bool("package-lock", false, "When false ignore package.lock")
 	findDupesCmd.Flags().Bool("strict-peer-deps", false, "Fail and abort for any conflicting `peerDependencies`")
-	findDupesCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	findDupesCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(findDupesCmd)
 
 	rootCmd.AddCommand(findDupesCmd)
 
