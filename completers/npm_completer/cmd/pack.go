@@ -16,8 +16,7 @@ func init() {
 	carapace.Gen(packCmd).Standalone()
 	packCmd.Flags().Bool("dry-run", false, "only report changes")
 	packCmd.Flags().Bool("json", false, "output as json")
-	packCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	packCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(packCmd)
 
 	rootCmd.AddCommand(packCmd)
 

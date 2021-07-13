@@ -16,8 +16,7 @@ func init() {
 	carapace.Gen(execCmd).Standalone()
 	execCmd.Flags().String("call", "", "optional companion option")
 	execCmd.Flags().String("package", "", "package to install for exec")
-	execCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	execCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(execCmd)
 
 	rootCmd.AddCommand(execCmd)
 

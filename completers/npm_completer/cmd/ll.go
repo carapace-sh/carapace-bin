@@ -24,8 +24,7 @@ func init() {
 	llCmd.Flags().Bool("package-lock-only", false, "only use the package-lock.json")
 	llCmd.Flags().BoolP("parseable", "p", false, "output parseable results")
 	llCmd.Flags().Bool("unicode", false, "output unicode characters")
-	llCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	llCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(llCmd)
 
 	rootCmd.AddCommand(llCmd)
 

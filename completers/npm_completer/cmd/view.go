@@ -15,8 +15,7 @@ var viewCmd = &cobra.Command{
 func init() {
 	carapace.Gen(viewCmd).Standalone()
 	viewCmd.Flags().Bool("json", false, "output as json")
-	viewCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	viewCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(viewCmd)
 
 	rootCmd.AddCommand(viewCmd)
 

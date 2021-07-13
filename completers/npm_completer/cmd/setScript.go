@@ -14,8 +14,7 @@ var setScriptCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(setScriptCmd).Standalone()
-	setScriptCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	setScriptCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(setScriptCmd)
 
 	rootCmd.AddCommand(setScriptCmd)
 

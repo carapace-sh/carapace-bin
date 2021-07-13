@@ -24,7 +24,6 @@ func init() {
 	dedupeCmd.Flags().String("omit", "", "omit dependency types")
 	dedupeCmd.Flags().Bool("package-lock", false, "when false ignore `package-lock.json`")
 	dedupeCmd.Flags().Bool("strict-peer-deps", false, "any conflicting `peerDependencies` will be treated as install failure")
-	dedupeCmd.Flags().StringP("workspace", "w", "", "run in the context of given workspace")
-	dedupeCmd.Flags().Bool("workspaces", false, "run in the context of all workspaces")
+	addWorkspaceFlags(dedupeCmd)
 	rootCmd.AddCommand(dedupeCmd)
 }

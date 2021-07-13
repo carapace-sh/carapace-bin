@@ -19,8 +19,7 @@ func init() {
 	outdatedCmd.Flags().Bool("json", false, "output as json")
 	outdatedCmd.Flags().BoolP("long", "l", false, "show extended information")
 	outdatedCmd.Flags().BoolP("parseable", "p", false, "output parseable results")
-	outdatedCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	outdatedCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(outdatedCmd)
 
 	rootCmd.AddCommand(outdatedCmd)
 

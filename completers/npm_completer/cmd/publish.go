@@ -17,8 +17,7 @@ func init() {
 	publishCmd.Flags().Bool("dry-run", false, "only report changes")
 	publishCmd.Flags().String("otp", "", "one-time password")
 	publishCmd.Flags().String("tag", "latest", "register with given tag")
-	publishCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	publishCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(publishCmd)
 
 	rootCmd.AddCommand(publishCmd)
 

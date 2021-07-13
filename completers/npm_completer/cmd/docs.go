@@ -15,8 +15,7 @@ var docsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(docsCmd).Standalone()
 	docsCmd.Flags().String("browser", "", "browser to use")
-	docsCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	docsCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(docsCmd)
 
 	rootCmd.AddCommand(docsCmd)
 

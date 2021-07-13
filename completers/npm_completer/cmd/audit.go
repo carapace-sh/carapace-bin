@@ -19,8 +19,7 @@ func init() {
 	auditCmd.Flags().Bool("json", false, "output as json")
 	auditCmd.Flags().String("omit", "", "omit dependency type")
 	auditCmd.Flags().Bool("package-lock-only", false, "ignore node-modules")
-	auditCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	auditCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(auditCmd)
 
 	carapace.Gen(auditCmd).FlagCompletion(carapace.ActionMap{
 		"audit-level": carapace.ActionValues("info", "low", "moderate", "high", "critical", "none"),

@@ -18,8 +18,7 @@ func init() {
 	runScriptCmd.Flags().Bool("if-present", false, "")
 	runScriptCmd.Flags().Bool("ignore-scripts", false, "do not run scripts specified in package.json")
 	runScriptCmd.Flags().String("script-shell", "", "shell to use for scripts")
-	runScriptCmd.Flags().StringP("workspace", "w", "", "Enable running a command in the context of the given workspace")
-	runScriptCmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	addWorkspaceFlags(runScriptCmd)
 
 	rootCmd.AddCommand(runScriptCmd)
 
