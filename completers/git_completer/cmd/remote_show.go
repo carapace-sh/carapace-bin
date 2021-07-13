@@ -6,17 +6,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var remoteShowCmd = &cobra.Command{
+var remote_showCmd = &cobra.Command{
 	Use:   "show",
-	Short: "",
+	Short: "Give some inforemation about the remote",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(remoteShowCmd).Standalone()
+	carapace.Gen(remote_showCmd).Standalone()
 
-	remoteShowCmd.Flags().BoolS("n", "n", false, "do not query remotes")
-	remoteCmd.AddCommand(remoteShowCmd)
+	remote_showCmd.Flags().BoolS("n", "n", false, "do not query remotes")
+	remoteCmd.AddCommand(remote_showCmd)
 
-	carapace.Gen(remoteShowCmd).PositionalCompletion(git.ActionRemotes())
+	carapace.Gen(remote_showCmd).PositionalCompletion(
+		git.ActionRemotes(),
+	)
 }
