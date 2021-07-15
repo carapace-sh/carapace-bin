@@ -26,7 +26,7 @@ func Execute() error {
 			if strings.HasPrefix(arg, flag) && len(arg) > 2 {
 				fakeflag := strings.SplitN(arg[1:], "=", 2)[0]
 				if rootCmd.Flag(fakeflag) == nil {
-					rootCmd.Flags().String(fakeflag, "", "set a system property") // fake flag to prevent errors
+					rootCmd.Flags().String(fakeflag, "", "") // fake flag to prevent errors
 					rootCmd.Flag(fakeflag).NoOptDefVal = " "
 				}
 			}
