@@ -43,7 +43,7 @@ func init() {
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionUnstagedChanges().Invoke(c).Filter(c.Args).ToA()
+			return git.ActionChanges(git.ChangeOption{Unstaged: true}).Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }
