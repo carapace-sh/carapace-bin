@@ -6,6 +6,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/helm_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -85,8 +86,7 @@ func init() {
 	carapace.Gen(upgradeCmd).PositionalCompletion(
 		action.ActionReleases(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if strings.HasPrefix(c.CallbackValue, ".") ||
-				strings.HasPrefix(c.CallbackValue, "/") {
+			if util.HasPathPrefix(c.CallbackValue) {
 				return carapace.ActionFiles()
 			}
 			return action.ActionRepositoryCharts()

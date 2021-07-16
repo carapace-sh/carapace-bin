@@ -1,10 +1,9 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/git"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -40,8 +39,7 @@ func init() {
 
 	carapace.Gen(logCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if strings.HasPrefix(c.CallbackValue, ".") {
-				// TODO ActionFiles needs to support `./` as directory
+			if util.HasPathPrefix(c.CallbackValue) {
 				return carapace.ActionFiles()
 			} else {
 				return carapace.ActionMultiParts("...", func(c carapace.Context) carapace.Action {

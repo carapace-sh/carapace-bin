@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -24,9 +25,9 @@ func init() {
 	carapace.Gen(cpCmd).FlagCompletion(carapace.ActionMap{
 		"container": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			resource := ""
-			if len(c.Args) > 0 && !isFileCompletion(c.Args[0]) {
+			if len(c.Args) > 0 && !util.HasPathPrefix(c.Args[0]) {
 				resource = c.Args[0]
-			} else if len(c.Args) > 1 && !isFileCompletion(c.Args[1]) {
+			} else if len(c.Args) > 1 && !util.HasPathPrefix(c.Args[1]) {
 				resource = c.Args[1]
 			}
 			splitted := strings.SplitN(strings.SplitN(resource, ":", 2)[0], "/", 2)
@@ -47,7 +48,7 @@ func init() {
 
 func ActionPathOrContainer() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if isFileCompletion(c.CallbackValue) {
+		if util.HasPathPrefix(c.CallbackValue) {
 			return carapace.ActionFiles()
 		} else {
 			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
@@ -62,8 +63,4 @@ func ActionPathOrContainer() carapace.Action {
 			})
 		}
 	})
-}
-
-func isFileCompletion(val string) bool {
-	return strings.HasPrefix(val, "/") || strings.HasPrefix(val, ".")
 }

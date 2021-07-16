@@ -1,13 +1,12 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/docker"
 	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -103,8 +102,7 @@ func init() {
 		}),
 		"base-image": docker.ActionRepositoryTags(),
 		"cni": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if strings.HasPrefix(c.CallbackValue, "/") ||
-				strings.HasPrefix(c.CallbackValue, ".") {
+			if util.HasPathPrefix(c.CallbackValue) {
 				return carapace.ActionFiles()
 			}
 			return carapace.ActionValues("auto", "bridge", "calico", "cilium", "flannel", "kindnet")
@@ -114,8 +112,7 @@ func init() {
 		"driver":             carapace.ActionValues("virtualbox", "vmwarefusion", "kvm2", "vmware", "none", "docker", "podman", "ssh", "auto-detect"),
 		"host-only-nic-type": carapace.ActionValues("Am79C970A", "Am79C973", "82540EM", "82543GC", "82545EM", "virtio"),
 		"hyperkit-vpnkit-sock": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if strings.HasPrefix(c.CallbackValue, "/") ||
-				strings.HasPrefix(c.CallbackValue, ".") {
+			if util.HasPathPrefix(c.CallbackValue) {
 				return carapace.ActionFiles()
 			}
 			return carapace.ActionValues("auto")
