@@ -4,6 +4,7 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func FindReverse(path string, name string) (target string, err error) {
@@ -20,4 +21,10 @@ func FindReverse(path string, name string) (target string, err error) {
 		}
 	}
 	return
+}
+
+func HasPathPrefix(s string) bool {
+	return strings.HasPrefix(s, ".") ||
+		strings.HasPrefix(s, "/") ||
+		strings.HasPrefix(s, "~")
 }
