@@ -1,10 +1,9 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/pip_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -70,7 +69,7 @@ func init() {
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if strings.HasPrefix(c.CallbackValue, ".") || strings.HasPrefix(c.CallbackValue, "/") {
+			if util.HasPathPrefix(c.CallbackValue) {
 				return carapace.ActionFiles()
 			} else {
 				// TODO support multiple index urls (--index-url) and update caching accordingly

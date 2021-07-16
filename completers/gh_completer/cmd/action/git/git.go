@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/run"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	exec "golang.org/x/sys/execabs"
 )
 
@@ -247,7 +248,7 @@ func ReadBranchConfig(branch string) (cfg BranchConfig) {
 					continue
 				}
 				cfg.RemoteURL = u
-			} else if !isFilesystemPath(parts[1]) {
+			} else if !util.HasPathPrefix(parts[1]) {
 				cfg.RemoteName = parts[1]
 			}
 		case "merge":
@@ -333,10 +334,6 @@ func AddUpstreamRemote(upstreamURL, cloneDir string, branches []string) error {
 	cloneCmd.Stdout = os.Stdout
 	cloneCmd.Stderr = os.Stderr
 	return run.PrepareCmd(cloneCmd).Run()
-}
-
-func isFilesystemPath(p string) bool {
-	return p == "." || strings.HasPrefix(p, "./") || strings.HasPrefix(p, "/")
 }
 
 // ToplevelDir returns the top-level directory path of the current repository
