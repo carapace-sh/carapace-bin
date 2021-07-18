@@ -76,8 +76,13 @@ func ActionContainerPath() carapace.Action {
 		default:
 			container := c.Parts[0]
 			path := filepath.Dir(c.CallbackValue)
+
+			args := []string{"exec", container, "ls", "-1", "-p", path}
+			if splitted := strings.Split(c.CallbackValue, "/"); strings.HasPrefix(splitted[len(splitted)-1], ".") {
+				args = append(args, "-a") // show hidden
+			}
 			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-				return carapace.ActionExecCommand("docker", "exec", container, "ls", "-1", "-p", path)(func(output []byte) carapace.Action {
+				return carapace.ActionExecCommand("docker", args...)(func(output []byte) carapace.Action {
 					lines := strings.Split(string(output), "\n")
 					return carapace.ActionValues(lines[:len(lines)-1]...)
 				})
