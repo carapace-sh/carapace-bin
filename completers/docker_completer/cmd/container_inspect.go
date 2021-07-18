@@ -19,7 +19,9 @@ func init() {
 	container_inspectCmd.Flags().BoolP("size", "s", false, "Display total file sizes")
 	containerCmd.AddCommand(container_inspectCmd)
 
-	carapace.Gen(container_inspectCmd).PositionalCompletion(
-		docker.ActionContainers(),
+	carapace.Gen(container_inspectCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return docker.ActionContainers().Invoke(c).Filter(c.Args).ToA()
+		}),
 	)
 }
