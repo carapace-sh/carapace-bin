@@ -28,10 +28,18 @@ func init() {
 	carapace.Gen(remote_addCmd).FlagCompletion(carapace.ActionMap{
 		"mirror": carapace.ActionValues("push", "fetch"),
 		"master": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionLsRemoteRefs(c.Args[1], git.LsRemoteRefOption{Branches: true})
+			if len(c.Args) > 1 {
+				return git.ActionLsRemoteRefs(c.Args[1], git.LsRemoteRefOption{Branches: true})
+			} else {
+				return carapace.ActionValues()
+			}
 		}),
 		"track": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionLsRemoteRefs(c.Args[1], git.LsRemoteRefOption{Branches: true})
+			if len(c.Args) > 1 {
+				return git.ActionLsRemoteRefs(c.Args[1], git.LsRemoteRefOption{Branches: true})
+			} else {
+				return carapace.ActionValues()
+			}
 		}),
 	})
 

@@ -37,8 +37,15 @@ func init() {
 	})
 
 	carapace.Gen(showCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRefs(git.RefOptionDefault).Invoke(c).Filter(c.Args).ToA()
+		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return git.ActionRefs(git.RefOptionDefault)
+			case 1:
+				return git.ActionRefFiles(c.Parts[0])
+			default:
+				return carapace.ActionFiles()
+			}
 		}),
 	)
 }
