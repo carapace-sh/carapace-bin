@@ -17,6 +17,6 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-		"repo": action.ActionOwnerRepositories(runCmd),
+		"repo": action.ActionRepoOverride(runCmd),
 	})
 }
