@@ -38,17 +38,26 @@ func ActionLsRemoteRefs(url string, opts LsRemoteRefOption) carapace.Action {
 func ActionRefFiles(ref string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"ls-tree", "--name-only", "--full-tree", ref}
+		prefix := ""
 		if dir := filepath.Dir(c.CallbackValue); dir != "." {
 			args = append(args, dir+"/")
+			prefix = dir + "/"
 		}
+
 		return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			files := lines[:len(lines)-1]
+			for index, file := range files {
+				files[index] = filepath.Base(file)
+			}
 
 			args = append(args, "-d") // only directories
 			return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
 				lines := strings.Split(string(output), "\n")
 				directories := lines[:len(lines)-1]
+				for index, dir := range directories {
+					directories[index] = filepath.Base(dir)
+				}
 
 				filesA := carapace.ActionValues(files...).Invoke(c).Filter(directories)
 
@@ -57,7 +66,7 @@ func ActionRefFiles(ref string) carapace.Action {
 				}
 				directoriesA := carapace.ActionValues(directories...).Invoke(c)
 
-				return filesA.Merge(directoriesA).ToA()
+				return filesA.Merge(directoriesA).Prefix(prefix).ToA()
 			})
 		})
 	})
