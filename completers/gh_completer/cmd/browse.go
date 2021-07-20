@@ -16,6 +16,7 @@ var browseCmd = &cobra.Command{
 
 func init() {
 	browseCmd.Flags().StringP("branch", "b", "", "Select another branch by passing in the branch name")
+	browseCmd.Flags().BoolP("no-browser", "n", false, "Print destination URL instead of opening the browser")
 	browseCmd.Flags().BoolP("projects", "p", false, "Open repository projects")
 	browseCmd.Flags().BoolP("settings", "s", false, "Open repository settings")
 	browseCmd.Flags().BoolP("wiki", "w", false, "Open repository wiki")
