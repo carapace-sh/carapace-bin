@@ -132,21 +132,13 @@ func init() {
 		"print-default-data-file": carapace.ActionFiles(),
 		"eol":                     carapace.ActionValues("crlf", "lf", "native"),
 		"wrap":                    carapace.ActionValues("auto", "none", "preserve"),
-		"highlight-style": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			styles := carapace.ActionValues("pygments", "kate", "monochrome", "breezeDark", "espresso", "zenburn", "haddock", "tango").Invoke(c)
-			files := carapace.ActionFiles(".theme").Invoke(c)
-			return styles.Merge(files).ToA()
-		}),
-		"print-highlight-style": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			styles := carapace.ActionValues("pygments", "kate", "monochrome", "breezeDark", "espresso", "zenburn", "haddock", "tango").Invoke(c)
-			files := carapace.ActionFiles(".theme").Invoke(c)
-			return styles.Merge(files).ToA()
-		}),
-		"syntax-definition":   carapace.ActionFiles(),
-		"include-in-header":   carapace.ActionFiles(),
-		"include-before-body": carapace.ActionFiles(),
-		"include-after-body":  carapace.ActionFiles(),
-		"resource-path":       carapace.ActionDirectories(),
+		"highlight-style":         action.ActionHighlightStyles(),
+		"print-highlight-style":   action.ActionHighlightStyles(),
+		"syntax-definition":       carapace.ActionFiles(),
+		"include-in-header":       carapace.ActionFiles(),
+		"include-before-body":     carapace.ActionFiles(),
+		"include-after-body":      carapace.ActionFiles(),
+		"resource-path":           carapace.ActionDirectories(),
 		"request-header": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:

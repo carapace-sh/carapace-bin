@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/util"
 )
 
 func ActionInputFormats() carapace.Action {
@@ -62,5 +63,14 @@ func ActionExtensions(format string) carapace.Action {
 	return carapace.ActionExecCommand("pandoc", "--list-extensions", format)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		return carapace.ActionValues(lines[:len(lines)-1]...)
+	})
+}
+
+func ActionHighlightStyles() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if util.HasPathPrefix(c.CallbackValue) {
+			return carapace.ActionFiles(".theme")
+		}
+		return carapace.ActionValues("pygments", "kate", "monochrome", "breezeDark", "espresso", "zenburn", "haddock", "tango")
 	})
 }
