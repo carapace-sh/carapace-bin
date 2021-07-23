@@ -1,10 +1,8 @@
 package cmd
 
 import (
-	"regexp"
-	"strings"
-
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/youtube-dl_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -186,30 +184,18 @@ func init() {
 		"convert-subs":    carapace.ActionValues("srt", "ass", "vtt", "lrc"),
 		"cookies":         carapace.ActionFiles(),
 		"ffmpeg-location": carapace.ActionFiles(),
-		"format":          ActionFormats(),
-		"recode-video":    carapace.ActionValues("mp4", "flv", "ogg", "webm", "mkv", "avi"),
-		"sub-format":      carapace.ActionValues("ass", "srt", "best"),
-	})
-}
-
-func ActionFormats() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if len(c.Args) == 0 {
-			return carapace.ActionMessage("missing url")
-		} else {
-			return carapace.ActionExecCommand("youtube-dl", "--list-formats", c.Args[0])(func(output []byte) carapace.Action {
-				lines := strings.Split(string(output), "\n")
-				pattern := regexp.MustCompile(`^(?P<format>[0-9]+) +(?P<description>.*)$`)
-
-				vals := make([]string, 0)
-				for _, line := range lines {
-					if pattern.MatchString(line) {
-						m := pattern.FindStringSubmatch(line)
-						vals = append(vals, m[1], m[2])
-					}
-				}
-				return carapace.ActionValuesDescribed(vals...)
-			})
-		}
+		"fixup": carapace.ActionValuesDescribed(
+			"never", "do nothing",
+			"warn", "only emit a warning",
+			"detect_or_warn", "fix file if we can, warn otherwise",
+		),
+		"format":       action.ActionFormats(),
+		"recode-video": carapace.ActionValues("mp4", "flv", "ogg", "webm", "mkv", "avi"),
+		"sub-format": carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
+			return carapace.ActionValues("ass", "srt", "best").Invoke(c).Filter(c.Parts).ToA()
+		}),
+		"sub-lang": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionSubLangs().Invoke(c).Filter(c.Parts).ToA()
+		}),
 	})
 }
