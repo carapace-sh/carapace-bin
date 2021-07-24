@@ -115,6 +115,9 @@ func init() {
 		"output":         carapace.ActionFiles(),
 		"submodule":      carapace.ActionValues("short", "long", "log"),
 		"word-diff":      ActionWordDiffModes(),
+		"ws-error-highlight": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return ActionWsErrorHighlightModes().Invoke(c).Filter(c.Parts).ToA()
+		}),
 	})
 
 	carapace.Gen(diffCmd).PositionalAnyCompletion(
@@ -166,5 +169,16 @@ func ActionWordDiffModes() carapace.Action {
 		"plain", "Show words as [-removed-] and {+added+}",
 		"porcelain", "Use a special line-based format intended for script consumption",
 		"none", "Disable word diff again",
+	)
+}
+
+func ActionWsErrorHighlightModes() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"context", "context lines",
+		"old", "old lines",
+		"new", "new linex",
+		"none", "reset previous values",
+		"default", "reset to new",
+		"all", "shorthand for old,new,context",
 	)
 }
