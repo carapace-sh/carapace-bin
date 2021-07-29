@@ -1,3 +1,4 @@
+// package aws contains docker related actions
 package docker
 
 import (
@@ -8,6 +9,9 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionConfigs completes config names
+//   another (updated 4 seconds ago)
+//   example (updated 23 seconds ago)
 func ActionConfigs() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "config", "ls", "--format", "{{.Name}}\nupdated {{.UpdatedAt}}")(func(output []byte) carapace.Action {
@@ -17,6 +21,9 @@ func ActionConfigs() carapace.Action {
 	})
 }
 
+// ActionContainers completes container names
+//   agitated_engelbart (alpine (Up 6 seconds))
+//   crazy_satoshi (alpine (Up 4 seconds))
 func ActionContainers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})")(func(output []byte) carapace.Action {
@@ -26,15 +33,21 @@ func ActionContainers() carapace.Action {
 	})
 }
 
+// ActionRepositories completes repository names
+//   alpine
+//   bash
 func ActionRepositories() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("docker", "images", "--format", "{{.Repository}})")(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("docker", "images", "--format", "{{.Repository}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValues(vals[:len(vals)-1]...)
 		})
 	})
 }
 
+// ActionRepositoryTags completes repository names and tags separately
+//   alpine:latest
+//   bash:latest
 func ActionRepositoryTags() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "image", "ls", "--format", "{{.Repository}}:{{.Tag}}", "--filter", "dangling=false")(func(output []byte) carapace.Action {
@@ -65,6 +78,9 @@ func ActionRepositoryTags() carapace.Action {
 	})
 }
 
+// ActionContainerPath completes container names and their file system separately
+//   agitated_engelbart:/bin/echo
+//   crazy_satoshi:/usr/lib/engines-1.1/afalg.so
 func ActionContainerPath() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -91,6 +107,9 @@ func ActionContainerPath() carapace.Action {
 	})
 }
 
+// ActionLogDrivers completion log drivers
+//   splunk (Writes log messages to splunk using the HTTP Event Collector.)
+//   syslog (Writes logging messages to the syslog facility. The syslog daemon must be run...)
 func ActionLogDrivers() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"none", "No logs are available for the container and docker logs does not return any output.",
@@ -108,10 +127,16 @@ func ActionLogDrivers() carapace.Action {
 	)
 }
 
+// ActionDetachKeys completes detach keys
+//   ctrl-@
+//   ctrl-[
 func ActionDetachKeys() carapace.Action {
 	return carapace.ActionValues("{a-z}", `ctrl-\`, "ctrl-@", "ctrl-[", "ctrl-]", "ctrl-^", "ctrl-_", "ctrl-{a-z}")
 }
 
+// ActionContexts completes context names
+//   default (Current DOCKER_HOST based configuration)
+//   example (custom context)
 func ActionContexts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "context", "ls", "--format", "{{.Name}}\n{{.Description}}")(func(output []byte) carapace.Action {
@@ -121,6 +146,9 @@ func ActionContexts() carapace.Action {
 	})
 }
 
+// ActionNetworks completes network names
+//   bridge (bridge/local)
+//   host (host/local)
 func ActionNetworks() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "network", "ls", "--format", "{{.Name}}\n{{.Driver}}/{{.Scope}}")(func(output []byte) carapace.Action {
@@ -130,6 +158,9 @@ func ActionNetworks() carapace.Action {
 	})
 }
 
+// ActionNodes completes node ids
+//   r08tybjkcyar8vdglerxxxxxx
+//   r08tybjkcyar8vdgleryyyyyy
 func ActionNodes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "node", "ls", "--format", "{{.ID}}\n{{.Hostname}} {{.ManagerStatus}}")(func(output []byte) carapace.Action {
@@ -139,6 +170,8 @@ func ActionNodes() carapace.Action {
 	})
 }
 
+// ActionPlugins completes plugins
+//  TODO example
 func ActionPlugins() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "plugin", "ls", "--format", "{{.Name}}\n{{.Description}}")(func(output []byte) carapace.Action {
@@ -148,6 +181,9 @@ func ActionPlugins() carapace.Action {
 	})
 }
 
+// ActionSecrets completes secrets
+//   another (updated 6 seconds ago)
+//   example (updated 11 seconds ago)
 func ActionSecrets() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "secret", "ls", "--format", "{{.Name}}\nupdated {{.UpdatedAt}}")(func(output []byte) carapace.Action {
@@ -157,6 +193,9 @@ func ActionSecrets() carapace.Action {
 	})
 }
 
+// ActionServices completes services
+//   funny_robinson (alpine:latest replicated 0/1)
+//   vigilant_mccarthy (bash:latest replicated 0/1)
 func ActionServices() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "service", "ls", "--format", "{{.Name}}\n{{.Image}} {{.Mode}} {{.Replicas}}")(func(output []byte) carapace.Action {
@@ -166,6 +205,9 @@ func ActionServices() carapace.Action {
 	})
 }
 
+// ActionVolumes completes volume names
+//   carapace-bin_go (local)
+//   d35b4ebbab7bd0e9c155dbc9c75361150658ca525793af1d8fcbf97d058b905b (local)
 func ActionVolumes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "volume", "ls", "--format", "{{.Name}}\n{{.Driver}}")(func(output []byte) carapace.Action {
@@ -175,6 +217,8 @@ func ActionVolumes() carapace.Action {
 	})
 }
 
+// ActionStacks completes stacks
+//   // TODO example
 func ActionStacks(orchestrator string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		arguments := []string{"stack", "ls", "--format", "{{.Name}}\n{{.Services}} on {{.Orchestrator}}"}
