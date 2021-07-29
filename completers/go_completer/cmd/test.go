@@ -25,7 +25,7 @@ func init() {
 	testCmd.Flags().String("coverpkg", "", "apply coverage analysis in each test to packages matching the patterns")
 	testCmd.Flags().Bool("cpu", false, "specify a list of GOMAXPROCS values for which the tests or benchmarks should be executed")
 	testCmd.Flags().String("exec", "", "run the test binary using xprog")
-    testCmd.Flags().Bool("failfast", false, "Do not start new tests after the first test failure")
+	testCmd.Flags().Bool("failfast", false, "Do not start new tests after the first test failure")
 	testCmd.Flags().BoolS("i", "i", false, "install packages that are dependencies of the test")
 	testCmd.Flags().Bool("json", false, "convert test output to JSON")
 	testCmd.Flags().String("list", "", "list tests, benchmarks, or examples matching the regular expression")
