@@ -52,6 +52,8 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 		case "{branch}":
 			fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
 			return ActionBranches(cmd)
+		case "{coc_key}":
+			return ActionCocs(cmd)
 		case "{gist_id}":
 			return ActionGists(cmd)
 		case "{gitignore_name}":
