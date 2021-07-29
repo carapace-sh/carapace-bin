@@ -3,7 +3,10 @@ package action
 import "github.com/rsteube/carapace"
 
 // https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.json
-//    cat api.github.com.json | jq '.paths | keys[]' | sed -e 's_/__' -e 's/$/,/' -e 's#gitignore/templates/{name}#gitignore/templates/{gitignore_name}#'
+//    cat api.github.com.json | jq '.paths | keys[]' \
+//      | sed -e 's_/__' -e 's/$/,/' \
+//            -e 's#gitignore/templates/{name}#gitignore/templates/{gitignore_name}#' \
+//            -e 's#codes_of_conduct/{key}#codes_of_conduct/{coc_key}#'
 var v3Paths []string = []string{
 	"app",
 	"app-manifests/{code}/conversions",
@@ -25,7 +28,7 @@ var v3Paths []string = []string{
 	"authorizations/clients/{client_id}/{fingerprint}",
 	"authorizations/{authorization_id}",
 	"codes_of_conduct",
-	"codes_of_conduct/{key}",
+	"codes_of_conduct/{coc_key}",
 	"content_references/{content_reference_id}/attachments",
 	"emojis",
 	"enterprises/{enterprise}/actions/permissions",
