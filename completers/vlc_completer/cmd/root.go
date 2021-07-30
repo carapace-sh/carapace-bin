@@ -246,13 +246,45 @@ func init() {
 	rootCmd.Flags().Bool("video-wallpaper", false, "Enable wallpaper mode")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"audio-replay-gain-mode": carapace.ActionValues("none", "track", "album"),
+		"audio-visual":           carapace.ActionValues("any", "visual", "projectm", "goom", "glspectrum", "none"),
+		"config":                 carapace.ActionFiles(),
+		"deinterlace": carapace.ActionValuesDescribed(
+			"0", "off",
+			"-1,", "automatic",
+			"1", "on",
+		),
+		"deinterlace-mode": carapace.ActionValues("auto", "discard", "blend", "mean", "bob", "linear", "x", "yadif", "yadif2x", "phosphor", "ivtc"),
 		"force-dolby-surround": carapace.ActionValuesDescribed(
 			"0", "auto",
 			"1", "on",
 			"2", "off",
 		),
-		"audio-replay-gain-mode": carapace.ActionValues("none", "track", "album"),
-		"audio-visual":           carapace.ActionValues("any", "visual", "projectm", "goom", "glspectrum", "none"),
+		"hotkeys-x-wheel-mode": carapace.ActionValuesDescribed(
+			"-1", "Ignore",
+			"0", "Volume control",
+			"2", "Position control",
+			"3", "Position control reversed",
+		),
+		"hotkeys-y-wheel-mode": carapace.ActionValuesDescribed(
+			"-1", "Ignore",
+			"0", "Volume control",
+			"2", "Position control",
+			"3", "Position control reversed",
+		),
+		"pidfile": carapace.ActionFiles(),
+		"preferred-resolution": carapace.ActionValuesDescribed(
+			"-1", "best available",
+			"1080", "full hd (1080p)",
+			"720", "hd (720p)",
+			"576", "standard definition (576 or 480 lines)",
+			"360", "low definition (360 lines)",
+			"240", "very low definition (240 lines)",
+		),
+		"snapshot-format": carapace.ActionValues("png", "jpg", "tiff"),
+		"snapshot-path":   carapace.ActionFiles(),
+		"sub-file":        carapace.ActionFiles(),
+		"verbose":         carapace.ActionValues("0", "1", "2"),
 		"video-title-position": carapace.ActionValuesDescribed(
 			"0", "Center",
 			"1", "Left",
@@ -264,38 +296,6 @@ func init() {
 			"9", "Bottom-Left",
 			"10", "Bottom-Righ",
 		),
-		"snapshot-format": carapace.ActionValues("png", "jpg", "tiff"),
-		"deinterlace": carapace.ActionValuesDescribed(
-			"0", "off",
-			"-1,", "automatic",
-			"1", "on",
-		),
-		"deinterlace-mode": carapace.ActionValues("auto", "discard", "blend", "mean", "bob", "linear", "x", "yadif", "yadif2x", "phosphor", "ivtc"),
-		"preferred-resolution": carapace.ActionValuesDescribed(
-			"-1", "best available",
-			"1080", "full hd (1080p)",
-			"720", "hd (720p)",
-			"576", "standard definition (576 or 480 lines)",
-			"360", "low definition (360 lines)",
-			"240", "very low definition (240 lines)",
-		),
-		"verbose": carapace.ActionValues("0", "1", "2"),
-		"pidfile": carapace.ActionFiles(),
-		"hotkeys-y-wheel-mode": carapace.ActionValuesDescribed(
-			"-1", "Ignore",
-			"0", "Volume control",
-			"2", "Position control",
-			"3", "Position control reversed",
-		),
-		"hotkeys-x-wheel-mode": carapace.ActionValuesDescribed(
-			"-1", "Ignore",
-			"0", "Volume control",
-			"2", "Position control",
-			"3", "Position control reversed",
-		),
-		"config":        carapace.ActionFiles(),
-		"snapshot-path": carapace.ActionFiles(),
-		"sub-file":      carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
