@@ -77,8 +77,8 @@ func init() {
 	rootCmd.Flags().BoolS("x", "x", false, "list entries by lines instead of by columns")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"format":     carapace.ActionValues("across", "commas", "horizontal", "long", "single-column", "verbose", "vertical"),
 		"color":      carapace.ActionValues("always", "auto", "never"),
+		"format":     carapace.ActionValues("across", "commas", "horizontal", "long", "single-column", "verbose", "vertical"),
 		"time-style": carapace.ActionValues("full-iso", "long-iso", "iso", "locale"),
 	})
 

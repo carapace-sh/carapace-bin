@@ -40,7 +40,6 @@ func init() {
 	rootCmd.Flags().StringS("y", "y", "", "y position")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"config": carapace.ActionFiles(),
 		"alignment": carapace.ActionMultiParts("_", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -51,6 +50,7 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
+		"config":  carapace.ActionFiles(),
 		"display": os.ActionDisplays(),
 	})
 }

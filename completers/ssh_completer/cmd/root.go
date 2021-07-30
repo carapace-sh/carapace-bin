@@ -70,18 +70,18 @@ func init() {
 		// TODO complete bindings
 		// "B"
 		// "b"
-		"c": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA()
-		}),
 		// "D"
-		"E": carapace.ActionFiles(),
-		"F": carapace.ActionFiles(),
-		"I": carapace.ActionFiles(),
-		"i": carapace.ActionFiles(),
 		// "J"
 		// "L"
 		// ";"
 		// "m"
+		// "p"
+		// "R"
+		// "W"
+		// "w"
+		"E": carapace.ActionFiles(),
+		"F": carapace.ActionFiles(),
+		"I": carapace.ActionFiles(),
 		"O": carapace.ActionValuesDescribed(
 			"check", "check that the master process is running",
 			"forward", "request forwardings without command execution",
@@ -89,15 +89,15 @@ func init() {
 			"exit", "request the master to exit",
 			"stop", "request the master to stop accepting further multiplexing requests",
 		),
+		"Q": ActionQueryOptions(),
+		"S": carapace.ActionFiles(),
+		"c": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA()
+		}),
+		"i": carapace.ActionFiles(),
 		"o": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return ssh.ActionOptions()
 		}),
-		// "p"
-		"Q": ActionQueryOptions(),
-		// "R"
-		"S": carapace.ActionFiles(),
-		// "W"
-		// "w"
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

@@ -27,10 +27,10 @@ func init() {
 	repoCmd.AddCommand(repo_listCmd)
 
 	carapace.Gen(repo_listCmd).FlagCompletion(carapace.ActionMap{
-		"language": action.ActionLanguages(),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
+		"language": action.ActionLanguages(),
 	})
 
 	carapace.Gen(repo_listCmd).PositionalCompletion(

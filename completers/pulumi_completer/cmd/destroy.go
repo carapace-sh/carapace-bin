@@ -35,12 +35,12 @@ func init() {
 	rootCmd.AddCommand(destroyCmd)
 
 	carapace.Gen(destroyCmd).FlagCompletion(carapace.ActionMap{
-		"stack":       action.ActionStacks(destroyCmd, action.StackOpts{}),
+		//"event-log": carapace.ActionFiles(),
 		"config-file": carapace.ActionFiles(),
+		"exec-kind":   action.ActionExecKinds(),
+		"stack":       action.ActionStacks(destroyCmd, action.StackOpts{}),
 		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionUrns(destroyCmd)
 		}),
-		//"event-log": carapace.ActionFiles(),
-		"exec-kind": action.ActionExecKinds(),
 	})
 }

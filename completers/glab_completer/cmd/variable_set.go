@@ -22,13 +22,13 @@ func init() {
 	variableCmd.AddCommand(variable_setCmd)
 
 	carapace.Gen(variable_setCmd).FlagCompletion(carapace.ActionMap{
-		"type":  carapace.ActionValues("env_var", "file"),
 		"group": action.ActionGroups(variableCmd),
 		"scope": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			all := carapace.ActionValues("*").Invoke(c)
 			environments := action.ActionEnvironments(variable_setCmd).Invoke(c)
 			return all.Merge(environments).ToA()
 		}),
+		"type": carapace.ActionValues("env_var", "file"),
 	})
 
 	carapace.Gen(variable_setCmd).PositionalCompletion(

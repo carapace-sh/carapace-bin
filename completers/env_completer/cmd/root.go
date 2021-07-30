@@ -32,10 +32,10 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"unset":          os.ActionEnvironmentVariables(),
-		"chdir":          carapace.ActionDirectories(),
 		"block-signal":   os.ActionKillSignals(),
+		"chdir":          carapace.ActionDirectories(),
 		"default-signal": os.ActionKillSignals(),
 		"ignore-signal":  os.ActionKillSignals(),
+		"unset":          os.ActionEnvironmentVariables(),
 	})
 }

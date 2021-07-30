@@ -44,15 +44,15 @@ func init() {
 	tagCmd.Flag("color").NoOptDefVal = " "
 
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{
-		"file":        carapace.ActionFiles(),
 		"cleanup":     git.ActionCleanupMode(),
-		"local-user":  os.ActionGpgKeyIds(),
+		"color":       carapace.ActionValues("always", "never", "auto"),
 		"contains":    git.ActionRefs(git.RefOption{Commits: 100}),
-		"no-contains": git.ActionRefs(git.RefOption{Commits: 100}),
+		"file":        carapace.ActionFiles(),
+		"local-user":  os.ActionGpgKeyIds(),
 		"merged":      git.ActionRefs(git.RefOption{Commits: 100}),
+		"no-contains": git.ActionRefs(git.RefOption{Commits: 100}),
 		"no-merged":   git.ActionRefs(git.RefOption{Commits: 100}),
 		"points-at":   git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Commits: 100}),
-		"color":       carapace.ActionValues("always", "never", "auto"),
 	})
 
 	carapace.Gen(tagCmd).PositionalAnyCompletion(

@@ -68,12 +68,6 @@ func init() {
 	rootCmd.Flag("strip-relocs").NoOptDefVal = "1"
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"o": carapace.ActionFiles(),
-		"overlay": carapace.ActionValuesDescribed(
-			"copy", "copy any extra data attached to the file [default]",
-			"strip", "strip any extra data attached to the file [DANGEROUS]",
-			"skip", "don't compress a file with an overlay",
-		),
 		"compress-exports": carapace.ActionValuesDescribed(
 			"0", "do not compress the export section",
 			"1", "compress the export section [default]",
@@ -86,6 +80,12 @@ func init() {
 		),
 		"compress-resources": carapace.ActionValuesDescribed(
 			"0", "do not compress any resources at all",
+		),
+		"o": carapace.ActionFiles(),
+		"overlay": carapace.ActionValuesDescribed(
+			"copy", "copy any extra data attached to the file [default]",
+			"strip", "strip any extra data attached to the file [DANGEROUS]",
+			"skip", "don't compress a file with an overlay",
 		),
 		"strip-relocs": carapace.ActionValuesDescribed(
 			"0", "do not strip relocations",

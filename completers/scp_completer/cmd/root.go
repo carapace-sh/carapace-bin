@@ -40,14 +40,14 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "Verbose mode.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"c": ssh.ActionCiphers(),
 		"F": carapace.ActionFiles(),
-		"i": carapace.ActionFiles(),
 		"J": net.ActionHosts(),
+		"S": carapace.ActionFiles(),
+		"c": ssh.ActionCiphers(),
+		"i": carapace.ActionFiles(),
 		"o": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return ssh.ActionOptions()
 		}),
-		"S": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

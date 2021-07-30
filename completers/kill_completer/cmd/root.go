@@ -32,8 +32,8 @@ func init() {
 	rootCmd.Flag("list").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"signal": os.ActionKillSignals(),
 		"list":   os.ActionKillSignals(),
+		"signal": os.ActionKillSignals(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

@@ -61,11 +61,11 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "Show version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"display":          os.ActionDisplays(),
 		"gimprc":           carapace.ActionFiles(),
-		"system-gimprc":    carapace.ActionFiles(),
 		"pdb-compat-mode":  carapace.ActionValues("off", "on", "warn"),
 		"stack-trace-mode": carapace.ActionValues("never", "query", "always"),
-		"display":          os.ActionDisplays(),
+		"system-gimprc":    carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

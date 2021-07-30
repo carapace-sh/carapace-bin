@@ -42,11 +42,11 @@ func init() {
 	rootCmd.AddCommand(buildCmd)
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
-		"n":         carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8"),
 		"buildmode": carapace.ActionValues("archive", "c-archive", "c-shared", "default", "shared", "exe", "pie", "plugin"),
 		"compiler":  carapace.ActionValues("gccgo", "gc"),
 		"mod":       carapace.ActionValues("readonly", "vendor", "mod"),
 		"modfile":   carapace.ActionFiles(".mod"),
+		"n":         carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8"),
 		"pkgdir":    carapace.ActionDirectories(),
 	})
 }

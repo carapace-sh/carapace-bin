@@ -21,8 +21,8 @@ func init() {
 	secretCmd.AddCommand(secret_setCmd)
 
 	carapace.Gen(secret_setCmd).FlagCompletion(carapace.ActionMap{
-		"org": action.ActionUsers(secret_setCmd, action.UserOpts{Organizations: true}),
 		"env": action.ActionEnvironments(secret_setCmd),
+		"org": action.ActionUsers(secret_setCmd, action.UserOpts{Organizations: true}),
 		"repos": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionOwnerRepositories(secret_setCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),

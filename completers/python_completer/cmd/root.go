@@ -40,8 +40,6 @@ func init() {
 	rootCmd.Flags().BoolS("x", "x", false, "skip first line of source")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"m":                     action.ActionModules(),
-		"check-hash-based-pycs": carapace.ActionValues("always", "default", "never"),
 		"X": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -66,6 +64,8 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
+		"check-hash-based-pycs": carapace.ActionValues("always", "default", "never"),
+		"m":                     action.ActionModules(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

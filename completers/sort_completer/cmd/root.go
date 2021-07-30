@@ -53,8 +53,8 @@ func init() {
 		"check":               carapace.ActionValues("diagnose-first", "quiet", "silent"),
 		"compress-program":    carapace.ActionValues("bzip2", "gzip", "lzop", "xz"),
 		"files0-from":         carapace.ActionFiles(),
-		"sort":                carapace.ActionValues("general-numeric", "human-numeric", "month", "numeric", "random", "version"),
 		"random-source":       carapace.ActionFiles(),
+		"sort":                carapace.ActionValues("general-numeric", "human-numeric", "month", "numeric", "random", "version"),
 		"temporary-directory": carapace.ActionDirectories(),
 	})
 

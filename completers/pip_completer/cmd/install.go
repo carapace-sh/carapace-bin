@@ -59,12 +59,12 @@ func init() {
 		"constraint":       carapace.ActionFiles(),
 		"editable":         carapace.ActionDirectories(),
 		"implementation":   carapace.ActionValues("pp", "jy", "cp", "ip"),
+		"progress-bar":     carapace.ActionValues("off", "on", "ascii", "pretty", "emoji"),
 		"requirement":      carapace.ActionFiles(),
 		"root":             carapace.ActionDirectories(),
 		"src":              carapace.ActionDirectories(),
 		"target":           carapace.ActionDirectories(),
 		"upgrade-strategy": carapace.ActionValues("only-if-needed", "eager"),
-		"progress-bar":     carapace.ActionValues("off", "on", "ascii", "pretty", "emoji"),
 	})
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(

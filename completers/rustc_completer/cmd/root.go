@@ -53,6 +53,13 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
+		"crate-type": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionValues("bin", "lib", "rlib", "dylib", "cdylib", "staticlib", "proc-macro").Invoke(c).Filter(c.Parts).ToA()
+		}),
+		"edition": carapace.ActionValues("2015", "2018", "2021"),
+		"emit": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionValues("asm", "llvm-bc", "llvm-ir", "obj", "metadata", "link", "dep-info", "mir").Invoke(c).Filter(c.Parts).ToA()
+		}),
 		"l": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -63,16 +70,9 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"crate-type": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("bin", "lib", "rlib", "dylib", "cdylib", "staticlib", "proc-macro").Invoke(c).Filter(c.Parts).ToA()
-		}),
-		"edition": carapace.ActionValues("2015", "2018", "2021"),
-		"emit": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("asm", "llvm-bc", "llvm-ir", "obj", "metadata", "link", "dep-info", "mir").Invoke(c).Filter(c.Parts).ToA()
-		}),
-		"print":   carapace.ActionValues("crate-name", "file-names", "sysroot", "target-libdir", "cfg", "target-list", "target-cpus", "target-features", "relocation-models", "code-models", "tls-models", "target-spec-json", "native-static-libs"),
 		"o":       carapace.ActionFiles(),
 		"out-dir": carapace.ActionFiles(),
+		"print":   carapace.ActionValues("crate-name", "file-names", "sysroot", "target-libdir", "cfg", "target-list", "target-cpus", "target-features", "relocation-models", "code-models", "tls-models", "target-spec-json", "native-static-libs"),
 		// TODO target triple (see rustup action)
 	})
 

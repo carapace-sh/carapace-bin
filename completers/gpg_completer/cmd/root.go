@@ -71,9 +71,9 @@ func init() {
 	rootCmd.Flags().StringS("z", "z", "", "set compress level to N (0 disables)")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"recipient":   os.ActionUsers(),
 		"local-user":  os.ActionUsers(),
 		"output":      carapace.ActionFiles(),
+		"recipient":   os.ActionUsers(),
 		"tofu-policy": carapace.ActionValues("auto", "good", "unknown", "bad", "ask"),
 	})
 

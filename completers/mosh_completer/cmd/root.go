@@ -38,13 +38,9 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "version and copyright information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"client": carapace.ActionFiles(),
-		"predict": carapace.ActionValuesDescribed(
-			"adaptive", "local echo for slower links",
-			"always", "use local echo even on fast links",
-			"never", "never use local echo",
-			"experimental", "aggressively echo even when incorrect",
-		),
+		"bind-server":            carapace.ActionValues("ssh", "any", "IP"),
+		"client":                 carapace.ActionFiles(),
+		"experimental-remote-ip": carapace.ActionValues("local", "remote", "proxy"),
 		"family": carapace.ActionValuesDescribed(
 			"inet", "use IPv4 only",
 			"inet6", "use IPv6 only",
@@ -63,8 +59,12 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"bind-server":            carapace.ActionValues("ssh", "any", "IP"),
-		"experimental-remote-ip": carapace.ActionValues("local", "remote", "proxy"),
+		"predict": carapace.ActionValuesDescribed(
+			"adaptive", "local echo for slower links",
+			"always", "use local echo even on fast links",
+			"never", "never use local echo",
+			"experimental", "aggressively echo even when incorrect",
+		),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

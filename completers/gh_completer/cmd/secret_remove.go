@@ -18,8 +18,8 @@ func init() {
 	secretCmd.AddCommand(secret_removeCmd)
 
 	carapace.Gen(secret_removeCmd).FlagCompletion(carapace.ActionMap{
-		"org": action.ActionUsers(secret_removeCmd, action.UserOpts{Organizations: true}),
 		"env": action.ActionEnvironments(secret_removeCmd),
+		"org": action.ActionUsers(secret_removeCmd, action.UserOpts{Organizations: true}),
 	})
 
 	carapace.Gen(secret_removeCmd).PositionalCompletion(

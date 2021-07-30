@@ -37,8 +37,8 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "print program version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"user":  os.ActionUsers(),
 		"trace": carapace.ActionFiles(),
+		"user":  os.ActionUsers(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

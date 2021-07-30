@@ -40,9 +40,9 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		// TODO should be lists of values (comma separated)
+		"exclude-type": carapace.ActionValues(types...),
 		"output":       carapace.ActionValues("avail", "file", "fstype", "iavail", "ipcent", "itotal", "iused", "pcent", "size", "source", "target", "used"),
 		"type":         carapace.ActionValues(types...),
-		"exclude-type": carapace.ActionValues(types...),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

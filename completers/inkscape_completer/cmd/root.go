@@ -82,10 +82,10 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"convert-dpi-method": carapace.ActionValues("none", "scale-viewbox", "scale-document"),
-		"export-filename":    carapace.ActionFiles(),
-		"export-type":        carapace.ActionValues("svg", "png", "ps", "eps", "pdf", "emf", "wmf", "xaml"),
-		"export-pdf-version": carapace.ActionValues("1.4", "1.5"),
 		"display":            os.ActionDisplays(),
+		"export-filename":    carapace.ActionFiles(),
+		"export-pdf-version": carapace.ActionValues("1.4", "1.5"),
+		"export-type":        carapace.ActionValues("svg", "png", "ps", "eps", "pdf", "emf", "wmf", "xaml"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
