@@ -45,8 +45,8 @@ func init() {
 	rootCmd.Flag("lock").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"compatibility":   carapace.ActionValues("dos", "nondos"),
 		"color":           carapace.ActionValues("auto", "always", "never"),
+		"compatibility":   carapace.ActionValues("dos", "nondos"),
 		"lock":            carapace.ActionValues("yes", "no", "nonblock"),
 		"units":           carapace.ActionValues("cylinders", "sectors"),
 		"wipe-partitions": carapace.ActionValues("auto", "always", "never"),

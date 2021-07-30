@@ -52,8 +52,8 @@ func init() {
 	rootCmd.Flag("profile").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"dump-variables": carapace.ActionFiles(),
 		"debug":          carapace.ActionFiles(),
+		"dump-variables": carapace.ActionFiles(),
 		"exec":           carapace.ActionFiles(),
 		"file":           carapace.ActionFiles(),
 		"include":        carapace.ActionFiles(),

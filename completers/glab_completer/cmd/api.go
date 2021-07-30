@@ -26,9 +26,6 @@ func init() {
 	rootCmd.AddCommand(apiCmd)
 
 	carapace.Gen(apiCmd).FlagCompletion(carapace.ActionMap{
-		"hostname": action.ActionConfigHosts(),
-		"input":    carapace.ActionFiles(),
-		"method":   http.ActionRequestMethods(),
 		"header": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
@@ -41,6 +38,9 @@ func init() {
 				}
 			})
 		}),
+		"hostname": action.ActionConfigHosts(),
+		"input":    carapace.ActionFiles(),
+		"method":   http.ActionRequestMethods(),
 	})
 
 	carapace.Gen(apiCmd).PositionalCompletion(

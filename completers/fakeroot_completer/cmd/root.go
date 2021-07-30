@@ -27,10 +27,10 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "Display version.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"s":     carapace.ActionFiles(),
-		"i":     carapace.ActionFiles(),
 		"faked": carapace.ActionFiles(),
+		"i":     carapace.ActionFiles(),
 		"lib":   carapace.ActionFiles(),
+		"s":     carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

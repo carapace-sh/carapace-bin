@@ -24,8 +24,8 @@ func init() {
 	rootCmd.Flags().StringP("root", "R", "", "directory to chroot into")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"root":   carapace.ActionDirectories(),
 		"prefix": carapace.ActionDirectories(),
+		"root":   carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

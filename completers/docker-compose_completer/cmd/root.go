@@ -36,11 +36,11 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "Print version and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"env-file":          carapace.ActionFiles(),
 		"file":              carapace.ActionFiles(),
 		"log-level":         carapace.ActionValues("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"),
+		"project-directory": carapace.ActionDirectories(),
 		"tlscert":           carapace.ActionFiles(".crt"),
 		"tlskey":            carapace.ActionFiles(".key"),
-		"project-directory": carapace.ActionDirectories(),
-		"env-file":          carapace.ActionFiles(),
 	})
 }

@@ -47,10 +47,10 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"exclude-from": carapace.ActionFiles(),
 		"files0-from":  carapace.ActionFiles(),
 		"time":         carapace.ActionValues("access", "atime", "ctime", "status", "use"),
 		"time-style":   carapace.ActionValues("full-iso", "long-iso", "iso"),
-		"exclude-from": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

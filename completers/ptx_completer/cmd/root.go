@@ -39,8 +39,8 @@ func init() {
 	rootCmd.Flags().StringP("word-regexp", "W", "", "use REGEXP to match each keyword")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"format":      carapace.ActionValues("roff", "tex"),
 		"break-file":  carapace.ActionFiles(),
+		"format":      carapace.ActionValues("roff", "tex"),
 		"ignore-file": carapace.ActionFiles(),
 		"only-file":   carapace.ActionFiles(),
 	})

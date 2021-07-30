@@ -34,8 +34,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"group":      os.ActionGroups(),
-		"supp-group": os.ActionGroups(),
 		"shell":      os.ActionShells(),
+		"supp-group": os.ActionGroups(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

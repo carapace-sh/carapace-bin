@@ -112,6 +112,33 @@ func init() {
 	rootCmd.Flag("XX").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"XX": action.ActionAdvanced(),
+		"Xbootclasspath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			return carapace.ActionFiles(".zip", ".jar")
+		}),
+		"Xbootclasspath/a": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			return carapace.ActionFiles(".zip", ".jar")
+		}),
+		"Xbootclasspath/p": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			return carapace.ActionFiles(".zip", ".jar")
+		}),
+		"Xcheck": carapace.ActionValuesDescribed(
+			"jni", "perform additional checks for JNI functions",
+		),
+		"Xloggc": carapace.ActionFiles(),
+		"Xshare": carapace.ActionValuesDescribed(
+			"auto", "use shared class data if possible",
+			"jni", "perform additional checks for JNI functions",
+			"off", "do not attempt to use shared class data",
+			"on", "require using shared class data, otherwise fail",
+		),
+		"XshowSettings": carapace.ActionValuesDescribed(
+			"all", "show all settings and continue",
+			"vm", "show all vm related settings and continue",
+			"system", "show host system or container configuration and continue",
+			"properties", "show all property settings and continue",
+			"locale", "show all locale related settings and continue",
+		),
 		"agentpath": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -153,33 +180,6 @@ func init() {
 			"gc", "Displays information about each garbage collection (GC) event",
 			"jni", "Displays information about the use of native methods and other Java Native Interface (JNI) activity",
 		),
-		"Xbootclasspath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".zip", ".jar")
-		}),
-		"Xbootclasspath/a": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".zip", ".jar")
-		}),
-		"Xbootclasspath/p": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".zip", ".jar")
-		}),
-		"Xloggc": carapace.ActionFiles(),
-		"Xcheck": carapace.ActionValuesDescribed(
-			"jni", "perform additional checks for JNI functions",
-		),
-		"Xshare": carapace.ActionValuesDescribed(
-			"auto", "use shared class data if possible",
-			"jni", "perform additional checks for JNI functions",
-			"off", "do not attempt to use shared class data",
-			"on", "require using shared class data, otherwise fail",
-		),
-		"XshowSettings": carapace.ActionValuesDescribed(
-			"all", "show all settings and continue",
-			"vm", "show all vm related settings and continue",
-			"system", "show host system or container configuration and continue",
-			"properties", "show all property settings and continue",
-			"locale", "show all locale related settings and continue",
-		),
-		"XX": action.ActionAdvanced(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

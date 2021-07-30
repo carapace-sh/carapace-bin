@@ -23,7 +23,7 @@ var rootCmd = &cobra.Command{
 				exitCode = 1
 			} else if err := LintFlagActions(arg); err != nil {
 				println(err.Error())
-				//exitCode = 1 // TODO not active for now
+				exitCode = 1
 			}
 		}
 		os.Exit(exitCode)

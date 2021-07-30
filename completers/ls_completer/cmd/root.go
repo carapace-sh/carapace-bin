@@ -78,9 +78,9 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color":           carapace.ActionValues("always", "auto", "never"),
+		"format":          carapace.ActionValues("across", "horizontal", "single-column", "vertical", "commas", "long", "verbose"),
 		"hyperlink":       carapace.ActionValues("always", "auto", "none"),
 		"indicator-style": carapace.ActionValues("classify", "file-type", "none", "slash"),
-		"format":          carapace.ActionValues("across", "horizontal", "single-column", "vertical", "commas", "long", "verbose"),
 		"quoting-style":   carapace.ActionValues("c", "clocale", "escape", "literal", "locale", "shell", "shell-always"),
 		"sort":            carapace.ActionValues("extension", "none", "size", "time", "version"),
 		"time":            carapace.ActionValues("access", "atime", "ctime", "status", "use"),

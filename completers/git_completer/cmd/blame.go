@@ -51,10 +51,10 @@ func init() {
 	rootCmd.AddCommand(blameCmd)
 
 	carapace.Gen(blameCmd).FlagCompletion(carapace.ActionMap{
-		"ignore-rev":       git.ActionRefs(git.RefOptionDefault),
-		"ignore-revs-file": carapace.ActionFiles(),
 		"S":                carapace.ActionFiles(),
 		"contents":         carapace.ActionFiles(),
+		"ignore-rev":       git.ActionRefs(git.RefOptionDefault),
+		"ignore-revs-file": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(blameCmd).PositionalCompletion(

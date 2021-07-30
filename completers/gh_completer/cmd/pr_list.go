@@ -27,8 +27,8 @@ func init() {
 	prCmd.AddCommand(pr_listCmd)
 
 	carapace.Gen(pr_listCmd).FlagCompletion(carapace.ActionMap{
-		"author":   action.ActionUsers(pr_listCmd, action.UserOpts{Users: true}),
 		"assignee": action.ActionAssignableUsers(pr_listCmd),
+		"author":   action.ActionUsers(pr_listCmd, action.UserOpts{Users: true}),
 		"base":     action.ActionBranches(pr_listCmd),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionPullRequestFields().Invoke(c).Filter(c.Parts).ToA()

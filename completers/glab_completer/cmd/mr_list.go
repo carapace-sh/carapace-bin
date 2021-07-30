@@ -40,10 +40,10 @@ func init() {
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionLabels(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
+		"milestone": action.ActionMilestones(mr_listCmd),
 		"not-label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionLabels(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"milestone": action.ActionMilestones(mr_listCmd),
 		"reviewer": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionProjectMembers(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),

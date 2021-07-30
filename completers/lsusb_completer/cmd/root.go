@@ -27,12 +27,12 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show version of program")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"s": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return usb.ActionDeviceNumbers().Invoke(c).ToMultiPartsA(":")
-		}),
+		"D": carapace.ActionFiles(),
 		"d": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return usb.ActionProductNumbers().Invoke(c).ToMultiPartsA(":")
 		}),
-		"D": carapace.ActionFiles(),
+		"s": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return usb.ActionDeviceNumbers().Invoke(c).ToMultiPartsA(":")
+		}),
 	})
 }

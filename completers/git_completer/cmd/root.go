@@ -35,6 +35,7 @@ func init() {
 	rootCmd.Flags().String("work-tree", "", "path to working tree")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"C": carapace.ActionDirectories(),
 		"c": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -43,7 +44,6 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"C":         carapace.ActionDirectories(),
 		"exec-path": carapace.ActionDirectories(),
 		"git-dir":   carapace.ActionDirectories(),
 		"work-tree": carapace.ActionDirectories(),

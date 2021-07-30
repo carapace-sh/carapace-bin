@@ -38,8 +38,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"I": carapace.ActionDirectories(),
 		"d": carapace.ActionFiles(),
-		"w": carapace.ActionFiles(),
 		"f": carapace.ActionFiles(),
+		"w": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

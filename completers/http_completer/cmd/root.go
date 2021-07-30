@@ -76,23 +76,23 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Show version and exit.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"pretty":            carapace.ActionValues("all", "colors", "format", "none"),
-		"style":             ActionStyles(),
-		"format-options":    ActionFormatOptions(),
-		"print":             ActionPrintOptions(),
-		"history-print":     ActionPrintOptions(),
-		"output":            carapace.ActionFiles(),
-		"session":           carapace.ActionFiles(), // TODO complete names
-		"session-read-only": carapace.ActionFiles(), // TODO complete names
-		"auth-type":         carapace.ActionValues("basic", "digest"),
-		"verify":            carapace.ActionValues("yes", "no"),
-		"ssl":               carapace.ActionValues("ssl2.3", "tls1", "tls1.1", "tls1.2"),
+		"auth-type": carapace.ActionValues("basic", "digest"),
+		"cert":      carapace.ActionFiles(),
+		"cert-key":  carapace.ActionFiles(),
 		"ciphers": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues() // TODO complete ciphers
 		}),
-		"cert":           carapace.ActionFiles(),
-		"cert-key":       carapace.ActionFiles(),
-		"default-scheme": carapace.ActionValues("http://", "https://"),
+		"default-scheme":    carapace.ActionValues("http://", "https://"),
+		"format-options":    ActionFormatOptions(),
+		"history-print":     ActionPrintOptions(),
+		"output":            carapace.ActionFiles(),
+		"pretty":            carapace.ActionValues("all", "colors", "format", "none"),
+		"print":             ActionPrintOptions(),
+		"session":           carapace.ActionFiles(), // TODO complete names
+		"session-read-only": carapace.ActionFiles(), // TODO complete names
+		"ssl":               carapace.ActionValues("ssl2.3", "tls1", "tls1.1", "tls1.2"),
+		"style":             ActionStyles(),
+		"verify":            carapace.ActionValues("yes", "no"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

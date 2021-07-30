@@ -34,9 +34,9 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "print version number")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"d":             carapace.ActionValues("all", "cache", "camctl", "camsupport", "control", "dev", "fswatch", "input", "lighttable", "lua", "masks", "memory", "nan", "opencl", "perf", "pwstorage", "print", "sql", "ioporder", "imageio"),
 		"cachedir":      carapace.ActionDirectories(),
 		"configdir":     carapace.ActionDirectories(),
+		"d":             carapace.ActionValues("all", "cache", "camctl", "camsupport", "control", "dev", "fswatch", "input", "lighttable", "lua", "masks", "memory", "nan", "opencl", "perf", "pwstorage", "print", "sql", "ioporder", "imageio"),
 		"datadir":       carapace.ActionDirectories(),
 		"library":       carapace.ActionFiles(".db"),
 		"localedir":     carapace.ActionDirectories(),

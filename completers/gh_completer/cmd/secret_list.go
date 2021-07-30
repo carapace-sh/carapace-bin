@@ -18,7 +18,7 @@ func init() {
 	secretCmd.AddCommand(secret_listCmd)
 
 	carapace.Gen(secret_listCmd).FlagCompletion(carapace.ActionMap{
-		"org": action.ActionUsers(secret_listCmd, action.UserOpts{Organizations: true}),
 		"env": action.ActionEnvironments(secret_listCmd),
+		"org": action.ActionUsers(secret_listCmd, action.UserOpts{Organizations: true}),
 	})
 }

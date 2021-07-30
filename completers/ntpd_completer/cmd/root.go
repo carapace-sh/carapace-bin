@@ -51,10 +51,10 @@ func init() {
 	rootCmd.Flags().BoolS("x", "x", false, "Slew up to 600 seconds")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"I": net.ActionDevices(net.AllDevices),
 		"c": carapace.ActionFiles(),
 		"f": carapace.ActionFiles(),
 		"i": carapace.ActionDirectories(),
-		"I": net.ActionDevices(net.AllDevices),
 		"l": carapace.ActionFiles(),
 		"p": carapace.ActionFiles(),
 		"s": carapace.ActionDirectories(),

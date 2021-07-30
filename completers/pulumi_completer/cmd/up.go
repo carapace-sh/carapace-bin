@@ -45,11 +45,11 @@ func init() {
 	rootCmd.AddCommand(upCmd)
 
 	carapace.Gen(upCmd).FlagCompletion(carapace.ActionMap{
-		"config-file":      carapace.ActionFiles(),
-		"secrets-provider": action.ActionSecretsProvider(),
+		"config-file": carapace.ActionFiles(),
 		"replace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionUrns(upCmd)
 		}),
+		"secrets-provider": action.ActionSecretsProvider(),
 		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionUrns(upCmd)
 		}),

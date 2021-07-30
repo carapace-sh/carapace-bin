@@ -43,8 +43,8 @@ func init() {
 	rootCmd.Flags().String("wallpaper-mode", "", "Set mode of desktop wallpaper")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"set-wallpaper":  carapace.ActionFiles(),
 		"display":        os.ActionDisplays(),
+		"set-wallpaper":  carapace.ActionFiles(),
 		"wallpaper-mode": carapace.ActionValues("color", "stretch", "fit", "crop", "center", "tile", "screen"),
 	})
 

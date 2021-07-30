@@ -49,12 +49,12 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"magic-file": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles()
-		}),
 		"exclude":       ActionTests(),
 		"exclude-quiet": ActionTests(),
 		"files-from":    carapace.ActionFiles(),
+		"magic-file": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionFiles()
+		}),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

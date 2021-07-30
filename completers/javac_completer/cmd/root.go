@@ -76,10 +76,10 @@ func init() {
 		"bootclasspath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles(".jar", ".zip")
 		}),
-		"cp": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+		"classpath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles(".jar", ".zip")
 		}),
-		"classpath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+		"cp": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles(".jar", ".zip")
 		}),
 		"d": carapace.ActionDirectories(),

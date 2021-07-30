@@ -30,8 +30,8 @@ func init() {
 
 	carapace.Gen(apiCmd).FlagCompletion(carapace.ActionMap{
 		"hostname": action.ActionConfigHosts(),
-		"method":   action.ActionHttpMethods(),
 		"input":    carapace.ActionFiles(),
+		"method":   action.ActionHttpMethods(),
 		"preview": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionApiPreviews().Invoke(c).Filter(c.Parts).ToA()
 		}),

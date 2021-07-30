@@ -42,8 +42,8 @@ func init() {
 	rootCmd.AddCommand(checkoutCmd)
 
 	carapace.Gen(checkoutCmd).FlagCompletion(carapace.ActionMap{
-		"b":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
 		"B":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"b":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
 		"conflict":           carapace.ActionValues("merge", "diff3"),
 		"orphan":             git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
 		"pathspec-from-file": carapace.ActionFiles(),
