@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/nvim_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -45,6 +46,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"i":           carapace.ActionFiles(),
+		"r":           action.ActionTemporaryFiles(),
 		"startuptime": carapace.ActionFiles(),
 		"u":           carapace.ActionFiles(),
 	})
