@@ -17,7 +17,7 @@ func init() {
 
 	pub_cache_addCmd.Flags().Bool("all", false, "Install all matching versions.")
 	pub_cache_addCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
-	pub_cache_addCmd.Flags().BoolP("version", "v", false, "Version constraint.")
+	pub_cache_addCmd.Flags().StringP("version", "v", "", "Version constraint.")
 	pub_cacheCmd.AddCommand(pub_cache_addCmd)
 
 	carapace.Gen(pub_cache_addCmd).FlagCompletion(carapace.ActionMap{
