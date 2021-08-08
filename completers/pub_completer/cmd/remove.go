@@ -15,10 +15,12 @@ var removeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(removeCmd).Standalone()
 
-	removeCmd.Flags().Bool("[no-]offline", false, "Use cached packages instead of accessing the network.")
-	removeCmd.Flags().Bool("[no-]precompile", false, "Precompile executables in immediate dependencies.")
 	removeCmd.Flags().BoolP("dry-run", "n", false, "Report what dependencies would change but don't change")
 	removeCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
+	removeCmd.Flags().Bool("no-offline", false, "Do not use cached packages instead of accessing the network.")
+	removeCmd.Flags().Bool("no-precompile", false, "Do not precompile executables in immediate dependencies.")
+	removeCmd.Flags().Bool("offline", false, "Use cached packages instead of accessing the network.")
+	removeCmd.Flags().Bool("precompile", false, "Precompile executables in immediate dependencies.")
 	rootCmd.AddCommand(removeCmd)
 
 	carapace.Gen(removeCmd).PositionalCompletion(
