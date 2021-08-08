@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(testCmd).Standalone()
 
 	rootCmd.AddCommand(testCmd)
+
+	carapace.Gen(testCmd).PositionalCompletion(
+		carapace.ActionFiles(".dart"),
+	)
 }

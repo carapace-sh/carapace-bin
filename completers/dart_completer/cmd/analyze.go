@@ -21,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(analyzeCmd)
 
 	carapace.Gen(analyzeCmd).PositionalCompletion(
-		carapace.ActionDirectories(),
+		carapace.ActionFiles(".dart"),
 	)
 }

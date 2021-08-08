@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(fixCmd)
 
 	carapace.Gen(fixCmd).PositionalCompletion(
-		carapace.ActionDirectories(),
+		carapace.ActionFiles(".dart"),
 	)
 }
