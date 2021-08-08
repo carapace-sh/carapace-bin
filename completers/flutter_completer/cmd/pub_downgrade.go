@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/pub"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +22,9 @@ func init() {
 	pub_downgradeCmd.Flags().Bool("offline", false, "Use cached packages instead of accessing the network.")
 	pubCmd.AddCommand(pub_downgradeCmd)
 
-	carapace.Gen(pub_downgradeCmd).FlagCompletion(carapace.ActionMap{
-		"directory": carapace.ActionDirectories(),
-	})
+	carapace.Gen(pub_downgradeCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return pub.ActionDependencies().Invoke(c).Filter(c.Args).ToA()
+		}),
+	)
 }

@@ -32,5 +32,6 @@ func init() {
 
 	carapace.Gen(pub_outdatedCmd).FlagCompletion(carapace.ActionMap{
 		"directory": carapace.ActionDirectories(),
+		"mode":      carapace.ActionValues("outdated", "null-safety"),
 	})
 }

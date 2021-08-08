@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/dart_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/pub"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +22,6 @@ func init() {
 	pubCmd.AddCommand(pub_removeCmd)
 
 	carapace.Gen(pub_removeCmd).PositionalCompletion(
-		action.ActionDependencies(),
+		pub.ActionDependencies(),
 	)
 }

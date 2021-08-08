@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/flutter_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +18,7 @@ func init() {
 	pub_global_deactivateCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	pub_globalCmd.AddCommand(pub_global_deactivateCmd)
 
-	// TODO positional completion
+	carapace.Gen(pub_global_deactivateCmd).PositionalCompletion(
+		action.ActionActivePackages(),
+	)
 }
