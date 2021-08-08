@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/dart_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,5 +25,9 @@ func init() {
 	pub_upgradeCmd.Flags().Bool("precompile", false, "Precompile executables in immediate dependencies.")
 	pubCmd.AddCommand(pub_upgradeCmd)
 
-	// TODO pos completion
+	carapace.Gen(pub_upgradeCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionDependencies().Invoke(c).Filter(c.Args).ToA()
+		}),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/dart_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,10 @@ func init() {
 	pub_downgradeCmd.Flags().Bool("no-offline", false, "Do not use cached packages instead of accessing the network.")
 	pub_downgradeCmd.Flags().Bool("offline", false, "Use cached packages instead of accessing the network.")
 	pubCmd.AddCommand(pub_downgradeCmd)
+
+	carapace.Gen(pub_downgradeCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionDependencies().Invoke(c).Filter(c.Args).ToA()
+		}),
+	)
 }
