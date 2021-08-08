@@ -1,26 +1,14 @@
-package action
+package pub
 
 import (
 	"encoding/json"
 	"fmt"
 	"net/url"
-	"strings"
 	"time"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/utils"
 )
-
-func ActionActivePackages() carapace.Action {
-	return carapace.ActionExecCommand("pub", "global", "list")(func(output []byte) carapace.Action {
-		lines := strings.Split(string(output), "\n")
-		vals := make([]string, 0)
-		for _, line := range lines[:len(lines)-1] {
-			vals = append(vals, strings.SplitN(line, " ", 2)...)
-		}
-		return carapace.ActionValuesDescribed(vals...)
-	})
-}
 
 type searchResult struct {
 	Packages []struct {
@@ -28,6 +16,9 @@ type searchResult struct {
 	}
 }
 
+// ActionPackageSearch completes packages from pub.dev
+//   animated_text_kit
+//   dotted_border
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO verify on windows - should have a curl alias
@@ -54,6 +45,9 @@ type dartPackage struct {
 	}
 }
 
+// ActionPackageVersions completes versions of a package
+//   1.3.1 (about 2 years ago)
+//   4.1.1 (about 4 months ago)
 func ActionPackageVersions(pkg string) carapace.Action {
 	// TODO verify on windows - should have a curl alias
 	return carapace.ActionExecCommand("curl", fmt.Sprintf("https://pub.dev/api/packages/%v", url.QueryEscape(pkg)))(func(output []byte) carapace.Action {

@@ -16,6 +16,4 @@ func init() {
 
 	pub_pubCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	pubCmd.AddCommand(pub_pubCmd)
-
-	// TODO invoke dart's pub completion
 }

@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/git"
+	"github.com/rsteube/carapace-bin/pkg/actions/pub"
 	"github.com/spf13/cobra"
 )
 
@@ -44,4 +45,17 @@ func init() {
 		// TODO "sdk":
 	})
 	// TODO positional package search
+
+	carapace.Gen(pub_addCmd).PositionalCompletion(
+		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return pub.ActionPackageSearch().Invoke(c).Suffix(":").ToA()
+			case 1:
+				return pub.ActionPackageVersions(c.Parts[0])
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	)
 }

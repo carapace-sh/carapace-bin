@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/pub"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,17 @@ func init() {
 	pub_cache_addCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	pub_cache_addCmd.Flags().StringP("version", "v", "", "Version constraint.")
 	pub_cacheCmd.AddCommand(pub_cache_addCmd)
+
+	carapace.Gen(pub_cache_addCmd).FlagCompletion(carapace.ActionMap{
+		"version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				return pub.ActionPackageVersions(c.Args[0])
+			}
+			return carapace.ActionValues()
+		}),
+	})
+
+	carapace.Gen(pub_cache_addCmd).PositionalCompletion(
+		pub.ActionPackageSearch(),
+	)
 }

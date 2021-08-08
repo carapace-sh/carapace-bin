@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/dart_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/pub"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +23,7 @@ func init() {
 
 	carapace.Gen(pub_downgradeCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionDependencies().Invoke(c).Filter(c.Args).ToA()
+			return pub.ActionDependencies().Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

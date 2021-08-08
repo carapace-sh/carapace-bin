@@ -21,4 +21,6 @@ func init() {
 	pub_global_runCmd.Flags().Bool("no-sound-null-safety", false, "Do not override the default null safety execution mode.")
 	pub_global_runCmd.Flags().Bool("sound-null-safety", false, "Override the default null safety execution mode.")
 	pub_globalCmd.AddCommand(pub_global_runCmd)
+
+	// TODO positional completion
 }

@@ -1,4 +1,4 @@
-package action
+package pub
 
 import (
 	"io/ioutil"
@@ -35,6 +35,9 @@ func loadPubspec() (*pubspec, error) {
 	return p, err
 }
 
+// ActionDependencies completes pubspec dependencies
+//   build_runner (^1.5.0)
+//   build_web_compilers (^2.1.0)
 func ActionDependencies() carapace.Action { // TODO configure which dependencies to include
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		p, err := loadPubspec()
