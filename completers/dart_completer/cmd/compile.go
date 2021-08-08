@@ -16,4 +16,8 @@ func init() {
 
 	compileCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	rootCmd.AddCommand(compileCmd)
+
+	carapace.Gen(compileCmd).PositionalCompletion(
+		carapace.ActionFiles(".dart"),
+	)
 }
