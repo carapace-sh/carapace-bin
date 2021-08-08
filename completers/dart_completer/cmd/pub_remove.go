@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/dart_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,5 +21,7 @@ func init() {
 	pub_removeCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	pubCmd.AddCommand(pub_removeCmd)
 
-	// TODO pos completion
+	carapace.Gen(pub_removeCmd).PositionalCompletion(
+		action.ActionDependencies(),
+	)
 }
