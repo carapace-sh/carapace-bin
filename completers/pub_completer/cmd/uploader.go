@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/pub_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +18,10 @@ func init() {
 	uploaderCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	uploaderCmd.Flags().String("package", "", "The package whose uploaders will be modified.")
 	rootCmd.AddCommand(uploaderCmd)
+
+	carapace.Gen(uploaderCmd).FlagCompletion(carapace.ActionMap{
+		"package": action.ActionPackageSearch(),
+	})
 
 	carapace.Gen(uploaderCmd).PositionalCompletion(
 		carapace.ActionValues("add", "remove"),
