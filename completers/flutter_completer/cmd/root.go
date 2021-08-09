@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/flutter_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,11 @@ func init() {
 	rootCmd.Flags().Bool("suppress-analytics", false, "Suppress analytics reporting when this command runs.")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Noisy logging, including all shell commands executed.")
 	rootCmd.Flags().Bool("version", false, "Reports the version of this tool.")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"device-id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			// TODO merge with devices
+			return action.ActionEmulators()
+		}),
+	})
 }
