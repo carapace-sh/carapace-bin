@@ -26,8 +26,9 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"device-id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			// TODO merge with devices
-			return action.ActionEmulators()
+			devices := action.ActionDevices().Invoke(c)
+			emulators := action.ActionEmulators().Invoke(c)
+			return devices.Merge(emulators).ToA()
 		}),
 	})
 }
