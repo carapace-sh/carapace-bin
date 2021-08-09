@@ -34,8 +34,9 @@ func ActionMergeRequests(cmd *cobra.Command, state string) carapace.Action {
 
 func ActionMergeRequestsAndBranches(cmd *cobra.Command, state string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		branches := ActionBranches(cmd).Invoke(c)
-		mergeRequests := ActionMergeRequests(cmd, state).Invoke(c)
-		return branches.Merge(mergeRequests).Filter(c.Args).ToA()
+		return carapace.Batch(
+			ActionBranches(cmd),
+			ActionMergeRequests(cmd, state),
+		).Invoke(c).Merge().ToA()
 	})
 }

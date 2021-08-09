@@ -20,9 +20,10 @@ func init() {
 	carapace.Gen(repo_archiveCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("tar.gz", "tar.bz2", "tbz", "tbz2", "tb2", "bz2", "tar", "zip"),
 		"sha": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			branches := action.ActionBranches(repo_archiveCmd).Invoke(c)
-			tags := action.ActionTags(repo_archiveCmd).Invoke(c)
-			return branches.Merge(tags).ToA() // TODO sha
+			return carapace.Batch(
+				action.ActionBranches(repo_archiveCmd),
+				action.ActionTags(repo_archiveCmd),
+			).Invoke(c).Merge().ToA() // TODO sha
 		}),
 	})
 

@@ -53,9 +53,10 @@ func extensionFields(s string) []string {
 
 func ActionFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		input := ActionInputFormats().Invoke(c)
-		output := ActionOutputFormats().Invoke(c)
-		return input.Merge(output).ToA()
+		return carapace.Batch(
+			ActionInputFormats(),
+			ActionOutputFormats(),
+		).Invoke(c).Merge().ToA()
 	})
 }
 
