@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/adb"
 	"github.com/spf13/cobra"
 )
 
@@ -44,9 +45,9 @@ func init() {
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		// TODO device-user
 		// TODO plain-name
 		"coverage-path": carapace.ActionFiles(),
+		"device-user":   adb.ActionDeviceUsers(),
 		"reporter": carapace.ActionValuesDescribed(
 			"compact", "A single line that updates dynamically.",
 			"expanded", "A separate line for each update.",

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/adb"
 	"github.com/spf13/cobra"
 )
 
@@ -61,7 +62,7 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-		// TODO device user
+		"device-user":            adb.ActionDeviceUsers(),
 		"pid-file":               carapace.ActionFiles(),
 		"target":                 carapace.ActionFiles(".dart"),
 		"use-application-binary": carapace.ActionFiles(".apk", ".ipa"),

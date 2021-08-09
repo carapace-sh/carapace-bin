@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/adb"
 	"github.com/spf13/cobra"
 )
 
@@ -21,5 +22,7 @@ func init() {
 	installCmd.Flags().Bool("uninstall-only", false, "Uninstall the app if already on the device.")
 	rootCmd.AddCommand(installCmd)
 
-	// TODO device-user completion
+	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
+		"device-user": adb.ActionDeviceUsers(),
+	})
 }

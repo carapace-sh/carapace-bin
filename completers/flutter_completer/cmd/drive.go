@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/adb"
 	"github.com/spf13/cobra"
 )
 
@@ -66,7 +67,6 @@ func init() {
 	rootCmd.AddCommand(driveCmd)
 
 	carapace.Gen(driveCmd).FlagCompletion(carapace.ActionMap{
-		// TODO device-user (see dart completer)
 		"browser-name": carapace.ActionValuesDescribed(
 			"android-chrome", "Chrome on Android.",
 			"chrome", "Google Chrome on this computer.",
@@ -76,6 +76,7 @@ func init() {
 			"safari", "Apple Safari on this computer (macOS only).",
 		),
 		"chrome-binary":  carapace.ActionFiles(),
+		"device-user":    adb.ActionDeviceUsers(),
 		"driver":         carapace.ActionFiles(),
 		"profile-memory": carapace.ActionFiles(),
 		"screenshot":     carapace.ActionDirectories(),
