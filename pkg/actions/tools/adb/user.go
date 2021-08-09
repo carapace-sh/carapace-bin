@@ -7,6 +7,9 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionDeviceUsers completes device user ids
+// 0 (Owner)
+// 1 (another)
 func ActionDeviceUsers() carapace.Action {
 	return carapace.ActionExecCommand("adb", "shell", "pm", "list", "users")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

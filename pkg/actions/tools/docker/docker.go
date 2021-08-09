@@ -1,4 +1,4 @@
-// package aws contains docker related actions
+// package docker contains docker related actions
 package docker
 
 import (
