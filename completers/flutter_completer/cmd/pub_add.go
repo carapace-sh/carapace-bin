@@ -44,7 +44,6 @@ func init() {
 		"path": carapace.ActionDirectories(),
 		// TODO "sdk":
 	})
-	// TODO positional package search
 
 	carapace.Gen(pub_addCmd).PositionalCompletion(
 		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {

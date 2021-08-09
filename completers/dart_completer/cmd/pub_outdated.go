@@ -17,6 +17,7 @@ func init() {
 	pub_outdatedCmd.Flags().Bool("color", false, "Color the output.")
 	pub_outdatedCmd.Flags().Bool("dependency-overrides", false, "Show resolutions with `dependency_overrides`.")
 	pub_outdatedCmd.Flags().Bool("dev-dependencies", false, "Take dev dependencies into account.")
+	pub_outdatedCmd.Flags().StringP("directory", "C", "", "Run this in the directory <dir>.")
 	pub_outdatedCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	pub_outdatedCmd.Flags().Bool("json", false, "Output the results using a json format.")
 	pub_outdatedCmd.Flags().String("mode", "", "Highlight versions with PROPERTY.")
@@ -32,6 +33,7 @@ func init() {
 	pubCmd.AddCommand(pub_outdatedCmd)
 
 	carapace.Gen(pub_outdatedCmd).FlagCompletion(carapace.ActionMap{
-		"mode": carapace.ActionValues("outdated", "null-safety"),
+		"directory": carapace.ActionDirectories(),
+		"mode":      carapace.ActionValues("outdated", "null-safety"),
 	})
 }
