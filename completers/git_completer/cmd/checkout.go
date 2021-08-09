@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/git"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 

@@ -1,4 +1,4 @@
-// package os contains actions related to the operating system
+// package os contains operating system related actions
 package os
 
 import (

@@ -1,4 +1,4 @@
-// package pacman contains actions related to the arch package manager:w
+// package pacman contains arch package manager related actions
 package pacman
 
 import (

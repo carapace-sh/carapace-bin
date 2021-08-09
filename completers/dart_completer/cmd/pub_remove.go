@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/pub"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pub"
 	"github.com/spf13/cobra"
 )
 
