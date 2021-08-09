@@ -220,14 +220,13 @@ func ActionClasspathClasses(cmd *cobra.Command) carapace.Action {
 			}
 		}
 
-		actions := carapace.ActionValues().Invoke(c)
+		actions := make([]carapace.Action, 0)
 		for _, file := range files {
 			if strings.HasSuffix(file, ".jar") ||
 				strings.HasSuffix(file, ".zip") {
-				a := action.ActionJarFileClasses(file)
-				actions = actions.Merge(a.Invoke(c))
+				actions = append(actions, action.ActionJarFileClasses(file))
 			}
 		}
-		return actions.ToMultiPartsA(".")
+		return carapace.Batch(actions...).Invoke(c).Merge().ToMultiPartsA(".")
 	})
 }

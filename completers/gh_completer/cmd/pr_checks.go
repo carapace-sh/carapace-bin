@@ -18,9 +18,10 @@ func init() {
 
 	carapace.Gen(pr_checksCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			pullRequests := action.ActionPullRequests(pr_checksCmd, action.PullRequestOpts{Open: true}).Invoke(c)
-			branches := action.ActionBranches(pr_checksCmd).Invoke(c)
-			return pullRequests.Merge(branches).ToA()
+			return carapace.Batch(
+				action.ActionPullRequests(pr_checksCmd, action.PullRequestOpts{Open: true}),
+				action.ActionBranches(pr_checksCmd),
+			).Invoke(c).Merge().ToA()
 		}),
 	)
 }

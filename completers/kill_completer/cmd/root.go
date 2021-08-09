@@ -54,8 +54,9 @@ func init() {
 
 func actionProcessIdsAndNames() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		pids := os.ActionProcessIds().Invoke(c)
-		names := os.ActionProcessExecutables().Invoke(c)
-		return pids.Merge(names).Filter(c.Args).ToA()
+		return carapace.Batch(
+			os.ActionProcessIds(),
+			os.ActionProcessExecutables(),
+		).Invoke(c).Merge().Filter(c.Args).ToA()
 	})
 }

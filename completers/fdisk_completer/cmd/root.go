@@ -69,8 +69,9 @@ func init() {
 
 func ActionBlockDevicesAndFiles() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		blockDevices := fs.ActionBlockDevices().Invoke(c)
-		files := carapace.ActionFiles().Invoke(c)
-		return blockDevices.Merge(files).ToA()
+		return carapace.Batch(
+			fs.ActionBlockDevices(),
+			carapace.ActionFiles(),
+		).Invoke(c).Merge().ToA()
 	})
 }

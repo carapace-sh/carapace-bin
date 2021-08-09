@@ -31,16 +31,17 @@ func ActionRepo(cmd *cobra.Command) carapace.Action {
 			case 0:
 				return carapace.ActionValues(configHosts...).Invoke(c).Suffix("/").ToA()
 			case 1:
-				// TODO goroutine
-				users := ActionUsers(cmd).Invoke(c).Suffix("/")
-				groups := ActionGroups(cmd).Invoke(c).Suffix("/")
-				return users.Merge(groups).ToA()
+				return carapace.Batch(
+					ActionUsers(cmd),
+					ActionGroups(cmd),
+				).Invoke(c).Merge().Suffix("/").ToA()
 			case 2:
-				// TODO goroutine
-				subgroups := ActionSubgroups(cmd, c.Parts[1]).Invoke(c).Suffix("/")
-				groupProjects := ActionGroupProjects(cmd, c.Parts[1]).Invoke(c)
-				userProjects := ActionUserProjects(cmd, c.Parts[1]).Invoke(c)
-				return subgroups.Merge(groupProjects, userProjects).ToA()
+				b := carapace.Batch(
+					ActionSubgroups(cmd, c.Parts[1]),
+					ActionGroupProjects(cmd, c.Parts[1]),
+					ActionUserProjects(cmd, c.Parts[1]),
+				).Invoke(c)
+				return b[0].Suffix("/").Merge(b[1:]...).ToA() // ActionSubgroups needs `/` suffix
 			case 3:
 				groupProjects := ActionGroupProjects(cmd, strings.Join(c.Parts[1:], "/")).Invoke(c)
 				return groupProjects.ToA()
