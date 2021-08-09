@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/flutter_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	emulatorsCmd.Flags().String("launch", "", "The full or partial ID of the emulator to launch.")
 	emulatorsCmd.Flags().String("name", "", "Specifies a name for the emulator being created.")
 	rootCmd.AddCommand(emulatorsCmd)
+
+	carapace.Gen(emulatorsCmd).FlagCompletion(carapace.ActionMap{
+		"launch": action.ActionEmulators(),
+	})
 }
