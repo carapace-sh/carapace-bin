@@ -1,9 +1,8 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/bat_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -49,39 +48,13 @@ func init() {
 		"color":       carapace.ActionValues("auto", "never", "always"),
 		"decorations": carapace.ActionValues("auto", "never", "always"),
 		"italic-text": carapace.ActionValues("never", "always"),
-		"language":    ActionLanguage(),
+		"language":    action.ActionLanguages(),
 		"style":       carapace.ActionValues("auto", "full", "plain", "changes", "header", "grid", "numbers", "snip"),
-		"theme":       ActionTheme(),
+		"theme":       action.ActionThemes(),
 		"wrap":        carapace.ActionValues("auto", "never", "character"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),
 	)
-}
-
-func ActionLanguage() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("bat", "--list-languages")(func(output []byte) carapace.Action {
-			values := make([]string, 0)
-			for _, line := range strings.Split(string(output), "\n") {
-				// TODO fix ':' character in carapace
-				splitted := strings.Split(line, ":")
-				if len(splitted) == 1 {
-					values = append(values, splitted[0], "")
-				} else if len(splitted) > 1 {
-					values = append(values, splitted[0], splitted[1])
-				}
-			}
-			return carapace.ActionValuesDescribed(values...)
-		})
-	})
-}
-
-func ActionTheme() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("bat", "--list-themes")(func(output []byte) carapace.Action {
-			return carapace.ActionValues(strings.Split(string(output), "\n")...)
-		})
-	})
 }
