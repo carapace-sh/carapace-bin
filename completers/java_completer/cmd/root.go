@@ -8,6 +8,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/java_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/spf13/cobra"
 )
 
@@ -224,7 +225,7 @@ func ActionClasspathClasses(cmd *cobra.Command) carapace.Action {
 		for _, file := range files {
 			if strings.HasSuffix(file, ".jar") ||
 				strings.HasSuffix(file, ".zip") {
-				actions = append(actions, action.ActionJarFileClasses(file))
+				actions = append(actions, fs.ActionJarFileClasses(file))
 			}
 		}
 		return carapace.Batch(actions...).Invoke(c).Merge().ToMultiPartsA(".")
