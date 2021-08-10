@@ -24,9 +24,10 @@ func init() {
 	carapace.Gen(variable_setCmd).FlagCompletion(carapace.ActionMap{
 		"group": action.ActionGroups(variableCmd),
 		"scope": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			all := carapace.ActionValues("*").Invoke(c)
-			environments := action.ActionEnvironments(variable_setCmd).Invoke(c)
-			return all.Merge(environments).ToA()
+			return carapace.Batch(
+				action.ActionEnvironments(variable_setCmd),
+				carapace.ActionValues("*"),
+			).Invoke(c).Merge().ToA()
 		}),
 		"type": carapace.ActionValues("env_var", "file"),
 	})
