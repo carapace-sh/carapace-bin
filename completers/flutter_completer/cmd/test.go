@@ -47,7 +47,7 @@ func init() {
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
 		// TODO plain-name
 		"coverage-path": carapace.ActionFiles(),
-		"device-user":   adb.ActionDeviceUsers(),
+		"device-user":   adb.ActionUsers(),
 		"reporter": carapace.ActionValuesDescribed(
 			"compact", "A single line that updates dynamically.",
 			"expanded", "A separate line for each update.",

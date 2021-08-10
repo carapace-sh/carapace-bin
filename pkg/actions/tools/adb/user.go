@@ -7,10 +7,10 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionDeviceUsers completes device user ids
+// ActionUsers completes device user ids
 // 0 (Owner)
 // 1 (another)
-func ActionDeviceUsers() carapace.Action {
+func ActionUsers() carapace.Action {
 	return carapace.ActionExecCommand("adb", "shell", "pm", "list", "users")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		r := regexp.MustCompile(`^\t+UserInfo{(?P<id>\d+):(?P<name>[^:]+):(?P<info>[^}]*)}( (?P<state>.*))?$`)

@@ -62,7 +62,7 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-		"device-user":            adb.ActionDeviceUsers(),
+		"device-user":            adb.ActionUsers(),
 		"pid-file":               carapace.ActionFiles(),
 		"target":                 carapace.ActionFiles(".dart"),
 		"use-application-binary": carapace.ActionFiles(".apk", ".ipa"),
