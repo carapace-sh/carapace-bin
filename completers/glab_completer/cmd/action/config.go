@@ -48,12 +48,13 @@ func loadConfig() (config *glabConfig, err error) {
 
 func ActionConfigKeys() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"token", "Your gitlab access token, defaults to environment variables",
-		"gitlab_uri", "if unset, defaults to https://gitlab.com",
 		"browser", "if unset, defaults to environment variables",
 		"editor", "if unset, defaults to environment variables.",
-		"visual", "alternative for editor. if unset, defaults to environment variables.",
+		"gitlab_uri", "if unset, defaults to https://gitlab.com",
+		"glab_pager", "the terminal pager program to send standard output to",
 		"glamour_style", "Your desired markdown renderer style.",
+		"token", "Your gitlab access token, defaults to environment variables",
+		"visual", "alternative for editor. if unset, defaults to environment variables.",
 	)
 }
 
@@ -62,6 +63,7 @@ func ActionConfigValues(key string) carapace.Action {
 		actions := map[string]carapace.Action{
 			"token":         carapace.ActionValues(),
 			"gitlab_uri":    carapace.ActionValues(),
+			"glab_pager":    carapace.ActionValues("bat --style grid", "more", "most", "less"),
 			"browser":       carapace.ActionFiles(),
 			"editor":        carapace.ActionFiles(),
 			"visual":        carapace.ActionFiles(),
