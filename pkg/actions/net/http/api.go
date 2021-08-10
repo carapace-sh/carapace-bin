@@ -47,17 +47,10 @@ func ActionApiPaths(paths []string, placeholderPattern string, match func(c cara
 			matchedSegments[segments[len(c.Parts)]] = true // store segment as path matched so far and this is currently being completed
 		}
 
-		actions := make([]carapace.InvokedAction, 0, len(matchedSegments))
+		actions := make([]carapace.Action, 0, len(matchedSegments))
 		for key := range matchedSegments {
-			actions = append(actions, match(c, matchedData, key).Invoke(c))
+			actions = append(actions, match(c, matchedData, key))
 		}
-		switch len(actions) {
-		case 0:
-			return carapace.ActionValues()
-		case 1:
-			return actions[0].ToA()
-		default:
-			return actions[0].Merge(actions[1:]...).ToA()
-		}
+		return carapace.Batch(actions...).Invoke(c).Merge().ToA()
 	})
 }

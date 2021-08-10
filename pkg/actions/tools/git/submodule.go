@@ -59,15 +59,15 @@ func ActionSubmoduleBranches(filter ...string) carapace.Action {
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
-		action := carapace.ActionValues().Invoke(c)
+		actions := make([]carapace.Action, 0)
 		for name, s := range submodules {
 			if len(filter) == 0 || contains(filter, name) {
 				if s.Url != "" {
-					action = action.Merge(ActionLsRemoteRefs(s.Url, LsRemoteRefOption{Branches: true, Tags: true}).Invoke(c))
+					actions = append(actions, ActionLsRemoteRefs(s.Url, LsRemoteRefOption{Branches: true, Tags: true}))
 				}
 			}
 		}
-		return action.ToA()
+		return carapace.Batch(actions...).Invoke(c).Merge().ToA()
 	})
 }
 

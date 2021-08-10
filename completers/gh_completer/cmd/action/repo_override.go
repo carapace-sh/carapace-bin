@@ -13,16 +13,16 @@ import (
 func ActionRepoOverride(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO support github enterprise (different host)
-		a := carapace.ActionValues().Invoke(c)
+		actions := make([]carapace.Action, 0)
 		if wd, err := os.Getwd(); err == nil {
 			if _, err := util.FindReverse(wd, ".git"); err == nil {
-				a = a.Merge(actionRemoteRepositories().Invoke(c))
+				actions = append(actions, actionRemoteRepositories())
 			}
 		}
 		if c.CallbackValue != "" {
-			a = a.Merge(ActionOwnerRepositories(cmd).Invoke(c))
+			actions = append(actions, ActionOwnerRepositories(cmd))
 		}
-		return a.ToA()
+		return carapace.Batch(actions...).Invoke(c).Merge().ToA()
 	})
 }
 

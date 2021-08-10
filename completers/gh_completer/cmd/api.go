@@ -39,9 +39,10 @@ func init() {
 
 	carapace.Gen(apiCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			v3 := action.ActionApiV3Paths(apiCmd).Invoke(c)
-			graphql := carapace.ActionValues("graphql").Invoke(c)
-			return v3.Merge(graphql).ToA()
+			return carapace.Batch(
+				action.ActionApiV3Paths(apiCmd),
+				carapace.ActionValues("graphql"),
+			).Invoke(c).Merge().ToA()
 		}),
 	)
 }
