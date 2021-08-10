@@ -76,7 +76,7 @@ func init() {
 			"safari", "Apple Safari on this computer (macOS only).",
 		),
 		"chrome-binary":  carapace.ActionFiles(),
-		"device-user":    adb.ActionDeviceUsers(),
+		"device-user":    adb.ActionUsers(),
 		"driver":         carapace.ActionFiles(),
 		"profile-memory": carapace.ActionFiles(),
 		"screenshot":     carapace.ActionDirectories(),

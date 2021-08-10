@@ -23,6 +23,6 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
-		"device-user": adb.ActionDeviceUsers(),
+		"device-user": adb.ActionUsers(),
 	})
 }

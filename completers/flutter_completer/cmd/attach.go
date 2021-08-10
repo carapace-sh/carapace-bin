@@ -35,7 +35,8 @@ func init() {
 	rootCmd.AddCommand(attachCmd)
 
 	carapace.Gen(attachCmd).FlagCompletion(carapace.ActionMap{
-		"device-user": adb.ActionDeviceUsers(),
+		"app-id":      adb.ActionPackages(), // TODO ios
+		"device-user": adb.ActionUsers(),
 		"pid-file":    carapace.ActionFiles(),
 		"target":      carapace.ActionFiles(".dart"),
 	})
