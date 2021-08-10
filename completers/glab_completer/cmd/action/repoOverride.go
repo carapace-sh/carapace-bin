@@ -6,8 +6,17 @@ import (
 	"strings"
 )
 
+func FakeRepoFlag(cmd *cobra.Command, value string) {
+	cmd.Flags().StringP("repo", "R", value, "fake repo flag")
+	cmd.Flag("repo").Changed = true
+}
+
 func ActionRepo(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if flag := cmd.Flag("repo"); flag == nil {
+			FakeRepoFlag(cmd, c.CallbackValue)
+		}
+
 		configHosts, err := hosts()
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
