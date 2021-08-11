@@ -20,7 +20,7 @@ func ActionSamples() carapace.Action {
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
-		defer os.Remove(tmpfile.Name()) // TODO not working?
+		defer os.Remove(tmpfile.Name())
 		return carapace.ActionExecCommand("flutter", "create", "--suppress-analytics", "--list-samples", tmpfile.Name())(func(output []byte) carapace.Action {
 			content, err := ioutil.ReadFile(tmpfile.Name())
 			if err != nil {
@@ -37,6 +37,6 @@ func ActionSamples() carapace.Action {
 				vals = append(vals, sample.Id, sample.Description)
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		})
+		}).Invoke(c).ToA() // ensure this is executed before `defer os.Remove`
 	}).Cache(1 * time.Hour)
 }
