@@ -50,6 +50,11 @@ services:
     <<: *base
     working_dir: /carapace-bin
     command: go test -v ./...
+
+  inittrace:
+    <<: *base
+    working_dir: /carapace-bin
+    command: bash -c "GODEBUG=inittrace=1 go run ./cmd/carapace 2>&1 | grep 'init github.com/rsteube/carapace-bin' | awk '{print $$5\" \"$$6\" \"$$2}' | sort -r"
   
   lint:
     <<: *base
