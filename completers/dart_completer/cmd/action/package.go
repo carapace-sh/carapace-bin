@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pub"
 )
 
 func ActionActivePackages() carapace.Action {
@@ -14,5 +15,17 @@ func ActionActivePackages() carapace.Action {
 			vals = append(vals, strings.SplitN(line, " ", 2)...)
 		}
 		return carapace.ActionValuesDescribed(vals...)
+	})
+}
+
+func ActionActivePackageExecutables(pkg string) carapace.Action {
+	return carapace.ActionExecCommand("dart", "pub", "global", "list")(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+		for _, line := range lines[:len(lines)-1] {
+			if splitted := strings.SplitN(line, " ", 2); splitted[0] == pkg {
+				return pub.ActionHostedExecutables(pkg, splitted[1])
+			}
+		}
+		return carapace.ActionValues()
 	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/flutter_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,5 +23,16 @@ func init() {
 	pub_global_runCmd.Flags().Bool("sound-null-safety", false, "Override the default null safety execution mode.")
 	pub_globalCmd.AddCommand(pub_global_runCmd)
 
-	// TODO positional completion
+	carapace.Gen(pub_global_runCmd).PositionalCompletion(
+		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return action.ActionActivePackages().Invoke(c).Suffix(":").ToA()
+			case 1:
+				return action.ActionActivePackageExecutables(c.Parts[0])
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	)
 }

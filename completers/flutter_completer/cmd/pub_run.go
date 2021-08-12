@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pub"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,18 @@ func init() {
 	carapace.Gen(pub_runCmd).FlagCompletion(carapace.ActionMap{
 		"directory": carapace.ActionDirectories(),
 	})
+
+	carapace.Gen(pub_runCmd).PositionalCompletion(
+		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return pub.ActionDependencies().Invoke(c).Suffix(":").ToA()
+			case 1:
+				return pub.ActionHostedExecutables(c.Parts[0], "")
+			default:
+				return carapace.ActionValues()
+			}
+
+		}),
+	)
 }
