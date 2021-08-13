@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/rg_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -128,8 +129,7 @@ func init() {
 			"match", "specify coloring for match text",
 			"path", "specify coloring for file names",
 		),
-		// TODO complete encoding
-		"encoding": carapace.ActionMessage("TODO"),
+		"encoding": carapace.ActionValues("auto", "none", "ASCII", "UTF-8", "UTF-16"),
 		"engine": carapace.ActionValuesDescribed(
 			"auto", "identical to --auto-hybrid-regex",
 			"default", "use default engine",
@@ -151,10 +151,10 @@ func init() {
 			"none", "no sorting",
 			"path", "sort by file path",
 		),
-		"type":       ActionTypes(),
-		"type-add":   ActionTypes(),
-		"type-clear": ActionTypes(),
-		"type-not":   ActionTypes(),
+		"type":       action.ActionTypes(),
+		"type-add":   action.ActionTypes(),
+		"type-clear": action.ActionTypes(),
+		"type-not":   action.ActionTypes(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
@@ -168,9 +168,4 @@ func init() {
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
-}
-
-func ActionTypes() carapace.Action {
-	// TODO compare with zsh (type-add is a multivalue)
-	return carapace.ActionMessage("TODO: rg --types")
 }
