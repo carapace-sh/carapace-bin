@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pub"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,11 @@ func init() {
 		// TODO executables
 		"source": carapace.ActionValues("git", "hosted", "path"),
 	})
+
+	carapace.Gen(pub_global_activateCmd).PositionalCompletion(
+		pub.ActionPackageSearch(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return pub.ActionPackageVersions(c.Args[0])
+		}),
+	)
 }
