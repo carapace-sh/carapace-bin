@@ -20,7 +20,15 @@ func ActionSamples() carapace.Action {
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
-		defer os.Remove(tmpfile.Name())
+		err = tmpfile.Close() // just using ioutil.Tempfile for the random name
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+		err = os.Remove(tmpfile.Name()) // will be written by flutter and must not exist
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+		defer os.Remove(tmpfile.Name()) // remove after parsing content
 		return carapace.ActionExecCommand("flutter", "create", "--suppress-analytics", "--list-samples", tmpfile.Name())(func(output []byte) carapace.Action {
 			content, err := ioutil.ReadFile(tmpfile.Name())
 			if err != nil {
