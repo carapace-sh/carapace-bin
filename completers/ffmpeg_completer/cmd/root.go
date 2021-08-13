@@ -82,6 +82,7 @@ func init() {
 	rootCmd.Flags().Bool("hide_banner", false, "Suppress printing banner")
 	rootCmd.Flags().StringSlice("hwaccel", []string{}, "use HW acceleration")
 	rootCmd.Flags().Bool("hwaccels", false, "show available HW acceleration methods")
+	rootCmd.Flags().StringSlice("i", []string{}, "input file")
 	rootCmd.Flags().Bool("ignore_unknown", false, "Ignore unknown stream types")
 	rootCmd.Flags().Bool("layouts", false, "show standard channel layouts")
 	rootCmd.Flags().String("loglevel", "", "set logging level")
@@ -89,6 +90,7 @@ func init() {
 	rootCmd.Flags().String("max_alloc", "", "set maximum size of a single allocated block")
 	rootCmd.Flags().StringSlice("metadata", []string{}, "add metadata")
 	rootCmd.Flags().Bool("muxers", false, "show available muxers")
+	rootCmd.Flags().Bool("n", false, "Do not overwrite output files")
 	rootCmd.Flags().StringSlice("pass", []string{}, "select the pass number (1 to 3)")
 	rootCmd.Flags().Bool("pix_fmts", false, "show available pixel formats")
 	rootCmd.Flags().StringSlice("pre", []string{}, "preset name")
@@ -117,9 +119,22 @@ func init() {
 	rootCmd.Flags().StringSlice("vframes", []string{}, "set the number of video frames to output")
 	rootCmd.Flags().BoolSlice("vn", []bool{}, "disable video")
 	rootCmd.Flags().StringSlice("vol", []string{}, "change audio volume (256=normal)")
+	rootCmd.Flags().Bool("y", false, "Overwrite output files without asking")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"acodec":  action.ActionCodecs(), // TODO only audio
+		"ab":     carapace.ActionValues("16", "32", "64", "128", "192", "256", "320"),
+		"acodec": action.ActionCodecs(), // TODO only audio
+		"af": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return action.ActionFilters()
+				default:
+					return carapace.ActionValues()
+				}
+			})
+		}),
+		"ar":      carapace.ActionValues("22050", "44100", "48000"),
 		"c":       action.ActionCodecs(),
 		"c:a":     action.ActionCodecs(),
 		"c:v":     action.ActionCodecs(),
@@ -127,6 +142,7 @@ func init() {
 		"f":       action.ActionFormats(),
 		"help":    action.ActionHelpTopics(),
 		"hwaccel": action.ActionHwAccelerations(),
+		"i":       carapace.ActionFiles(),
 		"loglevel": carapace.ActionValuesDescribed(
 			"quiet", "Show nothing at all; be silent.",
 			"panic", "Only show fatal errors which could lead the process to crash",
@@ -155,6 +171,16 @@ func init() {
 			}
 		}),
 		"vcodec": action.ActionCodecs(), // TODO only video
+		"vf": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return action.ActionFilters()
+				default:
+					return carapace.ActionValues()
+				}
+			})
+		}),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
