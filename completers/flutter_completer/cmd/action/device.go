@@ -1,24 +1,33 @@
 package action
 
 import (
+	"encoding/json"
 	"fmt"
-	"regexp"
 	"strings"
 
 	"github.com/rsteube/carapace"
 )
 
+type device struct {
+	Id             string
+	Name           string
+	TargetPlatform string
+	Sdk            string
+}
+
 func ActionDevices() carapace.Action {
-	return carapace.ActionExecCommand("flutter", "--suppress-analytics", "devices")(func(output []byte) carapace.Action {
-		lines := strings.Split(string(output), "\n")
-		r := regexp.MustCompile(`^(?P<id>[^ ]+)[^•]* +• (?P<name>[^•]+) +• (?P<oem>[^•]+) +• (?P<platform>[^•]+)$`)
+	return carapace.ActionExecCommand("flutter", "--suppress-analytics", "devices", "--machine")(func(output []byte) carapace.Action {
+		var devices []device
+		if err := json.Unmarshal(output, &devices); err != nil {
+			if strings.Contains(string(output), "Waiting for another") {
+				return carapace.ActionMessage(string(output))
+			}
+			return carapace.ActionMessage(err.Error())
+		}
 
 		vals := make([]string, 0)
-		for _, line := range lines {
-			if r.MatchString(line) {
-				matches := r.FindStringSubmatch(line)
-				vals = append(vals, matches[1], fmt.Sprintf("%v • %v • %v", matches[2], matches[3], matches[4]))
-			}
+		for _, device := range devices {
+			vals = append(vals, device.Id, fmt.Sprintf("%v • %v • %v", device.Name, device.TargetPlatform, device.Sdk))
 		}
 		return carapace.ActionValuesDescribed(vals...)
 	})
