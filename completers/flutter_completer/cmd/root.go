@@ -25,11 +25,6 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Reports the version of this tool.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"device-id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.Batch(
-				action.ActionDevices(),
-				action.ActionEmulators(),
-			).Invoke(c).Merge().ToA()
-		}),
+		"device-id": action.ActionDevices(),
 	})
 }
