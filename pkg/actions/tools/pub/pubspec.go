@@ -12,9 +12,18 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+type version string
+
+func (v *version) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	_ = unmarshal(&s) // ignore struct
+	*v = version(s)
+	return nil
+}
+
 type pubspec struct {
-	Dependencies    map[string]string      `yaml:"dependencies"`
-	DevDependencies map[string]string      `yaml:"dev_dependencies"`
+	Dependencies    map[string]version     `yaml:"dependencies"`
+	DevDependencies map[string]version     `yaml:"dev_dependencies"`
 	Executables     map[string]interface{} `yaml:"executables"`
 }
 
@@ -78,11 +87,11 @@ func ActionDependencies() carapace.Action { // TODO configure which dependencies
 
 		vals := make([]string, 0)
 		for name, version := range p.Dependencies {
-			vals = append(vals, name, version)
+			vals = append(vals, name, string(version))
 		}
 
 		for name, version := range p.DevDependencies {
-			vals = append(vals, name, version)
+			vals = append(vals, name, string(version))
 		}
 		return carapace.ActionValuesDescribed(vals...)
 	})
