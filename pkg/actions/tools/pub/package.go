@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/url"
+	"strconv"
 	"time"
 
 	"github.com/rsteube/carapace"
@@ -21,8 +22,20 @@ type searchResult struct {
 //   dotted_border
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.Batch(
+			actionPackageSearch(1),
+			actionPackageSearch(2),
+			actionPackageSearch(3),
+			actionPackageSearch(4),
+			actionPackageSearch(5),
+		).Invoke(c).Merge().ToA()
+	})
+}
+
+func actionPackageSearch(page int) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO verify on windows - should have a curl alias
-		return carapace.ActionExecCommand("curl", fmt.Sprintf("https://pub.dev/api/search?q=package:%v", url.QueryEscape(c.CallbackValue)))(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("curl", fmt.Sprintf("https://pub.dev/api/search?q=package:%v&page=%v", url.QueryEscape(c.CallbackValue), strconv.Itoa(page)))(func(output []byte) carapace.Action {
 			var result searchResult
 			err := json.Unmarshal(output, &result)
 			if err != nil {
