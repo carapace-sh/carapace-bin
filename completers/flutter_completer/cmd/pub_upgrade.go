@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pub"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,10 @@ func init() {
 	carapace.Gen(pub_upgradeCmd).FlagCompletion(carapace.ActionMap{
 		"directory": carapace.ActionDirectories(),
 	})
+
+	carapace.Gen(pub_upgradeCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return pub.ActionDependencies().Invoke(c).Filter(c.Args).ToA()
+		}),
+	)
 }
