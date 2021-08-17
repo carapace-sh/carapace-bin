@@ -48,4 +48,8 @@ func init() {
 			"skeleton", "Generate a List View / Detail View Flutter application that follows community best practices.",
 		),
 	})
+
+	carapace.Gen(createCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }
