@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/flutter_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -33,4 +34,8 @@ func init() {
 		"output":                       carapace.ActionDirectories(),
 		"performance-measurement-file": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(assembleCmd).PositionalCompletion(
+		action.ActionTargets(),
+	)
 }
