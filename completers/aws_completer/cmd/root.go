@@ -88,7 +88,7 @@ func actionPythonCompleter() carapace.Action {
 			vals := make([]string, 0, len(completionResults))
 			for _, c := range completionResults {
 				vals = append(vals, c.Name, c.HelpText)
-				nospace = nospace || strings.HasSuffix(c.Name, "=") || strings.HasSuffix(c.Name, ",")
+				nospace = nospace || strings.ContainsAny(c.Name, "=,/")
 			}
 
 			if strings.HasPrefix(current, "file://") ||
