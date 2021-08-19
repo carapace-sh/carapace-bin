@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"encoding/json"
 	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -34,27 +35,65 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			current := c.CallbackValue
-			if c.CallbackValue == "-" {
-				current = "--"
+			path, err := exec.LookPath("aws_completer")
+			if err != nil {
+				return carapace.ActionMessage(err.Error())
 			}
-			os.Setenv("COMP_LINE", "aws "+strings.Join(append(c.Args, current), " ")) // TODO escape/quote special characters
-			return carapace.ActionExecCommand("python", "-c", complete)(func(output []byte) carapace.Action {
-				var completionResults []completionResult
-				if err := json.Unmarshal(output, &completionResults); err != nil {
-					return carapace.ActionMessage(err.Error())
-				}
-				vals := make([]string, 0, len(completionResults))
-				for _, c := range completionResults {
-					vals = append(vals, c.Name, c.HelpText)
-				}
 
-				if strings.HasPrefix(current, "file://") ||
-					strings.HasPrefix(current, "fileb://") {
-					return carapace.ActionValuesDescribed(vals...).NoSpace()
-				}
-				return carapace.ActionValuesDescribed(vals...)
-			})
+			info, err := os.Stat(path)
+			if err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+			if info.Size() > 100000 { // python version is ~4 kb and compiled is >4 MB
+				return actionBinaryCompleter()
+			} else {
+				return actionPythonCompleter()
+			}
 		}),
 	)
+}
+
+func actionBinaryCompleter() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		current := c.CallbackValue
+		if c.CallbackValue == "-" {
+			current = "--"
+		}
+		os.Setenv("COMP_LINE", "aws "+strings.Join(append(c.Args, current), " ")) // TODO escape/quote special characters
+		return carapace.ActionExecCommand("aws_completer")(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+			a := carapace.ActionValues(lines[:len(lines)-1]...)
+			if strings.HasPrefix(current, "file://") ||
+				strings.HasPrefix(current, "fileb://") {
+				return a.NoSpace()
+			}
+			return a
+		})
+	})
+}
+
+func actionPythonCompleter() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		current := c.CallbackValue
+		if c.CallbackValue == "-" {
+			current = "--"
+		}
+		os.Setenv("COMP_LINE", "aws "+strings.Join(append(c.Args, current), " ")) // TODO escape/quote special characters
+		return carapace.ActionExecCommand("python", "-c", complete)(func(output []byte) carapace.Action {
+			var completionResults []completionResult
+			if err := json.Unmarshal(output, &completionResults); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+			vals := make([]string, 0, len(completionResults))
+			for _, c := range completionResults {
+				vals = append(vals, c.Name, c.HelpText)
+			}
+
+			if strings.HasPrefix(current, "file://") ||
+				strings.HasPrefix(current, "fileb://") {
+				return carapace.ActionValuesDescribed(vals...).NoSpace()
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
+	})
 }
