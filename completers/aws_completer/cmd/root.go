@@ -84,13 +84,18 @@ func actionPythonCompleter() carapace.Action {
 			if err := json.Unmarshal(output, &completionResults); err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
+			nospace := false
 			vals := make([]string, 0, len(completionResults))
 			for _, c := range completionResults {
 				vals = append(vals, c.Name, c.HelpText)
+				nospace = nospace || strings.HasSuffix(c.Name, "=") || strings.HasSuffix(c.Name, ",")
 			}
 
 			if strings.HasPrefix(current, "file://") ||
 				strings.HasPrefix(current, "fileb://") {
+				return carapace.ActionValuesDescribed(vals...).NoSpace()
+			}
+			if nospace {
 				return carapace.ActionValuesDescribed(vals...).NoSpace()
 			}
 			return carapace.ActionValuesDescribed(vals...)
