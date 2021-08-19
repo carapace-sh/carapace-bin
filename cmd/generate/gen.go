@@ -95,7 +95,7 @@ func readCompleters() ([]string, map[string]string) {
 
 func readDescription(root string, completer string) string {
 	if content, err := ioutil.ReadFile(fmt.Sprintf("%v/completers/%v/cmd/root.go", root, completer)); err == nil {
-		re := regexp.MustCompile("^\tShort: \"(?P<description>.*)\",$")
+		re := regexp.MustCompile("^\tShort: +\"(?P<description>.*)\",$")
 		for _, line := range strings.Split(string(content), "\n") {
 			if re.MatchString(line) {
 				return re.FindStringSubmatch(line)[1]
