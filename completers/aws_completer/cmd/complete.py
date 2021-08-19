@@ -18,6 +18,7 @@ import sys
 if os.environ.get('LC_CTYPE', '') == 'UTF-8':
     os.environ['LC_CTYPE'] = 'en_US.UTF-8'
 from awscli.autocomplete.main import create_autocompleter
+from awscli.clidriver import create_clidriver
 
 
 def main():
@@ -28,13 +29,26 @@ def main():
     command_index = int(os.environ.get('COMP_POINT') or len(command_line))
 
     try:
-        completer = create_autocompleter()
+        args = str.split(command_line)
+        completer = create_autocompleter(driver=create_clidriver(args))
         results = completer.autocomplete(command_line, command_index)
-        sys.stdout.write(json.dumps([{'name': result.name, 'help_text': (result.help_text if result.help_text else '')} for result in results]))
+        sys.stdout.write(json.dumps(
+            [{'name': result.name, 'help_text': _get_display_meta(result)} for result in results]))
     except KeyboardInterrupt:
         # If the user hits Ctrl+C, we don't want to print
         # a traceback to the user.
         pass
+
+
+def _get_display_meta(completion):
+    display_meta = ''
+    type_name = getattr(completion, 'cli_type_name', None)
+    help_text = getattr(completion, 'help_text', None)
+    if type_name:
+        display_meta += f'[{type_name}] '
+    if help_text:
+        display_meta += f'{help_text}'
+    return display_meta
 
 
 if __name__ == '__main__':
