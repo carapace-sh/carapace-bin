@@ -57,7 +57,7 @@ func actionBinaryCompleter() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		current := c.CallbackValue
 		if c.CallbackValue == "-" {
-			current = "--"
+			return carapace.ActionValues("--").NoSpace() // no shorthand flags so expand to longhand first (which is needed for the completer)
 		}
 		os.Setenv("COMP_LINE", "aws "+strings.Join(append(c.Args, current), " ")) // TODO escape/quote special characters
 		return carapace.ActionExecCommand("aws_completer")(func(output []byte) carapace.Action {
@@ -76,7 +76,7 @@ func actionPythonCompleter() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		current := c.CallbackValue
 		if c.CallbackValue == "-" {
-			current = "--"
+			return carapace.ActionValues("--").NoSpace() // no shorthand flags so expand to longhand first (which is needed for the completer)
 		}
 		os.Setenv("COMP_LINE", "aws "+strings.Join(append(c.Args, current), " ")) // TODO escape/quote special characters
 		return carapace.ActionExecCommand("python", "-c", complete)(func(output []byte) carapace.Action {
