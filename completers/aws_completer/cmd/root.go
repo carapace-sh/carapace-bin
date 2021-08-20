@@ -84,10 +84,16 @@ func actionPythonCompleter() carapace.Action {
 			if err := json.Unmarshal(output, &completionResults); err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
+
+			prefix := ""
+			if index := strings.LastIndexAny(c.CallbackValue, "=,/"); index > -1 {
+				prefix = c.CallbackValue[:index+1]
+			}
+
 			nospace := false
 			vals := make([]string, 0, len(completionResults))
 			for _, c := range completionResults {
-				vals = append(vals, c.Name, c.HelpText)
+				vals = append(vals, strings.TrimPrefix(c.Name, prefix), c.HelpText)
 				nospace = nospace || strings.ContainsAny(c.Name, "=,/")
 			}
 
@@ -95,10 +101,11 @@ func actionPythonCompleter() carapace.Action {
 				strings.HasPrefix(current, "fileb://") {
 				return carapace.ActionValuesDescribed(vals...).NoSpace()
 			}
+			a := carapace.ActionValuesDescribed(vals...).Invoke(c).Prefix(prefix).ToA()
 			if nospace {
-				return carapace.ActionValuesDescribed(vals...).NoSpace()
+				return a.NoSpace()
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return a
 		})
 	})
 }
