@@ -62,6 +62,9 @@ func actionBinaryCompleter() carapace.Action {
 		os.Setenv("COMP_LINE", "aws "+strings.Join(append(c.Args, current), " ")) // TODO escape/quote special characters
 		return carapace.ActionExecCommand("aws_completer")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
+			if lines[0] == "" {
+				return carapace.ActionValues()
+			}
 			a := carapace.ActionValues(lines[:len(lines)-1]...)
 			if strings.HasPrefix(current, "file://") ||
 				strings.HasPrefix(current, "fileb://") {
