@@ -29,8 +29,7 @@ def main():
     command_index = int(os.environ.get('COMP_POINT') or len(command_line))
 
     try:
-        args = str.split(command_line)
-        completer = create_autocompleter(driver=create_clidriver(args))
+        completer = create_autocompleter(driver=create_clidriver())
         results = completer.autocomplete(command_line, command_index)
         sys.stdout.write(json.dumps(
             [{'name': result.name, 'help_text': _get_display_meta(result)} for result in results]))
