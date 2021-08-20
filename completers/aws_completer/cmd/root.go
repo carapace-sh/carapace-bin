@@ -97,12 +97,10 @@ func actionPythonCompleter() carapace.Action {
 				nospace = nospace || strings.ContainsAny(c.Name, "=,/")
 			}
 
-			if strings.HasPrefix(current, "file://") ||
-				strings.HasPrefix(current, "fileb://") {
-				return carapace.ActionValuesDescribed(vals...).NoSpace()
-			}
 			a := carapace.ActionValuesDescribed(vals...).Invoke(c).Prefix(prefix).ToA()
-			if nospace {
+			if nospace ||
+				strings.HasPrefix(current, "file://") ||
+				strings.HasPrefix(current, "fileb://") {
 				return a.NoSpace()
 			}
 			return a
