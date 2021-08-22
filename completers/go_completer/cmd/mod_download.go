@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/go_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	mod_downloadCmd.Flags().Bool("json", false, "print a sequence of JSON objects")
 	mod_downloadCmd.Flags().BoolS("x", "x", false, "print the commands download executes")
 	modCmd.AddCommand(mod_downloadCmd)
+
+	carapace.Gen(mod_downloadCmd).PositionalCompletion(
+		action.ActionModules(false),
+	)
 }
