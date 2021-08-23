@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"os/exec"
 	"regexp"
 	"strconv"
@@ -64,7 +65,41 @@ func executeCompleter(completer string) {
 		fmt.Sprintln(strings.Join(cases, "\n")),
 	)
 	if root, err := rootDir(); err == nil {
-		ioutil.WriteFile(root+"/cmd/carapace/cmd/completers.go", []byte(content), 0644)
+		ioutil.WriteFile(root+"/cmd/carapace/cmd/completers.go", []byte("//go:build !release\n\n"+content), 0644)
+		ioutil.WriteFile(root+"/cmd/carapace/cmd/completers_release.go", []byte("//go:build release\n\n"+strings.Replace(content, "/completers/", "/completers_release/", -1)), 0644)
+		os.RemoveAll(root + "/completers_release")
+		exec.Command("cp", "-r", root+"/completers", root+"/completers_release").Run()
+
+		for _, name := range names {
+			files, err := os.ReadDir(fmt.Sprintf("%v/completers_release/%v_completer/cmd/", root, name))
+			if err == nil {
+				initFuncs := make([]string, 0)
+				for _, file := range files {
+					if !file.IsDir() && strings.HasSuffix(file.Name(), ".go") {
+						path := fmt.Sprintf("%v/completers_release/%v_completer/cmd/%v", root, name, file.Name())
+						content, err := ioutil.ReadFile(path)
+						if err == nil && strings.Contains(string(content), "func init() {") {
+							patched := strings.Replace(string(content), "func init() {", fmt.Sprintf("func init_%v() {", strings.TrimSuffix(file.Name(), ".go")), 1)
+							ioutil.WriteFile(path, []byte(patched), os.ModePerm)
+							initFuncs = append(initFuncs, fmt.Sprintf("	init_%v()", strings.TrimSuffix(file.Name(), ".go")))
+						}
+					}
+				}
+
+				path := fmt.Sprintf("%v/completers_release/%v_completer/cmd/root.go", root, name)
+				content, err := ioutil.ReadFile(path)
+				if err == nil {
+					patched := make([]string, 0)
+					for _, line := range strings.Split(string(content), "\n") {
+						patched = append(patched, line)
+						if line == "func Execute() error {" {
+							patched = append(patched, initFuncs...)
+						}
+					}
+					ioutil.WriteFile(path, []byte(strings.Join(patched, "\n")), os.ModePerm)
+				}
+			}
+		}
 	}
 }
 

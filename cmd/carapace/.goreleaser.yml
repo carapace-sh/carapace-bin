@@ -9,6 +9,8 @@ builds:
       - windows
       - darwin
     binary: carapace
+    tags:
+      - release
 archives:
   - replacements:
       darwin: Darwin

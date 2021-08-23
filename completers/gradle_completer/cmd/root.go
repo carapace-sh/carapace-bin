@@ -22,6 +22,8 @@ func Execute() error {
 }
 
 func init() {
+	carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.Flags().Bool("build-cache", false, "Enables the Gradle build cache. Gradle will try to reuse outputs from previous builds.")
 	rootCmd.Flags().StringP("build-file", "b", "", "Specify the build file.")
 	rootCmd.Flags().Bool("configure-on-demand", false, "Configure necessary projects only. Gradle will attempt to reduce configuration time for large multi-project builds. [incubating]")
@@ -70,10 +72,6 @@ func init() {
 	rootCmd.Flags().String("warning-mode", "", "Specifies which mode of warnings to generate. Values are 'all', 'fail', 'summary'(default) or 'none'")
 	rootCmd.Flags().Bool("write-locks", false, "Persists dependency resolution for locked configurations, ignoring existing locking information if it exists [incubating]")
 	rootCmd.Flags().BoolP("write-verification-metadata", "M", false, "Generates checksums for dependencies used in the project (comma-separated list) [incubating]")
-}
-
-func init() {
-	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"build-file":              carapace.ActionFiles(),

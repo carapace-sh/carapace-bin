@@ -1,6 +1,6 @@
 module github.com/rsteube/carapace-bin
 
-go 1.16
+go 1.17
 
 require (
 	github.com/mitchellh/go-homedir v1.1.0
@@ -13,5 +13,7 @@ require (
 	gopkg.in/ini.v1 v1.62.0
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 )
+
+require github.com/inconshreveable/mousetrap v1.0.0 // indirect
 
 replace github.com/spf13/pflag => github.com/cornfeedhobo/pflag v1.1.0

@@ -49,7 +49,7 @@ jobs:
           command: go run ./cmd/caralint completers/*/cmd/*.go
   release:
     docker:
-      - image: circleci/golang:1.16
+      - image: circleci/golang:latest
     steps:
       - checkout 
       - run: cd cmd/carapace && go generate ./... && curl -sL https://git.io/goreleaser | bash
