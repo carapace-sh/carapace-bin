@@ -24,6 +24,7 @@ func init() {
 	repo_listCmd.Flags().Bool("public", false, "Show only public repositories")
 	repo_listCmd.Flags().Bool("source", false, "Show only non-forks")
 	repo_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	repo_listCmd.Flags().String("topic", "", "Filter by topic")
 	repoCmd.AddCommand(repo_listCmd)
 
 	carapace.Gen(repo_listCmd).FlagCompletion(carapace.ActionMap{
@@ -31,6 +32,7 @@ func init() {
 			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"language": action.ActionLanguages(),
+		// TODO most used topics api somewhere?: https://github.com/topics/
 	})
 
 	carapace.Gen(repo_listCmd).PositionalCompletion(

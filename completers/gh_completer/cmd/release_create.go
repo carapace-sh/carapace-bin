@@ -13,6 +13,7 @@ var release_createCmd = &cobra.Command{
 }
 
 func init() {
+	release_createCmd.Flags().String("discussion-category", "", "Start a discussion of the specified category")
 	release_createCmd.Flags().BoolP("draft", "d", false, "Save the release as a draft instead of publishing it")
 	release_createCmd.Flags().StringP("notes", "n", "", "Release notes")
 	release_createCmd.Flags().StringP("notes-file", "F", "", "Read release notes from `file`")
@@ -22,7 +23,9 @@ func init() {
 	releaseCmd.AddCommand(release_createCmd)
 
 	carapace.Gen(release_createCmd).FlagCompletion(carapace.ActionMap{
-		"target": action.ActionBranches(release_createCmd),
+		"discussion-category": action.ActionDiscussionCategories(release_createCmd),
+		"notes-file":          carapace.ActionFiles(),
+		"target":              action.ActionBranches(release_createCmd),
 	})
 
 	carapace.Gen(release_createCmd).PositionalCompletion(
