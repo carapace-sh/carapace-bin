@@ -13,6 +13,7 @@ var pr_checkoutCmd = &cobra.Command{
 }
 
 func init() {
+	pr_checkoutCmd.Flags().StringP("branch", "b", "", "Local branch name to use (default: the name of the head branch)")
 	pr_checkoutCmd.Flags().BoolP("detach", "", false, "Checkout PR with a detached HEAD")
 	pr_checkoutCmd.Flags().BoolP("force", "f", false, "Reset the existing local branch to the latest state of the pull request")
 	pr_checkoutCmd.Flags().BoolP("recurse-submodules", "", false, "Update all submodules after checkout")

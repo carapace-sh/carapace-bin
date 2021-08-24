@@ -21,10 +21,10 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Show gh version")
 
 	carapace.Gen(rootCmd)
-	addAliasCompletion(rootCmd)
+	addAliasAndExtensionCompletion(rootCmd)
 }
 
-func addAliasCompletion(cmd *cobra.Command) {
+func addAliasAndExtensionCompletion(cmd *cobra.Command) {
 	if c, _, err := cmd.Find([]string{"_carapace"}); err == nil {
 		c.Annotations = map[string]string{
 			"skipAuthCheck": "true",
@@ -33,6 +33,11 @@ func addAliasCompletion(cmd *cobra.Command) {
 			if aliases, err := action.Aliases(); err == nil {
 				for key, value := range aliases {
 					cmd.Root().AddCommand(&cobra.Command{Use: key, Short: value, Run: func(cmd *cobra.Command, args []string) {}})
+				}
+			}
+			if extensions, err := action.Extensions(); err == nil {
+				for _, extension := range extensions {
+					cmd.Root().AddCommand(&cobra.Command{Use: extension, Short: "extension", Run: func(cmd *cobra.Command, args []string) {}})
 				}
 			}
 		}

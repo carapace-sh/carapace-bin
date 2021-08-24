@@ -22,6 +22,7 @@ func init() {
 
 	carapace.Gen(config_setCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
+			"browser", "the web browser to use for opening URLs",
 			"git_protocol", "What protocol to use when performing git operations.",
 			"editor", "What editor gh should run when creating issues, pull requests, etc.",
 			"prompt", "toggle interactive prompting in the terminal",
@@ -30,6 +31,8 @@ func init() {
 		),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch c.Args[0] {
+			case "browser":
+				return carapace.ActionFiles()
 			case "git_protocol":
 				return carapace.ActionValues("ssh", "https")
 			case "editor":
