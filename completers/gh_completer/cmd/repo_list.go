@@ -32,7 +32,7 @@ func init() {
 			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"language": action.ActionLanguages(),
-		// TODO most used topics api somewhere?: https://github.com/topics/
+		"topic":    action.ActionTopicSearch(repo_listCmd),
 	})
 
 	carapace.Gen(repo_listCmd).PositionalCompletion(
