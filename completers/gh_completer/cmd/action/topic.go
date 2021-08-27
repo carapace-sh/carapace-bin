@@ -3,6 +3,7 @@ package action
 import (
 	"fmt"
 	"net/url"
+	"strings"
 
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
@@ -31,5 +32,12 @@ func ActionTopicSearch(cmd *cobra.Command) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
+	})
+}
+
+func ActionTopics(cmd *cobra.Command, user string) carapace.Action {
+	return carapace.ActionExecCommand("gh", "repo", "list", "--limit", "500", "--json", "repositoryTopics", "--jq", "[ .[].repositoryTopics | select(. != null) | .[].name ] | sort | unique | .[]", user)(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+		return carapace.ActionValues(lines[:len(lines)-1]...)
 	})
 }

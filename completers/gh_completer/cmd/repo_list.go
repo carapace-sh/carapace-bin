@@ -32,7 +32,12 @@ func init() {
 			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"language": action.ActionLanguages(),
-		"topic":    action.ActionTopicSearch(repo_listCmd),
+		"topic": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				return action.ActionTopics(repo_listCmd, c.Args[0])
+			}
+			return action.ActionTopics(repo_listCmd, "")
+		}),
 	})
 
 	carapace.Gen(repo_listCmd).PositionalCompletion(
