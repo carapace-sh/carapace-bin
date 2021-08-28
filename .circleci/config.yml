@@ -43,7 +43,7 @@ jobs:
           command: diff -u <(echo -n) <(gofmt -d -s .)
       - run:
           name: "staticcheck"
-          command: go get honnef.co/go/tools/cmd/staticcheck && staticcheck ./...
+          command: go install honnef.co/go/tools/cmd/staticcheck@2021.1.1 && staticcheck ./...
       - run:
           name: "caralint"
           command: go run ./cmd/caralint completers/*/cmd/*.go
