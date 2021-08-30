@@ -64,6 +64,9 @@ func ActionArgcomplete(command string) carapace.Action {
 
 			if len(vals) == 0 {
 				// fallback to file completions when no values returned
+				if index := strings.Index(c.CallbackValue, "="); index > -1 {
+					return carapace.ActionFiles().Invoke(carapace.Context{CallbackValue: c.CallbackValue[index+1:]}).ToA()
+				}
 				return carapace.ActionFiles()
 			}
 			return carapace.ActionValuesDescribed(vals...)
