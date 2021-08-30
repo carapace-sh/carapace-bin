@@ -375,6 +375,10 @@ func actionFlagNames() carapace.Action {
 			}
 			vals = append(vals, strings.Replace(key, "<name>", replacement, -1), value)
 		}
+
+		if strings.HasPrefix(c.CallbackValue, "--accesslog.fields.headers.names.") {
+			return http.ActionHttpRequestHeaderNames().Invoke(c).Prefix("--accesslog.fields.headers.names.").ToMultiPartsA(".")
+		}
 		return carapace.ActionValuesDescribed(vals...).Invoke(c).ToMultiPartsA(".")
 	})
 }
@@ -382,10 +386,10 @@ func actionFlagNames() carapace.Action {
 func flagValues(name string) (acn carapace.Action, ok bool) {
 	a := map[string]carapace.Action{
 		"--accesslog.bufferingsize":                                         carapace.ActionValues(),
-		"--accesslog.fields.defaultmode":                                    carapace.ActionValues("keep", "drop"),
+		"--accesslog.fields.defaultmode":                                    carapace.ActionValues("keep", "drop", "redact"),
 		"--accesslog.fields.headers.defaultmode":                            carapace.ActionValues("keep", "drop", "redact"),
-		"--accesslog.fields.headers.names.<name>":                           carapace.ActionValues(),
-		"--accesslog.fields.names.<name>":                                   carapace.ActionValues(),
+		"--accesslog.fields.headers.names.<name>":                           carapace.ActionValues("keep", "drop", "redact"),
+		"--accesslog.fields.names.<name>":                                   carapace.ActionValues("keep", "drop", "redact"),
 		"--accesslog.filepath":                                              carapace.ActionFiles(),
 		"--accesslog.filters.minduration":                                   carapace.ActionValues(),
 		"--accesslog.filters.statuscodes":                                   actionStatusCodeRanges(),
