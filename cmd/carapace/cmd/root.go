@@ -18,26 +18,26 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "carapace [flags] [COMPLETER] [bash|elvish|fish|oil|powershell|xonsh|zsh]",
 	Short: `multi-shell multi-command argument completer`,
-	Example: fmt.Sprintf(`    Single completer:
-      bash:       source <(carapace chmod bash)
-      elvish:     eval (carapace chmod elvish|slurp)
-      fish:       carapace chmod fish | source
-      oil:        source <(carapace chmod | oil)
-      powershell: carapace chmod powershell | Out-String | Invoke-Expression
-      xonsh:      exec($(carapace chmod xonsh))
-      zsh:        source <(carapace chmod zsh)
+	Example: fmt.Sprintf(`  Single completer:
+    bash:       source <(carapace chmod bash)
+    elvish:     eval (carapace chmod elvish | slurp)
+    fish:       carapace chmod fish | source
+    oil:        source <(carapace chmod oil)
+    powershell: carapace chmod powershell | Out-String | Invoke-Expression
+    xonsh:      exec($(carapace chmod xonsh))
+    zsh:        source <(carapace chmod zsh)
 
-    All completers:
-      bash:       source <(carapace _carapace bash)
-      elvish:     eval (carapace _carapace elvish | slurp)
-      fish:       carapace _carapace fish | source
-      oil:        source <(carapace _carapace oil)
-      powershell: carapace _carapace powershell | Out-String | Invoke-Expression
-      xonsh:      exec($(carapace _carapace xonsh))
-      zsh:        source <(carapace _carapace zsh)
+  All completers:
+    bash:       source <(carapace _carapace bash)
+    elvish:     eval (carapace _carapace elvish | slurp)
+    fish:       carapace _carapace fish | source
+    oil:        source <(carapace _carapace oil)
+    powershell: carapace _carapace powershell | Out-String | Invoke-Expression
+    xonsh:      exec($(carapace _carapace xonsh))
+    zsh:        source <(carapace _carapace zsh)
 
-    Shell parameter is optional and if left out carapace will try to detect it by parent process name.
-    Some completions are cached at [%v/carapace].
+  Shell parameter is optional and if left out carapace will try to detect it by parent process name.
+  Some completions are cached at [%v/carapace].
 `, os.TempDir()),
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers,
