@@ -16,6 +16,7 @@ Supported shells:
 - [Nushell](https://www.nushell.sh/) ([experimental](https://github.com/rsteube/carapace/issues/89))
 - [Oil](http://www.oilshell.org/)
 - [Powershell](https://microsoft.com/powershell)
+- [Tcsh](https://www.tcsh.org/) (experimental)
 - [Xonsh](https://xon.sh/)
 - [Zsh](https://www.zsh.org/)
 
@@ -27,7 +28,7 @@ A major part of the completers has been generated from help pages so there will 
 
 ```
 docker-compose run --rm build
-docker-compose run --rm [bash|elvish|fish|ion|nushell|oil|powershell|xonsh|zsh]
+docker-compose run --rm [bash|elvish|fish|ion|nushell|oil|powershell|tcsh|xonsh|zsh]
 [ln|mkdir|chown...] <TAB>
 ```
 
@@ -53,6 +54,10 @@ source <(carapace _carapace)
 # powershell (~/.config/powershell/Microsoft.PowerShell_profile.ps1)
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
+
+# tcsh
+set autolist
+eval `carapace _carapace tcsh`
 
 # xonsh (~/.config/xonsh/rc.xsh)
 COMPLETIONS_CONFIRM=True
@@ -80,7 +85,7 @@ Ensure carapace is added to PATH.
 
 - completion for commands
 ```sh
-carapace [ln|mkdir|...] [bash|elvish|fish|oil|powershell|xonsh|zsh]
+carapace [ln|mkdir|...] [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]
 ```
 - list completions
 ```sh
@@ -119,7 +124,7 @@ go generate ./...
 - build & test
 ```sh
 docker-compose run --rm build
-docker-compose run --rm [bash|elvish|fish|oil|powershell|xonsh|zsh]
+docker-compose run --rm [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]
 ```
 
 [![asciicast](https://asciinema.org/a/357895.svg)](https://asciinema.org/a/357895)

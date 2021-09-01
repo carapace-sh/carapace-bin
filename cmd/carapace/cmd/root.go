@@ -16,7 +16,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "carapace [flags] [COMPLETER] [bash|elvish|fish|oil|powershell|xonsh|zsh]",
+	Use:   "carapace [flags] [COMPLETER] [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]",
 	Short: `multi-shell multi-command argument completer`,
 	Example: fmt.Sprintf(`  Single completer:
     bash:       source <(carapace chmod bash)
@@ -24,6 +24,7 @@ var rootCmd = &cobra.Command{
     fish:       carapace chmod fish | source
     oil:        source <(carapace chmod oil)
     powershell: carapace chmod powershell | Out-String | Invoke-Expression
+    tcsh:       eval `+"`"+`carapace _chmod tcsh`+"`"+`
     xonsh:      exec($(carapace chmod xonsh))
     zsh:        source <(carapace chmod zsh)
 
@@ -33,6 +34,7 @@ var rootCmd = &cobra.Command{
     fish:       carapace _carapace fish | source
     oil:        source <(carapace _carapace oil)
     powershell: carapace _carapace powershell | Out-String | Invoke-Expression
+    tcsh:       eval `+"`"+`carapace _carapace tcsh`+"`"+`
     xonsh:      exec($(carapace _carapace xonsh))
     zsh:        source <(carapace _carapace zsh)
 
@@ -70,6 +72,8 @@ var rootCmd = &cobra.Command{
 				fmt.Println(oil_lazy(completers))
 			case "powershell":
 				fmt.Println(powershell_lazy(completers))
+			case "tcsh":
+				fmt.Println(tcsh_lazy(completers))
 			case "xonsh":
 				fmt.Println(xonsh_lazy(completers))
 			case "zsh":
