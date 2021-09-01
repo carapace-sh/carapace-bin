@@ -76,7 +76,7 @@ cd cmd/carapace && go generate ./... && go build -ldflags="-s -w"
 Completers can also be built separately:
 ```sh
 cd completers/ln_completer && go build -ldflags="-s -w"
-./ln_completer _carapace [bash|elvish|fish|oil|powershell|xonsh|zsh]
+./ln_completer _carapace [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]
 ```
 
 ## Generate completion
