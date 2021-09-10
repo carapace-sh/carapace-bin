@@ -16,7 +16,7 @@ Supported shells:
 - [Nushell](https://www.nushell.sh/) ([experimental](https://github.com/rsteube/carapace/issues/89))
 - [Oil](http://www.oilshell.org/)
 - [Powershell](https://microsoft.com/powershell)
-- [Tcsh](https://www.tcsh.org/) (experimental)
+- [Tcsh](https://www.tcsh.org/) ([experimental](https://github.com/rsteube/carapace/issues/331))
 - [Xonsh](https://xon.sh/)
 - [Zsh](https://www.zsh.org/)
 
