@@ -36,7 +36,7 @@ docker-compose run --rm [bash|elvish|fish|ion|nushell|oil|powershell|tcsh|xonsh|
 
 Ensure carapace is added to PATH.
 
-- completion for commands (replace `_carapace` with completer name to load a single one)
+- completion for commands
 ```sh
 # bash (~/.bashrc)
 source <(carapace _carapace)
@@ -67,6 +67,8 @@ exec($(carapace _carapace))
 # zsh (~/.zshrc)
 source <(carapace _carapace)
 ```
+
+Replace `_carapace` with completer name to load a single one.
 
 - list completions
 ```sh
