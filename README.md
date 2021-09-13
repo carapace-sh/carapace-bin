@@ -36,6 +36,7 @@ docker-compose run --rm [bash|elvish|fish|ion|nushell|oil|powershell|tcsh|xonsh|
 
 Ensure carapace is added to PATH.
 
+- completion for commands (replace `_carapace` with completer name to load a single one)
 ```sh
 # bash (~/.bashrc)
 source <(carapace _carapace)
@@ -57,14 +58,19 @@ carapace _carapace | Out-String | Invoke-Expression
 
 # tcsh
 set autolist
-eval `carapace _carapace tcsh`
+eval `carapace _carapace`
 
 # xonsh (~/.config/xonsh/rc.xsh)
 COMPLETIONS_CONFIRM=True
-exec($(carapace _carapace xonsh))
+exec($(carapace _carapace))
 
 # zsh (~/.zshrc)
-source <(carapace _carapace zsh)
+source <(carapace _carapace)
+```
+
+- list completions
+```sh
+carapace --list
 ```
 
 ## Build
@@ -78,20 +84,6 @@ Completers can also be built separately:
 cd completers/ln_completer && go build -ldflags="-s -w"
 ./ln_completer _carapace [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]
 ```
-
-## Generate completion
-
-Ensure carapace is added to PATH.
-
-- completion for commands
-```sh
-carapace [ln|mkdir|...] [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]
-```
-- list completions
-```sh
-carapace --list
-```
-If the shell is left out carapace will try to determine it by the parent process name.
 
 ## Creating completers
 [caraparse](/cmd/caraparse) is a helper tool that uses regex to parse gnu help pages.
