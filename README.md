@@ -56,7 +56,7 @@ source <(carapace _carapace)
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
 
-# tcsh
+# tcsh (~/.tcshrc)
 set autolist
 eval `carapace _carapace`
 
