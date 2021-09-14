@@ -75,7 +75,7 @@ func tcsh_lazy(completers []string) string {
 	// TODO hardcoded for now
 	snippet := make([]string, len(completers))
 	for index, c := range completers {
-		snippet[index] = fmt.Sprintf("complete \"%v\" 'p@*@`echo \"$COMMAND_LINE'\"''\"'\" | xargs carapace %v tcsh _ `@' ;", c, c)
+		snippet[index] = fmt.Sprintf("complete \"%v\" 'p@*@`echo \"$COMMAND_LINE'\"''\"'\" | xargs carapace %v tcsh _ `@@' ;", c, c)
 	}
 	return strings.Join(snippet, "\n")
 }
