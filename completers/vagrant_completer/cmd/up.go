@@ -29,7 +29,9 @@ func init() {
 
 	carapace.Gen(upCmd).FlagCompletion(carapace.ActionMap{
 		"provider": action.ActionProviders(),
-		// TODO provisioners
+		"provision-with": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionProvisioners().Invoke(c).Filter(c.Parts).ToA()
+		}),
 	})
 
 	carapace.Gen(upCmd).PositionalCompletion(
