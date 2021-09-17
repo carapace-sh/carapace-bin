@@ -22,6 +22,12 @@ func init() {
 	snapshot_popCmd.Flags().String("provision-with", "", "Enable only certain provisioners, by type or by name.")
 	snapshotCmd.AddCommand(snapshot_popCmd)
 
+	carapace.Gen(snapshot_popCmd).FlagCompletion(carapace.ActionMap{
+		"provision-with": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionProvisioners().Invoke(c).Filter(c.Parts).ToA()
+		}),
+	})
+
 	carapace.Gen(snapshot_popCmd).PositionalCompletion(
 		action.ActionLocalMachines(),
 	)

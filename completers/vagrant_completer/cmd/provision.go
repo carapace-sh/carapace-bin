@@ -18,7 +18,11 @@ func init() {
 	provisionCmd.Flags().String("provision-with", "", "Enable only certain provisioners, by type or by name.")
 	rootCmd.AddCommand(provisionCmd)
 
-	// TODO provisioner completion
+	carapace.Gen(provisionCmd).FlagCompletion(carapace.ActionMap{
+		"provision-with": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionProvisioners().Invoke(c).Filter(c.Parts).ToA()
+		}),
+	})
 
 	carapace.Gen(provisionCmd).PositionalCompletion(
 		action.ActionMachines(),
