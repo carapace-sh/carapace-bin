@@ -3,8 +3,8 @@ package cmd
 import (
 	"bufio"
 	"fmt"
+	exec "golang.org/x/sys/execabs"
 	"os"
-	"os/exec"
 	"regexp"
 	"sort"
 	"strings"

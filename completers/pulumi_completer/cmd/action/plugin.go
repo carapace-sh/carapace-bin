@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"os/exec"
+	exec "golang.org/x/sys/execabs"
 
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"

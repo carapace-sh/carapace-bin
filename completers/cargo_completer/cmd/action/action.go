@@ -3,9 +3,9 @@ package action
 import (
 	"encoding/json"
 	"fmt"
+	exec "golang.org/x/sys/execabs"
 	"io/ioutil"
 	"os"
-	"os/exec"
 	"regexp"
 	"strings"
 
