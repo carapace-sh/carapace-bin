@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
 	"github.com/rsteube/carapace-bin/pkg/util"
@@ -117,7 +116,7 @@ func init() {
 			}
 			return carapace.ActionValues("auto")
 		}),
-		"image-mirror-country": http.ActionLanguages(), // TODO country codes the same?
+		"image-mirror-country": os.ActionLanguages(), // TODO country codes the same?
 		"mount-string": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
