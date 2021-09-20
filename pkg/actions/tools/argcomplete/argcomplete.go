@@ -10,8 +10,24 @@ import (
 )
 
 // ActionArgcomplete bridges python argcomplete (https://github.com/kislyuk/argcomplete)
-//   argcomplete.ActionArgcomplete("az")
-//   argcomplete.ActionArgcomplete("gcloud")
+//   var rootCmd = &cobra.Command{
+//   	Use:                "az",
+//   	Short:              "Azure Command-Line Interface",
+//   	Run:                func(cmd *cobra.Command, args []string) {},
+//   	DisableFlagParsing: true,
+//   }
+//
+//   func Execute() error {
+//   	return rootCmd.Execute()
+//   }
+//
+//   func init() {
+//   	carapace.Gen(rootCmd).Standalone()
+//
+//   	carapace.Gen(rootCmd).PositionalAnyCompletion(
+//   		argcomplete.ActionArgcomplete("az"),
+//   	)
+//   }
 func ActionArgcomplete(command string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := c.Args
