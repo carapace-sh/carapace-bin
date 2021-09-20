@@ -17,6 +17,12 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
+func ExecuteInsiders() error {
+	rootCmd.Use = "code-insiders"
+	return rootCmd.Execute()
+}
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -53,7 +59,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"add":               carapace.ActionDirectories(),
 		"category":          carapace.ActionValues("Programming Languages", "Snippets", "Linters", "Themes", "Debuggers", "Other"),
-		"disable-extension": action.ActionExtensions(),
+		"disable-extension": action.ActionExtensions(rootCmd),
 		"extensions-dir":    carapace.ActionDirectories(),
 		"goto": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
@@ -72,7 +78,7 @@ func init() {
 		"locale":              os.ActionLocales(),
 		"log":                 carapace.ActionValues("critical", "error", "warn", "info", "debug", "trace", "off"),
 		"sync":                carapace.ActionValues("on", "off"),
-		"uninstall-extension": action.ActionExtensions(),
+		"uninstall-extension": action.ActionExtensions(rootCmd),
 		"user-data-dir":       carapace.ActionDirectories(),
 	})
 
