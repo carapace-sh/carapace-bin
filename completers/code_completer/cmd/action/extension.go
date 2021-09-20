@@ -8,12 +8,15 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace/pkg/cache"
+	"github.com/spf13/cobra"
 )
 
-func ActionExtensions() carapace.Action {
-	return carapace.ActionExecCommand("code", "--list-extensions")(func(output []byte) carapace.Action {
-		lines := strings.Split(string(output), "\n")
-		return carapace.ActionValues(lines[:len(lines)-1]...)
+func ActionExtensions(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand(cmd.Root().Use, "--list-extensions")(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+			return carapace.ActionValues(lines[:len(lines)-1]...)
+		})
 	})
 }
 
