@@ -1,7 +1,7 @@
 package git
 
 import (
-	"os/exec"
+	exec "golang.org/x/sys/execabs"
 	"strings"
 
 	"github.com/rsteube/carapace"

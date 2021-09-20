@@ -2,8 +2,8 @@
 package net
 
 import (
+	exec "golang.org/x/sys/execabs"
 	"io/ioutil"
-	"os/exec"
 	"regexp"
 	"strings"
 

@@ -3,8 +3,8 @@ package cmd
 import (
 	_ "embed"
 	"encoding/json"
+	exec "golang.org/x/sys/execabs"
 	"os"
-	"os/exec"
 	"strings"
 
 	"github.com/rsteube/carapace"
