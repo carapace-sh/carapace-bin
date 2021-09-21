@@ -2,6 +2,9 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
+	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
+	"github.com/rsteube/carapace-bin/pkg/actions/net/ssh"
 	"github.com/spf13/cobra"
 )
 
@@ -18,7 +21,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().String("abstract-unix-socket", "", "Connect via abstract Unix domain socket")
-	rootCmd.Flags().String("alt-svc", "", "name> Enable alt-svc with this cache file")
+	rootCmd.Flags().String("alt-svc", "", "Enable alt-svc with this cache file")
 	rootCmd.Flags().Bool("anyauth", false, "Pick any authentication method")
 	rootCmd.Flags().BoolP("append", "a", false, "Append to target file when uploading")
 	rootCmd.Flags().Bool("basic", false, "Use HTTP Basic Authentication")
@@ -82,7 +85,7 @@ func init() {
 	rootCmd.Flags().String("happy-eyeballs-timeout-ms", "", "How long to wait in milliseconds for IPv6 before trying IPv4")
 	rootCmd.Flags().String("haproxy-protocol", "", "HAProxy PROXY protocol v1 header")
 	rootCmd.Flags().BoolP("head", "I", false, "Show document info only")
-	rootCmd.Flags().StringP("header", "H", "", "Pass custom header(s) to server")
+	rootCmd.Flags().StringArrayP("header", "H", []string{}, "Pass custom header(s) to server")
 	rootCmd.Flags().BoolP("help", "h", false, "This help text")
 	rootCmd.Flags().String("hostpubmd5", "", "Acceptable MD5 hash of the host public key")
 	rootCmd.Flags().Bool("http0.9", false, "Allow HTTP 0.9 responses")
@@ -248,4 +251,62 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show version number and quit")
 	rootCmd.Flags().StringP("write-out", "w", "", "Use output FORMAT after completion")
 	rootCmd.Flags().Bool("xattr", false, "Store metadata in extended file attributes")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"alt-svc":   carapace.ActionFiles(),
+		"cacert":    carapace.ActionFiles(),
+		"capath":    carapace.ActionDirectories(),
+		"cert":      carapace.ActionFiles(),
+		"cert-type": carapace.ActionValues("DER", "PEM", "ENG"),
+		"ciphers": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA()
+		}),
+		"config": carapace.ActionFiles(),
+		"connect-to": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return net.ActionHosts().Invoke(c).Suffix(":").ToA()
+			case 1:
+				return net.ActionPorts().Invoke(c).Suffix(":").ToA()
+			case 2:
+				return net.ActionHosts().Invoke(c).Suffix(":").ToA()
+			case 3:
+				return net.ActionPorts()
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+		"cookie":       carapace.ActionFiles(),
+		"cookie-jar":   carapace.ActionFiles(),
+		"crlfile":      carapace.ActionFiles(),
+		"egd-file":     carapace.ActionFiles(),
+		"etag-compare": carapace.ActionFiles(),
+		"etag-save":    carapace.ActionFiles(),
+		"header": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return http.ActionHttpRequestHeaderNames().Invoke(c).Suffix(":").ToA()
+			case 1:
+				return http.ActionHttpRequestHeaderValues(c.Parts[0])
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+		"key":             carapace.ActionFiles(),
+		"key-type":        carapace.ActionValues("DER", "PEM", "ENG"),
+		"output":          carapace.ActionFiles(),
+		"proxy-cacert":    carapace.ActionFiles(),
+		"proxy-capath":    carapace.ActionDirectories(),
+		"proxy-cert":      carapace.ActionFiles(),
+		"proxy-cert-type": carapace.ActionValues("DER", "PEM", "ENG"),
+		"proxy-ciphers": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA()
+		}),
+		"proxy-key":   carapace.ActionFiles(),
+		"random-file": carapace.ActionFiles(),
+		"trace":       carapace.ActionFiles(),
+		"unix-socket": carapace.ActionFiles(),
+		"upload-file": carapace.ActionFiles(),
+		"user-agent":  http.ActionUserAgents(),
+	})
 }
