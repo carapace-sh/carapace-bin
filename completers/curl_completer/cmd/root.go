@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/curl_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
 	"github.com/rsteube/carapace-bin/pkg/actions/net/ssh"
@@ -137,6 +138,7 @@ func init() {
 	rootCmd.Flags().Bool("ntlm-wb", false, "Use HTTP NTLM authentication with winbind")
 	rootCmd.Flags().String("oauth2-bearer", "", "OAuth 2 Bearer Token")
 	rootCmd.Flags().StringP("output", "o", "", "Write to file instead of stdout")
+	rootCmd.Flags().String("output-dir", "", "specifies the directory in which files should be stored")
 	rootCmd.Flags().BoolP("parallel", "Z", false, "Perform transfers in parallel")
 	rootCmd.Flags().String("parallel-immediate", "", "not wait for multiplexing (with --parallel)")
 	rootCmd.Flags().Bool("parallel-max", false, "Maximum concurrency for parallel transfers")
@@ -280,8 +282,14 @@ func init() {
 		"cookie-jar":   carapace.ActionFiles(),
 		"crlfile":      carapace.ActionFiles(),
 		"egd-file":     carapace.ActionFiles(),
+		"engine":       action.ActionEngines(),
 		"etag-compare": carapace.ActionFiles(),
 		"etag-save":    carapace.ActionFiles(),
+		"ftp-method": carapace.ActionValuesDescribed(
+			"multicwd", "curl does a single CWD operation for each path part in the given URL",
+			"nocwd", "curl does no CWD at all",
+			"singlecwd", "curl does one CWD with the full target directory and then operates on the file \"normally\"",
+		),
 		"header": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -294,7 +302,9 @@ func init() {
 		}),
 		"key":             carapace.ActionFiles(),
 		"key-type":        carapace.ActionValues("DER", "PEM", "ENG"),
+		"krb":             carapace.ActionValues("clear", "safe", "confidential", "private"),
 		"output":          carapace.ActionFiles(),
+		"output-dir":      carapace.ActionDirectories(),
 		"proxy-cacert":    carapace.ActionFiles(),
 		"proxy-capath":    carapace.ActionDirectories(),
 		"proxy-cert":      carapace.ActionFiles(),
