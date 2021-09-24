@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/dmenu_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -37,4 +38,11 @@ func init() {
 	rootCmd.Flags().String("w", "", "sets the width of the dmenu window.")
 	rootCmd.Flags().String("x", "", "dmenu is placed at this offset measured from the left side of the monitor.")
 	rootCmd.Flags().String("y", "", "dmenu is placed at this offset measured from the top of the monitor.")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"nb": action.ActionColors(),
+		"nf": action.ActionColors(),
+		"sb": action.ActionColors(),
+		"sf": action.ActionColors(),
+	})
 }
