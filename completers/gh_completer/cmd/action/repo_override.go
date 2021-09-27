@@ -41,7 +41,9 @@ func actionRemoteRepositories() carapace.Action {
 
 		vals := make([]string, 0)
 		for url, remote := range urls {
-			vals = append(vals, url, remote)
+			if strings.HasPrefix(url, "https://github.com/") {
+				vals = append(vals, strings.TrimPrefix(url, "https://github.com/"), remote)
+			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
 	})
