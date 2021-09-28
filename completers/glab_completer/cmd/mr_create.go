@@ -19,6 +19,7 @@ func init() {
 	mr_createCmd.Flags().StringP("description", "d", "", "Supply a description for merge request")
 	mr_createCmd.Flags().Bool("draft", false, "Mark merge request as a draft")
 	mr_createCmd.Flags().BoolP("fill", "f", false, "Do not prompt for title/description and just use commit info")
+	mr_createCmd.Flags().Bool("fill-commit-body", false, "Fill description with each commit body when multiple commits. Can only be used with --fill")
 	mr_createCmd.Flags().StringP("head", "H", "", "Select another head repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or the project ID or full URL")
 	mr_createCmd.Flags().StringSliceP("label", "l", []string{}, "Add label by name. Multiple labels should be comma separated")
 	mr_createCmd.Flags().StringP("milestone", "m", "", "The global ID or title of a milestone to assign")
