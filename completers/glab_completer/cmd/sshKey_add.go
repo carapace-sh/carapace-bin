@@ -7,7 +7,7 @@ import (
 
 var sshKey_addCmd = &cobra.Command{
 	Use:   "add",
-	Short: "Add an SSH key to your GitLab account",
+	Short: "Creates a new SSH key owned by the currently authenticated user",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
