@@ -118,7 +118,7 @@ go generate ./...
 - build & test
 ```sh
 docker-compose run --rm build
-docker-compose run --rm [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]
+docker-compose run --rm [bash|elvish|fish|ion|nushell|oil|powershell|tcsh|xonsh|zsh]
 ```
 
 [![asciicast](https://asciinema.org/a/357895.svg)](https://asciinema.org/a/357895)
