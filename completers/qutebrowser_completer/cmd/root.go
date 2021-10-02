@@ -46,4 +46,8 @@ func init() {
 		"loglevel":  carapace.ActionValues("critical", "error", "warning", "info", "debug", "vdebug"),
 		"target":    carapace.ActionValues("auto", "tab", "tab-bg", "tab-silent", "tab-bg-silent", "window"),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }
