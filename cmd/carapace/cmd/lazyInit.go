@@ -45,6 +45,14 @@ complete -c '%v' -f -a '(_carapace_lazy %v)'`, completer, completer, completer)
 	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
 }
 
+func nushell_lazy(completers []string) string {
+	snippet := make([]string, len(completers))
+	for index, completer := range completers {
+		snippet[index] = fmt.Sprintf(`config set completion.%v [carapace %v nushell _]`, completer, completer)
+	}
+	return strings.Join(snippet, "\n")
+}
+
 func oil_lazy(completers []string) string {
 	snippet := `_carapace_lazy() {
   source <(carapace $1 oil)
