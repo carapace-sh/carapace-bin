@@ -68,10 +68,8 @@ func init() {
 }
 
 func ActionBlockDevicesAndFiles() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.Batch(
-			fs.ActionBlockDevices(),
-			carapace.ActionFiles(),
-		).Invoke(c).Merge().ToA()
-	})
+	return carapace.Batch(
+		fs.ActionBlockDevices(),
+		carapace.ActionFiles(),
+	).ToA()
 }
