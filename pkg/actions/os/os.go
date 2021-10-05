@@ -50,6 +50,27 @@ func ActionGroups() carapace.Action {
 	})
 }
 
+// ActionGroupMembers completes system group members
+//   root
+//   daemon
+func ActionGroupMembers(group string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		vals := []string{}
+		if content, err := ioutil.ReadFile("/etc/group"); err == nil {
+			for _, entry := range strings.Split(string(content), "\n") {
+				splitted := strings.Split(entry, ":")
+				if len(splitted) > 3 &&
+					splitted[0] == group {
+					if len(strings.TrimSpace(group)) > 0 {
+						vals = append(vals, strings.Split(splitted[3], ",")...)
+					}
+				}
+			}
+		}
+		return carapace.ActionValues(vals...)
+	})
+}
+
 // ActionKillSignals completes linux kill signals
 //   ABRT (Abnormal termination)
 //   STOP (Stop process, unblockable)
