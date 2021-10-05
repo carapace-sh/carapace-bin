@@ -61,7 +61,8 @@ func ActionGroupMembers(group string) carapace.Action {
 				splitted := strings.Split(entry, ":")
 				if len(splitted) > 3 &&
 					splitted[0] == group {
-					if len(strings.TrimSpace(group)) > 0 {
+					if len(strings.TrimSpace(group)) > 0 &&
+						len(strings.TrimSpace(splitted[3])) > 0 {
 						vals = append(vals, strings.Split(splitted[3], ",")...)
 					}
 				}
