@@ -66,7 +66,7 @@ func init() {
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(rebaseCmd.Flag("strategy").Value.String())
 		}),
-		"whitespace": carapace.ActionValues("nowarn", "warn", "fix", "error", "error-all"),
+		"whitespace": git.ActionWhitespaceModes(),
 	})
 
 	carapace.Gen(rebaseCmd).PositionalCompletion(

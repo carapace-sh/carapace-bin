@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -65,6 +66,6 @@ func init() {
 			"strip", "Git will convert those CRLF to LF.",
 		),
 		"show-current-patch": carapace.ActionValues("diff", "raw"),
-		"whitespace":         carapace.ActionValues("nowarn", "warn", "fix", "error", "error-all"),
+		"whitespace":         git.ActionWhitespaceModes(),
 	})
 }
