@@ -1,18 +1,21 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
 var applyCmd = &cobra.Command{
 	Use:   "apply",
 	Short: "Apply a patch to files and/or to the index",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	applyCmd.Flags().BoolP("3way", "3", false, "attempt three-way merge if a patch does not apply")
+	carapace.Gen(applyCmd).Standalone()
+
+	applyCmd.Flags().BoolP("3way", "3", false, "attempt three-way merge, fall back on normal patch if that fails")
 	applyCmd.Flags().StringS("C", "C", "", "ensure at least <n> lines of context match")
 	applyCmd.Flags().Bool("allow-overlap", false, "allow overlapping hunks")
 	applyCmd.Flags().Bool("apply", false, "also apply the patch (use with --stat/--summary/--check)")
@@ -41,4 +44,16 @@ func init() {
 	applyCmd.Flags().String("whitespace", "", "detect new or modified lines that have whitespace errors")
 	applyCmd.Flags().BoolS("z", "z", false, "paths are separated with NUL character")
 	rootCmd.AddCommand(applyCmd)
+
+	carapace.Gen(applyCmd).FlagCompletion(carapace.ActionMap{
+		"build-fake-ancestor": carapace.ActionFiles(),
+		"directory":           carapace.ActionDirectories(),
+		"exclude":             carapace.ActionFiles(),
+		"include":             carapace.ActionFiles(),
+		"whitespace":          git.ActionWhitespaceModes(),
+	})
+
+	carapace.Gen(applyCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }
