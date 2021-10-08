@@ -8,9 +8,10 @@ import (
 )
 
 var blameCmd = &cobra.Command{
-	Use:   "blame",
-	Short: "Show what revision and author last modified each line of a file",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "blame",
+	Short:   "Show what revision and author last modified each line of a file",
+	Aliases: []string{"annotate"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
