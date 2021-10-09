@@ -49,6 +49,10 @@ mkdir -p ~/.config/fish/completions
 carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
 carapace _carapace | source
 
+# nushell [needs fork: https://github.com/rsteube/nushell]
+carapace _carapace nushell | save carapace.nu
+source carapace.nu
+
 # oil (~/.config/oil/oshrc)
 source <(carapace _carapace)
 
@@ -84,7 +88,7 @@ cd cmd/carapace && go generate ./... && go build -ldflags="-s -w"
 Completers can also be built separately:
 ```sh
 cd completers/ln_completer && go build -ldflags="-s -w"
-./ln_completer _carapace [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]
+./ln_completer _carapace [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]
 ```
 
 ## Creating completers
