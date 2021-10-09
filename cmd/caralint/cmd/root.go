@@ -15,6 +15,9 @@ var rootCmd = &cobra.Command{
 	Use:   "caralint",
 	Short: "",
 	Args:  cobra.MinimumNArgs(1),
+	CompletionOptions: cobra.CompletionOptions{
+		DisableDefaultCmd: true,
+	},
 	Run: func(cmd *cobra.Command, args []string) {
 		exitCode := 0
 		for _, arg := range args {
