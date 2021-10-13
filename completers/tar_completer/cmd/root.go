@@ -222,5 +222,14 @@ func init() {
 		"volno-file":               carapace.ActionFiles(),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if rootCmd.Flag("delete").Changed ||
+				rootCmd.Flag("list").Changed ||
+				rootCmd.Flag("extract").Changed {
+				return fs.ActionTarFileContents(rootCmd.Flag("file").Value.String())
+			}
+			return carapace.ActionFiles()
+		}),
+	)
 }
