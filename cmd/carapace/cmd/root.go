@@ -16,12 +16,13 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "carapace [flags] [COMPLETER] [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]",
-	Short: `multi-shell multi-command argument completer`,
+	Use:  "carapace [flags] [COMPLETER] [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]",
+	Long: "multi-shell multi-command argument completer",
 	Example: fmt.Sprintf(`  Single completer:
     bash:       source <(carapace chmod bash)
     elvish:     eval (carapace chmod elvish | slurp)
     fish:       carapace chmod fish | source
+    nushell:    carapace chmod | save chmod.nu ; nu -c 'source chmod.nu'
     oil:        source <(carapace chmod oil)
     powershell: carapace chmod powershell | Out-String | Invoke-Expression
     tcsh:       eval `+"`"+`carapace _chmod tcsh`+"`"+`
@@ -32,6 +33,7 @@ var rootCmd = &cobra.Command{
     bash:       source <(carapace _carapace bash)
     elvish:     eval (carapace _carapace elvish | slurp)
     fish:       carapace _carapace fish | source
+    nushell:    carapace _carapace | save carapace.nu ; nu -c 'source carapace.nu'
     oil:        source <(carapace _carapace oil)
     powershell: carapace _carapace powershell | Out-String | Invoke-Expression
     tcsh:       eval `+"`"+`carapace _carapace tcsh`+"`"+`
