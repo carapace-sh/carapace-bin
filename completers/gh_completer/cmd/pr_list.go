@@ -18,6 +18,8 @@ func init() {
 	pr_listCmd.Flags().StringP("assignee", "a", "", "Filter by assignee")
 	pr_listCmd.Flags().StringP("author", "A", "", "Filter by author")
 	pr_listCmd.Flags().StringP("base", "B", "", "Filter by base branch")
+	pr_listCmd.Flags().BoolP("draft", "d", false, "Filter by draft state")
+	pr_listCmd.Flags().StringP("head", "H", "", "Filter by head branch")
 	pr_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	pr_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	pr_listCmd.Flags().StringSliceP("label", "l", nil, "Filter by labels")
@@ -30,6 +32,7 @@ func init() {
 		"assignee": action.ActionAssignableUsers(pr_listCmd),
 		"author":   action.ActionUsers(pr_listCmd, action.UserOpts{Users: true}),
 		"base":     action.ActionBranches(pr_listCmd),
+		"head":     action.ActionBranches(pr_listCmd),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionPullRequestFields().Invoke(c).Filter(c.Parts).ToA()
 		}),

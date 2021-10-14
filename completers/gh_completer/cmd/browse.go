@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/git"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +17,7 @@ var browseCmd = &cobra.Command{
 
 func init() {
 	browseCmd.Flags().StringP("branch", "b", "", "Select another branch by passing in the branch name")
+	browseCmd.Flags().BoolP("commit", "c", false, "Open the last commit")
 	browseCmd.Flags().BoolP("no-browser", "n", false, "Print destination URL instead of opening the browser")
 	browseCmd.Flags().BoolP("projects", "p", false, "Open repository projects")
 	browseCmd.Flags().BoolP("settings", "s", false, "Open repository settings")
@@ -36,10 +38,19 @@ func init() {
 				return carapace.ActionValues()
 			}
 
+			ref := browseCmd.Flag("branch").Value.String()
+			if browseCmd.Flag("commit").Changed {
+				commit, err := git.LastCommit()
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+				ref = commit.Sha
+			}
+
 			path := filepath.Dir(c.CallbackValue)
 			// TODO merge with issue/pr ids (show all with prefix search using callbackvalue)
 			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-				return action.ActionContents(browseCmd, path, browseCmd.Flag("branch").Value.String())
+				return action.ActionContents(browseCmd, path, ref)
 			})
 		}),
 	)
