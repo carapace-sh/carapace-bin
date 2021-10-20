@@ -44,4 +44,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"profile": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }
