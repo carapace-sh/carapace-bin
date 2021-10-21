@@ -3,6 +3,7 @@ package argcomplete
 
 import (
 	"os"
+	"os/exec"
 	"strconv"
 	"strings"
 
@@ -30,6 +31,10 @@ import (
 //   }
 func ActionArgcomplete(command string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if _, err := exec.LookPath(command); err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
 		args := c.Args
 		current := c.CallbackValue
 
