@@ -27,6 +27,7 @@ func Scrape(cmd *cobra.Command) {
 	fmt.Fprintf(out, `package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -46,7 +47,9 @@ var %vCmd = &cobra.Command{
 `)
 	}
 
-	fmt.Fprintln(out, `func init() {`)
+	fmt.Fprintf(out, `func init() {
+	carapace.Gen(%v).Standalone()
+`, cmdVarName(cmd))
 
 	cmd.LocalFlags().VisitAll(func(f *pflag.Flag) {
 		isShortHand := f.Shorthand != ""
