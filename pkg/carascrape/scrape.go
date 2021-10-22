@@ -48,7 +48,7 @@ var %vCmd = &cobra.Command{
 	}
 
 	fmt.Fprintf(out, `func init() {
-	carapace.Gen(%v).Standalone()
+	carapace.Gen(%vCmd).Standalone()
 `, cmdVarName(cmd))
 
 	cmd.LocalFlags().VisitAll(func(f *pflag.Flag) {
@@ -60,9 +60,9 @@ var %vCmd = &cobra.Command{
 		}
 
 		if isShortHand {
-			fmt.Fprintf(out, `	%vCmd.%vFlags().%vP("%v", "%v", %v, "%v")`+"\n", cmdVarName(cmd), persistentPrefix, flagType(f), f.Name, f.Shorthand, flagValue(f), strings.Replace(f.Usage, `"`, `\"`, -1))
+			fmt.Fprintf(out, `	%vCmd.%vFlags().%vP("%v", "%v", %v, "%v")`+"\n", cmdVarName(cmd), persistentPrefix, flagType(f), f.Name, f.Shorthand, flagValue(f), formatUsage(f.Usage))
 		} else {
-			fmt.Fprintf(out, `	%vCmd.%vFlags().%v("%v", %v, "%v")`+"\n", cmdVarName(cmd), persistentPrefix, flagType(f), f.Name, flagValue(f), strings.Replace(f.Usage, `"`, `\"`, -1))
+			fmt.Fprintf(out, `	%vCmd.%vFlags().%v("%v", %v, "%v")`+"\n", cmdVarName(cmd), persistentPrefix, flagType(f), f.Name, flagValue(f), formatUsage(f.Usage))
 		}
 	})
 
@@ -87,6 +87,10 @@ var %vCmd = &cobra.Command{
 			Scrape(subcmd)
 		}
 	}
+}
+
+func formatUsage(usage string) string {
+	return strings.Replace(strings.Split(usage, "\n")[0], `"`, `\"`, -1)
 }
 
 func cmdVarName(cmd *cobra.Command) string {
