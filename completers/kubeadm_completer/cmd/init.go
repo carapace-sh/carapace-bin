@@ -45,7 +45,10 @@ func init() {
 		"certificate-key": carapace.ActionFiles(),
 		"config":          carapace.ActionFiles(),
 		"cri-socket":      carapace.ActionFiles(),
-		"patches":         carapace.ActionDirectories(),
+		"ignore-preflight-errors": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA()
+		}),
+		"patches": carapace.ActionDirectories(),
 		"skip-phases": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionPhases().Invoke(c).Filter(c.Parts).ToMultiPartsA("/")
 		}),
