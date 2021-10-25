@@ -1,11 +1,16 @@
 package cmd
 
 import (
+	"fmt"
+	"os"
 	"path/filepath"
+	"regexp"
+	"strings"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/git"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -48,6 +53,31 @@ func init() {
 			}
 
 			path := filepath.Dir(c.CallbackValue)
+			path = strings.TrimPrefix(path, "/")
+			if !strings.HasPrefix(c.CallbackValue, "/") {
+				wd, err := os.Getwd()
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+				root, err := util.FindReverse(wd, ".git")
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+				rel, err := filepath.Rel(filepath.Dir(root), wd)
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+				abs := fmt.Sprintf("%v/%v", rel, c.CallbackValue)
+				r := regexp.MustCompile(`[^\/]+\/\.\.\/`)
+				for {
+					if match := r.FindString(abs); match != "" {
+						abs = strings.Replace(abs, match, "", 1)
+					} else {
+						break
+					}
+				}
+				path = filepath.Dir(abs)
+			}
 			// TODO merge with issue/pr ids (show all with prefix search using callbackvalue)
 			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 				return action.ActionContents(browseCmd, path, ref)
