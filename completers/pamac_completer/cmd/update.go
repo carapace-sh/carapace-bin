@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/rsteube/carapace-bin/completers/pamac_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -33,7 +33,7 @@ func init() {
 	carapace.Gen(updateCmd).FlagCompletion(carapace.ActionMap{
 		"builddir": carapace.ActionDirectories(),
 		"ignore": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return pacman.ActionPackages(pacman.PackageOption{Explicit: true}).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionInstalledPackages(false).Invoke(c).Filter(c.Parts).ToA()
 		}),
 	})
 }
