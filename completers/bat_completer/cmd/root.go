@@ -49,9 +49,11 @@ func init() {
 		"decorations": carapace.ActionValues("auto", "never", "always"),
 		"italic-text": carapace.ActionValues("never", "always"),
 		"language":    action.ActionLanguages(),
-		"style":       carapace.ActionValues("auto", "full", "plain", "changes", "header", "grid", "numbers", "snip"),
-		"theme":       action.ActionThemes(),
-		"wrap":        carapace.ActionValues("auto", "never", "character"),
+		"style": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionValues("auto", "full", "plain", "changes", "header", "grid", "numbers", "snip").Invoke(c).Filter(c.Parts).ToA()
+		}),
+		"theme": action.ActionThemes(),
+		"wrap":  carapace.ActionValues("auto", "never", "character"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
