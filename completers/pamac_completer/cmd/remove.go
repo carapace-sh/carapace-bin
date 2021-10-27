@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/rsteube/carapace-bin/completers/pamac_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +24,6 @@ func init() {
 	rootCmd.AddCommand(removeCmd)
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return pacman.ActionPackages(pacman.PackageOption{Explicit: true}).Invoke(c).Filter(c.Args).ToA()
+		return action.ActionInstalledPackages(true).Invoke(c).Filter(c.Args).ToA()
 	}))
 }
