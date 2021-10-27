@@ -22,7 +22,7 @@ func init() {
 		action.ActionKeymapModels(),
 		action.ActionKeymapVariants(),
 		carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionKeymapOptions().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionKeymapOptions().Invoke(c).Filter(c.Parts).ToMultiPartsA(":")
 		}),
 	)
 }
