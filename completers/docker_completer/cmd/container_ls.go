@@ -34,22 +34,22 @@ func init() {
 			"filter": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return carapace.ActionValues(
-						"ancestor",
-						"before",
-						"exited",
-						"expose",
-						"health",
-						"id",
-						"is-task",
-						"isolation",
-						"label",
-						"name",
-						"network",
-						"publish",
-						"since",
-						"status",
-						"volume",
+					return carapace.ActionValuesDescribed(
+						"ancestor", "Filters containers which share a given image as an ancestor",
+						"before", "Filters containers created before or after a given container ID or name",
+						"exited", "An integer representing the container’s exit code",
+						"expose", "Filters containers which publish or expose a given port",
+						"health", "Filters containers based on their healthcheck status",
+						"id", "Container’s ID",
+						"is-task", "Filters containers that are a “task” for a service",
+						"isolation", "Windows daemon only",
+						"label", "An arbitrary string representing either a key or a key-value pair",
+						"name", "Container’s name",
+						"network", "Filters running containers connected to a given network",
+						"publish", "Filters containers which publish or expose a given port",
+						"since", "Filters containers created before or after a given container ID or name",
+						"status", "Container status",
+						"volume", "	Filters running containers which have mounted a given volume or bind mount",
 					).Invoke(c).Suffix("=").ToA()
 				case 1:
 					switch c.Parts[0] {
