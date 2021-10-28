@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
@@ -19,7 +20,8 @@ func init() {
 		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return net.ActionPorts().Invoke(c).Suffix(":").ToA() // TODO is this a configured port on remote?
+				codespace := codespace_ports_forwardCmd.Flag("codespace").Value.String()
+				return action.ActionCodespacePorts(codespace).Invoke(c).Suffix(":").ToA()
 			case 1:
 				return net.ActionPorts()
 			default:

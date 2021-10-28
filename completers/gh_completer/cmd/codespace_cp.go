@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/util"
@@ -28,10 +30,11 @@ func init() {
 			if util.HasPathPrefix(c.CallbackValue) {
 				return carapace.ActionFiles()
 			}
-			return action.ActionCodespaceFiles(
+			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "remote:")
+			return action.ActionCodespacePath(
 				codespace_cpCmd.Flag("codespace").Value.String(),
 				codespace_cpCmd.Flag("expand").Changed,
-			).Invoke(c).Prefix("remote:").ToMultiPartsA("/")
+			).Invoke(c).Prefix("remote:").ToA()
 		}),
 	)
 }
