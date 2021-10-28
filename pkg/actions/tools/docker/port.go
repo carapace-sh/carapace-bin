@@ -1,6 +1,8 @@
 package docker
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
 )
@@ -27,5 +29,20 @@ func ActionPorts() carapace.Action {
 		default:
 			return carapace.ActionValues()
 		}
+	})
+}
+
+// ActionContainerPorts completes ports of a container
+//   80/tcp
+//   8080/udb
+func ActionContainerPorts(container string) carapace.Action {
+	return carapace.ActionExecCommand("docker", "container", "port", container)(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+		vals := make([]string, 0)
+
+		for _, line := range lines[:len(lines)-1] {
+			vals = append(vals, strings.Fields(line)[0])
+		}
+		return carapace.ActionValues(vals...)
 	})
 }
