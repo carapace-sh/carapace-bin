@@ -34,21 +34,7 @@ func ActionDate() carapace.Action {
 			if err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
-
-			month = month + 1
-			if month > 12 {
-				year = year + 1
-				month = month - 12
-			}
-
-			date := time.Date(year, time.Month(month), 0, 0, 0, 0, 0, time.UTC)
-
-			vals := make([]string, 0)
-			for i := 1; i <= date.Day(); i = i + 1 {
-				vals = append(vals, fmt.Sprintf("%02d", i))
-			}
-			return carapace.ActionValues(vals...)
-
+			return ActionDays(year, month)
 		default:
 			return carapace.ActionValues()
 		}
@@ -73,4 +59,24 @@ func ActionMonths() carapace.Action {
 		"11", "November",
 		"12", "December",
 	)
+}
+
+// ActionDays completes `dd` days for a month
+//   01
+//   28
+func ActionDays(year int, month int) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		month = month + 1
+		if month > 12 {
+			year = year + 1
+			month = month - 12
+		}
+		date := time.Date(year, time.Month(month), 0, 0, 0, 0, 0, time.UTC)
+
+		vals := make([]string, 0)
+		for i := 1; i <= date.Day(); i = i + 1 {
+			vals = append(vals, fmt.Sprintf("%02d", i))
+		}
+		return carapace.ActionValues(vals...)
+	})
 }
