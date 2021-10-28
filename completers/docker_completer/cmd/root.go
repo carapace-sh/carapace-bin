@@ -39,10 +39,10 @@ func init() {
 }
 
 func rootAlias(cmd *cobra.Command, initCompletion func(cmd *cobra.Command, isAlias bool)) {
-	aliasCmd := cmd
-	rootCmd.AddCommand(aliasCmd)
+	aliasCmd := *cmd
+	rootCmd.AddCommand(&aliasCmd)
 
-	for i, c := range []*cobra.Command{cmd, aliasCmd} {
+	for i, c := range []*cobra.Command{cmd, &aliasCmd} {
 		initCompletion(c, i == 1)
 	}
 }
