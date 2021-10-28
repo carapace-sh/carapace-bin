@@ -41,19 +41,18 @@ func ActionRepo(cmd *cobra.Command) carapace.Action {
 				return carapace.ActionValues(configHosts...).Invoke(c).Suffix("/").ToA()
 			case 1:
 				return carapace.Batch(
-					ActionUsers(cmd),
+					ActionUsers(cmd).Supress("search needs at least 3 characters"),
 					ActionGroups(cmd),
 				).Invoke(c).Merge().Suffix("/").ToA()
 			case 2:
 				b := carapace.Batch(
-					ActionSubgroups(cmd, c.Parts[1]),
-					ActionGroupProjects(cmd, c.Parts[1]),
-					ActionUserProjects(cmd, c.Parts[1]),
+					ActionSubgroups(cmd, c.Parts[1]).Supress("failed to unmarshall"),
+					ActionGroupProjects(cmd, c.Parts[1]).Supress("failed to unmarshall"),
+					ActionUserProjects(cmd, c.Parts[1]).Supress("failed to unmarshall"),
 				).Invoke(c)
 				return b[0].Suffix("/").Merge(b[1:]...).ToA() // ActionSubgroups needs `/` suffix
 			case 3:
-				groupProjects := ActionGroupProjects(cmd, strings.Join(c.Parts[1:], "/")).Invoke(c)
-				return groupProjects.ToA()
+				return ActionGroupProjects(cmd, strings.Join(c.Parts[1:], "/")).Supress("failed to unmarshall")
 			default:
 				return carapace.ActionValues()
 			}
