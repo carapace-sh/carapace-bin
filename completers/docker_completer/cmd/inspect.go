@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -19,5 +20,12 @@ func init() {
 	inspectCmd.Flags().String("type", "", "Return JSON for specified type")
 	rootCmd.AddCommand(inspectCmd)
 
-	// TODO complete positiona parameters
+	carapace.Gen(inspectCmd).PositionalAnyCompletion(
+		carapace.Batch(
+			docker.ActionContainers(),
+			docker.ActionServices().Supress("This node is not a swarm manager"),
+			docker.ActionNetworks(),
+			docker.ActionVolumes(),
+		).ToA(),
+	)
 }
