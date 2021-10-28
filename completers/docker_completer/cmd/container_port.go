@@ -20,7 +20,9 @@ func init() {
 	rootAlias(container_portCmd, func(cmd *cobra.Command, isAlias bool) {
 		carapace.Gen(cmd).PositionalCompletion(
 			docker.ActionContainers(),
-			// TODO completion port
+			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+				return docker.ActionContainerPorts(c.Args[0])
+			}),
 		)
 	})
 }
