@@ -37,12 +37,12 @@ func init() {
 					return carapace.ActionValues(
 						"ancestor",
 						"before",
-						"expose",
 						"exited",
+						"expose",
 						"health",
 						"id",
-						"isolation",
 						"is-task",
+						"isolation",
 						"label",
 						"name",
 						"network",
@@ -52,18 +52,31 @@ func init() {
 						"volume",
 					).Invoke(c).Suffix("=").ToA()
 				case 1:
-					// TODO add missing completions
 					switch c.Parts[0] {
+					case "ancestor":
+						return docker.ActionRepositoryTags()
+					case "before":
+						return docker.ActionContainers()
+					case "expose":
+						return docker.ActionPorts()
 					case "health":
 						return carapace.ActionValues("starting", "healthy", "unhealthy", "none")
 					case "is-task":
 						return carapace.ActionValues("true", "false")
+					case "id":
+						return docker.ActionContainerIds()
 					case "isolation":
 						return carapace.ActionValues("default", "process", "hyperv")
+					case "name":
+						return docker.ActionContainers()
 					case "network":
 						return docker.ActionNetworks()
+					case "publish":
+						return docker.ActionPorts()
+					case "since":
+						return docker.ActionContainers()
 					case "status":
-						return carapace.ActionValues("created", "restarting", "removing", "running", "paused", "exited")
+						return carapace.ActionValues("created", "restarting", "removing", "running", "paused", "exited", "dead")
 					case "volume":
 						return docker.ActionVolumes()
 					default:
