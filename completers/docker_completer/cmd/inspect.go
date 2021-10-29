@@ -23,9 +23,12 @@ func init() {
 	carapace.Gen(inspectCmd).PositionalAnyCompletion(
 		carapace.Batch(
 			docker.ActionContainers(),
-			docker.ActionServices().Supress("This node is not a swarm manager"),
 			docker.ActionNetworks(),
+			docker.ActionNodes().Supress("This node is not a swarm manager"),
+			docker.ActionRepositoryTags(),
+			docker.ActionSecrets().Supress("This node is not a swarm manager"),
+			docker.ActionServices().Supress("This node is not a swarm manager"),
 			docker.ActionVolumes(),
-		).ToA(),
+		).ToA().NoSpace(), // TODO seems nospace is lost during merge of batch
 	)
 }
