@@ -6,9 +6,9 @@ import (
 
 /**
 Description for go:generate
-	Short: "reboot the machine",
+	Short: "poweroff the machine",
 */
 
 func Execute() error {
-	return cmd.ExecuteReboot()
+	return cmd.ExecutePoweroff()
 }
