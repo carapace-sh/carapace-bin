@@ -29,6 +29,6 @@ func init() {
 			docker.ActionSecrets().Supress("This node is not a swarm manager"),
 			docker.ActionServices().Supress("This node is not a swarm manager"),
 			docker.ActionVolumes(),
-		).ToA().NoSpace(), // TODO seems nospace is lost during merge of batch
+		).ToA(),
 	)
 }
