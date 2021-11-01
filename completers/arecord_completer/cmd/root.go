@@ -6,6 +6,7 @@ import (
 
 /**
 Description for go:generate
+	Use: "arecord",
 	Short: "command-line sound recorder and player for ALSA soundcard driver",
 */
 
