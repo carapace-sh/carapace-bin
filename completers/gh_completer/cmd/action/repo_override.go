@@ -19,7 +19,7 @@ func ActionRepoOverride(cmd *cobra.Command) carapace.Action {
 				actions = append(actions, actionRemoteRepositories())
 			}
 		}
-		if c.CallbackValue != "" {
+		if c.CallbackValue != "" || len(actions) == 0 {
 			actions = append(actions, ActionOwnerRepositories(cmd))
 		}
 		return carapace.Batch(actions...).Invoke(c).Merge().ToA()
@@ -29,7 +29,7 @@ func ActionRepoOverride(cmd *cobra.Command) carapace.Action {
 func actionRemoteRepositories() carapace.Action {
 	return carapace.ActionExecCommand("git", "remote", "--verbose")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
-		r := regexp.MustCompile(`^(?P<remote>[^ ]+)\t+(?P<repo>(?P<url>[^ ]*)\.git) (?P<type>.*)$`)
+		r := regexp.MustCompile(`^(?P<remote>[^ ]+)\t+(?P<repo>(?P<url>[^ ]*?))(\.git)? (?P<type>.*)$`)
 
 		urls := make(map[string]string)
 		for _, line := range lines[:len(lines)-1] {
