@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"os"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
@@ -27,12 +25,8 @@ func init() {
 
 	carapace.Gen(bisect_startCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			// the first `--` is currently not detected as positional argument,
-			// so just search the full command line for it and assume it's the divider
-			for _, arg := range os.Args {
-				if arg == "--" {
-					return carapace.ActionFiles()
-				}
+			if bisect_startCmd.Flags().ArgsLenAtDash() != -1 {
+				return carapace.ActionFiles()
 			}
 			return git.ActionRefs(git.RefOptionDefault)
 		}),
