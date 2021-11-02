@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"os"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
@@ -122,10 +120,8 @@ func init() {
 
 	carapace.Gen(diffCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			for _, arg := range os.Args {
-				if arg == "--" {
-					return carapace.ActionFiles()
-				}
+			if diffCmd.Flags().ArgsLenAtDash() != -1 {
+				return carapace.ActionFiles()
 			}
 			return git.ActionRefs(git.RefOptionDefault)
 		}),

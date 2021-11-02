@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"os"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
@@ -42,10 +40,8 @@ func init() {
 
 	carapace.Gen(resetCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			for _, arg := range os.Args {
-				if arg == "--" {
-					return carapace.ActionFiles()
-				}
+			if resetCmd.Flags().ArgsLenAtDash() != -1 {
+				return carapace.ActionFiles()
 			}
 			return carapace.ActionValues()
 		}),
