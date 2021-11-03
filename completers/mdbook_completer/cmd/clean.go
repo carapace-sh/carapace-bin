@@ -7,7 +7,7 @@ import (
 
 var cleanCmd = &cobra.Command{
 	Use:   "clean",
-	Short: "",
+	Short: "Deletes a built book",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

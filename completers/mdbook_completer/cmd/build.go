@@ -7,7 +7,7 @@ import (
 
 var buildCmd = &cobra.Command{
 	Use:   "build",
-	Short: "",
+	Short: "Builds a book from its markdown files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

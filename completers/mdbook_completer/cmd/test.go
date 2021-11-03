@@ -7,7 +7,7 @@ import (
 
 var testCmd = &cobra.Command{
 	Use:   "test",
-	Short: "",
+	Short: "Tests that a book's Rust code samples compile",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

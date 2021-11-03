@@ -7,7 +7,7 @@ import (
 
 var serveCmd = &cobra.Command{
 	Use:   "serve",
-	Short: "",
+	Short: "Serves a book at http://localhost:3000, and rebuilds it on changes",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "",
+	Short: "Creates the boilerplate structure and files for a new book",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
