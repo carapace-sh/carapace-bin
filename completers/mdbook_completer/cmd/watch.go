@@ -7,7 +7,7 @@ import (
 
 var watchCmd = &cobra.Command{
 	Use:   "watch",
-	Short: "",
+	Short: "Watches a book's files and rebuilds it on changes",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
