@@ -73,7 +73,7 @@ jobs:
             git config user.email rsteube@users.noreply.github.com
             git add .
             git commit -m "initial commit [ci skip]"
-            git push --force https://rsteube:${github_token}@github.com/rsteube/carapace-bin.git master:gh-pages
+            git push --force https://rsteube:${GITHUB_TOKEN}@github.com/rsteube/carapace-bin.git master:gh-pages
   release:
     docker:
       - image: circleci/golang:latest
