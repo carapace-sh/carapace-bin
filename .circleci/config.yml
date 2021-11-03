@@ -6,6 +6,12 @@ workflows:
           filters:
             tags:
               ignore: /.*/
+      - doc:
+          filters:
+            branches:
+              only: /master/
+            tags:
+              ignore: /.*/
   tags:
     jobs:
       - release:
@@ -47,6 +53,27 @@ jobs:
       - run:
           name: "caralint"
           command: go run ./cmd/caralint completers/*/cmd/*.go
+  doc:
+    docker:
+      - image: ghcr.io/rsteube/carapace
+    steps:
+      - checkout
+      - run:
+          name: "build docs"
+          command: |
+            sed -i 's/\[output.linkcheck\]/#[output.linkcheck]/' docs/book.toml
+            sh .circleci/completers.sh > docs/src/completers.md
+            mdbook build docs
+      - run:
+          name: "push gh-pages"
+          command: |
+            cd docs/book/
+            git init
+            git config user.name rsteube
+            git config user.email rsteube@users.noreply.github.com
+            git add .
+            git commit -m "initial commit [ci skip]"
+            git push --force https://rsteube:${github_token}@github.com/rsteube/carapace-bin.git master:gh-pages
   release:
     docker:
       - image: circleci/golang:latest

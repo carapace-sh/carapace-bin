@@ -1,0 +1,11 @@
+[book]
+authors = ["rsteube"]
+language = "en"
+multilingual = false
+src = "src"
+title = "carapace-bin"
+
+[output.html]
+default-theme = "Coal"
+
+#[output.linkcheck]
