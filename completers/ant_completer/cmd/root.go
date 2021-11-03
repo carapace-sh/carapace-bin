@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ant",
 	Short: "software tool for automating software build processes",
+	Long:  "https://ant.apache.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

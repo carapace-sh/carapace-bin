@@ -6,6 +6,7 @@ import (
 
 /**
 Description for go:generate
+	Use: "unbrotli",
 	Short: "compress or decompress files",
 */
 

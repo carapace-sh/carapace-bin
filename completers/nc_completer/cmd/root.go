@@ -6,6 +6,7 @@ import (
 
 /**
 Description for go:generate
+	Use: "nc",
 	Short: "simple Unix utility which reads and writes data across network connections",
 */
 
