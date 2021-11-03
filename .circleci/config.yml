@@ -64,6 +64,7 @@ jobs:
             sed -i 's/\[output.linkcheck\]/#[output.linkcheck]/' docs/book.toml
             sh .circleci/completers.sh > docs/src/completers.md
             mdbook build docs
+            sh .circleci/badge.sh > docs/book/badge.svg
       - run:
           name: "push gh-pages"
           command: |
