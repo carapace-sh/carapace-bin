@@ -6,6 +6,7 @@ import (
 
 /**
 Description for go:generate
+	Use: "reboot",
 	Short: "reboot the machine",
 */
 

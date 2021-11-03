@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "aplay",
 	Short: "command-line sound recorder and player for ALSA soundcard driver",
+	Long:  "https://en.wikipedia.org/wiki/Aplay",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

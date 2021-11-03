@@ -6,6 +6,7 @@ import (
 
 /**
 Description for go:generate
+	Use: "code-insiders",
 	Short: "Visual Studio Code Insiders",
 */
 

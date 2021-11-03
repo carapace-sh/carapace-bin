@@ -6,6 +6,7 @@ import (
 
 /**
 Description for go:generate
+	Use: "poweroff",
 	Short: "poweroff the machine",
 */
 

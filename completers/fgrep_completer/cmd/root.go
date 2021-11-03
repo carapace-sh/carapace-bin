@@ -6,6 +6,7 @@ import (
 
 /**
 Description for go:generate
+	Use: "fgrep",
 	Short: "print lines that match patterns",
 */
 

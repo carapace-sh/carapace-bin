@@ -6,6 +6,7 @@ import (
 
 /**
 Description for go:generate
+	Use: "https",
 	Short: "command-line HTTP client for the API era",
 */
 
