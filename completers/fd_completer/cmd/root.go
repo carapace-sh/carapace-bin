@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "fd",
 	Short: "find entries in the filesystem",
+	Long:  "https://github.com/sharkdp/fd",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

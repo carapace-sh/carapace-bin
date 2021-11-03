@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "awk",
 	Short: "pattern scanning and processing language",
+	Long:  "https://en.wikipedia.org/wiki/AWK",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

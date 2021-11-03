@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "clamsubmit",
 	Short: "File submission utility for ClamAV",
+	Long:  "http://www.clamav.net/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

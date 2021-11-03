@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "flutter",
 	Short: "Manage your Flutter app development",
+	Long:  "https://flutter.dev/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "bash",
 	Short: "GNU Bourne-Again SHell",
+	Long:  "https://www.gnu.org/software/bash/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

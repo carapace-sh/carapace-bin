@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "gftp",
 	Short: "file transfer client for *NIX based machines",
+	Long:  "https://github.com/masneyb/gftp",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

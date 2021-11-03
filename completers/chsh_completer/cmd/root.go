@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "chsh",
 	Short: "Change your login shell",
+	Long:  "https://en.wikipedia.org/wiki/Chsh",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

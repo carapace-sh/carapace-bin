@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:                "gcloud",
 	Short:              "manage Google Cloud Platform resources and developer workflow",
+	Long:               "https://cloud.google.com/sdk/gcloud/",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
 }

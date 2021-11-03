@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "basename",
 	Short: "strip directory and suffix from filenames",
+	Long:  "https://en.wikipedia.org/wiki/Basename",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

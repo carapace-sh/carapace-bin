@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dockerd",
 	Short: "A self-sufficient runtime for containers",
+	Long:  "https://docs.docker.com/engine/reference/commandline/dockerd/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

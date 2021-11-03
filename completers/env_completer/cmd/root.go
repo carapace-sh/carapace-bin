@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "env",
 	Short: "run a program in a modified environment",
+	Long:  "https://linux.die.net/man/1/env",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

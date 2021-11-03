@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dir",
 	Short: "list directory contents",
+	Long:  "https://linux.die.net/man/1/dir",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "gnome-maps",
 	Short: "A map application for GNOME",
+	Long:  "https://apps.gnome.org/app/org.gnome.Maps/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

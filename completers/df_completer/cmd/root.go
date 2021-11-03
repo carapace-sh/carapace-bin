@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "df",
 	Short: "report file system disk space usage",
+	Long:  "https://linux.die.net/man/1/df",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

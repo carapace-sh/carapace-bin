@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "firefox",
 	Short: "Firefox Browser",
+	Long:  "https://www.mozilla.org/en-US/firefox/new/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 Description for go:generate
 	Use: "fgrep",
 	Short: "print lines that match patterns",
+	Long: "https://en.wikipedia.org/wiki/Grep",
 */
 
 func Execute() error {

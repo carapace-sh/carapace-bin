@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "factor",
 	Short: "factor numbers",
+	Long:  "https://linux.die.net/man/1/factor",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

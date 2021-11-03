@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "clamconf",
 	Short: "Clam AntiVirus configuration utility",
+	Long:  "http://www.clamav.net/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

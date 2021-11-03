@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:                "az",
 	Short:              "Azure Command-Line Interface",
+	Long:               "https://docs.microsoft.com/en-us/cli/azure/",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
 }

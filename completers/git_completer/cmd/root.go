@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "git",
 	Short: "the stupid content tracker",
+	Long:  "https://git-scm.com/",
 }
 
 func Execute() error {

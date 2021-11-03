@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "fmt",
 	Short: "simple optimal text formatter",
+	Long:  "https://linux.die.net/man/1/fmt",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

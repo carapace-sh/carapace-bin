@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "brotli",
 	Short: "compress or decompress files",
+	Long:  "https://github.com/google/brotli",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

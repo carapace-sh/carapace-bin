@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "chown",
 	Short: "change file owner and group",
+	Long:  "https://en.wikipedia.org/wiki/Chown",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

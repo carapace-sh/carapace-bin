@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dmesg",
 	Short: "Display or control the kernel ring buffer",
+	Long:  "https://linux.die.net/man/8/dmesg",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

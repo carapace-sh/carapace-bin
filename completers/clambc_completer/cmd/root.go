@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "clambc",
 	Short: "Bytecode Analysis and Testing Tool",
+	Long:  "http://www.clamav.net/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

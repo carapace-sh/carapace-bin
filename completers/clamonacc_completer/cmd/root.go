@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "clamonacc",
 	Short: "an anti-virus on-access scanning daemon and clamd client",
+	Long:  "http://www.clamav.net/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -12,6 +12,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ffmpeg",
 	Short: "Hyper fast Audio and Video encoder",
+	Long:  "https://ffmpeg.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "bats",
 	Short: "Bash Automated Testing System",
+	Long:  "https://github.com/bats-core/bats-core",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

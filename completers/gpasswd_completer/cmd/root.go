@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "gpasswd",
 	Short: "administer /etc/group and /etc/gshadow",
+	Long:  "https://linux.die.net/man/1/gpasswd",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "cmus",
 	Short: "Curses based music player",
+	Long:  "https://cmus.github.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

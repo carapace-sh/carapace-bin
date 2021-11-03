@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "cat",
 	Short: "concatenate files and print on the standard output",
+	Long:  "https://linux.die.net/man/1/cat",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

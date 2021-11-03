@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "glab",
 	Short: "A GitLab CLI Tool",
+	Long:  "https://glab.readthedocs.io/en/latest/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

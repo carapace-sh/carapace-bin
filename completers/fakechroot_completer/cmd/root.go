@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "fakechroot",
 	Short: "gives a fake chroot environment",
+	Long:  "https://linux.die.net/man/1/fakechroot",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

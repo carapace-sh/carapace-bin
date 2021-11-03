@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dnsmasq",
 	Short: "A lightweight DHCP and caching DNS server",
+	Long:  "https://en.wikipedia.org/wiki/Dnsmasq",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

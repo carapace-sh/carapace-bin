@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "downgrade",
 	Short: "Downgrade Arch Linux packages",
+	Long:  "https://github.com/pbrisbin/downgrade",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

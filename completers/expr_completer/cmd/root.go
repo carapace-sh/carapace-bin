@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "expr",
 	Short: "evaluate expressions",
+	Long:  "https://en.wikipedia.org/wiki/Expr",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

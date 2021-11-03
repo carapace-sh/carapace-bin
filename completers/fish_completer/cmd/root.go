@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "fish",
 	Short: "the friendly interactive shell",
+	Long:  "https://fishshell.com/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

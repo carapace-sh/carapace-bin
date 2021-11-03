@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "code",
 	Short: "Visual Studio Code",
+	Long:  "https://code.visualstudio.com/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

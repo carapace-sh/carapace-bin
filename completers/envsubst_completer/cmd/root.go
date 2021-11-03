@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "envsubst",
 	Short: "Substitutes the values of environment variables",
+	Long:  "https://linux.die.net/man/1/envsubst",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

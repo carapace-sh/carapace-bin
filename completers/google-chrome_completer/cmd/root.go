@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "google-chrome",
 	Short: "chrome browser",
+	Long:  "https://www.google.com/chrome/index.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

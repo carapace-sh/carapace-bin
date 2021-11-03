@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "fc-cache",
 	Short: "Build font information caches",
+	Long:  "https://linux.die.net/man/1/fc-cache",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

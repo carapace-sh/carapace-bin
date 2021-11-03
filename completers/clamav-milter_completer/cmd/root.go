@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "clamav-milter",
 	Short: "milter compatible scanner",
+	Long:  "http://www.clamav.net/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

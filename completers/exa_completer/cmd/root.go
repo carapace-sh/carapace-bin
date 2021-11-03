@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "exa",
 	Short: "a modern replacement for ls",
+	Long:  "https://the.exa.website/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
