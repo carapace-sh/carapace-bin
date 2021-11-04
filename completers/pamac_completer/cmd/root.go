@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pamac",
 	Short: "package manager utility",
+	Long:  "https://wiki.manjaro.org/index.php/Pamac",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

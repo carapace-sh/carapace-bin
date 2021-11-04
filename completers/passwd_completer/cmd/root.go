@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "passwd",
 	Short: "change user password",
+	Long:  "https://linux.die.net/man/1/passwd",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

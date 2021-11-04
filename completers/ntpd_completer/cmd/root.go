@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ntpd",
 	Short: "NTP daemon program",
+	Long:  "https://linux.die.net/man/8/ntpd",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

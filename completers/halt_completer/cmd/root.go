@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "halt",
 	Short: "halt the machine",
+	Long:  "https://linux.die.net/man/8/halt",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

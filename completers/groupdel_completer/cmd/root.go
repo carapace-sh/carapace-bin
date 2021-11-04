@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "groupdel",
 	Short: "delete a group",
+	Long:  "https://linux.die.net/man/8/groupdel",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

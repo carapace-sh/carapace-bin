@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "node",
 	Short: "server-side JavaScript runtime",
+	Long:  "https://nodejs.org/en/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

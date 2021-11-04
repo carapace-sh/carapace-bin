@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mdbook",
 	Short: "Creates a book from markdown files",
+	Long:  "https://github.com/rust-lang/mdBook",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

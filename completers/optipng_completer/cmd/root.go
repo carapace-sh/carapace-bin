@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "optipng",
 	Short: "Optimize Portable Network Graphics files",
+	Long:  "http://optipng.sourceforge.net/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

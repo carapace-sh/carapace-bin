@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "nvim",
 	Short: "edit text",
+	Long:  "https://neovim.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

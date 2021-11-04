@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "julia",
 	Short: "high-level, high-performance dynamic programming language for technical computing",
+	Long:  "https://julialang.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

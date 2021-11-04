@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mousepad",
 	Short: "Mousepad is a simple text editor for the Xfce desktop environment",
+	Long:  "http://users.xfce.org/~benny/xfce/apps.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

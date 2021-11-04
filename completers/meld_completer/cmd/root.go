@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "meld",
 	Short: "Meld is a file and directory comparison tool",
+	Long:  "https://meldmerge.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

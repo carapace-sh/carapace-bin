@@ -62,8 +62,8 @@ func ActionMonths() carapace.Action {
 }
 
 // ActionDays completes `dd` days for a month
-//   01
-//   28
+//   01 (Friday)
+//   28 (Thursday)
 func ActionDays(year int, month int) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		month = month + 1

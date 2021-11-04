@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "md5sum",
 	Short: "compute and check MD5 message digest",
+	Long:  "https://linux.die.net/man/1/md5sum",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

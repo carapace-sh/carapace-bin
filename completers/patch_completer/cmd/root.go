@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "patch",
 	Short: "appy a diff file to an original",
+	Long:  "https://linux.die.net/man/1/patch",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

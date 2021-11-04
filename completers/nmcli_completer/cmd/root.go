@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "nmcli",
 	Short: "command-line tool for controlling NetworkManager",
+	Long:  "https://developer-old.gnome.org/NetworkManager/stable/nmcli.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

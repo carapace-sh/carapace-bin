@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mkswap",
 	Short: "Set up a Linux swap area",
+	Long:  "https://linux.die.net/man/8/mkswap",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

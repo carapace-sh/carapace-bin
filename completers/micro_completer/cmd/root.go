@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "micro",
 	Short: "A modern and intuitive terminal-based text editor",
+	Long:  "https://micro-editor.github.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

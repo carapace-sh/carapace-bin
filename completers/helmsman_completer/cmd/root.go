@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "helmsman",
 	Short: "Helmsman is a Helm Charts as Code tool",
+	Long:  "https://github.com/Praqma/Helmsman",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

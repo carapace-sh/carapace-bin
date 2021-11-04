@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "hwinfo",
 	Short: "Probe for hardware",
+	Long:  "https://github.com/openSUSE/hwinfo",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

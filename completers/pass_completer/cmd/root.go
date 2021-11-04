@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pass",
 	Short: "stores, retrieves, generates, and synchronizes passwords securely",
+	Long:  "https://www.passwordstore.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

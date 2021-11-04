@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pip",
 	Short: "package manager for Python packages",
+	Long:  "https://pip.pypa.io/en/stable/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

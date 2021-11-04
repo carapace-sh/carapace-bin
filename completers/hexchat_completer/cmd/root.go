@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "hexchat",
 	Short: "IRC Client",
+	Long:  "https://hexchat.github.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

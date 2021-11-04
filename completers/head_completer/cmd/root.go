@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "head",
 	Short: "output the first part of files",
+	Long:  "https://linux.die.net/man/1/head",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

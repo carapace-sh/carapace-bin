@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "locale",
 	Short: "Get locale-specific information",
+	Long:  "https://linux.die.net/man/1/locale",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

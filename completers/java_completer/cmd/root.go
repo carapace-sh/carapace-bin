@@ -15,6 +15,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "java",
 	Short: "Launches a Java application",
+	Long:  "https://en.wikipedia.org/wiki/Java_(programming_language)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

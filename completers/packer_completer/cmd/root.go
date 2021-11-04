@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "packer",
 	Short: "Create identical machine images for multiple platforms from a single source configuration.",
+	Long:  "https://www.packer.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "newman",
 	Short: "Newman is a command-line collection runner for Postman",
+	Long:  "https://github.com/postmanlabs/newman",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

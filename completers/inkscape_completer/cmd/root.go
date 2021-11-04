@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "inkscape",
 	Short: "an SVG (Scalable Vector Graphics) editing program",
+	Long:  "https://inkscape.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

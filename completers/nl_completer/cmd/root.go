@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "nl",
 	Short: "number lines of files",
+	Long:  "https://linux.die.net/man/1/nl",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

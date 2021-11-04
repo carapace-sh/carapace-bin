@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pandoc",
 	Short: "general markup converter",
+	Long:  "https://pandoc.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

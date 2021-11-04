@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "neomutt",
 	Short: "The NeoMutt Mail User Agent",
+	Long:  "https://neomutt.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

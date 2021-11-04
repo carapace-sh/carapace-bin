@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pcmanfm",
 	Short: "A lightweight Gtk+ based file manager for X Window",
+	Long:  "https://wiki.lxde.org/en/PCManFM",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

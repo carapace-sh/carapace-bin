@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "jq",
 	Short: "Command-line JSON processor",
+	Long:  "https://stedolan.github.io/jq/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pgrep",
 	Short: "look up processes based on name and other attributes",
+	Long:  "https://linux.die.net/man/1/pgrep",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

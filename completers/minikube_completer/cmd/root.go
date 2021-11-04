@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "minikube",
 	Short: "minikube quickly sets up a local Kubernetes cluster",
+	Long:  "https://minikube.sigs.k8s.io/docs/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

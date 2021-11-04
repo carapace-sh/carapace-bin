@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "install",
 	Short: "copy files and set attributes",
+	Long:  "https://linux.die.net/man/1/install",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

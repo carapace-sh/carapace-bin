@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mvn",
 	Short: "Apache Maven is a software project management and comprehension tool",
+	Long:  "https://maven.apache.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

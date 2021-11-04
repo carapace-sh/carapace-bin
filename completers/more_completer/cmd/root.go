@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "more",
 	Short: "file perusal filter for crt viewing",
+	Long:  "https://linux.die.net/man/1/more",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

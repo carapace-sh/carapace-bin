@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pacman",
 	Short: "package manager utility",
+	Long:  "https://wiki.archlinux.de/title/Pacman",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
