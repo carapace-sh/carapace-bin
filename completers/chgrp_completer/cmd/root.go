@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "chgrp",
 	Short: "change group ownership",
+	Long:  "https://en.wikipedia.org/wiki/Chgrp",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "cut",
 	Short: "remove sections from each line of files",
+	Long:  "https://linux.die.net/man/1/cut",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

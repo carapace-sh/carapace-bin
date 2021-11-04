@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ftpd",
 	Short: "File Transfer Protocol daemon",
+	Long:  "https://linux.die.net/man/8/ftpd",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

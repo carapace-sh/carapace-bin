@@ -12,6 +12,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "cargo",
 	Short: "Rust's package manager",
+	Long:  "https://doc.rust-lang.org/cargo/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 Description for go:generate
 	Use: "code-insiders",
 	Short: "Visual Studio Code Insiders",
+	Long: "https://code.visualstudio.com/insiders/",
 */
 
 func Execute() error {

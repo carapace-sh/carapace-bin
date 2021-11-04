@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "goreleaser",
 	Short: "Deliver Go binaries as fast and easily as possible",
+	Long:  "https://goreleaser.com/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

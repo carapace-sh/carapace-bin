@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "gofmt",
 	Short: "format Go source code",
+	Long:  "https://pkg.go.dev/cmd/gofmt",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

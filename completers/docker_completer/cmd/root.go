@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "docker",
 	Short: "Docker image and container command line interface",
+	Long:  "https://docs.docker.com/compose/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dmenu",
 	Short: "dynamic menu",
+	Long:  "https://linux.die.net/man/1/dmenu",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

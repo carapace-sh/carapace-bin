@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "csplit",
 	Short: "split a file into sections determined by context lines",
+	Long:  "https://linux.die.net/man/1/csplit",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

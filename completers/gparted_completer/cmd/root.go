@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "gparted",
 	Short: "GNOME Partition Editor for manipulating disk partitions",
+	Long:  "https://gparted.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

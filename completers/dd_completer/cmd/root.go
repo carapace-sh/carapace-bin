@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dd",
 	Short: "convert and copy a file",
+	Long:  "https://linux.die.net/man/1/dd",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

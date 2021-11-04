@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dms",
 	Short: "A UPnP DLNA Digital Media Server",
+	Long:  "https://github.com/anacrolix/dms",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

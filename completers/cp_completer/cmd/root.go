@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "cp",
 	Short: "copy files and directories",
+	Long:  "https://linux.die.net/man/1/cp",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

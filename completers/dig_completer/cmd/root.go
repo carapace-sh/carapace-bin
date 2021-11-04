@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dig",
 	Short: "DNS lookup utility",
+	Long:  "https://linux.die.net/man/1/dig",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

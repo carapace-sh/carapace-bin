@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "diff",
 	Short: "compare files line by line",
+	Long:  "https://linux.die.net/man/1/diff",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -14,6 +14,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:                "aws",
 	Short:              "Universal Command Line Interface for Amazon Web Services",
+	Long:               "https://aws.amazon.com/cli/",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
 }

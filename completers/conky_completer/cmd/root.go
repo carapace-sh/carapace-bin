@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "conky",
 	Short: "A system  monitor for X originally based on the torsmo code",
+	Long:  "https://github.com/brndnmtthws/conky",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

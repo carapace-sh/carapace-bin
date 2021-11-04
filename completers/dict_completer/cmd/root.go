@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dict",
 	Short: "Query a dictd server for the definition of a word",
+	Long:  "https://linux.die.net/man/1/dict",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

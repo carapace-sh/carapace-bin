@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "carapace",
 	Short: "multi-shell multi-command argument completer",
+	Long:  "https://github.com/rsteube/carapace-bin",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

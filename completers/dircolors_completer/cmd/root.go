@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dircolors",
 	Short: "color setup for ls",
+	Long:  "https://linux.die.net/man/1/dircolors",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

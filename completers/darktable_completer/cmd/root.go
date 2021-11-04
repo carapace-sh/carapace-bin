@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "darktable",
 	Short: "a digital photography workflow application",
+	Long:  "https://darktable-org.github.io/dtdocs/en-us/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

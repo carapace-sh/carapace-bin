@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "chroot",
 	Short: "run command or interactive shell with special root directory",
+	Long:  "https://en.wikipedia.org/wiki/Chroot",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

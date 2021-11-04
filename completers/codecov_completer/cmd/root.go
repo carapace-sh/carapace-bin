@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "codecov",
 	Short: "codecov uploader",
+	Long:  "https://docs.codecov.com/docs/codecov-uploader",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

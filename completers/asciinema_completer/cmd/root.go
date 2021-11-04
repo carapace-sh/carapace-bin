@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "asciinema",
 	Short: "Record and share your terminal sessions, the right way.",
+	Long:  "https://asciinema.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

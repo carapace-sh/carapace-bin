@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "fakeroot",
 	Short: "run a command in an environment faking root privileges for file manipulation",
+	Long:  "https://linux.die.net/man/1/fakeroot-sysv",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

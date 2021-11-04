@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "goweight",
 	Short: "A tool to analyze and troubleshoot a Go binary size",
+	Long:  "https://github.com/jondot/goweight",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

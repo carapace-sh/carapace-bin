@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "avdmanager",
 	Short: "create and manage Android Virtual Devices",
+	Long:  "https://developer.android.com/studio/command-line/avdmanager",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

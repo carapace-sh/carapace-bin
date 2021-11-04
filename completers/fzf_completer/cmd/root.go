@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "fzf",
 	Short: "a command-line fuzzy finder",
+	Long:  "https://github.com/junegunn/fzf",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

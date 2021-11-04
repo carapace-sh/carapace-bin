@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "consul",
 	Short: "Consul automates networking for simple and secure application delivery",
+	Long:  "https://www.consul.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

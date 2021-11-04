@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dart",
 	Short: "A command-line utility for Dart development",
+	Long:  "https://dart.dev/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

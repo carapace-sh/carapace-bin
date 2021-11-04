@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "faas-cli",
 	Short: "Manage your OpenFaaS functions from the command line",
+	Long:  "https://github.com/openfaas/faas-cli",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

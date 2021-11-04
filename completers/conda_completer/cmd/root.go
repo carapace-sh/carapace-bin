@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "conda",
 	Short: "conda is a tool for managing and deploying applications, environments and packages",
+	Long:  "https://docs.conda.io/en/latest/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

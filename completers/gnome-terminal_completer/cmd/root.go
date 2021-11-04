@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "gnome-terminal",
 	Short: "A terminal emulator for GNOME",
+	Long:  "https://help.gnome.org/users/gnome-terminal/stable/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

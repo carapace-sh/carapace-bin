@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "chpasswd",
 	Short: "update passwords in batch mode",
+	Long:  "https://linux.die.net/man/8/chpasswd",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
