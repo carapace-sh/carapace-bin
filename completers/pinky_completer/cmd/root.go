@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pinky",
 	Short: "lightweight finger",
+	Long:  "https://linux.die.net/man/1/pinky",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

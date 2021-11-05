@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ktlint",
 	Short: "An anti-bikeshedding Kotlin linter with built-in formatter",
+	Long:  "https://ktlint.github.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

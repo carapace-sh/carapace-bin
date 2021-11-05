@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "groupadd",
 	Short: "create a new group",
+	Long:  "https://linux.die.net/man/8/groupadd",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

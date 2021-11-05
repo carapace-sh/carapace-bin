@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "hugo",
 	Short: "hugo builds your site",
+	Long:  "https://gohugo.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

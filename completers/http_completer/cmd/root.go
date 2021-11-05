@@ -12,6 +12,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "http",
 	Short: "command-line HTTP client for the API era",
+	Long:  "https://httpie.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

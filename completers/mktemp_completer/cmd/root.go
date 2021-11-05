@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mktemp",
 	Short: "create a temporary file or directory",
+	Long:  "https://linux.die.net/man/1/mktemp",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "lnav",
 	Short: "ncurses-based log file viewer",
+	Long:  "https://lnav.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "netcat",
 	Short: "simple Unix utility which reads and writes data across network connections",
+	Long:  "https://nc110.sourceforge.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

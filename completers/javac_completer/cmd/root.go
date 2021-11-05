@@ -12,6 +12,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "javac",
 	Short: "Reads Java class and interface definitions and compiles them into bytecode and class files",
+	Long:  "https://en.wikipedia.org/wiki/Javac",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

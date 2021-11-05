@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "gunzip",
 	Short: "Uncompress files",
+	Long:  "https://linux.die.net/man/1/gunzip",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

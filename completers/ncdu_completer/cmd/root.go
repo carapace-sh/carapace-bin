@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ncdu",
 	Short: "NCurses Disk Usage",
+	Long:  "https://linux.die.net/man/1/ncdu",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

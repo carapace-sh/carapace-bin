@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "groups",
 	Short: "display current group names",
+	Long:  "https://linux.die.net/man/1/groups",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

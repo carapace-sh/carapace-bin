@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "htop",
 	Short: "interactive process viewer",
+	Long:  "https://htop.dev/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

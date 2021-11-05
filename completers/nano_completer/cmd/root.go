@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "nano",
 	Short: "Nano's ANOther editor, inspired by Pico",
+	Long:  "https://www.nano-editor.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

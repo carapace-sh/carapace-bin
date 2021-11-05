@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ln",
 	Short: "make links between files",
+	Long:  "https://linux.die.net/man/1/ln",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

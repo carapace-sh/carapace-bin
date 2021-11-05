@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "kompose",
 	Short: "A tool helping Docker Compose users move to Kubernetes",
+	Long:  "https://kompose.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

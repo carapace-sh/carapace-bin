@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "i3status",
 	Short: "Generates a status line for i3bar, dzen2, xmobar or lemonbar",
+	Long:  "https://i3wm.org/i3status/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

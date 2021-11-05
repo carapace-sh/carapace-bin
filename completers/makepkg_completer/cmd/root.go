@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "makepkg",
 	Short: "make packages compatible for use with pacman",
+	Long:  "https://wiki.archlinux.org/title/Makepkg",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

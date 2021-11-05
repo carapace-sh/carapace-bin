@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "nice",
 	Short: "run a program with modified scheduling priority",
+	Long:  "https://linux.die.net/man/1/nice",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

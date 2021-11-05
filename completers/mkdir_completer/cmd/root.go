@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mkdir",
 	Short: "make directories",
+	Long:  "https://linux.die.net/man/1/mkdir",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

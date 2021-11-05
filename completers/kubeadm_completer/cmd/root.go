@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "kubeadm",
 	Short: "kubeadm: easily bootstrap a secure Kubernetes cluster",
+	Long:  "https://kubernetes.io/docs/reference/setup-tools/kubeadm/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "killall",
 	Short: "kill processes by name",
+	Long:  "https://linux.die.net/man/1/killall",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

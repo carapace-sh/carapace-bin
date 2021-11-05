@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "i3status-rs",
 	Short: "A feature-rich and resource-friendly replacement for i3status, written in Rust",
+	Long:  "https://github.com/greshake/i3status-rust",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

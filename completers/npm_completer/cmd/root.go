@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "npm",
 	Short: "the package manager for JavaScript",
+	Long:  "https://www.npmjs.com/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "link",
 	Short: "call the link function to create a link to a file",
+	Long:  "https://linux.die.net/man/3/link",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ion",
 	Short: "The Ion Shell",
+	Long:  "https://gitlab.redox-os.org/redox-os/ion/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

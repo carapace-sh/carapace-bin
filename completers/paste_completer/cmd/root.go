@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "paste",
 	Short: "merge lines of files",
+	Long:  "https://linux.die.net/man/1/paste",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

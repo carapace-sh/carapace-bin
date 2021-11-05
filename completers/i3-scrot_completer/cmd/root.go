@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "i3-scrot",
 	Short: "simple screenshot script",
+	Long:  "https://gitlab.manjaro.org/packages/community/i3/i3-scrot",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mkfifo",
 	Short: "make FIFOs (named pipes)",
+	Long:  "https://linux.die.net/man/3/mkfifo",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

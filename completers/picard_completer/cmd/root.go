@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "picard",
 	Short: "Picard is a cross-platform music tagger written in Python",
+	Long:  "https://picard.musicbrainz.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

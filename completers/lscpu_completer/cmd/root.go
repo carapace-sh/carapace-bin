@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "lscpu",
 	Short: "display information about the CPU architecture",
+	Long:  "https://linux.die.net/man/1/lscpu",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

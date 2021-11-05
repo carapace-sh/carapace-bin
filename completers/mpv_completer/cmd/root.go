@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mpv",
 	Short: "a media player",
+	Long:  "https://mpv.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

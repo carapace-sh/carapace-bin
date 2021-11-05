@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "join",
 	Short: "join lines of two files on a common field",
+	Long:  "https://linux.die.net/man/1/join",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "i3",
 	Short: "an improved dynamic, tiling window manager",
+	Long:  "https://i3wm.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

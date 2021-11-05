@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "lsblk",
 	Short: "list block devices",
+	Long:  "https://linux.die.net/man/8/lsblk",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

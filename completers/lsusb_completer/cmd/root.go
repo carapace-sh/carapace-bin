@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "lsusb",
 	Short: "list USB devices",
+	Long:  "https://linux.die.net/man/8/lsusb",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

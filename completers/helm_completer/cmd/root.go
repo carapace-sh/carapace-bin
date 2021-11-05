@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "helm",
 	Short: "The Helm package manager for Kubernetes.",
+	Long:  "https://helm.sh/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

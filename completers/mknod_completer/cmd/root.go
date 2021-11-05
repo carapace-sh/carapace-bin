@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mknod",
 	Short: "make block or character special files",
+	Long:  "https://linux.die.net/man/3/mknod",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
