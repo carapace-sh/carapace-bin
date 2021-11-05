@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "svg-term",
 	Short: "Share terminal sessions as razor-sharp animated SVG everywhere",
+	Long:  "https://github.com/marionebl/svg-term-cli",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

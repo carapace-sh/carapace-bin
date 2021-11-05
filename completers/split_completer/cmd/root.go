@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "split",
 	Short: "split a file into pieces",
+	Long:  "https://linux.die.net/man/1/split",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

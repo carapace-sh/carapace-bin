@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ranger",
 	Short: "visual file manager",
+	Long:  "https://github.com/ranger/ranger",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

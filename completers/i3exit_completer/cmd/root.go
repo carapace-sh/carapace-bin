@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "i3exit",
 	Short: "exit-script for i3",
+	Long:  "https://aur.archlinux.org/packages/i3exit/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

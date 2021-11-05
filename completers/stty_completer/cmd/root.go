@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "stty",
 	Short: "change and print terminal line settings",
+	Long:  "https://linux.die.net/man/1/stty",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

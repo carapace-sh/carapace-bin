@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "rifle",
 	Short: "ranger's file opener",
+	Long:  "https://ranger.github.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

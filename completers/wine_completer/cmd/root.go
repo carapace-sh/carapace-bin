@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "wine",
 	Short: "run Windows programs on Unix",
+	Long:  "https://www.winehq.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

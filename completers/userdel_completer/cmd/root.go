@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "userdel",
 	Short: "delete a user account and related files",
+	Long:  "https://linux.die.net/man/8/userdel",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

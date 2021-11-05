@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tldr",
 	Short: "Python command line client for tldr",
+	Long:  "https://github.com/tldr-pages/tldr-python-client",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

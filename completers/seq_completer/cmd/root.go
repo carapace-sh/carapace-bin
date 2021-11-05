@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "seq",
 	Short: "print a sequence of numbers",
+	Long:  "https://linux.die.net/man/1/seq",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

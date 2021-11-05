@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "viewnior",
 	Short: "simple, fast and elegant image viewer",
+	Long:  "https://siyanpanayotov.com/project/viewnior",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

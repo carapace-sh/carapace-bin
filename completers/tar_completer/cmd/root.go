@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tar",
 	Short: "tar - an archiving utility",
+	Long:  "https://linux.die.net/man/1/tar",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "wineserver",
 	Short: "the Wine server",
+	Long:  "https://wiki.winehq.org/Wineserver",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

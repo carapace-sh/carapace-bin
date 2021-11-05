@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "unlink",
 	Short: "call the unlink function to remove the specified file",
+	Long:  "https://linux.die.net/man/2/unlink",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

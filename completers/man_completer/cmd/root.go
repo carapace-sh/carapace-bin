@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "man",
 	Short: "an interface to the system reference manuals",
+	Long:  "https://man7.org/linux/man-pages/man1/man.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

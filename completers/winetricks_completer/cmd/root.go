@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "winetricks",
 	Short: "manage virtual Windows environments using Wine",
+	Long:  "https://wiki.winehq.org/Winetricks",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

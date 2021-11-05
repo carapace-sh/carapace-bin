@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "yes",
 	Short: "output a string repeatedly until killed",
+	Long:  "https://linux.die.net/man/1/yes",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

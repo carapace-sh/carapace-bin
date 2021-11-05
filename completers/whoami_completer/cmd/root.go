@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "whoami",
 	Short: "print effective userid",
+	Long:  "https://linux.die.net/man/1/whoami",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

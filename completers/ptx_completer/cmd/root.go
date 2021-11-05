@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ptx",
 	Short: "produce a permuted index of file contents",
+	Long:  "https://linux.die.net/man/1/ptx",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

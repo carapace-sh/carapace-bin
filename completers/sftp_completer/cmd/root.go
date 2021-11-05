@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "sftp",
 	Short: "OpenSSH secure file transfer",
+	Long:  "https://linux.die.net/man/1/sftp",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

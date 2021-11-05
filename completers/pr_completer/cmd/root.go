@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pr",
 	Short: "convert text files for printing",
+	Long:  "https://linux.die.net/man/1/pr",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

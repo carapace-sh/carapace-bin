@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "sleep",
 	Short: "delay for a specified amount of time",
+	Long:  "https://linux.die.net/man/3/sleep",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

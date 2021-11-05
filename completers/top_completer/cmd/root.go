@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "top",
 	Short: "display Linux processes",
+	Long:  "https://linux.die.net/man/1/top",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

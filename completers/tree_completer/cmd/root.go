@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tree",
 	Short: "list contents of directories in a tree-like format",
+	Long:  "https://linux.die.net/man/1/tree",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

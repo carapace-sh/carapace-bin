@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "rg",
 	Short: "recursively search current directory for lines matching a pattern",
+	Long:  "https://github.com/BurntSushi/ripgrep",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tail",
 	Short: "output the last part of files",
+	Long:  "https://linux.die.net/man/1/tail",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

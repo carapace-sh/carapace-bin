@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tsc",
 	Short: "The TypeScript Compiler",
+	Long:  "https://www.typescriptlang.org/docs/handbook/compiler-options.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

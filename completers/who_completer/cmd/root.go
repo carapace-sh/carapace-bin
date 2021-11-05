@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "who",
 	Short: "show who is logged on",
+	Long:  "https://linux.die.net/man/1/who",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

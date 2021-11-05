@@ -7,6 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "wineboot",
+	Long:  "https://wiki.winehq.org/Wineboot",
 	Short: "perform Wine initialization, startup, and shutdown task",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -8,6 +8,7 @@ import (
 Description for go:generate
 	Use: "unbrotli",
 	Short: "compress or decompress files",
+	Long:  "https://github.com/google/brotli",
 */
 
 func Execute() error {

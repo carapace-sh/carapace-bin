@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "sum",
 	Short: "checksum and count the blocks in a file",
+	Long:  "https://linux.die.net/man/1/sum",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

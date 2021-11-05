@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "vagrant",
 	Short: "tool for building and managing virtual machine environments",
+	Long:  "https://www.vagrantup.com/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "yj",
 	Short: "Convert between YAML, TOML, JSON, and HCL",
+	Long:  "https://github.com/sclevine/yj",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xonsh",
 	Short: "Python-powered shell",
+	Long:  "https://xon.sh/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

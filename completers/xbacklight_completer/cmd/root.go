@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbacklight",
 	Short: "adjust backlight brightness using RandR extension",
+	Long:  "https://linux.die.net/man/1/xbacklight",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

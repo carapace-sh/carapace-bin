@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "scrot",
 	Short: "command line screen capture utility",
+	Long:  "https://en.wikipedia.org/wiki/Scrot",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

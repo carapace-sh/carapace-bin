@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "sudo",
 	Short: "execute a command as another user",
+	Long:  "https://linux.die.net/man/8/sudo",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

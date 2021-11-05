@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "prettyping",
 	Short: "This script is a wrapper around the system's \"ping\" tool",
+	Long:  "https://github.com/denilsonsa/prettyping",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

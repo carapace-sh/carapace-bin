@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "rustc",
 	Short: "compiler for the Rust programming language",
+	Long:  "https://doc.rust-lang.org/rustc/index.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

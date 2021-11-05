@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "users",
 	Short: "print the user names of users currently logged in to the current host",
+	Long:  "https://linux.die.net/man/1/users",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

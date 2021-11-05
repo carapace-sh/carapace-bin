@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "strings",
 	Short: "print the sequences of printable characters in files",
+	Long:  "https://linux.die.net/man/1/strings",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

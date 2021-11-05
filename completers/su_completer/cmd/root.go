@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "su",
 	Short: "run a command with substitute user and group ID",
+	Long:  "https://linux.die.net/man/1/su",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
