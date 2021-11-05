@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "qrencode",
 	Short: "Encode input data in a QR Code and save as a PNG or EPS image",
+	Long:  "https://linux.die.net/man/1/qrencode",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "printenv",
 	Short: "print all or part of environment",
+	Long:  "https://linux.die.net/man/1/printenv",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

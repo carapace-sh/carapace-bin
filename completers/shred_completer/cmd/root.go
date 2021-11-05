@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "shred",
 	Short: "overwrite a file to hide its contents, and optionally delete it",
+	Long:  "https://linux.die.net/man/1/shred",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

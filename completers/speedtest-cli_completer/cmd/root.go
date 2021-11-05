@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "speedtest-cli",
 	Short: "Command line interface for testing internet bandwidth using speedtest.net",
+	Long:  "https://www.speedtest.net/apps/cli",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

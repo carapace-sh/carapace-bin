@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "localectl",
 	Short: "Query or change system locale and keyboard settings",
+	Long:  "https://www.man7.org/linux/man-pages/man1/localectl.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

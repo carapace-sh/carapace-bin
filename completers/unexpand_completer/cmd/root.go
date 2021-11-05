@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "unexpand",
 	Short: "convert spaces to tabs",
+	Long:  "https://linux.die.net/man/1/unexpand",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

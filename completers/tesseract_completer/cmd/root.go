@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tesseract",
 	Short: "command-line OCR engine",
+	Long:  "https://github.com/tesseract-ocr/tessdoc",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

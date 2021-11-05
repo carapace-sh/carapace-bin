@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "python",
 	Short: "an interpreted, interactive, object-oriented programming language",
+	Long:  "https://www.python.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

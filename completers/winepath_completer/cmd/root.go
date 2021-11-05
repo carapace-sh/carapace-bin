@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "winepath",
 	Short: "Tool to convert Unix paths to/from Win32 paths",
+	Long:  "https://wiki.winehq.org/Winepath",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

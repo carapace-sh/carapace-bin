@@ -8,6 +8,7 @@ import (
 Description for go:generate
 	Use: "reboot",
 	Short: "reboot the machine",
+	Long: "https://linux.die.net/man/8/reboot",
 */
 
 func Execute() error {

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "sync",
 	Short: "Synchronize cached writes to persistent storage",
+	Long:  "https://linux.die.net/man/8/sync",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

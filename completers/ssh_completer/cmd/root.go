@@ -12,6 +12,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ssh",
 	Short: "OpenSSH remote login client",
+	Long:  "https://linux.die.net/man/1/ssh",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

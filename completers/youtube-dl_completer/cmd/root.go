@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "youtube-dl",
 	Short: "download videos from youtube.com or other video platforms",
+	Long:  "https://github.com/ytdl-org/youtube-dl",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

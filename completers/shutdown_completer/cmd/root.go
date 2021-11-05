@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "shutdown",
 	Short: "Shut down the system",
+	Long:  "https://linux.die.net/man/8/shutdown",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

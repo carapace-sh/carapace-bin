@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "stat",
 	Short: "display file or file system status",
+	Long:  "https://linux.die.net/man/2/stat",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

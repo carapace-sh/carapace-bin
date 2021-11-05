@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "vlc",
 	Short: "the VLC media player",
+	Long:  "https://www.videolan.org/vlc/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

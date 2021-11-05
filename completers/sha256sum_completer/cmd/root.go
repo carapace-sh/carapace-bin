@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "sha256sum",
 	Short: "compute and check SHA256 message digest",
+	Long:  "https://linux.die.net/man/1/sha256sum",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

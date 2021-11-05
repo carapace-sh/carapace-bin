@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tee",
 	Short: "read from standard input and write to standard output and files",
+	Long:  "https://linux.die.net/man/1/tee",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

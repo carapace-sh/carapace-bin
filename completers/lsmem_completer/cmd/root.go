@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "lsmem",
 	Short: "list the ranges of available memory with their online status",
+	Long:  "https://www.man7.org/linux/man-pages/man1/lsmem.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

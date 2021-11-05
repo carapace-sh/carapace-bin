@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "wc",
 	Short: "print newline, word, and byte counts for each file",
+	Long:  "https://linux.die.net/man/1/wc",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

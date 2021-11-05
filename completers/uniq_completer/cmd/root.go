@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "uniq",
 	Short: "report or omit repeated lines",
+	Long:  "https://linux.die.net/man/1/uniq",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

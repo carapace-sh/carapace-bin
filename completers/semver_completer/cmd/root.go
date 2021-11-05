@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "semver",
 	Short: "A JavaScript implementation of the https://semver.org/ specification",
+	Long:  "https://github.com/npm/node-semver",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tr",
 	Short: "translate or delete characters",
+	Long:  "https://linux.die.net/man/1/tr",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "i3lock",
 	Short: "improved screen locker",
+	Long:  "https://i3wm.org/i3lock/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

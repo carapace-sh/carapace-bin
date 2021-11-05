@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "vi",
 	Short: "screen oriented (visual) display editor based on ex",
+	Long:  "https://en.wikipedia.org/wiki/Vi",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
