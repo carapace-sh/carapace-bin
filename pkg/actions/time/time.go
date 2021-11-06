@@ -68,7 +68,7 @@ func ActionMonths() carapace.Action {
 //   28 (Thursday)
 func ActionDays(year int, month int) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		date := time.Date(year, time.Month(month), 0, 0, 0, 0, 0, time.UTC)
+		date := time.Date(year, time.Month(month)+1, 0, 0, 0, 0, 0, time.UTC)
 
 		vals := make([]string, 0)
 		for i := 1; i <= date.Day(); i = i + 1 {
