@@ -27,4 +27,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"shell": os.ActionShells(),
 	})
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		os.ActionUsers(),
+	)
 }
