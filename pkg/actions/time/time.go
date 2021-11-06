@@ -4,9 +4,11 @@ package time
 import (
 	"fmt"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/number"
 )
 
 // ActionDate completes `yyyy-MM-dd` dates separately
@@ -83,9 +85,46 @@ func ActionTime() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			return carapace.ActionValues("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23").Invoke(c).Suffix(":").ToA()
+			return number.ActionRangeF("%02d", 0, 23).Invoke(c).Suffix(":").ToA()
 		case 1:
-			return carapace.ActionValues("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59")
+			return number.ActionRangeF("%02d", 0, 59)
+		default:
+			return carapace.ActionValues()
+		}
+	})
+}
+
+// ActionTimeS completes `hh:mm:ss` time
+//   00:30:19
+//   14:47:14
+func ActionTimeS() carapace.Action {
+	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			return number.ActionRangeF("%02d", 0, 23).Invoke(c).Suffix(":").ToA()
+		case 1:
+			return number.ActionRangeF("%02d", 0, 59).Invoke(c).Suffix(":").ToA()
+		case 2:
+			return number.ActionRangeF("%02d", 0, 59)
+		default:
+			return carapace.ActionValues()
+		}
+	})
+}
+
+// ActionDateTime completes `yyyy-MM-ddThh:mm:ss` datetime
+//   2021-11-11T04:02:12
+//   2021-04-02T16:11:33
+func ActionDateTime() carapace.Action {
+	return carapace.ActionMultiParts("T", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			if strings.Count(c.CallbackValue, "-") == 2 {
+				return ActionDate().Invoke(c).Suffix("T").ToA()
+			}
+			return ActionDate()
+		case 1:
+			return ActionTimeS()
 		default:
 			return carapace.ActionValues()
 		}

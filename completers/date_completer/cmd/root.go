@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/time"
 	"github.com/spf13/cobra"
 )
 
@@ -32,6 +33,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"date":      time.ActionDateTime(),
 		"file":      carapace.ActionFiles(),
 		"reference": carapace.ActionFiles(),
 	})
