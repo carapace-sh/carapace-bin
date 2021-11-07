@@ -59,6 +59,10 @@ func init() {
 		),
 	})
 
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionDirectories(),
 	)
