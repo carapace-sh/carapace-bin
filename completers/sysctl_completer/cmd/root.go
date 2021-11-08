@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "sysctl",
 	Short: "configure kernel parameters at runtime",
+	Long:  "https://linux.die.net/man/8/sysctl",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
