@@ -89,24 +89,18 @@ func tcsh_lazy(completers []string) string {
 }
 
 func xonsh_lazy(completers []string) string {
-	snippet := `from shlex import split
-import re
-import pathlib
-import subprocess
-import xonsh
-import builtins
-from xonsh.completers._aliases import _add_one_completer
-from xonsh.completers.path import complete_dir, complete_path
-from xonsh.completers.tools import RichCompletion
+	snippet := `from xonsh.completers._aliases import _add_one_completer
+from xonsh.completers.tools import *
 
-def _carapace_lazy(prefix, line, begidx, endidx, ctx):
+@contextual_completer
+def _carapace_lazy(context):
     """carapace lazy"""
-    command = split(line)[0]
-    if command not in [%v]:
-        return # not the expected command to complete
-    builtins.__xonsh__.completers = builtins.__xonsh__.completers.copy()
-    exec(compile(subprocess.run(['carapace', command, 'xonsh'], stdout=subprocess.PIPE).stdout.decode('utf-8'), "", "exec"))
-    return builtins.__xonsh__.completers[command](prefix, line, begidx, endidx, ctx)
+    if (context.command and
+        context.command.arg_index > 0 and
+        context.command.args[0].value in [%v]):
+        builtins.__xonsh__.completers = builtins.__xonsh__.completers.copy()
+        exec(compile(subprocess.run(['carapace', context.command.args[0].value, 'xonsh'], stdout=subprocess.PIPE).stdout.decode('utf-8'), "", "exec"))
+        return builtins.__xonsh__.completers[context.command.args[0].value](context)
 _add_one_completer('carapace_lazy', _carapace_lazy, 'start')
 `
 	complete := make([]string, len(completers))
