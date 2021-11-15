@@ -1,4 +1,3 @@
-// package fs contains filesystem related actions
 package fs
 
 import (
