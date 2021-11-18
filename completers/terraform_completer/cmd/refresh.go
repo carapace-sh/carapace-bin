@@ -31,10 +31,13 @@ func init() {
 	refreshCmd.Flag("target").NoOptDefVal = " "
 	refreshCmd.Flag("var-file").NoOptDefVal = " "
 
-	// TODO complete target/var
+	// TODO complete var
 	carapace.Gen(refreshCmd).FlagCompletion(carapace.ActionMap{
-		"input":    action.ActionBool(),
-		"lock":     action.ActionBool(),
+		"input": action.ActionBool(),
+		"lock":  action.ActionBool(),
+		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionResources().Invoke(c).ToMultiPartsA(".")
+		}),
 		"var-file": carapace.ActionFiles(),
 	})
 }
