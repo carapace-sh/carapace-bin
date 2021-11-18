@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,12 +12,14 @@ var refreshCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(refreshCmd).Standalone()
 	refreshCmd.PersistentFlags().String("config-file", "", "Use the configuration values in the specified file rather than detecting the file name")
 	refreshCmd.PersistentFlags().BoolP("debug", "d", false, "Print detailed debugging output during resource operations")
 	refreshCmd.PersistentFlags().Bool("diff", false, "Display operation as a rich diff showing the overall change")
 	refreshCmd.PersistentFlags().String("exec-agent", "", "")
 	refreshCmd.PersistentFlags().String("exec-kind", "", "")
 	refreshCmd.PersistentFlags().Bool("expect-no-changes", false, "Return an error if any changes occur during this update")
+	refreshCmd.Flags().BoolP("json", "j", false, "Serialize the refresh diffs, operations, and overall output as JSON")
 	refreshCmd.PersistentFlags().StringP("message", "m", "", "Optional message to associate with the update operation")
 	refreshCmd.PersistentFlags().IntP("parallel", "p", 2147483647, "Allow P resource operations to run in parallel at once (1 for no parallelism). Defaults to unbounded.")
 	refreshCmd.PersistentFlags().Bool("show-replacement-steps", false, "Show detailed resource replacement creates and deletes instead of a single step")

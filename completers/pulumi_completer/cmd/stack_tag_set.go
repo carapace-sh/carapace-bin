@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,5 +12,6 @@ var stack_tag_setCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(stack_tag_setCmd).Standalone()
 	stack_tagCmd.AddCommand(stack_tag_setCmd)
 }

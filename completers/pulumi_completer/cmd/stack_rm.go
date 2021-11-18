@@ -13,6 +13,7 @@ var stack_rmCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(stack_rmCmd).Standalone()
 	stack_rmCmd.PersistentFlags().BoolP("force", "f", false, "Forces deletion of the stack, leaving behind any resources managed by the stack")
 	stack_rmCmd.PersistentFlags().Bool("preserve-config", false, "Do not delete the corresponding Pulumi.<stack-name>.yaml configuration file for the stack")
 	stack_rmCmd.PersistentFlags().BoolP("yes", "y", false, "Skip confirmation prompts, and proceed with removal anyway")

@@ -13,8 +13,9 @@ var stack_initCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(stack_initCmd).Standalone()
 	stack_initCmd.PersistentFlags().String("copy-config-from", "", "The name of the stack to copy existing config from")
-	stack_initCmd.PersistentFlags().String("secrets-provider", "default", "The type of the provider that should be used to encrypt and decrypt secrets ")
+	stack_initCmd.PersistentFlags().String("secrets-provider", "default", "The type of the provider that should be used to encrypt and decrypt secrets")
 	stackCmd.AddCommand(stack_initCmd)
 
 	carapace.Gen(stack_initCmd).FlagCompletion(carapace.ActionMap{

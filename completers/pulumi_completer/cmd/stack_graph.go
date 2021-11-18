@@ -12,6 +12,7 @@ var stack_graphCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(stack_graphCmd).Standalone()
 	stack_graphCmd.PersistentFlags().String("dependency-edge-color", "#246C60", "Sets the color of dependency edges in the graph")
 	stack_graphCmd.PersistentFlags().Bool("ignore-dependency-edges", false, "Ignores edges introduced by dependency resource relationships")
 	stack_graphCmd.PersistentFlags().Bool("ignore-parent-edges", false, "Ignores edges introduced by parent/child resource relationships")

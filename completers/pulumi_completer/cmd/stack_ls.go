@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,6 +12,7 @@ var stack_lsCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(stack_lsCmd).Standalone()
 	stack_lsCmd.PersistentFlags().BoolP("all", "a", false, "List all stacks instead of just stacks for the current project")
 	stack_lsCmd.PersistentFlags().BoolP("json", "j", false, "Emit output as JSON")
 	stack_lsCmd.PersistentFlags().StringP("organization", "o", "", "Filter returned stacks to those in a specific organization")

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,6 +12,7 @@ var configCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(configCmd).Standalone()
 	configCmd.PersistentFlags().String("config-file", "", "Use the configuration values in the specified file rather than detecting the file name")
 	configCmd.Flags().BoolP("json", "j", false, "Emit output as JSON")
 	configCmd.Flags().Bool("show-secrets", false, "Show secret values when listing config instead of displaying blinded values")

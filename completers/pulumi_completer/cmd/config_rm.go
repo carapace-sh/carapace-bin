@@ -13,6 +13,7 @@ var config_rmCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(config_rmCmd).Standalone()
 	config_rmCmd.PersistentFlags().Bool("path", false, "The key contains a path to a property in a map or list to remove")
 	configCmd.AddCommand(config_rmCmd)
 

@@ -12,6 +12,7 @@ var plugin_installCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(plugin_installCmd).Standalone()
 	plugin_installCmd.PersistentFlags().Bool("exact", false, "Force installation of an exact version match (usually >= is accepted)")
 	plugin_installCmd.PersistentFlags().StringP("file", "f", "", "Install a plugin from a tarball file, instead of downloading it")
 	plugin_installCmd.PersistentFlags().Bool("reinstall", false, "Reinstall a plugin even if it already exists")

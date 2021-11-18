@@ -13,6 +13,7 @@ var upCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(upCmd).Standalone()
 	upCmd.PersistentFlags().String("client", "", "The address of an existing language runtime host to connect to")
 	upCmd.PersistentFlags().StringArrayP("config", "c", []string{}, "Config to use during the update")
 	upCmd.PersistentFlags().String("config-file", "", "Use the configuration values in the specified file rather than detecting the file name")
@@ -22,11 +23,12 @@ func init() {
 	upCmd.PersistentFlags().String("exec-agent", "", "")
 	upCmd.PersistentFlags().String("exec-kind", "", "")
 	upCmd.PersistentFlags().Bool("expect-no-changes", false, "Return an error if any changes occur during this update")
+	upCmd.Flags().BoolP("json", "j", false, "Serialize the update diffs, operations, and overall output as JSON")
 	upCmd.PersistentFlags().StringP("message", "m", "", "Optional message to associate with the update operation")
 	upCmd.PersistentFlags().IntP("parallel", "p", 2147483647, "Allow P resource operations to run in parallel at once (1 for no parallelism). Defaults to unbounded.")
 	upCmd.PersistentFlags().StringSlice("policy-pack", []string{}, "Run one or more policy packs as part of this update")
 	upCmd.PersistentFlags().StringSlice("policy-pack-config", []string{}, "Path to JSON file containing the config for the policy pack of the corresponding \"--policy-pack\" flag")
-	upCmd.PersistentFlags().BoolP("refresh", "r", false, "Refresh the state of the stack's resources before this update")
+	upCmd.PersistentFlags().StringP("refresh", "r", "", "Refresh the state of the stack's resources before this update")
 	upCmd.PersistentFlags().StringArray("replace", []string{}, "Specify resources to replace. Multiple resources can be specified using --replace urn1 --replace urn2")
 	upCmd.PersistentFlags().String("secrets-provider", "default", "The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault). Onlyused when creating a new stack from an existing template")
 	upCmd.PersistentFlags().Bool("show-config", false, "Show configuration keys and variables")
@@ -41,6 +43,7 @@ func init() {
 	upCmd.PersistentFlags().Bool("target-dependents", false, "Allows updating of dependent targets discovered but not specified in --target list")
 	upCmd.PersistentFlags().StringArray("target-replace", []string{}, "Specify a single resource URN to replace. Other resources will not be updated. Shorthand for --target urn --replace urn.")
 	upCmd.PersistentFlags().BoolP("yes", "y", false, "Automatically approve and perform the update after previewing it")
+	upCmd.Flag("refresh").NoOptDefVal = "true"
 	upCmd.Flag("suppress-permalink").NoOptDefVal = "false"
 	rootCmd.AddCommand(upCmd)
 
