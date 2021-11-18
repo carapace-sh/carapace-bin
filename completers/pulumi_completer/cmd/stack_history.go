@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,6 +12,7 @@ var stack_historyCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(stack_historyCmd).Standalone()
 	stack_historyCmd.PersistentFlags().Bool("full-dates", false, "Show full dates, instead of relative dates")
 	stack_historyCmd.PersistentFlags().BoolP("json", "j", false, "Emit output as JSON")
 	stack_historyCmd.PersistentFlags().Int("page", 1, "Used with 'page-size' to paginate results")

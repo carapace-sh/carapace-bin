@@ -13,6 +13,7 @@ var config_rmAllCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(config_rmAllCmd).Standalone()
 	config_rmAllCmd.PersistentFlags().Bool("path", false, "Parse the keys as paths in a map or list rather than raw strings")
 	configCmd.AddCommand(config_rmAllCmd)
 

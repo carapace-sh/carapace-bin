@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,6 +12,7 @@ var config_refreshCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(config_refreshCmd).Standalone()
 	config_refreshCmd.PersistentFlags().BoolP("force", "f", false, "Overwrite configuration file, if it exists, without creating a backup")
 	configCmd.AddCommand(config_refreshCmd)
 }

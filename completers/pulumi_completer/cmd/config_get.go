@@ -13,6 +13,7 @@ var config_getCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(config_getCmd).Standalone()
 	config_getCmd.Flags().BoolP("json", "j", false, "Emit output as JSON")
 	config_getCmd.PersistentFlags().Bool("path", false, "The key contains a path to a property in a map or list to get")
 	configCmd.AddCommand(config_getCmd)

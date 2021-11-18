@@ -13,6 +13,7 @@ var importCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(importCmd).Standalone()
 	importCmd.PersistentFlags().String("config-file", "", "Use the configuration values in the specified file rather than detecting the file name")
 	importCmd.PersistentFlags().BoolP("debug", "d", false, "Print detailed debugging output during resource operations")
 	importCmd.PersistentFlags().Bool("diff", false, "Display operation as a rich diff showing the overall change")

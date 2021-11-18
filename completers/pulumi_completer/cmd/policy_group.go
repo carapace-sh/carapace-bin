@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,5 +12,6 @@ var policy_groupCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(policy_groupCmd).Standalone()
 	policyCmd.AddCommand(policy_groupCmd)
 }

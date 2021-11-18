@@ -13,6 +13,7 @@ var watchCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(watchCmd).Standalone()
 	watchCmd.PersistentFlags().StringArrayP("config", "c", []string{}, "Config to use during the update")
 	watchCmd.PersistentFlags().String("config-file", "", "Use the configuration values in the specified file rather than detecting the file name")
 	watchCmd.PersistentFlags().Bool("config-path", false, "Config keys contain a path to a property in a map or list to set")
@@ -20,6 +21,7 @@ func init() {
 	watchCmd.PersistentFlags().String("exec-kind", "", "")
 	watchCmd.PersistentFlags().StringP("message", "m", "", "Optional message to associate with each update operation")
 	watchCmd.PersistentFlags().IntP("parallel", "p", 2147483647, "Allow P resource operations to run in parallel at once (1 for no parallelism). Defaults to unbounded.")
+	watchCmd.PersistentFlags().StringArray("path", []string{}, "Specify one or more relative or absolute paths that need to be watched. A path can point to a folder or a file. Defaults to working directory")
 	watchCmd.PersistentFlags().StringSlice("policy-pack", []string{}, "Run one or more policy packs as part of each update")
 	watchCmd.PersistentFlags().StringSlice("policy-pack-config", []string{}, "Path to JSON file containing the config for the policy pack of the corresponding \"--policy-pack\" flag")
 	watchCmd.PersistentFlags().BoolP("refresh", "r", false, "Refresh the state of the stack's resources before each update")
@@ -32,6 +34,7 @@ func init() {
 
 	carapace.Gen(watchCmd).FlagCompletion(carapace.ActionMap{
 		"config-file":        carapace.ActionFiles(),
+		"path":               carapace.ActionFiles(),
 		"policy-pack-config": carapace.ActionFiles(),
 		"secrets-provider":   action.ActionSecretsProvider(),
 		"stack":              action.ActionStacks(watchCmd, action.StackOpts{}),

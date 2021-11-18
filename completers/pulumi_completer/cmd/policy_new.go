@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,6 +12,7 @@ var policy_newCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(policy_newCmd).Standalone()
 	policy_newCmd.PersistentFlags().String("dir", "", "The location to place the generated Policy Pack; if not specified, the current directory is used")
 	policy_newCmd.PersistentFlags().BoolP("force", "f", false, "Forces content to be generated even if it would change existing files")
 	policy_newCmd.PersistentFlags().BoolP("generate-only", "g", false, "Generate the Policy Pack only; do not install dependencies")

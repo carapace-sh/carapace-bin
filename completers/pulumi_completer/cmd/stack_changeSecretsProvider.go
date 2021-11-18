@@ -13,6 +13,7 @@ var stack_changeSecretsProviderCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(stack_changeSecretsProviderCmd).Standalone()
 	stackCmd.AddCommand(stack_changeSecretsProviderCmd)
 
 	carapace.Gen(stack_changeSecretsProviderCmd).PositionalCompletion(

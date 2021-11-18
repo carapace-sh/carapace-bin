@@ -13,6 +13,7 @@ var consoleCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(consoleCmd).Standalone()
 	consoleCmd.PersistentFlags().StringP("stack", "s", "", "The name of the stack to view")
 	rootCmd.AddCommand(consoleCmd)
 
