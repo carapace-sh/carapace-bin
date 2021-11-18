@@ -35,23 +35,28 @@ func init() {
 	destroyCmd.Flags().String("var-file", "", "Load variable values from the given file.")
 	rootCmd.AddCommand(destroyCmd)
 
-	destroyCmd.Flag("refresh").NoOptDefVal = " "
-	destroyCmd.Flag("replace").NoOptDefVal = " "
-	destroyCmd.Flag("target").NoOptDefVal = " "
-	destroyCmd.Flag("var-file").NoOptDefVal = " "
 	destroyCmd.Flag("input").NoOptDefVal = " "
 	destroyCmd.Flag("lock").NoOptDefVal = " "
 	destroyCmd.Flag("lock-timeout").NoOptDefVal = " "
 	destroyCmd.Flag("out").NoOptDefVal = " "
 	destroyCmd.Flag("parallelism").NoOptDefVal = " "
+	destroyCmd.Flag("refresh").NoOptDefVal = " "
+	destroyCmd.Flag("replace").NoOptDefVal = " "
 	destroyCmd.Flag("state").NoOptDefVal = " "
+	destroyCmd.Flag("target").NoOptDefVal = " "
+	destroyCmd.Flag("var-file").NoOptDefVal = " "
 
-	// TODO resource completion
 	carapace.Gen(destroyCmd).FlagCompletion(carapace.ActionMap{
-		"lock":     action.ActionBool(),
-		"out":      carapace.ActionFiles(),
-		"refresh":  action.ActionBool(),
-		"state":    carapace.ActionFiles(),
+		"lock":    action.ActionBool(),
+		"out":     carapace.ActionFiles(),
+		"refresh": action.ActionBool(),
+		"replace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionResources().Invoke(c).ToMultiPartsA(".")
+		}),
+		"state": carapace.ActionFiles(),
+		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionResources().Invoke(c).ToMultiPartsA(".")
+		}),
 		"var-file": carapace.ActionFiles(),
 	})
 }
