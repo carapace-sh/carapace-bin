@@ -44,6 +44,7 @@ func init() {
 	rootCmd.Flags().StringS("W", "W", "", "Save extra information in the file, if supported.")
 	rootCmd.Flags().StringArrayVarS(&extensionOpts, "X", "X", []string{}, "eXtension options, see the man page for details")
 	rootCmd.Flags().StringArrayP("autostop", "a", []string{}, "specify stop criterion ")
+	rootCmd.Flags().StringP("buffer-size", "B", "", "size of kernel buffer")
 	rootCmd.Flags().StringS("c", "c", "", "stop after n packets (def: infinite)")
 	rootCmd.Flags().String("capture-comment", "", "set the capture file comment")
 	rootCmd.Flags().Bool("color", false, "color output text similarly to the Wireshark GUI")
@@ -214,10 +215,10 @@ func init() {
 			case 1:
 				return carapace.ActionFiles()
 			default:
-				return carapace.ActionFiles()
+				return carapace.ActionValues()
 			}
 		}),
-		"interface": net.ActionDevices(net.AllDevices),
+		"interface": tshark.ActionInterfaces(),
 		"linktype": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return tshark.ActionLinkTypes(rootCmd.Flag("interface").Value.String())
 		}),
