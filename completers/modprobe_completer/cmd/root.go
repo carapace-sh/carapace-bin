@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/modprobe_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -48,14 +48,12 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "enables more messages")
 	rootCmd.Flags().BoolP("version", "V", false, "show version")
 
-	rootCmd.Flag("config").NoOptDefVal = " "
-	rootCmd.Flag("dirname").NoOptDefVal = " "
-	rootCmd.Flag("set-version").NoOptDefVal = " "
-
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"config":      carapace.ActionFiles(),
-		"dirname":     carapace.ActionFiles(),
-		"set-version": action.ActionKernelReleases(),
+		"config":  carapace.ActionFiles(),
+		"dirname": carapace.ActionFiles(),
+		"set-version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return os.ActionKernelReleases(rootCmd.Flag("dirname").Value.String())
+		}),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
@@ -72,9 +70,9 @@ func init() {
 			}
 
 			if rootCmd.Flag("remove").Changed {
-				return action.ActionLoadedKernelModules()
+				return os.ActionKernelModulesLoaded()
 			}
-			return action.ActionKernelModules(rootCmd.Flag("set-version").Value.String())
+			return os.ActionKernelModules(rootCmd.Flag("dirname").Value.String(), rootCmd.Flag("set-version").Value.String())
 		}),
 	)
 }

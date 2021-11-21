@@ -1,12 +1,14 @@
-package action
+package os
 
 import (
-	"github.com/rsteube/carapace"
-	exec "golang.org/x/sys/execabs"
+	"fmt"
 	"io/fs"
 	"io/ioutil"
 	"path/filepath"
 	"strings"
+
+	"github.com/rsteube/carapace"
+	exec "golang.org/x/sys/execabs"
 )
 
 func currentRelease() (string, error) {
@@ -17,7 +19,10 @@ func currentRelease() (string, error) {
 	}
 }
 
-func ActionLoadedKernelModules() carapace.Action {
+// ActionKernelModulesLoaded completes currently loaded kernel modules
+//   ac97_bus
+//   crc32c_intel
+func ActionKernelModulesLoaded() carapace.Action {
 	return carapace.ActionExecCommand("lsmod")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		vals := make([]string, 0)
@@ -28,7 +33,10 @@ func ActionLoadedKernelModules() carapace.Action {
 	})
 }
 
-func ActionKernelModules(release string) carapace.Action {
+// ActionKernelModules completes kernel modules
+//   ac97_bus
+//   crc32c_intel
+func ActionKernelModules(basedir string, release string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if strings.TrimSpace(release) == "" {
 			var err error
@@ -38,7 +46,7 @@ func ActionKernelModules(release string) carapace.Action {
 		}
 
 		vals := make([]string, 0)
-		err := filepath.WalkDir("/lib/modules/"+release+"/kernel", func(path string, d fs.DirEntry, err error) error {
+		err := filepath.WalkDir(fmt.Sprintf("%v/lib/modules/%v/kernel", basedir, release), func(path string, d fs.DirEntry, err error) error {
 			if err != nil {
 				return err
 			}
@@ -58,9 +66,12 @@ func ActionKernelModules(release string) carapace.Action {
 	})
 }
 
-func ActionKernelReleases() carapace.Action {
+// ActionKernelReleases completes kernel releases
+//   5.10.79-1-MANJARO
+//   5.4.159-1-MANJARO
+func ActionKernelReleases(basedir string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		files, err := ioutil.ReadDir("/lib/modules")
+		files, err := ioutil.ReadDir(basedir + "/lib/modules")
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
