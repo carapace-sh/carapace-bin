@@ -122,7 +122,7 @@ func init() {
 		"disable-protocol": tshark.ActionProtocols(),
 		"display":          os.ActionDisplays(),
 		"enable-protocol":  tshark.ActionProtocols(),
-		"interface":        net.ActionDevices(net.AllDevices),
+		"interface":        tshark.ActionInterfaces(),
 		"read-file":        carapace.ActionFiles(),
 		"ring-buffer": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {

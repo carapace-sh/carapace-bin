@@ -125,3 +125,26 @@ func ActionLinkTypes(iface string) carapace.Action {
 		})
 	})
 }
+
+// ActionInterfaces completes interfaces
+//   ciscodump
+//   dpauxmon
+func ActionInterfaces() carapace.Action {
+	return carapace.ActionExecCommand("tshark", "--list-interfaces")(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+		vals := make([]string, 0)
+
+		r := regexp.MustCompile(`^\d+\. (?P<name>[^ ]+)( (?P<description>.+))?$`)
+		for _, line := range lines {
+			if r.MatchString(line) {
+				matches := r.FindStringSubmatch(line)
+				if len(matches) == 3 {
+					vals = append(vals, matches[1], matches[2])
+				} else {
+					vals = append(vals, matches[1], "")
+				}
+			}
+		}
+		return carapace.ActionValuesDescribed(vals...)
+	})
+}
