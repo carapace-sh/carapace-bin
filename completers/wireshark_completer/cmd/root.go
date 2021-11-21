@@ -2,15 +2,16 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/wireshark_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/tshark"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
 	Use:   "wireshark",
 	Short: "Interactively dump and analyze network traffic",
+	Long:  "https://www.wireshark.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -30,7 +31,7 @@ func init() {
 	rootCmd.Flags().StringS("X", "X", "", "eXtension options")
 	rootCmd.Flags().StringArrayP("autostop", "a", []string{}, "specify stop criterion")
 	rootCmd.Flags().String("capture-comment", "", "set the capture file comment, if supported")
-	rootCmd.Flags().StringArrayS("d", "d", []string{}, "specify layer type dissection ")
+	rootCmd.Flags().StringArrayS("d", "d", []string{}, "specify layer type dissection")
 	rootCmd.Flags().String("disable-heuristic", "", "disable dissection of heuristic protocol")
 	rootCmd.Flags().String("disable-protocol", "", "disable dissection of proto_name")
 	rootCmd.Flags().String("display", "", "X display to use")
@@ -93,7 +94,7 @@ func init() {
 		"d": carapace.ActionMultiParts("==", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return action.ActionSelectors().Invoke(c).Suffix("==").ToA()
+				return tshark.ActionSelectors().Invoke(c).Suffix("==").ToA()
 			case 1:
 				return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 					switch len(c.Parts) {
@@ -109,7 +110,7 @@ func init() {
 							}
 						})
 					case 1:
-						return action.ActionProtocols()
+						return tshark.ActionProtocols()
 					default:
 						return carapace.ActionValues()
 					}
@@ -118,9 +119,9 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"disable-protocol": action.ActionProtocols(),
+		"disable-protocol": tshark.ActionProtocols(),
 		"display":          os.ActionDisplays(),
-		"enable-protocol":  action.ActionProtocols(),
+		"enable-protocol":  tshark.ActionProtocols(),
 		"interface":        net.ActionDevices(net.AllDevices),
 		"read-file":        carapace.ActionFiles(),
 		"ring-buffer": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
@@ -141,7 +142,7 @@ func init() {
 		"u": carapace.ActionValues("s", "hms"),
 		"w": carapace.ActionFiles(),
 		"z": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionStatistics().Invoke(c).ToMultiPartsA(",")
+			return tshark.ActionStatistics().Invoke(c).ToMultiPartsA(",")
 		}),
 	})
 }
