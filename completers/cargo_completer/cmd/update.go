@@ -33,6 +33,6 @@ func init() {
 	carapace.Gen(updateCmd).FlagCompletion(carapace.ActionMap{
 		"color":         action.ActionColorModes(),
 		"manifest-path": carapace.ActionFiles(),
-		"package":       action.ActionDependencies(updateCmd),
+		"package":       action.ActionDependencies(updateCmd, false),
 	})
 }

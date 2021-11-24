@@ -48,7 +48,7 @@ func init() {
 		}),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
-		"package":        action.ActionDependencies(runCmd),
+		"package":        action.ActionDependencies(runCmd, true),
 		"profile":        action.ActionProfiles(runCmd),
 		"target-dir":     carapace.ActionDirectories(),
 	})
