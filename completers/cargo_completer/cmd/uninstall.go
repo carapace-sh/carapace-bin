@@ -29,7 +29,7 @@ func init() {
 	rootCmd.AddCommand(uninstallCmd)
 
 	carapace.Gen(uninstallCmd).FlagCompletion(carapace.ActionMap{
-		// TODO bin
+		"bin":     action.ActionTargets(uninstallCmd, action.TargetOpts{Bin: true}),
 		"color":   action.ActionColorModes(),
 		"package": action.ActionInstalledPackages(uninstallCmd.Flag("root").Value.String()),
 		"root":    carapace.ActionDirectories(),
