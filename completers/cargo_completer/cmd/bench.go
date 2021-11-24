@@ -60,7 +60,7 @@ func init() {
 		}),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
-		"package":        action.ActionDependencies(benchCmd),
+		"package":        action.ActionDependencies(benchCmd, true),
 		"target-dir":     carapace.ActionDirectories(),
 		"test":           action.ActionTargets(benchCmd, action.TargetOpts{Test: true}),
 	})

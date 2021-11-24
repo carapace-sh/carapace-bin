@@ -132,11 +132,15 @@ func ActionTargets(cmd *cobra.Command, opts TargetOpts) carapace.Action {
 	})
 }
 
-func ActionDependencies(cmd *cobra.Command) carapace.Action {
+func ActionDependencies(cmd *cobra.Command, includeVersion bool) carapace.Action {
 	return readManifestAction(cmd, func(m manifestJson, args []string) carapace.Action {
 		vals := make([]string, len(m.Dependencies)*2)
 		for index, dependency := range m.Dependencies {
-			vals[index*2] = fmt.Sprintf("%v:%v", dependency.Name, strings.TrimLeft(dependency.Req, "^"))
+			if includeVersion {
+				vals[index*2] = fmt.Sprintf("%v:%v", dependency.Name, strings.TrimLeft(dependency.Req, "^"))
+			} else {
+				vals[index*2] = dependency.Name
+			}
 			vals[(index*2)+1] = dependency.Req
 		}
 		return carapace.ActionValuesDescribed(vals...)
