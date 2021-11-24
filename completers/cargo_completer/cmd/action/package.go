@@ -129,14 +129,6 @@ func ActionGithubPackageVersions(pkg string) carapace.Action {
 	})
 }
 
-func base64Decode(str string) (string, error) {
-	data, err := base64.StdEncoding.DecodeString(str)
-	if err != nil {
-		return "", err
-	}
-	return string(data), nil
-}
-
 func ActionGithubPackageFeatures(pkg string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("gh", "api", "repos/rust-lang/crates.io-index/contents/"+url.PathEscape(githubPath(pkg)), "--jq", ".content")(func(output []byte) carapace.Action {
