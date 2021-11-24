@@ -28,8 +28,8 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(setVersionCmd).FlagCompletion(carapace.ActionMap{
-		"bump":         carapace.ActionValues("major", "minor", "patch", "release", "rc", "beta", "alpha"),
-		"manifes-path": carapace.ActionFiles(".toml"),
+		"bump":          carapace.ActionValues("major", "minor", "patch", "release", "rc", "beta", "alpha"),
+		"manifest-path": carapace.ActionFiles(".toml"),
 	})
 
 	// TODO complete current version as positional for easy edit
