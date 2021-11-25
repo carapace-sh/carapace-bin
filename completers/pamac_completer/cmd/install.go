@@ -33,6 +33,9 @@ func init() {
 	})
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(
-		action.ActionPackageSearch(),
-	) // TODO groups as well
+		carapace.Batch(
+			action.ActionPackageGroups(),
+			action.ActionPackageSearch(),
+		).ToA(),
+	)
 }
