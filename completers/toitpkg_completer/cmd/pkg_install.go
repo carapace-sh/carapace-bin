@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/tpkg_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/completers/toitpkg_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
