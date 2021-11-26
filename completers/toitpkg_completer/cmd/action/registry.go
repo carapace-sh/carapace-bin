@@ -8,7 +8,7 @@ import (
 )
 
 func ActionRegistries() carapace.Action {
-	return carapace.ActionExecCommand("tpkg", "pkg", "registry", "list")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("toitpkg", "pkg", "registry", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		r := regexp.MustCompile(`^(?P<name>[^:]+): (?P<description>.*)$`)
 

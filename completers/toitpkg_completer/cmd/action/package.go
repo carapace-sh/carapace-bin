@@ -16,7 +16,7 @@ type pkg struct {
 }
 
 func packageAction(f func(map[string]pkg) carapace.Action) carapace.Action {
-	return carapace.ActionExecCommand("tpkg", "pkg", "list", "--output", "json")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("toitpkg", "pkg", "list", "--output", "json")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		pkgs := make(map[string]pkg)
 

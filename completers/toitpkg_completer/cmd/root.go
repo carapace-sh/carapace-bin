@@ -6,7 +6,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "tpkg",
+	Use:   "toitpkg",
 	Short: "Run pkg commands",
 	Long:  "https://github.com/toitlang/tpkg",
 	Run:   func(cmd *cobra.Command, args []string) {},
@@ -20,7 +20,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.PersistentFlags().String("cache", "", "cache dir")
 	rootCmd.PersistentFlags().String("config", "", "config file")
-	rootCmd.Flags().BoolP("help", "h", false, "help for tpkg")
+	rootCmd.Flags().BoolP("help", "h", false, "help for toitpkg")
 	rootCmd.PersistentFlags().Bool("no-autosync", false, "Don't automatically sync")
 	rootCmd.PersistentFlags().Bool("no-default-registry", false, "Don't use default registry if none exists")
 	rootCmd.PersistentFlags().String("sdk-version", "", "The SDK version")
