@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/utils"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -43,7 +43,7 @@ func ActionReleases(cmd *cobra.Command) carapace.Action {
 			vals := make([]string, 0, len(releases)*2)
 			for _, release := range releases {
 				if release.Node.Tag.Name != "" {
-					vals = append(vals, release.Node.Tag.Name, utils.FuzzyAgo(time.Since(release.Node.CreatedAt)))
+					vals = append(vals, release.Node.Tag.Name, util.FuzzyAgo(time.Since(release.Node.CreatedAt)))
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)

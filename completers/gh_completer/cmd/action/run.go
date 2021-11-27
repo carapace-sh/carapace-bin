@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/utils"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -46,7 +46,7 @@ func ActionWorkflowRuns(cmd *cobra.Command, opts RunOpts) carapace.Action {
 					(opts.InProgress && run.Status == "in_progress") ||
 					(opts.Failed && run.Status == "completed" && run.Conclusion != "success") ||
 					(opts.Successful && run.Status == "completed" && run.Conclusion == "success") {
-					vals = append(vals, strconv.Itoa(run.Id), fmt.Sprintf("%v (%v) %v", run.Name, run.HeadBranch, utils.FuzzyAgo(ago)))
+					vals = append(vals, strconv.Itoa(run.Id), fmt.Sprintf("%v (%v) %v", run.Name, run.HeadBranch, util.FuzzyAgo(ago)))
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)

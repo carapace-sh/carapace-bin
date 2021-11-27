@@ -112,15 +112,15 @@ func ActionTimeS() carapace.Action {
 	})
 }
 
-// ActionDateTime completes `yyyy-MM-ddThh:mm:ss` datetime
-//   2021-11-11T04:02:12
-//   2021-04-02T16:11:33
+// ActionDateTime completes `yyyy-MM-dd hh:mm:ss` datetime
+//   2021-11-11 04:02:12
+//   2021-04-02 16:11:33
 func ActionDateTime() carapace.Action {
-	return carapace.ActionMultiParts("T", func(c carapace.Context) carapace.Action {
+	return carapace.ActionMultiParts(" ", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
 			if strings.Count(c.CallbackValue, "-") == 2 {
-				return ActionDate().Invoke(c).Suffix("T").ToA()
+				return ActionDate().Invoke(c).Suffix(" ").ToA()
 			}
 			return ActionDate()
 		case 1:

@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/utils"
+	"github.com/rsteube/carapace-bin/pkg/util"
 )
 
 type searchResult struct {
@@ -72,7 +72,7 @@ func ActionPackageVersions(pkg string) carapace.Action {
 
 		vals := make([]string, 0)
 		for _, v := range result.Versions {
-			vals = append(vals, v.Version, utils.FuzzyAgo(time.Since(v.Published)))
+			vals = append(vals, v.Version, util.FuzzyAgo(time.Since(v.Published)))
 		}
 		return carapace.ActionValuesDescribed(vals...)
 	})
