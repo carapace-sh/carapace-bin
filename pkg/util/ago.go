@@ -1,4 +1,5 @@
-package utils
+// source https://github.com/cli/cli/blob/trunk/utils/utils.go
+package util
 
 import (
 	"fmt"
