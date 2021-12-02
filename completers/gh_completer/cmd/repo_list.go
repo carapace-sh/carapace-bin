@@ -7,18 +7,19 @@ import (
 )
 
 var repo_listCmd = &cobra.Command{
-	Use:   "list [<owner>]",
+	Use:   "list",
 	Short: "List repositories owned by user or organization",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	repo_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of repositories to list")
+	carapace.Gen(repo_listCmd).Standalone()
 	repo_listCmd.Flags().Bool("archived", false, "Show only archived repositories")
 	repo_listCmd.Flags().Bool("fork", false, "Show only forks")
 	repo_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	repo_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
+	repo_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	repo_listCmd.Flags().StringP("language", "l", "", "Filter by primary coding language")
+	repo_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of repositories to list")
 	repo_listCmd.Flags().Bool("no-archived", false, "Omit archived repositories")
 	repo_listCmd.Flags().Bool("private", false, "Show only private repositories")
 	repo_listCmd.Flags().Bool("public", false, "Show only public repositories")

@@ -13,6 +13,7 @@ var codespace_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(codespace_listCmd).Standalone()
 	codespace_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	codespace_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	codespace_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of codespaces to list")

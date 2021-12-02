@@ -7,12 +7,13 @@ import (
 )
 
 var repo_forkCmd = &cobra.Command{
-	Use:   "fork [<repository>] [-- <gitflags>...]",
+	Use:   "fork",
 	Short: "Create a fork of a repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(repo_forkCmd).Standalone()
 	repo_forkCmd.Flags().Bool("clone", false, "Clone the fork {true|false}")
 	repo_forkCmd.Flags().String("org", "", "Create the fork in an organization")
 	repo_forkCmd.Flags().Bool("remote", false, "Add remote for fork {true|false}")

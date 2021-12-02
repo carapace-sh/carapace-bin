@@ -13,6 +13,7 @@ var codespace_deleteCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(codespace_deleteCmd).Standalone()
 	codespace_deleteCmd.Flags().Bool("all", false, "Delete all codespaces")
 	codespace_deleteCmd.Flags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_deleteCmd.Flags().Uint16("days", 0, "Delete codespaces older than `N` days")

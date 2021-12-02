@@ -7,12 +7,13 @@ import (
 )
 
 var alias_deleteCmd = &cobra.Command{
-	Use:   "delete <alias>",
+	Use:   "delete",
 	Short: "Delete an alias",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(alias_deleteCmd).Standalone()
 	aliasCmd.AddCommand(alias_deleteCmd)
 
 	carapace.Gen(alias_deleteCmd).PositionalCompletion(

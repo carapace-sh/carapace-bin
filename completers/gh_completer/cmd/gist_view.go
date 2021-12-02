@@ -7,7 +7,7 @@ import (
 )
 
 var gist_viewCmd = &cobra.Command{
-	Use:   "view [<id> | <url>]",
+	Use:   "view",
 	Short: "View a gist",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

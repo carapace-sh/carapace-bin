@@ -13,6 +13,7 @@ var repo_syncCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(repo_syncCmd).Standalone()
 	repo_syncCmd.Flags().StringP("branch", "b", "", "Branch to sync (default: main branch)")
 	repo_syncCmd.Flags().Bool("force", false, "Hard reset the branch of the destination repository to match the source repository")
 	repo_syncCmd.Flags().StringP("source", "s", "", "Source repository")

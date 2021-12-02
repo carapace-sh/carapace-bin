@@ -9,9 +9,11 @@ import (
 var auth_refreshCmd = &cobra.Command{
 	Use:   "refresh",
 	Short: "Refresh stored authentication credentials",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(auth_refreshCmd).Standalone()
 	auth_refreshCmd.Flags().StringP("hostname", "h", "", "The GitHub host to use for authentication")
 	auth_refreshCmd.Flags().StringSliceP("scopes", "s", nil, "Additional authentication scopes for gh to have")
 	authCmd.AddCommand(auth_refreshCmd)

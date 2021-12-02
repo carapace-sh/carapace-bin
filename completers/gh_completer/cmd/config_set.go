@@ -7,12 +7,13 @@ import (
 )
 
 var config_setCmd = &cobra.Command{
-	Use:   "set <key> <value>",
+	Use:   "set",
 	Short: "Update configuration with a value for the given key",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(config_setCmd).Standalone()
 	config_setCmd.Flags().StringP("host", "h", "", "Set per-host setting")
 	configCmd.AddCommand(config_setCmd)
 

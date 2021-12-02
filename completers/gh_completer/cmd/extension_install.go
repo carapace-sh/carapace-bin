@@ -13,6 +13,7 @@ var extension_installCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(extension_installCmd).Standalone()
 	extensionCmd.AddCommand(extension_installCmd)
 
 	carapace.Gen(extension_installCmd).PositionalCompletion(

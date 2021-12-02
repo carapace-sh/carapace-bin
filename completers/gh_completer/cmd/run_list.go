@@ -13,6 +13,7 @@ var run_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(run_listCmd).Standalone()
 	run_listCmd.Flags().IntP("limit", "L", 20, "Maximum number of runs to fetch")
 	run_listCmd.Flags().StringP("workflow", "w", "", "Filter runs by workflow")
 	runCmd.AddCommand(run_listCmd)

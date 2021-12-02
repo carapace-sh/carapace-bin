@@ -7,12 +7,13 @@ import (
 )
 
 var gist_deleteCmd = &cobra.Command{
-	Use:   "delete {<id> | <url>}",
+	Use:   "delete",
 	Short: "Delete a gist",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(gist_deleteCmd).Standalone()
 	gistCmd.AddCommand(gist_deleteCmd)
 
 	carapace.Gen(gist_deleteCmd).PositionalCompletion(

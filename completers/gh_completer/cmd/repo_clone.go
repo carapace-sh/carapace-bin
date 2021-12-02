@@ -7,12 +7,13 @@ import (
 )
 
 var repo_cloneCmd = &cobra.Command{
-	Use:   "clone <repository> [<directory>] [-- <gitflags>...]",
+	Use:   "clone",
 	Short: "Clone a repository locally",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(repo_cloneCmd).Standalone()
 	repoCmd.AddCommand(repo_cloneCmd)
 
 	carapace.Gen(repo_cloneCmd).PositionalCompletion(

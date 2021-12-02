@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,5 +12,6 @@ var gpgKey_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(gpgKey_listCmd).Standalone()
 	gpgKeyCmd.AddCommand(gpgKey_listCmd)
 }

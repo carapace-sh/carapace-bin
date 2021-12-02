@@ -13,6 +13,7 @@ var codespace_stopCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(codespace_stopCmd).Standalone()
 	codespace_stopCmd.Flags().StringP("codespace", "c", "", "Name of the codespace")
 	codespaceCmd.AddCommand(codespace_stopCmd)
 

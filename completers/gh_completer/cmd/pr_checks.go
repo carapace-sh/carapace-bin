@@ -7,12 +7,13 @@ import (
 )
 
 var pr_checksCmd = &cobra.Command{
-	Use:   "checks [<number> | <url> | <branch>]",
+	Use:   "checks",
 	Short: "Show CI status for a single pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(pr_checksCmd).Standalone()
 	pr_checksCmd.Flags().BoolP("web", "w", false, "Open the web browser to show details about checks")
 	prCmd.AddCommand(pr_checksCmd)
 

@@ -7,12 +7,13 @@ import (
 )
 
 var secretCmd = &cobra.Command{
-	Use:   "secret <command>",
+	Use:   "secret",
 	Short: "Manage GitHub secrets",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(secretCmd).Standalone()
 	secretCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	rootCmd.AddCommand(secretCmd)
 
