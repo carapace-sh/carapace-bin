@@ -2,33 +2,12 @@
 package fs
 
 import (
-	"fmt"
 	"io/ioutil"
-	"regexp"
 	"strings"
 	"unicode"
 
 	"github.com/rsteube/carapace"
 )
-
-// ActionMounts completes file system mounts
-//   /boot/efi (/dev/sda1)
-//   /dev (dev)
-func ActionMounts() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("mount")(func(output []byte) carapace.Action {
-			re := regexp.MustCompile(`^(?P<target>\S+) on (?P<mountt>\S+) type (?P<type>\S+) (?P<mode>.+)`)
-			mounts := make([]string, 0)
-			for _, line := range strings.Split(string(output), "\n") {
-				if re.MatchString(line) {
-					matches := re.FindStringSubmatch(line)
-					mounts = append(mounts, matches[2], matches[1])
-				}
-			}
-			return carapace.ActionValuesDescribed(mounts...)
-		})
-	})
-}
 
 // ActionSubDirectories completes subdirectories of a given path
 //   subdir/subsubdir
@@ -123,23 +102,5 @@ func ActionFileModes() carapace.Action {
 			a = a.Merge(numeric)
 		}
 		return a.ToA()
-	})
-}
-
-// ActionBlockDevices completes block devices
-//   /dev/sda (10G)
-//   /dev/sda1 (2G Linux swap)
-func ActionBlockDevices() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("lsblk", "-o", "PATH,SIZE,PARTTYPENAME")(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
-
-			vals := make([]string, 0)
-			for _, line := range lines[1 : len(lines)-1] {
-				splitted := strings.SplitN(line, " ", 3)
-				vals = append(vals, splitted[0], strings.TrimSpace(fmt.Sprintf("%v %v", strings.TrimSpace(splitted[1]), strings.TrimSpace(splitted[2]))))
-			}
-			return carapace.ActionValuesDescribed(vals...)
-		})
 	})
 }

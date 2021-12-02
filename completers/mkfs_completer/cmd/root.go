@@ -25,7 +25,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"type": fs.ActionFileSystemTypes(),
+		"type": fs.ActionFilesystemTypes(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
