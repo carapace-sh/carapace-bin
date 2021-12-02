@@ -61,7 +61,7 @@ func init() {
 		}),
 		"q": carapace.ActionValues("name", "type", "mount"),
 		"t": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFileSystemTypes().Invoke(c).Filter(c.Parts).ToA()
+			return fs.ActionFilesystemTypes().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"u": carapace.ActionValuesDescribed(
 			"h", "Human readable",

@@ -1,11 +1,13 @@
 package fs
 
-import "github.com/rsteube/carapace"
+import (
+	"github.com/rsteube/carapace"
+)
 
-// ActionFileSystemTypes completes file system types
+// ActionFilesystemTypes completes file system types
 //   ext (is an elaborate extension of the minix filesystem.)
 //   ext3 (is a journaling version of the ext2 filesystem.)
-func ActionFileSystemTypes() carapace.Action {
+func ActionFilesystemTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"bfs", "is the native file system for the BeOS",
 		"brtfs", "combines the copy-on-write principle with a logical volume manager",
