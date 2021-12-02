@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "modinfo",
 	Short: "Show information about a Linux Kernel module",
+	Long:  "https://linux.die.net/man/8/modinfo",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

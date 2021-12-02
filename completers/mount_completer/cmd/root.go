@@ -12,6 +12,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mount",
 	Short: "mount a filesystem",
+	Long:  "https://linux.die.net/man/8/mount",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
