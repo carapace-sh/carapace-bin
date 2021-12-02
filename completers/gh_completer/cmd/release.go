@@ -7,12 +7,13 @@ import (
 )
 
 var releaseCmd = &cobra.Command{
-	Use:   "release <command>",
+	Use:   "release",
 	Short: "Manage GitHub releases",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(releaseCmd).Standalone()
 	releaseCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	rootCmd.AddCommand(releaseCmd)
 

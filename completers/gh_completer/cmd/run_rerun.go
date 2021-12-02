@@ -7,12 +7,13 @@ import (
 )
 
 var run_rerunCmd = &cobra.Command{
-	Use:   "rerun [<run-id>]",
+	Use:   "rerun",
 	Short: "Rerun a failed run",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(run_rerunCmd).Standalone()
 	runCmd.AddCommand(run_rerunCmd)
 
 	carapace.Gen(run_rerunCmd).PositionalCompletion(

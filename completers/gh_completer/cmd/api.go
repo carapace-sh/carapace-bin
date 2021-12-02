@@ -7,12 +7,14 @@ import (
 )
 
 var apiCmd = &cobra.Command{
-	Use:   "api <endpoint>",
+	Use:   "api",
 	Short: "Make an authenticated GitHub API request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(apiCmd).Standalone()
+	apiCmd.Flags().Duration("cache", 0, "Cache the response, e.g. \"3600s\", \"60m\", \"1h\"")
 	apiCmd.Flags().StringArrayP("field", "F", nil, "Add a typed parameter in `key=value` format")
 	apiCmd.Flags().StringArrayP("header", "H", nil, "Add a HTTP request header in `key:value` format")
 	apiCmd.Flags().String("hostname", "", "The GitHub hostname for the request (default \"github.com\")")
@@ -25,7 +27,6 @@ func init() {
 	apiCmd.Flags().StringArrayP("raw-field", "f", nil, "Add a string parameter in `key=value` format")
 	apiCmd.Flags().Bool("silent", false, "Do not print the response body")
 	apiCmd.Flags().StringP("template", "t", "", "Format the response using a Go template")
-	apiCmd.Flags().Duration("cache", 0, "Cache the response, e.g. \"3600s\", \"60m\", \"1h\"")
 	rootCmd.AddCommand(apiCmd)
 
 	carapace.Gen(apiCmd).FlagCompletion(carapace.ActionMap{

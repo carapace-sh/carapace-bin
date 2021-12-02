@@ -7,12 +7,13 @@ import (
 )
 
 var run_viewCmd = &cobra.Command{
-	Use:   "view [<run-id>]",
+	Use:   "view",
 	Short: "View a summary of a workflow run",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(run_viewCmd).Standalone()
 	run_viewCmd.Flags().Bool("exit-status", false, "Exit with non-zero status if run failed")
 	run_viewCmd.Flags().StringP("job", "j", "", "View a specific job ID from a run")
 	run_viewCmd.Flags().Bool("log", false, "View full log for either a run or specific job")

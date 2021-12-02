@@ -7,14 +7,18 @@ import (
 )
 
 var repo_createCmd = &cobra.Command{
-	Use:   "create [<name>]",
+	Use:   "create",
 	Short: "Create a new repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(repo_createCmd).Standalone()
+	repo_createCmd.Flags().BoolP("clone", "c", false, "Clone the new repository to the current directory")
 	repo_createCmd.Flags().BoolP("confirm", "y", false, "Skip the confirmation prompt")
 	repo_createCmd.Flags().StringP("description", "d", "", "Description of the repository")
+	repo_createCmd.Flags().Bool("disable-issues", false, "Disable issues in the new repository")
+	repo_createCmd.Flags().Bool("disable-wiki", false, "Disable wiki in the new repository")
 	repo_createCmd.Flags().Bool("enable-issues", true, "Enable issues in the new repository")
 	repo_createCmd.Flags().Bool("enable-wiki", true, "Enable wiki in the new repository")
 	repo_createCmd.Flags().StringP("gitignore", "g", "", "Specify a gitignore template for the repository")
@@ -23,6 +27,9 @@ func init() {
 	repo_createCmd.Flags().StringP("license", "l", "", "Specify an Open Source License for the repository")
 	repo_createCmd.Flags().Bool("private", false, "Make the new repository private")
 	repo_createCmd.Flags().Bool("public", false, "Make the new repository public")
+	repo_createCmd.Flags().Bool("push", false, "Push local commits to the new repository")
+	repo_createCmd.Flags().StringP("remote", "r", "", "Specify remote name for the new repository")
+	repo_createCmd.Flags().StringP("source", "s", "", "Specify path to local repository to use as source")
 	repo_createCmd.Flags().StringP("team", "t", "", "The `name` of the organization team to be granted access")
 	repo_createCmd.Flags().StringP("template", "p", "", "Make the new repository based on a template `repository`")
 	repoCmd.AddCommand(repo_createCmd)
@@ -30,6 +37,7 @@ func init() {
 	carapace.Gen(repo_createCmd).FlagCompletion(carapace.ActionMap{
 		"gitignore": action.ActionGitignoreTemplates(repo_createCmd),
 		"license":   action.ActionLicenses(repo_createCmd),
+		"source":    carapace.ActionDirectories(),
 		// TODO team
 		"template": action.ActionOwnerRepositories(repo_createCmd),
 	})

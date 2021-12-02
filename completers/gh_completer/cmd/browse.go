@@ -15,12 +15,13 @@ import (
 )
 
 var browseCmd = &cobra.Command{
-	Use:   "browse [<number> | <path>]",
+	Use:   "browse",
 	Short: "Open the repository in the browser",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(browseCmd).Standalone()
 	browseCmd.Flags().StringP("branch", "b", "", "Select another branch by passing in the branch name")
 	browseCmd.Flags().BoolP("commit", "c", false, "Open the last commit")
 	browseCmd.Flags().BoolP("no-browser", "n", false, "Print destination URL instead of opening the browser")

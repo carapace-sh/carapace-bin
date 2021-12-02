@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,6 +12,7 @@ var release_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(release_listCmd).Standalone()
 	release_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of items to fetch")
 	releaseCmd.AddCommand(release_listCmd)
 }

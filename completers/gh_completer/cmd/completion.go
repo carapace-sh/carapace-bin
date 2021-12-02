@@ -6,12 +6,13 @@ import (
 )
 
 var completionCmd = &cobra.Command{
-	Use:   "completion -s <shell>",
+	Use:   "completion",
 	Short: "Generate shell completion scripts",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(completionCmd).Standalone()
 	completionCmd.Flags().StringP("shell", "s", "", "Shell type: {bash|zsh|fish|powershell}")
 	rootCmd.AddCommand(completionCmd)
 

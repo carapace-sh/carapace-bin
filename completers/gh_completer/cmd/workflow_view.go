@@ -7,12 +7,13 @@ import (
 )
 
 var workflow_viewCmd = &cobra.Command{
-	Use:   "view [<workflow-id> | <workflow-name> | <filename>]",
+	Use:   "view",
 	Short: "View the summary of a workflow",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(workflow_viewCmd).Standalone()
 	workflow_viewCmd.Flags().StringP("ref", "r", "", "The branch or tag name which contains the version of the workflow file you'd like to view")
 	workflow_viewCmd.Flags().BoolP("web", "w", false, "Open workflow in the browser")
 	workflow_viewCmd.Flags().BoolP("yaml", "y", false, "View the workflow yaml file")

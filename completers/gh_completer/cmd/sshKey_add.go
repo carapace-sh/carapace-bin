@@ -6,12 +6,13 @@ import (
 )
 
 var sshKey_addCmd = &cobra.Command{
-	Use:   "add [<key-file>]",
+	Use:   "add",
 	Short: "Add an SSH key to your GitHub account",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(sshKey_addCmd).Standalone()
 	sshKey_addCmd.Flags().StringP("title", "t", "", "Title for the new key")
 	sshKeyCmd.AddCommand(sshKey_addCmd)
 

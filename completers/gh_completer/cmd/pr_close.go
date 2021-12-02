@@ -7,12 +7,13 @@ import (
 )
 
 var pr_closeCmd = &cobra.Command{
-	Use:   "close {<number> | <url> | <branch>}",
+	Use:   "close",
 	Short: "Close a pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(pr_closeCmd).Standalone()
 	pr_closeCmd.Flags().BoolP("delete-branch", "d", false, "Delete the local and remote branch after close")
 	prCmd.AddCommand(pr_closeCmd)
 

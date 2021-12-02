@@ -7,12 +7,13 @@ import (
 )
 
 var issueCmd = &cobra.Command{
-	Use:   "issue <command>",
+	Use:   "issue",
 	Short: "Manage issues",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(issueCmd).Standalone()
 	issueCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	rootCmd.AddCommand(issueCmd)
 

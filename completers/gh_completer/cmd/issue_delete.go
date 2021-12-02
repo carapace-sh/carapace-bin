@@ -7,12 +7,13 @@ import (
 )
 
 var issue_deleteCmd = &cobra.Command{
-	Use:   "delete {<number> | <url>}",
+	Use:   "delete",
 	Short: "Delete issue",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(issue_deleteCmd).Standalone()
 	issueCmd.AddCommand(issue_deleteCmd)
 
 	carapace.Gen(issue_deleteCmd).PositionalCompletion(

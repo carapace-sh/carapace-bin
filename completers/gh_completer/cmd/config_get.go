@@ -7,12 +7,13 @@ import (
 )
 
 var config_getCmd = &cobra.Command{
-	Use:   "get <key>",
+	Use:   "get",
 	Short: "Print the value of a given configuration key",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(config_getCmd).Standalone()
 	config_getCmd.Flags().StringP("host", "h", "", "Get per-host setting")
 	configCmd.AddCommand(config_getCmd)
 

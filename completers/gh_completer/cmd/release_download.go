@@ -7,18 +7,21 @@ import (
 )
 
 var release_downloadCmd = &cobra.Command{
-	Use:   "download [<tag>]",
+	Use:   "download",
 	Short: "Download release assets",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(release_downloadCmd).Standalone()
+	release_downloadCmd.Flags().StringP("archive", "A", "", "Download the source code archive in the specified `format` (zip or tar.gz)")
 	release_downloadCmd.Flags().StringP("dir", "D", ".", "The directory to download files into")
-	release_downloadCmd.Flags().StringArrayP("pattern", "p", nil, "Download only assets that match a glob pattern")
+	release_downloadCmd.Flags().StringArrayP("pattern", "p", []string{}, "Download only assets that match a glob pattern")
 	releaseCmd.AddCommand(release_downloadCmd)
 
 	carapace.Gen(release_downloadCmd).FlagCompletion(carapace.ActionMap{
-		"dir": carapace.ActionDirectories(),
+		"archive": carapace.ActionValues("zip", "tar.gz"),
+		"dir":     carapace.ActionDirectories(),
 		"pattern": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				return action.ActionReleaseAssets(release_downloadCmd, c.Args[0])

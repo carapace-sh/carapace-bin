@@ -13,19 +13,20 @@ var pr_listCmd = &cobra.Command{
 }
 
 func init() {
-	pr_listCmd.Flags().BoolP("web", "w", false, "Open the browser to list the pull requests")
-	pr_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of items to fetch")
+	carapace.Gen(pr_listCmd).Standalone()
 	pr_listCmd.Flags().StringP("assignee", "a", "", "Filter by assignee")
 	pr_listCmd.Flags().StringP("author", "A", "", "Filter by author")
 	pr_listCmd.Flags().StringP("base", "B", "", "Filter by base branch")
 	pr_listCmd.Flags().BoolP("draft", "d", false, "Filter by draft state")
 	pr_listCmd.Flags().StringP("head", "H", "", "Filter by head branch")
 	pr_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	pr_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
-	pr_listCmd.Flags().StringSliceP("label", "l", nil, "Filter by labels")
+	pr_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	pr_listCmd.Flags().StringSliceP("label", "l", []string{}, "Filter by labels")
+	pr_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of items to fetch")
 	pr_listCmd.Flags().StringP("search", "S", "", "Search pull requests with `query`")
 	pr_listCmd.Flags().StringP("state", "s", "open", "Filter by state: {open|closed|merged|all}")
 	pr_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	pr_listCmd.Flags().BoolP("web", "w", false, "Open the browser to list the pull requests")
 	prCmd.AddCommand(pr_listCmd)
 
 	carapace.Gen(pr_listCmd).FlagCompletion(carapace.ActionMap{

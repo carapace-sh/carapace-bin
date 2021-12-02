@@ -13,6 +13,7 @@ var codespace_ports_visibilityCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(codespace_ports_visibilityCmd).Standalone()
 	codespace_portsCmd.AddCommand(codespace_ports_visibilityCmd)
 
 	carapace.Gen(codespace_ports_visibilityCmd).PositionalAnyCompletion(

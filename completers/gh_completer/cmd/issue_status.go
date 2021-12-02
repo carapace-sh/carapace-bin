@@ -13,8 +13,9 @@ var issue_statusCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(issue_statusCmd).Standalone()
 	issue_statusCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	issue_statusCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
+	issue_statusCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	issue_statusCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
 	issueCmd.AddCommand(issue_statusCmd)
 

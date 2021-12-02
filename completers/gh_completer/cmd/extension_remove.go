@@ -13,6 +13,7 @@ var extension_removeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(extension_removeCmd).Standalone()
 	extensionCmd.AddCommand(extension_removeCmd)
 
 	carapace.Gen(extension_removeCmd).PositionalCompletion(

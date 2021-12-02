@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var sshKeyCmd = &cobra.Command{
-	Use:   "ssh-key",
-	Short: "Manage SSH keys",
+var helpCmd = &cobra.Command{
+	Use:   "help",
+	Short: "Help about any command",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(sshKeyCmd).Standalone()
-	rootCmd.AddCommand(sshKeyCmd)
+	carapace.Gen(helpCmd).Standalone()
+	rootCmd.AddCommand(helpCmd)
 }

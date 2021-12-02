@@ -7,14 +7,15 @@ import (
 )
 
 var pr_commentCmd = &cobra.Command{
-	Use:   "comment [<number> | <url> | <branch>]",
+	Use:   "comment",
 	Short: "Create a new pr comment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(pr_commentCmd).Standalone()
 	pr_commentCmd.Flags().StringP("body", "b", "", "Supply a body. Will prompt for one otherwise.")
-	pr_commentCmd.Flags().StringP("body-file", "F", "", "Read body text from `file`")
+	pr_commentCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	pr_commentCmd.Flags().BoolP("editor", "e", false, "Add body using editor")
 	pr_commentCmd.Flags().BoolP("web", "w", false, "Add body in browser")
 	prCmd.AddCommand(pr_commentCmd)

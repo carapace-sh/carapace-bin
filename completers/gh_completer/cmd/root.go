@@ -7,7 +7,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "gh <command> <subcommand> [flags]",
+	Use:   "gh",
 	Short: "GitHub CLI",
 	Long:  "https://cli.github.com/",
 	Run:   func(cmd *cobra.Command, args []string) {},
@@ -18,6 +18,7 @@ func Execute() error {
 }
 
 func init() {
+	carapace.Gen(rootCmd).Standalone()
 	rootCmd.PersistentFlags().Bool("help", false, "Show help for command")
 	rootCmd.Flags().Bool("version", false, "Show gh version")
 

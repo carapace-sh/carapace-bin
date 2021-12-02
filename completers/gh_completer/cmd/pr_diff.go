@@ -7,12 +7,13 @@ import (
 )
 
 var pr_diffCmd = &cobra.Command{
-	Use:   "diff [<number> | <url> | <branch>]",
+	Use:   "diff",
 	Short: "View changes in a pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(pr_diffCmd).Standalone()
 	pr_diffCmd.Flags().String("color", "auto", "Use color in diff output: {always|never|auto}")
 	pr_diffCmd.Flags().Bool("patch", false, "Display diff in patch format")
 	prCmd.AddCommand(pr_diffCmd)

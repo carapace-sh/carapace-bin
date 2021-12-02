@@ -7,12 +7,13 @@ import (
 )
 
 var workflow_disableCmd = &cobra.Command{
-	Use:   "disable [<workflow-id> | <workflow-name>]",
+	Use:   "disable",
 	Short: "Disable a workflow",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(workflow_disableCmd).Standalone()
 	workflowCmd.AddCommand(workflow_disableCmd)
 
 	carapace.Gen(workflow_disableCmd).PositionalCompletion(

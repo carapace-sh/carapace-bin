@@ -7,16 +7,17 @@ import (
 )
 
 var pr_mergeCmd = &cobra.Command{
-	Use:   "merge [<number> | <url> | <branch>]",
+	Use:   "merge",
 	Short: "Merge a pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
+	carapace.Gen(pr_mergeCmd).Standalone()
 	pr_mergeCmd.Flags().Bool("admin", false, "Use administrator privileges to merge a pull request that does not meet requirements")
 	pr_mergeCmd.Flags().Bool("auto", false, "Automatically merge only after necessary requirements are met")
 	pr_mergeCmd.Flags().StringP("body", "b", "", "Body `text` for the merge commit")
-	pr_mergeCmd.Flags().StringP("body-file", "F", "", "Read body text from `file`")
+	pr_mergeCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	pr_mergeCmd.Flags().BoolP("delete-branch", "d", false, "Delete the local and remote branch after merge")
 	pr_mergeCmd.Flags().Bool("disable-auto", false, "Disable auto-merge for this pull request")
 	pr_mergeCmd.Flags().BoolP("merge", "m", false, "Merge the commits with the base branch")

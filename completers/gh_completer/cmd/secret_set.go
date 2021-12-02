@@ -7,17 +7,20 @@ import (
 )
 
 var secret_setCmd = &cobra.Command{
-	Use:   "set <secret-name>",
+	Use:   "set",
 	Short: "Create or update secrets",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	secret_setCmd.Flags().StringP("body", "b", "", "A value for the secret. Reads from STDIN if not specified.")
-	secret_setCmd.Flags().StringP("env", "e", "", "Set a secret for an organization")
-	secret_setCmd.Flags().StringP("org", "o", "", "List secrets for an organization")
-	secret_setCmd.Flags().StringSliceP("repos", "r", []string{}, "List of repository names for `selected` visibility")
-	secret_setCmd.Flags().StringP("visibility", "v", "private", "Set visibility for an organization secret: `all`, `private`, or `selected`")
+	carapace.Gen(secret_setCmd).Standalone()
+	secret_setCmd.Flags().StringP("body", "b", "", "The value for the secret (reads from standard input if not specified)")
+	secret_setCmd.Flags().StringP("env", "e", "", "Set deployment `environment` secret")
+	secret_setCmd.Flags().Bool("no-store", false, "Print the encrypted, base64-encoded value instead of storing it on Github")
+	secret_setCmd.Flags().StringP("org", "o", "", "Set `organization` secret")
+	secret_setCmd.Flags().StringSliceP("repos", "r", []string{}, "List of `repositories` that can access an organization or user secret")
+	secret_setCmd.Flags().BoolP("user", "u", false, "Set a secret for your user")
+	secret_setCmd.Flags().StringP("visibility", "v", "private", "Set visibility for an organization secret: `{all|private|selected}`")
 	secretCmd.AddCommand(secret_setCmd)
 
 	carapace.Gen(secret_setCmd).FlagCompletion(carapace.ActionMap{
