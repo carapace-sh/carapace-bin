@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "lightdm",
 	Short: "a display manager",
+	Long:  "https://github.com/canonical/lightdm",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
