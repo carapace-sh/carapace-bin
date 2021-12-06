@@ -15,7 +15,7 @@ var serveCmd = &cobra.Command{
 func init() {
 	carapace.Gen(serveCmd).Standalone()
 
-	serveCmd.Flags().Bool("allowed-hosts	val", false, "List of hosts that are allowed to access the dev server.")
+	serveCmd.Flags().String("allowed-hosts", "", "List of hosts that are allowed to access the dev server.")
 	serveCmd.Flags().String("browser-target", "", "A browser builder target to serve")
 	serveCmd.Flags().StringP("configuration", "c", "", "One or more named builder configurations")
 	serveCmd.Flags().Bool("disable-host-check", false, "Don't verify connected clients are part of allowed hosts.")
