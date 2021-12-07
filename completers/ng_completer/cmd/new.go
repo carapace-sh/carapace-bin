@@ -21,7 +21,7 @@ func init() {
 	newCmd.Flags().String("directory", "", "The directory name to create the workspace in.")
 	newCmd.Flags().BoolP("dry-run", "d", false, "Run through and reports activity without writing out results.")
 	newCmd.Flags().BoolP("force", "f", false, "Force overwriting of existing files.")
-	newCmd.Flags().StringP("inline-style", "s", "", "Include styles inline in the component TS file.")
+	newCmd.Flags().BoolP("inline-style", "s", false, "Include styles inline in the component TS file.")
 	newCmd.Flags().BoolP("inline-template", "t", false, "Include template inline in the component TS file.")
 	newCmd.Flags().Bool("interactive", false, "Enable interactive input prompts.")
 	newCmd.Flags().Bool("minimal", false, "Create a workspace without any testing frameworks.")
