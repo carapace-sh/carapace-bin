@@ -28,7 +28,7 @@ func init() {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return action.ActionBuilderConfigurations(c.Args[0]).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionBuilderConfigurations(c.Args[0], "").Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"format":      carapace.ActionValues("xmb", "xlf", "xlif", "xliff", "xlf2", "xliff2", "json", "arb", "legacy-migrate"),
 		"out-file":    carapace.ActionFiles(),

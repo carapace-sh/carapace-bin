@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/ng_completer/cmd/action"
 	"github.com/spf13/cobra"
@@ -24,9 +26,30 @@ func init() {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return action.ActionBuilderConfigurations(c.Args[0]).Invoke(c).Filter(c.Parts).ToA()
+
+			splitted := strings.Split(c.Args[0], ":")
+			project := splitted[0]
+			target := ""
+			if len(splitted) > 1 {
+				target = splitted[1]
+			}
+			return action.ActionBuilderConfigurations(project, target).Invoke(c).Filter(c.Parts).ToA()
 		}),
 	})
 
-	// TODO positional completion
+	carapace.Gen(runCmd).PositionalCompletion(
+		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return action.ActionProjects().Invoke(c).Suffix(":").ToA()
+			case 1:
+				return action.ActionTargets(c.Parts[0])
+			case 2:
+				return action.ActionBuilderConfigurations(c.Parts[0], c.Parts[1])
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	)
+
 }
