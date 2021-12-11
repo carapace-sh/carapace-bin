@@ -18,9 +18,9 @@ complete -F _carapace_lazy %v
 }
 
 func elvish_lazy(completers []string) string {
-	snippet := `put %v | each [c]{
-    edit:completion:arg-completer[$c] = [@arg]{
-        edit:completion:arg-completer[$c] = [@arg]{}
+	snippet := `put %v | each {|c|
+    set edit:completion:arg-completer[$c] = {|@arg|
+        set edit:completion:arg-completer[$c] = {|@arg| }
         eval (carapace $c elvish | slurp)
         $edit:completion:arg-completer[$c] $@arg
     }
