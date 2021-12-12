@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(run_cancelCmd).Standalone()
 	runCmd.AddCommand(run_cancelCmd)
 
-	carapace.Gen(runCmd).PositionalCompletion(
+	carapace.Gen(run_cancelCmd).PositionalCompletion(
 		action.ActionWorkflowRuns(run_cancelCmd, action.RunOpts{InProgress: true}),
 	)
 }
