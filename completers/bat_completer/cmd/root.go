@@ -50,6 +50,7 @@ func init() {
 		"decorations": carapace.ActionValues("auto", "never", "always"),
 		"italic-text": carapace.ActionValues("never", "always"),
 		"language":    action.ActionLanguages(),
+		"paging":      carapace.ActionValues("auto", "never", "always"),
 		"style": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("auto", "full", "plain", "changes", "header", "grid", "numbers", "snip").Invoke(c).Filter(c.Parts).ToA()
 		}),
