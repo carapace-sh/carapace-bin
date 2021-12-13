@@ -83,6 +83,7 @@ func init() {
 
 	carapace.Gen(shortlogCmd).FlagCompletion(carapace.ActionMap{
 		"after":  time.ActionDate(),
+		"author": git.ActionAuthors(),
 		"before": time.ActionDate(),
 		"group": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
