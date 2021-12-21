@@ -23,6 +23,7 @@ func init() {
 	pr_mergeCmd.Flags().BoolP("merge", "m", false, "Merge the commits with the base branch")
 	pr_mergeCmd.Flags().BoolP("rebase", "r", false, "Rebase the commits onto the base branch")
 	pr_mergeCmd.Flags().BoolP("squash", "s", false, "Squash the commits into one commit and merge it into the base branch")
+	pr_mergeCmd.Flags().StringP("subject", "t", "", "Subject `text` for the merge commit")
 	prCmd.AddCommand(pr_mergeCmd)
 
 	carapace.Gen(pr_mergeCmd).FlagCompletion(carapace.ActionMap{

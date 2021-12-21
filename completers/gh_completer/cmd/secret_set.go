@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(secret_setCmd).Standalone()
 	secret_setCmd.Flags().StringP("body", "b", "", "The value for the secret (reads from standard input if not specified)")
 	secret_setCmd.Flags().StringP("env", "e", "", "Set deployment `environment` secret")
+	secret_setCmd.Flags().StringP("env-file", "f", "", "Load secret names and values from a dotenv-formatted `file`")
 	secret_setCmd.Flags().Bool("no-store", false, "Print the encrypted, base64-encoded value instead of storing it on Github")
 	secret_setCmd.Flags().StringP("org", "o", "", "Set `organization` secret")
 	secret_setCmd.Flags().StringSliceP("repos", "r", []string{}, "List of `repositories` that can access an organization or user secret")
@@ -24,8 +25,9 @@ func init() {
 	secretCmd.AddCommand(secret_setCmd)
 
 	carapace.Gen(secret_setCmd).FlagCompletion(carapace.ActionMap{
-		"env": action.ActionEnvironments(secret_setCmd),
-		"org": action.ActionUsers(secret_setCmd, action.UserOpts{Organizations: true}),
+		"env":      action.ActionEnvironments(secret_setCmd),
+		"env-file": carapace.ActionFiles(),
+		"org":      action.ActionUsers(secret_setCmd, action.UserOpts{Organizations: true}),
 		"repos": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionOwnerRepositories(secret_setCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
