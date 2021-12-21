@@ -53,3 +53,19 @@ func ActionWorkflowRuns(cmd *cobra.Command, opts RunOpts) carapace.Action {
 		})
 	})
 }
+
+func ActionRunFields() carapace.Action {
+	return carapace.ActionValues(
+		"name",
+		"headBranch",
+		"headSha",
+		"createdAt",
+		"updatedAt",
+		"status",
+		"conclusion",
+		"event",
+		"databaseId",
+		"workflowDatabaseId",
+		"url",
+	)
+}
