@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +33,26 @@ func init() {
 	repo_editCmd.Flags().Bool("template", false, "Make the repository available as a template repository")
 	repo_editCmd.Flags().String("visibility", "", "Change the visibility of the repository to {public,private,internal}")
 	repoCmd.AddCommand(repo_editCmd)
+
+	carapace.Gen(repo_editCmd).FlagCompletion(carapace.ActionMap{
+		"add-topic": action.ActionTopicSearch(repo_editCmd),
+		"default-branch": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				repo_editCmd.Flags().String("repo", c.Args[0], "")
+				repo_editCmd.Flag("repo").Changed = true
+			}
+			return action.ActionBranches(repo_editCmd)
+		}),
+		"remove-topic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			if len(c.Args) == 0 {
+				return carapace.ActionValues()
+			}
+			return action.ActionTopics(repo_editCmd, strings.Split(c.Args[0], "/")[0]).Invoke(c).Filter(c.Parts).ToA()
+		}),
+		"visibility": carapace.ActionValues("public", "private", "internal"),
+	})
+
+	carapace.Gen(repo_editCmd).PositionalCompletion(
+		action.ActionOwnerRepositories(repo_editCmd),
+	)
 }
