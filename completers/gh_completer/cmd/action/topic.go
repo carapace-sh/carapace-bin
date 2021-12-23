@@ -41,3 +41,21 @@ func ActionTopics(cmd *cobra.Command, user string) carapace.Action {
 		return carapace.ActionValues(lines[:len(lines)-1]...)
 	})
 }
+
+type repoTopicsQuery struct {
+	Names []string
+}
+
+func ActionRepoTopics(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		repo, err := repoOverride(cmd)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		var queryResult repoTopicsQuery
+		return ApiV3Action(cmd, fmt.Sprintf(`repos/%v/%v/topics`, repo.RepoOwner(), repo.RepoName()), &queryResult, func() carapace.Action {
+			return carapace.ActionValues(queryResult.Names...)
+		})
+	})
+}

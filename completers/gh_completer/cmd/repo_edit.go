@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/spf13/cobra"
@@ -44,10 +42,11 @@ func init() {
 			return action.ActionBranches(repo_editCmd)
 		}),
 		"remove-topic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			if len(c.Args) == 0 {
-				return carapace.ActionValues()
+			if len(c.Args) > 0 {
+				repo_editCmd.Flags().String("repo", c.Args[0], "")
+				repo_editCmd.Flag("repo").Changed = true
 			}
-			return action.ActionTopics(repo_editCmd, strings.Split(c.Args[0], "/")[0]).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionRepoTopics(repo_editCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"visibility": carapace.ActionValues("public", "private", "internal"),
 	})
