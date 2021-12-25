@@ -82,7 +82,7 @@ carapace --list
 ## Build
 
 ```sh
-cd cmd/carapace && go generate ./... && go build -ldflags="-s -w"
+cd cmd/carapace && go generate ./... && go build -ldflags="-s -w" -tags release
 ```
 
 Completers can also be built separately:
