@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/waypoint_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/aws"
 	"github.com/spf13/cobra"
 )
@@ -30,6 +31,10 @@ func addGlobalOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("plain", false, "Plain output")
 	cmd.Flags().StringP("project", "p", "", "Project to target.")
 	cmd.Flags().StringP("workspace", "w", "", "Workspace to operate in.")
+
+	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+		"project": action.ActionProjects(),
+	})
 }
 
 func addConnectionOptions(cmd *cobra.Command) {
