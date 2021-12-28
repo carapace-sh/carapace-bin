@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/waypoint_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	addGlobalOptions(context_inspectCmd)
 
 	contextCmd.AddCommand(context_inspectCmd)
+
+	carapace.Gen(context_inspectCmd).PositionalCompletion(
+		action.ActionContexts(),
+	)
 }
