@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/waypoint_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,8 @@ func init() {
 	addConnectionOptions(loginCmd)
 
 	rootCmd.AddCommand(loginCmd)
+
+	carapace.Gen(loginCmd).FlagCompletion(carapace.ActionMap{
+		"auth-method": action.ActionAuthMethods(),
+	})
 }
