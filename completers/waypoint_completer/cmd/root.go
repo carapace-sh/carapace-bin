@@ -33,7 +33,8 @@ func addGlobalOptions(cmd *cobra.Command) {
 	cmd.Flags().StringP("workspace", "w", "", "Workspace to operate in.")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"project": action.ActionProjects(),
+		"project":   action.ActionProjects(),
+		"workspace": action.ActionWorkspaces(),
 	})
 }
 
