@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/waypoint_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -62,4 +63,8 @@ func init() {
 	addGlobalOptions(server_upgradeCmd)
 
 	serverCmd.AddCommand(server_upgradeCmd)
+
+	carapace.Gen(server_upgradeCmd).FlagCompletion(carapace.ActionMap{
+		"context-name": action.ActionContexts(),
+	})
 }
