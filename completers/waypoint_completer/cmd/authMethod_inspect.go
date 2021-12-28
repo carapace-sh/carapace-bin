@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/waypoint_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,8 @@ func init() {
 	carapace.Gen(authMethod_inspectCmd).Standalone()
 
 	authMethodCmd.AddCommand(authMethod_inspectCmd)
+
+	carapace.Gen(authMethod_inspectCmd).PositionalCompletion(
+		action.ActionAuthMethods(),
+	)
 }
