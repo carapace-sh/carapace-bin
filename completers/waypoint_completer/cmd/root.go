@@ -123,6 +123,10 @@ func addK8sOptions(cmd *cobra.Command) {
 	cmd.Flags().String("k8s-server-image", "", "Docker image for the Waypoint server.")
 	cmd.Flags().String("k8s-storage-request", "", "Configures the requested persistent volume size for the Waypoint server in Kubernetes.")
 	cmd.Flags().String("k8s-storageclassname", "", "Name of the StorageClass required by the volume claim to install the Waypoint server image to.")
+
+	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+		"k8s-secret-file": carapace.ActionFiles(),
+	})
 }
 
 func addNomadOptions(cmd *cobra.Command) {

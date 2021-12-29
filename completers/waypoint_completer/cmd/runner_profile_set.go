@@ -24,4 +24,8 @@ func init() {
 	addGlobalOptions(runner_profile_setCmd)
 
 	runner_profileCmd.AddCommand(runner_profile_setCmd)
+
+	carapace.Gen(runner_profile_setCmd).FlagCompletion(carapace.ActionMap{
+		"plugin-config": carapace.ActionFiles(".hcl"),
+	})
 }
