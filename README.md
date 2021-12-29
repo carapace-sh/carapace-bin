@@ -106,14 +106,14 @@ ln --help | caraparse -n ln > completers/ln_completer/cmd/root.go
 ```
 - fix issues and add completions as required
 ```go
-	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"backup":           carapace.ActionValues("existing", "nil", "none", "off", "numbered", "t", "simple", "never"),
-		"target-directory": carapace.ActionDirectories(),
-	})
+carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+	"backup":           carapace.ActionValues("existing", "nil", "none", "off", "numbered", "t", "simple", "never"),
+	"target-directory": carapace.ActionDirectories(),
+})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(""),
-	)
+carapace.Gen(rootCmd).PositionalAnyCompletion(
+	carapace.ActionFiles(""),
+)
 ```
 - run the generator
 ```sh
