@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/waypoint_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,8 @@ func init() {
 	carapace.Gen(runner_profile_inspectCmd).Standalone()
 
 	runner_profileCmd.AddCommand(runner_profile_inspectCmd)
+
+	carapace.Gen(runner_profile_inspectCmd).PositionalCompletion(
+		action.ActionRunnerProfiles(),
+	)
 }
