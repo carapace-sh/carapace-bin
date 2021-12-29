@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/waypoint_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -49,4 +50,8 @@ func init() {
 		}),
 		"waypoint-hcl": carapace.ActionFiles(".hcl"),
 	})
+
+	carapace.Gen(project_applyCmd).PositionalCompletion(
+		action.ActionProjects(),
+	)
 }
