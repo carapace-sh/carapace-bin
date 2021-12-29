@@ -14,7 +14,7 @@ var server_runCmd = &cobra.Command{
 func init() {
 	carapace.Gen(server_runCmd).Standalone()
 
-	server_runCmd.Flags().Bool("-accept-tos", false, "Pass to accept the Terms of Service and Privacy Policy to use the Waypoint URL Service.")
+	server_runCmd.Flags().Bool("accept-tos", false, "Pass to accept the Terms of Service and Privacy Policy to use the Waypoint URL Service.")
 	server_runCmd.Flags().String("advertise-addr", "", "Address to advertise for the server.")
 	server_runCmd.Flags().Bool("advertise-tls", false, "If true, the advertised address should be connected to with TLS")
 	server_runCmd.Flags().Bool("advertise-tls-skip-verify", false, "Do not verify the TLS certificate presented by the server.")
@@ -39,4 +39,10 @@ func init() {
 	addGlobalOptions(server_runCmd)
 
 	serverCmd.AddCommand(server_runCmd)
+
+	carapace.Gen(server_runCmd).FlagCompletion(carapace.ActionMap{
+		"db":            carapace.ActionFiles(),
+		"tls-cert-file": carapace.ActionFiles(),
+		"tls-key-file":  carapace.ActionFiles(),
+	})
 }
