@@ -13,6 +13,7 @@ var mr_mergeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mr_mergeCmd).Standalone()
 	mr_mergeCmd.Flags().StringP("message", "m", "", "Custom merge commit message")
 	mr_mergeCmd.Flags().BoolP("rebase", "r", false, "Rebase the commits onto the base branch")
 	mr_mergeCmd.Flags().BoolP("remove-source-branch", "d", false, "Remove source branch on merge")

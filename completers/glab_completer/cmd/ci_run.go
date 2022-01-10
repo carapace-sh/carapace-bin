@@ -13,6 +13,7 @@ var ci_runCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(ci_runCmd).Standalone()
 	ci_runCmd.Flags().StringP("branch", "b", "", "Create pipeline on branch/ref <string>")
 	ci_runCmd.Flags().StringSlice("variables", []string{}, "Pass variables to pipeline")
 	ciCmd.AddCommand(ci_runCmd)

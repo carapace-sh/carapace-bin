@@ -13,6 +13,7 @@ var mr_approversCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mr_approversCmd).Standalone()
 	mrCmd.AddCommand(mr_approversCmd)
 
 	carapace.Gen(mr_approversCmd).PositionalCompletion(

@@ -13,6 +13,7 @@ var mr_rebaseCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mr_rebaseCmd).Standalone()
 	mrCmd.AddCommand(mr_rebaseCmd)
 
 	carapace.Gen(mr_rebaseCmd).PositionalCompletion(

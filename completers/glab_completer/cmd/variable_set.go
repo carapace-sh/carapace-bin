@@ -13,6 +13,7 @@ var variable_setCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(variable_setCmd).Standalone()
 	variable_setCmd.Flags().StringP("group", "g", "", "Set variable for a group")
 	variable_setCmd.Flags().BoolP("masked", "m", false, "Whether the variable is masked")
 	variable_setCmd.Flags().BoolP("protected", "p", false, "Whether the variable is protected")

@@ -14,6 +14,7 @@ var apiCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(apiCmd).Standalone()
 	apiCmd.Flags().StringArrayP("field", "F", []string{}, "Add a parameter of inferred type")
 	apiCmd.Flags().StringArrayP("header", "H", []string{}, "Add an additional HTTP request header")
 	apiCmd.Flags().String("hostname", "", "The GitLab hostname for the request (default is \"gitlab.com\" or authenticated host in current git directory)")

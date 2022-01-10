@@ -13,6 +13,7 @@ var labelCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(labelCmd).Standalone()
 	labelCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or full URL or git URL")
 	rootCmd.AddCommand(labelCmd)
 

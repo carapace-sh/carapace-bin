@@ -13,6 +13,7 @@ var repo_deleteCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(repo_deleteCmd).Standalone()
 	repo_deleteCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt and immediately delete the repository.")
 	repoCmd.AddCommand(repo_deleteCmd)
 

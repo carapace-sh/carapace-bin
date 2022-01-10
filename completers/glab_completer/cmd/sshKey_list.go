@@ -13,7 +13,6 @@ var sshKey_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sshKey_listCmd).Standalone()
-	sshKey_listCmd.Flags().BoolP("show-id", "", false, "Show IDs of SSH Keys")
-
+	sshKey_listCmd.Flags().Bool("show-id", false, "Show IDs of SSH Keys")
 	sshKeyCmd.AddCommand(sshKey_listCmd)
 }

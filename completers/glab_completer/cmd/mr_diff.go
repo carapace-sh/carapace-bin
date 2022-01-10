@@ -13,6 +13,7 @@ var mr_diffCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mr_diffCmd).Standalone()
 	mr_diffCmd.Flags().String("color", "auto", "Use color in diff output: {always|never|auto}")
 	mrCmd.AddCommand(mr_diffCmd)
 

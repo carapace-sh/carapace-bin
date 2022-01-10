@@ -13,6 +13,7 @@ var alias_deleteCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(alias_deleteCmd).Standalone()
 	aliasCmd.AddCommand(alias_deleteCmd)
 
 	carapace.Gen(alias_deleteCmd).PositionalCompletion(

@@ -13,11 +13,13 @@ var issue_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(issue_listCmd).Standalone()
 	issue_listCmd.Flags().BoolP("all", "A", false, "Get all issues")
 	issue_listCmd.Flags().StringP("assignee", "a", "", "Filter issue by assignee <username>")
 	issue_listCmd.Flags().String("author", "", "Filter issue by author <username>")
 	issue_listCmd.Flags().BoolP("closed", "c", false, "Get only closed issues")
 	issue_listCmd.Flags().BoolP("confidential", "C", false, "Filter by confidential issues")
+	issue_listCmd.Flags().StringP("group", "g", "", "Get issues from group and it's subgroups")
 	issue_listCmd.Flags().String("in", "title,description", "search in {title|description}")
 	issue_listCmd.Flags().StringSliceP("label", "l", []string{}, "Filter issue by label <name>")
 	issue_listCmd.Flags().StringP("milestone", "m", "", "Filter issue by milestone <id>")
@@ -34,6 +36,7 @@ func init() {
 	carapace.Gen(issue_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": action.ActionProjectMembers(issue_listCmd),
 		"author":   action.ActionUsers(issue_listCmd),
+		"group":    action.ActionGroups(issue_listCmd),
 		"in": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("title", "description").Invoke(c).Filter(c.Parts).ToA()
 		}),

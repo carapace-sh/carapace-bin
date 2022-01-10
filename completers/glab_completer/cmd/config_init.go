@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,5 +12,6 @@ var config_initCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(config_initCmd).Standalone()
 	configCmd.AddCommand(config_initCmd)
 }

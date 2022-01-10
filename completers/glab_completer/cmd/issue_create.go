@@ -13,6 +13,7 @@ var issue_createCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(issue_createCmd).Standalone()
 	issue_createCmd.Flags().StringSliceP("assignee", "a", []string{}, "Assign issue to people by their `usernames`")
 	issue_createCmd.Flags().BoolP("confidential", "c", false, "Set an issue to be confidential. Default is false")
 	issue_createCmd.Flags().StringP("description", "d", "", "Supply a description for issue")

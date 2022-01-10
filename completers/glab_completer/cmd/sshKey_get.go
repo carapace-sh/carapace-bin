@@ -7,7 +7,7 @@ import (
 )
 
 var sshKey_getCmd = &cobra.Command{
-	Use:   "get <key-id>",
+	Use:   "get",
 	Short: "Gets a single key",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
