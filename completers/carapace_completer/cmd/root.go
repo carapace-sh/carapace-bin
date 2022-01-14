@@ -27,7 +27,7 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		ActionCompleters(),
-		carapace.ActionValues("bash", "elvish", "fish", "ion", "nushell", "oil", "powershell", "tcsh", "xonsh", "zsh"),
+		carapace.ActionValues("bash", "elvish", "export", "fish", "ion", "nushell", "oil", "powershell", "tcsh", "xonsh", "zsh"),
 		carapace.ActionValues("_"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues(c.Args[0])
