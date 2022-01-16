@@ -13,6 +13,7 @@ var issue_closeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(issue_closeCmd).Standalone()
 	issueCmd.AddCommand(issue_closeCmd)
 
 	carapace.Gen(issue_closeCmd).PositionalCompletion(

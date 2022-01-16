@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,5 +12,6 @@ var issue_boardCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(issue_boardCmd).Standalone()
 	issueCmd.AddCommand(issue_boardCmd)
 }

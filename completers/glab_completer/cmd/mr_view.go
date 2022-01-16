@@ -13,6 +13,7 @@ var mr_viewCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mr_viewCmd).Standalone()
 	mr_viewCmd.Flags().BoolP("comments", "c", false, "Show mr comments and activities")
 	mr_viewCmd.Flags().IntP("page", "p", 0, "Page number")
 	mr_viewCmd.Flags().IntP("per-page", "P", 20, "Number of items to list per page")

@@ -13,6 +13,7 @@ var issue_noteCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(issue_noteCmd).Standalone()
 	issue_noteCmd.Flags().StringP("message", "m", "", "Comment/Note message")
 	issueCmd.AddCommand(issue_noteCmd)
 

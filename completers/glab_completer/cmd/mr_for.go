@@ -13,6 +13,7 @@ var mr_forCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mr_forCmd).Standalone()
 	mr_forCmd.Flags().Bool("allow-collaboration", false, "Allow commits from other members")
 	mr_forCmd.Flags().StringP("assignee", "a", "", "Assign merge request to people by their IDs. Multiple values should be comma separated ")
 	mr_forCmd.Flags().Bool("draft", true, "Mark merge request as a draft. Default is true")

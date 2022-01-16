@@ -13,6 +13,7 @@ var mr_revokeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mr_revokeCmd).Standalone()
 	mrCmd.AddCommand(mr_revokeCmd)
 
 	carapace.Gen(mr_revokeCmd).PositionalCompletion(

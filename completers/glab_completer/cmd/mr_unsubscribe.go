@@ -13,6 +13,7 @@ var mr_unsubscribeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mr_unsubscribeCmd).Standalone()
 	mrCmd.AddCommand(mr_unsubscribeCmd)
 
 	carapace.Gen(mr_unsubscribeCmd).PositionalCompletion(

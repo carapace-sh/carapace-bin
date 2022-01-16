@@ -13,6 +13,7 @@ var ci_deleteCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(ci_deleteCmd).Standalone()
 	ci_deleteCmd.Flags().StringP("status", "s", "", "delete pipelines by status: {running|pending|success|failed|canceled|skipped|created|manual}")
 	ciCmd.AddCommand(ci_deleteCmd)
 

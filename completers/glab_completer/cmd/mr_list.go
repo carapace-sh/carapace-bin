@@ -13,11 +13,13 @@ var mr_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mr_listCmd).Standalone()
 	mr_listCmd.Flags().BoolP("all", "A", false, "Get all merge requests")
 	mr_listCmd.Flags().StringSliceP("assignee", "a", []string{}, "Get only merge requests assigned to users")
 	mr_listCmd.Flags().String("author", "", "Fitler merge request by Author <username>")
 	mr_listCmd.Flags().BoolP("closed", "c", false, "Get only closed merge requests")
 	mr_listCmd.Flags().BoolP("draft", "d", false, "Filter by draft merge requests")
+	mr_listCmd.Flags().StringP("group", "g", "", "Get MRs from group and it's subgroups")
 	mr_listCmd.Flags().StringSliceP("label", "l", []string{}, "Filter merge request by label <name>")
 	mr_listCmd.Flags().BoolP("merged", "M", false, "Get only merged merge requests")
 	mr_listCmd.Flags().StringP("milestone", "m", "", "Filter merge request by milestone <id>")
@@ -37,6 +39,7 @@ func init() {
 			return action.ActionProjectMembers(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"author": action.ActionUsers(mr_listCmd),
+		"group":  action.ActionGroups(mr_listCmd),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionLabels(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),

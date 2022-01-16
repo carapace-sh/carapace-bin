@@ -7,7 +7,7 @@ import (
 )
 
 var repo_viewCmd = &cobra.Command{
-	Use:   "view [repository] [flags]",
+	Use:   "view",
 	Short: "View a project/repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

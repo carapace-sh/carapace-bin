@@ -13,6 +13,7 @@ var mr_todoCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mr_todoCmd).Standalone()
 	mrCmd.AddCommand(mr_todoCmd)
 
 	carapace.Gen(mr_todoCmd).PositionalCompletion(

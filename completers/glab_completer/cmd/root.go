@@ -18,6 +18,7 @@ func Execute() error {
 }
 
 func init() {
+	carapace.Gen(rootCmd).Standalone()
 	rootCmd.PersistentFlags().Bool("help", false, "Show help for command")
 	rootCmd.Flags().BoolP("version", "v", false, "show glab version information")
 

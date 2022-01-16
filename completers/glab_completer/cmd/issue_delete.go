@@ -13,6 +13,7 @@ var issue_deleteCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(issue_deleteCmd).Standalone()
 	issueCmd.AddCommand(issue_deleteCmd)
 
 	carapace.Gen(issue_deleteCmd).PositionalCompletion(

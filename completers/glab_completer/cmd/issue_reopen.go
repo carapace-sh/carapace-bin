@@ -13,6 +13,7 @@ var issue_reopenCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(issue_reopenCmd).Standalone()
 	issueCmd.AddCommand(issue_reopenCmd)
 
 	carapace.Gen(issue_reopenCmd).PositionalCompletion(

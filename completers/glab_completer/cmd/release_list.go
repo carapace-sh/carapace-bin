@@ -13,6 +13,7 @@ var release_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(release_listCmd).Standalone()
 	release_listCmd.Flags().StringP("tag", "t", "", "Filter releases by tag <name>")
 	releaseCmd.AddCommand(release_listCmd)
 

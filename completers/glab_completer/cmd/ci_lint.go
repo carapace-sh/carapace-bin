@@ -12,6 +12,7 @@ var ci_lintCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(ci_lintCmd).Standalone()
 	ciCmd.AddCommand(ci_lintCmd)
 
 	carapace.Gen(ci_lintCmd).PositionalCompletion(

@@ -12,6 +12,7 @@ var ci_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(ci_listCmd).Standalone()
 	ci_listCmd.Flags().StringP("orderBy", "o", "", "Order pipeline by <string>")
 	ci_listCmd.Flags().IntP("page", "p", 1, "Page number")
 	ci_listCmd.Flags().IntP("per-page", "P", 30, "Number of items to list per page. (default 30)")
