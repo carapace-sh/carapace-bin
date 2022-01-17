@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "lslogins",
 	Short: "Display information about known users in the system",
+	Long:  "https://man7.org/linux/man-pages/man1/lslogins.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
