@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/gatsby_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,5 +21,9 @@ func init() {
 		carapace.ActionValues("docs", "ls"),
 	)
 
-	// TODO complete plugins
+	carapace.Gen(pluginCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionPlugins().Invoke(c).Filter(c.Args[1:]).ToA()
+		}),
+	)
 }
