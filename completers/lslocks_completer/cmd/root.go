@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "lslocks",
 	Short: "List local system locks",
+	Long:  "https://man7.org/linux/man-pages/man8/lslocks.8.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
