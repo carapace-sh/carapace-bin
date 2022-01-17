@@ -7,7 +7,8 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "circleci",
-	Short: "",
+	Short: "Use CircleCI from the command line",
+	Long:  "https://github.com/CircleCI-Public/circleci-cli",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
