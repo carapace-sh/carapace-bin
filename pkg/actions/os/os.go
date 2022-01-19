@@ -219,7 +219,7 @@ func ActionPathExecutables() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		executables := make(map[string]bool)
 
-		for _, folder := range strings.Split(os.Getenv("PATH"), ":") {
+		for _, folder := range strings.Split(os.Getenv("PATH"), string(os.PathListSeparator)) {
 			if files, err := ioutil.ReadDir(folder); err == nil {
 				for _, f := range files {
 					if f.Mode().IsRegular() && isExecAny(f.Mode()) {
