@@ -30,7 +30,7 @@ func init() {
 	buildCmd.Flags().String("modfile", "", "read and possibly write an alternate go.mod file")
 	buildCmd.Flags().Bool("msan", false, "enable interoperation with memory sanitizer")
 	buildCmd.Flags().BoolS("n", "n", false, "print the commands but do not run them.")
-	buildCmd.Flags().BoolS("o", "o", false, "set output file or directory")
+	buildCmd.Flags().StringS("o", "o", "", "set output file or directory")
 	buildCmd.Flags().StringS("p", "p", "", "the number of programs to run in parallel")
 	buildCmd.Flags().String("pkgdir", "", "install and load all packages from dir")
 	buildCmd.Flags().Bool("race", false, "enable data race detection")
@@ -48,6 +48,7 @@ func init() {
 		"mod":       carapace.ActionValues("readonly", "vendor", "mod"),
 		"modfile":   carapace.ActionFiles(".mod"),
 		"n":         carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8"),
+		"o":         carapace.ActionFiles(),
 		"pkgdir":    carapace.ActionDirectories(),
 		"tags": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return golang.ActionBuildTags().Invoke(c).Filter(c.Parts).ToA()
