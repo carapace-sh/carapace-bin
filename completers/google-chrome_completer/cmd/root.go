@@ -38,4 +38,8 @@ func init() {
 		"password-store": carapace.ActionValues("basic", "gnome", "kwallet"),
 		"user-data-dir":  carapace.ActionDirectories(),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }
