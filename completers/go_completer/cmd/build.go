@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -48,5 +49,8 @@ func init() {
 		"modfile":   carapace.ActionFiles(".mod"),
 		"n":         carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8"),
 		"pkgdir":    carapace.ActionDirectories(),
+		"tags": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return golang.ActionBuildTags().Invoke(c).Filter(c.Parts).ToA()
+		}),
 	})
 }
