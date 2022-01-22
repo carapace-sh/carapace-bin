@@ -40,6 +40,7 @@ func init() {
 		"add-reviewer": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionAssignableUsers(pr_editCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
+		"base":      action.ActionBranches(pr_editCmd),
 		"body-file": carapace.ActionFiles(),
 		"milestone": action.ActionMilestones(pr_editCmd),
 		// TODO remove-reviewer, remove-assignee, remove-label, remove-project
