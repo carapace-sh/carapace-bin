@@ -19,8 +19,8 @@ func init() {
 	infoCmd.Flags().Bool("analytics", false, "List global Homebrew analytics data")
 	infoCmd.Flags().Bool("cask", false, "Treat all named arguments as casks")
 	infoCmd.Flags().Bool("casks", false, "Treat all named arguments as casks")
-	infoCmd.Flags().Bool("category", false, "Which type of analytics data to retrieve")
-	infoCmd.Flags().Bool("days", false, "How many days of analytics data to retrieve")
+	infoCmd.Flags().String("category", "", "Which type of analytics data to retrieve")
+	infoCmd.Flags().String("days", "", "How many days of analytics data to retrieve")
 	infoCmd.Flags().BoolP("debug", "d", false, "Display any debugging information")
 	infoCmd.Flags().Bool("formula", false, "Treat all named arguments as formulae")
 	infoCmd.Flags().Bool("formulae", false, "Treat all named arguments as formulae")
@@ -31,6 +31,10 @@ func init() {
 	infoCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet")
 	infoCmd.Flags().BoolP("verbose", "v", false, "Show more verbose analytics data for formula")
 	rootCmd.AddCommand(infoCmd)
+
+	carapace.Gen(infoCmd).FlagCompletion(carapace.ActionMap{
+		"category": carapace.ActionValues("install", "install-on-request", "build-error"),
+	})
 
 	carapace.Gen(infoCmd).PositionalAnyCompletion(
 		carapace.Batch(
