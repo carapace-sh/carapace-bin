@@ -39,3 +39,11 @@ brews:
       owner: rsteube
       name: homebrew-tap
     commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
+scoop:
+  description: "multi-shell multi-command argument completer"
+  homepage: "https://github.com/rsteube/carapace-bin"
+  license: "MIT"
+  bucket:
+    owner: rsteube
+    name: scoop-bucket
+  commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
