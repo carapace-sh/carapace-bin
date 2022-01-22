@@ -22,5 +22,6 @@ brew install rsteube/tap/carapace
 Install from [rsteube/scoop-bucket](https://github.com/rsteube/scoop-bucket)
 
 ```sh
-TODO
+scoop bucket add rsteube https://github.com/rsteube/scoop-bucket.git
+scoop install carapace-bin
 ```
