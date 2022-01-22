@@ -35,7 +35,7 @@ docker-compose run --rm [bash|elvish|fish|ion|nushell|oil|powershell|tcsh|xonsh|
 
 ## Getting Started
 
-Ensure carapace is added to PATH.
+Ensure carapace is added to PATH ([Installation](https://rsteube.github.io/carapace-bin/installation.html)).
 
 - completion for commands
 ```sh
