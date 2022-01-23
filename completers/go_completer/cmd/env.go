@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/go_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,10 @@ func init() {
 	envCmd.Flags().BoolS("u", "u", false, "unsets the default setting for the named environment variables")
 	envCmd.Flags().StringS("w", "w", "", "changes the default settings of the named environment variables")
 	rootCmd.AddCommand(envCmd)
+
+	carapace.Gen(envCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionEnvironmentVariables().Invoke(c).Filter(c.Args).ToA()
+		}),
+	)
 }
