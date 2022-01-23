@@ -8,6 +8,7 @@ import (
 )
 
 func ActionServicePath(service string) carapace.Action {
+	// TODO container index
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		path := filepath.Dir(c.CallbackValue)
 		return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
