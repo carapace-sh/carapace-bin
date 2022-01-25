@@ -8,13 +8,12 @@ import (
 
 var eventsCmd = &cobra.Command{
 	Use:   "events",
-	Short: "Receive real time events from containers",
+	Short: "Receive real time events from containers.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(eventsCmd).Standalone()
-
 	eventsCmd.Flags().Bool("json", false, "Output events as a stream of json objects")
 	rootCmd.AddCommand(eventsCmd)
 

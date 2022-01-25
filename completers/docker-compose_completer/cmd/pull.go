@@ -14,11 +14,10 @@ var pullCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(pullCmd).Standalone()
-
-	pullCmd.Flags().Bool("ignore-pull-failures", false, "Pull what it can and ignores images with pull failures.")
+	pullCmd.Flags().Bool("ignore-pull-failures", false, "Pull what it can and ignores images with pull failures")
 	pullCmd.Flags().Bool("include-deps", false, "Also pull services declared as dependencies")
-	pullCmd.Flags().Bool("no-parallel", false, "Disable parallel pulling.")
-	pullCmd.Flags().Bool("parallel", false, "Deprecated, pull multiple images in parallel (enabled by default).")
+	pullCmd.Flags().Bool("no-parallel", true, "DEPRECATED disable parallel pulling.")
+	pullCmd.Flags().Bool("parallel", true, "DEPRECATED pull multiple images in parallel.")
 	pullCmd.Flags().BoolP("quiet", "q", false, "Pull without printing progress information")
 	rootCmd.AddCommand(pullCmd)
 

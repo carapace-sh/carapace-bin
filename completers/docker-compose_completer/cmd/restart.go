@@ -8,14 +8,13 @@ import (
 
 var restartCmd = &cobra.Command{
 	Use:   "restart",
-	Short: "Restart services",
+	Short: "Restart containers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(restartCmd).Standalone()
-
-	restartCmd.Flags().StringP("timeout", "t", "", "Specify a shutdown timeout in seconds.")
+	restartCmd.Flags().IntP("timeout", "t", 10, "Specify a shutdown timeout in seconds")
 	rootCmd.AddCommand(restartCmd)
 
 	carapace.Gen(restartCmd).PositionalAnyCompletion(
