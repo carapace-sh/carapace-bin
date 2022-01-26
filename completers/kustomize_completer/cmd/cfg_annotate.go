@@ -20,4 +20,8 @@ func init() {
 	cfg_annotateCmd.Flags().String("namespace", "", "Resource namespace to annotate")
 	cfg_annotateCmd.Flags().BoolP("recurse-subpackages", "R", false, "add annotations recursively in all the nested subpackages")
 	cfgCmd.AddCommand(cfg_annotateCmd)
+
+	carapace.Gen(cfg_annotateCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }
