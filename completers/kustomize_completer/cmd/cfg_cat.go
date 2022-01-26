@@ -25,4 +25,16 @@ func init() {
 	cfg_catCmd.Flags().String("wrap-kind", "", "if set, wrap the output in this list type kind.")
 	cfg_catCmd.Flags().String("wrap-version", "", "if set, wrap the output in this list type apiVersion.")
 	cfgCmd.AddCommand(cfg_catCmd)
+
+	carapace.Gen(cfg_catCmd).FlagCompletion(carapace.ActionMap{
+		"dest":            carapace.ActionFiles(),
+		"function-config": carapace.ActionFiles(),
+		"style": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionValues("TaggedStyle", "DoubleQuotedStyle", "LiteralStyle", "FoldedStyle", "FlowStyle").Invoke(c).Filter(c.Parts).ToA()
+		}),
+	})
+
+	carapace.Gen(cfg_catCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }
