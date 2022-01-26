@@ -22,6 +22,11 @@ func init() {
 	psCmd.Flags().StringArray("status", []string{}, "Filter services by status. Values: [paused | restarting | removing | running | dead | created | exited]")
 	rootCmd.AddCommand(psCmd)
 
+	carapace.Gen(psCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("pretty", "json"),
+		"status": carapace.ActionValues("paused", "restarting", "removing", "running", "dead", "created", "exited"),
+	})
+
 	carapace.Gen(psCmd).PositionalAnyCompletion(
 		action.ActionServices(psCmd),
 	)
