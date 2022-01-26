@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,15 @@ func init() {
 	buildCmd.Flags().StringP("output", "o", "", "If specified, write output to this path.")
 	buildCmd.Flags().String("reorder", "legacy", "Reorder the resources just before output. Use 'legacy' to apply a legacy reordering (Namespaces first, Webhooks last, etc). Use 'none' to suppress a final reordering.")
 	rootCmd.AddCommand(buildCmd)
+
+	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
+		"helm-command":    carapace.ActionFiles(),
+		"load-restrictor": carapace.ActionValues("LoadRestrictionsNone", "LoadRestrictionsRootOnly"),
+		"network-name":    docker.ActionNetworks(),
+		"output":          carapace.ActionFiles(),
+		"reorder": carapace.ActionValues(
+			"legacy", "Namespaces first, Webhooks last, etc",
+			"none", "suppress a final reordering",
+		),
+	})
 }
