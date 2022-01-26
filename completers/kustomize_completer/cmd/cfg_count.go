@@ -16,4 +16,8 @@ func init() {
 	cfg_countCmd.Flags().Bool("kind", true, "count resources by kind.")
 	cfg_countCmd.Flags().BoolP("recurse-subpackages", "R", true, "prints count of resources recursively in all the nested subpackages")
 	cfgCmd.AddCommand(cfg_countCmd)
+
+	carapace.Gen(cfg_countCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }
