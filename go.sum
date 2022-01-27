@@ -302,8 +302,8 @@ github.com/prometheus/procfs v0.0.2/go.mod h1:TjEm7ze935MbeOT/UhFTIMYKhuLP4wbCsT
 github.com/prometheus/procfs v0.0.8/go.mod h1:7Qr8sr6344vo1JqZ6HhLceV9o3AJ1Ff+GxbHq6oeK9A=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
-github.com/rsteube/carapace v0.12.3 h1:IpDSMYeG18aU2WwuYQu6MUMxLEUgKJ6KdTO1DXChtAY=
-github.com/rsteube/carapace v0.12.3/go.mod h1:D1Uvsm1mdx8rlM58FbqzswL/M0i9VGoTOX6wHKuByf8=
+github.com/rsteube/carapace v0.12.4 h1:FVcv6To3SZw0YMdUz9HuFBSHZ21z/tgDsdLnBZ4T7vA=
+github.com/rsteube/carapace v0.12.4/go.mod h1:D1Uvsm1mdx8rlM58FbqzswL/M0i9VGoTOX6wHKuByf8=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/ryanuber/columnize v0.0.0-20160712163229-9b3edd62028f/go.mod h1:sm1tb6uqfes/u+d4ooFouqFdy9/2g9QGwK3SQygK0Ts=
 github.com/sagikazarmark/crypt v0.3.0/go.mod h1:uD/D+6UF4SrIR1uGEv7bBNkNqLGqUr43MRiaGWX1Nig=
