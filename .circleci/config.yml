@@ -80,4 +80,5 @@ jobs:
       - image: circleci/golang:latest
     steps:
       - checkout 
+      - run: AUR_KEY=$(echo $AUR_KEY | base64 -d)
       - run: cd cmd/carapace && go generate ./... && curl -sL https://git.io/goreleaser | bash
