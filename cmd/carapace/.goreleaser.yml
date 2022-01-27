@@ -47,3 +47,12 @@ scoop:
     owner: rsteube
     name: scoop-bucket
   commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
+aurs:
+  -
+    description: "multi-shell multi-command argument completer"
+    homepage: "https://github.com/rsteube/carapace-bin"
+    license: "MIT"
+    maintainers:
+      - rsteube <rsteube@users.noreply.github.com>
+    private_key: '{{ .Env.AUR_KEY }}'
+    git_url: 'ssh://aur@aur.archlinux.org/carapace-bin.git'
