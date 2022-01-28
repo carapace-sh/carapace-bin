@@ -68,3 +68,5 @@ jobs:
             git add .
             git commit -m "initial commit [ci skip]"
             git push --force https://rsteube:${GITHUB_TOKEN}@github.com/rsteube/carapace-bin.git master:gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
