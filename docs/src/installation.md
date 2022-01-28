@@ -6,7 +6,7 @@ Download from [releases](https://github.com/rsteube/carapace-bin/releases) and a
 
 ## AUR
 
-Install [carapace](https://aur.archlinux.org/packages/carapace/) from [AUR](https://aur.archlinux.org/).
+Install [carapace-bin](https://aur.archlinux.org/packages/carapace-bin/) from [AUR](https://aur.archlinux.org/).
 
 ## Homebrew
 
