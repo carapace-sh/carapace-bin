@@ -1,6 +1,7 @@
 before:
   hooks:
     - go mod download
+    - go generate ./cmd/...
 builds:
   - env:
       - CGO_ENABLED=0
@@ -8,6 +9,7 @@ builds:
       - linux
       - windows
       - darwin
+    main: ./cmd/carapace
     binary: carapace
     tags:
       - release
