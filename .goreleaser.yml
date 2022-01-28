@@ -40,6 +40,7 @@ brews:
     tap:
       owner: rsteube
       name: homebrew-tap
+      token: "{{ .Env.GORELEASER_GITHUB_TOKEN }}"
     commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
 scoop:
   description: "multi-shell multi-command argument completer"
@@ -48,6 +49,7 @@ scoop:
   bucket:
     owner: rsteube
     name: scoop-bucket
+    token: "{{ .Env.GORELEASER_GITHUB_TOKEN }}"
   commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
 aurs:
   -
