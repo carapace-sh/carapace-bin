@@ -60,3 +60,7 @@ aurs:
       - rsteube <rsteube@users.noreply.github.com>
     private_key: '{{ .Env.AUR_KEY }}'
     git_url: 'ssh://aur@aur.archlinux.org/carapace-bin.git'
+    provides:
+      - carapace
+    conflicts:
+      - carapace
