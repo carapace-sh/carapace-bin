@@ -2,12 +2,15 @@ package main
 
 import (
 	"fmt"
-	exec "golang.org/x/sys/execabs"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/rsteube/carapace-bin/pkg/util"
+	exec "golang.org/x/sys/execabs"
 )
 
 func main() {
@@ -64,40 +67,45 @@ func executeCompleter(completer string) {
 		fmt.Sprintln(strings.Join(formattedDescriptions, "\n")),
 		fmt.Sprintln(strings.Join(cases, "\n")),
 	)
-	if root, err := rootDir(); err == nil {
-		ioutil.WriteFile(root+"/cmd/carapace/cmd/completers.go", []byte("//go:build !release\n\n"+content), 0644)
-		ioutil.WriteFile(root+"/cmd/carapace/cmd/completers_release.go", []byte("//go:build release\n\n"+strings.Replace(content, "/completers/", "/completers_release/", -1)), 0644)
-		os.RemoveAll(root + "/completers_release")
-		exec.Command("cp", "-r", root+"/completers", root+"/completers_release").Run()
 
-		for _, name := range names {
-			files, err := os.ReadDir(fmt.Sprintf("%v/completers_release/%v_completer/cmd/", root, name))
+	root, err := rootDir()
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err.Error())
+		os.Exit(1)
+	}
+
+	ioutil.WriteFile(root+"/cmd/carapace/cmd/completers.go", []byte("//go:build !release\n\n"+content), 0644)
+	ioutil.WriteFile(root+"/cmd/carapace/cmd/completers_release.go", []byte("//go:build release\n\n"+strings.Replace(content, "/completers/", "/completers_release/", -1)), 0644)
+	os.RemoveAll(root + "/completers_release")
+	exec.Command("cp", "-r", root+"/completers", root+"/completers_release").Run()
+
+	for _, name := range names {
+		files, err := os.ReadDir(fmt.Sprintf("%v/completers_release/%v_completer/cmd/", root, name))
+		if err == nil {
+			initFuncs := make([]string, 0)
+			for _, file := range files {
+				if !file.IsDir() && strings.HasSuffix(file.Name(), ".go") {
+					path := fmt.Sprintf("%v/completers_release/%v_completer/cmd/%v", root, name, file.Name())
+					content, err := ioutil.ReadFile(path)
+					if err == nil && strings.Contains(string(content), "func init() {") {
+						patched := strings.Replace(string(content), "func init() {", fmt.Sprintf("func init_%v() {", strings.TrimSuffix(file.Name(), ".go")), 1)
+						ioutil.WriteFile(path, []byte(patched), os.ModePerm)
+						initFuncs = append(initFuncs, fmt.Sprintf("	init_%v()", strings.TrimSuffix(file.Name(), ".go")))
+					}
+				}
+			}
+
+			path := fmt.Sprintf("%v/completers_release/%v_completer/cmd/root.go", root, name)
+			content, err := ioutil.ReadFile(path)
 			if err == nil {
-				initFuncs := make([]string, 0)
-				for _, file := range files {
-					if !file.IsDir() && strings.HasSuffix(file.Name(), ".go") {
-						path := fmt.Sprintf("%v/completers_release/%v_completer/cmd/%v", root, name, file.Name())
-						content, err := ioutil.ReadFile(path)
-						if err == nil && strings.Contains(string(content), "func init() {") {
-							patched := strings.Replace(string(content), "func init() {", fmt.Sprintf("func init_%v() {", strings.TrimSuffix(file.Name(), ".go")), 1)
-							ioutil.WriteFile(path, []byte(patched), os.ModePerm)
-							initFuncs = append(initFuncs, fmt.Sprintf("	init_%v()", strings.TrimSuffix(file.Name(), ".go")))
-						}
+				patched := make([]string, 0)
+				for _, line := range strings.Split(string(content), "\n") {
+					patched = append(patched, line)
+					if line == "func Execute() error {" {
+						patched = append(patched, initFuncs...)
 					}
 				}
-
-				path := fmt.Sprintf("%v/completers_release/%v_completer/cmd/root.go", root, name)
-				content, err := ioutil.ReadFile(path)
-				if err == nil {
-					patched := make([]string, 0)
-					for _, line := range strings.Split(string(content), "\n") {
-						patched = append(patched, line)
-						if line == "func Execute() error {" {
-							patched = append(patched, initFuncs...)
-						}
-					}
-					ioutil.WriteFile(path, []byte(strings.Join(patched, "\n")), os.ModePerm)
-				}
+				ioutil.WriteFile(path, []byte(strings.Join(patched, "\n")), os.ModePerm)
 			}
 		}
 	}
@@ -141,9 +149,15 @@ func readDescription(root string, completer string) string {
 }
 
 func rootDir() (string, error) {
-	if output, err := exec.Command("git", "rev-parse", "--show-toplevel").Output(); err != nil {
+	wd, err := os.Getwd()
+	if err != nil {
 		return "", err
-	} else {
-		return strings.Split(string(output), "\n")[0], nil
 	}
+
+	path, err := util.FindReverse(wd, "go.mod")
+	if err != nil {
+		return "", err
+	}
+
+	return filepath.Dir(path), nil
 }
