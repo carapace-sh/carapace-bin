@@ -26,9 +26,9 @@ func init() {
 	browseCmd.Flags().BoolP("commit", "c", false, "Open the last commit")
 	browseCmd.Flags().BoolP("no-browser", "n", false, "Print destination URL instead of opening the browser")
 	browseCmd.Flags().BoolP("projects", "p", false, "Open repository projects")
+	browseCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	browseCmd.Flags().BoolP("settings", "s", false, "Open repository settings")
 	browseCmd.Flags().BoolP("wiki", "w", false, "Open repository wiki")
-	browseCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	rootCmd.AddCommand(browseCmd)
 
 	carapace.Gen(browseCmd).FlagCompletion(carapace.ActionMap{
