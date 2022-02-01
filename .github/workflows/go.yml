@@ -10,42 +10,50 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/rsteube/carapace
     steps:
-    - uses: actions/checkout@v2
+      - name: shallow clone
+        uses: actions/checkout@v2
+        if: "!startsWith(github.ref, 'refs/tags/')"
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.17
-    
-    - name: Generate
-      run: go generate ./cmd/...
+      - name: deep clone
+        uses: actions/checkout@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      
+      - name: Generate
+        run: go generate ./cmd/...
 
 
-    - name: Build
-      run: go build -v ./cmd/...
+      - name: Build
+        run: go build -v ./cmd/...
 
-    - name: Test
-      run: go test -v ./cmd/...
+      - name: Test
+        run: go test -v ./cmd/...
 
-    - name: "Check formatting"
-      run: '[ "$(gofmt -d -s . | tee -a /dev/stderr)" = "" ]'
+      - name: "Check formatting"
+        run: '[ "$(gofmt -d -s . | tee -a /dev/stderr)" = "" ]'
 
-    - name: "staticcheck"
-      run: go install honnef.co/go/tools/cmd/staticcheck@2021.1.1 && staticcheck ./...
+      - name: "staticcheck"
+        run: go install honnef.co/go/tools/cmd/staticcheck@2021.1.1 && staticcheck ./...
 
-    - name: "caralint"
-      run: go run ./cmd/caralint completers/*/cmd/*.go
+      - name: "caralint"
+        run: go run ./cmd/caralint completers/*/cmd/*.go
 
-    - name: Run GoReleaser
-      uses: goreleaser/goreleaser-action@v2
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        version: latest
-        args: release --rm-dist
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        AUR_KEY: ${{ secrets.AUR_KEY }}
-        GORELEASER_GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          version: latest
+          args: release --rm-dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AUR_KEY: ${{ secrets.AUR_KEY }}
+          GORELEASER_GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
 
   doc:
     runs-on: ubuntu-latest
