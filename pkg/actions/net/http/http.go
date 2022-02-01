@@ -6,7 +6,23 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 )
 
-// ActionHttpRequestHeaderNames completes http reqest header names
+// ActionHttpRequestHeaders ocmpletes http request headers
+//   Accept:application/json
+//   Accept-Encoding:exi,br
+func ActionHttpRequestHeaders() carapace.Action {
+	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			return ActionHttpRequestHeaderNames().Invoke(c).Suffix(":").ToA()
+		case 1:
+			return ActionHttpRequestHeaderValues(c.Parts[0])
+		default:
+			return carapace.ActionValues()
+		}
+	})
+}
+
+// ActionHttpRequestHeaderNames completes http request header names
 //   Accept-Charset (Character sets that are acceptable.)
 //   Accept-Datetime (Acceptable version in time.)
 func ActionHttpRequestHeaderNames() carapace.Action {

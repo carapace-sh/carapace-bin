@@ -15,7 +15,7 @@ var auth_loginCmd = &cobra.Command{
 func init() {
 	carapace.Gen(auth_loginCmd).Standalone()
 	auth_loginCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitHub instance to authenticate with")
-	auth_loginCmd.Flags().StringSliceP("scopes", "s", nil, "Additional authentication scopes for gh to have")
+	auth_loginCmd.Flags().StringSliceP("scopes", "s", []string{}, "Additional authentication scopes for gh to have")
 	auth_loginCmd.Flags().BoolP("web", "w", false, "Open a browser to authenticate")
 	auth_loginCmd.Flags().Bool("with-token", false, "Read token from standard input")
 	authCmd.AddCommand(auth_loginCmd)
