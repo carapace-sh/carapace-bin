@@ -2,11 +2,16 @@
 
 ## Manually
 
-Download from [releases](https://github.com/rsteube/carapace-bin/releases) and add `carapace` to `PATH`.
+Download from [releases](https://github.com/rsteube/carapace-bin/releases) and add `carapace` to [PATH](https://en.wikipedia.org/wiki/PATH_(variable)).
 
 ## AUR
 
 Install [carapace-bin](https://aur.archlinux.org/packages/carapace-bin/) from [AUR](https://aur.archlinux.org/).
+
+```sh
+# e.g. with pamac
+pamac install carapace-bin
+```
 
 ## Homebrew
 

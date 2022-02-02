@@ -2,6 +2,7 @@
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/rsteube/carapace-bin/pkg/actions)](https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions)
 [![GoReportCard](https://goreportcard.com/badge/github.com/rsteube/carapace-bin)](https://goreportcard.com/report/github.com/rsteube/carapace-bin)
+[![documentation](https://img.shields.io/badge/&zwnj;-documentation-blue?logo=gitbook)](https://rsteube.github.io/carapace-bin/)
 [![Completers](https://rsteube.github.io/carapace-bin/badge.svg)](https://rsteube.github.io/carapace-bin/completers.html)
 
 Multi-shell multi-command argument completer based on [rsteube/carapace](https://github.com/rsteube/carapace).
@@ -24,19 +25,11 @@ Supported shells:
 
 A major part of the completers has been generated from help pages so there will be some quirks here and there. Also completion depends on what [rsteube/carapace](https://github.com/rsteube/carapace) is capable of so far.
 
-## Example
-
-```
-docker-compose run --rm build
-docker-compose run --rm [bash|elvish|fish|ion|nushell|oil|powershell|tcsh|xonsh|zsh]
-[ln|mkdir|chown...] <TAB>
-```
-
 ## Getting Started
 
-Ensure carapace is added to PATH ([Installation](https://rsteube.github.io/carapace-bin/installation.html)).
+Ensure carapace is added to [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) ([Installation](https://rsteube.github.io/carapace-bin/installation.html)).
+Then register the completers:
 
-- completion for commands
 ```sh
 # bash (~/.bashrc)
 source <(carapace _carapace)
@@ -70,58 +63,3 @@ exec($(carapace _carapace))
 # zsh (~/.zshrc)
 source <(carapace _carapace)
 ```
-
-Replace `_carapace` with completer name to load a single one.
-
-- list completions
-```sh
-carapace --list
-```
-
-## Build
-
-```sh
-cd cmd/carapace && go generate ./... && go build -ldflags="-s -w" -tags release
-```
-
-Completers can also be built separately:
-```sh
-cd completers/ln_completer && go build -ldflags="-s -w"
-./ln_completer _carapace [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]
-```
-
-## Creating completers
-[caraparse](/cmd/caraparse) is a helper tool that uses regex to parse gnu help pages.
-Due to strong inconsistencies between these the results may differ but generally give a good head start.
-
-- copy a completer for simplicity
-```sh
-cp -r completers/cp_completer completers/ln_completer
-```
-- update the package name in `main.go`
-- replace `root.go`
-```sh
-ln --help | caraparse -n ln > completers/ln_completer/cmd/root.go
-```
-- fix issues and add completions as required
-```go
-carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-	"backup":           carapace.ActionValues("existing", "nil", "none", "off", "numbered", "t", "simple", "never"),
-	"target-directory": carapace.ActionDirectories(),
-})
-
-carapace.Gen(rootCmd).PositionalAnyCompletion(
-	carapace.ActionFiles(""),
-)
-```
-- run the generator
-```sh
-go generate ./...
-```
-- build & test
-```sh
-docker-compose run --rm build
-docker-compose run --rm [bash|elvish|fish|ion|nushell|oil|powershell|tcsh|xonsh|zsh]
-```
-
-[![asciicast](https://asciinema.org/a/357895.svg)](https://asciinema.org/a/357895)
