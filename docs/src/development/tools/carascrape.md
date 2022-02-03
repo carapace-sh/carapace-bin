@@ -15,3 +15,5 @@ rootCmd := &cobra.Command{
     },
 }
 ```
+
+[![asciicast](https://asciinema.org/a/466501.svg)](https://asciinema.org/a/466501)
