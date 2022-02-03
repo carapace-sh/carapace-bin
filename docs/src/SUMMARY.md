@@ -2,6 +2,7 @@
 
 - [carapace-bin](./carapace-bin.md)
   - [Installation](./installation.md)
+  - [Setup](./setup.md)
   - [Completers](./completers.md)
   - [Development](./development.md)
     - [Build](./development/build.md)
