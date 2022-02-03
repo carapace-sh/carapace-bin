@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xdotool",
 	Short: "command-line X11 automation tool",
+	Long:  "https://github.com/jordansissel/xdotool",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
