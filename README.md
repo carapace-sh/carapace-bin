@@ -5,7 +5,7 @@
 [![documentation](https://img.shields.io/badge/&zwnj;-documentation-blue?logo=gitbook)](https://rsteube.github.io/carapace-bin/)
 [![Completers](https://rsteube.github.io/carapace-bin/badge.svg)](https://rsteube.github.io/carapace-bin/completers.html)
 
-Multi-shell multi-command argument completer based on [rsteube/carapace](https://github.com/rsteube/carapace).
+Carapace-bin provides argument completions for many CLI commands: [see the full list here](https://rsteube.github.io/carapace-bin/completers.html)), and works across many POSIX and non-POSIX shells. This multi-shell multi-command argument completer is based on [rsteube/carapace](https://github.com/rsteube/carapace).
 
 [![asciicast](https://asciinema.org/a/357191.svg)](https://asciinema.org/a/357191)
 
