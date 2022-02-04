@@ -18,4 +18,8 @@ func init() {
 	cfg_createSubstCmd.Flags().String("pattern", "", "substitution pattern")
 	cfg_createSubstCmd.Flags().BoolP("recurse-subpackages", "R", false, "creates substitution recursively in all the nested subpackages")
 	cfgCmd.AddCommand(cfg_createSubstCmd)
+
+	carapace.Gen(cfg_createSubstCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }

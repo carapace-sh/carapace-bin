@@ -18,4 +18,10 @@ func init() {
 	cfg_merge3Cmd.Flags().Bool("path-merge-key", false, "Use the path as part of the merge key when merging resources")
 	cfg_merge3Cmd.Flags().String("to", "", "Path to destination package")
 	cfgCmd.AddCommand(cfg_merge3Cmd)
+
+	carapace.Gen(cfg_merge3Cmd).FlagCompletion(carapace.ActionMap{
+		"ancestor": carapace.ActionDirectories(),
+		"from":     carapace.ActionDirectories(),
+		"to":       carapace.ActionDirectories(),
+	})
 }

@@ -20,4 +20,8 @@ func init() {
 	cfg_fmtCmd.Flags().Bool("set-filenames", false, "if true, set default filenames on Resources without them")
 	cfg_fmtCmd.Flags().Bool("use-schema", false, "if true, uses openapi resource schema to format resources.")
 	cfgCmd.AddCommand(cfg_fmtCmd)
+
+	carapace.Gen(cfg_fmtCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }

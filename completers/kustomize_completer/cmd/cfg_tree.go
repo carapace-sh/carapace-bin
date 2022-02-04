@@ -27,4 +27,12 @@ func init() {
 	cfg_treeCmd.Flags().Bool("replicas", false, "print replicas field")
 	cfg_treeCmd.Flags().Bool("resources", false, "print resources field")
 	cfgCmd.AddCommand(cfg_treeCmd)
+
+	carapace.Gen(cfg_treeCmd).FlagCompletion(carapace.ActionMap{
+		"graph-structure": carapace.ActionValues("owners", "directory"),
+	})
+
+	carapace.Gen(cfg_treeCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }

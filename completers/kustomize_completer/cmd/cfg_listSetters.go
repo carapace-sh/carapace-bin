@@ -17,4 +17,8 @@ func init() {
 	cfg_listSettersCmd.Flags().Bool("markdown", false, "output as github markdown")
 	cfg_listSettersCmd.Flags().BoolP("recurse-subpackages", "R", false, "list setters recursively in all the nested subpackages")
 	cfgCmd.AddCommand(cfg_listSettersCmd)
+
+	carapace.Gen(cfg_listSettersCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }

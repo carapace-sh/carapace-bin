@@ -19,4 +19,8 @@ func init() {
 	cfg_setCmd.Flags().StringArray("values", []string{}, "optional flag, the values of the setter to be set to")
 	cfg_setCmd.Flags().String("version", "", "use this version of the setter format")
 	cfgCmd.AddCommand(cfg_setCmd)
+
+	carapace.Gen(cfg_setCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }

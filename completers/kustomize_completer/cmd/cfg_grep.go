@@ -17,4 +17,9 @@ func init() {
 	cfg_grepCmd.Flags().Bool("invert-match", false, "Selected Resources are those not matching any of the specified patterns..")
 	cfg_grepCmd.Flags().BoolP("recurse-subpackages", "R", true, "also print resources recursively in all the nested subpackages")
 	cfgCmd.AddCommand(cfg_grepCmd)
+
+	carapace.Gen(cfg_grepCmd).PositionalCompletion(
+		carapace.ActionValues(),
+		carapace.ActionDirectories(),
+	)
 }

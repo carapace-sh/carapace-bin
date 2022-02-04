@@ -14,4 +14,8 @@ var cfg_initCmd = &cobra.Command{
 func init() {
 	carapace.Gen(cfg_initCmd).Standalone()
 	cfgCmd.AddCommand(cfg_initCmd)
+
+	carapace.Gen(cfg_initCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }

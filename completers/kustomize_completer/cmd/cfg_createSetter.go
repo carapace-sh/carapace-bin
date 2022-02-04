@@ -22,4 +22,12 @@ func init() {
 	cfg_createSetterCmd.Flags().String("type", "", "OpenAPI field type for the setter -- e.g. integer,boolean,string.")
 	cfg_createSetterCmd.Flags().String("value", "", "optional flag, alternative to specifying the value as an argument. e.g. used to specify values that start with '-'")
 	cfgCmd.AddCommand(cfg_createSetterCmd)
+
+	carapace.Gen(cfg_createSetterCmd).FlagCompletion(carapace.ActionMap{
+		"type": carapace.ActionValues("string", "number", "integer", "boolean", "array", "object"),
+	})
+
+	carapace.Gen(cfg_createSetterCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }
