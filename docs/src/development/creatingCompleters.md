@@ -1,6 +1,7 @@
 # Creating completers
 
-- copy a completer for simplicity
+
+- copy a basic completer for simplicity
 ```sh
 cp -r completers/cp_completer completers/ln_completer
 ```
@@ -20,14 +21,13 @@ carapace.Gen(rootCmd).PositionalAnyCompletion(
 	carapace.ActionFiles(""),
 )
 ```
-- run the generator
+- run the generator once to add the new completer
 ```sh
+# cmd/carapace
 go generate ./...
-```
-- build & test
-```sh
-docker-compose run --rm build
-docker-compose run --rm [bash|elvish|fish|ion|nushell|oil|powershell|tcsh|xonsh|zsh]
+go install
 ```
 
-[![asciicast](https://asciinema.org/a/357895.svg)](https://asciinema.org/a/357895)
+## Example
+
+[![asciicast](https://asciinema.org/a/466859.svg)](https://asciinema.org/a/466859)
