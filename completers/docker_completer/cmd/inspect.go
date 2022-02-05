@@ -24,10 +24,10 @@ func init() {
 		carapace.Batch(
 			docker.ActionContainers(),
 			docker.ActionNetworks(),
-			docker.ActionNodes().Supress("This node is not a swarm manager"),
+			docker.ActionNodes().Suppress("This node is not a swarm manager"),
 			docker.ActionRepositoryTags(),
-			docker.ActionSecrets().Supress("This node is not a swarm manager"),
-			docker.ActionServices().Supress("This node is not a swarm manager"),
+			docker.ActionSecrets().Suppress("This node is not a swarm manager"),
+			docker.ActionServices().Suppress("This node is not a swarm manager"),
 			docker.ActionVolumes(),
 		).ToA(),
 	)
