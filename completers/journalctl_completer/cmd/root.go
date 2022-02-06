@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/journalctl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/time"
 	"github.com/spf13/cobra"
 )
 
@@ -102,5 +103,13 @@ func init() {
 			return carapace.ActionValues()
 		}),
 		"root": carapace.ActionDirectories(),
+		"since": carapace.Batch(
+			carapace.ActionValues("yesterday", "today", "tomorrow"),
+			time.ActionDateTime(),
+		).ToA(),
+		"until": carapace.Batch(
+			carapace.ActionValues("yesterday", "today", "tomorrow"),
+			time.ActionDateTime(),
+		).ToA(),
 	})
 }
