@@ -30,7 +30,7 @@ A major part of the completers has been generated from help pages so there will 
 ## Getting Started
 
 Ensure carapace is added to [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) ([Installation](https://rsteube.github.io/carapace-bin/installation.html)).
-Then register the [completers](https://rsteube.github.io/carapace-bin/completers.html):
+Then register the [completers](https://rsteube.github.io/carapace-bin/completers.html) ([Setup](https://rsteube.github.io/carapace-bin/setup.html)):
 
 ```sh
 # bash (~/.bashrc)
