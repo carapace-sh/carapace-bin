@@ -10,9 +10,9 @@ import (
 )
 
 type pullrequest struct {
-	Number           int
-	Title            string
-	MergeStateStatus string
+	Number  int
+	Title   string
+	IsDraft bool
 }
 
 type pullRequestsQuery struct {
@@ -45,11 +45,11 @@ func (p *PullRequestOpts) states() string {
 func ActionPullRequests(cmd *cobra.Command, opts PullRequestOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult pullRequestsQuery
-		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ pullRequests(first: 100, states: %v, orderBy: {direction: DESC, field: UPDATED_AT}) { nodes { number, title, mergeStateStatus } } }`, opts.states()), &queryResult, func() carapace.Action {
+		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ pullRequests(first: 100, states: %v, orderBy: {direction: DESC, field: UPDATED_AT}) { nodes { number, title, isDraft } } }`, opts.states()), &queryResult, func() carapace.Action {
 			pullrequests := queryResult.Data.Repository.PullRequests.Nodes
 			vals := make([]string, 0, len(pullrequests)*2)
 			for _, pullrequest := range pullrequests {
-				if !opts.DraftOnly || pullrequest.MergeStateStatus == "DRAFT" {
+				if !opts.DraftOnly || pullrequest.IsDraft {
 					vals = append(vals, strconv.Itoa(pullrequest.Number), pullrequest.Title) // TODO shorten title
 				}
 			}
