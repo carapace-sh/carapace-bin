@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/journalctl_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/time"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/journalctl"
 	"github.com/spf13/cobra"
 )
 
@@ -92,7 +93,7 @@ func init() {
 		"field":  action.ActionFields(),
 		"file":   carapace.ActionFiles(),
 		"image":  carapace.ActionFiles(),
-		"output": action.ActionOutputs(),
+		"output": journalctl.ActionOutputs(),
 		"output-fields": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
