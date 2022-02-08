@@ -12,12 +12,6 @@ var rootCmd = &cobra.Command{
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
-// AddTo provides a way for docker_completer to add this as subcommand
-func AddTo(cmd *cobra.Command) {
-	rootCmd.Use = "compose"
-	cmd.AddCommand(rootCmd)
-}
-
 func Execute() error {
 	return rootCmd.Execute()
 }
