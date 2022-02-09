@@ -34,6 +34,8 @@ func init() {
 	})
 
 	carapace.Gen(convertCmd).PositionalCompletion(
-		action.ActionServices(convertCmd),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionServices(convertCmd).Invoke(c).Filter(c.Args).ToA()
+		}),
 	)
 }
