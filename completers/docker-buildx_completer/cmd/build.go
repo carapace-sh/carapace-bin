@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -53,4 +54,17 @@ func init() {
 	buildCmd.Flags().String("target", "", "Set the target build stage to build")
 	buildCmd.Flags().String("ulimit", "", "Ulimit options")
 	rootCmd.AddCommand(buildCmd)
+
+	// TODO flag completion
+	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
+		"cgroup-parent": os.ActionCgroups(),
+		"file":          carapace.ActionFiles(),
+		"iidfile":       carapace.ActionFiles(),
+		"metadata-file": carapace.ActionFiles(),
+		"progress":      carapace.ActionValues("auto", "plain", "tty"),
+	})
+
+	carapace.Gen(buildCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }
