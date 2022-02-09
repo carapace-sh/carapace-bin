@@ -23,6 +23,8 @@ func init() {
 	rootCmd.AddCommand(logsCmd)
 
 	carapace.Gen(logsCmd).PositionalAnyCompletion(
-		action.ActionServices(logsCmd),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionServices(logsCmd).Invoke(c).Filter(c.Args).ToA()
+		}),
 	)
 }

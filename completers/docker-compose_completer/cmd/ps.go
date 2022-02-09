@@ -28,6 +28,8 @@ func init() {
 	})
 
 	carapace.Gen(psCmd).PositionalAnyCompletion(
-		action.ActionServices(psCmd),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionServices(psCmd).Invoke(c).Filter(c.Args).ToA()
+		}),
 	)
 }

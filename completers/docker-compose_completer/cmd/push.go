@@ -18,6 +18,8 @@ func init() {
 	rootCmd.AddCommand(pushCmd)
 
 	carapace.Gen(pushCmd).PositionalAnyCompletion(
-		action.ActionServices(pushCmd),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionServices(pushCmd).Invoke(c).Filter(c.Args).ToA()
+		}),
 	)
 }

@@ -22,6 +22,8 @@ func init() {
 	rootCmd.AddCommand(pullCmd)
 
 	carapace.Gen(pullCmd).PositionalAnyCompletion(
-		action.ActionServices(pullCmd),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionServices(pullCmd).Invoke(c).Filter(c.Args).ToA()
+		}),
 	)
 }

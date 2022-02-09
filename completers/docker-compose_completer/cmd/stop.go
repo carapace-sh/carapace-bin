@@ -18,6 +18,8 @@ func init() {
 	rootCmd.AddCommand(stopCmd)
 
 	carapace.Gen(stopCmd).PositionalAnyCompletion(
-		action.ActionServices(stopCmd),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionServices(stopCmd).Invoke(c).Filter(c.Args).ToA()
+		}),
 	)
 }
