@@ -30,7 +30,9 @@ func init() {
 			arg := []string{"docker-compose", "export", "_", "docker-compose"}
 			arg = append(arg, c.Args...)
 			arg = append(arg, c.CallbackValue)
-			return carapace.ActionExecCarapace(executable, arg...)
+			return carapace.ActionExecCommand(executable, arg...)(func(output []byte) carapace.Action {
+				return carapace.ActionImport(output)
+			})
 		}),
 	)
 }
