@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"os"
-
 	"github.com/rsteube/carapace"
+	compose "github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd"
+	"github.com/rsteube/carapace-bin/pkg/actions/invoke"
 	"github.com/spf13/cobra"
 )
 
@@ -20,19 +20,6 @@ func init() {
 	rootCmd.AddCommand(composeCmd)
 
 	carapace.Gen(composeCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			// TODO experimental - this prevents building the completer separately
-			// maybe replace with invocation of cmd.Execute() and catch stdout like in the root command of carapace-bin
-			executable, err := os.Executable()
-			if err != nil {
-				return carapace.ActionMessage(err.Error())
-			}
-			arg := []string{"docker-compose", "export", "_", "docker-compose"}
-			arg = append(arg, c.Args...)
-			arg = append(arg, c.CallbackValue)
-			return carapace.ActionExecCommand(executable, arg...)(func(output []byte) carapace.Action {
-				return carapace.ActionImport(output)
-			})
-		}),
+		invoke.ActionInvoke(compose.Execute),
 	)
 }
