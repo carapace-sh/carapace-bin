@@ -22,9 +22,8 @@ type config struct {
 	}
 }
 
-func actionConfig(f func(c config) carapace.Action) carapace.Action {
-	// TODO support `--files` flag
-	return carapace.ActionExecCommand("docker-compose", "convert", "--format", "json")(func(output []byte) carapace.Action {
+func actionConfig(cmd *cobra.Command, f func(c config) carapace.Action) carapace.Action {
+	return actionExecCompose(cmd, "convert", "--format", "json")(func(output []byte) carapace.Action {
 		var c config
 		if err := json.Unmarshal(output, &c); err != nil {
 			return carapace.ActionMessage(err.Error())
@@ -34,7 +33,7 @@ func actionConfig(f func(c config) carapace.Action) carapace.Action {
 }
 
 func ActionServices(cmd *cobra.Command) carapace.Action {
-	return actionConfig(func(c config) carapace.Action {
+	return actionConfig(cmd, func(c config) carapace.Action {
 		vals := make([]string, 0)
 		for name, service := range c.Services {
 			description := service.Image
@@ -48,7 +47,7 @@ func ActionServices(cmd *cobra.Command) carapace.Action {
 }
 
 func ActionContainers(cmd *cobra.Command, status string) carapace.Action {
-	return carapace.ActionExecCommand("docker-compose", "ps", "--status", status)(func(output []byte) carapace.Action {
+	return actionExecCompose(cmd, "ps", "--status", status)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		if lines[0] != "" {
 			return carapace.ActionValues(lines[:len(lines)-1]...)

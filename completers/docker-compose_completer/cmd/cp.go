@@ -31,7 +31,7 @@ func init() {
 				case 0:
 					return action.ActionServices(cpCmd).Invoke(c).Suffix(":").ToA()
 				case 1:
-					return action.ActionServicePath(c.Parts[0]) // TODO index
+					return action.ActionServicePath(cpCmd, c.Parts[0]) // TODO index
 				default:
 					return carapace.ActionValues()
 				}
@@ -46,7 +46,7 @@ func init() {
 				case 0:
 					return action.ActionServices(cpCmd).Invoke(c).Suffix(":").ToA()
 				case 1:
-					return action.ActionServicePath(c.Parts[0]) // TODO index
+					return action.ActionServicePath(cpCmd, c.Parts[0]) // TODO index
 				default:
 					return carapace.ActionValues()
 				}

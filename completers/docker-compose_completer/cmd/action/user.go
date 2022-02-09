@@ -9,7 +9,7 @@ import (
 
 func actionContainerExecCommand(cmd *cobra.Command, service string, index string, command string, args ...string) func(f func(output []byte) carapace.Action) carapace.Action {
 	return func(f func(output []byte) carapace.Action) carapace.Action {
-		return carapace.ActionExecCommand("docker-compose", append([]string{"exec", "--no-TTY", "--index", index, service, command}, args...)...)(func(output []byte) carapace.Action {
+		return actionExecCompose(cmd, append([]string{"exec", "--no-TTY", "--index", index, service, command}, args...)...)(func(output []byte) carapace.Action {
 			return f(output)
 		})
 	}
