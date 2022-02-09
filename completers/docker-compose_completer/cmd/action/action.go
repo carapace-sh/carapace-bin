@@ -8,7 +8,7 @@ import (
 func actionExecCompose(cmd *cobra.Command, arg ...string) func(f func(output []byte) carapace.Action) carapace.Action {
 	return func(f func(output []byte) carapace.Action) carapace.Action {
 		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			a := []string{}
+			a := []string{"compose"}
 			if files, err := cmd.Root().Flags().GetStringArray("file"); err == nil {
 				for _, file := range files {
 					a = append(a, "--file", file)
@@ -17,7 +17,7 @@ func actionExecCompose(cmd *cobra.Command, arg ...string) func(f func(output []b
 				return carapace.ActionMessage(err.Error())
 			}
 			a = append(a, arg...)
-			return carapace.ActionExecCommand("docker-compose", a...)(f)
+			return carapace.ActionExecCommand("docker", a...)(f)
 		})
 	}
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -50,6 +51,12 @@ func init() {
 	rootCmd.AddCommand(cloneCmd)
 
 	carapace.Gen(cloneCmd).FlagCompletion(carapace.ActionMap{
+		"branch": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				return git.ActionLsRemoteRefs(c.Args[0], git.LsRemoteRefOption{Branches: true, Tags: true})
+			}
+			return carapace.ActionValues()
+		}),
 		"separate-git-dir": carapace.ActionFiles(),
 		"template":         carapace.ActionDirectories(),
 	})
