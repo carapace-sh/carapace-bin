@@ -6,7 +6,7 @@ import (
 )
 
 func ActionVolumes(cmd *cobra.Command) carapace.Action {
-	return actionConfig(func(c config) carapace.Action {
+	return actionConfig(cmd, func(c config) carapace.Action {
 		vals := make([]string, 0)
 		for name, volume := range c.Volumes {
 			vals = append(vals, name, volume.Name)

@@ -35,7 +35,7 @@ func init() {
 	carapace.Gen(execCmd).PositionalCompletion(
 		action.ActionServices(execCmd),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionServicePath(c.Args[0])
+			return action.ActionServicePath(execCmd, c.Args[0])
 		}),
 	)
 }
