@@ -1,8 +1,11 @@
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	git "github.com/rsteube/carapace-bin/completers/git_completer/cmd"
 	"github.com/spf13/cobra"
 )
 
@@ -27,5 +30,16 @@ func init() {
 
 	carapace.Gen(repo_forkCmd).PositionalCompletion(
 		action.ActionOwnerRepositories(repo_forkCmd),
+	)
+
+	carapace.Gen(repo_forkCmd).DashAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			repo := ""
+			if args := repo_forkCmd.Flags().Args(); len(args) > 0 {
+				repo = fmt.Sprintf("https://github.com/%v.git", args[0])
+			}
+			c.Args = append([]string{"clone", repo, ""}, c.Args...)
+			return carapace.ActionInvoke(git.Execute).Invoke(c).ToA()
+		}),
 	)
 }

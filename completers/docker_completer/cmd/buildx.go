@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	buildx "github.com/rsteube/carapace-bin/completers/docker-buildx_completer/cmd"
-	"github.com/rsteube/carapace-bin/pkg/actions/invoke"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(buildxCmd)
 
 	carapace.Gen(buildxCmd).PositionalAnyCompletion(
-		invoke.ActionInvoke(buildx.Execute),
+		carapace.ActionInvoke(buildx.Execute),
 	)
 }
