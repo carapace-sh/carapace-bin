@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"path/filepath"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
@@ -53,6 +55,50 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionFiles(),
+		carapace.Batch(
+			os.ActionPathExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
+
+	// TODO invokes carapace but should use system wide completions longterm (rsteube/invoke-completion)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			executable := filepath.Base(c.Args[0])
+			args := []string{executable, "export", "_", ""}
+			args = append(args, c.Args[1:]...)
+			args = append(args, c.CallbackValue)
+			return carapace.ActionExecCommand("carapace", args...)(func(output []byte) carapace.Action {
+				// TODO carapace needs exit code on error
+				if string(output) == "" {
+					return carapace.ActionValues()
+				}
+				return carapace.ActionImport(output)
+			})
+		}),
+	)
+
+	carapace.Gen(rootCmd).DashAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			fullArgs := rootCmd.Flags().Args()
+			if len(fullArgs) == 1 {
+				return carapace.Batch(
+					os.ActionPathExecutables(),
+					carapace.ActionFiles(),
+				).ToA()
+			}
+
+			executable := filepath.Base(fullArgs[0])
+			args := []string{executable, "export", "_", ""}
+			args = append(args, fullArgs[1:]...)
+			return carapace.ActionExecCommand("carapace", args...)(func(output []byte) carapace.Action {
+				// TODO carapace needs exit code on error
+				if string(output) == "" {
+					return carapace.ActionValues()
+				}
+				return carapace.ActionImport(output)
+			})
+		}),
 	)
 }
