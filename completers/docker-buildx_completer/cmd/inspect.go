@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-buildx_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,5 +17,7 @@ func init() {
 	inspectCmd.Flags().Bool("bootstrap", false, "Ensure builder has booted before inspecting")
 	rootCmd.AddCommand(inspectCmd)
 
-	// TODO positional completion
+	carapace.Gen(inspectCmd).PositionalCompletion(
+		action.ActionBuilders(),
+	)
 }

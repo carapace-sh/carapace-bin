@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-buildx_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,5 +16,7 @@ func init() {
 	carapace.Gen(stopCmd).Standalone()
 	rootCmd.AddCommand(stopCmd)
 
-	// TODO positional completion
+	carapace.Gen(stopCmd).PositionalCompletion(
+		action.ActionBuilders(),
+	)
 }

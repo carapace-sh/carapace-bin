@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-buildx_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,5 +20,7 @@ func init() {
 	rmCmd.Flags().Bool("keep-state", false, "Keep BuildKit state")
 	rootCmd.AddCommand(rmCmd)
 
-	// TODO positional completion
+	carapace.Gen(rmCmd).PositionalCompletion(
+		action.ActionBuilders(),
+	)
 }
