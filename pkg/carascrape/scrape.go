@@ -52,6 +52,10 @@ var %vCmd = &cobra.Command{
 `, cmdVarName(cmd))
 
 	cmd.LocalFlags().VisitAll(func(f *pflag.Flag) {
+		if f.Deprecated != "" {
+			return
+		}
+
 		isShortHand := f.Shorthand != ""
 
 		persistentPrefix := ""
@@ -67,6 +71,10 @@ var %vCmd = &cobra.Command{
 	})
 
 	cmd.LocalFlags().VisitAll(func(f *pflag.Flag) {
+		if f.Deprecated != "" {
+			return
+		}
+
 		if f.Value.Type() != "bool" && f.NoOptDefVal != "" {
 			fmt.Fprintf(out, `    %vCmd.Flag("%v").NoOptDefVal = "%v"`+"\n", cmdVarName(cmd), f.Name, f.NoOptDefVal)
 		}
@@ -83,7 +91,7 @@ var %vCmd = &cobra.Command{
 	ioutil.WriteFile(filename, out.Bytes(), 0644)
 
 	for _, subcmd := range cmd.Commands() {
-		if !subcmd.Hidden {
+		if !subcmd.Hidden && subcmd.Deprecated == "" {
 			Scrape(subcmd)
 		}
 	}
