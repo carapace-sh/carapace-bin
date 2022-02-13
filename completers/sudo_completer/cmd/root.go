@@ -66,7 +66,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			executable := filepath.Base(c.Args[0])
-			args := []string{executable, "export", "_", ""}
+			args := []string{executable, "export", ""}
 			args = append(args, c.Args[1:]...)
 			args = append(args, c.CallbackValue)
 			return carapace.ActionExecCommand("carapace", args...)(func(output []byte) carapace.Action {
@@ -90,7 +90,7 @@ func init() {
 			}
 
 			executable := filepath.Base(fullArgs[0])
-			args := []string{executable, "export", "_", ""}
+			args := []string{executable, "export", ""}
 			args = append(args, fullArgs[1:]...)
 			return carapace.ActionExecCommand("carapace", args...)(func(output []byte) carapace.Action {
 				// TODO carapace needs exit code on error
