@@ -48,10 +48,12 @@ func init() {
 	rootCmd.Flag("preserve-env").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"group":        os.ActionGroups(),
-		"other-user":   os.ActionUsers(),
-		"preserve-env": os.ActionEnvironmentVariables(), // TODO comma separated list
-		"user":         os.ActionUsers(),
+		"group":      os.ActionGroups(),
+		"other-user": os.ActionUsers(),
+		"preserve-env": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return os.ActionEnvironmentVariables().Invoke(c).Filter(c.Parts).ToA()
+		}),
+		"user": os.ActionUsers(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
