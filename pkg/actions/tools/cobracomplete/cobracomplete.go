@@ -25,7 +25,7 @@ import (
 //   	carapace.Gen(rootCmd).Standalone()
 //
 //   	carapace.Gen(rootCmd).PositionalAnyCompletion(
-//   		cobracomplete.ActionComplete("podman"),
+//   		cobracomplete.ActionCobraComplete("podman"),
 //   	)
 //   }
 func ActionCobraComplete(cmd string) carapace.Action {
