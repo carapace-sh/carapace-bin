@@ -33,7 +33,15 @@ func ActionPosenerComplete(cmd string) carapace.Action {
 		os.Setenv("COMP_LINE", fmt.Sprintf("%v %v %v", cmd, strings.Join(c.Args, " "), c.CallbackValue))
 		return carapace.ActionExecCommand(cmd)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
-			return carapace.ActionValues(lines[:len(lines)-1]...)
+
+			a := carapace.ActionValues(lines[:len(lines)-1]...)
+			for _, line := range lines[:len(lines)-1] {
+				if len(line) > 0 && strings.ContainsAny(line[:len(line)-1], "/=@:.,") {
+					a = a.NoSpace()
+					break
+				}
+			}
+			return a
 		})
 	})
 }
