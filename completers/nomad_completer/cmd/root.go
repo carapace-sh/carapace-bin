@@ -8,7 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:                "nomad",
-	Short:              "https://github.com/hashicorp/nomad",
+	Short:              "Nomad is an easy-to-use, flexible, and performant workload orchestrator",
 	Long:               "https://www.nomadproject.io/",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
