@@ -22,6 +22,6 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		// TODO just bridging it for now
-		cobracomplete.ActionComplete("podman"),
+		cobracomplete.ActionCobraComplete("podman"),
 	)
 }
