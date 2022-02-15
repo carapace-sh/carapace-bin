@@ -15,12 +15,9 @@ var repo_createCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_createCmd).Standalone()
 	repo_createCmd.Flags().BoolP("clone", "c", false, "Clone the new repository to the current directory")
-	repo_createCmd.Flags().BoolP("confirm", "y", false, "Skip the confirmation prompt")
 	repo_createCmd.Flags().StringP("description", "d", "", "Description of the repository")
 	repo_createCmd.Flags().Bool("disable-issues", false, "Disable issues in the new repository")
 	repo_createCmd.Flags().Bool("disable-wiki", false, "Disable wiki in the new repository")
-	repo_createCmd.Flags().Bool("enable-issues", true, "Enable issues in the new repository")
-	repo_createCmd.Flags().Bool("enable-wiki", true, "Enable wiki in the new repository")
 	repo_createCmd.Flags().StringP("gitignore", "g", "", "Specify a gitignore template for the repository")
 	repo_createCmd.Flags().StringP("homepage", "h", "", "Repository home page `URL`")
 	repo_createCmd.Flags().Bool("internal", false, "Make the new repository internal")
