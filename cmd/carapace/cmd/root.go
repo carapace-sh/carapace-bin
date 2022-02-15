@@ -48,6 +48,14 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
 		switch args[0] {
+		case "--bridge":
+			if len(args) > 1 {
+				os.Args = append(os.Args[:1], os.Args[2:]...)
+				// TODO support multiple (comma separated)
+				if splitted := strings.SplitN(args[0], "/", 2); len(splitted) == 2 {
+					bridgeCompletion(splitted[0], splitted[1])
+				}
+			}
 		case "-h":
 			cmd.Help()
 		case "--help":
