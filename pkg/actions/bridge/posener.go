@@ -1,5 +1,4 @@
-// package posenercomplete contains actions related to posener/complete
-package posenercomplete
+package bridge
 
 import (
 	"fmt"

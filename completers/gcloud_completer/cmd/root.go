@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/argcomplete"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -30,7 +30,7 @@ func init() {
 				return carapace.ActionValues("--").NoSpace() // seems shorthand flags aren't completed anyway so expand to longhand first
 			}
 			os.Setenv("CLOUDSDK_COMPONENT_MANAGER_DISABLE_UPDATE_CHECK", "1")
-			return argcomplete.ActionArgcomplete("gcloud")
+			return bridge.ActionArgcomplete("gcloud")
 		}),
 	)
 }

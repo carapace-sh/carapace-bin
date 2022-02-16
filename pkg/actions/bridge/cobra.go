@@ -1,5 +1,4 @@
-// package cobracomplete contains actions related to cobra completion
-package cobracomplete
+package bridge
 
 import (
 	"strconv"
