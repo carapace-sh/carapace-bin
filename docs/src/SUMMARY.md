@@ -4,6 +4,7 @@
   - [Installation](./installation.md)
   - [Setup](./setup.md)
   - [Completers](./completers.md)
+  - [Bridge](./bridge.md)
   - [Development](./development.md)
     - [Build](./development/build.md)
     - [docker-compose](./development/docker-compose.md)
