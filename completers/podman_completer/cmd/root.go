@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/cobracomplete"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +22,6 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		// TODO just bridging it for now
-		cobracomplete.ActionCobraComplete("podman"),
+		bridge.ActionCobraComplete("podman"),
 	)
 }

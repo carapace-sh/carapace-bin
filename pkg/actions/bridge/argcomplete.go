@@ -1,5 +1,4 @@
-// package adb contains argcomplete related actions
-package argcomplete
+package bridge
 
 import (
 	"os"

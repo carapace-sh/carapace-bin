@@ -9,9 +9,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/argcomplete"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/cobracomplete"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/posenercomplete"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -59,11 +57,11 @@ func createCmd(command string, engine string) *cobra.Command {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch engine {
 			case "argcomplete":
-				return argcomplete.ActionArgcomplete(command)
+				return bridge.ActionArgcomplete(command)
 			case "cobra":
-				return cobracomplete.ActionCobraComplete(command)
+				return bridge.ActionCobraComplete(command)
 			case "posener":
-				return posenercomplete.ActionPosenerComplete(command)
+				return bridge.ActionPosenerComplete(command)
 			default:
 				return carapace.ActionValues()
 			}
