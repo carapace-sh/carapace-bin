@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"os"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/python_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/completers/python_completer/cmd/module"
@@ -15,6 +17,22 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() error {
+	moduleFlagIndex := -1
+	for index, arg := range os.Args {
+		if arg == "-m" {
+			moduleFlagIndex = index
+			break
+		}
+	}
+
+	if moduleFlagIndex != -1 && moduleFlagIndex < len(os.Args)-2 {
+		patchedArgs := make([]string, 0)
+		patchedArgs = append(patchedArgs, os.Args[:moduleFlagIndex+2]...)
+		patchedArgs = append(patchedArgs, "--") // fake dash arg
+		patchedArgs = append(patchedArgs, os.Args[moduleFlagIndex+2:]...)
+		os.Args = patchedArgs
+	}
+
 	return rootCmd.Execute()
 }
 func init() {
