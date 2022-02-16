@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/python_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/completers/python_completer/cmd/module"
 	"github.com/spf13/cobra"
 )
 
@@ -71,5 +72,16 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionFiles(),
+	)
+
+	carapace.Gen(rootCmd).DashAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			switch rootCmd.Flag("m").Value.String() {
+			case "venv":
+				return carapace.ActionInvoke(module.ExecuteVenv)
+			default:
+				return carapace.ActionValues()
+			}
+		}),
 	)
 }
