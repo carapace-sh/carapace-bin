@@ -95,6 +95,8 @@ func init() {
 	carapace.Gen(rootCmd).DashAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch rootCmd.Flag("m").Value.String() {
+			case "http.server":
+				return carapace.ActionInvoke(module.ExecuteHttpServer)
 			case "venv":
 				return carapace.ActionInvoke(module.ExecuteVenv)
 			default:
