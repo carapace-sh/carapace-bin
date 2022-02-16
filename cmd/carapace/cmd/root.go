@@ -40,6 +40,16 @@ var rootCmd = &cobra.Command{
     xonsh:      exec($(carapace _carapace xonsh))
     zsh:        source <(carapace _carapace zsh)
 
+  Bridge completion:
+    bash:       source <(carapace --bridge vault/posener)
+    elvish:     eval (carapace --bridge vault/posener|slurp)
+    fish:       carapace --bridge vault/posener | source
+    oil:        source <(carapace --bridge vault/posener)
+    powershell: carapace --bridge vault/posener | Out-String | Invoke-Expression
+    tcsh:       eval `+"`"+`carapace --bridge vault/posener`+"`"+`
+    xonsh:      exec($(carapace --bridge vault/posener))
+    zsh:        source <(carapace --bridge vault/posener)
+
   Shell parameter is optional and if left out carapace will try to detect it by parent process name.
   Some completions are cached at [%v/carapace].
 `, os.TempDir()),
@@ -154,5 +164,6 @@ func Execute(version string) error {
 }
 
 func init() {
+	rootCmd.Flags().String("bridge", "", "bridge completion")
 	rootCmd.Flags().Bool("list", false, "list completers")
 }
