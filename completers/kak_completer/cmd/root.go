@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kak_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kak"
 	"github.com/spf13/cobra"
 )
 
@@ -40,8 +40,8 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "display kakoune version and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"c":  action.ActionSessions(),
-		"p":  action.ActionSessions(),
+		"c":  kak.ActionSessions(),
+		"p":  kak.ActionSessions(),
 		"ui": carapace.ActionValues("terminal", "dummy", "json"),
 	})
 
