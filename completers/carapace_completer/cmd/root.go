@@ -15,12 +15,18 @@ var rootCmd = &cobra.Command{
 	Short:              "multi-shell multi-command argument completer",
 	Long:               "https://github.com/rsteube/carapace-bin",
 	DisableFlagParsing: true,
-	Run:                func(cmd *cobra.Command, args []string) {},
+	CompletionOptions: cobra.CompletionOptions{
+		DisableDefaultCmd: true,
+	},
+	Run: func(cmd *cobra.Command, args []string) {},
 }
 
 func flagCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use: "carapace",
+		CompletionOptions: cobra.CompletionOptions{
+			DisableDefaultCmd: true,
+		},
 		Run: func(cmd *cobra.Command, args []string) {},
 	}
 
@@ -52,7 +58,10 @@ func posCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:                "carapace",
 		DisableFlagParsing: true,
-		Run:                func(cmd *cobra.Command, args []string) {},
+		CompletionOptions: cobra.CompletionOptions{
+			DisableDefaultCmd: true,
+		},
+		Run: func(cmd *cobra.Command, args []string) {},
 	}
 
 	carapace.Gen(cmd).PositionalCompletion(

@@ -112,6 +112,9 @@ var rootCmd = &cobra.Command{
 		UnknownFlags: true,
 	},
 	DisableFlagParsing: true,
+	CompletionOptions: cobra.CompletionOptions{
+		DisableDefaultCmd: true,
+	},
 }
 
 func printCompleters() {
