@@ -32,7 +32,7 @@ func init() {
 			if dir, ok := os.LookupEnv("PASSWORD_STORE_DIR"); ok {
 				location = dir
 			}
-			return carapace.ActionInvoke(git.Execute).Chdir(location)
+			return git.ActionExecute().Chdir(location)
 		}),
 	)
 }

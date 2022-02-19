@@ -16,6 +16,10 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
+func ActionExecute() carapace.Action {
+	return carapace.ActionExecute(rootCmd)
+}
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().StringS("C", "C", "", "run as if git was started in given path")

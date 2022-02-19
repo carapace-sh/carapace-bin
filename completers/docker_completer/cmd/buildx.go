@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(buildxCmd)
 
 	carapace.Gen(buildxCmd).PositionalAnyCompletion(
-		carapace.ActionInvoke(buildx.Execute),
+		buildx.ActionExecute(),
 	)
 }

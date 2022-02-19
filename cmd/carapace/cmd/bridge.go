@@ -13,7 +13,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func bridgeCompletion(command string, engine string) {
+func bridgeCompletion(command string, engine string, args ...string) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
@@ -26,9 +26,13 @@ func bridgeCompletion(command string, engine string) {
 		outC <- buf.String()
 	}()
 
-	os.Args[1] = "_carapace"
 	// TODO handle error
-	createCmd(command, engine).Execute()
+	cmd := createCmd(command, engine)
+
+	a := []string{"_carapace"}
+	a = append(a, args...)
+	cmd.SetArgs(a)
+	cmd.Execute()
 
 	w.Close()
 	out := <-outC

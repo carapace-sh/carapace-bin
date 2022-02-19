@@ -12,6 +12,10 @@ var rootCmd = &cobra.Command{
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
+func ActionExecute() carapace.Action {
+	return carapace.ActionExecute(rootCmd)
+}
+
 func Execute() error {
 	return rootCmd.Execute()
 }

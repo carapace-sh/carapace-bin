@@ -31,7 +31,7 @@ func init() {
 				repo = fmt.Sprintf("https://github.com/%v.git", args[0])
 			}
 			c.Args = append([]string{"clone", repo, ""}, c.Args...)
-			return carapace.ActionInvoke(git.Execute).Invoke(c).ToA()
+			return git.ActionExecute().Invoke(c).ToA()
 		}),
 	)
 }
