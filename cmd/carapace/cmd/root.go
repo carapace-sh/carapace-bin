@@ -84,6 +84,8 @@ var rootCmd = &cobra.Command{
 			switch shell {
 			case "bash":
 				fmt.Println(bash_lazy(completers))
+			case "bash-ble":
+				fmt.Println(bash_ble_lazy(completers))
 			case "elvish":
 				fmt.Println(elvish_lazy(completers))
 			case "fish":

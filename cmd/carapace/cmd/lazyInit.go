@@ -17,6 +17,16 @@ complete -F _carapace_lazy %v
 	return fmt.Sprintf(snippet, strings.Join(completers, " "))
 }
 
+func bash_ble_lazy(completers []string) string {
+	snippet := `_carapace_lazy() {
+  source <(carapace $1 bash-ble)
+   $"_$1_completion"
+}
+complete -F _carapace_lazy %v
+`
+	return fmt.Sprintf(snippet, strings.Join(completers, " "))
+}
+
 func elvish_lazy(completers []string) string {
 	snippet := `put %v | each {|c|
     set edit:completion:arg-completer[$c] = {|@arg|
