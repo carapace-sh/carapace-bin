@@ -66,7 +66,7 @@ func posCmd() *cobra.Command {
 
 	carapace.Gen(cmd).PositionalCompletion(
 		ActionCompleters(),
-		carapace.ActionValues("bash", "elvish", "export", "fish", "ion", "nushell", "oil", "powershell", "tcsh", "xonsh", "zsh"),
+		carapace.ActionValues("bash", "bash-ble", "elvish", "export", "fish", "ion", "nushell", "oil", "powershell", "tcsh", "xonsh", "zsh"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues(c.Args[0])
 		}),
