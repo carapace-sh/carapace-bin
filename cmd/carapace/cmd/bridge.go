@@ -50,7 +50,10 @@ func createCmd(command string, engine string) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:                command,
 		DisableFlagParsing: true,
-		Run:                func(cmd *cobra.Command, args []string) {},
+		CompletionOptions: cobra.CompletionOptions{
+			DisableDefaultCmd: true,
+		},
+		Run: func(cmd *cobra.Command, args []string) {},
 	}
 
 	carapace.Gen(cmd).PositionalAnyCompletion(

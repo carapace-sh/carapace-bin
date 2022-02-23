@@ -72,7 +72,7 @@ func ActionCobraComplete(cmd string) carapace.Action {
 type compDirective int
 
 func (d compDirective) matches(cobraDirective cobra.ShellCompDirective) bool {
-	return d&compDirective(cobraDirective) == d
+	return d&compDirective(cobraDirective) != 0
 }
 
 func readDirective(lines []string) (compDirective, error) {

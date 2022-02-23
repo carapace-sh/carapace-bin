@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -27,7 +28,10 @@ func init() {
 	rootCmd.AddCommand(difftoolCmd)
 
 	carapace.Gen(difftoolCmd).FlagCompletion(carapace.ActionMap{
-		"tool": carapace.ActionFiles(),
+		"tool": carapace.Batch(
+			os.ActionPathExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
 	})
 
 	carapace.Gen(difftoolCmd).PositionalCompletion(
