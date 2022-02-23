@@ -1,8 +1,11 @@
 package git
 
 import (
-	exec "golang.org/x/sys/execabs"
+	"bytes"
+	"errors"
 	"strings"
+
+	exec "golang.org/x/sys/execabs"
 
 	"github.com/rsteube/carapace"
 )
@@ -49,10 +52,19 @@ func branches(refOption RefOption) ([]branch, error) {
 		return []branch{}, nil
 	}
 
-	if output, err := exec.Command("git", args...).Output(); err != nil {
+	cmd := exec.Command("git", args...)
+
+	var stdout, stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+
+	if err := cmd.Run(); err != nil {
+		if firstLine := strings.SplitN(stderr.String(), "\n", 2)[0]; strings.TrimSpace(firstLine) != "" {
+			return nil, errors.New(firstLine)
+		}
 		return nil, err
 	} else {
-		lines := strings.Split(string(output), "\n")
+		lines := strings.Split(stdout.String(), "\n")
 		branches := make([]branch, len(lines)/2)
 		for index, line := range lines[:len(lines)-1] {
 			if index%2 == 0 {
