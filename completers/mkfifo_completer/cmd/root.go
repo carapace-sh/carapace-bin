@@ -29,5 +29,7 @@ func init() {
 		"mode": fs.ActionFileModes(),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }
