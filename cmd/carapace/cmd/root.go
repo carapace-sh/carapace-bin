@@ -60,10 +60,9 @@ var rootCmd = &cobra.Command{
 		switch args[0] {
 		case "--bridge":
 			if len(args) > 1 {
-				os.Args = append(os.Args[:1], os.Args[2:]...)
 				// TODO support multiple (comma separated)
-				if splitted := strings.SplitN(args[0], "/", 2); len(splitted) == 2 {
-					bridgeCompletion(splitted[0], splitted[1])
+				if splitted := strings.SplitN(args[1], "/", 2); len(splitted) == 2 {
+					bridgeCompletion(splitted[0], splitted[1], args[2:]...)
 				}
 			}
 		case "-h":

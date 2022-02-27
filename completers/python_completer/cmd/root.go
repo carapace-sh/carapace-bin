@@ -96,9 +96,9 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch rootCmd.Flag("m").Value.String() {
 			case "http.server":
-				return carapace.ActionInvoke(module.ExecuteHttpServer)
+				return module.ActionInvokeHttpServer()
 			case "venv":
-				return carapace.ActionInvoke(module.ExecuteVenv)
+				return module.ActionInvokeVenv()
 			default:
 				return carapace.ActionValues()
 			}

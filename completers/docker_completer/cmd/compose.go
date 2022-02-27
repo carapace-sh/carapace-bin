@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(composeCmd)
 
 	carapace.Gen(composeCmd).PositionalAnyCompletion(
-		carapace.ActionInvoke(compose.Execute),
+		compose.ActionExecute(),
 	)
 }

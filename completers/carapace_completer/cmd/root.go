@@ -99,16 +99,16 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) == 0 {
-				// TODO Batch can't be used yet as ActionInvoke needs locking mutex for os.Stdout
-				f := carapace.ActionInvoke(flagCmd().Execute)
-				p := carapace.ActionInvoke(posCmd().Execute)
-				return f.Invoke(c).Merge(p.Invoke(c)).ToA()
+				return carapace.Batch(
+					carapace.ActionExecute(flagCmd()),
+					carapace.ActionExecute(posCmd()),
+				).ToA()
 			}
 
 			if strings.HasPrefix(c.Args[0], "-") {
-				return carapace.ActionInvoke(flagCmd().Execute)
+				return carapace.ActionExecute(flagCmd())
 			}
-			return carapace.ActionInvoke(posCmd().Execute)
+			return carapace.ActionExecute(posCmd())
 		}),
 	)
 }
