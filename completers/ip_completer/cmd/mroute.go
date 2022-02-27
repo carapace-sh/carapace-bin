@@ -7,7 +7,7 @@ import (
 
 var mrouteCmd = &cobra.Command{
 	Use:   "mroute",
-	Short: "multicast routing cache entry.",
+	Short: "multicast routing cache entry",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

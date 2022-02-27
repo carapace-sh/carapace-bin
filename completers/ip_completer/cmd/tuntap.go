@@ -7,7 +7,7 @@ import (
 
 var tuntapCmd = &cobra.Command{
 	Use:   "tuntap",
-	Short: "manage TUN/TAP devices.",
+	Short: "manage TUN/TAP devices",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var ntableCmd = &cobra.Command{
 	Use:   "ntable",
-	Short: "manage the neighbor cache's operation.",
+	Short: "manage the neighbor cache's operation",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

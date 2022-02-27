@@ -7,7 +7,7 @@ import (
 
 var addrlabelCmd = &cobra.Command{
 	Use:   "addrlabel",
-	Short: "label configuration for protocol address selection.",
+	Short: "label configuration for protocol address selection",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

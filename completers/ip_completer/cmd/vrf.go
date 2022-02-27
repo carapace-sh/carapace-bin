@@ -7,7 +7,7 @@ import (
 
 var vrfCmd = &cobra.Command{
 	Use:   "vrf",
-	Short: "manage virtual routing and forwarding devices.",
+	Short: "manage virtual routing and forwarding devices",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var ruleCmd = &cobra.Command{
 	Use:   "rule",
-	Short: "rule in routing policy database.",
+	Short: "rule in routing policy database",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

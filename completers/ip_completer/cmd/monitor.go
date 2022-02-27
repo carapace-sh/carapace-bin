@@ -7,7 +7,7 @@ import (
 
 var monitorCmd = &cobra.Command{
 	Use:   "monitor",
-	Short: "watch for netlink messages.",
+	Short: "watch for netlink messages",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

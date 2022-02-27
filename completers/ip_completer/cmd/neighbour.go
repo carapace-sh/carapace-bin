@@ -7,7 +7,7 @@ import (
 
 var neighbourCmd = &cobra.Command{
 	Use:   "neighbour",
-	Short: "manage ARP or NDISC cache entries.",
+	Short: "manage ARP or NDISC cache entries",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

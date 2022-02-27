@@ -7,7 +7,7 @@ import (
 
 var linkCmd = &cobra.Command{
 	Use:   "link",
-	Short: "network device.",
+	Short: "network device",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

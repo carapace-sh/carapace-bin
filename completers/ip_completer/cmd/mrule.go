@@ -7,7 +7,7 @@ import (
 
 var mruleCmd = &cobra.Command{
 	Use:   "mrule",
-	Short: "rule in multicast routing policy database.",
+	Short: "rule in multicast routing policy database",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

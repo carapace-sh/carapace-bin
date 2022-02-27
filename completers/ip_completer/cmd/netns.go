@@ -7,7 +7,7 @@ import (
 
 var netnsCmd = &cobra.Command{
 	Use:   "netns",
-	Short: "manage network namespaces.",
+	Short: "manage network namespaces",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

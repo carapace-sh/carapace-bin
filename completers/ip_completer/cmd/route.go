@@ -7,7 +7,7 @@ import (
 
 var routeCmd = &cobra.Command{
 	Use:   "route",
-	Short: "routing table entry.",
+	Short: "routing table entry",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

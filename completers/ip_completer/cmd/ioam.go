@@ -7,7 +7,7 @@ import (
 
 var ioamCmd = &cobra.Command{
 	Use:   "ioam",
-	Short: "manage IOAM namespaces and IOAM schemas.",
+	Short: "manage IOAM namespaces and IOAM schemas",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var xfrmCmd = &cobra.Command{
 	Use:   "xfrm",
-	Short: "manage IPSec policies.",
+	Short: "manage IPSec policies",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

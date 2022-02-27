@@ -7,7 +7,7 @@ import (
 
 var tokenCmd = &cobra.Command{
 	Use:   "token",
-	Short: "manage tokenized interface identifiers.",
+	Short: "manage tokenized interface identifiers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

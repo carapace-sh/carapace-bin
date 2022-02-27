@@ -7,7 +7,7 @@ import (
 
 var maddressCmd = &cobra.Command{
 	Use:   "maddress",
-	Short: "multicast address.",
+	Short: "multicast address",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var mptcpCmd = &cobra.Command{
 	Use:   "mptcp",
-	Short: "manage MPTCP path manager.",
+	Short: "manage MPTCP path manager",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var l2tpCmd = &cobra.Command{
 	Use:   "l2tp",
-	Short: "tunnel ethernet over IP (L2TPv3).",
+	Short: "tunnel ethernet over IP (L2TPv3)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
