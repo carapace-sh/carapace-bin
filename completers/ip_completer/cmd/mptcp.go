@@ -14,6 +14,5 @@ var mptcpCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mptcpCmd).Standalone()
 
-
 	rootCmd.AddCommand(mptcpCmd)
 }

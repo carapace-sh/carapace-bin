@@ -14,6 +14,5 @@ var l2tpCmd = &cobra.Command{
 func init() {
 	carapace.Gen(l2tpCmd).Standalone()
 
-
 	rootCmd.AddCommand(l2tpCmd)
 }

@@ -14,6 +14,5 @@ var neighbourCmd = &cobra.Command{
 func init() {
 	carapace.Gen(neighbourCmd).Standalone()
 
-
 	rootCmd.AddCommand(neighbourCmd)
 }

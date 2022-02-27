@@ -14,6 +14,5 @@ var ntableCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ntableCmd).Standalone()
 
-
 	rootCmd.AddCommand(ntableCmd)
 }

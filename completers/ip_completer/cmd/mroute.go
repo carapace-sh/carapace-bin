@@ -14,6 +14,5 @@ var mrouteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mrouteCmd).Standalone()
 
-
 	rootCmd.AddCommand(mrouteCmd)
 }

@@ -14,6 +14,5 @@ var tuntapCmd = &cobra.Command{
 func init() {
 	carapace.Gen(tuntapCmd).Standalone()
 
-
 	rootCmd.AddCommand(tuntapCmd)
 }

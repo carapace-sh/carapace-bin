@@ -14,6 +14,5 @@ var vrfCmd = &cobra.Command{
 func init() {
 	carapace.Gen(vrfCmd).Standalone()
 
-
 	rootCmd.AddCommand(vrfCmd)
 }

@@ -14,6 +14,5 @@ var xfrmCmd = &cobra.Command{
 func init() {
 	carapace.Gen(xfrmCmd).Standalone()
 
-
 	rootCmd.AddCommand(xfrmCmd)
 }

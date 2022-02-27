@@ -14,6 +14,5 @@ var addrlabelCmd = &cobra.Command{
 func init() {
 	carapace.Gen(addrlabelCmd).Standalone()
 
-
 	rootCmd.AddCommand(addrlabelCmd)
 }

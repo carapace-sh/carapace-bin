@@ -14,6 +14,5 @@ var monitorCmd = &cobra.Command{
 func init() {
 	carapace.Gen(monitorCmd).Standalone()
 
-
 	rootCmd.AddCommand(monitorCmd)
 }

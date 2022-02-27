@@ -14,6 +14,5 @@ var mruleCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mruleCmd).Standalone()
 
-
 	rootCmd.AddCommand(mruleCmd)
 }

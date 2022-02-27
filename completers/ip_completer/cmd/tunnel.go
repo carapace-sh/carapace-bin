@@ -14,6 +14,5 @@ var tunnelCmd = &cobra.Command{
 func init() {
 	carapace.Gen(tunnelCmd).Standalone()
 
-
 	rootCmd.AddCommand(tunnelCmd)
 }

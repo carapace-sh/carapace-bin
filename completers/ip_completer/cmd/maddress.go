@@ -14,6 +14,5 @@ var maddressCmd = &cobra.Command{
 func init() {
 	carapace.Gen(maddressCmd).Standalone()
 
-
 	rootCmd.AddCommand(maddressCmd)
 }

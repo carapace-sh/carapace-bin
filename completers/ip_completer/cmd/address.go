@@ -14,6 +14,5 @@ var addressCmd = &cobra.Command{
 func init() {
 	carapace.Gen(addressCmd).Standalone()
 
-
 	rootCmd.AddCommand(addressCmd)
 }

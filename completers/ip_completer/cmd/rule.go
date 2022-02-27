@@ -14,6 +14,5 @@ var ruleCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ruleCmd).Standalone()
 
-
 	rootCmd.AddCommand(ruleCmd)
 }

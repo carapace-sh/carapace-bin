@@ -14,6 +14,5 @@ var tcpmetricsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(tcpmetricsCmd).Standalone()
 
-
 	rootCmd.AddCommand(tcpmetricsCmd)
 }

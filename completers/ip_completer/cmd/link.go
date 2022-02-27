@@ -14,6 +14,5 @@ var linkCmd = &cobra.Command{
 func init() {
 	carapace.Gen(linkCmd).Standalone()
 
-
 	rootCmd.AddCommand(linkCmd)
 }

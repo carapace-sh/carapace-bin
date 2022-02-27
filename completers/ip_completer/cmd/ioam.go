@@ -14,6 +14,5 @@ var ioamCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ioamCmd).Standalone()
 
-
 	rootCmd.AddCommand(ioamCmd)
 }
