@@ -6,9 +6,10 @@ import (
 )
 
 var extensionCmd = &cobra.Command{
-	Use:   "extension",
-	Short: "Manage gh extensions",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "extension",
+	Short:   "Manage gh extensions",
+	Aliases: []string{"extensions"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

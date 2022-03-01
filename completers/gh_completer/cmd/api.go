@@ -24,7 +24,7 @@ func init() {
 	apiCmd.Flags().StringP("jq", "q", "", "Query to select values from the response using jq syntax")
 	apiCmd.Flags().StringP("method", "X", "GET", "The HTTP method for the request")
 	apiCmd.Flags().Bool("paginate", false, "Make additional HTTP requests to fetch all pages of results")
-	apiCmd.Flags().StringSliceP("preview", "p", []string{}, "Opt into GitHub API previews")
+	apiCmd.Flags().StringSliceP("preview", "p", []string{}, "GitHub API preview `names` to request (without the \"-preview\" suffix)")
 	apiCmd.Flags().StringArrayP("raw-field", "f", []string{}, "Add a string parameter in `key=value` format")
 	apiCmd.Flags().Bool("silent", false, "Do not print the response body")
 	apiCmd.Flags().StringP("template", "t", "", "Format the response using a Go template")

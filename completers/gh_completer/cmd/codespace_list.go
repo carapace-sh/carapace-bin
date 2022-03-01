@@ -7,9 +7,10 @@ import (
 )
 
 var codespace_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List your codespaces",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List your codespaces",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

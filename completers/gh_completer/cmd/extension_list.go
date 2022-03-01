@@ -6,9 +6,10 @@ import (
 )
 
 var extension_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List installed extension commands",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List installed extension commands",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

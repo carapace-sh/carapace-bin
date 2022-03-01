@@ -7,9 +7,10 @@ import (
 )
 
 var config_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "Print a list of configuration keys and values",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "Print a list of configuration keys and values",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

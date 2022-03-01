@@ -24,7 +24,25 @@ func getTmpDir() string {
 func Scrape(cmd *cobra.Command) {
 	out := &bytes.Buffer{}
 
-	fmt.Fprintf(out, `package cmd
+	if len(cmd.Aliases) > 0 {
+		fmt.Fprintf(out, `package cmd
+
+import (
+	"github.com/rsteube/carapace"
+	"github.com/spf13/cobra"
+)
+
+var %vCmd = &cobra.Command{
+	Use:     "%v",
+	Short:   "%v",
+	Aliases: []string{"%v"},
+	Run:     func(cmd *cobra.Command, args []string) {},
+}
+
+`, cmdVarName(cmd), cmd.Name(), cmd.Short, strings.Join(cmd.Aliases, `", "`))
+	} else {
+
+		fmt.Fprintf(out, `package cmd
 
 import (
 	"github.com/rsteube/carapace"
@@ -38,7 +56,7 @@ var %vCmd = &cobra.Command{
 }
 
 `, cmdVarName(cmd), cmd.Name(), cmd.Short)
-
+	}
 	if !cmd.HasParent() {
 		fmt.Fprintf(out, `func Execute() error {
 	return rootCmd.Execute()

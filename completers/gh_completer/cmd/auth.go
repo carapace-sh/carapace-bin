@@ -7,7 +7,7 @@ import (
 
 var authCmd = &cobra.Command{
 	Use:   "auth",
-	Short: "Login, logout, and refresh your authentication",
+	Short: "Authenticate gh and git with GitHub",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

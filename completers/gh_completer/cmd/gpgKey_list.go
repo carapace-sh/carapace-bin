@@ -6,9 +6,10 @@ import (
 )
 
 var gpgKey_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "Lists GPG keys in your GitHub account",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "Lists GPG keys in your GitHub account",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

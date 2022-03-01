@@ -6,9 +6,10 @@ import (
 )
 
 var codespaceCmd = &cobra.Command{
-	Use:   "codespace",
-	Short: "Connect to and manage your codespaces",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "codespace",
+	Short:   "Connect to and manage your codespaces",
+	Aliases: []string{"cs"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

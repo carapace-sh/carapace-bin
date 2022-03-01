@@ -6,9 +6,10 @@ import (
 )
 
 var alias_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List your aliases",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List your aliases",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
