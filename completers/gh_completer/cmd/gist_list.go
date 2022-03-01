@@ -6,9 +6,10 @@ import (
 )
 
 var gist_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List your gists",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List your gists",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

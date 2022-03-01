@@ -6,9 +6,10 @@ import (
 )
 
 var workflow_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List workflows",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List workflows",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

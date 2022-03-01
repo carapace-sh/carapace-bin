@@ -7,9 +7,10 @@ import (
 )
 
 var run_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List recent workflow runs",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List recent workflow runs",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

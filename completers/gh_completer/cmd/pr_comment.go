@@ -8,16 +8,16 @@ import (
 
 var pr_commentCmd = &cobra.Command{
 	Use:   "comment",
-	Short: "Create a new pr comment",
+	Short: "Add a comment to a pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(pr_commentCmd).Standalone()
-	pr_commentCmd.Flags().StringP("body", "b", "", "Supply a body. Will prompt for one otherwise.")
+	pr_commentCmd.Flags().StringP("body", "b", "", "The comment body `text`")
 	pr_commentCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
-	pr_commentCmd.Flags().BoolP("editor", "e", false, "Add body using editor")
-	pr_commentCmd.Flags().BoolP("web", "w", false, "Add body in browser")
+	pr_commentCmd.Flags().BoolP("editor", "e", false, "Skip prompts and open the text editor to write the body in")
+	pr_commentCmd.Flags().BoolP("web", "w", false, "Open the web browser to write the comment")
 	prCmd.AddCommand(pr_commentCmd)
 
 	carapace.Gen(pr_commentCmd).FlagCompletion(carapace.ActionMap{

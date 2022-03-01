@@ -6,9 +6,10 @@ import (
 )
 
 var release_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List releases in a repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List releases in a repository",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

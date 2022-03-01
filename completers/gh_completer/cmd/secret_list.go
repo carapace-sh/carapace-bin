@@ -7,9 +7,10 @@ import (
 )
 
 var secret_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List secrets",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List secrets",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

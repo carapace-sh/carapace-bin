@@ -7,9 +7,10 @@ import (
 )
 
 var issue_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List and filter issues in this repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List issues in a repository",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -18,14 +19,14 @@ func init() {
 	issue_listCmd.Flags().StringP("author", "A", "", "Filter by author")
 	issue_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	issue_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
-	issue_listCmd.Flags().StringSliceP("label", "l", []string{}, "Filter by labels")
+	issue_listCmd.Flags().StringSliceP("label", "l", []string{}, "Filter by label")
 	issue_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of issues to fetch")
 	issue_listCmd.Flags().String("mention", "", "Filter by mention")
-	issue_listCmd.Flags().StringP("milestone", "m", "", "Filter by milestone `number` or `title`")
+	issue_listCmd.Flags().StringP("milestone", "m", "", "Filter by milestone number or title")
 	issue_listCmd.Flags().StringP("search", "S", "", "Search issues with `query`")
 	issue_listCmd.Flags().StringP("state", "s", "open", "Filter by state: {open|closed|all}")
 	issue_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
-	issue_listCmd.Flags().BoolP("web", "w", false, "Open the browser to list the issue(s)")
+	issue_listCmd.Flags().BoolP("web", "w", false, "List issues in the web browser")
 	issueCmd.AddCommand(issue_listCmd)
 
 	carapace.Gen(issue_listCmd).FlagCompletion(carapace.ActionMap{

@@ -6,9 +6,10 @@ import (
 )
 
 var repo_deployKey_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List deploy keys in a GitHub repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List deploy keys in a GitHub repository",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

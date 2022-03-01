@@ -7,7 +7,7 @@ import (
 
 var repoCmd = &cobra.Command{
 	Use:   "repo",
-	Short: "Create, clone, fork, and view repositories",
+	Short: "Manage repositories",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

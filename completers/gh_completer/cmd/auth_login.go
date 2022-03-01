@@ -14,14 +14,16 @@ var auth_loginCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(auth_loginCmd).Standalone()
+	auth_loginCmd.Flags().StringP("git-protocol", "p", "", "The protocol to use for git operations: {ssh|https}")
 	auth_loginCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitHub instance to authenticate with")
-	auth_loginCmd.Flags().StringSliceP("scopes", "s", []string{}, "Additional authentication scopes for gh to have")
+	auth_loginCmd.Flags().StringSliceP("scopes", "s", []string{}, "Additional authentication scopes to request")
 	auth_loginCmd.Flags().BoolP("web", "w", false, "Open a browser to authenticate")
 	auth_loginCmd.Flags().Bool("with-token", false, "Read token from standard input")
 	authCmd.AddCommand(auth_loginCmd)
 
 	carapace.Gen(auth_loginCmd).FlagCompletion(carapace.ActionMap{
-		"hostname": action.ActionConfigHosts(),
+		"git-protocol": carapace.ActionValues("ssh", "https"),
+		"hostname":     action.ActionConfigHosts(),
 		"scopes": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionAuthScopes().Invoke(c).Filter(c.Parts).ToA()
 		}),
