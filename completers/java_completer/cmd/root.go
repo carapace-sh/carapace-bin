@@ -187,7 +187,10 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if !rootCmd.Flag("jar").Changed {
-				return ActionClasspathClasses(rootCmd)
+				return carapace.Batch(
+					carapace.ActionFiles(".class"),
+					ActionClasspathClasses(rootCmd),
+				).ToA()
 			}
 			return carapace.ActionValues()
 		}),
