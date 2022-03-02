@@ -1,14 +1,11 @@
 package cmd
 
 import (
-	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/java_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/spf13/cobra"
 )
 
@@ -156,16 +153,16 @@ func init() {
 			return carapace.ActionFiles()
 		}),
 		"da": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return ActionClasspathClasses(rootCmd)
+			return action.ActionClasspathClasses(rootCmd)
 		}),
 		"disableassertions": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return ActionClasspathClasses(rootCmd)
+			return action.ActionClasspathClasses(rootCmd)
 		}),
 		"ea": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return ActionClasspathClasses(rootCmd)
+			return action.ActionClasspathClasses(rootCmd)
 		}),
 		"enableassertions": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return ActionClasspathClasses(rootCmd)
+			return action.ActionClasspathClasses(rootCmd)
 		}),
 		"jar": carapace.ActionFiles(".jar", ".zip"),
 		"javaagent": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
@@ -187,51 +184,13 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if !rootCmd.Flag("jar").Changed {
-				return carapace.Batch(
-					carapace.ActionFiles(".class"),
-					ActionClasspathClasses(rootCmd),
-				).ToA()
+				_, exists := os.LookupEnv("CLASSPATH")
+				if !exists && !rootCmd.Flag("classpath").Changed && !rootCmd.Flag("cp").Changed {
+					return action.ActionLocalClasses()
+				}
+				return action.ActionClasspathClasses(rootCmd)
 			}
 			return carapace.ActionValues()
 		}),
 	)
-}
-
-func ActionClasspathClasses(cmd *cobra.Command) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		paths := make([]string, 0)
-		if f := cmd.Flag("cp"); f.Changed {
-			paths = append(paths, strings.Split(f.Value.String(), ":")...)
-		}
-		if f := cmd.Flag("classpath"); f.Changed {
-			paths = append(paths, strings.Split(f.Value.String(), ":")...)
-		}
-		if f := cmd.Flag("jar"); f.Changed {
-			paths = append(paths, f.Value.String())
-		}
-
-		files := make([]string, 0)
-		for _, path := range paths {
-			if f, err := os.Stat(path); err == nil {
-				if !f.IsDir() {
-					files = append(files, path)
-				} else {
-					if fileInfos, err := ioutil.ReadDir(path); err == nil {
-						for _, file := range fileInfos {
-							files = append(files, fmt.Sprintf("%v/%v", path, file.Name()))
-						}
-					}
-				}
-			}
-		}
-
-		actions := make([]carapace.Action, 0)
-		for _, file := range files {
-			if strings.HasSuffix(file, ".jar") ||
-				strings.HasSuffix(file, ".zip") {
-				actions = append(actions, fs.ActionJarFileClasses(file))
-			}
-		}
-		return carapace.Batch(actions...).Invoke(c).Merge().ToMultiPartsA(".")
-	})
 }
