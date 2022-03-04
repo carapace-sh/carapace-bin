@@ -2,15 +2,14 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	git "github.com/rsteube/carapace-bin/completers/git_completer/cmd"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
 var reflogCmd = &cobra.Command{
-	Use:                "reflog",
-	Short:              "Manage reflog information",
-	Run:                func(cmd *cobra.Command, args []string) {},
-	DisableFlagParsing: true,
+	Use:   "reflog",
+	Short: "Manage reflog information",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -20,8 +19,7 @@ func init() {
 
 	carapace.Gen(reflogCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			c.Args = append([]string{"reflog"}, c.Args...)
-			return git.ActionExecute().Chdir(logCmd.Root().Flag("C").Value.String()).Invoke(c).ToA()
+			return git.ActionRefs(git.RefOptionDefault).Chdir(grepCmd.Root().Flag("C").Value.String())
 		}),
 	)
 }
