@@ -7,8 +7,6 @@ import (
 	"regexp"
 	"strings"
 
-	exec "golang.org/x/sys/execabs"
-
 	"github.com/mitchellh/go-homedir"
 	"github.com/pelletier/go-toml"
 	"github.com/spf13/cobra"
@@ -45,11 +43,11 @@ func manifestLocation(cmd *cobra.Command) (string, error) {
 	return util.FindReverse("", "Cargo.toml")
 }
 
-func readManifest(cmd *cobra.Command) (m manifestJson, err error) {
+func readManifest(cmd *cobra.Command, c carapace.Context) (m manifestJson, err error) {
 	var output []byte
 	var path string
 	if path, err = manifestLocation(cmd); err == nil {
-		if output, err = exec.Command("cargo", "read-manifest", "--offline", "--manifest-path", path).Output(); err == nil {
+		if output, err = c.Command("cargo", "read-manifest", "--offline", "--manifest-path", path).Output(); err == nil {
 			err = json.Unmarshal(output, &m)
 		}
 	}
@@ -103,7 +101,7 @@ func (t *TargetOpts) Includes(kinds []string) bool {
 
 func readManifestAction(cmd *cobra.Command, f func(m manifestJson, args []string) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if m, err := readManifest(cmd); err != nil {
+		if m, err := readManifest(cmd, c); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			return f(m, c.Args)

@@ -18,11 +18,7 @@ type config struct {
 
 func actionConfig(f func(cfg config) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		wd, err := os.Getwd()
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-		path, err := util.FindReverse(wd, "angular.json")
+		path, err := util.FindReverse(c.Dir, "angular.json")
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

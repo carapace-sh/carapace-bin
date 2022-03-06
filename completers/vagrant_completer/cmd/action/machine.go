@@ -2,7 +2,6 @@ package action
 
 import (
 	"fmt"
-	"os"
 	"regexp"
 	"strings"
 
@@ -16,10 +15,8 @@ func ActionMachines() carapace.Action {
 			ActionGlobalMachines(),
 		)
 
-		if wd, err := os.Getwd(); err == nil {
-			if _, err := util.FindReverse(wd, "Vagrantfile"); err == nil {
-				batch = append(batch, ActionLocalMachines())
-			}
+		if _, err := util.FindReverse(c.Dir, "Vagrantfile"); err == nil {
+			batch = append(batch, ActionLocalMachines())
 		}
 
 		return batch.Invoke(c).Merge().ToA()

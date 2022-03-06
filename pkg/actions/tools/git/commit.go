@@ -2,9 +2,10 @@ package git
 
 import (
 	"fmt"
-	exec "golang.org/x/sys/execabs"
 	"strconv"
 	"strings"
+
+	"github.com/rsteube/carapace"
 )
 
 type commit struct {
@@ -12,12 +13,12 @@ type commit struct {
 	Message string
 }
 
-func commits(refOption RefOption) ([]commit, error) {
+func commits(c carapace.Context, refOption RefOption) ([]commit, error) {
 	if refOption.Commits <= 0 {
 		return []commit{}, nil
 	}
 
-	if output, err := exec.Command("git", "log", "--pretty=tformat:%h   %<(64,trunc)%s", "--max-count", strconv.Itoa(refOption.Commits)).Output(); err != nil {
+	if output, err := c.Command("git", "log", "--pretty=tformat:%h   %<(64,trunc)%s", "--max-count", strconv.Itoa(refOption.Commits)).Output(); err != nil {
 		return nil, err
 	} else {
 		lines := strings.Split(string(output), "\n")

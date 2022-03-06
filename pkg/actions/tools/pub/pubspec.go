@@ -26,13 +26,8 @@ type pubspec struct {
 	Executables     map[string]interface{} `yaml:"executables"`
 }
 
-func loadPubspec() (*pubspec, error) {
-	wd, err := os.Getwd()
-	if err != nil {
-		return nil, err
-	}
-
-	path, err := util.FindReverse(wd, "pubspec.yaml")
+func loadPubspec(c carapace.Context) (*pubspec, error) {
+	path, err := util.FindReverse(c.Dir, "pubspec.yaml")
 	if err != nil {
 		return nil, err
 	}
@@ -53,13 +48,8 @@ type pubspecLock struct {
 	}
 }
 
-func loadPubspecLock() (*pubspecLock, error) {
-	wd, err := os.Getwd()
-	if err != nil {
-		return nil, err
-	}
-
-	path, err := util.FindReverse(wd, "pubspec.lock")
+func loadPubspecLock(c carapace.Context) (*pubspecLock, error) {
+	path, err := util.FindReverse(c.Dir, "pubspec.lock")
 	if err != nil {
 		return nil, err
 	}
@@ -79,7 +69,7 @@ func loadPubspecLock() (*pubspecLock, error) {
 //   build_web_compilers (^2.1.0)
 func ActionDependencies() carapace.Action { // TODO configure which dependencies to include
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		p, err := loadPubspec()
+		p, err := loadPubspec(c)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
@@ -102,7 +92,7 @@ func ActionDependencies() carapace.Action { // TODO configure which dependencies
 func ActionHostedExecutables(name string, version string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if version == "" {
-			pl, err := loadPubspecLock()
+			pl, err := loadPubspecLock(c)
 			if err != nil {
 				return carapace.ActionMessage(err.Error())
 			}

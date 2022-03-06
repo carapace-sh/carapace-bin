@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -32,4 +33,11 @@ func init() {
 			return git.ActionRefs(git.RefOptionDefault).Chdir(rootCmd.Flag("C").Value.String())
 		}),
 	)
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		if f := rootCmd.Flag("C"); f != flag && f.Changed {
+			return action.Chdir(f.Value.String())
+		}
+		return action
+	})
 }

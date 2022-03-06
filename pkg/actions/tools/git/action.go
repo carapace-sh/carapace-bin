@@ -3,14 +3,12 @@ package git
 import (
 	"strings"
 
-	exec "golang.org/x/sys/execabs"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/styles"
 )
 
-func rootDir() (string, error) {
-	if output, err := exec.Command("git", "rev-parse", "--show-toplevel").Output(); err != nil {
+func rootDir(c carapace.Context) (string, error) {
+	if output, err := c.Command("git", "rev-parse", "--show-toplevel").Output(); err != nil {
 		return "", err
 	} else {
 		return strings.Split(string(output), "\n")[0], nil
@@ -39,14 +37,14 @@ var RefOptionDefault = RefOption{
 func ActionRefs(refOption RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := make([]string, 0)
-		if branches, err := branches(refOption); err != nil {
+		if branches, err := branches(c, refOption); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, branch := range branches {
 				vals = append(vals, branch.Name, branch.Message, styles.Git.Branch)
 			}
 		}
-		if commits, err := commits(refOption); err != nil {
+		if commits, err := commits(c, refOption); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, commit := range commits {
@@ -57,7 +55,7 @@ func ActionRefs(refOption RefOption) carapace.Action {
 				vals = append(vals, commit.Ref, commit.Message, s)
 			}
 		}
-		if tags, err := tags(refOption); err != nil {
+		if tags, err := tags(c, refOption); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, tag := range tags {

@@ -5,8 +5,6 @@ import (
 	"errors"
 	"strings"
 
-	exec "golang.org/x/sys/execabs"
-
 	"github.com/rsteube/carapace"
 )
 
@@ -15,7 +13,7 @@ import (
 //   remoteBranch (last commit msg)
 func ActionRemoteBranches(remote string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if branches, err := branches(RefOption{RemoteBranches: true}); err != nil {
+		if branches, err := branches(c, RefOption{RemoteBranches: true}); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			vals := make([]string, 0)
@@ -42,7 +40,7 @@ type branch struct {
 	Message string
 }
 
-func branches(refOption RefOption) ([]branch, error) {
+func branches(c carapace.Context, refOption RefOption) ([]branch, error) {
 	args := []string{"branch", "--format", "%(refname)\n%(subject)"}
 	if refOption.LocalBranches && refOption.RemoteBranches {
 		args = append(args, "--all")
@@ -52,7 +50,7 @@ func branches(refOption RefOption) ([]branch, error) {
 		return []branch{}, nil
 	}
 
-	cmd := exec.Command("git", args...)
+	cmd := c.Command("git", args...)
 
 	var stdout, stderr bytes.Buffer
 	cmd.Stdout = &stdout

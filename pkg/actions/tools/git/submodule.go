@@ -14,9 +14,9 @@ type submodule struct {
 	Branch string `ini:"branch"`
 }
 
-func loadSubmodules() (submodules map[string]*submodule, err error) {
+func loadSubmodules(c carapace.Context) (submodules map[string]*submodule, err error) {
 	var root string
-	if root, err = rootDir(); err == nil {
+	if root, err = rootDir(c); err == nil {
 		var cfg *ini.File
 		if cfg, err = ini.Load(root + "/.gitmodules"); err == nil {
 			r := regexp.MustCompile(`^submodule "(?P<name>.*)"$`)
@@ -39,7 +39,7 @@ func loadSubmodules() (submodules map[string]*submodule, err error) {
 //   pflag (https://github.com/spf13/pflag.git)
 func ActionSubmoduleNames() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		submodules, err := loadSubmodules()
+		submodules, err := loadSubmodules(c)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
@@ -55,7 +55,7 @@ func ActionSubmoduleNames() carapace.Action {
 // TODO verify and add example
 func ActionSubmoduleBranches(filter ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		submodules, err := loadSubmodules()
+		submodules, err := loadSubmodules(c)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

@@ -1,7 +1,6 @@
 package action
 
 import (
-	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -45,11 +44,8 @@ func ActionUrns(cmd *cobra.Command) carapace.Action {
 				return carapace.ActionValuesDescribed(vals...)
 			}).Invoke(c).ToA()
 		}).Cache(5*time.Second, func() (string, error) {
-			workdir, err := os.Getwd()
-			if err != nil {
-				return "", err
-			}
-			if cmd.Flag("cwd").Changed {
+			workdir := c.Dir
+			if cmd.Flag("cwd").Changed { // TODO use preinvoke?
 				workdir = cmd.Flag("cwd").Value.String()
 			}
 			stack := cmd.Flag("stack").Value.String()

@@ -9,17 +9,13 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/util"
 )
 
-func nodeModulesPath() (path string, err error) {
-	var wd string
-	if wd, err = os.Getwd(); err == nil {
-		path, err = util.FindReverse(wd, "node_modules")
-	}
-	return
+func nodeModulesPath(c carapace.Context) (string, error) {
+	return util.FindReverse(c.Dir, "node_modules")
 }
 
 func ActionModules() carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-		path, err := nodeModulesPath()
+		path, err := nodeModulesPath(c)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

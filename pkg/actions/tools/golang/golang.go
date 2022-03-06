@@ -17,11 +17,7 @@ import (
 //   debug
 func ActionBuildTags() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		root, err := os.Getwd()
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-
+		root := c.Dir
 		if path, err := util.FindReverse(root, "go.mod"); err == nil {
 			root = path
 		} else if path, err = util.FindReverse(root, ".git"); err == nil {

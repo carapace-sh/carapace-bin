@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	exec "golang.org/x/sys/execabs"
 	"regexp"
 	"strings"
 
@@ -105,7 +104,7 @@ func locateBuildConfig() (target string, err error) {
 
 func ActionTasks() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if tasks, err := parseTasks(); err != nil {
+		if tasks, err := parseTasks(c); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			return carapace.ActionValuesDescribed(tasks...)
@@ -119,8 +118,8 @@ func ActionTasks() carapace.Action {
 	})
 }
 
-func parseTasks() ([]string, error) {
-	output, err := exec.Command("gradle", "tasks", "--all").Output()
+func parseTasks(c carapace.Context) ([]string, error) {
+	output, err := c.Command("gradle", "tasks", "--all").Output()
 	if err != nil {
 		return nil, err
 	}

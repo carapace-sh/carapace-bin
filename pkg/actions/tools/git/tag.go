@@ -1,8 +1,9 @@
 package git
 
 import (
-	exec "golang.org/x/sys/execabs"
 	"strings"
+
+	"github.com/rsteube/carapace"
 )
 
 type tag struct {
@@ -10,12 +11,12 @@ type tag struct {
 	Message string
 }
 
-func tags(refOption RefOption) ([]tag, error) {
+func tags(c carapace.Context, refOption RefOption) ([]tag, error) {
 	if !refOption.Tags {
 		return []tag{}, nil
 	}
 
-	if output, err := exec.Command("git", "tag", "--format", "%(refname)\n%(subject)").Output(); err != nil {
+	if output, err := c.Command("git", "tag", "--format", "%(refname)\n%(subject)").Output(); err != nil {
 		return nil, err
 	} else {
 		lines := strings.Split(string(output), "\n")

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	exec "golang.org/x/sys/execabs"
 	"regexp"
 	"strings"
 
@@ -92,7 +91,7 @@ func actionTargets() carapace.Action {
 			file = rootCmd.Flag("file").Value.String()
 		}
 
-		cmd := exec.Command("make", "-qp", "--file", file)
+		cmd := c.Command("make", "-qp", "--file", file)
 		if output, err := cmd.Output(); err != nil && cmd.ProcessState.ExitCode() != 1 {
 			return carapace.ActionMessage(err.Error())
 		} else {

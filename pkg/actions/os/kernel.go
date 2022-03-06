@@ -8,11 +8,10 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	exec "golang.org/x/sys/execabs"
 )
 
-func currentRelease() (string, error) {
-	if output, err := exec.Command("uname", "-r").Output(); err != nil {
+func currentRelease(c carapace.Context) (string, error) {
+	if output, err := c.Command("uname", "-r").Output(); err != nil {
 		return "", err
 	} else {
 		return strings.Split(string(output), "\n")[0], nil
@@ -40,7 +39,7 @@ func ActionKernelModules(basedir string, release string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if strings.TrimSpace(release) == "" {
 			var err error
-			if release, err = currentRelease(); err != nil {
+			if release, err = currentRelease(c); err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
 		}
