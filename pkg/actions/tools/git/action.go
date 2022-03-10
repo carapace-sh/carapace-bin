@@ -20,6 +20,7 @@ type RefOption struct {
 	RemoteBranches bool
 	Commits        int
 	Tags           bool
+	Stashes        bool
 }
 
 var RefOptionDefault = RefOption{
@@ -27,6 +28,7 @@ var RefOptionDefault = RefOption{
 	RemoteBranches: true,
 	Commits:        100,
 	Tags:           true,
+	Stashes:        true,
 }
 
 // ActionRefs completes git references (commits, branches, tags)
@@ -57,6 +59,12 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			}
 		}
 
+		if refOption.Stashes {
+			return carapace.Batch(
+				carapace.ActionValuesDescribed(vals...),
+				ActionStashes(),
+			).ToA()
+		}
 		return carapace.ActionValuesDescribed(vals...)
 
 	})
