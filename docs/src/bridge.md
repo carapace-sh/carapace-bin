@@ -7,6 +7,7 @@ carapace --bridge [command]/[argcomplete|cobra|posener]
 ```
 
 Currently supported are:
+- [fish-shell/fish-shell](https://github.com/fish-shell/fish-shell)
 - [kislyuk/argcomplete](https://github.com/kislyuk/argcomplete)
 - [posener/complete](https://github.com/posener/complete)
 - [spf13/cobra](https://github.com/spf13/cobra)
