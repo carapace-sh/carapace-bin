@@ -67,6 +67,8 @@ func createCmd(command string, engine string) *cobra.Command {
 				return bridge.ActionArgcomplete(command)
 			case "cobra":
 				return bridge.ActionCobraComplete(command)
+			case "fish":
+				return bridge.ActionFishComplete(command)
 			case "posener":
 				return bridge.ActionPosenerComplete(command)
 			default:
