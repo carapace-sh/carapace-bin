@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"path/filepath"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -10,6 +13,9 @@ var rootCmd = &cobra.Command{
 	Short: "build and execute command lines from standard input",
 	Long:  "https://linux.die.net/man/1/xargs",
 	Run:   func(cmd *cobra.Command, args []string) {},
+	FParseErrWhitelist: cobra.FParseErrWhitelist{
+		UnknownFlags: true,
+	},
 }
 
 func Execute() error {
@@ -48,6 +54,26 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionFiles(),
+		carapace.Batch(
+			os.ActionPathExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			// TODO this does not yet work for flags as rootCmd flag completion has precendence
+			executable := filepath.Base(c.Args[0])
+			args := []string{executable, "export", ""}
+			args = append(args, c.Args[1:]...)
+			args = append(args, c.CallbackValue)
+			return carapace.ActionExecCommand("carapace", args...)(func(output []byte) carapace.Action {
+				// TODO carapace needs exit code on error
+				if string(output) == "" {
+					return carapace.ActionValues()
+				}
+				return carapace.ActionImport(output)
+			})
+		}),
 	)
 }
