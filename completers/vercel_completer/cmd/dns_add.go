@@ -15,4 +15,11 @@ func init() {
 	carapace.Gen(dns_addCmd).Standalone()
 
 	dnsCmd.AddCommand(dns_addCmd)
+
+	// TODO positional completion
+	carapace.Gen(dnsCmd).PositionalCompletion(
+		carapace.ActionValues(),
+		carapace.ActionValues(),
+		carapace.ActionValues("A", "CAA", "AAAA", "ALIAS", "CNAME", "MS", "SRV", "TXT"),
+	)
 }

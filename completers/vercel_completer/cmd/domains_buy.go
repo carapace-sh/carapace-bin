@@ -15,4 +15,6 @@ func init() {
 	carapace.Gen(domains_buyCmd).Standalone()
 
 	domainsCmd.AddCommand(domains_buyCmd)
+
+	// TODO positional completion
 }

@@ -15,4 +15,6 @@ func init() {
 	carapace.Gen(billing_setDefaultCmd).Standalone()
 
 	billingCmd.AddCommand(billing_setDefaultCmd)
+
+	// TODO positional completion
 }

@@ -15,4 +15,6 @@ func init() {
 	carapace.Gen(dns_rmCmd).Standalone()
 
 	dnsCmd.AddCommand(dns_rmCmd)
+
+	// TODO positional completion
 }
