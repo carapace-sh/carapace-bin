@@ -15,4 +15,6 @@ func init() {
 	carapace.Gen(certs_rmCmd).Standalone()
 
 	certsCmd.AddCommand(certs_rmCmd)
+
+	// TODO positional completion
 }

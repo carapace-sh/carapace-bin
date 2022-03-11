@@ -15,4 +15,6 @@ func init() {
 	carapace.Gen(domains_transferInCmd).Standalone()
 
 	domainsCmd.AddCommand(domains_transferInCmd)
+
+	// TODO positional completion
 }
