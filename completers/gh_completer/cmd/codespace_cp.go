@@ -19,9 +19,11 @@ func init() {
 	carapace.Gen(codespace_cpCmd).Standalone()
 	codespace_cpCmd.Flags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_cpCmd.Flags().BoolP("expand", "e", false, "Expand remote file names on remote shell")
+	codespace_cpCmd.Flags().StringP("profile", "p", "", "Name of the SSH profile to use")
 	codespace_cpCmd.Flags().BoolP("recursive", "r", false, "Recursively copy directories")
 	codespaceCmd.AddCommand(codespace_cpCmd)
 
+	// TODO profile completion
 	carapace.Gen(codespace_cpCmd).FlagCompletion(carapace.ActionMap{
 		"codespace": action.ActionCodespaces(),
 	})

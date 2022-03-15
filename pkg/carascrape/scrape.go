@@ -152,6 +152,10 @@ func flagValue(f *pflag.Flag) string {
 	if strings.HasSuffix(f.Value.Type(), "Slice") ||
 		strings.HasSuffix(f.Value.Type(), "Array") {
 		if strings.HasPrefix(f.Value.Type(), "string") {
+			if len(f.Value.String()) == 0 {
+				return ""
+			}
+
 			vals, _ := csv.NewReader(strings.NewReader(f.Value.String()[1 : len(f.Value.String())-1])).Read()
 			formatted := strings.Join(vals, `", "`)
 			if len(formatted) > 0 {

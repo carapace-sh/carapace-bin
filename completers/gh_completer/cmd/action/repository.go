@@ -142,3 +142,35 @@ func ActionRepositoryFields() carapace.Action {
 		"projects",
 	)
 }
+
+func ActionRepositorySearchFields() carapace.Action {
+	return carapace.ActionValues(
+		"createdAt",
+		"defaultBranch",
+		"description",
+		"forksCount",
+		"fullName",
+		"hasDownloads",
+		"hasIssues",
+		"hasPages",
+		"hasProjects",
+		"hasWiki",
+		"homepage",
+		"id",
+		"isArchived",
+		"isDisabled",
+		"isFork",
+		"isPrivate",
+		"language",
+		"license",
+		"name",
+		"openIssuesCount",
+		"owner",
+		"pushedAt",
+		"size",
+		"stargazersCount",
+		"updatedAt",
+		"visibility",
+		"watchersCount",
+	)
+}
