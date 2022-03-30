@@ -58,11 +58,11 @@ func init() {
 		"assignee": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionAssignableUsers(cmd)
 		}),
-		"author":    action.ActionUsers(search_issuesCmd, action.UserOpts{Users: true, Organizations: true}),
+		"author":    action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
 		"closed":    time.ActionDate(),
-		"commenter": action.ActionUsers(search_issuesCmd, action.UserOpts{Users: true, Organizations: true}),
+		"commenter": action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
 		"created":   time.ActionDate(),
-		"involves":  action.ActionUsers(search_issuesCmd, action.UserOpts{Users: true, Organizations: true}),
+		"involves":  action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionSearchIssueFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
@@ -75,12 +75,12 @@ func init() {
 		"match": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("title", "body", "comments").Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"mentions": action.ActionUsers(search_issuesCmd, action.UserOpts{Users: true, Organizations: true}),
+		"mentions": action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
 		"milestone": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionMilestones(cmd)
 		}),
 		"order": carapace.ActionValues("asc", "desc"),
-		"owner": action.ActionUsers(search_issuesCmd, action.UserOpts{Users: true, Organizations: true}),
+		"owner": action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
 		"repo": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			dummyCmd := &cobra.Command{}
 			dummyCmd.Flags().String("repo", c.CallbackValue, "fake repo flag")
