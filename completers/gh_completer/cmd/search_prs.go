@@ -66,18 +66,18 @@ func init() {
 		"assignee": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionAssignableUsers(cmd)
 		}),
-		"author": action.ActionUsers(search_prsCmd, action.UserOpts{Users: true, Organizations: true}),
+		"author": action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
 		"base": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
-			return action.ActionBranches(searchCmd)
+			return action.ActionBranches(cmd)
 		}),
 		"checks":    carapace.ActionValues("pending", "success", "failure"),
 		"closed":    time.ActionDate(),
-		"commenter": action.ActionUsers(search_prsCmd, action.UserOpts{Users: true, Organizations: true}),
+		"commenter": action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
 		"created":   time.ActionDate(),
 		"head": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
-			return action.ActionBranches(searchCmd)
+			return action.ActionBranches(cmd)
 		}),
-		"involves": action.ActionUsers(search_prsCmd, action.UserOpts{Users: true, Organizations: true}),
+		"involves": action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionSearchIssueFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
@@ -90,13 +90,13 @@ func init() {
 		"match": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("title", "body", "comments").Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"mentions":  action.ActionUsers(search_prsCmd, action.UserOpts{Users: true, Organizations: true}),
+		"mentions":  action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
 		"merged-at": time.ActionDate(),
 		"milestone": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionMilestones(cmd)
 		}),
 		"order": carapace.ActionValues("asc", "desc"),
-		"owner": action.ActionUsers(search_prsCmd, action.UserOpts{Users: true, Organizations: true}),
+		"owner": action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
 		"repo": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			dummyCmd := &cobra.Command{}
 			dummyCmd.Flags().String("repo", c.CallbackValue, "fake repo flag")
