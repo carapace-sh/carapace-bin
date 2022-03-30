@@ -37,7 +37,7 @@ func init() {
 	search_reposCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
 	search_reposCmd.Flags().StringSlice("topic", []string{}, "Filter on topic")
 	search_reposCmd.Flags().String("updated", "", "Filter on last updated at `date`")
-	search_reposCmd.Flags().String("visibility", "", "Filter based on visibility: {public|private|internal}")
+	search_reposCmd.Flags().StringSlice("visibility", []string{}, "Filter based on visibility: {public|private|internal}")
 	search_reposCmd.Flags().BoolP("web", "w", false, "Open the search query in the web browser")
 	searchCmd.AddCommand(search_reposCmd)
 
@@ -45,7 +45,7 @@ func init() {
 		"created":       time.ActionDate(),
 		"include-forks": carapace.ActionValues("false", "true", "only"),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionRepositorySearchFields().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSearchRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"language": action.ActionLanguages(),
 		"license": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
@@ -60,7 +60,9 @@ func init() {
 		"topic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionTopicSearch(search_reposCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"updated":    time.ActionDate(),
-		"visibility": carapace.ActionValues("public", "private", "internal"),
+		"updated": time.ActionDate(),
+		"visibility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionValues("public", "private", "internal").Invoke(c).Filter(c.Parts).ToA()
+		}),
 	})
 }

@@ -15,6 +15,7 @@ var issue_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(issue_listCmd).Standalone()
+	issue_listCmd.Flags().String("app", "", "Filter by GitHub App author")
 	issue_listCmd.Flags().StringP("assignee", "a", "", "Filter by assignee")
 	issue_listCmd.Flags().StringP("author", "A", "", "Filter by author")
 	issue_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
@@ -29,6 +30,7 @@ func init() {
 	issue_listCmd.Flags().BoolP("web", "w", false, "List issues in the web browser")
 	issueCmd.AddCommand(issue_listCmd)
 
+	// TODO app completion
 	carapace.Gen(issue_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": action.ActionAssignableUsers(issue_listCmd),
 		"author":   action.ActionUsers(issue_listCmd, action.UserOpts{Users: true}),
