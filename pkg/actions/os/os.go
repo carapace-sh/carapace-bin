@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionShells completes available terminal shells
@@ -42,7 +43,7 @@ func ActionPathExecutables() carapace.Action {
 		for executable := range executables {
 			vals = append(vals, executable)
 		}
-		return carapace.ActionValues(vals...)
+		return carapace.ActionValues(vals...).Style(style.Green)
 	})
 }
 
