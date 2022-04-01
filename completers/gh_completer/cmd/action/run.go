@@ -7,6 +7,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -46,12 +47,28 @@ func ActionWorkflowRuns(cmd *cobra.Command, opts RunOpts) carapace.Action {
 					(opts.InProgress && run.Status == "in_progress") ||
 					(opts.Failed && run.Status == "completed" && run.Conclusion != "success") ||
 					(opts.Successful && run.Status == "completed" && run.Conclusion == "success") {
-					vals = append(vals, strconv.Itoa(run.Id), fmt.Sprintf("%v (%v) %v", run.Name, run.HeadBranch, util.FuzzyAgo(ago)))
+
+					vals = append(vals, strconv.Itoa(run.Id), fmt.Sprintf("%v (%v) %v", run.Name, run.HeadBranch, util.FuzzyAgo(ago)), styleForRun(run))
 				}
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	})
+}
+
+func styleForRun(run run) string {
+	switch run.Status {
+	case "in_progress":
+		return style.Yellow
+	case "completed":
+		if run.Conclusion == "success" {
+			return style.Green
+		} else {
+			return style.Red
+		}
+	default:
+		return style.Default
+	}
 }
 
 func ActionRunFields() carapace.Action {
