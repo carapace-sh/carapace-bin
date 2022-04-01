@@ -4,14 +4,13 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/rsteube/carapace-bin/pkg/util"
-	"github.com/rsteube/carapace/pkg/style"
 )
 
 func ActionSources() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if util.HasPathPrefix(c.CallbackValue) {
 			return carapace.Batch(
-				fs.ActionBlockDevices().Style(style.Yellow),
+				fs.ActionBlockDevices(),
 				carapace.ActionFiles(),
 			).ToA()
 		}
