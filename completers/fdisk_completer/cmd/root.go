@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -54,23 +55,21 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		ActionBlockDevicesAndFiles(),
+		carapace.Batch(
+			fs.ActionBlockDevices().Style(style.Yellow),
+			carapace.ActionFiles(),
+		).ToA(),
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("list").Changed {
-				return ActionBlockDevicesAndFiles()
-			} else {
-				return carapace.ActionValues()
+				return carapace.Batch(
+					fs.ActionBlockDevices().Style(style.Yellow),
+					carapace.ActionFiles(),
+				).ToA()
 			}
+			return carapace.ActionValues()
 		}),
 	)
-}
-
-func ActionBlockDevicesAndFiles() carapace.Action {
-	return carapace.Batch(
-		fs.ActionBlockDevices(),
-		carapace.ActionFiles(),
-	).ToA()
 }

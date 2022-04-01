@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -34,15 +35,9 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		ActionBlockDevicesAndFiles(),
-	)
-}
-
-func ActionBlockDevicesAndFiles() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.Batch(
-			fs.ActionBlockDevices(),
+		carapace.Batch(
+			fs.ActionBlockDevices().Style(style.Yellow),
 			carapace.ActionFiles(),
-		).Invoke(c).Merge().ToA()
-	})
+		).ToA(),
+	)
 }
