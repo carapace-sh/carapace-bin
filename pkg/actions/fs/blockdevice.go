@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 type blockdevice struct {
@@ -38,9 +39,9 @@ func ActionBlockDevices() carapace.Action {
 	return actionBlockdevices(func(blockdevices []blockdevice) carapace.Action {
 		vals := make([]string, 0)
 		for _, b := range blockdevices {
-			vals = append(vals, b.Path, fmt.Sprintf("%v %v", b.Size, b.Parttypename))
+			vals = append(vals, b.Path, fmt.Sprintf("%v %v", b.Size, b.Parttypename), style.ForPath(b.Path))
 		}
-		return carapace.ActionValuesDescribed(vals...)
+		return carapace.ActionStyledValuesDescribed(vals...)
 	})
 }
 
