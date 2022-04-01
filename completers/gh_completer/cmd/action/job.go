@@ -6,13 +6,16 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
 type job struct {
-	Id        int
-	Name      string
-	StartedAt time.Time `json:"started_at"`
+	Id         int
+	Name       string
+	StartedAt  time.Time `json:"started_at"`
+	Status     string
+	Conclusion string
 }
 
 type JobOpts struct {
@@ -33,9 +36,24 @@ func ActionWorkflowJobs(cmd *cobra.Command, runId string, opts RunOpts) carapace
 		return ApiV3Action(cmd, fmt.Sprintf(`repos/%v/%v/actions/runs/%v/jobs`, repo.RepoOwner(), repo.RepoName(), runId), &queryResult, func() carapace.Action {
 			vals := make([]string, 0)
 			for _, job := range queryResult.Jobs {
-				vals = append(vals, strconv.Itoa(job.Id), job.Name)
+				vals = append(vals, strconv.Itoa(job.Id), job.Name, styleForJob(job))
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	})
+}
+
+func styleForJob(job job) string {
+	switch job.Status {
+	case "in_progress":
+		return style.Yellow
+	case "completed":
+		if job.Conclusion == "success" {
+			return style.Green
+		} else {
+			return style.Red
+		}
+	default:
+		return style.Default
+	}
 }
