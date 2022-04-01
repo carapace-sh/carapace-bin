@@ -50,7 +50,11 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, commit := range commits {
-				vals = append(vals, commit.Ref, commit.Message, style.Default)
+				s := style.Default
+				if strings.HasPrefix(commit.Ref, "HEAD") {
+					s = style.Bold
+				}
+				vals = append(vals, commit.Ref, commit.Message, s)
 			}
 		}
 		if tags, err := tags(refOption); err != nil {
