@@ -4,12 +4,14 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
 type label struct {
 	Name        string
 	Description string
+	Color       string
 }
 
 type labelsQuery struct {
@@ -25,14 +27,13 @@ type labelsQuery struct {
 func ActionLabels(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult labelsQuery
-		return GraphQlAction(cmd, `repository(owner: $owner, name: $repo){ labels(first: 100) { nodes { name, description } } }`, &queryResult, func() carapace.Action {
+		return GraphQlAction(cmd, `repository(owner: $owner, name: $repo){ labels(first: 100) { nodes { name, description, color } } }`, &queryResult, func() carapace.Action {
 			labels := queryResult.Data.Repository.Labels.Nodes
-			vals := make([]string, len(labels)*2)
-			for index, label := range labels {
-				vals[index*2] = label.Name
-				vals[index*2+1] = label.Description
+			vals := make([]string, 0)
+			for _, label := range labels {
+				vals = append(vals, label.Name, label.Description, style.Hex256(label.Color))
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	}).Cache(5*time.Minute, repoCacheKey(cmd))
 }
