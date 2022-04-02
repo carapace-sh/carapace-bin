@@ -32,8 +32,10 @@ func ActionPathExecutables() carapace.Action {
 		for _, folder := range strings.Split(os.Getenv("PATH"), string(os.PathListSeparator)) {
 			if files, err := ioutil.ReadDir(folder); err == nil {
 				for _, f := range files {
-					if f.Mode().IsRegular() && isExecAny(f.Mode()) {
-						executables[f.Name()] = style.ForPath(folder + "/" + f.Name())
+					if _, ok := executables[f.Name()]; !ok {
+						if !f.IsDir() && isExecAny(f.Mode()) {
+							executables[f.Name()] = style.ForPath(folder + "/" + f.Name())
+						}
 					}
 				}
 			}
