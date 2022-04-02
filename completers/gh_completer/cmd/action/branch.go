@@ -2,6 +2,7 @@ package action
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -30,7 +31,7 @@ func ActionBranches(cmd *cobra.Command) carapace.Action {
 				vals[index*2] = branch.Name
 				vals[index*2+1] = branch.Target.AbbreviatedOid
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionValuesDescribed(vals...).Style(style.Blue)
 		})
 	})
 }
