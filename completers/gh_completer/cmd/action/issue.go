@@ -6,12 +6,14 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
 type issue struct {
 	Number int
 	Title  string
+	State  string
 }
 
 type issueQuery struct {
@@ -42,14 +44,24 @@ func (i *IssueOpts) states() string {
 func ActionIssues(cmd *cobra.Command, opts IssueOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult issueQuery
-		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ issues(first: 100, states: %v, orderBy: {direction: DESC, field: UPDATED_AT}) { nodes { number, title } } }`, opts.states()), &queryResult, func() carapace.Action {
+		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ issues(first: 100, states: %v, orderBy: {direction: DESC, field: UPDATED_AT}) { nodes { number, title, state } } }`, opts.states()), &queryResult, func() carapace.Action {
 			issues := queryResult.Data.Repository.Issues.Nodes
-			vals := make([]string, len(issues)*2)
-			for index, issue := range issues {
-				vals[index*2] = strconv.Itoa(issue.Number)
-				vals[index*2+1] = issue.Title // TODO shorten title
+			vals := make([]string, 0)
+			for _, issue := range issues {
+				s := style.Default
+				switch issue.State {
+				case "OPEN":
+					s = style.Green
+				case "CLOSED":
+					s = style.Red
+				case "MERGED":
+					s = style.Magenta
+				default:
+				}
+
+				vals = append(vals, strconv.Itoa(issue.Number), issue.Title, s)
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	})
 }
