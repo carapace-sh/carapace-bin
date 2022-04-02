@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 type ChangeOption struct {
@@ -34,12 +35,12 @@ func ActionChanges(opts ChangeOption) carapace.Action {
 								if relativePath, err := filepath.Rel(wd, root+"/"+line[3:]); err != nil {
 									return carapace.ActionMessage(err.Error())
 								} else {
-									untracked = append(untracked, relativePath, line[:2])
+									untracked = append(untracked, relativePath, line[:2], style.ForPath(relativePath))
 								}
 							}
 						}
 					}
-					return carapace.ActionValuesDescribed(untracked...)
+					return carapace.ActionStyledValuesDescribed(untracked...)
 				}
 			}
 		})
