@@ -100,7 +100,7 @@ func ActionContainerPath() carapace.Action {
 		case 0:
 			return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})")(func(output []byte) carapace.Action {
 				vals := strings.Split(string(output), "\n")
-				return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Invoke(c).Suffix(":").ToA()
+				return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Invoke(c).Suffix(":").ToA().Style(style.Blue)
 			})
 		default:
 			container := c.Parts[0]
