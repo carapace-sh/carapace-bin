@@ -27,23 +27,23 @@ func ActionShells() carapace.Action {
 //   chmod
 func ActionPathExecutables() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		executables := make(map[string]bool)
+		executables := make(map[string]string)
 
 		for _, folder := range strings.Split(os.Getenv("PATH"), string(os.PathListSeparator)) {
 			if files, err := ioutil.ReadDir(folder); err == nil {
 				for _, f := range files {
 					if f.Mode().IsRegular() && isExecAny(f.Mode()) {
-						executables[f.Name()] = true
+						executables[f.Name()] = style.ForPath(folder + "/" + f.Name())
 					}
 				}
 			}
 		}
 
 		vals := make([]string, 0)
-		for executable := range executables {
-			vals = append(vals, executable)
+		for executable, _style := range executables {
+			vals = append(vals, executable, _style)
 		}
-		return carapace.ActionValues(vals...).Style(style.Green)
+		return carapace.ActionStyledValues(vals...)
 	})
 }
 
