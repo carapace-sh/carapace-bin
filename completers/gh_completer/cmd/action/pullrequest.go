@@ -57,7 +57,7 @@ func ActionPullRequests(cmd *cobra.Command, opts PullRequestOpts) carapace.Actio
 					switch pullrequest.State {
 					case "OPEN":
 						if pullrequest.IsDraft {
-							s = style.BrightBlack
+							s = style.Gray
 						} else {
 							s = style.Green
 						}
