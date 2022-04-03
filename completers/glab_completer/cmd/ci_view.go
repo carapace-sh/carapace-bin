@@ -20,4 +20,11 @@ func init() {
 	carapace.Gen(ci_viewCmd).FlagCompletion(carapace.ActionMap{
 		"branch": action.ActionBranches(ci_viewCmd),
 	})
+
+	carapace.Gen(ci_viewCmd).PositionalCompletion(
+		carapace.Batch(
+			action.ActionBranches(ci_viewCmd),
+			action.ActionReleases(ci_viewCmd),
+		).ToA(),
+	)
 }

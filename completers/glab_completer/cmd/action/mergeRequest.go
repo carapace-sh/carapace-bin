@@ -6,12 +6,14 @@ import (
 	"strconv"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
 type mergeRequest struct {
 	Iid   int
 	Title string
+	State string
 }
 
 func ActionMergeRequests(cmd *cobra.Command, state string) carapace.Action {
@@ -25,9 +27,23 @@ func ActionMergeRequests(cmd *cobra.Command, state string) carapace.Action {
 		return actionApi(cmd, fmt.Sprintf("projects/:fullpath/merge_requests?order_by=updated_at&per_page=100%v", stateQuery), &queryResult, func() carapace.Action {
 			vals := make([]string, 0, len(queryResult)*2)
 			for _, mr := range queryResult {
-				vals = append(vals, strconv.Itoa(mr.Iid), mr.Title)
+				var s string
+				switch mr.State {
+				case "opened":
+					s = style.Green
+				case "closed":
+					s = style.Red
+				case "locked":
+					s = style.Cyan
+				case "merged":
+					s = style.Magenta
+				default:
+					s = style.Default
+				}
+
+				vals = append(vals, strconv.Itoa(mr.Iid), mr.Title, s)
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	})
 }
