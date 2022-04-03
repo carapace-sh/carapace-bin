@@ -5,6 +5,7 @@ import (
 	"net/url"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -24,7 +25,7 @@ func ActionBranches(cmd *cobra.Command) carapace.Action {
 			for _, branch := range branches {
 				vals = append(vals, branch.Name, branch.Commit.Title)
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionValuesDescribed(vals...).Style(style.Blue)
 		})
 	})
 }
