@@ -43,7 +43,25 @@ func init() {
 		"base":      action.ActionBranches(pr_editCmd),
 		"body-file": carapace.ActionFiles(),
 		"milestone": action.ActionMilestones(pr_editCmd),
-		// TODO remove-reviewer, remove-assignee, remove-label, remove-project
+		"remove-assignee": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				return action.ActionPullRequestAssignees(pr_editCmd, c.Args[0])
+			}
+			return carapace.ActionValues()
+		}),
+		"remove-label": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				return action.ActionPullRequestLabels(pr_editCmd, c.Args[0])
+			}
+			return carapace.ActionValues()
+		}),
+		"remove-reviewer": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				return action.ActionPullRequestReviewers(pr_editCmd, c.Args[0])
+			}
+			return carapace.ActionValues()
+		}),
+		// TODO remove-project
 	})
 
 	carapace.Gen(pr_editCmd).PositionalCompletion(

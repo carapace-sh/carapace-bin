@@ -11,9 +11,13 @@ import (
 )
 
 type issue struct {
-	Number int
-	Title  string
-	State  string
+	Number    int
+	Title     string
+	State     string
+	Labels    []label
+	Assignees []struct {
+		Login string
+	}
 }
 
 type issueQuery struct {
@@ -86,4 +90,39 @@ func ActionIssueFields() carapace.Action {
 		"updatedAt",
 		"url",
 	)
+}
+
+func actionIssue(cmd *cobra.Command, issueId string, f func(i issue) carapace.Action) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		repo, err := repoOverride(cmd)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		var queryResult issue
+		return ApiV3Action(cmd, fmt.Sprintf(`repos/%v/%v/issues/%v`, repo.RepoOwner(), repo.RepoName(), issueId), &queryResult, func() carapace.Action {
+			return f(queryResult)
+		})
+
+	})
+}
+
+func ActionIssueLabels(cmd *cobra.Command, issueId string) carapace.Action {
+	return actionIssue(cmd, issueId, func(i issue) carapace.Action {
+		vals := make([]string, 0)
+		for _, label := range i.Labels {
+			vals = append(vals, label.Name, label.Description, style.Hex256(label.Color))
+		}
+		return carapace.ActionStyledValuesDescribed(vals...)
+	})
+}
+
+func ActionIssueAssignees(cmd *cobra.Command, issueId string) carapace.Action {
+	return actionIssue(cmd, issueId, func(i issue) carapace.Action {
+		vals := make([]string, 0)
+		for _, assignee := range i.Assignees {
+			vals = append(vals, assignee.Login)
+		}
+		return carapace.ActionValues(vals...)
+	})
 }

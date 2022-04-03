@@ -36,7 +36,19 @@ func init() {
 		"add-project": action.ActionProjects(issue_editCmd, action.ProjectOpts{Open: true}),
 		"body-file":   carapace.ActionFiles(),
 		"milestone":   action.ActionMilestones(issue_editCmd),
-		// TODO remove-assignee, remove-label, remove-project
+		"remove-assignee": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				return action.ActionIssueAssignees(issue_editCmd, c.Args[0])
+			}
+			return carapace.ActionValues()
+		}),
+		"remove-label": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				return action.ActionIssueLabels(issue_editCmd, c.Args[0])
+			}
+			return carapace.ActionValues()
+		}),
+		// TODO remove-project
 	})
 
 	carapace.Gen(issue_editCmd).PositionalCompletion(
