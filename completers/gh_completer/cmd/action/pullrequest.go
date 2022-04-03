@@ -11,10 +11,17 @@ import (
 )
 
 type pullrequest struct {
-	Number  int
-	Title   string
-	IsDraft bool
-	State   string
+	Number    int
+	Title     string
+	IsDraft   bool
+	State     string
+	Labels    []label
+	Assignees []struct {
+		Login string
+	}
+	RequestedReviewers []struct {
+		Login string
+	} `json:"requested_reviewers"`
 }
 
 type pullRequestsQuery struct {
@@ -101,4 +108,49 @@ func ActionPullRequestFields() carapace.Action {
 		"reviews",
 		"statusCheckRollup",
 	)
+}
+
+func actionPullRequests(cmd *cobra.Command, id string, f func(p pullrequest) carapace.Action) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		repo, err := repoOverride(cmd)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		var queryResult pullrequest
+		return ApiV3Action(cmd, fmt.Sprintf(`repos/%v/%v/pulls/%v`, repo.RepoOwner(), repo.RepoName(), id), &queryResult, func() carapace.Action {
+			return f(queryResult)
+		})
+
+	})
+}
+
+func ActionPullRequestLabels(cmd *cobra.Command, id string) carapace.Action {
+	return actionPullRequests(cmd, id, func(p pullrequest) carapace.Action {
+		vals := make([]string, 0)
+		for _, label := range p.Labels {
+			vals = append(vals, label.Name, label.Description, style.Hex256(label.Color))
+		}
+		return carapace.ActionStyledValuesDescribed(vals...)
+	})
+}
+
+func ActionPullRequestAssignees(cmd *cobra.Command, id string) carapace.Action {
+	return actionPullRequests(cmd, id, func(p pullrequest) carapace.Action {
+		vals := make([]string, 0)
+		for _, assignee := range p.Assignees {
+			vals = append(vals, assignee.Login)
+		}
+		return carapace.ActionValues(vals...)
+	})
+}
+
+func ActionPullRequestReviewers(cmd *cobra.Command, id string) carapace.Action {
+	return actionPullRequests(cmd, id, func(p pullrequest) carapace.Action {
+		vals := make([]string, 0)
+		for _, reviewer := range p.RequestedReviewers {
+			vals = append(vals, reviewer.Login)
+		}
+		return carapace.ActionValues(vals...)
+	})
 }
