@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -79,7 +80,7 @@ func init() {
 			"no", "disable recursion",
 			"on-demand", "only when submodule reference in superproject is updated",
 			"yes", "always recurse",
-		),
+		).StyleF(style.ForKeyword),
 		"strategy": carapace.ActionValues("octopus", "ours", "recursive", "resolve", "subtree"),
 	})
 

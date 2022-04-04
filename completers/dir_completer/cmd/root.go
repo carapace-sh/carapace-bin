@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -79,7 +80,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		// TODO custom + format
-		"color": carapace.ActionValues("always", "auto", "never"),
+		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"time":  carapace.ActionValues("full-iso", "long-iso", "iso", "locale"),
 	})
 

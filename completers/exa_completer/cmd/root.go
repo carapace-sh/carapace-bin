@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -56,8 +57,8 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "show version of exa")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":      carapace.ActionValues("always", "auto", "never"),
-		"colour":     carapace.ActionValues("always", "auto", "never"),
+		"color":      carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"colour":     carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"sort":       carapace.ActionValues("name", "Name", "size", "extension", "Extension", "modified", "changed", "accessed", "created", "inode", "type", "none"),
 		"time":       carapace.ActionValues("modified", "accessed", "created"),
 		"time-style": carapace.ActionValues("default", "iso", "long-iso", "full-iso"),

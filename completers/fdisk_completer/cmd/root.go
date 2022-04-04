@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -46,11 +47,11 @@ func init() {
 	rootCmd.Flag("lock").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":           carapace.ActionValues("auto", "always", "never"),
+		"color":           carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword).StyleF(style.ForKeyword),
 		"compatibility":   carapace.ActionValues("dos", "nondos"),
-		"lock":            carapace.ActionValues("yes", "no", "nonblock"),
+		"lock":            carapace.ActionValues("yes", "no", "nonblock").StyleF(style.ForKeyword),
 		"units":           carapace.ActionValues("cylinders", "sectors"),
-		"wipe-partitions": carapace.ActionValues("auto", "always", "never"),
+		"wipe-partitions": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword).StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

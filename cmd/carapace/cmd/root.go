@@ -12,6 +12,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace/pkg/ps"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -50,9 +51,14 @@ var rootCmd = &cobra.Command{
     xonsh:      exec($(carapace --bridge vault/posener))
     zsh:        source <(carapace --bridge vault/posener)
 
+  Style:
+    set:        carapace --style 'carapace.Value=bold,magenta'
+    clear:      carapace --style 'carapace.Description='
+
   Shell parameter is optional and if left out carapace will try to detect it by parent process name.
   Some completions are cached at [%v/carapace].
-`, os.TempDir()),
+  Config is written to [%v/carapace].
+  `, os.TempDir(), func() string { dir, _ := os.UserConfigDir(); return dir }()),
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -75,6 +81,12 @@ var rootCmd = &cobra.Command{
 			println(cmd.Version)
 		case "--list":
 			printCompleters()
+		case "--style":
+			if len(args) > 1 {
+				if err := setStyle(args[1]); err != nil {
+					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+				}
+			}
 		case "_carapace":
 			shell := ps.DetermineShell()
 			if len(args) > 1 {
@@ -162,6 +174,13 @@ func invokeCompleter(completer string) {
 
 }
 
+func setStyle(s string) error {
+	if splitted := strings.SplitN(s, "=", 2); len(splitted) == 2 {
+		return style.Set(splitted[0], splitted[1])
+	}
+	return fmt.Errorf("invalid format: '%v'", s)
+}
+
 func Execute(version string) error {
 	rootCmd.Version = version
 	return rootCmd.Execute()
@@ -170,4 +189,5 @@ func Execute(version string) error {
 func init() {
 	rootCmd.Flags().String("bridge", "", "bridge completion")
 	rootCmd.Flags().Bool("list", false, "list completers")
+	rootCmd.Flags().String("style", "", "set style")
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -49,7 +50,7 @@ func init() {
 			"all", "try all network types",
 			"prefer-inet", "use all network types, but try IPv4 first",
 			"prefer-inet6", "use all network types, but try IPv6 first",
-		),
+		).StyleF(style.ForKeyword),
 		"port": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -65,7 +66,7 @@ func init() {
 			"always", "use local echo even on fast links",
 			"never", "never use local echo",
 			"experimental", "aggressively echo even when incorrect",
-		),
+		).StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

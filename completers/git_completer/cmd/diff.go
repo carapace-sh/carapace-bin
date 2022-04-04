@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -119,7 +120,7 @@ func addDiffFlags(cmd *cobra.Command) {
 	cmd.Flag("word-diff").NoOptDefVal = "plain"
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"color":          carapace.ActionValues("always", "never", "auto"),
+		"color":          carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"color-moved":    ActionColorMovedModes(),
 		"color-moved-ws": ActionColorMovedWsModes(),
 		"diff-algorithm": ActionDiffAlgorithms(),

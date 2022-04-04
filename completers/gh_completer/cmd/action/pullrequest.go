@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -64,14 +65,14 @@ func ActionPullRequests(cmd *cobra.Command, opts PullRequestOpts) carapace.Actio
 					switch pullrequest.State {
 					case "OPEN":
 						if pullrequest.IsDraft {
-							s = style.Gray
+							s = styles.Gh.Draft
 						} else {
-							s = style.Green
+							s = styles.Gh.StateOpen
 						}
 					case "CLOSED":
-						s = style.Red
+						s = styles.Gh.StateClosed
 					case "MERGED":
-						s = style.Magenta
+						s = styles.Gh.StateMerged
 					default:
 					}
 

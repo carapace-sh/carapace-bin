@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -33,8 +34,8 @@ func init() {
 	rootCmd.Flags().StringP("wait", "w", "", "set timeout waiting for finishing operations")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"colors":     carapace.ActionValues("auto", "yes", "no"),
-		"escape":     carapace.ActionValues("yes", "no"),
+		"colors":     carapace.ActionValues("auto", "yes", "no").StyleF(style.ForKeyword),
+		"escape":     carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
 		"fields":     ActionMultiFields(),
 		"get-values": ActionMultiFields(),
 		"mode":       carapace.ActionValues("tabular", "multiline"),

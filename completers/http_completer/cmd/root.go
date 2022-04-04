@@ -6,6 +6,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -93,7 +94,7 @@ func init() {
 		"session-read-only": carapace.ActionFiles(), // TODO complete names
 		"ssl":               carapace.ActionValues("ssl2.3", "tls1", "tls1.1", "tls1.2"),
 		"style":             ActionStyles(),
-		"verify":            carapace.ActionValues("yes", "no"),
+		"verify":            carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
@@ -148,10 +149,10 @@ func ActionFormatOptions() carapace.Action {
 	return carapace.ActionMultiParts(",", func(cEntries carapace.Context) carapace.Action {
 		return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			options := map[string]carapace.Action{
-				"headers.sort":   carapace.ActionValues("true", "false"),
-				"json.format":    carapace.ActionValues("true", "false"),
+				"headers.sort":   carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+				"json.format":    carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 				"json.indent":    carapace.ActionValues(),
-				"json.sort_keys": carapace.ActionValues("true", "false"),
+				"json.sort_keys": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 			}
 			switch len(c.Parts) {
 			case 0:

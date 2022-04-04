@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -31,6 +32,6 @@ func init() {
 			"always", "always show colors",
 			"true", "only for file descriptors",
 			"false", "never show colors",
-		),
+		).StyleF(style.ForKeyword),
 	})
 }

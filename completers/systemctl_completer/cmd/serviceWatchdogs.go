@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(serviceWatchdogsCmd)
 
 	carapace.Gen(serviceWatchdogsCmd).PositionalCompletion(
-		carapace.ActionValues("yes", "no"),
+		carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
 	)
 }

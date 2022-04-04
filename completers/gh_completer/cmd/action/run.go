@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -59,12 +60,12 @@ func ActionWorkflowRuns(cmd *cobra.Command, opts RunOpts) carapace.Action {
 func styleForRun(run run) string {
 	switch run.Status {
 	case "in_progress":
-		return style.Yellow
+		return styles.Gh.JobInProgress
 	case "completed":
 		if run.Conclusion == "success" {
-			return style.Green
+			return styles.Gh.JobSuccess
 		} else {
-			return style.Red
+			return styles.Gh.JobFailed
 		}
 	default:
 		return style.Default

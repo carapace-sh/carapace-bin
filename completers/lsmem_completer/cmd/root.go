@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -41,7 +42,7 @@ func init() {
 		"split": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return ActionColumns().Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"summary": carapace.ActionValues("never", "always", "only"),
+		"summary": carapace.ActionValues("never", "always", "only").StyleF(style.ForKeyword),
 		"sysroot": carapace.ActionDirectories(),
 	})
 }

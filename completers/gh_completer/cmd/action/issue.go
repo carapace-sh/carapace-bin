@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -55,11 +56,11 @@ func ActionIssues(cmd *cobra.Command, opts IssueOpts) carapace.Action {
 				s := style.Default
 				switch issue.State {
 				case "OPEN":
-					s = style.Green
+					s = styles.Gh.StateOpen
 				case "CLOSED":
-					s = style.Red
+					s = styles.Gh.StateClosed
 				case "MERGED":
-					s = style.Magenta
+					s = styles.Gh.StateMerged
 				default:
 				}
 
