@@ -129,7 +129,7 @@ func ActionPullRequestLabels(cmd *cobra.Command, id string) carapace.Action {
 	return actionPullRequests(cmd, id, func(p pullrequest) carapace.Action {
 		vals := make([]string, 0)
 		for _, label := range p.Labels {
-			vals = append(vals, label.Name, label.Description, style.Hex256(label.Color))
+			vals = append(vals, label.Name, label.Description, "#"+label.Color)
 		}
 		return carapace.ActionStyledValuesDescribed(vals...)
 	})

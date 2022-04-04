@@ -111,7 +111,7 @@ func ActionIssueLabels(cmd *cobra.Command, issueId string) carapace.Action {
 	return actionIssue(cmd, issueId, func(i issue) carapace.Action {
 		vals := make([]string, 0)
 		for _, label := range i.Labels {
-			vals = append(vals, label.Name, label.Description, style.Hex256(label.Color))
+			vals = append(vals, label.Name, label.Description, "#"+label.Color)
 		}
 		return carapace.ActionStyledValuesDescribed(vals...)
 	})
