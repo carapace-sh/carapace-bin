@@ -13,8 +13,8 @@ github.com/pelletier/go-toml v1.9.4 h1:tjENF6MfZAg8e4ZmZTeWaWiT2vXtsoO6+iuOjFhEC
 github.com/pelletier/go-toml v1.9.4/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCkoOuaOx1Y+c=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/rsteube/carapace v0.18.7 h1:uPzMjusAK2pQANEiCHBZ3wHtwaESs1jSv6sEuuCDI38=
-github.com/rsteube/carapace v0.18.7/go.mod h1:uWcr3DVj0GMkfDq29vpq//BLjNSEKjsAKen6a5fzQgg=
+github.com/rsteube/carapace v0.18.8 h1:Vco6GvCRNgaVE7BptO4j/1gru5KtYyouPJkECB4NtvY=
+github.com/rsteube/carapace v0.18.8/go.mod h1:uWcr3DVj0GMkfDq29vpq//BLjNSEKjsAKen6a5fzQgg=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/spf13/cobra v1.4.0 h1:y+wJpx64xcgO1V+RcnwW0LEHxTKRi2ZDPSBjWnrg88Q=
 github.com/spf13/cobra v1.4.0/go.mod h1:Wo4iy3BUC+X2Fybo0PDqwJIv3dNRiZLHQymsfxlB84g=
