@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -31,7 +30,7 @@ func ActionLabels(cmd *cobra.Command) carapace.Action {
 			labels := queryResult.Data.Repository.Labels.Nodes
 			vals := make([]string, 0)
 			for _, label := range labels {
-				vals = append(vals, label.Name, label.Description, style.Hex256(label.Color))
+				vals = append(vals, label.Name, label.Description, "#"+label.Color)
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
