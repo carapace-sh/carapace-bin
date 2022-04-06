@@ -1,8 +1,10 @@
 package action
 
 import (
-	"github.com/rsteube/carapace"
 	"strings"
+
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 func ActionLanguages() carapace.Action {
@@ -13,12 +15,12 @@ func ActionLanguages() carapace.Action {
 			for _, line := range lines[:len(lines)-1] {
 				splitted := strings.Split(line, ":")
 				if len(splitted) == 1 {
-					values = append(values, splitted[0], "")
+					values = append(values, splitted[0], "", style.Default)
 				} else if len(splitted) > 1 {
-					values = append(values, splitted[0], splitted[1])
+					values = append(values, splitted[0], splitted[1], style.ForPathExt("."+strings.SplitN(splitted[1], ",", 2)[0]))
 				}
 			}
-			return carapace.ActionValuesDescribed(values...)
+			return carapace.ActionStyledValuesDescribed(values...)
 		})
 	})
 }

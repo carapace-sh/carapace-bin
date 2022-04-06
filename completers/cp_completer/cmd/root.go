@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -57,8 +58,8 @@ func init() {
 		"backup":           carapace.ActionValues("never", "nil", "none", "numbered", "off", "simple", "t"),
 		"no-preserve":      carapace.ActionValues("all", "context", "links", "mode", "ownership", "timestamps", "xattr"),
 		"preserve":         carapace.ActionValues("all", "context", "links", "mode", "ownership", "timestamps", "xattr"),
-		"reflink":          carapace.ActionValues("alway", "auto"),
-		"sparse":           carapace.ActionValues("always", "auto", "never"),
+		"reflink":          carapace.ActionValues("alway", "auto").StyleF(style.ForKeyword),
+		"sparse":           carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"target-directory": carapace.ActionDirectories(),
 	})
 

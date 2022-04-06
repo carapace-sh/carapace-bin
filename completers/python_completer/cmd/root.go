@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/python_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/completers/python_completer/cmd/module"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -84,7 +85,7 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"check-hash-based-pycs": carapace.ActionValues("always", "default", "never"),
+		"check-hash-based-pycs": carapace.ActionValues("always", "default", "never").StyleF(style.ForKeyword),
 		"m":                     action.ActionModules(),
 	})
 

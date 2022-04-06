@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -45,7 +46,7 @@ func init() {
 
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":     git.ActionCleanupMode(),
-		"color":       carapace.ActionValues("always", "never", "auto"),
+		"color":       carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"contains":    git.ActionRefs(git.RefOption{Commits: 100}),
 		"file":        carapace.ActionFiles(),
 		"local-user":  os.ActionGpgKeyIds(),

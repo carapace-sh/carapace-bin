@@ -1,11 +1,13 @@
 package cmd
 
 import (
-	exec "golang.org/x/sys/execabs"
 	"regexp"
 	"strings"
 
+	exec "golang.org/x/sys/execabs"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -35,7 +37,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Print version info and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("auto", "always", "never"),
+		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 	})
 
 	c, _, _ := rootCmd.Find([]string{"_carapace"})

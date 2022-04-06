@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -40,8 +41,8 @@ func init() {
 	statusCmd.Flag("ignore-submodules").NoOptDefVal = "all"
 
 	carapace.Gen(statusCmd).FlagCompletion(carapace.ActionMap{
-		"column":            carapace.ActionValues("always", "never"),
-		"ignore-submodules": carapace.ActionValues("none", "untracked", "dirty", "all"),
+		"column":            carapace.ActionValues("always", "never").StyleF(style.ForKeyword),
+		"ignore-submodules": carapace.ActionValues("none", "untracked", "dirty", "all").StyleF(style.ForKeyword),
 		"ignored":           ActionIgnoredModes(),
 		"porcelain":         carapace.ActionValues("v1"),
 		"untracked-files":   ActionUntrackedFilesModes(),

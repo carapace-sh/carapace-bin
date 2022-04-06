@@ -5,6 +5,7 @@ import (
 	"net/url"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -28,13 +29,13 @@ func ActionContents(cmd *cobra.Command, path string, branch string) carapace.Act
 		return ApiV3Action(cmd, fmt.Sprintf(`repos/%v/%v/contents/%v?%v`, repo.RepoOwner(), repo.RepoName(), url.PathEscape(path), ref), &queryResult, func() carapace.Action {
 			vals := make([]string, 0)
 			for _, content := range queryResult {
+				name := content.Name
 				if content.Type == "dir" {
-					vals = append(vals, content.Name+"/")
-				} else {
-					vals = append(vals, content.Name)
+					name = content.Name + "/"
 				}
+				vals = append(vals, name, style.ForPathExt(name))
 			}
-			return carapace.ActionValues(vals...)
+			return carapace.ActionStyledValues(vals...)
 		})
 	})
 }

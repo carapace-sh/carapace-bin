@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/bat_completer/cmd/action"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -46,11 +47,11 @@ func init() {
 	rootCmd.Flags().String("wrap", "", "Specify the text-wrapping mode (*auto*, never, character).")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":       carapace.ActionValues("auto", "never", "always"),
-		"decorations": carapace.ActionValues("auto", "never", "always"),
-		"italic-text": carapace.ActionValues("never", "always"),
+		"color":       carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword).StyleF(style.ForKeyword),
+		"decorations": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword).StyleF(style.ForKeyword),
+		"italic-text": carapace.ActionValues("never", "always").StyleF(style.ForKeyword),
 		"language":    action.ActionLanguages(),
-		"paging":      carapace.ActionValues("auto", "never", "always"),
+		"paging":      carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword).StyleF(style.ForKeyword),
 		"style": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("auto", "full", "plain", "changes", "header", "grid", "numbers", "snip").Invoke(c).Filter(c.Parts).ToA()
 		}),

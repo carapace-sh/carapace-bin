@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -64,8 +65,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"display":          os.ActionDisplays(),
 		"gimprc":           carapace.ActionFiles(),
-		"pdb-compat-mode":  carapace.ActionValues("off", "on", "warn"),
-		"stack-trace-mode": carapace.ActionValues("never", "query", "always"),
+		"pdb-compat-mode":  carapace.ActionValues("off", "on", "warn").StyleF(style.ForKeyword),
+		"stack-trace-mode": carapace.ActionValues("never", "query", "always").StyleF(style.ForKeyword),
 		"system-gimprc":    carapace.ActionFiles(),
 	})
 

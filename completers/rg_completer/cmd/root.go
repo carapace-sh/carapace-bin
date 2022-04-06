@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/rg_completer/cmd/action"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -123,7 +124,7 @@ func init() {
 			"ansi", "always use ANSI colors (even on Windows)",
 			"auto", "use colors or not based on stdout, TERM, etc.",
 			"never", "never use colors",
-		),
+		).StyleF(style.ForKeyword),
 		"colors": carapace.ActionValuesDescribed(
 			"column", "specify coloring for column numbers",
 			"line", "specify coloring for line numbers",

@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/dmesg_completer/cmd/action"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -53,7 +54,7 @@ func init() {
 	rootCmd.Flag("color").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":         carapace.ActionValues("auto", "always", "never"),
+		"color":         carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"console-level": action.ActionLogLevels(),
 		"facility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionFacilities().Invoke(c).Filter(c.Parts).ToA()

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -27,9 +28,11 @@ func init() {
 	rootCmd.AddCommand(fmtCmd)
 
 	carapace.Gen(fmtCmd).FlagCompletion(carapace.ActionMap{
-		"config":             carapace.ActionFiles(),
-		"ext":                carapace.ActionValues("ts", "tsx", "js", "jsx"),
-		"options-prose-wrap": carapace.ActionValues("always", "never", "preserve"),
+		"config": carapace.ActionFiles(),
+		"ext": carapace.ActionValues("ts", "tsx", "js", "jsx", "md", "json", "jsonc").StyleF(func(s string) string {
+			return style.ForPathExt("." + s)
+		}),
+		"options-prose-wrap": carapace.ActionValues("always", "never", "preserve").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(fmtCmd).PositionalAnyCompletion(

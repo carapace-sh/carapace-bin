@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -57,26 +58,26 @@ func init() {
 			"rr-local", "Run julia inside rr record but do not upload the recorded trace.",
 			"help", "Print help message and exit.",
 		),
-		"check-bounds":         carapace.ActionValues("yes", "no", "auto"),
-		"code-coverage":        carapace.ActionValues("none", "user", "all"),
-		"color":                carapace.ActionValues("yes", "no", "auto"),
-		"compiled-modules":     carapace.ActionValues("yes", "no"),
-		"depwarn":              carapace.ActionValues("yes", "no", "error"),
-		"handle-signals":       carapace.ActionValues("yes", "no"),
-		"history-file":         carapace.ActionValues("yes", "no"),
+		"check-bounds":         carapace.ActionValues("yes", "no", "auto").StyleF(style.ForKeyword),
+		"code-coverage":        carapace.ActionValues("none", "user", "all").StyleF(style.ForKeyword),
+		"color":                carapace.ActionValues("yes", "no", "auto").StyleF(style.ForKeyword),
+		"compiled-modules":     carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"depwarn":              carapace.ActionValues("yes", "no", "error").StyleF(style.ForKeyword),
+		"handle-signals":       carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"history-file":         carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
 		"home":                 carapace.ActionDirectories(),
-		"inline":               carapace.ActionValues("yes", "no"),
+		"inline":               carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
 		"load":                 carapace.ActionFiles(),
 		"machine-file":         carapace.ActionFiles(),
 		"math-mode":            carapace.ActionValues("ieee", "fast"),
 		"optimize":             carapace.ActionValues("0", "1", "2", "3"),
 		"project":              carapace.ActionDirectories(),
-		"startup-file":         carapace.ActionValues("yes", "no"),
+		"startup-file":         carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
 		"sysimage":             carapace.ActionFiles(),
-		"sysimage-native-code": carapace.ActionValues("yes", "no"),
-		"track-allocation":     carapace.ActionValues("none", "user", "all"),
-		"warn-overwrite":       carapace.ActionValues("yes", "no"),
-		"warn-scope":           carapace.ActionValues("yes", "no"),
+		"sysimage-native-code": carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"track-allocation":     carapace.ActionValues("none", "user", "all").StyleF(style.ForKeyword),
+		"warn-overwrite":       carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"warn-scope":           carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
 	})
 
 	rootCmd.Flag("optimize").NoOptDefVal = " "

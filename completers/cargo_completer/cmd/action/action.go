@@ -3,11 +3,12 @@ package action
 import (
 	"encoding/json"
 	"fmt"
-	exec "golang.org/x/sys/execabs"
 	"io/ioutil"
 	"os"
 	"regexp"
 	"strings"
+
+	exec "golang.org/x/sys/execabs"
 
 	"github.com/mitchellh/go-homedir"
 	"github.com/pelletier/go-toml"
@@ -15,6 +16,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 type manifestJson struct {
@@ -67,7 +69,7 @@ func parseManifest(cmd *cobra.Command) (m manifestToml, err error) {
 }
 
 func ActionColorModes() carapace.Action {
-	return carapace.ActionValues("auto", "always", "never")
+	return carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword)
 }
 
 type TargetOpts struct {

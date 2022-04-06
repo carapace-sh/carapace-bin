@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -34,7 +35,7 @@ func init() {
 
 	rootAlias(container_updateCmd, func(cmd *cobra.Command, isAlias bool) {
 		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-			"restart": carapace.ActionValues("always", "no", "on-failure", "unless-stopped"),
+			"restart": carapace.ActionValues("always", "no", "on-failure", "unless-stopped").StyleF(style.ForKeyword),
 		})
 
 		carapace.Gen(cmd).PositionalAnyCompletion(docker.ActionContainers())

@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -49,7 +50,7 @@ func init() {
 
 	carapace.Gen(branchCmd).FlagCompletion(carapace.ActionMap{
 		"D":               git.ActionRefs(git.RefOptionDefault),
-		"color":           carapace.ActionValues("always", "auto", "never"),
+		"color":           carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"contains":        git.ActionRefs(git.RefOptionDefault),
 		"delete":          git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
 		"merged":          git.ActionRefs(git.RefOptionDefault),

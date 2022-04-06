@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -23,6 +24,6 @@ func init() {
 	)
 
 	carapace.Gen(pr_diffCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("always", "never", "auto"),
+		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 	})
 }

@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 type codespace struct {
@@ -53,7 +54,7 @@ func ActionCodespacePath(codespace string, expand bool) carapace.Action {
 				lines := strings.Split(string(output), "\n")
 				return carapace.ActionValues(lines[:len(lines)-1]...)
 			})
-		})
+		}).StyleF(style.ForPathExt)
 	})
 }
 

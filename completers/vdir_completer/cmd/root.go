@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -78,7 +79,7 @@ func init() {
 	rootCmd.Flags().BoolS("x", "x", false, "list entries by lines instead of by columns")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":      carapace.ActionValues("always", "auto", "never"),
+		"color":      carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"format":     carapace.ActionValues("across", "commas", "horizontal", "long", "single-column", "verbose", "vertical"),
 		"time-style": carapace.ActionValues("full-iso", "long-iso", "iso", "locale"),
 	})

@@ -2,7 +2,9 @@ package fs
 
 import (
 	"archive/zip"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionZipFileContents completes contents of given zip file
@@ -18,7 +20,7 @@ func ActionZipFileContents(file string) carapace.Action {
 			for index, f := range reader.File {
 				vals[index] = f.Name
 			}
-			return carapace.ActionValues(vals...).Invoke(c).ToMultiPartsA("/")
+			return carapace.ActionValues(vals...).Invoke(c).ToMultiPartsA("/").StyleF(style.ForPathExt)
 		}
 	})
 }

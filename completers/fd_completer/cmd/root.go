@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -44,7 +45,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Prints version information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":      carapace.ActionValues("never", "auto", "always"),
+		"color":      carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"exec":       carapace.ActionFiles(),
 		"exec-batch": carapace.ActionFiles(),
 		"owner":      os.ActionUserGroup(),

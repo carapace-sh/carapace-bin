@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -36,7 +37,7 @@ func initQueryCmd(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"arch":    carapace.ActionValues("i686", "x86_64"),
-		"color":   carapace.ActionValues("auto", "never", "always"),
+		"color":   carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"config":  carapace.ActionFiles(),
 		"dbpath":  carapace.ActionFiles(),
 		"gpgdir":  carapace.ActionDirectories(),

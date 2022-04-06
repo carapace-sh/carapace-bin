@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/journalctl"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -72,7 +73,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"P":                action.ActionProperties(),
-		"check-inhibitors": carapace.ActionValues("auto", "yes", "no"),
+		"check-inhibitors": carapace.ActionValues("auto", "yes", "no").StyleF(style.ForKeyword),
 		"host":             net.ActionHosts(),
 		"job-mode": carapace.ActionValuesDescribed(
 			"fail", "cause fail on conflict",

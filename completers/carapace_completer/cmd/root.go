@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 
 	os "github.com/rsteube/carapace-bin/pkg/actions/os"
@@ -33,6 +34,7 @@ func flagCmd() *cobra.Command {
 	cmd.Flags().String("bridge", "", "generic completion bridge")
 	cmd.Flags().BoolP("help", "h", false, "help for carapace")
 	cmd.Flags().Bool("list", false, "list completers")
+	cmd.Flags().StringSlice("style", []string{}, "set style")
 	cmd.Flags().BoolP("version", "v", false, "version for carapace")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
@@ -51,6 +53,7 @@ func flagCmd() *cobra.Command {
 				return carapace.ActionValues()
 			}
 		}),
+		"style": carapace.ActionStyleConfig(),
 	})
 	return cmd
 }
@@ -67,7 +70,20 @@ func posCmd() *cobra.Command {
 
 	carapace.Gen(cmd).PositionalCompletion(
 		ActionCompleters(),
-		carapace.ActionValues("bash", "bash-ble", "elvish", "export", "fish", "ion", "nushell", "oil", "powershell", "tcsh", "xonsh", "zsh"),
+		carapace.ActionStyledValues(
+			"bash", "#d35673",
+			"bash-ble", "#c2039a",
+			"elvish", "#ffd6c9",
+			"export", style.Default,
+			"fish", "#7ea8fc",
+			"ion", "#0e5d6d",
+			"nushell", "#29d866",
+			"oil", "#373a36",
+			"powershell", "#e8a16f",
+			"tcsh", "#412f09",
+			"xonsh", "#a8ffa9",
+			"zsh", "#efda53",
+		),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues(c.Args[0])
 		}),

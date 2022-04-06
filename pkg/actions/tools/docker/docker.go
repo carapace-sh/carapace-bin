@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
@@ -29,7 +30,7 @@ func ActionContainers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})", "--filter", "name="+c.CallbackValue)(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
-			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(style.Blue)
+			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(styles.Docker.Container)
 		})
 	})
 }
@@ -87,7 +88,7 @@ func ActionRepositoryTags() carapace.Action {
 			default:
 				return carapace.ActionValues()
 			}
-		}).Style(style.Yellow)
+		}).Style(styles.Docker.Image)
 	})
 }
 
@@ -100,7 +101,7 @@ func ActionContainerPath() carapace.Action {
 		case 0:
 			return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})")(func(output []byte) carapace.Action {
 				vals := strings.Split(string(output), "\n")
-				return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Invoke(c).Suffix(":").ToA().Style(style.Blue)
+				return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Invoke(c).Suffix(":").ToA().Style(styles.Docker.Container)
 			})
 		default:
 			container := c.Parts[0]
@@ -113,7 +114,12 @@ func ActionContainerPath() carapace.Action {
 			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 				return carapace.ActionExecCommand("docker", args...)(func(output []byte) carapace.Action {
 					lines := strings.Split(string(output), "\n")
-					return carapace.ActionValues(lines[:len(lines)-1]...)
+
+					vals := make([]string, 0)
+					for _, path := range lines[:len(lines)-1] {
+						vals = append(vals, path, style.ForPathExt(path))
+					}
+					return carapace.ActionStyledValues(vals...)
 				})
 			})
 		}
@@ -166,7 +172,7 @@ func ActionNetworks() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "network", "ls", "--format", "{{.Name}}\n{{.Driver}}/{{.Scope}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
-			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(style.Gray)
+			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(styles.Docker.Network)
 		})
 	})
 }
@@ -178,7 +184,7 @@ func ActionNodes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("docker", "node", "ls", "--format", "{{.ID}}\n{{.Hostname}} {{.ManagerStatus}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
-			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(style.Cyan)
+			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(styles.Docker.Node)
 		})
 	})
 }
@@ -202,7 +208,7 @@ func ActionSecrets() carapace.Action {
 		return carapace.ActionExecCommand("docker", "secret", "ls", "--format", "{{.Name}}\nupdated {{.UpdatedAt}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}).Style(style.Underlined)
+		}).Style(styles.Docker.Secret)
 	})
 }
 
@@ -214,7 +220,7 @@ func ActionServices() carapace.Action {
 		return carapace.ActionExecCommand("docker", "service", "ls", "--format", "{{.Name}}\n{{.Image}} {{.Mode}} {{.Replicas}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}).Style(style.Green)
+		}).Style(styles.Docker.Service)
 	})
 }
 
@@ -226,7 +232,7 @@ func ActionVolumes() carapace.Action {
 		return carapace.ActionExecCommand("docker", "volume", "ls", "--format", "{{.Name}}\n{{.Driver}}")(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
-		}).Style(style.Bold)
+		}).Style(styles.Docker.Volume)
 	})
 }
 

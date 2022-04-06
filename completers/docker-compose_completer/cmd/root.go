@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -32,7 +33,7 @@ func init() {
 	rootCmd.Flags().StringP("project-name", "p", "", "Project name")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"ansi":              carapace.ActionValues("never", "always", "auto"),
+		"ansi":              carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"env-file":          carapace.ActionFiles(),
 		"file":              carapace.ActionFiles(),
 		"project-directory": carapace.ActionDirectories(),

@@ -4,6 +4,7 @@ import (
 	"regexp"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -38,7 +39,7 @@ func init() {
 	rootCmd.Flag("color").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":  carapace.ActionValues("auto", "never", "always"),
+		"color":  carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"length": ActionMultiplicativeSuffixes(),
 		"skip":   ActionMultiplicativeSuffixes(),
 	})

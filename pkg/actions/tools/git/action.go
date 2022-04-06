@@ -6,7 +6,7 @@ import (
 	exec "golang.org/x/sys/execabs"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 )
 
 func rootDir() (string, error) {
@@ -43,16 +43,16 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, branch := range branches {
-				vals = append(vals, branch.Name, branch.Message, style.Blue)
+				vals = append(vals, branch.Name, branch.Message, styles.Git.Branch)
 			}
 		}
 		if commits, err := commits(refOption); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, commit := range commits {
-				s := style.Default
+				s := styles.Git.Commit
 				if strings.HasPrefix(commit.Ref, "HEAD") {
-					s = style.Bold
+					s = styles.Git.HeadCommit
 				}
 				vals = append(vals, commit.Ref, commit.Message, s)
 			}
@@ -61,14 +61,14 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, tag := range tags {
-				vals = append(vals, tag.Name, tag.Message, style.Yellow)
+				vals = append(vals, tag.Name, tag.Message, styles.Git.Tag)
 			}
 		}
 
 		if refOption.Stashes {
 			return carapace.Batch(
 				carapace.ActionStyledValuesDescribed(vals...),
-				ActionStashes().Style(style.Green),
+				ActionStashes().Style(styles.Git.Stash),
 			).ToA()
 		}
 		return carapace.ActionStyledValuesDescribed(vals...)
