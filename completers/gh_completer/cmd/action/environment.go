@@ -2,10 +2,10 @@ package action
 
 import (
 	"fmt"
-	"strconv"
 	"time"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -13,6 +13,7 @@ type environment struct {
 	Id        int
 	Name      string
 	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 type environmentQuery struct {
@@ -30,7 +31,7 @@ func ActionEnvironments(cmd *cobra.Command) carapace.Action {
 		return ApiV3Action(cmd, fmt.Sprintf(`repos/%v/%v/environments`, repo.RepoOwner(), repo.RepoName()), &queryResult, func() carapace.Action {
 			vals := make([]string, 0)
 			for _, environment := range queryResult.Environments {
-				vals = append(vals, environment.Name, strconv.Itoa(environment.Id))
+				vals = append(vals, environment.Name, fmt.Sprintf("updated %v", util.FuzzyAgo(time.Since(environment.UpdatedAt))))
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
