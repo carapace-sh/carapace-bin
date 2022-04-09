@@ -1,6 +1,6 @@
 # Style
 
-Style is only supported in [elvish] and [zsh].
+Style is only supported in [elvish], [powershell] and [zsh].
 
 ## Filename
 Filenames can be configured with the `LS_COLORS` environment variable - e.g with [vivid]:
@@ -30,5 +30,6 @@ carapace --style 'carapace.Description='
 
 
 [Elvish]:https://elv.sh/
+[Powershell]:https://microsoft.com/powershell
 [vivid]:https://github.com/sharkdp/vivid
 [Zsh]:https://www.zsh.org/

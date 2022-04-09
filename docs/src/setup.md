@@ -21,6 +21,7 @@ carapace _carapace | save carapace.nu ; nu -c 'source carapace.nu'
 source <(carapace _carapace)
 
 # powershell (~/.config/powershell/Microsoft.PowerShell_profile.ps1)
+Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
 
