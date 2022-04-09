@@ -1,6 +1,9 @@
 package fs
 
-import "github.com/rsteube/carapace"
+import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
+)
 
 // ActionFilenameExtensions completes filename extensions
 //   3ds (3D Studio Graphics format)
@@ -865,5 +868,7 @@ func ActionFilenameExtensions() carapace.Action {
 		"zip", "Zip (file format)",
 		"zrx", "REXX scripting language for ZOC_(software)",
 		"zs", "Script for Minecraft mod MineTweaker and CraftTweaker",
-	)
+	).StyleF(func(s string) string {
+		return style.ForPathExt("." + s)
+	})
 }
