@@ -3,7 +3,6 @@ cmd/carapace/cmd/completers.go
 cmd/carapace/cmd/completers_release.go
 cmd/caraparse/caraparse
 completers/*/*_completer
-completers/gh_completer/cmd/action/api.github.com.json
 completers_release
 dist
 docs/book

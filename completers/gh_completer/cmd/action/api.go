@@ -1,6 +1,7 @@
 package action
 
 import (
+	_ "embed"
 	"fmt"
 	"strings"
 
@@ -36,6 +37,9 @@ func ActionApiPreviews() carapace.Action {
 	)
 }
 
+//go:embed api.github.com.json
+var apiV3Spec string // https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.json
+
 func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		method := "get"
@@ -43,7 +47,13 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 			method = strings.ToLower(f.Value.String())
 		}
 
-		return http.ActionApiPathsDescribed(v3Paths[method], `{(.*)}`, func(c carapace.Context, matchedData map[string]string, segment string) carapace.Action {
+		apiV3Spec = strings.NewReplacer( // patch ambiguous placeholders
+			"gitignore/templates/{name}", "gitignore/templates/{gitignore_name}",
+			"codes_of_conduct/{key}", "codes_of_conduct/{coc_key}",
+			"labels/{name}", "labels/{label}",
+		).Replace(apiV3Spec)
+
+		return http.ActionOpenApiPaths([]byte(apiV3Spec), method, `{(.*)}`, func(c carapace.Context, matchedData map[string]string, segment string) carapace.Action {
 			switch segment {
 			// TODO completion for other placeholders
 			case "{archive_format}":
