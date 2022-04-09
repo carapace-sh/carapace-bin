@@ -12,7 +12,7 @@ echo 'var v3Paths map[string][]string = map[string][]string{'
 method_endpoints() {
 echo '  "'"$1"'" : {'
 cat api.github.com.json \
-  | jq --raw-output '.paths | to_entries[] | select(.value.'"$1"' != null) | select(.key != "/") | "\"\(.key[1:])\",\" \(.value.'"$1"'.summary)\","' \
+  | jq --raw-output '.paths | to_entries[] | select(.value.'"$1"' != null) | select(.key != "/") | "\"\(.key[1:])\",\"\(.value.'"$1"'.summary)\","' \
   |  sed -e 's#gitignore/templates/{name}#gitignore/templates/{gitignore_name}#' \
          -e 's#codes_of_conduct/{key}#codes_of_conduct/{coc_key}#' \
          -e 's#labels/{name}#labels/{label}#'
