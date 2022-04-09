@@ -1,11 +1,38 @@
 package http
 
 import (
+	"encoding/json"
 	"regexp"
 	"strings"
 
 	"github.com/rsteube/carapace"
 )
+
+type openapi struct {
+	Paths map[string]map[string]struct {
+		Summary string
+	}
+}
+
+// ActionOpenApiPaths completes api paths with placeholders for given openapi spec
+func ActionOpenApiPaths(spec []byte, method string, placeholderPattern string, match func(c carapace.Context, matchedData map[string]string, segment string) carapace.Action) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		var api openapi
+		if err := json.Unmarshal(spec, &api); err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		pathsDescribed := make([]string, 0)
+		for path, methods := range api.Paths {
+			for _method, details := range methods {
+				if strings.EqualFold(_method, method) {
+					pathsDescribed = append(pathsDescribed, path, details.Summary)
+				}
+			}
+		}
+		return ActionApiPathsDescribed(pathsDescribed, placeholderPattern, match)
+	})
+}
 
 // ActionApiPaths completes api paths with placeholders
 func ActionApiPaths(paths []string, placeholderPattern string, match func(c carapace.Context, matchedData map[string]string, segment string) carapace.Action) carapace.Action {
