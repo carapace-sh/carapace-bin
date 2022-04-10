@@ -70,15 +70,15 @@ func ActionStatusCodes() carapace.Action {
 	).StyleF(func(s string) string {
 		switch []rune(s)[0] {
 		case '1':
-			return styles.CarapaceBin.HttpInformational
+			return styles.CarapaceBin.HttpStatusInformational
 		case '2':
-			return styles.CarapaceBin.HttpSuccessful
+			return styles.CarapaceBin.HttpStatusSuccessful
 		case '3':
-			return styles.CarapaceBin.HttpRedirection
+			return styles.CarapaceBin.HttpStatusRedirection
 		case '4':
-			return styles.CarapaceBin.HttpClientError
+			return styles.CarapaceBin.HttpStatusClientError
 		case '5':
-			return styles.CarapaceBin.HttpServerError
+			return styles.CarapaceBin.HttpStatusServerError
 		default:
 			return ""
 		}
