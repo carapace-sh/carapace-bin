@@ -38,15 +38,12 @@ func init() {
 	testCmd.Flags().String("vet", "", "configure the invocation of \"go vet\" during \"go test\" to use the comma-separated list of vet check")
 	rootCmd.AddCommand(testCmd)
 
-	testCmd.Flag("bench").NoOptDefVal = " "
-	testCmd.Flag("run").NoOptDefVal = " "
-
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		"bench": carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
+		"bench": carapace.ActionMultiParts("|", func(c carapace.Context) carapace.Action {
 			return action.ActionTests(c.Args, action.TestOpts{Benchmark: true}).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"covermode": carapace.ActionValues("set", "count,atomic"),
-		"run": carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
+		"run": carapace.ActionMultiParts("|", func(c carapace.Context) carapace.Action {
 			return action.ActionTests(c.Args, action.TestOpts{Example: true, Test: true}).Invoke(c).Filter(c.Parts).ToA()
 		}),
 	})
