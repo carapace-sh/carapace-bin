@@ -58,7 +58,7 @@ var rootCmd = &cobra.Command{
   Shell parameter is optional and if left out carapace will try to detect it by parent process name.
   Some completions are cached at [%v/carapace].
   Config is written to [%v/carapace].
-  `, os.TempDir(), func() string { dir, _ := os.UserConfigDir(); return dir }()),
+  `, func() string { dir, _ := os.UserCacheDir(); return dir }(), func() string { dir, _ := os.UserConfigDir(); return dir }()),
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers,
 	Run: func(cmd *cobra.Command, args []string) {
