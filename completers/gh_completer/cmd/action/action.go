@@ -32,16 +32,6 @@ func ActionConfigHosts() carapace.Action {
 	})
 }
 
-func ActionHttpMethods() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"GET", "get a resource",
-		"POST", "submit an entity to the specified resource",
-		"PATCH", "apply partial modifications to a resourc",
-		"PUT", "replaces all current representations of the target resource with the request payload",
-		"DELETE", "delete the specified resource",
-	)
-}
-
 func ApiV3Action(cmd *cobra.Command, query string, v interface{}, transform func() carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if repo, err := repoOverride(cmd); err != nil {

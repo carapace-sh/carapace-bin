@@ -4,6 +4,7 @@ package http
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionHttpRequestHeaders ocmpletes http request headers
@@ -187,16 +188,16 @@ func ActionTransferEncodingTokens() carapace.Action {
 //   DELETE (The DELETE method deletes the specified resource.)
 //   GET (The GET method requests a representation of the specified resource.)
 func ActionRequestMethods() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"GET", "The GET method requests a representation of the specified resource.",
-		"HEAD", "The HEAD method asks for a response identical to that of a GET request, but without the response body.",
-		"POST", "The POST method is used to submit an entity to the specified resource.",
-		"PUT", "The PUT method replaces all current representations of the target resource with the request payload.",
-		"DELETE", "The DELETE method deletes the specified resource.",
-		"CONNECT", "The CONNECT method establishes a tunnel to the server identified by the target resource.",
-		"OPTIONS", "The OPTIONS method is used to describe the communication options for the target resource.",
-		"TRACE", "The TRACE method performs a message loop-back test along the path to the target resource.",
-		"PATCH", "The PATCH method is used to apply partial modifications to a resource.",
+	return carapace.ActionStyledValuesDescribed(
+		"CONNECT", "The CONNECT method establishes a tunnel to the server identified by the target resource.", style.Default,
+		"DELETE", "The DELETE method deletes the specified resource.", style.Red,
+		"GET", "The GET method requests a representation of the specified resource.", style.Blue,
+		"HEAD", "The HEAD method asks for a response identical to that of a GET request, but without the response body.", style.Magenta,
+		"OPTIONS", "The OPTIONS method is used to describe the communication options for the target resource.", style.Of(style.Dim, style.Blue),
+		"PATCH", "The PATCH method is used to apply partial modifications to a resource.", style.Green,
+		"POST", "The POST method is used to submit an entity to the specified resource.", style.Of(style.Dim, style.Green),
+		"PUT", "The PUT method replaces all current representations of the target resource with the request payload.", style.Yellow,
+		"TRACE", "The TRACE method performs a message loop-back test along the path to the target resource.", style.Default,
 	)
 }
 
