@@ -132,6 +132,10 @@ func addDiffFlags(cmd *cobra.Command) {
 		}),
 	})
 
+	carapace.Gen(cmd).DashAnyCompletion(
+		carapace.ActionFiles(),
+	)
+
 }
 
 func ActionDiffAlgorithms() carapace.Action {

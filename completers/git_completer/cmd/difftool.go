@@ -38,4 +38,8 @@ func init() {
 		git.ActionRefs(git.RefOptionDefault),
 		git.ActionRefs(git.RefOptionDefault),
 	)
+
+	carapace.Gen(difftoolCmd).DashAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }
