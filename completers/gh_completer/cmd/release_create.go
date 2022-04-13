@@ -7,14 +7,15 @@ import (
 )
 
 var release_createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "Create a new release",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "create",
+	Short:   "Create a new release",
+	Aliases: []string{"new"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(release_createCmd).Standalone()
-	release_createCmd.Flags().String("discussion-category", "", "Start a discussion of the specified category")
+	release_createCmd.Flags().String("discussion-category", "", "Start a discussion in the specified category")
 	release_createCmd.Flags().BoolP("draft", "d", false, "Save the release as a draft instead of publishing it")
 	release_createCmd.Flags().Bool("generate-notes", false, "Automatically generate title and notes for the release")
 	release_createCmd.Flags().StringP("notes", "n", "", "Release notes")

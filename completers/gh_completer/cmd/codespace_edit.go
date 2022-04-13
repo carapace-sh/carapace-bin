@@ -16,7 +16,6 @@ func init() {
 	carapace.Gen(codespace_editCmd).Standalone()
 	codespace_editCmd.Flags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_editCmd.Flags().StringP("displayName", "d", "", "display name")
-	codespace_editCmd.Flags().Duration("idle-timeout", 0, "allowed inactivity before codespace is stopped, e.g. \"10m\", \"1h\"")
 	codespace_editCmd.Flags().StringP("machine", "m", "", "hardware specifications for the VM")
 	codespaceCmd.AddCommand(codespace_editCmd)
 

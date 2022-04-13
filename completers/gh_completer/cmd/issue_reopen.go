@@ -14,6 +14,7 @@ var issue_reopenCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(issue_reopenCmd).Standalone()
+	issue_reopenCmd.Flags().StringP("comment", "c", "", "Add a reopening comment")
 	issueCmd.AddCommand(issue_reopenCmd)
 
 	carapace.Gen(issue_reopenCmd).PositionalCompletion(

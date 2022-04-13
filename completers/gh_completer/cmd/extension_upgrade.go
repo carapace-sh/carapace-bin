@@ -15,6 +15,7 @@ var extension_upgradeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(extension_upgradeCmd).Standalone()
 	extension_upgradeCmd.Flags().Bool("all", false, "Upgrade all extensions")
+	extension_upgradeCmd.Flags().Bool("dry-run", false, "Only display upgrades")
 	extension_upgradeCmd.Flags().Bool("force", false, "Force upgrade extension")
 	extensionCmd.AddCommand(extension_upgradeCmd)
 
