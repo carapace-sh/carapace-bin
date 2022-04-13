@@ -34,6 +34,7 @@ func init() {
 			return action.ActionLabels(issue_editCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"add-project": action.ActionProjects(issue_editCmd, action.ProjectOpts{Open: true}),
+		"body":        action.ActionBodyLinks(issue_editCmd),
 		"body-file":   carapace.ActionFiles(),
 		"milestone":   action.ActionMilestones(issue_editCmd),
 		"remove-assignee": carapace.ActionCallback(func(c carapace.Context) carapace.Action {

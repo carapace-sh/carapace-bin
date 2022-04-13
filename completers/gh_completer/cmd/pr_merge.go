@@ -27,6 +27,7 @@ func init() {
 	prCmd.AddCommand(pr_mergeCmd)
 
 	carapace.Gen(pr_mergeCmd).FlagCompletion(carapace.ActionMap{
+		"body":      action.ActionBodyLinks(pr_mergeCmd),
 		"body-file": carapace.ActionFiles(),
 	})
 

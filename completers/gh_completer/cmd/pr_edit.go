@@ -41,6 +41,7 @@ func init() {
 			return action.ActionAssignableUsers(pr_editCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"base":      action.ActionBranches(pr_editCmd),
+		"body":      action.ActionBodyLinks(pr_editCmd),
 		"body-file": carapace.ActionFiles(),
 		"milestone": action.ActionMilestones(pr_editCmd),
 		"remove-assignee": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
