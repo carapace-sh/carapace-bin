@@ -6,9 +6,10 @@ import (
 )
 
 var gist_createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "Create a new gist",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "create",
+	Short:   "Create a new gist",
+	Aliases: []string{"new"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

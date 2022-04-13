@@ -14,6 +14,7 @@ var issue_closeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(issue_closeCmd).Standalone()
+	issue_closeCmd.Flags().StringP("comment", "c", "", "Leave a closing comment")
 	issueCmd.AddCommand(issue_closeCmd)
 
 	carapace.Gen(issue_closeCmd).PositionalCompletion(

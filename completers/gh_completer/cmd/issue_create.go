@@ -7,9 +7,10 @@ import (
 )
 
 var issue_createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "Create a new issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "create",
+	Short:   "Create a new issue",
+	Aliases: []string{"new"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

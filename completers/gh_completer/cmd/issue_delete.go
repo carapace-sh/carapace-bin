@@ -14,6 +14,7 @@ var issue_deleteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(issue_deleteCmd).Standalone()
+	issue_deleteCmd.Flags().Bool("confirm", false, "confirm deletion without prompting")
 	issueCmd.AddCommand(issue_deleteCmd)
 
 	carapace.Gen(issue_deleteCmd).PositionalCompletion(
