@@ -30,6 +30,7 @@ func init() {
 		"assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionAssignableUsers(issue_createCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
+		"body": action.ActionBodyLinks(issue_createCmd),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionLabels(issue_createCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),

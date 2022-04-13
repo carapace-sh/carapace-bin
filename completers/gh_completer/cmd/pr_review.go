@@ -22,6 +22,7 @@ func init() {
 	prCmd.AddCommand(pr_reviewCmd)
 
 	carapace.Gen(pr_reviewCmd).FlagCompletion(carapace.ActionMap{
+		"body":      action.ActionBodyLinks(pr_reviewCmd),
 		"body-file": carapace.ActionFiles(),
 	})
 
