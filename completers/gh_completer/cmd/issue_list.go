@@ -40,7 +40,7 @@ func init() {
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionLabels(issue_listCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"mention":   action.ActionAssignableUsers(issue_listCmd),
+		"mention":   action.ActionMentionableUsers(issue_listCmd),
 		"milestone": action.ActionMilestones(issue_listCmd),
 		"state":     carapace.ActionValues("open", "closed", "all"),
 	})
