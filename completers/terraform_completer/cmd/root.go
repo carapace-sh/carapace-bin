@@ -1,6 +1,9 @@
 package cmd
 
 import (
+	"os"
+	"strings"
+
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
@@ -18,6 +21,27 @@ func Execute() error {
 	})
 	return rootCmd.Execute()
 }
+
+func ActionExecute() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		// TODO don't change os.Args
+		backup := os.Args
+		carapace.Override(carapace.Opts{
+			LongShorthand: true,
+		})
+		for index, arg := range c.Args {
+			if strings.HasPrefix(arg, "-") && !strings.HasPrefix(arg, "--") {
+				c.Args[index] = "-" + arg
+			}
+		}
+		if strings.HasPrefix(c.CallbackValue, "-") && !strings.HasPrefix(c.CallbackValue, "--") {
+			c.CallbackValue = "-" + c.CallbackValue
+		}
+		os.Args = backup
+		return carapace.ActionExecute(rootCmd).Invoke(c).ToA()
+	})
+}
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
