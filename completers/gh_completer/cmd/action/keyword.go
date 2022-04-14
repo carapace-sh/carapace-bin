@@ -12,6 +12,11 @@ import (
 
 func ActionKeywordLinks(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionMultiParts(" ", func(c carapace.Context) carapace.Action {
+		if strings.HasPrefix(c.CallbackValue, "@") {
+			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "@")
+			return ActionMentionableUsers(cmd).Invoke(c).Prefix("@").ToA()
+		}
+
 		keywordsOfficial := []string{"close", "closes", "closed", "fix", "fixes", "fixed", "resolve", "resolves", "resolved"}
 		keywordsCustom := []string{"causes", "caused-by", "closed_by", "fixed_by", "related", "resolved_by", "see"}
 
