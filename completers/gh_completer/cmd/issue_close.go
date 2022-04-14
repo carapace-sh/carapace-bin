@@ -17,6 +17,10 @@ func init() {
 	issue_closeCmd.Flags().StringP("comment", "c", "", "Leave a closing comment")
 	issueCmd.AddCommand(issue_closeCmd)
 
+	carapace.Gen(issue_closeCmd).FlagCompletion(carapace.ActionMap{
+		"comment": action.ActionKeywordLinks(issue_closeCmd),
+	})
+
 	carapace.Gen(issue_closeCmd).PositionalCompletion(
 		action.ActionIssues(issue_closeCmd, action.IssueOpts{Open: true}),
 	)

@@ -22,8 +22,9 @@ func init() {
 	prCmd.AddCommand(pr_reviewCmd)
 
 	carapace.Gen(pr_reviewCmd).FlagCompletion(carapace.ActionMap{
-		"body":      action.ActionBodyLinks(pr_reviewCmd),
+		"body":      action.ActionKeywordLinks(pr_reviewCmd),
 		"body-file": carapace.ActionFiles(),
+		"comment":   action.ActionKeywordLinks(pr_reviewCmd),
 	})
 
 	carapace.Gen(pr_reviewCmd).PositionalCompletion(

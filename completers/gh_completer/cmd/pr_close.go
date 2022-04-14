@@ -18,6 +18,10 @@ func init() {
 	pr_closeCmd.Flags().BoolP("delete-branch", "d", false, "Delete the local and remote branch after close")
 	prCmd.AddCommand(pr_closeCmd)
 
+	carapace.Gen(pr_closeCmd).FlagCompletion(carapace.ActionMap{
+		"comment": action.ActionKeywordLinks(pr_closeCmd),
+	})
+
 	carapace.Gen(pr_closeCmd).PositionalCompletion(
 		action.ActionPullRequests(pr_closeCmd, action.PullRequestOpts{Open: true}),
 	)
