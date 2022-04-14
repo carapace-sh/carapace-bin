@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionJarFileClasses completes classes within a jar file
@@ -25,7 +26,7 @@ func ActionJarFileClasses(file string) carapace.Action {
 					vals = append(vals, name)
 				}
 			}
-			return carapace.ActionValues(vals...)
+			return carapace.ActionValues(vals...).Style(style.ForPathExt(".class"))
 		}
 	})
 }
