@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionMounts completes file system mounts
@@ -23,6 +24,6 @@ func ActionMounts() carapace.Action {
 				vals = append(vals, strings.Replace(fields[1], `\040`, " ", -1), fields[0])
 			}
 		}
-		return carapace.ActionValuesDescribed(vals...)
+		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
 	})
 }
