@@ -37,7 +37,7 @@ func init() {
 			return action.ActionAssignableUsers(pr_createCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"base": action.ActionBranches(pr_createCmd),
-		"body": action.ActionBodyLinks(pr_createCmd),
+		"body": action.ActionKeywordLinks(pr_createCmd),
 		"head": action.ActionBranches(pr_createCmd),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionLabels(pr_createCmd).Invoke(c).Filter(c.Parts).ToA()

@@ -17,6 +17,10 @@ func init() {
 	pr_reopenCmd.Flags().StringP("comment", "c", "", "Add a reopening comment")
 	prCmd.AddCommand(pr_reopenCmd)
 
+	carapace.Gen(pr_reopenCmd).FlagCompletion(carapace.ActionMap{
+		"comment": action.ActionKeywordLinks(pr_reopenCmd),
+	})
+
 	carapace.Gen(pr_reopenCmd).PositionalCompletion(
 		action.ActionPullRequests(pr_reopenCmd, action.PullRequestOpts{Closed: true}),
 	)

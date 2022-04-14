@@ -21,7 +21,7 @@ func init() {
 	issueCmd.AddCommand(issue_commentCmd)
 
 	carapace.Gen(issue_commentCmd).FlagCompletion(carapace.ActionMap{
-		"body":      action.ActionBodyLinks(issue_commentCmd),
+		"body":      action.ActionKeywordLinks(issue_commentCmd),
 		"body-file": carapace.ActionFiles(),
 	})
 	carapace.Gen(issue_commentCmd).PositionalCompletion(

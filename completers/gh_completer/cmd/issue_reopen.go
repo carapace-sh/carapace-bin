@@ -17,6 +17,10 @@ func init() {
 	issue_reopenCmd.Flags().StringP("comment", "c", "", "Add a reopening comment")
 	issueCmd.AddCommand(issue_reopenCmd)
 
+	carapace.Gen(issue_reopenCmd).FlagCompletion(carapace.ActionMap{
+		"comment": action.ActionKeywordLinks(issue_reopenCmd),
+	})
+
 	carapace.Gen(issue_reopenCmd).PositionalCompletion(
 		action.ActionIssues(issue_reopenCmd, action.IssueOpts{Closed: true}),
 	)
