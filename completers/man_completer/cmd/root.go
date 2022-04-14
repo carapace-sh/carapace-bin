@@ -18,6 +18,11 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
+func ActionExecute() carapace.Action {
+	return carapace.ActionExecute(rootCmd)
+}
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
