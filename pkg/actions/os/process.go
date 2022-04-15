@@ -5,45 +5,48 @@ import (
 
 	"github.com/mitchellh/go-ps"
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 )
 
 // ActionKillSignals completes linux kill signals
 //   ABRT (Abnormal termination)
 //   STOP (Stop process, unblockable)
 func ActionKillSignals() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"ABRT", "Abnormal termination",
-		"ALRM", "Virtual alarm clock",
-		"BUS", "BUS error",
-		"CHLD", "Child status has changed",
-		"CONT", "Continue stopped process",
-		"FPE", "Floating-point exception",
-		"HUP", "Hangup detected on controlling terminal",
-		"ILL", "Illegal instruction",
-		"INT", "Interrupt from keyboard",
-		"KILL", "Kill, unblockable",
-		"PIPE", "Broken pipe",
-		"POLL", "Pollable event occurred",
-		"PROF", "Profiling alarm clock timer expired",
-		"PWR", "Power failure restart",
-		"QUIT", "Quit from keyboard",
-		"SEGV", "Segmentation violation",
-		"STKFLT", "Stack fault on coprocessor",
-		"STOP", "Stop process, unblockable",
-		"SYS", "Bad system call",
-		"TERM", "Termination request",
-		"TRAP", "Trace/breakpoint trap",
-		"TSTP", "Stop typed at keyboard",
-		"TTIN", "Background read from tty",
-		"TTOU", "Background write to tty",
-		"URG", "Urgent condition on socket",
-		"USR1", "User-defined signal 1",
-		"USR2", "User-defined signal 2",
-		"VTALRM", "Virtual alarm clock",
-		"WINCH", "Window size change",
-		"XCPU", "CPU time limit exceeded",
-		"XFSZ", "File size limit exceeded",
-	)
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionStyledValuesDescribed(
+			"ABRT", "Abnormal termination", styles.CarapaceBin.KillSignalCore,
+			"ALRM", "Virtual alarm clock", styles.CarapaceBin.KillSignalTerm,
+			"BUS", "BUS error", styles.CarapaceBin.KillSignalCore,
+			"CHLD", "Child status has changed", styles.CarapaceBin.KillSignalIgn,
+			"CONT", "Continue stopped process", styles.CarapaceBin.KillSignalCont,
+			"FPE", "Floating-point exception", styles.CarapaceBin.KillSignalCore,
+			"HUP", "Hangup detected on controlling terminal", styles.CarapaceBin.KillSignalTerm,
+			"ILL", "Illegal instruction", styles.CarapaceBin.KillSignalCore,
+			"INT", "Interrupt from keyboard", styles.CarapaceBin.KillSignalTerm,
+			"KILL", "Kill, unblockable", styles.CarapaceBin.KillSignalTerm,
+			"PIPE", "Broken pipe", styles.CarapaceBin.KillSignalTerm,
+			"POLL", "Pollable event occurred", styles.CarapaceBin.KillSignalTerm,
+			"PROF", "Profiling alarm clock timer expired", styles.CarapaceBin.KillSignalTerm,
+			"PWR", "Power failure restart", styles.CarapaceBin.KillSignalTerm,
+			"QUIT", "Quit from keyboard", styles.CarapaceBin.KillSignalCore,
+			"SEGV", "Segmentation violation", styles.CarapaceBin.KillSignalCore,
+			"STKFLT", "Stack fault on coprocessor", styles.CarapaceBin.KillSignalTerm,
+			"STOP", "Stop process, unblockable", styles.CarapaceBin.KillSignalStop,
+			"SYS", "Bad system call", styles.CarapaceBin.KillSignalCore,
+			"TERM", "Termination request", styles.CarapaceBin.KillSignalTerm,
+			"TRAP", "Trace/breakpoint trap", styles.CarapaceBin.KillSignalCore,
+			"TSTP", "Stop typed at keyboard", styles.CarapaceBin.KillSignalStop,
+			"TTIN", "Background read from tty", styles.CarapaceBin.KillSignalStop,
+			"TTOU", "Background write to tty", styles.CarapaceBin.KillSignalStop,
+			"URG", "Urgent condition on socket", styles.CarapaceBin.KillSignalIgn,
+			"USR1", "User-defined signal 1", styles.CarapaceBin.KillSignalTerm,
+			"USR2", "User-defined signal 2", styles.CarapaceBin.KillSignalTerm,
+			"VTALRM", "Virtual alarm clock", styles.CarapaceBin.KillSignalTerm,
+			"WINCH", "Window size change", styles.CarapaceBin.KillSignalIgn,
+			"XCPU", "CPU time limit exceeded", styles.CarapaceBin.KillSignalCore,
+			"XFSZ", "File size limit exceeded", styles.CarapaceBin.KillSignalCore,
+		)
+	})
 }
 
 // ActionProcessExecutables completes executable names of current processes

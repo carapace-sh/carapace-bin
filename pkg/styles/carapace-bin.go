@@ -18,6 +18,12 @@ var CarapaceBin = struct {
 	HttpMethodPOST    string `desc:"http POST method"`
 	HttpMethodPUT     string `desc:"http PUT method"`
 	HttpMethodTRACE   string `desc:"http TRACE method"`
+
+	KillSignalTerm string `desc:"Default action is to terminate the process"`
+	KillSignalIgn  string `desc:"Default action is to ignore the signal"`
+	KillSignalCore string `desc:"Default action is to terminate the process and dump core"`
+	KillSignalStop string `desc:"Default action is to stop the proces"`
+	KillSignalCont string `desc:"Default action is to continue the process if it is currently stopped"`
 }{
 	HttpStatusInformational: style.Blue,
 	HttpStatusSuccessful:    style.Green,
@@ -34,6 +40,12 @@ var CarapaceBin = struct {
 	HttpMethodPOST:    style.Of(style.Dim, style.Green),
 	HttpMethodPUT:     style.Yellow,
 	HttpMethodTRACE:   style.Default,
+
+	KillSignalTerm: style.Red,
+	KillSignalIgn:  style.Blue,
+	KillSignalCore: style.Magenta,
+	KillSignalStop: style.Yellow,
+	KillSignalCont: style.Green,
 }
 
 func init() {
