@@ -58,8 +58,10 @@ func init() {
 		"parent": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return os.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"pidfile":   carapace.ActionFiles(),
-		"runstates": os.ActionProcessStates(),
+		"pidfile": carapace.ActionFiles(),
+		"runstates": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return os.ActionProcessStates().Invoke(c).Filter(c.Parts).ToA()
+		}),
 		"session": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return os.ActionSessionIds().Invoke(c).Filter(c.Parts).ToA()
 		}),
