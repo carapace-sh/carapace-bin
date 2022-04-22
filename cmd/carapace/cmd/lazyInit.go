@@ -56,11 +56,26 @@ complete -c '%v' -f -a '(_carapace_lazy %v)'`, completer, completer, completer)
 }
 
 func nushell_lazy(completers []string) string {
-	snippet := make([]string, len(completers))
+	exports := make([]string, len(completers))
 	for index, completer := range completers {
-		snippet[index] = fmt.Sprintf(`config set completion.%v [carapace %v nushell _]`, completer, completer)
+		exports[index] = fmt.Sprintf(`  export extern "%v" [
+    ...args: string@"nu-complete carapace"
+  ]`, completer)
 	}
-	return strings.Join(snippet, "\n")
+	return fmt.Sprintf(`module carapace {
+  def "nu-complete carapace" [line: string, pos: int] {
+    let words = ($line | str substring [0 $pos] | split row " ")
+    if ($line | str substring [0 $pos] | str ends-with " ") {
+      carapace $words.0 nushell ($words | append "") | from json
+    } else {
+      carapace $words.0 nushell $words | from json
+    }
+  }
+
+%v
+}
+use carapace *
+`, strings.Join(exports, "\n"))
 }
 
 func oil_lazy(completers []string) string {
