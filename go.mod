@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/mitchellh/go-ps v1.0.0
-	github.com/pelletier/go-toml v1.9.4
+	github.com/pelletier/go-toml v1.9.5
 	github.com/rsteube/carapace v0.19.5
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/pflag v1.0.5
