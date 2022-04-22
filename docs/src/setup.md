@@ -14,8 +14,9 @@ mkdir -p ~/.config/fish/completions
 carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
 carapace _carapace | source
 
-# nushell [needs fork: https://github.com/rsteube/nushell]
-carapace _carapace | save carapace.nu ; nu -c 'source carapace.nu'
+# nushell
+carapace _carapace | save carapace.nu
+source carapace.nu
 
 # oil (~/.config/oil/oshrc)
 source <(carapace _carapace)
