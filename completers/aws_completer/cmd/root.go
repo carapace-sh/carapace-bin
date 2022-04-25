@@ -35,16 +35,13 @@ func init() {
 				if lines[0] == "" {
 					return carapace.ActionValues()
 				}
-				nospace := true
 				for index, line := range lines {
 					if strings.HasSuffix(line, " ") {
-						lines[index] = strings.TrimSuffix(line, " ")
-						nospace = false
+						lines[index] = strings.TrimSuffix(line, " ") // v1 has space suffix
 					}
 				}
 				a := carapace.ActionValues(lines[:len(lines)-1]...)
-				if nospace ||
-					strings.HasPrefix(current, "file://") ||
+				if strings.HasPrefix(current, "file://") ||
 					strings.HasPrefix(current, "fileb://") {
 					return a.NoSpace()
 				}
