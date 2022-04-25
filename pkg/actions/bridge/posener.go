@@ -2,7 +2,6 @@ package bridge
 
 import (
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -29,7 +28,7 @@ import (
 //   }
 func ActionPosenerComplete(cmd string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		os.Setenv("COMP_LINE", fmt.Sprintf("%v %v %v", cmd, strings.Join(c.Args, " "), c.CallbackValue))
+		c.Setenv("COMP_LINE", fmt.Sprintf("%v %v %v", cmd, strings.Join(c.Args, " "), c.CallbackValue))
 		return carapace.ActionExecCommand(cmd)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
@@ -41,6 +40,6 @@ func ActionPosenerComplete(cmd string) carapace.Action {
 				}
 			}
 			return a
-		})
+		}).Invoke(c).ToA()
 	})
 }
