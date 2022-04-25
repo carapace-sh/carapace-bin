@@ -4,7 +4,6 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/spf13/cobra"
-	"os"
 )
 
 var rootCmd = &cobra.Command{
@@ -29,8 +28,8 @@ func init() {
 			if c.CallbackValue == "-" {
 				return carapace.ActionValues("--").NoSpace() // seems shorthand flags aren't completed anyway so expand to longhand first
 			}
-			os.Setenv("CLOUDSDK_COMPONENT_MANAGER_DISABLE_UPDATE_CHECK", "1")
-			return bridge.ActionArgcomplete("gcloud")
+			c.Setenv("CLOUDSDK_COMPONENT_MANAGER_DISABLE_UPDATE_CHECK", "1")
+			return bridge.ActionArgcomplete("gcloud").Invoke(c).ToA()
 		}),
 	)
 }

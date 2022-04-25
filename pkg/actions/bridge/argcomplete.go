@@ -1,7 +1,6 @@
 package bridge
 
 import (
-	"os"
 	"os/exec"
 	"strconv"
 	"strings"
@@ -51,15 +50,15 @@ func ActionArgcomplete(command string) carapace.Action {
 		}
 
 		compLine := command + " " + strings.Join(append(args, current), " ") // TODO escape/quote special characters
-		os.Setenv("_ARGCOMPLETE", "1")
-		os.Setenv("_ARGCOMPLETE_DFS", "\t")
-		os.Setenv("_ARGCOMPLETE_IFS", "\n")
-		os.Setenv("_ARGCOMPLETE_SHELL", "fish")
-		os.Setenv("_ARGCOMPLETE_SUPPRESS_SPACE", "1") // TODO needed? relevant for nospace detection?
-		// os.Setenv("_ARGCOMPLETE_COMP_WORDBREAKS", " ") // TODO set to space-only for multiparts?
-		os.Setenv("_ARGCOMPLETE", "1")
-		os.Setenv("COMP_LINE", compLine)
-		os.Setenv("COMP_POINT", strconv.Itoa(len(compLine)))
+		c.Setenv("_ARGCOMPLETE", "1")
+		c.Setenv("_ARGCOMPLETE_DFS", "\t")
+		c.Setenv("_ARGCOMPLETE_IFS", "\n")
+		c.Setenv("_ARGCOMPLETE_SHELL", "fish")
+		c.Setenv("_ARGCOMPLETE_SUPPRESS_SPACE", "1") // TODO needed? relevant for nospace detection?
+		// c.Setenv("_ARGCOMPLETE_COMP_WORDBREAKS", " ") // TODO set to space-only for multiparts?
+		c.Setenv("_ARGCOMPLETE", "1")
+		c.Setenv("COMP_LINE", compLine)
+		c.Setenv("COMP_POINT", strconv.Itoa(len(compLine)))
 		nospace := false
 		a := carapace.ActionExecCommand("sh", "-c", command+" 8>&1 9>&2 1>/dev/null 2>/dev/null")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
