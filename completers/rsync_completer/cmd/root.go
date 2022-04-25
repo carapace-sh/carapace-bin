@@ -16,6 +16,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "rsync",
 	Short: "a fast, versatile, remote (and local) file-copying tool",
+	Long:  "https://github.com/WayneD/rsync/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

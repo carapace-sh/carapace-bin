@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "nfpm",
 	Short: "Packages apps on RPM, Deb and APK formats based on a YAML configuration file",
+	Long:  "https://github.com/goreleaser/nfpm",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
