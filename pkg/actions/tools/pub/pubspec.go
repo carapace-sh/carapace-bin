@@ -2,7 +2,6 @@ package pub
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -38,7 +37,7 @@ func loadPubspec() (*pubspec, error) {
 		return nil, err
 	}
 
-	content, err := ioutil.ReadFile(path)
+	content, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +64,7 @@ func loadPubspecLock() (*pubspecLock, error) {
 		return nil, err
 	}
 
-	content, err := ioutil.ReadFile(path)
+	content, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
@@ -119,7 +118,7 @@ func ActionHostedExecutables(name string, version string) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		files, err := ioutil.ReadDir(fmt.Sprintf("%v/.pub-cache/hosted/pub.dartlang.org/%v-%v/bin", home, name, version))
+		files, err := os.ReadDir(fmt.Sprintf("%v/.pub-cache/hosted/pub.dartlang.org/%v-%v/bin", home, name, version))
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

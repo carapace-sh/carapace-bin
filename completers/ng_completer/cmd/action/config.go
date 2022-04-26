@@ -2,7 +2,6 @@ package action
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"os"
 
 	"github.com/rsteube/carapace"
@@ -27,7 +26,7 @@ func actionConfig(f func(cfg config) carapace.Action) carapace.Action {
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
-		content, err := ioutil.ReadFile(path)
+		content, err := os.ReadFile(path)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

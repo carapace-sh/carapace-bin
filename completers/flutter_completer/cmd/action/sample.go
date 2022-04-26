@@ -2,7 +2,6 @@ package action
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"os"
 	"time"
 
@@ -16,7 +15,7 @@ type sample struct {
 
 func ActionSamples() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		tmpfile, err := ioutil.TempFile(os.TempDir(), "carapace-flutter-samples.json")
+		tmpfile, err := os.CreateTemp(os.TempDir(), "carapace-flutter-samples.json")
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
@@ -30,7 +29,7 @@ func ActionSamples() carapace.Action {
 		}
 		defer os.Remove(tmpfile.Name()) // remove after parsing content
 		return carapace.ActionExecCommand("flutter", "create", "--suppress-analytics", "--list-samples", tmpfile.Name())(func(output []byte) carapace.Action {
-			content, err := ioutil.ReadFile(tmpfile.Name())
+			content, err := os.ReadFile(tmpfile.Name())
 			if err != nil {
 				return carapace.ActionMessage(err.Error())
 			}

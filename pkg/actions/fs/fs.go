@@ -2,7 +2,7 @@
 package fs
 
 import (
-	"io/ioutil"
+	"os"
 	"strings"
 	"unicode"
 
@@ -14,7 +14,7 @@ import (
 //   subdir/subsubder2
 func ActionSubDirectories(path string) carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-		if files, err := ioutil.ReadDir(path + "/" + strings.Join(c.Parts, "/") + "/"); err != nil {
+		if files, err := os.ReadDir(path + "/" + strings.Join(c.Parts, "/") + "/"); err != nil {
 			return carapace.ActionValues()
 		} else {
 			dirs := make([]string, 0)

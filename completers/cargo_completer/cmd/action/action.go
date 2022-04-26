@@ -3,7 +3,6 @@ package action
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"regexp"
 	"strings"
@@ -61,7 +60,7 @@ func parseManifest(cmd *cobra.Command) (m manifestToml, err error) {
 	var content []byte
 	var path string
 	if path, err = manifestLocation(cmd); err == nil {
-		if content, err = ioutil.ReadFile(path); err == nil {
+		if content, err = os.ReadFile(path); err == nil {
 			err = toml.Unmarshal(content, &m)
 		}
 	}
@@ -195,7 +194,7 @@ type config struct {
 
 func parseConfig(path string) (c config, err error) {
 	var content []byte
-	if content, err = ioutil.ReadFile(path); err == nil {
+	if content, err = os.ReadFile(path); err == nil {
 		err = toml.Unmarshal(content, &c)
 	}
 	return

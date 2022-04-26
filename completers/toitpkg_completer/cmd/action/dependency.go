@@ -1,7 +1,6 @@
 package action
 
 import (
-	"io/ioutil"
 	"os"
 
 	"github.com/rsteube/carapace"
@@ -34,7 +33,7 @@ func ActionDependencies(cmd *cobra.Command) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		content, err := ioutil.ReadFile(location)
+		content, err := os.ReadFile(location)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

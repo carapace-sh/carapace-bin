@@ -1,7 +1,6 @@
 package action
 
 import (
-	"io/ioutil"
 	"os"
 
 	"github.com/rsteube/carapace"
@@ -39,7 +38,7 @@ func loadConfig() (config *glabConfig, err error) {
 	var dir string
 	if dir, err = os.UserConfigDir(); err == nil {
 		var content []byte
-		if content, err = ioutil.ReadFile(dir + "/glab-cli/config.yml"); err == nil {
+		if content, err = os.ReadFile(dir + "/glab-cli/config.yml"); err == nil {
 			err = yaml.Unmarshal(content, &config)
 		}
 	}

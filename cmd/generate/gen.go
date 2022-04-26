@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -74,8 +73,8 @@ func executeCompleter(completer string) {
 		os.Exit(1)
 	}
 
-	ioutil.WriteFile(root+"/cmd/carapace/cmd/completers.go", []byte("//go:build !release\n\n"+content), 0644)
-	ioutil.WriteFile(root+"/cmd/carapace/cmd/completers_release.go", []byte("//go:build release\n\n"+strings.Replace(content, "/completers/", "/completers_release/", -1)), 0644)
+	os.WriteFile(root+"/cmd/carapace/cmd/completers.go", []byte("//go:build !release\n\n"+content), 0644)
+	os.WriteFile(root+"/cmd/carapace/cmd/completers_release.go", []byte("//go:build release\n\n"+strings.Replace(content, "/completers/", "/completers_release/", -1)), 0644)
 	os.RemoveAll(root + "/completers_release")
 	exec.Command("cp", "-r", root+"/completers", root+"/completers_release").Run()
 
@@ -86,17 +85,17 @@ func executeCompleter(completer string) {
 			for _, file := range files {
 				if !file.IsDir() && strings.HasSuffix(file.Name(), ".go") {
 					path := fmt.Sprintf("%v/completers_release/%v_completer/cmd/%v", root, name, file.Name())
-					content, err := ioutil.ReadFile(path)
+					content, err := os.ReadFile(path)
 					if err == nil && strings.Contains(string(content), "func init() {") {
 						patched := strings.Replace(string(content), "func init() {", fmt.Sprintf("func init_%v() {", strings.TrimSuffix(file.Name(), ".go")), 1)
-						ioutil.WriteFile(path, []byte(patched), os.ModePerm)
+						os.WriteFile(path, []byte(patched), os.ModePerm)
 						initFuncs = append(initFuncs, fmt.Sprintf("	init_%v()", strings.TrimSuffix(file.Name(), ".go")))
 					}
 				}
 			}
 
 			path := fmt.Sprintf("%v/completers_release/%v_completer/cmd/root.go", root, name)
-			content, err := ioutil.ReadFile(path)
+			content, err := os.ReadFile(path)
 			if err == nil {
 				patched := make([]string, 0)
 				for _, line := range strings.Split(string(content), "\n") {
@@ -105,7 +104,7 @@ func executeCompleter(completer string) {
 						patched = append(patched, initFuncs...)
 					}
 				}
-				ioutil.WriteFile(path, []byte(strings.Join(patched, "\n")), os.ModePerm)
+				os.WriteFile(path, []byte(strings.Join(patched, "\n")), os.ModePerm)
 			}
 		}
 	}
@@ -122,7 +121,7 @@ func readCompleters() ([]string, map[string]string) {
 	names := make([]string, 0)
 	descriptions := make(map[string]string)
 	if root, err := rootDir(); err == nil {
-		if files, err := ioutil.ReadDir(root + "/completers/"); err == nil {
+		if files, err := os.ReadDir(root + "/completers/"); err == nil {
 			for _, file := range files {
 				if file.IsDir() && strings.HasSuffix(file.Name(), "_completer") {
 					name := strings.TrimSuffix(file.Name(), "_completer")
@@ -137,7 +136,7 @@ func readCompleters() ([]string, map[string]string) {
 }
 
 func readDescription(root string, completer string) string {
-	if content, err := ioutil.ReadFile(fmt.Sprintf("%v/completers/%v/cmd/root.go", root, completer)); err == nil {
+	if content, err := os.ReadFile(fmt.Sprintf("%v/completers/%v/cmd/root.go", root, completer)); err == nil {
 		re := regexp.MustCompile("^\tShort: +\"(?P<description>.*)\",$")
 		for _, line := range strings.Split(string(content), "\n") {
 			if re.MatchString(line) {

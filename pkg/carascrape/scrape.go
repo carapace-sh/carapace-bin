@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/csv"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 
@@ -106,7 +105,7 @@ var %vCmd = &cobra.Command{
 
 	filename := fmt.Sprintf(`%v/%v.go`, tmpDir, cmdVarName(cmd))
 	println(filename)
-	ioutil.WriteFile(filename, out.Bytes(), 0644)
+	os.WriteFile(filename, out.Bytes(), 0644)
 
 	for _, subcmd := range cmd.Commands() {
 		if !subcmd.Hidden && subcmd.Deprecated == "" {
