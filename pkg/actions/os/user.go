@@ -1,7 +1,7 @@
 package os
 
 import (
-	"io/ioutil"
+	"os"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -13,7 +13,7 @@ import (
 func ActionUsers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		users := []string{}
-		if content, err := ioutil.ReadFile("/etc/passwd"); err == nil {
+		if content, err := os.ReadFile("/etc/passwd"); err == nil {
 			for _, entry := range strings.Split(string(content), "\n") {
 				splitted := strings.Split(entry, ":")
 				if len(splitted) > 2 {

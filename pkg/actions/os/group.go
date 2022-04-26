@@ -1,7 +1,7 @@
 package os
 
 import (
-	"io/ioutil"
+	"os"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -13,7 +13,7 @@ import (
 func ActionGroups() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		groups := []string{}
-		if content, err := ioutil.ReadFile("/etc/group"); err == nil {
+		if content, err := os.ReadFile("/etc/group"); err == nil {
 			for _, entry := range strings.Split(string(content), "\n") {
 				splitted := strings.Split(entry, ":")
 				if len(splitted) > 2 {
@@ -35,7 +35,7 @@ func ActionGroups() carapace.Action {
 func ActionGroupMembers(group string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := []string{}
-		if content, err := ioutil.ReadFile("/etc/group"); err == nil {
+		if content, err := os.ReadFile("/etc/group"); err == nil {
 			for _, entry := range strings.Split(string(content), "\n") {
 				splitted := strings.Split(entry, ":")
 				if len(splitted) > 3 &&

@@ -3,7 +3,6 @@ package action
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 
@@ -94,7 +93,7 @@ func loadPackageJson() (pj packageJson, err error) {
 	if wd, err = os.Getwd(); err == nil {
 		if packageFile, err = util.FindReverse(wd, "package.json"); err == nil {
 			var content []byte
-			if content, err = ioutil.ReadFile(packageFile); err == nil {
+			if content, err = os.ReadFile(packageFile); err == nil {
 				err = json.Unmarshal(content, &pj)
 			}
 		}

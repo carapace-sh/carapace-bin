@@ -1,7 +1,6 @@
 package action
 
 import (
-	"io/ioutil"
 	"os"
 	"regexp"
 	"strings"
@@ -22,7 +21,7 @@ func ActionProvisioners() carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		content, err := ioutil.ReadFile(path)
+		content, err := os.ReadFile(path)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

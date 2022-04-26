@@ -3,7 +3,7 @@ package os
 import (
 	"fmt"
 	"io/fs"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -71,7 +71,7 @@ func ActionKernelModules(basedir string, release string) carapace.Action {
 //   5.4.159-1-MANJARO
 func ActionKernelReleases(basedir string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		files, err := ioutil.ReadDir(basedir + "/lib/modules")
+		files, err := os.ReadDir(basedir + "/lib/modules")
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

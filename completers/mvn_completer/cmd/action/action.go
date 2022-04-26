@@ -4,7 +4,7 @@ import (
 	"archive/zip"
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -167,7 +167,7 @@ func locatePom(file string) (pom string) {
 
 func loadProject(file string) (project *Project, err error) {
 	var content []byte
-	if content, err = ioutil.ReadFile(locatePom(file)); err == nil {
+	if content, err = os.ReadFile(locatePom(file)); err == nil {
 		err = xml.Unmarshal(content, &project)
 	}
 	return
@@ -180,7 +180,7 @@ func loadPlugin(file string) (plugin *Plugin) {
 			if f.Name == "META-INF/maven/plugin.xml" {
 				if pluginFile, err := f.Open(); err == nil {
 					defer pluginFile.Close()
-					if content, err := ioutil.ReadAll(pluginFile); err == nil {
+					if content, err := io.ReadAll(pluginFile); err == nil {
 						_ = xml.Unmarshal(content, &plugin)
 					}
 				}

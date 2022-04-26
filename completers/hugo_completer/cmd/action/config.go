@@ -2,7 +2,6 @@ package action
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -36,7 +35,7 @@ func loadConfig() (c config, err error) {
 	var path string
 	if path, err = configPath(); err == nil {
 		var content []byte
-		if content, err = ioutil.ReadFile(path); err == nil {
+		if content, err = os.ReadFile(path); err == nil {
 			switch filepath.Ext(path) {
 			case ".json":
 				err = json.Unmarshal(content, &c)

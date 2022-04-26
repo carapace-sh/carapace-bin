@@ -2,7 +2,6 @@
 package os
 
 import (
-	"io/ioutil"
 	"os"
 	"strings"
 
@@ -30,10 +29,10 @@ func ActionPathExecutables() carapace.Action {
 		executables := make(map[string]string)
 
 		for _, folder := range strings.Split(os.Getenv("PATH"), string(os.PathListSeparator)) {
-			if files, err := ioutil.ReadDir(folder); err == nil {
+			if files, err := os.ReadDir(folder); err == nil {
 				for _, f := range files {
 					if _, ok := executables[f.Name()]; !ok {
-						if !f.IsDir() && isExecAny(f.Mode()) {
+						if info, err := f.Info(); err == nil && !f.IsDir() && isExecAny(info.Mode()) {
 							executables[f.Name()] = style.ForPath(folder + "/" + f.Name())
 						}
 					}

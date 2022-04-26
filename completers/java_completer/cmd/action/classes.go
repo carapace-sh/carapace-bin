@@ -2,7 +2,6 @@ package action
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 
@@ -33,7 +32,7 @@ func ActionClasspathClasses(cmd *cobra.Command) carapace.Action {
 				if !f.IsDir() {
 					files = append(files, path)
 				} else {
-					if fileInfos, err := ioutil.ReadDir(path); err == nil {
+					if fileInfos, err := os.ReadDir(path); err == nil {
 						for _, file := range fileInfos {
 							files = append(files, fmt.Sprintf("%v/%v", path, file.Name()))
 						}

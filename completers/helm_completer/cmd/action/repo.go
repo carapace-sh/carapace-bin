@@ -2,7 +2,6 @@ package action
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 
 	"github.com/rsteube/carapace"
@@ -23,7 +22,7 @@ func ActionRepositories() carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		content, err := ioutil.ReadFile(dir + "/helm/repositories.yaml")
+		content, err := os.ReadFile(dir + "/helm/repositories.yaml")
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
@@ -56,7 +55,7 @@ func loadIndex(repo string) (index *index, err error) {
 		return nil, err
 	}
 
-	content, err := ioutil.ReadFile(fmt.Sprintf("%v/helm/repository/%v-index.yaml", dir, repo))
+	content, err := os.ReadFile(fmt.Sprintf("%v/helm/repository/%v-index.yaml", dir, repo))
 	if err != nil {
 		return nil, err
 	}

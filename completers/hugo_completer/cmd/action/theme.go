@@ -2,7 +2,6 @@ package action
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -18,7 +17,7 @@ type theme struct {
 
 func loadTheme(path string) (t theme, err error) {
 	var content []byte
-	if content, err = ioutil.ReadFile(path); err == nil {
+	if content, err = os.ReadFile(path); err == nil {
 		err = toml.Unmarshal(content, &t)
 	}
 	return

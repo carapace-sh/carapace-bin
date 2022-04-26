@@ -1,7 +1,7 @@
 package fs
 
 import (
-	"io/ioutil"
+	"os"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -13,7 +13,7 @@ import (
 //   /dev (dev)
 func ActionMounts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		content, err := ioutil.ReadFile("/proc/mounts")
+		content, err := os.ReadFile("/proc/mounts")
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
