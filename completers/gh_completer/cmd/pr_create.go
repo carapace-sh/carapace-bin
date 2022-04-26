@@ -18,7 +18,7 @@ func init() {
 	pr_createCmd.Flags().StringSliceP("assignee", "a", []string{}, "Assign people by their `login`. Use \"@me\" to self-assign.")
 	pr_createCmd.Flags().StringP("base", "B", "", "The `branch` into which you want your code merged")
 	pr_createCmd.Flags().StringP("body", "b", "", "Body for the pull request")
-	pr_createCmd.Flags().StringP("body-file", "F", "", "Read body text from `file`")
+	pr_createCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	pr_createCmd.Flags().BoolP("draft", "d", false, "Mark pull request as a draft")
 	pr_createCmd.Flags().BoolP("fill", "f", false, "Do not prompt for title/body and just use commit info")
 	pr_createCmd.Flags().StringP("head", "H", "", "The `branch` that contains commits for your pull request (default: current branch)")

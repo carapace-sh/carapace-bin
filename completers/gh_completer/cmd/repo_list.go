@@ -7,9 +7,10 @@ import (
 )
 
 var repo_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List repositories owned by user or organization",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List repositories owned by user or organization",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
