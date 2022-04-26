@@ -64,3 +64,14 @@ aurs:
       - carapace
     conflicts:
       - carapace
+
+nfpms:
+  -
+    description: "multi-shell multi-command argument completer"
+    homepage: "https://github.com/rsteube/carapace-bin"
+    license: "MIT"
+    maintainer: rsteube <rsteube@users.noreply.github.com>
+    formats:
+      - apk
+      - deb
+      - rpm
