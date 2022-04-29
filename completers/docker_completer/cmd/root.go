@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -32,7 +33,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":    carapace.ActionFiles(),
-		"log-level": carapace.ActionValues("debug", "info", "warn", "error", "fatal"),
+		"log-level": carapace.ActionValues("debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel),
 		"tlscacert": carapace.ActionFiles(),
 		"tlscert":   carapace.ActionFiles(),
 		"tlskey":    carapace.ActionFiles(),

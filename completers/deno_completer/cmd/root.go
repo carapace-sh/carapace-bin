@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -26,6 +27,6 @@ func init() {
 	rootCmd.PersistentFlags().Bool("unstable", false, "Enable unstable features and APIs")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"log-level": carapace.ActionValues("debug", "info"),
+		"log-level": carapace.ActionValues("debug", "info").StyleF(style.ForLogLevel),
 	})
 }

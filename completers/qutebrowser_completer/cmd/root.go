@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -44,7 +45,7 @@ func init() {
 		"backend":   carapace.ActionValues("webkit", "webengine"),
 		"basedir":   carapace.ActionDirectories(),
 		"config-py": carapace.ActionFiles(),
-		"loglevel":  carapace.ActionValues("critical", "error", "warning", "info", "debug", "vdebug"),
+		"loglevel":  carapace.ActionValues("critical", "error", "warning", "info", "debug", "vdebug").StyleF(style.ForLogLevel),
 		"target":    carapace.ActionValues("auto", "tab", "tab-bg", "tab-silent", "tab-bg-silent", "window"),
 	})
 

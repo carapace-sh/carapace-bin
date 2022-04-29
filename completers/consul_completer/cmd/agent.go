@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -85,7 +86,7 @@ func init() {
 		"config-format": carapace.ActionValues("json", "hcl"),
 		"data-dir":      carapace.ActionDirectories(),
 		"log-file":      carapace.ActionFiles(),
-		"log-level":     carapace.ActionValues("trace", "debug", "info", "warn", "err"),
+		"log-level":     carapace.ActionValues("trace", "debug", "info", "warn", "err").StyleF(style.ForLogLevel),
 		"pid-file":      carapace.ActionFiles(),
 		"ui-dir":        carapace.ActionDirectories(),
 	})

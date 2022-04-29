@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/consul_completer/cmd/action"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -32,7 +33,7 @@ func init() {
 
 	carapace.Gen(connect_proxyCmd).FlagCompletion(carapace.ActionMap{
 		// TODO flag completion
-		"log-level":   carapace.ActionValues("trace", "debug", "info", "warn", "err"),
+		"log-level":   carapace.ActionValues("trace", "debug", "info", "warn", "err").StyleF(style.ForLogLevel),
 		"sidecar-for": action.ActionServices(connect_proxyCmd), // TODO local service
 	})
 }

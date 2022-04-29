@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(monitorCmd)
 
 	carapace.Gen(monitorCmd).FlagCompletion(carapace.ActionMap{
-		"log-level": carapace.ActionValues("trace", "debug", "info", "warn", "err"),
+		"log-level": carapace.ActionValues("trace", "debug", "info", "warn", "err").StyleF(style.ForLogLevel),
 	})
 }

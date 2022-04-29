@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -40,7 +41,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config-dir":  carapace.ActionDirectories(),
 		"data-dir":    carapace.ActionDirectories(),
-		"log-level":   carapace.ActionValues("debug", "info", "warning", "error"),
+		"log-level":   carapace.ActionValues("debug", "info", "warning", "error").StyleF(style.ForLogLevel),
 		"mode":        carapace.ActionValues("fullscreen", "presentation"),
 		"plugins-dir": carapace.ActionDirectories(),
 		"synctex-pid": os.ActionProcessIds(),
