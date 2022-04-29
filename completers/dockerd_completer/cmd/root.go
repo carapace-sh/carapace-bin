@@ -119,7 +119,7 @@ func init() {
 		"exec-root":             carapace.ActionDirectories(),
 		"group":                 os.ActionGroups(),
 		"init-path":             carapace.ActionDirectories(),
-		"log-level":             carapace.ActionValues("debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel).StyleF(style.ForLogLevel),
+		"log-level":             carapace.ActionValues("debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel),
 		"pidfile":               carapace.ActionFiles(),
 		"userland-proxy-path":   carapace.ActionFiles(),
 	})

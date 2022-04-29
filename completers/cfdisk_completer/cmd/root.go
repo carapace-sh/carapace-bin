@@ -30,7 +30,7 @@ func init() {
 	rootCmd.Flag("lock").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword).StyleF(style.ForKeyword),
+		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"lock":  carapace.ActionValues("yes", "no", "nonblock").StyleF(style.ForKeyword),
 	})
 
