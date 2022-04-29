@@ -18,8 +18,6 @@ func init() {
 	rootCmd.AddCommand(reflogCmd)
 
 	carapace.Gen(reflogCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRefs(git.RefOptionDefault).Chdir(grepCmd.Root().Flag("C").Value.String())
-		}),
+		git.ActionRefs(git.RefOptionDefault),
 	)
 }

@@ -29,9 +29,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRefs(git.RefOptionDefault).Chdir(rootCmd.Flag("C").Value.String())
-		}),
+		git.ActionRefs(git.RefOptionDefault),
 	)
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {

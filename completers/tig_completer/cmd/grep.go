@@ -21,7 +21,7 @@ func init() {
 	carapace.Gen(grepCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			c.Args = append([]string{"grep"}, c.Args...)
-			return git.ActionExecute().Chdir(grepCmd.Root().Flag("C").Value.String()).Invoke(c).ToA()
+			return git.ActionExecute().Invoke(c).ToA()
 		}),
 	)
 }

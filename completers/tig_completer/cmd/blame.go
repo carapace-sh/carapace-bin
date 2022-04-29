@@ -21,7 +21,7 @@ func init() {
 	carapace.Gen(blameCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			c.Args = append([]string{"blame"}, c.Args...)
-			return git.ActionExecute().Chdir(blameCmd.Root().Flag("C").Value.String()).Invoke(c).ToA()
+			return git.ActionExecute().Invoke(c).ToA()
 		}),
 	)
 }
