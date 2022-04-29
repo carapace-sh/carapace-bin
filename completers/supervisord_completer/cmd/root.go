@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -46,7 +47,7 @@ func init() {
 		"configuration": carapace.ActionFiles(),
 		"directory":     carapace.ActionDirectories(),
 		"logfile":       carapace.ActionFiles(),
-		"loglevel":      carapace.ActionValues("trace", "debug", "info", "warn", "error", "critical"),
+		"loglevel":      carapace.ActionValues("trace", "debug", "info", "warn", "error", "critical").StyleF(style.ForLogLevel),
 		"pidfile":       carapace.ActionFiles(),
 		"profile_options": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("cumulative", "calls", "callers").Invoke(c).Filter(c.Parts).ToA()

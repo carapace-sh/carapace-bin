@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -118,7 +119,7 @@ func init() {
 		"exec-root":             carapace.ActionDirectories(),
 		"group":                 os.ActionGroups(),
 		"init-path":             carapace.ActionDirectories(),
-		"log-level":             carapace.ActionValues("debug", "info", "warn", "error", "fatal"),
+		"log-level":             carapace.ActionValues("debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel).StyleF(style.ForLogLevel),
 		"pidfile":               carapace.ActionFiles(),
 		"userland-proxy-path":   carapace.ActionFiles(),
 	})

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +28,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Prints version information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"loglevel": carapace.ActionValues("error", "warn", "info", "debug", "trace"),
+		"loglevel": carapace.ActionValues("error", "warn", "info", "debug", "trace").StyleF(style.ForLogLevel),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

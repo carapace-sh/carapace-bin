@@ -8,6 +8,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/aws"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/jaeger"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 func ActionParameters() carapace.Action {
@@ -585,7 +586,7 @@ func flagValues(name string) (acn carapace.Action, ok bool) {
 		"--tracing.haystack.traceidheadername":                               carapace.ActionValues(),
 		"--tracing.instana.localagenthost":                                   carapace.ActionValues(),
 		"--tracing.instana.localagentport":                                   carapace.ActionValues(),
-		"--tracing.instana.loglevel":                                         carapace.ActionValues("error", "warn", "info", "debug"),
+		"--tracing.instana.loglevel":                                         carapace.ActionValues("error", "warn", "info", "debug").StyleF(style.ForLogLevel),
 		"--tracing.jaeger.collector.endpoint":                                carapace.ActionValues(),
 		"--tracing.jaeger.collector.password":                                carapace.ActionValues(),
 		"--tracing.jaeger.collector.user":                                    carapace.ActionValues(),

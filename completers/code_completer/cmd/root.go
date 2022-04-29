@@ -5,6 +5,7 @@ import (
 	"github.com/rsteube/carapace-bin/completers/code_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -77,7 +78,7 @@ func init() {
 			return action.ActionExtensionSearch(rootCmd.Flag("category").Value.String())
 		}),
 		"locale":              os.ActionLocales(),
-		"log":                 carapace.ActionValues("critical", "error", "warn", "info", "debug", "trace", "off"),
+		"log":                 carapace.ActionValues("critical", "error", "warn", "info", "debug", "trace", "off").StyleF(style.ForLogLevel),
 		"sync":                carapace.ActionValues("on", "off"),
 		"uninstall-extension": action.ActionExtensions(rootCmd),
 		"user-data-dir":       carapace.ActionDirectories(),
