@@ -23,10 +23,7 @@ func ActionDependencies(cmd *cobra.Command) carapace.Action {
 		if f := cmd.Flag("project-root"); f != nil && f.Changed {
 			path = f.Value.String()
 		} else {
-			var err error
-			if path, err = os.Getwd(); err != nil {
-				return carapace.ActionMessage(err.Error())
-			}
+			path = c.Dir // TODO use preinvoke for project-root ?
 		}
 		location, err := util.FindReverse(path, "package.yaml")
 		if err != nil {

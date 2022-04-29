@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -56,15 +55,11 @@ func init() {
 			path := filepath.Dir(c.CallbackValue)
 			path = strings.TrimPrefix(path, "/")
 			if !strings.HasPrefix(c.CallbackValue, "/") {
-				wd, err := os.Getwd()
+				root, err := util.FindReverse(c.Dir, ".git")
 				if err != nil {
 					return carapace.ActionMessage(err.Error())
 				}
-				root, err := util.FindReverse(wd, ".git")
-				if err != nil {
-					return carapace.ActionMessage(err.Error())
-				}
-				rel, err := filepath.Rel(filepath.Dir(root), wd)
+				rel, err := filepath.Rel(filepath.Dir(root), c.Dir)
 				if err != nil {
 					return carapace.ActionMessage(err.Error())
 				}

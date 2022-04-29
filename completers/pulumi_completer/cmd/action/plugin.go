@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	exec "golang.org/x/sys/execabs"
+	exec "golang.org/x/sys/execabs" // TODO remove explicit import and use Context.Command
 
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"

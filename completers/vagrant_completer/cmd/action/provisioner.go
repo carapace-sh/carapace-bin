@@ -11,12 +11,7 @@ import (
 
 func ActionProvisioners() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		wd, err := os.Getwd()
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-
-		path, err := util.FindReverse(wd, "Vagrantfile")
+		path, err := util.FindReverse(c.Dir, "Vagrantfile")
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

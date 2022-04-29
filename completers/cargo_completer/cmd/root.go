@@ -4,8 +4,6 @@ import (
 	"regexp"
 	"strings"
 
-	exec "golang.org/x/sys/execabs"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -43,7 +41,7 @@ func init() {
 	c, _, _ := rootCmd.Find([]string{"_carapace"})
 	c.PreRun = func(cmd *cobra.Command, args []string) {
 		if len(args) == 1 { // non-lazy completion script generation
-			if output, err := exec.Command("cargo", "--list").Output(); err != nil {
+			if output, err := (carapace.Context{}).Command("cargo", "--list").Output(); err != nil { // TODO use preinvoke with correct context
 				// TODO handle error
 			} else {
 				re := regexp.MustCompile(`^    (?P<command>\w+)( +(?P<description>.*))?$`)

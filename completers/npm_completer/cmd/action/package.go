@@ -88,14 +88,12 @@ type packageJson struct {
 	Workspaces []string
 }
 
-func loadPackageJson() (pj packageJson, err error) {
-	var wd, packageFile string
-	if wd, err = os.Getwd(); err == nil {
-		if packageFile, err = util.FindReverse(wd, "package.json"); err == nil {
-			var content []byte
-			if content, err = os.ReadFile(packageFile); err == nil {
-				err = json.Unmarshal(content, &pj)
-			}
+func loadPackageJson(c carapace.Context) (pj packageJson, err error) {
+	var packageFile string
+	if packageFile, err = util.FindReverse(c.Dir, "package.json"); err == nil {
+		var content []byte
+		if content, err = os.ReadFile(packageFile); err == nil {
+			err = json.Unmarshal(content, &pj)
 		}
 	}
 	return
@@ -103,7 +101,7 @@ func loadPackageJson() (pj packageJson, err error) {
 
 func ActionScripts(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if pj, err := loadPackageJson(); err != nil {
+		if pj, err := loadPackageJson(c); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			vals := make([]string, 0)

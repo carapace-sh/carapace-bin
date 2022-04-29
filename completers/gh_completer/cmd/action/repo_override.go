@@ -1,7 +1,6 @@
 package action
 
 import (
-	"os"
 	"regexp"
 	"strings"
 
@@ -14,10 +13,8 @@ func ActionRepoOverride(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO support github enterprise (different host)
 		actions := make([]carapace.Action, 0)
-		if wd, err := os.Getwd(); err == nil {
-			if _, err := util.FindReverse(wd, ".git"); err == nil {
-				actions = append(actions, actionRemoteRepositories())
-			}
+		if _, err := util.FindReverse(c.Dir, ".git"); err == nil {
+			actions = append(actions, actionRemoteRepositories())
 		}
 		if c.CallbackValue != "" || len(actions) == 0 {
 			actions = append(actions, ActionOwnerRepositories(cmd))
