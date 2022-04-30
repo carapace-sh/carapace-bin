@@ -6,9 +6,10 @@ import (
 )
 
 var stack_historyCmd = &cobra.Command{
-	Use:   "history",
-	Short: "[PREVIEW] Display history for a stack",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "history",
+	Short:   "[PREVIEW] Display history for a stack",
+	Aliases: []string{"hist"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

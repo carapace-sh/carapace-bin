@@ -7,9 +7,10 @@ import (
 )
 
 var previewCmd = &cobra.Command{
-	Use:   "preview",
-	Short: "Show a preview of updates to a stack's resources",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "preview",
+	Short:   "Show a preview of updates to a stack's resources",
+	Aliases: []string{"pre"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -30,10 +31,12 @@ func init() {
 	previewCmd.PersistentFlags().StringSlice("policy-pack-config", []string{}, "Path to JSON file containing the config for the policy pack of the corresponding \"--policy-pack\" flag")
 	previewCmd.PersistentFlags().StringP("refresh", "r", "", "Refresh the state of the stack's resources before this update")
 	previewCmd.PersistentFlags().StringArray("replace", []string{}, "Specify resources to replace. Multiple resources can be specified using --replace urn1 --replace urn2")
+	previewCmd.PersistentFlags().String("save-plan", "", "[EXPERIMENTAL] Save the operations proposed by the preview to a plan file at the given path")
 	previewCmd.PersistentFlags().Bool("show-config", false, "Show configuration keys and variables")
 	previewCmd.PersistentFlags().Bool("show-reads", false, "Show resources that are being read in, alongside those being managed directly in the stack")
 	previewCmd.PersistentFlags().Bool("show-replacement-steps", false, "Show detailed resource replacement creates and deletes instead of a single step")
 	previewCmd.PersistentFlags().Bool("show-sames", false, "Show resources that needn't be updated because they haven't changed, alongside those that do")
+	previewCmd.Flags().Bool("show-secrets", false, "Emit secrets in plaintext in the plan file. Defaults to `false`")
 	previewCmd.PersistentFlags().StringP("stack", "s", "", "The name of the stack to operate on. Defaults to the current stack")
 	previewCmd.PersistentFlags().Bool("suppress-outputs", false, "Suppress display of stack outputs (in case they contain sensitive values)")
 	previewCmd.PersistentFlags().String("suppress-permalink", "", "Suppress display of the state permalink")
@@ -49,7 +52,8 @@ func init() {
 		"replace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionUrns(previewCmd)
 		}),
-		"stack": action.ActionStacks(previewCmd, action.StackOpts{}),
+		"save-plan": carapace.ActionFiles(),
+		"stack":     action.ActionStacks(previewCmd, action.StackOpts{}),
 		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionUrns(previewCmd)
 		}),
