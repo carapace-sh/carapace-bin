@@ -17,7 +17,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:  "carapace [flags] [COMPLETER] [bash|elvish|fish|oil|powershell|tcsh|xonsh|zsh]",
+	Use:  "carapace [flags] [COMPLETER] [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]",
 	Long: "multi-shell multi-command argument completer",
 	Example: fmt.Sprintf(`  Single completer:
     bash:       source <(carapace chmod bash)
@@ -45,11 +45,23 @@ var rootCmd = &cobra.Command{
     bash:       source <(carapace --bridge vault/posener)
     elvish:     eval (carapace --bridge vault/posener|slurp)
     fish:       carapace --bridge vault/posener | source
+    nushell:    carapace --bridge vault/posener | save vault.nu ; nu -c 'source vault.nu'
     oil:        source <(carapace --bridge vault/posener)
     powershell: carapace --bridge vault/posener | Out-String | Invoke-Expression
     tcsh:       eval `+"`"+`carapace --bridge vault/posener`+"`"+`
     xonsh:      exec($(carapace --bridge vault/posener))
     zsh:        source <(carapace --bridge vault/posener)
+  
+  Spec completion:
+    bash:       source <(carapace --spec example.yaml)
+    elvish:     eval (carapace --spec example.yaml|slurp)
+    fish:       carapace --spec example.yaml | source
+    oil:        source <(carapace --spec example.yaml)
+    nushell:    carapace --spec example.yaml | save example.nu ; nu -c 'source example.nu'
+    powershell: carapace --spec example.yaml | Out-String | Invoke-Expression
+    tcsh:       eval `+"`"+`carapace --spec example.yaml`+"`"+`
+    xonsh:      exec($(carapace --spec example.yaml))
+    zsh:        source <(carapace --spec example.yaml)
 
   Style:
     set:        carapace --style 'carapace.Value=bold,magenta'
@@ -70,6 +82,10 @@ var rootCmd = &cobra.Command{
 				if splitted := strings.SplitN(args[1], "/", 2); len(splitted) == 2 {
 					bridgeCompletion(splitted[0], splitted[1], args[2:]...)
 				}
+			}
+		case "--spec":
+			if len(args) > 1 {
+				specCompletion(args[1], args[2:]...)
 			}
 		case "-h":
 			cmd.Help()
