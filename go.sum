@@ -15,8 +15,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rsteube/carapace v0.20.1 h1:ZnPtEZQGi4vSoco7yLexTvmx9X82jUaOcDScpl3v14M=
 github.com/rsteube/carapace v0.20.1/go.mod h1:GgiwpPVhucHNOv0AmtIkxhiEFkCMP5BBRauyQLP0mFY=
-github.com/rsteube/carapace-spec v0.0.4 h1:ZXqtUGw+Qp+hu3RVIXrp2Xv7hmZa6nxFZnfkyzxeC3k=
-github.com/rsteube/carapace-spec v0.0.4/go.mod h1:u6Qe+U4w4/yD1MWRV9k83WuCkqq4Z/rAjzj8gz7zS9M=
+github.com/rsteube/carapace-spec v0.0.5 h1:n3dCAePSFbeujNCQc6WZ8ndB4BAnvam9hIQMdLolnME=
+github.com/rsteube/carapace-spec v0.0.5/go.mod h1:u6Qe+U4w4/yD1MWRV9k83WuCkqq4Z/rAjzj8gz7zS9M=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/spf13/cobra v1.4.0 h1:y+wJpx64xcgO1V+RcnwW0LEHxTKRi2ZDPSBjWnrg88Q=
 github.com/spf13/cobra v1.4.0/go.mod h1:Wo4iy3BUC+X2Fybo0PDqwJIv3dNRiZLHQymsfxlB84g=
