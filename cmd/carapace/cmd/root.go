@@ -205,5 +205,6 @@ func Execute(version string) error {
 func init() {
 	rootCmd.Flags().String("bridge", "", "bridge completion")
 	rootCmd.Flags().Bool("list", false, "list completers")
+	rootCmd.Flags().String("spec", "", "spec completion")
 	rootCmd.Flags().String("style", "", "set style")
 }
