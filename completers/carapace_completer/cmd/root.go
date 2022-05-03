@@ -34,6 +34,7 @@ func flagCmd() *cobra.Command {
 	cmd.Flags().String("bridge", "", "generic completion bridge")
 	cmd.Flags().BoolP("help", "h", false, "help for carapace")
 	cmd.Flags().Bool("list", false, "list completers")
+	cmd.Flags().Bool("macros", false, "list spec macros")
 	cmd.Flags().String("spec", "", "spec completion")
 	cmd.Flags().StringSlice("style", []string{}, "set style")
 	cmd.Flags().BoolP("version", "v", false, "version for carapace")
