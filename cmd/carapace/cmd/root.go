@@ -8,9 +8,11 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 
+	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/ps"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -85,8 +87,18 @@ var rootCmd = &cobra.Command{
 			}
 		case "--spec":
 			if len(args) > 1 {
+				for m, f := range macros {
+					spec.AddMacro(m, f)
+				}
 				specCompletion(args[1], args[2:]...)
 			}
+		case "--macros":
+			sortedMacros := make([]string, 0, len(macros))
+			for m := range macros {
+				sortedMacros = append(sortedMacros, m)
+			}
+			sort.Strings(sortedMacros)
+			println(strings.Join(sortedMacros, "\n"))
 		case "-h":
 			cmd.Help()
 		case "--help":
