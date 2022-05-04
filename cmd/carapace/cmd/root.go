@@ -98,17 +98,17 @@ var rootCmd = &cobra.Command{
 				sortedMacros = append(sortedMacros, m)
 			}
 			sort.Strings(sortedMacros)
-			println(strings.Join(sortedMacros, "\n"))
+			fmt.Fprintln(cmd.OutOrStdout(), strings.Join(sortedMacros, "\n"))
 		case "-h":
 			cmd.Help()
 		case "--help":
 			cmd.Help()
 		case "-v":
-			println(cmd.Version)
+			fmt.Fprintln(cmd.OutOrStdout(), cmd.Version)
 		case "--version":
-			println(cmd.Version)
+			fmt.Fprintln(cmd.OutOrStdout(), cmd.Version)
 		case "--list":
-			printCompleters()
+			printCompleters(cmd.OutOrStdout())
 		case "--style":
 			if len(args) > 1 {
 				if err := setStyle(args[1]); err != nil {
@@ -122,25 +122,25 @@ var rootCmd = &cobra.Command{
 			}
 			switch shell {
 			case "bash":
-				fmt.Println(bash_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), bash_lazy(completers))
 			case "bash-ble":
-				fmt.Println(bash_ble_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), bash_ble_lazy(completers))
 			case "elvish":
-				fmt.Println(elvish_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), elvish_lazy(completers))
 			case "fish":
-				fmt.Println(fish_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), fish_lazy(completers))
 			case "nushell":
-				fmt.Println(nushell_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), nushell_lazy(completers))
 			case "oil":
-				fmt.Println(oil_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), oil_lazy(completers))
 			case "powershell":
-				fmt.Println(powershell_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), powershell_lazy(completers))
 			case "tcsh":
-				fmt.Println(tcsh_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), tcsh_lazy(completers))
 			case "xonsh":
-				fmt.Println(xonsh_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), xonsh_lazy(completers))
 			case "zsh":
-				fmt.Println(zsh_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), zsh_lazy(completers))
 			default:
 				fmt.Fprintln(os.Stderr, "could not determine shell")
 			}
@@ -158,7 +158,7 @@ var rootCmd = &cobra.Command{
 	},
 }
 
-func printCompleters() {
+func printCompleters(w io.Writer) {
 	maxlen := 0
 	for _, name := range completers {
 		if len := len(name); len > maxlen {
@@ -167,7 +167,7 @@ func printCompleters() {
 	}
 
 	for _, name := range completers {
-		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, descriptions[name])
+		fmt.Fprintf(w, "%-"+strconv.Itoa(maxlen)+"v %v\n", name, descriptions[name])
 	}
 }
 
