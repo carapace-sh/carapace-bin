@@ -31,9 +31,9 @@ func init() {
 			return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return http.ActionHttpRequestHeaderNames().Invoke(c).Suffix(":").ToA()
+					return http.ActionRequestHeaderNames().Invoke(c).Suffix(":").ToA()
 				case 1:
-					return http.ActionHttpRequestHeaderValues(c.Parts[0])
+					return http.ActionRequestHeaderValues(c.Parts[0])
 				default:
 					return carapace.ActionValues()
 				}

@@ -206,7 +206,7 @@ func ActionRequestItem() carapace.Action {
 					case ":=@":
 						return carapace.ActionFiles()
 					case ":":
-						return http.ActionHttpRequestHeaderValues(c.Parts[0])
+						return http.ActionRequestHeaderValues(c.Parts[0])
 					default:
 						return carapace.ActionValues()
 					}
@@ -221,7 +221,7 @@ func ActionRequestItem() carapace.Action {
 			context.CallbackValue = context.CallbackValue[:index]
 		}
 
-		headers := http.ActionHttpRequestHeaderNames().Invoke(c).Suffix(":") // use full context
+		headers := http.ActionRequestHeaderNames().Invoke(c).Suffix(":") // use full context
 		return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
 			return ActionSeparators()
 		}).Invoke(context).Merge(headers).ToA()

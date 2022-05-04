@@ -6,26 +6,26 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 )
 
-// ActionHttpRequestHeaders ocmpletes http request headers
+// ActionRequestHeaders ocmpletes http request headers
 //   Accept:application/json
 //   Accept-Encoding:exi,br
-func ActionHttpRequestHeaders() carapace.Action {
+func ActionRequestHeaders() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			return ActionHttpRequestHeaderNames().Invoke(c).Suffix(":").ToA()
+			return ActionRequestHeaderNames().Invoke(c).Suffix(":").ToA()
 		case 1:
-			return ActionHttpRequestHeaderValues(c.Parts[0])
+			return ActionRequestHeaderValues(c.Parts[0])
 		default:
 			return carapace.ActionValues()
 		}
 	})
 }
 
-// ActionHttpRequestHeaderNames completes http request header names
+// ActionRequestHeaderNames completes http request header names
 //   Accept-Charset (Character sets that are acceptable.)
 //   Accept-Datetime (Acceptable version in time.)
-func ActionHttpRequestHeaderNames() carapace.Action {
+func ActionRequestHeaderNames() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"A-IM", "Acceptable instance-manipulations for the request.[10]",
 		"Accept", "Media type(s) that is/are acceptable for the response. See Content negotiation.",
@@ -71,10 +71,10 @@ func ActionHttpRequestHeaderNames() carapace.Action {
 	)
 }
 
-// ActionHttpRequestHeaderValues completes values for given request header
-//   ActionHttpRequestHeaderValues("Accept")
-//   ActionHttpRequestHeaderValues("Accept-Encoding")
-func ActionHttpRequestHeaderValues(header string) carapace.Action {
+// ActionRequestHeaderValues completes values for given request header
+//   ActionRequestHeaderValues("Accept")
+//   ActionRequestHeaderValues("Accept-Encoding")
+func ActionRequestHeaderValues(header string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		switch header {
 		// TODO complete more headers
