@@ -378,7 +378,7 @@ func actionFlagNames() carapace.Action {
 		}
 
 		if strings.HasPrefix(c.CallbackValue, "--accesslog.fields.headers.names.") {
-			return http.ActionHttpRequestHeaderNames().Invoke(c).Prefix("--accesslog.fields.headers.names.").ToMultiPartsA(".")
+			return http.ActionRequestHeaderNames().Invoke(c).Prefix("--accesslog.fields.headers.names.").ToMultiPartsA(".")
 		}
 		if strings.HasPrefix(c.CallbackValue, "--accesslog.fields.names.") {
 			return ActionAccessLogFieldNames().Invoke(c).Prefix("--accesslog.fields.names.").ToMultiPartsA(".")

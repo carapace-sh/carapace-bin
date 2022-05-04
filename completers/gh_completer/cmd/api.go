@@ -31,7 +31,7 @@ func init() {
 	rootCmd.AddCommand(apiCmd)
 
 	carapace.Gen(apiCmd).FlagCompletion(carapace.ActionMap{
-		"header":   http.ActionHttpRequestHeaders(),
+		"header":   http.ActionRequestHeaders(),
 		"hostname": action.ActionConfigHosts(),
 		"input":    carapace.ActionFiles(),
 		"method":   http.ActionRequestMethods(),

@@ -2,10 +2,10 @@ package http
 
 import "github.com/rsteube/carapace"
 
-// ActionHttpTags completes html tags
+// ActionTags completes html tags
 //   a (Defines a hyperlink)
 //   abbr (Defines an abbreviation or an acronym)
-func ActionHttpTags() carapace.Action {
+func ActionTags() carapace.Action {
 	//  https://www.w3schools.com/TAgs/default.asp
 	return carapace.ActionValuesDescribed(
 		//"!--...--", "Defines a comment",

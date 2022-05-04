@@ -193,11 +193,11 @@ func init() {
 		"crl-file":         carapace.ActionFiles(),
 		"directory-prefix": carapace.ActionDirectories(),
 		"follow-tags": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return http.ActionHttpTags().Invoke(c).Filter(c.Parts).ToA()
+			return http.ActionTags().Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"header": http.ActionHttpRequestHeaders(),
+		"header": http.ActionRequestHeaders(),
 		"ignore-tags": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return http.ActionHttpTags().Invoke(c).Filter(c.Parts).ToA()
+			return http.ActionTags().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"input-file":      carapace.ActionFiles(),
 		"load-cookies":    carapace.ActionFiles(),
