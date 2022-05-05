@@ -39,7 +39,7 @@ func ActionCobraComplete(cmd string) carapace.Action {
 			}
 
 			// TODO experimental - directives not yet fully tested
-			action := carapace.ActionValues()
+			var action carapace.Action
 			directive, err := readDirective(lines)
 			if err != nil {
 				return carapace.ActionValues()

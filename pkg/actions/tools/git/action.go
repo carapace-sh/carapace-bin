@@ -1,6 +1,7 @@
 package git
 
 import (
+	"reflect"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -36,6 +37,10 @@ var RefOptionDefault = RefOption{
 //   v0.0.1 (last commit msg)
 func ActionRefs(refOption RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if reflect.DeepEqual(refOption, RefOption{}) { // for macros: if none is set use the default
+			refOption = RefOptionDefault
+		}
+
 		vals := make([]string, 0)
 		if branches, err := branches(c, refOption); err != nil {
 			return carapace.ActionMessage(err.Error())

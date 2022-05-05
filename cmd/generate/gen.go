@@ -1,10 +1,14 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io/fs"
+	"log"
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -13,6 +17,8 @@ import (
 )
 
 func main() {
+	macros()
+
 	names, descriptions := readCompleters()
 
 	imports := make([]string, 0, len(names))
@@ -159,4 +165,74 @@ func rootDir() (string, error) {
 	}
 
 	return filepath.Dir(path), nil
+}
+
+func macros() {
+	root, err := rootDir()
+	if err != nil {
+		panic(err.Error)
+	}
+
+	imports := make(map[string]bool)
+	macros := make([]string, 0)
+
+	r := regexp.MustCompile(`^func Action(?P<name>[^(]+)\((?P<arg>[^(]*)\) carapace.Action {$`)
+	filepath.WalkDir(root+"/pkg/actions", func(path string, d fs.DirEntry, err error) error {
+		if !d.IsDir() && strings.HasSuffix(path, ".go") {
+			file, err := os.Open(path)
+			if err != nil {
+				log.Fatal(err)
+			}
+			defer file.Close()
+
+			scanner := bufio.NewScanner(file)
+			for scanner.Scan() {
+				if t := scanner.Text(); strings.HasPrefix(t, "func Action") {
+					if r.MatchString(t) {
+						pkg := strings.Replace(filepath.Dir(strings.TrimPrefix(path, root+"/pkg/actions/")), "/", ".", -1)
+						matches := r.FindStringSubmatch(t)
+
+						_import := fmt.Sprintf(`	%v "github.com/rsteube/carapace-bin/pkg/actions/%v"`, strings.Replace(pkg, ".", "_", -1), strings.Replace(pkg, ".", "/", -1))
+						_func := fmt.Sprintf("%v.Action%v", strings.Replace(pkg, ".", "_", -1), matches[1])
+
+						if arg := matches[2]; strings.Contains(arg, ",") {
+							macros = append(macros, "// TODO unsupported signature: "+t)
+							continue
+						} else if arg == "" {
+							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroN(%v),`, pkg, matches[1], _func))
+						} else if strings.Contains(arg, "...") {
+							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroVarI(%v),`, pkg, matches[1], _func))
+						} else {
+							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroI(%v),`, pkg, matches[1], _func))
+						}
+						imports[_import] = true
+					}
+				}
+			}
+
+		}
+		return nil
+	})
+
+	sortedImports := make([]string, 0)
+	for i := range imports {
+		sortedImports = append(sortedImports, i)
+	}
+	sort.Strings(sortedImports)
+
+	content := fmt.Sprintf(`package cmd
+
+import (
+%v
+	spec "github.com/rsteube/carapace-spec"
+)
+
+var macros = map[string]spec.Macro{
+%v
+}
+`, strings.Join(sortedImports, "\n"), strings.Join(macros, "\n"))
+
+	os.WriteFile(root+"/cmd/carapace/cmd/macros.go", []byte(content), 0644)
+	exec.Command("go", "fmt", root+"/cmd/carapace/cmd/macros.go").Run()
+
 }
