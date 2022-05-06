@@ -32,7 +32,7 @@ func init() {
 	carapace.Gen(local_executeCmd).FlagCompletion(carapace.ActionMap{
 		"branch": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if flag := local_executeCmd.Flag("repo-url"); flag.Changed {
-				return git.ActionLsRemoteRefs(flag.Value.String(), git.LsRemoteRefOption{Branches: true, Tags: true})
+				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: flag.Value.String(), Branches: true, Tags: true})
 			}
 			return carapace.ActionValues()
 		}),

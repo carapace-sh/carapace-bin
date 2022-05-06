@@ -14,7 +14,7 @@ func ActionPackageSearch(registry string) carapace.Action {
 		case 0:
 			return ActionPackageNames(registry)
 		case 1:
-			return ActionPackageVersions(registry, c.Parts[0])
+			return ActionPackageVersions(PackageOpts{Registry: registry, Package: c.Parts[0]})
 		default:
 			return carapace.ActionValues()
 		}
@@ -41,11 +41,16 @@ func ActionPackageNames(registry string) carapace.Action {
 	})
 }
 
-func ActionPackageVersions(registry, pkg string) carapace.Action {
+type PackageOpts struct {
+	Registry string
+	Package  string
+}
+
+func ActionPackageVersions(opts PackageOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"view", pkg, "versions", "--json"}
-		if registry != "" {
-			args = append(args, "--registry", registry)
+		args := []string{"view", opts.Package, "versions", "--json"}
+		if opts.Registry != "" {
+			args = append(args, "--registry", opts.Registry)
 		}
 
 		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {
@@ -58,11 +63,11 @@ func ActionPackageVersions(registry, pkg string) carapace.Action {
 	})
 }
 
-func ActionPackageTags(registry, pkg string) carapace.Action {
+func ActionPackageTags(opts PackageOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"view", pkg, "dist-tags", "--json"}
-		if registry != "" {
-			args = append(args, "--registry", registry)
+		args := []string{"view", opts.Package, "dist-tags", "--json"}
+		if opts.Registry != "" {
+			args = append(args, "--registry", opts.Registry)
 		}
 
 		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {

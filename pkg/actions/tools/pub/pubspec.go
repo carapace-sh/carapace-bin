@@ -86,20 +86,25 @@ func ActionDependencies() carapace.Action { // TODO configure which dependencies
 	})
 }
 
+type HostedExecutablesOpts struct {
+	Name    string
+	Version string
+}
+
 // ActionHostedExecutables completes executables from pub_cache
 //   dcat
 //   dgrep
-func ActionHostedExecutables(name string, version string) carapace.Action {
+func ActionHostedExecutables(opts HostedExecutablesOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if version == "" {
+		if opts.Version == "" {
 			pl, err := loadPubspecLock(c)
 			if err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
-			if pkg, ok := pl.Packages[name]; !ok {
-				return carapace.ActionMessage(fmt.Sprintf("Missing '%v' in pubspec.lock", name))
+			if pkg, ok := pl.Packages[opts.Name]; !ok {
+				return carapace.ActionMessage(fmt.Sprintf("Missing '%v' in pubspec.lock", opts.Name))
 			} else {
-				version = pkg.Version
+				opts.Version = pkg.Version
 			}
 		}
 
@@ -108,7 +113,7 @@ func ActionHostedExecutables(name string, version string) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		files, err := os.ReadDir(fmt.Sprintf("%v/.pub-cache/hosted/pub.dartlang.org/%v-%v/bin", home, name, version))
+		files, err := os.ReadDir(fmt.Sprintf("%v/.pub-cache/hosted/pub.dartlang.org/%v-%v/bin", home, opts.Name, opts.Version))
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

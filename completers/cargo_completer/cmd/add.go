@@ -47,7 +47,7 @@ func init() {
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"branch": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if f := addCmd.Flag("git"); f.Changed && strings.HasPrefix(f.Value.String(), "https://github.com/") {
-				return git.ActionLsRemoteRefs(f.Value.String(), git.LsRemoteRefOption{Branches: true, Tags: true})
+				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: f.Value.String(), Branches: true, Tags: true})
 			}
 			return carapace.ActionValues()
 		}),

@@ -14,6 +14,6 @@ func ActionDesktops() carapace.Action {
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
-		return number.ActionRangeF("%d", 0, num-1)
+		return number.ActionRange(number.RangeOpts{Format: "%d", Start: 0, End: num - 1})
 	})
 }

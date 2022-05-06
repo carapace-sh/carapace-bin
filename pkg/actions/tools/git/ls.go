@@ -9,6 +9,7 @@ import (
 )
 
 type LsRemoteRefOption struct {
+	Url      string
 	Branches bool
 	Tags     bool
 }
@@ -16,8 +17,8 @@ type LsRemoteRefOption struct {
 // ActionLsRemoteRefs lists branches and tags for a remote url
 //   gh-pages (da4528d0a57ad71417336f0e96fa65ece2fad45a)
 //   master (3fbdef3c6a10094812a15cba8e825898b757dfb3)
-func ActionLsRemoteRefs(url string, opts LsRemoteRefOption) carapace.Action {
-	return carapace.ActionExecCommand("git", "ls-remote", "--refs", "--tags", "--heads", url)(func(output []byte) carapace.Action {
+func ActionLsRemoteRefs(opts LsRemoteRefOption) carapace.Action {
+	return carapace.ActionExecCommand("git", "ls-remote", "--refs", "--tags", "--heads", opts.Url)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
 		vals := make([]string, 0)

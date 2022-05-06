@@ -34,7 +34,7 @@ func flagCmd() *cobra.Command {
 	cmd.Flags().String("bridge", "", "generic completion bridge")
 	cmd.Flags().BoolP("help", "h", false, "help for carapace")
 	cmd.Flags().Bool("list", false, "list completers")
-	cmd.Flags().Bool("macros", false, "list spec macros")
+	cmd.Flags().String("macros", "", "list spec macros")
 	cmd.Flags().String("spec", "", "spec completion")
 	cmd.Flags().StringSlice("style", []string{}, "set style")
 	cmd.Flags().BoolP("version", "v", false, "version for carapace")
@@ -54,6 +54,19 @@ func flagCmd() *cobra.Command {
 			default:
 				return carapace.ActionValues()
 			}
+		}),
+		"macros": carapace.ActionExecCommand("carapace", "--macros")(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+
+			vals := make([]string, 0)
+			for _, line := range lines[:len(lines)-1] {
+				if fields := strings.Fields(line); len(fields) > 1 {
+					vals = append(vals, fields[0], strings.Join(fields[1:], " "))
+				} else {
+					vals = append(vals, fields[0], "")
+				}
+			}
+			return carapace.ActionValuesDescribed(vals...).Invoke(carapace.Context{}).ToMultiPartsA(".")
 		}),
 		"spec":  carapace.ActionFiles(".yaml"),
 		"style": carapace.ActionStyleConfig(),

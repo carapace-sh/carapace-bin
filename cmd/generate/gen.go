@@ -175,6 +175,7 @@ func macros() {
 
 	imports := make(map[string]bool)
 	macros := make([]string, 0)
+	descriptions := make(map[string]string)
 
 	r := regexp.MustCompile(`^func Action(?P<name>[^(]+)\((?P<arg>[^(]*)\) carapace.Action {$`)
 	filepath.WalkDir(root+"/pkg/actions", func(path string, d fs.DirEntry, err error) error {
@@ -185,14 +186,15 @@ func macros() {
 			}
 			defer file.Close()
 
+			pkg := strings.Replace(filepath.Dir(strings.TrimPrefix(path, root+"/pkg/actions/")), "/", ".", -1)
+			_import := fmt.Sprintf(`	%v "github.com/rsteube/carapace-bin/pkg/actions/%v"`, strings.Replace(pkg, ".", "_", -1), strings.Replace(pkg, ".", "/", -1))
+
 			scanner := bufio.NewScanner(file)
 			for scanner.Scan() {
 				if t := scanner.Text(); strings.HasPrefix(t, "func Action") {
 					if r.MatchString(t) {
-						pkg := strings.Replace(filepath.Dir(strings.TrimPrefix(path, root+"/pkg/actions/")), "/", ".", -1)
 						matches := r.FindStringSubmatch(t)
 
-						_import := fmt.Sprintf(`	%v "github.com/rsteube/carapace-bin/pkg/actions/%v"`, strings.Replace(pkg, ".", "_", -1), strings.Replace(pkg, ".", "/", -1))
 						_func := fmt.Sprintf("%v.Action%v", strings.Replace(pkg, ".", "_", -1), matches[1])
 
 						if arg := matches[2]; strings.Contains(arg, ",") {
@@ -201,11 +203,15 @@ func macros() {
 						} else if arg == "" {
 							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroN(%v),`, pkg, matches[1], _func))
 						} else if strings.Contains(arg, "...") {
-							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroVarI(%v),`, pkg, matches[1], _func))
+							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroV(%v),`, pkg, matches[1], _func))
 						} else {
 							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroI(%v),`, pkg, matches[1], _func))
 						}
 						imports[_import] = true
+					}
+				} else if strings.HasPrefix(t, "// Action") {
+					if splitted := strings.SplitN(strings.TrimPrefix(t, "// Action"), " ", 2); len(splitted) > 1 {
+						descriptions[pkg+"."+splitted[0]] = splitted[1]
 					}
 				}
 			}
@@ -220,6 +226,12 @@ func macros() {
 	}
 	sort.Strings(sortedImports)
 
+	sortedDescriptions := make([]string, 0)
+	for key, value := range descriptions {
+		sortedDescriptions = append(sortedDescriptions, fmt.Sprintf(`"%v": "%v",`, key, value))
+	}
+	sort.Strings(sortedDescriptions)
+
 	content := fmt.Sprintf(`package cmd
 
 import (
@@ -230,7 +242,11 @@ import (
 var macros = map[string]spec.Macro{
 %v
 }
-`, strings.Join(sortedImports, "\n"), strings.Join(macros, "\n"))
+
+var macroDescriptions = map[string]string {
+%v
+}
+`, strings.Join(sortedImports, "\n"), strings.Join(macros, "\n"), strings.Join(sortedDescriptions, "\n"))
 
 	os.WriteFile(root+"/cmd/carapace/cmd/macros.go", []byte(content), 0644)
 	exec.Command("go", "fmt", root+"/cmd/carapace/cmd/macros.go").Run()

@@ -29,7 +29,7 @@ func init() {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return git.ActionLsRemoteRefs(c.Args[0], git.LsRemoteRefOption{Branches: true})
+			return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[0], Branches: true})
 		}),
 		"reference": carapace.ActionDirectories(),
 	})

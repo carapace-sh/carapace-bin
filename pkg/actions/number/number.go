@@ -7,14 +7,23 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionRangeF completes a number range formatted with givien format specifier
-//   ActionRangeF("%02d", 0, 59)
-func ActionRangeF(format string, start int, end int) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		vals := make([]string, 0)
+type RangeOpts struct {
+	Format string
+	Start  int
+	End    int
+}
 
-		for i := start; i <= end; i = i + 1 {
-			vals = append(vals, fmt.Sprintf(format, i))
+// ActionRange completes a number range formatted with given (optional) format specifier
+//   ActionRange(RangeOpts{Format: "%02d", Start: 0, End: 59})
+func ActionRange(opts RangeOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if opts.Format == "" {
+			opts.Format = "%d"
+		}
+
+		vals := make([]string, 0)
+		for i := opts.Start; i <= opts.End; i = i + 1 {
+			vals = append(vals, fmt.Sprintf(opts.Format, i))
 		}
 		return carapace.ActionValues(vals...)
 	})

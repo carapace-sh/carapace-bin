@@ -24,13 +24,13 @@ func ActionPackageNames(cmd *cobra.Command) carapace.Action {
 
 func ActionPackageVersions(cmd *cobra.Command, pkg string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return npm.ActionPackageVersions(cmd.Flag("registry").Value.String(), pkg)
+		return npm.ActionPackageVersions(npm.PackageOpts{Registry: cmd.Flag("registry").Value.String(), Package: pkg})
 	})
 }
 
 func ActionPackageTags(cmd *cobra.Command, pkg string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return npm.ActionPackageTags(cmd.Flag("registry").Value.String(), pkg)
+		return npm.ActionPackageTags(npm.PackageOpts{Registry: cmd.Flag("registry").Value.String(), Package: pkg})
 	})
 }
 

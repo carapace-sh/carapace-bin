@@ -63,7 +63,7 @@ func ActionSubmoduleBranches(filter ...string) carapace.Action {
 		for name, s := range submodules {
 			if len(filter) == 0 || contains(filter, name) {
 				if s.Url != "" {
-					actions = append(actions, ActionLsRemoteRefs(s.Url, LsRemoteRefOption{Branches: true, Tags: true}))
+					actions = append(actions, ActionLsRemoteRefs(LsRemoteRefOption{Url: s.Url, Branches: true, Tags: true}))
 				}
 			}
 		}

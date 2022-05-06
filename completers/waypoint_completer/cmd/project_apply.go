@@ -44,7 +44,7 @@ func init() {
 		"git-private-key-path": carapace.ActionFiles(),
 		"git-ref": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if flag := project_applyCmd.Flag("git-url"); flag.Changed {
-				git.ActionLsRemoteRefs(flag.Value.String(), git.LsRemoteRefOption{Branches: true, Tags: true})
+				git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: flag.Value.String(), Branches: true, Tags: true})
 			}
 			return carapace.ActionValues()
 		}),

@@ -72,7 +72,7 @@ func init() {
 			if rootCmd.Flag("remove").Changed {
 				return os.ActionKernelModulesLoaded()
 			}
-			return os.ActionKernelModules(rootCmd.Flag("dirname").Value.String(), rootCmd.Flag("set-version").Value.String())
+			return os.ActionKernelModules(os.KernelModulesOpts{Basedir: rootCmd.Flag("dirname").Value.String(), Release: rootCmd.Flag("set-version").Value.String()})
 		}),
 	)
 }
