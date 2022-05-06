@@ -21,18 +21,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:  "carapace [flags] [COMPLETER] [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]",
 	Long: "multi-shell multi-command argument completer",
-	Example: fmt.Sprintf(`  Single completer:
-    bash:       source <(carapace chmod bash)
-    elvish:     eval (carapace chmod elvish | slurp)
-    fish:       carapace chmod fish | source
-    nushell:    carapace chmod | save chmod.nu ; nu -c 'source chmod.nu'
-    oil:        source <(carapace chmod oil)
-    powershell: carapace chmod powershell | Out-String | Invoke-Expression
-    tcsh:       eval `+"`"+`carapace _chmod tcsh`+"`"+`
-    xonsh:      exec($(carapace chmod xonsh))
-    zsh:        source <(carapace chmod zsh)
-
-  All completers:
+	Example: fmt.Sprintf(`  All completers and specs:
     bash:       source <(carapace _carapace bash)
     elvish:     eval (carapace _carapace elvish | slurp)
     fish:       carapace _carapace fish | source
@@ -42,6 +31,17 @@ var rootCmd = &cobra.Command{
     tcsh:       eval `+"`"+`carapace _carapace tcsh`+"`"+`
     xonsh:      exec($(carapace _carapace xonsh))
     zsh:        source <(carapace _carapace zsh)
+
+  Single completer:
+    bash:       source <(carapace chmod bash)
+    elvish:     eval (carapace chmod elvish | slurp)
+    fish:       carapace chmod fish | source
+    nushell:    carapace chmod | save chmod.nu ; nu -c 'source chmod.nu'
+    oil:        source <(carapace chmod oil)
+    powershell: carapace chmod powershell | Out-String | Invoke-Expression
+    tcsh:       eval `+"`"+`carapace _chmod tcsh`+"`"+`
+    xonsh:      exec($(carapace chmod xonsh))
+    zsh:        source <(carapace chmod zsh)
 
   Bridge completion:
     bash:       source <(carapace --bridge vault/posener)
@@ -72,7 +72,7 @@ var rootCmd = &cobra.Command{
   Shell parameter is optional and if left out carapace will try to detect it by parent process name.
   Some completions are cached at [%v/carapace].
   Config is written to [%v/carapace].
-  `, func() string { dir, _ := os.UserCacheDir(); return dir }(), func() string { dir, _ := os.UserConfigDir(); return dir }()),
+  `, suppressErr(os.UserCacheDir), suppressErr(os.UserConfigDir)),
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -94,11 +94,24 @@ var rootCmd = &cobra.Command{
 			}
 		case "--macros":
 			sortedMacros := make([]string, 0, len(macros))
-			for m := range macros {
-				sortedMacros = append(sortedMacros, m)
+			for name, m := range macros {
+				sortedMacros = append(sortedMacros, fmt.Sprintf("$_%v(%v)", name, m.Signature()))
 			}
 			sort.Strings(sortedMacros)
-			println(strings.Join(sortedMacros, "\n"))
+			fmt.Fprintln(cmd.OutOrStdout(), strings.Join(sortedMacros, "\n"))
+
+			//if len(args) == 1 {
+			//	sortedMacros := make([]string, 0, len(macros))
+			//	for name := range macros {
+			//		sortedMacros = append(sortedMacros, name)
+			//	}
+			//	sort.Strings(sortedMacros)
+			//	fmt.Fprintln(cmd.OutOrStdout(), strings.Join(sortedMacros, "\n"))
+			//} else {
+			//	if m, ok := macros[args[1]]; ok {
+			//		fmt.Fprintf(cmd.OutOrStdout(), "$_%v(%v)\n", args[1], m.Signature())
+			//	}
+			//}
 		case "-h":
 			cmd.Help()
 		case "--help":
@@ -157,6 +170,8 @@ var rootCmd = &cobra.Command{
 		DisableDefaultCmd: true,
 	},
 }
+
+func suppressErr(f func() (string, error)) string { s, _ := f(); return s }
 
 func printCompleters() {
 	maxlen := 0
