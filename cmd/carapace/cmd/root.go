@@ -95,7 +95,11 @@ var rootCmd = &cobra.Command{
 		case "--macros":
 			sortedMacros := make([]string, 0, len(macros))
 			for name, m := range macros {
-				sortedMacros = append(sortedMacros, fmt.Sprintf("$_%v(%v)", name, m.Signature()))
+				if signature := m.Signature(); signature == "" {
+					sortedMacros = append(sortedMacros, fmt.Sprintf("$_%v", name))
+				} else {
+					sortedMacros = append(sortedMacros, fmt.Sprintf("$_%v(%v)", name, m.Signature()))
+				}
 			}
 			sort.Strings(sortedMacros)
 			fmt.Fprintln(cmd.OutOrStdout(), strings.Join(sortedMacros, "\n"))
