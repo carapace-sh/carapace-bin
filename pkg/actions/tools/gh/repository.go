@@ -15,8 +15,14 @@ func ActionOwnerRepositories() carapace.Action {
 	})
 }
 
-func ActionUsers(users bool, orgs bool) carapace.Action {
+type UserOpts action.UserOpts
+
+func ActionUsers(opts UserOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: users, Organizations: orgs})
+		if !opts.Users && !opts.Organizations {
+			opts.Users = true
+			opts.Organizations = true
+		}
+		return action.ActionUsers(&cobra.Command{}, action.UserOpts(opts))
 	})
 }
