@@ -37,7 +37,7 @@ func init() {
 		// TODO "git-path":
 		"git-ref": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if flag := pub_addCmd.Flag("git-url"); flag.Changed {
-				return git.ActionLsRemoteRefs(flag.Value.String(), git.LsRemoteRefOption{Branches: true, Tags: true})
+				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: flag.Value.String(), Branches: true, Tags: true})
 			}
 			return carapace.ActionMessage("git-url not set")
 		}),

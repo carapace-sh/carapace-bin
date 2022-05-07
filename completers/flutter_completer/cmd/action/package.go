@@ -23,7 +23,7 @@ func ActionActivePackageExecutables(pkg string) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		for _, line := range lines[:len(lines)-1] {
 			if splitted := strings.SplitN(line, " ", 2); splitted[0] == pkg {
-				return pub.ActionHostedExecutables(pkg, splitted[1])
+				return pub.ActionHostedExecutables(pub.HostedExecutablesOpts{Name: pkg, Version: splitted[1]})
 			}
 		}
 		return carapace.ActionValues()

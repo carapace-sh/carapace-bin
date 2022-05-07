@@ -26,6 +26,6 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "show version")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		os.ActionKernelModules("", ""),
+		os.ActionKernelModules(os.KernelModulesOpts{Basedir: "", Release: ""}),
 	)
 }

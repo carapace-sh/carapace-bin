@@ -30,7 +30,7 @@ func init() {
 			if len(c.Args) > 0 {
 				fork = c.Args[0]
 			}
-			return git.ActionLsRemoteRefs(fmt.Sprintf("%v/%v", url, fork), git.LsRemoteRefOption{Branches: true, Tags: true})
+			return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: fmt.Sprintf("%v/%v", url, fork), Branches: true, Tags: true})
 		}),
 	})
 

@@ -36,7 +36,7 @@ func ActionDate() carapace.Action {
 			if err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
-			return ActionDays(year, month)
+			return ActionDays(DaysOpts{Year: year, Month: month})
 		default:
 			return carapace.ActionValues()
 		}
@@ -63,16 +63,21 @@ func ActionMonths() carapace.Action {
 	)
 }
 
+type DaysOpts struct {
+	Year  int
+	Month int
+}
+
 // ActionDays completes `dd` days for a month
 //   01 (Friday)
 //   28 (Thursday)
-func ActionDays(year int, month int) carapace.Action {
+func ActionDays(opts DaysOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		date := time.Date(year, time.Month(month)+1, 0, 0, 0, 0, 0, time.UTC)
+		date := time.Date(opts.Year, time.Month(opts.Month)+1, 0, 0, 0, 0, 0, time.UTC)
 
 		vals := make([]string, 0)
 		for i := 1; i <= date.Day(); i = i + 1 {
-			vals = append(vals, fmt.Sprintf("%02d", i), time.Date(year, time.Month(month), i, 0, 0, 0, 0, time.UTC).Weekday().String())
+			vals = append(vals, fmt.Sprintf("%02d", i), time.Date(opts.Year, time.Month(opts.Month), i, 0, 0, 0, 0, time.UTC).Weekday().String())
 		}
 		return carapace.ActionValuesDescribed(vals...)
 	})
@@ -85,9 +90,9 @@ func ActionTime() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			return number.ActionRangeF("%02d", 0, 23).Invoke(c).Suffix(":").ToA()
+			return number.ActionRange(number.RangeOpts{Format: "%02d", Start: 0, End: 23}).Invoke(c).Suffix(":").ToA()
 		case 1:
-			return number.ActionRangeF("%02d", 0, 59)
+			return number.ActionRange(number.RangeOpts{Format: "%02d", Start: 0, End: 59})
 		default:
 			return carapace.ActionValues()
 		}
@@ -101,11 +106,11 @@ func ActionTimeS() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			return number.ActionRangeF("%02d", 0, 23).Invoke(c).Suffix(":").ToA()
+			return number.ActionRange(number.RangeOpts{Format: "%02d", Start: 0, End: 23}).Invoke(c).Suffix(":").ToA()
 		case 1:
-			return number.ActionRangeF("%02d", 0, 59).Invoke(c).Suffix(":").ToA()
+			return number.ActionRange(number.RangeOpts{Format: "%02d", Start: 0, End: 59}).Invoke(c).Suffix(":").ToA()
 		case 2:
-			return number.ActionRangeF("%02d", 0, 59)
+			return number.ActionRange(number.RangeOpts{Format: "%02d", Start: 0, End: 59})
 		default:
 			return carapace.ActionValues()
 		}

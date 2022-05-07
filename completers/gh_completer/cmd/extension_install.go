@@ -29,7 +29,7 @@ func init() {
 			if splitted := strings.Split(c.Args[0], "/"); len(splitted) == 2 { // just owner/repo
 				url = "https://github.com/" + url
 			}
-			return git.ActionLsRemoteRefs(url, git.LsRemoteRefOption{Branches: true, Tags: true})
+			return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: url, Branches: true, Tags: true})
 		}),
 	})
 

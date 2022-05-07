@@ -44,7 +44,7 @@ func init() {
 		"build": carapace.ActionValues("local", "build-config", "none"),
 		"build-branch": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if flag := convertCmd.Flag("build-repo"); flag.Changed {
-				return git.ActionLsRemoteRefs(flag.Value.String(), git.LsRemoteRefOption{Branches: true})
+				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: flag.Value.String(), Branches: true})
 			}
 			return carapace.ActionValues()
 		}),

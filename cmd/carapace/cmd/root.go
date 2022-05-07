@@ -93,29 +93,11 @@ var rootCmd = &cobra.Command{
 				specCompletion(args[1], args[2:]...)
 			}
 		case "--macros":
-			sortedMacros := make([]string, 0, len(macros))
-			for name, m := range macros {
-				if signature := m.Signature(); signature == "" {
-					sortedMacros = append(sortedMacros, fmt.Sprintf("$_%v", name))
-				} else {
-					sortedMacros = append(sortedMacros, fmt.Sprintf("$_%v(%v)", name, m.Signature()))
-				}
+			if len(args) > 1 {
+				printMacro(args[1])
+			} else {
+				printMacros()
 			}
-			sort.Strings(sortedMacros)
-			fmt.Fprintln(cmd.OutOrStdout(), strings.Join(sortedMacros, "\n"))
-
-			//if len(args) == 1 {
-			//	sortedMacros := make([]string, 0, len(macros))
-			//	for name := range macros {
-			//		sortedMacros = append(sortedMacros, name)
-			//	}
-			//	sort.Strings(sortedMacros)
-			//	fmt.Fprintln(cmd.OutOrStdout(), strings.Join(sortedMacros, "\n"))
-			//} else {
-			//	if m, ok := macros[args[1]]; ok {
-			//		fmt.Fprintf(cmd.OutOrStdout(), "$_%v(%v)\n", args[1], m.Signature())
-			//	}
-			//}
 		case "-h":
 			cmd.Help()
 		case "--help":
@@ -187,6 +169,37 @@ func printCompleters() {
 
 	for _, name := range completers {
 		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, descriptions[name])
+	}
+}
+
+func printMacros() {
+	maxlen := 0
+	names := make([]string, 0)
+	for name := range macros {
+		names = append(names, name)
+		if len := len(name); len > maxlen {
+			maxlen = len
+		}
+	}
+
+	sort.Strings(names)
+	for _, name := range names {
+		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, macroDescriptions[name])
+	}
+}
+
+func printMacro(name string) {
+	if m, ok := macros[name]; ok {
+		path := strings.Replace(name, ".", "/", -1)
+		signature := ""
+		if s := m.Signature(); s != "" {
+			signature = fmt.Sprintf("(%v)", s)
+		}
+
+		fmt.Printf(`signature:   $_%v%v
+description: %v
+reference:   https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/%v#Action%v
+`, name, signature, macroDescriptions[name], filepath.Dir(path), filepath.Base(path))
 	}
 }
 

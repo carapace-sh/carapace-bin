@@ -32,20 +32,25 @@ func ActionKernelModulesLoaded() carapace.Action {
 	})
 }
 
+type KernelModulesOpts struct {
+	Basedir string
+	Release string
+}
+
 // ActionKernelModules completes kernel modules
 //   ac97_bus
 //   crc32c_intel
-func ActionKernelModules(basedir string, release string) carapace.Action {
+func ActionKernelModules(opts KernelModulesOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if strings.TrimSpace(release) == "" {
+		if strings.TrimSpace(opts.Release) == "" {
 			var err error
-			if release, err = currentRelease(c); err != nil {
+			if opts.Release, err = currentRelease(c); err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
 		}
 
 		vals := make([]string, 0)
-		err := filepath.WalkDir(fmt.Sprintf("%v/lib/modules/%v/kernel", basedir, release), func(path string, d fs.DirEntry, err error) error {
+		err := filepath.WalkDir(fmt.Sprintf("%v/lib/modules/%v/kernel", opts.Basedir, opts.Release), func(path string, d fs.DirEntry, err error) error {
 			if err != nil {
 				return err
 			}

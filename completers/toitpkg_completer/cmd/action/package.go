@@ -46,17 +46,17 @@ func ActionPackages() carapace.Action {
 func ActionPackageVersions(id string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if strings.HasPrefix(id, "github.com/") {
-			return git.ActionLsRemoteRefs("https://"+id, git.LsRemoteRefOption{Tags: true})
+			return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + id, Tags: true})
 		}
 
 		if strings.Contains(id, "/") && !strings.Contains(id, ".") { // assume github package
-			return git.ActionLsRemoteRefs("https://github.com/"+id, git.LsRemoteRefOption{Tags: true})
+			return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://github.com/" + id, Tags: true})
 		}
 
 		return packageAction(func(m map[string]pkg) carapace.Action {
 			if p, ok := m[id]; ok {
 				if strings.HasPrefix(p.Url, "github.com/") {
-					return git.ActionLsRemoteRefs("https://"+p.Url, git.LsRemoteRefOption{Tags: true})
+					return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + p.Url, Tags: true})
 				}
 			}
 			return carapace.ActionValues()

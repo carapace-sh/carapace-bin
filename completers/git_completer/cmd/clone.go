@@ -53,7 +53,7 @@ func init() {
 	carapace.Gen(cloneCmd).FlagCompletion(carapace.ActionMap{
 		"branch": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return git.ActionLsRemoteRefs(c.Args[0], git.LsRemoteRefOption{Branches: true, Tags: true})
+				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[0], Branches: true, Tags: true})
 			}
 			return carapace.ActionValues()
 		}),

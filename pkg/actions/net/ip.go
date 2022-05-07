@@ -15,13 +15,13 @@ func ActionIpv4Addresses() carapace.Action {
 			return carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return number.ActionRangeF("%v", 0, 255).Invoke(c).Suffix(".").ToA()
+					return number.ActionRange(number.RangeOpts{Format: "%v", Start: 0, End: 255}).Invoke(c).Suffix(".").ToA()
 				case 1:
-					return number.ActionRangeF("%v", 0, 255).Invoke(c).Suffix(".").ToA()
+					return number.ActionRange(number.RangeOpts{Format: "%v", Start: 0, End: 255}).Invoke(c).Suffix(".").ToA()
 				case 2:
-					return number.ActionRangeF("%v", 0, 255).Invoke(c).Suffix(".").ToA()
+					return number.ActionRange(number.RangeOpts{Format: "%v", Start: 0, End: 255}).Invoke(c).Suffix(".").ToA()
 				case 3:
-					return number.ActionRangeF("%v", 0, 255)
+					return number.ActionRange(number.RangeOpts{Format: "%v", Start: 0, End: 255})
 				default:
 					return carapace.ActionValues()
 				}

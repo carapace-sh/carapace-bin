@@ -41,7 +41,7 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return os.ActionKernelModules(rootCmd.Flag("basedir").Value.String(), rootCmd.Flag("set-version").Value.String())
+			return os.ActionKernelModules(os.KernelModulesOpts{Basedir: rootCmd.Flag("basedir").Value.String(), Release: rootCmd.Flag("set-version").Value.String()})
 		}),
 	)
 }
