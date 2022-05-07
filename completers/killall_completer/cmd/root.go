@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -36,8 +37,8 @@ func init() {
 	rootCmd.Flags().StringP("younger-than", "y", "", "kill processes younger than TIME")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"ns":     os.ActionProcessIds(),
-		"signal": os.ActionKillSignals(),
+		"ns":     ps.ActionProcessIds(),
+		"signal": ps.ActionKillSignals(),
 		"user":   os.ActionUsers(),
 	})
 

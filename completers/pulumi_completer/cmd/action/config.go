@@ -2,6 +2,7 @@ package action
 
 import (
 	"encoding/json"
+
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )

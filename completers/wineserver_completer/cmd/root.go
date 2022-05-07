@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -36,6 +36,6 @@ func init() {
 			"1", "normal",
 			"2", "extra verbose",
 		),
-		"kill": os.ActionKillSignals(),
+		"kill": ps.ActionKillSignals(),
 	})
 }

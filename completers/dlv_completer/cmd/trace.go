@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -25,6 +25,6 @@ func init() {
 	carapace.Gen(traceCmd).FlagCompletion(carapace.ActionMap{
 		"exec":   carapace.ActionFiles(),
 		"output": carapace.ActionFiles(),
-		"pid":    os.ActionProcessIds(),
+		"pid":    ps.ActionProcessIds(),
 	})
 }

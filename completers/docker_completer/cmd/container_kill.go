@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
 	"github.com/spf13/cobra"
 )
@@ -21,7 +21,7 @@ func init() {
 
 	rootAlias(container_killCmd, func(cmd *cobra.Command, isAlias bool) {
 		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-			"signal": os.ActionKillSignals(),
+			"signal": ps.ActionKillSignals(),
 		})
 
 		carapace.Gen(cmd).PositionalAnyCompletion(docker.ActionContainers())

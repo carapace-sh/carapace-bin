@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +19,7 @@ func init() {
 	rootCmd.AddCommand(killCmd)
 
 	carapace.Gen(killCmd).FlagCompletion(carapace.ActionMap{
-		"signal": os.ActionKillSignals(),
+		"signal": ps.ActionKillSignals(),
 	})
 
 	carapace.Gen(killCmd).PositionalAnyCompletion(

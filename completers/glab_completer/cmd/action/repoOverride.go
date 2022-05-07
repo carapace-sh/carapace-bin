@@ -1,9 +1,10 @@
 package action
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
-	"strings"
 )
 
 func FakeRepoFlag(cmd *cobra.Command, value string) {

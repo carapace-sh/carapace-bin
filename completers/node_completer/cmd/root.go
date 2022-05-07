@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -122,7 +122,7 @@ func init() {
 		"cpu-prof-dir":        carapace.ActionDirectories(),
 		"diagnostic-dir":      carapace.ActionDirectories(),
 		"disable-proto":       carapace.ActionValues("delete", "throw"),
-		"heapsnapshot-signal": os.ActionKillSignals(),
+		"heapsnapshot-signal": ps.ActionKillSignals(),
 		"icu-data-dir":        carapace.ActionDirectories(),
 		"inspect-publish-uid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("http", "stderr").Invoke(c).Filter(c.Parts).ToA()

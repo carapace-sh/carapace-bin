@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/lslocks_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -36,6 +36,6 @@ func init() {
 		"output": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionColumns().Invoke(c).Filter(c.Args).ToA()
 		}),
-		"pid": os.ActionProcessIds(),
+		"pid": ps.ActionProcessIds(),
 	})
 }

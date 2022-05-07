@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -52,7 +53,7 @@ func init() {
 		}),
 		"on-busy-update": carapace.ActionValues("do-nothing", "queue", "restart", "signal"),
 		"shell":          os.ActionShells(),
-		"signal":         os.ActionKillSignals(),
+		"signal":         ps.ActionKillSignals(),
 		"watch":          carapace.ActionFiles(),
 	})
 
