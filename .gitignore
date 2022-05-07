@@ -1,8 +1,11 @@
+cmd/carafmt/carafmt
+cmd/caralint/caralint
 cmd/carapace/carapace
 cmd/carapace/cmd/completers.go
 cmd/carapace/cmd/completers_release.go
 cmd/carapace/cmd/macros.go
 cmd/caraparse/caraparse
+cmd/generate/generate
 completers/*/*_completer
 completers/gh_completer/cmd/action/api.github.com.json
 completers_release

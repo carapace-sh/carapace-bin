@@ -28,9 +28,13 @@ jobs:
       - name: Generate
         run: go generate ./cmd/...
 
-
       - name: Build
-        run: go build -v ./cmd/...
+        run: ls cmd/ | xargs -I'{}' sh -c "cd ./cmd/{} && go build -v ."
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: carapace
+          path: ./cmd/carapace/carapace 
 
       - name: Test
         run: go test -v ./cmd/...
@@ -58,8 +62,14 @@ jobs:
   doc:
     runs-on: ubuntu-latest
     container: ghcr.io/rsteube/carapace
+    needs: build
     steps:
       - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: carapace
+
       - name: "build docs"
         run: |
             sed -i 's/\[output.linkcheck\]/#[output.linkcheck]/' docs/book.toml
@@ -67,6 +77,7 @@ jobs:
             sh .github/macros.sh > docs/src/specs/macros.md
             mdbook build docs
             sh .github/badge.sh > docs/book/badge.svg
+
       - name: "push gh-pages"
         if: github.ref == 'refs/heads/master'
         run: |
