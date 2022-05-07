@@ -35,6 +35,7 @@ jobs:
         with:
           name: carapace
           path: ./cmd/carapace/carapace 
+          retention-days: 1
 
       - name: Test
         run: go test -v ./cmd/...
@@ -73,6 +74,7 @@ jobs:
 
       - name: "build docs"
         run: |
+            chmod +x cmd/carapace/carapace
             sed -i 's/\[output.linkcheck\]/#[output.linkcheck]/' docs/book.toml
             sh .github/completers.sh > docs/src/completers.md
             sh .github/macros.sh > docs/src/specs/macros.md
