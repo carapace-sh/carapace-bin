@@ -1,8 +1,9 @@
 package action
 
 import (
-	"github.com/rsteube/carapace"
 	"strings"
+
+	"github.com/rsteube/carapace"
 )
 
 func ActionRunnerProfiles() carapace.Action {

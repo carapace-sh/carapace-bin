@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/top_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -59,7 +60,7 @@ func init() {
 		),
 		"o": action.ActionFields(),
 		"p": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"u": os.ActionUsers(),
 	})

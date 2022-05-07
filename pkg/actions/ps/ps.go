@@ -1,4 +1,5 @@
-package os
+// package os contains process related actions
+package ps
 
 import (
 	"strconv"

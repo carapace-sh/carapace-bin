@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/systemctl_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +22,7 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.Batch(
 				action.ActionUnits(),
-				os.ActionProcessIds(),
+				ps.ActionProcessIds(),
 			).ToA().Invoke(c).Filter(c.Args).ToA()
 		}),
 	)

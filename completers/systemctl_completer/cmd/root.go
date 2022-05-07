@@ -4,7 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/systemctl_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/journalctl"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -93,7 +93,7 @@ func init() {
 		"output":   journalctl.ActionOutputs(),
 		"property": action.ActionProperties(),
 		"root":     carapace.ActionDirectories(),
-		"signal":   os.ActionKillSignals(),
+		"signal":   ps.ActionKillSignals(),
 		"state":    action.ActionStates(),
 		"timestamp": carapace.ActionValuesDescribed(
 			"pretty", "Day YYYY-MM-DD HH:MM:SS TZ",

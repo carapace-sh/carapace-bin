@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -46,7 +47,7 @@ func init() {
 			"strict", "drop all capabilities except those needed for core functionality",
 		),
 		"pid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"sort-key": ActionSortKeys(),
 		"user":     os.ActionUsers(),

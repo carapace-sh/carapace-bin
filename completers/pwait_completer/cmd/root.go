@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -47,16 +48,16 @@ func init() {
 		"group": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"ns": os.ActionProcessIds(),
+		"ns": ps.ActionProcessIds(),
 		"nslist": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts").Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"parent": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"pidfile": carapace.ActionFiles(),
 		"runstates": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionProcessStates().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessStates().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"session": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return os.ActionSessionIds().Invoke(c).Filter(c.Parts).ToA()
@@ -68,6 +69,6 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		os.ActionProcessExecutables(),
+		ps.ActionProcessExecutables(),
 	)
 }

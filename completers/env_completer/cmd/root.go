@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -33,10 +34,10 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"block-signal":   os.ActionKillSignals(),
+		"block-signal":   ps.ActionKillSignals(),
 		"chdir":          carapace.ActionDirectories(),
-		"default-signal": os.ActionKillSignals(),
-		"ignore-signal":  os.ActionKillSignals(),
+		"default-signal": ps.ActionKillSignals(),
+		"ignore-signal":  ps.ActionKillSignals(),
 		"unset":          os.ActionEnvironmentVariables(),
 	})
 }

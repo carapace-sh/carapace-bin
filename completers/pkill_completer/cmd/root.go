@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -50,12 +51,12 @@ func init() {
 		}),
 		"pidfile": carapace.ActionFiles(),
 		"runstates": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionProcessStates().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessStates().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"session": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return os.ActionSessionIds().Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"signal": os.ActionKillSignals(),
+		"signal": ps.ActionKillSignals(),
 		"terminal": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return os.ActionTerminals().Invoke(c).Filter(c.Parts).ToA()
 		}),
@@ -63,6 +64,6 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		os.ActionProcessExecutables(),
+		ps.ActionProcessExecutables(),
 	)
 }
