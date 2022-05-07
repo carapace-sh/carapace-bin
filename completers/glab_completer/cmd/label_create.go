@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/glab_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/color"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +21,7 @@ func init() {
 	labelCmd.AddCommand(label_createCmd)
 
 	carapace.Gen(label_createCmd).FlagCompletion(carapace.ActionMap{
-		"color": os.ActionHexColors(),
+		"color": color.ActionHexColors(),
 		"name":  action.ActionLabels(label_createCmd),
 	})
 }

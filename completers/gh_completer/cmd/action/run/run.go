@@ -3,11 +3,12 @@ package run
 import (
 	"bytes"
 	"fmt"
-	exec "golang.org/x/sys/execabs"
 	"io"
 	"os"
 	"path/filepath"
 	"strings"
+
+	exec "golang.org/x/sys/execabs"
 )
 
 // Runnable is typically an exec.Cmd or its stub in tests
