@@ -1,4 +1,5 @@
-package os
+// package color contains color related actions
+package color
 
 import (
 	"github.com/rsteube/carapace"
