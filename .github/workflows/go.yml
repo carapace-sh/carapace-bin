@@ -64,6 +64,7 @@ jobs:
         run: |
             sed -i 's/\[output.linkcheck\]/#[output.linkcheck]/' docs/book.toml
             sh .github/completers.sh > docs/src/completers.md
+            sh .github/macros.sh > docs/src/specs/macros.md
             mdbook build docs
             sh .github/badge.sh > docs/book/badge.svg
       - name: "push gh-pages"
