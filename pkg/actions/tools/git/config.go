@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 func ActionConfigs() carapace.Action {
@@ -22,11 +23,27 @@ func ActionConfigs() carapace.Action {
 }
 
 func ActionColors() carapace.Action {
-	return carapace.ActionValues("normal", "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white")
+	return carapace.ActionStyledValues(
+		"normal", style.Default,
+		"black", style.Black,
+		"red", style.Red,
+		"green", style.Green,
+		"yellow", style.Yellow,
+		"blue", style.Blue,
+		"magenta", style.Magenta,
+		"cyan", style.Cyan,
+		"white", style.White,
+	)
 }
 
 func ActionTextAttributes() carapace.Action {
-	return carapace.ActionValues("bold", "dim", "ul", "blink", "reverse")
+	return carapace.ActionStyledValues(
+		"bold", style.Bold,
+		"dim", style.Dim,
+		"ul", style.Underlined,
+		"blink", style.Blink,
+		"reverse", style.Default,
+	)
 }
 
 func ActionColorConfigs() carapace.Action {
