@@ -87,9 +87,6 @@ var rootCmd = &cobra.Command{
 			}
 		case "--spec":
 			if len(args) > 1 {
-				for m, f := range macros {
-					spec.AddMacro(m, f)
-				}
 				specCompletion(args[1], args[2:]...)
 			}
 		case "--macros":
@@ -251,4 +248,8 @@ func init() {
 	rootCmd.Flags().Bool("list", false, "list completers")
 	rootCmd.Flags().String("spec", "", "spec completion")
 	rootCmd.Flags().String("style", "", "set style")
+
+	for m, f := range macros {
+		spec.AddMacro(m, f)
+	}
 }

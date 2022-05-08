@@ -5,8 +5,10 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 
 	os "github.com/rsteube/carapace-bin/pkg/actions/os"
 )
@@ -22,7 +24,7 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {},
 }
 
-func flagCmd() *cobra.Command {
+func flagCmd(args []string) *cobra.Command {
 	cmd := &cobra.Command{
 		Use: "carapace",
 		CompletionOptions: cobra.CompletionOptions{
@@ -36,8 +38,16 @@ func flagCmd() *cobra.Command {
 	cmd.Flags().Bool("list", false, "list completers")
 	cmd.Flags().String("macros", "", "list spec macros")
 	cmd.Flags().String("spec", "", "spec completion")
-	cmd.Flags().StringSlice("style", []string{}, "set style")
+	cmd.Flags().String("style", "", "set style")
 	cmd.Flags().BoolP("version", "v", false, "version for carapace")
+
+	if len(args) > 0 {
+		if f := cmd.Flag(strings.TrimPrefix(args[0], "--")); len(args) > 1 || f != nil && f.Value.Type() == "bool" {
+			cmd.Flags().VisitAll(func(f *pflag.Flag) {
+				f.Changed = true // only one flag shall be completed so fake the changed state
+			})
+		}
+	}
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"bridge": carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
@@ -71,6 +81,16 @@ func flagCmd() *cobra.Command {
 		"spec":  carapace.ActionFiles(".yaml"),
 		"style": carapace.ActionStyleConfig(),
 	})
+
+	carapace.Gen(cmd).PositionalCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(args) > 0 && args[0] == "--macros" {
+				return spec.ActionMacro("$_" + cmd.Flag("macros").Value.String())
+			}
+			return carapace.ActionValues()
+		}),
+	)
+
 	return cmd
 }
 
@@ -133,13 +153,13 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) == 0 {
 				return carapace.Batch(
-					carapace.ActionExecute(flagCmd()),
+					carapace.ActionExecute(flagCmd(c.Args)),
 					carapace.ActionExecute(posCmd()),
 				).ToA()
 			}
 
 			if strings.HasPrefix(c.Args[0], "-") {
-				return carapace.ActionExecute(flagCmd())
+				return carapace.ActionExecute(flagCmd(c.Args))
 			}
 			return carapace.ActionExecute(posCmd())
 		}),
