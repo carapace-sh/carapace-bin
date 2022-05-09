@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/tmux"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	killWindowCmd.Flags().BoolS("a", "a", false, "TODO description")
 	killWindowCmd.Flags().StringS("t", "t", "", "target-window")
 	rootCmd.AddCommand(killWindowCmd)
+
+	carapace.Gen(killWindowCmd).FlagCompletion(carapace.ActionMap{
+		"t": tmux.ActionWindows(),
+	})
 }

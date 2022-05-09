@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/tmux_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/tmux"
 	"github.com/spf13/cobra"
 )
 
@@ -36,7 +36,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"S": carapace.ActionFiles(),
 		"T": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionFeatures().Invoke(c).Filter(c.Parts).ToA()
+			return tmux.ActionFeatures().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"c": carapace.ActionFiles(),
 		"f": carapace.ActionFiles(),
