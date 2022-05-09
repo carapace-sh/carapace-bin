@@ -7,16 +7,17 @@ import (
 )
 
 var killWindowCmd = &cobra.Command{
-	Use:   "kill-window",
-	Short: "",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "kill-window",
+	Aliases: []string{"killw"},
+	Short:   "destroy a given window",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(killWindowCmd).Standalone()
 
-	killWindowCmd.Flags().BoolS("a", "a", false, "TODO description")
-	killWindowCmd.Flags().StringS("t", "t", "", "target-window")
+	killWindowCmd.Flags().BoolS("a", "a", false, "kill all windows except the one specified by -t")
+	killWindowCmd.Flags().StringS("t", "t", "", "specify target window")
 	rootCmd.AddCommand(killWindowCmd)
 
 	carapace.Gen(killWindowCmd).FlagCompletion(carapace.ActionMap{
