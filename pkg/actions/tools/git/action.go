@@ -71,7 +71,7 @@ func ActionRefs(refOption RefOption) carapace.Action {
 		if refOption.Stashes {
 			return carapace.Batch(
 				carapace.ActionStyledValuesDescribed(vals...),
-				ActionStashes().Style(styles.Git.Stash),
+				ActionStashes(),
 			).ToA()
 		}
 		return carapace.ActionStyledValuesDescribed(vals...)

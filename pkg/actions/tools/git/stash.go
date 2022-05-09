@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 )
 
 // ActionStashes completes stash names
@@ -13,14 +14,13 @@ func ActionStashes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("git", "stash", "list")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
-			vals := make([]string, (len(lines)-1)*2)
+			vals := make([]string, 0)
 
-			for index, line := range lines[:len(lines)-1] {
+			for _, line := range lines[:len(lines)-1] {
 				splitted := strings.SplitN(line, ": ", 2)
-				vals[index*2] = splitted[0]
-				vals[(index*2)+1] = splitted[1]
+				vals = append(vals, splitted[0], splitted[1])
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Stash)
 		})
 	})
 }
