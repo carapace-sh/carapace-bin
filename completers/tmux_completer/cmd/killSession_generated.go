@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/tmux"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	killSessionCmd.Flags().StringS("t", "t", "", "target-session")
 	rootCmd.AddCommand(killSessionCmd)
+
+	carapace.Gen(killSessionCmd).FlagCompletion(carapace.ActionMap{
+		"t": tmux.ActionWindows(),
+	})
 }
