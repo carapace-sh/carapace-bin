@@ -82,7 +82,7 @@ func flagCmd(args []string) *cobra.Command {
 		"style": carapace.ActionStyleConfig(),
 	})
 
-	carapace.Gen(cmd).PositionalCompletion(
+	carapace.Gen(cmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(args) > 0 && args[0] == "--macros" {
 				return spec.ActionMacro("$_" + cmd.Flag("macros").Value.String())
