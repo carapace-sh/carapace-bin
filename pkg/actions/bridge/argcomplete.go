@@ -8,7 +8,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionArgcomplete bridges python argcomplete (https://github.com/kislyuk/argcomplete)
+// ActionArgcomplete bridges kislyuk/argcomplete
 //   var rootCmd = &cobra.Command{
 //   	Use:                "az",
 //   	Short:              "Azure Command-Line Interface",
