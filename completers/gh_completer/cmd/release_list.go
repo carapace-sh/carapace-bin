@@ -14,6 +14,7 @@ var release_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(release_listCmd).Standalone()
+	release_listCmd.Flags().Bool("exclude-drafts", false, "Exclude draft releases")
 	release_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of items to fetch")
 	releaseCmd.AddCommand(release_listCmd)
 }
