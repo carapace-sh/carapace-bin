@@ -35,7 +35,7 @@ func init() {
 	})
 
 	carapace.Gen(resetCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOptionDefault),
+		git.ActionRefs(git.RefOption{}.Default()),
 	)
 
 	carapace.Gen(resetCmd).PositionalAnyCompletion(

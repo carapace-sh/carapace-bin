@@ -45,14 +45,14 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"argscmd":       carapace.ActionFiles(),
-		"select-commit": git.ActionRefs(git.RefOptionDefault),
+		"select-commit": git.ActionRefs(git.RefOption{}.Default()),
 		"since":         time.ActionDate(),
 		"until":         time.ActionDate(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionMultiParts("...", func(c carapace.Context) carapace.Action {
-			return git.ActionRefs(git.RefOptionDefault)
+			return git.ActionRefs(git.RefOption{}.Default())
 		}),
 	)
 

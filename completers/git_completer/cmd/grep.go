@@ -81,7 +81,7 @@ func init() {
 	)
 
 	carapace.Gen(grepCmd).PositionalAnyCompletion(
-		git.ActionRefs(git.RefOptionDefault),
+		git.ActionRefs(git.RefOption{}.Default()),
 	)
 
 	carapace.Gen(grepCmd).DashAnyCompletion(

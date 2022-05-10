@@ -18,6 +18,6 @@ func init() {
 	guiCmd.AddCommand(browserCmd)
 
 	carapace.Gen(browserCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOptionDefault),
+		git.ActionRefs(git.RefOption{}.Default()),
 	)
 }

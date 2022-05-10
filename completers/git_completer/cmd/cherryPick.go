@@ -54,7 +54,7 @@ func init() {
 		// TODO `...` divider not yet working
 		carapace.ActionMultiParts("...", func(c carapace.Context) carapace.Action {
 			if len(c.Parts) < 2 {
-				return git.ActionRefs(git.RefOptionDefault)
+				return git.ActionRefs(git.RefOption{}.Default())
 			}
 			return carapace.ActionValues()
 		}),

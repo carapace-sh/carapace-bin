@@ -108,7 +108,7 @@ func init() {
 			} else {
 				return carapace.ActionMultiParts("...", func(c carapace.Context) carapace.Action {
 					if len(c.Parts) < 2 {
-						return git.ActionRefs(git.RefOptionDefault)
+						return git.ActionRefs(git.RefOption{}.Default())
 					} else {
 						return carapace.ActionValues()
 					}

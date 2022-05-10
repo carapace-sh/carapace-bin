@@ -60,7 +60,7 @@ func init() {
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
 		"empty":         carapace.ActionValues("drop", "keep", "ask"),
 		"gpg-sign":      os.ActionGpgKeyIds(),
-		"onto":          git.ActionRefs(git.RefOptionDefault),
+		"onto":          git.ActionRefs(git.RefOption{}.Default()),
 		"rebase-merges": carapace.ActionValues("rebase-cousins", "no-rebase-cousins"),
 		"strategy":      git.ActionMergeStrategy(),
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
@@ -75,7 +75,7 @@ func init() {
 				!rebaseCmd.Flag("abort").Changed &&
 				!rebaseCmd.Flag("skip").Changed &&
 				!rebaseCmd.Flag("edit-todo").Changed {
-				return git.ActionRefs(git.RefOptionDefault)
+				return git.ActionRefs(git.RefOption{}.Default())
 			} else {
 				return carapace.ActionValues()
 			}

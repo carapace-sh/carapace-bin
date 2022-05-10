@@ -28,7 +28,7 @@ func init() {
 			if bisect_startCmd.Flags().ArgsLenAtDash() != -1 {
 				return carapace.ActionFiles()
 			}
-			return git.ActionRefs(git.RefOptionDefault)
+			return git.ActionRefs(git.RefOption{}.Default())
 		}),
 	)
 }

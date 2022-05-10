@@ -54,7 +54,7 @@ func init() {
 	carapace.Gen(blameCmd).FlagCompletion(carapace.ActionMap{
 		"S":                carapace.ActionFiles(),
 		"contents":         carapace.ActionFiles(),
-		"ignore-rev":       git.ActionRefs(git.RefOptionDefault),
+		"ignore-rev":       git.ActionRefs(git.RefOption{}.Default()),
 		"ignore-revs-file": carapace.ActionFiles(),
 	})
 
@@ -63,7 +63,7 @@ func init() {
 			if util.HasPathPrefix(c.CallbackValue) {
 				return carapace.ActionFiles()
 			}
-			return git.ActionRefs(git.RefOptionDefault)
+			return git.ActionRefs(git.RefOption{}.Default())
 		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if util.HasPathPrefix(c.Args[0]) {

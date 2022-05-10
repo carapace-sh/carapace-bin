@@ -27,6 +27,6 @@ func init() {
 	)
 
 	carapace.Gen(bundle_createCmd).PositionalAnyCompletion(
-		git.ActionRefs(git.RefOptionDefault),
+		git.ActionRefs(git.RefOption{}.Default()),
 	)
 }

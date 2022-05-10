@@ -18,6 +18,6 @@ func init() {
 	bisectCmd.AddCommand(bisect_badCmd)
 
 	carapace.Gen(bisect_badCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOptionDefault),
+		git.ActionRefs(git.RefOption{}.Default()),
 	)
 }
