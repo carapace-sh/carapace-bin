@@ -22,11 +22,10 @@ func init() {
 	repo_listCmd.Flags().StringP("language", "l", "", "Filter by primary coding language")
 	repo_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of repositories to list")
 	repo_listCmd.Flags().Bool("no-archived", false, "Omit archived repositories")
-	repo_listCmd.Flags().Bool("private", false, "Show only private repositories")
-	repo_listCmd.Flags().Bool("public", false, "Show only public repositories")
 	repo_listCmd.Flags().Bool("source", false, "Show only non-forks")
 	repo_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
 	repo_listCmd.Flags().String("topic", "", "Filter by topic")
+	repo_listCmd.Flags().String("visibility", "", "Filter by repository visibility: {public|private|internal}")
 	repoCmd.AddCommand(repo_listCmd)
 
 	carapace.Gen(repo_listCmd).FlagCompletion(carapace.ActionMap{
@@ -40,6 +39,7 @@ func init() {
 			}
 			return action.ActionTopics(repo_listCmd, "")
 		}),
+		"visibility": carapace.ActionValues("public", "private", "internal"),
 	})
 
 	carapace.Gen(repo_listCmd).PositionalCompletion(

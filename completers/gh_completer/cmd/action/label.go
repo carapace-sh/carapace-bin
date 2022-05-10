@@ -36,3 +36,16 @@ func ActionLabels(cmd *cobra.Command) carapace.Action {
 		})
 	}).Cache(5*time.Minute, repoCacheKey(cmd))
 }
+
+func ActionLabelFields() carapace.Action {
+	return carapace.ActionValues(
+		"color",
+		"createdAt",
+		"description",
+		"id",
+		"isDefault",
+		"name",
+		"updatedAt",
+		"url",
+	)
+}
