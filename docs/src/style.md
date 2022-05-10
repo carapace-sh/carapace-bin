@@ -8,6 +8,9 @@ Filenames can be configured with the `LS_COLORS` environment variable - e.g with
 # elvish
 set E:LS_COLORS = (vivid generate dracula)
 
+# powershell
+$env:LS_COLORS = (vivid generate dracula)
+
 # zsh
 export LS_COLORS="$(vivid generate dracula)"
 ```
