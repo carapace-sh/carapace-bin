@@ -6,6 +6,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -53,5 +54,12 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"chdir": carapace.ActionDirectories(),
+	})
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		if f := rootCmd.Flag("chdir"); f.Changed {
+			return action.Chdir(f.Value.String())
+		}
+		return action
 	})
 }
