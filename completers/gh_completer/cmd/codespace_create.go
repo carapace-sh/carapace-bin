@@ -24,7 +24,6 @@ func init() {
 	codespace_createCmd.Flags().StringP("location", "l", "", "location: {EastUs|SouthEastAsia|WestEurope|WestUs2} (determined automatically if not provided)")
 	codespace_createCmd.Flags().StringP("machine", "m", "", "hardware specifications for the VM")
 	codespace_createCmd.Flags().StringP("repo", "r", "", "repository name with owner: user/repo")
-	codespace_createCmd.Flags().Duration("retention-period", 0, "allowed time after going idle before codespace is automatically deleted (maximum 30 days), e.g. \"1h\", \"72h\"")
 	codespace_createCmd.Flags().BoolP("status", "s", false, "show status of post-create command and dotfiles")
 	codespaceCmd.AddCommand(codespace_createCmd)
 
