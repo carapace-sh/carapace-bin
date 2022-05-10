@@ -38,7 +38,7 @@ complete -F _carapace_lazy %v
 	if specs, dir := getSpecs(); len(specs) > 0 {
 		snippet += fmt.Sprintf(`
 _carapace_lazy_spec() {
-  source <(carapace --spec %v/$1.yaml bash)
+  source <(carapace --spec "%v/$1.yaml" bash)
    $"_$1_completion"
 }
 complete -F _carapace_lazy_spec %v
@@ -83,7 +83,7 @@ func elvish_lazy(completers []string) string {
 put %v | each {|c|
     set edit:completion:arg-completer[$c] = {|@arg|
         set edit:completion:arg-completer[$c] = {|@arg| }
-        eval (carapace --spec %v/$c.yaml elvish | slurp)
+        eval (carapace --spec "%v/"$c".yaml" elvish | slurp)
         $edit:completion:arg-completer[$c] $@arg
     }
   
@@ -112,7 +112,7 @@ end
 		snippet += fmt.Sprintf(`
 function _carapace_lazy_spec
    complete -c $argv[1] -e
-   carapace --spec %v/$argv[1].yaml fish | source
+   carapace --spec "%v/$argv[1].yaml" fish | source
    complete --do-complete=(commandline -cp)
 end
 
@@ -183,7 +183,7 @@ complete -F _carapace_lazy %v
 	if specs, dir := getSpecs(); len(specs) > 0 {
 		snippet += fmt.Sprintf(`
 _carapace_lazy_spec() {
-  source <(carapace --spec %v/$1.yaml oil)
+  source <(carapace --spec "%v/$1.yaml" oil)
    $"_$1_completion"
 }
 complete -F _carapace_lazy_spec %v
@@ -211,7 +211,7 @@ func powershell_lazy(completers []string) string {
 		snippet += fmt.Sprintf(`$_carapace_lazy_spec = {
     param($wordToComplete, $commandAst, $cursorPosition)
     $completer = $commandAst.CommandElements[0].Value
-    carapace --spec %v/$completer.yaml powershell | Out-String | Invoke-Expression
+    carapace --spec "%v/$completer.yaml" powershell | Out-String | Invoke-Expression
     & (Get-Item "Function:_${completer}_completer") $wordToComplete $commandAst $cursorPosition
 }
 `, dir)
@@ -234,7 +234,7 @@ func tcsh_lazy(completers []string) string {
 
 	if specs, dir := getSpecs(); len(specs) > 0 {
 		for _, spec := range specs {
-			snippet = append(snippet, fmt.Sprintf("complete \"%v\" 'p@*@`echo \"$COMMAND_LINE'\"''\"'\" | xargs carapace --spec %v/%v.yaml tcsh `@@' ;", spec, dir, spec))
+			snippet = append(snippet, fmt.Sprintf("complete \"%v\" 'p@*@`echo \"$COMMAND_LINE'\"''\"'\" | xargs carapace --spec \"%v/%v.yaml\" tcsh `@@' ;", spec, dir, spec))
 		}
 	}
 	return strings.Join(snippet, "\n")
@@ -287,7 +287,7 @@ compdef _carapace_lazy %v
 
 	if specs, dir := getSpecs(); len(specs) > 0 {
 		snippet += fmt.Sprintf(`function _carapace_lazy_spec {
-    source <(carapace --spec %v/$words[1].yaml zsh)
+    source <(carapace --spec "%v/$words[1].yaml" zsh)
 }
 compdef _carapace_lazy_spec %v
 `, dir, strings.Join(specs, " "))
