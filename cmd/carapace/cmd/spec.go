@@ -63,7 +63,7 @@ func specCompletion(path string, args ...string) {
 	}
 
 	executableName := filepath.Base(executable)
-	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v --spec %v", executableName, abs), -1)         // general callback
+	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v --spec '%v'", executableName, abs), -1)       // general callback
 	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '--spec', '%v'", executableName, abs), -1) // xonsh callback
 	fmt.Print(patched)
 
