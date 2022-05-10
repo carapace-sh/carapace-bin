@@ -60,7 +60,7 @@ func init() {
 
 	carapace.Gen(mergeCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRefs(git.RefOptionDefault).Invoke(c).Filter(c.Args).ToA()
+			return git.ActionRefs(git.RefOption{}.Default()).Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

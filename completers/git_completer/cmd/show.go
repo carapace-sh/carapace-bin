@@ -40,7 +40,7 @@ func init() {
 		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return git.ActionRefs(git.RefOptionDefault)
+				return git.ActionRefs(git.RefOption{}.Default())
 			case 1:
 				return git.ActionRefFiles(c.Parts[0])
 			default:

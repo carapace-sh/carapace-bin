@@ -34,7 +34,7 @@ func init() {
 			}
 
 			if diff := clangFormatCmd.Flag("diff").Changed; len(c.Args) == 0 || (len(c.Args) == 1 && diff) {
-				return git.ActionRefs(git.RefOptionDefault)
+				return git.ActionRefs(git.RefOption{}.Default())
 			}
 			return carapace.ActionFiles()
 		}),

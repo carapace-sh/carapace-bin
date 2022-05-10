@@ -49,13 +49,13 @@ func init() {
 	rootCmd.AddCommand(branchCmd)
 
 	carapace.Gen(branchCmd).FlagCompletion(carapace.ActionMap{
-		"D":               git.ActionRefs(git.RefOptionDefault),
+		"D":               git.ActionRefs(git.RefOption{}.Default()),
 		"color":           carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"contains":        git.ActionRefs(git.RefOptionDefault),
+		"contains":        git.ActionRefs(git.RefOption{}.Default()),
 		"delete":          git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
-		"merged":          git.ActionRefs(git.RefOptionDefault),
-		"no-contains":     git.ActionRefs(git.RefOptionDefault),
-		"no-merged":       git.ActionRefs(git.RefOptionDefault),
+		"merged":          git.ActionRefs(git.RefOption{}.Default()),
+		"no-contains":     git.ActionRefs(git.RefOption{}.Default()),
+		"no-merged":       git.ActionRefs(git.RefOption{}.Default()),
 		"points-at":       git.ActionRefs(git.RefOption{RemoteBranches: true, Tags: true}),
 		"set-upstream-to": git.ActionRefs(git.RefOption{RemoteBranches: true, Tags: true}),
 		"sort":            git.ActionFieldNames(),

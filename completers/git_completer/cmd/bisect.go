@@ -22,7 +22,7 @@ func init() {
 			if len(c.Parts) > 2 {
 				return carapace.ActionValues()
 			}
-			return git.ActionRefs(git.RefOptionDefault)
+			return git.ActionRefs(git.RefOption{}.Default())
 		}),
 	)
 }

@@ -48,7 +48,7 @@ func init() {
 	})
 
 	carapace.Gen(checkoutCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOptionDefault),
+		git.ActionRefs(git.RefOption{}.Default()),
 	)
 
 	carapace.Gen(checkoutCmd).PositionalAnyCompletion(

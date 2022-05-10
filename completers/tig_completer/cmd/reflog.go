@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(reflogCmd)
 
 	carapace.Gen(reflogCmd).PositionalAnyCompletion(
-		git.ActionRefs(git.RefOptionDefault),
+		git.ActionRefs(git.RefOption{}.Default()),
 	)
 }

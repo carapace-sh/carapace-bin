@@ -1,7 +1,6 @@
 package git
 
 import (
-	"reflect"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -24,12 +23,14 @@ type RefOption struct {
 	Stashes        bool
 }
 
-var RefOptionDefault = RefOption{
-	LocalBranches:  true,
-	RemoteBranches: true,
-	Commits:        100,
-	Tags:           true,
-	Stashes:        true,
+func (o RefOption) Default() RefOption {
+	o.LocalBranches = true
+	o.RemoteBranches = true
+	o.Commits = 100
+	o.Tags = true
+	o.Stashes = true
+	return o
+
 }
 
 // ActionRefs completes git references (commits, branches, tags)
@@ -37,10 +38,6 @@ var RefOptionDefault = RefOption{
 //   v0.0.1 (last commit msg)
 func ActionRefs(refOption RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if reflect.DeepEqual(refOption, RefOption{}) { // for macros: if none is set use the default
-			refOption = RefOptionDefault
-		}
-
 		vals := make([]string, 0)
 		if branches, err := branches(c, refOption); err != nil {
 			return carapace.ActionMessage(err.Error())

@@ -35,8 +35,8 @@ func init() {
 	})
 
 	carapace.Gen(difftoolCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOptionDefault),
-		git.ActionRefs(git.RefOptionDefault),
+		git.ActionRefs(git.RefOption{}.Default()),
+		git.ActionRefs(git.RefOption{}.Default()),
 	)
 
 	carapace.Gen(difftoolCmd).DashAnyCompletion(

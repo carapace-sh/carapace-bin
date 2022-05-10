@@ -34,6 +34,6 @@ func init() {
 	// TODO completions
 	carapace.Gen(catFileCmd).PositionalCompletion(
 		carapace.ActionValues("blob", "tree", "commit", "tag"),
-		git.ActionRefs(git.RefOptionDefault),
+		git.ActionRefs(git.RefOption{}.Default()),
 	)
 }

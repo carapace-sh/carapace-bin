@@ -24,7 +24,7 @@ func init() {
 			if util.HasPathPrefix(c.CallbackValue) {
 				return carapace.ActionFiles()
 			}
-			return git.ActionRefs(git.RefOptionDefault)
+			return git.ActionRefs(git.RefOption{}.Default())
 		}),
 		carapace.ActionFiles(),
 	)

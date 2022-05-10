@@ -23,7 +23,7 @@ func init() {
 			if diffCmd.Flags().ArgsLenAtDash() != -1 {
 				return carapace.ActionFiles()
 			}
-			return git.ActionRefs(git.RefOptionDefault)
+			return git.ActionRefs(git.RefOption{}.Default())
 		}),
 	)
 }

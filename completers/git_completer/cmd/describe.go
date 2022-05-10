@@ -40,7 +40,7 @@ func init() {
 			if describeCmd.Flag("dirty").Changed || describeCmd.Flag("broken").Changed {
 				return carapace.ActionValues()
 			} else {
-				return git.ActionRefs(git.RefOptionDefault)
+				return git.ActionRefs(git.RefOption{}.Default())
 			}
 		}),
 	)
