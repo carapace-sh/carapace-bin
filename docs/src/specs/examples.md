@@ -34,3 +34,13 @@ completion:
     - ["$_tools.git.Refs"]
     - ["$(env)"]
 ```
+
+## embed.yaml
+
+```yaml
+name: embed
+commands:
+  - name: git
+    completion:
+      positionalany: ["$chdir(~/.password-store)", "$_bridge.CarapaceBin(git)"]
+```
