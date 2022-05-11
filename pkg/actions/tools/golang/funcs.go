@@ -51,7 +51,7 @@ func ActionFuncs(files ...string) carapace.Action {
 		// TODO optimize performance - goroutines?
 		if len(files) == 0 {
 			filepath.Walk(filepath.Dir(root), func(path string, info fs.FileInfo, err error) error {
-				if !info.IsDir() && strings.HasSuffix(path, ".go") && !strings.HasSuffix("path", "_test.go") {
+				if !info.IsDir() && strings.HasSuffix(path, ".go") && !strings.HasSuffix(path, "_test.go") {
 					for _, name := range readFuncs(path) {
 						names[name] = true
 					}
