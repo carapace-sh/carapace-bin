@@ -5,7 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
-	git "github.com/rsteube/carapace-bin/completers/git_completer/cmd"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -39,7 +39,7 @@ func init() {
 				repo = fmt.Sprintf("https://github.com/%v.git", args[0])
 			}
 			c.Args = append([]string{"clone", repo, ""}, c.Args...)
-			return git.ActionExecute().Invoke(c).ToA()
+			return bridge.ActionCarapaceBin("git").Invoke(c).ToA()
 		}),
 	)
 }

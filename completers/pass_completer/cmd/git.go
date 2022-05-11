@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/rsteube/carapace"
-	git "github.com/rsteube/carapace-bin/completers/git_completer/cmd"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -32,7 +32,7 @@ func init() {
 			if dir, ok := os.LookupEnv("PASSWORD_STORE_DIR"); ok {
 				location = dir
 			}
-			return git.ActionExecute().Chdir(location)
+			return bridge.ActionCarapaceBin("git").Chdir(location)
 		}),
 	)
 }

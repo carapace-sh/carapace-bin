@@ -66,11 +66,11 @@ func createCmd(command string, engine string) *cobra.Command {
 			case "argcomplete":
 				return bridge.ActionArgcomplete(command)
 			case "cobra":
-				return bridge.ActionCobraComplete(command)
+				return bridge.ActionCobra(command)
 			case "fish":
-				return bridge.ActionFishComplete(command)
+				return bridge.ActionFish(command)
 			case "posener":
-				return bridge.ActionPosenerComplete(command)
+				return bridge.ActionPosener(command)
 			default:
 				return carapace.ActionValues()
 			}

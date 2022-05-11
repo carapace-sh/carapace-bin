@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// ActionCobraComplete bridges cobra completion
+// ActionCobra bridges cobra completion
 //   var rootCmd = &cobra.Command{
 //   	Use:                "podman",
 //      Short:              "Simple management tool for pods, containers and images",
@@ -24,10 +24,10 @@ import (
 //   	carapace.Gen(rootCmd).Standalone()
 //
 //   	carapace.Gen(rootCmd).PositionalAnyCompletion(
-//   		cobracomplete.ActionCobraComplete("podman"),
+//   		cobracomplete.ActionCobra("podman"),
 //   	)
 //   }
-func ActionCobraComplete(cmd string) carapace.Action {
+func ActionCobra(cmd string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"__complete"}
 		args = append(args, c.Args...)

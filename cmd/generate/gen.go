@@ -197,15 +197,20 @@ func macros() {
 
 						_func := fmt.Sprintf("%v.Action%v", strings.Replace(pkg, ".", "_", -1), matches[1])
 
+						disableflagParsing := ""
+						if pkg == "bridge" {
+							disableflagParsing = ".DisableFlagParsing()"
+						}
+
 						if arg := matches[2]; strings.Contains(arg, ",") {
 							macros = append(macros, "// TODO unsupported signature: "+t)
 							continue
 						} else if arg == "" {
-							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroN(%v),`, pkg, matches[1], _func))
+							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroN(%v)%v,`, pkg, matches[1], _func, disableflagParsing))
 						} else if strings.Contains(arg, "...") {
-							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroV(%v),`, pkg, matches[1], _func))
+							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroV(%v)%v,`, pkg, matches[1], _func, disableflagParsing))
 						} else {
-							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroI(%v),`, pkg, matches[1], _func))
+							macros = append(macros, fmt.Sprintf(`"%v.%v": spec.MacroI(%v)%v,`, pkg, matches[1], _func, disableflagParsing))
 						}
 						imports[_import] = true
 					}

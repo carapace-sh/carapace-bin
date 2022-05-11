@@ -7,8 +7,8 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionFishComplete bridges completions registered in fish shell
-func ActionFishComplete(cmd string) carapace.Action {
+// ActionFish bridges completions registered in fish shell
+func ActionFish(cmd string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := append(c.Args, c.CallbackValue)
 		for index, arg := range args {
