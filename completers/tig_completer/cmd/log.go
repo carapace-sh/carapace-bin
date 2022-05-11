@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	git "github.com/rsteube/carapace-bin/completers/git_completer/cmd"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +21,7 @@ func init() {
 	carapace.Gen(logCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			c.Args = append([]string{"log"}, c.Args...)
-			return git.ActionExecute().Invoke(c).ToA()
+			return bridge.ActionCarapaceBin("git").Invoke(c).ToA()
 		}),
 	)
 }

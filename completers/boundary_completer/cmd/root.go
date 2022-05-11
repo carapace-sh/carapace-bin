@@ -22,6 +22,6 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		// TODO just bridging it for now
-		bridge.ActionPosenerComplete("boundary"),
+		bridge.ActionPosener("boundary"),
 	)
 }

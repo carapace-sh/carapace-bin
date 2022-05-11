@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	compose "github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(composeCmd)
 
 	carapace.Gen(composeCmd).PositionalAnyCompletion(
-		compose.ActionExecute(),
+		bridge.ActionCarapaceBin("docker-compose"),
 	)
 }
