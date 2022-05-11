@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -30,6 +33,12 @@ func init() {
 		"file": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles()
 		}),
-		// TODO complete funcs
+		"func": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			files := []string{}
+			if f := rootCmd.Flag("file"); f.Changed {
+				files = strings.Split(f.Value.String(), ",")
+			}
+			return golang.ActionFuncs(files...).Invoke(c).Filter(c.Parts).ToA() // TODO only for given files
+		}),
 	})
 }
