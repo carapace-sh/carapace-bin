@@ -85,7 +85,8 @@ func flagCmd(args []string) *cobra.Command {
 	carapace.Gen(cmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(args) > 0 && args[0] == "--macros" {
-				return spec.ActionMacro("$_" + cmd.Flag("macros").Value.String())
+				c.Args = args[2:]
+				return spec.ActionMacro("$_" + args[1]).Invoke(c).ToA()
 			}
 			return carapace.ActionValues()
 		}),
