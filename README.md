@@ -4,6 +4,7 @@
 [![GoReportCard](https://goreportcard.com/badge/github.com/rsteube/carapace-bin)](https://goreportcard.com/report/github.com/rsteube/carapace-bin)
 [![documentation](https://img.shields.io/badge/&zwnj;-documentation-blue?logo=gitbook)](https://rsteube.github.io/carapace-bin/)
 [![Completers](https://rsteube.github.io/carapace-bin/badge.svg)](https://rsteube.github.io/carapace-bin/completers.html)
+[![Macros](https://rsteube.github.io/carapace-bin/macros-badge.svg)](https://rsteube.github.io/carapace-bin/specs/macros.html)
 
 Carapace-bin provides argument completions for many CLI commands: [see the full list here](https://rsteube.github.io/carapace-bin/completers.html), and works across many POSIX and non-POSIX shells.
 This multi-shell multi-command argument completer is based on [rsteube/carapace](https://github.com/rsteube/carapace).
