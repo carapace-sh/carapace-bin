@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +23,6 @@ func init() {
 		"exclude": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionOwnerRepositories(statusCmd)
 		}),
-		"org": action.ActionUsers(statusCmd, action.UserOpts{Organizations: true}),
+		"org": gh.ActionUsers(gh.UserOpts{Organizations: true}),
 	})
 }

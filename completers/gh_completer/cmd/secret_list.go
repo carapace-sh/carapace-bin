@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +25,6 @@ func init() {
 	carapace.Gen(secret_listCmd).FlagCompletion(carapace.ActionMap{
 		"app": carapace.ActionValues("actions", "codespaces", "dependabot"),
 		"env": action.ActionEnvironments(secret_listCmd),
-		"org": action.ActionUsers(secret_listCmd, action.UserOpts{Organizations: true}),
+		"org": gh.ActionUsers(gh.UserOpts{Organizations: true}),
 	})
 }

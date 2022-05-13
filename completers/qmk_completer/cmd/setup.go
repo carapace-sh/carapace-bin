@@ -41,7 +41,7 @@ func init() {
 	carapace.Gen(setupCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if !setupCmd.Flag("baseurl").Changed {
-				return gh.ActionOwnerRepositories()
+				return gh.ActionOwnerRepositories(gh.HostOpts{}) // TODO support different baseurl
 			}
 			return carapace.ActionValues()
 		}),

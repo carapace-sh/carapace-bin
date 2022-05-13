@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +28,7 @@ func init() {
 	carapace.Gen(run_listCmd).FlagCompletion(carapace.ActionMap{
 		"branch":   action.ActionBranches(run_listCmd),
 		"json":     action.ActionRunFields(),
-		"user":     action.ActionUsers(run_listCmd, action.UserOpts{Users: true, Organizations: true}),
+		"user":     gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
 		"workflow": action.ActionWorkflows(run_listCmd, action.WorkflowOpts{Enabled: true, Id: true, Name: true}),
 	})
 }

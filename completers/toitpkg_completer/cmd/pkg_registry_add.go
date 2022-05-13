@@ -1,10 +1,8 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -25,12 +23,7 @@ func init() {
 			if pkg_registry_addCmd.Flag("local").Changed {
 				return carapace.ActionDirectories()
 			}
-
-			if strings.HasPrefix(c.CallbackValue, "github.com/") {
-				c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "github.com/")
-				return gh.ActionOwnerRepositories().Invoke(c).Prefix("github.com/").ToA()
-			}
-			return carapace.ActionValues("github.com/").NoSpace()
+			return git.ActionRepositorySearch()
 		}),
 	)
 }
