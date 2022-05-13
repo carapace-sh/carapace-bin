@@ -7,9 +7,7 @@ import (
 )
 
 func ActionVolumes(cmd *cobra.Command) carapace.Action {
-	files, err := cmd.Root().Flags().GetStringArray("file")
-	if err != nil {
-		return carapace.ActionMessage(err.Error())
-	}
-	return compose.ActionVolumes(files...)
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return compose.ActionVolumes(files(cmd)...)
+	})
 }
