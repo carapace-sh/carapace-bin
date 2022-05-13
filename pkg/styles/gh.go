@@ -10,6 +10,9 @@ var Gh = struct {
 	StateClosed   string `desc:"closed issues/pulls"`
 	StateMerged   string `desc:"merged pulls"`
 	StateOpen     string `desc:"open issues/pulls"`
+	RepoPublic    string `desc:"public repository"`
+	RepoPrivate   string `desc:"private repository"`
+	RepoFork      string `desc:"forked repository"`
 }{
 	Draft:         style.Gray,
 	JobFailed:     style.Red,
@@ -18,6 +21,9 @@ var Gh = struct {
 	StateClosed:   style.Red,
 	StateMerged:   style.Magenta,
 	StateOpen:     style.Green,
+	RepoPublic:    style.Default,
+	RepoPrivate:   style.Red,
+	RepoFork:      style.Gray,
 }
 
 func init() {

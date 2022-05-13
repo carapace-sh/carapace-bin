@@ -37,7 +37,7 @@ func ApiV3Action(cmd *cobra.Command, query string, v interface{}, transform func
 		if repo, err := repoOverride(cmd); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
-			return carapace.ActionExecCommand(ghExecutable(), "api", "--hostname", repo.RepoHost(), "--preview", "mercy", query)(func(output []byte) carapace.Action {
+			return carapace.ActionExecCommand("gh", "api", "--hostname", repo.RepoHost(), "--preview", "mercy", query)(func(output []byte) carapace.Action {
 				if err := json.Unmarshal(output, &v); err != nil {
 					return carapace.ActionMessage("failed to unmarshall response: " + err.Error())
 				}

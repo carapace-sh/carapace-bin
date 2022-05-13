@@ -5,7 +5,6 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
@@ -59,13 +58,7 @@ func init() {
 			return carapace.ActionValues()
 		}),
 		"git": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			// TODO needs general action for cloud repositories on github/gitlab/..
-			github := "https://github.com/"
-			if strings.HasPrefix(c.CallbackValue, github) {
-				c.CallbackValue = strings.TrimPrefix(c.CallbackValue, github)
-				return gh.ActionOwnerRepositories().Invoke(c).Prefix(github).ToA()
-			}
-			return carapace.ActionValues(github).NoSpace()
+			return git.ActionRepositorySearch()
 		}),
 		"path":    carapace.ActionDirectories(),
 		"upgrade": carapace.ActionValuesDescribed("none", "patch", "minor", "all", "default"),

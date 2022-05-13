@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/time"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -55,7 +56,7 @@ func init() {
 			return carapace.ActionValues("name", "description", "readme").Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"order": carapace.ActionValues("asc", "desc"),
-		"owner": action.ActionUsers(search_reposCmd, action.UserOpts{Users: true, Organizations: true}),
+		"owner": gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
 		"sort":  carapace.ActionValues("forks", "help-wanted-issues", "stars", "updated"),
 		"topic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionTopicSearch(search_reposCmd).Invoke(c).Filter(c.Parts).ToA()

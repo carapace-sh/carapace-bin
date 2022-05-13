@@ -6,6 +6,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -78,10 +79,10 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				if strings.HasPrefix(c.CallbackValue, ":") {
 					return carapace.ActionValues(":owner")
 				} else {
-					return ActionUsers(cmd, UserOpts{Users: true, Organizations: true})
+					return gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true})
 				}
 			case "{org}":
-				return ActionUsers(cmd, UserOpts{Organizations: true})
+				return gh.ActionUsers(gh.UserOpts{Organizations: true})
 			case "{package_type}":
 				return ActionPackageTypes()
 			case "{pull_number}":
@@ -91,7 +92,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				if strings.HasPrefix(c.CallbackValue, ":") {
 					return carapace.ActionValues(":repo")
 				} else {
-					return ActionRepositories(cmd, matchedData["{owner}"], c.CallbackValue)
+					return gh.ActionRepositories(gh.OwnerOpts{Owner: matchedData["{owner}"]})
 				}
 			case "{tag}": // only used with releases
 				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
@@ -101,7 +102,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 			case "{template_repo}": // ignore this as it is already provided by `{repo}`
 				return carapace.ActionValues()
 			case "{username}":
-				return ActionUsers(cmd, UserOpts{Users: true})
+				return gh.ActionUsers(gh.UserOpts{Users: true})
 			case "{workflow_id}":
 				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
 				return ActionWorkflows(cmd, WorkflowOpts{Enabled: true, Disabled: true, Id: true})

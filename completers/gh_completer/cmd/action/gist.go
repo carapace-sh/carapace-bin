@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -49,7 +50,7 @@ func ActionGistUrls(cmd *cobra.Command) carapace.Action {
 				case 0:
 					return ActionConfigHosts().Invoke(c).Suffix("/").ToA()
 				case 1:
-					return ActionUsers(cmd, UserOpts{Users: true}).Invoke(c).Suffix("/").ToA()
+					return gh.ActionUsers(gh.UserOpts{Users: true}).Invoke(c).Suffix("/").ToA()
 				case 2:
 					cmd.Flags().String("repo", fmt.Sprintf("%v/%v/", c.Parts[0], c.Parts[1]), "fake repo flag")
 					cmd.Flag("repo").Changed = true

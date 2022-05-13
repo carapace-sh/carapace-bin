@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -34,7 +35,7 @@ func init() {
 	// TODO app completion
 	carapace.Gen(pr_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": action.ActionAssignableUsers(pr_listCmd),
-		"author":   action.ActionUsers(pr_listCmd, action.UserOpts{Users: true}),
+		"author":   gh.ActionUsers(gh.UserOpts{Users: true}),
 		"base":     action.ActionBranches(pr_listCmd),
 		"head":     action.ActionBranches(pr_listCmd),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {

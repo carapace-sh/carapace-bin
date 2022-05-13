@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -43,6 +44,6 @@ func init() {
 	})
 
 	carapace.Gen(repo_listCmd).PositionalCompletion(
-		action.ActionUsers(repo_listCmd, action.UserOpts{Users: true, Organizations: true}),
+		gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
 	)
 }

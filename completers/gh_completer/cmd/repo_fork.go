@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -25,7 +26,7 @@ func init() {
 	repoCmd.AddCommand(repo_forkCmd)
 
 	carapace.Gen(repo_forkCmd).FlagCompletion(carapace.ActionMap{
-		"org": action.ActionUsers(repo_forkCmd, action.UserOpts{Organizations: true}),
+		"org": gh.ActionUsers(gh.UserOpts{Organizations: true}),
 	})
 
 	carapace.Gen(repo_forkCmd).PositionalCompletion(

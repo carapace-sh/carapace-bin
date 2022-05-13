@@ -2,9 +2,12 @@ package gh
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/config"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh/config"
 )
 
+// ActionConfigHosts completes configured hosts
+//   github.com
+//   another.com
 func ActionConfigHosts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if config, err := config.ParseDefaultConfig(); err != nil {

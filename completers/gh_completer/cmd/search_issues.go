@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/time"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -58,11 +59,11 @@ func init() {
 		"assignee": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionAssignableUsers(cmd)
 		}),
-		"author":    action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
+		"author":    gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
 		"closed":    time.ActionDate(),
-		"commenter": action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
+		"commenter": gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
 		"created":   time.ActionDate(),
-		"involves":  action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
+		"involves":  gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionSearchIssueFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
@@ -75,12 +76,12 @@ func init() {
 		"match": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("title", "body", "comments").Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"mentions": action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
+		"mentions": gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
 		"milestone": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionMilestones(cmd)
 		}),
 		"order": carapace.ActionValues("asc", "desc"),
-		"owner": action.ActionUsers(&cobra.Command{}, action.UserOpts{Users: true, Organizations: true}),
+		"owner": gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
 		"repo": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			dummyCmd := &cobra.Command{}
 			dummyCmd.Flags().String("repo", c.CallbackValue, "fake repo flag")

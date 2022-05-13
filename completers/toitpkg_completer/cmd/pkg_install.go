@@ -1,11 +1,9 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/toitpkg_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -31,14 +29,9 @@ func init() {
 			return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					if strings.HasPrefix(c.CallbackValue, "github.com/") {
-						c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "github.com/")
-						return gh.ActionOwnerRepositories().Invoke(c).Prefix("github.com/").ToA()
-					}
-
 					return carapace.Batch(
 						action.ActionPackages(),
-						carapace.ActionValues("github.com/"),
+						git.ActionRepositorySearch(), // TODO verify if https prefix is ok
 					).ToA()
 				case 1:
 					return action.ActionPackageVersions(c.Parts[0])

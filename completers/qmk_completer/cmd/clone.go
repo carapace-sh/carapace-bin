@@ -37,7 +37,7 @@ func init() {
 	carapace.Gen(cloneCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if !cloneCmd.Flag("baseurl").Changed {
-				return gh.ActionOwnerRepositories()
+				return gh.ActionOwnerRepositories(gh.HostOpts{}) // TODO support different basurls
 			}
 			return carapace.ActionValues()
 		}),
