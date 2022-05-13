@@ -17,7 +17,7 @@ func init() {
 
 	execCmd.Flags().BoolP("detach", "d", false, "Detached mode: Run command in the background.")
 	execCmd.Flags().StringArrayP("env", "e", []string{}, "Set environment variables")
-	execCmd.Flags().String("index", "1", "index of the container if there are multiple instances of a service [default: 1].")
+	execCmd.Flags().Int("index", 1, "index of the container if there are multiple instances of a service [default: 1].")
 	execCmd.Flags().BoolP("no-TTY", "T", false, "Disable pseudo-TTY allocation. By default `docker compose exec` allocates a TTY.")
 	execCmd.Flags().Bool("privileged", false, "Give extended privileges to the process.")
 	execCmd.Flags().StringP("user", "u", "", "Run the command as this user.")
@@ -26,7 +26,7 @@ func init() {
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
 		"user": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return action.ActionContainerUsers(execCmd, c.Args[0], execCmd.Flag("index").Value.String())
+				return action.ActionContainerUsers(execCmd, c.Args[0], execCmd.Flags().MustGetInt("index"))
 			}
 			return carapace.ActionValues()
 		}),
@@ -35,7 +35,7 @@ func init() {
 	carapace.Gen(execCmd).PositionalCompletion(
 		action.ActionServices(execCmd),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionServicePath(execCmd, c.Args[0])
+			return action.ActionFiles(execCmd, c.Args[0], execCmd.Flags().MustGetInt("index"))
 		}),
 	)
 }

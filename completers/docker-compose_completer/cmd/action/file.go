@@ -6,9 +6,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func ActionContainers(cmd *cobra.Command, opts compose.ContainerOpts) carapace.Action {
+func ActionFiles(cmd *cobra.Command, service string, index int) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		opts.Files = files(cmd)
-		return compose.ActionContainers(opts)
+		return compose.ActionFiles(compose.ServicePathOpts{Files: files(cmd), Service: service, Index: index})
 	})
 }
