@@ -6,6 +6,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/styles"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 type LsRemoteRefOption struct {
@@ -68,7 +69,7 @@ func ActionRefFiles(ref string) carapace.Action {
 				}
 				directoriesA := carapace.ActionValues(directories...).Invoke(c)
 
-				return filesA.Merge(directoriesA).Prefix(prefix).ToA()
+				return filesA.Merge(directoriesA).Prefix(prefix).ToA().NoSpace().StyleF(style.ForPathExt)
 			})
 		})
 	})
