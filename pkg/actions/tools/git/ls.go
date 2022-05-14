@@ -15,7 +15,7 @@ type LsRemoteRefOption struct {
 	Tags     bool
 }
 
-// ActionLsRemoteRefs lists branches and tags for a remote url
+// ActionLsRemoteRefs completes branches and tags for a remote url
 //   gh-pages (da4528d0a57ad71417336f0e96fa65ece2fad45a)
 //   master (3fbdef3c6a10094812a15cba8e825898b757dfb3)
 func ActionLsRemoteRefs(opts LsRemoteRefOption) carapace.Action {
@@ -35,7 +35,7 @@ func ActionLsRemoteRefs(opts LsRemoteRefOption) carapace.Action {
 	})
 }
 
-// ActionRefFiles lists files of a reference
+// ActionRefFiles completes files of a reference
 //   go.mod
 //   pkg/
 func ActionRefFiles(ref string) carapace.Action {

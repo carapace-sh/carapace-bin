@@ -9,7 +9,7 @@ import (
 	"gopkg.in/ini.v1"
 )
 
-// ActionRepositories completion package repositories
+// ActionRepositories completes package repositories
 //   extra
 //   multilib
 func ActionRepositories() carapace.Action {

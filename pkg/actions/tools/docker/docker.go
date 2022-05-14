@@ -126,7 +126,7 @@ func ActionContainerPath() carapace.Action {
 	})
 }
 
-// ActionLogDrivers completion log drivers
+// ActionLogDrivers completes log drivers
 //   splunk (Writes log messages to splunk using the HTTP Event Collector.)
 //   syslog (Writes logging messages to the syslog facility. The syslog daemon must be run...)
 func ActionLogDrivers() carapace.Action {

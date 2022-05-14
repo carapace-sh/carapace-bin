@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// ActionRepositorySearch completies repositories from github.com and gitlab.com
+// ActionRepositorySearch completes repositories from github.com and gitlab.com
 //    https://github.com/spf13/cobra
 //    https://gitlab.com/gitlab-org/gitlab-runner
 func ActionRepositorySearch() carapace.Action {

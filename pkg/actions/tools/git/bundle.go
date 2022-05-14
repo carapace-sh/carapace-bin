@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionBundleHeads completes references in a bundle
 func ActionBundleHeads(file string) carapace.Action {
 	return carapace.ActionExecCommand("git", "bundle", "list-heads", file)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

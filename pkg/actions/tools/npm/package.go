@@ -8,6 +8,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionPackageSearch completes packages@version for given registry
 func ActionPackageSearch(registry string) carapace.Action {
 	return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -21,6 +22,7 @@ func ActionPackageSearch(registry string) carapace.Action {
 	})
 }
 
+// ActionPackageNames completes package names for given registry 
 func ActionPackageNames(registry string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"search", "--parseable", "--searchlimit", "250", fmt.Sprintf(`/^%v`, c.CallbackValue)}
@@ -46,6 +48,7 @@ type PackageOpts struct {
 	Package  string
 }
 
+// ActionPackageVersions completes versions for given package
 func ActionPackageVersions(opts PackageOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"view", opts.Package, "versions", "--json"}
@@ -63,6 +66,8 @@ func ActionPackageVersions(opts PackageOpts) carapace.Action {
 	})
 }
 
+
+// ActionPackageTags completes tags for given package
 func ActionPackageTags(opts PackageOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"view", opts.Package, "dist-tags", "--json"}

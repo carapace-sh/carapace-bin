@@ -7,7 +7,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionSoundCards completion sound cards
+// ActionSoundCards completes sound cards
 //   0 (HDMI)
 //   PCH (1)
 func ActionSoundCards() carapace.Action {

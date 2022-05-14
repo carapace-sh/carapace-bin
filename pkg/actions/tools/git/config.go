@@ -7,6 +7,8 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
+
+// ActionConfigs completes configs
 func ActionConfigs() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO support different git folder
@@ -22,6 +24,8 @@ func ActionConfigs() carapace.Action {
 	})
 }
 
+
+// ActionColors completes colors
 func ActionColors() carapace.Action {
 	return carapace.ActionStyledValues(
 		"normal", style.Default,
@@ -36,6 +40,7 @@ func ActionColors() carapace.Action {
 	)
 }
 
+// ActionTextAttributes completes test attributes
 func ActionTextAttributes() carapace.Action {
 	return carapace.ActionStyledValues(
 		"bold", style.Bold,
@@ -46,6 +51,7 @@ func ActionTextAttributes() carapace.Action {
 	)
 }
 
+// ActionColorConfigs completes color config
 func ActionColorConfigs() carapace.Action {
 	return carapace.ActionMultiParts(" ", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -61,6 +67,7 @@ func ActionColorConfigs() carapace.Action {
 	})
 }
 
+// ActionConfigTypes completes config types
 func ActionConfigTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"bool", "canonicalize values as either \"true\" or \"false\"",
@@ -72,6 +79,7 @@ func ActionConfigTypes() carapace.Action {
 	)
 }
 
+// ActionConfigTypeOptions completes options for a config type
 func ActionConfigTypeOptions(t string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		switch t {

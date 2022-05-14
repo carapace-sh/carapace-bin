@@ -6,7 +6,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 )
 
-// ActionRequestHeaders ocmpletes http request headers
+// ActionRequestHeaders completes http request headers
 //   Accept:application/json
 //   Accept-Encoding:exi,br
 func ActionRequestHeaders() carapace.Action {
