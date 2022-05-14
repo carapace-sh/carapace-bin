@@ -2,21 +2,9 @@ package action
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/ghrepo"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
-	"github.com/rsteube/carapace/pkg/cache"
 	"github.com/spf13/cobra"
 )
-
-func repoCacheKey(cmd *cobra.Command) cache.Key {
-	return func() (string, error) {
-		if repo, err := repoOverride(cmd); err != nil {
-			return "", err
-		} else {
-			return ghrepo.FullName(repo), nil
-		}
-	}
-}
 
 func ActionOwnerRepositories(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {

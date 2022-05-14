@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +27,7 @@ func init() {
 
 	carapace.Gen(label_listCmd).FlagCompletion(carapace.ActionMap{
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabelFields().Invoke(c).Filter(c.Parts).ToA()
+			return gh.ActionLabelFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"order": carapace.ActionValues("asc", "desc"),
 		"sort":  carapace.ActionValues("created", "name"),
