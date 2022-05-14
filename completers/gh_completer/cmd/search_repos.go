@@ -50,7 +50,7 @@ func init() {
 		}),
 		"language": action.ActionLanguages(),
 		"license": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLicenses(search_reposCmd).Invoke(c).Filter(c.Parts).ToA()
+			return gh.ActionLicenses(gh.HostOpts{}).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"match": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("name", "description", "readme").Invoke(c).Filter(c.Parts).ToA()

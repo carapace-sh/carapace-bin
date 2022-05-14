@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -34,7 +35,7 @@ func init() {
 
 	carapace.Gen(repo_createCmd).FlagCompletion(carapace.ActionMap{
 		"gitignore": action.ActionGitignoreTemplates(repo_createCmd),
-		"license":   action.ActionLicenses(repo_createCmd),
+		"license":   gh.ActionLicenses(gh.HostOpts{}),
 		"source":    carapace.ActionDirectories(),
 		// TODO team
 		"template": action.ActionOwnerRepositories(repo_createCmd),
