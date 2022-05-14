@@ -72,9 +72,9 @@ func init() {
 			return action.ActionBranches(cmd)
 		}),
 		"checks":    carapace.ActionValues("pending", "success", "failure"),
-		"closed":    time.ActionDate(),
+		"closed":    action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"commenter": gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
-		"created":   time.ActionDate(),
+		"created":   action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"head": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionBranches(cmd)
 		}),
@@ -92,7 +92,7 @@ func init() {
 			return carapace.ActionValues("title", "body", "comments").Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"mentions":  gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
-		"merged-at": time.ActionDate(),
+		"merged-at": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"milestone": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionMilestones(cmd)
 		}),
@@ -112,7 +112,7 @@ func init() {
 		}),
 		"sort":    carapace.ActionValues("comments", "created", "interactions", "reactions", "reactions-+1", "reactions--1", "reactions-heart", "reactions-smile", "reactions-tada", "reactions-thinking_face", "updated"),
 		"state":   carapace.ActionValues("open", "closed"),
-		"updated": time.ActionDate(),
+		"updated": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"visibility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("public", "private", "internal").Invoke(c).Filter(c.Parts).ToA()
 		}),

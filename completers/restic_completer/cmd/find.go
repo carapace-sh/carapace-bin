@@ -33,8 +33,8 @@ func init() {
 		"host": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionSnapshotHosts(findCmd).Invoke(c).Filter(c.Args).ToA()
 		}),
-		"newest":   time.ActionDateTime(),
-		"oldest":   time.ActionDateTime(),
+		"newest":   time.ActionDateTime(time.DateTimeOpts{}),
+		"oldest":   time.ActionDateTime(time.DateTimeOpts{}),
 		"path":     carapace.ActionFiles(),
 		"snapshot": action.ActionSnapshotIDs(findCmd),
 		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {

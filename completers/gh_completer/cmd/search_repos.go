@@ -43,7 +43,7 @@ func init() {
 	searchCmd.AddCommand(search_reposCmd)
 
 	carapace.Gen(search_reposCmd).FlagCompletion(carapace.ActionMap{
-		"created":       time.ActionDate(),
+		"created":       action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"include-forks": carapace.ActionValues("false", "true", "only"),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionSearchRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
@@ -61,7 +61,7 @@ func init() {
 		"topic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionTopicSearch(search_reposCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"updated": time.ActionDate(),
+		"updated": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"visibility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("public", "private", "internal").Invoke(c).Filter(c.Parts).ToA()
 		}),
