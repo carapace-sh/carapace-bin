@@ -7,7 +7,6 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
-
 // ActionConfigs completes configs
 func ActionConfigs() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
@@ -23,7 +22,6 @@ func ActionConfigs() carapace.Action {
 		})
 	})
 }
-
 
 // ActionColors completes colors
 func ActionColors() carapace.Action {

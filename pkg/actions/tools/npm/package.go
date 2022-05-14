@@ -22,7 +22,7 @@ func ActionPackageSearch(registry string) carapace.Action {
 	})
 }
 
-// ActionPackageNames completes package names for given registry 
+// ActionPackageNames completes package names for given registry
 func ActionPackageNames(registry string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"search", "--parseable", "--searchlimit", "250", fmt.Sprintf(`/^%v`, c.CallbackValue)}
@@ -65,7 +65,6 @@ func ActionPackageVersions(opts PackageOpts) carapace.Action {
 		})
 	})
 }
-
 
 // ActionPackageTags completes tags for given package
 func ActionPackageTags(opts PackageOpts) carapace.Action {
