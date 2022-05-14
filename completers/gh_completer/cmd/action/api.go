@@ -71,7 +71,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
 				return ActionLabels(cmd)
 			case "{license}":
-				return ActionLicenses(cmd)
+				return gh.ActionLicenses(gh.HostOpts{})
 			case "{issue_number}":
 				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
 				return ActionIssues(cmd, IssueOpts{Open: true, Closed: true})
