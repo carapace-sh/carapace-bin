@@ -50,7 +50,7 @@ func init() {
 		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionSnapshotTags(backupCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"time": time.ActionDateTime(),
+		"time": time.ActionDateTime(time.DateTimeOpts{}),
 	})
 
 	carapace.Gen(backupCmd).PositionalAnyCompletion(

@@ -106,11 +106,11 @@ func init() {
 		"root": carapace.ActionDirectories(),
 		"since": carapace.Batch(
 			carapace.ActionValues("yesterday", "today", "tomorrow"),
-			time.ActionDateTime(),
+			time.ActionDateTime(time.DateTimeOpts{}),
 		).ToA(),
 		"until": carapace.Batch(
 			carapace.ActionValues("yesterday", "today", "tomorrow"),
-			time.ActionDateTime(),
+			time.ActionDateTime(time.DateTimeOpts{}),
 		).ToA(),
 	})
 }

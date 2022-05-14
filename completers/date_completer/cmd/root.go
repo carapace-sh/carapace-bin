@@ -33,7 +33,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"date":      time.ActionDateTime(),
+		"date":      time.ActionDateTime(time.DateTimeOpts{}),
 		"file":      carapace.ActionFiles(),
 		"reference": carapace.ActionFiles(),
 	})

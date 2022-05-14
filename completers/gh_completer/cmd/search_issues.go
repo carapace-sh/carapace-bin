@@ -60,9 +60,9 @@ func init() {
 			return action.ActionAssignableUsers(cmd)
 		}),
 		"author":    gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
-		"closed":    time.ActionDate(),
+		"closed":    action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"commenter": gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
-		"created":   time.ActionDate(),
+		"created":   action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"involves":  gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionSearchIssueFields().Invoke(c).Filter(c.Parts).ToA()
@@ -89,7 +89,7 @@ func init() {
 		}),
 		"sort":    carapace.ActionValues("comments", "created", "interactions", "reactions", "reactions-+1", "reactions--1", "reactions-heart", "reactions-smile", "reactions-tada", "reactions-thinking_face", "updated"),
 		"state":   carapace.ActionValues("open", "closed"),
-		"updated": time.ActionDate(),
+		"updated": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"visibility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("public", "private", "internal").Invoke(c).Filter(c.Parts).ToA()
 		}),

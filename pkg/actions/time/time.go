@@ -117,15 +117,23 @@ func ActionTimeS() carapace.Action {
 	})
 }
 
+type DateTimeOpts struct {
+	Strict bool
+}
+
 // ActionDateTime completes `yyyy-MM-dd hh:mm:ss` datetime
 //   2021-11-11 04:02:12
 //   2021-04-02 16:11:33
-func ActionDateTime() carapace.Action {
-	return carapace.ActionMultiParts(" ", func(c carapace.Context) carapace.Action {
+func ActionDateTime(opts DateTimeOpts) carapace.Action {
+	delimiter := " "
+	if opts.Strict {
+		delimiter = "T"
+	}
+	return carapace.ActionMultiParts(delimiter, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
 			if strings.Count(c.CallbackValue, "-") == 2 {
-				return ActionDate().Invoke(c).Suffix(" ").ToA()
+				return ActionDate().Invoke(c).Suffix(delimiter).ToA()
 			}
 			return ActionDate()
 		case 1:
