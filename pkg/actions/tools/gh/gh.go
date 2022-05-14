@@ -1,6 +1,8 @@
 // package gh contains github related actions
 package gh
 
+import "github.com/rsteube/carapace/pkg/cache"
+
 type repo interface {
 	host() string
 	owner() string
@@ -49,5 +51,6 @@ func (o RepoOpts) host() string {
 		return o.Host
 	}
 }
-func (o RepoOpts) owner() string { return o.Owner }
-func (o RepoOpts) name() string  { return o.Name }
+func (o RepoOpts) owner() string       { return o.Owner }
+func (o RepoOpts) name() string        { return o.Name }
+func (o RepoOpts) cacheKey() cache.Key { return cache.String(o.Host, o.Owner, o.Name) }

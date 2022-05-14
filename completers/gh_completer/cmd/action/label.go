@@ -1,9 +1,8 @@
 package action
 
 import (
-	"time"
-
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -13,39 +12,12 @@ type label struct {
 	Color       string
 }
 
-type labelsQuery struct {
-	Data struct {
-		Repository struct {
-			Labels struct {
-				Nodes []label
-			}
-		}
-	}
-}
-
 func ActionLabels(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		var queryResult labelsQuery
-		return GraphQlAction(cmd, `repository(owner: $owner, name: $repo){ labels(first: 100) { nodes { name, description, color } } }`, &queryResult, func() carapace.Action {
-			labels := queryResult.Data.Repository.Labels.Nodes
-			vals := make([]string, 0)
-			for _, label := range labels {
-				vals = append(vals, label.Name, label.Description, "#"+label.Color)
-			}
-			return carapace.ActionStyledValuesDescribed(vals...)
-		})
-	}).Cache(5*time.Minute, repoCacheKey(cmd))
-}
-
-func ActionLabelFields() carapace.Action {
-	return carapace.ActionValues(
-		"color",
-		"createdAt",
-		"description",
-		"id",
-		"isDefault",
-		"name",
-		"updatedAt",
-		"url",
-	)
+		repo, err := repoOverride(cmd)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+		return gh.ActionLabels(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
+	})
 }

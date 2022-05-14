@@ -18,12 +18,6 @@ type issue struct {
 	}
 }
 
-type label struct {
-	Name        string
-	Description string
-	Color       string
-}
-
 type pinnedIssueQuery struct {
 	Data struct {
 		Repository struct {

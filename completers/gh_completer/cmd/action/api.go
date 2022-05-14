@@ -68,8 +68,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 			case "{gitignore_name}":
 				return ActionGitignoreTemplates(cmd)
 			case "{label}":
-				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
-				return ActionLabels(cmd)
+				return gh.ActionLabels(gh.RepoOpts{Owner: matchedData["{owner}"], Name: matchedData["{repo}"]})
 			case "{license}":
 				return gh.ActionLicenses(gh.HostOpts{})
 			case "{issue_number}":
