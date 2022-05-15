@@ -7,7 +7,7 @@ import (
 
 var completion_powershellCmd = &cobra.Command{
 	Use:   "powershell",
-	Short: "generate the autocompletion script for powershell",
+	Short: "Generate the autocompletion script for powershell",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -120,7 +120,10 @@ func varName(name string) string {
 	if name == "go" {
 		return "_go"
 	}
-	return strings.Replace(name, "-", "_", -1)
+	return strings.NewReplacer(
+		"-", "_",
+		".", "_",
+	).Replace(name)
 }
 
 func readCompleters() ([]string, map[string]string) {

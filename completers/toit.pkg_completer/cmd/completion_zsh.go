@@ -7,7 +7,7 @@ import (
 
 var completion_zshCmd = &cobra.Command{
 	Use:   "zsh",
-	Short: "generate the autocompletion script for zsh",
+	Short: "Generate the autocompletion script for zsh",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

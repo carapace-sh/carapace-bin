@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var pkg_cleanCmd = &cobra.Command{
+var cleanCmd = &cobra.Command{
 	Use:   "clean",
 	Short: "Removes unnecessary packages",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(pkg_cleanCmd).Standalone()
-	pkgCmd.AddCommand(pkg_cleanCmd)
+	carapace.Gen(cleanCmd).Standalone()
+	rootCmd.AddCommand(cleanCmd)
 }

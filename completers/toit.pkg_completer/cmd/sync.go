@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var pkg_syncCmd = &cobra.Command{
+var syncCmd = &cobra.Command{
 	Use:   "sync",
 	Short: "Synchronizes all registries",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(pkg_syncCmd).Standalone()
-	pkgCmd.AddCommand(pkg_syncCmd)
+	carapace.Gen(syncCmd).Standalone()
+	rootCmd.AddCommand(syncCmd)
 }

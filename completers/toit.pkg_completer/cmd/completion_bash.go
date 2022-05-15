@@ -7,7 +7,7 @@ import (
 
 var completion_bashCmd = &cobra.Command{
 	Use:   "bash",
-	Short: "generate the autocompletion script for bash",
+	Short: "Generate the autocompletion script for bash",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
