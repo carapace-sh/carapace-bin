@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var pkg_registryCmd = &cobra.Command{
+var registryCmd = &cobra.Command{
 	Use:   "registry",
 	Short: "Manages registries",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(pkg_registryCmd).Standalone()
-	pkgCmd.AddCommand(pkg_registryCmd)
+	carapace.Gen(registryCmd).Standalone()
+	rootCmd.AddCommand(registryCmd)
 }

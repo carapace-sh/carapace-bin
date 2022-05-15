@@ -7,7 +7,7 @@ import (
 
 var completion_fishCmd = &cobra.Command{
 	Use:   "fish",
-	Short: "generate the autocompletion script for fish",
+	Short: "Generate the autocompletion script for fish",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
