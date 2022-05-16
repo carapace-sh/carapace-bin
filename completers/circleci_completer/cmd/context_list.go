@@ -22,7 +22,7 @@ func init() {
 		action.ActionVcsTypes(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if c.Args[0] == "github" {
-				return gh.ActionUsers(gh.UserOpts{Organizations: true})
+				return gh.ActionOrganizations(gh.HostOpts{})
 			}
 			return carapace.ActionValues()
 		}),

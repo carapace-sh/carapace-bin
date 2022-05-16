@@ -44,6 +44,6 @@ func init() {
 	})
 
 	carapace.Gen(repo_listCmd).PositionalCompletion(
-		gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
+		gh.ActionOwners(gh.HostOpts{}),
 	)
 }

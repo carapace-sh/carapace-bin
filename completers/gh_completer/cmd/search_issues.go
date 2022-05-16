@@ -59,11 +59,11 @@ func init() {
 		"assignee": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionAssignableUsers(cmd)
 		}),
-		"author":    gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
+		"author":    gh.ActionUsers(gh.HostOpts{}),
 		"closed":    action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
-		"commenter": gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
+		"commenter": gh.ActionUsers(gh.HostOpts{}),
 		"created":   action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
-		"involves":  gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
+		"involves":  gh.ActionUsers(gh.HostOpts{}),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionSearchIssueFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
@@ -76,12 +76,12 @@ func init() {
 		"match": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("title", "body", "comments").Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"mentions": gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
+		"mentions": gh.ActionUsers(gh.HostOpts{}),
 		"milestone": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionMilestones(cmd)
 		}),
 		"order": carapace.ActionValues("asc", "desc"),
-		"owner": gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
+		"owner": gh.ActionOwners(gh.HostOpts{}),
 		"repo": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			dummyCmd := &cobra.Command{}
 			dummyCmd.Flags().String("repo", c.CallbackValue, "fake repo flag")

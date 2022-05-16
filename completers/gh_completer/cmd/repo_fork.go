@@ -26,7 +26,7 @@ func init() {
 	repoCmd.AddCommand(repo_forkCmd)
 
 	carapace.Gen(repo_forkCmd).FlagCompletion(carapace.ActionMap{
-		"org": gh.ActionUsers(gh.UserOpts{Organizations: true}),
+		"org": gh.ActionOrganizations(gh.HostOpts{}),
 	})
 
 	carapace.Gen(repo_forkCmd).PositionalCompletion(

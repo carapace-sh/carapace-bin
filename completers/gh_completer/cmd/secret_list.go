@@ -25,6 +25,6 @@ func init() {
 	carapace.Gen(secret_listCmd).FlagCompletion(carapace.ActionMap{
 		"app": carapace.ActionValues("actions", "codespaces", "dependabot"),
 		"env": action.ActionEnvironments(secret_listCmd),
-		"org": gh.ActionUsers(gh.UserOpts{Organizations: true}),
+		"org": gh.ActionOrganizations(gh.HostOpts{}),
 	})
 }

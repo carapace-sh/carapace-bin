@@ -30,7 +30,7 @@ func init() {
 		"app":      carapace.ActionValues("actions", "codespaces", "dependabot"),
 		"env":      action.ActionEnvironments(secret_setCmd),
 		"env-file": carapace.ActionFiles(),
-		"org":      gh.ActionUsers(gh.UserOpts{Organizations: true}),
+		"org":      gh.ActionOrganizations(gh.HostOpts{}),
 		"repos": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionOwnerRepositories(secret_setCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),

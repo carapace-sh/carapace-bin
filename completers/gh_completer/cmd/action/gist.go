@@ -50,7 +50,7 @@ func ActionGistUrls(cmd *cobra.Command) carapace.Action {
 				case 0:
 					return ActionConfigHosts().Invoke(c).Suffix("/").ToA()
 				case 1:
-					return gh.ActionUsers(gh.UserOpts{Users: true}).Invoke(c).Suffix("/").ToA()
+					return gh.ActionUsers(gh.HostOpts{}).Invoke(c).Suffix("/").ToA()
 				case 2:
 					cmd.Flags().String("repo", fmt.Sprintf("%v/%v/", c.Parts[0], c.Parts[1]), "fake repo flag")
 					cmd.Flag("repo").Changed = true

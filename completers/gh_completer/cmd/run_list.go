@@ -28,7 +28,7 @@ func init() {
 	carapace.Gen(run_listCmd).FlagCompletion(carapace.ActionMap{
 		"branch":   action.ActionBranches(run_listCmd),
 		"json":     action.ActionRunFields(),
-		"user":     gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
+		"user":     gh.ActionUsers(gh.HostOpts{}),
 		"workflow": action.ActionWorkflows(run_listCmd, action.WorkflowOpts{Enabled: true, Id: true, Name: true}),
 	})
 }

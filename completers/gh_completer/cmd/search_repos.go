@@ -56,7 +56,7 @@ func init() {
 			return carapace.ActionValues("name", "description", "readme").Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"order": carapace.ActionValues("asc", "desc"),
-		"owner": gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}),
+		"owner": gh.ActionOwners(gh.HostOpts{}),
 		"sort":  carapace.ActionValues("forks", "help-wanted-issues", "stars", "updated"),
 		"topic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionTopicSearch(search_reposCmd).Invoke(c).Filter(c.Parts).ToA()
