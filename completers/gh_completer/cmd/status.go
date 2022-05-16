@@ -23,6 +23,6 @@ func init() {
 		"exclude": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionOwnerRepositories(statusCmd)
 		}),
-		"org": gh.ActionUsers(gh.UserOpts{Organizations: true}),
+		"org": gh.ActionOrganizations(gh.HostOpts{}),
 	})
 }

@@ -67,7 +67,7 @@ func ActionOwnerRepositories(opts HostOpts) carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			return ActionUsers(UserOpts{Users: true, Organizations: true}).Invoke(c).Suffix("/").ToA()
+			return ActionOwners(opts).Invoke(c).Suffix("/").ToA()
 		case 1:
 			return ActionRepositories(OwnerOpts{Owner: c.Parts[0]})
 		default:

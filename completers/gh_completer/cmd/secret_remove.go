@@ -24,7 +24,7 @@ func init() {
 	carapace.Gen(secret_removeCmd).FlagCompletion(carapace.ActionMap{
 		"app": carapace.ActionValues("actions", "codespaces", "dependabot"),
 		"env": action.ActionEnvironments(secret_removeCmd),
-		"org": gh.ActionUsers(gh.UserOpts{Organizations: true}),
+		"org": gh.ActionOrganizations(gh.HostOpts{}),
 	})
 
 	carapace.Gen(secret_removeCmd).PositionalCompletion(

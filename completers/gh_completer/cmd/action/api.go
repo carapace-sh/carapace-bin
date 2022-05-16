@@ -78,10 +78,10 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				if strings.HasPrefix(c.CallbackValue, ":") {
 					return carapace.ActionValues(":owner")
 				} else {
-					return gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true})
+					return gh.ActionOwners(gh.HostOpts{}) // TODO host
 				}
 			case "{org}":
-				return gh.ActionUsers(gh.UserOpts{Organizations: true})
+				return gh.ActionOrganizations(gh.HostOpts{})
 			case "{package_type}":
 				return ActionPackageTypes()
 			case "{pull_number}":
@@ -101,7 +101,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 			case "{template_repo}": // ignore this as it is already provided by `{repo}`
 				return carapace.ActionValues()
 			case "{username}":
-				return gh.ActionUsers(gh.UserOpts{Users: true})
+				return gh.ActionUsers(gh.HostOpts{})
 			case "{workflow_id}":
 				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
 				return ActionWorkflows(cmd, WorkflowOpts{Enabled: true, Disabled: true, Id: true})

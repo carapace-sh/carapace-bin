@@ -15,7 +15,7 @@ func ActionOwnerRepositories(cmd *cobra.Command) carapace.Action {
 
 		switch len(c.Parts) {
 		case 0:
-			return gh.ActionUsers(gh.UserOpts{Users: true, Organizations: true}).Invoke(c).Suffix("/").ToA()
+			return gh.ActionOwners(gh.HostOpts{}).Invoke(c).Suffix("/").ToA() // TODO host
 		case 1:
 			return gh.ActionRepositories(gh.OwnerOpts{Owner: c.Parts[0]})
 		default:

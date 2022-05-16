@@ -34,7 +34,7 @@ func init() {
 	// TODO app completion
 	carapace.Gen(issue_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": action.ActionAssignableUsers(issue_listCmd),
-		"author":   gh.ActionUsers(gh.UserOpts{Users: true}),
+		"author":   gh.ActionUsers(gh.HostOpts{}),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionIssueFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
