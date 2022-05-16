@@ -10,9 +10,13 @@ var Gh = struct {
 	StateClosed   string `desc:"closed issues/pulls"`
 	StateMerged   string `desc:"merged pulls"`
 	StateOpen     string `desc:"open issues/pulls"`
-	RepoPublic    string `desc:"public repository"`
-	RepoPrivate   string `desc:"private repository"`
+	RepoArchived  string `desc:"archived repository"`
 	RepoFork      string `desc:"forked repository"`
+	RepoLocked    string `desc:"locked repository"`
+	RepoMirror    string `desc:"mirror repository"`
+	RepoPrivate   string `desc:"private repository"`
+	RepoPublic    string `desc:"public repository"`
+	RepoTemplate  string `desc:"template repository"`
 }{
 	Draft:         style.Gray,
 	JobFailed:     style.Red,
@@ -21,9 +25,13 @@ var Gh = struct {
 	StateClosed:   style.Red,
 	StateMerged:   style.Magenta,
 	StateOpen:     style.Green,
-	RepoPublic:    style.Default,
-	RepoPrivate:   style.Red,
+	RepoArchived:  style.Magenta,
 	RepoFork:      style.Gray,
+	RepoLocked:    style.Bold,
+	RepoMirror:    style.Cyan,
+	RepoPrivate:   style.Red,
+	RepoPublic:    style.Default,
+	RepoTemplate:  style.Yellow,
 }
 
 func init() {
