@@ -36,7 +36,7 @@ func ActionLabels(opts RepoOpts) carapace.Action {
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
-	}).Cache(5*time.Minute, opts.cacheKey())
+	}).Cache(24*time.Hour, opts.cacheKey())
 }
 
 // ActionLabelFields completes label fields
