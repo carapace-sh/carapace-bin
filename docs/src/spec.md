@@ -1,4 +1,4 @@
-# Specs
+# Spec
 
 Custom completions can be defined using [yaml specs](https://github.com/rsteube/carapace-spec).
 
