@@ -77,7 +77,7 @@ jobs:
             chmod +x cmd/carapace/carapace
             sed -i 's/\[output.linkcheck\]/#[output.linkcheck]/' docs/book.toml
             sh .github/completers.sh > docs/src/completers.md
-            sh .github/macros.sh > docs/src/specs/macros.md
+            sh .github/macros.sh > docs/src/spec/macros.md
             mdbook build docs
             sh .github/badge.sh > docs/book/badge.svg
             sh .github/macros-badge.sh > docs/book/macros-badge.svg
