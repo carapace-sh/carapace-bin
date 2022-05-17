@@ -8,15 +8,21 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
-type ChangeOption struct {
+type ChangeOpts struct {
 	Staged   bool
 	Unstaged bool
+}
+
+func (o ChangeOpts) Default() ChangeOpts {
+	o.Staged = true
+	o.Unstaged = true
+	return o
 }
 
 // ActionChanges completes (un)staged changes
 //   fileA ( M)
 //   pathA/fileB (??)
-func ActionChanges(opts ChangeOption) carapace.Action {
+func ActionChanges(opts ChangeOpts) carapace.Action {
 	// TODO multiparts action to complete step by step
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("git", "status", "--porcelain")(func(output []byte) carapace.Action {
