@@ -34,7 +34,11 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 					if len(line) > 3 {
 						if (opts.Staged && line[1] == ' ') ||
 							(opts.Unstaged && line[1] != ' ') {
-							if relativePath, err := filepath.Rel(c.Dir, root+"/"+line[3:]); err != nil {
+							path := line[3:]
+							if splitted := strings.SplitN(path, " -> ", 2); len(splitted) > 1 { // renamed
+								path = splitted[1]
+							}
+							if relativePath, err := filepath.Rel(c.Dir, root+"/"+path); err != nil {
 								return carapace.ActionMessage(err.Error())
 							} else {
 								untracked = append(untracked, relativePath, line[:2], style.ForPath(relativePath))
