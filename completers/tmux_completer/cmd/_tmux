@@ -1896,4 +1896,5 @@ for f in ${(M)${(k)functions}:#_tmux-*} ; do
   [[ -n ${rev[${f#_tmux-}]} ]] && _tmux_aliases+=( "${rev[${f#_tmux-}]}${desc:+:$desc}" )
 done
 
-_tmux "$@"
+compquote '' 2>/dev/null && _tmux "$@"
+compdef _tmux tmux

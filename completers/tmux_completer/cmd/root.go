@@ -41,8 +41,4 @@ func init() {
 		"c": carapace.ActionFiles(),
 		"f": carapace.ActionFiles(),
 	})
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionFiles(),
-	)
 }
