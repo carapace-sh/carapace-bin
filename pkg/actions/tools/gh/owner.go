@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 )
 
 type owner struct {
@@ -49,7 +49,7 @@ func ActionUsers(opts HostOpts) carapace.Action {
 				vals[index*2] = user.Node.Login
 				vals[index*2+1] = user.Node.Name
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionValuesDescribed(vals...).Style(styles.Gh.OwnerUser)
 		})
 	})
 
@@ -72,7 +72,7 @@ func ActionOrganizations(opts HostOpts) carapace.Action {
 				vals[index*2] = user.Node.Login
 				vals[index*2+1] = user.Node.Name
 			}
-			return carapace.ActionValuesDescribed(vals...).Style(style.Blue)
+			return carapace.ActionValuesDescribed(vals...).Style(styles.Gh.OwnerOrganization)
 		})
 	})
 
