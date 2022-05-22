@@ -1,6 +1,6 @@
 {
   "name": "carapace",
-  "image": "ghcr.io/rsteube/carapace:v0.20.2",
+  "image": "ghcr.io/rsteube/carapace:v0.20.3",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/elvish"
   },
