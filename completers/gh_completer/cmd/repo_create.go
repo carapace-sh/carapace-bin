@@ -22,6 +22,7 @@ func init() {
 	repo_createCmd.Flags().Bool("disable-wiki", false, "Disable wiki in the new repository")
 	repo_createCmd.Flags().StringP("gitignore", "g", "", "Specify a gitignore template for the repository")
 	repo_createCmd.Flags().StringP("homepage", "h", "", "Repository home page `URL`")
+	repo_createCmd.Flags().Bool("include-all-branches", false, "Include all branches from template repository")
 	repo_createCmd.Flags().Bool("internal", false, "Make the new repository internal")
 	repo_createCmd.Flags().StringP("license", "l", "", "Specify an Open Source License for the repository")
 	repo_createCmd.Flags().Bool("private", false, "Make the new repository private")

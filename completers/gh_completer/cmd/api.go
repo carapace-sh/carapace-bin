@@ -19,7 +19,7 @@ func init() {
 	apiCmd.Flags().StringArrayP("field", "F", []string{}, "Add a typed parameter in `key=value` format")
 	apiCmd.Flags().StringArrayP("header", "H", []string{}, "Add a HTTP request header in `key:value` format")
 	apiCmd.Flags().String("hostname", "", "The GitHub hostname for the request (default \"github.com\")")
-	apiCmd.Flags().BoolP("include", "i", false, "Include HTTP response headers in the output")
+	apiCmd.Flags().BoolP("include", "i", false, "Include HTTP response status line and headers in the output")
 	apiCmd.Flags().String("input", "", "The `file` to use as body for the HTTP request (use \"-\" to read from standard input)")
 	apiCmd.Flags().StringP("jq", "q", "", "Query to select values from the response using jq syntax")
 	apiCmd.Flags().StringP("method", "X", "GET", "The HTTP method for the request")

@@ -34,6 +34,9 @@ func init() {
 	})
 
 	carapace.Gen(extension_installCmd).PositionalCompletion(
-		action.ActionOwnerRepositories(extension_installCmd),
+		carapace.Batch(
+			action.ActionTopExtensions(),
+			action.ActionOwnerRepositories(extension_installCmd),
+		).ToA(),
 	)
 }
