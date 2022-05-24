@@ -1,12 +1,16 @@
 package action
 
 import (
+	"fmt"
+	"net/url"
 	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
+	"time"
 
 	"github.com/rsteube/carapace"
+	"github.com/spf13/cobra"
 )
 
 const (
@@ -59,4 +63,24 @@ func ActionExtensions() carapace.Action {
 		}
 		return carapace.ActionValues(extensions...)
 	})
+}
+
+func ActionTopExtensions() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		var queryResult struct {
+			Items []struct {
+				FullName        string `json:"full_name"`
+				Description     string
+				StargazersCount int `json:"stargazers_count"`
+			}
+		}
+
+		return ApiV3Action(&cobra.Command{}, fmt.Sprintf(`search/repositories?per_page=100&q=%v`, url.QueryEscape("topic:gh-extension sort:stars-desc")), &queryResult, func() carapace.Action {
+			vals := make([]string, 0)
+			for _, item := range queryResult.Items {
+				vals = append(vals, item.FullName, fmt.Sprintf("%v - %v", item.StargazersCount, item.Description))
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
+	}).Cache(24 * time.Hour)
 }
