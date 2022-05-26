@@ -50,7 +50,7 @@ func ActionPackages(channel string) carapace.Action {
 			return carapace.ActionMessage("search needs at least 1 character")
 		}
 
-		query := fmt.Sprintf(`SELECT DISTINCT package FROM Programs WHERE package LIKE "%v%%"`, c.Value) // TODO filter by system (architecture)
+		query := fmt.Sprintf(`SELECT DISTINCT package FROM Programs WHERE package LIKE '%v%%'`, c.Value) // TODO filter by system (architecture)
 		return carapace.ActionExecCommand("sqlite3", path, query)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[:len(lines)-1]...)
