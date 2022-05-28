@@ -7,6 +7,7 @@ import (
 	"unicode"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionSubDirectories completes subdirectories of a given path
@@ -51,13 +52,13 @@ func ActionFileModesSymbolic() carapace.Action {
 			}
 			return classes.Filter(c.Parts).ToA()
 		} else {
-			return carapace.ActionValuesDescribed(
-				"r", "read",
-				"w", "write",
-				"x", "execute",
-				"X", "special execute",
-				"s", "setuid/gid",
-				"t", "sticky",
+			return carapace.ActionStyledValuesDescribed(
+				"r", "read", style.Green,
+				"w", "write", style.Red,
+				"x", "execute", style.Yellow,
+				"X", "special execute", style.Yellow,
+				"s", "setuid/gid", style.Default,
+				"t", "sticky", style.Default,
 			).Invoke(c).Filter(c.Parts).ToA()
 		}
 	})
@@ -69,15 +70,15 @@ func ActionFileModesSymbolic() carapace.Action {
 func ActionFileModesNumeric() carapace.Action {
 	return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
 		if len(c.Parts) < 3 {
-			return carapace.ActionValuesDescribed(
-				"7", "read, write and execute",
-				"6", "read and write",
-				"5", "read and execute",
-				"4", "read only",
-				"3", "write and execute",
-				"2", "write only",
-				"1", "execute only",
-				"0", "none",
+			return carapace.ActionStyledValuesDescribed(
+				"7", "read, write and execute", style.Red,
+				"6", "read and write", style.Red,
+				"5", "read and execute", style.Yellow,
+				"4", "read only", style.Green,
+				"3", "write and execute", style.Red,
+				"2", "write only", style.Red,
+				"1", "execute only", style.Yellow,
+				"0", "none", style.Default,
 			)
 		} else {
 			return carapace.ActionValues()
