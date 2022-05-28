@@ -2,9 +2,11 @@ package os
 
 import (
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionGroups completes system group names
@@ -19,13 +21,21 @@ func ActionGroups() carapace.Action {
 				if len(splitted) > 2 {
 					group := splitted[0]
 					id := splitted[2]
+
+					_style := style.Default
+					if id == "0" {
+						_style = style.Red
+					} else if _id, err := strconv.Atoi(id); err == nil && _id >= 1000 {
+						_style = style.Blue
+					}
+
 					if len(strings.TrimSpace(group)) > 0 {
-						groups = append(groups, group, id)
+						groups = append(groups, group, id, _style)
 					}
 				}
 			}
 		}
-		return carapace.ActionValuesDescribed(groups...)
+		return carapace.ActionStyledValuesDescribed(groups...)
 	})
 }
 
