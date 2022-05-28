@@ -2,6 +2,7 @@ package os
 
 import (
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -28,8 +29,14 @@ func ActionUsers() carapace.Action {
 					}
 
 					_style := style.Default
-					if shell != "/usr/bin/nologin" {
-						_style = style.Blue
+					if id == "0" {
+						_style = style.Red
+					} else if shell != "/usr/bin/nologin" {
+						if _id, err := strconv.Atoi(id); err == nil && _id < 1000 {
+							_style = style.Yellow
+						} else {
+							_style = style.Blue
+						}
 					}
 
 					if len(strings.TrimSpace(user)) > 0 {
