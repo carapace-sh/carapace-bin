@@ -32,7 +32,10 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if util.HasPathPrefix(c.CallbackValue) {
 				return carapace.ActionFiles()
+			} else if !strings.HasPrefix(c.CallbackValue, "remote:/") {
+				return carapace.ActionValues("remote:/").NoSpace()
 			}
+
 			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "remote:")
 			return action.ActionCodespacePath(
 				codespace_cpCmd.Flag("codespace").Value.String(),

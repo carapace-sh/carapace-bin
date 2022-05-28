@@ -22,6 +22,8 @@ func init() {
 
 	carapace.Gen(codespace_portsCmd).FlagCompletion(carapace.ActionMap{
 		"codespace": action.ActionCodespaces(),
-		"json":      action.ActionCodespacePortFields(),
+		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionCodespacePortFields().Invoke(c).Filter(c.Parts).ToA()
+		}),
 	})
 }
