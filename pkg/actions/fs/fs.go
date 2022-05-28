@@ -57,8 +57,8 @@ func ActionFileModesSymbolic() carapace.Action {
 				"w", "write", style.Red,
 				"x", "execute", style.Yellow,
 				"X", "special execute", style.Yellow,
-				"s", "setuid/gid", style.Default,
-				"t", "sticky", style.Default,
+				"s", "setuid/gid", style.Magenta,
+				"t", "sticky", style.Magenta,
 			).Invoke(c).Filter(c.Parts).ToA()
 		}
 	})
