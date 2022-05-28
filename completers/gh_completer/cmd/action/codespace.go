@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -64,7 +65,7 @@ func ActionCodespaceMachines() carapace.Action {
 
 type codespacePort struct {
 	Label      string
-	SourcePort string
+	SourcePort int
 	Visibility string
 }
 
@@ -77,7 +78,7 @@ func ActionCodespacePorts(codespace string) carapace.Action {
 
 		vals := make([]string, 0)
 		for _, port := range ports {
-			vals = append(vals, port.SourcePort, fmt.Sprintf("%v - %v", port.Label, port.Visibility))
+			vals = append(vals, strconv.Itoa(port.SourcePort), fmt.Sprintf("%v - %v", port.Label, port.Visibility))
 		}
 		return carapace.ActionValuesDescribed(vals...)
 	})
