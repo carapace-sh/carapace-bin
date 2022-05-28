@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionUsers completes system user names
@@ -16,16 +17,28 @@ func ActionUsers() carapace.Action {
 		if content, err := os.ReadFile("/etc/passwd"); err == nil {
 			for _, entry := range strings.Split(string(content), "\n") {
 				splitted := strings.Split(entry, ":")
-				if len(splitted) > 2 {
+				if len(splitted) > 6 {
 					user := splitted[0]
 					id := splitted[2]
+					description := strings.TrimSpace(splitted[4])
+					shell := splitted[6]
+
+					if description != "" {
+						description = " - " + description
+					}
+
+					_style := style.Default
+					if shell != "/usr/bin/nologin" {
+						_style = style.Blue
+					}
+
 					if len(strings.TrimSpace(user)) > 0 {
-						users = append(users, user, id)
+						users = append(users, user, id+description, _style)
 					}
 				}
 			}
 		}
-		return carapace.ActionValuesDescribed(users...)
+		return carapace.ActionStyledValuesDescribed(users...)
 	})
 }
 
