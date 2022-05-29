@@ -31,7 +31,10 @@ func init() {
 	rootCmd.Flags().BoolS("s", "s", false, "SFTP mode")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"i": carapace.ActionFiles(),
+		"i": carapace.Batch(
+			ssh.ActionPrivateKeys(),
+			carapace.ActionFiles(),
+		).ToA(),
 		"o": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return ssh.ActionOptions()
 		}),
