@@ -620,6 +620,7 @@ func ActionFilenameExtensions() carapace.Action {
 		"plr", "Terraria player/character file",
 		"pm", "Perl module",
 		"pma", "PMarc Archive",
+		"png", "Portable Network Graphics file",
 		"pom", "Build manager configuration file",
 		"pptx", "MS Office Open-XML Presentation",
 		"ppsx", "MS Office Open-XML Auto-Play Presentation",

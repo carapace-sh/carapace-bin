@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -48,6 +49,7 @@ func init() {
 		"color":      carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"exec":       carapace.ActionFiles(),
 		"exec-batch": carapace.ActionFiles(),
+		"extension":  fs.ActionFilenameExtensions(),
 		"owner":      os.ActionUserGroup(),
 		"type": carapace.ActionValues(
 			"file",
