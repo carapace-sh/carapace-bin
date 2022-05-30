@@ -3,8 +3,8 @@ package cmd
 import (
 	"strconv"
 
-	ps "github.com/mitchellh/go-ps"
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/third_party/github.com/mitchellh/go-ps"
 	"github.com/spf13/cobra"
 )
 
