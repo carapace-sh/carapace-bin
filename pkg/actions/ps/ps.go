@@ -4,9 +4,9 @@ package ps
 import (
 	"strconv"
 
-	"github.com/mitchellh/go-ps"
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/styles"
+	"github.com/rsteube/carapace/third_party/github.com/mitchellh/go-ps"
 )
 
 // ActionKillSignals completes linux kill signals
