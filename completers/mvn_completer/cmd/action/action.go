@@ -9,7 +9,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/mitchellh/go-homedir"
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/util"
 )
@@ -56,10 +55,10 @@ type Project struct {
 
 func repositoryLocation() string {
 	// TODO environment variable / settings override
-	if repoLocation, err := homedir.Expand("~/.m2/repository"); err == nil {
-		return repoLocation
+	if home, err := os.UserHomeDir(); err == nil {
+		return home + "/.m2/repository"
 	}
-	return "" // TODO handle error
+	return ""
 }
 
 func ActionGoalsAndPhases(file string) carapace.Action {

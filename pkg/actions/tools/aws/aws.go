@@ -4,7 +4,6 @@ package aws
 import (
 	"strings"
 
-	"github.com/mitchellh/go-homedir"
 	"github.com/rsteube/carapace"
 	"gopkg.in/ini.v1"
 )
@@ -45,7 +44,7 @@ func ActionProfiles() carapace.Action {
 		profiles := []string{}
 
 		// TODO support windows
-		if path, err := homedir.Expand("~/.aws/config"); err != nil {
+		if path, err := c.Abs("~/.aws/config"); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			if cfg, err := ini.Load(path); err != nil {

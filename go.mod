@@ -3,7 +3,6 @@ module github.com/rsteube/carapace-bin
 go 1.18
 
 require (
-	github.com/mitchellh/go-homedir v1.1.0
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/pelletier/go-toml v1.9.5
 	github.com/rsteube/carapace v0.20.4
