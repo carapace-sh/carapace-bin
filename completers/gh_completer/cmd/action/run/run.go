@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	exec "golang.org/x/sys/execabs"
+	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
 
 // Runnable is typically an exec.Cmd or its stub in tests
@@ -19,13 +19,13 @@ type Runnable interface {
 
 // PrepareCmd extends exec.Cmd with extra error reporting features and provides a
 // hook to stub command execution in tests
-var PrepareCmd = func(cmd *exec.Cmd) Runnable {
+var PrepareCmd = func(cmd *execabs.Cmd) Runnable {
 	return &cmdWithStderr{cmd}
 }
 
 // cmdWithStderr augments exec.Cmd by adding stderr to the error message
 type cmdWithStderr struct {
-	*exec.Cmd
+	*execabs.Cmd
 }
 
 func (c cmdWithStderr) Output() ([]byte, error) {

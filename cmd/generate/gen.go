@@ -13,7 +13,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace-bin/pkg/util"
-	exec "golang.org/x/sys/execabs"
+	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
 
 func main() {
@@ -82,7 +82,7 @@ func executeCompleter(completer string) {
 	os.WriteFile(root+"/cmd/carapace/cmd/completers.go", []byte("//go:build !release\n\n"+content), 0644)
 	os.WriteFile(root+"/cmd/carapace/cmd/completers_release.go", []byte("//go:build release\n\n"+strings.Replace(content, "/completers/", "/completers_release/", -1)), 0644)
 	os.RemoveAll(root + "/completers_release")
-	exec.Command("cp", "-r", root+"/completers", root+"/completers_release").Run()
+	execabs.Command("cp", "-r", root+"/completers", root+"/completers_release").Run()
 
 	for _, name := range names {
 		files, err := os.ReadDir(fmt.Sprintf("%v/completers_release/%v_completer/cmd/", root, name))
@@ -257,6 +257,6 @@ var macroDescriptions = map[string]string {
 `, strings.Join(sortedImports, "\n"), strings.Join(macros, "\n"), strings.Join(sortedDescriptions, "\n"))
 
 	os.WriteFile(root+"/cmd/carapace/cmd/macros.go", []byte(content), 0644)
-	exec.Command("go", "fmt", root+"/cmd/carapace/cmd/macros.go").Run()
+	execabs.Command("go", "fmt", root+"/cmd/carapace/cmd/macros.go").Run()
 
 }
