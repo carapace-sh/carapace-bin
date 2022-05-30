@@ -8,8 +8,6 @@ import (
 
 	exec "golang.org/x/sys/execabs"
 
-	"github.com/mitchellh/go-homedir"
-
 	"github.com/rsteube/carapace"
 )
 
@@ -19,7 +17,7 @@ import (
 func ActionHosts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		hosts := []string{}
-		if file, err := homedir.Expand("~/.ssh/known_hosts"); err == nil {
+		if file, err := c.Abs("~/.ssh/known_hosts"); err == nil {
 			if content, err := os.ReadFile(file); err == nil {
 				r := regexp.MustCompile(`^(?P<host>[^ ,#]+)`)
 				for _, entry := range strings.Split(string(content), "\n") {

@@ -7,7 +7,6 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/mitchellh/go-homedir"
 	"github.com/pelletier/go-toml"
 	"github.com/spf13/cobra"
 
@@ -202,12 +201,12 @@ func ActionRegistries() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		registries := make(map[string]string)
 
-		cargo_home := os.Getenv("CARGO_HOME")
-		if cargo_home == "" {
-			cargo_home = "~"
+		path := "~/.cargo/config.toml"
+		if cargo_home := os.Getenv("CARGO_HOME"); cargo_home != "" {
+			path = cargo_home + "/config.toml"
 		}
 
-		if path, err := homedir.Expand(cargo_home + "/.cargo/config.toml"); err == nil {
+		if path, err := c.Abs(path); err == nil {
 			if c, err := parseConfig(path); err == nil {
 				for key, value := range c.Registries {
 					registries[key] = value.Index

@@ -5,14 +5,17 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/mitchellh/go-homedir"
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 )
 
 func passwordStore() (string, error) {
 	if val, exists := os.LookupEnv("PASSWORD_STORE_DIR"); !exists {
-		return homedir.Expand("~/.password-store")
+		if home, err := os.UserHomeDir(); err != nil {
+			return "", err
+		} else {
+			return home + "/.password-store", nil
+		}
 	} else {
 		return val, nil
 	}
