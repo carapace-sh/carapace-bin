@@ -4,6 +4,7 @@ package http
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionRequestHeaders completes http request headers
@@ -116,43 +117,45 @@ func ActionRequestHeaderValues(header string) carapace.Action {
 //   "audio/ogg",
 //   "image/gif",
 func ActionMediaTypes() carapace.Action {
-	return carapace.ActionValues(
-		"application/x-executable",
-		"application/graphql",
-		"application/javascript",
-		"application/json",
-		"application/ld+json",
-		"application/msword",
-		"application/pdf",
-		"application/sql",
-		"application/vnd.api+json",
-		"application/vnd.ms-excel",
-		"application/vnd.ms-powerpoint",
-		"application/vnd.oasis.opendocument.text",
-		"application/vnd.openxmlformats-officedocument.presentationml.presentation",
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-		"application/x-www-form-urlencoded",
-		"application/xml",
-		"application/zip",
-		"application/zstd",
-		"audio/mpeg",
-		"audio/ogg",
-		"image/gif",
-		"image/apng",
-		"image/flif",
-		"image/webp",
-		"image/x-mng",
-		"image/jpeg",
-		"image/png",
-		"multipart/form-data",
-		"text/css",
-		"text/csv",
-		"text/html",
-		"text/php",
-		"text/plain",
-		"text/xml",
-	)
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionStyledValues(
+			"application/x-executable", style.ForPathExt(".exe"),
+			"application/graphql", style.Default,
+			"application/javascript", style.ForPathExt(".js"),
+			"application/json", style.ForPathExt(".json"),
+			"application/ld+json", style.ForPathExt(".json"),
+			"application/msword", style.ForPathExt(".docx"),
+			"application/pdf", style.ForPathExt(".pdf"),
+			"application/sql", style.ForPathExt(".sql"),
+			"application/vnd.api+json", style.ForPathExt(".json"),
+			"application/vnd.ms-excel", style.ForPathExt(".xslx"),
+			"application/vnd.ms-powerpoint", style.ForPathExt(".pptx"),
+			"application/vnd.oasis.opendocument.text", style.ForPathExt(".odt"),
+			"application/vnd.openxmlformats-officedocument.presentationml.presentation", style.ForPathExt(".odp"),
+			"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", style.ForPathExt(".ods"),
+			"application/vnd.openxmlformats-officedocument.wordprocessingml.document", style.ForPathExt(".odt"),
+			"application/x-www-form-urlencoded", style.Default,
+			"application/xml", style.ForPathExt(".xml"),
+			"application/zip", style.ForPathExt(".zip"),
+			"application/zstd", style.ForPathExt(".zstd"),
+			"audio/mpeg", style.ForPathExt(".mpeg"),
+			"audio/ogg", style.ForPathExt(".ogg"),
+			"image/gif", style.ForPathExt(".gif"),
+			"image/apng", style.ForPathExt(".apng"),
+			"image/flif", style.ForPathExt(".flif"),
+			"image/webp", style.ForPathExt(".webp"),
+			"image/x-mng", style.ForPathExt(".x-mng"),
+			"image/jpeg", style.ForPathExt(".jpeg"),
+			"image/png", style.ForPathExt(".png"),
+			"multipart/form-data", style.Default,
+			"text/css", style.ForPathExt(".css"),
+			"text/csv", style.ForPathExt(".csv"),
+			"text/html", style.ForPathExt(".html"),
+			"text/php", style.ForPathExt(".php"),
+			"text/plain", style.ForPathExt(".txt"),
+			"text/xml", style.ForPathExt(".xml"),
+		)
+	})
 }
 
 // ActionContentEncodingTokens completes content encoding tokens
