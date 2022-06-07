@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/youtube-dl_completer/cmd/action"
+	youtubedl "github.com/rsteube/carapace-bin/pkg/actions/tools/youtubedl"
 	"github.com/spf13/cobra"
 )
 
@@ -190,13 +190,21 @@ func init() {
 			"warn", "only emit a warning",
 			"detect_or_warn", "fix file if we can, warn otherwise",
 		),
-		"format":       action.ActionFormats(),
+		"format": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) == 0 {
+				return carapace.ActionMessage("missing url")
+			}
+			return youtubedl.ActionFormats(c.Args[0])
+		}),
 		"recode-video": carapace.ActionValues("mp4", "flv", "ogg", "webm", "mkv", "avi"),
 		"sub-format": carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("ass", "srt", "best").Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"sub-lang": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSubLangs().Invoke(c).Filter(c.Parts).ToA()
+			if len(c.Args) == 0 {
+				return carapace.ActionMessage("missing url")
+			}
+			return youtubedl.ActionSubLangs(c.Args[0]).Invoke(c).Filter(c.Parts).ToA()
 		}),
 	})
 }
