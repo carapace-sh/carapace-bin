@@ -2,10 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"regexp"
-	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/make"
 	"github.com/spf13/cobra"
 )
 
@@ -76,44 +75,14 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return actionTargets().Invoke(c).Filter(c.Args).ToA()
+			file := "Makefile"
+			if rootCmd.Flag("directory").Changed {
+				file = fmt.Sprintf("%v/Makefile", rootCmd.Flag("directory").Value.String())
+			}
+			if rootCmd.Flag("file").Changed {
+				file = rootCmd.Flag("file").Value.String()
+			}
+			return make.ActionTargets(file).Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
-}
-
-func actionTargets() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		file := "Makefile"
-		if rootCmd.Flag("directory").Changed {
-			file = fmt.Sprintf("%v/Makefile", rootCmd.Flag("directory").Value.String())
-		}
-		if rootCmd.Flag("file").Changed {
-			file = rootCmd.Flag("file").Value.String()
-		}
-
-		cmd := c.Command("make", "-qp", "--file", file)
-		if output, err := cmd.Output(); err != nil && cmd.ProcessState.ExitCode() != 1 {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			lines := strings.Split(string(output), "\n")
-			r := regexp.MustCompile(`^(?P<target>[a-zA-Z0-9][^$#\/\t=]*):([^=]|$)`)
-
-			vals := make([]string, 0)
-			skip := false
-			for _, line := range lines {
-				if strings.HasPrefix(line, "# Not a target:") {
-					skip = true
-					continue
-				} else if skip {
-					skip = false
-					continue
-				}
-
-				if r.MatchString(line) {
-					vals = append(vals, r.FindStringSubmatch(line)[1])
-				}
-			}
-			return carapace.ActionValues(vals...)
-		}
-	})
 }
