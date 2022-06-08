@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pip_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pip"
 	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -73,7 +73,7 @@ func init() {
 				return carapace.ActionFiles()
 			} else {
 				// TODO support multiple index urls (--index-url) and update caching accordingly
-				return action.ActionRemotePackages()
+				return pip.ActionPackageSearch()
 			}
 		}),
 	)

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pip_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pip"
 	"github.com/spf13/cobra"
 )
 
@@ -34,7 +34,7 @@ func init() {
 	rootCmd.AddCommand(listCmd)
 
 	carapace.Gen(listCmd).FlagCompletion(carapace.ActionMap{
-		"exclude":    action.ActionInstalledPackages(),
+		"exclude":    pip.ActionInstalledPackages(),
 		"find-links": carapace.ActionFiles(),
 		"path":       carapace.ActionFiles(),
 	})
