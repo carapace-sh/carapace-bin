@@ -1,4 +1,4 @@
-package action
+package pip
 
 import (
 	"encoding/json"
@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/spf13/cobra"
 )
 
 type pkg struct {
@@ -15,6 +14,9 @@ type pkg struct {
 	Version string
 }
 
+// ActionInstalledPackages completes installed packages
+//   Automat (20.2.0)
+//   Beaker (1.11.0)
 func ActionInstalledPackages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("pip", "list", "--format", "json")(func(output []byte) carapace.Action {
@@ -31,7 +33,10 @@ func ActionInstalledPackages() carapace.Action {
 	})
 }
 
-func ActionRemotePackages() carapace.Action {
+// ActionPackageSearch completes remote packages
+//   git-gopher (Improving the Git CLI experience with fzf)
+//   git-lint (Git Lint)
+func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO pip search currently disabled due to load - basic workaround without paging
 		return carapace.ActionExecCommand("curl", fmt.Sprintf("https://pypi.org/search/?q=%v", c.CallbackValue))(func(output []byte) carapace.Action {
@@ -53,16 +58,25 @@ func ActionRemotePackages() carapace.Action {
 	})
 }
 
-func ActionConfigValues(cmd *cobra.Command) carapace.Action {
+type ConfigOpts struct {
+	Global bool
+	Site   bool
+	User   bool
+}
+
+// ActionConfigValues completes config values
+//   first ('1'
+//   second ('2')
+func ActionConfigValues(opts ConfigOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			// TODO fragile, also should be pflag but didn't work
 			args := []string{"config"}
-			if cmd.Parent().Flag("global").Changed {
+			if opts.Global {
 				args = append(args, "--global")
-			} else if cmd.Parent().Flag("site").Changed {
+			} else if opts.Site {
 				args = append(args, "--site")
-			} else if cmd.Parent().Flag("user").Changed {
+			} else if opts.User {
 				args = append(args, "--user")
 			}
 			args = append(args, "list")

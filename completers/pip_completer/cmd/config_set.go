@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pip_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pip"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +17,12 @@ func init() {
 	configCmd.AddCommand(config_setCmd)
 
 	carapace.Gen(config_setCmd).PositionalCompletion(
-		action.ActionConfigValues(config_setCmd),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return pip.ActionConfigValues(pip.ConfigOpts{
+				Global: configCmd.Flag("global").Changed,
+				Site:   configCmd.Flag("site").Changed,
+				User:   configCmd.Flag("user").Changed,
+			})
+		}),
 	)
 }

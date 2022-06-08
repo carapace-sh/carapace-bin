@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pip_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pip"
 	"github.com/spf13/cobra"
 )
 
@@ -28,7 +28,7 @@ func init() {
 			if uninstallCmd.Flag("requirement").Changed {
 				return carapace.ActionValues()
 			} else {
-				return action.ActionInstalledPackages()
+				return pip.ActionInstalledPackages()
 			}
 		}),
 	)
