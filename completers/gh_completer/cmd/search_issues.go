@@ -5,6 +5,7 @@ import (
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/time"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 	"github.com/spf13/cobra"
 )
 
@@ -88,7 +89,7 @@ func init() {
 			return action.ActionOwnerRepositories(dummyCmd)
 		}),
 		"sort":    carapace.ActionValues("comments", "created", "interactions", "reactions", "reactions-+1", "reactions--1", "reactions-heart", "reactions-smile", "reactions-tada", "reactions-thinking_face", "updated"),
-		"state":   carapace.ActionValues("open", "closed"),
+		"state":   carapace.ActionValues("open", "closed").StyleF(styles.Gh.ForState),
 		"updated": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"visibility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues("public", "private", "internal").Invoke(c).Filter(c.Parts).ToA()
