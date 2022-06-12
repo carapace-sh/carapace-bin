@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/turbo"
 	"github.com/spf13/cobra"
 )
@@ -63,8 +66,19 @@ func init() {
 		"cwd":        carapace.ActionDirectories(),
 		"dry":        carapace.ActionValues("json"),
 		"dry-run":    carapace.ActionValues("json"),
-		"graph":      carapace.ActionFiles(),
-		"heap":       carapace.ActionFiles(),
+		"filter": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if index := strings.LastIndexAny(c.CallbackValue, "[]"); index != -1 && []rune(c.CallbackValue)[index] == '[' {
+				return git.ActionRefs(git.RefOption{}.Default()).Invoke(c).Prefix(c.CallbackValue[:index+1]).Suffix("]").ToA().NoSpace()
+			}
+			if index := strings.LastIndexAny(c.CallbackValue, "{}"); index != -1 && []rune(c.CallbackValue)[index] == '{' {
+				prefix := c.CallbackValue[:index+1]
+				c.CallbackValue = c.CallbackValue[index+1:]
+				return carapace.ActionDirectories().Invoke(c).Prefix(prefix).ToA().NoSpace()
+			}
+			return carapace.ActionValues().NoSpace()
+		}),
+		"graph": carapace.ActionFiles(),
+		"heap":  carapace.ActionFiles(),
 		"output-logs": carapace.ActionValuesDescribed(
 			"full", "show all output",
 			"hash-only", "show only turbo-computed task hashes",
