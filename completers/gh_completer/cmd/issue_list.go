@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 	"github.com/spf13/cobra"
 )
 
@@ -43,6 +44,6 @@ func init() {
 		}),
 		"mention":   action.ActionMentionableUsers(issue_listCmd),
 		"milestone": action.ActionMilestones(issue_listCmd),
-		"state":     carapace.ActionValues("open", "closed", "all"),
+		"state":     carapace.ActionValues("open", "closed", "all").StyleF(styles.Gh.ForState),
 	})
 }

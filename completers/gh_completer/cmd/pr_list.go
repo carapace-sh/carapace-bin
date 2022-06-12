@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 	"github.com/spf13/cobra"
 )
 
@@ -44,6 +45,6 @@ func init() {
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionLabels(pr_listCmd).Invoke(c).Filter(c.Parts).ToA()
 		}),
-		"state": carapace.ActionValues("open", "closed", "merged", "all"),
+		"state": carapace.ActionValues("open", "closed", "merged", "all").StyleF(styles.Gh.ForState),
 	})
 }

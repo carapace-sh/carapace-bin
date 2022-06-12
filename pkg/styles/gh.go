@@ -2,7 +2,7 @@ package styles
 
 import "github.com/rsteube/carapace/pkg/style"
 
-var Gh = struct {
+type gh struct {
 	Draft             string `desc:"draft pulls"`
 	JobFailed         string `desc:"jobs not finished successfully"`
 	JobInProgress     string `desc:"jobs in progress"`
@@ -19,7 +19,9 @@ var Gh = struct {
 	StateClosed       string `desc:"closed issues/pulls"`
 	StateMerged       string `desc:"merged pulls"`
 	StateOpen         string `desc:"open issues/pulls"`
-}{
+}
+
+var Gh = gh{
 	Draft:             style.Gray,
 	JobFailed:         style.Red,
 	JobInProgress:     style.Yellow,
@@ -40,4 +42,17 @@ var Gh = struct {
 
 func init() {
 	style.Register("gh", &Gh)
+}
+
+func (_gh gh) ForState(s string) string {
+	switch s {
+	case "closed":
+		return _gh.StateClosed
+	case "merged":
+		return _gh.StateMerged
+	case "open":
+		return _gh.StateOpen
+	default:
+		return style.Default
+	}
 }
