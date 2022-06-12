@@ -25,7 +25,7 @@ var rootCmd = &cobra.Command{
     bash:       source <(carapace _carapace bash)
     elvish:     eval (carapace _carapace elvish | slurp)
     fish:       carapace _carapace fish | source
-    nushell:    carapace _carapace | save carapace.nu ; nu -c 'source carapace.nu'
+    nushell:    carapace _carapace nushell | save carapace.nu ; nu -c 'source carapace.nu'
     oil:        source <(carapace _carapace oil)
     powershell: carapace _carapace powershell | Out-String | Invoke-Expression
     tcsh:       eval `+"`"+`carapace _carapace tcsh`+"`"+`
