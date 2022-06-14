@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -41,7 +42,24 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Print version information and exit.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color-name": carapace.ActionValues("WHITE", "LIGHT_GRAY", "GRAY", "DARK_GRAY", "BLACK", "RED", "PINK", "ORANGE", "YELLOW", "GREEN", "MAGENTA", "CYAN", "BLUE"),
+		"color-name": carapace.ActionStyledValues(
+			"BLACK", style.Black,
+			"RED", style.Red,
+			"GREEN", style.Green,
+			"YELLOW", style.Yellow,
+			"BLUE", style.Blue,
+			"MAGENTA", style.Magenta,
+			"CYAN", style.Cyan,
+			"LIGHT_GRAY", style.Of(style.Dim, style.White),
+			"DARK_GRAY", style.BrightBlack,
+			"LIGHT_RED", style.BrightRed,
+			"LIGHT_GREEN", style.BrightGreen,
+			"LIGHT_YELLOW", style.BrightYellow,
+			"LIGHT_BLUE", style.BrightBlue,
+			"LIGHT_MAGENTA", style.BrightMagenta,
+			"LIGHT_CYAN", style.BrightCyan,
+			"WHITE", style.White,
+		),
 		"disabled_rules": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return ActionRules().Invoke(c).Filter(c.Parts).ToA()
 		}),
