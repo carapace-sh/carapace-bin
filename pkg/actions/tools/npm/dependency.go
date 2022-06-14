@@ -1,4 +1,4 @@
-package action
+package npm
 
 import (
 	"encoding/json"
@@ -22,6 +22,9 @@ func (d dependency) flatMap() map[string][]string {
 	return deps
 }
 
+// ActionDependencyNames completes dependencies
+//   @babel/code-frame
+//   braces
 func ActionDependencyNames() carapace.Action {
 	return carapace.ActionExecCommand("npm", "ls", "--json", "--all")(func(output []byte) carapace.Action {
 		var deps dependency
@@ -37,6 +40,9 @@ func ActionDependencyNames() carapace.Action {
 	})
 }
 
+// ActionDependencies completes dependencies and their version
+//   @babel/code-frame@7.12.11
+//   braces@3.0.2
 func ActionDependencies() carapace.Action {
 	return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("npm", "ls", "--json", "--all")(func(output []byte) carapace.Action {
