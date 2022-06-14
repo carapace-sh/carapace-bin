@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/npm"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/turbo"
 	"github.com/spf13/cobra"
 )
@@ -59,7 +60,6 @@ func init() {
 
 	rootCmd.AddCommand(runCmd)
 
-	// TODO filter
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"cache-dir":  carapace.ActionDirectories(),
 		"cpuprofile": carapace.ActionFiles(),
@@ -75,7 +75,7 @@ func init() {
 				c.CallbackValue = c.CallbackValue[index+1:]
 				return carapace.ActionDirectories().Invoke(c).Prefix(prefix).ToA().NoSpace()
 			}
-			return carapace.ActionValues().NoSpace()
+			return npm.ActionDependencies().NoSpace()
 		}),
 		"graph": carapace.ActionFiles(),
 		"heap":  carapace.ActionFiles(),
