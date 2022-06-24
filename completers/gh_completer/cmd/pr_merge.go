@@ -31,6 +31,12 @@ func init() {
 	carapace.Gen(pr_mergeCmd).FlagCompletion(carapace.ActionMap{
 		"body":      action.ActionKeywordLinks(pr_mergeCmd),
 		"body-file": carapace.ActionFiles(),
+		"match-head-commit": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				return action.ActionPullRequestCommits(pr_mergeCmd, c.Args[0])
+			}
+			return carapace.ActionValues()
+		}),
 	})
 
 	carapace.Gen(pr_mergeCmd).PositionalCompletion(
