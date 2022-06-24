@@ -155,3 +155,28 @@ func ActionPullRequestReviewers(cmd *cobra.Command, id string) carapace.Action {
 		return carapace.ActionValues(vals...)
 	})
 }
+
+type commit struct {
+	Sha    string
+	Commit struct {
+		Message string
+	}
+}
+
+func ActionPullRequestCommits(cmd *cobra.Command, id string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		repo, err := repoOverride(cmd)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		var queryResult []commit
+		return ApiV3Action(cmd, fmt.Sprintf(`repos/%v/%v/pulls/%v/commits`, repo.RepoOwner(), repo.RepoName(), id), &queryResult, func() carapace.Action {
+			vals := make([]string, 0)
+			for _, c := range queryResult {
+				vals = append(vals, c.Sha, c.Commit.Message)
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
+	})
+}
