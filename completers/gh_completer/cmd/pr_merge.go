@@ -20,12 +20,14 @@ func init() {
 	pr_mergeCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	pr_mergeCmd.Flags().BoolP("delete-branch", "d", false, "Delete the local and remote branch after merge")
 	pr_mergeCmd.Flags().Bool("disable-auto", false, "Disable auto-merge for this pull request")
+	pr_mergeCmd.Flags().String("match-head-commit", "", "Commit `SHA` that the pull request head must match to allow merge")
 	pr_mergeCmd.Flags().BoolP("merge", "m", false, "Merge the commits with the base branch")
 	pr_mergeCmd.Flags().BoolP("rebase", "r", false, "Rebase the commits onto the base branch")
 	pr_mergeCmd.Flags().BoolP("squash", "s", false, "Squash the commits into one commit and merge it into the base branch")
 	pr_mergeCmd.Flags().StringP("subject", "t", "", "Subject `text` for the merge commit")
 	prCmd.AddCommand(pr_mergeCmd)
 
+	// TODO match-head-commit
 	carapace.Gen(pr_mergeCmd).FlagCompletion(carapace.ActionMap{
 		"body":      action.ActionKeywordLinks(pr_mergeCmd),
 		"body-file": carapace.ActionFiles(),
