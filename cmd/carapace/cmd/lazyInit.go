@@ -7,6 +7,8 @@ import (
 	"os"
 	"regexp"
 	"strings"
+
+	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
 
 func getSpecs() (specs []string, dir string) {
@@ -126,7 +128,28 @@ end
 	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
 }
 
+func filterNushellBuiltins(completers []string) []string {
+	builtins := make(map[string]bool)
+	if output, err := execabs.Command("nu", "-c", "help commands | get name | str collect '\n'").Output(); err == nil {
+		lines := strings.Split(string(output), "\n")
+		for _, line := range lines {
+			builtins[strings.Split(line, " ")[0]] = true
+		}
+
+		filtered := make([]string, 0)
+		for _, c := range completers {
+			if !builtins[c] {
+				filtered = append(filtered, c)
+			}
+		}
+		return filtered
+	}
+	return completers // skip filtering
+
+}
+
 func nushell_lazy(completers []string) string {
+	completers = filterNushellBuiltins(completers) // skip nushell builtins by default
 	exports := make([]string, len(completers))
 	for index, completer := range completers {
 		exports[index] = fmt.Sprintf(`  export extern "%v" [
