@@ -1,0 +1,33 @@
+package helix
+
+import (
+	"regexp"
+	"strings"
+
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
+)
+
+// ActionLanguages completes languages
+//   bash (✘ bash-language-server)
+//   c (✔ clangd)
+func ActionLanguages() carapace.Action {
+	return carapace.ActionExecCommand("helix", "--health")(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+		r := regexp.MustCompile(`^\x1b\[39m(?P<language>[^ ]+) +\x1b\[[\d;]+m\x1b\[[\d;]+m(?P<lsp>(✘ |✔ )?[^ ]+)`)
+
+		vals := make([]string, 0)
+		for _, line := range lines {
+			if match := r.FindStringSubmatch(line); match != nil {
+				if lsp := match[2]; strings.HasPrefix(lsp, "✘") {
+					vals = append(vals, match[1], lsp, style.Red)
+				} else if strings.HasPrefix(lsp, "✔") {
+					vals = append(vals, match[1], lsp, style.Green)
+				} else {
+					vals = append(vals, match[1], lsp, style.Yellow)
+				}
+			}
+		}
+		return carapace.ActionStyledValuesDescribed(vals...)
+	})
+}
