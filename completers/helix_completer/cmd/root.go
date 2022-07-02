@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/helix_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/helix"
 	"github.com/spf13/cobra"
 )
 
@@ -28,7 +28,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"grammar": carapace.ActionValues("fetch", "build"),
-		"health":  action.ActionLanguages(),
+		"health":  helix.ActionLanguages(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
