@@ -53,7 +53,7 @@ complete -F _carapace_lazy_spec %v
 func bash_ble_lazy(completers []string) string {
 	snippet := `_carapace_lazy() {
   source <(carapace $1 bash-ble)
-   $"_$1_completion"
+   $"_$1_completion_ble"
 }
 complete -F _carapace_lazy %v
 `
