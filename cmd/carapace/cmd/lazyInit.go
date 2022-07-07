@@ -62,7 +62,7 @@ complete -F _carapace_lazy %v
 		snippet += fmt.Sprintf(`
 _carapace_lazy_spec() {
   source <(carapace --spec %v/$1.yaml bash-ble)
-   $"_$1_completion"
+   $"_$1_completion_ble"
 }
 complete -F _carapace_lazy_spec %v
 `, dir, strings.Join(specs, " "))
