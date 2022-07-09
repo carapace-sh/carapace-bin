@@ -23,7 +23,10 @@ func init() {
 	carapace.Gen(remote_setUrlCmd).PositionalCompletion(
 		git.ActionRemotes(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRemoteUrls(c.Args[0])
+			return carapace.Batch(
+				git.ActionRemoteUrls(c.Args[0]),
+				git.ActionRepositorySearch(),
+			).ToA()
 		}),
 	)
 }
