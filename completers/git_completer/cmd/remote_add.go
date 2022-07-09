@@ -45,5 +45,6 @@ func init() {
 
 	carapace.Gen(remote_addCmd).PositionalCompletion(
 		git.ActionRemotes(),
+		git.ActionRepositorySearch(),
 	)
 }
