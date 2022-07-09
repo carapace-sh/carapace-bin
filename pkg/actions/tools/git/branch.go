@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 )
 
 // ActionRemoteBranches completes remote branches
@@ -19,10 +20,10 @@ func ActionRemoteBranches(remote string) carapace.Action {
 			vals := make([]string, 0)
 			for _, branch := range branches {
 				if strings.HasPrefix(branch.Name, remote) {
-					vals = append(vals, strings.TrimPrefix(branch.Name, remote+"/"), branch.Message)
+					vals = append(vals, strings.TrimPrefix(branch.Name, remote+"/"), branch.Message, styles.Git.Branch)
 				}
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...)
 		}
 	})
 }
