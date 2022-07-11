@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
 
@@ -15,20 +16,28 @@ import (
 //   pihole
 func ActionHosts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		hosts := []string{}
+		vals := []string{}
 		if file, err := c.Abs("~/.ssh/known_hosts"); err == nil {
 			if content, err := os.ReadFile(file); err == nil {
 				r := regexp.MustCompile(`^(?P<host>[^ ,#]+)`)
+				rIPv4 := regexp.MustCompile(`^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$`)
+				rIPv6 := regexp.MustCompile(`^([A-Fa-f0-9]{0,4}:){5,7}[A-Fa-f0-9]{0,4}$`) // TODO likely wrong
 				for _, entry := range strings.Split(string(content), "\n") {
 					if r.MatchString(entry) {
-						hosts = append(hosts, r.FindStringSubmatch(entry)[0])
+						if host := r.FindStringSubmatch(entry)[0]; rIPv4.MatchString(host) {
+							vals = append(vals, host, style.Default)
+						} else if rIPv6.MatchString(host) {
+							vals = append(vals, host, style.Bold)
+						} else {
+							vals = append(vals, host, style.Blue)
+						}
 					}
 				}
 			} else {
 				return carapace.ActionMessage(err.Error())
 			}
 		}
-		return carapace.ActionValues(hosts...)
+		return carapace.ActionStyledValues(vals...)
 	})
 }
 
