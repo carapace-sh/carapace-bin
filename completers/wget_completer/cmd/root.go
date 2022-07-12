@@ -235,4 +235,8 @@ func init() {
 		"warc-file":       carapace.ActionFiles(),
 		"warc-tempdir":    carapace.ActionDirectories(),
 	})
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		http.ActionUrls(),
+	)
 }
