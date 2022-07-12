@@ -320,4 +320,8 @@ func init() {
 		"upload-file": carapace.ActionFiles(),
 		"user-agent":  http.ActionUserAgents(),
 	})
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		http.ActionUrls(),
+	)
 }
