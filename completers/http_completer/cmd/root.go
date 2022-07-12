@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -98,7 +99,10 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		http.ActionRequestMethods(),
+		carapace.Batch(
+			http.ActionRequestMethods(),
+			ActionUrls(),
+		).ToA(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			requestMethods := map[string]bool{
 				"GET":     true,
@@ -111,8 +115,8 @@ func init() {
 				"TRACE":   true,
 				"PATCH":   true,
 			}
-			if _, ok := requestMethods[c.Args[0]]; ok {
-				return carapace.ActionValues() // arg[1] is url
+			if _, ok := requestMethods[c.Args[0]]; ok { // arg[1] is url
+				return ActionUrls()
 			}
 			return ActionRequestItem()
 		}),
@@ -121,6 +125,31 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		ActionRequestItem(),
 	)
+}
+
+func ActionUrls() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		prefix := ""
+
+		if strings.HasPrefix(c.CallbackValue, "https://") {
+			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "https://")
+			prefix = "https://"
+		} else if strings.HasPrefix(c.CallbackValue, "http://") {
+			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "http://")
+			prefix = "http://"
+		}
+
+		return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return net.ActionHosts()
+			case 1:
+				return net.ActionPorts()
+			default:
+				return carapace.ActionValues()
+			}
+		}).Invoke(c).Prefix(prefix).ToA()
+	})
 }
 
 func ActionPrintOptions() carapace.Action {
