@@ -6,28 +6,35 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace/pkg/style"
+	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
 
 // ActionLanguages completes languages
 //   bash (✘ bash-language-server)
 //   c (✔ clangd)
 func ActionLanguages() carapace.Action {
-	return carapace.ActionExecCommand("helix", "--health")(func(output []byte) carapace.Action {
-		lines := strings.Split(string(output), "\n")
-		r := regexp.MustCompile(`^\x1b\[39m(?P<language>[^ ]+) +\x1b\[[\d;]+m\x1b\[[\d;]+m(?P<lsp>(✘ |✔ )?[^ ]+)`)
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		cmd := "helix"
+		if _, err := execabs.LookPath("helix"); err != nil {
+			cmd = "hx"
+		}
+		return carapace.ActionExecCommand(cmd, "--health")(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+			r := regexp.MustCompile(`^\x1b\[39m(?P<language>[^ ]+) +\x1b\[[\d;]+m\x1b\[[\d;]+m(?P<lsp>(✘ |✔ )?[^ ]+)`)
 
-		vals := make([]string, 0)
-		for _, line := range lines {
-			if match := r.FindStringSubmatch(line); match != nil {
-				if lsp := match[2]; strings.HasPrefix(lsp, "✘") {
-					vals = append(vals, match[1], lsp, style.Red)
-				} else if strings.HasPrefix(lsp, "✔") {
-					vals = append(vals, match[1], lsp, style.Green)
-				} else {
-					vals = append(vals, match[1], lsp, style.Yellow)
+			vals := make([]string, 0)
+			for _, line := range lines {
+				if match := r.FindStringSubmatch(line); match != nil {
+					if lsp := match[2]; strings.HasPrefix(lsp, "✘") {
+						vals = append(vals, match[1], lsp, style.Red)
+					} else if strings.HasPrefix(lsp, "✔") {
+						vals = append(vals, match[1], lsp, style.Green)
+					} else {
+						vals = append(vals, match[1], lsp, style.Yellow)
+					}
 				}
 			}
-		}
-		return carapace.ActionStyledValuesDescribed(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...)
+		})
 	})
 }
