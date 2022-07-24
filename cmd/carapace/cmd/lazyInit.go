@@ -273,9 +273,9 @@ def _carapace_lazy(context):
     if (context.command and
         context.command.arg_index > 0 and
         context.command.args[0].value in [%v]):
-        builtins.__xonsh__.completers = builtins.__xonsh__.completers.copy()
+        XSH.completers = XSH.completers.copy()
         exec(compile(subprocess.run(['carapace', context.command.args[0].value, 'xonsh'], stdout=subprocess.PIPE).stdout.decode('utf-8'), "", "exec"))
-        return builtins.__xonsh__.completers[context.command.args[0].value](context)
+        return XSH.completers[context.command.args[0].value](context)
 `
 	complete := make([]string, len(completers))
 	for index, completer := range completers {
@@ -291,9 +291,9 @@ def _carapace_lazy(context):
     if (context.command and
         context.command.arg_index > 0 and
         context.command.args[0].value in [%v]):
-        builtins.__xonsh__.completers = builtins.__xonsh__.completers.copy()
+        XSH.completers = XSH.completers.copy()
         exec(compile(subprocess.run(['carapace', '--spec', '%v/'+context.command.args[0].value+'.yaml', 'xonsh'], stdout=subprocess.PIPE).stdout.decode('utf-8'), "", "exec"))
-        return builtins.__xonsh__.completers[context.command.args[0].value](context)
+        return XSH.completers[context.command.args[0].value](context)
 `, strings.Join(quotedSpecs, ", "), dir)
 
 	}
