@@ -19,8 +19,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:  "carapace [flags] [COMPLETER] [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]",
-	Long: "multi-shell multi-command argument completer",
+	Use:   "carapace [flags] [COMPLETER] [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]",
+	Short: "multi-shell multi-command argument completer",
 	Example: fmt.Sprintf(`  All completers and specs:
     bash:       source <(carapace _carapace bash)
     elvish:     eval (carapace _carapace elvish | slurp)
