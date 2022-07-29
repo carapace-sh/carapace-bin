@@ -75,3 +75,9 @@ nfpms:
       - apk
       - deb
       - rpm
+
+publishers:
+  - name: fury
+    cmd: "bash -c \"[[ {{.ArtifactPath}} =~ ^.*.(deb|rpm)$ ]] && curl -F package=@{{abs .ArtifactPath}} https://$FURY_TOKEN@push.fury.io/rsteube/ || true\""
+    env:
+      - FURY_TOKEN={{ .Env.FURY_TOKEN }}
