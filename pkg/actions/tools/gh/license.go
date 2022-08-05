@@ -15,7 +15,7 @@ type license struct {
 func ActionLicenses(opts HostOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult []license
-		return apiV3Action(opts, `licenses`, &queryResult, func() carapace.Action {
+		return apiV3Action(opts.repo(), `licenses`, &queryResult, func() carapace.Action {
 			vals := make([]string, 0, len(queryResult)*2)
 			for _, license := range queryResult {
 				vals = append(vals, license.Key, license.Name)

@@ -8,7 +8,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-func graphQlAction(repo repo, query string, v interface{}, transform func() carapace.Action) carapace.Action {
+func graphQlAction(opts RepoOpts, query string, v interface{}, transform func() carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		params := make([]string, 0)
 		if strings.Contains(query, "$owner") {
@@ -22,7 +22,11 @@ func graphQlAction(repo repo, query string, v interface{}, transform func() cara
 			queryParams = "(" + queryParams + ")"
 		}
 
-		return carapace.ActionExecCommand("gh", "api", "--hostname", repo.host(), "--header", "Accept: application/vnd.github.merge-info-preview+json", "graphql", "-F", "owner="+repo.owner(), "-F", "repo="+repo.name(), "-f", fmt.Sprintf("query=query%v {%v}", queryParams, query))(func(output []byte) carapace.Action {
+		if opts.Host == "" {
+			opts.Host = "github.com"
+		}
+
+		return carapace.ActionExecCommand("gh", "api", "--hostname", opts.Host, "--header", "Accept: application/vnd.github.merge-info-preview+json", "graphql", "-F", "owner="+opts.Owner, "-F", "repo="+opts.Name, "-f", fmt.Sprintf("query=query%v {%v}", queryParams, query))(func(output []byte) carapace.Action {
 			if err := json.Unmarshal(output, &v); err != nil {
 				return carapace.ActionMessage("failed to unmarshall response: " + err.Error())
 			}
