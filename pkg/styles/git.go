@@ -9,11 +9,11 @@ var Git = struct {
 	Stash      string `desc:"git stashes"`
 	Tag        string `desc:"git tags"`
 }{
-	Branch:     "blue",
-	Commit:     "default",
-	HeadCommit: "bold",
-	Stash:      "green",
-	Tag:        "yellow",
+	Branch:     style.Blue,
+	Commit:     style.Default,
+	HeadCommit: style.Bold,
+	Stash:      style.Green,
+	Tag:        style.Yellow,
 }
 
 func init() {
