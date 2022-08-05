@@ -18,12 +18,12 @@ pamac install carapace-bin
 Install from [fury.io](https://rsteube.fury.site/)
 
 ```toml
-# /etc/yum.repos.d/fury.repo
-[fury]
-name=Gemfury Private Repo
-baseurl=https://yum.fury.io/rsteube/
-enabled=1
-gpgcheck=0
+# /etc/apt/sources.list.d/fury.list
+deb [trusted=yes] https://apt.fury.io/rsteube/ /
+```
+
+```sh
+apt-get update && apt-get install carapace-bin
 ```
 
 ## Homebrew
@@ -40,8 +40,16 @@ brew install rsteube/tap/carapace
 Install from [fury.io](https://rsteube.fury.site/)
 
 ```toml
-# /etc/apt/sources.list.d/fury.list
-deb [trusted=yes] https://apt.fury.io/rsteube/ /
+# /etc/yum.repos.d/fury.repo
+[fury]
+name=Gemfury Private Repo
+baseurl=https://yum.fury.io/rsteube/
+enabled=1
+gpgcheck=0
+```
+
+```sh
+yum install carapace-bin
 ```
 
 ## Scoop
