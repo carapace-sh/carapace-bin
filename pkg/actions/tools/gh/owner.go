@@ -42,7 +42,7 @@ func ActionUsers(opts HostOpts) carapace.Action {
 		}
 
 		var queryResult ownerQuery
-		return graphQlAction(opts, fmt.Sprintf(`search(query: "%v in:login", type: USER, first: 100) { edges { node { ... on User { login name } } } }`, c.CallbackValue), &queryResult, func() carapace.Action {
+		return graphQlAction(opts.repo(), fmt.Sprintf(`search(query: "%v in:login", type: USER, first: 100) { edges { node { ... on User { login name } } } }`, c.CallbackValue), &queryResult, func() carapace.Action {
 			users := queryResult.Data.Search.Edges
 			vals := make([]string, len(users)*2)
 			for index, user := range users {
@@ -65,7 +65,7 @@ func ActionOrganizations(opts HostOpts) carapace.Action {
 		}
 
 		var queryResult ownerQuery
-		return graphQlAction(opts, fmt.Sprintf(`search(query: "%v in:login", type: USER, first: 100) { edges { node { ... on Organization { login name } } } }`, c.CallbackValue), &queryResult, func() carapace.Action {
+		return graphQlAction(opts.repo(), fmt.Sprintf(`search(query: "%v in:login", type: USER, first: 100) { edges { node { ... on Organization { login name } } } }`, c.CallbackValue), &queryResult, func() carapace.Action {
 			users := queryResult.Data.Search.Edges
 			vals := make([]string, len(users)*2)
 			for index, user := range users {
