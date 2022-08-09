@@ -8,9 +8,10 @@ import (
 )
 
 var runScriptCmd = &cobra.Command{
-	Use:   "run-script",
-	Short: "Run arbitrary package scripts",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "run-script",
+	Short:   "Run arbitrary package scripts",
+	Aliases: []string{"run"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
