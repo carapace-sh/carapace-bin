@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "glow",
 	Short: "Render markdown on the CLI, with pizzazz!",
+	Long:  "https://github.com/charmbracelet/glow",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
