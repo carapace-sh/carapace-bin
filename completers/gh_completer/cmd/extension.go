@@ -8,7 +8,7 @@ import (
 var extensionCmd = &cobra.Command{
 	Use:     "extension",
 	Short:   "Manage gh extensions",
-	Aliases: []string{"extensions"},
+	Aliases: []string{"extensions", "ext"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
