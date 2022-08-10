@@ -153,7 +153,7 @@ func nushell_lazy(completers []string) string {
 	exports := make([]string, len(completers))
 	for index, completer := range completers {
 		exports[index] = fmt.Sprintf(`  export extern "%v" [
-    ...args: string@"nu-complete carapace"
+    ..-args: string@"nu-complete carapace"
   ]`, completer)
 	}
 	snippet := fmt.Sprintf(`module carapace {
