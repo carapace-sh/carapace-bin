@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -35,8 +36,22 @@ func init() {
 	})
 
 	carapace.Gen(difftoolCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOption{}.Default()),
-		git.ActionRefs(git.RefOption{}.Default()),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if util.HasPathPrefix(c.CallbackValue) {
+				return carapace.ActionFiles()
+			}
+			return git.ActionRefs(git.RefOption{}.Default())
+		}),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if util.HasPathPrefix(c.CallbackValue) {
+				return carapace.ActionFiles()
+			}
+			return git.ActionRefs(git.RefOption{}.Default())
+		}),
+	)
+
+	carapace.Gen(difftoolCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
 	)
 
 	carapace.Gen(difftoolCmd).DashAnyCompletion(
