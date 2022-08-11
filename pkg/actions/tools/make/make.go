@@ -1,3 +1,4 @@
+// package make contains make related actions
 package make
 
 import (

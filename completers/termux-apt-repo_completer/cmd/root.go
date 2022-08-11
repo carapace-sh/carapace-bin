@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "termux-apt-repo",
 	Short: "Create a repository with deb files",
+	Long:  "https://github.com/termux/termux-apt-repo",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -1,4 +1,3 @@
-// Package golang contains go related actions
 package golang
 
 import (

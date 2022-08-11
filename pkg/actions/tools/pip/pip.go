@@ -1,3 +1,4 @@
+// package pip contains pip related actions
 package pip
 
 import (
