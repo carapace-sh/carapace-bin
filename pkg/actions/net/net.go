@@ -168,14 +168,18 @@ func ActionConnections() carapace.Action {
 //   AA:BB:CC:DD:EE:11 (anotherwifi)
 func ActionBssids() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("nmcli", "--terse", "--fields", "bssid,ssid", "device", "wifi", "list")(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("nmcli", "--terse", "--fields", "bssid,ssid,bars", "device", "wifi", "list")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
-			vals := make([]string, (len(lines)-1)*2)
-			for index, line := range lines[:len(lines)-1] {
-				vals[index*2] = strings.Replace(line[:22], `\:`, `:`, -1)
-				vals[index*2+1] = line[23:]
+
+			vals := make([]string, 0)
+			for _, line := range lines[:len(lines)-1] {
+				mac := strings.Replace(line[:22], `\:`, `:`, -1)
+				splitted := strings.Split(line[23:], ":")
+				if name := splitted[0]; name != "" {
+					vals = append(vals, mac, splitted[0], styleForBars(splitted[1]))
+				}
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	})
 }
@@ -185,15 +189,33 @@ func ActionBssids() carapace.Action {
 //   anotherwifi (AA:BB:CC:DD:EE:11)
 func ActionSsids() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("nmcli", "--terse", "--fields", "bssid,ssid", "device", "wifi", "list")(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("nmcli", "--terse", "--fields", "bssid,ssid,bars", "device", "wifi", "list")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
+
 			vals := make([]string, 0)
 			for _, line := range lines[:len(lines)-1] {
-				if ssid := line[23:]; ssid != "" {
-					vals = append(vals, line[23:], strings.Replace(line[:22], `\:`, `:`, -1))
+				mac := strings.Replace(line[:22], `\:`, `:`, -1)
+				splitted := strings.Split(line[23:], ":")
+				if name := splitted[0]; name != "" {
+					vals = append(vals, splitted[0], mac, styleForBars(splitted[1]))
 				}
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	})
+}
+
+func styleForBars(s string) string {
+	switch s {
+	case "▂___":
+		return style.Blue
+	case "▂▄__":
+		return style.Magenta
+	case "▂▄▆_":
+		return style.Yellow
+	case "▂▄▆█":
+		return style.Green
+	default:
+		return style.Default
+	}
 }
