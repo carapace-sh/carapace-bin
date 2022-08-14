@@ -20,8 +20,9 @@ func (o ChangeOpts) Default() ChangeOpts {
 }
 
 // ActionChanges completes (un)staged changes
-//   fileA ( M)
-//   pathA/fileB (??)
+//
+//	fileA ( M)
+//	pathA/fileB (??)
 func ActionChanges(opts ChangeOpts) carapace.Action {
 	// TODO multiparts action to complete step by step
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {

@@ -8,8 +8,9 @@ import (
 )
 
 // ActionSessions completes kak sessions
-//   12345
-//   some_name
+//
+//	12345
+//	some_name
 func ActionSessions() carapace.Action {
 	return carapace.ActionExecCommand("kak", "-l")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

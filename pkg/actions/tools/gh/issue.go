@@ -31,8 +31,9 @@ type pinnedIssueQuery struct {
 }
 
 // ActionPinnedIssues completes pinned issues
-//  11 (issue description)
-//  12 (issue description)
+//
+//	11 (issue description)
+//	12 (issue description)
 func ActionPinnedIssues(opts RepoOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult pinnedIssueQuery

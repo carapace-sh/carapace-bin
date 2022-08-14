@@ -7,8 +7,9 @@ import (
 )
 
 // ActionLocales completes locales
-//   en_GB (English (United Kingdom))
-//   en_US (English (United States))
+//
+//	en_GB (English (United Kingdom))
+//	en_US (English (United States))
 func ActionLocales() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if !strings.Contains(c.CallbackValue, "_") {

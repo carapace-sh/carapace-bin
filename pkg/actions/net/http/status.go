@@ -6,8 +6,9 @@ import (
 )
 
 // ActionStatusCodes completes http status codes
-//   100 (Continue)
-//   200 (OK)
+//
+//	100 (Continue)
+//	200 (OK)
 func ActionStatusCodes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"100", "Continue",

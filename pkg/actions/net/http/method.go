@@ -6,8 +6,9 @@ import (
 )
 
 // ActionRequestMethods completes request methods
-//   DELETE (The DELETE method deletes the specified resource.)
-//   GET (The GET method requests a representation of the specified resource.)
+//
+//	DELETE (The DELETE method deletes the specified resource.)
+//	GET (The GET method requests a representation of the specified resource.)
 func ActionRequestMethods() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionStyledValuesDescribed(

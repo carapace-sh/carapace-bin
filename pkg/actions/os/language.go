@@ -3,8 +3,9 @@ package os
 import "github.com/rsteube/carapace"
 
 // ActionLanguages completes languages
-//   av (Avaric)
-//   da (Danish)
+//
+//	av (Avaric)
+//	da (Danish)
 func ActionLanguages() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"aa", "Afar",

@@ -6,8 +6,9 @@ import (
 )
 
 // ActionFilenameExtensions completes filename extensions
-//   3ds (3D Studio Graphics format)
-//   3g2 (Mobile Phone Video)
+//
+//	3ds (3D Studio Graphics format)
+//	3g2 (Mobile Phone Video)
 func ActionFilenameExtensions() carapace.Action {
 	// https://en.wikipedia.org/wiki/Filename_extension
 	return carapace.ActionValuesDescribed(

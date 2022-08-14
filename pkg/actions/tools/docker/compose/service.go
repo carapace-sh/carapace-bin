@@ -46,8 +46,9 @@ func actionConfig(files []string, f func(c config) carapace.Action) carapace.Act
 }
 
 // ActionServices completes services
-//   elvish (ghcr.io/rsteube/carapace:v0.12.4)
-//   fish (ghcr.io/rsteube/carapace:v0.12.4)
+//
+//	elvish (ghcr.io/rsteube/carapace:v0.12.4)
+//	fish (ghcr.io/rsteube/carapace:v0.12.4)
 func ActionServices(files ...string) carapace.Action {
 	return actionConfig(files, func(c config) carapace.Action {
 		vals := make([]string, 0)
@@ -110,8 +111,9 @@ func (o ContainerOpts) includeState(s string) bool {
 }
 
 // ActionContainers completes containers
-//   carapace-bin-bash-1 (exited)
-//   carapace-bin-elvish-1 (running)
+//
+//	carapace-bin-bash-1 (exited)
+//	carapace-bin-elvish-1 (running)
 func ActionContainers(opts ContainerOpts) carapace.Action {
 	return actionExecCompose(opts.Files, "ps", "--format", "json", "--all")(func(output []byte) carapace.Action {
 		var containers []container

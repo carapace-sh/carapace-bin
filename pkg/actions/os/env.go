@@ -8,8 +8,9 @@ import (
 )
 
 // ActionEnvironmentVariables completes environment values
-//   SHELL (/bin/elvish)
-//   LANG (en_US.utf8)
+//
+//	SHELL (/bin/elvish)
+//	LANG (en_US.utf8)
 func ActionEnvironmentVariables() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		env := os.Environ()

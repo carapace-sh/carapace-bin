@@ -11,8 +11,9 @@ import (
 )
 
 // ActionFormats completes formats
-//   278 (webm       256x144    144p   74k , webm_dash container, vp9@  74k, 25fps, vid...)
-//   313 (webm       3840x2160  2160p 16135k , webm_dash container, vp9@16135k, 25fps, ...)
+//
+//	278 (webm       256x144    144p   74k , webm_dash container, vp9@  74k, 25fps, vid...)
+//	313 (webm       3840x2160  2160p 16135k , webm_dash container, vp9@16135k, 25fps, ...)
 func ActionFormats(url string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("youtube-dl", "--list-formats", url)(func(output []byte) carapace.Action {
@@ -39,8 +40,9 @@ func ActionFormats(url string) carapace.Action {
 }
 
 // ActionSubLangs completes subtitle languages
-//   af (vtt, ttml, srv3, srv2, srv1)
-//   am (vtt, ttml, srv3, srv2, srv1)
+//
+//	af (vtt, ttml, srv3, srv2, srv1)
+//	am (vtt, ttml, srv3, srv2, srv1)
 func ActionSubLangs(url string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("youtube-dl", "--list-subs", url)(func(output []byte) carapace.Action {

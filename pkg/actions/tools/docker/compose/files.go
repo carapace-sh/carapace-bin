@@ -16,8 +16,9 @@ type ServicePathOpts struct {
 }
 
 // ActionFiles completes files within a service container
-//   /home
-//   /etc
+//
+//	/home
+//	/etc
 func ActionFiles(opts ServicePathOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if opts.Index == 0 {

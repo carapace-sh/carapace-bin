@@ -6,8 +6,9 @@ import (
 )
 
 // ActionSamplingTypes completes sampling types
-//   const (sampler always makes the same decision for all traces)
-//   probabilistic (sampler makes a random sampling decision with the probability of sampling equ...)
+//
+//	const (sampler always makes the same decision for all traces)
+//	probabilistic (sampler makes a random sampling decision with the probability of sampling equ...)
 func ActionSamplingTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"const", "sampler always makes the same decision for all traces",

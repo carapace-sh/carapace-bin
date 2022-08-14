@@ -10,8 +10,9 @@ import (
 )
 
 // ActionLanguages completes languages
-//   bash (✘ bash-language-server)
-//   c (✔ clangd)
+//
+//	bash (✘ bash-language-server)
+//	c (✔ clangd)
 func ActionLanguages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		cmd := "helix"

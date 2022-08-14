@@ -8,8 +8,9 @@ import (
 )
 
 // ActionSoundCards completes sound cards
-//   0 (HDMI)
-//   PCH (1)
+//
+//	0 (HDMI)
+//	PCH (1)
 func ActionSoundCards() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("aplay", "-l")(func(output []byte) carapace.Action {

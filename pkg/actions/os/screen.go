@@ -8,8 +8,9 @@ import (
 )
 
 // ActionScreens completes sreens
-//   eDP1
-//   HDMI1
+//
+//	eDP1
+//	HDMI1
 func ActionScreens(connected bool) carapace.Action {
 	return carapace.ActionExecCommand("xrandr")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

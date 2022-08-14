@@ -13,8 +13,9 @@ import (
 )
 
 // ActionBuildTags completes build tags
-//   release
-//   debug
+//
+//	release
+//	debug
 func ActionBuildTags() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		root := c.Dir

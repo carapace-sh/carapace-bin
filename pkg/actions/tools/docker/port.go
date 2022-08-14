@@ -8,8 +8,9 @@ import (
 )
 
 // ActionPorts completes port(range)s and protocols
-//   80/tcp
-//   100-200/udp
+//
+//	80/tcp
+//	100-200/udp
 func ActionPorts() carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -33,8 +34,9 @@ func ActionPorts() carapace.Action {
 }
 
 // ActionContainerPorts completes ports of a container
-//   80/tcp
-//   8080/udb
+//
+//	80/tcp
+//	8080/udb
 func ActionContainerPorts(container string) carapace.Action {
 	return carapace.ActionExecCommand("docker", "container", "port", container)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

@@ -35,8 +35,9 @@ func loadSubmodules(c carapace.Context) (submodules map[string]*submodule, err e
 }
 
 // ActionSubmoduleNames completes submodule names
-//   cobra (https://github.com/spf13/cobra.git)
-//   pflag (https://github.com/spf13/pflag.git)
+//
+//	cobra (https://github.com/spf13/cobra.git)
+//	pflag (https://github.com/spf13/pflag.git)
 func ActionSubmoduleNames() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		submodules, err := loadSubmodules(c)
@@ -81,8 +82,9 @@ func contains(slice []string, s string) bool {
 }
 
 // ActionSubmodulePaths completes submodules (relative path)
-//   ../cli (v1.12.1-12-gaed8966f)
-//   ../pflag (heads/forOgier)
+//
+//	../cli (v1.12.1-12-gaed8966f)
+//	../pflag (heads/forOgier)
 func ActionSubmodulePaths() carapace.Action {
 	// TODO use loadSubmodules
 	return carapace.ActionExecCommand("git", "submodule")(func(output []byte) carapace.Action {

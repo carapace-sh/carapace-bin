@@ -8,8 +8,9 @@ import (
 )
 
 // ActionCommitters completes committers of repo
-//   GitHub
-//   another
+//
+//	GitHub
+//	another
 func ActionCommitters() carapace.Action {
 	return carapace.ActionExecCommand("git", "shortlog", "--summary", "--committer", "HEAD")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

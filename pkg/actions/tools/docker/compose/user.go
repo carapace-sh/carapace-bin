@@ -22,8 +22,9 @@ type ContainerUserOpts struct {
 }
 
 // ActionUsers completes users within a service container
-//   root (0)
-//   daemon (1)
+//
+//	root (0)
+//	daemon (1)
 func ActionUsers(opts ContainerUserOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if opts.Index == 0 {

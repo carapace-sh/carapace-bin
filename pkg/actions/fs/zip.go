@@ -8,8 +8,9 @@ import (
 )
 
 // ActionZipFileContents completes contents of given zip file
-//   fileA
-//   dirA/fileB
+//
+//	fileA
+//	dirA/fileB
 func ActionZipFileContents(file string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if reader, err := zip.OpenReader(file); err != nil {

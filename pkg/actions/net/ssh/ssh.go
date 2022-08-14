@@ -10,8 +10,9 @@ import (
 )
 
 // ActionCiphers completes ciphers
-//   3des-cbc
-//   aes128-cbc
+//
+//	3des-cbc
+//	aes128-cbc
 func ActionCiphers() carapace.Action {
 	return carapace.ActionValues(
 		"3des-cbc", "aes128-cbc", "aes192-cbc", "aes256-cbc", "aes128-ctr", "aes192-ctr", "aes256-ctr", "arcfour128", "arcfour256", "arcfour", "blowfish-cbc", "cast128-cbc",
@@ -19,8 +20,9 @@ func ActionCiphers() carapace.Action {
 }
 
 // ActionHostKeyAlgorithms completes host key algorithms
-//   ssh-ed25519
-//   ssh-ed25519-cert-v01@openssh.com
+//
+//	ssh-ed25519
+//	ssh-ed25519-cert-v01@openssh.com
 func ActionHostKeyAlgorithms() carapace.Action {
 	return carapace.ActionExecCommand("ssh", "-Q", "hostkeyalgorithms")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -29,8 +31,9 @@ func ActionHostKeyAlgorithms() carapace.Action {
 }
 
 // ActionOptions completes options and their values
-//   AddKeysToAgent
-//   AddressFamily=inet
+//
+//	AddKeysToAgent
+//	AddressFamily=inet
 func ActionOptions() carapace.Action {
 	return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 		options := map[string]carapace.Action{

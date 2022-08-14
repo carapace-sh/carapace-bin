@@ -16,8 +16,9 @@ type pkg struct {
 }
 
 // ActionInstalledPackages completes installed packages
-//   Automat (20.2.0)
-//   Beaker (1.11.0)
+//
+//	Automat (20.2.0)
+//	Beaker (1.11.0)
 func ActionInstalledPackages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("pip", "list", "--format", "json")(func(output []byte) carapace.Action {
@@ -35,8 +36,9 @@ func ActionInstalledPackages() carapace.Action {
 }
 
 // ActionPackageSearch completes remote packages
-//   git-gopher (Improving the Git CLI experience with fzf)
-//   git-lint (Git Lint)
+//
+//	git-gopher (Improving the Git CLI experience with fzf)
+//	git-lint (Git Lint)
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO pip search currently disabled due to load - basic workaround without paging
@@ -66,8 +68,9 @@ type ConfigOpts struct {
 }
 
 // ActionConfigValues completes config values
-//   first ('1'
-//   second ('2')
+//
+//	first ('1'
+//	second ('2')
 func ActionConfigValues(opts ConfigOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {

@@ -10,8 +10,9 @@ import (
 )
 
 // ActionKillSignals completes linux kill signals
-//   ABRT (Abnormal termination)
-//   STOP (Stop process, unblockable)
+//
+//	ABRT (Abnormal termination)
+//	STOP (Stop process, unblockable)
 func ActionKillSignals() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionStyledValuesDescribed(
@@ -51,8 +52,9 @@ func ActionKillSignals() carapace.Action {
 }
 
 // ActionProcessExecutables completes executable names of current processes
-//   NetworkManager (439)
-//   cupsd (454)
+//
+//	NetworkManager (439)
+//	cupsd (454)
 func ActionProcessExecutables() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if processes, err := ps.Processes(); err != nil {
@@ -68,8 +70,9 @@ func ActionProcessExecutables() carapace.Action {
 }
 
 // ActionProcessIds completes proces IDs
-//   439 (NetworkManager)
-//   454 (cupsd)
+//
+//	439 (NetworkManager)
+//	454 (cupsd)
 func ActionProcessIds() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if processes, err := ps.Processes(); err != nil {
@@ -85,8 +88,9 @@ func ActionProcessIds() carapace.Action {
 }
 
 // ActionProcessStates completes linux process states
-//   I (Idle kernel thread)
-//   R (running or runnable on run queue)
+//
+//	I (Idle kernel thread)
+//	R (running or runnable on run queue)
 func ActionProcessStates() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"D", "uninterruptible sleep (usually IO)",

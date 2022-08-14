@@ -7,8 +7,9 @@ import (
 )
 
 // ActionTerminals completes terminals
-//   pts/5 (user)
-//   tty7 (root)
+//
+//	pts/5 (user)
+//	tty7 (root)
 func ActionTerminals() carapace.Action {
 	return carapace.ActionExecCommand("ps", "aux")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

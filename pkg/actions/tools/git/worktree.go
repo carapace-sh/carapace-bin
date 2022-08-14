@@ -7,8 +7,9 @@ import (
 )
 
 // ActionWorktrees completes worktrees
-//   /tmp/carapace-spec.git ((bare))
-//   /tmp/carapace-spec.git/mexample (a3d9c48 [doc-usage])
+//
+//	/tmp/carapace-spec.git ((bare))
+//	/tmp/carapace-spec.git/mexample (a3d9c48 [doc-usage])
 func ActionWorktrees() carapace.Action {
 	return carapace.ActionExecCommand("git", "worktree", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

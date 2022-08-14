@@ -10,8 +10,9 @@ import (
 )
 
 // ActionRepositories completes package repositories
-//   extra
-//   multilib
+//
+//	extra
+//	multilib
 func ActionRepositories() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		loadOptions := ini.LoadOptions{}
@@ -46,8 +47,9 @@ func (o PackageOption) format(callbackValue string) []string {
 }
 
 // ActionPackages completes package names
-//   gnome-common
-//   gstreamer
+//
+//	gnome-common
+//	gstreamer
 func ActionPackages(option PackageOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("pacman", option.format(c.CallbackValue)...)(func(output []byte) carapace.Action {
@@ -58,8 +60,9 @@ func ActionPackages(option PackageOption) carapace.Action {
 }
 
 // ActionPackageGroups completes package group names
-//   i3-manjaro
-//   linux49-extramodules
+//
+//	i3-manjaro
+//	linux49-extramodules
 func ActionPackageGroups() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("sh", "-c", "pacman -Qg | cut -d' ' -f1 | sort |  uniq")(func(output []byte) carapace.Action {

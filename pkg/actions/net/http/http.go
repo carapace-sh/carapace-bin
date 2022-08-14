@@ -8,8 +8,9 @@ import (
 )
 
 // ActionRequestHeaders completes http request headers
-//   Accept:application/json
-//   Accept-Encoding:exi,br
+//
+//	Accept:application/json
+//	Accept-Encoding:exi,br
 func ActionRequestHeaders() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -24,8 +25,9 @@ func ActionRequestHeaders() carapace.Action {
 }
 
 // ActionRequestHeaderNames completes http request header names
-//   Accept-Charset (Character sets that are acceptable.)
-//   Accept-Datetime (Acceptable version in time.)
+//
+//	Accept-Charset (Character sets that are acceptable.)
+//	Accept-Datetime (Acceptable version in time.)
 func ActionRequestHeaderNames() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"A-IM", "Acceptable instance-manipulations for the request.[10]",
@@ -73,8 +75,9 @@ func ActionRequestHeaderNames() carapace.Action {
 }
 
 // ActionRequestHeaderValues completes values for given request header
-//   ActionRequestHeaderValues("Accept")
-//   ActionRequestHeaderValues("Accept-Encoding")
+//
+//	ActionRequestHeaderValues("Accept")
+//	ActionRequestHeaderValues("Accept-Encoding")
 func ActionRequestHeaderValues(header string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		switch header {
@@ -114,8 +117,9 @@ func ActionRequestHeaderValues(header string) carapace.Action {
 }
 
 // ActionMediaTypes completes media types
-//   "audio/ogg",
-//   "image/gif",
+//
+//	"audio/ogg",
+//	"image/gif",
 func ActionMediaTypes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionStyledValues(
@@ -159,8 +163,9 @@ func ActionMediaTypes() carapace.Action {
 }
 
 // ActionContentEncodingTokens completes content encoding tokens
-//   br (Brotli)
-//   gzip (GNU zip format)
+//
+//	br (Brotli)
+//	gzip (GNU zip format)
 func ActionContentEncodingTokens() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"br", "Brotli",
@@ -175,8 +180,9 @@ func ActionContentEncodingTokens() carapace.Action {
 }
 
 // ActionTransferEncodingTokens completes transfer encoding tokens
-//   chunked (Transfer in a series of chunks)
-//   gzip (GZIP file format)
+//
+//	chunked (Transfer in a series of chunks)
+//	gzip (GZIP file format)
 func ActionTransferEncodingTokens() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"chunked", "Transfer in a series of chunks",
@@ -187,8 +193,9 @@ func ActionTransferEncodingTokens() carapace.Action {
 }
 
 // ActionCacheControlRequestDirectives completes Cache-Control directives for a request
-//   no-store (The response may not be stored in any cache.)
-//   no-transform (An intermediate cache or proxy cannot edit the response body.)
+//
+//	no-store (The response may not be stored in any cache.)
+//	no-transform (An intermediate cache or proxy cannot edit the response body.)
 func ActionCacheControlRequestDirectives() carapace.Action {
 	return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -209,8 +216,9 @@ func ActionCacheControlRequestDirectives() carapace.Action {
 }
 
 // ActionUserAgents completes common user agents
-//   curl/7.35.0 (Curl)
-//   Lynx/2.8.8pre.4 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/2.12.23 (Lynx)
+//
+//	curl/7.35.0 (Curl)
+//	Lynx/2.8.8pre.4 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/2.12.23 (Lynx)
 func ActionUserAgents() carapace.Action {
 	// https://www.networkinghowtos.com/howto/common-user-agent-list/
 	return carapace.ActionValuesDescribed(

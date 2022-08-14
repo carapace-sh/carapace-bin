@@ -10,8 +10,9 @@ import (
 )
 
 // ActionRepositorySearch completes repositories from github.com and gitlab.com
-//    https://github.com/spf13/cobra
-//    https://gitlab.com/gitlab-org/gitlab-runner
+//
+//	https://github.com/spf13/cobra
+//	https://gitlab.com/gitlab-org/gitlab-runner
 func ActionRepositorySearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		prefix := "https://"

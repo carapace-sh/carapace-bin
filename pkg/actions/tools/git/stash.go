@@ -8,8 +8,9 @@ import (
 )
 
 // ActionStashes completes stash names
-//   stash@{0} (WIP on branchA: ABCDEF1 last commit msg)
-//   stash@{1} (WIP on branchB: ABCDEF2 last commit msg)
+//
+//	stash@{0} (WIP on branchA: ABCDEF1 last commit msg)
+//	stash@{1} (WIP on branchB: ABCDEF2 last commit msg)
 func ActionStashes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("git", "stash", "list")(func(output []byte) carapace.Action {

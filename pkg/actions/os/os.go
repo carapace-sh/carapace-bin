@@ -10,8 +10,9 @@ import (
 )
 
 // ActionShells completes available terminal shells
-//   /bin/elvish
-//   /bin/bash
+//
+//	/bin/elvish
+//	/bin/bash
 func ActionShells() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("chsh", "--list-shells")(func(output []byte) carapace.Action {
@@ -22,8 +23,9 @@ func ActionShells() carapace.Action {
 }
 
 // ActionPathExecutables completes executable files from PATH
-//   nvim
-//   chmod
+//
+//	nvim
+//	chmod
 func ActionPathExecutables() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		executables := make(map[string]string)
@@ -53,8 +55,9 @@ func isExecAny(mode os.FileMode) bool {
 }
 
 // ActionCgroups completes cgroup names
-//   blkio
-//   cpu
+//
+//	blkio
+//	cpu
 func ActionCgroups() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"cpu", `Cgroups  can  be  guaranteed  a minimum number of "CPU shares" when a system is busy.`,

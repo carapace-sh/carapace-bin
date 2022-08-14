@@ -9,8 +9,9 @@ import (
 )
 
 // ActionMounts completes file system mounts
-//   /boot/efi (/dev/sda1)
-//   /dev (dev)
+//
+//	/boot/efi (/dev/sda1)
+//	/dev (dev)
 func ActionMounts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		content, err := os.ReadFile("/proc/mounts")

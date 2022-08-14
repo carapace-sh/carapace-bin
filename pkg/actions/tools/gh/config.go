@@ -6,8 +6,9 @@ import (
 )
 
 // ActionConfigHosts completes configured hosts
-//   github.com
-//   another.com
+//
+//	github.com
+//	another.com
 func ActionConfigHosts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if config, err := config.ParseDefaultConfig(); err != nil {

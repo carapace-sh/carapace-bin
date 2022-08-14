@@ -33,8 +33,9 @@ func actionBlockdevices(f func(blockdevices []blockdevice) carapace.Action) cara
 }
 
 // ActionBlockDevices completes block devices
-//   /dev/sda (10G)
-//   /dev/sda1 (2G Linux swap)
+//
+//	/dev/sda (10G)
+//	/dev/sda1 (2G Linux swap)
 func ActionBlockDevices() carapace.Action {
 	return actionBlockdevices(func(blockdevices []blockdevice) carapace.Action {
 		vals := make([]string, 0)

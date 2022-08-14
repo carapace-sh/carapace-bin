@@ -35,8 +35,9 @@ func readPublicKey(name string) (*key, error) {
 }
 
 // ActionPublicKeys completes public keys
-//   /home/user/.ssh/id_rsa.pub (ssh-rsa user)
-//   /home/user/.ssh/another.pub (ssh-rsa user@another)
+//
+//	/home/user/.ssh/id_rsa.pub (ssh-rsa user)
+//	/home/user/.ssh/another.pub (ssh-rsa user@another)
 func ActionPublicKeys() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		abs, err := c.Abs("~/.ssh/")
@@ -63,8 +64,9 @@ func ActionPublicKeys() carapace.Action {
 }
 
 // ActionPrivateKeys completes private keys
-//   /home/user/.ssh/id_rsa (ssh-rsa user)
-//   /home/user/.ssh/another (ssh-rsa user@another)
+//
+//	/home/user/.ssh/id_rsa (ssh-rsa user)
+//	/home/user/.ssh/another (ssh-rsa user@another)
 func ActionPrivateKeys() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		abs, err := c.Abs("~/.ssh/")
