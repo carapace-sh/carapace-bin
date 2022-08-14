@@ -10,8 +10,9 @@ type license struct {
 }
 
 // ActionLicenses completes licenses
-//   apache-2.0 (Apache License 2.0)
-//   bsd-2-clause (BSD 2-Clause "Simplified" License)
+//
+//	apache-2.0 (Apache License 2.0)
+//	bsd-2-clause (BSD 2-Clause "Simplified" License)
 func ActionLicenses(opts HostOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult []license

@@ -8,8 +8,9 @@ import (
 )
 
 // ActionDisplays completes x displays
-//   :0
-//   :1
+//
+//	:0
+//	:1
 func ActionDisplays() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("w", "-hsu")(func(output []byte) carapace.Action {

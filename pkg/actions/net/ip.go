@@ -6,8 +6,9 @@ import (
 )
 
 // ActionIpv4Addresses completes ipv4 addresses
-//   192.168.1.100
-//   192.168.100.100/16
+//
+//	192.168.1.100
+//	192.168.100.100/16
 func ActionIpv4Addresses() carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -35,8 +36,9 @@ func ActionIpv4Addresses() carapace.Action {
 }
 
 // ActionSubnets completes subnets
-//   24 (255.255.255.0 - 256)#
-//   16 (255.255.0.0 - 65536)
+//
+//	24 (255.255.255.0 - 256)#
+//	16 (255.255.0.0 - 65536)
 func ActionSubnets() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"30", "255.255.255.252 - 4",

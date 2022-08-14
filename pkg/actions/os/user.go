@@ -10,8 +10,9 @@ import (
 )
 
 // ActionUsers completes system user names
-//   root (0)
-//   daemon (1)
+//
+//	root (0)
+//	daemon (1)
 func ActionUsers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		users := []string{}
@@ -50,8 +51,9 @@ func ActionUsers() carapace.Action {
 }
 
 // ActionUserGroup completes system user:group separately
-//   bin:audio
-//   lp:list
+//
+//	bin:audio
+//	lp:list
 func ActionUserGroup() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {

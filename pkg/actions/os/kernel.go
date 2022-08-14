@@ -19,8 +19,9 @@ func currentRelease(c carapace.Context) (string, error) {
 }
 
 // ActionKernelModulesLoaded completes currently loaded kernel modules
-//   ac97_bus
-//   crc32c_intel
+//
+//	ac97_bus
+//	crc32c_intel
 func ActionKernelModulesLoaded() carapace.Action {
 	return carapace.ActionExecCommand("lsmod")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -38,8 +39,9 @@ type KernelModulesOpts struct {
 }
 
 // ActionKernelModules completes kernel modules
-//   ac97_bus
-//   crc32c_intel
+//
+//	ac97_bus
+//	crc32c_intel
 func ActionKernelModules(opts KernelModulesOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if strings.TrimSpace(opts.Release) == "" {
@@ -71,8 +73,9 @@ func ActionKernelModules(opts KernelModulesOpts) carapace.Action {
 }
 
 // ActionKernelReleases completes kernel releases
-//   5.10.79-1-MANJARO
-//   5.4.159-1-MANJARO
+//
+//	5.10.79-1-MANJARO
+//	5.4.159-1-MANJARO
 func ActionKernelReleases(basedir string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		files, err := os.ReadDir(basedir + "/lib/modules")

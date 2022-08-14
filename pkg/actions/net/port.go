@@ -5,8 +5,9 @@ import (
 )
 
 // ActionPorts completes commonly used ports (opiniated)
-//   80 (http)
-//   443 (https)
+//
+//	80 (http)
+//	443 (https)
 func ActionPorts() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"21", "ftp",

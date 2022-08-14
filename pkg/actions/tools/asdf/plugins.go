@@ -9,8 +9,9 @@ import (
 )
 
 // ActionPlugins completes plugins
-//   1password-cli
-//   R
+//
+//	1password-cli
+//	R
 func ActionPlugins() carapace.Action {
 	return gh.ActionContents(gh.ContentOpts{Owner: "asdf-vm", Name: "asdf-plugins", Path: "plugins"}).Style(style.Default).Cache(24 * time.Hour)
 }

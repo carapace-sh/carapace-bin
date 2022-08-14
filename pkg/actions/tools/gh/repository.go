@@ -29,8 +29,9 @@ type repositoryQuery struct {
 }
 
 // ActionRepositories completes repositories
-//   carapace (command argument completion generator for spf13/cobra)
-//   carapace-bin (multi-shell multi-command argument completer)
+//
+//	carapace (command argument completion generator for spf13/cobra)
+//	carapace-bin (multi-shell multi-command argument completer)
 func ActionRepositories(opts OwnerOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult repositoryQuery
@@ -61,8 +62,9 @@ func ActionRepositories(opts OwnerOpts) carapace.Action {
 }
 
 // ActionOwnerRepositories completes owner/repository
-//   rsteube/carapace
-//   spf13/cobra
+//
+//	rsteube/carapace
+//	spf13/cobra
 func ActionOwnerRepositories(opts HostOpts) carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {

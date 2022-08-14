@@ -5,8 +5,9 @@ import (
 )
 
 // ActionFilesystemTypes completes file system types
-//   ext (is an elaborate extension of the minix filesystem.)
-//   ext3 (is a journaling version of the ext2 filesystem.)
+//
+//	ext (is an elaborate extension of the minix filesystem.)
+//	ext3 (is a journaling version of the ext2 filesystem.)
 func ActionFilesystemTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"bfs", "is the native file system for the BeOS",

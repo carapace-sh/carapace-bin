@@ -8,8 +8,9 @@ import (
 
 // ActionHexColors completes hex color codes
 // source: https://www.ditig.com/256-colors-cheat-sheet
-//   #0000ff (Blue1)
-//   #00d75f (SpringGreen3)
+//
+//	#0000ff (Blue1)
+//	#00d75f (SpringGreen3)
 func ActionHexColors() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionStyledValuesDescribed(
@@ -274,8 +275,9 @@ func ActionHexColors() carapace.Action {
 }
 
 // ActionXtermColorNames completes xterm color names
-//   Green
-//   Olive
+//
+//	Green
+//	Olive
 func ActionXtermColorNames() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionStyledValues(

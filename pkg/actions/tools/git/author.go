@@ -8,8 +8,9 @@ import (
 )
 
 // ActionAuthors completes authors of repo
-//   Some Name (email@host.com)
-//   Another Name (email@another.com)
+//
+//	Some Name (email@host.com)
+//	Another Name (email@another.com)
 func ActionAuthors() carapace.Action {
 	return carapace.ActionExecCommand("git", "shortlog", "--summary", "--email", "HEAD")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

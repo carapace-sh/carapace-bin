@@ -3,8 +3,9 @@ package http
 import "github.com/rsteube/carapace"
 
 // ActionTags completes html tags
-//   a (Defines a hyperlink)
-//   abbr (Defines an abbreviation or an acronym)
+//
+//	a (Defines a hyperlink)
+//	abbr (Defines an abbreviation or an acronym)
 func ActionTags() carapace.Action {
 	//  https://www.w3schools.com/TAgs/default.asp
 	return carapace.ActionValuesDescribed(

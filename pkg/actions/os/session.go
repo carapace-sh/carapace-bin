@@ -7,8 +7,9 @@ import (
 )
 
 // ActionSessionIds completes session ids
-//   0 (root)
-//   1 (root)
+//
+//	0 (root)
+//	1 (root)
 func ActionSessionIds() carapace.Action {
 	return carapace.ActionExecCommand("ps", "-A", "-o", "user,sess")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

@@ -34,8 +34,9 @@ func (o RefOption) Default() RefOption {
 }
 
 // ActionRefs completes git references (commits, branches, tags)
-//   HEAD~1 (last commit msg)
-//   v0.0.1 (last commit msg)
+//
+//	HEAD~1 (last commit msg)
+//	v0.0.1 (last commit msg)
 func ActionRefs(refOption RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := make([]string, 0)
@@ -77,8 +78,9 @@ func ActionRefs(refOption RefOption) carapace.Action {
 }
 
 // ActionFieldNames completes field names
-//   author (the author header-field)
-//   body (the body of the message)
+//
+//	author (the author header-field)
+//	body (the body of the message)
 func ActionFieldNames() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"authordate", "the date component of the author header-field",
@@ -119,8 +121,9 @@ func ActionFieldNames() carapace.Action {
 }
 
 // ActionCleanupMode completes cleanup modes
-//   strip (strip empty lines and trailing whitespace)
-//   whitespace (same as strip except #commentary is not removed)
+//
+//	strip (strip empty lines and trailing whitespace)
+//	whitespace (same as strip except #commentary is not removed)
 func ActionCleanupMode() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"strip", "strip empty lines and trailing whitespace",
@@ -132,8 +135,9 @@ func ActionCleanupMode() carapace.Action {
 }
 
 // ActionMergeStrategy completes merge strategies
-//   octopus (resolve cases with more than two heads)
-//   ours (auto-resolve cleanly by favoring our version)
+//
+//	octopus (resolve cases with more than two heads)
+//	ours (auto-resolve cleanly by favoring our version)
 func ActionMergeStrategy() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"octopus", "resolve cases with more than two heads",
@@ -145,8 +149,9 @@ func ActionMergeStrategy() carapace.Action {
 }
 
 // ActionMergeStrategyOptions completes merge strategy options
-//   ours (auto-resolve favoring ours)
-//   theirs (auto-resolve favoring theirs)
+//
+//	ours (auto-resolve favoring ours)
+//	theirs (auto-resolve favoring theirs)
 func ActionMergeStrategyOptions(strategy string) carapace.Action {
 	switch strategy {
 	case "recursive":

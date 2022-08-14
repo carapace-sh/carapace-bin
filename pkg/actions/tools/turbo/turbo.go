@@ -14,8 +14,9 @@ type turbo struct {
 }
 
 // ActionPipelineTasks completes pipeline tasks
-//   build
-//   deploy
+//
+//	build
+//	deploy
 func ActionPipelineTasks() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		path, err := util.FindReverse(c.Dir, "turbo.json")

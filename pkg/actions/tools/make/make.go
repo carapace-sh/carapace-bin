@@ -9,8 +9,9 @@ import (
 )
 
 // ActionTargets completes targets
-//   build
-//   check
+//
+//	build
+//	check
 func ActionTargets(file string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if file == "" {

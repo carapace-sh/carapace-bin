@@ -34,8 +34,9 @@ func readFuncs(path string) []string {
 }
 
 // ActionFuncs completes go funcs
-//   main
-//   ActionFuncs
+//
+//	main
+//	ActionFuncs
 func ActionFuncs(files ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		root := c.Dir

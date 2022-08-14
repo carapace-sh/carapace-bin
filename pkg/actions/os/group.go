@@ -10,8 +10,9 @@ import (
 )
 
 // ActionGroups completes system group names
-//    root (0)
-//    ssh (101)
+//
+//	root (0)
+//	ssh (101)
 func ActionGroups() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		groups := []string{}
@@ -40,8 +41,9 @@ func ActionGroups() carapace.Action {
 }
 
 // ActionGroupMembers completes system group members
-//   root
-//   daemon
+//
+//	root
+//	daemon
 func ActionGroupMembers(group string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := []string{}

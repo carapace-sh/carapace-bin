@@ -8,24 +8,25 @@ import (
 )
 
 // ActionPosener bridges posener/complete
-//   var rootCmd = &cobra.Command{
-//   	Use:                "vault",
-//   	Short:              "A tool for secrets management",
-//   	Long:               "https://www.vaultproject.io/",
-//   	Run:                func(cmd *cobra.Command, args []string) {},
-//   	DisableFlagParsing: true,
-//   }
 //
-//   func Execute() error {
-//   	return rootCmd.Execute()
-//   }
-//   func init() {
-//   	carapace.Gen(rootCmd).Standalone()
+//	var rootCmd = &cobra.Command{
+//		Use:                "vault",
+//		Short:              "A tool for secrets management",
+//		Long:               "https://www.vaultproject.io/",
+//		Run:                func(cmd *cobra.Command, args []string) {},
+//		DisableFlagParsing: true,
+//	}
 //
-//   	carapace.Gen(rootCmd).PositionalAnyCompletion(
-//   		bridge.ActionPosener("vault"),
-//   	)
-//   }
+//	func Execute() error {
+//		return rootCmd.Execute()
+//	}
+//	func init() {
+//		carapace.Gen(rootCmd).Standalone()
+//
+//		carapace.Gen(rootCmd).PositionalAnyCompletion(
+//			bridge.ActionPosener("vault"),
+//		)
+//	}
 func ActionPosener(cmd string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		c.Setenv("COMP_LINE", fmt.Sprintf("%v %v %v", cmd, strings.Join(c.Args, " "), c.CallbackValue))

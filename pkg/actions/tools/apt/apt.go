@@ -8,8 +8,9 @@ import (
 )
 
 // ActionPackages completes installed packages
-//   adduser
-//   cpp
+//
+//	adduser
+//	cpp
 func ActionPackages() carapace.Action {
 	return carapace.ActionExecCommand("apt", "list", "--installed")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -25,8 +26,9 @@ func ActionPackages() carapace.Action {
 }
 
 // ActionPackageSearch completes installable packages
-//   git
-//   git-man
+//
+//	git
+//	git-man
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("apt-cache", "search", "^"+c.CallbackValue)(func(output []byte) carapace.Action {

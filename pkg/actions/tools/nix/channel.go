@@ -9,8 +9,9 @@ import (
 )
 
 // ActionLocalChannels completes local channels
-//  nixos (https://nixos.org/channels/nixos-22.05)
-//  nixpkgs (https://nixos.org/channels/nixpkgs-unstable)
+//
+//	nixos (https://nixos.org/channels/nixos-22.05)
+//	nixpkgs (https://nixos.org/channels/nixpkgs-unstable)
 func ActionLocalChannels() carapace.Action {
 	return carapace.ActionExecCommand("nix-channel", "--list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -25,8 +26,9 @@ func ActionLocalChannels() carapace.Action {
 }
 
 // ActionRemoteChannels completes remote channels
-//   nixos-21.11-small (unmaintained)
-//   nixos-22.05 (stable)
+//
+//	nixos-21.11-small (unmaintained)
+//	nixos-22.05 (stable)
 func ActionRemoteChannels() carapace.Action {
 	return carapace.ActionExecCommand("curl", "https://monitoring.nixos.org/prometheus/api/v1/query?query=channel_revision")(func(output []byte) carapace.Action {
 		var response struct {

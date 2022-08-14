@@ -3,8 +3,9 @@ package tmux
 import "github.com/rsteube/carapace"
 
 // ActionFeatures completes features
-//   `256 (Supports 256 colours with the SGR escape sequences.)
-//   `RGB (Supports RGB colour with the SGR escape sequences.)
+//
+//	`256 (Supports 256 colours with the SGR escape sequences.)
+//	`RGB (Supports RGB colour with the SGR escape sequences.)
 func ActionFeatures() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"256", "Supports 256 colours with the SGR escape sequences.",

@@ -6,8 +6,9 @@ import (
 )
 
 // ActionVolumes completes volumes
-//   go (carapace-bin_go)
-//   example (carapace-bin_example)
+//
+//	go (carapace-bin_go)
+//	example (carapace-bin_example)
 func ActionVolumes(files ...string) carapace.Action {
 	return actionConfig(files, func(c config) carapace.Action {
 		vals := make([]string, 0)

@@ -7,8 +7,9 @@ import (
 )
 
 // ActionSessions completes sessions
-//   0 (elvish- (1 panes) [106x28] [layout c97e,106x28,0,0,1] @1)
-//   1 (elvish* (1 panes) [106x28] [layout c97f,106x28,0,0,2] @2 (active))
+//
+//	0 (elvish- (1 panes) [106x28] [layout c97e,106x28,0,0,1] @1)
+//	1 (elvish* (1 panes) [106x28] [layout c97f,106x28,0,0,2] @2 (active))
 func ActionSessions() carapace.Action {
 	return carapace.ActionExecCommand("tmux", "list-sessions")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

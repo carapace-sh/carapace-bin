@@ -3,8 +3,9 @@ package journalctl
 import "github.com/rsteube/carapace"
 
 // ActionOutputs completes output modes
-//   cat (generates a very terse output)
-//   export (serializes the journal into a binary)
+//
+//	cat (generates a very terse output)
+//	export (serializes the journal into a binary)
 func ActionOutputs() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"short", "generates an output that is mostly identical to the formatting of classic syslog files",

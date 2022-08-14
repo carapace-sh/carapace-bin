@@ -7,8 +7,9 @@ import (
 )
 
 // ActionRemotes completes remote names
-//   origin
-//   upstream
+//
+//	origin
+//	upstream
 func ActionRemotes() carapace.Action {
 	return carapace.ActionExecCommand("git", "remote")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

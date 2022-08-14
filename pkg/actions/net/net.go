@@ -12,8 +12,9 @@ import (
 )
 
 // ActionHosts completes known hosts
-//   192.168.1.1
-//   pihole
+//
+//	192.168.1.1
+//	pihole
 func ActionHosts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := []string{}
@@ -112,8 +113,9 @@ var AllDevices = IncludedDevices{
 }
 
 // ActionDevices completes network devices
-//   lo (loopback)
-//   wlp3s0 (wifi)
+//
+//	lo (loopback)
+//	wlp3s0 (wifi)
 func ActionDevices(includedDevices IncludedDevices) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if _, err := execabs.LookPath("nmcli"); err == nil {
@@ -146,8 +148,9 @@ func ActionDevices(includedDevices IncludedDevices) carapace.Action {
 }
 
 // ActionConnections completes stored network connections
-//   somewifi (802-11-wireless abcdefgh-hijk-lmnop-qert-012345678902)
-//   private (vpn abcdefgh-hijk-lmnop-qert-012345678901)
+//
+//	somewifi (802-11-wireless abcdefgh-hijk-lmnop-qert-012345678902)
+//	private (vpn abcdefgh-hijk-lmnop-qert-012345678901)
 func ActionConnections() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("nmcli", "--terse", "connection", "show")(func(output []byte) carapace.Action {
@@ -164,8 +167,9 @@ func ActionConnections() carapace.Action {
 }
 
 // ActionBssids completes BSSID's of local wifi networks
-//   AA:BB:CC:DD:EE:FF (somewifi)
-//   AA:BB:CC:DD:EE:11 (anotherwifi)
+//
+//	AA:BB:CC:DD:EE:FF (somewifi)
+//	AA:BB:CC:DD:EE:11 (anotherwifi)
 func ActionBssids() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("nmcli", "--terse", "--fields", "bssid,ssid,bars", "device", "wifi", "list")(func(output []byte) carapace.Action {
@@ -185,8 +189,9 @@ func ActionBssids() carapace.Action {
 }
 
 // ActionSsids completes SSID's of local wifi networks
-//   somewifi (AA:BB:CC:DD:EE:FF)
-//   anotherwifi (AA:BB:CC:DD:EE:11)
+//
+//	somewifi (AA:BB:CC:DD:EE:FF)
+//	anotherwifi (AA:BB:CC:DD:EE:11)
 func ActionSsids() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("nmcli", "--terse", "--fields", "bssid,ssid,bars", "device", "wifi", "list")(func(output []byte) carapace.Action {

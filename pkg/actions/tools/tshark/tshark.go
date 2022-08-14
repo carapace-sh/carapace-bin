@@ -9,8 +9,9 @@ import (
 )
 
 // ActionSelectors completes selectors
-//   acdr.media_type (AC DR Media Type)
-//   bacapp.vendor_identifier (BACapp Vendor Identifier
+//
+//	acdr.media_type (AC DR Media Type)
+//	bacapp.vendor_identifier (BACapp Vendor Identifier
 func ActionSelectors() carapace.Action {
 	return carapace.ActionExecCommand("sh", "-c", "tshark -d . 2>&1 ; true")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -27,8 +28,9 @@ func ActionSelectors() carapace.Action {
 }
 
 // ActionStatistics completes statistics
-//   ancp,tree
-//   endpoints,ipv6
+//
+//	ancp,tree
+//	endpoints,ipv6
 func ActionStatistics() carapace.Action {
 	return carapace.ActionExecCommand("sh", "-c", "tshark -z help 2>&1")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -44,8 +46,9 @@ func ActionStatistics() carapace.Action {
 }
 
 // ActionProtocols completes protocols
-//   aarp (Appletalk Address Resolution Protocol)
-//   cmd (Cisco MetaData)
+//
+//	aarp (Appletalk Address Resolution Protocol)
+//	cmd (Cisco MetaData)
 func ActionProtocols() carapace.Action {
 	return carapace.ActionExecCommand("sh", "-c", "tshark -d ethertype==0x0800 2>&1 ; true")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -63,8 +66,9 @@ func ActionProtocols() carapace.Action {
 }
 
 // ActionFileTypes completes file types
-//   5views (InfoVista 5View capture)
-//   nokiapcap (Nokia tcpdump - pcap)
+//
+//	5views (InfoVista 5View capture)
+//	nokiapcap (Nokia tcpdump - pcap)
 func ActionFileTypes() carapace.Action {
 	return carapace.ActionExecCommand("sh", "-c", "tshark -F 2>&1 ; true")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -82,8 +86,9 @@ func ActionFileTypes() carapace.Action {
 }
 
 // ActionReadFormats completes read file formats
-//   AIX iptrace (Magic-value-based)
-//   Ixia IxVeriWave .vwr Raw Capture (Heuristics-bas
+//
+//	AIX iptrace (Magic-value-based)
+//	Ixia IxVeriWave .vwr Raw Capture (Heuristics-bas
 func ActionReadFormats() carapace.Action {
 	return carapace.ActionExecCommand("sh", "-c", "tshark -X read_format: 2>&1 ; true")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -101,8 +106,9 @@ func ActionReadFormats() carapace.Action {
 }
 
 // ActionLinkTypes completes link types for given interface
-//   E10MB
-//   BLUETOOTH_HCI_H4_WITH_PHDR
+//
+//	E10MB
+//	BLUETOOTH_HCI_H4_WITH_PHDR
 func ActionLinkTypes(iface string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"-L"}
@@ -127,8 +133,9 @@ func ActionLinkTypes(iface string) carapace.Action {
 }
 
 // ActionInterfaces completes interfaces
-//   ciscodump
-//   dpauxmon
+//
+//	ciscodump
+//	dpauxmon
 func ActionInterfaces() carapace.Action {
 	return carapace.ActionExecCommand("tshark", "--list-interfaces")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

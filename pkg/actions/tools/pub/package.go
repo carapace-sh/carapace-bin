@@ -18,8 +18,9 @@ type searchResult struct {
 }
 
 // ActionPackageSearch completes packages from pub.dev
-//   animated_text_kit
-//   dotted_border
+//
+//	animated_text_kit
+//	dotted_border
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.Batch(
@@ -59,8 +60,9 @@ type dartPackage struct {
 }
 
 // ActionPackageVersions completes versions of a package
-//   1.3.1 (about 2 years ago)
-//   4.1.1 (about 4 months ago)
+//
+//	1.3.1 (about 2 years ago)
+//	4.1.1 (about 4 months ago)
 func ActionPackageVersions(pkg string) carapace.Action {
 	// TODO verify on windows - should have a curl alias
 	return carapace.ActionExecCommand("curl", fmt.Sprintf("https://pub.dev/api/packages/%v", url.QueryEscape(pkg)))(func(output []byte) carapace.Action {

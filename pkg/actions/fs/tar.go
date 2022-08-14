@@ -10,8 +10,9 @@ import (
 )
 
 // ActionTarFileContents completes contents of given tar file
-//   fileA
-//   dirA/fileB
+//
+//	fileA
+//	dirA/fileB
 func ActionTarFileContents(file string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("tar", "--list", "--file", file)(func(output []byte) carapace.Action {

@@ -23,8 +23,9 @@ type ownerQuery struct {
 }
 
 // ActionOwners completes users and organizations
-//   user (user name)
-//   org (organization name)
+//
+//	user (user name)
+//	org (organization name)
 func ActionOwners(opts HostOpts) carapace.Action {
 	return carapace.Batch(
 		ActionUsers(opts),
@@ -33,8 +34,9 @@ func ActionOwners(opts HostOpts) carapace.Action {
 }
 
 // ActionUsers completes users
-//   user (user name)
-//   another (another name)
+//
+//	user (user name)
+//	another (another name)
 func ActionUsers(opts HostOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if len(c.CallbackValue) < 2 {
@@ -56,8 +58,9 @@ func ActionUsers(opts HostOpts) carapace.Action {
 }
 
 // ActionOrganizations completes organizations
-//   org (organization name)
-//   another (another name)
+//
+//	org (organization name)
+//	another (another name)
 func ActionOrganizations(opts HostOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if len(c.CallbackValue) < 2 {

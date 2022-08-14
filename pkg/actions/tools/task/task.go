@@ -9,8 +9,9 @@ import (
 )
 
 // ActionTasks completes tasks
-//   default
-//   build (build the project)
+//
+//	default
+//	build (build the project)
 func ActionTasks(file string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"--list-all"}

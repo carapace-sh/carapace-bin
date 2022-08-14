@@ -12,8 +12,9 @@ import (
 )
 
 // ActionDate completes `yyyy-MM-dd` dates separately
-//   2020-12-20
-//   2014-05-02
+//
+//	2020-12-20
+//	2014-05-02
 func ActionDate() carapace.Action {
 	return carapace.ActionMultiParts("-", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -44,8 +45,9 @@ func ActionDate() carapace.Action {
 }
 
 // ActionMonths completes `MM` months
-//   01 (Januar)
-//   11 (November)
+//
+//	01 (Januar)
+//	11 (November)
 func ActionMonths() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"01", "Januar",
@@ -69,8 +71,9 @@ type DaysOpts struct {
 }
 
 // ActionDays completes `dd` days for a month
-//   01 (Friday)
-//   28 (Thursday)
+//
+//	01 (Friday)
+//	28 (Thursday)
 func ActionDays(opts DaysOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		date := time.Date(opts.Year, time.Month(opts.Month)+1, 0, 0, 0, 0, 0, time.UTC)
@@ -84,8 +87,9 @@ func ActionDays(opts DaysOpts) carapace.Action {
 }
 
 // ActionTime completes `hh:mm` time
-//   00:30
-//   14:47
+//
+//	00:30
+//	14:47
 func ActionTime() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -100,8 +104,9 @@ func ActionTime() carapace.Action {
 }
 
 // ActionTimeS completes `hh:mm:ss` time
-//   00:30:19
-//   14:47:14
+//
+//	00:30:19
+//	14:47:14
 func ActionTimeS() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -122,8 +127,9 @@ type DateTimeOpts struct {
 }
 
 // ActionDateTime completes `yyyy-MM-dd hh:mm:ss` datetime
-//   2021-11-11 04:02:12
-//   2021-04-02 16:11:33
+//
+//	2021-11-11 04:02:12
+//	2021-04-02 16:11:33
 func ActionDateTime(opts DateTimeOpts) carapace.Action {
 	delimiter := " "
 	if opts.Strict {

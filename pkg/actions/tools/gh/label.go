@@ -23,8 +23,9 @@ type labelsQuery struct {
 }
 
 // ActionLabels completes labels
-//   enhancement (New feature or request)
-//   good first issue (Good for newcomers)
+//
+//	enhancement (New feature or request)
+//	good first issue (Good for newcomers)
 func ActionLabels(opts RepoOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult labelsQuery
@@ -40,8 +41,9 @@ func ActionLabels(opts RepoOpts) carapace.Action {
 }
 
 // ActionLabelFields completes label fields
-//   color
-//   createdAt
+//
+//	color
+//	createdAt
 func ActionLabelFields() carapace.Action {
 	return carapace.ActionValues(
 		"color",

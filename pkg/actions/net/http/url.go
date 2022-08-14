@@ -8,8 +8,9 @@ import (
 )
 
 // ActionUrls completes known hosts and ports as urls
-//   aur.archlinux.org
-//   https://github.com:80
+//
+//	aur.archlinux.org
+//	https://github.com:80
 func ActionUrls() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		prefix := ""

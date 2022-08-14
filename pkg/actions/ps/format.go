@@ -3,8 +3,9 @@ package ps
 import "github.com/rsteube/carapace"
 
 // ActionFormatSpecifiers completes format specifiers
-//   eip (instruction pointer)
-//   esp (stack pointer)
+//
+//	eip (instruction pointer)
+//	esp (stack pointer)
 func ActionFormatSpecifiers() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"%cpu", "cpu utilization of the process in \"##.#\" format",

@@ -10,8 +10,9 @@ import (
 )
 
 // ActionRemoteBranches completes remote branches
-//   master (last commit msg)
-//   remoteBranch (last commit msg)
+//
+//	master (last commit msg)
+//	remoteBranch (last commit msg)
 func ActionRemoteBranches(remote string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if branches, err := branches(c, RefOption{RemoteBranches: true}); err != nil {
@@ -29,7 +30,8 @@ func ActionRemoteBranches(remote string) carapace.Action {
 }
 
 // ActionCurrentBranch completes the current branch
-//   currentBranch
+//
+//	currentBranch
 func ActionCurrentBranch() carapace.Action {
 	return carapace.ActionExecCommand("git", "branch", "--show-current")(func(output []byte) carapace.Action {
 		return carapace.ActionValues(strings.Split(string(output), "\n")[0])

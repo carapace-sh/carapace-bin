@@ -65,8 +65,9 @@ func loadPubspecLock(c carapace.Context) (*pubspecLock, error) {
 }
 
 // ActionDependencies completes pubspec dependencies
-//   build_runner (^1.5.0)
-//   build_web_compilers (^2.1.0)
+//
+//	build_runner (^1.5.0)
+//	build_web_compilers (^2.1.0)
 func ActionDependencies() carapace.Action { // TODO configure which dependencies to include
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		p, err := loadPubspec(c)
@@ -92,8 +93,9 @@ type HostedExecutablesOpts struct {
 }
 
 // ActionHostedExecutables completes executables from pub_cache
-//   dcat
-//   dgrep
+//
+//	dcat
+//	dgrep
 func ActionHostedExecutables(opts HostedExecutablesOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if opts.Version == "" {

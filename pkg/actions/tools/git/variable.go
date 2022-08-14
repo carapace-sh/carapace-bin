@@ -7,8 +7,9 @@ import (
 )
 
 // ActionVariables completes variables
-//   GIT_EDITOR (nvim)
-//   GIT_PAGER (bat --style grid)
+//
+//	GIT_EDITOR (nvim)
+//	GIT_PAGER (bat --style grid)
 func ActionVariables() carapace.Action {
 	return carapace.ActionExecCommand("git", "var", "-l")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

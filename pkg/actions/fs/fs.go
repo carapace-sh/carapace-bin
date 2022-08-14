@@ -11,8 +11,9 @@ import (
 )
 
 // ActionSubDirectories completes subdirectories of a given path
-//   subdir/subsubdir
-//   subdir/subsubder2
+//
+//	subdir/subsubdir
+//	subdir/subsubder2
 func ActionSubDirectories(path string) carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		if files, err := os.ReadDir(path + "/" + strings.Join(c.Parts, "/") + "/"); err != nil {
@@ -30,8 +31,9 @@ func ActionSubDirectories(path string) carapace.Action {
 }
 
 // ActionFileModesSymbolic completes symbolic file modes
-//   a+rw
-//   g=rx
+//
+//	a+rw
+//	g=rx
 func ActionFileModesSymbolic() carapace.Action {
 	return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
 		if !strings.ContainsAny(strings.Join(c.Parts, ""), "+-=") {
@@ -65,8 +67,9 @@ func ActionFileModesSymbolic() carapace.Action {
 }
 
 // ActionFileModesNumeric completes numeric file modes
-//   644
-//   755
+//
+//	644
+//	755
 func ActionFileModesNumeric() carapace.Action {
 	return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
 		if len(c.Parts) < 3 {
@@ -87,8 +90,9 @@ func ActionFileModesNumeric() carapace.Action {
 }
 
 // ActionFileModes completes numeric or symbolic file modes
-//   644
-//   a+rw
+//
+//	644
+//	a+rw
 func ActionFileModes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		a := carapace.ActionValues().Invoke(c)
