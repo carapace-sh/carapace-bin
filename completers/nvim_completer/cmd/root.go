@@ -46,6 +46,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "Print version information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"S":           carapace.ActionFiles(),
 		"i":           carapace.ActionFiles(),
 		"r":           action.ActionTemporaryFiles(),
 		"startuptime": carapace.ActionFiles(),
