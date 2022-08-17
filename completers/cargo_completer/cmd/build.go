@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/cargo"
 	"github.com/spf13/cobra"
 )
 
@@ -58,7 +59,7 @@ func init() {
 		"example": action.ActionTargets(buildCmd, action.TargetOpts{Example: true}),
 		"exclude": action.ActionWorkspaceMembers(buildCmd),
 		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionFeatures(buildCmd).Invoke(c).Filter(c.Parts).ToA()
+			return cargo.ActionFeatures(buildCmd.Flag("manifest-path").Value.String()).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),

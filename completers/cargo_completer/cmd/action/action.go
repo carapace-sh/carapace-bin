@@ -163,16 +163,6 @@ func ActionMessageFormats() carapace.Action {
 	)
 }
 
-func ActionFeatures(cmd *cobra.Command) carapace.Action {
-	return readManifestAction(cmd, func(m manifestJson, args []string) carapace.Action {
-		vals := make([]string, 0)
-		for name, packages := range m.Features {
-			vals = append(vals, name, strings.Join(packages, ", "))
-		}
-		return carapace.ActionValuesDescribed(vals...)
-	})
-}
-
 func ActionProfiles(cmd *cobra.Command) carapace.Action {
 	return parseManifestAction(cmd, func(m manifestToml, args []string) carapace.Action {
 		profiles := make([]string, 0)

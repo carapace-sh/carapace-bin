@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/cargo"
 	"github.com/spf13/cobra"
 )
 
@@ -55,7 +56,7 @@ func init() {
 		"color":   action.ActionColorModes(),
 		"example": action.ActionTargets(installCmd, action.TargetOpts{Example: true}),
 		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionFeatures(installCmd).Invoke(c).Filter(c.Parts).ToA()
+			return cargo.ActionFeatures("").Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"path":     carapace.ActionFiles(),
 		"profile":  action.ActionProfiles(installCmd),

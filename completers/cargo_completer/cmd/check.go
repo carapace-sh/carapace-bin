@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/cargo"
 	"github.com/spf13/cobra"
 )
 
@@ -51,12 +52,14 @@ func init() {
 	rootCmd.AddCommand(checkCmd)
 
 	carapace.Gen(checkCmd).FlagCompletion(carapace.ActionMap{
-		"bench":          action.ActionTargets(checkCmd, action.TargetOpts{Bench: true}),
-		"bin":            action.ActionTargets(checkCmd, action.TargetOpts{Bin: true}),
-		"color":          action.ActionColorModes(),
-		"example":        action.ActionTargets(checkCmd, action.TargetOpts{Example: true}),
-		"exclude":        action.ActionWorkspaceMembers(checkCmd),
-		"features":       action.ActionFeatures(checkCmd),
+		"bench":   action.ActionTargets(checkCmd, action.TargetOpts{Bench: true}),
+		"bin":     action.ActionTargets(checkCmd, action.TargetOpts{Bin: true}),
+		"color":   action.ActionColorModes(),
+		"example": action.ActionTargets(checkCmd, action.TargetOpts{Example: true}),
+		"exclude": action.ActionWorkspaceMembers(checkCmd),
+		"features": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return cargo.ActionFeatures(checkCmd.Flag("manifest-path").Value.String())
+		}),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(buildCmd, true),
