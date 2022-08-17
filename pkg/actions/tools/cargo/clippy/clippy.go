@@ -5,17 +5,6 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
-// ActionLintsAndCategories completes lints and categories
-//
-//	clippy::all (all lints that are on by default)
-//	clippy::absurd_extreme_comparisons (Checks for comparisons where one side of the relation is))
-func ActionLintsAndCategories() carapace.Action {
-	return carapace.Batch(
-		ActionCategories().Style(style.Blue),
-		ActionLints(),
-	).ToA()
-}
-
 // ActionCategories completes categories
 //
 //	clippy::all (all lints that are on by default)
@@ -31,7 +20,7 @@ func ActionCategories() carapace.Action {
 		"clippy::pedantic", "lints which are rather strict or have occasional false positives",
 		"clippy::nursery", "new lints that are still under development",
 		"clippy::cargo", "lints for the cargo manifest",
-	)
+	).Style(style.Blue)
 }
 
 // ActionLints completes lints
