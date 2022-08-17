@@ -36,10 +36,10 @@ func init() {
 			dashCmd.Flags().StringArrayP("warn", "W", []string{}, "Set lint warnings")
 
 			carapace.Gen(dashCmd).FlagCompletion(carapace.ActionMap{
-				"allow":  clippy.ActionLints(),
-				"deny":   clippy.ActionLints(),
-				"forbid": clippy.ActionLints(),
-				"warn":   clippy.ActionLints(),
+				"allow":  clippy.ActionLintsAndCategories(),
+				"deny":   clippy.ActionLintsAndCategories(),
+				"forbid": clippy.ActionLintsAndCategories(),
+				"warn":   clippy.ActionLintsAndCategories(),
 			})
 
 			return carapace.ActionExecute(dashCmd)
