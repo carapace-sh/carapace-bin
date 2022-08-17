@@ -1,10 +1,17 @@
-package action
+package clippy
 
-import "github.com/rsteube/carapace"
+import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
+)
 
+// ActionLints completes categories and lints
+//
+//	clippy::absurd_extreme_comparisons (Checks for comparisons where one side of the relation is))
+//	clippy::all (all lints that are on by default)
 func ActionLints() carapace.Action {
 	return carapace.Batch(
-		actionLintCategories(),
+		actionLintCategories().Style(style.Blue),
 		actionLints(),
 	).ToA()
 }
