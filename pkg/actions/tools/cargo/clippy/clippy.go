@@ -5,18 +5,22 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
-// ActionLints completes categories and lints
+// ActionLintsAndCategories completes lints and categories
 //
-//	clippy::absurd_extreme_comparisons (Checks for comparisons where one side of the relation is))
 //	clippy::all (all lints that are on by default)
-func ActionLints() carapace.Action {
+//	clippy::absurd_extreme_comparisons (Checks for comparisons where one side of the relation is))
+func ActionLintsAndCategories() carapace.Action {
 	return carapace.Batch(
-		actionLintCategories().Style(style.Blue),
-		actionLints(),
+		ActionCategories().Style(style.Blue),
+		ActionLints(),
 	).ToA()
 }
 
-func actionLintCategories() carapace.Action {
+// ActionCategories completes categories
+//
+//	clippy::all (all lints that are on by default)
+//	clippy::correctness (code that is outright wrong or useless)
+func ActionCategories() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"clippy::all", "all lints that are on by default",
 		"clippy::correctness", "code that is outright wrong or useless",
@@ -30,8 +34,12 @@ func actionLintCategories() carapace.Action {
 	)
 }
 
-// curl https://rust-lang.github.io/rust-clippy/master/lints.json | jq --raw-output  '.[] | "\"clippy::\(.id)\", \"\(.docs | split("\n")[1]))\","'
-func actionLints() carapace.Action {
+// ActionLints completes lints
+//
+//	clippy::absurd_extreme_comparisons (Checks for comparisons where one side of the relation is))
+//	clippy::dbg_macro (Checks for usage of dbg!() macro.))
+func ActionLints() carapace.Action {
+	// curl https://rust-lang.github.io/rust-clippy/master/lints.json | jq --raw-output  '.[] | "\"clippy::\(.id)\", \"\(.docs | split("\n")[1]))\","'
 	return carapace.ActionValuesDescribed(
 		"clippy::absurd_extreme_comparisons", "Checks for comparisons where one side of the relation is)",
 		"clippy::almost_swapped", "Checks for `foo = bar; bar = foo` sequences.)",
