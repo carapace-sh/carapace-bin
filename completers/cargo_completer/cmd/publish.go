@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/cargo"
 	"github.com/spf13/cobra"
 )
 
@@ -41,7 +42,7 @@ func init() {
 	carapace.Gen(publishCmd).FlagCompletion(carapace.ActionMap{
 		"color": action.ActionColorModes(),
 		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionFeatures(publishCmd).Invoke(c).Filter(c.Parts).ToA()
+			return cargo.ActionFeatures(publishCmd.Flag("manifest-path").Value.String()).Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"manifest-path": carapace.ActionFiles(),
 		"registry":      action.ActionRegistries(),
