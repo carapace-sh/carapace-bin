@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -40,22 +41,41 @@ func init() {
 
 	c, _, _ := rootCmd.Find([]string{"_carapace"})
 	c.PreRun = func(cmd *cobra.Command, args []string) {
-		if len(args) == 1 { // non-lazy completion script generation
+		if len(args) > 1 { // TODO verify this
 			if output, err := (carapace.Context{}).Command("cargo", "--list").Output(); err != nil { // TODO use preinvoke with correct context
 				// TODO handle error
 			} else {
 				re := regexp.MustCompile(`^    (?P<command>\w+)( +(?P<description>.*))?$`)
-				installedCommands := make(map[string]bool)
+				installedCommands := make(map[string]string)
 
 				for _, line := range strings.Split(string(output), "\n") {
-					if re.MatchString(line) {
-						installedCommands[re.FindStringSubmatch(line)[1]] = true
+					if matches := re.FindStringSubmatch(line); matches != nil {
+						installedCommands[matches[1]] = matches[2]
 					}
 				}
 
+				subcommands := make(map[string]bool)
 				for _, subcommand := range rootCmd.Commands() {
+					subcommands[subcommand.Name()] = true
 					if _, exists := installedCommands[subcommand.Name()]; !exists {
 						subcommand.Hidden = true // hide from completion
+					}
+				}
+
+				for name, description := range installedCommands {
+					if _, ok := subcommands[name]; !ok {
+						pluginCmd := &cobra.Command{
+							Use:                name,
+							Short:              description,
+							Run:                func(cmd *cobra.Command, args []string) {},
+							DisableFlagParsing: true,
+						}
+
+						carapace.Gen(pluginCmd).PositionalAnyCompletion(
+							bridge.ActionCarapaceBin("cargo-" + name),
+						)
+
+						rootCmd.AddCommand(pluginCmd)
 					}
 				}
 			}
