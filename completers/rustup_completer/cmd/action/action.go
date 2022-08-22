@@ -5,7 +5,16 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
+
+func ActionDefaultChannels() carapace.Action {
+	return carapace.ActionStyledValues(
+		"stable", style.Green,
+		"beta", style.Yellow,
+		"nightly", style.Red,
+	)
+}
 
 func ActionToolchains() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {

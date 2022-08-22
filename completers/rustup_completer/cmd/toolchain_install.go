@@ -36,7 +36,7 @@ func init() {
 
 	carapace.Gen(toolchain_installCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("beta", "nightly", "stable").Invoke(c).Filter(c.Args).ToA()
+			return action.ActionDefaultChannels().Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

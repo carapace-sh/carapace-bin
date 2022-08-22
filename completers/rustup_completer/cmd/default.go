@@ -19,6 +19,9 @@ func init() {
 	rootCmd.AddCommand(defaultCmd)
 
 	carapace.Gen(defaultCmd).PositionalCompletion(
-		action.ActionToolchains(),
+		carapace.Batch(
+			action.ActionDefaultChannels(),
+			action.ActionToolchains(),
+		).ToA(),
 	)
 }
