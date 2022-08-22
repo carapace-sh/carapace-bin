@@ -7,8 +7,6 @@ import (
 	"os"
 	"regexp"
 	"strings"
-
-	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
 
 func getSpecs() (specs []string, dir string) {
@@ -128,71 +126,23 @@ end
 	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
 }
 
-func filterNushellBuiltins(completers []string) []string {
-	builtins := make(map[string]bool)
-	if output, err := execabs.Command("nu", "-c", "help commands | get name | str collect '\n'").Output(); err == nil {
-		lines := strings.Split(string(output), "\n")
-		for _, line := range lines {
-			builtins[strings.Split(line, " ")[0]] = true
-		}
-
-		filtered := make([]string, 0)
-		for _, c := range completers {
-			if !builtins[c] {
-				filtered = append(filtered, c)
-			}
-		}
-		return filtered
-	}
-	return completers // skip filtering
-
-}
-
 func nushell_lazy(completers []string) string {
-	completers = filterNushellBuiltins(completers) // skip nushell builtins by default
-	exports := make([]string, len(completers))
-	for index, completer := range completers {
-		exports[index] = fmt.Sprintf(`  export extern "%v" [
-    ...args: string@"nu-complete carapace"
-  ]`, completer)
+	specs, dir := getSpecs()
+
+	specSnippets := make([]string, 0)
+	for _, spec := range specs {
+		specSnippets = append(specSnippets, fmt.Sprintf(`    %v: { carapace --spec '%v/%v.yaml' nushell $spans | from json }
+`, spec, dir, spec))
 	}
-	snippet := fmt.Sprintf(`module carapace {
-  def "nu-complete carapace" [line: string, pos: int] {
-    let words = ($line | str substring [0 $pos] | split row " ")
-    if ($line | str substring [0 $pos] | str ends-with " ") {
-      carapace $words.0 nushell ($words | append "") | from json
-    } else {
-      carapace $words.0 nushell $words | from json
-    }
-  }
-
-%v
-`, strings.Join(exports, "\n"))
-
-	//	if specs, dir := getSpecs(); len(specs) > 0 {
-	//		snippet += fmt.Sprintf(`
-	//  def "nu-complete carapace-spec" [line: string, pos: int] {
-	//    let words = ($line | str substring [0 $pos] | split row " ")
-	//    if ($line | str substring [0 $pos] | str ends-with " ") {
-	//      carapace --spec '%v'/$words.0'.yaml' nushell ($words | append "") | from json
-	//    } else {
-	//      carapace --spec '%v'/$words.0'.yaml' nushell $words | from json
-	//    }
-	//  }
-	//`, dir, dir)
-	//
-	//		for _, spec := range specs {
-	//			snippet += fmt.Sprintf(`  export extern "%v" [
-	//    ...args: string@"nu-complete carapace-spec"
-	//  ]`, spec)
-	//		}
-	//	}
-
-	snippet += `
+	return fmt.Sprintf(`let external_completer = {|spans| 
+  {
+    $spans.0: {carapace $spans.0 nushell $spans | from json } # default
+%v  } | get $spans.0 | each {|it| do $it}
 }
-use carapace *
-`
-	return snippet
+
+let-env config = {
+  external_completer: $external_completer
+}`, strings.Join(specSnippets, "\n"))
 }
 
 func oil_lazy(completers []string) string {
