@@ -15,8 +15,7 @@ carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions
 carapace _carapace | source
 
 # nushell
-carapace _carapace | save carapace.nu
-source carapace.nu
+carapace _carapace
 
 # oil (~/.config/oil/oshrc)
 source <(carapace _carapace)
