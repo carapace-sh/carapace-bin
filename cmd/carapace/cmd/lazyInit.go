@@ -142,7 +142,7 @@ func nushell_lazy(completers []string) string {
 
 let-env config = {
   external_completer: $external_completer
-}`, strings.Join(specSnippets, "\n"))
+}`, strings.Join(specSnippets, ""))
 }
 
 func oil_lazy(completers []string) string {
