@@ -17,7 +17,7 @@ Supported shells:
 - [Elvish](https://elv.sh/)
 - [Fish](https://fishshell.com/)
 - [Ion](https://doc.redox-os.org/ion-manual/) ([experimental](https://github.com/rsteube/carapace/issues/88))
-- [Nushell](https://www.nushell.sh/) ([experimental](https://github.com/rsteube/carapace/issues/89))
+- [Nushell](https://www.nushell.sh/)
 - [Oil](http://www.oilshell.org/)
 - [Powershell](https://microsoft.com/powershell)
 - [Tcsh](https://www.tcsh.org/) ([experimental](https://github.com/rsteube/carapace/issues/331))
