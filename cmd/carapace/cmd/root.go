@@ -36,7 +36,7 @@ var rootCmd = &cobra.Command{
     bash:       source <(carapace chmod bash)
     elvish:     eval (carapace chmod elvish | slurp)
     fish:       carapace chmod fish | source
-    nushell:    carapace chmod | save chmod.nu ; nu -c 'source chmod.nu'
+    nushell:    carapace chmod nushell
     oil:        source <(carapace chmod oil)
     powershell: carapace chmod powershell | Out-String | Invoke-Expression
     tcsh:       eval `+"`"+`carapace _chmod tcsh`+"`"+`
@@ -47,7 +47,7 @@ var rootCmd = &cobra.Command{
     bash:       source <(carapace --bridge vault/posener)
     elvish:     eval (carapace --bridge vault/posener|slurp)
     fish:       carapace --bridge vault/posener | source
-    nushell:    carapace --bridge vault/posener | save vault.nu ; nu -c 'source vault.nu'
+    nushell:    carapace --bridge vault/posener
     oil:        source <(carapace --bridge vault/posener)
     powershell: carapace --bridge vault/posener | Out-String | Invoke-Expression
     tcsh:       eval `+"`"+`carapace --bridge vault/posener`+"`"+`
@@ -59,7 +59,7 @@ var rootCmd = &cobra.Command{
     elvish:     eval (carapace --spec example.yaml|slurp)
     fish:       carapace --spec example.yaml | source
     oil:        source <(carapace --spec example.yaml)
-    nushell:    carapace --spec example.yaml | save example.nu ; nu -c 'source example.nu'
+    nushell:    carapace --spec example.yaml
     powershell: carapace --spec example.yaml | Out-String | Invoke-Expression
     tcsh:       eval `+"`"+`carapace --spec example.yaml`+"`"+`
     xonsh:      exec($(carapace --spec example.yaml))
