@@ -9,6 +9,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/number"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionDate completes `yyyy-MM-dd` dates separately
@@ -80,9 +81,14 @@ func ActionDays(opts DaysOpts) carapace.Action {
 
 		vals := make([]string, 0)
 		for i := 1; i <= date.Day(); i = i + 1 {
-			vals = append(vals, fmt.Sprintf("%02d", i), time.Date(opts.Year, time.Month(opts.Month), i, 0, 0, 0, 0, time.UTC).Weekday().String())
+			weekday := time.Date(opts.Year, time.Month(opts.Month), i, 0, 0, 0, 0, time.UTC).Weekday()
+			if weekday == time.Saturday || weekday == time.Sunday {
+				vals = append(vals, fmt.Sprintf("%02d", i), weekday.String(), style.Blue)
+			} else {
+				vals = append(vals, fmt.Sprintf("%02d", i), weekday.String(), style.Default)
+			}
 		}
-		return carapace.ActionValuesDescribed(vals...)
+		return carapace.ActionStyledValuesDescribed(vals...)
 	})
 }
 
