@@ -5,6 +5,7 @@ import (
 	"github.com/rsteube/carapace-bin/completers/journalctl_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/time"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/journalctl"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +25,7 @@ func init() {
 	rootCmd.Flags().String("after-cursor", "", "Show entries after the specified cursor")
 	rootCmd.Flags().BoolP("all", "a", false, "Show all fields, including long and unprintable")
 	rootCmd.Flags().StringP("boot", "b", "", "Show current boot or the specified boot")
+	rootCmd.Flags().String("case-sensitive", "", "Force case sensitive or insensitive matching")
 	rootCmd.Flags().BoolP("catalog", "x", false, "Add message explanations where available")
 	rootCmd.Flags().StringP("cursor", "c", "", "Show entries starting at the specified cursor")
 	rootCmd.Flags().String("cursor-file", "", "Show entries after cursor in FILE and update FILE")
@@ -82,11 +84,14 @@ func init() {
 	rootCmd.Flags().String("verify-key", "", "Specify FSS verification key")
 	rootCmd.Flags().Bool("version", false, "Show package version")
 
+	rootCmd.Flag("case-sensitive").NoOptDefVal = " "
+
 	// TODO identifier, namespace, machine, unit
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"boot":        action.ActionBoots(),
-		"cursor-file": carapace.ActionFiles(),
-		"directory":   carapace.ActionDirectories(),
+		"boot":           action.ActionBoots(),
+		"case-sensitive": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"cursor-file":    carapace.ActionFiles(),
+		"directory":      carapace.ActionDirectories(),
 		"facility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionFacilities().Invoke(c).Filter(c.Parts).ToA()
 		}),
