@@ -75,6 +75,9 @@ func init() {
 	rootCmd.Flags().BoolP("with-filename", "H", false, "print file name with output lines")
 	rootCmd.Flags().BoolP("word-regexp", "w", false, "match only whole words")
 
+	rootCmd.Flag("color").NoOptDefVal = " "
+	rootCmd.Flag("colour").NoOptDefVal = " "
+
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"binary-files": carapace.ActionValues("binary", "test", "without-match"),
 		"color":        carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
