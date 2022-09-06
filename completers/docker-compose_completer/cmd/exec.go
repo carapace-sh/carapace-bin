@@ -26,7 +26,11 @@ func init() {
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
 		"user": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return action.ActionContainerUsers(execCmd, c.Args[0], execCmd.Flags().MustGetInt("index"))
+				if index, err := execCmd.Flags().GetInt("index"); err != nil {
+					return carapace.ActionMessage(err.Error())
+				} else {
+					return action.ActionContainerUsers(execCmd, c.Args[0], index)
+				}
 			}
 			return carapace.ActionValues()
 		}),
@@ -35,7 +39,11 @@ func init() {
 	carapace.Gen(execCmd).PositionalCompletion(
 		action.ActionServices(execCmd),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionFiles(execCmd, c.Args[0], execCmd.Flags().MustGetInt("index"))
+			if index, err := execCmd.Flags().GetInt("index"); err != nil {
+				return carapace.ActionMessage(err.Error())
+			} else {
+				return action.ActionFiles(execCmd, c.Args[0], index)
+			}
 		}),
 	)
 }
