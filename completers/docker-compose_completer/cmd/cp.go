@@ -31,7 +31,11 @@ func init() {
 				case 0:
 					return action.ActionServices(cpCmd).Invoke(c).Suffix(":").ToA()
 				case 1:
-					return action.ActionFiles(cpCmd, c.Parts[0], cpCmd.Flags().MustGetInt("index")) // TODO index
+					if index, err := cpCmd.Flags().GetInt("index"); err != nil {
+						return carapace.ActionMessage(err.Error())
+					} else {
+						return action.ActionFiles(cpCmd, c.Parts[0], index)
+					}
 				default:
 					return carapace.ActionValues()
 				}
@@ -46,7 +50,11 @@ func init() {
 				case 0:
 					return action.ActionServices(cpCmd).Invoke(c).Suffix(":").ToA()
 				case 1:
-					return action.ActionFiles(cpCmd, c.Parts[0], cpCmd.Flags().MustGetInt("index")) // TODO index
+					if index, err := cpCmd.Flags().GetInt("index"); err != nil {
+						return carapace.ActionMessage(err.Error())
+					} else {
+						return action.ActionFiles(cpCmd, c.Parts[0], index)
+					}
 				default:
 					return carapace.ActionValues()
 				}

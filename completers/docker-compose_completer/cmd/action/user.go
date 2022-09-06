@@ -6,7 +6,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func files(cmd *cobra.Command) []string { return cmd.Root().Flags().MustGetStringArray("file") }
+func files(cmd *cobra.Command) (result []string) {
+	result, _ = cmd.Root().Flags().GetStringArray("file")
+	return
+}
 
 func ActionContainerUsers(cmd *cobra.Command, service string, index int) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
