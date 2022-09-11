@@ -35,6 +35,14 @@ brew tap rsteube/homebrew-tap
 brew install rsteube/tap/carapace
 ```
 
+## Nix
+
+Install from [unstable](https://search.nixos.org/packages?channel=unstable&show=carapace&type=packages&query=carapace)
+
+```sh
+nix-shell -p carapace
+```
+
 ## RPM
 
 Install from [fury.io](https://rsteube.fury.site/)
