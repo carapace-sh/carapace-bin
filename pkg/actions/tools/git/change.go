@@ -42,7 +42,11 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 							if relativePath, err := filepath.Rel(c.Dir, root+"/"+path); err != nil {
 								return carapace.ActionMessage(err.Error())
 							} else {
-								untracked = append(untracked, relativePath, line[:2], style.ForPath(relativePath))
+								if status := line[:2]; strings.Contains(status, "D") { // deleted
+									untracked = append(untracked, relativePath, status, style.ForPathExt(relativePath))
+								} else {
+									untracked = append(untracked, relativePath, status, style.ForPath(relativePath))
+								}
 							}
 						}
 					}
