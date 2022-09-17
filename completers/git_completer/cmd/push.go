@@ -42,6 +42,8 @@ func init() {
 	pushCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
 	rootCmd.AddCommand(pushCmd)
 
+	pushCmd.Flag("force-with-lease").NoOptDefVal = " "
+
 	carapace.Gen(pushCmd).FlagCompletion(carapace.ActionMap{
 		"signed": carapace.ActionValues("yes", "no", "if-asked"),
 	})
