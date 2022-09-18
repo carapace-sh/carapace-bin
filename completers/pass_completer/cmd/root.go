@@ -20,11 +20,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	c, _, _ := rootCmd.Find([]string{"_carapace"})
-	c.PreRun = func(cmd *cobra.Command, args []string) {
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
 		// TODO support locally installed extension
 		if _, err := os.Stat("/usr/lib/password-store/extensions/otp.bash"); os.IsNotExist(err) {
 			otpCmd.Hidden = true
 		}
-	}
+	})
 }
