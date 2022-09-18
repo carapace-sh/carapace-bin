@@ -1,7 +1,12 @@
 package cmd
 
 import (
+	"fmt"
+	"strings"
+
+	"github.com/google/shlex"
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -57,4 +62,60 @@ func init() {
 		}
 		return action
 	})
+
+	addAliasCompletion(rootCmd)
+}
+
+func addAliasCompletion(cmd *cobra.Command) {
+	if c, _, err := cmd.Find([]string{"_carapace"}); err == nil {
+		c.PreRun = func(cmd *cobra.Command, args []string) {
+			// only inject if actually completing
+			if len(args) < 2 || args[1] != rootCmd.Name() {
+				return
+			}
+
+			// pass through args related to config
+			rootCmd.ParseFlags(args[2:])
+			gitArgs := []string{}
+			if f := rootCmd.Flag("C"); f.Changed {
+				gitArgs = append(gitArgs, "-C", f.Value.String())
+			}
+			if f := rootCmd.Flag("git-dir"); f.Changed {
+				gitArgs = append(gitArgs, "--git-dir", f.Value.String())
+			}
+
+			if aliases, err := git.Aliases(gitArgs); err == nil {
+				for key, value := range aliases {
+					// don't clobber existing commands
+					if _, _, err := rootCmd.Find([]string{key}); err == nil {
+						continue
+					}
+
+					aliasCmd := &cobra.Command{
+						Use:   key,
+						Short: fmt.Sprintf("alias for '%s'", value),
+						// disable flag parsing so that we can forward them together with Args
+						DisableFlagParsing: true,
+					}
+
+					rootCmd.AddCommand(aliasCmd)
+
+					// aliases beginning with ! are arbitrary shell commands so don't add completion
+					if strings.HasPrefix(value, "!") {
+						continue
+					}
+
+					args, err := shlex.Split(value)
+					if err == nil {
+						carapace.Gen(aliasCmd).PositionalAnyCompletion(
+							carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+								c.Args = append(args, c.Args...)
+								return bridge.ActionCarapaceBin("git").Invoke(c).ToA()
+							}),
+						)
+					}
+				}
+			}
+		}
+	}
 }
