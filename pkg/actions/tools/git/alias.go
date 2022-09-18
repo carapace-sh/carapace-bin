@@ -9,11 +9,18 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-func Aliases(gitArgs []string) (map[string]string, error) {
+func Aliases(dir, gitDir string) (map[string]string, error) {
 	aliases := make(map[string]string)
 
 	c := carapace.Context{Env: os.Environ()}
-	args := append(gitArgs, "config", "--get-regexp", "^alias\\.")
+	args := []string{}
+	if dir != "" {
+		args = append(args, "-C", dir)
+	}
+	if gitDir != "" {
+		args = append(args, "-git-dir", gitDir)
+	}
+	args = append(args, "config", "--get-regexp", "^alias\\.")
 
 	if output, err := c.Command("git", args...).Output(); err != nil {
 		return nil, err
@@ -29,4 +36,21 @@ func Aliases(gitArgs []string) (map[string]string, error) {
 	}
 
 	return aliases, nil
+}
+
+// ActionAliases completes aliases
+//   po (push origin)
+//   ct (checkout --track)
+func ActionAliases(gitDir string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if aliases, err := Aliases(c.Dir, gitDir); err != nil {
+			return carapace.ActionMessage(err.Error())
+		} else {
+			vals := make([]string, 0)
+			for name, description := range aliases {
+				vals = append(vals, name, description)
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		}
+	})
 }

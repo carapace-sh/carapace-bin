@@ -76,15 +76,7 @@ func init() {
 func addAliasCompletion(args []string) {
 	// pass through args related to config
 	rootCmd.ParseFlags(args)
-	gitArgs := []string{}
-	if f := rootCmd.Flag("C"); f.Changed {
-		gitArgs = append(gitArgs, "-C", f.Value.String())
-	}
-	if f := rootCmd.Flag("git-dir"); f.Changed {
-		gitArgs = append(gitArgs, "--git-dir", f.Value.String())
-	}
-
-	if aliases, err := git.Aliases(gitArgs); err == nil {
+	if aliases, err := git.Aliases(rootCmd.Flag("C").Value.String(), rootCmd.Flag("git-dir").Value.String()); err == nil {
 		for key, value := range aliases {
 			// don't clobber existing commands
 			if _, _, err := rootCmd.Find([]string{key}); err == nil {
