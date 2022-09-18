@@ -21,9 +21,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	cmd, _, _ := rootCmd.Find([]string{"_carapace"})
-	cmd.PreRun = func(cmd *cobra.Command, args []string) {
-		if len(args) < 4 || (len(args) == 4 && regexp.MustCompile("^-$|^--").MatchString(args[3])) {
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		if len(args) < 1 || (len(args) == 1 && regexp.MustCompile("^-$|^--").MatchString(args[0])) {
 			rootCmd.Flags().BoolP("database", "D", false, "Operate on the package database")
 			rootCmd.Flags().BoolP("deptest", "T", false, "Check dependencies")
 			rootCmd.Flags().BoolP("files", "F", false, "Query the files database")
@@ -34,7 +33,7 @@ func init() {
 			rootCmd.Flags().BoolP("upgrade", "U", false, "Upgrade or add packages")
 			rootCmd.Flags().BoolP("version", "V", false, "Display version")
 		} else {
-			subCmd := args[3]
+			subCmd := args[0]
 			if !strings.HasPrefix(subCmd, "--") && len(subCmd) > 1 {
 				subCmd = subCmd[:2] // assume shorthand flag
 			}
@@ -66,5 +65,5 @@ func init() {
 				rootCmd.Flags().BoolP("version", "V", false, "Display version")
 			}
 		}
-	}
+	})
 }
