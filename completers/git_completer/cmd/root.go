@@ -32,6 +32,7 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "display help message")
 	rootCmd.Flags().Bool("html-path", false, "display path to HTML documentation and exit")
 	rootCmd.Flags().Bool("info-path", false, "print the path where the info files are installed and exit")
+	rootCmd.Flags().String("list-cmds", "", "list commands")
 	rootCmd.Flags().Bool("literal-pathspecs", false, "treat pathspecs literally, rather than as glob patterns")
 	rootCmd.Flags().Bool("man-path", false, "print the manpath for the man pages for this version of Git and exit")
 	rootCmd.Flags().String("namespace", "", "set the Git namespace")
@@ -40,6 +41,8 @@ func init() {
 	rootCmd.Flags().BoolP("paginate", "p", false, "pipe output into a pager")
 	rootCmd.Flags().Bool("version", false, "display version information")
 	rootCmd.Flags().String("work-tree", "", "path to working tree")
+
+	rootCmd.Flag("list-cmds").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"C": carapace.ActionDirectories(),
@@ -53,6 +56,7 @@ func init() {
 		}),
 		"exec-path": carapace.ActionDirectories(),
 		"git-dir":   carapace.ActionDirectories(),
+		"list-cmds": carapace.ActionValues("main", "others", "alias", "nohelpers"),
 		"work-tree": carapace.ActionDirectories(),
 	})
 
@@ -63,59 +67,74 @@ func init() {
 		return action
 	})
 
-	addAliasCompletion(rootCmd)
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		addAliasCompletion(args)
+		addOtherCommands()
+	})
 }
 
-func addAliasCompletion(cmd *cobra.Command) {
-	if c, _, err := cmd.Find([]string{"_carapace"}); err == nil {
-		c.PreRun = func(cmd *cobra.Command, args []string) {
-			// only inject if actually completing
-			if len(args) < 2 || args[1] != rootCmd.Name() {
-				return
+func addAliasCompletion(args []string) {
+	// pass through args related to config
+	rootCmd.ParseFlags(args)
+	gitArgs := []string{}
+	if f := rootCmd.Flag("C"); f.Changed {
+		gitArgs = append(gitArgs, "-C", f.Value.String())
+	}
+	if f := rootCmd.Flag("git-dir"); f.Changed {
+		gitArgs = append(gitArgs, "--git-dir", f.Value.String())
+	}
+
+	if aliases, err := git.Aliases(gitArgs); err == nil {
+		for key, value := range aliases {
+			// don't clobber existing commands
+			if _, _, err := rootCmd.Find([]string{key}); err == nil {
+				continue
 			}
 
-			// pass through args related to config
-			rootCmd.ParseFlags(args[2:])
-			gitArgs := []string{}
-			if f := rootCmd.Flag("C"); f.Changed {
-				gitArgs = append(gitArgs, "-C", f.Value.String())
-			}
-			if f := rootCmd.Flag("git-dir"); f.Changed {
-				gitArgs = append(gitArgs, "--git-dir", f.Value.String())
+			aliasCmd := &cobra.Command{
+				Use:   key,
+				Short: fmt.Sprintf("alias for '%s'", value),
+				// disable flag parsing so that we can forward them together with Args
+				DisableFlagParsing: true,
 			}
 
-			if aliases, err := git.Aliases(gitArgs); err == nil {
-				for key, value := range aliases {
-					// don't clobber existing commands
-					if _, _, err := rootCmd.Find([]string{key}); err == nil {
-						continue
-					}
+			rootCmd.AddCommand(aliasCmd)
 
-					aliasCmd := &cobra.Command{
-						Use:   key,
-						Short: fmt.Sprintf("alias for '%s'", value),
-						// disable flag parsing so that we can forward them together with Args
-						DisableFlagParsing: true,
-					}
-
-					rootCmd.AddCommand(aliasCmd)
-
-					// aliases beginning with ! are arbitrary shell commands so don't add completion
-					if strings.HasPrefix(value, "!") {
-						continue
-					}
-
-					args, err := shlex.Split(value)
-					if err == nil {
-						carapace.Gen(aliasCmd).PositionalAnyCompletion(
-							carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-								c.Args = append(args, c.Args...)
-								return bridge.ActionCarapaceBin("git").Invoke(c).ToA()
-							}),
-						)
-					}
-				}
+			// aliases beginning with ! are arbitrary shell commands so don't add completion
+			if strings.HasPrefix(value, "!") {
+				continue
 			}
+
+			args, err := shlex.Split(value)
+			if err == nil {
+				carapace.Gen(aliasCmd).PositionalAnyCompletion(
+					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+						c.Args = append(args, c.Args...)
+						return bridge.ActionCarapaceBin("git").Invoke(c).ToA()
+					}),
+				)
+			}
+		}
+	}
+}
+
+func addOtherCommands() {
+	if output, err := (carapace.Context{}).Command("git", "--list-cmds=others").Output(); err == nil {
+		lines := strings.Split(string(output), "\n")
+
+		for _, name := range lines[:len(lines)-1] {
+			pluginCmd := &cobra.Command{
+				Use:                name,
+				Short:              "",
+				Run:                func(cmd *cobra.Command, args []string) {},
+				DisableFlagParsing: true,
+			}
+
+			carapace.Gen(pluginCmd).PositionalAnyCompletion(
+				bridge.ActionCarapaceBin("git-" + name),
+			)
+
+			rootCmd.AddCommand(pluginCmd)
 		}
 	}
 }
