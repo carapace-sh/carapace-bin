@@ -15,10 +15,10 @@ var state_replaceProviderCmd = &cobra.Command{
 func init() {
 	carapace.Gen(state_replaceProviderCmd).Standalone()
 
-	state_replaceProviderCmd.Flags().Bool("auto-approve", false, "Skip interactive approval.")
-	state_replaceProviderCmd.Flags().Bool("ignore-remote-version", false, "A rare option used for the remote backend only.")
-	state_replaceProviderCmd.Flags().String("lock", "", "Don't hold a state lock during the operation.")
-	state_replaceProviderCmd.Flags().String("lock-timeout", "", "Duration to retry a state lock.")
+	state_replaceProviderCmd.Flags().BoolS("auto-approve", "auto-approve", false, "Skip interactive approval.")
+	state_replaceProviderCmd.Flags().BoolS("ignore-remote-version", "ignore-remote-version", false, "A rare option used for the remote backend only.")
+	state_replaceProviderCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation.")
+	state_replaceProviderCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock.")
 	stateCmd.AddCommand(state_replaceProviderCmd)
 
 	state_replaceProviderCmd.Flag("lock").NoOptDefVal = " "

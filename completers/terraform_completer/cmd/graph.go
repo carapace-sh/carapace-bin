@@ -14,9 +14,9 @@ var graphCmd = &cobra.Command{
 func init() {
 	carapace.Gen(graphCmd).Standalone()
 
-	graphCmd.Flags().Bool("draw-cycles", false, "Highlight any cycles in the graph with colored edges")
-	graphCmd.Flags().String("plan", "", "Render graph using the specified plan file")
-	graphCmd.Flags().String("type", "", "Type of graph to output")
+	graphCmd.Flags().BoolS("draw-cycles", "draw-cycles", false, "Highlight any cycles in the graph with colored edges")
+	graphCmd.Flags().StringS("plan", "plan", "", "Render graph using the specified plan file")
+	graphCmd.Flags().StringS("type", "type", "", "Type of graph to output")
 	rootCmd.AddCommand(graphCmd)
 
 	graphCmd.Flag("plan").NoOptDefVal = " "

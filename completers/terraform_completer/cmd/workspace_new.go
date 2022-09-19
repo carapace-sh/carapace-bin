@@ -15,9 +15,9 @@ var workspace_newCmd = &cobra.Command{
 func init() {
 	carapace.Gen(workspace_newCmd).Standalone()
 
-	workspace_newCmd.Flags().String("lock", "", "Don't hold a state lock during the operation.")
-	workspace_newCmd.Flags().String("lock-timeout", "", "Duration to retry a state lock.")
-	workspace_newCmd.Flags().String("state", "", "Copy an existing state file into the new workspace.")
+	workspace_newCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation.")
+	workspace_newCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock.")
+	workspace_newCmd.Flags().StringS("state", "state", "", "Copy an existing state file into the new workspace.")
 	workspaceCmd.AddCommand(workspace_newCmd)
 
 	workspace_newCmd.Flag("lock").NoOptDefVal = " "

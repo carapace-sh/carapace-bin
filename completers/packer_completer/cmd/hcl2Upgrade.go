@@ -14,8 +14,8 @@ var hcl2UpgradeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(hcl2UpgradeCmd).Standalone()
 
-	hcl2UpgradeCmd.Flags().String("output-file", "", "Set output file name.")
-	hcl2UpgradeCmd.Flags().Bool("with-annotations", false, "Add helper annotation comments to the file to help new HCL2 users understand the template format.")
+	hcl2UpgradeCmd.Flags().StringS("output-file", "output-file", "", "Set output file name.")
+	hcl2UpgradeCmd.Flags().BoolS("with-annotations", "with-annotations", false, "Add helper annotation comments to the file to help new HCL2 users understand the template format.")
 	rootCmd.AddCommand(hcl2UpgradeCmd)
 
 	carapace.Gen(hcl2UpgradeCmd).FlagCompletion(carapace.ActionMap{

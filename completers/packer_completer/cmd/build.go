@@ -15,17 +15,17 @@ var buildCmd = &cobra.Command{
 func init() {
 	carapace.Gen(buildCmd).Standalone()
 
-	buildCmd.Flags().Bool("color", false, "Enable color output")
-	buildCmd.Flags().Bool("debug", false, "Debug mode enabled for builds.")
-	buildCmd.Flags().String("except", "", "Run all builds and post-processors other than these.")
-	buildCmd.Flags().Bool("force", false, "Force a build to continue if artifacts exist, deletes existing artifacts.")
-	buildCmd.Flags().Bool("machine-readable", false, "Produce machine-readable output.")
-	buildCmd.Flags().String("on-error", "", "If the build fails do: clean up (default), abort, ask, or run-cleanup-provisioner.")
-	buildCmd.Flags().String("only", "", "Build only the specified builds.")
-	buildCmd.Flags().String("parallel-builds", "", "Number of builds to run in parallel. 1 disables parallelization. 0 means no limit (Default: 0)")
-	buildCmd.Flags().Bool("timestamp-ui", false, "Enable prefixing of each ui output with an RFC3339 timestamp.")
-	buildCmd.Flags().StringArray("var", []string{}, "Variable for templates, can be used multiple times.")
-	buildCmd.Flags().String("var-file", "", "JSON or HCL2 file containing user variables.")
+	buildCmd.Flags().BoolS("color", "color", false, "Enable color output")
+	buildCmd.Flags().BoolS("debug", "debug", false, "Debug mode enabled for builds.")
+	buildCmd.Flags().StringS("except", "except", "", "Run all builds and post-processors other than these.")
+	buildCmd.Flags().BoolS("force", "force", false, "Force a build to continue if artifacts exist, deletes existing artifacts.")
+	buildCmd.Flags().BoolS("machine-readable", "machine-readable", false, "Produce machine-readable output.")
+	buildCmd.Flags().StringS("on-error", "on-error", "", "If the build fails do: clean up (default), abort, ask, or run-cleanup-provisioner.")
+	buildCmd.Flags().StringS("only", "only", "", "Build only the specified builds.")
+	buildCmd.Flags().StringS("parallel-builds", "parallel-builds", "", "Number of builds to run in parallel. 1 disables parallelization. 0 means no limit (Default: 0)")
+	buildCmd.Flags().BoolS("timestamp-ui", "timestamp-ui", false, "Enable prefixing of each ui output with an RFC3339 timestamp.")
+	buildCmd.Flags().StringArrayS("var", "var", []string{}, "Variable for templates, can be used multiple times.")
+	buildCmd.Flags().StringS("var-file", "var-file", "", "JSON or HCL2 file containing user variables.")
 	rootCmd.AddCommand(buildCmd)
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{

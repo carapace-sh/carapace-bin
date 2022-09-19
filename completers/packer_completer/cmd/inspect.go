@@ -14,7 +14,7 @@ var inspectCmd = &cobra.Command{
 func init() {
 	carapace.Gen(inspectCmd).Standalone()
 
-	inspectCmd.Flags().Bool("machine-readable", false, "Machine-readable output")
+	inspectCmd.Flags().BoolS("machine-readable", "machine-readable", false, "Machine-readable output")
 	rootCmd.AddCommand(inspectCmd)
 
 	carapace.Gen(inspectCmd).PositionalCompletion(

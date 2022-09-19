@@ -14,9 +14,9 @@ var consoleCmd = &cobra.Command{
 func init() {
 	carapace.Gen(consoleCmd).Standalone()
 
-	consoleCmd.Flags().String("state", "", "Legacy option for the local backend only.")
-	consoleCmd.Flags().StringArray("var", []string{}, "Set a variable in the Terraform configuration.")
-	consoleCmd.Flags().String("var-file", "", "Set variables in the Terraform configuration from a file.")
+	consoleCmd.Flags().StringS("state", "state", "", "Legacy option for the local backend only.")
+	consoleCmd.Flags().StringArrayS("var", "var", []string{}, "Set a variable in the Terraform configuration.")
+	consoleCmd.Flags().StringS("var-file", "var-file", "", "Set variables in the Terraform configuration from a file.")
 
 	consoleCmd.Flag("state").NoOptDefVal = " "
 	consoleCmd.Flag("var-file").NoOptDefVal = " "

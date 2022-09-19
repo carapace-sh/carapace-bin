@@ -14,8 +14,8 @@ var showCmd = &cobra.Command{
 func init() {
 	carapace.Gen(showCmd).Standalone()
 
-	showCmd.Flags().Bool("json", false, "output in a machine-readable form")
-	showCmd.Flags().Bool("no-color", false, "output without color")
+	showCmd.Flags().BoolS("json", "json", false, "output in a machine-readable form")
+	showCmd.Flags().BoolS("no-color", "no-color", false, "output without color")
 	rootCmd.AddCommand(showCmd)
 
 	carapace.Gen(showCmd).PositionalCompletion(

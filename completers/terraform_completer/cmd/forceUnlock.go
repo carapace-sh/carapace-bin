@@ -14,7 +14,7 @@ var forceUnlockCmd = &cobra.Command{
 func init() {
 	carapace.Gen(forceUnlockCmd).Standalone()
 
-	forceUnlockCmd.Flags().Bool("force", false, "Don't ask for input for unlock confirmation.")
+	forceUnlockCmd.Flags().BoolS("force", "force", false, "Don't ask for input for unlock confirmation.")
 	rootCmd.AddCommand(forceUnlockCmd)
 
 	// TODO lock_id positional completion

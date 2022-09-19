@@ -13,7 +13,7 @@ var state_showCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(state_showCmd).Standalone()
-	state_showCmd.Flags().String("state", "", "Path to a Terraform state file")
+	state_showCmd.Flags().StringS("state", "state", "", "Path to a Terraform state file")
 	stateCmd.AddCommand(state_showCmd)
 
 	state_showCmd.Flag("state").NoOptDefVal = " "

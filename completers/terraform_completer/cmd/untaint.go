@@ -14,10 +14,10 @@ var untaintCmd = &cobra.Command{
 func init() {
 	carapace.Gen(untaintCmd).Standalone()
 
-	untaintCmd.Flags().Bool("allow-missing", false, "succeed even if the resource is missing.")
-	untaintCmd.Flags().Bool("ignore-remote-version", false, "A rare option used for the remote backend only.")
-	untaintCmd.Flags().String("lock", "", "Don't hold a state lock during the operation.")
-	untaintCmd.Flags().String("lock-timeout", "", "Duration to retry a state lock.")
+	untaintCmd.Flags().BoolS("allow-missing", "allow-missing", false, "succeed even if the resource is missing.")
+	untaintCmd.Flags().BoolS("ignore-remote-version", "ignore-remote-version", false, "A rare option used for the remote backend only.")
+	untaintCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation.")
+	untaintCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock.")
 	rootCmd.AddCommand(untaintCmd)
 
 	untaintCmd.Flag("lock").NoOptDefVal = " "
