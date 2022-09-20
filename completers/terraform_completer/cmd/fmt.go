@@ -15,12 +15,12 @@ var fmtCmd = &cobra.Command{
 func init() {
 	carapace.Gen(fmtCmd).Standalone()
 
-	fmtCmd.Flags().Bool("check", false, "Check if the input is formatted")
-	fmtCmd.Flags().Bool("diff", false, "Display diffs of formatting changes")
-	fmtCmd.Flags().String("list", "", "Don't list files whose formatting differs")
-	fmtCmd.Flags().Bool("no-color", false, "If specified, output won't contain any color")
-	fmtCmd.Flags().Bool("recursive", false, "Also process files in subdirectories")
-	fmtCmd.Flags().String("write", "", "Don't write to source files")
+	fmtCmd.Flags().BoolS("check", "check", false, "Check if the input is formatted")
+	fmtCmd.Flags().BoolS("diff", "diff", false, "Display diffs of formatting changes")
+	fmtCmd.Flags().StringS("list", "list", "", "Don't list files whose formatting differs")
+	fmtCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color")
+	fmtCmd.Flags().BoolS("recursive", "recursive", false, "Also process files in subdirectories")
+	fmtCmd.Flags().StringS("write", "write", "", "Don't write to source files")
 	rootCmd.AddCommand(fmtCmd)
 
 	carapace.Gen(fmtCmd).FlagCompletion(carapace.ActionMap{

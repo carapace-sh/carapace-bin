@@ -14,7 +14,7 @@ var validateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(validateCmd).Standalone()
 
-	validateCmd.Flags().Bool("json", false, "Produce output in a machine-readable JSON format.")
-	validateCmd.Flags().Bool("no-color", false, "If specified, output won't contain any color.")
+	validateCmd.Flags().BoolS("json", "json", false, "Produce output in a machine-readable JSON format.")
+	validateCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color.")
 	rootCmd.AddCommand(validateCmd)
 }

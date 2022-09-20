@@ -14,7 +14,7 @@ var initCmd = &cobra.Command{
 func init() {
 	carapace.Gen(initCmd).Standalone()
 
-	initCmd.Flags().Bool("upgrade", false, "On top of installing missing plugins, update installed plugins to the latest available version")
+	initCmd.Flags().BoolS("upgrade", "upgrade", false, "On top of installing missing plugins, update installed plugins to the latest available version")
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).PositionalCompletion(

@@ -15,15 +15,15 @@ var importCmd = &cobra.Command{
 func init() {
 	carapace.Gen(importCmd).Standalone()
 
-	importCmd.Flags().Bool("allow-missing-config", false, "Allow import when no resource configuration block exists")
-	importCmd.Flags().String("config", "", "Path to a directory of Terraform configuration files")
-	importCmd.Flags().Bool("ignore-remote-version", false, "A rare option used for the remote backend only")
-	importCmd.Flags().String("input", "", "Disable interactive input prompts")
-	importCmd.Flags().String("lock", "", "Don't hold a state lock during the operation")
-	importCmd.Flags().String("lock-timeout", "", "Duration to retry a state lock")
-	importCmd.Flags().Bool("no-color", false, "If specified, output won't contain any color")
-	importCmd.Flags().String("var", "", "Set a variable in the Terraform configuration")
-	importCmd.Flags().String("var-file", "", "Set variables in the Terraform configuration from a file")
+	importCmd.Flags().BoolS("allow-missing-config", "allow-missing-config", false, "Allow import when no resource configuration block exists")
+	importCmd.Flags().StringS("config", "config", "", "Path to a directory of Terraform configuration files")
+	importCmd.Flags().BoolS("ignore-remote-version", "ignore-remote-version", false, "A rare option used for the remote backend only")
+	importCmd.Flags().StringS("input", "input", "", "Disable interactive input prompts")
+	importCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation")
+	importCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock")
+	importCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color")
+	importCmd.Flags().StringS("var", "var", "", "Set a variable in the Terraform configuration")
+	importCmd.Flags().StringS("var-file", "var-file", "", "Set variables in the Terraform configuration from a file")
 	rootCmd.AddCommand(importCmd)
 
 	importCmd.Flag("config").NoOptDefVal = " "

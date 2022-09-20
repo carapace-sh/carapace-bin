@@ -15,16 +15,16 @@ var applyCmd = &cobra.Command{
 func init() {
 	carapace.Gen(applyCmd).Standalone()
 
-	applyCmd.Flags().Bool("auto-approve", false, "Skip interactive approval of plan before applying.")
-	applyCmd.Flags().String("backup", "", "Path to backup the existing state file before modifying.")
-	applyCmd.Flags().Bool("compact-warnings", false, "Show warnings in a more compact form that includes only the summary messages.")
-	applyCmd.Flags().String("input", "", "Ask for input for variables if not directly set.")
-	applyCmd.Flags().String("lock", "", "Don't hold a state lock during the operation.")
-	applyCmd.Flags().String("lock-timeout", "", "Duration to retry a state lock.")
-	applyCmd.Flags().Bool("no-color", false, "If specified, output won't contain any color.")
-	applyCmd.Flags().String("parallelism", "", "Limit the number of parallel resource operations.")
-	applyCmd.Flags().String("state", "", "Path to read and save state.")
-	applyCmd.Flags().String("state-out", "", "Path to write state to that is different than \"-state\".")
+	applyCmd.Flags().BoolS("auto-approve", "auto-approve", false, "Skip interactive approval of plan before applying.")
+	applyCmd.Flags().StringS("backup", "backup", "", "Path to backup the existing state file before modifying.")
+	applyCmd.Flags().BoolS("compact-warnings", "compact-warnings", false, "Show warnings in a more compact form that includes only the summary messages.")
+	applyCmd.Flags().StringS("input", "input", "", "Ask for input for variables if not directly set.")
+	applyCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation.")
+	applyCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock.")
+	applyCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color.")
+	applyCmd.Flags().StringS("parallelism", "parallelism", "", "Limit the number of parallel resource operations.")
+	applyCmd.Flags().StringS("state", "state", "", "Path to read and save state.")
+	applyCmd.Flags().StringS("state-out", "state-out", "", "Path to write state to that is different than \"-state\".")
 	rootCmd.AddCommand(applyCmd)
 
 	applyCmd.Flag("backup").NoOptDefVal = " "

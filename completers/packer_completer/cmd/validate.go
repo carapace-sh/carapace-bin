@@ -15,12 +15,12 @@ var validateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(validateCmd).Standalone()
 
-	validateCmd.Flags().String("except", "", "Validate all builds other than these.")
-	validateCmd.Flags().Bool("machine-readable", false, "Produce machine-readable output.")
-	validateCmd.Flags().String("only", "", "Validate only these builds.")
-	validateCmd.Flags().Bool("syntax-only", false, "Only check syntax. Do not verify config of the template.")
-	validateCmd.Flags().StringArray("var", []string{}, "Variable for templates, can be used multiple times.")
-	validateCmd.Flags().String("var-file", "", "JSON or HCL2 file containing user variables.")
+	validateCmd.Flags().StringS("except", "except", "", "Validate all builds other than these.")
+	validateCmd.Flags().BoolS("machine-readable", "machine-readable", false, "Produce machine-readable output.")
+	validateCmd.Flags().StringS("only", "only", "", "Validate only these builds.")
+	validateCmd.Flags().BoolS("syntax-only", "syntax-only", false, "Only check syntax. Do not verify config of the template.")
+	validateCmd.Flags().StringArrayS("var", "var", []string{}, "Variable for templates, can be used multiple times.")
+	validateCmd.Flags().StringS("var-file", "var-file", "", "JSON or HCL2 file containing user variables.")
 	rootCmd.AddCommand(validateCmd)
 
 	carapace.Gen(validateCmd).FlagCompletion(carapace.ActionMap{

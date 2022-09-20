@@ -14,9 +14,9 @@ var providers_lockCmd = &cobra.Command{
 func init() {
 	carapace.Gen(providers_lockCmd).Standalone()
 
-	providers_lockCmd.Flags().String("fs-mirror", "", "Consult the given filesystem mirror directory")
-	providers_lockCmd.Flags().String("net-mirror", "", "Consult the given network mirror")
-	providers_lockCmd.Flags().String("platform", "", "Choose a target platform to request package checksums for")
+	providers_lockCmd.Flags().StringS("fs-mirror", "fs-mirror", "", "Consult the given filesystem mirror directory")
+	providers_lockCmd.Flags().StringS("net-mirror", "net-mirror", "", "Consult the given network mirror")
+	providers_lockCmd.Flags().StringS("platform", "platform", "", "Choose a target platform to request package checksums for")
 	providersCmd.AddCommand(providers_lockCmd)
 
 	providers_lockCmd.Flag("fs-mirror").NoOptDefVal = " "

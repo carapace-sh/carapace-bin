@@ -13,7 +13,7 @@ var providers_schemaCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(providers_schemaCmd).Standalone()
-	providers_schemaCmd.Flags().Bool("json", false, "Prints out a json representation")
+	providers_schemaCmd.Flags().BoolS("json", "json", false, "Prints out a json representation")
 
 	providersCmd.AddCommand(providers_schemaCmd)
 }

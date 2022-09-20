@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(generateCmd).Standalone()
 
 	generateCmd.Flags().BoolS("n", "n", false, "print commands that would be executed")
-	generateCmd.Flags().String("run", "", "specifies a regular expression to select matching directives")
+	generateCmd.Flags().StringS("run", "run", "", "specifies a regular expression to select matching directives")
 	generateCmd.Flags().BoolS("v", "v", false, "print the names of packages and files as they are processed")
 	generateCmd.Flags().BoolS("x", "x", false, "print commands as they are executed")
 	rootCmd.AddCommand(generateCmd)

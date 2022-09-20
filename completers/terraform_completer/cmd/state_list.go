@@ -14,8 +14,8 @@ var state_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(state_listCmd).Standalone()
 
-	state_listCmd.Flags().String("id", "", "Filters the results by id")
-	state_listCmd.Flags().String("state", "", "Path to a Terraform state file")
+	state_listCmd.Flags().StringS("id", "id", "", "Filters the results by id")
+	state_listCmd.Flags().StringS("state", "state", "", "Path to a Terraform state file")
 	stateCmd.AddCommand(state_listCmd)
 
 	// TODO id completion

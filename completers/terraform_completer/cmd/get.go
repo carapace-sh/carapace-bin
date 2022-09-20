@@ -14,8 +14,8 @@ var getCmd = &cobra.Command{
 func init() {
 	carapace.Gen(getCmd).Standalone()
 
-	getCmd.Flags().Bool("no-color", false, "Disable text coloring in the output.")
-	getCmd.Flags().Bool("update", false, "Check already-downloaded modules for available updates")
+	getCmd.Flags().BoolS("no-color", "no-color", false, "Disable text coloring in the output.")
+	getCmd.Flags().BoolS("update", "update", false, "Check already-downloaded modules for available updates")
 	rootCmd.AddCommand(getCmd)
 
 	carapace.Gen(getCmd).PositionalCompletion(

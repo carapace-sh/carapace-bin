@@ -14,10 +14,10 @@ var fmtCmd = &cobra.Command{
 func init() {
 	carapace.Gen(fmtCmd).Standalone()
 
-	fmtCmd.Flags().Bool("check", false, "Check if the input is formatted.")
-	fmtCmd.Flags().Bool("diff", false, "Display diffs of formatting change")
-	fmtCmd.Flags().Bool("recursive", false, "Also process files in subdirectories.")
-	fmtCmd.Flags().Bool("write", false, "Don't write to source files")
+	fmtCmd.Flags().BoolS("check", "check", false, "Check if the input is formatted.")
+	fmtCmd.Flags().BoolS("diff", "diff", false, "Display diffs of formatting change")
+	fmtCmd.Flags().BoolS("recursive", "recursive", false, "Also process files in subdirectories.")
+	fmtCmd.Flags().BoolS("write", "write", false, "Don't write to source files")
 	rootCmd.AddCommand(fmtCmd)
 
 	carapace.Gen(fmtCmd).PositionalCompletion(

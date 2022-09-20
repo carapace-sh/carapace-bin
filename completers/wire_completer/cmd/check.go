@@ -14,6 +14,6 @@ var wireCmd = &cobra.Command{
 func init() {
 	carapace.Gen(wireCmd).Standalone()
 
-	wireCmd.Flags().String("tags", "", "append build tags to the default wirebuild")
+	wireCmd.Flags().StringS("tags", "tags", "", "append build tags to the default wirebuild")
 	rootCmd.AddCommand(wireCmd)
 }

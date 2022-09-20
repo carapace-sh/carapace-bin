@@ -14,6 +14,6 @@ var versionCmd = &cobra.Command{
 func init() {
 	carapace.Gen(versionCmd).Standalone()
 
-	versionCmd.Flags().Bool("json", false, "Output the version information as a JSON object.")
+	versionCmd.Flags().BoolS("json", "json", false, "Output the version information as a JSON object.")
 	rootCmd.AddCommand(versionCmd)
 }

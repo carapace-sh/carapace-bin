@@ -15,14 +15,14 @@ var refreshCmd = &cobra.Command{
 func init() {
 	carapace.Gen(refreshCmd).Standalone()
 
-	refreshCmd.Flags().Bool("compact-warnings", false, "show warnings in a more compact form")
-	refreshCmd.Flags().String("input", "", "Ask for input for variables if not directly set")
-	refreshCmd.Flags().String("lock", "", "Don't hold a state lock during the operation")
-	refreshCmd.Flags().String("lock-timeout", "", "Duration to retry a state lock")
-	refreshCmd.Flags().Bool("no-color", false, "If specified, output won't contain any color")
-	refreshCmd.Flags().StringArray("target", []string{}, "Resource to target")
-	refreshCmd.Flags().StringArray("var", []string{}, "Set a variable in the Terraform configuration")
-	refreshCmd.Flags().String("var-file", "", "Set variables in the Terraform configuration from a file")
+	refreshCmd.Flags().BoolS("compact-warnings", "compact-warnings", false, "show warnings in a more compact form")
+	refreshCmd.Flags().StringS("input", "input", "", "Ask for input for variables if not directly set")
+	refreshCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation")
+	refreshCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock")
+	refreshCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color")
+	refreshCmd.Flags().StringArrayS("target", "target", []string{}, "Resource to target")
+	refreshCmd.Flags().StringArrayS("var", "var", []string{}, "Set a variable in the Terraform configuration")
+	refreshCmd.Flags().StringS("var-file", "var-file", "", "Set variables in the Terraform configuration from a file")
 	rootCmd.AddCommand(refreshCmd)
 
 	refreshCmd.Flag("input").NoOptDefVal = " "

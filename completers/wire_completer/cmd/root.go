@@ -13,9 +13,6 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() error {
-	carapace.Override(carapace.Opts{
-		LongShorthand: true,
-	})
 	return rootCmd.Execute()
 }
 func init() {

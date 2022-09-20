@@ -14,8 +14,8 @@ var diffCmd = &cobra.Command{
 func init() {
 	carapace.Gen(diffCmd).Standalone()
 
-	diffCmd.Flags().String("header_file", "", "path to file to insert as a header in wire_gen.go")
-	diffCmd.Flags().String("tags", "", "append build tags to the default wirebuild")
+	diffCmd.Flags().StringS("header_file", "header_file", "", "path to file to insert as a header in wire_gen.go")
+	diffCmd.Flags().StringS("tags", "tags", "", "append build tags to the default wirebuild")
 	rootCmd.AddCommand(diffCmd)
 
 	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{

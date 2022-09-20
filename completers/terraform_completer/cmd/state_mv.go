@@ -15,10 +15,10 @@ var state_mvCmd = &cobra.Command{
 func init() {
 	carapace.Gen(state_mvCmd).Standalone()
 
-	state_mvCmd.Flags().Bool("dry-run", false, "only print out what would've been moved")
-	state_mvCmd.Flags().Bool("ignore-remote-version", false, "A rare option used for the remote backend only")
-	state_mvCmd.Flags().String("lock", "", "Don't hold a state lock during the operation")
-	state_mvCmd.Flags().String("lock-timeout", "", "Duration to retry a state lock")
+	state_mvCmd.Flags().BoolS("dry-run", "dry-run", false, "only print out what would've been moved")
+	state_mvCmd.Flags().BoolS("ignore-remote-version", "ignore-remote-version", false, "A rare option used for the remote backend only")
+	state_mvCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation")
+	state_mvCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock")
 	stateCmd.AddCommand(state_mvCmd)
 
 	state_mvCmd.Flag("lock").NoOptDefVal = " "

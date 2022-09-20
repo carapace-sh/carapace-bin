@@ -14,9 +14,9 @@ var genCmd = &cobra.Command{
 func init() {
 	carapace.Gen(genCmd).Standalone()
 
-	genCmd.Flags().String("header_file", "", "path to file to insert as a header in wire_gen.go")
-	genCmd.Flags().String("output_file_prefix", "", "string to prepend to output file names.")
-	genCmd.Flags().String("tags", "", "append build tags to the default wirebuild")
+	genCmd.Flags().StringS("header_file", "header_file", "", "path to file to insert as a header in wire_gen.go")
+	genCmd.Flags().StringS("output_file_prefix", "output_file_prefix", "", "string to prepend to output file names.")
+	genCmd.Flags().StringS("tags", "tags", "", "append build tags to the default wirebuild")
 	rootCmd.AddCommand(genCmd)
 
 	carapace.Gen(genCmd).FlagCompletion(carapace.ActionMap{
