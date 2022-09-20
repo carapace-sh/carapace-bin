@@ -57,7 +57,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
-		if f := rootCmd.Flag("chdir"); f.Changed {
+		if f := rootCmd.Flag("chdir"); f.Changed && f != flag {
 			return action.Chdir(f.Value.String())
 		}
 		return action
