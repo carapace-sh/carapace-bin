@@ -18,4 +18,4 @@ require (
 	github.com/stretchr/testify v1.7.0 // indirect
 )
 
-replace github.com/spf13/pflag => github.com/rsteube/carapace-pflag v0.0.2
+replace github.com/spf13/pflag => github.com/cornfeedhobo/pflag v1.1.0
