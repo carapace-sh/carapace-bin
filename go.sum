@@ -1,3 +1,5 @@
+github.com/cornfeedhobo/pflag v1.1.0 h1:hZ356pzRepv6EbQ3M5Yx0ZyvQnTj8rgGKm6PCTFy2kc=
+github.com/cornfeedhobo/pflag v1.1.0/go.mod h1:ROo/cqBpAh84jplPcXiI5HTjyLmtp04WaPKkHC18E6U=
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -11,8 +13,6 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rsteube/carapace v0.23.1 h1:bRdyUYnPPXAOjQPd1oVhwutAzhK+J3MNbi6hv1wf0Is=
 github.com/rsteube/carapace v0.23.1/go.mod h1:JjsAq3W3rvWEIg0FkOxT0HUNQjnboP/T0S8Khof9ZWU=
-github.com/rsteube/carapace-pflag v0.0.2 h1:nOXpj2t8GK0FP0eXLRZ33lSUWJkrdQ+t0ow1kmOFo4w=
-github.com/rsteube/carapace-pflag v0.0.2/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
 github.com/rsteube/carapace-spec v0.0.22 h1:uslsWc2jWXqg1ihnc02ztkyS80XiTiLJI8wvDo7iiOc=
 github.com/rsteube/carapace-spec v0.0.22/go.mod h1:vyKkMfbIYHhPiUeyCemLWh96XNPwWI9B6Go0+W5nDUw=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
