@@ -202,7 +202,7 @@ func macros() {
 
 						disableflagParsing := ""
 						if pkg == "bridge" {
-							disableflagParsing = ".DisableFlagParsing()"
+							disableflagParsing = ".NoFlag()"
 						}
 
 						if arg := matches[2]; strings.Contains(arg, ",") {
