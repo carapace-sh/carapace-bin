@@ -35,6 +35,6 @@ func init() {
 	})
 
 	carapace.Gen(run_downloadCmd).PositionalCompletion(
-		action.ActionWorkflowRuns(run_downloadCmd, action.RunOpts{Successful: true}),
+		action.ActionWorkflowRuns(run_downloadCmd, action.RunOpts{All: true}),
 	)
 }
