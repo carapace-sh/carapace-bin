@@ -19,6 +19,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().Bool("help", false, "show help")
+
 	carapace.Gen(rootCmd).PositionalCompletion(
 		git.ActionAliases(""),
 	)
