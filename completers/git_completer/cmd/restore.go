@@ -43,9 +43,9 @@ func init() {
 	carapace.Gen(restoreCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if restoreCmd.Flag("staged").Changed {
-				return git.ActionChanges(git.ChangeOpts{Staged: true})
+				return git.ActionChanges(git.ChangeOpts{Staged: true}).Invoke(c).Filter(c.Args).ToA()
 			}
-			return git.ActionChanges(git.ChangeOpts{Unstaged: true})
+			return git.ActionChanges(git.ChangeOpts{Unstaged: true}).Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }
