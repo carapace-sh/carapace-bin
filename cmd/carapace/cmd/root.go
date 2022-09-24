@@ -12,6 +12,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/ps"
 	"github.com/rsteube/carapace/pkg/style"
@@ -75,7 +76,7 @@ var rootCmd = &cobra.Command{
   Specs are loaded from [%v/carapace/specs].
   `, suppressErr(os.UserCacheDir), suppressErr(os.UserConfigDir), suppressErr(os.UserConfigDir)),
 	Args:      cobra.MinimumNArgs(1),
-	ValidArgs: completers,
+	ValidArgs: completers.Names,
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
 		switch args[0] {
@@ -119,25 +120,25 @@ var rootCmd = &cobra.Command{
 			}
 			switch shell {
 			case "bash":
-				fmt.Println(bash_lazy(completers))
+				fmt.Println(bash_lazy(completers.Names))
 			case "bash-ble":
-				fmt.Println(bash_ble_lazy(completers))
+				fmt.Println(bash_ble_lazy(completers.Names))
 			case "elvish":
-				fmt.Println(elvish_lazy(completers))
+				fmt.Println(elvish_lazy(completers.Names))
 			case "fish":
-				fmt.Println(fish_lazy(completers))
+				fmt.Println(fish_lazy(completers.Names))
 			case "nushell":
-				fmt.Println(nushell_lazy(completers))
+				fmt.Println(nushell_lazy(completers.Names))
 			case "oil":
-				fmt.Println(oil_lazy(completers))
+				fmt.Println(oil_lazy(completers.Names))
 			case "powershell":
-				fmt.Println(powershell_lazy(completers))
+				fmt.Println(powershell_lazy(completers.Names))
 			case "tcsh":
-				fmt.Println(tcsh_lazy(completers))
+				fmt.Println(tcsh_lazy(completers.Names))
 			case "xonsh":
-				fmt.Println(xonsh_lazy(completers))
+				fmt.Println(xonsh_lazy(completers.Names))
 			case "zsh":
-				fmt.Println(zsh_lazy(completers))
+				fmt.Println(zsh_lazy(completers.Names))
 			default:
 				fmt.Fprintln(os.Stderr, "could not determine shell")
 			}
@@ -159,14 +160,14 @@ func suppressErr(f func() (string, error)) string { s, _ := f(); return s }
 
 func printCompleters() {
 	maxlen := 0
-	for _, name := range completers {
+	for _, name := range completers.Names {
 		if len := len(name); len > maxlen {
 			maxlen = len
 		}
 	}
 
-	for _, name := range completers {
-		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, descriptions[name])
+	for _, name := range completers.Names {
+		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, completers.Descriptions[name])
 	}
 }
 
