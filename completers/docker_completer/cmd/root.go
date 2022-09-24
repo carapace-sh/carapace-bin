@@ -1,7 +1,12 @@
 package cmd
 
 import (
+	"regexp"
+	"strings"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -37,6 +42,35 @@ func init() {
 		"tlscacert": carapace.ActionFiles(),
 		"tlscert":   carapace.ActionFiles(),
 		"tlskey":    carapace.ActionFiles(),
+	})
+
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		r := regexp.MustCompile(`^  (?P<plugin>[^ ]+)[*] +(?P<description>.*)$`)
+		if output, err := (carapace.Context{}).Command("docker", "--help").Output(); err == nil {
+			lines := strings.Split(string(output), "\n")
+			for _, line := range lines {
+				if matches := r.FindStringSubmatch(line); len(matches) > 2 {
+					name := matches[1]
+					description := matches[2]
+					pluginCmd := &cobra.Command{
+						Use:                name,
+						Short:              description,
+						Run:                func(cmd *cobra.Command, args []string) {},
+						DisableFlagParsing: true,
+					}
+
+					if d := completers.Description("docker-" + name); d != "" {
+						pluginCmd.Short = d
+					}
+
+					carapace.Gen(pluginCmd).PositionalAnyCompletion(
+						bridge.ActionCarapaceBin("docker-" + name),
+					)
+
+					rootCmd.AddCommand(pluginCmd)
+				}
+			}
+		}
 	})
 }
 
