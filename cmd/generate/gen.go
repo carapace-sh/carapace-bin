@@ -56,20 +56,12 @@ func main() {
 import (
 %v)
 
-var completers = []string{
-%v}
-
-var descriptions = map[string]string{
-%v}
-
 func executeCompleter(completer string) {
 	switch completer {
 %v	}
 }
 `,
 		fmt.Sprintln(strings.Join(imports, "\n")),
-		fmt.Sprintln(strings.Join(formattedNames, "\n")),
-		fmt.Sprintln(strings.Join(formattedDescriptions, "\n")),
 		fmt.Sprintln(strings.Join(cases, "\n")),
 	)
 
@@ -79,7 +71,10 @@ func executeCompleter(completer string) {
 		os.Exit(1)
 	}
 
+	os.Mkdir(root+"/cmd/carapace/cmd/completers", 0755)
 	os.WriteFile(root+"/cmd/carapace/cmd/completers.go", []byte("//go:build !release\n\n"+content), 0644)
+	os.WriteFile(root+"/cmd/carapace/cmd/completers/name.go", []byte(fmt.Sprintf("package completers\n\nvar Names = []string{\n%v\n}\n", strings.Join(formattedNames, "\n"))), 0644)
+	os.WriteFile(root+"/cmd/carapace/cmd/completers/description.go", []byte(fmt.Sprintf("package completers\n\nvar Descriptions = map[string]string{\n%v\n}\n", strings.Join(formattedDescriptions, "\n"))), 0644)
 	os.WriteFile(root+"/cmd/carapace/cmd/completers_release.go", []byte("//go:build release\n\n"+strings.Replace(content, "/completers/", "/completers_release/", -1)), 0644)
 	os.RemoveAll(root + "/completers_release")
 	execabs.Command("cp", "-r", root+"/completers", root+"/completers_release").Run()

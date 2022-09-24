@@ -2,11 +2,9 @@
 package os
 
 import (
-	"os"
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionShells completes available terminal shells
@@ -20,38 +18,6 @@ func ActionShells() carapace.Action {
 			return carapace.ActionValues(lines[:len(lines)-1]...)
 		})
 	})
-}
-
-// ActionPathExecutables completes executable files from PATH
-//
-//	nvim
-//	chmod
-func ActionPathExecutables() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		executables := make(map[string]string)
-
-		for _, folder := range strings.Split(os.Getenv("PATH"), string(os.PathListSeparator)) {
-			if files, err := os.ReadDir(folder); err == nil {
-				for _, f := range files {
-					if _, ok := executables[f.Name()]; !ok {
-						if info, err := f.Info(); err == nil && !f.IsDir() && isExecAny(info.Mode()) {
-							executables[f.Name()] = style.ForPath(folder + "/" + f.Name())
-						}
-					}
-				}
-			}
-		}
-
-		vals := make([]string, 0)
-		for executable, _style := range executables {
-			vals = append(vals, executable, _style)
-		}
-		return carapace.ActionStyledValues(vals...)
-	})
-}
-
-func isExecAny(mode os.FileMode) bool {
-	return mode&0111 != 0
 }
 
 // ActionCgroups completes cgroup names
