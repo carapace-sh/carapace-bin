@@ -10,6 +10,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -32,6 +33,8 @@ func init() {
 	rootCmd.Flags().StringP("name", "n", "", "name of command")
 	rootCmd.Flags().StringP("parent", "p", "", "name of parent command")
 	rootCmd.Flags().StringP("short", "s", "", "short description of command")
+
+	carapace.Gen(rootCmd)
 }
 
 type Command struct {
