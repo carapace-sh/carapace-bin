@@ -15,6 +15,7 @@ var pr_checksCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pr_checksCmd).Standalone()
 	pr_checksCmd.Flags().IntP("interval", "i", 10, "Refresh interval in seconds when using `--watch` flag")
+	pr_checksCmd.Flags().Bool("required", false, "Only show checks that are required")
 	pr_checksCmd.Flags().Bool("watch", false, "Watch checks until they finish")
 	pr_checksCmd.Flags().BoolP("web", "w", false, "Open the web browser to show details about checks")
 	prCmd.AddCommand(pr_checksCmd)

@@ -16,6 +16,7 @@ var repo_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(repo_createCmd).Standalone()
+	repo_createCmd.Flags().Bool("add-readme", false, "Add a README file to the new repository")
 	repo_createCmd.Flags().BoolP("clone", "c", false, "Clone the new repository to the current directory")
 	repo_createCmd.Flags().StringP("description", "d", "", "Description of the repository")
 	repo_createCmd.Flags().Bool("disable-issues", false, "Disable issues in the new repository")

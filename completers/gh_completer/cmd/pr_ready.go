@@ -14,6 +14,7 @@ var pr_readyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(pr_readyCmd).Standalone()
+	pr_readyCmd.Flags().Bool("undo", false, "Convert a pull request to \"draft\"")
 	prCmd.AddCommand(pr_readyCmd)
 
 	carapace.Gen(pr_readyCmd).PositionalCompletion(

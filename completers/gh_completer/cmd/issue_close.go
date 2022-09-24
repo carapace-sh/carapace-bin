@@ -15,10 +15,12 @@ var issue_closeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(issue_closeCmd).Standalone()
 	issue_closeCmd.Flags().StringP("comment", "c", "", "Leave a closing comment")
+	issue_closeCmd.Flags().StringP("reason", "r", "", "Reason for closing: {completed|not planned}")
 	issueCmd.AddCommand(issue_closeCmd)
 
 	carapace.Gen(issue_closeCmd).FlagCompletion(carapace.ActionMap{
 		"comment": action.ActionKeywordLinks(issue_closeCmd),
+		"reason":  carapace.ActionValues("completed", "not planned"),
 	})
 
 	carapace.Gen(issue_closeCmd).PositionalCompletion(
