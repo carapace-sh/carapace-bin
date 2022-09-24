@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
@@ -102,7 +103,6 @@ func sudoCmd() *cobra.Command {
 }
 
 func subCmd(name string) *cobra.Command {
-	// TODO invokes carapace but should use system wide completions longterm (rsteube/invoke-completion)
 	cmd := &cobra.Command{
 		Use:                name,
 		Run:                func(cmd *cobra.Command, args []string) {},
@@ -110,18 +110,7 @@ func subCmd(name string) *cobra.Command {
 	}
 
 	carapace.Gen(cmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			args := []string{name, "export", ""}
-			args = append(args, c.Args...)
-			args = append(args, c.CallbackValue)
-			return carapace.ActionExecCommand("carapace", args...)(func(output []byte) carapace.Action {
-				// TODO carapace needs exit code on error
-				if string(output) == "" {
-					return carapace.ActionValues()
-				}
-				return carapace.ActionImport(output)
-			})
-		}),
+		bridge.ActionCarapaceBin(name),
 	)
 	return cmd
 }
