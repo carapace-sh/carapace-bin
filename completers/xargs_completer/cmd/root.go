@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"path/filepath"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
@@ -25,28 +23,31 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			firstPass := xargsCommand().Flags()
-			firstPass.Parse(c.Args)
-
-			if args := firstPass.Args(); len(args) > 0 {
-				executable := filepath.Base(args[0])
-				c.Args = args[1:]
-				return bridge.ActionCarapaceBin(executable).Invoke(c).ToA()
+			firstPass := xargsCmd()
+			firstPass.FParseErrWhitelist = cobra.FParseErrWhitelist{
+				UnknownFlags: true,
 			}
-			return carapace.ActionExecute(xargsCommand())
+			args := []string{}
+			args = append(args, c.Args...)
+			args = append(args, c.CallbackValue)
+			if err := firstPass.ParseFlags(args); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+
+			secondPass := xargsCmd()
+			if args := firstPass.Flags().Args(); len(args) > 0 && !(len(args) == 1 && args[0] == c.CallbackValue) {
+				subcmd := subCmd(args[0])
+				secondPass.AddCommand(subcmd)
+			}
+			return carapace.ActionExecute(secondPass)
 		}),
 	)
 }
 
-func xargsCommand() *cobra.Command {
+func xargsCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "xargs",
-		Short: "build and execute command lines from standard input",
-		Long:  "https://linux.die.net/man/1/xargs",
-		Run:   func(cmd *cobra.Command, args []string) {},
-		FParseErrWhitelist: cobra.FParseErrWhitelist{
-			UnknownFlags: true,
-		},
+		Use: "xargs",
+		Run: func(cmd *cobra.Command, args []string) {},
 	}
 
 	carapace.Gen(cmd).Standalone()
@@ -87,5 +88,18 @@ func xargsCommand() *cobra.Command {
 		).ToA(),
 	)
 
+	return cmd
+}
+
+func subCmd(name string) *cobra.Command {
+	cmd := &cobra.Command{
+		Use:                name,
+		Run:                func(cmd *cobra.Command, args []string) {},
+		DisableFlagParsing: true,
+	}
+
+	carapace.Gen(cmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin(name),
+	)
 	return cmd
 }
