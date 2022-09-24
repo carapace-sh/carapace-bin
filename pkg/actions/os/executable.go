@@ -1,14 +1,12 @@
 package os
 
 import (
-	"fmt"
 	"os"
 	"strings"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace/pkg/style"
-	"gopkg.in/yaml.v3"
 )
 
 // ActionPathExecutables completes executable files from PATH
@@ -33,11 +31,7 @@ func actionDirectoryExecutables(dir string, prefix string) carapace.Action {
 			for _, f := range files {
 				if strings.HasPrefix(f.Name(), prefix) {
 					if info, err := f.Info(); err == nil && !f.IsDir() && isExecAny(info.Mode()) {
-						if description, err := specDescription(f.Name()); err != nil {
-							vals = append(vals, f.Name(), completers.Descriptions[f.Name()], style.ForPath(dir+"/"+f.Name()))
-						} else {
-							vals = append(vals, f.Name(), description, style.ForPath(dir+"/"+f.Name()))
-						}
+						vals = append(vals, f.Name(), completers.Description(f.Name()), style.ForPath(dir+"/"+f.Name()))
 					}
 				}
 			}
@@ -49,25 +43,4 @@ func actionDirectoryExecutables(dir string, prefix string) carapace.Action {
 
 func isExecAny(mode os.FileMode) bool {
 	return mode&0111 != 0
-}
-
-func specDescription(name string) (string, error) {
-	confDir, err := os.UserConfigDir()
-	if err != nil {
-		return "", err
-	}
-
-	content, err := os.ReadFile(fmt.Sprintf("%v/carapace/specs/%v.yaml", confDir, name))
-	if err != nil {
-		return "", err
-	}
-	var s struct {
-		Description string
-	}
-
-	err = yaml.Unmarshal(content, &s)
-	if err != nil {
-		return "", err
-	}
-	return s.Description, nil
 }

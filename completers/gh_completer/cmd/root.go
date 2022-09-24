@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/spf13/cobra"
@@ -34,9 +35,13 @@ func init() {
 			for _, extension := range extensions {
 				extensionCmd := &cobra.Command{
 					Use:                extension,
-					Short:              "extension",
+					Short:              completers.Description("gh-" + extension),
 					Run:                func(cmd *cobra.Command, args []string) {},
 					DisableFlagParsing: true,
+				}
+
+				if extensionCmd.Short == "" {
+					extensionCmd.Short = "extension"
 				}
 
 				carapace.Gen(extensionCmd).PositionalAnyCompletion(
