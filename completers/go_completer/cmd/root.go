@@ -17,5 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
 }

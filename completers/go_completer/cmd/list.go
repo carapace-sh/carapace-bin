@@ -25,5 +25,6 @@ func init() {
 	listCmd.Flags().BoolS("test", "test", false, "report not only the named packages but also their test binaries")
 	listCmd.Flags().BoolS("u", "u", false, "add information about available upgrades")
 	listCmd.Flags().BoolS("versions", "versions", false, "set the Module's Versions field to list of all known versions")
+	addBuildFlags(listCmd)
 	rootCmd.AddCommand(listCmd)
 }

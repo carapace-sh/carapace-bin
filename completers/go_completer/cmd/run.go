@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(runCmd).Standalone()
 
 	runCmd.Flags().StringS("exec", "exec", "", "invoke the binary using xprog")
+	addBuildFlags(runCmd)
 	rootCmd.AddCommand(runCmd)
 }
