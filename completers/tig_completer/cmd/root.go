@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -29,7 +30,12 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOption{}.Default()),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if util.HasPathPrefix(c.CallbackValue) {
+				return carapace.ActionFiles()
+			}
+			return git.ActionRefs(git.RefOption{}.Default())
+		}),
 	)
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
