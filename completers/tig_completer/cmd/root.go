@@ -29,13 +29,17 @@ func init() {
 		"C": carapace.ActionDirectories(),
 	})
 
-	carapace.Gen(rootCmd).PositionalCompletion(
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if util.HasPathPrefix(c.CallbackValue) {
 				return carapace.ActionFiles()
 			}
 			return git.ActionRefs(git.RefOption{}.Default())
 		}),
+	)
+
+	carapace.Gen(rootCmd).DashAnyCompletion(
+		carapace.ActionFiles(),
 	)
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
