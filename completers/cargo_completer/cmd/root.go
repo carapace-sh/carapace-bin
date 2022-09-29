@@ -40,9 +40,9 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
-		if output, err := (carapace.Context{}).Command("cargo", "--list").Output(); err != nil {
-			// TODO handle error
-		} else {
+		c := carapace.Context{}
+		c.Setenv("RUSTUP_DIST_SERVER", "localhost") // prevent implicit toolchain synching by the rustup wrapper [#1328]
+		if output, err := c.Command("cargo", "--list").Output(); err == nil {
 			re := regexp.MustCompile(`^    (?P<command>\w+)( +(?P<description>.*))?$`)
 			installedCommands := make(map[string]string)
 
