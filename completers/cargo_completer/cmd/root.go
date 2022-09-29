@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"os"
 	"regexp"
 	"strings"
 
@@ -40,42 +41,27 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
-		c := carapace.Context{}
+		c := carapace.Context{Env: os.Environ()}    // TODO how to handle env here?
 		c.Setenv("RUSTUP_DIST_SERVER", "localhost") // prevent implicit toolchain synching by the rustup wrapper [#1328]
 		if output, err := c.Command("cargo", "--list").Output(); err == nil {
-			re := regexp.MustCompile(`^    (?P<command>\w+)( +(?P<description>.*))?$`)
-			installedCommands := make(map[string]string)
-
+			re := regexp.MustCompile(`^    (?P<command>[^ ]+)( +(?P<description>.*))?$`)
 			for _, line := range strings.Split(string(output), "\n") {
 				if matches := re.FindStringSubmatch(line); matches != nil {
-					installedCommands[matches[1]] = matches[2]
-				}
-			}
-
-			subcommands := make(map[string]bool)
-			for _, subcommand := range rootCmd.Commands() {
-				subcommands[subcommand.Name()] = true
-				if _, exists := installedCommands[subcommand.Name()]; !exists {
-					subcommand.Hidden = true // hide from completion
-				}
-			}
-
-			for name, description := range installedCommands {
-				if _, ok := subcommands[name]; !ok {
 					pluginCmd := &cobra.Command{
-						Use:                name,
-						Short:              description,
+						Use:                matches[1],
+						Short:              matches[2],
 						Run:                func(cmd *cobra.Command, args []string) {},
 						DisableFlagParsing: true,
 					}
 
 					carapace.Gen(pluginCmd).PositionalAnyCompletion(
-						bridge.ActionCarapaceBin("cargo-" + name),
+						bridge.ActionCarapaceBin("cargo-" + matches[1]),
 					)
 
 					rootCmd.AddCommand(pluginCmd)
 				}
 			}
+
 		}
 	})
 }
