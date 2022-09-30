@@ -22,7 +22,7 @@ type manifestJson struct {
 
 func readManifest(path string) (m manifestJson, err error) {
 	var output []byte
-	if output, err = (carapace.Context{}).Command("cargo", "read-manifest", "--offline", "--manifest-path", path).Output(); err == nil {
+	if output, err = (carapace.Context{}).Command("cargo", "read-manifest", "--offline", "--manifest-path", path).Output(); err == nil { // TODO read-manifest is deprecated
 		err = json.Unmarshal(output, &m)
 	}
 	return
