@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"bufio"
@@ -16,7 +16,7 @@ import (
 	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
 
-func main() {
+func writeFiles() {
 	macros()
 
 	names, descriptions := readCompleters()
