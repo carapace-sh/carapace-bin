@@ -1,14 +1,35 @@
 package cmd
 
 import (
+	"encoding/json"
+	"fmt"
+	"os"
+	"regexp"
+	"strings"
+
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
 var completersCmd = &cobra.Command{
-	Use:   "completers",
-	Short: "list completers",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:       "completers",
+	Short:     "list completers",
+	Args:      cobra.ExactArgs(1),
+	ValidArgs: []string{"common", "darwin", "linux", "unix", "windows"},
+	RunE: func(cmd *cobra.Command, args []string) error {
+		completers, err := readCompleters(args[0])
+		if err != nil {
+			return err
+		}
+
+		m, err := json.Marshal(completers)
+		if err != nil {
+			return err
+		}
+
+		fmt.Println(cmd.OutOrStdout(), string(m))
+		return nil
+	},
 }
 
 func init() {
@@ -25,4 +46,45 @@ func init() {
 			"windows", "common and windows",
 		),
 	)
+}
+
+type completer struct {
+	Description string
+	Path        string
+}
+
+func readCompleters(goos string) (map[string]completer, error) {
+	completers := make(map[string]completer)
+	if root, err := rootDir(); err != nil {
+		return nil, err
+	} else {
+		dir := fmt.Sprintf("%v/completers/%v", root, goos)
+		if files, err := os.ReadDir(dir); err != nil {
+			return nil, err
+
+		} else {
+			for _, file := range files {
+				if file.IsDir() && strings.HasSuffix(file.Name(), "_completer") {
+					name := strings.TrimSuffix(file.Name(), "_completer")
+					completers[name] = completer{
+						Description: readDescription(root, file.Name()),
+						Path:        dir,
+					}
+				}
+			}
+		}
+	}
+	return completers, nil
+}
+
+func readDescription(root string, completer string) string {
+	if content, err := os.ReadFile(fmt.Sprintf("%v/completers/%v/cmd/root.go", root, completer)); err == nil {
+		re := regexp.MustCompile("^\tShort: +\"(?P<description>.*)\",$")
+		for _, line := range strings.Split(string(content), "\n") {
+			if re.MatchString(line) {
+				return re.FindStringSubmatch(line)[1]
+			}
+		}
+	}
+	return ""
 }
