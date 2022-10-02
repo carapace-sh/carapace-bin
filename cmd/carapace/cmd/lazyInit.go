@@ -4,28 +4,8 @@ package cmd
 
 import (
 	"fmt"
-	"os"
-	"regexp"
 	"strings"
 )
-
-func getSpecs() (specs []string, dir string) {
-	r := regexp.MustCompile(`^[0-9a-zA-Z_\-.]+\.yaml$`) // sanity check
-	specs = make([]string, 0)
-	if configDir, err := os.UserConfigDir(); err == nil {
-		dir = configDir + "/carapace/specs"
-		if entries, err := os.ReadDir(dir); err == nil {
-			for _, entry := range entries {
-				if !entry.IsDir() && strings.HasSuffix(entry.Name(), ".yaml") && r.MatchString(entry.Name()) {
-					specs = append(specs, strings.TrimSuffix(entry.Name(), ".yaml"))
-				}
-			}
-		} else if os.IsNotExist(err) {
-			os.MkdirAll(dir, os.ModePerm)
-		}
-	}
-	return
-}
 
 func bash_lazy(completers []string) string {
 	snippet := `_carapace_lazy() {
@@ -34,17 +14,6 @@ func bash_lazy(completers []string) string {
 }
 complete -F _carapace_lazy %v
 `
-
-	if specs, dir := getSpecs(); len(specs) > 0 {
-		snippet += fmt.Sprintf(`
-_carapace_lazy_spec() {
-  source <(carapace --spec "%v/$1.yaml" bash)
-   $"_$1_completion"
-}
-complete -F _carapace_lazy_spec %v
-`, dir, strings.Join(specs, " "))
-	}
-
 	return fmt.Sprintf(snippet, strings.Join(completers, " "))
 }
 
@@ -55,17 +24,6 @@ func bash_ble_lazy(completers []string) string {
 }
 complete -F _carapace_lazy %v
 `
-
-	if specs, dir := getSpecs(); len(specs) > 0 {
-		snippet += fmt.Sprintf(`
-_carapace_lazy_spec() {
-  source <(carapace --spec %v/$1.yaml bash-ble)
-   $"_$1_completion_ble"
-}
-complete -F _carapace_lazy_spec %v
-`, dir, strings.Join(specs, " "))
-	}
-
 	return fmt.Sprintf(snippet, strings.Join(completers, " "))
 }
 
@@ -78,20 +36,6 @@ func elvish_lazy(completers []string) string {
     }
 }
 `
-	if specs, dir := getSpecs(); len(specs) > 0 {
-		snippet += fmt.Sprintf(`
-put %v | each {|c|
-    set edit:completion:arg-completer[$c] = {|@arg|
-        set edit:completion:arg-completer[$c] = {|@arg| }
-        eval (carapace --spec "%v/"$c".yaml" elvish | slurp)
-        $edit:completion:arg-completer[$c] $@arg
-    }
-  
-}
-`, strings.Join(specs, " "), dir)
-
-	}
-
 	return fmt.Sprintf(snippet, strings.Join(completers, " "))
 }
 
@@ -107,42 +51,17 @@ end
 	for index, completer := range completers {
 		complete[index] = fmt.Sprintf(`complete -c '%v' -f -a '(_carapace_lazy %v)'`, completer, completer)
 	}
-
-	if specs, dir := getSpecs(); len(specs) > 0 {
-		snippet += fmt.Sprintf(`
-function _carapace_lazy_spec
-   complete -c $argv[1] -e
-   carapace --spec "%v/$argv[1].yaml" fish | source
-   complete --do-complete=(commandline -cp)
-end
-
-`, dir)
-		for _, spec := range specs {
-			snippet += fmt.Sprintf(`complete -c '%v' -f -a '(_carapace_lazy_spec %v)'
-`, spec, spec)
-		}
-	}
-
 	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
 }
 
 func nushell_lazy(completers []string) string {
-	specs, dir := getSpecs()
-
-	specSnippets := make([]string, 0)
-	for _, spec := range specs {
-		specSnippets = append(specSnippets, fmt.Sprintf(`    %v: { carapace --spec '%v/%v.yaml' nushell $spans | from json }
-`, spec, dir, spec))
-	}
-	return fmt.Sprintf(`let external_completer = {|spans| 
-  {
-    $spans.0: {carapace $spans.0 nushell $spans | from json } # default
-%v  } | get $spans.0 | each {|it| do $it}
+	return `let carapace_completer = {|spans| 
+  carapace $spans.0 nushell $spans | from json
 }
 
 let-env config = {
-  external_completer: $external_completer
-}`, strings.Join(specSnippets, ""))
+  external_completer: $carapace_completer
+}`
 }
 
 func oil_lazy(completers []string) string {
@@ -152,17 +71,6 @@ func oil_lazy(completers []string) string {
 }
 complete -F _carapace_lazy %v
 `
-
-	if specs, dir := getSpecs(); len(specs) > 0 {
-		snippet += fmt.Sprintf(`
-_carapace_lazy_spec() {
-  source <(carapace --spec "%v/$1.yaml" oil)
-   $"_$1_completion"
-}
-complete -F _carapace_lazy_spec %v
-`, dir, strings.Join(specs, " "))
-	}
-
 	return fmt.Sprintf(snippet, strings.Join(completers, " "))
 }
 
@@ -179,22 +87,6 @@ func powershell_lazy(completers []string) string {
 	for index, completer := range completers {
 		complete[index] = fmt.Sprintf(`Register-ArgumentCompleter -Native -CommandName '%v' -ScriptBlock $_carapace_lazy`, completer)
 	}
-
-	if specs, dir := getSpecs(); len(specs) > 0 {
-		snippet += fmt.Sprintf(`$_carapace_lazy_spec = {
-    param($wordToComplete, $commandAst, $cursorPosition)
-    $completer = $commandAst.CommandElements[0].Value
-    carapace --spec "%v/$completer.yaml" powershell | Out-String | Invoke-Expression
-    & (Get-Item "Function:_${completer}_completer") $wordToComplete $commandAst $cursorPosition
-}
-`, dir)
-		for _, spec := range specs {
-			snippet += fmt.Sprintf(`Register-ArgumentCompleter -Native -CommandName '%v' -ScriptBlock $_carapace_lazy_spec
-`, spec)
-		}
-
-	}
-
 	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
 }
 
@@ -203,12 +95,6 @@ func tcsh_lazy(completers []string) string {
 	snippet := make([]string, len(completers))
 	for index, c := range completers {
 		snippet[index] = fmt.Sprintf("complete \"%v\" 'p@*@`echo \"$COMMAND_LINE'\"''\"'\" | xargs carapace %v tcsh `@@' ;", c, c)
-	}
-
-	if specs, dir := getSpecs(); len(specs) > 0 {
-		for _, spec := range specs {
-			snippet = append(snippet, fmt.Sprintf("complete \"%v\" 'p@*@`echo \"$COMMAND_LINE'\"''\"'\" | xargs carapace --spec \"%v/%v.yaml\" tcsh `@@' ;", spec, dir, spec))
-		}
 	}
 	return strings.Join(snippet, "\n")
 }
@@ -231,22 +117,6 @@ def _carapace_lazy(context):
 	for index, completer := range completers {
 		complete[index] = fmt.Sprintf(`'%v'`, completer)
 	}
-
-	if specs, dir := getSpecs(); len(specs) > 0 {
-		quotedSpecs := make([]string, 0)
-		for _, spec := range specs {
-			quotedSpecs = append(quotedSpecs, fmt.Sprintf(`'%v'`, spec))
-		}
-		snippet += fmt.Sprintf(`
-    if (context.command and
-        context.command.arg_index > 0 and
-        context.command.args[0].value in [%v]):
-        XSH.completers = XSH.completers.copy()
-        exec(compile(subprocess.run(['carapace', '--spec', '%v/'+context.command.args[0].value+'.yaml', 'xonsh'], stdout=subprocess.PIPE).stdout.decode('utf-8'), "", "exec"))
-        return XSH.completers[context.command.args[0].value](context)
-`, strings.Join(quotedSpecs, ", "), dir)
-
-	}
 	snippet += `_add_one_completer('carapace_lazy', _carapace_lazy, 'start')`
 	return fmt.Sprintf(snippet, strings.Join(complete, ", "))
 }
@@ -257,15 +127,5 @@ func zsh_lazy(completers []string) string {
 }
 compdef _carapace_lazy %v
 `
-
-	if specs, dir := getSpecs(); len(specs) > 0 {
-		snippet += fmt.Sprintf(`function _carapace_lazy_spec {
-    source <(carapace --spec "%v/$words[1].yaml" zsh)
-}
-compdef _carapace_lazy_spec %v
-`, dir, strings.Join(specs, " "))
-
-	}
-
 	return fmt.Sprintf(snippet, strings.Join(completers, " "))
 }

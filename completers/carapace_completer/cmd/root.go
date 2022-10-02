@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"regexp"
+	"encoding/json"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -35,11 +35,13 @@ func flagCmd(args []string) *cobra.Command {
 
 	cmd.Flags().String("bridge", "", "generic completion bridge")
 	cmd.Flags().BoolP("help", "h", false, "help for carapace")
-	cmd.Flags().Bool("list", false, "list completers")
+	cmd.Flags().String("list", "", "list completers")
 	cmd.Flags().String("macros", "", "list spec macros")
 	cmd.Flags().String("spec", "", "spec completion")
 	cmd.Flags().String("style", "", "set style")
 	cmd.Flags().BoolP("version", "v", false, "version for carapace")
+
+	cmd.Flag("list").NoOptDefVal = " "
 
 	if len(args) > 0 {
 		if f := cmd.Flag(strings.TrimPrefix(args[0], "--")); len(args) > 1 || f != nil && f.Value.Type() == "bool" {
@@ -65,6 +67,7 @@ func flagCmd(args []string) *cobra.Command {
 				return carapace.ActionValues()
 			}
 		}),
+		"list": carapace.ActionValues("json"),
 		"macros": carapace.ActionExecCommand("carapace", "--macros")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
@@ -169,18 +172,25 @@ func init() {
 
 func ActionCompleters() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("carapace", "--list")(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
-			re := regexp.MustCompile("^(?P<name>[^ ]+) +(?P<description>.*)$")
+		return carapace.ActionExecCommand("carapace", "--list=json")(func(output []byte) carapace.Action {
+			var completers []struct {
+				Name        string
+				Description string
+				Spec        string
+			}
+			if err := json.Unmarshal(output, &completers); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
 
-			vals := make([]string, 0)
-			for _, line := range lines {
-				if re.MatchString(line) {
-					matched := re.FindStringSubmatch(line)
-					vals = append(vals, matched[1])
+			vals := make([]string, 0, len(completers))
+			for _, completer := range completers {
+				if completer.Spec == "" {
+					vals = append(vals, completer.Name, completer.Description, style.Default)
+				} else {
+					vals = append(vals, completer.Name, completer.Description, style.Blue)
 				}
 			}
-			return carapace.ActionValues(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	})
 }
