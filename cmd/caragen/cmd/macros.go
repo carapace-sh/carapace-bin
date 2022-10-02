@@ -41,6 +41,7 @@ type macro struct {
 	Package     string
 	Function    string
 	Description string
+	Signature   string
 }
 
 func (m macro) FlagParsingDisabled() bool {
@@ -70,9 +71,10 @@ func macros() map[string]macro {
 				_macro.Package = strings.Replace(filepath.Dir(strings.TrimPrefix(path, root+"/pkg/actions/")), "/", ".", -1)
 
 				if t := scanner.Text(); strings.HasPrefix(t, "func Action") {
-					if r.MatchString(t) {
-						matches := r.FindStringSubmatch(t)
+					if matches := r.FindStringSubmatch(t); matches != nil {
 						_macro.ImportPath = fmt.Sprintf("github.com/rsteube/carapace-bin/pkg/actions/%v", strings.Replace(_macro.Package, ".", "/", -1))
+						_macro.Function = fmt.Sprintf("Action%v", matches[1])
+						_macro.Signature = matches[2]
 						macros[matches[1]] = _macro
 					}
 				} else if strings.HasPrefix(t, "// Action") {
@@ -86,4 +88,23 @@ func macros() map[string]macro {
 		return nil
 	})
 	return macros
+}
+
+func (m macro) snippetCall() string {
+	if arg := m.Signature; strings.Contains(arg, ",") {
+		return "// TODO unsupported signature: " + m.Signature
+	} else if arg == "" {
+		return fmt.Sprintf(`"%v.%v": spec.MacroN(%v)%v,`, "TODO", "TODO", "TODO", m.FlagParsingDisabled())
+	} else if strings.Contains(arg, "...") {
+		return fmt.Sprintf(`"%v.%v": spec.MacroV(%v)%v,`, "TODO", "TODO", "TODO", m.FlagParsingDisabled())
+	} else {
+		return fmt.Sprintf(`"%v.%v": spec.MacroI(%v)%v,`, "TODO", "TODO", "TODO", m.FlagParsingDisabled())
+	}
+}
+
+func (m macro) noFlag() string {
+	if m.ImportPath == "github.com/rsteube/carapace-bin/pkg/actions/fs" {
+		return ".NoFlag()"
+	}
+	return ""
 }
