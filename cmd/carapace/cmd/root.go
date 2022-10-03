@@ -4,6 +4,7 @@ package cmd
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
 	"os"
@@ -107,6 +108,8 @@ var rootCmd = &cobra.Command{
 			println(cmd.Version)
 		case "--list":
 			printCompleters()
+		case "--list=json":
+			printCompletersJson()
 		case "--style":
 			if len(args) > 1 {
 				if err := setStyle(args[1]); err != nil {
@@ -143,7 +146,11 @@ var rootCmd = &cobra.Command{
 				fmt.Fprintln(os.Stderr, "could not determine shell")
 			}
 		default:
-			invokeCompleter(args[0])
+			if specPath, err := completers.SpecPath(args[0]); err == nil {
+				specCompletion(specPath, args[1:]...)
+			} else {
+				invokeCompleter(args[0])
+			}
 		}
 
 	},
@@ -168,6 +175,28 @@ func printCompleters() {
 
 	for _, name := range completers.Names() {
 		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, completers.Description(name))
+	}
+}
+
+func printCompletersJson() {
+	// TODO move to completers package
+	type _completer struct {
+		Name        string
+		Description string
+		Spec        string
+	}
+
+	_completers := make([]_completer, 0)
+	for _, name := range completers.Names() {
+		specPath, _ := completers.SpecPath(name) // TODO handle error (log?)
+		_completers = append(_completers, _completer{
+			Name:        name,
+			Description: completers.Description(name),
+			Spec:        specPath,
+		})
+	}
+	if m, err := json.Marshal(_completers); err == nil { // TODO handle error (log?)
+		fmt.Println(string(m))
 	}
 }
 
