@@ -3,13 +3,15 @@
 With `--bridge` completions from other engines can be bridged for shells not natively supported by it.
 
 ```sh
-carapace --bridge [command]/[argcomplete|cobra|posener]
+carapace --bridge [command]/[argcomplete|carapace|click|fish|cobra|posener]
 ```
 
 Currently supported are:
 - [fish-shell/fish-shell](https://github.com/fish-shell/fish-shell)
 - [kislyuk/argcomplete](https://github.com/kislyuk/argcomplete)
+- [pallets/click](https://github.com/pallets/click)
 - [posener/complete](https://github.com/posener/complete)
+- [rsteube/carapace](https://github.com/rsteube/carapace) (for [macros](./spec/macros.md))
 - [spf13/cobra](https://github.com/spf13/cobra)
 
 E.g. for [vault](https://www.vaultproject.io/):
