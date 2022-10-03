@@ -58,10 +58,12 @@ func flagCmd(args []string) *cobra.Command {
 				return os.ActionPathExecutables().Invoke(c).Suffix("/").ToA()
 			case 1:
 				return carapace.ActionValuesDescribed(
-					"argcomplete", "kislyuk/argcomplete based completion like gcloud",
-					"cobra", "spf13/cobra based completions like docker and kubectl",
-					"fish", "completions registered in fish shell",
-					"posener", "posener/complete based completion like hashicorp tools",
+					"argcomplete", "github.com/kislyuk/argcomplete",
+					"carapace", "github.com/rsteube/carapace",
+					"click", "github.com/pallets/click",
+					"cobra", "github.com/spf13/cobra",
+					"fish", "github.com/fish-shell/fish-shell",
+					"posener", "github.com/posener/complete",
 				)
 			default:
 				return carapace.ActionValues()
