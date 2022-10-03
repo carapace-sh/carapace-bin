@@ -183,7 +183,7 @@ func printCompletersJson() {
 	type _completer struct {
 		Name        string
 		Description string
-		Spec        string
+		Spec        string `json:",omitempty"`
 	}
 
 	_completers := make([]_completer, 0)
