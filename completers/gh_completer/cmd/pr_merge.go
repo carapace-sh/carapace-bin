@@ -15,6 +15,7 @@ var pr_mergeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pr_mergeCmd).Standalone()
 	pr_mergeCmd.Flags().Bool("admin", false, "Use administrator privileges to merge a pull request that does not meet requirements")
+	pr_mergeCmd.Flags().StringP("author-email", "A", "", "Email `text` for merge commit author")
 	pr_mergeCmd.Flags().Bool("auto", false, "Automatically merge only after necessary requirements are met")
 	pr_mergeCmd.Flags().StringP("body", "b", "", "Body `text` for the merge commit")
 	pr_mergeCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")

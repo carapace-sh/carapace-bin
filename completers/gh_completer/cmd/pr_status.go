@@ -14,9 +14,10 @@ var pr_statusCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(pr_statusCmd).Standalone()
+	pr_statusCmd.Flags().BoolP("conflict-status", "c", false, "Display the merge conflict status of each pull request")
 	pr_statusCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	pr_statusCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
-	pr_statusCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	pr_statusCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	prCmd.AddCommand(pr_statusCmd)
 
 	carapace.Gen(pr_statusCmd).FlagCompletion(carapace.ActionMap{

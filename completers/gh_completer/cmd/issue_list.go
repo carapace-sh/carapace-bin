@@ -28,7 +28,7 @@ func init() {
 	issue_listCmd.Flags().StringP("milestone", "m", "", "Filter by milestone number or title")
 	issue_listCmd.Flags().StringP("search", "S", "", "Search issues with `query`")
 	issue_listCmd.Flags().StringP("state", "s", "open", "Filter by state: {open|closed|all}")
-	issue_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	issue_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	issue_listCmd.Flags().BoolP("web", "w", false, "List issues in the web browser")
 	issueCmd.AddCommand(issue_listCmd)
 

@@ -29,7 +29,7 @@ func init() {
 	pr_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of items to fetch")
 	pr_listCmd.Flags().StringP("search", "S", "", "Search pull requests with `query`")
 	pr_listCmd.Flags().StringP("state", "s", "open", "Filter by state: {open|closed|merged|all}")
-	pr_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	pr_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	pr_listCmd.Flags().BoolP("web", "w", false, "List pull requests in the web browser")
 	prCmd.AddCommand(pr_listCmd)
 

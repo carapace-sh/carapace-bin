@@ -21,7 +21,7 @@ func init() {
 	label_listCmd.Flags().String("order", "asc", "Order of labels returned: {asc|desc}")
 	label_listCmd.Flags().StringP("search", "S", "", "Search label names and descriptions")
 	label_listCmd.Flags().String("sort", "created", "Sort fetched labels: {created|name}")
-	label_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	label_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	label_listCmd.Flags().BoolP("web", "w", false, "List labels in the web browser")
 	labelCmd.AddCommand(label_listCmd)
 
