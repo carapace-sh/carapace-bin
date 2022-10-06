@@ -20,7 +20,7 @@ func init() {
 	run_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	run_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	run_listCmd.Flags().IntP("limit", "L", 20, "Maximum number of runs to fetch")
-	run_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	run_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	run_listCmd.Flags().StringP("user", "u", "", "Filter runs by user who triggered the run")
 	run_listCmd.Flags().StringP("workflow", "w", "", "Filter runs by workflow")
 	runCmd.AddCommand(run_listCmd)

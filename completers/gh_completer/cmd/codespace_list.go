@@ -21,7 +21,7 @@ func init() {
 	codespace_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of codespaces to list")
 	codespace_listCmd.Flags().StringP("org", "o", "", "The `login` handle of the organization to list codespaces for (admin-only)")
 	codespace_listCmd.Flags().StringP("repo", "r", "", "Repository name with owner: user/repo")
-	codespace_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	codespace_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	codespace_listCmd.Flags().StringP("user", "u", "", "The `username` to list codespaces for (used with --org)")
 	codespaceCmd.AddCommand(codespace_listCmd)
 

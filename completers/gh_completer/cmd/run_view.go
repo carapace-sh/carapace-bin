@@ -20,7 +20,7 @@ func init() {
 	run_viewCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	run_viewCmd.Flags().Bool("log", false, "View full log for either a run or specific job")
 	run_viewCmd.Flags().Bool("log-failed", false, "View the log for any failed steps in a run or specific job")
-	run_viewCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	run_viewCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	run_viewCmd.Flags().BoolP("verbose", "v", false, "Show job steps")
 	run_viewCmd.Flags().BoolP("web", "w", false, "Open run in the browser")
 	runCmd.AddCommand(run_viewCmd)

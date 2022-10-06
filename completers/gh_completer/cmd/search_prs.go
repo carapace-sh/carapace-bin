@@ -52,7 +52,7 @@ func init() {
 	search_prsCmd.Flags().String("reactions", "", "Filter on `number` of reactions")
 	search_prsCmd.Flags().StringSlice("repo", []string{}, "Filter on repository")
 	search_prsCmd.Flags().String("review", "", "Filter based on review status: {none|required|approved|changes_requested}")
-	search_prsCmd.Flags().String("review-requested", "", "Filter on `user` requested to review")
+	search_prsCmd.Flags().String("review-requested", "", "Filter on `user` or team requested to review")
 	search_prsCmd.Flags().String("reviewed-by", "", "Filter on `user` who reviewed")
 	search_prsCmd.Flags().String("sort", "best-match", "Sort fetched results: {comments|reactions|reactions-+1|reactions--1|reactions-smile|reactions-thinking_face|reactions-heart|reactions-tada|interactions|created|updated}")
 	search_prsCmd.Flags().String("state", "", "Filter based on state: {open|closed}")

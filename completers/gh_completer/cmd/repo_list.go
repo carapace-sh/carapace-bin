@@ -24,7 +24,7 @@ func init() {
 	repo_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of repositories to list")
 	repo_listCmd.Flags().Bool("no-archived", false, "Omit archived repositories")
 	repo_listCmd.Flags().Bool("source", false, "Show only non-forks")
-	repo_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	repo_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	repo_listCmd.Flags().String("topic", "", "Filter by topic")
 	repo_listCmd.Flags().String("visibility", "", "Filter by repository visibility: {public|private|internal}")
 	repoCmd.AddCommand(repo_listCmd)
