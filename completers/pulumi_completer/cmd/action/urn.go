@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-type StackExport struct {
+type Stack struct {
 	Deployment struct {
 		Resources []struct {
 			Urn string `json:"urn"`
@@ -24,12 +24,12 @@ func ActionUrns(cmd *cobra.Command) carapace.Action {
 
 		c.Setenv("PULUMI_SKIP_UPDATE_CHECK", "1")
 		return carapace.ActionExecCommand("pulumi", "stack", "export", "--cwd", cwd, "--stack", stack)(func(output []byte) carapace.Action {
-			var exp StackExport
-			if err := json.Unmarshal(output, &exp); err != nil {
+			var stack Stack
+			if err := json.Unmarshal(output, &stack); err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
-			urns := make([]string, len(exp.Deployment.Resources))
-			for i, r := range exp.Deployment.Resources {
+			urns := make([]string, len(stack.Deployment.Resources))
+			for i, r := range stack.Deployment.Resources {
 				urns[i] = r.Urn
 			}
 			return carapace.ActionValues(urns...)
