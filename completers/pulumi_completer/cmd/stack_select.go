@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/pulumi_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 	stack_selectCmd.PersistentFlags().BoolP("create", "c", false, "If selected stack does not exist, create it")
 	stack_selectCmd.PersistentFlags().String("secrets-provider", "default", "Use with --create flag, The type of the provider that should be used to encrypt and decrypt secrets")
 	stackCmd.AddCommand(stack_selectCmd)
+
+	carapace.Gen(stack_selectCmd).PositionalCompletion(
+		action.ActionStacks(stack_selectCmd, action.StackOpts{}),
+	)
 }
