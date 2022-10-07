@@ -33,7 +33,7 @@ func ActionUrns(cmd *cobra.Command) carapace.Action {
 				urns[i] = r.Urn
 			}
 			return carapace.ActionValues(urns...)
-		}).Cache(5*time.Second,
+		}).Cache(1*time.Minute,
 			func() (string, error) {
 				workdir := c.Dir
 				if cmd.Flag("cwd").Changed { // TODO use preinvoke?
