@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 type key struct {
@@ -59,7 +60,7 @@ func ActionPublicKeys() carapace.Action {
 				}
 			}
 		}
-		return carapace.ActionValuesDescribed(vals...)
+		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
 	})
 }
 
@@ -91,6 +92,6 @@ func ActionPrivateKeys() carapace.Action {
 				}
 			}
 		}
-		return carapace.ActionValuesDescribed(vals...)
+		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
 	})
 }
