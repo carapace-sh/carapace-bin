@@ -17,9 +17,9 @@ var cpCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(cpCmd).Standalone()
-
-	cpCmd.Flags().StringP("container", "c", "", "Container name. If omitted, the first container in the pod will be chosen")
+	cpCmd.Flags().StringP("container", "c", "", "Container name. If omitted, use the kubectl.kubernetes.io/default-container annotation for selecting the container to be attached or the first container in the pod will be chosen")
 	cpCmd.Flags().Bool("no-preserve", false, "The copied file/directory's ownership and permissions will not be preserved in the container")
+	cpCmd.Flags().Int("retries", 0, "Set number of retries to complete a copy operation from a container. Specify 0 to disable or any negative value for infinite retrying. The default is 0 (no retry).")
 	rootCmd.AddCommand(cpCmd)
 
 	carapace.Gen(cpCmd).FlagCompletion(carapace.ActionMap{

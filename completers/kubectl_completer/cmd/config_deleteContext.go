@@ -14,7 +14,6 @@ var config_deleteContextCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_deleteContextCmd).Standalone()
-
 	configCmd.AddCommand(config_deleteContextCmd)
 
 	carapace.Gen(config_deleteContextCmd).PositionalCompletion(

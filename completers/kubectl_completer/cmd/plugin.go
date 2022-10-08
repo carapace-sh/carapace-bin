@@ -13,6 +13,5 @@ var pluginCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(pluginCmd).Standalone()
-
 	rootCmd.AddCommand(pluginCmd)
 }

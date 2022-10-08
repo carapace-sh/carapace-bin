@@ -7,12 +7,11 @@ import (
 
 var topCmd = &cobra.Command{
 	Use:   "top",
-	Short: "Display Resource (CPU/Memory/Storage) usage",
+	Short: "Display resource (CPU/memory) usage",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(topCmd).Standalone()
-
 	rootCmd.AddCommand(topCmd)
 }

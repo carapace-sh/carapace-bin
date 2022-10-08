@@ -15,9 +15,8 @@ var portForwardCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(portForwardCmd).Standalone()
-
-	portForwardCmd.Flags().String("address", "", "Addresses to listen on (comma separated). Only accepts IP addresses or localhost as a value. When lo")
-	portForwardCmd.Flags().String("pod-running-timeout", "", "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running")
+	portForwardCmd.Flags().StringSlice("address", []string{"localhost"}, "Addresses to listen on (comma separated). Only accepts IP addresses or localhost as a value. When localhost is supplied, kubectl will try to bind on both 127.0.0.1 and ::1 and will fail if neither of these addresses are available to bind.")
+	portForwardCmd.Flags().String("pod-running-timeout", "1m0s", "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running")
 	rootCmd.AddCommand(portForwardCmd)
 
 	carapace.Gen(portForwardCmd).PositionalCompletion(

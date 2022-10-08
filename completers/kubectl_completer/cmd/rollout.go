@@ -13,6 +13,5 @@ var rolloutCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(rolloutCmd).Standalone()
-
 	rootCmd.AddCommand(rolloutCmd)
 }
