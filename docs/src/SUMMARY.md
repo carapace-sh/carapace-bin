@@ -7,6 +7,7 @@
   - [Bridge](./bridge.md)
   - [Style](./style.md)
   - [Spec](./spec.md)
+    - [Bridge](./spec/bride.md)
     - [Examples](./spec/examples.md)
     - [Macros](./spec/macros.md)
   - [Development](./development.md)
