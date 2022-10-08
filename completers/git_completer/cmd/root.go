@@ -68,6 +68,9 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		if _, _, err := cmd.Find(args); len(args) > 1 && err == nil {
+			return // core command - skip aliases and other commands
+		}
 		addAliasCompletion(args)
 		addOtherCommands()
 	})
