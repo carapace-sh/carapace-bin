@@ -14,10 +14,10 @@ var execCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(execCmd).Standalone()
-
-	execCmd.Flags().StringP("container", "c", "", "Container name. If omitted, the first container in the pod will be chosen")
-	execCmd.Flags().StringP("filename", "f", "", "to use to exec into the resource")
-	execCmd.Flags().String("pod-running-timeout", "", "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running")
+	execCmd.Flags().StringP("container", "c", "", "Container name. If omitted, use the kubectl.kubernetes.io/default-container annotation for selecting the container to be attached or the first container in the pod will be chosen")
+	execCmd.Flags().StringSliceP("filename", "f", []string{}, "to use to exec into the resource")
+	execCmd.Flags().String("pod-running-timeout", "1m0s", "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running")
+	execCmd.Flags().BoolP("quiet", "q", false, "Only print output from the remote session")
 	execCmd.Flags().BoolP("stdin", "i", false, "Pass stdin to the container")
 	execCmd.Flags().BoolP("tty", "t", false, "Stdin is a TTY")
 	rootCmd.AddCommand(execCmd)

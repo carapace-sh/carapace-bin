@@ -7,12 +7,11 @@ import (
 
 var clusterInfoCmd = &cobra.Command{
 	Use:   "cluster-info",
-	Short: "Display cluster info",
+	Short: "Display cluster information",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(clusterInfoCmd).Standalone()
-
 	rootCmd.AddCommand(clusterInfoCmd)
 }

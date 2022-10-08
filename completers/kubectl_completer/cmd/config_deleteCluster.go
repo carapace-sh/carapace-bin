@@ -14,7 +14,6 @@ var config_deleteClusterCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_deleteClusterCmd).Standalone()
-
 	configCmd.AddCommand(config_deleteClusterCmd)
 
 	carapace.Gen(config_deleteClusterCmd).PositionalCompletion(
