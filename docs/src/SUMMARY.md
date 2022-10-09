@@ -8,6 +8,7 @@
   - [Style](./style.md)
   - [Spec](./spec.md)
     - [Bridge](./spec/bride.md)
+    - [Embed](./spec/embed.md)
     - [Examples](./spec/examples.md)
     - [Macros](./spec/macros.md)
   - [Development](./development.md)
