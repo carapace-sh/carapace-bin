@@ -1,8 +1,16 @@
 # Bridge
 
+Bridging completions from other engines for shells not natively supported by it is possible with the corresponding [Macro](./macros.md).
+
+> Even when the command supports your current shell it is still beneficial to bridge it as this enables [embedding](./embed.md) like `sudo [spec.name] <TAB>`.
+>
+> It also avoids the issue of [shell startup delay] when sourcing the completion in init scripts otherwise circumvented with [lazycomplete].
+>
+> However, bridging is limited to supported commands/frameworks and how well it actually works.
+
 ## Argcomplete
 
-[kislyuk/argcomplete] based commands can be bridged with the [bridge.Argcomplete(\<COMMAND\>)] macro:
+[kislyuk/argcomplete] based commands can be bridged with the [`bridge.Argcomplete`] macro:
 
 ```yaml
 name: az
@@ -13,7 +21,7 @@ completion:
 
 ## Carapace
 
-[rsteube/carapace] based commands can be bridged with the [bridge.Carapace(\<COMMAND\>)] macro:
+[rsteube/carapace] based commands can be bridged with the [`bridge.Carapace`] macro:
 
 ```yaml
 name: freckles
@@ -24,7 +32,7 @@ completion:
 
 ## CarapaceBin
 
-[Completers](../completers.md) and [Specs](../spec.md) registered in [rsteube/carapace-bin] can be bridged with the [bridge.CarapaceBin(\<COMMAND\>)] macro:
+[Completers](../completers.md) and [Specs](../spec.md) registered in [rsteube/carapace-bin] can be bridged with the [`bridge.CarapaceBin`] macro:
 
 ```yaml
 name: gh
@@ -35,7 +43,7 @@ completion:
 
 ## Click
 
-[pallets/click] based commands can be bridged with the [bridge.Click(\<COMMAND\>)] macro:
+[pallets/click] based commands can be bridged with the [`bridge.Click`] macro:
 
 ```yaml
 name: watson
@@ -46,7 +54,7 @@ completion:
 
 ## Cobra
 
-[spf13/cobra] based commands can be bridged with the [bridge.Cobra(\<COMMAND\>)] macro:
+[spf13/cobra] based commands can be bridged with the [`bridge.Cobra`] macro:
 
 ```yaml
 name: kubectl
@@ -57,7 +65,7 @@ completion:
 
 ## Fish
 
-Commands registered in [fish-shell/fish-shell] can be bridged with the [bridge.Fish(\<COMMAND\>)] macro:
+Commands registered in [fish-shell/fish-shell] can be bridged with the [`bridge.Fish`] macro:
 
 ```yaml
 name:  git
@@ -67,7 +75,7 @@ completion:
 ````
 
 ## Posener (TODO: rename to `Complete`)
-[posener/complete] based commands can be bridged with the [bridge.Posener(\<COMMAND\>)] macro:
+[posener/complete] based commands can be bridged with the [`bridge.Posener`] macro:
 
 ```yaml
 name: vault
@@ -77,23 +85,27 @@ completion:
 ````
 
 
+[lazycomplete]:https://github.com/rsteube/lazycomplete
+[shell startup delay]:https://jzelinskie.com/posts/dont-recommend-sourcing-shell-completion/
+
+
 [kislyuk/argcomplete]:https://github.com/kislyuk/argcomplete
-[bridge.Argcomplete(\<COMMAND\>)]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionArgcomplete
+[`bridge.Argcomplete`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionArgcomplete
 
 [rsteube/carapace]:https://github.com/rsteube/carapace
-[bridge.Carapace(\<COMMAND\>)]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionCarapace
+[`bridge.Carapace`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionCarapace
 
 [rsteube/carapace-bin]:https://github.com/rsteube/carapace-bin
-[bridge.CarapaceBin(\<COMMAND\>)]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionCarapaceBin
+[`bridge.CarapaceBin`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionCarapaceBin
 
 [pallets/click]:https://github.com/pallets/click
-[bridge.Click(\<COMMAND\>)]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionClick
+[`bridge.Click`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionClick
 
 [spf13/cobra]:https://github.com/spf13/cobra
-[bridge.Cobra(\<COMMAND\>)]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionCobra
+[`bridge.Cobra`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionCobra
 
 [fish-shell/fish-shell]:https://github.com/fish-shell/fish-shell
-[bridge.Fish(\<COMMAND\>)]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionFish
+[`bridge.Fish`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionFish
 
 [posener/complete]:https://github.com/posener/complete
-[bridge.Posener(\<COMMAND\>)]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionPosener
+[`bridge.Posener`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionPosener
