@@ -1,29 +1,29 @@
 # Style
 
-[Text transformations](https://elv.sh/ref/builtin.html#styled) can be configured for various elements.
+[Text transformations](https://elv.sh/ref/builtin.html#styled) can be applied to files and specific values.
 
 > This is only supported in [elvish], [powershell] and [zsh].
 
-## Filename
+## File
 
-Filenames can be configured with the `LS_COLORS` environment variable (e.g. using [vivid]):
+Files can be styled with the `LS_COLORS` environment variable (e.g. using [vivid]):
 
 ```sh
 # elvish
-set E:LS_COLORS = (vivid generate dracula)
+set-env LS_COLORS (vivid generate dracula)
 
 # powershell
 $env:LS_COLORS = (vivid generate dracula)
 
 # zsh
-export LS_COLORS="$(vivid generate dracula)"
+export LS_COLORS=$(vivid generate dracula)
 ```
 
 ![](./style-filename.cast)
 
-# Value
+## Value
 
-Values can be configured with `carapace --style 'key=value'`
+Values can be styled with `carapace --style 'key=value'`
 
 ```sh
 # set

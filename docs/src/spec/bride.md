@@ -1,6 +1,6 @@
 # Bridge
 
-Bridging completions from other engines for shells not natively supported by it is possible with the corresponding [Macro](./macros.md).
+Bridging completions from another engine for shells not natively supported by it is possible with the corresponding [Macro](./macros.md).
 
 > Even when the command supports your current shell it is still beneficial to bridge it as this enables [embedding](./embed.md) like `sudo [spec.name] <TAB>`.
 >
