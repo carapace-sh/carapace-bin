@@ -6,8 +6,8 @@ src = "src"
 title = "carapace-bin"
 
 [output.html]
-default-theme = "Coal"
-additional-css = ["asciinema/asciinema-player.css"]
+default-theme = "Mocha"
+additional-css = ["asciinema/asciinema-player.css", "./theme/catppuccin.css", "./theme/catppuccin-highlight.css"]
 additional-js = ["asciinema/asciinema-player.min.js", "asciinema/load.js"]
 
 #[output.linkcheck]
