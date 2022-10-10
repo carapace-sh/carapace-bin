@@ -10,6 +10,8 @@ completion:
     - ["$_tools.git.LsRemoteRefs({url: 'https://github.com/${C_ARG0}', branches: true, tags: true})"]
 ```
 
+![](./examples-github.cast)
+
 ## zipfile.yaml
 
 ```yaml
