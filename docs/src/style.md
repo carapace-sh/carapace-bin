@@ -1,9 +1,13 @@
 # Style
 
-Style is only supported in [elvish], [powershell] and [zsh].
+With `carapace --style` [text transformations](https://elv.sh/ref/builtin.html#styled) can be configured.
+
+> This is only supported in [elvish], [powershell] and [zsh].
 
 ## Filename
-Filenames can be configured with the `LS_COLORS` environment variable - e.g with [vivid]:
+
+Filenames can be configured with the `LS_COLORS` environment variable (e.g. using [vivid]):
+
 ```sh
 # elvish
 set E:LS_COLORS = (vivid generate dracula)
@@ -15,7 +19,7 @@ $env:LS_COLORS = (vivid generate dracula)
 export LS_COLORS="$(vivid generate dracula)"
 ```
 
-![](./ls_colors.png)
+![](./style-filename.cast)
 
 # Value
 
@@ -29,7 +33,8 @@ carapace --style 'carapace.Value=bold,magenta'
 carapace --style 'carapace.Description='
 ```
 
-![](./style-config.png)
+![]()
+![](./style-value.cast)
 
 
 [Elvish]:https://elv.sh/
