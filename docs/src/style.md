@@ -1,6 +1,6 @@
 # Style
 
-With `carapace --style` [text transformations](https://elv.sh/ref/builtin.html#styled) can be configured.
+[Text transformations](https://elv.sh/ref/builtin.html#styled) can be configured for various elements.
 
 > This is only supported in [elvish], [powershell] and [zsh].
 
