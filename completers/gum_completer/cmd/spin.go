@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gum_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gum"
 	"github.com/spf13/cobra"
 )
 
@@ -60,8 +60,8 @@ func _spinCmd() *cobra.Command {
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"align":              carapace.ActionValues("left", "right"),
 		"spinner":            carapace.ActionValues("line", "dot", "minidot", "jump", "pulse", "points", "globe", "moon", "monkey", "meter", "hamburger"),
-		"spinner.foreground": action.ActionColors(),
-		"title.foreground":   action.ActionColors(),
+		"spinner.foreground": gum.ActionColors(),
+		"title.foreground":   gum.ActionColors(),
 	})
 
 	carapace.Gen(cmd).PositionalCompletion(

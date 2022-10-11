@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gum_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gum"
 	"github.com/spf13/cobra"
 )
 
@@ -25,8 +25,8 @@ func init() {
 	rootCmd.AddCommand(confirmCmd)
 
 	carapace.Gen(confirmCmd).FlagCompletion(carapace.ActionMap{
-		"prompt.foreground":     action.ActionColors(),
-		"selected.foreground":   action.ActionColors(),
-		"unselected.foreground": action.ActionColors(),
+		"prompt.foreground":     gum.ActionColors(),
+		"selected.foreground":   gum.ActionColors(),
+		"unselected.foreground": gum.ActionColors(),
 	})
 }

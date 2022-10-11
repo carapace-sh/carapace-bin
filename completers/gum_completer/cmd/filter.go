@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gum_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gum"
 	"github.com/spf13/cobra"
 )
 
@@ -34,11 +34,11 @@ func init() {
 	rootCmd.AddCommand(filterCmd)
 
 	carapace.Gen(filterCmd).FlagCompletion(carapace.ActionMap{
-		"indicator.foreground":          action.ActionColors(),
-		"match.foreground":              action.ActionColors(),
-		"prompt.foreground":             action.ActionColors(),
-		"selected-indicator.foreground": action.ActionColors(),
-		"text.foreground":               action.ActionColors(),
-		"unselected-prefix.foreground":  action.ActionColors(),
+		"indicator.foreground":          gum.ActionColors(),
+		"match.foreground":              gum.ActionColors(),
+		"prompt.foreground":             gum.ActionColors(),
+		"selected-indicator.foreground": gum.ActionColors(),
+		"text.foreground":               gum.ActionColors(),
+		"unselected-prefix.foreground":  gum.ActionColors(),
 	})
 }

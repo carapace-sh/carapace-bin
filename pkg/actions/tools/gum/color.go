@@ -1,4 +1,4 @@
-package action
+package gum
 
 import (
 	"strings"
@@ -7,6 +7,10 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/color"
 )
 
+// ActionColors completes colors
+//
+//	121 (LightGreen)
+//	#00afff (DeepSkyBlue1)
 func ActionColors() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if strings.HasPrefix(c.CallbackValue, "#") {
