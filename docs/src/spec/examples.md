@@ -22,7 +22,6 @@ completion:
   positionalany: ["$_fs.ZipFileContents(${C_ARG0})"] # ${C_ARG1},${C_ARG2},...
 ```
 
-![]()
 ![](./examples-zipfile.cast)
 
 ## refs.yaml
@@ -39,7 +38,6 @@ completion:
     - ["$_tools.git.Refs"] # default
 ```
 
-![]()
 ![](./examples-refs.cast)
 
 ## embed.yaml
@@ -52,5 +50,4 @@ commands:
       positionalany: ["$chdir(~/.password-store)", "$_bridge.CarapaceBin(git)"]
 ```
 
-![]()
 ![](./examples-embed.cast)

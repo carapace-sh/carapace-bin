@@ -33,7 +33,6 @@ carapace --style 'carapace.Value=bold,magenta'
 carapace --style 'carapace.Description='
 ```
 
-![]()
 ![](./style-value.cast)
 
 
