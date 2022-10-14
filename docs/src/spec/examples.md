@@ -39,15 +39,3 @@ completion:
 ```
 
 ![](./examples-refs.cast)
-
-## embed.yaml
-
-```yaml
-name: embed
-commands:
-  - name: git
-    completion:
-      positionalany: ["$chdir(~/.password-store)", "$_bridge.CarapaceBin(git)"]
-```
-
-![](./examples-embed.cast)

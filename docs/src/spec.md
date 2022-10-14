@@ -31,10 +31,6 @@ exec($(carapace --spec example.yaml))
 source <(carapace --spec example.yaml) 
 ```
 
-## Autoloading
-
-`carapace _carapace` automatically loads specs placed in [`${UserConfigDir}/carapace/specs`](https://pkg.go.dev/os#UserConfigDir).
-
 ## Custom Macros
 
 Carapace provides a range of [custom macros](./specs/macros.md):
