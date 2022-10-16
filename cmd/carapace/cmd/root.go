@@ -110,6 +110,12 @@ var rootCmd = &cobra.Command{
 			printCompleters()
 		case "--list=json":
 			printCompletersJson()
+		case "--schema":
+			if schema, err := spec.Schema(); err != nil {
+				fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
+			} else {
+				fmt.Fprintln(cmd.OutOrStdout(), schema)
+			}
 		case "--style":
 			if len(args) > 1 {
 				if err := setStyle(args[1]); err != nil {
