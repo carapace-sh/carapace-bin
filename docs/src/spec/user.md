@@ -1,6 +1,6 @@
 # User
 
-User defined [Specs] are automatically loaded by `carapace _carapace` from [`${UserConfigDir}/.config/carapace/specs`](https://pkg.go.dev/os#UserConfigDir).
+User defined [Specs] are automatically loaded by `carapace _carapace` from [`${UserConfigDir}/carapace/specs`](https://pkg.go.dev/os#UserConfigDir).
 
 > Added files initially need a new shell to be started for it to be registered with `carapace _carapace`.
 > Afterwards any change to it has an immediate effect.
@@ -20,7 +20,7 @@ completion:
 
 ## JSON Schema
 
-A [JSON Schema](http://json-schema.org/) is automatically written to [`${UserConfigDir}/.config/carapace/schema.json`](https://pkg.go.dev/os#UserConfigDir).
+A [JSON Schema](http://json-schema.org/) is automatically written to [`${UserConfigDir}/carapace/schema.json`](https://pkg.go.dev/os#UserConfigDir).
 It can be used by adding the following header to the [Specs]:
 
 ```yaml
