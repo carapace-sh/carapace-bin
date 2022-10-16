@@ -9,12 +9,12 @@ github.com/pelletier/go-toml v1.9.5 h1:4yBQzkHv+7BHq2PQUZF3Mx0IYxG7LsP222s7Agd3v
 github.com/pelletier/go-toml v1.9.5/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCkoOuaOx1Y+c=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/rsteube/carapace v0.25.0 h1:8tqNZE9ftHMFOl54dBmvPSNbce3+bgvlynhcRPmdrAw=
-github.com/rsteube/carapace v0.25.0/go.mod h1:3N1bLcmfoBOn0WwCniEhVF52AqvN//zyV1JrtT52ECw=
+github.com/rsteube/carapace v0.25.1 h1:zF6gJqrQ82fPv15A8APh2giAjj/IXX1ENri/svNm7VY=
+github.com/rsteube/carapace v0.25.1/go.mod h1:3N1bLcmfoBOn0WwCniEhVF52AqvN//zyV1JrtT52ECw=
 github.com/rsteube/carapace-pflag v0.0.4 h1:Onb0cLNLxg1xJr2EsMlBldAI5KkybrvZ89b5cRElZXI=
 github.com/rsteube/carapace-pflag v0.0.4/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
-github.com/rsteube/carapace-spec v0.1.0 h1:w3p43xryGXtobyKWsc9HgZV3LK0dJql2ZPkfIrUewZc=
-github.com/rsteube/carapace-spec v0.1.0/go.mod h1:G4Nv/51y1Rb6DXFZom1OqYxj4t0jhoAaqA0gRApsB4Y=
+github.com/rsteube/carapace-spec v0.1.1 h1:KuI5U/e/pYepB5Ktzx4IwN5peIypKlmRuZkVnFq1jzM=
+github.com/rsteube/carapace-spec v0.1.1/go.mod h1:iEWy7r/NJG/pkCKeBsUJrEWKiuPK0+6ktWifvNoqHSg=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/spf13/cobra v1.6.0 h1:42a0n6jwCot1pUmomAp4T7DeMD+20LFv4Q54pxLf2LI=
 github.com/spf13/cobra v1.6.0/go.mod h1:IOw/AERYS7UzyrGinqmz6HLUo219MORXGxhbaJUqzrY=
