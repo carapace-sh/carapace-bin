@@ -18,4 +18,13 @@ completion:
   positionalany: ["$_bridge.Cobra(kubectl)"]
 ```
 
+## JSON Schema
+
+A [JSON Schema](http://json-schema.org/) is automatically written to [`${UserConfigDir}/.config/carapace/schema.json`](https://pkg.go.dev/os#UserConfigDir).
+It can be used by adding the following header to the [Specs]:
+
+```yaml
+# yaml-language-server: $schema=../schema.json
+```
+
 [Specs]:../spec.md

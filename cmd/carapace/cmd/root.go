@@ -12,6 +12,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	spec "github.com/rsteube/carapace-spec"
@@ -79,6 +80,10 @@ var rootCmd = &cobra.Command{
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers.Names(),
 	Run: func(cmd *cobra.Command, args []string) {
+		if err := updateSchema(); err != nil {
+			fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+		}
+
 		// since flag parsing is disabled do this manually
 		switch args[0] {
 		case "--bridge":
@@ -273,6 +278,45 @@ func setStyle(s string) error {
 		return style.Set(splitted[0], splitted[1])
 	}
 	return fmt.Errorf("invalid format: '%v'", s)
+}
+
+func updateSchema() error {
+	confDir, err := os.UserConfigDir()
+	if err != nil {
+		return err
+	}
+	path := fmt.Sprintf("%v/carapace/schema.json", confDir)
+
+	infoSchema, err := os.Stat(path)
+	if err != nil && !os.IsNotExist(err) {
+		return err
+	}
+
+	executable, err := os.Executable()
+	if err != nil && !os.IsNotExist(err) {
+		return err
+	}
+
+	infoCarapace, err := os.Stat(executable)
+	if err != nil && !os.IsNotExist(err) {
+		return err
+	}
+
+	if infoSchema == nil || !infoSchema.ModTime().Equal(infoCarapace.ModTime()) {
+		schema, err := spec.Schema()
+		if err != nil && !os.IsNotExist(err) {
+			return err
+		}
+
+		if err := os.WriteFile(path, []byte(schema), os.ModePerm); err != nil {
+			return err
+		}
+
+		if err := os.Chtimes(path, time.Now(), infoCarapace.ModTime()); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func Execute(version string) error {
