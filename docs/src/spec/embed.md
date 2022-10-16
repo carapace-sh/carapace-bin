@@ -14,7 +14,7 @@ commands:
 
 ## Plugin
 
-Embedding also internally used to enable plugin completion for tools like `cargo-[plugin]`, `gh-[plugin]`, `git-[plugin]`. Simply add a [Spec](../spec.md) with the corresponding name.
+Embedding is also internally used to enable plugin completion for tools like `cargo-[plugin]`, `gh-[plugin]`, `git-[plugin]`. Simply add a [Spec](../spec.md) with the corresponding name.
 
 E.g. the [gh-repo-collab](https://github.com/mislav/gh-repo-collab) extension for [GitHub CLI](https://cli.github.com/):
 
