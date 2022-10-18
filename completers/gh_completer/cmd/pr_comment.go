@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(pr_commentCmd).Standalone()
 	pr_commentCmd.Flags().StringP("body", "b", "", "The comment body `text`")
 	pr_commentCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
+	pr_commentCmd.Flags().Bool("edit-last", false, "Edit the last comment of the same author")
 	pr_commentCmd.Flags().BoolP("editor", "e", false, "Skip prompts and open the text editor to write the body in")
 	pr_commentCmd.Flags().BoolP("web", "w", false, "Open the web browser to write the comment")
 	prCmd.AddCommand(pr_commentCmd)

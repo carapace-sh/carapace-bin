@@ -14,6 +14,7 @@ var release_deleteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(release_deleteCmd).Standalone()
+	release_deleteCmd.Flags().Bool("cleanup-tag", false, "Delete the specified tag in addition to its release")
 	release_deleteCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt")
 	releaseCmd.AddCommand(release_deleteCmd)
 
