@@ -48,7 +48,7 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"build-repo": git.ActionRepositorySearch(),
+		"build-repo": git.ActionRepositorySearch(git.SearchOpts{}.Default()),
 		"controller": carapace.ActionValues("deployment", "daemonSet", "replicationController"),
 		"out":        carapace.ActionFiles(),
 		"service-group-mode": carapace.ActionValuesDescribed(

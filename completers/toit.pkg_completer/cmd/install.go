@@ -32,7 +32,7 @@ func init() {
 				case 0:
 					return carapace.Batch(
 						action.ActionPackages(),
-						git.ActionRepositorySearch(), // TODO verify if https prefix is ok
+						git.ActionRepositorySearch(git.SearchOpts{}.Default()), // TODO verify if https prefix is ok
 					).ToA()
 				case 1:
 					return action.ActionPackageVersions(c.Parts[0])
