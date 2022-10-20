@@ -23,7 +23,7 @@ func init() {
 			if registry_addCmd.Flag("local").Changed {
 				return carapace.ActionDirectories()
 			}
-			return git.ActionRepositorySearch()
+			return git.ActionRepositorySearch(git.SearchOpts{}.Default())
 		}),
 	)
 }

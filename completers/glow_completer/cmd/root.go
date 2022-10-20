@@ -47,7 +47,7 @@ func init() {
 				}
 				return carapace.ActionValues()
 			}),
-			git.ActionRepositorySearch(),
+			git.ActionRepositorySearch(git.SearchOpts{}.Default()),
 		).ToA(),
 	)
 }

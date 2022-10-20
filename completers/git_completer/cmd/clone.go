@@ -62,7 +62,7 @@ func init() {
 	})
 
 	carapace.Gen(cloneCmd).PositionalCompletion(
-		git.ActionRepositorySearch(),
+		git.ActionRepositorySearch(git.SearchOpts{}.Default()),
 		carapace.ActionDirectories(),
 	)
 }

@@ -25,7 +25,7 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.Batch(
 				git.ActionRemoteUrls(c.Args[0]),
-				git.ActionRepositorySearch(),
+				git.ActionRepositorySearch(git.SearchOpts{}.Default()),
 			).ToA()
 		}),
 	)

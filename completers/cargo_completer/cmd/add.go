@@ -58,7 +58,7 @@ func init() {
 			return carapace.ActionValues()
 		}),
 		"git": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRepositorySearch()
+			return git.ActionRepositorySearch(git.SearchOpts{}.Default())
 		}),
 		"path":    carapace.ActionDirectories(),
 		"upgrade": carapace.ActionValuesDescribed("none", "patch", "minor", "all", "default"),

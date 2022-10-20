@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/go_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +29,21 @@ func init() {
 	mod_editCmd.Flags().StringS("require", "require", "", "add a requirement")
 	modCmd.AddCommand(mod_editCmd)
 
+	// TODO complete more flags
 	carapace.Gen(mod_editCmd).FlagCompletion(carapace.ActionMap{
-		"module": carapace.ActionFiles(),
+		"droprequire": action.ActionModules(false),
+		"module":      carapace.ActionFiles(),
+		"require": carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				opts := git.SearchOpts{}.Default()
+				opts.Prefix = false
+				return git.ActionRepositorySearch(opts)
+			case 1:
+				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + c.Parts[0], Tags: true})
+			default:
+				return carapace.ActionValues()
+			}
+		}),
 	})
 }

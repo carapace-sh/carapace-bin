@@ -9,24 +9,52 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type SearchOpts struct {
+	Prefix bool
+	Github bool
+	Gitlab bool
+}
+
+func (o SearchOpts) Default() SearchOpts {
+	o.Prefix = true
+	o.Github = true
+	o.Gitlab = true
+	return o
+}
+
+func (o SearchOpts) Hosts() []string {
+	hosts := make([]string, 0)
+	if o.Github {
+		hosts = append(hosts, "github.com")
+	}
+	if o.Gitlab {
+		hosts = append(hosts, "gitlab.com")
+	}
+	return hosts
+}
+
 // ActionRepositorySearch completes repositories from github.com and gitlab.com
 //
 //	https://github.com/spf13/cobra
 //	https://gitlab.com/gitlab-org/gitlab-runner
-func ActionRepositorySearch() carapace.Action {
+func ActionRepositorySearch(opts SearchOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		prefix := "https://"
-		if !strings.HasPrefix(c.CallbackValue, prefix) {
-			return carapace.ActionValues(prefix).NoSpace()
+		prefix := ""
+		if opts.Prefix {
+			prefix = "https://"
+			if !strings.HasPrefix(c.CallbackValue, prefix) {
+				return carapace.ActionValues(prefix).NoSpace()
+			}
+			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, prefix)
 		}
-		c.CallbackValue = strings.TrimPrefix(c.CallbackValue, prefix)
 
 		if !strings.Contains(c.CallbackValue, "/") {
-			return carapace.ActionValues("github.com", "gitlab.com").Invoke(c).Prefix(prefix).Suffix("/").ToA().NoSpace()
+			return carapace.ActionValues(opts.Hosts()...).Invoke(c).Prefix(prefix).Suffix("/").ToA().NoSpace()
 		}
 
 		// TODO create repo completer with confighost prefix then use carapace.Batch for github.com/gitlab.com
-		if strings.HasPrefix(c.CallbackValue, "github.com/") {
+		switch strings.SplitAfter(c.CallbackValue, "/")[0] {
+		case "github.com/":
 			splitted := strings.Split(c.CallbackValue, "/")
 			switch len(splitted) {
 			case 0:
@@ -35,11 +63,12 @@ func ActionRepositorySearch() carapace.Action {
 				c.CallbackValue = strings.TrimPrefix(c.CallbackValue, splitted[0]+"/")
 				return gh.ActionOwnerRepositories(&cobra.Command{}).Invoke(c).Prefix(prefix + splitted[0] + "/").ToA()
 			}
-		}
 
-		if strings.HasPrefix(c.CallbackValue, "gitlab.com/") {
+		case "gitlab.com/":
 			return glab.ActionRepo(&cobra.Command{}).Invoke(c).Prefix(prefix).ToA() // TODO supports hosts
+
+		default:
+			return carapace.ActionValues()
 		}
-		return carapace.ActionValues()
 	})
 }
