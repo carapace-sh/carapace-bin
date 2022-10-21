@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/go_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +24,7 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.Batch(
 				action.ActionPackages(),
-				action.ActionModules(true),
+				golang.ActionModules(golang.ModuleOpts{Direct: true, Indirect: true}),
 			).Invoke(c).Merge().ToA()
 		}),
 	)
