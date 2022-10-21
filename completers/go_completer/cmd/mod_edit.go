@@ -31,9 +31,8 @@ func init() {
 	mod_editCmd.Flags().StringS("require", "require", "", "add a requirement")
 	modCmd.AddCommand(mod_editCmd)
 
-	// TODO complete more flags
 	carapace.Gen(mod_editCmd).FlagCompletion(carapace.ActionMap{
-		"dropexclude": golang.ActionModules(golang.ModuleOpts{Exclude: true}),
+		"dropexclude": golang.ActionModules(golang.ModuleOpts{Exclude: true, IncludeVersion: true}),
 		"dropreplace": golang.ActionModules(golang.ModuleOpts{Replace: true}),
 		"droprequire": golang.ActionModules(golang.ModuleOpts{Direct: true, IncludeVersion: false}),
 		"exclude":     golang.ActionModuleSearch(),
@@ -41,7 +40,7 @@ func init() {
 		"replace": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return golang.ActionModules(golang.ModuleOpts{Direct: true, Indirect: true})
+				return golang.ActionModules(golang.ModuleOpts{Direct: true, Indirect: true}).Invoke(c).Suffix("=").ToA()
 			case 1:
 				if util.HasPathPrefix(c.CallbackValue) {
 					path, err := util.FindReverse(c.Dir, "go.mod")

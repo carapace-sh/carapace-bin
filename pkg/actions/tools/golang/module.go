@@ -1,30 +1,37 @@
 package golang
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
-	"os"
-	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
-type module struct {
-	Path     string
-	Version  string
-	Indirect bool
-	Replace  *struct {
+type mod struct {
+	Module struct {
+		Path string
+	}
+	Go      string
+	Require []struct {
+		Path     string
+		Version  string
+		Indirect bool
+	}
+	Exclude []struct {
 		Path    string
 		Version string
 	}
-	Exclude *struct {
-		Path    string
-		Version string
+	Replace []struct {
+		Old struct {
+			Path string
+		}
+		New struct {
+			Path    string
+			Version string
+		}
 	}
+	Retract interface{}
 }
 
 type ModuleOpts struct {
@@ -46,57 +53,34 @@ func (o ModuleOpts) Default() ModuleOpts {
 //	github.com/rsteube/carapace
 //	github.com/rsteube/carapace-spec@v0.0.1
 func ActionModules(opts ModuleOpts) carapace.Action {
-	return carapace.ActionExecCommand("go", "list", "-m", "-json", "all")(func(output []byte) carapace.Action {
-		dec := json.NewDecoder(bytes.NewReader(output))
-
-		vals := make([]string, 0)
-		for {
-			var m module
-			if err := dec.Decode(&m); err == io.EOF {
-				break
-			} else if err != nil {
-				return carapace.ActionMessage(err.Error())
-
-			}
-			if opts.Direct && !m.Indirect && m.Replace == nil { // TODO Exclude
-				vals = append(vals, formatModule(m.Path, m.Version, opts.IncludeVersion), style.Blue)
-			} else if opts.Indirect && m.Indirect && m.Replace == nil { // TODO Exclude
-				vals = append(vals, formatModule(m.Path, m.Version, opts.IncludeVersion), style.Gray)
-			} else if opts.Replace && m.Replace != nil { // TODO Exclude
-				vals = append(vals, formatModule(m.Path, m.Version, opts.IncludeVersion), style.Magenta)
-			}
-		}
-
-		batch := carapace.Batch(
-			carapace.ActionStyledValues(vals...),
-		)
-		if opts.Exclude {
-			batch = append(batch, actionModuleExcludes(opts.IncludeVersion))
-		}
-
-		return batch.ToA()
-	})
-}
-
-func actionModuleExcludes(includeVersion bool) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		path, err := util.FindReverse(c.Dir, "go.mod")
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-
-		content, err := os.ReadFile(path)
-		if err != nil {
+	return carapace.ActionExecCommand("go", "mod", "edit", "-json")(func(output []byte) carapace.Action {
+		var m mod
+		if err := json.Unmarshal(output, &m); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 
 		vals := make([]string, 0)
-		for _, line := range strings.Split(string(content), "\n") {
-			if strings.HasPrefix(line, "exclude ") {
-				if fields := strings.Fields(line); len(fields) == 3 {
-					vals = append(vals, formatModule(fields[1], fields[2], includeVersion), style.Red)
+		if opts.Direct && m.Require != nil {
+			for _, r := range m.Require {
+				if opts.Direct && !r.Indirect {
+					vals = append(vals, formatModule(r.Path, r.Version, opts.IncludeVersion), style.Blue)
+				} else if opts.Indirect && r.Indirect {
+					vals = append(vals, formatModule(r.Path, r.Version, opts.IncludeVersion), style.Gray)
 				}
 			}
+		}
+
+		if opts.Replace && m.Replace != nil {
+			for _, r := range m.Replace {
+				vals = append(vals, r.Old.Path, style.Magenta)
+			}
+		}
+
+		if opts.Exclude && m.Exclude != nil {
+			for _, r := range m.Exclude {
+				vals = append(vals, formatModule(r.Path, r.Version, opts.IncludeVersion), style.Red)
+			}
+
 		}
 		return carapace.ActionStyledValues(vals...)
 	})
