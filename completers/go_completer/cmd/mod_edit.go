@@ -2,8 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/go_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -31,19 +30,21 @@ func init() {
 
 	// TODO complete more flags
 	carapace.Gen(mod_editCmd).FlagCompletion(carapace.ActionMap{
-		"droprequire": action.ActionModules(false),
+		"dropexclude": golang.ActionModules(golang.ModuleOpts{Exclude: true}),
+		"dropreplace": golang.ActionModules(golang.ModuleOpts{Replace: true}),
+		"droprequire": golang.ActionModules(golang.ModuleOpts{Direct: true, IncludeVersion: false}),
+		"exclude":     golang.ActionModuleSearch(),
 		"module":      carapace.ActionFiles(),
-		"require": carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
+		"replace": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				opts := git.SearchOpts{}.Default()
-				opts.Prefix = false
-				return git.ActionRepositorySearch(opts)
+				return golang.ActionModules(golang.ModuleOpts{Direct: true, Indirect: true})
 			case 1:
-				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + c.Parts[0], Tags: true})
+				return golang.ActionModuleSearch()
 			default:
 				return carapace.ActionValues()
 			}
 		}),
+		"require": golang.ActionModuleSearch(),
 	})
 }

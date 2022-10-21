@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/go_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +20,9 @@ func init() {
 	modCmd.AddCommand(mod_downloadCmd)
 
 	carapace.Gen(mod_downloadCmd).PositionalCompletion(
-		action.ActionModules(false),
+		carapace.Batch(
+			golang.ActionModules(golang.ModuleOpts{Direct: true, Indirect: true, IncludeVersion: true}).Suppress(".*go.mod file not found.*"),
+			golang.ActionModuleSearch(),
+		).ToA(),
 	)
 }
