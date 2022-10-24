@@ -10,6 +10,7 @@
     - [User](./spec/user.md)
     - [Bridge](./spec/bride.md)
     - [Embed](./spec/embed.md)
+    - [Generate](./spec/generate.md)
     - [Examples](./spec/examples.md)
     - [Macros](./spec/macros.md)
   - [Development](./development.md)
