@@ -121,6 +121,10 @@ var rootCmd = &cobra.Command{
 			} else {
 				fmt.Fprintln(cmd.OutOrStdout(), schema)
 			}
+		case "--scrape":
+			if len(args) > 1 {
+				scrape(args[1])
+			}
 		case "--style":
 			if len(args) > 1 {
 				if err := setStyle(args[1]); err != nil {
@@ -327,6 +331,7 @@ func Execute(version string) error {
 func init() {
 	rootCmd.Flags().String("bridge", "", "bridge completion")
 	rootCmd.Flags().Bool("list", false, "list completers")
+	rootCmd.Flags().String("scrape", "", "scrape spec to go code")
 	rootCmd.Flags().String("spec", "", "spec completion")
 	rootCmd.Flags().String("style", "", "set style")
 

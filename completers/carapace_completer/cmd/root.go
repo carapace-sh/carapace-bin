@@ -38,6 +38,7 @@ func flagCmd(args []string) *cobra.Command {
 	cmd.Flags().String("list", "", "list completers")
 	cmd.Flags().String("macros", "test local json schema", "list spec macros")
 	cmd.Flags().Bool("schema", false, "json schema for spec files")
+	cmd.Flags().String("scrape", "", "scrape spec to go code")
 	cmd.Flags().String("spec", "", "spec completion")
 	cmd.Flags().String("style", "", "set style")
 	cmd.Flags().BoolP("version", "v", false, "version for carapace")
@@ -84,8 +85,9 @@ func flagCmd(args []string) *cobra.Command {
 			}
 			return carapace.ActionValuesDescribed(vals...).Invoke(carapace.Context{}).ToMultiPartsA(".")
 		}),
-		"spec":  carapace.ActionFiles(".yaml"),
-		"style": carapace.ActionStyleConfig(),
+		"scrape": carapace.ActionFiles(".yaml"),
+		"spec":   carapace.ActionFiles(".yaml"),
+		"style":  carapace.ActionStyleConfig(),
 	})
 
 	carapace.Gen(cmd).PositionalAnyCompletion(
