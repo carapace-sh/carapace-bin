@@ -11,6 +11,7 @@
     - [Bridge](./spec/bride.md)
     - [Embed](./spec/embed.md)
     - [Generate](./spec/generate.md)
+    - [Scrape](./spec/scrape.md)
     - [Examples](./spec/examples.md)
     - [Macros](./spec/macros.md)
   - [Development](./development.md)

@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/rsteube/carapace-spec"
-	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"
 	"io"
 	"os"
@@ -12,7 +11,7 @@ import (
 	"strings"
 )
 
-func loadSpec(path string) (string, *cobra.Command, error) {
+func loadSpec(path string) (string, *spec.Command, error) {
 	abs, err := filepath.Abs(path)
 	if err != nil {
 		return "", nil, err
@@ -27,7 +26,14 @@ func loadSpec(path string) (string, *cobra.Command, error) {
 	if err := yaml.Unmarshal(content, &specCmd); err != nil {
 		return "", nil, err
 	}
-	return abs, specCmd.ToCobra(), nil
+	return abs, &specCmd, nil
+}
+
+func scrape(path string) {
+	// TODO yuck - all this needs some cleanup
+	if _, spec, err := loadSpec(path); err == nil {
+		spec.Scrape()
+	}
 }
 
 func specCompletion(path string, args ...string) {
@@ -43,10 +49,11 @@ func specCompletion(path string, args ...string) {
 		outC <- buf.String()
 	}()
 
-	abs, cmd, err := loadSpec(path)
+	abs, spec, err := loadSpec(path)
 	if err != nil {
 		return /// TODO handle error
 	}
+	cmd := spec.ToCobra()
 
 	a := []string{"_carapace"}
 	a = append(a, args...)
