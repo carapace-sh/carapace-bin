@@ -303,3 +303,6 @@ Ctrl+C
 
 Type "exit"
 Enter
+
+Type "exit"
+Enter
