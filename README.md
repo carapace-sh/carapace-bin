@@ -11,7 +11,7 @@ Carapace-bin provides argument completions for many CLI commands: [see the full 
 This multi-shell multi-command argument completer is based on [rsteube/carapace](https://github.com/rsteube/carapace).
 You can read more about this tool here: _[A pragmatic approach to shell completion](https://dev.to/rsteube/a-pragmatic-approach-to-shell-completion-4gp0)_.
 
-[![asciicast](https://asciinema.org/a/357191.svg)](https://asciinema.org/a/357191)
+[![asciicast](https://asciinema.org/a/533272.svg)](https://asciinema.org/a/533272)
 
 Supported shells:
 - [Bash](https://www.gnu.org/software/bash/)
