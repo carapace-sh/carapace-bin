@@ -1,9 +1,14 @@
-Output carapace-bin.mp4
-
 Set FontSize 24
 Set Width 1296
 Set Height 576
 Set Padding 0
+
+Hide
+Type "tmux"
+Enter
+Type "tmux resize-window -x 108 -y 24"
+Enter
+Show
 
 Hide
 Type "asciinema rec --overwrite docs/src/carapace-bin.cast"
