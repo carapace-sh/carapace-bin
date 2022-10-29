@@ -2,7 +2,7 @@
 
 [carapace-bin](https://github.com/rsteube/carapace-bin) is a multi-shell multi-command argument completer based on [rsteube/carapace](https://github.com/rsteube/carapace).
 
-[![asciicast](https://asciinema.org/a/357191.svg)](https://asciinema.org/a/357191)
+![](./carapace-bin.cast)
 
 Supported shells:
 - [Bash](https://www.gnu.org/software/bash/)

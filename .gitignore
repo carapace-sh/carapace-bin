@@ -13,3 +13,5 @@ completers/gh_completer/cmd/action/api.github.com.json
 completers_release
 dist
 docs/book
+out.gif
+carapace-bin.mp4
