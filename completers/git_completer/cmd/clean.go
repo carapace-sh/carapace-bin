@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -24,5 +25,7 @@ func init() {
 	cleanCmd.Flags().BoolS("x", "x", false, "remove ignored files, too")
 	rootCmd.AddCommand(cleanCmd)
 
-	carapace.Gen(cleanCmd).PositionalAnyCompletion(carapace.ActionFiles())
+	carapace.Gen(cleanCmd).PositionalAnyCompletion(
+		git.ActionChanges(git.ChangeOpts{Unstaged: true}),
+	)
 }
