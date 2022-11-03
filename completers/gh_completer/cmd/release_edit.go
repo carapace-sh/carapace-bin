@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(release_editCmd).Standalone()
 	release_editCmd.Flags().String("discussion-category", "", "Start a discussion in the specified category when publishing a draft")
 	release_editCmd.Flags().Bool("draft", false, "Save the release as a draft instead of publishing it")
+	release_editCmd.Flags().Bool("latest", false, "Explicitly mark the release as \"Latest\"")
 	release_editCmd.Flags().StringP("notes", "n", "", "Release notes")
 	release_editCmd.Flags().StringP("notes-file", "F", "", "Read release notes from `file` (use \"-\" to read from standard input)")
 	release_editCmd.Flags().Bool("prerelease", false, "Mark the release as a prerelease")
