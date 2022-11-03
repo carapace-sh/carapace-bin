@@ -32,7 +32,10 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"json": action.ActionRunFields(),
+		"json": carapace.Batch(
+			action.ActionRunFields(),
+			carapace.ActionValues("jobs"),
+		).ToA(),
 	})
 
 	carapace.Gen(run_viewCmd).PositionalCompletion(
