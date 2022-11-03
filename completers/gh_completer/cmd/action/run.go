@@ -84,6 +84,7 @@ func ActionRunFields() carapace.Action {
 		"status",
 		"conclusion",
 		"event",
+		"number",
 		"databaseId",
 		"workflowDatabaseId",
 		"workflowName",
