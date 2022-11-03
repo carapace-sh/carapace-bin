@@ -25,7 +25,7 @@ func init() {
 	repo_listCmd.Flags().Bool("no-archived", false, "Omit archived repositories")
 	repo_listCmd.Flags().Bool("source", false, "Show only non-forks")
 	repo_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
-	repo_listCmd.Flags().String("topic", "", "Filter by topic")
+	repo_listCmd.Flags().StringSlice("topic", []string{}, "Filter by topic")
 	repo_listCmd.Flags().String("visibility", "", "Filter by repository visibility: {public|private|internal}")
 	repoCmd.AddCommand(repo_listCmd)
 
@@ -34,11 +34,11 @@ func init() {
 			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"language": action.ActionLanguages(),
-		"topic": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		"topic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return action.ActionTopics(repo_listCmd, c.Args[0])
+				return action.ActionTopics(repo_listCmd, c.Args[0]).Invoke(c).Filter(c.Parts).ToA()
 			}
-			return action.ActionTopics(repo_listCmd, "")
+			return action.ActionTopics(repo_listCmd, "").Invoke(c).Filter(c.Parts).ToA()
 		}),
 		"visibility": carapace.ActionValues("public", "private", "internal"),
 	})

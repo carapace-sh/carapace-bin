@@ -16,7 +16,8 @@ func init() {
 	carapace.Gen(release_downloadCmd).Standalone()
 	release_downloadCmd.Flags().StringP("archive", "A", "", "Download the source code archive in the specified `format` (zip or tar.gz)")
 	release_downloadCmd.Flags().Bool("clobber", false, "Overwrite existing files of the same name")
-	release_downloadCmd.Flags().StringP("dir", "D", ".", "The directory to download files into")
+	release_downloadCmd.Flags().StringP("dir", "D", ".", "The `directory` to download files into")
+	release_downloadCmd.Flags().StringP("output", "O", "", "The `file` to write a single asset to (use \"-\" to write to standard output)")
 	release_downloadCmd.Flags().StringArrayP("pattern", "p", []string{}, "Download only assets that match a glob pattern")
 	release_downloadCmd.Flags().Bool("skip-existing", false, "Skip downloading when files of the same name exist")
 	releaseCmd.AddCommand(release_downloadCmd)
@@ -24,6 +25,10 @@ func init() {
 	carapace.Gen(release_downloadCmd).FlagCompletion(carapace.ActionMap{
 		"archive": carapace.ActionValues("zip", "tar.gz"),
 		"dir":     carapace.ActionDirectories(),
+		"output": carapace.Batch(
+			carapace.ActionValuesDescribed("-", "standard output"),
+			carapace.ActionFiles(),
+		).ToA(),
 		"pattern": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				return action.ActionReleaseAssets(release_downloadCmd, c.Args[0])
