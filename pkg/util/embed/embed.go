@@ -51,17 +51,19 @@ func EmbedCarapaceBin(cmd *cobra.Command) {
 			})
 		})
 
-		if err := flags.Parse(args); err == nil && len(flags.Args()) > 1 {
-			subCmd := &cobra.Command{
-				Use:                flags.Args()[0],
-				Run:                func(cmd *cobra.Command, args []string) {},
-				DisableFlagParsing: true,
-			}
-			cmd.AddCommand(subCmd)
+		if err := flags.Parse(args); err == nil {
+			if flagArgs := flags.Args(); len(flagArgs) > 0 && !(len(flagArgs) == 1 && flagArgs[0] == args[len(args)-1]) {
+				subCmd := &cobra.Command{
+					Use:                flags.Args()[0],
+					Run:                func(cmd *cobra.Command, args []string) {},
+					DisableFlagParsing: true,
+				}
+				cmd.AddCommand(subCmd)
 
-			carapace.Gen(subCmd).PositionalAnyCompletion(
-				bridge.ActionCarapaceBin(flags.Args()[0]),
-			)
+				carapace.Gen(subCmd).PositionalAnyCompletion(
+					bridge.ActionCarapaceBin(flags.Args()[0]),
+				)
+			}
 		}
 	})
 }
