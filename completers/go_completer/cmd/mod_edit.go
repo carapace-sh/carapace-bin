@@ -1,8 +1,11 @@
 package cmd
 
 import (
+	"path/filepath"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -40,6 +43,13 @@ func init() {
 			case 0:
 				return golang.ActionModules(golang.ModuleOpts{Direct: true, Indirect: true})
 			case 1:
+				if util.HasPathPrefix(c.CallbackValue) {
+					path, err := util.FindReverse(c.Dir, "go.mod")
+					if err != nil {
+						return carapace.ActionMessage(err.Error())
+					}
+					return carapace.ActionFiles().Chdir(filepath.Dir(path))
+				}
 				return golang.ActionModuleSearch()
 			default:
 				return carapace.ActionValues()
