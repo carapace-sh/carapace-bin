@@ -13,7 +13,12 @@ var planCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(planCmd).Standalone()
+	planCmd.Flags().StringP("config", "c", "", "path to directory containing a devbox.json config file")
 	rootCmd.AddCommand(planCmd)
+
+	carapace.Gen(planCmd).FlagCompletion(carapace.ActionMap{
+		"config": carapace.ActionDirectories(),
+	})
 
 	carapace.Gen(planCmd).PositionalCompletion(
 		carapace.ActionDirectories(),

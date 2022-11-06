@@ -13,7 +13,18 @@ var addCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(addCmd).Standalone()
+	addCmd.Flags().StringP("config", "c", "", "path to directory containing a devbox.json config file")
 	rootCmd.AddCommand(addCmd)
 
-	// TODO nix package search
+	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
+		"config": carapace.ActionDirectories(),
+	})
+
+	// TODO devbox is currently hardcoded against `nixpkgs` alias which is implicitly added as prefix.
+	// This channel also has no sqlitedb so package names cannot be completed
+	// carapace.Gen(addCmd).PositionalAnyCompletion(
+	// 	carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+	// 		return nix.ActionChannelPackages().Invoke(c).Filter(c.Parts).ToA()
+	// 	}),
+	// )
 }

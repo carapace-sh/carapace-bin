@@ -13,7 +13,13 @@ var shellCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(shellCmd).Standalone()
+	shellCmd.Flags().StringP("config", "c", "", "path to directory containing a devbox.json config file")
+	shellCmd.Flags().Bool("print-env", false, "Print script to setup shell environment")
 	rootCmd.AddCommand(shellCmd)
+
+	carapace.Gen(shellCmd).FlagCompletion(carapace.ActionMap{
+		"config": carapace.ActionDirectories(),
+	})
 
 	carapace.Gen(shellCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
