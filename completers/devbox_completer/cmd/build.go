@@ -13,6 +13,7 @@ var buildCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(buildCmd).Standalone()
+	buildCmd.Flags().StringP("config", "c", "", "path to directory containing a devbox.json config file")
 	buildCmd.Flags().String("engine", "docker", "Engine used to build the container: 'docker', 'podman'")
 	buildCmd.Flags().String("name", "devbox", "name for the container")
 	buildCmd.Flags().Bool("no-cache", false, "Do not use a cache")
@@ -20,6 +21,7 @@ func init() {
 	rootCmd.AddCommand(buildCmd)
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
+		"config": carapace.ActionDirectories(),
 		"engine": carapace.ActionValues("docker", "podman"),
 	})
 
