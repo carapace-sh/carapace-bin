@@ -11,7 +11,7 @@ Enter
 Show
 
 Hide
-Type "asciinema rec --overwrite docs/src/carapace-bin.cast"
+Type "asciinema rec --overwrite carapace-bin.cast"
 Enter
 Sleep 1s
 Show
