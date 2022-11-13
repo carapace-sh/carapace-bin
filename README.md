@@ -24,10 +24,6 @@ Supported shells:
 - [Xonsh](https://xon.sh/)
 - [Zsh](https://www.zsh.org/)
 
-## Status
-
-A major part of the completers has been generated from help pages so there will be some quirks here and there. Also completion depends on what [rsteube/carapace](https://github.com/rsteube/carapace) is capable of so far.
-
 ## Getting Started
 
 Ensure carapace is added to [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) ([Installation](https://rsteube.github.io/carapace-bin/installation.html)).
