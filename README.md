@@ -8,7 +8,6 @@
 [![Packaging status](https://repology.org/badge/tiny-repos/carapace.svg)](https://repology.org/project/carapace/versions)
 
 Carapace-bin provides argument completions for many CLI commands: [see the full list here](https://rsteube.github.io/carapace-bin/completers.html), and works across many POSIX and non-POSIX shells.
-This multi-shell multi-command argument completer is based on [rsteube/carapace](https://github.com/rsteube/carapace).
 You can read more about this tool here: _[A pragmatic approach to shell completion](https://dev.to/rsteube/a-pragmatic-approach-to-shell-completion-4gp0)_.
 
 [![asciicast](https://asciinema.org/a/533283.svg)](https://asciinema.org/a/533283)
