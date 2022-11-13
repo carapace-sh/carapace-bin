@@ -7,8 +7,8 @@
 [![Macros](https://rsteube.github.io/carapace-bin/macros-badge.svg)](https://rsteube.github.io/carapace-bin/spec/macros.html)
 [![Packaging status](https://repology.org/badge/tiny-repos/carapace.svg)](https://repology.org/project/carapace/versions)
 
-Carapace-bin provides argument completions for many CLI commands: [see the full list here](https://rsteube.github.io/carapace-bin/completers.html), and works across many POSIX and non-POSIX shells.
-You can read more about this tool here: _[A pragmatic approach to shell completion](https://dev.to/rsteube/a-pragmatic-approach-to-shell-completion-4gp0)_.
+Carapace-bin provides argument completions multiple CLI commands ([full list](https://rsteube.github.io/carapace-bin/completers.html)), and works across multiple POSIX and non-POSIX shells.
+You can read more about it here: _[A pragmatic approach to shell completion](https://dev.to/rsteube/a-pragmatic-approach-to-shell-completion-4gp0)_.
 
 [![asciicast](https://asciinema.org/a/533283.svg)](https://asciinema.org/a/533283)
 
