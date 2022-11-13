@@ -36,6 +36,7 @@ func init() {
 		"dropreplace": golang.ActionModules(golang.ModuleOpts{Replace: true}),
 		"droprequire": golang.ActionModules(golang.ModuleOpts{Direct: true, IncludeVersion: false}),
 		"exclude":     golang.ActionModuleSearch(),
+		"go":          golang.ActionVersions(),
 		"module":      carapace.ActionFiles(),
 		"replace": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
