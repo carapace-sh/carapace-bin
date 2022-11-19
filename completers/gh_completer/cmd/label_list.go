@@ -27,7 +27,7 @@ func init() {
 
 	carapace.Gen(label_listCmd).FlagCompletion(carapace.ActionMap{
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return gh.ActionLabelFields().Invoke(c).Filter(c.Parts).ToA()
+			return gh.ActionLabelFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"order": carapace.ActionValues("asc", "desc"),
 		"sort":  carapace.ActionValues("created", "name"),

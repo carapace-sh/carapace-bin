@@ -34,18 +34,18 @@ func init() {
 
 	carapace.Gen(pr_createCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAssignableUsers(pr_createCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionAssignableUsers(pr_createCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"base": action.ActionBranches(pr_createCmd),
 		"body": action.ActionKeywordLinks(pr_createCmd),
 		"head": action.ActionBranches(pr_createCmd),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(pr_createCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(pr_createCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"milestone": action.ActionMilestones(pr_createCmd),
 		"project":   action.ActionProjects(pr_createCmd, action.ProjectOpts{Open: true}),
 		"reviewer": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAssignableUsers(pr_createCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionAssignableUsers(pr_createCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 }

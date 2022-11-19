@@ -31,14 +31,14 @@ func init() {
 
 	carapace.Gen(repo_listCmd).FlagCompletion(carapace.ActionMap{
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"language": action.ActionLanguages(),
 		"topic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return action.ActionTopics(repo_listCmd, c.Args[0]).Invoke(c).Filter(c.Parts).ToA()
+				return action.ActionTopics(repo_listCmd, c.Args[0]).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 			}
-			return action.ActionTopics(repo_listCmd, "").Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionTopics(repo_listCmd, "").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"visibility": carapace.ActionValues("public", "private", "internal"),
 	})

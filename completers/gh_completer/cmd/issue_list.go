@@ -37,10 +37,10 @@ func init() {
 		"assignee": action.ActionAssignableUsers(issue_listCmd),
 		"author":   gh.ActionUsers(gh.HostOpts{}),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionIssueFields().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionIssueFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_listCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(issue_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"mention":   action.ActionMentionableUsers(issue_listCmd),
 		"milestone": action.ActionMilestones(issue_listCmd),

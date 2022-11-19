@@ -28,10 +28,10 @@ func init() {
 
 	carapace.Gen(issue_editCmd).FlagCompletion(carapace.ActionMap{
 		"add-assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAssignableUsers(issue_editCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionAssignableUsers(issue_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"add-label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_editCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(issue_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"add-project": action.ActionProjects(issue_editCmd, action.ProjectOpts{Open: true}),
 		"body":        action.ActionKeywordLinks(issue_editCmd),

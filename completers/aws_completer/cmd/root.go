@@ -43,7 +43,7 @@ func init() {
 				a := carapace.ActionValues(lines[:len(lines)-1]...)
 				if strings.HasPrefix(current, "file://") ||
 					strings.HasPrefix(current, "fileb://") {
-					return a.NoSpace()
+					return a.NoSpace('/')
 				}
 				return a
 			}).Invoke(c).ToA()

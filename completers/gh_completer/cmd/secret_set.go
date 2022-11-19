@@ -32,7 +32,7 @@ func init() {
 		"env-file": carapace.ActionFiles(),
 		"org":      gh.ActionOrganizations(gh.HostOpts{}),
 		"repos": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionOwnerRepositories(secret_setCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionOwnerRepositories(secret_setCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"visibility": carapace.ActionValues("all", "private", "selected"),
 	})

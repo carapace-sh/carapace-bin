@@ -31,7 +31,7 @@ func init() {
 			}
 		}),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

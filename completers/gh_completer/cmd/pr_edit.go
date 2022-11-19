@@ -31,14 +31,14 @@ func init() {
 
 	carapace.Gen(pr_editCmd).FlagCompletion(carapace.ActionMap{
 		"add-assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAssignableUsers(pr_editCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionAssignableUsers(pr_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"add-label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(pr_editCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(pr_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"add-project": action.ActionProjects(pr_editCmd, action.ProjectOpts{Open: true}),
 		"add-reviewer": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAssignableUsers(pr_editCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionAssignableUsers(pr_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"base":      action.ActionBranches(pr_editCmd),
 		"body":      action.ActionKeywordLinks(pr_editCmd),
