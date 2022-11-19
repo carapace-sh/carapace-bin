@@ -28,10 +28,10 @@ func init() {
 
 	carapace.Gen(extension_searchCmd).FlagCompletion(carapace.ActionMap{
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSearchRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSearchRepositoryFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"license": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return gh.ActionLicenses(gh.HostOpts{}).Invoke(c).Filter(c.Parts).ToA()
+			return gh.ActionLicenses(gh.HostOpts{}).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"order": carapace.ActionValues("asc", "desc"),
 		"owner": gh.ActionOwners(gh.HostOpts{}),

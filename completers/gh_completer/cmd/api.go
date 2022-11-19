@@ -36,7 +36,7 @@ func init() {
 		"input":    carapace.ActionFiles(),
 		"method":   http.ActionRequestMethods(),
 		"preview": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionApiPreviews().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionApiPreviews().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

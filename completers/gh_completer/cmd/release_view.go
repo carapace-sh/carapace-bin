@@ -22,7 +22,7 @@ func init() {
 
 	carapace.Gen(release_viewCmd).FlagCompletion(carapace.ActionMap{
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionReleaseFields().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionReleaseFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

@@ -46,14 +46,14 @@ func init() {
 		"created":       action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"include-forks": carapace.ActionValues("false", "true", "only"),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSearchRepositoryFields().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSearchRepositoryFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"language": action.ActionLanguages(),
 		"license": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return gh.ActionLicenses(gh.HostOpts{}).Invoke(c).Filter(c.Parts).ToA()
+			return gh.ActionLicenses(gh.HostOpts{}).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"match": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("name", "description", "readme").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("name", "description", "readme").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"order": carapace.ActionValues("asc", "desc"),
 		"owner": gh.ActionOwners(gh.HostOpts{}),
@@ -63,7 +63,7 @@ func init() {
 		}),
 		"updated": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"visibility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("public", "private", "internal").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("public", "private", "internal").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 }

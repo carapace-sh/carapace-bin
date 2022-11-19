@@ -81,16 +81,16 @@ func init() {
 		}),
 		"involves": gh.ActionUsers(gh.HostOpts{}),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSearchIssueFields().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSearchIssueFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
-				return action.ActionLabels(cmd).Invoke(c).Filter(c.Parts).ToA()
+				return action.ActionLabels(cmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 			})
 		}),
 		"language": action.ActionLanguages(),
 		"match": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("title", "body", "comments").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("title", "body", "comments").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"mentions":  gh.ActionUsers(gh.HostOpts{}),
 		"merged-at": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
@@ -102,7 +102,7 @@ func init() {
 		"repo": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			dummyCmd := &cobra.Command{}
 			dummyCmd.Flags().String("repo", c.CallbackValue, "fake repo flag")
-			return action.ActionOwnerRepositories(dummyCmd)
+			return action.ActionOwnerRepositories(dummyCmd).NoSpace()
 		}),
 		"review": carapace.ActionValues("none", "required", "approved", "changes_requested"),
 		"review-requested": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
@@ -115,7 +115,7 @@ func init() {
 		"state":   carapace.ActionValues("open", "closed").StyleF(styles.Gh.ForState),
 		"updated": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"visibility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("public", "private", "internal").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("public", "private", "internal").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 }

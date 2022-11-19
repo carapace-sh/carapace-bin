@@ -25,7 +25,7 @@ func ActionKeywordLinks(cmd *cobra.Command) carapace.Action {
 			return carapace.Batch(
 				carapace.ActionValues(keywordsOfficial...).Style(styles.Gh.StateClosed),
 				carapace.ActionValues(keywordsCustom...),
-			).ToA().Invoke(c).Suffix(" #").ToA()
+			).ToA().Invoke(c).Suffix(" #").ToA().NoSpace('#')
 		}
 
 		return carapace.ActionMultiParts("#", func(c carapace.Context) carapace.Action {

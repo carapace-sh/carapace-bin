@@ -21,7 +21,7 @@ func init() {
 
 	carapace.Gen(statusCmd).FlagCompletion(carapace.ActionMap{
 		"exclude": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionOwnerRepositories(statusCmd)
+			return action.ActionOwnerRepositories(statusCmd).NoSpace()
 		}),
 		"org": gh.ActionOrganizations(gh.HostOpts{}),
 	})

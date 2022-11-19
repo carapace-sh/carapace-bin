@@ -40,10 +40,10 @@ func init() {
 		"base":     action.ActionBranches(pr_listCmd),
 		"head":     action.ActionBranches(pr_listCmd),
 		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionPullRequestFields().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionPullRequestFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(pr_listCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(pr_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"state": carapace.ActionValues("open", "closed", "merged", "all").StyleF(styles.Gh.ForState),
 	})

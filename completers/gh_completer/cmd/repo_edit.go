@@ -46,7 +46,7 @@ func init() {
 				repo_editCmd.Flags().String("repo", c.Args[0], "")
 				repo_editCmd.Flag("repo").Changed = true
 			}
-			return action.ActionRepoTopics(repo_editCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionRepoTopics(repo_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"visibility": carapace.ActionValues("public", "private", "internal"),
 	})
