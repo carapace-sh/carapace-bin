@@ -58,8 +58,20 @@ func _spinCmd() *cobra.Command {
 	cmd.Flags().String("title.foreground", "", "Foreground Color")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"align":              carapace.ActionValues("left", "right"),
-		"spinner":            carapace.ActionValues("line", "dot", "minidot", "jump", "pulse", "points", "globe", "moon", "monkey", "meter", "hamburger"),
+		"align": carapace.ActionValues("left", "right"),
+		"spinner": carapace.ActionValuesDescribed(
+			"line", "/",
+			"dot", "⢿",
+			"minidot", "⠋",
+			"jump", "⡈",
+			"pulse", "░",
+			"points", "●",
+			"globe", "🌍",
+			"moon", "🌗",
+			"monkey", "🙊",
+			"meter", "▰",
+			"hamburger", "☲",
+		),
 		"spinner.foreground": gum.ActionColors(),
 		"title.foreground":   gum.ActionColors(),
 	})
