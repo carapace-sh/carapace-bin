@@ -30,9 +30,7 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"json": action.ActionRepositoryFields().UniqueList(","),
 	})
 
 	carapace.Gen(repo_viewCmd).PositionalCompletion(

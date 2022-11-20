@@ -35,13 +35,11 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"debug-output": carapace.ActionFiles(),
-		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValuesDescribed(
-				"stderr-nocaret", "^ no longer redirects stderr",
-				"qmark-noglob", "? no longer globs",
-				"regex-easyesc", `string replace -r needs fewer \'s`,
-			).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"features": carapace.ActionValuesDescribed(
+			"stderr-nocaret", "^ no longer redirects stderr",
+			"qmark-noglob", "? no longer globs",
+			"regex-easyesc", `string replace -r needs fewer \'s`,
+		).UniqueList(","),
 		"profile": carapace.ActionFiles(),
 	})
 

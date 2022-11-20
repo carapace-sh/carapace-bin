@@ -41,13 +41,9 @@ func init() {
 	rootCmd.AddCommand(forgetCmd)
 
 	carapace.Gen(forgetCmd).FlagCompletion(carapace.ActionMap{
-		"group-by": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("host", "paths", "tags").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"path": carapace.ActionFiles(),
-		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(forgetCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"group-by": carapace.ActionValues("host", "paths", "tags").UniqueList(","),
+		"path":     carapace.ActionFiles(),
+		"tag":      action.ActionSnapshotTags(forgetCmd).UniqueList(","),
 	})
 
 	carapace.Gen(forgetCmd).PositionalAnyCompletion(

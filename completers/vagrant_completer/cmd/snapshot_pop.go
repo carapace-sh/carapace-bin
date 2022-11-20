@@ -23,9 +23,7 @@ func init() {
 	snapshotCmd.AddCommand(snapshot_popCmd)
 
 	carapace.Gen(snapshot_popCmd).FlagCompletion(carapace.ActionMap{
-		"provision-with": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProvisioners().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"provision-with": action.ActionProvisioners().UniqueList(","),
 	})
 
 	carapace.Gen(snapshot_popCmd).PositionalCompletion(

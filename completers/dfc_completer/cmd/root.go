@@ -56,13 +56,9 @@ func init() {
 			"tex", "Output is TeX formated.",
 			"text", "Text output (default).",
 		),
-		"p": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionFSNames().Invoke(c).Filter(c.Parts).ToA()
-		}),
+		"p": action.ActionFSNames().UniqueList(","),
 		"q": carapace.ActionValues("name", "type", "mount"),
-		"t": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilesystemTypes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"t": fs.ActionFilesystemTypes().UniqueList(","),
 		"u": carapace.ActionValuesDescribed(
 			"h", "Human readable",
 			"b", "Show bytes.",

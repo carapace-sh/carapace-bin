@@ -261,10 +261,8 @@ func init() {
 		"capath":    carapace.ActionDirectories(),
 		"cert":      carapace.ActionFiles(),
 		"cert-type": carapace.ActionValues("DER", "PEM", "ENG"),
-		"ciphers": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA()
-		}),
-		"config": carapace.ActionFiles(),
+		"ciphers":   ssh.ActionCiphers().UniqueList(":"),
+		"config":    carapace.ActionFiles(),
 		"connect-to": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -310,15 +308,13 @@ func init() {
 		"proxy-capath":    carapace.ActionDirectories(),
 		"proxy-cert":      carapace.ActionFiles(),
 		"proxy-cert-type": carapace.ActionValues("DER", "PEM", "ENG"),
-		"proxy-ciphers": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA()
-		}),
-		"proxy-key":   carapace.ActionFiles(),
-		"random-file": carapace.ActionFiles(),
-		"trace":       carapace.ActionFiles(),
-		"unix-socket": carapace.ActionFiles(),
-		"upload-file": carapace.ActionFiles(),
-		"user-agent":  http.ActionUserAgents(),
+		"proxy-ciphers":   ssh.ActionCiphers().UniqueList(":"),
+		"proxy-key":       carapace.ActionFiles(),
+		"random-file":     carapace.ActionFiles(),
+		"trace":           carapace.ActionFiles(),
+		"unix-socket":     carapace.ActionFiles(),
+		"upload-file":     carapace.ActionFiles(),
+		"user-agent":      http.ActionUserAgents(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

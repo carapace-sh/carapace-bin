@@ -96,9 +96,7 @@ func init() {
 	rootCmd.AddCommand(startCmd)
 
 	carapace.Gen(startCmd).FlagCompletion(carapace.ActionMap{
-		"addons": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAddons().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"addons":     action.ActionAddons().UniqueList(","),
 		"base-image": docker.ActionRepositoryTags(),
 		"cni": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if util.HasPathPrefix(c.CallbackValue) {
@@ -131,8 +129,15 @@ func init() {
 		"output":       carapace.ActionValues("text", "json"),
 		"ssh-key":      carapace.ActionFiles(),
 		"ssh-user":     os.ActionUsers(),
-		"wait": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("apiserver", "system_pods", "default_sa", "apps_running", "node_ready", "kubelet", "all", "none").Invoke(c).Filter(c.Parts).ToA()
-		}),
+		"wait": carapace.ActionValues(
+			"apiserver",
+			"system_pods",
+			"default_sa",
+			"apps_running",
+			"node_ready",
+			"kubelet",
+			"all",
+			"none",
+		).UniqueList(","),
 	})
 }

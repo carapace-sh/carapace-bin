@@ -27,14 +27,10 @@ func init() {
 	extensionCmd.AddCommand(extension_searchCmd)
 
 	carapace.Gen(extension_searchCmd).FlagCompletion(carapace.ActionMap{
-		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSearchRepositoryFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"license": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return gh.ActionLicenses(gh.HostOpts{}).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"order": carapace.ActionValues("asc", "desc"),
-		"owner": gh.ActionOwners(gh.HostOpts{}),
-		"sort":  carapace.ActionValues("forks", "help-wanted-issues", "stars", "updated"),
+		"json":    action.ActionSearchRepositoryFields().UniqueList(","),
+		"license": gh.ActionLicenses(gh.HostOpts{}).UniqueList(","),
+		"order":   carapace.ActionValues("asc", "desc"),
+		"owner":   gh.ActionOwners(gh.HostOpts{}),
+		"sort":    carapace.ActionValues("forks", "help-wanted-issues", "stars", "updated"),
 	})
 }

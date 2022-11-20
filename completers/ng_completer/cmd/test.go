@@ -35,11 +35,11 @@ func init() {
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		"configuration": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"configuration": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return action.ActionBuilderConfigurations(c.Args[0], "test").Invoke(c).Filter(c.Parts).ToA().NoSpace()
+			return action.ActionBuilderConfigurations(c.Args[0], "test").UniqueList(",")
 		}),
 		"inline-style-language": carapace.ActionValues("css", "less", "sass", "scss"),
 		"karma-config":          carapace.ActionFiles(),

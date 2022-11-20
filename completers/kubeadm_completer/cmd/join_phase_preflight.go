@@ -31,12 +31,8 @@ func init() {
 	join_phaseCmd.AddCommand(join_phase_preflightCmd)
 
 	carapace.Gen(join_phase_preflightCmd).FlagCompletion(carapace.ActionMap{
-		"config":         carapace.ActionFiles(),
-		"discovery-file": carapace.ActionFiles(),
-		"ignore-preflight-errors": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-			})
-		}),
+		"config":                  carapace.ActionFiles(),
+		"discovery-file":          carapace.ActionFiles(),
+		"ignore-preflight-errors": action.ActionChecks().UniqueList(","),
 	})
 }

@@ -80,18 +80,12 @@ func init() {
 			return action.ActionBranches(cmd)
 		}),
 		"involves": gh.ActionUsers(gh.HostOpts{}),
-		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSearchIssueFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
+		"json":     action.ActionSearchIssueFields().UniqueList(","),
+		"label": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
+			return action.ActionLabels(cmd).UniqueList(",")
 		}),
-		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
-				return action.ActionLabels(cmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-			})
-		}),
-		"language": action.ActionLanguages(),
-		"match": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("title", "body", "comments").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"language":  action.ActionLanguages(),
+		"match":     carapace.ActionValues("title", "body", "comments").UniqueList(","),
 		"mentions":  gh.ActionUsers(gh.HostOpts{}),
 		"merged-at": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"milestone": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
@@ -111,11 +105,9 @@ func init() {
 		"reviewed-by": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionAssignableUsers(cmd)
 		}),
-		"sort":    carapace.ActionValues("comments", "created", "interactions", "reactions", "reactions-+1", "reactions--1", "reactions-heart", "reactions-smile", "reactions-tada", "reactions-thinking_face", "updated"),
-		"state":   carapace.ActionValues("open", "closed").StyleF(styles.Gh.ForState),
-		"updated": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
-		"visibility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("public", "private", "internal").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"sort":       carapace.ActionValues("comments", "created", "interactions", "reactions", "reactions-+1", "reactions--1", "reactions-heart", "reactions-smile", "reactions-tada", "reactions-thinking_face", "updated"),
+		"state":      carapace.ActionValues("open", "closed").StyleF(styles.Gh.ForState),
+		"updated":    action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
+		"visibility": carapace.ActionValues("public", "private", "internal").UniqueList(","),
 	})
 }

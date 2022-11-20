@@ -53,11 +53,9 @@ func init() {
 		"italic-text": carapace.ActionValues("never", "always").StyleF(style.ForKeyword),
 		"language":    action.ActionLanguages(),
 		"paging":      carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"style": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("auto", "full", "plain", "changes", "header", "grid", "numbers", "snip").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"theme": action.ActionThemes(),
-		"wrap":  carapace.ActionValues("auto", "never", "character"),
+		"style":       carapace.ActionValues("auto", "full", "plain", "changes", "header", "grid", "numbers", "snip").UniqueList(","),
+		"theme":       action.ActionThemes(),
+		"wrap":        carapace.ActionValues("auto", "never", "character"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

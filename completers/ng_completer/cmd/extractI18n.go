@@ -24,11 +24,11 @@ func init() {
 	rootCmd.AddCommand(extractI18nCmd)
 
 	carapace.Gen(extractI18nCmd).FlagCompletion(carapace.ActionMap{
-		"configuration": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"configuration": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return action.ActionBuilderConfigurations(c.Args[0], "").Invoke(c).Filter(c.Parts).ToA().NoSpace()
+			return action.ActionBuilderConfigurations(c.Args[0], "").UniqueList(",")
 		}),
 		"format":      carapace.ActionValues("xmb", "xlf", "xlif", "xliff", "xlf2", "xliff2", "json", "arb", "legacy-migrate"),
 		"out-file":    carapace.ActionFiles(),

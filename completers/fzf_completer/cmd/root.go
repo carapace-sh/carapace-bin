@@ -70,13 +70,11 @@ func init() {
 	rootCmd.Flags().String("with-nth", "", "Transform the presentation of each line using field index expressions")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"algo":   carapace.ActionValues("v1", "v2"),
-		"border": carapace.ActionValues("rounded", "sharp", "horizontal", "vertical", "top", "bottom", "left", "right"),
-		"color":  carapace.ActionValues("dark", "light", "16", "bw"),
-		"info":   carapace.ActionValues("default", "inline", "hidden"),
-		"layout": carapace.ActionValues("default", "reverse", "reverse-list"),
-		"tiebreak": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("length", "begin", "end", "index").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"algo":     carapace.ActionValues("v1", "v2"),
+		"border":   carapace.ActionValues("rounded", "sharp", "horizontal", "vertical", "top", "bottom", "left", "right"),
+		"color":    carapace.ActionValues("dark", "light", "16", "bw"),
+		"info":     carapace.ActionValues("default", "inline", "hidden"),
+		"layout":   carapace.ActionValues("default", "reverse", "reverse-list"),
+		"tiebreak": carapace.ActionValues("length", "begin", "end", "index").UniqueList(","),
 	})
 }

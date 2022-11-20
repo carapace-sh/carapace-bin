@@ -23,16 +23,10 @@ func init() {
 	rootCmd.AddCommand(resetCmd)
 
 	carapace.Gen(resetCmd).FlagCompletion(carapace.ActionMap{
-		"cert-dir":   carapace.ActionDirectories(),
-		"cri-socket": carapace.ActionFiles(),
-		"ignore-preflight-errors": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-			})
-		}),
-		"kubeconfig": carapace.ActionFiles(),
-		"skip-phases": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionPhases().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"cert-dir":                carapace.ActionDirectories(),
+		"cri-socket":              carapace.ActionFiles(),
+		"ignore-preflight-errors": action.ActionChecks().UniqueList(","),
+		"kubeconfig":              carapace.ActionFiles(),
+		"skip-phases":             action.ActionPhases().UniqueList(","),
 	})
 }

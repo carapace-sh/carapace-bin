@@ -59,9 +59,7 @@ func init() {
 			"p", "pebibytes",
 		),
 		"o": action.ActionFields(),
-		"p": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"p": ps.ActionProcessIds().UniqueList(","),
 		"u": os.ActionUsers(),
 	})
 }

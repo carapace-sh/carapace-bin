@@ -31,8 +31,8 @@ func init() {
 	carapace.Gen(chooseCmd).FlagCompletion(carapace.ActionMap{
 		"cursor.foreground": gum.ActionColors(),
 		"item.foreground":   gum.ActionColors(),
-		"selected": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues(c.Args...).Invoke(c).Filter(c.Parts).ToA().NoSpace()
+		"selected": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return carapace.ActionValues(c.Args...).UniqueList(",")
 		}),
 		"selected.foreground": gum.ActionColors(),
 	})

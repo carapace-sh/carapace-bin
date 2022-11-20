@@ -35,21 +35,13 @@ func init() {
 	mrCmd.AddCommand(mr_listCmd)
 
 	carapace.Gen(mr_listCmd).FlagCompletion(carapace.ActionMap{
-		"assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(mr_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"author": action.ActionUsers(mr_listCmd),
-		"group":  action.ActionGroups(mr_listCmd),
-		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(mr_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"milestone": action.ActionMilestones(mr_listCmd),
-		"not-label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(mr_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"reviewer": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(mr_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"assignee":      action.ActionProjectMembers(mr_listCmd).UniqueList(","),
+		"author":        action.ActionUsers(mr_listCmd),
+		"group":         action.ActionGroups(mr_listCmd),
+		"label":         action.ActionLabels(mr_listCmd).UniqueList(","),
+		"milestone":     action.ActionMilestones(mr_listCmd),
+		"not-label":     action.ActionLabels(mr_listCmd).UniqueList(","),
+		"reviewer":      action.ActionProjectMembers(mr_listCmd).UniqueList(","),
 		"source-branch": action.ActionBranches(mr_listCmd),
 		"target-branch": action.ActionBranches(mr_listCmd),
 	})

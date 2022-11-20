@@ -56,13 +56,9 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color":         carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"console-level": action.ActionLogLevels(),
-		"facility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionFacilities().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"file": carapace.ActionFiles(),
-		"level": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLogLevels().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"time-format": carapace.ActionValues("delta", "reltime", "ctime", "notime", "iso"),
+		"facility":      action.ActionFacilities().UniqueList(","),
+		"file":          carapace.ActionFiles(),
+		"level":         action.ActionLogLevels().UniqueList(","),
+		"time-format":   carapace.ActionValues("delta", "reltime", "ctime", "notime", "iso"),
 	})
 }

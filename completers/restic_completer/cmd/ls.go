@@ -24,9 +24,7 @@ func init() {
 	carapace.Gen(lsCmd).FlagCompletion(carapace.ActionMap{
 		"host": action.ActionSnapshotHosts(lsCmd),
 		"path": carapace.ActionFiles(),
-		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(lsCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"tag":  action.ActionSnapshotTags(lsCmd).UniqueList(","),
 	})
 
 	carapace.Gen(lsCmd).PositionalCompletion(

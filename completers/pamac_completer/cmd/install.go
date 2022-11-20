@@ -28,9 +28,7 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
-		"ignore": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionPackageSearch().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"ignore": action.ActionPackageSearch().UniqueList(","),
 	})
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(

@@ -133,13 +133,11 @@ func init() {
 	rootCmd.Flags().String("watchFile", "", "Specify how the TypeScript watch mode works.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"baseUrl":         carapace.ActionDirectories(),
-		"declarationDir":  carapace.ActionDirectories(),
-		"fallbackPolling": carapace.ActionValues("fixedinterval", "priorityinterval", "dynamicpriority", "fixedchunksize"),
-		"jsx":             carapace.ActionValues("preserve", "react-native", "react", "react-jsx", "react-jsxdev"),
-		"lib": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLibs().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"baseUrl":          carapace.ActionDirectories(),
+		"declarationDir":   carapace.ActionDirectories(),
+		"fallbackPolling":  carapace.ActionValues("fixedinterval", "priorityinterval", "dynamicpriority", "fixedchunksize"),
+		"jsx":              carapace.ActionValues("preserve", "react-native", "react", "react-jsx", "react-jsxdev"),
+		"lib":              action.ActionLibs().UniqueList(","),
 		"mapRoot":          carapace.ActionDirectories(),
 		"module":           carapace.ActionValues("none", "commonjs", "amd", "system", "umd", "es6", "es2015", "es2020", "esnext"),
 		"moduleResolution": carapace.ActionValues("node", "classic"),

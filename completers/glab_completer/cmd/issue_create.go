@@ -31,17 +31,11 @@ func init() {
 
 	carapace.Gen(issue_createCmd).FlagCompletion(carapace.ActionMap{
 		// TODO more flags
-		"assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(issue_createCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_createCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"link-type": carapace.ActionValues("relates_to", "blocks", "is_blocked_by"),
-		"linked-issues": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionIssues(issue_createCmd, "opened").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"linked-mr": action.ActionMergeRequests(issue_createCmd, "opened"),
-		"milestone": action.ActionMilestones(issue_createCmd),
+		"assignee":      action.ActionProjectMembers(issue_createCmd).UniqueList(","),
+		"label":         action.ActionLabels(issue_createCmd).UniqueList(","),
+		"link-type":     carapace.ActionValues("relates_to", "blocks", "is_blocked_by"),
+		"linked-issues": action.ActionIssues(issue_createCmd, "opened").UniqueList(","),
+		"linked-mr":     action.ActionMergeRequests(issue_createCmd, "opened"),
+		"milestone":     action.ActionMilestones(issue_createCmd),
 	})
 }

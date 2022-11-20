@@ -24,8 +24,6 @@ func init() {
 	carapace.Gen(auth_loginCmd).FlagCompletion(carapace.ActionMap{
 		"git-protocol": carapace.ActionValues("ssh", "https"),
 		"hostname":     action.ActionConfigHosts(),
-		"scopes": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAuthScopes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"scopes":       action.ActionAuthScopes().UniqueList(","),
 	})
 }

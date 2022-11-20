@@ -66,38 +66,16 @@ func init() {
 	rootCmd.Flags().BoolS("y", "y", false, "Do not show flags")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"Group": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"User": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"format": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionFormatSpecifiers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"group": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"pid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"ppid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"quick-pid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"sid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionSessionIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"sort": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionFormatSpecifiers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"tty": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionTerminals().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"user": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"Group":     os.ActionGroups().UniqueList(","),
+		"User":      os.ActionUsers().UniqueList(","),
+		"format":    ps.ActionFormatSpecifiers().UniqueList(","),
+		"group":     os.ActionGroups().UniqueList(","),
+		"pid":       ps.ActionProcessIds().UniqueList(","),
+		"ppid":      ps.ActionProcessIds().UniqueList(","),
+		"quick-pid": ps.ActionProcessIds().UniqueList(","),
+		"sid":       os.ActionSessionIds().UniqueList(","),
+		"sort":      ps.ActionFormatSpecifiers().UniqueList(","),
+		"tty":       os.ActionTerminals().UniqueList(","),
+		"user":      os.ActionUsers().UniqueList(","),
 	})
 }

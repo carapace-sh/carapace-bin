@@ -30,9 +30,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show the version number and exit.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"components": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("pkcs11", "secrets", "ssh").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"components":        carapace.ActionValues("pkcs11", "secrets", "ssh").UniqueList(","),
 		"control-directory": carapace.ActionDirectories(),
 	})
 }

@@ -23,19 +23,11 @@ func init() {
 	rootCmd.AddCommand(tagCmd)
 
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{
-		"add": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"host": action.ActionSnapshotHosts(tagCmd),
-		"remove": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"set": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"add":    action.ActionSnapshotTags(tagCmd).UniqueList(","),
+		"host":   action.ActionSnapshotHosts(tagCmd),
+		"remove": action.ActionSnapshotTags(tagCmd).UniqueList(","),
+		"set":    action.ActionSnapshotTags(tagCmd).UniqueList(","),
+		"tag":    action.ActionSnapshotTags(tagCmd).UniqueList(","),
 	})
 
 	carapace.Gen(tagCmd).PositionalAnyCompletion(

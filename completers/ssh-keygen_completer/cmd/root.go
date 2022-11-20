@@ -119,12 +119,10 @@ func init() {
 			"PKCS8", "PKCS8 public or private key",
 			"PEM", "PEM public key",
 		),
-		"n": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.Batch(
-				os.ActionUsers(),
-				net.ActionHosts(),
-			).ToA().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"n": carapace.Batch(
+			os.ActionUsers(),
+			net.ActionHosts(),
+		).ToA().UniqueList(","),
 		"r": net.ActionHosts(),
 		"s": carapace.ActionFiles(),
 		"t": carapace.ActionValues("dsa", "ecdsa", "ecdsa-sk", "ed25519", "ed25519-sk", "rsa"),

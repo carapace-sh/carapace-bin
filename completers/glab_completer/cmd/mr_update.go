@@ -33,20 +33,12 @@ func init() {
 	mrCmd.AddCommand(mr_updateCmd)
 
 	carapace.Gen(mr_updateCmd).FlagCompletion(carapace.ActionMap{
-		"assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(mr_updateCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(mr_updateCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"milestone": action.ActionMilestones(mr_updateCmd),
-		"reviewer": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(mr_updateCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"assignee":      action.ActionProjectMembers(mr_updateCmd).UniqueList(","),
+		"label":         action.ActionLabels(mr_updateCmd).UniqueList(","),
+		"milestone":     action.ActionMilestones(mr_updateCmd),
+		"reviewer":      action.ActionProjectMembers(mr_updateCmd).UniqueList(","),
 		"target-branch": action.ActionBranches(mr_updateCmd),
-		"unlabel": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(mr_updateCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"unlabel":       action.ActionLabels(mr_updateCmd).UniqueList(","),
 	})
 
 	carapace.Gen(mr_updateCmd).PositionalCompletion(

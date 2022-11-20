@@ -30,15 +30,11 @@ func init() {
 	rootCmd.AddCommand(findCmd)
 
 	carapace.Gen(findCmd).FlagCompletion(carapace.ActionMap{
-		"host": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotHosts(findCmd).Invoke(c).Filter(c.Args).ToA().NoSpace()
-		}),
+		"host":     action.ActionSnapshotHosts(findCmd).UniqueList(","),
 		"newest":   time.ActionDateTime(time.DateTimeOpts{}),
 		"oldest":   time.ActionDateTime(time.DateTimeOpts{}),
 		"path":     carapace.ActionFiles(),
 		"snapshot": action.ActionSnapshotIDs(findCmd),
-		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(findCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"tag":      action.ActionSnapshotTags(findCmd).UniqueList(","),
 	})
 }

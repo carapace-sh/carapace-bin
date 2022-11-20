@@ -36,10 +36,8 @@ func init() {
 	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
 		"android-language": carapace.ActionValues("java", "kotlin"),
 		"ios-language":     carapace.ActionValues("objc", "swift"),
-		"platforms": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("ios", "android", "windows", "linux", "macos", "web").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"sample": action.ActionSamples(),
+		"platforms":        carapace.ActionValues("ios", "android", "windows", "linux", "macos", "web").UniqueList(","),
+		"sample":           action.ActionSamples(),
 		"template": carapace.ActionValuesDescribed(
 			"app", "Generate a Flutter application.",
 			"module", "Generate a project to add a Flutter module to an existing Android or iOS application.",

@@ -24,14 +24,10 @@ func init() {
 	rootCmd.AddCommand(snapshotsCmd)
 
 	carapace.Gen(snapshotsCmd).FlagCompletion(carapace.ActionMap{
-		"group-by": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("host", "paths", "tags").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"host": action.ActionSnapshotHosts(snapshotsCmd),
-		"path": carapace.ActionFiles(),
-		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(snapshotsCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"group-by": carapace.ActionValues("host", "paths", "tags").UniqueList(","),
+		"host":     action.ActionSnapshotHosts(snapshotsCmd),
+		"path":     carapace.ActionFiles(),
+		"tag":      action.ActionSnapshotTags(snapshotsCmd).UniqueList(","),
 	})
 
 	carapace.Gen(snapshotsCmd).PositionalAnyCompletion(

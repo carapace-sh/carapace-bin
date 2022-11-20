@@ -27,13 +27,11 @@ func init() {
 	secretCmd.AddCommand(secret_setCmd)
 
 	carapace.Gen(secret_setCmd).FlagCompletion(carapace.ActionMap{
-		"app":      carapace.ActionValues("actions", "codespaces", "dependabot"),
-		"env":      action.ActionEnvironments(secret_setCmd),
-		"env-file": carapace.ActionFiles(),
-		"org":      gh.ActionOrganizations(gh.HostOpts{}),
-		"repos": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionOwnerRepositories(secret_setCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"app":        carapace.ActionValues("actions", "codespaces", "dependabot"),
+		"env":        action.ActionEnvironments(secret_setCmd),
+		"env-file":   carapace.ActionFiles(),
+		"org":        gh.ActionOrganizations(gh.HostOpts{}),
+		"repos":      action.ActionOwnerRepositories(secret_setCmd).UniqueList(","),
 		"visibility": carapace.ActionValues("all", "private", "selected"),
 	})
 

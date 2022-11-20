@@ -60,8 +60,8 @@ func init() {
 		"color":   action.ActionColorModes(),
 		"example": action.ActionTargets(testCmd, action.TargetOpts{Example: true}),
 		"exclude": action.ActionWorkspaceMembers(testCmd),
-		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return cargo.ActionFeatures(testCmd.Flag("manifest-path").Value.String()).Invoke(c).Filter(c.Parts).ToA().NoSpace()
+		"features": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return cargo.ActionFeatures(testCmd.Flag("manifest-path").Value.String()).UniqueList(",")
 		}),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),

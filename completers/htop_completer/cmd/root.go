@@ -46,9 +46,7 @@ func init() {
 			"basic", "drop all capabilities not needed by htop",
 			"strict", "drop all capabilities except those needed for core functionality",
 		),
-		"pid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"pid":      ps.ActionProcessIds().UniqueList(","),
 		"sort-key": ActionSortKeys(),
 		"user":     os.ActionUsers(),
 	})

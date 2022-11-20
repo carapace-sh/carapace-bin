@@ -35,9 +35,7 @@ func init() {
 		"hostname": action.ActionConfigHosts(),
 		"input":    carapace.ActionFiles(),
 		"method":   http.ActionRequestMethods(),
-		"preview": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionApiPreviews().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"preview":  action.ActionApiPreviews().UniqueList(","),
 	})
 
 	carapace.Gen(apiCmd).PositionalCompletion(

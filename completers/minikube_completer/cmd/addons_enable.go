@@ -21,9 +21,7 @@ func init() {
 	addonsCmd.AddCommand(addons_enableCmd)
 
 	carapace.Gen(addons_enableCmd).FlagCompletion(carapace.ActionMap{
-		"images": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return docker.ActionRepositoryTags().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"images": docker.ActionRepositoryTags().UniqueList(","),
 	})
 
 	carapace.Gen(addons_enableCmd).PositionalCompletion(

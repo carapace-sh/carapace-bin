@@ -34,14 +34,10 @@ func init() {
 
 	// TODO app completion
 	carapace.Gen(issue_listCmd).FlagCompletion(carapace.ActionMap{
-		"assignee": action.ActionAssignableUsers(issue_listCmd),
-		"author":   gh.ActionUsers(gh.HostOpts{}),
-		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionIssueFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"assignee":  action.ActionAssignableUsers(issue_listCmd),
+		"author":    gh.ActionUsers(gh.HostOpts{}),
+		"json":      action.ActionIssueFields().UniqueList(","),
+		"label":     action.ActionLabels(issue_listCmd).UniqueList(","),
 		"mention":   action.ActionMentionableUsers(issue_listCmd),
 		"milestone": action.ActionMilestones(issue_listCmd),
 		"state":     carapace.ActionValues("open", "closed", "all").StyleF(styles.Gh.ForState),

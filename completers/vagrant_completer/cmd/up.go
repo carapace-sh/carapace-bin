@@ -28,10 +28,8 @@ func init() {
 	rootCmd.AddCommand(upCmd)
 
 	carapace.Gen(upCmd).FlagCompletion(carapace.ActionMap{
-		"provider": action.ActionProviders(),
-		"provision-with": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProvisioners().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"provider":       action.ActionProviders(),
+		"provision-with": action.ActionProvisioners().UniqueList(","),
 	})
 
 	carapace.Gen(upCmd).PositionalCompletion(

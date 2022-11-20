@@ -29,20 +29,16 @@ func init() {
 	rootCmd.Flags().StringP("root", "Q", "", "directory to chroot into")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"add": os.ActionUsers(),
-		"administrators": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"add":            os.ActionUsers(),
+		"administrators": os.ActionUsers().UniqueList(","),
 		"delete": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				return os.ActionGroupMembers(c.Args[0])
 			}
 			return os.ActionUsers()
 		}),
-		"members": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"root": carapace.ActionDirectories(),
+		"members": os.ActionUsers().UniqueList(","),
+		"root":    carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

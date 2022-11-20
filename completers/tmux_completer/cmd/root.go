@@ -35,9 +35,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"S": carapace.ActionFiles(),
-		"T": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return tmux.ActionFeatures().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"T": tmux.ActionFeatures().UniqueList(","),
 		"c": carapace.ActionFiles(),
 		"f": carapace.ActionFiles(),
 	})

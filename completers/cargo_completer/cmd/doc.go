@@ -47,12 +47,10 @@ func init() {
 	rootCmd.AddCommand(docCmd)
 
 	carapace.Gen(docCmd).FlagCompletion(carapace.ActionMap{
-		"bin":     action.ActionTargets(docCmd, action.TargetOpts{Bin: true}),
-		"color":   action.ActionColorModes(),
-		"exclude": action.ActionWorkspaceMembers(docCmd),
-		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return cargo.ActionFeatures(docCmd.Flag("manifest-path").Value.String()).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"bin":            action.ActionTargets(docCmd, action.TargetOpts{Bin: true}),
+		"color":          action.ActionColorModes(),
+		"exclude":        action.ActionWorkspaceMembers(docCmd),
+		"features":       cargo.ActionFeatures(docCmd.Flag("manifest-path").Value.String()).UniqueList(","),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(docCmd, true),

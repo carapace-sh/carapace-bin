@@ -176,34 +176,26 @@ func init() {
 	rootCmd.Flags().Bool("xattr", false, "turn on storage of metadata in extended file attributes")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"accept": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilenameExtensions().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"accept":           fs.ActionFilenameExtensions().UniqueList(","),
 		"append-output":    carapace.ActionFiles(),
 		"body-file":        carapace.ActionFiles(),
 		"ca-certificate":   carapace.ActionFiles(),
 		"ca-directory":     carapace.ActionDirectories(),
 		"certificate":      carapace.ActionFiles(),
 		"certificate-type": carapace.ActionValues("PEM", "DER"),
-		"ciphers": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"ciphers":          ssh.ActionCiphers().UniqueList(","),
 		"compression":      carapace.ActionValues("auto", "gzip", "none"),
 		"config":           carapace.ActionFiles(),
 		"crl-file":         carapace.ActionFiles(),
 		"directory-prefix": carapace.ActionDirectories(),
-		"follow-tags": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return http.ActionTags().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"header": http.ActionRequestHeaders(),
-		"ignore-tags": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return http.ActionTags().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"input-file":      carapace.ActionFiles(),
-		"load-cookies":    carapace.ActionFiles(),
-		"method":          http.ActionRequestMethods(),
-		"output-document": carapace.ActionFiles(),
-		"output-file":     carapace.ActionFiles(),
+		"follow-tags":      http.ActionTags().UniqueList(","),
+		"header":           http.ActionRequestHeaders(),
+		"ignore-tags":      http.ActionTags().UniqueList(","),
+		"input-file":       carapace.ActionFiles(),
+		"load-cookies":     carapace.ActionFiles(),
+		"method":           http.ActionRequestMethods(),
+		"output-document":  carapace.ActionFiles(),
+		"output-file":      carapace.ActionFiles(),
 		"pinnedpubkey": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if !strings.HasPrefix(c.CallbackValue, "sha256//") {
 				return carapace.Batch(
@@ -215,25 +207,21 @@ func init() {
 				return carapace.ActionValues("sha256//").NoSpace()
 			})
 		}),
-		"post-file":        carapace.ActionFiles(),
-		"private-key":      carapace.ActionFiles(),
-		"private-key-type": carapace.ActionValues("PEM", "DER"),
-		"progress":         carapace.ActionValues("dot", "bar"),
-		"regex-type":       carapace.ActionValues("posix", "pcre"),
-		"reject": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilenameExtensions().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"rejected-log": carapace.ActionFiles(),
-		"report-speed": carapace.ActionValues("bits"),
-		"retry-on-http-error": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return http.ActionStatusCodes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"save-cookies":    carapace.ActionFiles(),
-		"secure-protocol": carapace.ActionValues("auto", "SSLv2"),
-		"user-agent":      http.ActionUserAgents(),
-		"warc-dedup":      carapace.ActionFiles(),
-		"warc-file":       carapace.ActionFiles(),
-		"warc-tempdir":    carapace.ActionDirectories(),
+		"post-file":           carapace.ActionFiles(),
+		"private-key":         carapace.ActionFiles(),
+		"private-key-type":    carapace.ActionValues("PEM", "DER"),
+		"progress":            carapace.ActionValues("dot", "bar"),
+		"regex-type":          carapace.ActionValues("posix", "pcre"),
+		"reject":              fs.ActionFilenameExtensions().UniqueList(","),
+		"rejected-log":        carapace.ActionFiles(),
+		"report-speed":        carapace.ActionValues("bits"),
+		"retry-on-http-error": http.ActionStatusCodes().UniqueList(","),
+		"save-cookies":        carapace.ActionFiles(),
+		"secure-protocol":     carapace.ActionValues("auto", "SSLv2"),
+		"user-agent":          http.ActionUserAgents(),
+		"warc-dedup":          carapace.ActionFiles(),
+		"warc-file":           carapace.ActionFiles(),
+		"warc-tempdir":        carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

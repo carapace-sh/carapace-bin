@@ -37,9 +37,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "Returns the current version of the tesseract(1) executable.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"l": carapace.ActionMultiParts("+", func(c carapace.Context) carapace.Action {
-			return ActionLanguages().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"l":             ActionLanguages().UniqueList("+"),
 		"oem":           ActionOcrEngineModes(),
 		"psm":           ActionAnalysisSubsets(),
 		"tessdata-dir":  carapace.ActionDirectories(),

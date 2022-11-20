@@ -19,11 +19,11 @@ func init() {
 	rootCmd.AddCommand(e2eCmd)
 
 	carapace.Gen(e2eCmd).FlagCompletion(carapace.ActionMap{
-		"configuration": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"configuration": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return action.ActionBuilderConfigurations(c.Args[0], "").Invoke(c).Filter(c.Parts).ToA().NoSpace()
+			return action.ActionBuilderConfigurations(c.Args[0], "").UniqueList(",")
 		}),
 	})
 

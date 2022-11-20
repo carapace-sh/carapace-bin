@@ -127,14 +127,12 @@ func init() {
 }
 
 func ActionPrintOptions() carapace.Action {
-	return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
-		return carapace.ActionValuesDescribed(
-			"H", "request headers",
-			"B", "request body",
-			"h", "response headers",
-			"b", "response body",
-		).Invoke(c).Filter(c.Parts).ToA()
-	})
+	return carapace.ActionValuesDescribed(
+		"H", "request headers",
+		"B", "request body",
+		"h", "response headers",
+		"b", "response body",
+	).UniqueList("")
 }
 
 func ActionStyles() carapace.Action {

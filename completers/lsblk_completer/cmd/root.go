@@ -51,12 +51,8 @@ func init() {
 	rootCmd.Flag("tree").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"dedup": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"output": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"dedup":   ActionColumns().UniqueList(","),
+		"output":  ActionColumns().UniqueList(","),
 		"sort":    ActionColumns(),
 		"sysroot": carapace.ActionDirectories(),
 		"tree":    ActionColumns(),

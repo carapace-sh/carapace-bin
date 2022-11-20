@@ -258,20 +258,18 @@ func init() {
 			"patience", "Use \"patience diff\" algorithm when generating patches.",
 			"histogram", "This algorithm extends the patience algorithm to \"support low-occurrence common elements\".",
 		),
-		"diff-filter": carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValuesDescribed(
-				"A", "Added",
-				"C", "Copied",
-				"D", "Deleted",
-				"M", "Modified",
-				"R", "Renamed",
-				"T", "Changed",
-				"U", "Unmerged",
-				"X", "Unknown",
-				"B", "Broken",
-				"*", "All-or-none",
-			).Invoke(c).Filter(c.Parts).ToA()
-		}),
+		"diff-filter": carapace.ActionValuesDescribed(
+			"A", "Added",
+			"C", "Copied",
+			"D", "Deleted",
+			"M", "Modified",
+			"R", "Renamed",
+			"T", "Changed",
+			"U", "Unmerged",
+			"X", "Unknown",
+			"B", "Broken",
+			"*", "All-or-none",
+		).UniqueList(""),
 		"diff-merges": carapace.ActionValuesDescribed(
 			"off", "Disable output of diffs for merge commits.",
 			"none", "Disable output of diffs for merge commits.",
@@ -300,9 +298,7 @@ func init() {
 			"porcelain", "Use a special line-based format intended for script consumption",
 			"none", "Disable word diff again",
 		),
-		"ws-error-highlight": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("context", "old", "new", "none", "all", "default").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"ws-error-highlight": carapace.ActionValues("context", "old", "new", "none", "all", "default").UniqueList(","),
 	})
 
 	carapace.Gen(logCmd).PositionalAnyCompletion(
