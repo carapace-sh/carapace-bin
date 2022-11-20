@@ -48,7 +48,7 @@ func init() {
 		"host":                action.ActionSnapshotHosts(backupCmd),
 		"parent":              action.ActionSnapshotIDs(backupCmd),
 		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(backupCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSnapshotTags(backupCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"time": time.ActionDateTime(time.DateTimeOpts{}),
 	})

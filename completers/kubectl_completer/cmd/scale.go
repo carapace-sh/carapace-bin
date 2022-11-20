@@ -43,7 +43,7 @@ func init() {
 		carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionValues("deployments/", "replicasets/", "replicationcontrollers/")
+				return carapace.ActionValues("deployments/", "replicasets/", "replicationcontrollers/").NoSpace()
 			case 1:
 				return action.ActionResources("", c.Parts[0])
 			default:

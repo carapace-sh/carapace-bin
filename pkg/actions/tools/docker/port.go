@@ -18,7 +18,7 @@ func ActionPorts() carapace.Action {
 			return carapace.ActionMultiParts("-", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return net.ActionPorts()
+					return net.ActionPorts().NoSpace()
 				case 1:
 					return net.ActionPorts()
 				default:

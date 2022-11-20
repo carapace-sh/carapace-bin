@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(keydownCmd).PositionalAnyCompletion(
 		carapace.ActionMultiParts("+", func(c carapace.Context) carapace.Action {
-			return action.ActionKeys().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionKeys().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	)
 }

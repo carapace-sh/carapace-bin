@@ -41,7 +41,7 @@ func init() {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return action.ActionBuilderConfigurations(c.Args[0], "serve").Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionBuilderConfigurations(c.Args[0], "serve").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"proxy-config": carapace.ActionFiles(),
 		"ssl-cert":     carapace.ActionFiles(),

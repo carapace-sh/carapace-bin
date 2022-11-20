@@ -93,14 +93,14 @@ func init() {
 		"Q": ActionQueryOptions(),
 		"S": carapace.ActionFiles(),
 		"c": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA()
+			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"i": carapace.Batch(
 			ssh.ActionPrivateKeys(),
 			carapace.ActionFiles(),
 		).ToA(),
 		"o": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ssh.ActionOptions()
+			return ssh.ActionOptions().NoSpace()
 		}),
 	})
 

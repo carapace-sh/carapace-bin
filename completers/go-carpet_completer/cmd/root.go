@@ -31,7 +31,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"file": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles()
+			return carapace.ActionFiles().NoSpace()
 		}),
 		"func": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			files := []string{}

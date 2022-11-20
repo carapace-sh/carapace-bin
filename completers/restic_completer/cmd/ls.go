@@ -25,7 +25,7 @@ func init() {
 		"host": action.ActionSnapshotHosts(lsCmd),
 		"path": carapace.ActionFiles(),
 		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(lsCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSnapshotTags(lsCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

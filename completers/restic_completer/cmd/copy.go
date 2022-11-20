@@ -32,7 +32,7 @@ func init() {
 		"repo2":             action.ActionRepo(),
 		"repository-file2":  carapace.ActionFiles(),
 		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(copyCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSnapshotTags(copyCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

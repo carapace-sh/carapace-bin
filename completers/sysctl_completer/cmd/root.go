@@ -50,7 +50,7 @@ func init() {
 		carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return ActionVariableNames().Invoke(c).ToMultiPartsA(".")
+				return ActionVariableNames().Invoke(c).ToMultiPartsA(".").NoSpace()
 			case 1:
 				return ActionVariableValues(c.Parts[0])
 			default:

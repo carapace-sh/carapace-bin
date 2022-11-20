@@ -13,7 +13,7 @@ func ActionPackageSearch(registry string) carapace.Action {
 	return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			return ActionPackageNames(registry)
+			return ActionPackageNames(registry).NoSpace()
 		case 1:
 			return ActionPackageVersions(PackageOpts{Registry: registry, Package: c.Parts[0]})
 		default:

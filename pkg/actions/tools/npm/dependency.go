@@ -69,7 +69,7 @@ func ActionDependencies() carapace.Action {
 				for name := range deps.flatMap() {
 					vals = append(vals, name)
 				}
-				return carapace.ActionValues(vals...)
+				return carapace.ActionValues(vals...).NoSpace()
 			case 1:
 				return carapace.ActionValues(deps.flatMap()[c.Parts[0]]...)
 			default:

@@ -98,7 +98,7 @@ func ActionFileModes() carapace.Action {
 		a := carapace.ActionValues().Invoke(c)
 		if len(c.CallbackValue) == 0 || !unicode.IsDigit([]rune(c.CallbackValue)[0]) {
 			symbolic := carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return ActionFileModesSymbolic()
+				return ActionFileModesSymbolic().NoSpace()
 			}).Invoke(c)
 			a = a.Merge(symbolic)
 		}

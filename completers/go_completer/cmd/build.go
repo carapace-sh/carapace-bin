@@ -64,7 +64,7 @@ func addBuildFlags(cmd *cobra.Command) {
 		"n":         carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8"),
 		"pkgdir":    carapace.ActionDirectories(),
 		"tags": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return golang.ActionBuildTags().Invoke(c).Filter(c.Parts).ToA()
+			return golang.ActionBuildTags().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

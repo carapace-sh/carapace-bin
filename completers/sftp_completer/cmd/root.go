@@ -53,7 +53,7 @@ func init() {
 		"c": ssh.ActionCiphers(),
 		"i": carapace.ActionFiles(),
 		"o": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ssh.ActionOptions()
+			return ssh.ActionOptions().NoSpace()
 		}),
 	})
 

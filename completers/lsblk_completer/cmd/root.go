@@ -52,10 +52,10 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"dedup": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionColumns().Invoke(c).Filter(c.Parts).ToA()
+			return ActionColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"output": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionColumns().Invoke(c).Filter(c.Parts).ToA()
+			return ActionColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"sort":    ActionColumns(),
 		"sysroot": carapace.ActionDirectories(),

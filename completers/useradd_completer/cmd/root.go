@@ -49,7 +49,7 @@ func init() {
 		"base-dir": carapace.ActionDirectories(),
 		"gid":      os.ActionGroups(),
 		"groups": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"home-dir": carapace.ActionDirectories(),
 		"prefix":   carapace.ActionDirectories(),

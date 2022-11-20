@@ -30,7 +30,7 @@ func init() {
 	carapace.Gen(upCmd).FlagCompletion(carapace.ActionMap{
 		"provider": action.ActionProviders(),
 		"provision-with": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProvisioners().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionProvisioners().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

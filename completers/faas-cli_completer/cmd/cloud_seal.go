@@ -28,7 +28,7 @@ func init() {
 		"cert":        carapace.ActionFiles(".pem"),
 		"download-to": carapace.ActionDirectories(),
 		"from-file": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles()
+			return carapace.ActionFiles().NoSpace()
 		}),
 		"namespace":   action.ActionNamespaces(),
 		"output-file": carapace.ActionFiles(),

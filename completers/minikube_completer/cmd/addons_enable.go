@@ -22,7 +22,7 @@ func init() {
 
 	carapace.Gen(addons_enableCmd).FlagCompletion(carapace.ActionMap{
 		"images": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return docker.ActionRepositoryTags().Invoke(c).Filter(c.Parts).ToA()
+			return docker.ActionRepositoryTags().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

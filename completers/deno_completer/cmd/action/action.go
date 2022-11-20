@@ -14,7 +14,7 @@ func ActionHostPort() carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			return carapace.ActionValues() // TODO local ips
+			return carapace.ActionValues().NoSpace() // TODO local ips
 		case 1:
 			return net.ActionPorts()
 		default:

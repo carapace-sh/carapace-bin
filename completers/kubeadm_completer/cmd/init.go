@@ -46,11 +46,11 @@ func init() {
 		"config":          carapace.ActionFiles(),
 		"cri-socket":      carapace.ActionFiles(),
 		"ignore-preflight-errors": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"patches": carapace.ActionDirectories(),
 		"skip-phases": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionPhases().Invoke(c).Filter(c.Parts).ToMultiPartsA("/")
+			return action.ActionPhases().Invoke(c).Filter(c.Parts).ToMultiPartsA("/").NoSpace()
 		}),
 	})
 }

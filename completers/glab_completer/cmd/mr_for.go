@@ -28,7 +28,7 @@ func init() {
 	carapace.Gen(mr_forCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": action.ActionProjectMembers(mr_forCmd),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(mr_forCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(mr_forCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"target-branch": action.ActionBranches(mr_forCmd),
 	})

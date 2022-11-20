@@ -53,7 +53,7 @@ func init() {
 		"tunnel": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return net.ActionHosts()
+				return net.ActionHosts().NoSpace()
 			case 1:
 				return net.ActionPorts()
 			default:

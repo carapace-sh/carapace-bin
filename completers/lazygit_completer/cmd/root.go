@@ -37,7 +37,7 @@ func init() {
 		"path":           carapace.ActionDirectories(),
 		"use-config-dir": carapace.ActionDirectories(),
 		"use-config-file": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles()
+			return carapace.ActionFiles().NoSpace()
 		}),
 	})
 }

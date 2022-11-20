@@ -29,7 +29,7 @@ func init() {
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
 		"ignore": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionPackageSearch().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionPackageSearch().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

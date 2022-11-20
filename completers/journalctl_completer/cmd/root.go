@@ -93,18 +93,18 @@ func init() {
 		"cursor-file":    carapace.ActionFiles(),
 		"directory":      carapace.ActionDirectories(),
 		"facility": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionFacilities().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionFacilities().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"field":  action.ActionFields(),
 		"file":   carapace.ActionFiles(),
 		"image":  carapace.ActionFiles(),
 		"output": journalctl.ActionOutputs(),
 		"output-fields": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionFields().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"priority": carapace.ActionMultiParts("..", func(c carapace.Context) carapace.Action {
 			if len(c.Parts) < 2 {
-				return action.ActionPriorities()
+				return action.ActionPriorities().NoSpace()
 			}
 			return carapace.ActionValues()
 		}),

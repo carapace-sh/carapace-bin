@@ -50,7 +50,7 @@ func init() {
 		"loglevel":      carapace.ActionValues("trace", "debug", "info", "warn", "error", "critical").StyleF(style.ForLogLevel),
 		"pidfile":       carapace.ActionFiles(),
 		"profile_options": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("cumulative", "calls", "callers").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("cumulative", "calls", "callers").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"umask": fs.ActionFileModesNumeric(),
 		"user":  os.ActionUsers(),

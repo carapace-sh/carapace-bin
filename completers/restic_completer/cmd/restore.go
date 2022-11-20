@@ -29,7 +29,7 @@ func init() {
 		"host": action.ActionSnapshotHosts(restoreCmd),
 		"path": carapace.ActionFiles(),
 		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(restoreCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSnapshotTags(restoreCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"target": carapace.ActionDirectories(),
 	})

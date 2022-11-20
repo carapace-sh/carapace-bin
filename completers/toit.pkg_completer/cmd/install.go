@@ -33,7 +33,7 @@ func init() {
 					return carapace.Batch(
 						action.ActionPackages(),
 						git.ActionRepositorySearch(git.SearchOpts{}.Default()), // TODO verify if https prefix is ok
-					).ToA()
+					).ToA().NoSpace()
 				case 1:
 					return action.ActionPackageVersions(c.Parts[0])
 				default:

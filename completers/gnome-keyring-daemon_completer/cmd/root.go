@@ -31,7 +31,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"components": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("pkcs11", "secrets", "ssh").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("pkcs11", "secrets", "ssh").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"control-directory": carapace.ActionDirectories(),
 	})

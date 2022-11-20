@@ -22,7 +22,7 @@ func init() {
 	carapace.Gen(release_downloadCmd).FlagCompletion(carapace.ActionMap{
 		"asset-name": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return action.ActionReleaseAssets(release_downloadCmd, c.Args[0]).Invoke(c).Filter(c.Parts).ToA()
+				return action.ActionReleaseAssets(release_downloadCmd, c.Args[0]).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 			}
 			return carapace.ActionValues()
 		}),

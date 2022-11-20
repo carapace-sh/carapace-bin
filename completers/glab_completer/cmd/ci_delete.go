@@ -23,7 +23,7 @@ func init() {
 
 	carapace.Gen(ci_deleteCmd).PositionalCompletion(
 		carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionPipelines(ci_deleteCmd, ci_deleteCmd.Flag("status").Value.String()).Invoke(c).Filter(c.Args).ToA()
+			return action.ActionPipelines(ci_deleteCmd, ci_deleteCmd.Flag("status").Value.String()).Invoke(c).Filter(c.Args).ToA().NoSpace()
 		}),
 	)
 }

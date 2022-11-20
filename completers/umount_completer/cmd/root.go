@@ -41,10 +41,10 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"test-opts": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionOptions().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionOptions().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"types": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilesystemTypes().Invoke(c).Filter(c.Parts).ToA()
+			return fs.ActionFilesystemTypes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

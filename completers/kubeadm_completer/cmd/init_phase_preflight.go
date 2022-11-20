@@ -21,7 +21,7 @@ func init() {
 	carapace.Gen(init_phase_preflightCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
 		"ignore-preflight-errors": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 }

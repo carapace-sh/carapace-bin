@@ -33,7 +33,7 @@ func init() {
 	carapace.Gen(updateCmd).FlagCompletion(carapace.ActionMap{
 		"builddir": carapace.ActionDirectories(),
 		"ignore": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionInstalledPackages(false).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionInstalledPackages(false).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 }

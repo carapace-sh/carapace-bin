@@ -37,7 +37,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"checks": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionChecks().Invoke(c).Filter(c.Parts).ToA()
+			return ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"debug.cpuprofile":        carapace.ActionFiles(),
 		"debug.measure-analyzers": carapace.ActionFiles(),
@@ -45,7 +45,7 @@ func init() {
 		"debug.unused-graph":      carapace.ActionFiles(),
 		"explain":                 ActionChecks(),
 		"fail": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionChecks().Invoke(c).Filter(c.Parts).ToA()
+			return ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

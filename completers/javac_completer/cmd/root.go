@@ -74,13 +74,13 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"bootclasspath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".jar", ".zip")
+			return carapace.ActionFiles(".jar", ".zip").NoSpace()
 		}),
 		"classpath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".jar", ".zip")
+			return carapace.ActionFiles(".jar", ".zip").NoSpace()
 		}),
 		"cp": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".jar", ".zip")
+			return carapace.ActionFiles(".jar", ".zip").NoSpace()
 		}),
 		"d": carapace.ActionDirectories(),
 		// TODO encoding
@@ -92,7 +92,7 @@ func init() {
 				"source", "Source file debugging information",
 				"lines", "Line number debugging information",
 				"vars", "Local variable debugging information",
-			).Invoke(c).Filter(c.Parts).ToA()
+			).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"h":             carapace.ActionDirectories(),
 		"implicit":      carapace.ActionValues("none", "class"),

@@ -60,7 +60,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"activate-profiles": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProfiles(rootCmd.Flag("file").Value.String()).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionProfiles(rootCmd.Flag("file").Value.String()).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"file":              carapace.ActionFiles(".xml"),
 		"global-settings":   carapace.ActionFiles(".xml"),

@@ -619,7 +619,7 @@ func actionStatusCodeRanges() carapace.Action {
 	return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 		return carapace.ActionMultiParts("-", func(c carapace.Context) carapace.Action {
 			if len(c.Parts) < 2 {
-				return http.ActionStatusCodes()
+				return http.ActionStatusCodes().NoSpace()
 			}
 			return carapace.ActionValues()
 		})

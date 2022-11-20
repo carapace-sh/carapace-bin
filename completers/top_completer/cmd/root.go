@@ -60,7 +60,7 @@ func init() {
 		),
 		"o": action.ActionFields(),
 		"p": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"u": os.ActionUsers(),
 	})

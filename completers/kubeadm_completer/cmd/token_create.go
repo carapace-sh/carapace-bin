@@ -25,7 +25,7 @@ func init() {
 	carapace.Gen(token_createCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
 		"usages": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("signing", "authentication").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("signing", "authentication").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 }

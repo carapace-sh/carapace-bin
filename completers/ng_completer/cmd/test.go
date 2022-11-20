@@ -39,7 +39,7 @@ func init() {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return action.ActionBuilderConfigurations(c.Args[0], "test").Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionBuilderConfigurations(c.Args[0], "test").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"inline-style-language": carapace.ActionValues("css", "less", "sass", "scss"),
 		"karma-config":          carapace.ActionFiles(),

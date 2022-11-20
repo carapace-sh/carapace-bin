@@ -56,7 +56,7 @@ func init() {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return action.ActionBuilderConfigurations(c.Args[0], "build").Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionBuilderConfigurations(c.Args[0], "build").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"cross-origin":             carapace.ActionValues("none", "anonymous", "use-credentials"),
 		"i18n-missing-translation": carapace.ActionValues("warning", "error", "ignore"),

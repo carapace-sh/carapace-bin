@@ -66,7 +66,7 @@ func init() {
 		"goto": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionFiles()
+				return carapace.ActionFiles().NoSpace()
 			default:
 				return carapace.ActionValues()
 			}

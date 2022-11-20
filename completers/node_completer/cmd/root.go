@@ -125,7 +125,7 @@ func init() {
 		"heapsnapshot-signal": ps.ActionKillSignals(),
 		"icu-data-dir":        carapace.ActionDirectories(),
 		"inspect-publish-uid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("http", "stderr").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("http", "stderr").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"openssl-config":       carapace.ActionFiles(),
 		"redirect-warnings":    carapace.ActionFiles(),

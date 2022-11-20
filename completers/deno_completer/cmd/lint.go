@@ -32,10 +32,10 @@ func init() {
 	carapace.Gen(lintCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
 		"rules-exclude": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLintRules().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLintRules().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"rules-include": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLintRules().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLintRules().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

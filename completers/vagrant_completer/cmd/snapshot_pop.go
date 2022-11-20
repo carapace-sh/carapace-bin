@@ -24,7 +24,7 @@ func init() {
 
 	carapace.Gen(snapshot_popCmd).FlagCompletion(carapace.ActionMap{
 		"provision-with": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProvisioners().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionProvisioners().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 
