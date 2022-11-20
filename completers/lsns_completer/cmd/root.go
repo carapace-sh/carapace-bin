@@ -34,10 +34,8 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"task": ps.ActionProcessIds(),
-		"type": carapace.ActionValues("mnt", "net", "ipc", "user", "pid", "uts", "cgroup", "time"),
+		"output": action.ActionColumns().UniqueList(","),
+		"task":   ps.ActionProcessIds(),
+		"type":   carapace.ActionValues("mnt", "net", "ipc", "user", "pid", "uts", "cgroup", "time"),
 	})
 }

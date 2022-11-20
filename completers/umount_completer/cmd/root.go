@@ -40,12 +40,8 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"test-opts": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionOptions().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"types": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilesystemTypes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"test-opts": action.ActionOptions().UniqueList(","),
+		"types":     fs.ActionFilesystemTypes().UniqueList(","),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

@@ -44,10 +44,8 @@ func init() {
 	rootCmd.Flags().BoolP("unlock", "U", false, "unlock the user account")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"gid": os.ActionGroups(),
-		"groups": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"gid":    os.ActionGroups(),
+		"groups": os.ActionGroups().UniqueList(","),
 		"home":   carapace.ActionDirectories(),
 		"prefix": carapace.ActionDirectories(),
 		"root":   carapace.ActionDirectories(),

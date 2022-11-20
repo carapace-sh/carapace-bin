@@ -26,9 +26,7 @@ func init() {
 	codespaceCmd.AddCommand(codespace_listCmd)
 
 	carapace.Gen(codespace_listCmd).FlagCompletion(carapace.ActionMap{
-		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionCodespaceFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"json": action.ActionCodespaceFields().UniqueList(","),
 		"org":  gh.ActionOrganizations(gh.HostOpts{}),
 		"repo": gh.ActionOwnerRepositories(gh.HostOpts{}),
 		"user": gh.ActionUsers(gh.HostOpts{}),

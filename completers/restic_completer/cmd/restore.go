@@ -26,11 +26,9 @@ func init() {
 	rootCmd.AddCommand(restoreCmd)
 
 	carapace.Gen(restoreCmd).FlagCompletion(carapace.ActionMap{
-		"host": action.ActionSnapshotHosts(restoreCmd),
-		"path": carapace.ActionFiles(),
-		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(restoreCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"host":   action.ActionSnapshotHosts(restoreCmd),
+		"path":   carapace.ActionFiles(),
+		"tag":    action.ActionSnapshotTags(restoreCmd).UniqueList(","),
 		"target": carapace.ActionDirectories(),
 	})
 

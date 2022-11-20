@@ -47,13 +47,11 @@ func init() {
 	rootCmd.Flags().BoolS("x", "x", false, "Print commands")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"gc":    carapace.ActionValues("none", "leaking", "extalloc", "conservative"),
-		"o":     carapace.ActionFiles(),
-		"opt":   carapace.ActionValues("0", "1", "2", "s", "z"),
-		"panic": carapace.ActionValues("print", "trap"),
-		"port": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return net.ActionPorts().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"gc":         carapace.ActionValues("none", "leaking", "extalloc", "conservative"),
+		"o":          carapace.ActionFiles(),
+		"opt":        carapace.ActionValues("0", "1", "2", "s", "z"),
+		"panic":      carapace.ActionValues("print", "trap"),
+		"port":       net.ActionPorts().UniqueList(","),
 		"programmer": carapace.ActionValues("openocd", "msd", "command", "bmp"),
 		"scheduler":  carapace.ActionValues("none", "coroutines", "tasks"),
 		"serial":     carapace.ActionValues("none", "uart", "usb"),

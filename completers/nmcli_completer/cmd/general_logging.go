@@ -25,9 +25,7 @@ func init() {
 			"DEBUG", "verbose logging for debugging purposes",
 		),
 		carapace.ActionValues("domains"),
-		carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionDomains().Invoke(c).Filter(c.Parts).Suffix(",").ToA()
-		}),
+		ActionDomains().UniqueList(","),
 	)
 }
 

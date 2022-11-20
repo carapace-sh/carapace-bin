@@ -17,8 +17,6 @@ func init() {
 	config_printCmd.AddCommand(config_print_initDefaultsCmd)
 
 	carapace.Gen(config_print_initDefaultsCmd).FlagCompletion(carapace.ActionMap{
-		"component-configs": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("KubeProxyConfiguration", "KubeletConfiguration").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"component-configs": carapace.ActionValues("KubeProxyConfiguration", "KubeletConfiguration").UniqueList(","),
 	})
 }

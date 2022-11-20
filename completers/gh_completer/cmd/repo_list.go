@@ -30,15 +30,13 @@ func init() {
 	repoCmd.AddCommand(repo_listCmd)
 
 	carapace.Gen(repo_listCmd).FlagCompletion(carapace.ActionMap{
-		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionRepositoryFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"json":     action.ActionRepositoryFields().UniqueList(","),
 		"language": action.ActionLanguages(),
-		"topic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"topic": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return action.ActionTopics(repo_listCmd, c.Args[0]).Invoke(c).Filter(c.Parts).ToA().NoSpace()
+				return action.ActionTopics(repo_listCmd, c.Args[0]).UniqueList(",")
 			}
-			return action.ActionTopics(repo_listCmd, "").Invoke(c).Filter(c.Parts).ToA().NoSpace()
+			return action.ActionTopics(repo_listCmd, "").UniqueList(",")
 		}),
 		"visibility": carapace.ActionValues("public", "private", "internal"),
 	})

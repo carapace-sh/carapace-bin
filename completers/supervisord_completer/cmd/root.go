@@ -43,16 +43,14 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "print supervisord version number and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"childlogdir":   carapace.ActionDirectories(),
-		"configuration": carapace.ActionFiles(),
-		"directory":     carapace.ActionDirectories(),
-		"logfile":       carapace.ActionFiles(),
-		"loglevel":      carapace.ActionValues("trace", "debug", "info", "warn", "error", "critical").StyleF(style.ForLogLevel),
-		"pidfile":       carapace.ActionFiles(),
-		"profile_options": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("cumulative", "calls", "callers").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"umask": fs.ActionFileModesNumeric(),
-		"user":  os.ActionUsers(),
+		"childlogdir":     carapace.ActionDirectories(),
+		"configuration":   carapace.ActionFiles(),
+		"directory":       carapace.ActionDirectories(),
+		"logfile":         carapace.ActionFiles(),
+		"loglevel":        carapace.ActionValues("trace", "debug", "info", "warn", "error", "critical").StyleF(style.ForLogLevel),
+		"pidfile":         carapace.ActionFiles(),
+		"profile_options": carapace.ActionValues("cumulative", "calls", "callers").UniqueList(","),
+		"umask":           fs.ActionFileModesNumeric(),
+		"user":            os.ActionUsers(),
 	})
 }

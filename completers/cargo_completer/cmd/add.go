@@ -50,10 +50,10 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"features": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) == 1 && !util.HasPathPrefix(c.Args[0]) {
 				// TODO limit to specific version
-				return action.ActionGithubPackageFeatures(strings.Split(c.Args[0], "@")[0]).Invoke(c).Filter(c.Parts).ToA().NoSpace()
+				return action.ActionGithubPackageFeatures(strings.Split(c.Args[0], "@")[0]).UniqueList(",")
 			}
 			return carapace.ActionValues()
 		}),

@@ -33,12 +33,12 @@ func init() {
 		"file": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles().NoSpace()
 		}),
-		"func": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"func": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			files := []string{}
 			if f := rootCmd.Flag("file"); f.Changed {
 				files = strings.Split(f.Value.String(), ",")
 			}
-			return golang.ActionFuncs(files...).Invoke(c).Filter(c.Parts).ToA() // TODO only for given files
+			return golang.ActionFuncs(files...).UniqueList(",") // TODO only for given files
 		}),
 	})
 }

@@ -197,14 +197,12 @@ func init() {
 			return youtubedl.ActionFormats(c.Args[0])
 		}),
 		"recode-video": carapace.ActionValues("mp4", "flv", "ogg", "webm", "mkv", "avi"),
-		"sub-format": carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("ass", "srt", "best").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"sub-lang": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"sub-format":   carapace.ActionValues("ass", "srt", "best").UniqueList("/"),
+		"sub-lang": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) == 0 {
 				return carapace.ActionMessage("missing url")
 			}
-			return youtubedl.ActionSubLangs(c.Args[0]).Invoke(c).Filter(c.Parts).ToA().NoSpace()
+			return youtubedl.ActionSubLangs(c.Args[0]).UniqueList(",")
 		}),
 	})
 }

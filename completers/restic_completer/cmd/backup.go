@@ -47,10 +47,8 @@ func init() {
 		"files-from-verbatim": carapace.ActionFiles(),
 		"host":                action.ActionSnapshotHosts(backupCmd),
 		"parent":              action.ActionSnapshotIDs(backupCmd),
-		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(backupCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"time": time.ActionDateTime(time.DateTimeOpts{}),
+		"tag":                 action.ActionSnapshotTags(backupCmd).UniqueList(","),
+		"time":                time.ActionDateTime(time.DateTimeOpts{}),
 	})
 
 	carapace.Gen(backupCmd).PositionalAnyCompletion(

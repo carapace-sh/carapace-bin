@@ -34,24 +34,14 @@ func init() {
 	issueCmd.AddCommand(issue_listCmd)
 
 	carapace.Gen(issue_listCmd).FlagCompletion(carapace.ActionMap{
-		"assignee": action.ActionProjectMembers(issue_listCmd),
-		"author":   action.ActionUsers(issue_listCmd),
-		"group":    action.ActionGroups(issue_listCmd),
-		"in": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("title", "description").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"milestone": action.ActionMilestones(issue_listCmd),
-		"not-assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(issue_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"not-author": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionUsers(issue_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"not-label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"assignee":     action.ActionProjectMembers(issue_listCmd),
+		"author":       action.ActionUsers(issue_listCmd),
+		"group":        action.ActionGroups(issue_listCmd),
+		"in":           carapace.ActionValues("title", "description").UniqueList(","),
+		"label":        action.ActionLabels(issue_listCmd).UniqueList(","),
+		"milestone":    action.ActionMilestones(issue_listCmd),
+		"not-assignee": action.ActionProjectMembers(issue_listCmd).UniqueList(","),
+		"not-author":   action.ActionUsers(issue_listCmd).UniqueList(","),
+		"not-label":    action.ActionLabels(issue_listCmd).UniqueList(","),
 	})
 }

@@ -47,17 +47,11 @@ func init() {
 	rootCmd.Flags().String("wtmp-file", "", "set an alternate path for wtmp")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"btmp-file": carapace.ActionFiles(),
-		"groups": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"lastlog": carapace.ActionFiles(),
-		"logins": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"output": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"btmp-file":   carapace.ActionFiles(),
+		"groups":      os.ActionGroups().UniqueList(","),
+		"lastlog":     carapace.ActionFiles(),
+		"logins":      os.ActionUsers().UniqueList(","),
+		"output":      action.ActionColumns().UniqueList(","),
 		"time-format": carapace.ActionValues("short", "full", "iso"),
 		"wtmp-file":   carapace.ActionFiles(),
 	})

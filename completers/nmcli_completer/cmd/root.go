@@ -36,15 +36,9 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"colors":     carapace.ActionValues("auto", "yes", "no").StyleF(style.ForKeyword),
 		"escape":     carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
-		"fields":     ActionMultiFields(),
-		"get-values": ActionMultiFields(),
+		"fields":     ActionFields().UniqueList(","),
+		"get-values": ActionFields().UniqueList(","),
 		"mode":       carapace.ActionValues("tabular", "multiline"),
-	})
-}
-
-func ActionMultiFields() carapace.Action {
-	return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-		return ActionFields().Invoke(c).Filter(c.Parts).Suffix(",").ToA()
 	})
 }
 

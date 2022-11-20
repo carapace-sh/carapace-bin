@@ -18,8 +18,6 @@ func init() {
 	upgrade_node_phaseCmd.AddCommand(upgrade_node_phase_preflightCmd)
 
 	carapace.Gen(upgrade_node_phase_preflightCmd).FlagCompletion(carapace.ActionMap{
-		"ignore-preflight-errors": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"ignore-preflight-errors": action.ActionChecks().UniqueList(","),
 	})
 }

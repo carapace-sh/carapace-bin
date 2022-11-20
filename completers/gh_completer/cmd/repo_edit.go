@@ -41,12 +41,12 @@ func init() {
 			}
 			return action.ActionBranches(repo_editCmd)
 		}),
-		"remove-topic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"remove-topic": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				repo_editCmd.Flags().String("repo", c.Args[0], "")
 				repo_editCmd.Flag("repo").Changed = true
 			}
-			return action.ActionRepoTopics(repo_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
+			return action.ActionRepoTopics(repo_editCmd).UniqueList(",")
 		}),
 		"visibility": carapace.ActionValues("public", "private", "internal"),
 	})

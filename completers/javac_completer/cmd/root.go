@@ -73,27 +73,19 @@ func init() {
 	rootCmd.Flag("proc").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"bootclasspath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".jar", ".zip").NoSpace()
-		}),
-		"classpath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".jar", ".zip").NoSpace()
-		}),
-		"cp": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".jar", ".zip").NoSpace()
-		}),
-		"d": carapace.ActionDirectories(),
+		"bootclasspath": carapace.ActionFiles(".jar", ".zip").UniqueList(":"),
+		"classpath":     carapace.ActionFiles(".jar", ".zip").UniqueList(":"),
+		"cp":            carapace.ActionFiles(".jar", ".zip").UniqueList(":"),
+		"d":             carapace.ActionDirectories(),
 		// TODO encoding
 		"endorseddirs": carapace.ActionDirectories(),
 		"extdirs":      carapace.ActionDirectories(),
-		"g": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValuesDescribed(
-				"none", "Does not generate any debugging information",
-				"source", "Source file debugging information",
-				"lines", "Line number debugging information",
-				"vars", "Local variable debugging information",
-			).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"g": carapace.ActionValuesDescribed(
+			"none", "Does not generate any debugging information",
+			"source", "Source file debugging information",
+			"lines", "Line number debugging information",
+			"vars", "Local variable debugging information",
+		).UniqueList(","),
 		"h":             carapace.ActionDirectories(),
 		"implicit":      carapace.ActionValues("none", "class"),
 		"proc":          carapace.ActionValues("none", "only"),

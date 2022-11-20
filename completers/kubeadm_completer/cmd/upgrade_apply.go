@@ -30,11 +30,9 @@ func init() {
 	upgradeCmd.AddCommand(upgrade_applyCmd)
 
 	carapace.Gen(upgrade_applyCmd).FlagCompletion(carapace.ActionMap{
-		"config": carapace.ActionFiles(),
-		"ignore-preflight-errors": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"kubeconfig": carapace.ActionFiles(),
-		"patches":    carapace.ActionDirectories(),
+		"config":                  carapace.ActionFiles(),
+		"ignore-preflight-errors": action.ActionChecks().UniqueList(","),
+		"kubeconfig":              carapace.ActionFiles(),
+		"patches":                 carapace.ActionDirectories(),
 	})
 }

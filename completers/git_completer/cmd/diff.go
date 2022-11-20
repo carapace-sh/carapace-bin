@@ -121,16 +121,14 @@ func addDiffFlags(cmd *cobra.Command) {
 	cmd.Flag("word-diff").NoOptDefVal = "plain"
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"color":          carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"color-moved":    ActionColorMovedModes(),
-		"color-moved-ws": ActionColorMovedWsModes(),
-		"diff-algorithm": ActionDiffAlgorithms(),
-		"output":         carapace.ActionFiles(),
-		"submodule":      carapace.ActionValues("short", "long", "log"),
-		"word-diff":      ActionWordDiffModes(),
-		"ws-error-highlight": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionWsErrorHighlightModes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"color":              carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color-moved":        ActionColorMovedModes(),
+		"color-moved-ws":     ActionColorMovedWsModes(),
+		"diff-algorithm":     ActionDiffAlgorithms(),
+		"output":             carapace.ActionFiles(),
+		"submodule":          carapace.ActionValues("short", "long", "log"),
+		"word-diff":          ActionWordDiffModes(),
+		"ws-error-highlight": ActionWsErrorHighlightModes().UniqueList(","),
 	})
 
 	carapace.Gen(cmd).DashAnyCompletion(

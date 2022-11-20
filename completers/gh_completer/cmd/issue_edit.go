@@ -27,16 +27,12 @@ func init() {
 	issueCmd.AddCommand(issue_editCmd)
 
 	carapace.Gen(issue_editCmd).FlagCompletion(carapace.ActionMap{
-		"add-assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAssignableUsers(issue_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"add-label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"add-project": action.ActionProjects(issue_editCmd, action.ProjectOpts{Open: true}),
-		"body":        action.ActionKeywordLinks(issue_editCmd),
-		"body-file":   carapace.ActionFiles(),
-		"milestone":   action.ActionMilestones(issue_editCmd),
+		"add-assignee": action.ActionAssignableUsers(issue_editCmd).UniqueList(","),
+		"add-label":    action.ActionLabels(issue_editCmd).UniqueList(","),
+		"add-project":  action.ActionProjects(issue_editCmd, action.ProjectOpts{Open: true}),
+		"body":         action.ActionKeywordLinks(issue_editCmd),
+		"body-file":    carapace.ActionFiles(),
+		"milestone":    action.ActionMilestones(issue_editCmd),
 		"remove-assignee": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				return action.ActionIssueAssignees(issue_editCmd, c.Args[0])

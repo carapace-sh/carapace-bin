@@ -22,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-		"configuration": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"configuration": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
@@ -33,7 +33,7 @@ func init() {
 			if len(splitted) > 1 {
 				target = splitted[1]
 			}
-			return action.ActionBuilderConfigurations(project, target).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionBuilderConfigurations(project, target).UniqueList(",")
 		}),
 	})
 

@@ -30,20 +30,14 @@ func init() {
 	prCmd.AddCommand(pr_editCmd)
 
 	carapace.Gen(pr_editCmd).FlagCompletion(carapace.ActionMap{
-		"add-assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAssignableUsers(pr_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"add-label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(pr_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"add-project": action.ActionProjects(pr_editCmd, action.ProjectOpts{Open: true}),
-		"add-reviewer": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAssignableUsers(pr_editCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"base":      action.ActionBranches(pr_editCmd),
-		"body":      action.ActionKeywordLinks(pr_editCmd),
-		"body-file": carapace.ActionFiles(),
-		"milestone": action.ActionMilestones(pr_editCmd),
+		"add-assignee": action.ActionAssignableUsers(pr_editCmd).UniqueList(","),
+		"add-label":    action.ActionLabels(pr_editCmd).UniqueList(","),
+		"add-project":  action.ActionProjects(pr_editCmd, action.ProjectOpts{Open: true}),
+		"add-reviewer": action.ActionAssignableUsers(pr_editCmd).UniqueList(","),
+		"base":         action.ActionBranches(pr_editCmd),
+		"body":         action.ActionKeywordLinks(pr_editCmd),
+		"body-file":    carapace.ActionFiles(),
+		"milestone":    action.ActionMilestones(pr_editCmd),
 		"remove-assignee": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				return action.ActionPullRequestAssignees(pr_editCmd, c.Args[0])

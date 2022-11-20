@@ -20,8 +20,6 @@ func init() {
 
 	carapace.Gen(auth_refreshCmd).FlagCompletion(carapace.ActionMap{
 		"hostname": action.ActionConfigHosts(),
-		"scopes": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAuthScopes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"scopes":   action.ActionAuthScopes().UniqueList(","),
 	})
 }

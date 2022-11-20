@@ -42,9 +42,7 @@ func init() {
 	})
 
 	carapace.Gen(deleteCmd).PositionalCompletion(
-		carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionApiResources().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		action.ActionApiResources().UniqueList(","),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionResources("", c.Args[0])
 		}),

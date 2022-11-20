@@ -22,9 +22,7 @@ func init() {
 	rootCmd.AddCommand(reloadCmd)
 
 	carapace.Gen(reloadCmd).FlagCompletion(carapace.ActionMap{
-		"provision-with": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProvisioners().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"provision-with": action.ActionProvisioners().UniqueList(","),
 	})
 
 	carapace.Gen(reloadCmd).PositionalCompletion(

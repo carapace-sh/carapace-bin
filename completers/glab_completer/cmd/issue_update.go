@@ -28,16 +28,10 @@ func init() {
 	issueCmd.AddCommand(issue_updateCmd)
 
 	carapace.Gen(issue_updateCmd).FlagCompletion(carapace.ActionMap{
-		"assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(issue_updateCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_updateCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"assignee":  action.ActionProjectMembers(issue_updateCmd).UniqueList(","),
+		"label":     action.ActionLabels(issue_updateCmd).UniqueList(","),
 		"milestone": action.ActionMilestones(issue_updateCmd),
-		"unlabel": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_updateCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"unlabel":   action.ActionLabels(issue_updateCmd).UniqueList(","),
 	})
 
 	carapace.Gen(issue_updateCmd).PositionalCompletion(

@@ -22,11 +22,9 @@ func ActionServiceIdentity(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			return ActionServices(cmd)
+			return ActionServices(cmd).NoSpace()
 		case 1:
-			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return ActionDatacenters(cmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-			})
+			return ActionDatacenters(cmd).UniqueList(",")
 		default:
 			return carapace.ActionValues()
 		}

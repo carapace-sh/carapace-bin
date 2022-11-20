@@ -83,29 +83,17 @@ func ActionRequestHeaderValues(header string) carapace.Action {
 		switch header {
 		// TODO complete more headers
 		case "Accept":
-			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return ActionMediaTypes().Invoke(c).Filter(c.Parts).ToMultiPartsA("/")
-			})
+			return ActionMediaTypes().UniqueList(",")
 		case "Accept-Encoding":
-			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return ActionContentEncodingTokens().Invoke(c).Filter(c.Parts).ToA()
-			})
+			return ActionContentEncodingTokens().UniqueList(",")
 		case "Accept-Language":
-			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return os.ActionLanguages().Invoke(c).Filter(c.Parts).ToA()
-			})
+			return os.ActionLanguages().UniqueList(",")
 		case "Cache-Control":
-			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return ActionCacheControlRequestDirectives()
-			})
+			return ActionCacheControlRequestDirectives().UniqueList(",")
 		case "Content-Encoding":
-			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return ActionContentEncodingTokens().Invoke(c).Filter(c.Parts).ToA()
-			})
+			return ActionContentEncodingTokens().UniqueList(",")
 		case "Content-Type":
-			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return ActionMediaTypes().Invoke(c).Filter(c.Parts).ToMultiPartsA("/")
-			})
+			return ActionMediaTypes().UniqueList(",")
 		case "Transfer-Encoding":
 			return ActionTransferEncodingTokens()
 		case "User-Agent":

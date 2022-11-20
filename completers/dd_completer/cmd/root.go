@@ -49,21 +49,15 @@ func init() {
 			case 1:
 				switch c.Parts[0] {
 				case "conv":
-					return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-						return actionConvs().Invoke(c).Filter(c.Parts).ToA()
-					})
+					return actionConvs().UniqueList(",")
 				case "if":
 					return carapace.ActionFiles()
 				case "iflag":
-					return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-						return actionIFlags().Invoke(c).Filter(c.Parts).ToA()
-					})
+					return actionIFlags().UniqueList(",")
 				case "of":
 					return carapace.ActionFiles()
 				case "oflag":
-					return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-						return actionOFlags().Invoke(c).Filter(c.Parts).ToA()
-					})
+					return actionOFlags().UniqueList(",")
 				case "status":
 					return carapace.ActionValues("none", "noxfer", "progress")
 				default:

@@ -43,9 +43,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"global-config": carapace.ActionDirectories(),
 		"local-config":  carapace.ActionFiles(),
-		"regions": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionRegions().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"regions":       action.ActionRegions().UniqueList(","),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

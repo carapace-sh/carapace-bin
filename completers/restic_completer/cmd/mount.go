@@ -26,8 +26,6 @@ func init() {
 	carapace.Gen(mountCmd).FlagCompletion(carapace.ActionMap{
 		"host": action.ActionSnapshotHosts(mountCmd),
 		"path": carapace.ActionFiles(),
-		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(mountCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"tag":  action.ActionSnapshotTags(mountCmd).UniqueList(","),
 	})
 }

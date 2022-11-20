@@ -51,15 +51,13 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-		"cookie-jar":         carapace.ActionFiles(),
-		"environment":        carapace.ActionFiles(),
-		"export-cookie-jar":  carapace.ActionFiles(),
-		"export-environment": carapace.ActionFiles(),
-		"globals":            carapace.ActionFiles(),
-		"iteration-data":     carapace.ActionFiles(),
-		"reporters": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("cli", "json", "junit", "progress", "emojitrain").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"cookie-jar":           carapace.ActionFiles(),
+		"environment":          carapace.ActionFiles(),
+		"export-cookie-jar":    carapace.ActionFiles(),
+		"export-environment":   carapace.ActionFiles(),
+		"globals":              carapace.ActionFiles(),
+		"iteration-data":       carapace.ActionFiles(),
+		"reporters":            carapace.ActionValues("cli", "json", "junit", "progress", "emojitrain").UniqueList(","),
 		"ssl-client-cert":      carapace.ActionFiles(),
 		"ssl-client-cert-list": carapace.ActionFiles(),
 		"ssl-client-key":       carapace.ActionFiles(),

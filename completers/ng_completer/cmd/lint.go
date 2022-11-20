@@ -20,11 +20,11 @@ func init() {
 	rootCmd.AddCommand(lintCmd)
 
 	carapace.Gen(lintCmd).FlagCompletion(carapace.ActionMap{
-		"configuration": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"configuration": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return action.ActionBuilderConfigurations(c.Args[0], "lint").Invoke(c).Filter(c.Parts).ToA().NoSpace()
+			return action.ActionBuilderConfigurations(c.Args[0], "lint").UniqueList(",")
 		}),
 	})
 

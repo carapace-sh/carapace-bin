@@ -48,9 +48,7 @@ func init() {
 	rootCmd.Flags().BoolP("watch-when-idle", "W", false, "Deprecated alias for --on-busy-update=do-nothing, which will become the")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"exts": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilenameExtensions().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"exts":           fs.ActionFilenameExtensions().UniqueList(","),
 		"on-busy-update": carapace.ActionValues("do-nothing", "queue", "restart", "signal"),
 		"shell":          os.ActionShells(),
 		"signal":         ps.ActionKillSignals(),

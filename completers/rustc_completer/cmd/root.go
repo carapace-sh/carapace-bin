@@ -54,13 +54,9 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"crate-type": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("bin", "lib", "rlib", "dylib", "cdylib", "staticlib", "proc-macro").Invoke(c).Filter(c.Parts).ToA()
-		}),
-		"edition": carapace.ActionValues("2015", "2018", "2021"),
-		"emit": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("asm", "llvm-bc", "llvm-ir", "obj", "metadata", "link", "dep-info", "mir").Invoke(c).Filter(c.Parts).ToA()
-		}),
+		"crate-type": carapace.ActionValues("bin", "lib", "rlib", "dylib", "cdylib", "staticlib", "proc-macro").UniqueList(","),
+		"edition":    carapace.ActionValues("2015", "2018", "2021"),
+		"emit":       carapace.ActionValues("asm", "llvm-bc", "llvm-ir", "obj", "metadata", "link", "dep-info", "mir").UniqueList(","),
 		"l": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:

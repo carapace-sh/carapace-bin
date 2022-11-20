@@ -21,9 +21,7 @@ func init() {
 	releaseCmd.AddCommand(release_viewCmd)
 
 	carapace.Gen(release_viewCmd).FlagCompletion(carapace.ActionMap{
-		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionReleaseFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"json": action.ActionReleaseFields().UniqueList(","),
 	})
 
 	carapace.Gen(release_viewCmd).PositionalCompletion(

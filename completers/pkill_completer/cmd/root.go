@@ -44,23 +44,15 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"euid":  os.ActionUsers(),
-		"group": os.ActionGroups(),
-		"nslist": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"pidfile": carapace.ActionFiles(),
-		"runstates": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessStates().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"session": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionSessionIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"signal": ps.ActionKillSignals(),
-		"terminal": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionTerminals().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"uid": os.ActionUsers(),
+		"euid":      os.ActionUsers(),
+		"group":     os.ActionGroups(),
+		"nslist":    carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts").UniqueList(","),
+		"pidfile":   carapace.ActionFiles(),
+		"runstates": ps.ActionProcessStates().UniqueList(","),
+		"session":   os.ActionSessionIds().UniqueList(","),
+		"signal":    ps.ActionKillSignals(),
+		"terminal":  os.ActionTerminals().UniqueList(","),
+		"uid":       os.ActionUsers(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

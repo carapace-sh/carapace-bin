@@ -31,9 +31,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"directory": carapace.ActionDirectories(),
-		"filter": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("stdin", "stdout", "stderr", "ttyin", "ttyout").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"filter":    carapace.ActionValues("stdin", "stdout", "stderr", "ttyin", "ttyout").UniqueList(","),
 	})
 
 	// TODO positional completion

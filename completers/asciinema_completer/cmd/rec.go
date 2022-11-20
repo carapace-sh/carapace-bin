@@ -33,9 +33,7 @@ func init() {
 			carapace.ActionFiles(),
 			os.ActionPathExecutables(),
 		).ToA(),
-		"env": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionEnvironmentVariables().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"env": os.ActionEnvironmentVariables().UniqueList(","),
 	})
 
 	carapace.Gen(recCmd).PositionalCompletion(

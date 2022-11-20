@@ -22,9 +22,7 @@ func init() {
 	prCmd.AddCommand(pr_viewCmd)
 
 	carapace.Gen(pr_viewCmd).FlagCompletion(carapace.ActionMap{
-		"json": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionPullRequestFields().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"json": action.ActionPullRequestFields().UniqueList(","),
 	})
 
 	carapace.Gen(pr_viewCmd).PositionalCompletion(

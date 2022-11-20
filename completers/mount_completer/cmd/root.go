@@ -69,17 +69,13 @@ func init() {
 			}
 			return action.ActionOptions().Invoke(c).Filter(keys).ToA().NoSpace()
 		}),
-		"options-mode": carapace.ActionValues("ignore", "append", "prepend", "replace"),
-		"options-source": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("fstab", "mtab", "disable").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"source":        action.ActionSources(),
-		"target":        carapace.ActionDirectories(),
-		"target-prefix": carapace.ActionDirectories(),
-		"types": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilesystemTypes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"uuid": fs.ActionUuids(),
+		"options-mode":   carapace.ActionValues("ignore", "append", "prepend", "replace"),
+		"options-source": carapace.ActionValues("fstab", "mtab", "disable").UniqueList(","),
+		"source":         action.ActionSources(),
+		"target":         carapace.ActionDirectories(),
+		"target-prefix":  carapace.ActionDirectories(),
+		"types":          fs.ActionFilesystemTypes().UniqueList(","),
+		"uuid":           fs.ActionUuids(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

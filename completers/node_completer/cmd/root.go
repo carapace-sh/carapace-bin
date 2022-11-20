@@ -119,14 +119,12 @@ func init() {
 	rootCmd.Flags().Bool("zero-fill-buffers", false, "Automatically zero-fills all newly allocated Buffer and SlowBuffer instances.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"cpu-prof-dir":        carapace.ActionDirectories(),
-		"diagnostic-dir":      carapace.ActionDirectories(),
-		"disable-proto":       carapace.ActionValues("delete", "throw"),
-		"heapsnapshot-signal": ps.ActionKillSignals(),
-		"icu-data-dir":        carapace.ActionDirectories(),
-		"inspect-publish-uid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("http", "stderr").Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"cpu-prof-dir":         carapace.ActionDirectories(),
+		"diagnostic-dir":       carapace.ActionDirectories(),
+		"disable-proto":        carapace.ActionValues("delete", "throw"),
+		"heapsnapshot-signal":  ps.ActionKillSignals(),
+		"icu-data-dir":         carapace.ActionDirectories(),
+		"inspect-publish-uid":  carapace.ActionValues("http", "stderr").UniqueList(","),
 		"openssl-config":       carapace.ActionFiles(),
 		"redirect-warnings":    carapace.ActionFiles(),
 		"report-dir":           carapace.ActionDirectories(),

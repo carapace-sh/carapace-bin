@@ -26,9 +26,7 @@ func init() {
 
 	carapace.Gen(attachSessionCmd).FlagCompletion(carapace.ActionMap{
 		"c": carapace.ActionDirectories(),
-		"f": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return tmux.ActionClientFlags().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"f": tmux.ActionClientFlags().UniqueList(","),
 		"t": tmux.ActionSessions(),
 	})
 }

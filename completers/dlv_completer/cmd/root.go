@@ -45,18 +45,16 @@ func init() {
 		),
 		"init":     carapace.ActionFiles(),
 		"log-dest": carapace.ActionFiles(),
-		"log-output": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValuesDescribed(
-				"debugger", "Log debugger commands",
-				"gdbwire", "Log connection to gdbserial backend",
-				"lldbout", "Copy output from debugserver/lldb to standard output",
-				"debuglineerr", "Log recoverable errors reading .debug_line",
-				"rpc", "Log all RPC messages",
-				"dap", "Log all DAP messages",
-				"fncall", "Log function call protocol",
-				"minidump", "Log minidump loading",
-			).Invoke(c).Filter(c.Parts).ToA()
-		}),
+		"log-output": carapace.ActionValuesDescribed(
+			"debugger", "Log debugger commands",
+			"gdbwire", "Log connection to gdbserial backend",
+			"lldbout", "Copy output from debugserver/lldb to standard output",
+			"debuglineerr", "Log recoverable errors reading .debug_line",
+			"rpc", "Log all RPC messages",
+			"dap", "Log all DAP messages",
+			"fncall", "Log function call protocol",
+			"minidump", "Log minidump loading",
+		).UniqueList(","),
 		"redirect": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:

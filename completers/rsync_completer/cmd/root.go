@@ -189,12 +189,12 @@ func init() {
 		}),
 		"compress-choice": carapace.ActionValues("zstd", "lz4", "zlibx", "zlib", "none"),
 		"copy-as":         os.ActionUserGroup(),
-		"debug": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"debug": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			r := regexp.MustCompile(`\d`)
 			for index, part := range c.Parts {
 				c.Parts[index] = r.ReplaceAllString(part, "")
 			}
-			return action.ActionFlags().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionFlags().UniqueList(",")
 		}),
 		"early-input":  carapace.ActionFiles(),
 		"exclude-from": carapace.ActionFiles(),
@@ -210,12 +210,12 @@ func init() {
 			})
 		}),
 		"include-from": carapace.ActionFiles(),
-		"info": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"info": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			r := regexp.MustCompile(`\d`)
 			for index, part := range c.Parts {
 				c.Parts[index] = r.ReplaceAllString(part, "")
 			}
-			return action.ActionFlags().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionFlags().UniqueList(",")
 		}),
 		"log-file":         carapace.ActionFiles(),
 		"log-file-format":  action.ActionFormats(),
@@ -226,9 +226,7 @@ func init() {
 		"password-file":    carapace.ActionFiles(),
 		"port":             net.ActionPorts(),
 		"read-batch":       carapace.ActionFiles(),
-		"skip-compress": carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilenameExtensions().Invoke(c).Filter(c.Parts).ToA()
-		}),
+		"skip-compress":    fs.ActionFilenameExtensions().UniqueList("/"),
 		"stderr": carapace.ActionValuesDescribed(
 			"errors", "causes all the rsync processes to send an error directly to stderr",
 			"all", "causes all rsync messages to get written directly to stderr from all processes",

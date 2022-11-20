@@ -34,13 +34,11 @@ func init() {
 	rootCmd.AddCommand(joinCmd)
 
 	carapace.Gen(joinCmd).FlagCompletion(carapace.ActionMap{
-		"config":         carapace.ActionFiles(),
-		"cri-socket":     carapace.ActionFiles(),
-		"discovery-file": carapace.ActionFiles(),
-		"ignore-preflight-errors": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"patches":     carapace.ActionDirectories(),
-		"skip-phases": action.ActionPhases(),
+		"config":                  carapace.ActionFiles(),
+		"cri-socket":              carapace.ActionFiles(),
+		"discovery-file":          carapace.ActionFiles(),
+		"ignore-preflight-errors": action.ActionChecks().UniqueList(","),
+		"patches":                 carapace.ActionDirectories(),
+		"skip-phases":             action.ActionPhases(),
 	})
 }

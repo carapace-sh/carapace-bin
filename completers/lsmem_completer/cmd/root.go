@@ -36,12 +36,8 @@ func init() {
 	rootCmd.Flag("summary").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
-		"split": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
-		}),
+		"output":  ActionColumns().UniqueList(","),
+		"split":   ActionColumns().UniqueList(","),
 		"summary": carapace.ActionValues("never", "always", "only").StyleF(style.ForKeyword),
 		"sysroot": carapace.ActionDirectories(),
 	})

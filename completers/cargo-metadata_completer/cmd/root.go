@@ -41,8 +41,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"Z":     cargo.ActionNightlyFlags(),
 		"color": carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
-		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return cargo.ActionFeatures(rootCmd.Flag("manifest-path").Value.String()).Invoke(c).Filter(c.Parts).ToA().NoSpace()
+		"features": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return cargo.ActionFeatures(rootCmd.Flag("manifest-path").Value.String()).UniqueList(",")
 		}),
 		"format-version": carapace.ActionValues("1"),
 		"manifest-path":  carapace.ActionFiles(),

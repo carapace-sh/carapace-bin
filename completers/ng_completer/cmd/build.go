@@ -52,11 +52,11 @@ func init() {
 
 	// TODO commonjs packages, named configurations
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
-		"configuration": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+		"configuration": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) < 1 {
 				return carapace.ActionValues()
 			}
-			return action.ActionBuilderConfigurations(c.Args[0], "build").Invoke(c).Filter(c.Parts).ToA().NoSpace()
+			return action.ActionBuilderConfigurations(c.Args[0], "build").UniqueList(",")
 		}),
 		"cross-origin":             carapace.ActionValues("none", "anonymous", "use-credentials"),
 		"i18n-missing-translation": carapace.ActionValues("warning", "error", "ignore"),
