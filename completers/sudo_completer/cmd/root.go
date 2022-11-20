@@ -51,7 +51,7 @@ func init() {
 		"group":      os.ActionGroups(),
 		"other-user": os.ActionUsers(),
 		"preserve-env": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionEnvironmentVariables().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionEnvironmentVariables().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"user": os.ActionUsers(),
 	})

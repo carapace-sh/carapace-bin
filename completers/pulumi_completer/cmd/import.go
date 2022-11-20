@@ -43,7 +43,7 @@ func init() {
 		"parent": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 1:
-				return action.ActionUrns(importCmd)
+				return action.ActionUrns(importCmd).NoSpace()
 			default:
 				return carapace.ActionValues()
 			}
@@ -51,7 +51,7 @@ func init() {
 		"provider": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 1:
-				return action.ActionUrns(importCmd)
+				return action.ActionUrns(importCmd).NoSpace()
 			default:
 				return carapace.ActionValues()
 			}

@@ -71,7 +71,7 @@ func init() {
 		"F": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return net.ActionHosts()
+				return net.ActionHosts().NoSpace()
 			case 1:
 				return net.ActionPorts()
 			default:
@@ -86,7 +86,7 @@ func init() {
 		"R": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return net.ActionHosts()
+				return net.ActionHosts().NoSpace()
 			case 1:
 				return net.ActionPorts()
 			default:
@@ -123,7 +123,7 @@ func init() {
 			return carapace.Batch(
 				os.ActionUsers(),
 				net.ActionHosts(),
-			).ToA().Invoke(c).Filter(c.Parts).ToA()
+			).ToA().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"r": net.ActionHosts(),
 		"s": carapace.ActionFiles(),

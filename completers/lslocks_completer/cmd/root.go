@@ -34,7 +34,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"output": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionColumns().Invoke(c).Filter(c.Args).ToA()
+			return action.ActionColumns().Invoke(c).Filter(c.Args).ToA().NoSpace()
 		}),
 		"pid": ps.ActionProcessIds(),
 	})

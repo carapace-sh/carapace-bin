@@ -67,37 +67,37 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"Group": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"User": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"format": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionFormatSpecifiers().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionFormatSpecifiers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"group": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"pid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"ppid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"quick-pid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"sid": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionSessionIds().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionSessionIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"sort": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionFormatSpecifiers().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionFormatSpecifiers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"tty": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionTerminals().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionTerminals().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"user": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 }

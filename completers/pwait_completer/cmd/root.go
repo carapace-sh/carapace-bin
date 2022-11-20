@@ -46,24 +46,24 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"euid": os.ActionUsers(),
 		"group": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"ns": ps.ActionProcessIds(),
 		"nslist": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"parent": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"pidfile": carapace.ActionFiles(),
 		"runstates": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ps.ActionProcessStates().Invoke(c).Filter(c.Parts).ToA()
+			return ps.ActionProcessStates().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"session": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionSessionIds().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionSessionIds().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"terminal": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionTerminals().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionTerminals().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"uid": os.ActionUsers(),
 	})

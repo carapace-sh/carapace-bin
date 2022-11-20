@@ -34,7 +34,7 @@ func init() {
 			os.ActionPathExecutables(),
 		).ToA(),
 		"env": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionEnvironmentVariables().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionEnvironmentVariables().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

@@ -15,7 +15,7 @@ func ActionModuleSearch() carapace.Action {
 		case 0:
 			opts := git.SearchOpts{}.Default()
 			opts.Prefix = false
-			return git.ActionRepositorySearch(opts)
+			return git.ActionRepositorySearch(opts).NoSpace()
 		case 1:
 			return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + c.Parts[0], Tags: true})
 		default:

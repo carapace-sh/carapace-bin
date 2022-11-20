@@ -116,7 +116,7 @@ func ActionSearchRange(a carapace.Action) carapace.Action {
 					if len(c.Parts) > 1 {
 						return carapace.ActionValues()
 					}
-					return a
+					return a.NoSpace()
 				})
 			}),
 		).ToA()

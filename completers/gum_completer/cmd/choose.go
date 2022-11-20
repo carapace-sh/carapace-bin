@@ -32,7 +32,7 @@ func init() {
 		"cursor.foreground": gum.ActionColors(),
 		"item.foreground":   gum.ActionColors(),
 		"selected": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues(c.Args...).Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues(c.Args...).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"selected.foreground": gum.ActionColors(),
 	})

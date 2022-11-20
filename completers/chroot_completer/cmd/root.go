@@ -27,7 +27,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"groups": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionGroups().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"userspec": os.ActionUserGroup(),
 	})

@@ -36,19 +36,19 @@ func init() {
 
 	carapace.Gen(mr_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionProjectMembers(mr_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"author": action.ActionUsers(mr_listCmd),
 		"group":  action.ActionGroups(mr_listCmd),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(mr_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"milestone": action.ActionMilestones(mr_listCmd),
 		"not-label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(mr_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"reviewer": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(mr_listCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionProjectMembers(mr_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"source-branch": action.ActionBranches(mr_listCmd),
 		"target-branch": action.ActionBranches(mr_listCmd),

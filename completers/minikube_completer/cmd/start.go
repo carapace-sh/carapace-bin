@@ -97,7 +97,7 @@ func init() {
 
 	carapace.Gen(startCmd).FlagCompletion(carapace.ActionMap{
 		"addons": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAddons().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionAddons().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"base-image": docker.ActionRepositoryTags(),
 		"cni": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
@@ -120,7 +120,7 @@ func init() {
 		"mount-string": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionFiles()
+				return carapace.ActionFiles().NoSpace()
 			case 1:
 				return carapace.ActionValues("/minikube-host")
 			default:

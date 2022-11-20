@@ -48,7 +48,7 @@ func init() {
 
 	carapace.Gen(getCmd).PositionalCompletion(
 		carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionApiResources().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionApiResources().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	)
 

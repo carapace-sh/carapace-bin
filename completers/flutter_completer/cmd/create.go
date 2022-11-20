@@ -37,7 +37,7 @@ func init() {
 		"android-language": carapace.ActionValues("java", "kotlin"),
 		"ios-language":     carapace.ActionValues("objc", "swift"),
 		"platforms": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("ios", "android", "windows", "linux", "macos", "web").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("ios", "android", "windows", "linux", "macos", "web").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"sample": action.ActionSamples(),
 		"template": carapace.ActionValuesDescribed(

@@ -38,7 +38,7 @@ func init() {
 		"cri-socket":     carapace.ActionFiles(),
 		"discovery-file": carapace.ActionFiles(),
 		"ignore-preflight-errors": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"patches":     carapace.ActionDirectories(),
 		"skip-phases": action.ActionPhases(),

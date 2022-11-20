@@ -58,7 +58,7 @@ func init() {
 		"globals":            carapace.ActionFiles(),
 		"iteration-data":     carapace.ActionFiles(),
 		"reporters": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("cli", "json", "junit", "progress", "emojitrain").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("cli", "json", "junit", "progress", "emojitrain").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"ssl-client-cert":      carapace.ActionFiles(),
 		"ssl-client-cert-list": carapace.ActionFiles(),

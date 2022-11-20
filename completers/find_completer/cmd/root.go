@@ -115,11 +115,11 @@ func init() {
 		"perm":      fs.ActionFileModes(),
 		"regextype": carapace.ActionValues("findutils-default", "ed", "emacs", "gnu-awk", "grep", "posix-awk", "awk", "posix-basic", "posix-egrep", "egrep", "posix-extended", "posix-minimal-basic", "sed"),
 		"type": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionFileTypes().Invoke(c).Filter(c.Parts).ToA()
+			return ActionFileTypes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"user": os.ActionUsers(),
 		"xtype": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionFileTypes().Invoke(c).Filter(c.Parts).ToA()
+			return ActionFileTypes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

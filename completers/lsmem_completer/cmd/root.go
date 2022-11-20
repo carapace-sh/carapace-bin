@@ -37,10 +37,10 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"output": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionColumns().Invoke(c).Filter(c.Parts).ToA()
+			return ActionColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"split": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionColumns().Invoke(c).Filter(c.Parts).ToA()
+			return ActionColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"summary": carapace.ActionValues("never", "always", "only").StyleF(style.ForKeyword),
 		"sysroot": carapace.ActionDirectories(),

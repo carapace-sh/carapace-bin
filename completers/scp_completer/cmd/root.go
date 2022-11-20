@@ -47,7 +47,7 @@ func init() {
 		"c": ssh.ActionCiphers(),
 		"i": carapace.ActionFiles(),
 		"o": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ssh.ActionOptions()
+			return ssh.ActionOptions().NoSpace()
 		}),
 	})
 
@@ -55,7 +55,7 @@ func init() {
 		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return net.ActionHosts().Invoke(c).Merge(carapace.ActionFiles().Invoke(c)).ToA()
+				return net.ActionHosts().Invoke(c).Merge(carapace.ActionFiles().Invoke(c)).ToA().NoSpace()
 			default:
 				return carapace.ActionValues()
 			}

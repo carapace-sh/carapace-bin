@@ -110,6 +110,6 @@ func ActionApiPathsDescribed(pathsDescribed []string, placeholderPattern string,
 				actions = append(actions, carapace.ActionValuesDescribed(key, value))
 			}
 		}
-		return carapace.Batch(actions...).Invoke(c).Merge().ToA()
+		return carapace.Batch(actions...).Invoke(c).Merge().ToA().NoSpace()
 	})
 }

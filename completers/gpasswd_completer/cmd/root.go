@@ -31,7 +31,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"add": os.ActionUsers(),
 		"administrators": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"delete": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
@@ -40,7 +40,7 @@ func init() {
 			return os.ActionUsers()
 		}),
 		"members": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionUsers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"root": carapace.ActionDirectories(),
 	})

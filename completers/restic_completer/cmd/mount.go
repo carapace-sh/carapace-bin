@@ -27,7 +27,7 @@ func init() {
 		"host": action.ActionSnapshotHosts(mountCmd),
 		"path": carapace.ActionFiles(),
 		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(mountCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSnapshotTags(mountCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 }

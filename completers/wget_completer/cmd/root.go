@@ -177,7 +177,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"accept": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilenameExtensions().Invoke(c).Filter(c.Parts).ToA()
+			return fs.ActionFilenameExtensions().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"append-output":    carapace.ActionFiles(),
 		"body-file":        carapace.ActionFiles(),
@@ -186,18 +186,18 @@ func init() {
 		"certificate":      carapace.ActionFiles(),
 		"certificate-type": carapace.ActionValues("PEM", "DER"),
 		"ciphers": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA()
+			return ssh.ActionCiphers().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"compression":      carapace.ActionValues("auto", "gzip", "none"),
 		"config":           carapace.ActionFiles(),
 		"crl-file":         carapace.ActionFiles(),
 		"directory-prefix": carapace.ActionDirectories(),
 		"follow-tags": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return http.ActionTags().Invoke(c).Filter(c.Parts).ToA()
+			return http.ActionTags().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"header": http.ActionRequestHeaders(),
 		"ignore-tags": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return http.ActionTags().Invoke(c).Filter(c.Parts).ToA()
+			return http.ActionTags().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"input-file":      carapace.ActionFiles(),
 		"load-cookies":    carapace.ActionFiles(),
@@ -212,7 +212,7 @@ func init() {
 				).ToA()
 			}
 			return carapace.ActionMultiParts(";", func(c carapace.Context) carapace.Action {
-				return carapace.ActionValues("sha256//")
+				return carapace.ActionValues("sha256//").NoSpace()
 			})
 		}),
 		"post-file":        carapace.ActionFiles(),
@@ -221,12 +221,12 @@ func init() {
 		"progress":         carapace.ActionValues("dot", "bar"),
 		"regex-type":       carapace.ActionValues("posix", "pcre"),
 		"reject": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilenameExtensions().Invoke(c).Filter(c.Parts).ToA()
+			return fs.ActionFilenameExtensions().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"rejected-log": carapace.ActionFiles(),
 		"report-speed": carapace.ActionValues("bits"),
 		"retry-on-http-error": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return http.ActionStatusCodes().Invoke(c).Filter(c.Parts).ToA()
+			return http.ActionStatusCodes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"save-cookies":    carapace.ActionFiles(),
 		"secure-protocol": carapace.ActionValues("auto", "SSLv2"),

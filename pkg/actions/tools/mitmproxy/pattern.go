@@ -15,9 +15,9 @@ func ActionModifyBodyPattern() carapace.Action {
 			return carapace.ActionMultiParts(c.CallbackValue[:1], func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 1:
-					return actionOptionFlowFilters()
+					return actionOptionFlowFilters().NoSpace()
 				case 2:
-					return actionOptionFiles()
+					return actionOptionFiles().NoSpace()
 
 				case 3:
 					return actionOptionFiles()
@@ -39,9 +39,9 @@ func ActionModifyHeaderPattern() carapace.Action {
 			return carapace.ActionMultiParts(c.CallbackValue[:1], func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 1:
-					return actionOptionFlowFilters()
+					return actionOptionFlowFilters().NoSpace()
 				case 2:
-					return http.ActionRequestHeaderNames()
+					return http.ActionRequestHeaderNames().NoSpace()
 				case 3:
 					return carapace.Batch(
 						http.ActionRequestHeaderValues(c.Parts[2]),

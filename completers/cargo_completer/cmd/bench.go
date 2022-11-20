@@ -57,7 +57,7 @@ func init() {
 		"example": action.ActionTargets(benchCmd, action.TargetOpts{Example: true}),
 		"exclude": action.ActionWorkspaceMembers(benchCmd),
 		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return cargo.ActionFeatures(benchCmd.Flag("manifest-path").Value.String()).Invoke(c).Filter(c.Parts).ToA()
+			return cargo.ActionFeatures(benchCmd.Flag("manifest-path").Value.String()).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),

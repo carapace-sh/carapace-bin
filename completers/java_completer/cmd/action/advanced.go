@@ -215,7 +215,7 @@ func ActionAdvancedValues(key string) carapace.Action {
 						"option", "This command can be used to pass a JIT compilation option to the specified method",
 						"print", "Print generated assembler code after compilation of the specified method",
 						"quiet", "Do not print the compile commands",
-					)
+					).NoSpace()
 				default:
 					return carapace.ActionValues()
 				}

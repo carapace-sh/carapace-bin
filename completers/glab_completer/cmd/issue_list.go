@@ -38,20 +38,20 @@ func init() {
 		"author":   action.ActionUsers(issue_listCmd),
 		"group":    action.ActionGroups(issue_listCmd),
 		"in": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("title", "description").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("title", "description").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_listCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(issue_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"milestone": action.ActionMilestones(issue_listCmd),
 		"not-assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(issue_listCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionProjectMembers(issue_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"not-author": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionUsers(issue_listCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionUsers(issue_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"not-label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_listCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(issue_listCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 }

@@ -40,11 +40,11 @@ func init() {
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
 		"bench": carapace.ActionMultiParts("|", func(c carapace.Context) carapace.Action {
-			return action.ActionTests(c.Args, action.TestOpts{Benchmark: true}).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionTests(c.Args, action.TestOpts{Benchmark: true}).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"covermode": carapace.ActionValues("set", "count,atomic"),
 		"run": carapace.ActionMultiParts("|", func(c carapace.Context) carapace.Action {
-			return action.ActionTests(c.Args, action.TestOpts{Example: true, Test: true}).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionTests(c.Args, action.TestOpts{Example: true, Test: true}).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

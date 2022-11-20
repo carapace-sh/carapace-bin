@@ -25,7 +25,7 @@ func init() {
 		"mode": carapace.ActionValues("restore-size", "files-by-contents", "blobs-per-file", "raw-data"),
 		"path": carapace.ActionFiles(),
 		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(statsCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSnapshotTags(statsCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

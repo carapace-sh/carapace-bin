@@ -66,19 +66,19 @@ func init() {
 		"out": carapace.ActionFiles(),
 		"zc": carapace.ActionMultiParts("-", func(c carapace.Context) carapace.Action {
 			if len(c.Parts) < 2 {
-				return carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7")
+				return carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7").NoSpace()
 			}
 			return carapace.ActionValues()
 		}),
 		"zm": carapace.ActionMultiParts("-", func(c carapace.Context) carapace.Action {
 			if len(c.Parts) < 2 {
-				return carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8", "9")
+				return carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8", "9").NoSpace()
 			}
 			return carapace.ActionValues()
 		}),
 		"zs": carapace.ActionMultiParts("-", func(c carapace.Context) carapace.Action {
 			if len(c.Parts) < 2 {
-				return carapace.ActionValues("1", "2", "3")
+				return carapace.ActionValues("1", "2", "3").NoSpace()
 			}
 			return carapace.ActionValues()
 		}),

@@ -39,7 +39,7 @@ func init() {
 
 	carapace.Gen(set_imageCmd).PositionalCompletion(
 		carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("pod", "service", "replicationcontroller", "deployment", "replicaset").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("pod", "service", "replicationcontroller", "deployment", "replicaset").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionResources("", c.Args[0])

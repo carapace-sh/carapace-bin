@@ -29,14 +29,14 @@ func init() {
 
 	carapace.Gen(issue_updateCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionProjectMembers(issue_updateCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionProjectMembers(issue_updateCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"label": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_updateCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(issue_updateCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"milestone": action.ActionMilestones(issue_updateCmd),
 		"unlabel": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionLabels(issue_updateCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionLabels(issue_updateCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

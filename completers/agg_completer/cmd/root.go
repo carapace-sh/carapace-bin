@@ -38,7 +38,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"font-dir": carapace.ActionDirectories(),
 		"font-family": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return os.ActionFontFamilies().Invoke(c).Filter(c.Parts).ToA()
+			return os.ActionFontFamilies().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"renderer": carapace.ActionValues("fontdue", "resvg"),
 		"theme":    carapace.ActionValues("asciinema", "dracula", "monokai", "solarized-dark", "solarized-light", "custom"),

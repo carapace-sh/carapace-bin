@@ -52,7 +52,7 @@ func init() {
 		"opt":   carapace.ActionValues("0", "1", "2", "s", "z"),
 		"panic": carapace.ActionValues("print", "trap"),
 		"port": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return net.ActionPorts().Invoke(c).Filter(c.Parts).ToA()
+			return net.ActionPorts().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"programmer": carapace.ActionValues("openocd", "msd", "command", "bmp"),
 		"scheduler":  carapace.ActionValues("none", "coroutines", "tasks"),

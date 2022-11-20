@@ -61,7 +61,7 @@ func init() {
 			"WHITE", style.White,
 		),
 		"disabled_rules": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionRules().Invoke(c).Filter(c.Parts).ToA()
+			return ActionRules().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"editorconfig": carapace.ActionFiles(".editorconfig"),
 		"reporter":     carapace.ActionValues("plain", "plain?group_by_file", "json", "checkstyle", "html"),

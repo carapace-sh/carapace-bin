@@ -24,17 +24,17 @@ func init() {
 
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{
 		"add": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"host": action.ActionSnapshotHosts(tagCmd),
 		"remove": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"set": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"tag": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionSnapshotTags(tagCmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

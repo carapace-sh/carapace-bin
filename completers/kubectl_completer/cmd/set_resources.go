@@ -45,7 +45,7 @@ func init() {
 			if set_resourcesCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {
-				return action.ActionApiResources()
+				return action.ActionApiResources().NoSpace()
 			}
 		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {

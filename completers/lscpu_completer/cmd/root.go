@@ -39,13 +39,13 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"caches": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionCacheColumns().Invoke(c).Filter(c.Parts).ToA()
+			return ActionCacheColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"extended": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionFormatColumns().Invoke(c).Filter(c.Parts).ToA()
+			return ActionFormatColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"parse": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionFormatColumns().Invoke(c).Filter(c.Parts).ToA()
+			return ActionFormatColumns().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"sysroot": carapace.ActionDirectories(),
 	})

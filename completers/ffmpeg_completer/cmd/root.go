@@ -126,7 +126,7 @@ func init() {
 			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionFilters()
+					return action.ActionFilters().NoSpace()
 				default:
 					return carapace.ActionValues()
 				}
@@ -155,7 +155,7 @@ func init() {
 		"sinks": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return action.ActionDevices()
+				return action.ActionDevices().NoSpace()
 			default:
 				return carapace.ActionValues()
 			}
@@ -163,7 +163,7 @@ func init() {
 		"sources": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return action.ActionDevices()
+				return action.ActionDevices().NoSpace()
 			default:
 				return carapace.ActionValues()
 			}
@@ -173,7 +173,7 @@ func init() {
 			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionFilters()
+					return action.ActionFilters().NoSpace()
 				default:
 					return carapace.ActionValues()
 				}

@@ -20,7 +20,7 @@ func init() {
 
 	carapace.Gen(unpauseCmd).FlagCompletion(carapace.ActionMap{
 		"namespaces": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionNamespaces().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionNamespaces().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"output": carapace.ActionValues("text", "json"),
 	})

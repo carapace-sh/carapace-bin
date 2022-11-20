@@ -129,7 +129,7 @@ func addDiffFlags(cmd *cobra.Command) {
 		"submodule":      carapace.ActionValues("short", "long", "log"),
 		"word-diff":      ActionWordDiffModes(),
 		"ws-error-highlight": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return ActionWsErrorHighlightModes().Invoke(c).Filter(c.Parts).ToA()
+			return ActionWsErrorHighlightModes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 	})
 

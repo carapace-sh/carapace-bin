@@ -40,7 +40,7 @@ func init() {
 				"stderr-nocaret", "^ no longer redirects stderr",
 				"qmark-noglob", "? no longer globs",
 				"regex-easyesc", `string replace -r needs fewer \'s`,
-			).Invoke(c).Filter(c.Parts).ToA()
+			).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"profile": carapace.ActionFiles(),
 	})

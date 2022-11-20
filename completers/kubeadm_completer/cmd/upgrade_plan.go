@@ -26,7 +26,7 @@ func init() {
 	carapace.Gen(upgrade_planCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
 		"ignore-preflight-errors": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionChecks().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"kubeconfig": carapace.ActionFiles(),
 	})

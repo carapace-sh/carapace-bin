@@ -38,7 +38,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"l": carapace.ActionMultiParts("+", func(c carapace.Context) carapace.Action {
-			return ActionLanguages().Invoke(c).Filter(c.Parts).ToA()
+			return ActionLanguages().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"oem":           ActionOcrEngineModes(),
 		"psm":           ActionAnalysisSubsets(),

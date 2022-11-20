@@ -53,7 +53,7 @@ func init() {
 		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			if len(c.Args) == 1 && !util.HasPathPrefix(c.Args[0]) {
 				// TODO limit to specific version
-				return action.ActionGithubPackageFeatures(strings.Split(c.Args[0], "@")[0]).Invoke(c).Filter(c.Parts).ToA()
+				return action.ActionGithubPackageFeatures(strings.Split(c.Args[0], "@")[0]).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 			}
 			return carapace.ActionValues()
 		}),
@@ -79,7 +79,7 @@ func init() {
 			return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionGithubPackageSearch()
+					return action.ActionGithubPackageSearch().NoSpace()
 				case 1:
 					return action.ActionGithubPackageVersions(c.Parts[0])
 				default:

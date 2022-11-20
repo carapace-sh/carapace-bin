@@ -25,7 +25,7 @@ func ActionServiceIdentity(cmd *cobra.Command) carapace.Action {
 			return ActionServices(cmd)
 		case 1:
 			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-				return ActionDatacenters(cmd).Invoke(c).Filter(c.Parts).ToA()
+				return ActionDatacenters(cmd).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 			})
 		default:
 			return carapace.ActionValues()

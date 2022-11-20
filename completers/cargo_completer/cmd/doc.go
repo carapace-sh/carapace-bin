@@ -51,7 +51,7 @@ func init() {
 		"color":   action.ActionColorModes(),
 		"exclude": action.ActionWorkspaceMembers(docCmd),
 		"features": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return cargo.ActionFeatures(docCmd.Flag("manifest-path").Value.String()).Invoke(c).Filter(c.Parts).ToA()
+			return cargo.ActionFeatures(docCmd.Flag("manifest-path").Value.String()).Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),

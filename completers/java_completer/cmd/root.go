@@ -112,13 +112,13 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"XX": action.ActionAdvanced(),
 		"Xbootclasspath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".zip", ".jar")
+			return carapace.ActionFiles(".zip", ".jar").NoSpace()
 		}),
 		"Xbootclasspath/a": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".zip", ".jar")
+			return carapace.ActionFiles(".zip", ".jar").NoSpace()
 		}),
 		"Xbootclasspath/p": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles(".zip", ".jar")
+			return carapace.ActionFiles(".zip", ".jar").NoSpace()
 		}),
 		"Xcheck": carapace.ActionValuesDescribed(
 			"jni", "perform additional checks for JNI functions",
@@ -140,34 +140,34 @@ func init() {
 		"agentpath": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionFiles(".jar", ".zip")
+				return carapace.ActionFiles(".jar", ".zip").NoSpace()
 			default:
 				return carapace.ActionValues()
 			}
 		}),
 		"classpath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles()
+			return carapace.ActionFiles().NoSpace()
 		}),
 		"cp": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles()
+			return carapace.ActionFiles().NoSpace()
 		}),
 		"da": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return action.ActionClasspathClasses(rootCmd)
+			return action.ActionClasspathClasses(rootCmd).NoSpace()
 		}),
 		"disableassertions": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return action.ActionClasspathClasses(rootCmd)
+			return action.ActionClasspathClasses(rootCmd).NoSpace()
 		}),
 		"ea": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return action.ActionClasspathClasses(rootCmd)
+			return action.ActionClasspathClasses(rootCmd).NoSpace()
 		}),
 		"enableassertions": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			return action.ActionClasspathClasses(rootCmd)
+			return action.ActionClasspathClasses(rootCmd).NoSpace()
 		}),
 		"jar": carapace.ActionFiles(".jar", ".zip"),
 		"javaagent": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionFiles(".jar", ".zip")
+				return carapace.ActionFiles(".jar", ".zip").NoSpace()
 			default:
 				return carapace.ActionValues()
 			}

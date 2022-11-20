@@ -42,7 +42,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"ignore-dirs": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionDirectories()
+			return carapace.ActionDirectories().NoSpace()
 		}),
 		"ignore-from": carapace.ActionFiles(),
 		"input-file":  carapace.ActionFiles(),

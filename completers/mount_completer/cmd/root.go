@@ -67,17 +67,17 @@ func init() {
 			for _, part := range c.Parts {
 				keys = append(keys, strings.Split(part, "=")[0])
 			}
-			return action.ActionOptions().Invoke(c).Filter(keys).ToA()
+			return action.ActionOptions().Invoke(c).Filter(keys).ToA().NoSpace()
 		}),
 		"options-mode": carapace.ActionValues("ignore", "append", "prepend", "replace"),
 		"options-source": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("fstab", "mtab", "disable").Invoke(c).Filter(c.Parts).ToA()
+			return carapace.ActionValues("fstab", "mtab", "disable").Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"source":        action.ActionSources(),
 		"target":        carapace.ActionDirectories(),
 		"target-prefix": carapace.ActionDirectories(),
 		"types": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return fs.ActionFilesystemTypes().Invoke(c).Filter(c.Parts).ToA()
+			return fs.ActionFilesystemTypes().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"uuid": fs.ActionUuids(),
 	})

@@ -42,7 +42,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cacert": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionFiles()
+			return carapace.ActionFiles().NoSpace()
 		}),
 		"cache-dir":        carapace.ActionDirectories(),
 		"password-command": carapace.ActionFiles(),

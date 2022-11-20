@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(toolchain_installCmd).FlagCompletion(carapace.ActionMap{
 		"component": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionAvailableComponents().Invoke(c).Filter(c.Parts).ToA()
+			return action.ActionAvailableComponents().Invoke(c).Filter(c.Parts).ToA().NoSpace()
 		}),
 		"profile": carapace.ActionValues("minimal", "default", "complete"),
 		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
