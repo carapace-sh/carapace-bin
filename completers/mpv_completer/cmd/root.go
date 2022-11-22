@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"os"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/mpv"
 	"github.com/spf13/cobra"
@@ -1015,8 +1017,8 @@ func init() {
 		"audio-backward-overlap":            carapace.ActionValues("auto"),
 		"audio-display":                     carapace.ActionValues("no", "embedded-first", "external-first"),
 		"audio-file-auto":                   carapace.ActionValues("no", "exact", "fuzzy", "all"),
-		"audio-file-paths":                  carapace.ActionFiles().UniqueList(","),
-		"audio-files":                       carapace.ActionFiles().UniqueList(","),
+		"audio-file-paths":                  carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"audio-files":                       carapace.ActionFiles().List(string(os.PathListSeparator)),
 		"autosync":                          carapace.ActionValues("no"),
 		"blend-subtitles":                   carapace.ActionValues("no", "yes", "video"),
 		"bluray-device":                     carapace.ActionFiles(),
@@ -1028,7 +1030,7 @@ func init() {
 		"config-dir":                        carapace.ActionFiles(),
 		"cookies-file":                      carapace.ActionFiles(),
 		"cover-art-auto":                    carapace.ActionValues("no", "exact", "fuzzy", "all"),
-		"cover-art-files":                   carapace.ActionFiles().UniqueList(","),
+		"cover-art-files":                   carapace.ActionFiles().List(string(os.PathListSeparator)),
 		"cuda-decode-device":                carapace.ActionValues("auto"),
 		"cursor-autohide":                   carapace.ActionValues("no", "always"),
 		"demuxer-lavf-linearize-timestamps": carapace.ActionValues("no", "auto", "yes"),
@@ -1048,13 +1050,13 @@ func init() {
 		"dvbin-file":                        carapace.ActionFiles(),
 		"dvd-device":                        carapace.ActionFiles(),
 		"edition":                           carapace.ActionValues("auto"),
-		"external-files":                    carapace.ActionFiles().UniqueList(","),
+		"external-files":                    carapace.ActionFiles().List(string(os.PathListSeparator)),
 		"force-window":                      carapace.ActionValues("no", "yes", "immediate"),
 		"framedrop":                         carapace.ActionValues("no", "vo", "decoder", "decoder+vo"),
 		"frames":                            carapace.ActionValues("all"),
 		"fs-screen":                         carapace.ActionValues("all", "current"),
 		"gapless-audio":                     carapace.ActionValues("no", "yes", "weak"),
-		"glsl-shaders":                      carapace.ActionFiles().UniqueList(","),
+		"glsl-shaders":                      carapace.ActionFiles().List(string(os.PathListSeparator)),
 		"gpu-dumb-mode":                     carapace.ActionValues("auto", "yes", "no"),
 		"gpu-shader-cache-dir":              carapace.ActionFiles(),
 		"hdr-compute-peak":                  carapace.ActionValues("auto", "yes", "no"),
@@ -1097,7 +1099,7 @@ func init() {
 		"screen":                            carapace.ActionValues("default"),
 		"screenshot-directory":              carapace.ActionFiles(),
 		"screenshot-format":                 carapace.ActionValues("jpg", "jpeg", "png", "webp"),
-		"scripts":                           carapace.ActionFiles().UniqueList(","),
+		"scripts":                           carapace.ActionFiles().List(string(os.PathListSeparator)),
 		"secondary-sid":                     carapace.ActionValues("no", "auto"),
 		"sid":                               carapace.ActionValues("no", "auto"),
 		"spirv-compiler":                    carapace.ActionValues("auto", "shaderc"),
@@ -1110,8 +1112,8 @@ func init() {
 		"sub-ass-styles":                    carapace.ActionFiles(),
 		"sub-ass-vsfilter-color-compat":     carapace.ActionValues("no", "basic", "full", "force-601"),
 		"sub-auto":                          carapace.ActionValues("no", "exact", "fuzzy", "all"),
-		"sub-file-paths":                    carapace.ActionFiles().UniqueList(","),
-		"sub-files":                         carapace.ActionFiles().UniqueList(","),
+		"sub-file-paths":                    carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"sub-files":                         carapace.ActionFiles().List(string(os.PathListSeparator)),
 		"sub-font-provider":                 carapace.ActionValues("auto", "none", "fontconfig"),
 		"sub-forced-only":                   carapace.ActionValues("auto", "no", "yes"),
 		"sub-justify":                       carapace.ActionValues("auto", "left", "center", "right"),
