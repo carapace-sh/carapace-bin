@@ -36,11 +36,11 @@ func init() {
 	rootCmd.Flags().String("ad-lavc-o-remove", "", "")
 	rootCmd.Flags().String("ad-lavc-o-set", "", "")
 	rootCmd.Flags().String("ad-lavc-threads", "", "Number  of threads to use for decoding")
-	rootCmd.Flags().Bool("ad-queue-enable", false, "")
-	rootCmd.Flags().String("ad-queue-max-bytes", "", "")
-	rootCmd.Flags().String("ad-queue-max-samples", "", "")
-	rootCmd.Flags().String("ad-queue-max-secs", "", "")
-	rootCmd.Flags().String("af", "", "")
+	rootCmd.Flags().Bool("ad-queue-enable", false, "Enable running the audio decoder on a separate thread ")
+	rootCmd.Flags().String("ad-queue-max-bytes", "", "Maximum approximate allowed size of the queue")
+	rootCmd.Flags().String("ad-queue-max-samples", "", "Maximum number samples of the queue")
+	rootCmd.Flags().String("ad-queue-max-secs", "", "Maximum number of seconds of media in the queue")
+	rootCmd.Flags().String("af", "", "Specify a list of audio filters to  apply  to  the  audio stream")
 	rootCmd.Flags().String("af-add", "", "")
 	rootCmd.Flags().String("af-append", "", "")
 	rootCmd.Flags().String("af-clr", "", "")
@@ -848,7 +848,7 @@ func init() {
 	rootCmd.Flags().String("vd-queue-max-samples", "", "")
 	rootCmd.Flags().String("vd-queue-max-secs", "", "")
 	rootCmd.Flags().StringP("version", "V", "", "Print version string and exit")
-	rootCmd.Flags().String("vf", "", "")
+	rootCmd.Flags().String("vf", "", "Setup a chain of video filters")
 	rootCmd.Flags().String("vf-add", "", "")
 	rootCmd.Flags().String("vf-append", "", "")
 	rootCmd.Flags().String("vf-clr", "", "")
@@ -1012,6 +1012,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"ab-loop-count":                     carapace.ActionValues("inf"),
 		"ad":                                mpv.ActionAudioDecoders().UniqueList(","),
+		"af":                                mpv.ActionAudioFilters().List(","),
 		"aid":                               carapace.ActionValues("no", "auto").StyleF(style.ForKeyword),
 		"alpha":                             carapace.ActionValues("no", "yes", "blend", "blend-tiles").StyleF(style.ForKeyword),
 		"ao-pcm-file":                       carapace.ActionFiles(),
@@ -1133,6 +1134,7 @@ func init() {
 		"vd-lavc-skipidct":                  carapace.ActionValues("none", "default", "nonref", "bidir", "nonkey", "all"),
 		"vd-lavc-skiploopfilter":            carapace.ActionValues("none", "default", "nonref", "bidir", "nonkey", "all"),
 		"vd-lavc-software-fallback":         carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
+		"vf":                                mpv.ActionVideoFilters().List(","),
 		"vid":                               carapace.ActionValues("no", "auto").StyleF(style.ForKeyword),
 		"video-aspect-method":               carapace.ActionValues("bitstream", "container"),
 		"video-backward-overlap":            carapace.ActionValues("auto"),
