@@ -7,7 +7,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionVideoDecoders completes audio decoders
+// ActionAudioDecoders completes audio decoders
 //
 //	8svx_exp (8SVX exponential)
 //	8svx_fib (8SVX fibonacci)
