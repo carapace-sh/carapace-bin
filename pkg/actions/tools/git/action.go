@@ -39,12 +39,12 @@ func (o RefOption) Default() RefOption {
 //	v0.0.1 (last commit msg)
 func ActionRefs(refOption RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		vals := make([]string, 0)
+		batch := carapace.Batch()
 		if branches, err := branches(c, refOption); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, branch := range branches {
-				vals = append(vals, branch.Name, branch.Message, styles.Git.Branch)
+				batch = append(batch, carapace.ActionStyledValuesDescribed(branch.Name, branch.Message, styles.Git.Branch).Tag("branches"))
 			}
 		}
 		if commits, err := commits(c, refOption); err != nil {
@@ -55,24 +55,21 @@ func ActionRefs(refOption RefOption) carapace.Action {
 				if strings.HasPrefix(commit.Ref, "HEAD") {
 					s = styles.Git.HeadCommit
 				}
-				vals = append(vals, commit.Ref, commit.Message, s)
+				batch = append(batch, carapace.ActionStyledValuesDescribed(commit.Ref, commit.Message, s).Tag("commits"))
 			}
 		}
 		if tags, err := tags(c, refOption); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			for _, tag := range tags {
-				vals = append(vals, tag.Name, tag.Message, styles.Git.Tag)
+				batch = append(batch, carapace.ActionStyledValuesDescribed(tag.Name, tag.Message, styles.Git.Tag).Tag("tags"))
 			}
 		}
 
 		if refOption.Stashes {
-			return carapace.Batch(
-				carapace.ActionStyledValuesDescribed(vals...),
-				ActionStashes(),
-			).ToA()
+			batch = append(batch, ActionStashes().Tag("stashes"))
 		}
-		return carapace.ActionStyledValuesDescribed(vals...)
+		return batch.ToA()
 
 	})
 }
