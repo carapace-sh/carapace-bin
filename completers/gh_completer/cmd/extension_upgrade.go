@@ -7,7 +7,7 @@ import (
 )
 
 var extension_upgradeCmd = &cobra.Command{
-	Use:   "upgrade",
+	Use:   "upgrade {<name> | --all}",
 	Short: "Upgrade installed extensions",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -7,7 +7,7 @@ import (
 )
 
 var issue_editCmd = &cobra.Command{
-	Use:   "edit",
+	Use:   "edit {<number> | <url>}",
 	Short: "Edit an issue",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

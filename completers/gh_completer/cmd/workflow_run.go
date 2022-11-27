@@ -7,7 +7,7 @@ import (
 )
 
 var workflow_runCmd = &cobra.Command{
-	Use:   "run",
+	Use:   "run [<workflow-id> | <workflow-name>]",
 	Short: "Run a workflow by creating a workflow_dispatch event",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

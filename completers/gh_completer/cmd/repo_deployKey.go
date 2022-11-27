@@ -7,7 +7,7 @@ import (
 )
 
 var repo_deployKeyCmd = &cobra.Command{
-	Use:   "deploy-key",
+	Use:   "deploy-key <command>",
 	Short: "Manage deploy keys in a repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

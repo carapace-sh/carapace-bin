@@ -6,7 +6,7 @@ import (
 )
 
 var extension_createCmd = &cobra.Command{
-	Use:   "create",
+	Use:   "create [<name>]",
 	Short: "Create a new extension",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

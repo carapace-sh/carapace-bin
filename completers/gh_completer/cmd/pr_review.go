@@ -7,7 +7,7 @@ import (
 )
 
 var pr_reviewCmd = &cobra.Command{
-	Use:   "review",
+	Use:   "review [<number> | <url> | <branch>]",
 	Short: "Add a review to a pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

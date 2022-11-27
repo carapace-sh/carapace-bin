@@ -9,7 +9,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "gh",
+	Use:   "gh <command> <subcommand> [flags]",
 	Short: "GitHub CLI",
 	Long:  "https://cli.github.com/",
 	Run:   func(cmd *cobra.Command, args []string) {},

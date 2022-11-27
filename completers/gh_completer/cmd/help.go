@@ -6,7 +6,7 @@ import (
 )
 
 var helpCmd = &cobra.Command{
-	Use:   "help",
+	Use:   "help [command]",
 	Short: "Help about any command",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

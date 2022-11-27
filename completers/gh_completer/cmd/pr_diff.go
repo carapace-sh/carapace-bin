@@ -8,7 +8,7 @@ import (
 )
 
 var pr_diffCmd = &cobra.Command{
-	Use:   "diff",
+	Use:   "diff [<number> | <url> | <branch>]",
 	Short: "View changes in a pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

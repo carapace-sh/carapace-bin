@@ -7,7 +7,7 @@ import (
 )
 
 var secretCmd = &cobra.Command{
-	Use:   "secret",
+	Use:   "secret <command>",
 	Short: "Manage GitHub secrets",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -7,7 +7,7 @@ import (
 )
 
 var issue_transferCmd = &cobra.Command{
-	Use:   "transfer",
+	Use:   "transfer {<number> | <url>} <destination-repo>",
 	Short: "Transfer issue to another repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

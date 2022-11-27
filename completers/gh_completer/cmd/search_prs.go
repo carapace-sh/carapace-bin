@@ -10,7 +10,7 @@ import (
 )
 
 var search_prsCmd = &cobra.Command{
-	Use:   "prs",
+	Use:   "prs [<query>]",
 	Short: "Search for pull requests",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

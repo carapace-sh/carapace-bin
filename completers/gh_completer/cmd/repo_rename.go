@@ -7,7 +7,7 @@ import (
 )
 
 var repo_renameCmd = &cobra.Command{
-	Use:   "rename",
+	Use:   "rename [<new-name>]",
 	Short: "Rename a repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

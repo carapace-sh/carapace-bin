@@ -7,7 +7,7 @@ import (
 )
 
 var extension_removeCmd = &cobra.Command{
-	Use:   "remove",
+	Use:   "remove <name>",
 	Short: "Remove an installed extension",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

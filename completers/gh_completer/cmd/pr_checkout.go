@@ -7,7 +7,7 @@ import (
 )
 
 var pr_checkoutCmd = &cobra.Command{
-	Use:   "checkout",
+	Use:   "checkout {<number> | <url> | <branch>}",
 	Short: "Check out a pull request in git",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -7,7 +7,7 @@ import (
 )
 
 var pr_viewCmd = &cobra.Command{
-	Use:   "view",
+	Use:   "view [<number> | <url> | <branch>]",
 	Short: "View a pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

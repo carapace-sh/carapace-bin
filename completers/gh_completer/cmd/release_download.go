@@ -7,7 +7,7 @@ import (
 )
 
 var release_downloadCmd = &cobra.Command{
-	Use:   "download",
+	Use:   "download [<tag>]",
 	Short: "Download release assets",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

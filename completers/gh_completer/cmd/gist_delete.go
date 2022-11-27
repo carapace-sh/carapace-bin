@@ -7,7 +7,7 @@ import (
 )
 
 var gist_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete {<id> | <url>}",
 	Short: "Delete a gist",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

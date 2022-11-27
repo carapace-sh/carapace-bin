@@ -7,7 +7,7 @@ import (
 )
 
 var workflow_viewCmd = &cobra.Command{
-	Use:   "view",
+	Use:   "view [<workflow-id> | <workflow-name> | <filename>]",
 	Short: "View the summary of a workflow",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

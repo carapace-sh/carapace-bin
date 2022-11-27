@@ -8,7 +8,7 @@ import (
 )
 
 var secret_deleteCmd = &cobra.Command{
-	Use:     "delete",
+	Use:     "delete <secret-name>",
 	Short:   "Delete secrets",
 	Aliases: []string{"remove"},
 	Run:     func(cmd *cobra.Command, args []string) {},

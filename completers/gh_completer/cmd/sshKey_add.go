@@ -6,7 +6,7 @@ import (
 )
 
 var sshKey_addCmd = &cobra.Command{
-	Use:   "add",
+	Use:   "add [<key-file>]",
 	Short: "Add an SSH key to your GitHub account",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

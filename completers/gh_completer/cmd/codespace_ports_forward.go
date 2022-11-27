@@ -8,7 +8,7 @@ import (
 )
 
 var codespace_ports_forwardCmd = &cobra.Command{
-	Use:   "forward",
+	Use:   "forward <remote-port>:<local-port>...",
 	Short: "Forward ports",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -7,7 +7,7 @@ import (
 )
 
 var gist_cloneCmd = &cobra.Command{
-	Use:   "clone",
+	Use:   "clone <gist> [<directory>] [-- <gitflags>...]",
 	Short: "Clone a gist locally",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

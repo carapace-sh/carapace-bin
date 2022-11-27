@@ -7,7 +7,7 @@ import (
 )
 
 var gpgKey_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete <key-id>",
 	Short: "Delete a GPG key from your GitHub account",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -6,7 +6,7 @@ import (
 )
 
 var configCmd = &cobra.Command{
-	Use:   "config",
+	Use:   "config <command>",
 	Short: "Manage configuration for gh",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

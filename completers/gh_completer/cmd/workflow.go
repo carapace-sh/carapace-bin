@@ -7,7 +7,7 @@ import (
 )
 
 var workflowCmd = &cobra.Command{
-	Use:   "workflow",
+	Use:   "workflow <command>",
 	Short: "View details about GitHub Actions workflows",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

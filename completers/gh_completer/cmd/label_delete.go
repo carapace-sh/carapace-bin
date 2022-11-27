@@ -7,7 +7,7 @@ import (
 )
 
 var label_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete <name>",
 	Short: "Delete a label from a repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

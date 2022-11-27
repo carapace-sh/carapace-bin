@@ -6,7 +6,7 @@ import (
 )
 
 var gpgKey_addCmd = &cobra.Command{
-	Use:   "add",
+	Use:   "add [<key-file>]",
 	Short: "Add a GPG key to your GitHub account",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

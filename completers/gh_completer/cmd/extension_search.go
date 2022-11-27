@@ -8,7 +8,7 @@ import (
 )
 
 var extension_searchCmd = &cobra.Command{
-	Use:   "search",
+	Use:   "search [<query>]",
 	Short: "Search extensions to the GitHub CLI",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

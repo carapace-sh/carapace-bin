@@ -7,7 +7,7 @@ import (
 )
 
 var label_createCmd = &cobra.Command{
-	Use:   "create",
+	Use:   "create <name>",
 	Short: "Create a new label",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

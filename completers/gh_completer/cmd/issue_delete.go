@@ -7,7 +7,7 @@ import (
 )
 
 var issue_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete {<number> | <url>}",
 	Short: "Delete issue",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -7,7 +7,7 @@ import (
 )
 
 var releaseCmd = &cobra.Command{
-	Use:   "release",
+	Use:   "release <command>",
 	Short: "Manage releases",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

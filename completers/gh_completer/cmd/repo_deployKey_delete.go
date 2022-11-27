@@ -7,7 +7,7 @@ import (
 )
 
 var repo_deployKey_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete <key-id>",
 	Short: "Delete a deploy key from a GitHub repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

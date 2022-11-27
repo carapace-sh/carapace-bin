@@ -6,7 +6,7 @@ import (
 )
 
 var completionCmd = &cobra.Command{
-	Use:   "completion",
+	Use:   "completion -s <shell>",
 	Short: "Generate shell completion scripts",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

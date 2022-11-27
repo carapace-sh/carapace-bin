@@ -6,7 +6,7 @@ import (
 )
 
 var sshKeyCmd = &cobra.Command{
-	Use:   "ssh-key",
+	Use:   "ssh-key <command>",
 	Short: "Manage SSH keys",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

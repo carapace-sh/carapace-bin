@@ -7,7 +7,7 @@ import (
 )
 
 var pr_reopenCmd = &cobra.Command{
-	Use:   "reopen",
+	Use:   "reopen {<number> | <url> | <branch>}",
 	Short: "Reopen a pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

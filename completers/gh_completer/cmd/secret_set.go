@@ -8,7 +8,7 @@ import (
 )
 
 var secret_setCmd = &cobra.Command{
-	Use:   "set",
+	Use:   "set <secret-name>",
 	Short: "Create or update secrets",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -7,7 +7,7 @@ import (
 )
 
 var pr_closeCmd = &cobra.Command{
-	Use:   "close",
+	Use:   "close {<number> | <url> | <branch>}",
 	Short: "Close a pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

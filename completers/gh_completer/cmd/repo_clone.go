@@ -10,7 +10,7 @@ import (
 )
 
 var repo_cloneCmd = &cobra.Command{
-	Use:   "clone",
+	Use:   "clone <repository> [<directory>] [-- <gitflags>...]",
 	Short: "Clone a repository locally",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

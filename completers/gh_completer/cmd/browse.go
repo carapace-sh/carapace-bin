@@ -14,7 +14,7 @@ import (
 )
 
 var browseCmd = &cobra.Command{
-	Use:   "browse",
+	Use:   "browse [<number> | <path>]",
 	Short: "Open the repository in the browser",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

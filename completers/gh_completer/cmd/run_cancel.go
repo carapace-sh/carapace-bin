@@ -7,7 +7,7 @@ import (
 )
 
 var run_cancelCmd = &cobra.Command{
-	Use:   "cancel",
+	Use:   "cancel [<run-id>]",
 	Short: "Cancel a workflow run",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

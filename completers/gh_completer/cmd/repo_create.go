@@ -8,7 +8,7 @@ import (
 )
 
 var repo_createCmd = &cobra.Command{
-	Use:     "create",
+	Use:     "create [<name>]",
 	Short:   "Create a new repository",
 	Aliases: []string{"new"},
 	Run:     func(cmd *cobra.Command, args []string) {},

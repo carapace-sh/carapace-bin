@@ -8,10 +8,9 @@ import (
 )
 
 var extension_execCmd = &cobra.Command{
-	Use:                "exec",
-	Short:              "Execute an installed extension",
-	Run:                func(cmd *cobra.Command, args []string) {},
-	DisableFlagParsing: true,
+	Use:   "exec <name> [args]",
+	Short: "Execute an installed extension",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

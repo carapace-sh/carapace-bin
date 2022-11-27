@@ -7,7 +7,7 @@ import (
 )
 
 var run_watchCmd = &cobra.Command{
-	Use:   "watch",
+	Use:   "watch <run-id>",
 	Short: "Watch a run until it completes, showing its progress",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
