@@ -7,7 +7,7 @@ import (
 )
 
 var release_editCmd = &cobra.Command{
-	Use:   "edit",
+	Use:   "edit <tag>",
 	Short: "Edit a release",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

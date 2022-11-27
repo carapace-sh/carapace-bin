@@ -6,7 +6,7 @@ import (
 )
 
 var gpgKeyCmd = &cobra.Command{
-	Use:   "gpg-key",
+	Use:   "gpg-key <command>",
 	Short: "Manage GPG keys",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

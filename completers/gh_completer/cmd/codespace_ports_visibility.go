@@ -7,7 +7,7 @@ import (
 )
 
 var codespace_ports_visibilityCmd = &cobra.Command{
-	Use:   "visibility",
+	Use:   "visibility <port>:{public|private|org}...",
 	Short: "Change the visibility of the forwarded port",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

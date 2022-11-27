@@ -7,7 +7,7 @@ import (
 )
 
 var codespace_sshCmd = &cobra.Command{
-	Use:   "ssh",
+	Use:   "ssh [<flags>...] [-- <ssh-flags>...] [<command>]",
 	Short: "SSH into a codespace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

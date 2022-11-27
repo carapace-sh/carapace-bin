@@ -10,7 +10,7 @@ import (
 )
 
 var codespace_cpCmd = &cobra.Command{
-	Use:   "cp",
+	Use:   "cp [-e] [-r] [-- [<scp flags>...]] <sources>... <dest>",
 	Short: "Copy files between local and remote file systems",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

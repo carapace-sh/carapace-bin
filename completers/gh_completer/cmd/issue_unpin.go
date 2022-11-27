@@ -7,7 +7,7 @@ import (
 )
 
 var issue_unpinCmd = &cobra.Command{
-	Use:   "unpin",
+	Use:   "unpin {<number> | <url>}",
 	Short: "Unpin a issue",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

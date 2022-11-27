@@ -7,7 +7,7 @@ import (
 )
 
 var release_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete <tag>",
 	Short: "Delete a release",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

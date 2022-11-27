@@ -7,7 +7,7 @@ import (
 )
 
 var issueCmd = &cobra.Command{
-	Use:   "issue",
+	Use:   "issue <command>",
 	Short: "Manage issues",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

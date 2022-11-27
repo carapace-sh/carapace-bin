@@ -8,7 +8,7 @@ import (
 )
 
 var issue_developCmd = &cobra.Command{
-	Use:   "develop",
+	Use:   "develop [flags] {<number> | <url>}",
 	Short: "Manage linked branches for an issue",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

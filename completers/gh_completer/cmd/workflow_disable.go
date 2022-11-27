@@ -7,7 +7,7 @@ import (
 )
 
 var workflow_disableCmd = &cobra.Command{
-	Use:   "disable",
+	Use:   "disable [<workflow-id> | <workflow-name>]",
 	Short: "Disable a workflow",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

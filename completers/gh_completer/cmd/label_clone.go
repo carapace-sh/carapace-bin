@@ -7,7 +7,7 @@ import (
 )
 
 var label_cloneCmd = &cobra.Command{
-	Use:   "clone",
+	Use:   "clone <source-repository>",
 	Short: "Clones labels from one repository to another",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

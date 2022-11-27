@@ -7,7 +7,7 @@ import (
 )
 
 var gist_editCmd = &cobra.Command{
-	Use:   "edit",
+	Use:   "edit {<id> | <url>} [<filename>]",
 	Short: "Edit one of your gists",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

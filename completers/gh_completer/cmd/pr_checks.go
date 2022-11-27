@@ -7,7 +7,7 @@ import (
 )
 
 var pr_checksCmd = &cobra.Command{
-	Use:   "checks",
+	Use:   "checks [<number> | <url> | <branch>]",
 	Short: "Show CI status for a single pull request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

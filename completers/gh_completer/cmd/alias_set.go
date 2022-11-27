@@ -6,7 +6,7 @@ import (
 )
 
 var alias_setCmd = &cobra.Command{
-	Use:   "set",
+	Use:   "set <alias> <expansion>",
 	Short: "Create a shortcut for a gh command",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

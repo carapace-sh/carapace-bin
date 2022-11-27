@@ -10,7 +10,7 @@ import (
 )
 
 var extension_installCmd = &cobra.Command{
-	Use:   "install",
+	Use:   "install <repository>",
 	Short: "Install a gh extension from a repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

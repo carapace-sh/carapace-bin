@@ -11,7 +11,7 @@ import (
 )
 
 var repo_forkCmd = &cobra.Command{
-	Use:   "fork",
+	Use:   "fork [<repository>] [-- <gitflags>...]",
 	Short: "Create a fork of a repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

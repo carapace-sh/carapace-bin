@@ -7,7 +7,7 @@ import (
 )
 
 var runCmd = &cobra.Command{
-	Use:   "run",
+	Use:   "run <command>",
 	Short: "View details about workflow runs",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

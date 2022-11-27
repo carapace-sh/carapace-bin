@@ -6,7 +6,7 @@ import (
 )
 
 var gistCmd = &cobra.Command{
-	Use:   "gist",
+	Use:   "gist <command>",
 	Short: "Manage gists",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

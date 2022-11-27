@@ -6,7 +6,7 @@ import (
 )
 
 var repo_deployKey_addCmd = &cobra.Command{
-	Use:   "add",
+	Use:   "add <key-file>",
 	Short: "Add a deploy key to a GitHub repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

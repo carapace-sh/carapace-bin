@@ -7,7 +7,7 @@ import (
 )
 
 var sshKey_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete <id>",
 	Short: "Delete an SSH key from your GitHub account",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

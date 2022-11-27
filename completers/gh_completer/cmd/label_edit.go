@@ -8,7 +8,7 @@ import (
 )
 
 var label_editCmd = &cobra.Command{
-	Use:   "edit",
+	Use:   "edit <name>",
 	Short: "Edit a label",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

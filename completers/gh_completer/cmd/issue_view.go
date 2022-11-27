@@ -7,7 +7,7 @@ import (
 )
 
 var issue_viewCmd = &cobra.Command{
-	Use:   "view",
+	Use:   "view {<number> | <url>}",
 	Short: "View an issue",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

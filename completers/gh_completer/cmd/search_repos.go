@@ -9,7 +9,7 @@ import (
 )
 
 var search_reposCmd = &cobra.Command{
-	Use:   "repos",
+	Use:   "repos [<query>]",
 	Short: "Search for repositories",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

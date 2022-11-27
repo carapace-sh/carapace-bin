@@ -10,7 +10,7 @@ import (
 )
 
 var search_issuesCmd = &cobra.Command{
-	Use:   "issues",
+	Use:   "issues [<query>]",
 	Short: "Search for issues",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -7,7 +7,7 @@ import (
 )
 
 var repo_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete [<repository>]",
 	Short: "Delete a repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

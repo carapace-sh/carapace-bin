@@ -6,7 +6,7 @@ import (
 )
 
 var aliasCmd = &cobra.Command{
-	Use:   "alias",
+	Use:   "alias <command>",
 	Short: "Create command shortcuts",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
