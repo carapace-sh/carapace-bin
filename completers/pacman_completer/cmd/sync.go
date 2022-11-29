@@ -59,6 +59,8 @@ func initSyncCmd(cmd *cobra.Command) {
 	})
 
 	carapace.Gen(cmd).PositionalAnyCompletion(
-		pacman.ActionPackageSearch().UniqueList(","),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return pacman.ActionPackageSearch().Invoke(c).Filter(c.Args).ToA()
+		}),
 	)
 }
