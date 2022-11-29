@@ -39,6 +39,7 @@ func initSyncCmd(cmd *cobra.Command) {
 	cmd.Flags().BoolP("quiet", "q", false, "show less information for query and search")
 	cmd.Flags().BoolP("refresh", "y", false, "download fresh package databases from the server")
 	cmd.Flags().StringP("root", "r", "", "set an alternate installation root")
+	cmd.Flags().StringP("search", "s", "", "search remote repositories for matching strings")
 	cmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
 	cmd.Flags().BoolP("sysupgrade", "u", false, "upgrade installed packages (-uu enables downgrades)")
 	cmd.Flags().BoolP("verbose", "v", false, "be verbose")
@@ -58,8 +59,6 @@ func initSyncCmd(cmd *cobra.Command) {
 	})
 
 	carapace.Gen(cmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return pacman.ActionPackages(pacman.PackageOption{}).Invoke(c).Filter(c.Args).ToA()
-		}),
+		pacman.ActionPackageSearch().UniqueList(","),
 	)
 }
