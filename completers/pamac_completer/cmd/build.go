@@ -28,6 +28,6 @@ func init() {
 	})
 
 	carapace.Gen(buildCmd).PositionalAnyCompletion(carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return pacman.ActionPackages(pacman.PackageOption{}).Invoke(c).Filter(c.Args).ToA()
+		return pacman.ActionPackages().Invoke(c).Filter(c.Args).ToA()
 	}))
 }

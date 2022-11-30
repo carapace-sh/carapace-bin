@@ -30,7 +30,7 @@ func init() {
 		} else if listCmd.Flag("repos").Changed {
 			return pacman.ActionRepositories().Invoke(c).Filter(c.Args).ToA()
 		} else if listCmd.Flag("files").Changed {
-			return pacman.ActionPackages(pacman.PackageOption{}).Invoke(c).Filter(c.Args).ToA()
+			return pacman.ActionPackages().Invoke(c).Filter(c.Args).ToA()
 		} else {
 			return carapace.ActionValues()
 		}
