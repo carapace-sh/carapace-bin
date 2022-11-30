@@ -2,10 +2,11 @@
 package pacman
 
 import (
-	"fmt"
+	"regexp"
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"gopkg.in/ini.v1"
 )
 
@@ -32,29 +33,27 @@ func ActionRepositories() carapace.Action {
 	})
 }
 
-type PackageOption struct {
-	Explicit bool
-}
-
-func (o PackageOption) format(callbackValue string) []string {
-	options := []string{"-Qq"}
-	if o.Explicit {
-		options[0] = options[0] + "e"
-	} else {
-		options = []string{options[0] + "s", fmt.Sprintf("^%v", callbackValue)}
-	}
-	return options
-}
-
-// ActionPackages completes package names
+// ActionPackages completes installed packages
 //
 //	gnome-common
 //	gstreamer
-func ActionPackages(option PackageOption) carapace.Action {
+func ActionPackages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("pacman", option.format(c.CallbackValue)...)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("pacman", "-Qs", "^"+c.CallbackValue)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
-			return carapace.ActionValues(lines[:len(lines)-1]...)
+			r := regexp.MustCompile(`^(?P<group>[^/]+)/(?P<name>[^ ]+) (?P<version>[^ ]+)(?P<context>.*)$`)
+
+			vals := make([]string, 0)
+			for i := 0; i < len(lines)-1; i += 2 {
+				if matches := r.FindStringSubmatch(lines[i]); matches != nil {
+					s := style.Default
+					if strings.Contains(matches[4], "[installed]") {
+						s = style.Blue
+					}
+					vals = append(vals, matches[2], strings.TrimSpace(lines[i+1]), s)
+				}
+			}
+			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	})
 }
