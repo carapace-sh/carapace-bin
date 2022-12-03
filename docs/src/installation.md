@@ -37,7 +37,7 @@ brew install rsteube/tap/carapace
 
 ## Nix
 
-Install from [unstable](https://search.nixos.org/packages?channel=unstable&show=carapace&type=packages&query=carapace)
+Install from [nixpkgs](https://search.nixos.org/packages?show=carapace)
 
 ```sh
 nix-shell -p carapace
