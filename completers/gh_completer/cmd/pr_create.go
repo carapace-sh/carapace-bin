@@ -36,6 +36,7 @@ func init() {
 		"assignee":  action.ActionAssignableUsers(pr_createCmd).UniqueList(","),
 		"base":      action.ActionBranches(pr_createCmd),
 		"body":      action.ActionKeywordLinks(pr_createCmd),
+		"body-file": carapace.ActionFiles(),
 		"head":      action.ActionBranches(pr_createCmd),
 		"label":     action.ActionLabels(pr_createCmd).UniqueList(","),
 		"milestone": action.ActionMilestones(pr_createCmd),
