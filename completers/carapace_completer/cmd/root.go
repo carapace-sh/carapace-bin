@@ -87,7 +87,7 @@ func flagCmd(args []string) *cobra.Command {
 		}),
 		"scrape": carapace.ActionFiles(".yaml"),
 		"spec":   carapace.ActionFiles(".yaml"),
-		"style":  carapace.ActionStyleConfig(),
+		"style":  carapace.ActionStyleConfig().NoSpace(),
 	})
 
 	carapace.Gen(cmd).PositionalAnyCompletion(

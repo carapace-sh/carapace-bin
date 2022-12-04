@@ -29,7 +29,7 @@ func init() {
 	rootCmd.AddCommand(invokeCmd)
 
 	carapace.Gen(invokeCmd).FlagCompletion(carapace.ActionMap{
-		"content-type": http.ActionMediaTypes(),
+		"content-type": http.ActionMediaTypes().MultiParts("/"),
 		"method":       http.ActionRequestMethods(),
 		"namespace":    action.ActionNamespaces(),
 	})
