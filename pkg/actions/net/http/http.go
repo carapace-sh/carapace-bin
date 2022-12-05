@@ -83,7 +83,7 @@ func ActionRequestHeaderValues(header string) carapace.Action {
 		switch header {
 		// TODO complete more headers
 		case "Accept":
-			return ActionMediaTypes().UniqueList(",")
+			return ActionMediaTypes().MultiParts("/").UniqueList(",")
 		case "Accept-Encoding":
 			return ActionContentEncodingTokens().UniqueList(",")
 		case "Accept-Language":
@@ -93,7 +93,7 @@ func ActionRequestHeaderValues(header string) carapace.Action {
 		case "Content-Encoding":
 			return ActionContentEncodingTokens().UniqueList(",")
 		case "Content-Type":
-			return ActionMediaTypes().UniqueList(",")
+			return ActionMediaTypes().MultiParts("/").UniqueList(",")
 		case "Transfer-Encoding":
 			return ActionTransferEncodingTokens()
 		case "User-Agent":
