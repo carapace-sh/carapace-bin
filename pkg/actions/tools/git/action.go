@@ -52,10 +52,12 @@ func ActionRefs(refOption RefOption) carapace.Action {
 		} else {
 			for _, commit := range commits {
 				s := styles.Git.Commit
+				t := "commits"
 				if strings.HasPrefix(commit.Ref, "HEAD") {
 					s = styles.Git.HeadCommit
+					t = "headcommits"
 				}
-				batch = append(batch, carapace.ActionStyledValuesDescribed(commit.Ref, commit.Message, s).Tag("commits"))
+				batch = append(batch, carapace.ActionStyledValuesDescribed(commit.Ref, commit.Message, s).Tag(t))
 			}
 		}
 		if tags, err := tags(c, refOption); err != nil {
