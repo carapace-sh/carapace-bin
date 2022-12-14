@@ -21,7 +21,7 @@ func ActionConfigs() carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
 		})
-	})
+	}).Tag("configs")
 }
 
 // ActionContainers completes container names
@@ -34,7 +34,7 @@ func ActionContainers() carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(styles.Docker.Container)
 		})
-	})
+	}).Tag("containers")
 }
 
 // ActionContainerIds completes container names
@@ -47,7 +47,7 @@ func ActionContainerIds() carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
 		})
-	})
+	}).Tag("container ids")
 }
 
 // ActionRepositories completes repository names
@@ -60,7 +60,7 @@ func ActionRepositories() carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValues(vals[:len(vals)-1]...)
 		})
-	})
+	}).Tag("repositories")
 }
 
 // ActionRepositoryTags completes repository names and tags separately
@@ -80,7 +80,7 @@ func ActionRepositoryTags() carapace.Action {
 						reposWithSuffix[index] = strings.SplitAfter(val, ":")[0]
 					}
 				}
-				return carapace.ActionValues(reposWithSuffix...)
+				return carapace.ActionValues(reposWithSuffix...).Tag("repositories")
 			case 1:
 				tags := make([]string, 0)
 				for _, val := range lines[:len(lines)-1] {
@@ -89,7 +89,7 @@ func ActionRepositoryTags() carapace.Action {
 						tags = append(tags, tag)
 					}
 				}
-				return carapace.ActionValues(tags...)
+				return carapace.ActionValues(tags...).Tag("tags")
 			default:
 				return carapace.ActionValues()
 			}
@@ -184,7 +184,7 @@ func ActionNetworks() carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(styles.Docker.Network)
 		})
-	})
+	}).Tag("networks")
 }
 
 // ActionNodes completes node ids
@@ -197,7 +197,7 @@ func ActionNodes() carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(styles.Docker.Node)
 		})
-	})
+	}).Tag("nodes")
 }
 
 // ActionPlugins completes plugins
@@ -209,7 +209,7 @@ func ActionPlugins() carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
 		})
-	})
+	}).Tag("plugins")
 }
 
 // ActionSecrets completes secrets
@@ -222,7 +222,7 @@ func ActionSecrets() carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
 		}).Style(styles.Docker.Secret)
-	})
+	}).Tag("secrets")
 }
 
 // ActionServices completes services
@@ -235,7 +235,7 @@ func ActionServices() carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
 		}).Style(styles.Docker.Service)
-	})
+	}).Tag("services")
 }
 
 // ActionVolumes completes volume names
@@ -248,7 +248,7 @@ func ActionVolumes() carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
 		}).Style(styles.Docker.Volume)
-	})
+	}).Tag("volumes")
 }
 
 // ActionStacks completes stacks
@@ -264,5 +264,5 @@ func ActionStacks(orchestrator string) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...)
 		})
-	})
+	}).Tag("stacks")
 }
