@@ -75,6 +75,7 @@ nfpms:
       - apk
       - deb
       - rpm
+      - termux.deb
 
 publishers:
   - name: fury
