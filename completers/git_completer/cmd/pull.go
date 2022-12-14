@@ -8,9 +8,10 @@ import (
 )
 
 var pullCmd = &cobra.Command{
-	Use:   "pull",
-	Short: "Fetch from and integrate with another repository or a local branch",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "pull",
+	Short:   "Fetch from and integrate with another repository or a local branch",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

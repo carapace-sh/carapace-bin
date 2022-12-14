@@ -6,9 +6,10 @@ import (
 )
 
 var sparseCheckoutCmd = &cobra.Command{
-	Use:   "sparse-checkout",
-	Short: "Initialize and modify the sparse-checkout",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "sparse-checkout",
+	Short:   "Initialize and modify the sparse-checkout",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

@@ -5,10 +5,10 @@ import (
 )
 
 var rev_listCmd = &cobra.Command{
-	Use:   "rev-list",
-	Short: "Lists commit objects in reverse chronological order",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "rev-list",
+	Short:   "Lists commit objects in reverse chronological order",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

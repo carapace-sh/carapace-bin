@@ -5,10 +5,10 @@ import (
 )
 
 var verify_tagCmd = &cobra.Command{
-	Use:   "verify-tag",
-	Short: "Check the GPG signature of tags",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "verify-tag",
+	Short:   "Check the GPG signature of tags",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {

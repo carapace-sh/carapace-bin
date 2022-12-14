@@ -5,10 +5,10 @@ import (
 )
 
 var send_emailCmd = &cobra.Command{
-	Use:   "send-email",
-	Short: "Send a collection of patches as emails",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "send-email",
+	Short:   "Send a collection of patches as emails",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interaction].ID,
 }
 
 func init() {

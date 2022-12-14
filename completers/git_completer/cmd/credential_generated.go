@@ -5,10 +5,10 @@ import (
 )
 
 var credentialCmd = &cobra.Command{
-	Use:   "credential",
-	Short: "Retrieve and store user credentials",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "credential",
+	Short:   "Retrieve and store user credentials",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_helper].ID,
 }
 
 func init() {

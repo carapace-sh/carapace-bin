@@ -5,10 +5,10 @@ import (
 )
 
 var pack_refsCmd = &cobra.Command{
-	Use:   "pack-refs",
-	Short: "Pack heads and tags for efficient repository access",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "pack-refs",
+	Short:   "Pack heads and tags for efficient repository access",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_manipulator].ID,
 }
 
 func init() {

@@ -6,9 +6,10 @@ import (
 )
 
 var prunePackedCmd = &cobra.Command{
-	Use:   "prune-packed",
-	Short: "Remove extra objects that are already in pack files",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "prune-packed",
+	Short:   "Remove extra objects that are already in pack files",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

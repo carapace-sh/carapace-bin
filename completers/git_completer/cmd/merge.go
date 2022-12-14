@@ -8,9 +8,10 @@ import (
 )
 
 var mergeCmd = &cobra.Command{
-	Use:   "merge",
-	Short: "Join two or more development histories together",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "merge",
+	Short:   "Join two or more development histories together",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

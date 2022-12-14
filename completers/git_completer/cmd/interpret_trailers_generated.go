@@ -5,10 +5,10 @@ import (
 )
 
 var interpret_trailersCmd = &cobra.Command{
-	Use:   "interpret-trailers",
-	Short: "Add or parse structured information in commit messages",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "interpret-trailers",
+	Short:   "Add or parse structured information in commit messages",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_helper].ID,
 }
 
 func init() {

@@ -8,9 +8,10 @@ import (
 )
 
 var rebaseCmd = &cobra.Command{
-	Use:   "rebase",
-	Short: "Reapply commits on top of another base tip",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rebase",
+	Short:   "Reapply commits on top of another base tip",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

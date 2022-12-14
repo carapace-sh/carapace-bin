@@ -5,10 +5,10 @@ import (
 )
 
 var verify_packCmd = &cobra.Command{
-	Use:   "verify-pack",
-	Short: "Validate packed Git archive files",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "verify-pack",
+	Short:   "Validate packed Git archive files",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

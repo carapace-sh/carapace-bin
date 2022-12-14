@@ -8,9 +8,10 @@ import (
 )
 
 var amCmd = &cobra.Command{
-	Use:   "am",
-	Short: "Apply a series of patches from a mailbox",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "am",
+	Short:   "Apply a series of patches from a mailbox",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

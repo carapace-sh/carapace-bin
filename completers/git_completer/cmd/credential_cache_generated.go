@@ -5,10 +5,10 @@ import (
 )
 
 var credential_cacheCmd = &cobra.Command{
-	Use:   "credential-cache",
-	Short: "Helper to temporarily store passwords in memory",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "credential-cache",
+	Short:   "Helper to temporarily store passwords in memory",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_helper].ID,
 }
 
 func init() {

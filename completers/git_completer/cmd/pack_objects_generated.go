@@ -5,10 +5,10 @@ import (
 )
 
 var pack_objectsCmd = &cobra.Command{
-	Use:   "pack-objects",
-	Short: "Create a packed archive of objects",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "pack-objects",
+	Short:   "Create a packed archive of objects",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

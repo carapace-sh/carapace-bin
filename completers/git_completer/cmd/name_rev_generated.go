@@ -5,10 +5,10 @@ import (
 )
 
 var name_revCmd = &cobra.Command{
-	Use:   "name-rev",
-	Short: "Find symbolic names for given revs",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "name-rev",
+	Short:   "Find symbolic names for given revs",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

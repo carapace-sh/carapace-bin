@@ -5,10 +5,10 @@ import (
 )
 
 var helpCmd = &cobra.Command{
-	Use:   "help",
-	Short: "Display help information about Git",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "help",
+	Short:   "Display help information about Git",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {

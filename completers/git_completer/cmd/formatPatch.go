@@ -7,9 +7,10 @@ import (
 )
 
 var formatPatchCmd = &cobra.Command{
-	Use:   "format-patch",
-	Short: "Prepare patches for e-mail submission",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "format-patch",
+	Short:   "Prepare patches for e-mail submission",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

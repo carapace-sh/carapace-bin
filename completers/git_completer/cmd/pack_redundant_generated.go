@@ -5,10 +5,10 @@ import (
 )
 
 var pack_redundantCmd = &cobra.Command{
-	Use:   "pack-redundant",
-	Short: "Find redundant pack files",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "pack-redundant",
+	Short:   "Find redundant pack files",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

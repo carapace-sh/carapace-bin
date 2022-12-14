@@ -5,10 +5,10 @@ import (
 )
 
 var ls_treeCmd = &cobra.Command{
-	Use:   "ls-tree",
-	Short: "List the contents of a tree object",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "ls-tree",
+	Short:   "List the contents of a tree object",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

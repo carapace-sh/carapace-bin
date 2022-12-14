@@ -5,10 +5,10 @@ import (
 )
 
 var mktreeCmd = &cobra.Command{
-	Use:   "mktree",
-	Short: "Build a tree-object from ls-tree formatted text",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "mktree",
+	Short:   "Build a tree-object from ls-tree formatted text",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

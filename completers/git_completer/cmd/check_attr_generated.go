@@ -5,10 +5,10 @@ import (
 )
 
 var check_attrCmd = &cobra.Command{
-	Use:   "check-attr",
-	Short: "Display gitattributes information",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "check-attr",
+	Short:   "Display gitattributes information",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_helper].ID,
 }
 
 func init() {

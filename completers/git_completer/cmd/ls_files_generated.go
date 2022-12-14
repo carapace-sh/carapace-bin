@@ -5,10 +5,10 @@ import (
 )
 
 var ls_filesCmd = &cobra.Command{
-	Use:   "ls-files",
-	Short: "Show information about files in the index and the working tree",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "ls-files",
+	Short:   "Show information about files in the index and the working tree",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

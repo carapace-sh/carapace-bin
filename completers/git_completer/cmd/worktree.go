@@ -6,9 +6,10 @@ import (
 )
 
 var worktreeCmd = &cobra.Command{
-	Use:   "worktree",
-	Short: "Manage multiple working trees",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "worktree",
+	Short:   "Manage multiple working trees",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

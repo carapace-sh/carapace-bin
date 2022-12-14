@@ -5,10 +5,10 @@ import (
 )
 
 var check_mailmapCmd = &cobra.Command{
-	Use:   "check-mailmap",
-	Short: "Show canonical names and email addresses of contacts",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "check-mailmap",
+	Short:   "Show canonical names and email addresses of contacts",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_helper].ID,
 }
 
 func init() {

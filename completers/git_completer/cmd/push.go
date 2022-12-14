@@ -7,9 +7,10 @@ import (
 )
 
 var pushCmd = &cobra.Command{
-	Use:   "push",
-	Short: "Update remote refs along with associated objects",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "push",
+	Short:   "Update remote refs along with associated objects",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

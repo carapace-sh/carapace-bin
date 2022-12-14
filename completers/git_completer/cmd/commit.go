@@ -8,9 +8,10 @@ import (
 )
 
 var commitCmd = &cobra.Command{
-	Use:   "commit",
-	Short: "Record changes to the repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "commit",
+	Short:   "Record changes to the repository",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

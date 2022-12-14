@@ -5,10 +5,10 @@ import (
 )
 
 var update_server_infoCmd = &cobra.Command{
-	Use:   "update-server-info",
-	Short: "Update auxiliary info file to help dumb servers",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "update-server-info",
+	Short:   "Update auxiliary info file to help dumb servers",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_synching].ID,
 }
 
 func init() {

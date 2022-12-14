@@ -6,9 +6,10 @@ import (
 )
 
 var mvCmd = &cobra.Command{
-	Use:   "mv",
-	Short: "Move or rename a file, a directory, or a symlink",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "mv",
+	Short:   "Move or rename a file, a directory, or a symlink",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

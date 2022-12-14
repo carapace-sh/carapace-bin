@@ -7,9 +7,10 @@ import (
 )
 
 var describeCmd = &cobra.Command{
-	Use:   "describe",
-	Short: "Give an object a human readable name based on an available ref",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "describe",
+	Short:   "Give an object a human readable name based on an available ref",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

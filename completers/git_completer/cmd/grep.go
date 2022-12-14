@@ -9,9 +9,10 @@ import (
 )
 
 var grepCmd = &cobra.Command{
-	Use:   "grep",
-	Short: "Print lines matching a pattern",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "grep",
+	Short:   "Print lines matching a pattern",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

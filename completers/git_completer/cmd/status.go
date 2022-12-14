@@ -7,9 +7,10 @@ import (
 )
 
 var statusCmd = &cobra.Command{
-	Use:   "status",
-	Short: "show the working tree status",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "status",
+	Short:   "show the working tree status",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

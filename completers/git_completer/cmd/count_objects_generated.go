@@ -5,10 +5,10 @@ import (
 )
 
 var count_objectsCmd = &cobra.Command{
-	Use:   "count-objects",
-	Short: "Count unpacked number of objects and their disk consumption",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "count-objects",
+	Short:   "Count unpacked number of objects and their disk consumption",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {

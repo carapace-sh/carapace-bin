@@ -5,10 +5,10 @@ import (
 )
 
 var commit_graphCmd = &cobra.Command{
-	Use:   "commit-graph",
-	Short: "Write and verify Git commit-graph files",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "commit-graph",
+	Short:   "Write and verify Git commit-graph files",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var varCmd = &cobra.Command{
-	Use:   "var",
-	Short: "Show a Git logical variable",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "var",
+	Short:   "Show a Git logical variable",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

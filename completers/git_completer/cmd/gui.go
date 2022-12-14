@@ -6,9 +6,10 @@ import (
 )
 
 var guiCmd = &cobra.Command{
-	Use:   "gui",
-	Short: "A portable graphical interface to Git",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "gui",
+	Short:   "A portable graphical interface to Git",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {
