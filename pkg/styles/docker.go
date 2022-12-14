@@ -13,7 +13,7 @@ var Docker = struct {
 }{
 	Container: style.Blue,
 	Image:     style.Yellow,
-	Network:   style.Gray,
+	Network:   style.Magenta,
 	Node:      style.Cyan,
 	Secret:    style.Underlined,
 	Service:   style.Green,
