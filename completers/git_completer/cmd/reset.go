@@ -7,9 +7,10 @@ import (
 )
 
 var resetCmd = &cobra.Command{
-	Use:   "reset",
-	Short: "Reset current HEAD to the specified state",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "reset",
+	Short:   "Reset current HEAD to the specified state",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

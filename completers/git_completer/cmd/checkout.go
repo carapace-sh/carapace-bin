@@ -7,9 +7,10 @@ import (
 )
 
 var checkoutCmd = &cobra.Command{
-	Use:   "checkout",
-	Short: "Switch branches or restore working tree files",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "checkout",
+	Short:   "Switch branches or restore working tree files",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var applyCmd = &cobra.Command{
-	Use:   "apply",
-	Short: "Apply a patch to files and/or to the index",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "apply",
+	Short:   "Apply a patch to files and/or to the index",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

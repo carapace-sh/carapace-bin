@@ -5,10 +5,10 @@ import (
 )
 
 var multi_pack_indexCmd = &cobra.Command{
-	Use:   "multi-pack-index",
-	Short: "Write and verify multi-pack-indexes",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "multi-pack-index",
+	Short:   "Write and verify multi-pack-indexes",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

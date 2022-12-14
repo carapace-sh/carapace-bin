@@ -7,9 +7,10 @@ import (
 )
 
 var cleanCmd = &cobra.Command{
-	Use:   "clean",
-	Short: "Remove untracked files from the working tree",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "clean",
+	Short:   "Remove untracked files from the working tree",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

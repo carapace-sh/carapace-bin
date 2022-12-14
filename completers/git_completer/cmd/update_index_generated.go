@@ -5,10 +5,10 @@ import (
 )
 
 var update_indexCmd = &cobra.Command{
-	Use:   "update-index",
-	Short: "Register file contents in the working tree to the index",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "update-index",
+	Short:   "Register file contents in the working tree to the index",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

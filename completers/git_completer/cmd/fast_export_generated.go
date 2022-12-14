@@ -5,10 +5,10 @@ import (
 )
 
 var fast_exportCmd = &cobra.Command{
-	Use:   "fast-export",
-	Short: "Git data exporter",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "fast-export",
+	Short:   "Git data exporter",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_manipulator].ID,
 }
 
 func init() {

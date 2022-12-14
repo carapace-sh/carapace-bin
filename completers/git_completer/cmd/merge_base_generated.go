@@ -5,10 +5,10 @@ import (
 )
 
 var merge_baseCmd = &cobra.Command{
-	Use:   "merge-base",
-	Short: "Find as good common ancestors as possible for a merge",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "merge-base",
+	Short:   "Find as good common ancestors as possible for a merge",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

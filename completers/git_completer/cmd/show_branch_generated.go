@@ -5,10 +5,10 @@ import (
 )
 
 var show_branchCmd = &cobra.Command{
-	Use:   "show-branch",
-	Short: "Show branches and their commits",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "show-branch",
+	Short:   "Show branches and their commits",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {

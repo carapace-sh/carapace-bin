@@ -7,9 +7,10 @@ import (
 )
 
 var pruneCmd = &cobra.Command{
-	Use:   "prune",
-	Short: "Prune all unreachable objects from the object database",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "prune",
+	Short:   "Prune all unreachable objects from the object database",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_manipulator].ID,
 }
 
 func init() {

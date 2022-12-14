@@ -8,9 +8,10 @@ import (
 )
 
 var revertCmd = &cobra.Command{
-	Use:   "revert",
-	Short: "Revert some existing commits",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "revert",
+	Short:   "Revert some existing commits",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

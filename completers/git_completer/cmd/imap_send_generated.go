@@ -5,10 +5,10 @@ import (
 )
 
 var imap_sendCmd = &cobra.Command{
-	Use:   "imap-send",
-	Short: "Send a collection of patches from stdin to an IMAP folder",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "imap-send",
+	Short:   "Send a collection of patches from stdin to an IMAP folder",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interaction].ID,
 }
 
 func init() {

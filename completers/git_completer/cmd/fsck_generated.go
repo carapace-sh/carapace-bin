@@ -5,10 +5,10 @@ import (
 )
 
 var fsckCmd = &cobra.Command{
-	Use:   "fsck",
-	Short: "Verifies the connectivity and validity of the objects in the database",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "fsck",
+	Short:   "Verifies the connectivity and validity of the objects in the database",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {

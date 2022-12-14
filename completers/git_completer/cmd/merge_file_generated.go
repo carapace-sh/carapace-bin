@@ -5,10 +5,10 @@ import (
 )
 
 var merge_fileCmd = &cobra.Command{
-	Use:   "merge-file",
-	Short: "Run a three-way file merge",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "merge-file",
+	Short:   "Run a three-way file merge",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

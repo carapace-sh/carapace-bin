@@ -5,10 +5,10 @@ import (
 )
 
 var hash_objectCmd = &cobra.Command{
-	Use:   "hash-object",
-	Short: "Compute object ID and optionally creates a blob from a file",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "hash-object",
+	Short:   "Compute object ID and optionally creates a blob from a file",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

@@ -5,10 +5,10 @@ import (
 )
 
 var update_refCmd = &cobra.Command{
-	Use:   "update-ref",
-	Short: "Update the object name stored in a ref safely",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "update-ref",
+	Short:   "Update the object name stored in a ref safely",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

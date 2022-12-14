@@ -6,9 +6,10 @@ import (
 )
 
 var bundleCmd = &cobra.Command{
-	Use:   "bundle",
-	Short: "Move objects and refs by archive",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "bundle",
+	Short:   "Move objects and refs by archive",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

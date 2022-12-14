@@ -5,10 +5,10 @@ import (
 )
 
 var replaceCmd = &cobra.Command{
-	Use:   "replace",
-	Short: "Create, list, delete refs to replace objects",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "replace",
+	Short:   "Create, list, delete refs to replace objects",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_manipulator].ID,
 }
 
 func init() {

@@ -5,10 +5,10 @@ import (
 )
 
 var mktagCmd = &cobra.Command{
-	Use:   "mktag",
-	Short: "Creates a tag object",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "mktag",
+	Short:   "Creates a tag object",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

@@ -5,10 +5,10 @@ import (
 )
 
 var write_treeCmd = &cobra.Command{
-	Use:   "write-tree",
-	Short: "Create a tree object from the current index",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "write-tree",
+	Short:   "Create a tree object from the current index",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

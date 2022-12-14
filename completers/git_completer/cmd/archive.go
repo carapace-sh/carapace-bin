@@ -7,9 +7,10 @@ import (
 )
 
 var archiveCmd = &cobra.Command{
-	Use:   "archive",
-	Short: "Create an archive of files from a named tree",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "archive",
+	Short:   "Create an archive of files from a named tree",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

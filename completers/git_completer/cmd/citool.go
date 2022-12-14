@@ -6,9 +6,10 @@ import (
 )
 
 var citoolCmd = &cobra.Command{
-	Use:   "citool",
-	Short: "Graphical alternative to git-commit",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "citool",
+	Short:   "Graphical alternative to git-commit",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

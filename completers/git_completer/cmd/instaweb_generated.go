@@ -5,10 +5,10 @@ import (
 )
 
 var instawebCmd = &cobra.Command{
-	Use:   "instaweb",
-	Short: "Instantly browse your working repository in gitweb",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "instaweb",
+	Short:   "Instantly browse your working repository in gitweb",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {

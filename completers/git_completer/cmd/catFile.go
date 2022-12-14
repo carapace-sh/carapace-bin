@@ -7,9 +7,10 @@ import (
 )
 
 var catFileCmd = &cobra.Command{
-	Use:   "cat-file",
-	Short: "Provide content or type and size information for repository objects",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "cat-file",
+	Short:   "Provide content or type and size information for repository objects",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

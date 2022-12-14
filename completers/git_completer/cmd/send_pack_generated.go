@@ -5,10 +5,10 @@ import (
 )
 
 var send_packCmd = &cobra.Command{
-	Use:   "send-pack",
-	Short: "Push objects over Git protocol to another repository",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "send-pack",
+	Short:   "Push objects over Git protocol to another repository",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_synching].ID,
 }
 
 func init() {

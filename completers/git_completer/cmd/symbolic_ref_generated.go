@@ -5,10 +5,10 @@ import (
 )
 
 var symbolic_refCmd = &cobra.Command{
-	Use:   "symbolic-ref",
-	Short: "Read, modify and delete symbolic refs",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "symbolic-ref",
+	Short:   "Read, modify and delete symbolic refs",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var configCmd = &cobra.Command{
-	Use:   "config",
-	Short: "Get and set repository or global options",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "config",
+	Short:   "Get and set repository or global options",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_manipulator].ID,
 }
 
 func init() {

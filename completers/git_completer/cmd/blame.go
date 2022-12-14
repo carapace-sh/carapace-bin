@@ -12,6 +12,7 @@ var blameCmd = &cobra.Command{
 	Short:   "Show what revision and author last modified each line of a file",
 	Aliases: []string{"annotate"},
 	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {

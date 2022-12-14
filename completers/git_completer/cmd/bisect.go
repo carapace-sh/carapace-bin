@@ -7,9 +7,10 @@ import (
 )
 
 var bisectCmd = &cobra.Command{
-	Use:   "bisect",
-	Short: "Use binary search to find the commit that introduced a bug",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "bisect",
+	Short:   "Use binary search to find the commit that introduced a bug",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

@@ -5,10 +5,10 @@ import (
 )
 
 var repackCmd = &cobra.Command{
-	Use:   "repack",
-	Short: "Pack unpacked objects in a repository",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "repack",
+	Short:   "Pack unpacked objects in a repository",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_manipulator].ID,
 }
 
 func init() {

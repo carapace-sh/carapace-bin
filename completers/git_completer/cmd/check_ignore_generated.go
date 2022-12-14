@@ -5,10 +5,10 @@ import (
 )
 
 var check_ignoreCmd = &cobra.Command{
-	Use:   "check-ignore",
-	Short: "Debug gitignore / exclude files",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "check-ignore",
+	Short:   "Debug gitignore / exclude files",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_helper].ID,
 }
 
 func init() {

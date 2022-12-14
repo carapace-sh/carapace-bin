@@ -5,10 +5,10 @@ import (
 )
 
 var fmt_merge_msgCmd = &cobra.Command{
-	Use:   "fmt-merge-msg",
-	Short: "Produce a merge commit message",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "fmt-merge-msg",
+	Short:   "Produce a merge commit message",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_helper].ID,
 }
 
 func init() {

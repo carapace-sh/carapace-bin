@@ -5,10 +5,10 @@ import (
 )
 
 var credential_storeCmd = &cobra.Command{
-	Use:   "credential-store",
-	Short: "Helper to store credentials on disk",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "credential-store",
+	Short:   "Helper to store credentials on disk",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_helper].ID,
 }
 
 func init() {

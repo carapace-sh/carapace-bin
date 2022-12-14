@@ -18,11 +18,39 @@ var rootCmd = &cobra.Command{
 	Long:  "https://git-scm.com/",
 }
 
+const (
+	group_main = iota
+	group_manipulator
+	group_interrogator
+	group_interaction
+	group_alias
+	group_external
+	group_low_level_manipulator
+	group_low_level_interrogator
+	group_low_level_synching
+	group_low_level_helper
+)
+
+var groups = []*cobra.Group{
+	{ID: "main", Title: "Main Commands"},
+	{ID: "manipulator", Title: "Manipulator Commands"},
+	{ID: "interrogator", Title: "Interrogator Commands"},
+	{ID: "interaction", Title: "Interaction Commands"},
+	{ID: "alias", Title: "Alias Commands"},
+	{ID: "external", Title: "External Commands"},
+	{ID: "low-level manipulator", Title: "Low-level Manipulator Commands"},
+	{ID: "low-level interrogator", Title: "Low-level Interrogator Commands"},
+	{ID: "low-level synching", Title: "Low-level Synching Commands"},
+	{ID: "low-level helper", Title: "Low-level Helper Commands"},
+}
+
 func Execute() error {
 	return rootCmd.Execute()
 }
 
 func init() {
+	rootCmd.AddGroup(groups...)
+
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().StringS("C", "C", "", "run as if git was started in given path")
 	rootCmd.Flags().Bool("bare", false, "use $PWD as repository")
@@ -81,23 +109,21 @@ func addAliasCompletion(args []string) {
 	rootCmd.ParseFlags(args)
 	if aliases, err := git.Aliases(rootCmd.Flag("C").Value.String(), rootCmd.Flag("git-dir").Value.String()); err == nil {
 		for key, value := range aliases {
-			// don't clobber existing commands
 			if _, _, err := rootCmd.Find([]string{key}); err == nil {
-				continue
+				continue // don't clobber existing commands
 			}
 
 			aliasCmd := &cobra.Command{
-				Use:   key,
-				Short: fmt.Sprintf("alias for '%s'", value),
-				// disable flag parsing so that we can forward them together with Args
+				Use:                key,
+				Short:              fmt.Sprintf("alias for '%s'", value),
+				GroupID:            groups[group_alias].ID,
 				DisableFlagParsing: true,
 			}
 
 			rootCmd.AddCommand(aliasCmd)
 
-			// aliases beginning with ! are arbitrary shell commands so don't add completion
 			if strings.HasPrefix(value, "!") {
-				continue
+				continue // aliases beginning with ! are arbitrary shell commands so don't add completion
 			}
 
 			args, err := shlex.Split(value)
@@ -122,6 +148,7 @@ func addOtherCommands() {
 				Use:                name,
 				Short:              othersDescription(name),
 				Run:                func(cmd *cobra.Command, args []string) {},
+				GroupID:            groups[group_external].ID,
 				DisableFlagParsing: true,
 			}
 

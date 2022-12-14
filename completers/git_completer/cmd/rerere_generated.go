@@ -5,10 +5,10 @@ import (
 )
 
 var rerereCmd = &cobra.Command{
-	Use:   "rerere",
-	Short: "Reuse recorded resolution of conflicted merges",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "rerere",
+	Short:   "Reuse recorded resolution of conflicted merges",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {

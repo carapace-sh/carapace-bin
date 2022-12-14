@@ -5,10 +5,10 @@ import (
 )
 
 var checkout_indexCmd = &cobra.Command{
-	Use:   "checkout-index",
-	Short: "Copy files from the index to the working tree",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "checkout-index",
+	Short:   "Copy files from the index to the working tree",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

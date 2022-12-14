@@ -5,10 +5,10 @@ import (
 )
 
 var columnCmd = &cobra.Command{
-	Use:   "column",
-	Short: "Display data in columns",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "column",
+	Short:   "Display data in columns",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_helper].ID,
 }
 
 func init() {

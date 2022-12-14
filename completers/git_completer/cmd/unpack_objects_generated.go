@@ -5,10 +5,10 @@ import (
 )
 
 var unpack_objectsCmd = &cobra.Command{
-	Use:   "unpack-objects",
-	Short: "Unpack objects from a packed archive",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "unpack-objects",
+	Short:   "Unpack objects from a packed archive",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

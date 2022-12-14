@@ -7,9 +7,10 @@ import (
 )
 
 var restoreCmd = &cobra.Command{
-	Use:   "restore",
-	Short: "Restore working tree files",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "restore",
+	Short:   "Restore working tree files",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

@@ -5,10 +5,10 @@ import (
 )
 
 var quiltimportCmd = &cobra.Command{
-	Use:   "quiltimport",
-	Short: "Applies a quilt patchset onto the current branch",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "quiltimport",
+	Short:   "Applies a quilt patchset onto the current branch",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interaction].ID,
 }
 
 func init() {

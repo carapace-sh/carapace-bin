@@ -9,9 +9,10 @@ import (
 )
 
 var diffCmd = &cobra.Command{
-	Use:   "diff",
-	Short: "Show changes between commits",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "diff",
+	Short:   "Show changes between commits",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

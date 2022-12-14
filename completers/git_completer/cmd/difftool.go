@@ -9,9 +9,10 @@ import (
 )
 
 var difftoolCmd = &cobra.Command{
-	Use:   "difftool",
-	Short: "Show changes using common diff tools",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "difftool",
+	Short:   "Show changes using common diff tools",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {

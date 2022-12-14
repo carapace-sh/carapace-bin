@@ -6,9 +6,10 @@ import (
 )
 
 var gcCmd = &cobra.Command{
-	Use:   "gc",
-	Short: "Cleanup unnecessary files and optimize the local repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "gc",
+	Short:   "Cleanup unnecessary files and optimize the local repository",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

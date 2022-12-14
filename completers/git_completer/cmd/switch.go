@@ -7,9 +7,10 @@ import (
 )
 
 var switchCmd = &cobra.Command{
-	Use:   "switch",
-	Short: "Switch branches",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "switch",
+	Short:   "Switch branches",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

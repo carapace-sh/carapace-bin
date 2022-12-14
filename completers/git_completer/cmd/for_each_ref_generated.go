@@ -5,10 +5,10 @@ import (
 )
 
 var for_each_refCmd = &cobra.Command{
-	Use:   "for-each-ref",
-	Short: "Output information on each ref",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "for-each-ref",
+	Short:   "Output information on each ref",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

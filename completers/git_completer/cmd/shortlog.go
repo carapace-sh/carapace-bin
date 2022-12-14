@@ -9,9 +9,10 @@ import (
 )
 
 var shortlogCmd = &cobra.Command{
-	Use:   "shortlog",
-	Short: "Summarize 'git log' output",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "shortlog",
+	Short:   "Summarize 'git log' output",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

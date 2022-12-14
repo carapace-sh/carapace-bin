@@ -5,10 +5,10 @@ import (
 )
 
 var verify_commitCmd = &cobra.Command{
-	Use:   "verify-commit",
-	Short: "Check the GPG signature of commits",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "verify-commit",
+	Short:   "Check the GPG signature of commits",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var showCmd = &cobra.Command{
-	Use:   "show",
-	Short: "show branches and their commits",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "show",
+	Short:   "show branches and their commits",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

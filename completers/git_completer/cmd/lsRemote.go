@@ -7,9 +7,10 @@ import (
 )
 
 var lsRemoteCmd = &cobra.Command{
-	Use:   "ls-remote",
-	Short: "List references in a remote repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ls-remote",
+	Short:   "List references in a remote repository",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_interrogator].ID,
 }
 
 func init() {

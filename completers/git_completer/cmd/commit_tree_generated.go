@@ -5,10 +5,10 @@ import (
 )
 
 var commit_treeCmd = &cobra.Command{
-	Use:   "commit-tree",
-	Short: "Create a new commit object",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "commit-tree",
+	Short:   "Create a new commit object",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_low_level_manipulator].ID,
 }
 
 func init() {

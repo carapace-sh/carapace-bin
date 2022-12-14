@@ -9,9 +9,10 @@ import (
 )
 
 var rangeDiffCmd = &cobra.Command{
-	Use:   "range-diff",
-	Short: "Compare two commit ranges",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "range-diff",
+	Short:   "Compare two commit ranges",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_main].ID,
 }
 
 func init() {

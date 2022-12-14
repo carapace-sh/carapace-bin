@@ -8,10 +8,10 @@ import (
 )
 
 var whatchangedCmd = &cobra.Command{
-	Use:   "whatchanged",
-	Short: "Show logs with difference each commit introduces",
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	Use:     "whatchanged",
+	Short:   "Show logs with difference each commit introduces",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groups[group_interrogator].ID,
 }
 
 func init() {
