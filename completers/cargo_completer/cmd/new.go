@@ -7,9 +7,10 @@ import (
 )
 
 var newCmd = &cobra.Command{
-	Use:   "new",
-	Short: "Create a new cargo package at <path>",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "new",
+	Short:   "Create a new cargo package at <path>",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("new"),
 }
 
 func init() {

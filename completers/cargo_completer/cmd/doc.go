@@ -8,9 +8,10 @@ import (
 )
 
 var docCmd = &cobra.Command{
-	Use:   "doc",
-	Short: "Build a package's documentation",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "doc",
+	Short:   "Build a package's documentation",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("doc"),
 }
 
 func init() {

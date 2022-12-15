@@ -7,9 +7,10 @@ import (
 )
 
 var initCmd = &cobra.Command{
-	Use:   "init",
-	Short: "Create a new cargo package in an existing directory",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "init",
+	Short:   "Create a new cargo package in an existing directory",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("init"),
 }
 
 func init() {

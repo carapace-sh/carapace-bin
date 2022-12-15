@@ -19,10 +19,29 @@ var rootCmd = &cobra.Command{
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
+const (
+	group_build = iota
+	group_manifest
+	group_package
+	group_publishing
+	group_general
+)
+
+var groups = []*cobra.Group{
+	{ID: "build", Title: "Build Commands"},
+	{ID: "manifest", Title: "Manifest Commands"},
+	{ID: "package", Title: "Package Commands"},
+	{ID: "publishing", Title: "Publishing Commands"},
+	{ID: "general", Title: "General Commands"},
+}
+
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
+	rootCmd.AddGroup(groups...)
+
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringS("Z", "Z", "", "Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details")
@@ -51,8 +70,9 @@ func init() {
 				if matches := re.FindStringSubmatch(line); matches != nil {
 					pluginCmd := &cobra.Command{
 						Use:                matches[1],
-						Short:              matches[2],
+						Short:              matches[3],
 						Run:                func(cmd *cobra.Command, args []string) {},
+						GroupID:            groupFor(matches[1]),
 						DisableFlagParsing: true,
 					}
 
@@ -63,7 +83,52 @@ func init() {
 					rootCmd.AddCommand(pluginCmd)
 				}
 			}
-
 		}
 	})
+}
+
+func groupFor(name string) string {
+	// https: //doc.rust-lang.org/cargo/commands/index.html
+	switch name {
+	case "help",
+		"version":
+		return groups[group_general].ID
+	case "bench",
+		"build",
+		"check",
+		"clean",
+		"doc",
+		"fetch",
+		"fix",
+		"run",
+		"rustc",
+		"rustdoc",
+		"test",
+		"report":
+		return groups[group_build].ID
+	case "add",
+		"generate-lockfile",
+		"locate-project",
+		"metadata",
+		"pkgid",
+		"remove",
+		"tree",
+		"update",
+		"vendor",
+		"verify-project":
+		return groups[group_manifest].ID
+	case "init",
+		"new",
+		"search",
+		"uninstall":
+		return groups[group_package].ID
+	case "login",
+		"owner",
+		"package",
+		"publish",
+		"yank":
+		return groups[group_publishing].ID
+	default:
+		return ""
+	}
 }

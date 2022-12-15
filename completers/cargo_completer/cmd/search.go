@@ -7,9 +7,10 @@ import (
 )
 
 var searchCmd = &cobra.Command{
-	Use:   "search",
-	Short: "Search packages in crates.io",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "search",
+	Short:   "Search packages in crates.io",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("search"),
 }
 
 func init() {

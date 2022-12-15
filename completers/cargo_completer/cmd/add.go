@@ -11,9 +11,10 @@ import (
 )
 
 var addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "Add dependency to a Cargo.toml manifest file",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "add",
+	Short:   "Add dependency to a Cargo.toml manifest file",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("add"),
 }
 
 func init() {

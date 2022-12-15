@@ -12,6 +12,7 @@ var buildCmd = &cobra.Command{
 	Aliases: []string{"b"},
 	Short:   "Compile a local package and all of its dependencies",
 	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("build"),
 }
 
 func init() {

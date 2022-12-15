@@ -7,9 +7,10 @@ import (
 )
 
 var cleanCmd = &cobra.Command{
-	Use:   "clean",
-	Short: "Remove artifacts that cargo has generated in the past",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "clean",
+	Short:   "Remove artifacts that cargo has generated in the past",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("clean"),
 }
 
 func init() {

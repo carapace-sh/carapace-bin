@@ -7,9 +7,10 @@ import (
 )
 
 var uninstallCmd = &cobra.Command{
-	Use:   "uninstall",
-	Short: "Remove a Rust binary",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "uninstall",
+	Short:   "Remove a Rust binary",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("uninstall"),
 }
 
 func init() {

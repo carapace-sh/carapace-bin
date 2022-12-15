@@ -8,9 +8,10 @@ import (
 )
 
 var fixCmd = &cobra.Command{
-	Use:   "fix",
-	Short: "Automatically fix lint warnings reported by rustc",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "fix",
+	Short:   "Automatically fix lint warnings reported by rustc",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("fix"),
 }
 
 func init() {

@@ -12,6 +12,7 @@ var checkCmd = &cobra.Command{
 	Aliases: []string{"c"},
 	Short:   "Check a local package and all of its dependencies for errors",
 	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("check"),
 }
 
 func init() {

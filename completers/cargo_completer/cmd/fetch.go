@@ -7,9 +7,10 @@ import (
 )
 
 var fetchCmd = &cobra.Command{
-	Use:   "fetch",
-	Short: "",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "fetch",
+	Short:   "",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("fetch"),
 }
 
 func init() {
