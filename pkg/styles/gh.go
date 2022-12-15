@@ -3,22 +3,22 @@ package styles
 import "github.com/rsteube/carapace/pkg/style"
 
 type gh struct {
-	Draft             string `desc:"draft pulls"`
-	JobFailed         string `desc:"jobs not finished successfully"`
-	JobInProgress     string `desc:"jobs in progress"`
-	JobSuccess        string `desc:"jobs successfully finished"`
-	OwnerOrganization string `desc:"organization"`
-	OwnerUser         string `desc:"user"`
-	RepoArchived      string `desc:"archived repository"`
-	RepoFork          string `desc:"forked repository"`
-	RepoLocked        string `desc:"locked repository"`
-	RepoMirror        string `desc:"mirror repository"`
-	RepoPrivate       string `desc:"private repository"`
-	RepoPublic        string `desc:"public repository"`
-	RepoTemplate      string `desc:"template repository"`
-	StateClosed       string `desc:"closed issues/pulls"`
-	StateMerged       string `desc:"merged pulls"`
-	StateOpen         string `desc:"open issues/pulls"`
+	Draft             string `desc:"draft pulls" tag:"issue styles"`
+	JobFailed         string `desc:"jobs not finished successfully" tag:"job styles"`
+	JobInProgress     string `desc:"jobs in progress" tag:"job styles"`
+	JobSuccess        string `desc:"jobs successfully finished" tag:"job styles"`
+	OwnerOrganization string `desc:"organization" tag:"owner styles"`
+	OwnerUser         string `desc:"user" tag:"owner styles"`
+	RepoArchived      string `desc:"archived repository" tag:"repo styles"`
+	RepoFork          string `desc:"forked repository" tag:"repo styles"`
+	RepoLocked        string `desc:"locked repository" tag:"repo styles"`
+	RepoMirror        string `desc:"mirror repository" tag:"repo styles"`
+	RepoPrivate       string `desc:"private repository" tag:"repo styles"`
+	RepoPublic        string `desc:"public repository" tag:"repo styles"`
+	RepoTemplate      string `desc:"template repository" tag:"repo styles"`
+	StateClosed       string `desc:"closed issues/pulls" tag:"issue styles"`
+	StateMerged       string `desc:"merged pulls" tag:"issue styles"`
+	StateOpen         string `desc:"open issues/pulls" tag:"issue styles"`
 }
 
 var Gh = gh{
