@@ -8,9 +8,10 @@ import (
 )
 
 var installCmd = &cobra.Command{
-	Use:   "install",
-	Short: "Install a Rust binary",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "install",
+	Short:   "Install a Rust binary",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("install"),
 }
 
 func init() {

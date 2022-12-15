@@ -8,9 +8,10 @@ import (
 )
 
 var benchCmd = &cobra.Command{
-	Use:   "bench",
-	Short: "Execute all benchmarks of a local package",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "bench",
+	Short:   "Execute all benchmarks of a local package",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("bench"),
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var updateCmd = &cobra.Command{
-	Use:   "update",
-	Short: "Update dependencies as recorded in the local lock file",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "update",
+	Short:   "Update dependencies as recorded in the local lock file",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("update"),
 }
 
 func init() {

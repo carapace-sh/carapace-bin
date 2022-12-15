@@ -12,6 +12,7 @@ var runCmd = &cobra.Command{
 	Aliases: []string{"r"},
 	Short:   "Run a binary or example of the local package",
 	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("run"),
 }
 
 func init() {

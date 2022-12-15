@@ -8,9 +8,10 @@ import (
 )
 
 var publishCmd = &cobra.Command{
-	Use:   "publish",
-	Short: "Upload a package to the registry",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "publish",
+	Short:   "Upload a package to the registry",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("publish"),
 }
 
 func init() {

@@ -12,6 +12,7 @@ var testCmd = &cobra.Command{
 	Aliases: []string{"t"},
 	Short:   "Execute all unit and integration tests and build examples of a local package",
 	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("test"),
 }
 
 func init() {
