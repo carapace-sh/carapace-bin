@@ -6,8 +6,8 @@ import (
 )
 
 var ci_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "Get the list of CI pipelines",
+	Use:   "list [flags]",
+	Short: "Get the list of CI/CD pipelines",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

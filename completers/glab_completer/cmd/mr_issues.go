@@ -7,9 +7,10 @@ import (
 )
 
 var mr_issuesCmd = &cobra.Command{
-	Use:   "issues",
-	Short: "Get issues related to a particular merge request.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "issues [<id> | <branch>]",
+	Short:   "Get issues related to a particular merge request.",
+	Aliases: []string{"issue"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

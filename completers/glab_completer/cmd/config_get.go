@@ -7,8 +7,8 @@ import (
 )
 
 var config_getCmd = &cobra.Command{
-	Use:   "get",
-	Short: "Prints the value of a given configuration key",
+	Use:   "get <key>",
+	Short: "Prints the value of a given configuration key.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

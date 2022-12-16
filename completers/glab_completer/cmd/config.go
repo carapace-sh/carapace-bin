@@ -6,9 +6,10 @@ import (
 )
 
 var configCmd = &cobra.Command{
-	Use:   "config",
-	Short: "Set and get glab settings",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "config [flags]",
+	Short:   "Set and get glab settings",
+	Aliases: []string{"conf"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

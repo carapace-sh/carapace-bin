@@ -7,9 +7,10 @@ import (
 )
 
 var mr_viewCmd = &cobra.Command{
-	Use:   "view",
-	Short: "Display the title, body, and other information about a merge request.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "view {<id> | <branch>}",
+	Short:   "Display the title, body, and other information about a merge request.",
+	Aliases: []string{"show"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

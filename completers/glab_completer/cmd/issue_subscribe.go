@@ -7,9 +7,10 @@ import (
 )
 
 var issue_subscribeCmd = &cobra.Command{
-	Use:   "subscribe",
-	Short: "Subscribe to an issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "subscribe <id>",
+	Short:   "Subscribe to an issue",
+	Aliases: []string{"sub"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

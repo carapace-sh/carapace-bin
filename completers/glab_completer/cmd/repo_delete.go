@@ -7,8 +7,8 @@ import (
 )
 
 var repo_deleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Delete an existing repository on GitLab",
+	Use:   "delete [<NAMESPACE>/]<NAME>",
+	Short: "Delete an existing repository on GitLab.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

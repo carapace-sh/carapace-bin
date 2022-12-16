@@ -7,9 +7,10 @@ import (
 )
 
 var mr_todoCmd = &cobra.Command{
-	Use:   "todo",
-	Short: "Add a ToDo to merge request",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "todo [<id> | <branch>]",
+	Short:   "Add a ToDo to merge request",
+	Aliases: []string{"add-todo"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

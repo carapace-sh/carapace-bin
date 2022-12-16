@@ -6,9 +6,10 @@ import (
 )
 
 var label_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List labels in repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list [flags]",
+	Short:   "List labels in repository",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

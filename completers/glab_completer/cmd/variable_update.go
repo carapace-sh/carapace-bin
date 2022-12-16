@@ -7,7 +7,7 @@ import (
 )
 
 var variable_updateCmd = &cobra.Command{
-	Use:   "update",
+	Use:   "update <key> <value>",
 	Short: "Update an existing project or group variable",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

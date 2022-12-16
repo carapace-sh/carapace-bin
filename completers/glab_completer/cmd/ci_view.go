@@ -7,8 +7,8 @@ import (
 )
 
 var ci_viewCmd = &cobra.Command{
-	Use:   "view",
-	Short: "View, run, trace/logs, and cancel CI jobs current pipeline",
+	Use:   "view [branch/tag]",
+	Short: "View, run, trace/logs, and cancel CI/CD jobs current pipeline",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,7 +8,7 @@ import (
 )
 
 var apiCmd = &cobra.Command{
-	Use:   "api",
+	Use:   "api <endpoint>",
 	Short: "Make an authenticated request to GitLab API",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

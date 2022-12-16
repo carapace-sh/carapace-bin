@@ -7,9 +7,10 @@ import (
 )
 
 var mr_subscribeCmd = &cobra.Command{
-	Use:   "subscribe",
-	Short: "Subscribe to merge requests",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "subscribe [<id> | <branch>]",
+	Short:   "Subscribe to merge requests",
+	Aliases: []string{"sub"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

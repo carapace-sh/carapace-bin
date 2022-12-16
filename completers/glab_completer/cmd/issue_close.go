@@ -7,7 +7,7 @@ import (
 )
 
 var issue_closeCmd = &cobra.Command{
-	Use:   "close",
+	Use:   "close <id>",
 	Short: "Close an issue",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

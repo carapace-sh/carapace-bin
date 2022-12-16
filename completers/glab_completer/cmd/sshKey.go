@@ -7,15 +7,14 @@ import (
 )
 
 var sshKeyCmd = &cobra.Command{
-	Use:   "ssh-key",
-	Short: "Manage SSH keys",
+	Use:   "ssh-key <command>",
+	Short: "Manage SSH keys registered with your GitLab account.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(sshKeyCmd).Standalone()
 	sshKeyCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or full URL or git URL")
-
 	rootCmd.AddCommand(sshKeyCmd)
 
 	carapace.Gen(sshKeyCmd).FlagCompletion(carapace.ActionMap{

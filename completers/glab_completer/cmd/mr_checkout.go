@@ -7,7 +7,7 @@ import (
 )
 
 var mr_checkoutCmd = &cobra.Command{
-	Use:   "checkout",
+	Use:   "checkout [<id> | <branch>]",
 	Short: "Checkout to an open merge request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

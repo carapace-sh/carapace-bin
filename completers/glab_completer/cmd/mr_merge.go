@@ -7,9 +7,10 @@ import (
 )
 
 var mr_mergeCmd = &cobra.Command{
-	Use:   "merge",
-	Short: "Merge/Accept merge requests",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "merge {<id> | <branch>}",
+	Short:   "Merge/Accept merge requests",
+	Aliases: []string{"accept"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

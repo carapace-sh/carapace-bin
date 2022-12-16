@@ -6,7 +6,7 @@ import (
 )
 
 var userCmd = &cobra.Command{
-	Use:   "user",
+	Use:   "user <command> [flags]",
 	Short: "Interact with user",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

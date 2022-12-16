@@ -7,7 +7,7 @@ import (
 )
 
 var repo_forkCmd = &cobra.Command{
-	Use:   "fork",
+	Use:   "fork <repo>",
 	Short: "Create a fork of a GitLab repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

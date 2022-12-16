@@ -7,7 +7,7 @@ import (
 )
 
 var mrCmd = &cobra.Command{
-	Use:   "mr",
+	Use:   "mr <command> [flags]",
 	Short: "Create, view and manage merge requests",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

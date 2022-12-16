@@ -7,7 +7,7 @@ import (
 )
 
 var release_downloadCmd = &cobra.Command{
-	Use:   "download",
+	Use:   "download <tag>",
 	Short: "Download asset files from a GitLab Release",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

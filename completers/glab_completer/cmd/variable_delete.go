@@ -7,9 +7,10 @@ import (
 )
 
 var variable_deleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Delete a project or group variable",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "delete <key>",
+	Short:   "Delete a project or group variable",
+	Aliases: []string{"remove"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

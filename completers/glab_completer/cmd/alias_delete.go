@@ -7,7 +7,7 @@ import (
 )
 
 var alias_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete <alias name> [flags]",
 	Short: "Delete an alias.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

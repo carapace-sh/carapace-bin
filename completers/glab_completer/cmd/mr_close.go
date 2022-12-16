@@ -7,7 +7,7 @@ import (
 )
 
 var mr_closeCmd = &cobra.Command{
-	Use:   "close",
+	Use:   "close [<id> | <branch>]",
 	Short: "Close merge requests",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

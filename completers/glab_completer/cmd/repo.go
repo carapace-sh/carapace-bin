@@ -6,9 +6,10 @@ import (
 )
 
 var repoCmd = &cobra.Command{
-	Use:   "repo",
-	Short: "Work with GitLab repositories and projects",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "repo <command> [flags]",
+	Short:   "Work with GitLab repositories and projects",
+	Aliases: []string{"project"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,8 +7,8 @@ import (
 )
 
 var release_deleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Delete a  GitLab Release",
+	Use:   "delete <tag>",
+	Short: "Delete a GitLab Release",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

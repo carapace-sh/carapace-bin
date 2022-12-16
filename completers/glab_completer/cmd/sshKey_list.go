@@ -7,7 +7,7 @@ import (
 
 var sshKey_listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "Lists currently authenticated user’s SSH keys",
+	Short: "Get a list of currently authenticated user's SSH keys.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

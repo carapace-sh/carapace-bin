@@ -7,7 +7,7 @@ import (
 )
 
 var repo_viewCmd = &cobra.Command{
-	Use:   "view",
+	Use:   "view [repository] [flags]",
 	Short: "View a project/repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -16,7 +16,6 @@ func init() {
 	carapace.Gen(repo_viewCmd).Standalone()
 	repo_viewCmd.Flags().StringP("branch", "b", "", "View a specific branch of the repository")
 	repo_viewCmd.Flags().BoolP("web", "w", false, "Open a project in the browser")
-
 	repoCmd.AddCommand(repo_viewCmd)
 
 	carapace.Gen(repo_viewCmd).FlagCompletion(carapace.ActionMap{

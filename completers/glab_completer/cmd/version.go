@@ -6,9 +6,10 @@ import (
 )
 
 var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "show glab version information",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "version",
+	Short:   "Show glab version information",
+	Aliases: []string{"v"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

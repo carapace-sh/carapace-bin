@@ -7,9 +7,10 @@ import (
 )
 
 var issue_noteCmd = &cobra.Command{
-	Use:   "note",
-	Short: "Add a comment or note to an issue on GitLab",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "note <issue-id>",
+	Short:   "Add a comment or note to an issue on GitLab",
+	Aliases: []string{"comment"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

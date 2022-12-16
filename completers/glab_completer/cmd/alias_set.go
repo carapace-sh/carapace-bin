@@ -7,7 +7,7 @@ import (
 )
 
 var alias_setCmd = &cobra.Command{
-	Use:   "set",
+	Use:   "set <alias name> '<command>' [flags]",
 	Short: "Set an alias.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

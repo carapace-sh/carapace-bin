@@ -7,7 +7,7 @@ import (
 )
 
 var releaseCmd = &cobra.Command{
-	Use:   "release",
+	Use:   "release <command> [flags]",
 	Short: "Manage GitLab releases",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

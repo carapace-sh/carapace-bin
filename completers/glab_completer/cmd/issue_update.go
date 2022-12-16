@@ -7,7 +7,7 @@ import (
 )
 
 var issue_updateCmd = &cobra.Command{
-	Use:   "update",
+	Use:   "update <id>",
 	Short: "Update issue",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

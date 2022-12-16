@@ -7,7 +7,7 @@ import (
 )
 
 var mr_updateCmd = &cobra.Command{
-	Use:   "update",
+	Use:   "update [<id> | <branch>]",
 	Short: "Update merge requests",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -21,7 +21,7 @@ func init() {
 	mr_updateCmd.Flags().Bool("lock-discussion", false, "Lock discussion on merge request")
 	mr_updateCmd.Flags().StringP("milestone", "m", "", "title of the milestone to assign, pass \"\" or 0 to unassign")
 	mr_updateCmd.Flags().BoolP("ready", "r", false, "Mark merge request as ready to be reviewed and merged")
-	mr_updateCmd.Flags().Bool("remove-source-branch", false, "Remove Source Branch on merge")
+	mr_updateCmd.Flags().Bool("remove-source-branch", false, "Toggles the removal of the Source Branch on merge")
 	mr_updateCmd.Flags().StringSlice("reviewer", []string{}, "request review from users by their usernames, prefix with '!' or '-' to remove from existing reviewers, '+' to add, otherwise replace existing reviewers with given users")
 	mr_updateCmd.Flags().Bool("squash-before-merge", false, "Toggles the option to squash commits into a single commit when merging")
 	mr_updateCmd.Flags().String("target-branch", "", "set target branch")

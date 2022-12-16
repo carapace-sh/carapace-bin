@@ -7,7 +7,7 @@ import (
 )
 
 var labelCmd = &cobra.Command{
-	Use:   "label",
+	Use:   "label <command> [flags]",
 	Short: "Manage labels on remote",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
