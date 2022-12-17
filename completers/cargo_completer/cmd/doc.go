@@ -9,6 +9,7 @@ import (
 
 var docCmd = &cobra.Command{
 	Use:     "doc",
+	Aliases: []string{"d"},
 	Short:   "Build a package's documentation",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: groupFor("doc"),
