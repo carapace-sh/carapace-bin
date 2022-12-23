@@ -7,13 +7,15 @@ import (
 )
 
 var repo_deleteCmd = &cobra.Command{
-	Use:   "delete [<repository>]",
-	Short: "Delete a repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "delete [<repository>]",
+	Short:   "Delete a repository",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(repo_deleteCmd).Standalone()
+
 	repo_deleteCmd.Flags().Bool("confirm", false, "confirm deletion without prompting")
 	repoCmd.AddCommand(repo_deleteCmd)
 

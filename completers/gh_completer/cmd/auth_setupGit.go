@@ -14,6 +14,7 @@ var auth_setupGitCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(auth_setupGitCmd).Standalone()
+
 	auth_setupGitCmd.Flags().StringP("hostname", "h", "", "The hostname to configure git for")
 	authCmd.AddCommand(auth_setupGitCmd)
 

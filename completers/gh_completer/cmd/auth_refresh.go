@@ -14,6 +14,7 @@ var auth_refreshCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(auth_refreshCmd).Standalone()
+
 	auth_refreshCmd.Flags().StringP("hostname", "h", "", "The GitHub host to use for authentication")
 	auth_refreshCmd.Flags().StringSliceP("scopes", "s", []string{}, "Additional authentication scopes for gh to have")
 	authCmd.AddCommand(auth_refreshCmd)

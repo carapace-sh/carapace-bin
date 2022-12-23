@@ -7,13 +7,15 @@ import (
 )
 
 var pr_editCmd = &cobra.Command{
-	Use:   "edit [<number> | <url> | <branch>]",
-	Short: "Edit a pull request",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "edit [<number> | <url> | <branch>]",
+	Short:   "Edit a pull request",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(pr_editCmd).Standalone()
+
 	pr_editCmd.Flags().StringSlice("add-assignee", []string{}, "Add assigned users by their `login`. Use \"@me\" to assign yourself.")
 	pr_editCmd.Flags().StringSlice("add-label", []string{}, "Add labels by `name`")
 	pr_editCmd.Flags().StringSlice("add-project", []string{}, "Add the pull request to projects by `name`")

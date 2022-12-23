@@ -7,13 +7,15 @@ import (
 )
 
 var pr_mergeCmd = &cobra.Command{
-	Use:   "merge [<number> | <url> | <branch>]",
-	Short: "Merge a pull request",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "merge [<number> | <url> | <branch>]",
+	Short:   "Merge a pull request",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(pr_mergeCmd).Standalone()
+
 	pr_mergeCmd.Flags().Bool("admin", false, "Use administrator privileges to merge a pull request that does not meet requirements")
 	pr_mergeCmd.Flags().StringP("author-email", "A", "", "Email `text` for merge commit author")
 	pr_mergeCmd.Flags().Bool("auto", false, "Automatically merge only after necessary requirements are met")

@@ -17,6 +17,7 @@ var search_issuesCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(search_issuesCmd).Standalone()
+
 	search_issuesCmd.Flags().String("app", "", "Filter by GitHub App author")
 	search_issuesCmd.Flags().Bool("archived", false, "Restrict search to archived repositories")
 	search_issuesCmd.Flags().String("assignee", "", "Filter by assignee")
@@ -49,7 +50,7 @@ func init() {
 	search_issuesCmd.Flags().String("sort", "best-match", "Sort fetched results: {comments|created|interactions|reactions|reactions-+1|reactions--1|reactions-heart|reactions-smile|reactions-tada|reactions-thinking_face|updated}")
 	search_issuesCmd.Flags().String("state", "", "Filter based on state: {open|closed}")
 	search_issuesCmd.Flags().String("team-mentions", "", "Filter based on team mentions")
-	search_issuesCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	search_issuesCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	search_issuesCmd.Flags().String("updated", "", "Filter on last updated at `date`")
 	search_issuesCmd.Flags().StringSlice("visibility", []string{}, "Filter based on repository visibility: {public|private|internal}")
 	search_issuesCmd.Flags().BoolP("web", "w", false, "Open the search query in the web browser")

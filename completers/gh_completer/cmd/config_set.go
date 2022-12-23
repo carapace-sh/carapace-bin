@@ -14,6 +14,7 @@ var config_setCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_setCmd).Standalone()
+
 	config_setCmd.Flags().StringP("host", "h", "", "Set per-host setting")
 	configCmd.AddCommand(config_setCmd)
 

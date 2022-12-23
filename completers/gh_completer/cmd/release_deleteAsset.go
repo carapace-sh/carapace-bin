@@ -7,13 +7,15 @@ import (
 )
 
 var release_deleteAssetCmd = &cobra.Command{
-	Use:   "delete-asset <tag> <asset-name>",
-	Short: "Delete an asset from a release",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "delete-asset <tag> <asset-name>",
+	Short:   "Delete an asset from a release",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(release_deleteAssetCmd).Standalone()
+
 	release_deleteAssetCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt")
 	releaseCmd.AddCommand(release_deleteAssetCmd)
 

@@ -14,6 +14,7 @@ var gist_editCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gist_editCmd).Standalone()
+
 	gist_editCmd.Flags().StringP("add", "a", "", "Add a new file to the gist")
 	gist_editCmd.Flags().StringP("desc", "d", "", "New description for the gist")
 	gist_editCmd.Flags().StringP("filename", "f", "", "Select a file to edit")

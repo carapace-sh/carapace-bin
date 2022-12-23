@@ -7,13 +7,15 @@ import (
 )
 
 var pr_readyCmd = &cobra.Command{
-	Use:   "ready [<number> | <url> | <branch>]",
-	Short: "Mark a pull request as ready for review",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ready [<number> | <url> | <branch>]",
+	Short:   "Mark a pull request as ready for review",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(pr_readyCmd).Standalone()
+
 	pr_readyCmd.Flags().Bool("undo", false, "Convert a pull request to \"draft\"")
 	prCmd.AddCommand(pr_readyCmd)
 

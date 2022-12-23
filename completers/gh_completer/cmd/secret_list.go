@@ -16,6 +16,7 @@ var secret_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(secret_listCmd).Standalone()
+
 	secret_listCmd.Flags().StringP("app", "a", "", "List secrets for a specific application: {actions|codespaces|dependabot}")
 	secret_listCmd.Flags().StringP("env", "e", "", "List secrets for an environment")
 	secret_listCmd.Flags().StringP("org", "o", "", "List secrets for an organization")

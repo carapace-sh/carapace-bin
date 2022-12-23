@@ -14,6 +14,7 @@ var labelCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(labelCmd).Standalone()
+
 	labelCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	rootCmd.AddCommand(labelCmd)
 

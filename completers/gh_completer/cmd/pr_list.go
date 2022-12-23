@@ -11,12 +11,14 @@ import (
 var pr_listCmd = &cobra.Command{
 	Use:     "list",
 	Short:   "List pull requests in a repository",
+	GroupID: "general",
 	Aliases: []string{"ls"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(pr_listCmd).Standalone()
+
 	pr_listCmd.Flags().String("app", "", "Filter by GitHub App author")
 	pr_listCmd.Flags().StringP("assignee", "a", "", "Filter by assignee")
 	pr_listCmd.Flags().StringP("author", "A", "", "Filter by author")

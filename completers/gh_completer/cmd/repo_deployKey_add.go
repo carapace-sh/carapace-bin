@@ -13,6 +13,7 @@ var repo_deployKey_addCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(repo_deployKey_addCmd).Standalone()
+
 	repo_deployKey_addCmd.Flags().BoolP("allow-write", "w", false, "Allow write access for the key")
 	repo_deployKey_addCmd.Flags().StringP("title", "t", "", "Title of the new key")
 	repo_deployKeyCmd.AddCommand(repo_deployKey_addCmd)

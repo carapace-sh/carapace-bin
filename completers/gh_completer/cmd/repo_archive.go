@@ -7,13 +7,15 @@ import (
 )
 
 var repo_archiveCmd = &cobra.Command{
-	Use:   "archive [<repository>]",
-	Short: "Archive a repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "archive [<repository>]",
+	Short:   "Archive a repository",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(repo_archiveCmd).Standalone()
+
 	repo_archiveCmd.Flags().BoolP("confirm", "y", false, "Skip the confirmation prompt")
 	repoCmd.AddCommand(repo_archiveCmd)
 

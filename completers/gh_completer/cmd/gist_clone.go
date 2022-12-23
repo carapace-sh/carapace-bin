@@ -14,6 +14,7 @@ var gist_cloneCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gist_cloneCmd).Standalone()
+
 	gistCmd.AddCommand(gist_cloneCmd)
 
 	carapace.Gen(gist_cloneCmd).PositionalCompletion(

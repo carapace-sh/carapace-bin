@@ -7,13 +7,15 @@ import (
 )
 
 var issue_transferCmd = &cobra.Command{
-	Use:   "transfer {<number> | <url>} <destination-repo>",
-	Short: "Transfer issue to another repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "transfer {<number> | <url>} <destination-repo>",
+	Short:   "Transfer issue to another repository",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_transferCmd).Standalone()
+
 	issueCmd.AddCommand(issue_transferCmd)
 
 	carapace.Gen(issue_transferCmd).PositionalCompletion(

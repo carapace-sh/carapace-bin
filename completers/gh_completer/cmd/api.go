@@ -15,6 +15,7 @@ var apiCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(apiCmd).Standalone()
+
 	apiCmd.Flags().Duration("cache", 0, "Cache the response, e.g. \"3600s\", \"60m\", \"1h\"")
 	apiCmd.Flags().StringArrayP("field", "F", []string{}, "Add a typed parameter in `key=value` format")
 	apiCmd.Flags().StringArrayP("header", "H", []string{}, "Add a HTTP request header in `key:value` format")

@@ -16,6 +16,7 @@ var run_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(run_listCmd).Standalone()
+
 	run_listCmd.Flags().StringP("branch", "b", "", "Filter runs by branch")
 	run_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	run_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")

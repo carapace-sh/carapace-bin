@@ -9,12 +9,14 @@ import (
 var pr_createCmd = &cobra.Command{
 	Use:     "create",
 	Short:   "Create a pull request",
+	GroupID: "general",
 	Aliases: []string{"new"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(pr_createCmd).Standalone()
+
 	pr_createCmd.Flags().StringSliceP("assignee", "a", []string{}, "Assign people by their `login`. Use \"@me\" to self-assign.")
 	pr_createCmd.Flags().StringP("base", "B", "", "The `branch` into which you want your code merged")
 	pr_createCmd.Flags().StringP("body", "b", "", "Body for the pull request")

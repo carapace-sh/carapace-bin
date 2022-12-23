@@ -7,13 +7,19 @@ import (
 )
 
 var issueCmd = &cobra.Command{
-	Use:   "issue <command>",
-	Short: "Manage issues",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "issue <command>",
+	Short:   "Manage issues",
+	GroupID: "core",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issueCmd).Standalone()
+	issueCmd.AddGroup(
+		&cobra.Group{ID: "general", Title: "General commands"},
+		&cobra.Group{ID: "targeted", Title: "Targeted commands"},
+	)
+
 	issueCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	rootCmd.AddCommand(issueCmd)
 

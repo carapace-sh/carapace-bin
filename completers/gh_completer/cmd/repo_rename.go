@@ -7,13 +7,15 @@ import (
 )
 
 var repo_renameCmd = &cobra.Command{
-	Use:   "rename [<new-name>]",
-	Short: "Rename a repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rename [<new-name>]",
+	Short:   "Rename a repository",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(repo_renameCmd).Standalone()
+
 	repo_renameCmd.Flags().BoolP("confirm", "y", false, "skip confirmation prompt")
 	repo_renameCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	repoCmd.AddCommand(repo_renameCmd)

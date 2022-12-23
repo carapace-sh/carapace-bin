@@ -7,13 +7,15 @@ import (
 )
 
 var issue_reopenCmd = &cobra.Command{
-	Use:   "reopen {<number> | <url>}",
-	Short: "Reopen issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "reopen {<number> | <url>}",
+	Short:   "Reopen issue",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_reopenCmd).Standalone()
+
 	issue_reopenCmd.Flags().StringP("comment", "c", "", "Add a reopening comment")
 	issueCmd.AddCommand(issue_reopenCmd)
 

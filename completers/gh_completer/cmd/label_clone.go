@@ -14,6 +14,7 @@ var label_cloneCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(label_cloneCmd).Standalone()
+
 	label_cloneCmd.Flags().BoolP("force", "f", false, "Overwrite labels in the destination repository")
 	labelCmd.AddCommand(label_cloneCmd)
 

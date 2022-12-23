@@ -14,6 +14,7 @@ var codespace_portsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(codespace_portsCmd).Standalone()
+
 	codespace_portsCmd.PersistentFlags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_portsCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	codespace_portsCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")

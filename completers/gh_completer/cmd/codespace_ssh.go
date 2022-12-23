@@ -14,6 +14,7 @@ var codespace_sshCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(codespace_sshCmd).Standalone()
+
 	codespace_sshCmd.Flags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_sshCmd.Flags().Bool("config", false, "Write OpenSSH configuration to stdout")
 	codespace_sshCmd.Flags().BoolP("debug", "d", false, "Log debug data to a file")

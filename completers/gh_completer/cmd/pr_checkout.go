@@ -7,13 +7,15 @@ import (
 )
 
 var pr_checkoutCmd = &cobra.Command{
-	Use:   "checkout {<number> | <url> | <branch>}",
-	Short: "Check out a pull request in git",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "checkout {<number> | <url> | <branch>}",
+	Short:   "Check out a pull request in git",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(pr_checkoutCmd).Standalone()
+
 	pr_checkoutCmd.Flags().StringP("branch", "b", "", "Local branch name to use (default: the name of the head branch)")
 	pr_checkoutCmd.Flags().Bool("detach", false, "Checkout PR with a detached HEAD")
 	pr_checkoutCmd.Flags().BoolP("force", "f", false, "Reset the existing local branch to the latest state of the pull request")

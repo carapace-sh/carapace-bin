@@ -15,6 +15,7 @@ var extension_searchCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(extension_searchCmd).Standalone()
+
 	extension_searchCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	extension_searchCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	extension_searchCmd.Flags().StringSlice("license", []string{}, "Filter based on license type")

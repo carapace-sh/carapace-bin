@@ -6,12 +6,14 @@ import (
 )
 
 var gistCmd = &cobra.Command{
-	Use:   "gist <command>",
-	Short: "Manage gists",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "gist <command>",
+	Short:   "Manage gists",
+	GroupID: "core",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(gistCmd).Standalone()
+
 	rootCmd.AddCommand(gistCmd)
 }

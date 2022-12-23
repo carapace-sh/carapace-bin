@@ -14,5 +14,6 @@ var gpgKey_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gpgKey_listCmd).Standalone()
+
 	gpgKeyCmd.AddCommand(gpgKey_listCmd)
 }

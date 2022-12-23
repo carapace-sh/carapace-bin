@@ -7,13 +7,15 @@ import (
 )
 
 var repo_viewCmd = &cobra.Command{
-	Use:   "view [<repository>]",
-	Short: "View a repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "view [<repository>]",
+	Short:   "View a repository",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(repo_viewCmd).Standalone()
+
 	repo_viewCmd.Flags().StringP("branch", "b", "", "View a specific branch of the repository")
 	repo_viewCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	repo_viewCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")

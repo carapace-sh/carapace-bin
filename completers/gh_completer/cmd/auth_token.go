@@ -14,6 +14,7 @@ var auth_tokenCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(auth_tokenCmd).Standalone()
+
 	auth_tokenCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitHub instance authenticated with")
 	authCmd.AddCommand(auth_tokenCmd)
 

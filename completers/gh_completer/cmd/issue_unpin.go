@@ -7,13 +7,15 @@ import (
 )
 
 var issue_unpinCmd = &cobra.Command{
-	Use:   "unpin {<number> | <url>}",
-	Short: "Unpin a issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "unpin {<number> | <url>}",
+	Short:   "Unpin a issue",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_unpinCmd).Standalone()
+
 	issueCmd.AddCommand(issue_unpinCmd)
 
 	carapace.Gen(issue_unpinCmd).PositionalCompletion(

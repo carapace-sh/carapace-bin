@@ -8,13 +8,15 @@ import (
 )
 
 var issue_developCmd = &cobra.Command{
-	Use:   "develop [flags] {<number> | <url>}",
-	Short: "Manage linked branches for an issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "develop [flags] {<number> | <url>}",
+	Short:   "Manage linked branches for an issue",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_developCmd).Standalone()
+
 	issue_developCmd.Flags().StringP("base", "b", "", "Name of the base branch you want to make your new branch from")
 	issue_developCmd.Flags().BoolP("checkout", "c", false, "Checkout the branch after creating it")
 	issue_developCmd.Flags().StringP("issue-repo", "i", "", "Name or URL of the issue's repository")

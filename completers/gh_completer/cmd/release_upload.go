@@ -7,13 +7,15 @@ import (
 )
 
 var release_uploadCmd = &cobra.Command{
-	Use:   "upload <tag> <files>...",
-	Short: "Upload assets to a release",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "upload <tag> <files>...",
+	Short:   "Upload assets to a release",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(release_uploadCmd).Standalone()
+
 	release_uploadCmd.Flags().Bool("clobber", false, "Overwrite existing assets of the same name")
 	releaseCmd.AddCommand(release_uploadCmd)
 

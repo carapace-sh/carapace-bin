@@ -7,13 +7,15 @@ import (
 )
 
 var issue_editCmd = &cobra.Command{
-	Use:   "edit {<number> | <url>}",
-	Short: "Edit an issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "edit {<number> | <url>}",
+	Short:   "Edit an issue",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_editCmd).Standalone()
+
 	issue_editCmd.Flags().StringSlice("add-assignee", []string{}, "Add assigned users by their `login`. Use \"@me\" to assign yourself.")
 	issue_editCmd.Flags().StringSlice("add-label", []string{}, "Add labels by `name`")
 	issue_editCmd.Flags().StringSlice("add-project", []string{}, "Add the issue to projects by `name`")

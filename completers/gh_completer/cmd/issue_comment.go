@@ -7,13 +7,15 @@ import (
 )
 
 var issue_commentCmd = &cobra.Command{
-	Use:   "comment {<number> | <url>}",
-	Short: "Add a comment to an issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "comment {<number> | <url>}",
+	Short:   "Add a comment to an issue",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_commentCmd).Standalone()
+
 	issue_commentCmd.Flags().StringP("body", "b", "", "The comment body `text`")
 	issue_commentCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	issue_commentCmd.Flags().Bool("edit-last", false, "Edit the last comment of the same author")

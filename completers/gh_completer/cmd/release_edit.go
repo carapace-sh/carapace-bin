@@ -7,13 +7,15 @@ import (
 )
 
 var release_editCmd = &cobra.Command{
-	Use:   "edit <tag>",
-	Short: "Edit a release",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "edit <tag>",
+	Short:   "Edit a release",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(release_editCmd).Standalone()
+
 	release_editCmd.Flags().String("discussion-category", "", "Start a discussion in the specified category when publishing a draft")
 	release_editCmd.Flags().Bool("draft", false, "Save the release as a draft instead of publishing it")
 	release_editCmd.Flags().Bool("latest", false, "Explicitly mark the release as \"Latest\"")

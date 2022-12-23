@@ -14,6 +14,7 @@ var secretCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(secretCmd).Standalone()
+
 	secretCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	rootCmd.AddCommand(secretCmd)
 

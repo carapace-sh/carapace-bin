@@ -14,6 +14,7 @@ var codespace_rebuildCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(codespace_rebuildCmd).Standalone()
+
 	codespace_rebuildCmd.Flags().StringP("codespace", "c", "", "name of the codespace")
 	codespace_rebuildCmd.Flags().Bool("full", false, "perform a full rebuild")
 	codespaceCmd.AddCommand(codespace_rebuildCmd)

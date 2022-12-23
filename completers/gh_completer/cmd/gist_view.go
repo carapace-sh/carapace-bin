@@ -14,6 +14,7 @@ var gist_viewCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gist_viewCmd).Standalone()
+
 	gist_viewCmd.Flags().StringP("filename", "f", "", "Display a single file from the gist")
 	gist_viewCmd.Flags().Bool("files", false, "List file names from the gist")
 	gist_viewCmd.Flags().BoolP("raw", "r", false, "Print raw instead of rendered gist contents")

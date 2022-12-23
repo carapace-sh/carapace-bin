@@ -14,6 +14,7 @@ var workflow_runCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(workflow_runCmd).Standalone()
+
 	workflow_runCmd.Flags().StringArrayP("field", "F", []string{}, "Add a string parameter in `key=value` format, respecting @ syntax")
 	workflow_runCmd.Flags().Bool("json", false, "Read workflow inputs as JSON via STDIN")
 	workflow_runCmd.Flags().StringArrayP("raw-field", "f", []string{}, "Add a string parameter in `key=value` format")

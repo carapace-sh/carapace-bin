@@ -11,12 +11,14 @@ import (
 var issue_listCmd = &cobra.Command{
 	Use:     "list",
 	Short:   "List issues in a repository",
+	GroupID: "general",
 	Aliases: []string{"ls"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_listCmd).Standalone()
+
 	issue_listCmd.Flags().String("app", "", "Filter by GitHub App author")
 	issue_listCmd.Flags().StringP("assignee", "a", "", "Filter by assignee")
 	issue_listCmd.Flags().StringP("author", "A", "", "Filter by author")

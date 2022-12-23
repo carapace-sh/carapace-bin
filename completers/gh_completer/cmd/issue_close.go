@@ -7,13 +7,15 @@ import (
 )
 
 var issue_closeCmd = &cobra.Command{
-	Use:   "close {<number> | <url>}",
-	Short: "Close issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "close {<number> | <url>}",
+	Short:   "Close issue",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_closeCmd).Standalone()
+
 	issue_closeCmd.Flags().StringP("comment", "c", "", "Leave a closing comment")
 	issue_closeCmd.Flags().StringP("reason", "r", "", "Reason for closing: {completed|not planned}")
 	issueCmd.AddCommand(issue_closeCmd)
