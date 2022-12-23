@@ -7,9 +7,10 @@ import (
 )
 
 var mr_reopenCmd = &cobra.Command{
-	Use:   "reopen",
-	Short: "Reopen merge requests",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "reopen [<id>... | <branch>...]",
+	Short:   "Reopen merge requests",
+	Aliases: []string{"open"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

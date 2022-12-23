@@ -8,9 +8,10 @@ import (
 )
 
 var label_createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "Create labels for repository/project",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "create [flags]",
+	Short:   "Create labels for repository/project",
+	Aliases: []string{"new"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

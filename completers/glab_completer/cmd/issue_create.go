@@ -7,9 +7,10 @@ import (
 )
 
 var issue_createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "Create an issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "create [flags]",
+	Short:   "Create an issue",
+	Aliases: []string{"new"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -23,6 +24,9 @@ func init() {
 	issue_createCmd.Flags().Int("linked-mr", 0, "The IID of a merge request in which to resolve all issues")
 	issue_createCmd.Flags().StringP("milestone", "m", "", "The global ID or title of a milestone to assign")
 	issue_createCmd.Flags().Bool("no-editor", false, "Don't open editor to enter description. If set to true, uses prompt. Default is false")
+	issue_createCmd.Flags().Bool("recover", false, "Save the options to a file if the issue fails to be created. If the file exists, the options will be loaded from the recovery file (EXPERIMENTAL)")
+	issue_createCmd.Flags().StringP("time-estimate", "e", "", "Set time estimate for the issue")
+	issue_createCmd.Flags().StringP("time-spent", "s", "", "Set time spent for the issue")
 	issue_createCmd.Flags().StringP("title", "t", "", "Supply a title for issue")
 	issue_createCmd.Flags().Bool("web", false, "continue issue creation with web interface")
 	issue_createCmd.Flags().IntP("weight", "w", 0, "The weight of the issue. Valid values are greater than or equal to 0.")

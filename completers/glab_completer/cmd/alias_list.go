@@ -6,7 +6,7 @@ import (
 )
 
 var alias_listCmd = &cobra.Command{
-	Use:   "list",
+	Use:   "list [flags]",
 	Short: "List the available aliases.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

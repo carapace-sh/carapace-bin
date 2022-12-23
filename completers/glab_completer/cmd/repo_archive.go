@@ -7,7 +7,7 @@ import (
 )
 
 var repo_archiveCmd = &cobra.Command{
-	Use:   "archive",
+	Use:   "archive <command> [flags]",
 	Short: "Get an archive of the repository.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -7,9 +7,10 @@ import (
 )
 
 var repo_contributorsCmd = &cobra.Command{
-	Use:   "contributors",
-	Short: "Get repository contributors list.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "contributors",
+	Short:   "Get repository contributors list.",
+	Aliases: []string{"users"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

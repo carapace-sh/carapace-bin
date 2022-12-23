@@ -7,7 +7,7 @@ import (
 )
 
 var release_uploadCmd = &cobra.Command{
-	Use:   "upload",
+	Use:   "upload <tag> [<files>...]",
 	Short: "Upload release asset files or links to GitLab Release",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

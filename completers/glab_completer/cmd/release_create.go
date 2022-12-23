@@ -7,7 +7,7 @@ import (
 )
 
 var release_createCmd = &cobra.Command{
-	Use:   "create",
+	Use:   "create <tag> [<files>...]",
 	Short: "Create a new or update a GitLab Release for a repository",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

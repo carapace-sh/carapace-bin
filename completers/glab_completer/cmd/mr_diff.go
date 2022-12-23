@@ -8,7 +8,7 @@ import (
 )
 
 var mr_diffCmd = &cobra.Command{
-	Use:   "diff",
+	Use:   "diff [<id> | <branch>]",
 	Short: "View changes in a merge request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

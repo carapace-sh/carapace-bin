@@ -7,8 +7,8 @@ import (
 )
 
 var repo_createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "Create a new GitLab project/repository",
+	Use:   "create [path] [flags]",
+	Short: "Create a new GitLab project/repository.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

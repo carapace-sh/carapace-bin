@@ -7,8 +7,8 @@ import (
 )
 
 var ci_deleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Delete a CI pipeline",
+	Use:   "delete <id> [flags]",
+	Short: "Delete a CI/CD pipeline",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 )
 
 var release_viewCmd = &cobra.Command{
-	Use:   "view",
+	Use:   "view <tag>",
 	Short: "View information about a GitLab Release",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

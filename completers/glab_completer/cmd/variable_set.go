@@ -7,9 +7,10 @@ import (
 )
 
 var variable_setCmd = &cobra.Command{
-	Use:   "set",
-	Short: "Create a new project or group variable",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "set <key> <value>",
+	Short:   "Create a new project or group variable",
+	Aliases: []string{"new", "create"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -6,9 +6,10 @@ import (
 )
 
 var repo_searchCmd = &cobra.Command{
-	Use:   "search",
-	Short: "Search for GitLab repositories and projects by name",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "search [flags]",
+	Short:   "Search for GitLab repositories and projects by name",
+	Aliases: []string{"find", "lookup"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

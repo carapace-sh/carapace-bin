@@ -7,7 +7,7 @@ import (
 )
 
 var mr_rebaseCmd = &cobra.Command{
-	Use:   "rebase",
+	Use:   "rebase [<id> | <branch>] [flags]",
 	Short: "Automatically rebase the source_branch of the merge request against its target_branch.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

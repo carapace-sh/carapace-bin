@@ -6,9 +6,10 @@ import (
 )
 
 var issue_board_createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "Create a project issue board.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "create [flags]",
+	Short:   "Create a project issue board.",
+	Aliases: []string{"new"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

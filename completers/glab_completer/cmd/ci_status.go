@@ -7,9 +7,10 @@ import (
 )
 
 var ci_statusCmd = &cobra.Command{
-	Use:   "status",
-	Short: "View a running CI pipeline on current or other branch specified",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "status [flags]",
+	Short:   "View a running CI/CD pipeline on current or other branch specified",
+	Aliases: []string{"stats"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

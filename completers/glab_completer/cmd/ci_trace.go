@@ -7,8 +7,8 @@ import (
 )
 
 var ci_traceCmd = &cobra.Command{
-	Use:   "trace",
-	Short: "Trace a CI job log in real time",
+	Use:   "trace [<job-id>] [flags]",
+	Short: "Trace a CI/CD job log in real time",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

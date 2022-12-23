@@ -7,9 +7,10 @@ import (
 )
 
 var mr_createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "Create new merge request",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "create",
+	Short:   "Create new merge request",
+	Aliases: []string{"new"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -33,7 +34,6 @@ func init() {
 	mr_createCmd.Flags().StringP("source-branch", "s", "", "The Branch you are creating the merge request. Default is the current branch.")
 	mr_createCmd.Flags().Bool("squash-before-merge", false, "Squash commits into a single commit when merging")
 	mr_createCmd.Flags().StringP("target-branch", "b", "", "The target or base branch into which you want your code merged")
-	mr_createCmd.Flags().String("target-project", "", "Add target project by id or OWNER/REPO or GROUP/NAMESPACE/REPO")
 	mr_createCmd.Flags().StringP("title", "t", "", "Supply a title for merge request")
 	mr_createCmd.Flags().BoolP("web", "w", false, "continue merge request creation on web browser")
 	mr_createCmd.Flags().Bool("wip", false, "Mark merge request as a work in progress. Alternative to --draft")

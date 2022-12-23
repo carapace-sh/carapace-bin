@@ -6,7 +6,7 @@ import (
 )
 
 var aliasCmd = &cobra.Command{
-	Use:   "alias",
+	Use:   "alias [command] [flags]",
 	Short: "Create, list and delete aliases",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

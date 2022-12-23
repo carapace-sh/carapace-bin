@@ -7,9 +7,10 @@ import (
 )
 
 var issue_unsubscribeCmd = &cobra.Command{
-	Use:   "unsubscribe",
-	Short: "Unsubscribe to an issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "unsubscribe <id>",
+	Short:   "Unsubscribe to an issue",
+	Aliases: []string{"unsub"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

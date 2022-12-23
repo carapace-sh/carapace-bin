@@ -7,9 +7,10 @@ import (
 )
 
 var variableCmd = &cobra.Command{
-	Use:   "variable",
-	Short: "Manage GitLab Project and Group Variables",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "variable",
+	Short:   "Manage GitLab Project and Group Variables",
+	Aliases: []string{"var"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
