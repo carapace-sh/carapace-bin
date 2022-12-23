@@ -13,5 +13,6 @@ var gpgKeyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gpgKeyCmd).Standalone()
+
 	rootCmd.AddCommand(gpgKeyCmd)
 }

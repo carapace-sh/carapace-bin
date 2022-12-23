@@ -10,12 +10,14 @@ import (
 var repo_listCmd = &cobra.Command{
 	Use:     "list [<owner>]",
 	Short:   "List repositories owned by user or organization",
+	GroupID: "general",
 	Aliases: []string{"ls"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(repo_listCmd).Standalone()
+
 	repo_listCmd.Flags().Bool("archived", false, "Show only archived repositories")
 	repo_listCmd.Flags().Bool("fork", false, "Show only forks")
 	repo_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")

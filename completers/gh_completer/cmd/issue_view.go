@@ -7,13 +7,15 @@ import (
 )
 
 var issue_viewCmd = &cobra.Command{
-	Use:   "view {<number> | <url>}",
-	Short: "View an issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "view {<number> | <url>}",
+	Short:   "View an issue",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_viewCmd).Standalone()
+
 	issue_viewCmd.Flags().BoolP("comments", "c", false, "View issue comments")
 	issue_viewCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	issue_viewCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")

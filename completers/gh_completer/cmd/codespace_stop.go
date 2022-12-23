@@ -15,6 +15,7 @@ var codespace_stopCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(codespace_stopCmd).Standalone()
+
 	codespace_stopCmd.Flags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_stopCmd.Flags().StringP("org", "o", "", "The `login` handle of the organization (admin-only)")
 	codespace_stopCmd.Flags().StringP("user", "u", "", "The `username` to stop codespace for (used with --org)")

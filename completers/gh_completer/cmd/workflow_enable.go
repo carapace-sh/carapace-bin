@@ -14,6 +14,7 @@ var workflow_enableCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(workflow_enableCmd).Standalone()
+
 	workflowCmd.AddCommand(workflow_enableCmd)
 
 	carapace.Gen(workflow_enableCmd).PositionalCompletion(

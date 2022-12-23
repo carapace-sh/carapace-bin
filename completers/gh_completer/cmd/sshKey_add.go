@@ -13,6 +13,7 @@ var sshKey_addCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sshKey_addCmd).Standalone()
+
 	sshKey_addCmd.Flags().StringP("title", "t", "", "Title for the new key")
 	sshKeyCmd.AddCommand(sshKey_addCmd)
 

@@ -7,13 +7,15 @@ import (
 )
 
 var pr_statusCmd = &cobra.Command{
-	Use:   "status",
-	Short: "Show status of relevant pull requests",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "status",
+	Short:   "Show status of relevant pull requests",
+	GroupID: "general",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(pr_statusCmd).Standalone()
+
 	pr_statusCmd.Flags().BoolP("conflict-status", "c", false, "Display the merge conflict status of each pull request")
 	pr_statusCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	pr_statusCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")

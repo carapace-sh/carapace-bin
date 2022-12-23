@@ -14,6 +14,7 @@ var codespace_jupyterCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(codespace_jupyterCmd).Standalone()
+
 	codespace_jupyterCmd.Flags().StringP("codespace", "c", "", "Name of the codespace")
 	codespaceCmd.AddCommand(codespace_jupyterCmd)
 

@@ -7,13 +7,15 @@ import (
 )
 
 var issue_deleteCmd = &cobra.Command{
-	Use:   "delete {<number> | <url>}",
-	Short: "Delete issue",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "delete {<number> | <url>}",
+	Short:   "Delete issue",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_deleteCmd).Standalone()
+
 	issue_deleteCmd.Flags().Bool("confirm", false, "confirm deletion without prompting")
 	issueCmd.AddCommand(issue_deleteCmd)
 

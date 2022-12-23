@@ -14,6 +14,7 @@ var run_cancelCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(run_cancelCmd).Standalone()
+
 	runCmd.AddCommand(run_cancelCmd)
 
 	carapace.Gen(run_cancelCmd).PositionalCompletion(

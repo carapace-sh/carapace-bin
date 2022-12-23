@@ -7,13 +7,15 @@ import (
 )
 
 var runCmd = &cobra.Command{
-	Use:   "run <command>",
-	Short: "View details about workflow runs",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "run <command>",
+	Short:   "View details about workflow runs",
+	GroupID: "actions",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(runCmd).Standalone()
+
 	runCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	rootCmd.AddCommand(runCmd)
 

@@ -14,6 +14,7 @@ var codespace_logsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(codespace_logsCmd).Standalone()
+
 	codespace_logsCmd.Flags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_logsCmd.Flags().BoolP("follow", "f", false, "Tail and follow the logs")
 	codespaceCmd.AddCommand(codespace_logsCmd)

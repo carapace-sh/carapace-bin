@@ -13,6 +13,7 @@ var extension_browseCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(extension_browseCmd).Standalone()
+
 	extension_browseCmd.Flags().Bool("debug", false, "log to /tmp/extBrowse-*")
 	extensionCmd.AddCommand(extension_browseCmd)
 }

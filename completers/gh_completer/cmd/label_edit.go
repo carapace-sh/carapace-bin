@@ -15,6 +15,7 @@ var label_editCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(label_editCmd).Standalone()
+
 	label_editCmd.Flags().StringP("color", "c", "", "Color of the label")
 	label_editCmd.Flags().StringP("description", "d", "", "Description of the label")
 	label_editCmd.Flags().StringP("name", "n", "", "New name of the label")

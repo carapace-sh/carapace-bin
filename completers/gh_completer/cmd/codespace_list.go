@@ -16,11 +16,13 @@ var codespace_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(codespace_listCmd).Standalone()
+
 	codespace_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	codespace_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	codespace_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of codespaces to list")
 	codespace_listCmd.Flags().StringP("org", "o", "", "The `login` handle of the organization to list codespaces for (admin-only)")
-	codespace_listCmd.Flags().StringP("repo", "r", "", "Repository name with owner: user/repo")
+	codespace_listCmd.Flags().StringP("repo", "R", "", "Repository name with owner: user/repo")
+	codespace_listCmd.Flags().StringP("repo-deprecated", "r", "", "(Deprecated) Shorthand for --repo")
 	codespace_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	codespace_listCmd.Flags().StringP("user", "u", "", "The `username` to list codespaces for (used with --org)")
 	codespaceCmd.AddCommand(codespace_listCmd)

@@ -14,6 +14,7 @@ var repo_deployKey_deleteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(repo_deployKey_deleteCmd).Standalone()
+
 	repo_deployKeyCmd.AddCommand(repo_deployKey_deleteCmd)
 
 	carapace.Gen(repo_deployKey_deleteCmd).PositionalCompletion(

@@ -13,5 +13,6 @@ var searchCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(searchCmd).Standalone()
+
 	rootCmd.AddCommand(searchCmd)
 }

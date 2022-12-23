@@ -15,6 +15,7 @@ var codespace_ports_forwardCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(codespace_ports_forwardCmd).Standalone()
+
 	codespace_portsCmd.AddCommand(codespace_ports_forwardCmd)
 
 	carapace.Gen(codespace_ports_forwardCmd).PositionalCompletion(

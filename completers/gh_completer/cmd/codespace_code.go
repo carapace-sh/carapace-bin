@@ -14,6 +14,7 @@ var codespace_codeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(codespace_codeCmd).Standalone()
+
 	codespace_codeCmd.Flags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_codeCmd.Flags().Bool("insiders", false, "Use the insiders version of Visual Studio Code")
 	codespace_codeCmd.Flags().BoolP("web", "w", false, "Use the web version of Visual Studio Code")

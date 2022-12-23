@@ -7,13 +7,15 @@ import (
 )
 
 var release_deleteCmd = &cobra.Command{
-	Use:   "delete <tag>",
-	Short: "Delete a release",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "delete <tag>",
+	Short:   "Delete a release",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(release_deleteCmd).Standalone()
+
 	release_deleteCmd.Flags().Bool("cleanup-tag", false, "Delete the specified tag in addition to its release")
 	release_deleteCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt")
 	releaseCmd.AddCommand(release_deleteCmd)

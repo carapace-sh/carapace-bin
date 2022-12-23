@@ -14,5 +14,6 @@ var extensionCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(extensionCmd).Standalone()
+
 	rootCmd.AddCommand(extensionCmd)
 }

@@ -14,5 +14,6 @@ var repo_deployKey_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(repo_deployKey_listCmd).Standalone()
+
 	repo_deployKeyCmd.AddCommand(repo_deployKey_listCmd)
 }

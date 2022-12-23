@@ -15,6 +15,7 @@ var statusCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(statusCmd).Standalone()
+
 	statusCmd.Flags().StringSliceP("exclude", "e", []string{}, "Comma separated list of repos to exclude in owner/name format")
 	statusCmd.Flags().StringP("org", "o", "", "Report status within an organization")
 	rootCmd.AddCommand(statusCmd)

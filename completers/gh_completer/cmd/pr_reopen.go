@@ -7,13 +7,15 @@ import (
 )
 
 var pr_reopenCmd = &cobra.Command{
-	Use:   "reopen {<number> | <url> | <branch>}",
-	Short: "Reopen a pull request",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "reopen {<number> | <url> | <branch>}",
+	Short:   "Reopen a pull request",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(pr_reopenCmd).Standalone()
+
 	pr_reopenCmd.Flags().StringP("comment", "c", "", "Add a reopening comment")
 	prCmd.AddCommand(pr_reopenCmd)
 

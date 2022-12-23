@@ -21,6 +21,11 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "core", Title: "Core commands"},
+		&cobra.Group{ID: "actions", Title: "GitHub Actions commands"},
+	)
+
 	rootCmd.PersistentFlags().Bool("help", false, "Show help for command")
 	rootCmd.Flags().Bool("version", false, "Show gh version")
 

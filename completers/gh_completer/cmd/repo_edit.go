@@ -7,15 +7,18 @@ import (
 )
 
 var repo_editCmd = &cobra.Command{
-	Use:   "edit [<repository>]",
-	Short: "Edit repository settings",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "edit [<repository>]",
+	Short:   "Edit repository settings",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(repo_editCmd).Standalone()
+
 	repo_editCmd.Flags().StringSlice("add-topic", []string{}, "Add repository topic")
 	repo_editCmd.Flags().Bool("allow-forking", false, "Allow forking of an organization repository")
+	repo_editCmd.Flags().Bool("allow-update-branch", false, "Allow a pull request head branch that is behind its base branch to be updated")
 	repo_editCmd.Flags().String("default-branch", "", "Set the default branch `name` for the repository")
 	repo_editCmd.Flags().Bool("delete-branch-on-merge", false, "Delete head branch when pull requests are merged")
 	repo_editCmd.Flags().StringP("description", "d", "", "Description of the repository")

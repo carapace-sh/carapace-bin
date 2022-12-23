@@ -15,6 +15,7 @@ var extension_execCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(extension_execCmd).Standalone()
+
 	extensionCmd.AddCommand(extension_execCmd)
 
 	carapace.Gen(extension_execCmd).PositionalCompletion(

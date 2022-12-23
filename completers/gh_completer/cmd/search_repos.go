@@ -16,6 +16,7 @@ var search_reposCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(search_reposCmd).Standalone()
+
 	search_reposCmd.Flags().Bool("archived", false, "Filter based on archive state")
 	search_reposCmd.Flags().String("created", "", "Filter based on created at `date`")
 	search_reposCmd.Flags().String("followers", "", "Filter based on `number` of followers")
@@ -35,7 +36,7 @@ func init() {
 	search_reposCmd.Flags().String("size", "", "Filter on a size range, in kilobytes")
 	search_reposCmd.Flags().String("sort", "best-match", "Sort fetched repositories: {forks|help-wanted-issues|stars|updated}")
 	search_reposCmd.Flags().String("stars", "", "Filter on `number` of stars")
-	search_reposCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template")
+	search_reposCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	search_reposCmd.Flags().StringSlice("topic", []string{}, "Filter on topic")
 	search_reposCmd.Flags().String("updated", "", "Filter on last updated at `date`")
 	search_reposCmd.Flags().StringSlice("visibility", []string{}, "Filter based on visibility: {public|private|internal}")

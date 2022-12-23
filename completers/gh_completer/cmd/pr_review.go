@@ -7,13 +7,15 @@ import (
 )
 
 var pr_reviewCmd = &cobra.Command{
-	Use:   "review [<number> | <url> | <branch>]",
-	Short: "Add a review to a pull request",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "review [<number> | <url> | <branch>]",
+	Short:   "Add a review to a pull request",
+	GroupID: "targeted",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(pr_reviewCmd).Standalone()
+
 	pr_reviewCmd.Flags().BoolP("approve", "a", false, "Approve pull request")
 	pr_reviewCmd.Flags().StringP("body", "b", "", "Specify the body of a review")
 	pr_reviewCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
