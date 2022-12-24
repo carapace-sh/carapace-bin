@@ -18,6 +18,11 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("debug", "debug", false, "passing this flag will allow writing debug output to debug.log")
+	rootCmd.Flags().StringP("config", "c", "", "use this configuration file (default is $XDG_CONFIG_HOME/gh-dash/config.yml)")
+	rootCmd.Flags().Bool("debug", false, "passing this flag will allow writing debug output to debug.log")
+	rootCmd.Flags().BoolP("help", "h", false, "help for gh-dash")
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"config": carapace.ActionFiles(),
+	})
 }
