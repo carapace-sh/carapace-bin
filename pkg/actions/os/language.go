@@ -224,5 +224,5 @@ func ActionLanguages() carapace.Action {
 		"za", "Zhuang: Chuang",
 		"zh", "Chinese",
 		"zu", "Zulu",
-	)
+	).Tag("languages")
 }

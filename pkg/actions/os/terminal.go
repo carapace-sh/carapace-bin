@@ -26,5 +26,5 @@ func ActionTerminals() carapace.Action {
 			vals = append(vals, key, value)
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	})
+	}).Tag("terminals")
 }

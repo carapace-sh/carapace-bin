@@ -26,5 +26,5 @@ func ActionMounts() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
-	})
+	}).Tag("mounts")
 }

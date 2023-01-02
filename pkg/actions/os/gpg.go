@@ -17,5 +17,5 @@ func ActionGpgKeyIds() carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(lines[:len(lines)-1]...)
 		})
-	})
+	}).Tag("gpg key ids")
 }

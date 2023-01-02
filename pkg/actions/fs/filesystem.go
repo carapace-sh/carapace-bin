@@ -37,5 +37,5 @@ func ActionFilesystemTypes() carapace.Action {
 		"vfat", "is an extended FAT filesystem used by Microsoft Windows95 and Windows NT.",
 		"xfs", "is a journaling filesystem, developed by SGI.",
 		"xiafs", "was designed and implemented to be a stable, safe filesystem by  extending  the  Minix filesystem code.",
-	)
+	).Tag("filesystem types")
 }

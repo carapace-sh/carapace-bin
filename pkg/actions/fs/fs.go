@@ -63,7 +63,7 @@ func ActionFileModesSymbolic() carapace.Action {
 				"t", "sticky", style.Magenta,
 			).Invoke(c).Filter(c.Parts).ToA()
 		}
-	})
+	}).Tag("symbolic filemodes")
 }
 
 // ActionFileModesNumeric completes numeric file modes
@@ -86,7 +86,7 @@ func ActionFileModesNumeric() carapace.Action {
 		} else {
 			return carapace.ActionValues()
 		}
-	})
+	}).Tag("numeric filemodes")
 }
 
 // ActionFileModes completes numeric or symbolic file modes

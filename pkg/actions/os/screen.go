@@ -29,5 +29,5 @@ func ActionScreens(connected bool) carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
-	})
+	}).Tag("screens")
 }

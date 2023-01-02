@@ -19,5 +19,5 @@ func ActionEnvironmentVariables() carapace.Action {
 			vals = append(vals, strings.SplitN(e, "=", 2)...)
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	})
+	}).Tag("environment variables")
 }

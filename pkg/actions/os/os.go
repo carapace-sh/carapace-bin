@@ -17,7 +17,7 @@ func ActionShells() carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[:len(lines)-1]...)
 		})
-	})
+	}).Tag("shells")
 }
 
 // ActionCgroups completes cgroup names
@@ -39,5 +39,5 @@ func ActionCgroups() carapace.Action {
 		"hugetlb", "This supports limiting the use of huge pages by cgroups.",
 		"pids", "This controller permits limiting the number of process  that  may  be  created  in  a cgroup",
 		"rdma", "The  RDMA  controller  permits  limiting  the  use  of RDMA/IB-specific resources per cgroup.",
-	)
+	).Tag("cgroups")
 }

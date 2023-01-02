@@ -30,7 +30,7 @@ func ActionKernelModulesLoaded() carapace.Action {
 			vals = append(vals, strings.Fields(line)[0])
 		}
 		return carapace.ActionValues(vals...)
-	})
+	}).Tag("kernel modules")
 }
 
 type KernelModulesOpts struct {
@@ -69,7 +69,7 @@ func ActionKernelModules(opts KernelModulesOpts) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		}
 		return carapace.ActionValues(vals...)
-	})
+	}).Tag("kernel modules")
 }
 
 // ActionKernelReleases completes kernel releases
@@ -90,5 +90,5 @@ func ActionKernelReleases(basedir string) carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
-	})
+	}).Tag("kernel releases")
 }

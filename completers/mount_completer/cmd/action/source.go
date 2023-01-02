@@ -31,9 +31,9 @@ func ActionSources() carapace.Action {
 				case "UUID":
 					return fs.ActionUuids()
 				case "PARTLABEL":
-					return fs.ActionPartLabels()
+					return fs.ActionPartitionLabels()
 				case "PARTUUID":
-					return fs.ActionPartUuids()
+					return fs.ActionPartitionUuids()
 				case "ID":
 					// TODO
 					return carapace.ActionValues()

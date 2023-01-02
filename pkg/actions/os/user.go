@@ -47,7 +47,7 @@ func ActionUsers() carapace.Action {
 			}
 		}
 		return carapace.ActionStyledValuesDescribed(users...)
-	})
+	}).Tag("users")
 }
 
 // ActionUserGroup completes system user:group separately

@@ -27,6 +27,5 @@ func ActionSessionIds() carapace.Action {
 		}
 
 		return carapace.ActionValuesDescribed(vals...)
-	})
-
+	}).Tag("session ids")
 }

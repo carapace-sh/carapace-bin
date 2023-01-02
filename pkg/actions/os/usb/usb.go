@@ -27,7 +27,7 @@ func ActionDeviceNumbers() carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
+	}).Tag("usb device numbers")
 }
 
 // ActionProductNumbers completes usb products
@@ -48,5 +48,5 @@ func ActionProductNumbers() carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
+	}).Tag("usb product numbers")
 }

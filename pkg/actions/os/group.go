@@ -37,7 +37,7 @@ func ActionGroups() carapace.Action {
 			}
 		}
 		return carapace.ActionStyledValuesDescribed(groups...)
-	})
+	}).Tag("groups")
 }
 
 // ActionGroupMembers completes system group members

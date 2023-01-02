@@ -315,5 +315,5 @@ func ActionLocales() carapace.Action {
 			"yo_NG", "Yoruba (Nigeria)",
 			"zu_za", "zulu (south africa)",
 		)
-	})
+	}).Tag("locales")
 }

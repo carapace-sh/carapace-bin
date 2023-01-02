@@ -58,11 +58,11 @@ func ActionLabels() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	})
+	}).Tag("labels")
 }
 
-// ActionPartLabels completes partition labels
-func ActionPartLabels() carapace.Action {
+// ActionPartitionLabels completes partition labels
+func ActionPartitionLabels() carapace.Action {
 	return actionBlockdevices(func(blockdevices []blockdevice) carapace.Action {
 		vals := make([]string, 0)
 		for _, b := range blockdevices {
@@ -71,7 +71,7 @@ func ActionPartLabels() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	})
+	}).Tag("partition labels")
 }
 
 // ActionUuids completes disk uuids
@@ -84,11 +84,11 @@ func ActionUuids() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	})
+	}).Tag("uuids")
 }
 
-// ActionPartUuids completes partition uuids
-func ActionPartUuids() carapace.Action {
+// ActionPartitionUuids completes partition uuids
+func ActionPartitionUuids() carapace.Action {
 	return actionBlockdevices(func(blockdevices []blockdevice) carapace.Action {
 		vals := make([]string, 0)
 		for _, b := range blockdevices {
@@ -97,5 +97,5 @@ func ActionPartUuids() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	})
+	}).Tag("partition uuids")
 }

@@ -30,5 +30,5 @@ func ActionSoundCards() carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
+	}).Tag("soundcards")
 }

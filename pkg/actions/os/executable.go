@@ -24,7 +24,7 @@ func ActionPathExecutables() carapace.Action {
 			batch = append(batch, actionDirectoryExecutables(dirs[i], c.CallbackValue, manDescriptions))
 		}
 		return batch.ToA()
-	})
+	}).Tag("path executables")
 }
 
 func actionDirectoryExecutables(dir string, prefix string, manDescriptions map[string]string) carapace.Action {

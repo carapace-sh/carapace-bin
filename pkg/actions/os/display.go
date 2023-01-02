@@ -23,5 +23,5 @@ func ActionDisplays() carapace.Action {
 			}
 			return carapace.ActionValues(vals...)
 		})
-	})
+	}).Tag("displays")
 }
