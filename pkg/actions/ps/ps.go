@@ -48,7 +48,7 @@ func ActionKillSignals() carapace.Action {
 			"XCPU", "CPU time limit exceeded", styles.CarapaceBin.KillSignalCore,
 			"XFSZ", "File size limit exceeded", styles.CarapaceBin.KillSignalCore,
 		)
-	})
+	}).Tag("kill signals")
 }
 
 // ActionProcessExecutables completes executable names of current processes
@@ -66,7 +66,7 @@ func ActionProcessExecutables() carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(executables...)
 		}
-	})
+	}).Tag("process executables")
 }
 
 // ActionProcessIds completes proces IDs
@@ -84,7 +84,7 @@ func ActionProcessIds() carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(ids...)
 		}
-	})
+	}).Tag("process ids")
 }
 
 // ActionProcessStates completes linux process states
@@ -102,5 +102,5 @@ func ActionProcessStates() carapace.Action {
 		"X", "dead (should never be seen)",
 		"Z", "defunct (zombie) process, terminated but not reaped by its parent",
 		"t", "stopped by debugger during the tracing",
-	)
+	).Tag("process states")
 }
