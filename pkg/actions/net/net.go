@@ -17,7 +17,7 @@ import (
 //	pihole
 func ActionHosts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		vals := []string{}
+		batch := carapace.Batch()
 		if file, err := c.Abs("~/.ssh/known_hosts"); err == nil {
 			if content, err := os.ReadFile(file); err == nil {
 				r := regexp.MustCompile(`^(?P<host>[^ ,#]+)`)
@@ -26,11 +26,11 @@ func ActionHosts() carapace.Action {
 				for _, entry := range strings.Split(string(content), "\n") {
 					if r.MatchString(entry) {
 						if host := r.FindStringSubmatch(entry)[0]; rIPv4.MatchString(host) {
-							vals = append(vals, host, style.Default)
+							batch = append(batch, carapace.ActionStyledValues(host, style.Default).Tag("ipv4 addresses"))
 						} else if rIPv6.MatchString(host) {
-							vals = append(vals, host, style.Bold)
+							batch = append(batch, carapace.ActionStyledValues(host, style.Bold).Tag("ipv6 addresses"))
 						} else {
-							vals = append(vals, host, style.Blue)
+							batch = append(batch, carapace.ActionStyledValues(host, style.Blue).Tag("hostnames"))
 						}
 					}
 				}
@@ -38,7 +38,7 @@ func ActionHosts() carapace.Action {
 				return carapace.ActionMessage(err.Error())
 			}
 		}
-		return carapace.ActionStyledValues(vals...)
+		return batch.ToA()
 	})
 }
 
@@ -144,7 +144,7 @@ func ActionDevices(includedDevices IncludedDevices) carapace.Action {
 			})
 		}
 		return carapace.ActionMessage("neither nmcli nor ifconfig available")
-	})
+	}).Tag("network devices")
 }
 
 // ActionConnections completes stored network connections
@@ -163,7 +163,7 @@ func ActionConnections() carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
+	}).Tag("network connections")
 }
 
 // ActionBssids completes BSSID's of local wifi networks
@@ -185,7 +185,7 @@ func ActionBssids() carapace.Action {
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
-	})
+	}).Tag("bssids")
 }
 
 // ActionSsids completes SSID's of local wifi networks
@@ -207,7 +207,7 @@ func ActionSsids() carapace.Action {
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
-	})
+	}).Tag("ssids")
 }
 
 func styleForBars(s string) string {

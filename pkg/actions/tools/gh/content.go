@@ -40,7 +40,7 @@ func ActionContents(opts ContentOpts) carapace.Action {
 				if content.Type == "dir" {
 					name = content.Name + "/"
 				}
-				vals = append(vals, name, style.ForPathExt(name))
+				vals = append(vals, name, style.ForPathExt(name, c))
 			}
 			return carapace.ActionStyledValues(vals...)
 		})

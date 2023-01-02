@@ -870,7 +870,7 @@ func ActionFilenameExtensions() carapace.Action {
 		"zip", "Zip (file format)",
 		"zrx", "REXX scripting language for ZOC_(software)",
 		"zs", "Script for Minecraft mod MineTweaker and CraftTweaker",
-	).StyleF(func(s string) string {
-		return style.ForPathExt("." + s)
+	).StyleF(func(s string, sc style.Context) string {
+		return style.ForPathExt("."+s, sc)
 	})
 }

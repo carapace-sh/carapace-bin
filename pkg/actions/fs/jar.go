@@ -27,7 +27,7 @@ func ActionJarFileClasses(file string) carapace.Action {
 					vals = append(vals, name)
 				}
 			}
-			return carapace.ActionValues(vals...).Style(style.ForPathExt(".class"))
+			return carapace.ActionValues(vals...).Style(style.ForPathExt(".class", c))
 		}
 	})
 }

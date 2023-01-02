@@ -123,7 +123,7 @@ func ActionContainerPath() carapace.Action {
 
 					vals := make([]string, 0)
 					for _, path := range lines[:len(lines)-1] {
-						vals = append(vals, path, style.ForPathExt(path))
+						vals = append(vals, path, style.ForPathExt(path, c))
 					}
 					return carapace.ActionStyledValues(vals...)
 				})

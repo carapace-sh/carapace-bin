@@ -54,8 +54,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"crawler":  carapace.ActionFiles(),
 		"filename": carapace.ActionFiles(),
-		"format": carapace.ActionValues("json", "epub", "text", "web", "docx", "mobi", "pdf", "rtf", "txt", "azw3", "fb2", "lit", "lrf", "oeb", "pdb", "rb", "snb", "tcr").StyleF(func(s string) string {
-			return style.ForPathExt("." + s)
+		"format": carapace.ActionValues("json", "epub", "text", "web", "docx", "mobi", "pdf", "rtf", "txt", "azw3", "fb2", "lit", "lrf", "oeb", "pdb", "rb", "snb", "tcr").StyleF(func(s string, sc style.Context) string {
+			return style.ForPathExt("."+s, sc)
 		}),
 		"output": carapace.ActionDirectories(),
 	})

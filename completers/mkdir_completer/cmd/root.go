@@ -17,6 +17,8 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
+	carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.Flags().BoolS("Z", "Z", false, "set SELinux security context of each created directory to the default type")
 	rootCmd.Flags().String("context", "", "like -Z, or if CTX is specified then set the SELinux or SMACK security context to CTX")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")

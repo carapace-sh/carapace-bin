@@ -17,7 +17,7 @@ func ActionLanguages() carapace.Action {
 				if len(splitted) == 1 {
 					values = append(values, splitted[0], "", style.Default)
 				} else if len(splitted) > 1 {
-					values = append(values, splitted[0], splitted[1], style.ForPathExt("."+strings.SplitN(splitted[1], ",", 2)[0]))
+					values = append(values, splitted[0], splitted[1], style.ForPathExt("."+strings.SplitN(splitted[1], ",", 2)[0], c))
 				}
 			}
 			return carapace.ActionStyledValuesDescribed(values...)

@@ -44,7 +44,7 @@ func init() {
 	style.Register("gh", &Gh)
 }
 
-func (_gh *gh) ForState(s string) string {
+func (_gh *gh) ForState(s string, _ style.Context) string {
 	switch s {
 	case "closed":
 		return _gh.StateClosed
