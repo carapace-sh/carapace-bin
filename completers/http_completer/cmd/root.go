@@ -224,7 +224,7 @@ func ActionRequestItem() carapace.Action {
 
 		headers := http.ActionRequestHeaderNames().Invoke(c).Suffix(":") // use full context
 		return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
-			return ActionSeparators()
+			return ActionSeparators().Style(style.Blue)
 		}).Invoke(context).Merge(headers).ToA()
 	})
 }
@@ -238,5 +238,5 @@ func ActionSeparators() carapace.Action {
 		"@", "Form file fields (only with --form or --multipart)",
 		"=@", "A data field like '=', but takes a file path and embeds its content",
 		":=@", "A raw JSON field like ':=', but takes a file path and embeds its content",
-	)
+	).Tag("separators")
 }

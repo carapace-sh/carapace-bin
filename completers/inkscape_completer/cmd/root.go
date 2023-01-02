@@ -87,8 +87,8 @@ func init() {
 		"display":            os.ActionDisplays(),
 		"export-filename":    carapace.ActionFiles(),
 		"export-pdf-version": carapace.ActionValues("1.4", "1.5"),
-		"export-type": carapace.ActionValues("svg", "png", "ps", "eps", "pdf", "emf", "wmf", "xaml").StyleF(func(s string) string {
-			return style.ForPathExt("." + s)
+		"export-type": carapace.ActionValues("svg", "png", "ps", "eps", "pdf", "emf", "wmf", "xaml").StyleF(func(s string, sc style.Context) string {
+			return style.ForPathExt("."+s, sc)
 		}),
 	})
 

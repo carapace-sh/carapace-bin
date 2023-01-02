@@ -3,6 +3,7 @@ package http
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/styles"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 // ActionStatusCodes completes http status codes
@@ -68,7 +69,7 @@ func ActionStatusCodes() carapace.Action {
 		"508", "Loop Detected",
 		"510", "Not Extended",
 		"511", "Network Authentication Required",
-	).StyleF(func(s string) string {
+	).StyleF(func(s string, _ style.Context) string {
 		switch []rune(s)[0] {
 		case '1':
 			return styles.CarapaceBin.HttpStatusInformational

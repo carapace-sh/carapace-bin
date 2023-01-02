@@ -40,10 +40,10 @@ func ActionBlockDevices() carapace.Action {
 	return actionBlockdevices(func(blockdevices []blockdevice) carapace.Action {
 		vals := make([]string, 0)
 		for _, b := range blockdevices {
-			vals = append(vals, b.Path, fmt.Sprintf("%v %v", b.Size, b.Parttypename), style.ForPath(b.Path))
+			vals = append(vals, b.Path, fmt.Sprintf("%v %v", b.Size, b.Parttypename))
 		}
-		return carapace.ActionStyledValuesDescribed(vals...)
-	})
+		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
+	}).Tag("block devices")
 }
 
 // TODO add examples to actions

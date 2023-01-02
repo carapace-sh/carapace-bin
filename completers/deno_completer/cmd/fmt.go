@@ -29,8 +29,8 @@ func init() {
 
 	carapace.Gen(fmtCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
-		"ext": carapace.ActionValues("ts", "tsx", "js", "jsx", "md", "json", "jsonc").StyleF(func(s string) string {
-			return style.ForPathExt("." + s)
+		"ext": carapace.ActionValues("ts", "tsx", "js", "jsx", "md", "json", "jsonc").StyleF(func(s string, sc style.Context) string {
+			return style.ForPathExt("."+s, sc)
 		}),
 		"options-prose-wrap": carapace.ActionValues("always", "never", "preserve").StyleF(style.ForKeyword),
 	})

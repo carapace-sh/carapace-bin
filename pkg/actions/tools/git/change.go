@@ -43,9 +43,9 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 								return carapace.ActionMessage(err.Error())
 							} else {
 								if status := line[:2]; strings.Contains(status, "D") { // deleted
-									untracked = append(untracked, relativePath, status, style.ForPathExt(relativePath))
+									untracked = append(untracked, relativePath, status, style.ForPathExt(relativePath, c))
 								} else {
-									untracked = append(untracked, relativePath, status, style.ForPath(relativePath))
+									untracked = append(untracked, relativePath, status, style.ForPath(relativePath, c))
 								}
 							}
 						}

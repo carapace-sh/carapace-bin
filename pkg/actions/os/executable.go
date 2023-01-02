@@ -38,7 +38,7 @@ func actionDirectoryExecutables(dir string, prefix string, manDescriptions map[s
 						if description == "" {
 							description = manDescriptions[f.Name()]
 						}
-						vals = append(vals, f.Name(), description, style.ForPath(dir+"/"+f.Name()))
+						vals = append(vals, f.Name(), description, style.ForPath(dir+"/"+f.Name(), c))
 					}
 				}
 			}

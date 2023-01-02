@@ -115,18 +115,20 @@ func (o ContainerOpts) includeState(s string) bool {
 //	carapace-bin-bash-1 (exited)
 //	carapace-bin-elvish-1 (running)
 func ActionContainers(opts ContainerOpts) carapace.Action {
-	return actionExecCompose(opts.Files, "ps", "--format", "json", "--all")(func(output []byte) carapace.Action {
-		var containers []container
-		if err := json.Unmarshal(output, &containers); err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-
-		vals := make([]string, 0)
-		for _, c := range containers {
-			if opts.includeState(c.State) {
-				vals = append(vals, c.Name, c.State, style.ForKeyword(c.State))
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return actionExecCompose(opts.Files, "ps", "--format", "json", "--all")(func(output []byte) carapace.Action {
+			var containers []container
+			if err := json.Unmarshal(output, &containers); err != nil {
+				return carapace.ActionMessage(err.Error())
 			}
-		}
-		return carapace.ActionStyledValuesDescribed(vals...)
+
+			vals := make([]string, 0)
+			for _, container := range containers {
+				if opts.includeState(container.State) {
+					vals = append(vals, container.Name, container.State, style.ForKeyword(container.State, c))
+				}
+			}
+			return carapace.ActionStyledValuesDescribed(vals...)
+		})
 	})
 }
