@@ -237,7 +237,7 @@ func init() {
 			return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return os.ActionUsers().Invoke(c).Suffix(":").ToA()
+					return os.ActionUsers().Suffix(":")
 				default:
 					return carapace.ActionValues()
 				}
@@ -259,11 +259,11 @@ func init() {
 						switch len(c.Parts) {
 						case 0:
 							return carapace.Batch(
-								os.ActionUsers().Invoke(c).Suffix("@").ToA(),
-								net.ActionHosts().Invoke(c).Suffix(":").ToA(),
+								os.ActionUsers().Suffix("@"),
+								net.ActionHosts().Suffix(":"),
 							).ToA()
 						case 1:
-							return net.ActionHosts().Invoke(c).Suffix(":").ToA()
+							return net.ActionHosts().Suffix(":")
 						default:
 							return carapace.ActionValues()
 						}

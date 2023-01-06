@@ -6,9 +6,10 @@ import (
 )
 
 var builderCmd = &cobra.Command{
-	Use:   "builder",
-	Short: "Manage builds",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "builder",
+	Short:   "Manage builds",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

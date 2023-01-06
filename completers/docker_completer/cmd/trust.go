@@ -6,9 +6,10 @@ import (
 )
 
 var trustCmd = &cobra.Command{
-	Use:   "trust",
-	Short: "Manage trust on Docker images",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "trust",
+	Short:   "Manage trust on Docker images",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

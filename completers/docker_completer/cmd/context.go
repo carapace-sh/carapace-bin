@@ -6,9 +6,10 @@ import (
 )
 
 var contextCmd = &cobra.Command{
-	Use:   "context",
-	Short: "Manage contexts",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "context",
+	Short:   "Manage contexts",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

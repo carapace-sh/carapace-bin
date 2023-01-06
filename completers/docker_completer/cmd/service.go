@@ -6,9 +6,10 @@ import (
 )
 
 var serviceCmd = &cobra.Command{
-	Use:   "service",
-	Short: "Manage services",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "service",
+	Short:   "Manage services",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

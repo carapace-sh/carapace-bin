@@ -24,6 +24,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.AddGroup(&cobra.Group{ID: "management", Title: "Management Commands"})
+
 	rootCmd.Flags().String("config", "", "Location of client config files (default \"/home/user/.docker\")")
 	rootCmd.Flags().StringP("context", "c", "", "Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with \"docker context use\")")
 	rootCmd.Flags().BoolP("debug", "D", false, "Enable debug mode")
@@ -55,6 +57,7 @@ func init() {
 					pluginCmd := &cobra.Command{
 						Use:                name,
 						Short:              description,
+						GroupID:            "management",
 						Run:                func(cmd *cobra.Command, args []string) {},
 						DisableFlagParsing: true,
 					}
@@ -76,6 +79,11 @@ func init() {
 
 func rootAlias(cmd *cobra.Command, initCompletion func(cmd *cobra.Command, isAlias bool)) {
 	aliasCmd := *cmd
+	switch aliasCmd.Name() {
+	case "build", "run":
+	default:
+		aliasCmd.Hidden = true // hide legacy commands
+	}
 	rootCmd.AddCommand(&aliasCmd)
 
 	for i, c := range []*cobra.Command{cmd, &aliasCmd} {
