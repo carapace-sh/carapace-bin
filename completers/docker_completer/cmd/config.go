@@ -6,9 +6,10 @@ import (
 )
 
 var configCmd = &cobra.Command{
-	Use:   "config",
-	Short: "Manage Docker configs",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "config",
+	Short:   "Manage Docker configs",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

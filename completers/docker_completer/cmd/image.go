@@ -6,9 +6,10 @@ import (
 )
 
 var imageCmd = &cobra.Command{
-	Use:   "image",
-	Short: "Manage images",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "image",
+	Short:   "Manage images",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

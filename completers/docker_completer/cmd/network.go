@@ -6,9 +6,10 @@ import (
 )
 
 var networkCmd = &cobra.Command{
-	Use:   "network",
-	Short: "Manage networks",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "network",
+	Short:   "Manage networks",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var inspectCmd = &cobra.Command{
-	Use:   "inspect",
-	Short: "Return low-level information on Docker objects",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:    "inspect",
+	Short:  "Return low-level information on Docker objects",
+	Hidden: true, // TODO legacy
+	Run:    func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

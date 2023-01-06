@@ -6,9 +6,10 @@ import (
 )
 
 var containerCmd = &cobra.Command{
-	Use:   "container",
-	Short: "Manage containers",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "container",
+	Short:   "Manage containers",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

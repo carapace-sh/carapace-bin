@@ -6,9 +6,10 @@ import (
 )
 
 var volumeCmd = &cobra.Command{
-	Use:   "volume",
-	Short: "Manage volumes",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "volume",
+	Short:   "Manage volumes",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

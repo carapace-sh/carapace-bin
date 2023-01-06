@@ -6,9 +6,10 @@ import (
 )
 
 var secretCmd = &cobra.Command{
-	Use:   "secret",
-	Short: "Manage Docker secrets",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "secret",
+	Short:   "Manage Docker secrets",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

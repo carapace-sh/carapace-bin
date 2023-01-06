@@ -6,9 +6,10 @@ import (
 )
 
 var stackCmd = &cobra.Command{
-	Use:   "stack",
-	Short: "Manage Docker stacks",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "stack",
+	Short:   "Manage Docker stacks",
+	GroupID: "management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
