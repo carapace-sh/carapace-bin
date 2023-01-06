@@ -7,7 +7,7 @@ import (
 )
 
 var pauseCmd = &cobra.Command{
-	Use:   "pause",
+	Use:   "pause [SERVICE...]",
 	Short: "Pause services",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

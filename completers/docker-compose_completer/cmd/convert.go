@@ -7,9 +7,10 @@ import (
 )
 
 var convertCmd = &cobra.Command{
-	Use:   "convert",
-	Short: "Converts the compose file to platform's canonical format",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "convert [OPTIONS] [SERVICE...]",
+	Short:   "Converts the compose file to platform's canonical format",
+	Aliases: []string{"config"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -17,6 +18,7 @@ func init() {
 	convertCmd.Flags().String("format", "yaml", "Format the output. Values: [yaml | json]")
 	convertCmd.Flags().String("hash", "", "Print the service config hash, one per line.")
 	convertCmd.Flags().Bool("images", false, "Print the image names, one per line.")
+	convertCmd.Flags().Bool("no-consistency", false, "Don't check model consistency - warning: may produce invalid Compose output")
 	convertCmd.Flags().Bool("no-interpolate", false, "Don't interpolate environment variables.")
 	convertCmd.Flags().Bool("no-normalize", false, "Don't normalize compose model.")
 	convertCmd.Flags().StringP("output", "o", "", "Save to file (default to stdout)")

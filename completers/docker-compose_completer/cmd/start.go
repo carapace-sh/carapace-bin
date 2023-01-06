@@ -7,7 +7,7 @@ import (
 )
 
 var startCmd = &cobra.Command{
-	Use:   "start",
+	Use:   "start [SERVICE...]",
 	Short: "Start services",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

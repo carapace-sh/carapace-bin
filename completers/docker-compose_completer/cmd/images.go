@@ -7,13 +7,14 @@ import (
 )
 
 var imagesCmd = &cobra.Command{
-	Use:   "images",
+	Use:   "images [OPTIONS] [SERVICE...]",
 	Short: "List images used by the created containers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(imagesCmd).Standalone()
+	imagesCmd.Flags().String("format", "table", "Format the output. Values: [table | json].")
 	imagesCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")
 	rootCmd.AddCommand(imagesCmd)
 

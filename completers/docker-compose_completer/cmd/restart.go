@@ -7,8 +7,8 @@ import (
 )
 
 var restartCmd = &cobra.Command{
-	Use:   "restart",
-	Short: "Restart containers",
+	Use:   "restart [OPTIONS] [SERVICE...]",
+	Short: "Restart service containers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

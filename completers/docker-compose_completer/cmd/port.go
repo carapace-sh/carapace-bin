@@ -7,7 +7,7 @@ import (
 )
 
 var portCmd = &cobra.Command{
-	Use:   "port",
+	Use:   "port [OPTIONS] SERVICE PRIVATE_PORT",
 	Short: "Print the public port for a port binding.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

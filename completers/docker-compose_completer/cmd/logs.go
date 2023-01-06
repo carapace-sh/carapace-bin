@@ -7,7 +7,7 @@ import (
 )
 
 var logsCmd = &cobra.Command{
-	Use:   "logs",
+	Use:   "logs [OPTIONS] [SERVICE...]",
 	Short: "View output from containers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -20,6 +20,7 @@ func init() {
 	logsCmd.Flags().String("since", "", "Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)")
 	logsCmd.Flags().String("tail", "all", "Number of lines to show from the end of the logs for each container.")
 	logsCmd.Flags().BoolP("timestamps", "t", false, "Show timestamps.")
+	logsCmd.Flags().String("until", "", "Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)")
 	rootCmd.AddCommand(logsCmd)
 
 	carapace.Gen(logsCmd).PositionalAnyCompletion(

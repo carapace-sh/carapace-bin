@@ -7,7 +7,7 @@ import (
 )
 
 var unpauseCmd = &cobra.Command{
-	Use:   "unpause",
+	Use:   "unpause [SERVICE...]",
 	Short: "Unpause services",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

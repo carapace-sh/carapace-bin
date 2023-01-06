@@ -6,7 +6,7 @@ import (
 )
 
 var downCmd = &cobra.Command{
-	Use:   "down",
+	Use:   "down [OPTIONS]",
 	Short: "Stop and remove containers, networks",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -16,7 +16,7 @@ func init() {
 	downCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file.")
 	downCmd.Flags().String("rmi", "", "Remove images used by services. \"local\" remove only images that don't have a custom tag (\"local\"|\"all\")")
 	downCmd.Flags().IntP("timeout", "t", 10, "Specify a shutdown timeout in seconds")
-	downCmd.Flags().BoolP("volumes", "v", false, " Remove named volumes declared in the `volumes` section of the Compose file and anonymous volumes attached to containers.")
+	downCmd.Flags().BoolP("volumes", "v", false, "Remove named volumes declared in the `volumes` section of the Compose file and anonymous volumes attached to containers.")
 	rootCmd.AddCommand(downCmd)
 
 	carapace.Gen(downCmd).FlagCompletion(carapace.ActionMap{
