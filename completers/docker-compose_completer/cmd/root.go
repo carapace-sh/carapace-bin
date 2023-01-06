@@ -24,9 +24,13 @@ func init() {
 	rootCmd.Flags().String("env-file", "", "Specify an alternate environment file.")
 	rootCmd.Flags().StringArrayP("file", "f", []string{}, "Compose configuration files")
 	rootCmd.Flags().Bool("no-ansi", false, "Do not print ANSI control characters (DEPRECATED)")
+	rootCmd.Flags().Int("parallel", -1, "Control max parallelism, -1 for unlimited")
 	rootCmd.Flags().StringArray("profile", []string{}, "Specify a profile to enable")
 	rootCmd.Flags().String("project-directory", "", "Specify an alternate working directory")
 	rootCmd.Flags().StringP("project-name", "p", "", "Project name")
+	rootCmd.Flags().Bool("verbose", false, "Show more output")
+	rootCmd.Flags().BoolP("version", "v", false, "Show the Docker Compose version information")
+	rootCmd.Flags().String("workdir", "", "DEPRECATED! USE --project-directory INSTEAD.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"ansi":              carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),

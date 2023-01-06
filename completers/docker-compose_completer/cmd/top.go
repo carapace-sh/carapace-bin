@@ -7,7 +7,7 @@ import (
 )
 
 var topCmd = &cobra.Command{
-	Use:   "top",
+	Use:   "top [SERVICES...]",
 	Short: "Display the running processes",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

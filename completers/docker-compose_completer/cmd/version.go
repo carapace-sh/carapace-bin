@@ -6,7 +6,7 @@ import (
 )
 
 var versionCmd = &cobra.Command{
-	Use:   "version",
+	Use:   "version [OPTIONS]",
 	Short: "Show the Docker Compose version information",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

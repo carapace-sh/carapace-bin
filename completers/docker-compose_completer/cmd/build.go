@@ -3,11 +3,12 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
 var buildCmd = &cobra.Command{
-	Use:   "build",
+	Use:   "build [OPTIONS] [SERVICE...]",
 	Short: "Build or rebuild services",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -24,10 +25,12 @@ func init() {
 	buildCmd.Flags().String("progress", "auto", "Set type of progress output (auto, tty, plain, quiet)")
 	buildCmd.Flags().Bool("pull", false, "Always attempt to pull a newer version of the image.")
 	buildCmd.Flags().BoolP("quiet", "q", false, "Don't print anything to STDOUT")
+	buildCmd.Flags().String("ssh", "", "Set SSH authentications used when building service images. (use 'default' for using your default SSH Agent)")
 	rootCmd.AddCommand(buildCmd)
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
 		"progress": carapace.ActionValues("auto", "tty", "plain", "quiet"),
+		"pull":     carapace.ActionValues("always", "missing", "never").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(buildCmd).PositionalAnyCompletion(

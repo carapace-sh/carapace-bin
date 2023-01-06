@@ -7,7 +7,7 @@ import (
 )
 
 var rmCmd = &cobra.Command{
-	Use:   "rm",
+	Use:   "rm [OPTIONS] [SERVICE...]",
 	Short: "Removes stopped service containers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

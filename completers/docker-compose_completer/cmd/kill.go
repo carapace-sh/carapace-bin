@@ -8,13 +8,14 @@ import (
 )
 
 var killCmd = &cobra.Command{
-	Use:   "kill",
+	Use:   "kill [OPTIONS] [SERVICE...]",
 	Short: "Force stop service containers.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(killCmd).Standalone()
+	killCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file.")
 	killCmd.Flags().StringP("signal", "s", "SIGKILL", "SIGNAL to send to the container.")
 	rootCmd.AddCommand(killCmd)
 

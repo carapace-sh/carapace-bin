@@ -6,7 +6,7 @@ import (
 )
 
 var lsCmd = &cobra.Command{
-	Use:   "ls",
+	Use:   "ls [OPTIONS]",
 	Short: "List running compose projects",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(lsCmd).Standalone()
 	lsCmd.Flags().BoolP("all", "a", false, "Show all stopped Compose projects")
 	lsCmd.Flags().String("filter", "", "Filter output based on conditions provided.")
-	lsCmd.Flags().String("format", "pretty", "Format the output. Values: [pretty | json].")
+	lsCmd.Flags().String("format", "table", "Format the output. Values: [table | json].")
 	lsCmd.Flags().BoolP("quiet", "q", false, "Only display IDs.")
 	rootCmd.AddCommand(lsCmd)
 
