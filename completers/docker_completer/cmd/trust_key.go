@@ -13,6 +13,5 @@ var trust_keyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(trust_keyCmd).Standalone()
-
 	trustCmd.AddCommand(trust_keyCmd)
 }

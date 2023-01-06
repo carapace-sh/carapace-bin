@@ -13,6 +13,5 @@ var swarm_unlockCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(swarm_unlockCmd).Standalone()
-
 	swarmCmd.AddCommand(swarm_unlockCmd)
 }

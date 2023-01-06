@@ -7,14 +7,14 @@ import (
 )
 
 var service_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove one or more services",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm SERVICE [SERVICE...]",
+	Short:   "Remove one or more services",
+	Aliases: []string{"remove"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(service_rmCmd).Standalone()
-
 	serviceCmd.AddCommand(service_rmCmd)
 
 	carapace.Gen(service_rmCmd).PositionalAnyCompletion(docker.ActionServices())

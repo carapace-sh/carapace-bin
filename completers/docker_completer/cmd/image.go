@@ -14,6 +14,5 @@ var imageCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(imageCmd).Standalone()
-
 	rootCmd.AddCommand(imageCmd)
 }

@@ -7,15 +7,14 @@ import (
 )
 
 var volume_inspectCmd = &cobra.Command{
-	Use:   "inspect",
+	Use:   "inspect [OPTIONS] VOLUME [VOLUME...]",
 	Short: "Display detailed information on one or more volumes",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(volume_inspectCmd).Standalone()
-
-	volume_inspectCmd.Flags().StringP("format", "f", "", "Format the output using the given Go template")
+	volume_inspectCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
 	volumeCmd.AddCommand(volume_inspectCmd)
 
 	carapace.Gen(volume_inspectCmd).PositionalAnyCompletion(docker.ActionVolumes())

@@ -7,20 +7,15 @@ import (
 )
 
 var stack_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove one or more stacks",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm [OPTIONS] STACK [STACK...]",
+	Short:   "Remove one or more stacks",
+	Aliases: []string{"remove", "down"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(stack_rmCmd).Standalone()
-
-	stack_rmCmd.Flags().String("orchestrator", "", "Orchestrator to use (swarm|kubernetes|all)")
 	stackCmd.AddCommand(stack_rmCmd)
-
-	carapace.Gen(stack_rmCmd).FlagCompletion(carapace.ActionMap{
-		"orchestrator": carapace.ActionValues("swarm", "kubernetes", "all"),
-	})
 
 	carapace.Gen(stack_rmCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {

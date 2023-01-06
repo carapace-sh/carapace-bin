@@ -6,14 +6,13 @@ import (
 )
 
 var system_eventsCmd = &cobra.Command{
-	Use:   "events",
+	Use:   "events [OPTIONS]",
 	Short: "Get real time events from the server",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(system_eventsCmd).Standalone()
-
 	system_eventsCmd.Flags().StringP("filter", "f", "", "Filter output based on conditions provided")
 	system_eventsCmd.Flags().String("format", "", "Format the output using the given Go template")
 	system_eventsCmd.Flags().String("since", "", "Show all events created since timestamp")

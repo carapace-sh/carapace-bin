@@ -7,14 +7,13 @@ import (
 )
 
 var trust_signCmd = &cobra.Command{
-	Use:   "sign",
+	Use:   "sign IMAGE:TAG",
 	Short: "Sign an image",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(trust_signCmd).Standalone()
-
 	trust_signCmd.Flags().Bool("local", false, "Sign a locally tagged image")
 	trustCmd.AddCommand(trust_signCmd)
 

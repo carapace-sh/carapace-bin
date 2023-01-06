@@ -7,14 +7,13 @@ import (
 )
 
 var trust_inspectCmd = &cobra.Command{
-	Use:   "inspect",
+	Use:   "inspect IMAGE[:TAG] [IMAGE[:TAG]...]",
 	Short: "Return low-level information about keys and signatures",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(trust_inspectCmd).Standalone()
-
 	trust_inspectCmd.Flags().Bool("pretty", false, "Print the information in a human friendly format")
 	trustCmd.AddCommand(trust_inspectCmd)
 

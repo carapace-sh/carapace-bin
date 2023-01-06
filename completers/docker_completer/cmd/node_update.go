@@ -7,14 +7,13 @@ import (
 )
 
 var node_updateCmd = &cobra.Command{
-	Use:   "update",
+	Use:   "update [OPTIONS] NODE",
 	Short: "Update a node",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(node_updateCmd).Standalone()
-
 	node_updateCmd.Flags().String("availability", "", "Availability of the node (\"active\"|\"pause\"|\"drain\")")
 	node_updateCmd.Flags().String("label-add", "", "Add or update a node label (key=value)")
 	node_updateCmd.Flags().String("label-rm", "", "Remove a node label if exists")

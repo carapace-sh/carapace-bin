@@ -12,8 +12,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "docker",
-	Short: "Docker image and container command line interface",
+	Use:   "docker [OPTIONS] COMMAND [ARG...]",
+	Short: "A self-sufficient runtime for containers",
 	Long:  "https://docs.docker.com/compose/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -21,20 +21,20 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
 	rootCmd.AddGroup(&cobra.Group{ID: "management", Title: "Management Commands"})
-
-	rootCmd.Flags().String("config", "", "Location of client config files (default \"/home/user/.docker\")")
+	rootCmd.Flags().String("config", "/home/rsteube/.docker", "Location of client config files")
 	rootCmd.Flags().StringP("context", "c", "", "Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with \"docker context use\")")
 	rootCmd.Flags().BoolP("debug", "D", false, "Enable debug mode")
+	rootCmd.PersistentFlags().BoolP("help", "h", false, "Print usage")
 	rootCmd.Flags().StringP("host", "H", "", "Daemon socket(s) to connect to")
-	rootCmd.Flags().StringP("log-level", "l", "", "Set the logging level (\"debug\"|\"info\"|\"warn\"|\"error\"|\"fatal\") (default \"info\")")
+	rootCmd.Flags().StringP("log-level", "l", "info", "Set the logging level (\"debug\"|\"info\"|\"warn\"|\"error\"|\"fatal\")")
 	rootCmd.Flags().Bool("tls", false, "Use TLS; implied by --tlsverify")
-	rootCmd.Flags().String("tlscacert", "", "Trust certs signed only by this CA (default \"/home/user/.docker/ca.pem\")")
-	rootCmd.Flags().String("tlscert", "", "Path to TLS certificate file (default \"/home/user/.docker/cert.pem\")")
-	rootCmd.Flags().String("tlskey", "", "Path to TLS key file (default \"/home/user/.docker/key.pem\")")
+	rootCmd.Flags().String("tlscacert", "/home/rsteube/.docker/ca.pem", "Trust certs signed only by this CA")
+	rootCmd.Flags().String("tlscert", "/home/rsteube/.docker/cert.pem", "Path to TLS certificate file")
+	rootCmd.Flags().String("tlskey", "/home/rsteube/.docker/key.pem", "Path to TLS key file")
 	rootCmd.Flags().Bool("tlsverify", false, "Use TLS and verify the remote")
 	rootCmd.Flags().BoolP("version", "v", false, "Print version information and quit")
 

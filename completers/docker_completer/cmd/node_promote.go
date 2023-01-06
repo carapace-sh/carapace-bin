@@ -7,14 +7,13 @@ import (
 )
 
 var node_promoteCmd = &cobra.Command{
-	Use:   "promote",
+	Use:   "promote NODE [NODE...]",
 	Short: "Promote one or more nodes to manager in the swarm",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(node_promoteCmd).Standalone()
-
 	nodeCmd.AddCommand(node_promoteCmd)
 
 	carapace.Gen(node_promoteCmd).PositionalAnyCompletion(docker.ActionNodes())

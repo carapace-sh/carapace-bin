@@ -7,15 +7,13 @@ import (
 )
 
 var context_exportCmd = &cobra.Command{
-	Use:   "export",
-	Short: "Export a context to a tar or kubeconfig file",
+	Use:   "export [OPTIONS] CONTEXT [FILE|-]",
+	Short: "Export a context to a tar archive FILE or a tar stream on STDOUT.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(context_exportCmd).Standalone()
-
-	context_exportCmd.Flags().Bool("kubeconfig", false, "Export as a kubeconfig file")
 	contextCmd.AddCommand(context_exportCmd)
 
 	carapace.Gen(context_exportCmd).PositionalCompletion(

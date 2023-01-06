@@ -7,14 +7,13 @@ import (
 )
 
 var container_startCmd = &cobra.Command{
-	Use:   "start",
+	Use:   "start [OPTIONS] CONTAINER [CONTAINER...]",
 	Short: "Start one or more stopped containers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(container_startCmd).Standalone()
-
 	container_startCmd.Flags().BoolP("attach", "a", false, "Attach STDOUT/STDERR and forward signals")
 	container_startCmd.Flags().String("checkpoint", "", "Restore from this checkpoint")
 	container_startCmd.Flags().String("checkpoint-dir", "", "Use a custom checkpoint storage directory")

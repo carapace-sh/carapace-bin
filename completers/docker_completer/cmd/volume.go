@@ -6,7 +6,7 @@ import (
 )
 
 var volumeCmd = &cobra.Command{
-	Use:     "volume",
+	Use:     "volume COMMAND",
 	Short:   "Manage volumes",
 	GroupID: "management",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -14,6 +14,5 @@ var volumeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(volumeCmd).Standalone()
-
 	rootCmd.AddCommand(volumeCmd)
 }

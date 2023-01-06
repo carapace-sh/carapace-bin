@@ -6,19 +6,14 @@ import (
 )
 
 var stack_lsCmd = &cobra.Command{
-	Use:   "ls",
-	Short: "List stacks",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ls [OPTIONS]",
+	Short:   "List stacks",
+	Aliases: []string{"list"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(stack_lsCmd).Standalone()
-
-	stack_lsCmd.Flags().String("format", "", "Pretty-print stacks using a Go template")
-	stack_lsCmd.Flags().String("orchestrator", "", "Orchestrator to use (swarm|kubernetes|all)")
+	stack_lsCmd.Flags().String("format", "", "Format output using a custom template:")
 	stackCmd.AddCommand(stack_lsCmd)
-
-	carapace.Gen(stack_lsCmd).FlagCompletion(carapace.ActionMap{
-		"orchestrator": carapace.ActionValues("swarm", "kubernetes", "all"),
-	})
 }

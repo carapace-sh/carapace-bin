@@ -7,14 +7,13 @@ import (
 )
 
 var container_renameCmd = &cobra.Command{
-	Use:   "rename",
+	Use:   "rename CONTAINER NEW_NAME",
 	Short: "Rename a container",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(container_renameCmd).Standalone()
-
 	containerCmd.AddCommand(container_renameCmd)
 
 	rootAlias(container_renameCmd, func(cmd *cobra.Command, isAlias bool) {

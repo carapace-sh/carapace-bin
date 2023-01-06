@@ -7,14 +7,13 @@ import (
 )
 
 var trust_signer_removeCmd = &cobra.Command{
-	Use:   "remove",
+	Use:   "remove [OPTIONS] NAME REPOSITORY [REPOSITORY...]",
 	Short: "Remove a signer",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(trust_signer_removeCmd).Standalone()
-
 	trust_signer_removeCmd.Flags().BoolP("force", "f", false, "Do not prompt for confirmation before removing the most recent signer")
 	trust_signerCmd.AddCommand(trust_signer_removeCmd)
 
