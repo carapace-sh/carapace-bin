@@ -7,14 +7,13 @@ import (
 )
 
 var context_importCmd = &cobra.Command{
-	Use:   "import",
+	Use:   "import CONTEXT FILE|-",
 	Short: "Import a context from a tar or zip file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(context_importCmd).Standalone()
-
 	contextCmd.AddCommand(context_importCmd)
 
 	carapace.Gen(context_importCmd).PositionalCompletion(

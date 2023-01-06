@@ -7,14 +7,13 @@ import (
 )
 
 var image_tagCmd = &cobra.Command{
-	Use:   "tag",
+	Use:   "tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]",
 	Short: "Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(image_tagCmd).Standalone()
-
 	imageCmd.AddCommand(image_tagCmd)
 
 	rootAlias(image_tagCmd, func(cmd *cobra.Command, isAlias bool) {

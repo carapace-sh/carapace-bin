@@ -7,14 +7,15 @@ import (
 )
 
 var network_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove one or more networks",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm NETWORK [NETWORK...]",
+	Short:   "Remove one or more networks",
+	Aliases: []string{"remove"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(network_rmCmd).Standalone()
-
+	network_rmCmd.Flags().BoolP("force", "f", false, "Do not error if the network does not exist")
 	networkCmd.AddCommand(network_rmCmd)
 
 	carapace.Gen(network_rmCmd).PositionalAnyCompletion(docker.ActionNetworks())

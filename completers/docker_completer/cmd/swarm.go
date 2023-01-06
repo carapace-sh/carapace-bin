@@ -14,6 +14,5 @@ var swarmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(swarmCmd).Standalone()
-
 	rootCmd.AddCommand(swarmCmd)
 }

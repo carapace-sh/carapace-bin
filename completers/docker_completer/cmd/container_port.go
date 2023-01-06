@@ -7,14 +7,13 @@ import (
 )
 
 var container_portCmd = &cobra.Command{
-	Use:   "port",
+	Use:   "port CONTAINER [PRIVATE_PORT[/PROTO]]",
 	Short: "List port mappings or a specific mapping for the container",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(container_portCmd).Standalone()
-
 	containerCmd.AddCommand(container_portCmd)
 
 	rootAlias(container_portCmd, func(cmd *cobra.Command, isAlias bool) {

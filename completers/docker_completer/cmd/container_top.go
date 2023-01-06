@@ -7,14 +7,13 @@ import (
 )
 
 var container_topCmd = &cobra.Command{
-	Use:   "top",
+	Use:   "top CONTAINER [ps OPTIONS]",
 	Short: "Display the running processes of a container",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(container_topCmd).Standalone()
-
 	containerCmd.AddCommand(container_topCmd)
 
 	rootAlias(container_topCmd, func(cmd *cobra.Command, isAlias bool) {

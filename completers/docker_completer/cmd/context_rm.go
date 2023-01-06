@@ -7,14 +7,14 @@ import (
 )
 
 var context_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove one or more contexts",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm CONTEXT [CONTEXT...]",
+	Short:   "Remove one or more contexts",
+	Aliases: []string{"remove"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(context_rmCmd).Standalone()
-
 	context_rmCmd.Flags().BoolP("force", "f", false, "Force the removal of a context in use")
 	contextCmd.AddCommand(context_rmCmd)
 

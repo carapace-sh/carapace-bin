@@ -7,13 +7,12 @@ import (
 
 var secretCmd = &cobra.Command{
 	Use:     "secret",
-	Short:   "Manage Docker secrets",
+	Short:   "Manage Swarm secrets",
 	GroupID: "management",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(secretCmd).Standalone()
-
 	rootCmd.AddCommand(secretCmd)
 }

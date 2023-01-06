@@ -7,14 +7,13 @@ import (
 )
 
 var container_diffCmd = &cobra.Command{
-	Use:   "diff",
+	Use:   "diff CONTAINER",
 	Short: "Inspect changes to files or directories on a container's filesystem",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(container_diffCmd).Standalone()
-
 	containerCmd.AddCommand(container_diffCmd)
 
 	rootAlias(container_diffCmd, func(cmd *cobra.Command, isAlias bool) {

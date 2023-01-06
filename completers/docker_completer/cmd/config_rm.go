@@ -7,14 +7,14 @@ import (
 )
 
 var config_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove one or more configs",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm CONFIG [CONFIG...]",
+	Short:   "Remove one or more configs",
+	Aliases: []string{"remove"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(config_rmCmd).Standalone()
-
 	configCmd.AddCommand(config_rmCmd)
 
 	carapace.Gen(config_rmCmd).PositionalAnyCompletion(docker.ActionConfigs())

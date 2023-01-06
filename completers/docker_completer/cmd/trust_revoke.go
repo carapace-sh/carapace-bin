@@ -7,14 +7,13 @@ import (
 )
 
 var trust_revokeCmd = &cobra.Command{
-	Use:   "revoke",
+	Use:   "revoke [OPTIONS] IMAGE[:TAG]",
 	Short: "Remove trust for an image",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(trust_revokeCmd).Standalone()
-
 	trust_revokeCmd.Flags().BoolP("yes", "y", false, "Do not prompt for confirmation")
 	trustCmd.AddCommand(trust_revokeCmd)
 

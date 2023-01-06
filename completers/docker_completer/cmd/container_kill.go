@@ -8,15 +8,14 @@ import (
 )
 
 var container_killCmd = &cobra.Command{
-	Use:   "kill",
+	Use:   "kill [OPTIONS] CONTAINER [CONTAINER...]",
 	Short: "Kill one or more running containers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(container_killCmd).Standalone()
-
-	container_killCmd.Flags().StringP("signal", "s", "", "Signal to send to the container (default \"KILL\")")
+	container_killCmd.Flags().StringP("signal", "s", "", "Signal to send to the container")
 	containerCmd.AddCommand(container_killCmd)
 
 	rootAlias(container_killCmd, func(cmd *cobra.Command, isAlias bool) {

@@ -7,14 +7,13 @@ import (
 )
 
 var container_unpauseCmd = &cobra.Command{
-	Use:   "unpause",
+	Use:   "unpause CONTAINER [CONTAINER...]",
 	Short: "Unpause all processes within one or more containers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(container_unpauseCmd).Standalone()
-
 	containerCmd.AddCommand(container_unpauseCmd)
 
 	rootAlias(container_unpauseCmd, func(cmd *cobra.Command, isAlias bool) {

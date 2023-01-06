@@ -7,14 +7,13 @@ import (
 )
 
 var image_saveCmd = &cobra.Command{
-	Use:   "save",
+	Use:   "save [OPTIONS] IMAGE [IMAGE...]",
 	Short: "Save one or more images to a tar archive (streamed to STDOUT by default)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(image_saveCmd).Standalone()
-
 	image_saveCmd.Flags().StringP("output", "o", "", "Write to a file, instead of STDOUT")
 	imageCmd.AddCommand(image_saveCmd)
 

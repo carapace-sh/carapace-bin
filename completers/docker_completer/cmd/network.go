@@ -14,6 +14,5 @@ var networkCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(networkCmd).Standalone()
-
 	rootCmd.AddCommand(networkCmd)
 }

@@ -7,14 +7,14 @@ import (
 )
 
 var secret_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove one or more secrets",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm SECRET [SECRET...]",
+	Short:   "Remove one or more secrets",
+	Aliases: []string{"remove"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(secret_rmCmd).Standalone()
-
 	secretCmd.AddCommand(secret_rmCmd)
 
 	carapace.Gen(secret_rmCmd).PositionalAnyCompletion(docker.ActionSecrets())

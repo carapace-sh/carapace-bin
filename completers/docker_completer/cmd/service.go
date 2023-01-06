@@ -14,6 +14,5 @@ var serviceCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(serviceCmd).Standalone()
-
 	rootCmd.AddCommand(serviceCmd)
 }
