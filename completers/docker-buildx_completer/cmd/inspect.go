@@ -7,7 +7,7 @@ import (
 )
 
 var inspectCmd = &cobra.Command{
-	Use:   "inspect",
+	Use:   "inspect [NAME]",
 	Short: "Inspect current builder instance",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

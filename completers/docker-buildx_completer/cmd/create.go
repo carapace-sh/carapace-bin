@@ -6,7 +6,7 @@ import (
 )
 
 var createCmd = &cobra.Command{
-	Use:   "create",
+	Use:   "create [OPTIONS] [CONTEXT|ENDPOINT]",
 	Short: "Create a new builder instance",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -17,7 +17,7 @@ func init() {
 	createCmd.Flags().Bool("bootstrap", false, "Boot builder after creation")
 	createCmd.Flags().String("buildkitd-flags", "", "Flags for buildkitd daemon")
 	createCmd.Flags().String("config", "", "BuildKit config file")
-	createCmd.Flags().String("driver", "", "Driver to use (available: \"docker\", \"docker-container\", \"kubernetes\")")
+	createCmd.Flags().String("driver", "", "Driver to use (available: \"docker-container\", \"kubernetes\", \"remote\")")
 	createCmd.Flags().StringArray("driver-opt", []string{}, "Options for the driver")
 	createCmd.Flags().Bool("leave", false, "Remove a node from builder instead of changing it")
 	createCmd.Flags().String("name", "", "Builder instance name")

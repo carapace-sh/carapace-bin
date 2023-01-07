@@ -13,7 +13,7 @@ var pruneCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(pruneCmd).Standalone()
-	pruneCmd.Flags().BoolP("all", "a", false, "Remove all unused images, not just dangling ones")
+	pruneCmd.Flags().BoolP("all", "a", false, "Include internal/frontend images")
 	pruneCmd.Flags().String("filter", "", "Provide filter values (e.g., \"until=24h\")")
 	pruneCmd.Flags().BoolP("force", "f", false, "Do not prompt for confirmation")
 	pruneCmd.Flags().String("keep-storage", "", "Amount of disk space to keep for cache")

@@ -7,7 +7,7 @@ import (
 )
 
 var stopCmd = &cobra.Command{
-	Use:   "stop",
+	Use:   "stop [NAME]",
 	Short: "Stop builder instance",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

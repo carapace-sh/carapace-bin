@@ -6,9 +6,10 @@ import (
 )
 
 var bakeCmd = &cobra.Command{
-	Use:   "bake",
-	Short: "Build from a file",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "bake [OPTIONS] [TARGET...]",
+	Short:   "Build from a file",
+	Aliases: []string{"f"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -19,7 +20,7 @@ func init() {
 	bakeCmd.Flags().Bool("no-cache", false, "Do not use cache when building the image")
 	bakeCmd.Flags().Bool("print", false, "Print the options without building")
 	bakeCmd.Flags().String("progress", "auto", "Set type of progress output (\"auto\", \"plain\", \"tty\"). Use plain to show container output")
-	bakeCmd.Flags().Bool("pull", false, "Always attempt to pull a newer version of the image")
+	bakeCmd.Flags().Bool("pull", false, "Always attempt to pull all referenced images")
 	bakeCmd.Flags().Bool("push", false, "Shorthand for \"--set=*.output=type=registry\"")
 	bakeCmd.Flags().StringArray("set", []string{}, "Override target value (e.g., \"targetpattern.key=value\")")
 	rootCmd.AddCommand(bakeCmd)

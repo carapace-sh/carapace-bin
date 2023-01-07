@@ -7,14 +7,15 @@ import (
 )
 
 var imagetools_inspectCmd = &cobra.Command{
-	Use:   "inspect",
-	Short: "Show details of image in the registry",
+	Use:   "inspect [OPTIONS] NAME",
+	Short: "Show details of an image in the registry",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(imagetools_inspectCmd).Standalone()
-	imagetools_inspectCmd.Flags().Bool("raw", false, "Show original JSON manifest")
+	imagetools_inspectCmd.Flags().String("format", "", "Format the output using the given Go template")
+	imagetools_inspectCmd.Flags().Bool("raw", false, "Show original, unformatted JSON manifest")
 	imagetoolsCmd.AddCommand(imagetools_inspectCmd)
 
 	// TODO verify positional completion - is this correct?
