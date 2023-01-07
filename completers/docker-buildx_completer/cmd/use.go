@@ -7,7 +7,7 @@ import (
 )
 
 var useCmd = &cobra.Command{
-	Use:   "use",
+	Use:   "use [OPTIONS] NAME",
 	Short: "Set the current builder instance",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

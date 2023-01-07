@@ -7,9 +7,10 @@ import (
 )
 
 var buildCmd = &cobra.Command{
-	Use:   "build",
-	Short: "Start a build",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "build [OPTIONS] PATH | URL | -",
+	Short:   "Start a build",
+	Aliases: []string{"b"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -38,14 +39,15 @@ func init() {
 	buildCmd.Flags().String("metadata-file", "", "Write build result metadata to the file")
 	buildCmd.Flags().String("network", "default", "Set the networking mode for the \"RUN\" instructions during build")
 	buildCmd.Flags().Bool("no-cache", false, "Do not use cache when building the image")
+	buildCmd.Flags().StringArray("no-cache-filter", []string{}, "Do not cache specified stages")
 	buildCmd.Flags().StringArrayP("output", "o", []string{}, "Output destination (format: \"type=local,dest=path\")")
 	buildCmd.Flags().StringArray("platform", []string{}, "Set target platform for build")
 	buildCmd.Flags().String("progress", "auto", "Set type of progress output (\"auto\", \"plain\", \"tty\"). Use plain to show container output")
-	buildCmd.Flags().Bool("pull", false, "Always attempt to pull a newer version of the image")
+	buildCmd.Flags().Bool("pull", false, "Always attempt to pull all referenced images")
 	buildCmd.Flags().Bool("push", false, "Shorthand for \"--output=type=registry\"")
 	buildCmd.Flags().BoolP("quiet", "q", false, "Suppress the build output and print image ID on success")
 	buildCmd.Flags().Bool("rm", false, "Remove intermediate containers after a successful build")
-	buildCmd.Flags().StringArray("secret", []string{}, "Secret file to expose to the build (format: \"id=mysecret,src=/local/secret\")")
+	buildCmd.Flags().StringArray("secret", []string{}, "Secret to expose to the build (format: \"id=mysecret[,src=/local/secret]\")")
 	buildCmd.Flags().StringSlice("security-opt", []string{}, "Security options")
 	buildCmd.Flags().String("shm-size", "", "Size of \"/dev/shm\"")
 	buildCmd.Flags().Bool("squash", false, "Squash newly built layers into a single new layer")

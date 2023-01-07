@@ -7,7 +7,7 @@ import (
 )
 
 var imagetools_createCmd = &cobra.Command{
-	Use:   "create",
+	Use:   "create [OPTIONS] [SOURCE] [SOURCE...]",
 	Short: "Create a new image based on source images",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -17,11 +17,13 @@ func init() {
 	imagetools_createCmd.Flags().Bool("append", false, "Append to existing manifest")
 	imagetools_createCmd.Flags().Bool("dry-run", false, "Show final image instead of pushing")
 	imagetools_createCmd.Flags().StringArrayP("file", "f", []string{}, "Read source descriptor from file")
+	imagetools_createCmd.Flags().String("progress", "auto", "Set type of progress output (\"auto\", \"plain\", \"tty\"). Use plain to show container output")
 	imagetools_createCmd.Flags().StringArrayP("tag", "t", []string{}, "Set reference for new image")
 	imagetoolsCmd.AddCommand(imagetools_createCmd)
 
 	carapace.Gen(imagetools_createCmd).FlagCompletion(carapace.ActionMap{
-		"file": carapace.ActionFiles(),
+		"file":     carapace.ActionFiles(),
+		"progress": carapace.ActionValues("auto", "plain", "tty"),
 	})
 
 	// TODO verify positional completion - is this correct?

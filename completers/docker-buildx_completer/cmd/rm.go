@@ -7,7 +7,7 @@ import (
 )
 
 var rmCmd = &cobra.Command{
-	Use:   "rm",
+	Use:   "rm [NAME]",
 	Short: "Remove a builder instance",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
