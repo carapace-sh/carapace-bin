@@ -24,6 +24,7 @@ func init() {
 	rootCmd.AddGroup(
 		&cobra.Group{ID: "core", Title: "Core commands"},
 		&cobra.Group{ID: "actions", Title: "GitHub Actions commands"},
+		&cobra.Group{ID: "extension", Title: "Extension commands"},
 	)
 
 	rootCmd.PersistentFlags().Bool("help", false, "Show help for command")
@@ -42,6 +43,7 @@ func init() {
 					Use:                extension,
 					Short:              completers.Description("gh-" + extension),
 					Run:                func(cmd *cobra.Command, args []string) {},
+					GroupID:            "extension",
 					DisableFlagParsing: true,
 				}
 
