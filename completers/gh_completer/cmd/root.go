@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/google/shlex"
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
@@ -25,6 +26,7 @@ func init() {
 		&cobra.Group{ID: "core", Title: "Core commands"},
 		&cobra.Group{ID: "actions", Title: "GitHub Actions commands"},
 		&cobra.Group{ID: "extension", Title: "Extension commands"},
+		&cobra.Group{ID: "alias", Title: "Alias commands"},
 	)
 
 	rootCmd.PersistentFlags().Bool("help", false, "Show help for command")
@@ -33,7 +35,25 @@ func init() {
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
 		if aliases, err := action.Aliases(); err == nil {
 			for key, value := range aliases {
-				cmd.Root().AddCommand(&cobra.Command{Use: key, Short: value, Run: func(cmd *cobra.Command, args []string) {}})
+				aliasCmd := &cobra.Command{
+					Use:                key,
+					Short:              value,
+					GroupID:            "alias",
+					DisableFlagParsing: true,
+					Run:                func(cmd *cobra.Command, args []string) {},
+				}
+				cmd.Root().AddCommand(aliasCmd)
+
+				carapace.Gen(aliasCmd).PositionalAnyCompletion(
+					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+						splitted, err := shlex.Split(aliasCmd.Short)
+						if err != nil {
+							return carapace.ActionMessage(err.Error())
+						}
+						c.Args = append(splitted, c.Args...)
+						return bridge.ActionCarapaceBin("gh").Invoke(c).ToA()
+					}),
+				)
 			}
 		}
 
