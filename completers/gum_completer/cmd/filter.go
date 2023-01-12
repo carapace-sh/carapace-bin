@@ -14,31 +14,147 @@ var filterCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(filterCmd).Standalone()
-
+	filterCmd.Flags().Bool("fuzzy", false, "Enable fuzzy matching")
 	filterCmd.Flags().String("height", "", "Input height")
 	filterCmd.Flags().String("indicator", "", "Character for selection")
+	filterCmd.Flags().String("indicator.align", "", "Text Alignment")
+	filterCmd.Flags().String("indicator.background", "", "Background Color")
+	filterCmd.Flags().Bool("indicator.bold", false, "Bold text")
+	filterCmd.Flags().String("indicator.border", "", "Border Style")
+	filterCmd.Flags().String("indicator.border-background", "", "Border Background Color")
+	filterCmd.Flags().String("indicator.border-foreground", "", "Border Foreground Color")
+	filterCmd.Flags().Bool("indicator.faint", false, "Faint text")
 	filterCmd.Flags().String("indicator.foreground", "", "Foreground Color")
+	filterCmd.Flags().String("indicator.height", "", "Text height")
+	filterCmd.Flags().Bool("indicator.italic", false, "Italicize text")
+	filterCmd.Flags().String("indicator.margin", "", "Text margin")
+	filterCmd.Flags().String("indicator.padding", "", "Text padding")
+	filterCmd.Flags().Bool("indicator.strikethrough", false, "Strikethrough text")
+	filterCmd.Flags().Bool("indicator.underline", false, "Underline text")
+	filterCmd.Flags().String("indicator.width", "", "Text width")
 	filterCmd.Flags().String("limit", "", "Maximum number of options to pick")
+	filterCmd.Flags().String("match.align", "", "Text Alignment")
+	filterCmd.Flags().String("match.background", "", "Background Color")
+	filterCmd.Flags().Bool("match.bold", false, "Bold text")
+	filterCmd.Flags().String("match.border", "", "Border Style")
+	filterCmd.Flags().String("match.border-background", "", "Border Background Color")
+	filterCmd.Flags().String("match.border-foreground", "", "Border Foreground Color")
+	filterCmd.Flags().Bool("match.faint", false, "Faint text")
 	filterCmd.Flags().String("match.foreground", "", "Foreground Color")
-	filterCmd.Flags().Bool("no-limit", false, "Pick unlimited number of options")
+	filterCmd.Flags().String("match.height", "", "Text height")
+	filterCmd.Flags().Bool("match.italic", false, "Italicize text")
+	filterCmd.Flags().String("match.margin", "", "Text margin")
+	filterCmd.Flags().String("match.padding", "", "Text padding")
+	filterCmd.Flags().Bool("match.strikethrough", false, "Strikethrough text")
+	filterCmd.Flags().Bool("match.underline", false, "Underline text")
+	filterCmd.Flags().String("match.width", "", "Text width")
+	filterCmd.Flags().Bool("no-limit", false, "Pick unlimited number of options (ignores limit)")
 	filterCmd.Flags().String("placeholder", "", "Placeholder value")
 	filterCmd.Flags().String("prompt", "", "Prompt to display")
+	filterCmd.Flags().String("prompt.align", "", "Text Alignment")
+	filterCmd.Flags().String("prompt.background", "", "Background Color")
+	filterCmd.Flags().Bool("prompt.bold", false, "Bold text")
+	filterCmd.Flags().String("prompt.border", "", "Border Style")
+	filterCmd.Flags().String("prompt.border-background", "", "Border Background Color")
+	filterCmd.Flags().String("prompt.border-foreground", "", "Border Foreground Color")
+	filterCmd.Flags().Bool("prompt.faint", false, "Faint text")
 	filterCmd.Flags().String("prompt.foreground", "", "Foreground Color")
+	filterCmd.Flags().String("prompt.height", "", "Text height")
+	filterCmd.Flags().Bool("prompt.italic", false, "Italicize text")
+	filterCmd.Flags().String("prompt.margin", "", "Text margin")
+	filterCmd.Flags().String("prompt.padding", "", "Text padding")
+	filterCmd.Flags().Bool("prompt.strikethrough", false, "Strikethrough text")
+	filterCmd.Flags().Bool("prompt.underline", false, "Underline text")
+	filterCmd.Flags().String("prompt.width", "", "Text width")
+	filterCmd.Flags().Bool("reverse", false, "Display from the bottom of the screen")
+	filterCmd.Flags().String("selected-indicator.align", "", "Text Alignment")
+	filterCmd.Flags().String("selected-indicator.background", "", "Background Color")
+	filterCmd.Flags().Bool("selected-indicator.bold", false, "Bold text")
+	filterCmd.Flags().String("selected-indicator.border", "", "Border Style")
+	filterCmd.Flags().String("selected-indicator.border-background", "", "Border Background Color")
+	filterCmd.Flags().String("selected-indicator.border-foreground", "", "Border Foreground Color")
+	filterCmd.Flags().Bool("selected-indicator.faint", false, "Faint text")
 	filterCmd.Flags().String("selected-indicator.foreground", "", "Foreground Color")
-	filterCmd.Flags().String("selected-prefix", "", "Character to indicate selected items")
+	filterCmd.Flags().String("selected-indicator.height", "", "Text height")
+	filterCmd.Flags().Bool("selected-indicator.italic", false, "Italicize text")
+	filterCmd.Flags().String("selected-indicator.margin", "", "Text margin")
+	filterCmd.Flags().String("selected-indicator.padding", "", "Text padding")
+	filterCmd.Flags().Bool("selected-indicator.strikethrough", false, "Strikethrough text")
+	filterCmd.Flags().Bool("selected-indicator.underline", false, "Underline text")
+	filterCmd.Flags().String("selected-indicator.width", "", "Text width")
+	filterCmd.Flags().String("selected-prefix", "", "Character to indicate selected items (hidden if limit is 1)")
+	filterCmd.Flags().Bool("strict", false, "Only returns if anything matched. Otherwise return Filter")
+	filterCmd.Flags().String("text.align", "", "Text Alignment")
+	filterCmd.Flags().String("text.background", "", "Background Color")
+	filterCmd.Flags().Bool("text.bold", false, "Bold text")
+	filterCmd.Flags().String("text.border", "", "Border Style")
+	filterCmd.Flags().String("text.border-background", "", "Border Background Color")
+	filterCmd.Flags().String("text.border-foreground", "", "Border Foreground Color")
+	filterCmd.Flags().Bool("text.faint", false, "Faint text")
 	filterCmd.Flags().String("text.foreground", "", "Foreground Color")
-	filterCmd.Flags().String("unselected-prefix", "", "Character to indicate unselected items")
+	filterCmd.Flags().String("text.height", "", "Text height")
+	filterCmd.Flags().Bool("text.italic", false, "Italicize text")
+	filterCmd.Flags().String("text.margin", "", "Text margin")
+	filterCmd.Flags().String("text.padding", "", "Text padding")
+	filterCmd.Flags().Bool("text.strikethrough", false, "Strikethrough text")
+	filterCmd.Flags().Bool("text.underline", false, "Underline text")
+	filterCmd.Flags().String("text.width", "", "Text width")
+	filterCmd.Flags().String("unselected-prefix", "", "Character to indicate unselected items (hidden if limit is 1)")
+	filterCmd.Flags().String("unselected-prefix.align", "", "Text Alignment")
+	filterCmd.Flags().String("unselected-prefix.background", "", "Background Color")
+	filterCmd.Flags().Bool("unselected-prefix.bold", false, "Bold text")
+	filterCmd.Flags().String("unselected-prefix.border", "", "Border Style")
+	filterCmd.Flags().String("unselected-prefix.border-background", "", "Border Background Color")
+	filterCmd.Flags().String("unselected-prefix.border-foreground", "", "Border Foreground Color")
+	filterCmd.Flags().Bool("unselected-prefix.faint", false, "Faint text")
 	filterCmd.Flags().String("unselected-prefix.foreground", "", "Foreground Color")
+	filterCmd.Flags().String("unselected-prefix.height", "", "Text height")
+	filterCmd.Flags().Bool("unselected-prefix.italic", false, "Italicize text")
+	filterCmd.Flags().String("unselected-prefix.margin", "", "Text margin")
+	filterCmd.Flags().String("unselected-prefix.padding", "", "Text padding")
+	filterCmd.Flags().Bool("unselected-prefix.strikethrough", false, "Strikethrough text")
+	filterCmd.Flags().Bool("unselected-prefix.underline", false, "Underline text")
+	filterCmd.Flags().String("unselected-prefix.width", "", "Text width")
 	filterCmd.Flags().String("value", "", "Initial filter value")
 	filterCmd.Flags().String("width", "", "Input width")
 	rootCmd.AddCommand(filterCmd)
 
 	carapace.Gen(filterCmd).FlagCompletion(carapace.ActionMap{
-		"indicator.foreground":          gum.ActionColors(),
-		"match.foreground":              gum.ActionColors(),
-		"prompt.foreground":             gum.ActionColors(),
-		"selected-indicator.foreground": gum.ActionColors(),
-		"text.foreground":               gum.ActionColors(),
-		"unselected-prefix.foreground":  gum.ActionColors(),
+		"indicator.align":                      gum.ActionAlignments(),
+		"indicator.background":                 gum.ActionColors(),
+		"indicator.border":                     gum.ActionBorders(),
+		"indicator.border-background":          gum.ActionColors(),
+		"indicator.border-foreground":          gum.ActionColors(),
+		"indicator.foreground":                 gum.ActionColors(),
+		"match.align":                          gum.ActionAlignments(),
+		"match.background":                     gum.ActionColors(),
+		"match.border":                         gum.ActionBorders(),
+		"match.border-background":              gum.ActionColors(),
+		"match.border-foreground":              gum.ActionColors(),
+		"match.foreground":                     gum.ActionColors(),
+		"prompt.align":                         gum.ActionAlignments(),
+		"prompt.background":                    gum.ActionColors(),
+		"prompt.border":                        gum.ActionBorders(),
+		"prompt.border-background":             gum.ActionColors(),
+		"prompt.border-foreground":             gum.ActionColors(),
+		"prompt.foreground":                    gum.ActionColors(),
+		"selected-indicator.align":             gum.ActionAlignments(),
+		"selected-indicator.background":        gum.ActionColors(),
+		"selected-indicator.border":            gum.ActionBorders(),
+		"selected-indicator.border-background": gum.ActionColors(),
+		"selected-indicator.border-foreground": gum.ActionColors(),
+		"selected-indicator.foreground":        gum.ActionColors(),
+		"text.align":                           gum.ActionAlignments(),
+		"text.background":                      gum.ActionColors(),
+		"text.border":                          gum.ActionBorders(),
+		"text.border-background":               gum.ActionColors(),
+		"text.border-foreground":               gum.ActionColors(),
+		"text.foreground":                      gum.ActionColors(),
+		"unselected-prefix.align":              gum.ActionAlignments(),
+		"unselected-prefix.background":         gum.ActionColors(),
+		"unselected-prefix.border":             gum.ActionBorders(),
+		"unselected-prefix.border-background":  gum.ActionColors(),
+		"unselected-prefix.border-foreground":  gum.ActionColors(),
+		"unselected-prefix.foreground":         gum.ActionColors(),
 	})
 }

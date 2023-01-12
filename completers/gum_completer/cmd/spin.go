@@ -50,12 +50,40 @@ func _spinCmd() *cobra.Command {
 
 	carapace.Gen(cmd).Standalone()
 
-	cmd.Flags().String("align", "", "Alignment of spinner with regard to the title")
+	cmd.Flags().StringP("align", "a", "", "Alignment of spinner with regard to the title")
 	cmd.Flags().Bool("show-output", false, "Show output of command")
 	cmd.Flags().StringP("spinner", "s", "", "Spinner type")
+	cmd.Flags().String("spinner.align", "", "Text Alignment")
+	cmd.Flags().String("spinner.background", "", "Background Color")
+	cmd.Flags().Bool("spinner.bold", false, "Bold text")
+	cmd.Flags().String("spinner.border", "", "Border Style")
+	cmd.Flags().String("spinner.border-background", "", "Border Background Color")
+	cmd.Flags().String("spinner.border-foreground", "", "Border Foreground Color")
+	cmd.Flags().Bool("spinner.faint", false, "Faint text")
 	cmd.Flags().String("spinner.foreground", "", "Foreground Color")
+	cmd.Flags().String("spinner.height", "", "Text height")
+	cmd.Flags().Bool("spinner.italic", false, "Italicize text")
+	cmd.Flags().String("spinner.margin", "", "Text margin")
+	cmd.Flags().String("spinner.padding", "", "Text padding")
+	cmd.Flags().Bool("spinner.strikethrough", false, "Strikethrough text")
+	cmd.Flags().Bool("spinner.underline", false, "Underline text")
+	cmd.Flags().String("spinner.width", "", "Text width")
 	cmd.Flags().String("title", "", "Text to display to user while spinning")
+	cmd.Flags().String("title.align", "", "Text Alignment")
+	cmd.Flags().String("title.background", "", "Background Color")
+	cmd.Flags().Bool("title.bold", false, "Bold text")
+	cmd.Flags().String("title.border", "", "Border Style")
+	cmd.Flags().String("title.border-background", "", "Border Background Color")
+	cmd.Flags().String("title.border-foreground", "", "Border Foreground Color")
+	cmd.Flags().Bool("title.faint", false, "Faint text")
 	cmd.Flags().String("title.foreground", "", "Foreground Color")
+	cmd.Flags().String("title.height", "", "Text height")
+	cmd.Flags().Bool("title.italic", false, "Italicize text")
+	cmd.Flags().String("title.margin", "", "Text margin")
+	cmd.Flags().String("title.padding", "", "Text padding")
+	cmd.Flags().Bool("title.strikethrough", false, "Strikethrough text")
+	cmd.Flags().Bool("title.underline", false, "Underline text")
+	cmd.Flags().String("title.width", "", "Text width")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"align": carapace.ActionValues("left", "right"),
@@ -72,8 +100,17 @@ func _spinCmd() *cobra.Command {
 			"meter", "▰",
 			"hamburger", "☲",
 		),
-		"spinner.foreground": gum.ActionColors(),
-		"title.foreground":   gum.ActionColors(),
+		"spinner.background":        gum.ActionColors(),
+		"spinner.border":            gum.ActionBorders(),
+		"spinner.border-background": gum.ActionColors(),
+		"spinner.border-foreground": gum.ActionColors(),
+		"spinner.foreground":        gum.ActionColors(),
+		"title.align":               gum.ActionAlignments(),
+		"title.background":          gum.ActionColors(),
+		"title.border":              gum.ActionBorders(),
+		"title.border-background":   gum.ActionColors(),
+		"title.border-foreground":   gum.ActionColors(),
+		"title.foreground":          gum.ActionColors(),
 	})
 
 	carapace.Gen(cmd).PositionalCompletion(

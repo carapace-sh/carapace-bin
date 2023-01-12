@@ -14,7 +14,6 @@ var pagerCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(pagerCmd).Standalone()
-
 	pagerCmd.Flags().String("align", "", "Text Alignment")
 	pagerCmd.Flags().String("background", "", "Background Color")
 	pagerCmd.Flags().Bool("bold", false, "Bold text")
@@ -58,6 +57,7 @@ func init() {
 	pagerCmd.Flags().String("margin", "", "Text margin")
 	pagerCmd.Flags().String("padding", "", "Text padding")
 	pagerCmd.Flags().Bool("show-line-numbers", false, "Show line numbers")
+	pagerCmd.Flags().Bool("soft-wrap", false, "Soft wrap lines")
 	pagerCmd.Flags().Bool("strikethrough", false, "Strikethrough text")
 	pagerCmd.Flags().Bool("underline", false, "Underline text")
 	pagerCmd.Flags().String("width", "", "Text width")
