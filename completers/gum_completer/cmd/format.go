@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +27,15 @@ func init() {
 		).ToA(),
 		"type": carapace.ActionValues("markdown", "template", "code", "emoji"),
 	})
+
+	carapace.Gen(formatCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if formatCmd.Flag("type").Value.String() == "emoji" {
+				if index := strings.LastIndex(c.CallbackValue, ":"); index != -1 {
+					return gh.ActionEmojis().Prefix(c.CallbackValue[:index])
+				}
+			}
+			return carapace.ActionValues()
+		}),
+	)
 }
