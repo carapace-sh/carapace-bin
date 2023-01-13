@@ -14,7 +14,6 @@ var styleCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(styleCmd).Standalone()
-
 	styleCmd.Flags().String("align", "", "Text Alignment")
 	styleCmd.Flags().String("background", "", "Background Color")
 	styleCmd.Flags().Bool("bold", false, "Bold text")
@@ -33,9 +32,9 @@ func init() {
 	rootCmd.AddCommand(styleCmd)
 
 	carapace.Gen(styleCmd).FlagCompletion(carapace.ActionMap{
-		"align":             carapace.ActionValues("left", "center", "right", "bottom", "middle", "top"),
+		"align":             gum.ActionAlignments(),
 		"background":        gum.ActionColors(),
-		"border":            carapace.ActionValues("none", "hidden", "normal", "rounded", "thick", "double"),
+		"border":            gum.ActionBorders(),
 		"border-background": gum.ActionColors(),
 		"border-foreground": gum.ActionColors(),
 		"foreground":        gum.ActionColors(),

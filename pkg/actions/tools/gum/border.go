@@ -7,5 +7,12 @@ import "github.com/rsteube/carapace"
 //	none
 //	hidden
 func ActionBorders() carapace.Action {
-	return carapace.ActionValues("none", "hidden", "normal", "rounded", "thick", "double")
+	return carapace.ActionValuesDescribed(
+		"none", "",
+		"hidden", "",
+		"normal", "┌─",
+		"rounded", "╭─",
+		"thick", "┏━",
+		"double", "╔═",
+	)
 }

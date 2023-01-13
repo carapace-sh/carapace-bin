@@ -14,7 +14,6 @@ var fileCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(fileCmd).Standalone()
-
 	fileCmd.Flags().BoolP("all", "a", false, "Show hidden and 'dot' files")
 	fileCmd.Flags().StringP("cursor", "c", "", "The cursor character")
 	fileCmd.Flags().String("cursor.align", "", "Text Alignment")
@@ -32,6 +31,7 @@ func init() {
 	fileCmd.Flags().Bool("cursor.strikethrough", false, "Strikethrough text")
 	fileCmd.Flags().Bool("cursor.underline", false, "Underline text")
 	fileCmd.Flags().String("cursor.width", "", "Text width")
+	fileCmd.Flags().Bool("directory", false, "Allow directories selection")
 	fileCmd.Flags().String("directory.align", "", "Text Alignment")
 	fileCmd.Flags().String("directory.background", "", "Background Color")
 	fileCmd.Flags().Bool("directory.bold", false, "Bold text")
@@ -47,6 +47,7 @@ func init() {
 	fileCmd.Flags().Bool("directory.strikethrough", false, "Strikethrough text")
 	fileCmd.Flags().Bool("directory.underline", false, "Underline text")
 	fileCmd.Flags().String("directory.width", "", "Text width")
+	fileCmd.Flags().Bool("file", false, "Allow files selection")
 	fileCmd.Flags().String("file-size.align", "", "Text Alignment")
 	fileCmd.Flags().String("file-size.background", "", "Background Color")
 	fileCmd.Flags().Bool("file-size.bold", false, "Bold text")
