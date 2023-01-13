@@ -53,7 +53,10 @@ func specCompletion(path string, args ...string) {
 	if err != nil {
 		return /// TODO handle error
 	}
-	cmd := spec.ToCobra()
+	cmd, err := spec.ToCobra()
+	if err != nil {
+		return /// TODO handle error
+	}
 
 	a := []string{"_carapace"}
 	a = append(a, args...)
