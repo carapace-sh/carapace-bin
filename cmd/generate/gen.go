@@ -28,7 +28,7 @@ func main() {
 
 	formattedNames := make([]string, 0)
 	for _, name := range names {
-		formattedNames = append(formattedNames, fmt.Sprintf("\t\"%v\",", name))
+		formattedNames = append(formattedNames, fmt.Sprintf("		\"%v\",", name))
 	}
 
 	maxlen := 0
@@ -40,7 +40,7 @@ func main() {
 
 	formattedDescriptions := make([]string, 0)
 	for _, name := range names {
-		formattedDescriptions = append(formattedDescriptions, fmt.Sprintf(`	%--`+strconv.Itoa(maxlen+4)+`v"%v",`, fmt.Sprintf(`"%v": `, name), descriptions[name]))
+		formattedDescriptions = append(formattedDescriptions, fmt.Sprintf(`		%--`+strconv.Itoa(maxlen+4)+`v"%v",`, fmt.Sprintf(`"%v": `, name), descriptions[name]))
 	}
 
 	cases := make([]string, 0)
@@ -73,8 +73,8 @@ func executeCompleter(completer string) {
 
 	os.Mkdir(root+"/cmd/carapace/cmd/completers", 0755)
 	os.WriteFile(root+"/cmd/carapace/cmd/completers.go", []byte("//go:build !release\n\n"+content), 0644)
-	os.WriteFile(root+"/cmd/carapace/cmd/completers/name.go", []byte(fmt.Sprintf("package completers\n\nvar names = []string{\n%v\n}\n", strings.Join(formattedNames, "\n"))), 0644)
-	os.WriteFile(root+"/cmd/carapace/cmd/completers/description.go", []byte(fmt.Sprintf("package completers\n\nvar descriptions = map[string]string{\n%v\n}\n", strings.Join(formattedDescriptions, "\n"))), 0644)
+	os.WriteFile(root+"/cmd/carapace/cmd/completers/name.go", []byte(fmt.Sprintf("package completers\n\nfunc init() {\n	names = []string{\n%v\n\t}\n}\n", strings.Join(formattedNames, "\n"))), 0644)
+	os.WriteFile(root+"/cmd/carapace/cmd/completers/description.go", []byte(fmt.Sprintf("package completers\n\nfunc init() {\n	descriptions = map[string]string{\n%v\n\t}\n}\n", strings.Join(formattedDescriptions, "\n"))), 0644)
 	os.WriteFile(root+"/cmd/carapace/cmd/completers_release.go", []byte("//go:build release\n\n"+strings.Replace(content, "/completers/", "/completers_release/", -1)), 0644)
 	os.RemoveAll(root + "/completers_release")
 	execabs.Command("cp", "-r", root+"/completers", root+"/completers_release").Run()
