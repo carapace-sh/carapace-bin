@@ -10,6 +10,11 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+var (
+	descriptions = make(map[string]string)
+	names        = make([]string, 0)
+)
+
 func Names() []string {
 	unique := make(map[string]string)
 	for _, name := range names {
