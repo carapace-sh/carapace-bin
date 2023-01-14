@@ -95,7 +95,9 @@ var rootCmd = &cobra.Command{
 			}
 		case "--spec":
 			if len(args) > 1 {
-				specCompletion(args[1], args[2:]...)
+				if err := specCompletion(args[1], args[2:]...); err != nil {
+					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+				}
 			}
 		case "--macros":
 			if len(args) > 1 {
@@ -162,7 +164,9 @@ var rootCmd = &cobra.Command{
 			}
 		default:
 			if specPath, err := completers.SpecPath(args[0]); err == nil {
-				specCompletion(specPath, args[1:]...)
+				if err := specCompletion(specPath, args[1:]...); err != nil {
+					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+				}
 			} else {
 				invokeCompleter(args[0])
 			}
