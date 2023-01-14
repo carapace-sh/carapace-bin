@@ -36,7 +36,7 @@ func scrape(path string) {
 	}
 }
 
-func specCompletion(path string, args ...string) {
+func specCompletion(path string, args ...string) error {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
@@ -51,12 +51,10 @@ func specCompletion(path string, args ...string) {
 
 	abs, spec, err := loadSpec(path)
 	if err != nil {
-		return /// TODO handle error
+		return err
 	}
-	cmd, err := spec.ToCobra()
-	if err != nil {
-		return /// TODO handle error
-	}
+
+	cmd := spec.ToCobra()
 
 	a := []string{"_carapace"}
 	a = append(a, args...)
@@ -69,12 +67,12 @@ func specCompletion(path string, args ...string) {
 
 	executable, err := os.Executable()
 	if err != nil {
-		panic(err.Error()) // TODO exit with error message
+		return err
 	}
 
 	executableName := filepath.Base(executable)
 	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v --spec '%v'", executableName, abs), -1)       // general callback
 	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '--spec', '%v'", executableName, abs), -1) // xonsh callback
 	fmt.Print(patched)
-
+	return nil
 }
