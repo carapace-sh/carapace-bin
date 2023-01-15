@@ -63,8 +63,6 @@ func ActionRemoteChannels() carapace.Action {
 		for _, result := range response.Data.Result {
 			vals = append(vals, result.Metric.Channel, result.Metric.Status, styleForStatus(result.Metric.Status))
 		}
-		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.ActionStyledValuesDescribed(vals...).Invoke(c).Prefix("https://nixos.org/channels/").ToA()
-		})
+		return carapace.ActionStyledValuesDescribed(vals...)
 	})
 }
