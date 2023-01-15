@@ -34,7 +34,7 @@ func init() {
 			} else if rootCmd.Flag("add").Changed {
 				switch len(c.Args) {
 				case 0:
-					return nix.ActionRemoteChannels()
+					return nix.ActionRemoteChannels().Prefix("https://nixos.org/channels/")
 				case 1:
 					return nix.ActionLocalChannels()
 				}
