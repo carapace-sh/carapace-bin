@@ -231,7 +231,7 @@ func macros() {
 
 	sortedDescriptions := make([]string, 0)
 	for key, value := range descriptions {
-		sortedDescriptions = append(sortedDescriptions, fmt.Sprintf(`"%v": "%v",`, key, value))
+		sortedDescriptions = append(sortedDescriptions, fmt.Sprintf(`%#v: %#v,`, key, value))
 	}
 	sort.Strings(sortedDescriptions)
 
