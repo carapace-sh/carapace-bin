@@ -36,7 +36,7 @@ func init() {
 		"json": carapace.Batch(
 			action.ActionRunFields(),
 			carapace.ActionValues("jobs"),
-		).ToA(),
+		).ToA().UniqueList(","),
 	})
 
 	carapace.Gen(run_viewCmd).PositionalCompletion(
