@@ -48,6 +48,8 @@ func ActionArgcomplete(command string) carapace.Action {
 			} else {
 				current = "--" // seems partial flag names aren't completed so get all
 			}
+		} else {
+			current = "" // seems partial positional arguments aren't completed as well
 		}
 
 		compLine := command + " " + strings.Join(append(args, current), " ") // TODO escape/quote special characters
