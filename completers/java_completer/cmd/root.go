@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"os"
-	"strings"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/java_completer/cmd/action"
@@ -17,24 +16,6 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() error {
-	for _, arg := range os.Args {
-		// yuck - these are flags that require an argument but don't allow space between name and value
-		// which essentially makes them new flags. To prevent unkown flag errors these are added as fake
-		// flags just as they are.
-		for _, flag := range []string{"-D", "-Xms", "-Xmx", "-Xss"} {
-			if strings.HasPrefix(arg, flag) && len(arg) > 2 {
-				fakeflag := strings.SplitN(arg[1:], "=", 2)[0]
-				if rootCmd.Flag(fakeflag) == nil {
-					rootCmd.Flags().String(fakeflag, "", "") // fake flag to prevent errors
-					rootCmd.Flag(fakeflag).NoOptDefVal = " "
-				}
-			}
-		}
-	}
-
-	carapace.Override(carapace.Opts{
-		OptArgDelimiter: ":",
-	})
 	return rootCmd.Execute()
 }
 func init() {
@@ -88,26 +69,47 @@ func init() {
 	rootCmd.Flags().StringS("Xss", "Xss", "", "set java thread stack size")
 
 	rootCmd.Flag("D").NoOptDefVal = " "
+	rootCmd.Flag("D").OptargDelimiter = ':'
 	rootCmd.Flag("agentlib").NoOptDefVal = " "
+	rootCmd.Flag("agentlib").OptargDelimiter = ':'
 	rootCmd.Flag("agentpath").NoOptDefVal = " "
+	rootCmd.Flag("agentpath").OptargDelimiter = ':'
 	rootCmd.Flag("da").NoOptDefVal = " "
+	rootCmd.Flag("da").OptargDelimiter = ':'
 	rootCmd.Flag("disableassertions").NoOptDefVal = " "
+	rootCmd.Flag("disableassertions").OptargDelimiter = ':'
 	rootCmd.Flag("ea").NoOptDefVal = " "
+	rootCmd.Flag("ea").OptargDelimiter = ':'
 	rootCmd.Flag("enableassertions").NoOptDefVal = " "
+	rootCmd.Flag("enableassertions").OptargDelimiter = ':'
 	rootCmd.Flag("javaagent").NoOptDefVal = " "
+	rootCmd.Flag("javaagent").OptargDelimiter = ':'
 	rootCmd.Flag("splash").NoOptDefVal = " "
+	rootCmd.Flag("splash").OptargDelimiter = ':'
 	rootCmd.Flag("verbose").NoOptDefVal = " "
+	rootCmd.Flag("verbose").OptargDelimiter = ':'
 	rootCmd.Flag("Xbootclasspath").NoOptDefVal = " "
+	rootCmd.Flag("Xbootclasspath").OptargDelimiter = ':'
 	rootCmd.Flag("Xbootclasspath/a").NoOptDefVal = " "
+	rootCmd.Flag("Xbootclasspath/a").OptargDelimiter = ':'
 	rootCmd.Flag("Xbootclasspath/p").NoOptDefVal = " "
+	rootCmd.Flag("Xbootclasspath/p").OptargDelimiter = ':'
 	rootCmd.Flag("Xloggc").NoOptDefVal = " "
+	rootCmd.Flag("Xloggc").OptargDelimiter = ':'
 	rootCmd.Flag("Xms").NoOptDefVal = " "
+	rootCmd.Flag("Xms").OptargDelimiter = ':'
 	rootCmd.Flag("Xmx").NoOptDefVal = " "
+	rootCmd.Flag("Xmx").OptargDelimiter = ':'
 	rootCmd.Flag("Xss").NoOptDefVal = " "
+	rootCmd.Flag("Xss").OptargDelimiter = ':'
 	rootCmd.Flag("Xcheck").NoOptDefVal = " "
+	rootCmd.Flag("Xcheck").OptargDelimiter = ':'
 	rootCmd.Flag("Xshare").NoOptDefVal = " "
+	rootCmd.Flag("Xshare").OptargDelimiter = ':'
 	rootCmd.Flag("XshowSettings").NoOptDefVal = " "
+	rootCmd.Flag("XshowSettings").OptargDelimiter = ':'
 	rootCmd.Flag("XX").NoOptDefVal = " "
+	rootCmd.Flag("XX").OptargDelimiter = ':'
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"XX": action.ActionAdvanced(),
@@ -192,4 +194,8 @@ func init() {
 			return carapace.ActionValues()
 		}),
 	)
+
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		os.Setenv("CARAPACE_LENIENT", "1") // TODO hacky empty optargdelimiter support for now
+	})
 }
