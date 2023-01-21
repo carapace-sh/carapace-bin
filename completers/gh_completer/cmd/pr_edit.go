@@ -37,7 +37,7 @@ func init() {
 		"add-project":  action.ActionProjects(pr_editCmd, action.ProjectOpts{Open: true}),
 		"add-reviewer": action.ActionAssignableUsers(pr_editCmd).UniqueList(","),
 		"base":         action.ActionBranches(pr_editCmd),
-		"body":         action.ActionKeywordLinks(pr_editCmd),
+		"body":         action.ActionBody(pr_editCmd),
 		"body-file":    carapace.ActionFiles(),
 		"milestone":    action.ActionMilestones(pr_editCmd),
 		"remove-assignee": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
