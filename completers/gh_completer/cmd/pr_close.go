@@ -21,7 +21,7 @@ func init() {
 	prCmd.AddCommand(pr_closeCmd)
 
 	carapace.Gen(pr_closeCmd).FlagCompletion(carapace.ActionMap{
-		"comment": action.ActionKeywordLinks(pr_closeCmd),
+		"comment": action.ActionBody(pr_closeCmd),
 	})
 
 	carapace.Gen(pr_closeCmd).PositionalCompletion(

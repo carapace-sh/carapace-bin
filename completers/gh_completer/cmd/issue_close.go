@@ -21,7 +21,7 @@ func init() {
 	issueCmd.AddCommand(issue_closeCmd)
 
 	carapace.Gen(issue_closeCmd).FlagCompletion(carapace.ActionMap{
-		"comment": action.ActionKeywordLinks(issue_closeCmd),
+		"comment": action.ActionBody(issue_closeCmd),
 		"reason":  carapace.ActionValues("completed", "not planned"),
 	})
 

@@ -30,7 +30,7 @@ func init() {
 
 	carapace.Gen(issue_createCmd).FlagCompletion(carapace.ActionMap{
 		"assignee":  action.ActionAssignableUsers(issue_createCmd).UniqueList(","),
-		"body":      action.ActionKeywordLinks(issue_createCmd),
+		"body":      action.ActionBody(issue_createCmd),
 		"body-file": carapace.ActionFiles(),
 		"label":     action.ActionLabels(issue_createCmd).UniqueList(","),
 		"milestone": action.ActionMilestones(issue_createCmd),

@@ -32,7 +32,7 @@ func init() {
 		"add-assignee": action.ActionAssignableUsers(issue_editCmd).UniqueList(","),
 		"add-label":    action.ActionLabels(issue_editCmd).UniqueList(","),
 		"add-project":  action.ActionProjects(issue_editCmd, action.ProjectOpts{Open: true}),
-		"body":         action.ActionKeywordLinks(issue_editCmd),
+		"body":         action.ActionBody(issue_editCmd),
 		"body-file":    carapace.ActionFiles(),
 		"milestone":    action.ActionMilestones(issue_editCmd),
 		"remove-assignee": carapace.ActionCallback(func(c carapace.Context) carapace.Action {

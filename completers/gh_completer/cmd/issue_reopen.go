@@ -20,7 +20,7 @@ func init() {
 	issueCmd.AddCommand(issue_reopenCmd)
 
 	carapace.Gen(issue_reopenCmd).FlagCompletion(carapace.ActionMap{
-		"comment": action.ActionKeywordLinks(issue_reopenCmd),
+		"comment": action.ActionBody(issue_reopenCmd),
 	})
 
 	carapace.Gen(issue_reopenCmd).PositionalCompletion(
