@@ -115,7 +115,6 @@ func addDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().String("word-diff-regex", "", "Use <regex> to decide what a word is")
 	cmd.Flags().String("ws-error-highlight", "", "Highlight whitespace errors in the context, old or new lines of the diff")
 	cmd.Flags().BoolS("z", "z", false, "do not munge pathnames and use NULs as output field terminators")
-	rootCmd.AddCommand(cmd)
 
 	cmd.Flag("color-moved").NoOptDefVal = "default"
 	cmd.Flag("color-moved-ws").NoOptDefVal = " "
