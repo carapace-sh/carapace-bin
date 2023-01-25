@@ -23,6 +23,7 @@ func init() {
 	repo_editCmd.Flags().Bool("delete-branch-on-merge", false, "Delete head branch when pull requests are merged")
 	repo_editCmd.Flags().StringP("description", "d", "", "Description of the repository")
 	repo_editCmd.Flags().Bool("enable-auto-merge", false, "Enable auto-merge functionality")
+	repo_editCmd.Flags().Bool("enable-discussions", false, "Enable discussions in the repository")
 	repo_editCmd.Flags().Bool("enable-issues", false, "Enable issues in the repository")
 	repo_editCmd.Flags().Bool("enable-merge-commit", false, "Enable merging pull requests via merge commit")
 	repo_editCmd.Flags().Bool("enable-projects", false, "Enable projects in the repository")

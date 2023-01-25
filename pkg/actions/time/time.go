@@ -20,7 +20,7 @@ func ActionDate() carapace.Action {
 	return carapace.ActionMultiParts("-", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			from := time.Now().Year() - 100
+			from := time.Now().Year() - 10
 			to := time.Now().Year()
 			vals := make([]string, 0)
 			for i := from; i <= to; i = i + 1 {
