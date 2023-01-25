@@ -105,9 +105,13 @@ func init() {
 }
 
 func addAliasCompletion(args []string) {
-	// pass through args related to config
-	rootCmd.ParseFlags(args)
-	if aliases, err := git.Aliases(rootCmd.Flag("C").Value.String(), rootCmd.Flag("git-dir").Value.String()); err == nil {
+	cmd := &cobra.Command{}
+	cmd.FParseErrWhitelist.UnknownFlags = true
+	cmd.Flags().StringS("C", "C", "", "run as if git was started in given path")
+	cmd.Flags().String("git-dir", "", "path to repository")
+
+	cmd.ParseFlags(args[:len(args)-1])
+	if aliases, err := git.Aliases(cmd.Flag("C").Value.String(), cmd.Flag("git-dir").Value.String()); err == nil {
 		for key, value := range aliases {
 			if _, _, err := rootCmd.Find([]string{key}); err == nil {
 				continue // don't clobber existing commands
