@@ -88,10 +88,10 @@ completion:
 [yargs/yargs] based commands can be bridged with the [`bridge.Yargs`] macro:
 
 ```yaml
-name: example
-description: example description
+name: ng
+description: CLI tool for Angular
 completion:
-  positionalany: ["$_bridge.Yargs(example)"]
+  positionalany: ["$_bridge.Yargs(ng)"]
 ````
 
 [lazycomplete]:https://github.com/rsteube/lazycomplete
