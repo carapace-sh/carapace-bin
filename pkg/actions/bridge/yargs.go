@@ -10,7 +10,8 @@ import (
 // ActionYargs bridges https://github.com/yargs/yargs
 //
 //	var rootCmd = &cobra.Command{
-//		Use:                "example",
+//		Use:                "ng",
+//		Short:              "CLI tool for Angular",
 //		Run:                func(cmd *cobra.Command, args []string) {},
 //		DisableFlagParsing: true,
 //	}
@@ -23,7 +24,7 @@ import (
 //		carapace.Gen(rootCmd).Standalone()
 //
 //		carapace.Gen(rootCmd).PositionalAnyCompletion(
-//			bridge.ActionYargs("example"),
+//			bridge.ActionYargs("ng"),
 //		)
 //	}
 func ActionYargs(command string) carapace.Action {
