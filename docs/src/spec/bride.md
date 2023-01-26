@@ -63,6 +63,16 @@ completion:
   positionalany: ["$_bridge.Cobra(kubectl)"]
 ````
 
+## Complete
+[posener/complete] based commands can be bridged with the [`bridge.Complete`] macro:
+
+```yaml
+name: vault
+description: Manage Secrets & Protect Sensitive Data
+completion:
+  positionalany: ["$_bridge.Complete(vault)"]
+````
+
 ## Fish
 
 Commands registered in [fish-shell/fish-shell] can be bridged with the [`bridge.Fish`] macro:
@@ -72,16 +82,6 @@ name:  git
 description: the stupid content tracker
 completion:
   positionalany: ["$_bridge.Fish(git)"]
-````
-
-## Posener (TODO: rename to `Complete`)
-[posener/complete] based commands can be bridged with the [`bridge.Posener`] macro:
-
-```yaml
-name: vault
-description: Manage Secrets & Protect Sensitive Data
-completion:
-  positionalany: ["$_bridge.Posener(vault)"]
 ````
 
 ## Yargs
@@ -113,11 +113,11 @@ completion:
 [spf13/cobra]:https://github.com/spf13/cobra
 [`bridge.Cobra`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionCobra
 
+[posener/complete]:https://github.com/posener/complete
+[`bridge.Complete`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionComplete
+
 [fish-shell/fish-shell]:https://github.com/fish-shell/fish-shell
 [`bridge.Fish`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionFish
-
-[posener/complete]:https://github.com/posener/complete
-[`bridge.Posener`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionPosener
 
 [yargs/yargs]:https://github.com/yargs/yargs
 [`bridge.Yargs`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionYargs
