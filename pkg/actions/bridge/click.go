@@ -26,7 +26,7 @@ import (
 //		carapace.Gen(rootCmd).Standalone()
 //
 //		carapace.Gen(rootCmd).PositionalAnyCompletion(
-//			argcomplete.ActionClick("watson"),
+//			bridge.ActionClick("watson"),
 //		)
 //	}
 func ActionClick(command string) carapace.Action {
