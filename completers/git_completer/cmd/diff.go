@@ -19,6 +19,7 @@ func init() {
 	carapace.Gen(diffCmd).Standalone()
 
 	addDiffFlags(diffCmd)
+	rootCmd.AddCommand(diffCmd)
 
 	carapace.Gen(diffCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
