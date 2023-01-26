@@ -32,22 +32,22 @@ func ActionYargs(command string) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		args := c.Args
-		current := c.CallbackValue
+		c.Setenv("SHELL", "zsh")
 
-		compLine := strings.Join(append(args, current), " ") // TODO escape/quote special characters
-		return carapace.ActionExecCommand(command, "--get-yargs-completions", compLine)(func(output []byte) carapace.Action {
+		args := []string{"--get-yargs-completions"}
+		args = append(args, c.Args...)
+		args = append(args, c.CallbackValue)
+		return carapace.ActionExecCommand(command, args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
 			vals := make([]string, 0)
 			for _, line := range lines {
 				if line != "" {
-					line = strings.Replace(line, `\:`, "\001", 1)
 					splitted := strings.SplitN(line, ":", 2)
-					name := strings.Replace(splitted[0], "\001", `\:`, 1)
+					name := splitted[0]
 					description := ""
 					if len(splitted) > 1 {
-						description = strings.Replace(splitted[1], "\001", `\:`, 1)
+						description = splitted[1]
 					}
 					vals = append(vals, name, description)
 				}

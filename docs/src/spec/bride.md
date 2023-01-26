@@ -84,6 +84,15 @@ completion:
   positionalany: ["$_bridge.Posener(vault)"]
 ````
 
+## Yargs
+[yargs/yargs] based commands can be bridged with the [`bridge.Yargs`] macro:
+
+```yaml
+name: example
+description: example description
+completion:
+  positionalany: ["$_bridge.Yargs(example)"]
+````
 
 [lazycomplete]:https://github.com/rsteube/lazycomplete
 [shell startup delay]:https://jzelinskie.com/posts/dont-recommend-sourcing-shell-completion/
@@ -109,3 +118,6 @@ completion:
 
 [posener/complete]:https://github.com/posener/complete
 [`bridge.Posener`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionPosener
+
+[yargs/yargs]:https://github.com/yargs/yargs
+[`bridge.Yargs`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionYargs
