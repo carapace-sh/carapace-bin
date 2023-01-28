@@ -35,8 +35,19 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "print name of each linked file")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
+	rootCmd.Flag("backup").NoOptDefVal = " "
+
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"backup":           carapace.ActionValues("existing", "nil", "none", "off", "numbered", "t", "simple", "never"),
+		"backup": carapace.ActionValuesDescribed(
+			"existing", "numbered if numbered backup exists, simple otherwise",
+			"nil", "numbered if numbered backup exists, simple otherwise",
+			"none", "never make backups",
+			"off", "never make backups",
+			"numbered", "make numbered backups",
+			"t", "make numbered backups",
+			"simple", "always make simple backups",
+			"never", "always make simple backups",
+		),
 		"target-directory": carapace.ActionDirectories(),
 	})
 
