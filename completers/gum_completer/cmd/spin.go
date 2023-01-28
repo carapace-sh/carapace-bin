@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gum"
 	"github.com/rsteube/carapace-bin/pkg/util/embed"
 	"github.com/spf13/cobra"
@@ -80,6 +82,26 @@ func init() {
 		"title.border-foreground":   gum.ActionColors(),
 		"title.foreground":          gum.ActionColors(),
 	})
+
+	carapace.Gen(spinCmd).DashAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if spinCmd.ArgsLenAtDash() > 0 {
+				return carapace.ActionValues()
+			}
+
+			switch len(c.Args) {
+			case 0:
+				return carapace.Batch(
+					os.ActionPathExecutables(),
+					carapace.ActionFiles(),
+				).ToA()
+			default:
+				cmd := c.Args[0]
+				c.Args = c.Args[1:]
+				return bridge.ActionCarapaceBin(cmd).Invoke(c).ToA()
+			}
+		}),
+	)
 
 	embed.EmbedCarapaceBin(spinCmd)
 }
