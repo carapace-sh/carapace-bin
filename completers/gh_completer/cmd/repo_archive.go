@@ -16,7 +16,7 @@ var repo_archiveCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_archiveCmd).Standalone()
 
-	repo_archiveCmd.Flags().BoolP("confirm", "y", false, "Skip the confirmation prompt")
+	repo_archiveCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt")
 	repoCmd.AddCommand(repo_archiveCmd)
 
 	carapace.Gen(repo_archiveCmd).PositionalCompletion(
