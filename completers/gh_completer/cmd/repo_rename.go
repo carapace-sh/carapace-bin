@@ -16,8 +16,8 @@ var repo_renameCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_renameCmd).Standalone()
 
-	repo_renameCmd.Flags().BoolP("confirm", "y", false, "skip confirmation prompt")
 	repo_renameCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
+	repo_renameCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt")
 	repoCmd.AddCommand(repo_renameCmd)
 
 	carapace.Gen(repo_renameCmd).FlagCompletion(carapace.ActionMap{

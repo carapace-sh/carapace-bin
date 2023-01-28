@@ -15,7 +15,7 @@ var sshKey_deleteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(sshKey_deleteCmd).Standalone()
 
-	sshKey_deleteCmd.Flags().BoolP("confirm", "y", false, "Skip the confirmation prompt")
+	sshKey_deleteCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt")
 	sshKeyCmd.AddCommand(sshKey_deleteCmd)
 
 	carapace.Gen(sshKey_deleteCmd).PositionalCompletion(

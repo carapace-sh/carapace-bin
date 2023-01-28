@@ -15,7 +15,7 @@ var gpgKey_deleteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(gpgKey_deleteCmd).Standalone()
 
-	gpgKey_deleteCmd.Flags().BoolP("confirm", "y", false, "Skip the confirmation prompt")
+	gpgKey_deleteCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt")
 	gpgKeyCmd.AddCommand(gpgKey_deleteCmd)
 
 	carapace.Gen(gpgKey_deleteCmd).PositionalCompletion(
