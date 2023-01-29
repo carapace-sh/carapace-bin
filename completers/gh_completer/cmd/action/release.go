@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/number"
 	"github.com/rsteube/carapace-bin/pkg/styles"
 	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/rsteube/carapace/pkg/style"
@@ -35,6 +36,22 @@ type releaseQuery struct {
 			}
 		}
 	}
+}
+
+func ActionNextReleases(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		var queryResult releaseQuery
+		return GraphQlAction(cmd, `repository(owner: $owner, name: $repo) { releases(first: 100, orderBy: {direction: DESC, field: CREATED_AT}) { edges { node { createdAt isPrerelease name tag { name } } } } }`, &queryResult, func() carapace.Action {
+			releases := queryResult.Data.Repository.Releases.Edges
+			vals := make([]string, 0, len(releases))
+			for _, release := range releases {
+				if release.Node.Tag.Name != "" {
+					vals = append(vals, release.Node.Tag.Name)
+				}
+			}
+			return number.ActionSemanticVersions(vals...).Style(styles.Git.Tag)
+		})
+	})
 }
 
 func ActionReleases(cmd *cobra.Command) carapace.Action {
