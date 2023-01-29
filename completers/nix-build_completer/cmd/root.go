@@ -19,12 +19,17 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringSlice("arg", []string{}, "Pass [name] [expr] to Nix functions.")
+	rootCmd.Flags().StringSlice("argstr", []string{}, "Pass [name] [string] to Nix functions")
 	rootCmd.Flags().StringP("attr", "A", "", "Attribute to build")
 	rootCmd.Flags().Bool("dry-run", false, "Show what store paths would be built or downloaded")
+	rootCmd.Flags().Bool("help", false, "Show usage information")
 	rootCmd.Flags().StringP("include", "I", "", "Include paths")
 	rootCmd.Flags().Bool("no-out-link", false, "Do not create a symlink to the output path")
 	rootCmd.Flags().StringP("out-link", "o", "", "Change the name of the symlink to the output path")
-	// TODO support --arg and --argstr
+
+	rootCmd.Flag("arg").Nargs = 2
+	rootCmd.Flag("argstr").Nargs = 2
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"attr": carapace.ActionCallback(func(c carapace.Context) carapace.Action {

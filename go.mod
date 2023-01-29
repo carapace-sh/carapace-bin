@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
 	github.com/pelletier/go-toml v1.9.5
-	github.com/rsteube/carapace v0.32.6
+	github.com/rsteube/carapace v0.33.0
 	github.com/rsteube/carapace-spec v0.5.3
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/pflag v1.0.5
@@ -21,4 +21,4 @@ require (
 	github.com/stretchr/testify v1.7.0 // indirect
 )
 
-replace github.com/spf13/pflag => github.com/rsteube/carapace-pflag v0.0.6
+replace github.com/spf13/pflag => github.com/rsteube/carapace-pflag v0.1.0
