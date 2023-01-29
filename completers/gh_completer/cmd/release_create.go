@@ -38,7 +38,7 @@ func init() {
 	})
 
 	carapace.Gen(release_createCmd).PositionalCompletion(
-		action.ActionReleases(release_createCmd),
+		action.ActionNextReleases(release_createCmd),
 	)
 	carapace.Gen(release_createCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }
