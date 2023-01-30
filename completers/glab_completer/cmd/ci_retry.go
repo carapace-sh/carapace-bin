@@ -7,7 +7,7 @@ import (
 
 var ci_retryCmd = &cobra.Command{
 	Use:   "retry <job-id>",
-	Short: "Retry a CI/CD job",
+	Short: "Retry a CI job",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

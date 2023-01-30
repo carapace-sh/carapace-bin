@@ -8,7 +8,7 @@ import (
 
 var ci_getCmd = &cobra.Command{
 	Use:     "get [flags]",
-	Short:   "Get JSON of a running CI/CD pipeline on the current or other specified branch",
+	Short:   "Get JSON of a running CI pipeline on current or other branch specified",
 	Aliases: []string{"stats"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

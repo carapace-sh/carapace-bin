@@ -15,12 +15,13 @@ var issue_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(issue_listCmd).Standalone()
+
 	issue_listCmd.Flags().BoolP("all", "A", false, "Get all issues")
 	issue_listCmd.Flags().StringP("assignee", "a", "", "Filter issue by assignee <username>")
 	issue_listCmd.Flags().String("author", "", "Filter issue by author <username>")
 	issue_listCmd.Flags().BoolP("closed", "c", false, "Get only closed issues")
 	issue_listCmd.Flags().BoolP("confidential", "C", false, "Filter by confidential issues")
-	issue_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group/subgroup. This option is ignored if a repo argument is set.")
+	issue_listCmd.Flags().StringP("group", "g", "", "Get issues from group and it's subgroups")
 	issue_listCmd.Flags().String("in", "title,description", "search in {title|description}")
 	issue_listCmd.Flags().StringP("issue-type", "t", "", "Filter issue by its type {issue|incident|test_case}")
 	issue_listCmd.Flags().StringSliceP("label", "l", []string{}, "Filter issue by label <name>")
@@ -30,7 +31,6 @@ func init() {
 	issue_listCmd.Flags().StringSlice("not-label", []string{}, "Filter issue by lack of label <name>")
 	issue_listCmd.Flags().IntP("page", "p", 1, "Page number")
 	issue_listCmd.Flags().IntP("per-page", "P", 30, "Number of items to list per page. (default 30)")
-	issue_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or full URL or git URL")
 	issue_listCmd.Flags().String("search", "", "Search <string> in the fields defined by --in")
 	issueCmd.AddCommand(issue_listCmd)
 
@@ -45,6 +45,5 @@ func init() {
 		"not-assignee": action.ActionProjectMembers(issue_listCmd).UniqueList(","),
 		"not-author":   action.ActionUsers(issue_listCmd).UniqueList(","),
 		"not-label":    action.ActionLabels(issue_listCmd).UniqueList(","),
-		"repo":         action.ActionRepo(issue_listCmd),
 	})
 }
