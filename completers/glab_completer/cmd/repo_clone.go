@@ -14,6 +14,7 @@ var repo_cloneCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(repo_cloneCmd).Standalone()
+
 	repo_cloneCmd.Flags().BoolP("archived", "a", false, "Limit by archived status. Used with --group flag")
 	repo_cloneCmd.Flags().StringP("group", "g", "", "Specify group to clone repositories from")
 	repo_cloneCmd.Flags().BoolP("include-subgroups", "G", true, "Include projects in subgroups of this group. Default is true. Used with --group flag")

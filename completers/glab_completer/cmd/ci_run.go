@@ -10,7 +10,7 @@ import (
 
 var ci_runCmd = &cobra.Command{
 	Use:     "run [flags]",
-	Short:   "Create or run a new CI/CD pipeline",
+	Short:   "Create or run a new CI pipeline",
 	Aliases: []string{"create"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

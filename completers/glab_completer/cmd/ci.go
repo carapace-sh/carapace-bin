@@ -8,7 +8,7 @@ import (
 
 var ciCmd = &cobra.Command{
 	Use:     "ci <command> [flags]",
-	Short:   "Work with GitLab CI/CD pipelines and jobs",
+	Short:   "Work with GitLab CI pipelines and jobs",
 	Aliases: []string{"pipe", "pipeline"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
