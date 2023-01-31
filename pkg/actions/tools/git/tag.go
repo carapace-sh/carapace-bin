@@ -4,28 +4,23 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 )
 
-type tag struct {
-	Name    string
-	Message string
-}
-
-func tags(c carapace.Context, refOption RefOption) ([]tag, error) {
-	if !refOption.Tags {
-		return []tag{}, nil
-	}
-
-	if output, err := c.Command("git", "tag", "--format", "%(refname)\n%(subject)").Output(); err != nil {
-		return nil, err
-	} else {
+// ActionTags completes tags
+//
+//	v0.0.1
+//	v0.0.2
+func ActionTags() carapace.Action {
+	return carapace.ActionExecCommand("git", "tag", "--format", "%(refname)\n%(subject)")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
-		tags := make([]tag, len(lines)/2)
+
+		vals := make([]string, 0)
 		for index, line := range lines[:len(lines)-1] {
 			if index%2 == 0 {
-				tags[index/2] = tag{strings.TrimPrefix(line, "refs/tags/"), lines[index+1]}
+				vals = append(vals, strings.TrimPrefix(line, "refs/tags/"), lines[index+1])
 			}
 		}
-		return tags, err
-	}
+		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Tag)
+	}).Tag("tags")
 }
