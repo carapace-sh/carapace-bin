@@ -4,7 +4,6 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/styles"
 )
 
 func rootDir(c carapace.Context) (string, error) {
@@ -19,6 +18,7 @@ type RefOption struct {
 	LocalBranches  bool
 	RemoteBranches bool
 	Commits        int
+	HeadCommits    int
 	Tags           bool
 	Stashes        bool
 }
@@ -27,6 +27,7 @@ func (o RefOption) Default() RefOption {
 	o.LocalBranches = true
 	o.RemoteBranches = true
 	o.Commits = 100
+	o.HeadCommits = 100
 	o.Tags = true
 	o.Stashes = true
 	return o
@@ -40,37 +41,31 @@ func (o RefOption) Default() RefOption {
 func ActionRefs(refOption RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		batch := carapace.Batch()
-		if branches, err := branches(c, refOption); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			for _, branch := range branches {
-				batch = append(batch, carapace.ActionStyledValuesDescribed(branch.Name, branch.Message, styles.Git.Branch).Tag("branches"))
-			}
+
+		if refOption.LocalBranches {
+			batch = append(batch, ActionLocalBranches())
 		}
-		if commits, err := commits(c, refOption); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			for _, commit := range commits {
-				s := styles.Git.Commit
-				t := "commits"
-				if strings.HasPrefix(commit.Ref, "HEAD") {
-					s = styles.Git.HeadCommit
-					t = "headcommits"
-				}
-				batch = append(batch, carapace.ActionStyledValuesDescribed(commit.Ref, commit.Message, s).Tag(t))
-			}
+
+		if refOption.RemoteBranches {
+			batch = append(batch, ActionRemoteBranches(""))
 		}
-		if tags, err := tags(c, refOption); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			for _, tag := range tags {
-				batch = append(batch, carapace.ActionStyledValuesDescribed(tag.Name, tag.Message, styles.Git.Tag).Tag("tags"))
-			}
+
+		if refOption.Commits > 0 {
+			batch = append(batch, ActionRecentCommits(refOption.Commits))
+		}
+
+		if refOption.HeadCommits > 0 {
+			batch = append(batch, ActionHeadCommits(refOption.HeadCommits))
+		}
+
+		if refOption.Tags {
+			batch = append(batch, ActionTags())
 		}
 
 		if refOption.Stashes {
-			batch = append(batch, ActionStashes().Tag("stashes"))
+			batch = append(batch, ActionStashes())
 		}
+
 		return batch.ToA()
 
 	})
