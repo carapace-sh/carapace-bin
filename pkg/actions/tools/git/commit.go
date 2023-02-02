@@ -24,7 +24,7 @@ func ActionHeadCommits(limit int) carapace.Action {
 				if index == 0 {
 					vals = append(vals, "HEAD", strings.TrimSpace(line[10:]))
 				} else {
-					vals = append(vals, "HEAD~"+fmt.Sprintf("%0"+strconv.Itoa(len(strconv.Itoa(limit))-1)+"d", index), strings.TrimSpace(line[10:]))
+					vals = append(vals, "HEAD~"+fmt.Sprintf("%0"+strconv.Itoa(len(strconv.Itoa(limit-1)))+"d", index), strings.TrimSpace(line[10:]))
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.HeadCommit)
@@ -38,7 +38,7 @@ func ActionHeadCommits(limit int) carapace.Action {
 //	123456B ((refname) commit message)
 func ActionRecentCommits(limit int) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"log", "--all", "--pretty=tformat:%h   %d %<(64,trunc)%s", "--max-count", strconv.Itoa(limit)}
+		args := []string{"log", "--all", "--no-merges", "--pretty=tformat:%h   %<(64,trunc)%s", "--max-count", strconv.Itoa(limit)}
 		return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 

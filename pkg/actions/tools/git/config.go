@@ -10,7 +10,6 @@ import (
 // ActionConfigs completes configs
 func ActionConfigs() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		// TODO support different git folder
 		return carapace.ActionExecCommand("git", "help", "--config")(func(output []byte) carapace.Action {
 			vals := make([]string, 0)
 			for _, line := range strings.Split(string(output), "\n") {
