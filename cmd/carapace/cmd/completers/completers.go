@@ -7,6 +7,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/rsteube/carapace/pkg/xdg"
 	"gopkg.in/yaml.v3"
 )
 
@@ -36,7 +37,7 @@ func Names() []string {
 }
 
 func SpecPath(name string) (string, error) {
-	configDir, err := os.UserConfigDir()
+	configDir, err := xdg.UserConfigDir()
 	if err != nil {
 		return "", err
 	}
@@ -51,7 +52,7 @@ func SpecPath(name string) (string, error) {
 func Specs() (specs []string, dir string) {
 	r := regexp.MustCompile(`^[0-9a-zA-Z_\-.]+\.yaml$`) // sanity check
 	specs = make([]string, 0)
-	if configDir, err := os.UserConfigDir(); err == nil {
+	if configDir, err := xdg.UserConfigDir(); err == nil {
 		dir = configDir + "/carapace/specs"
 		if entries, err := os.ReadDir(dir); err == nil {
 			for _, entry := range entries {
@@ -74,7 +75,7 @@ func Description(name string) string {
 }
 
 func specDescription(name string) (string, error) {
-	confDir, err := os.UserConfigDir()
+	confDir, err := xdg.UserConfigDir()
 	if err != nil {
 		return "", err
 	}

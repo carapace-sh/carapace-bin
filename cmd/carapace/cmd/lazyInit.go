@@ -4,31 +4,41 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"strings"
+
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/xdg"
 )
 
 func bash_lazy(completers []string) string {
-	snippet := `_carapace_lazy() {
+	snippet := `%v
+
+_carapace_lazy() {
   source <(carapace $1 bash)
    $"_$1_completion"
 }
 complete -F _carapace_lazy %v
 `
-	return fmt.Sprintf(snippet, strings.Join(completers, " "))
+	return fmt.Sprintf(snippet, pathSnippet("bash"), strings.Join(completers, " "))
 }
 
 func bash_ble_lazy(completers []string) string {
-	snippet := `_carapace_lazy() {
+	snippet := `%v
+
+_carapace_lazy() {
   source <(carapace $1 bash-ble)
    $"_$1_completion_ble"
 }
 complete -F _carapace_lazy %v
 `
-	return fmt.Sprintf(snippet, strings.Join(completers, " "))
+	return fmt.Sprintf(snippet, pathSnippet("bash-ble"), strings.Join(completers, " "))
 }
 
 func elvish_lazy(completers []string) string {
-	snippet := `put %v | each {|c|
+	snippet := `%v
+
+put %v | each {|c|
     set edit:completion:arg-completer[$c] = {|@arg|
         set edit:completion:arg-completer[$c] = {|@arg| }
         eval (carapace $c elvish | slurp)
@@ -36,11 +46,50 @@ func elvish_lazy(completers []string) string {
     }
 }
 `
-	return fmt.Sprintf(snippet, strings.Join(completers, " "))
+	return fmt.Sprintf(snippet, pathSnippet("elvish"), strings.Join(completers, " "))
+}
+
+func pathSnippet(shell string) (snippet string) {
+	configDir, err := xdg.UserConfigDir()
+	if err != nil {
+		panic(err.Error())
+	}
+	binDir := configDir + "/carapace/bin"
+
+	switch shell {
+	case "bash", "bash-ble", "oil", "zsh":
+		snippet = fmt.Sprintf(`export PATH="%v%v$PATH"`, binDir, string(os.PathListSeparator))
+
+	case "elvish":
+		snippet = fmt.Sprintf(`set paths = ['%v' $@paths]`, binDir)
+
+	case "fish":
+		snippet = fmt.Sprintf(`fish_add_path '%v'`, binDir)
+
+	case "powershell":
+		snippet = fmt.Sprintf(`[Environment]::SetEnvironmentVariable("PATH", "%v" + [IO.Path]::PathSeparator + [Environment]::GetEnvironmentVariable("PATH"))`, binDir)
+
+	case "xonsh":
+		snippet = fmt.Sprintf(`__xonsh__.env['PATH'].insert(0, '%v')`, binDir)
+
+	default:
+		snippet = fmt.Sprintf("# error: unknown shell: %#v", shell)
+	}
+
+	for _, path := range strings.Split(os.Getenv("PATH"), string(os.PathListSeparator)) {
+		if path == binDir {
+			carapace.LOG.Printf("PATH already contains %#v\n", binDir)
+			snippet = "# " + snippet
+			break
+		}
+	}
+	return
 }
 
 func fish_lazy(completers []string) string {
-	snippet := `function _carapace_lazy
+	snippet := `%v
+
+function _carapace_lazy
    complete -c $argv[1] -e
    carapace $argv[1] fish | source
    complete --do-complete=(commandline -cp)
@@ -51,7 +100,7 @@ end
 	for index, completer := range completers {
 		complete[index] = fmt.Sprintf(`complete -c '%v' -f -a '(_carapace_lazy %v)'`, completer, completer)
 	}
-	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
+	return fmt.Sprintf(snippet, pathSnippet("fish"), strings.Join(complete, "\n"))
 }
 
 func nushell_lazy(completers []string) string {
@@ -70,17 +119,21 @@ let-env config = {
 }
 
 func oil_lazy(completers []string) string {
-	snippet := `_carapace_lazy() {
+	snippet := `%v
+
+_carapace_lazy() {
   source <(carapace $1 oil)
    $"_$1_completion"
 }
 complete -F _carapace_lazy %v
 `
-	return fmt.Sprintf(snippet, strings.Join(completers, " "))
+	return fmt.Sprintf(snippet, pathSnippet("oil"), strings.Join(completers, " "))
 }
 
 func powershell_lazy(completers []string) string {
-	snippet := `$_carapace_lazy = {
+	snippet := `%v
+
+$_carapace_lazy = {
     param($wordToComplete, $commandAst, $cursorPosition)
     $completer = $commandAst.CommandElements[0].Value
     carapace $completer powershell | Out-String | Invoke-Expression
@@ -92,7 +145,7 @@ func powershell_lazy(completers []string) string {
 	for index, completer := range completers {
 		complete[index] = fmt.Sprintf(`Register-ArgumentCompleter -Native -CommandName '%v' -ScriptBlock $_carapace_lazy`, completer)
 	}
-	return fmt.Sprintf(snippet, strings.Join(complete, "\n"))
+	return fmt.Sprintf(snippet, pathSnippet("powershell"), strings.Join(complete, "\n"))
 }
 
 func tcsh_lazy(completers []string) string {
@@ -107,6 +160,9 @@ func tcsh_lazy(completers []string) string {
 func xonsh_lazy(completers []string) string {
 	snippet := `from xonsh.completers._aliases import _add_one_completer
 from xonsh.completers.tools import *
+import os
+
+%v
 
 @contextual_completer
 def _carapace_lazy(context):
@@ -123,14 +179,16 @@ def _carapace_lazy(context):
 		complete[index] = fmt.Sprintf(`'%v'`, completer)
 	}
 	snippet += `_add_one_completer('carapace_lazy', _carapace_lazy, 'start')`
-	return fmt.Sprintf(snippet, strings.Join(complete, ", "))
+	return fmt.Sprintf(snippet, pathSnippet("xonsh"), strings.Join(complete, ", "))
 }
 
 func zsh_lazy(completers []string) string {
-	snippet := `function _carapace_lazy {
+	snippet := `%v
+
+function _carapace_lazy {
     source <(carapace $words[1] zsh)
 }
 compdef _carapace_lazy %v
 `
-	return fmt.Sprintf(snippet, strings.Join(completers, " "))
+	return fmt.Sprintf(snippet, pathSnippet("zsh"), strings.Join(completers, " "))
 }

@@ -37,6 +37,7 @@ func flagCmd(args []string) *cobra.Command {
 	cmd.Flags().BoolP("help", "h", false, "help for carapace")
 	cmd.Flags().String("list", "", "list completers")
 	cmd.Flags().String("macros", "test local json schema", "list spec macros")
+	cmd.Flags().String("run", "", "run spec")
 	cmd.Flags().Bool("schema", false, "json schema for spec files")
 	cmd.Flags().String("scrape", "", "scrape spec to go code")
 	cmd.Flags().String("spec", "", "spec completion")
@@ -85,6 +86,7 @@ func flagCmd(args []string) *cobra.Command {
 			}
 			return carapace.ActionValuesDescribed(vals...).Invoke(carapace.Context{}).ToMultiPartsA(".")
 		}),
+		"run":    carapace.ActionFiles(".yaml"),
 		"scrape": carapace.ActionFiles(".yaml"),
 		"spec":   carapace.ActionFiles(".yaml"),
 		"style":  carapace.ActionStyleConfig().NoSpace(),
