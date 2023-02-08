@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(extension_browseCmd).Standalone()
 
 	extension_browseCmd.Flags().Bool("debug", false, "log to /tmp/extBrowse-*")
+	extension_browseCmd.Flags().BoolP("single-column", "s", false, "Render TUI with only one column of text")
 	extensionCmd.AddCommand(extension_browseCmd)
 }
