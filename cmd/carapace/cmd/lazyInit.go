@@ -60,7 +60,12 @@ func nushell_lazy(completers []string) string {
 }
 
 let-env config = {
-  external_completer: $carapace_completer
+  completions: {
+    external: {
+      enable: true
+      completer: $carapace_completer
+    }
+  }
 }`
 }
 
