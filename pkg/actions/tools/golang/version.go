@@ -11,6 +11,7 @@ import (
 func ActionVersions() carapace.Action {
 	//  https://go.dev/doc/devel/release
 	return carapace.ActionValuesDescribed(
+		"1.20", "2023-02-01",
 		"1.19", "2022-08-02",
 		"1.18", "2022-03-15",
 		"1.17", "2021-08-16",
