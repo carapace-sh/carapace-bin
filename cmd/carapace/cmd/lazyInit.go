@@ -66,6 +66,9 @@ func pathSnippet(shell string) (snippet string) {
 	case "fish":
 		snippet = fmt.Sprintf(`fish_add_path '%v'`, binDir)
 
+	case "nushell":
+		snippet = fmt.Sprintf(`let-env PATH = ($env.PATH | prepend "%v")`, binDir)
+
 	case "powershell":
 		snippet = fmt.Sprintf(`[Environment]::SetEnvironmentVariable("PATH", "%v" + [IO.Path]::PathSeparator + [Environment]::GetEnvironmentVariable("PATH"))`, binDir)
 
@@ -79,7 +82,9 @@ func pathSnippet(shell string) (snippet string) {
 	for _, path := range strings.Split(os.Getenv("PATH"), string(os.PathListSeparator)) {
 		if path == binDir {
 			carapace.LOG.Printf("PATH already contains %#v\n", binDir)
-			snippet = "# " + snippet
+			if shell != "nushell" {
+				snippet = "# " + snippet
+			}
 			break
 		}
 	}
@@ -104,7 +109,9 @@ end
 }
 
 func nushell_lazy(completers []string) string {
-	return `let carapace_completer = {|spans| 
+	snippet := `%v
+
+let carapace_completer = {|spans| 
   carapace $spans.0 nushell $spans | from json
 }
 
@@ -116,6 +123,7 @@ let-env config = {
     }
   }
 }`
+	return fmt.Sprintf(snippet, pathSnippet("nushell"))
 }
 
 func oil_lazy(completers []string) string {
