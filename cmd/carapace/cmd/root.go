@@ -14,10 +14,13 @@ import (
 	"strings"
 	"time"
 
+	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/shim"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/ps"
 	"github.com/rsteube/carapace/pkg/style"
+	"github.com/rsteube/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
 )
 
@@ -76,14 +79,10 @@ var rootCmd = &cobra.Command{
   Some completions are cached at [%v/carapace].
   Config is written to [%v/carapace].
   Specs are loaded from [%v/carapace/specs].
-  `, suppressErr(os.UserCacheDir), suppressErr(os.UserConfigDir), suppressErr(os.UserConfigDir)),
+  `, suppressErr(xdg.UserCacheDir), suppressErr(xdg.UserConfigDir), suppressErr(xdg.UserConfigDir)),
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: completers.Names(),
 	Run: func(cmd *cobra.Command, args []string) {
-		if err := updateSchema(); err != nil {
-			fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-		}
-
 		// since flag parsing is disabled do this manually
 		switch args[0] {
 		case "--bridge":
@@ -117,6 +116,16 @@ var rootCmd = &cobra.Command{
 			printCompleters()
 		case "--list=json":
 			printCompletersJson()
+		case "--run":
+			_, spec, err := loadSpec(args[1])
+			if err != nil {
+				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+				os.Exit(1)
+			}
+
+			cmd := spec.ToCobra()
+			cmd.SetArgs(args[2:])
+			cmd.Execute() // TODO handle error?
 		case "--schema":
 			if schema, err := spec.Schema(); err != nil {
 				fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
@@ -137,6 +146,15 @@ var rootCmd = &cobra.Command{
 			shell := ps.DetermineShell()
 			if len(args) > 1 {
 				shell = args[1]
+			}
+			if len(args) <= 2 {
+				if err := shim.Update(); err != nil {
+					fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
+				}
+
+				if err := updateSchema(); err != nil { // TODO do this only if needed
+					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+				}
 			}
 			switch shell {
 			case "bash":
@@ -289,7 +307,7 @@ func setStyle(s string) error {
 }
 
 func updateSchema() error {
-	confDir, err := os.UserConfigDir()
+	confDir, err := xdg.UserConfigDir()
 	if err != nil {
 		return err
 	}
@@ -316,6 +334,7 @@ func updateSchema() error {
 			return err
 		}
 
+		carapace.LOG.Printf("writing json schema to %#v", path)
 		if err := os.WriteFile(path, []byte(schema), os.ModePerm); err != nil {
 			return err
 		}
@@ -335,6 +354,7 @@ func Execute(version string) error {
 func init() {
 	rootCmd.Flags().String("bridge", "", "bridge completion")
 	rootCmd.Flags().Bool("list", false, "list completers")
+	rootCmd.Flags().String("run", "", "run spec")
 	rootCmd.Flags().String("scrape", "", "scrape spec to go code")
 	rootCmd.Flags().String("spec", "", "spec completion")
 	rootCmd.Flags().String("style", "", "set style")

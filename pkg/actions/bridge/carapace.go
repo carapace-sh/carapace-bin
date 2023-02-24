@@ -6,6 +6,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	spec "github.com/rsteube/carapace-spec"
+	"github.com/rsteube/carapace/pkg/xdg"
 )
 
 // ActionCarapace bridges rsteube/carapace completion
@@ -50,7 +51,7 @@ func actionEmbedded(completer string) carapace.Action {
 }
 
 func actionSpec(completer string) (carapace.Action, error) {
-	configDir, err := os.UserConfigDir()
+	configDir, err := xdg.UserConfigDir()
 	if err != nil {
 		return carapace.ActionValues(), err
 	}
