@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,8 @@ var mktagCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mktagCmd).Standalone()
 
+	mktagCmd.Flags().Bool("strict", false, "enable more strict checking")
 	rootCmd.AddCommand(mktagCmd)
 }
