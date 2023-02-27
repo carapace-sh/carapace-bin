@@ -5,7 +5,6 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/time"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bin/pkg/util"
-	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -213,7 +212,7 @@ func init() {
 		"after":  time.ActionDate(),
 		"author": git.ActionAuthors(),
 		"before": time.ActionDate(),
-		"color":  carapace.ActionValues("always", "never", "auto").StyleF(style.ForKeyword),
+		"color":  git.ActionColorModes(),
 		"color-moved": carapace.ActionValuesDescribed(
 			"no", "Moved lines are not highlighted",
 			"default", "Is a synonym for zebra",

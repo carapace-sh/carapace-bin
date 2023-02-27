@@ -4,7 +4,6 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
-	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -69,7 +68,7 @@ func init() {
 	grepCmd.Flag("open-files-in-pager").NoOptDefVal = " "
 
 	carapace.Gen(grepCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("always", "never", "auto").StyleF(style.ForKeyword),
+		"color": git.ActionColorModes(),
 		"f":     carapace.ActionFiles(),
 		"open-files-in-pager": carapace.Batch(
 			os.ActionPathExecutables(),
