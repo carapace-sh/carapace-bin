@@ -13,6 +13,7 @@ var downCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(downCmd).Standalone()
+
 	downCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file.")
 	downCmd.Flags().String("rmi", "", "Remove images used by services. \"local\" remove only images that don't have a custom tag (\"local\"|\"all\")")
 	downCmd.Flags().IntP("timeout", "t", 10, "Specify a shutdown timeout in seconds")

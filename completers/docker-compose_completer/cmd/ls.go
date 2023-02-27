@@ -13,6 +13,7 @@ var lsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(lsCmd).Standalone()
+
 	lsCmd.Flags().BoolP("all", "a", false, "Show all stopped Compose projects")
 	lsCmd.Flags().String("filter", "", "Filter output based on conditions provided.")
 	lsCmd.Flags().String("format", "table", "Format the output. Values: [table | json].")
@@ -20,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(lsCmd)
 
 	carapace.Gen(lsCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("table", "json"),
 	})
 }

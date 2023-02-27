@@ -14,6 +14,7 @@ var stopCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(stopCmd).Standalone()
+
 	stopCmd.Flags().IntP("timeout", "t", 10, "Specify a shutdown timeout in seconds")
 	rootCmd.AddCommand(stopCmd)
 

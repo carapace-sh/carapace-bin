@@ -15,6 +15,7 @@ var buildCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(buildCmd).Standalone()
+
 	buildCmd.Flags().StringArray("build-arg", []string{}, "Set build-time variables for services.")
 	buildCmd.Flags().Bool("compress", true, "Compress the build context using gzip. DEPRECATED")
 	buildCmd.Flags().Bool("force-rm", true, "Always remove intermediate containers. DEPRECATED")
@@ -24,6 +25,7 @@ func init() {
 	buildCmd.Flags().Bool("parallel", true, "Build images in parallel. DEPRECATED")
 	buildCmd.Flags().String("progress", "auto", "Set type of progress output (auto, tty, plain, quiet)")
 	buildCmd.Flags().Bool("pull", false, "Always attempt to pull a newer version of the image.")
+	buildCmd.Flags().Bool("push", false, "Push service images.")
 	buildCmd.Flags().BoolP("quiet", "q", false, "Don't print anything to STDOUT")
 	buildCmd.Flags().String("ssh", "", "Set SSH authentications used when building service images. (use 'default' for using your default SSH Agent)")
 	rootCmd.AddCommand(buildCmd)
