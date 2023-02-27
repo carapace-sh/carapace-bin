@@ -4,7 +4,6 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bin/pkg/util"
-	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -122,69 +121,17 @@ func addDiffFlags(cmd *cobra.Command) {
 	cmd.Flag("word-diff").NoOptDefVal = "plain"
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"color":              carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"color-moved":        ActionColorMovedModes(),
-		"color-moved-ws":     ActionColorMovedWsModes(),
-		"diff-algorithm":     ActionDiffAlgorithms(),
+		"color":              git.ActionColorModes(),
+		"color-moved":        git.ActionColorMovedModes(),
+		"color-moved-ws":     git.ActionColorMovedWsModes(),
+		"diff-algorithm":     git.ActionDiffAlgorithms(),
 		"output":             carapace.ActionFiles(),
 		"submodule":          carapace.ActionValues("short", "long", "log"),
-		"word-diff":          ActionWordDiffModes(),
-		"ws-error-highlight": ActionWsErrorHighlightModes().UniqueList(","),
+		"word-diff":          git.ActionWordDiffModes(),
+		"ws-error-highlight": git.ActionWsErrorHighlightModes().UniqueList(","),
 	})
 
 	carapace.Gen(cmd).DashAnyCompletion(
 		carapace.ActionFiles(),
-	)
-
-}
-
-func ActionDiffAlgorithms() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"myers", "The basic greedy diff algorithm",
-		"minimal", "Spend extra time to make sure the smallest possible diff is produced",
-		"patience",
-		"Use patience diff algorithm when generating patches",
-		"histogram", "This algorithm extends the patience algorithm to support low-occurrence common elements",
-	)
-}
-
-func ActionColorMovedModes() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"no", "Moved lines are not highlighted",
-		"default", "default mode",
-		"plain", "plain mode",
-		"blocks", "greedily detects blocks",
-		"zebra", "Blocks of moved text are detected as in blocks mode",
-		"dimmed-zebra", "Similar to zebra, but additional dimming of uninteresting parts of moved code",
-	)
-}
-
-func ActionColorMovedWsModes() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"no", "Do not ignore whitespace when performing move detection",
-		"ignore-space-at-eol", "Ignore changes in whitespace at EOL",
-		"ignore-space-change", "Ignore changes in amount of whitespace.",
-		"ignore-all-space", "Ignore whitespace when comparing lines.",
-		"allow-indentation-change", "Initially ignore any whitespace in the move detection",
-	)
-}
-
-func ActionWordDiffModes() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"color", "Highlight changed words using only colors",
-		"plain", "Show words as [-removed-] and {+added+}",
-		"porcelain", "Use a special line-based format intended for script consumption",
-		"none", "Disable word diff again",
-	)
-}
-
-func ActionWsErrorHighlightModes() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"context", "context lines",
-		"old", "old lines",
-		"new", "new linex",
-		"none", "reset previous values",
-		"default", "reset to new",
-		"all", "shorthand for old,new,context",
 	)
 }

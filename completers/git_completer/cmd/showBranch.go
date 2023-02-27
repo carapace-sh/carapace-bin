@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
-	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -39,7 +38,7 @@ func init() {
 	showBranchCmd.Flag("reflog").NoOptDefVal = " "
 
 	carapace.Gen(showBranchCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color": git.ActionColorModes(),
 		"reflog": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 1:
