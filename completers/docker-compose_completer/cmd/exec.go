@@ -14,6 +14,7 @@ var execCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(execCmd).Standalone()
+
 	execCmd.Flags().BoolP("detach", "d", false, "Detached mode: Run command in the background.")
 	execCmd.Flags().StringArrayP("env", "e", []string{}, "Set environment variables")
 	execCmd.Flags().Int("index", 1, "index of the container if there are multiple instances of a service [default: 1].")

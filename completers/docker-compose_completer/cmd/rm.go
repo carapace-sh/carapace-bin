@@ -14,6 +14,7 @@ var rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(rmCmd).Standalone()
+
 	rmCmd.Flags().BoolP("all", "a", false, "Deprecated - no effect")
 	rmCmd.Flags().BoolP("force", "f", false, "Don't ask to confirm removal")
 	rmCmd.Flags().BoolP("stop", "s", false, "Stop the containers, if required, before removing")

@@ -14,9 +14,14 @@ var imagesCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(imagesCmd).Standalone()
+
 	imagesCmd.Flags().String("format", "table", "Format the output. Values: [table | json].")
 	imagesCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")
 	rootCmd.AddCommand(imagesCmd)
+
+	carapace.Gen(imagesCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("table", "json"),
+	})
 
 	carapace.Gen(imagesCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {

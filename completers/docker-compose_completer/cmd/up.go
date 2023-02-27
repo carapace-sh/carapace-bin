@@ -15,6 +15,7 @@ var upCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(upCmd).Standalone()
+
 	upCmd.Flags().Bool("abort-on-container-exit", false, "Stops all containers if any container was stopped. Incompatible with -d")
 	upCmd.Flags().Bool("always-recreate-deps", false, "Recreate dependent containers. Incompatible with --no-recreate.")
 	upCmd.Flags().StringArray("attach", []string{}, "Attach to service output.")
@@ -35,9 +36,11 @@ func init() {
 	upCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file.")
 	upCmd.Flags().BoolP("renew-anon-volumes", "V", false, "Recreate anonymous volumes instead of retrieving data from the previous containers.")
 	upCmd.Flags().StringArray("scale", []string{}, "Scale SERVICE to NUM instances. Overrides the `scale` setting in the Compose file if present.")
-	upCmd.Flags().IntP("timeout", "t", 10, "Use this timeout in seconds for container shutdown when attached or when containers are already running.")
 	upCmd.Flags().Bool("timestamps", false, "Show timestamps.")
 	upCmd.Flags().Bool("wait", false, "Wait for services to be running|healthy. Implies detached mode.")
+	upCmd.Flags().Int("wait-timeout", 0, "timeout waiting for application to be running|healthy.")
+	upCmd.Flags().IntP("waitTimeout", "t", 10, "Use this waitTimeout in seconds for container shutdown when attached or when containers are already running.")
+
 	rootCmd.AddCommand(upCmd)
 
 	carapace.Gen(upCmd).FlagCompletion(carapace.ActionMap{

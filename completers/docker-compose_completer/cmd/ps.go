@@ -14,6 +14,7 @@ var psCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(psCmd).Standalone()
+
 	psCmd.Flags().BoolP("all", "a", false, "Show all stopped containers (including those created by the run command)")
 	psCmd.Flags().String("filter", "", "Filter services by a property (supported filters: status).")
 	psCmd.Flags().String("format", "table", "Format the output. Values: [table | json]")
@@ -23,7 +24,7 @@ func init() {
 	rootCmd.AddCommand(psCmd)
 
 	carapace.Gen(psCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("table", "json"),
 		"status": carapace.ActionValues("paused", "restarting", "removing", "running", "dead", "created", "exited"),
 	})
 

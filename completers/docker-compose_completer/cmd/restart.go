@@ -14,6 +14,8 @@ var restartCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(restartCmd).Standalone()
+
+	restartCmd.Flags().Bool("no-deps", false, "Don't restart dependent services.")
 	restartCmd.Flags().IntP("timeout", "t", 10, "Specify a shutdown timeout in seconds")
 	rootCmd.AddCommand(restartCmd)
 

@@ -14,6 +14,7 @@ var portCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(portCmd).Standalone()
+
 	portCmd.Flags().Int("index", 1, "index of the container if service has multiple replicas")
 	portCmd.Flags().String("protocol", "tcp", "tcp or udp")
 	rootCmd.AddCommand(portCmd)

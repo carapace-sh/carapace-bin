@@ -14,6 +14,7 @@ var runCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(runCmd).Standalone()
+
 	runCmd.Flags().Bool("build", false, "Build image before starting container.")
 	runCmd.Flags().BoolP("detach", "d", false, "Run container in background and print container ID")
 	runCmd.Flags().String("entrypoint", "", "Override the entrypoint of the image")
@@ -25,6 +26,7 @@ func init() {
 	runCmd.Flags().Bool("no-deps", false, "Don't start linked services.")
 	runCmd.Flags().StringArrayP("publish", "p", []string{}, "Publish a container's port(s) to the host.")
 	runCmd.Flags().Bool("quiet-pull", false, "Pull without printing progress information.")
+	runCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file.")
 	runCmd.Flags().Bool("rm", false, "Automatically remove the container when it exits")
 	runCmd.Flags().Bool("service-ports", false, "Run command with the service's ports enabled and mapped to the host.")
 	runCmd.Flags().BoolP("tty", "t", true, "Allocate a pseudo-TTY.")
