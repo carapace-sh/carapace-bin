@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,30 @@ func init() {
 
 	rootCmd.Flags().BoolP("help", "h", false, "Show this help message and exit.")
 	rootCmd.Flags().BoolP("version", "V", false, "Show the conda version number and exit.")
+
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		addOtherCommands()
+	})
+}
+
+func addOtherCommands() {
+	// hardcoded for now (should check PATH for conda-{COMMAND})
+	others := map[string]string{
+		"content-trust": "",
+		"env":           "Manage conda environments",
+	}
+	for name, description := range others {
+		otherCmd := &cobra.Command{
+			Use:                name,
+			Short:              description,
+			Run:                func(cmd *cobra.Command, args []string) {},
+			DisableFlagParsing: true,
+		}
+
+		carapace.Gen(otherCmd).PositionalAnyCompletion(
+			bridge.ActionCarapaceBin("conda-" + name),
+		)
+
+		rootCmd.AddCommand(otherCmd)
+	}
 }
