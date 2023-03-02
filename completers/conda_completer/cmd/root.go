@@ -30,7 +30,7 @@ func init() {
 func addOtherCommands() {
 	// hardcoded for now (should check PATH for conda-{COMMAND})
 	others := map[string]string{
-		"content-trust": "",
+		"content-trust": "Signing and verification tools for Conda",
 		"env":           "Manage conda environments",
 	}
 	for name, description := range others {
