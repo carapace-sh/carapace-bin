@@ -46,6 +46,14 @@ func init() {
 	pushCmd.Flag("force-with-lease").NoOptDefVal = " "
 
 	carapace.Gen(pushCmd).FlagCompletion(carapace.ActionMap{
+		"force-with-lease": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0, 1:
+				return git.ActionRefs(git.RefOption{}.Default())
+			default:
+				return carapace.ActionValues()
+			}
+		}),
 		"signed": carapace.ActionValues("yes", "no", "if-asked"),
 	})
 
