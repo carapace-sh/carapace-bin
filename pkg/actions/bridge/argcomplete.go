@@ -8,7 +8,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionArgcomplete bridges kislyuk/argcomplete
+// ActionArgcomplete bridges https://github.com/kislyuk/argcomplete
 //
 //	var rootCmd = &cobra.Command{
 //		Use:                "az",
