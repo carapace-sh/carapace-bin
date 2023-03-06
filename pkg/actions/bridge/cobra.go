@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// ActionCobra bridges cobra completion
+// ActionCobra bridges https://github.com/spf13/cobra
 //
 //	var rootCmd = &cobra.Command{
 //		Use:                "podman",

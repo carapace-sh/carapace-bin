@@ -7,7 +7,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionComplete bridges posener/complete
+// ActionComplete bridges https://github.com/posener/complete
 //
 //	var rootCmd = &cobra.Command{
 //		Use:                "vault",

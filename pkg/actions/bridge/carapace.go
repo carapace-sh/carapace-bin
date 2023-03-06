@@ -9,7 +9,7 @@ import (
 	"github.com/rsteube/carapace/pkg/xdg"
 )
 
-// ActionCarapace bridges rsteube/carapace completion
+// ActionCarapace bridges https://github.com/rsteube/carapace
 func ActionCarapace(cmd string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"_carapace", "export", ""}
@@ -24,7 +24,7 @@ func ActionCarapace(cmd string) carapace.Action {
 	})
 }
 
-// ActionCarapaceBin bridges a completer provided by carapace-bin
+// ActionCarapaceBin bridges completions registered in carapace-bin
 func ActionCarapaceBin(completer string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if a, err := actionSpec(completer); err == nil {

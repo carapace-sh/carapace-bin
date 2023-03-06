@@ -72,7 +72,7 @@ func createCmd(command string, engine string) *cobra.Command {
 			case "fish":
 				return bridge.ActionFish(command)
 			case "posener":
-				return bridge.ActionPosener(command)
+				return bridge.ActionComplete(command)
 			default:
 				return carapace.ActionValues()
 			}
