@@ -28,6 +28,8 @@ func init() {
 	lsRemoteCmd.Flags().String("upload-pack", "", "path of git-upload-pack on the remote host")
 	rootCmd.AddCommand(lsRemoteCmd)
 
+	lsRemoteCmd.Flag("sort").NoOptDefVal = " "
+
 	carapace.Gen(lsRemoteCmd).FlagCompletion(carapace.ActionMap{
 		"sort": git.ActionFieldNames(),
 	})

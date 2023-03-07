@@ -10,6 +10,8 @@
     - [User](./spec/user.md)
     - [Bridge](./spec/bride.md)
     - [Embed](./spec/embed.md)
+    - [Run](./spec/run.md)
+    - [Shim](./spec/shim.md)
     - [Generate](./spec/generate.md)
     - [Scrape](./spec/scrape.md)
     - [Examples](./spec/examples.md)
