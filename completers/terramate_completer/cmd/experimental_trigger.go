@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/terramate"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,6 @@ func init() {
 	experimentalCmd.AddCommand(experimental_triggerCmd)
 
 	carapace.Gen(experimental_triggerCmd).PositionalCompletion(
-		carapace.ActionFiles(),
+		terramate.ActionStacks(),
 	)
 }

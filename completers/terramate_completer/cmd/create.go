@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/terramate"
 	"github.com/spf13/cobra"
 )
 
@@ -23,6 +24,11 @@ func init() {
 	createCmd.Flags().String("name", "", "Name of the stack, defaults to stack dir base name")
 	createCmd.Flags().Bool("no-generate", false, "Disable code generation for the newly created stack")
 	rootCmd.AddCommand(createCmd)
+
+	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
+		"after":  terramate.ActionStacks().UniqueList(","),
+		"before": terramate.ActionStacks().UniqueList(","),
+	})
 
 	carapace.Gen(createCmd).PositionalCompletion(
 		carapace.ActionFiles(),
