@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
@@ -53,6 +54,39 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 				}
 				return carapace.ActionStyledValuesDescribed(untracked...)
 			}
+		})
+	})
+}
+
+// ActionRefChanges completes changes compared to given ref.
+//
+//	go.mod
+//	cmd/carapace/main.go
+func ActionRefChanges(ref string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("git", "diff-tree", "--name-only", "--no-commit-id", "-r", ref)(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+
+			path, err := util.FindReverse(c.Dir, ".git")
+			if err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+			relativeRoot, err := filepath.Rel(c.Dir, filepath.Dir(path))
+			if err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+			if relativeRoot == "." {
+				relativeRoot = ""
+			} else {
+				relativeRoot += "/"
+			}
+
+			vals := make([]string, 0)
+			for _, line := range lines[:len(lines)-1] {
+				vals = append(vals, relativeRoot+line)
+			}
+
+			return carapace.ActionValues(vals...).StyleF(style.ForPathExt)
 		})
 	})
 }
