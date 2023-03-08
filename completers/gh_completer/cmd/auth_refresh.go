@@ -17,6 +17,7 @@ func init() {
 
 	auth_refreshCmd.Flags().StringP("hostname", "h", "", "The GitHub host to use for authentication")
 	auth_refreshCmd.Flags().StringSliceP("scopes", "s", []string{}, "Additional authentication scopes for gh to have")
+	auth_refreshCmd.Flags().Bool("secure-storage", false, "Save authentication credentials in secure credential store")
 	authCmd.AddCommand(auth_refreshCmd)
 
 	carapace.Gen(auth_refreshCmd).FlagCompletion(carapace.ActionMap{
