@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(auth_tokenCmd).Standalone()
 
 	auth_tokenCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitHub instance authenticated with")
+	auth_tokenCmd.Flags().Bool("secure-storage", false, "Search only secure credential store for authentication token")
 	authCmd.AddCommand(auth_tokenCmd)
 
 	carapace.Gen(auth_tokenCmd).FlagCompletion(carapace.ActionMap{

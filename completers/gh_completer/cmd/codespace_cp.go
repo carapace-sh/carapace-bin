@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -18,15 +19,17 @@ var codespace_cpCmd = &cobra.Command{
 func init() {
 	carapace.Gen(codespace_cpCmd).Standalone()
 
-	codespace_cpCmd.Flags().StringP("codespace", "c", "", "Name of the codespace")
+	codespace_cpCmd.PersistentFlags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_cpCmd.Flags().BoolP("expand", "e", false, "Expand remote file names on remote shell")
 	codespace_cpCmd.Flags().StringP("profile", "p", "", "Name of the SSH profile to use")
 	codespace_cpCmd.Flags().BoolP("recursive", "r", false, "Recursively copy directories")
+	codespace_cpCmd.PersistentFlags().StringP("repo", "R", "", "Filter codespace selection by repository name (user/repo)")
 	codespaceCmd.AddCommand(codespace_cpCmd)
 
 	// TODO profile completion
 	carapace.Gen(codespace_cpCmd).FlagCompletion(carapace.ActionMap{
 		"codespace": action.ActionCodespaces(),
+		"repo":      gh.ActionOwnerRepositories(gh.HostOpts{}),
 	})
 
 	carapace.Gen(codespace_cpCmd).PositionalAnyCompletion(
