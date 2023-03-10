@@ -28,7 +28,7 @@ body:
     required: false
 - type: input
   attributes:
-    label: Affected Version
+    label: Version
     description: Version where this occured.
   validations:
     required: false
