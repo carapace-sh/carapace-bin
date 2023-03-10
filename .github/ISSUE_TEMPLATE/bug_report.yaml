@@ -26,6 +26,12 @@ body:
       4. See error...
   validations:
     required: false
+- type: input
+  attributes:
+    label: Affected Version
+    description: Version where this occured.
+   validations:
+    required: false
 - type: checkboxes
   attributes:
     label: OS
