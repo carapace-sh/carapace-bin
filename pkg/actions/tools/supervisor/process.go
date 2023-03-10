@@ -26,7 +26,13 @@ func ActionProcesses(path string) carapace.Action {
 			if err != nil {
 				const NOT_RUNNING = 3
 				if exitErr, ok := err.(*exec.ExitError); !ok || exitErr.ExitCode() != NOT_RUNNING {
-					return carapace.ActionMessage(err.Error())
+					if len(exitErr.Stderr) > 0 {
+						return carapace.ActionMessage(string(exitErr.Stderr))
+					}
+					if len(output) > 0 {
+						return carapace.ActionMessage(string(output))
+					}
+					return carapace.ActionMessage(string(output))
 				}
 			}
 
