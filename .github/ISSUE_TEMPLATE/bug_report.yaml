@@ -30,7 +30,7 @@ body:
   attributes:
     label: Affected Version
     description: Version where this occured.
-   validations:
+  validations:
     required: false
 - type: checkboxes
   attributes:
