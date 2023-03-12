@@ -5,6 +5,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var buildCmd = &cobra.Command{
@@ -26,12 +27,15 @@ func init() {
 }
 
 func addBuildFlags(cmd *cobra.Command) {
+	cmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
 	cmd.Flags().BoolS("a", "a", false, "force rebuilding of packages that are already up-to-date")
 	cmd.Flags().BoolS("asan", "asan", false, "enable interoperation with address sanitizer")
 	cmd.Flags().StringS("asmflags", "asmflags", "", "arguments to pass on each go tool asm invocation")
 	cmd.Flags().StringS("buildmode", "buildmode", "", "build mode to use")
 	cmd.Flags().StringS("buildvcs", "buildvcs", "", "whether to stamp binaries with version control information")
 	cmd.Flags().StringS("compiler", "compiler", "", "name of compiler to use")
+	cmd.Flags().BoolS("cover", "cover", false, "enable code coverage instrumentation")
+	cmd.Flags().StringS("coverpkg", "coverpkg", "", "apply coverage analysis to each package matching the patterns")
 	cmd.Flags().StringS("gccgoflags", "gccgoflags", "", "arguments to pass on each gccgo compiler/linker invocation")
 	cmd.Flags().StringS("gcflags", "gcflags", "", "arguments to pass on each go tool compile invocation")
 	cmd.Flags().StringS("installsuffix", "installsuffix", "", "a suffix to use in the name of the package installation directory")
@@ -44,6 +48,7 @@ func addBuildFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolS("n", "n", false, "print the commands but do not run them")
 	cmd.Flags().StringS("overlay", "overlay", "", "read a JSON config file that provides an overlay for build operations")
 	cmd.Flags().StringS("p", "p", "", "the number of programs to run in parallel")
+	cmd.Flags().StringS("pgo", "pgo", "", "specify the file path of a profile for profile-guided optimization")
 	cmd.Flags().StringS("pkgdir", "pkgdir", "", "install and load all packages from dir")
 	cmd.Flags().BoolS("race", "race", false, "enable data race detection")
 	cmd.Flags().StringS("tags", "tags", "", "a comma-separated list of build tags to consider satisfied during the")
@@ -56,14 +61,21 @@ func addBuildFlags(cmd *cobra.Command) {
 	cmd.Flag("buildvcs").NoOptDefVal = "auto"
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+		"C":         carapace.ActionDirectories(),
 		"buildmode": carapace.ActionValues("archive", "c-archive", "c-shared", "default", "shared", "exe", "pie", "plugin"),
 		"buildvcs":  carapace.ActionValues("true", "false", "auto").StyleF(style.ForKeyword),
 		"compiler":  carapace.ActionValues("gccgo", "gc"),
+		"coverpkg":  golang.ActionPackages().UniqueList(","),
 		"mod":       carapace.ActionValues("readonly", "vendor", "mod"),
 		"modfile":   carapace.ActionFiles(".mod"),
 		"n":         carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8"),
+		"overlay":   carapace.ActionFiles(".json"),
+		"pgo":       carapace.ActionFiles(".pgo"),
 		"pkgdir":    carapace.ActionDirectories(),
 		"tags":      golang.ActionBuildTags().UniqueList(","),
 	})
 
+	carapace.Gen(cmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.Chdir(cmd.Flag("C").Value.String())
+	})
 }

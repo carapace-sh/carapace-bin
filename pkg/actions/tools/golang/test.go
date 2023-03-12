@@ -1,4 +1,4 @@
-package action
+package golang
 
 import (
 	"strings"
@@ -8,13 +8,24 @@ import (
 )
 
 type TestOpts struct {
+	Packages  []string
 	Benchmark bool
 	Example   bool
 	Test      bool
 }
 
-func ActionTests(packages []string, opts TestOpts) carapace.Action {
-	return carapace.ActionExecCommand("go", append([]string{"test", "-list=.*"}, packages...)...)(func(output []byte) carapace.Action {
+func (o *TestOpts) Default() {
+	o.Benchmark = true
+	o.Example = true
+	o.Test = true
+}
+
+// ActionTests completes tests
+//
+//	TestActionFiles
+//	TestActionFilesChdir
+func ActionTests(opts TestOpts) carapace.Action {
+	return carapace.ActionExecCommand("go", append([]string{"test", "-list=.*"}, opts.Packages...)...)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		vals := make([]string, 0)
 		for _, line := range lines {

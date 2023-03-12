@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/go_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -40,11 +40,11 @@ func init() {
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
 		"bench": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionTests(c.Args, action.TestOpts{Benchmark: true}).UniqueList("|")
+			return golang.ActionTests(golang.TestOpts{Packages: c.Args, Benchmark: true}).UniqueList("|")
 		}),
 		"covermode": carapace.ActionValues("set", "count,atomic"),
 		"run": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionTests(c.Args, action.TestOpts{Example: true, Test: true}).UniqueList("|")
+			return golang.ActionTests(golang.TestOpts{Packages: c.Args, Example: true, Test: true}).UniqueList("|")
 		}),
 	})
 
