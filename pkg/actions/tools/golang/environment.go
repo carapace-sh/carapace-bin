@@ -1,4 +1,4 @@
-package action
+package golang
 
 import (
 	"encoding/json"
@@ -6,6 +6,10 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionEnvironmentVariables completes go environment variables.
+//
+//	GOHOSTARCH (amd64)
+//	GOHOSTOS (linux)
 func ActionEnvironmentVariables() carapace.Action {
 	return carapace.ActionExecCommand("go", "env", "--json")(func(output []byte) carapace.Action {
 		var env map[string]string

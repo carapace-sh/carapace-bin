@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/go_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +22,7 @@ func init() {
 
 	carapace.Gen(envCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionEnvironmentVariables().Invoke(c).Filter(c.Args).ToA()
+			return golang.ActionEnvironmentVariables().Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }
