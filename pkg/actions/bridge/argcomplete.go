@@ -28,13 +28,17 @@ import (
 //			argcomplete.ActionArgcomplete("az"),
 //		)
 //	}
-func ActionArgcomplete(command string) carapace.Action {
+func ActionArgcomplete(command ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if _, err := exec.LookPath(command); err != nil {
+		if len(command) == 0 {
+			return carapace.ActionMessage("missing argument [ActionArgcomplete]")
+		}
+
+		if _, err := exec.LookPath(command[0]); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		args := c.Args
+		args := append(command[1:], c.Args...)
 		current := c.CallbackValue
 
 		prefix := ""
@@ -52,7 +56,7 @@ func ActionArgcomplete(command string) carapace.Action {
 			current = "" // seems partial positional arguments aren't completed as well
 		}
 
-		compLine := command + " " + strings.Join(append(args, current), " ") // TODO escape/quote special characters
+		compLine := command[0] + " " + strings.Join(append(args, current), " ") // TODO escape/quote special characters
 		c.Setenv("_ARGCOMPLETE", "1")
 		c.Setenv("_ARGCOMPLETE_DFS", "\t")
 		c.Setenv("_ARGCOMPLETE_IFS", "\n")
@@ -63,7 +67,7 @@ func ActionArgcomplete(command string) carapace.Action {
 		c.Setenv("COMP_LINE", compLine)
 		c.Setenv("COMP_POINT", strconv.Itoa(len(compLine)))
 		nospace := false
-		a := carapace.ActionExecCommand("sh", "-c", command+" 8>&1 9>&2 1>/dev/null 2>/dev/null")(func(output []byte) carapace.Action {
+		a := carapace.ActionExecCommand("sh", "-c", command[0]+" 8>&1 9>&2 1>/dev/null 2>/dev/null")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			vals := make([]string, 0)
 			isFlag := strings.HasPrefix(c.CallbackValue, "-")

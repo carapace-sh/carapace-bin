@@ -7,7 +7,7 @@ name: embed
 commands:
   - name: git
     completion:
-      positionalany: ["$chdir(~/.password-store)", "$_bridge.CarapaceBin(git)"]
+      positionalany: ["$chdir(~/.password-store)", "$_bridge.CarapaceBin([git])"]
 ```
 
 ![](./embed.cast)

@@ -27,10 +27,15 @@ import (
 //			bridge.ActionComplete("vault"),
 //		)
 //	}
-func ActionComplete(cmd string) carapace.Action {
+func ActionComplete(command ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		c.Setenv("COMP_LINE", fmt.Sprintf("%v %v %v", cmd, strings.Join(c.Args, " "), c.CallbackValue))
-		return carapace.ActionExecCommand(cmd)(func(output []byte) carapace.Action {
+		if len(command) == 0 {
+			return carapace.ActionMessage("missing argument [ActionComplete]")
+		}
+
+		c.Args = append(command[1:], c.Args...)
+		c.Setenv("COMP_LINE", fmt.Sprintf("%v %v %v", command[0], strings.Join(c.Args, " "), c.CallbackValue))
+		return carapace.ActionExecCommand(command[0])(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
 			a := carapace.ActionValues(lines[:len(lines)-1]...)

@@ -10,12 +10,17 @@ import (
 )
 
 // ActionCarapace bridges https://github.com/rsteube/carapace
-func ActionCarapace(cmd string) carapace.Action {
+func ActionCarapace(command ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if len(command) == 0 {
+			return carapace.ActionMessage("missing argument [ActionCarapace]")
+		}
+
 		args := []string{"_carapace", "export", ""}
+		args = append(args, command[1:]...)
 		args = append(args, c.Args...)
 		args = append(args, c.CallbackValue)
-		return carapace.ActionExecCommand(cmd, args...)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand(command[0], args...)(func(output []byte) carapace.Action {
 			if string(output) == "" {
 				return carapace.ActionValues()
 			}
@@ -25,14 +30,19 @@ func ActionCarapace(cmd string) carapace.Action {
 }
 
 // ActionCarapaceBin bridges completions registered in carapace-bin
-func ActionCarapaceBin(completer string) carapace.Action {
+func ActionCarapaceBin(command ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if a, err := actionSpec(completer); err == nil {
-			return a
+		if len(command) == 0 {
+			return carapace.ActionMessage("missing argument [ActionCarapaceBin]")
+		}
+
+		c.Args = append(command[1:], c.Args...)
+		if a, err := actionSpec(command[0]); err == nil {
+			return a.Invoke(c).ToA()
 		} else if !os.IsNotExist(err) {
 			return carapace.ActionMessage(err.Error())
 		}
-		return actionEmbedded(completer)
+		return actionEmbedded(command[0]).Invoke(c).ToA()
 	})
 }
 

@@ -28,12 +28,17 @@ import (
 //			cobracomplete.ActionCobra("podman"),
 //		)
 //	}
-func ActionCobra(cmd string) carapace.Action {
+func ActionCobra(command ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if len(command) == 0 {
+			return carapace.ActionMessage("missing argument [ActionCobra]")
+		}
+
 		args := []string{"__complete"}
+		args = append(args, command[1:]...)
 		args = append(args, c.Args...)
 		args = append(args, c.CallbackValue)
-		return carapace.ActionExecCommand(cmd, args...)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand(command[0], args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			if len(lines) == 0 {
 				return carapace.ActionMessage("unexpected command output")

@@ -27,18 +27,23 @@ import (
 //			bridge.ActionYargs("ng"),
 //		)
 //	}
-func ActionYargs(command string) carapace.Action {
+func ActionYargs(command ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if _, err := exec.LookPath(command); err != nil {
+		if len(command) == 0 {
+			return carapace.ActionMessage("missing argument [ActionYargs]")
+		}
+
+		if _, err := exec.LookPath(command[0]); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 
 		c.Setenv("SHELL", "zsh")
 
 		args := []string{"--get-yargs-completions"}
+		args = append(args, command[1:]...)
 		args = append(args, c.Args...)
 		args = append(args, c.CallbackValue)
-		return carapace.ActionExecCommand(command, args...)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand(command[0], args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
 			vals := make([]string, 0)
