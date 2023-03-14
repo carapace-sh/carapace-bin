@@ -34,6 +34,10 @@ func loadSpec(path string) (string, *spec.Command, error) {
 }
 
 func addAliasCompletion(cmd *cobra.Command, specCommand spec.Command) {
+	if specCommand.Run == "" {
+		return
+	}
+
 	if len(specCommand.Flags) == 0 &&
 		len(specCommand.PersistentFlags) == 0 &&
 		len(specCommand.Completion.Positional) == 0 &&
@@ -83,7 +87,7 @@ func scrape(path string) {
 	}
 }
 
-func specCompletion(path string, args ...string) error {
+func specCompletion(path string, args ...string) (string, error) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
@@ -98,7 +102,7 @@ func specCompletion(path string, args ...string) error {
 
 	abs, spec, err := loadSpec(path)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	cmd := spec.ToCobra()
@@ -115,12 +119,11 @@ func specCompletion(path string, args ...string) error {
 
 	executable, err := os.Executable()
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	executableName := filepath.Base(executable)
 	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v --spec '%v'", executableName, abs), -1)       // general callback
 	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '--spec', '%v'", executableName, abs), -1) // xonsh callback
-	fmt.Print(patched)
-	return nil
+	return patched, nil
 }
