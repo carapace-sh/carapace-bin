@@ -7,10 +7,11 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "doctl",
-	Short: "doctl is a command line interface (CLI) for the DigitalOcean API",
-	Long:  "https://docs.digitalocean.com/reference/doctl/",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:                "doctl",
+	Short:              "doctl is a command line interface (CLI) for the DigitalOcean API",
+	Long:               "https://docs.digitalocean.com/reference/doctl/",
+	Run:                func(cmd *cobra.Command, args []string) {},
+	DisableFlagParsing: true,
 }
 
 func Execute() error {
