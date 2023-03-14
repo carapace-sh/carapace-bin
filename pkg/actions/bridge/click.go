@@ -29,20 +29,24 @@ import (
 //			bridge.ActionClick("watson"),
 //		)
 //	}
-func ActionClick(command string) carapace.Action {
+func ActionClick(command ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if _, err := exec.LookPath(command); err != nil {
+		if len(command) == 0 {
+			return carapace.ActionMessage("missing argument [ActionClick]")
+		}
+
+		if _, err := exec.LookPath(command[0]); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		args := c.Args
+		args := append(command[1:], c.Args...)
 		current := c.CallbackValue
 
-		compLine := command + " " + strings.Join(append(args, current), " ") // TODO escape/quote special characters
-		c.Setenv(fmt.Sprintf("_%v_COMPLETE", strings.ToUpper(command)), "zsh_complete")
+		compLine := command[0] + " " + strings.Join(append(args, current), " ") // TODO escape/quote special characters
+		c.Setenv(fmt.Sprintf("_%v_COMPLETE", strings.ToUpper(command[0])), "zsh_complete")
 		c.Setenv("COMP_WORDS", compLine)
 		c.Setenv("COMP_CWORD", strconv.Itoa(len(args)+1))
-		return carapace.ActionExecCommand(command)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand(command[0])(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
 			vals := make([]string, 0)

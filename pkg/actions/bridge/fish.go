@@ -8,16 +8,21 @@ import (
 )
 
 // ActionFish bridges completions registered in fish shell
-func ActionFish(cmd string) carapace.Action {
+func ActionFish(command ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := append(c.Args, c.CallbackValue)
+		if len(command) == 0 {
+			return carapace.ActionMessage("missing argument [ActionFish]")
+		}
+
+		args := append(command[1:], c.Args...)
+		args = append(args, c.CallbackValue)
 		for index, arg := range args {
 			arg = strings.Replace(arg, `\`, `\\`, -1)
 			arg = strings.Replace(arg, `'`, `\'`, -1)
 			arg = strings.Replace(arg, ` `, `\ `, -1)
 			args[index] = arg
 		}
-		return carapace.ActionExecCommand("fish", "--command", fmt.Sprintf(`complete '--do-complete=%v %v'`, cmd, strings.Join(args, " ")))(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("fish", "--command", fmt.Sprintf(`complete '--do-complete=%v %v'`, command[0], strings.Join(args, " ")))(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			nospace := false
 

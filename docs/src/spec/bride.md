@@ -16,7 +16,7 @@ Bridging completions from another engine for shells not natively supported by it
 name: az
 description: Azure Command-Line Interface
 completion:
-  positionalany: ["$_bridge.Argcomplete(az)"]
+  positionalany: ["$_bridge.Argcomplete([az])"]
 ````
 
 ## Carapace
@@ -27,7 +27,7 @@ completion:
 name: freckles
 description: simple dotfile manager
 completion:
-  positionalany: ["$_bridge.Carapace(freckles)"]
+  positionalany: ["$_bridge.Carapace([freckles])"]
 ````
 
 ## CarapaceBin
@@ -38,7 +38,7 @@ completion:
 name: github-cli
 description: Work seamlessly with GitHub from the command line
 completion:
-  positionalany: ["$_bridge.CarapaceBin(gh)"]
+  positionalany: ["$_bridge.CarapaceBin([gh])"]
 ````
 
 ## Click
@@ -49,7 +49,7 @@ completion:
 name: watson
 description: Watson is a tool aimed at helping you monitoring your time
 completion:
-  positionalany: ["$_bridge.Click(watson)"]
+  positionalany: ["$_bridge.Click([watson])"]
 ````
 
 ## Cobra
@@ -60,7 +60,7 @@ completion:
 name: kubectl
 description: kubectl controls the Kubernetes cluster manager
 completion:
-  positionalany: ["$_bridge.Cobra(kubectl)"]
+  positionalany: ["$_bridge.Cobra([kubectl])"]
 ````
 
 ## Complete
@@ -70,7 +70,7 @@ completion:
 name: vault
 description: Manage Secrets & Protect Sensitive Data
 completion:
-  positionalany: ["$_bridge.Complete(vault)"]
+  positionalany: ["$_bridge.Complete([vault])"]
 ````
 
 ## Fish
@@ -81,7 +81,7 @@ Commands registered in [fish-shell/fish-shell] can be bridged with the [`bridge.
 name:  git
 description: the stupid content tracker
 completion:
-  positionalany: ["$_bridge.Fish(git)"]
+  positionalany: ["$_bridge.Fish([git])"]
 ````
 
 ## Yargs
@@ -91,7 +91,7 @@ completion:
 name: ng
 description: CLI tool for Angular
 completion:
-  positionalany: ["$_bridge.Yargs(ng)"]
+  positionalany: ["$_bridge.Yargs([ng])"]
 ````
 
 [lazycomplete]:https://github.com/rsteube/lazycomplete
