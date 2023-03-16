@@ -33,22 +33,31 @@ commands:
 
 ![](./overlay-flag.cast)
 
-## Group
+## Command
 
 ```yaml
 # ~/.config/carapace/overlays/doctl.yaml
 name: doctl
 commands:
-  - name: 1-click
-    description: Display commands that pertain to 1-click applications
-    group: application
-
-  - name: account
-    description: Display commands that retrieve account details 
+  - name: auth
+    description: Display commands for authenticating doctl with an account
     group: management
+
+  - name: compute
+    description: Display commands that manage infrastructure
+    group: core
+
+  - name: custom
+    description: custom command
+    group: custom
+    flags:
+      -h, --help: show help
+    completion:
+      positional:
+        - [one, two, three]
 ```
 
-![](./overlay-group.cast)
+![](./overlay-command.cast)
 
 [Spec]:./spec.md
 [`${UserConfigDir}/carapace/overlays`]:https://pkg.go.dev/os#UserConfigDir
