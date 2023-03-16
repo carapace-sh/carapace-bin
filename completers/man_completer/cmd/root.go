@@ -75,8 +75,13 @@ func init() {
 		"pager":       carapace.ActionFiles(),
 	})
 
-	carapace.Gen(rootCmd).PositionalCompletion(
-		ActionManPages(),
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if rootCmd.Flag("local-file").Changed {
+				return carapace.ActionFiles(".man")
+			}
+			return ActionManPages()
+		}),
 	)
 }
 
