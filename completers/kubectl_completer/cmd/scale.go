@@ -7,9 +7,10 @@ import (
 )
 
 var scaleCmd = &cobra.Command{
-	Use:   "scale",
-	Short: "Set a new size for a deployment, replica set, or replication controller",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "scale",
+	Short:   "Set a new size for a deployment, replica set, or replication controller",
+	GroupID: "deploy",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

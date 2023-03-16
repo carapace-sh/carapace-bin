@@ -7,9 +7,10 @@ import (
 )
 
 var patchCmd = &cobra.Command{
-	Use:   "patch",
-	Short: "Update fields of a resource",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "patch",
+	Short:   "Update fields of a resource",
+	GroupID: "advanced",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

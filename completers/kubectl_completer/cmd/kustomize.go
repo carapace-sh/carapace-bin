@@ -6,9 +6,10 @@ import (
 )
 
 var kustomizeCmd = &cobra.Command{
-	Use:   "kustomize",
-	Short: "Build a kustomization target from a directory or URL.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "kustomize",
+	Short:   "Build a kustomization target from a directory or URL.",
+	GroupID: "advanced",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

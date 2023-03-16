@@ -8,9 +8,10 @@ import (
 )
 
 var applyCmd = &cobra.Command{
-	Use:   "apply",
-	Short: "Apply a configuration to a resource by file name or stdin",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "apply",
+	Short:   "Apply a configuration to a resource by file name or stdin",
+	GroupID: "advanced",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

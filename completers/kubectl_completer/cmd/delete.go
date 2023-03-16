@@ -7,9 +7,10 @@ import (
 )
 
 var deleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Delete resources by file names, stdin, resources and names, or by resources and label selector",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "delete",
+	Short:   "Delete resources by file names, stdin, resources and names, or by resources and label selector",
+	GroupID: "basic intermediate",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

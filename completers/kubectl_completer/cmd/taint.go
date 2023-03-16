@@ -8,9 +8,10 @@ import (
 )
 
 var taintCmd = &cobra.Command{
-	Use:   "taint",
-	Short: "Update the taints on one or more nodes",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "taint",
+	Short:   "Update the taints on one or more nodes",
+	GroupID: "cluster management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var uncordonCmd = &cobra.Command{
-	Use:   "uncordon",
-	Short: "Mark node as schedulable",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "uncordon",
+	Short:   "Mark node as schedulable",
+	GroupID: "cluster management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

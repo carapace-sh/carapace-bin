@@ -7,9 +7,10 @@ import (
 )
 
 var proxyCmd = &cobra.Command{
-	Use:   "proxy",
-	Short: "Run a proxy to the Kubernetes API server",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "proxy",
+	Short:   "Run a proxy to the Kubernetes API server",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

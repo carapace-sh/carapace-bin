@@ -8,9 +8,10 @@ import (
 )
 
 var portForwardCmd = &cobra.Command{
-	Use:   "port-forward",
-	Short: "Forward one or more local ports to a pod",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "port-forward",
+	Short:   "Forward one or more local ports to a pod",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

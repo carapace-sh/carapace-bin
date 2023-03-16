@@ -6,9 +6,10 @@ import (
 )
 
 var certificateCmd = &cobra.Command{
-	Use:   "certificate",
-	Short: "Modify certificate resources.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "certificate",
+	Short:   "Modify certificate resources.",
+	GroupID: "cluster management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

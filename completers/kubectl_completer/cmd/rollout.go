@@ -6,9 +6,10 @@ import (
 )
 
 var rolloutCmd = &cobra.Command{
-	Use:   "rollout",
-	Short: "Manage the rollout of a resource",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rollout",
+	Short:   "Manage the rollout of a resource",
+	GroupID: "deploy",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

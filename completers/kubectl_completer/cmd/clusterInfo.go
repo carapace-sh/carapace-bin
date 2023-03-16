@@ -6,9 +6,10 @@ import (
 )
 
 var clusterInfoCmd = &cobra.Command{
-	Use:   "cluster-info",
-	Short: "Display cluster information",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "cluster-info",
+	Short:   "Display cluster information",
+	GroupID: "cluster management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

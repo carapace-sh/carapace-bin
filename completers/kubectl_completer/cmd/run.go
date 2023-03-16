@@ -7,9 +7,10 @@ import (
 )
 
 var runCmd = &cobra.Command{
-	Use:   "run",
-	Short: "Run a particular image on the cluster",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "run",
+	Short:   "Run a particular image on the cluster",
+	GroupID: "basic beginner",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

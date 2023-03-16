@@ -8,9 +8,10 @@ import (
 )
 
 var createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "Create a resource from a file or from stdin",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "create",
+	Short:   "Create a resource from a file or from stdin",
+	GroupID: "basic beginner",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
