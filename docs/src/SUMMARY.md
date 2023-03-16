@@ -16,6 +16,7 @@
     - [Scrape](./spec/scrape.md)
     - [Examples](./spec/examples.md)
     - [Macros](./spec/macros.md)
+  - [Overlay](./overlay.md)
   - [Development](./development.md)
     - [Build](./development/build.md)
     - [docker-compose](./development/docker-compose.md)
