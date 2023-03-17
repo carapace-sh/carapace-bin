@@ -8,13 +8,14 @@ import (
 )
 
 var create_secret_genericCmd = &cobra.Command{
-	Use:   "generic",
+	Use:   "generic NAME [--type=string] [--from-file=[key=]source] [--from-literal=key1=value1] [--dry-run=server|client|none]",
 	Short: "Create a secret from a local file, directory, or literal value",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(create_secret_genericCmd).Standalone()
+
 	create_secret_genericCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_secret_genericCmd.Flags().Bool("append-hash", false, "Append a hash of the secret to its name.")
 	create_secret_genericCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

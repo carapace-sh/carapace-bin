@@ -13,5 +13,6 @@ var config_getClustersCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_getClustersCmd).Standalone()
+
 	configCmd.AddCommand(config_getClustersCmd)
 }

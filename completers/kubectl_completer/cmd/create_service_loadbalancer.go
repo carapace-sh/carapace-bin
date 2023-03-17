@@ -8,13 +8,14 @@ import (
 )
 
 var create_service_loadbalancerCmd = &cobra.Command{
-	Use:   "loadbalancer",
+	Use:   "loadbalancer NAME [--tcp=port:targetPort] [--dry-run=server|client|none]",
 	Short: "Create a LoadBalancer service",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(create_service_loadbalancerCmd).Standalone()
+
 	create_service_loadbalancerCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_service_loadbalancerCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_service_loadbalancerCmd.Flags().String("field-manager", "kubectl-create", "Name of the manager used to track field ownership.")

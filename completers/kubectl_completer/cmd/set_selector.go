@@ -7,13 +7,14 @@ import (
 )
 
 var set_selectorCmd = &cobra.Command{
-	Use:   "selector",
+	Use:   "selector (-f FILENAME | TYPE NAME) EXPRESSIONS [--resource-version=version]",
 	Short: "Set the selector on a resource",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(set_selectorCmd).Standalone()
+
 	set_selectorCmd.Flags().Bool("all", false, "Select all resources in the namespace of the specified resource types")
 	set_selectorCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	set_selectorCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

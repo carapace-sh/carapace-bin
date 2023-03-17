@@ -7,7 +7,7 @@ import (
 )
 
 var autoscaleCmd = &cobra.Command{
-	Use:     "autoscale",
+	Use:     "autoscale (-f FILENAME | TYPE NAME | TYPE/NAME) [--min=MINPODS] --max=MAXPODS [--cpu-percent=CPU]",
 	Short:   "Auto-scale a deployment, replica set, stateful set, or replication controller",
 	GroupID: "deploy",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var autoscaleCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(autoscaleCmd).Standalone()
+
 	autoscaleCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	autoscaleCmd.Flags().Int32("cpu-percent", -1, "The target average CPU utilization (represented as a percent of requested CPU) over all the pods. If it's not specified or negative, a default autoscaling policy will be used.")
 	autoscaleCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

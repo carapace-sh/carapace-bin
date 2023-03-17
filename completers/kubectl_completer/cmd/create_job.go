@@ -7,13 +7,14 @@ import (
 )
 
 var create_jobCmd = &cobra.Command{
-	Use:   "job",
+	Use:   "job NAME --image=image [--from=cronjob/name] -- [COMMAND] [args...]",
 	Short: "Create a job with the specified name",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(create_jobCmd).Standalone()
+
 	create_jobCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_jobCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_jobCmd.Flags().String("field-manager", "kubectl-create", "Name of the manager used to track field ownership.")

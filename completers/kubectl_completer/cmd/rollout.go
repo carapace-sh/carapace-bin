@@ -6,7 +6,7 @@ import (
 )
 
 var rolloutCmd = &cobra.Command{
-	Use:     "rollout",
+	Use:     "rollout SUBCOMMAND",
 	Short:   "Manage the rollout of a resource",
 	GroupID: "deploy",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -14,5 +14,6 @@ var rolloutCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(rolloutCmd).Standalone()
+
 	rootCmd.AddCommand(rolloutCmd)
 }

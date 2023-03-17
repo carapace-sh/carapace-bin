@@ -7,13 +7,14 @@ import (
 )
 
 var apply_setLastAppliedCmd = &cobra.Command{
-	Use:   "set-last-applied",
+	Use:   "set-last-applied -f FILENAME",
 	Short: "Set the last-applied-configuration annotation on a live object to match the contents of a file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(apply_setLastAppliedCmd).Standalone()
+
 	apply_setLastAppliedCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	apply_setLastAppliedCmd.Flags().Bool("create-annotation", false, "Will create 'last-applied-configuration' annotations if current objects doesn't have one")
 	apply_setLastAppliedCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

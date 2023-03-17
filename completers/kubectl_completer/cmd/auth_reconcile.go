@@ -7,13 +7,14 @@ import (
 )
 
 var auth_reconcileCmd = &cobra.Command{
-	Use:   "reconcile",
+	Use:   "reconcile -f FILENAME",
 	Short: "Reconciles rules for RBAC role, role binding, cluster role, and cluster role binding objects",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(auth_reconcileCmd).Standalone()
+
 	auth_reconcileCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	auth_reconcileCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	auth_reconcileCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to reconcile.")

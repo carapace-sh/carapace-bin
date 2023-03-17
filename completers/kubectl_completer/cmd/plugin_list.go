@@ -13,6 +13,7 @@ var plugin_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(plugin_listCmd).Standalone()
+
 	plugin_listCmd.Flags().Bool("name-only", false, "If true, display only the binary name of each plugin, rather than its full path")
 	pluginCmd.AddCommand(plugin_listCmd)
 }

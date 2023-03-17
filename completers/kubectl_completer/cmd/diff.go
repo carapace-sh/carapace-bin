@@ -6,7 +6,7 @@ import (
 )
 
 var diffCmd = &cobra.Command{
-	Use:     "diff",
+	Use:     "diff -f FILENAME",
 	Short:   "Diff the live version against a would-be applied version",
 	GroupID: "advanced",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -14,6 +14,7 @@ var diffCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(diffCmd).Standalone()
+
 	diffCmd.Flags().String("field-manager", "kubectl-client-side-apply", "Name of the manager used to track field ownership.")
 	diffCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files contains the configuration to diff")
 	diffCmd.Flags().Bool("force-conflicts", false, "If true, server-side apply will force the changes against conflicts.")

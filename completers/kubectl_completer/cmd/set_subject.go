@@ -7,13 +7,14 @@ import (
 )
 
 var set_subjectCmd = &cobra.Command{
-	Use:   "subject",
+	Use:   "subject (-f FILENAME | TYPE NAME) [--user=username] [--group=groupname] [--serviceaccount=namespace:serviceaccountname] [--dry-run=server|client|none]",
 	Short: "Update the user, group, or service account in a role binding or cluster role binding",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(set_subjectCmd).Standalone()
+
 	set_subjectCmd.Flags().Bool("all", false, "Select all resources, in the namespace of the specified resource types")
 	set_subjectCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	set_subjectCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
@@ -28,6 +29,7 @@ func init() {
 	set_subjectCmd.Flags().StringArray("serviceaccount", []string{}, "Service accounts to bind to the role")
 	set_subjectCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	set_subjectCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
+	set_subjectCmd.Flags().StringArray("user", []string{}, "Usernames to bind to the role")
 	set_subjectCmd.Flag("dry-run").NoOptDefVal = "unchanged"
 	setCmd.AddCommand(set_subjectCmd)
 

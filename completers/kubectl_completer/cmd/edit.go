@@ -8,7 +8,7 @@ import (
 )
 
 var editCmd = &cobra.Command{
-	Use:     "edit",
+	Use:     "edit (RESOURCE/NAME | -f FILENAME)",
 	Short:   "Edit a resource on the server",
 	GroupID: "basic intermediate",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var editCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(editCmd).Standalone()
+
 	editCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	editCmd.Flags().String("field-manager", "kubectl-edit", "Name of the manager used to track field ownership.")
 	editCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files to use to edit the resource")

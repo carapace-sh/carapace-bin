@@ -7,7 +7,7 @@ import (
 )
 
 var drainCmd = &cobra.Command{
-	Use:     "drain",
+	Use:     "drain NODE",
 	Short:   "Drain node in preparation for maintenance",
 	GroupID: "cluster management",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var drainCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(drainCmd).Standalone()
+
 	drainCmd.Flags().Int64("chunk-size", 500, "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.")
 	drainCmd.Flags().Bool("delete-emptydir-data", false, "Continue even if there are pods using emptyDir (local data that will be deleted when the node is drained).")
 	drainCmd.Flags().Bool("disable-eviction", false, "Force drain to use delete, even if eviction is supported. This will bypass checking PodDisruptionBudgets, use with caution.")
@@ -25,7 +26,7 @@ func init() {
 	drainCmd.Flags().String("pod-selector", "", "Label selector to filter pods on the node")
 	drainCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
 	drainCmd.Flags().Int("skip-wait-for-delete-timeout", 0, "If pod DeletionTimestamp older than N seconds, skip waiting for the pod.  Seconds must be greater than 0 to skip.")
-	drainCmd.Flags().String("timeout", "0s", "The length of time to wait before giving up, zero means infinite")
+	drainCmd.Flags().Duration("timeout", 0, "The length of time to wait before giving up, zero means infinite")
 	drainCmd.Flag("dry-run").NoOptDefVal = "unchanged"
 	rootCmd.AddCommand(drainCmd)
 

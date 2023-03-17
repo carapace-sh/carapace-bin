@@ -13,6 +13,7 @@ var alpha_auth_whoamiCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(alpha_auth_whoamiCmd).Standalone()
+
 	alpha_auth_whoamiCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	alpha_auth_whoamiCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	alpha_auth_whoamiCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")

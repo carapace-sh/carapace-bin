@@ -13,5 +13,6 @@ var create_secretCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(create_secretCmd).Standalone()
+
 	createCmd.AddCommand(create_secretCmd)
 }

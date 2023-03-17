@@ -7,7 +7,7 @@ import (
 )
 
 var labelCmd = &cobra.Command{
-	Use:     "label",
+	Use:     "label [--overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 ... KEY_N=VAL_N [--resource-version=version]",
 	Short:   "Update the labels on a resource",
 	GroupID: "settings",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var labelCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(labelCmd).Standalone()
+
 	labelCmd.Flags().Bool("all", false, "Select all resources, in the namespace of the specified resource types")
 	labelCmd.Flags().BoolP("all-namespaces", "A", false, "If true, check the specified action in all namespaces.")
 	labelCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")

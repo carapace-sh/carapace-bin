@@ -14,5 +14,6 @@ var clusterInfoCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(clusterInfoCmd).Standalone()
+
 	rootCmd.AddCommand(clusterInfoCmd)
 }

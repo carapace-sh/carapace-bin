@@ -7,7 +7,7 @@ import (
 )
 
 var describeCmd = &cobra.Command{
-	Use:     "describe",
+	Use:     "describe (-f FILENAME | TYPE [NAME_PREFIX | -l label] | TYPE/NAME)",
 	Short:   "Show details of a specific resource or group of resources",
 	GroupID: "troubleshooting",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var describeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(describeCmd).Standalone()
+
 	describeCmd.Flags().BoolP("all-namespaces", "A", false, "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.")
 	describeCmd.Flags().Int64("chunk-size", 500, "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.")
 	describeCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files containing the resource to describe")

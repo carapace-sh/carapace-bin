@@ -7,13 +7,14 @@ import (
 )
 
 var certificate_denyCmd = &cobra.Command{
-	Use:   "deny",
+	Use:   "deny (-f FILENAME | NAME)",
 	Short: "Deny a certificate signing request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(certificate_denyCmd).Standalone()
+
 	certificate_denyCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	certificate_denyCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to update")
 	certificate_denyCmd.Flags().Bool("force", false, "Update the CSR even if it is already denied.")

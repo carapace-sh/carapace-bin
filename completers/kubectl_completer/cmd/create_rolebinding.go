@@ -8,13 +8,14 @@ import (
 )
 
 var create_rolebindingCmd = &cobra.Command{
-	Use:   "rolebinding",
+	Use:   "rolebinding NAME --clusterrole=NAME|--role=NAME [--user=username] [--group=groupname] [--serviceaccount=namespace:serviceaccountname] [--dry-run=server|client|none]",
 	Short: "Create a role binding for a particular role or cluster role",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(create_rolebindingCmd).Standalone()
+
 	create_rolebindingCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_rolebindingCmd.Flags().String("clusterrole", "", "ClusterRole this RoleBinding should reference")
 	create_rolebindingCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
@@ -26,6 +27,7 @@ func init() {
 	create_rolebindingCmd.Flags().StringArray("serviceaccount", []string{}, "Service accounts to bind to the role, in the format <namespace>:<name>. The flag can be repeated to add multiple service accounts.")
 	create_rolebindingCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	create_rolebindingCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
+	create_rolebindingCmd.Flags().StringArray("user", []string{}, "Usernames to bind to the role. The flag can be repeated to add multiple users.")
 	create_rolebindingCmd.Flags().String("validate", "strict", "Must be one of: strict (or true), warn, ignore (or false).")
 	create_rolebindingCmd.Flag("dry-run").NoOptDefVal = "unchanged"
 	create_rolebindingCmd.Flag("validate").NoOptDefVal = "strict"

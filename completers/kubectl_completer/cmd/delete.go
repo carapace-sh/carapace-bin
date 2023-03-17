@@ -7,7 +7,7 @@ import (
 )
 
 var deleteCmd = &cobra.Command{
-	Use:     "delete",
+	Use:     "delete ([-f FILENAME] | [-k DIRECTORY] | TYPE [(NAME | -l label | --all)])",
 	Short:   "Delete resources by file names, stdin, resources and names, or by resources and label selector",
 	GroupID: "basic intermediate",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var deleteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(deleteCmd).Standalone()
+
 	deleteCmd.Flags().Bool("all", false, "Delete all resources, in the namespace of the specified resource types.")
 	deleteCmd.Flags().BoolP("all-namespaces", "A", false, "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.")
 	deleteCmd.Flags().String("cascade", "background", "Must be \"background\", \"orphan\", or \"foreground\". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.")
@@ -30,7 +31,7 @@ func init() {
 	deleteCmd.Flags().String("raw", "", "Raw URI to DELETE to the server.  Uses the transport specified by the kubeconfig file.")
 	deleteCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")
 	deleteCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
-	deleteCmd.Flags().String("timeout", "0s", "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object")
+	deleteCmd.Flags().Duration("timeout", 0, "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object")
 	deleteCmd.Flags().Bool("wait", true, "If true, wait for resources to be gone before returning. This waits for finalizers.")
 	deleteCmd.Flag("cascade").NoOptDefVal = "background"
 	deleteCmd.Flag("dry-run").NoOptDefVal = "unchanged"

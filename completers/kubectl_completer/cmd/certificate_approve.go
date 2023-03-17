@@ -7,13 +7,14 @@ import (
 )
 
 var certificate_approveCmd = &cobra.Command{
-	Use:   "approve",
+	Use:   "approve (-f FILENAME | NAME)",
 	Short: "Approve a certificate signing request",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(certificate_approveCmd).Standalone()
+
 	certificate_approveCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	certificate_approveCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to update")
 	certificate_approveCmd.Flags().Bool("force", false, "Update the CSR even if it is already approved.")

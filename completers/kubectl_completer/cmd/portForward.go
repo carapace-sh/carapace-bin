@@ -8,7 +8,7 @@ import (
 )
 
 var portForwardCmd = &cobra.Command{
-	Use:     "port-forward",
+	Use:     "port-forward TYPE/NAME [options] [LOCAL_PORT:]REMOTE_PORT [...[LOCAL_PORT_N:]REMOTE_PORT_N]",
 	Short:   "Forward one or more local ports to a pod",
 	GroupID: "troubleshooting",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,8 +16,9 @@ var portForwardCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(portForwardCmd).Standalone()
+
 	portForwardCmd.Flags().StringSlice("address", []string{"localhost"}, "Addresses to listen on (comma separated). Only accepts IP addresses or localhost as a value. When localhost is supplied, kubectl will try to bind on both 127.0.0.1 and ::1 and will fail if neither of these addresses are available to bind.")
-	portForwardCmd.Flags().String("pod-running-timeout", "1m0s", "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running")
+	portForwardCmd.Flags().Duration("pod-running-timeout", 0, "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running")
 	rootCmd.AddCommand(portForwardCmd)
 
 	carapace.Gen(portForwardCmd).PositionalCompletion(

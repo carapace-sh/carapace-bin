@@ -8,7 +8,7 @@ import (
 )
 
 var create_quotaCmd = &cobra.Command{
-	Use:     "quota",
+	Use:     "quota NAME [--hard=key1=value1,key2=value2] [--scopes=Scope1,Scope2] [--dry-run=server|client|none]",
 	Short:   "Create a quota with the specified name",
 	Aliases: []string{"resourcequota"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var create_quotaCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(create_quotaCmd).Standalone()
+
 	create_quotaCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_quotaCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_quotaCmd.Flags().String("field-manager", "kubectl-create", "Name of the manager used to track field ownership.")

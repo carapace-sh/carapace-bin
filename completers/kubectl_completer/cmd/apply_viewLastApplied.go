@@ -7,13 +7,14 @@ import (
 )
 
 var apply_viewLastAppliedCmd = &cobra.Command{
-	Use:   "view-last-applied",
+	Use:   "view-last-applied (TYPE [NAME | -l label] | TYPE/NAME | -f FILENAME)",
 	Short: "View the latest last-applied-configuration annotations of a resource/object",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(apply_viewLastAppliedCmd).Standalone()
+
 	apply_viewLastAppliedCmd.Flags().Bool("all", false, "Select all resources in the namespace of the specified resource types")
 	apply_viewLastAppliedCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files that contains the last-applied-configuration annotations")
 	apply_viewLastAppliedCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")

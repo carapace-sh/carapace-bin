@@ -7,7 +7,7 @@ import (
 )
 
 var top_podCmd = &cobra.Command{
-	Use:     "pod",
+	Use:     "pod [NAME | -l label]",
 	Short:   "Display resource (CPU/memory) usage of pods",
 	Aliases: []string{"pods", "po"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var top_podCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(top_podCmd).Standalone()
+
 	top_podCmd.Flags().BoolP("all-namespaces", "A", false, "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.")
 	top_podCmd.Flags().Bool("containers", false, "If present, print usage of containers within a pod.")
 	top_podCmd.Flags().String("field-selector", "", "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.")

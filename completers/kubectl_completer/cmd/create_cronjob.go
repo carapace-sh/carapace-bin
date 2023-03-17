@@ -8,7 +8,7 @@ import (
 )
 
 var create_cronjobCmd = &cobra.Command{
-	Use:     "cronjob",
+	Use:     "cronjob NAME --image=image --schedule='0/5 * * * ?' -- [COMMAND] [args...]",
 	Short:   "Create a cron job with the specified name",
 	Aliases: []string{"cj"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var create_cronjobCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(create_cronjobCmd).Standalone()
+
 	create_cronjobCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_cronjobCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_cronjobCmd.Flags().String("field-manager", "kubectl-create", "Name of the manager used to track field ownership.")

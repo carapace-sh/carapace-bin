@@ -7,7 +7,7 @@ import (
 )
 
 var config_useContextCmd = &cobra.Command{
-	Use:     "use-context",
+	Use:     "use-context CONTEXT_NAME",
 	Short:   "Set the current-context in a kubeconfig file",
 	Aliases: []string{"use"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var config_useContextCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_useContextCmd).Standalone()
+
 	configCmd.AddCommand(config_useContextCmd)
 
 	carapace.Gen(config_useContextCmd).PositionalCompletion(

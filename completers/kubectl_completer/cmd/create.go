@@ -8,7 +8,7 @@ import (
 )
 
 var createCmd = &cobra.Command{
-	Use:     "create",
+	Use:     "create -f FILENAME",
 	Short:   "Create a resource from a file or from stdin",
 	GroupID: "basic beginner",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(createCmd).Standalone()
+
 	createCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	createCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	createCmd.Flags().Bool("edit", false, "Edit the API resource before creating")

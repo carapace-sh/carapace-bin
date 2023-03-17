@@ -7,7 +7,7 @@ import (
 )
 
 var set_serviceaccountCmd = &cobra.Command{
-	Use:     "serviceaccount",
+	Use:     "serviceaccount (-f FILENAME | TYPE NAME) SERVICE_ACCOUNT",
 	Short:   "Update the service account of a resource",
 	Aliases: []string{"sa"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var set_serviceaccountCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(set_serviceaccountCmd).Standalone()
+
 	set_serviceaccountCmd.Flags().Bool("all", false, "Select all resources, in the namespace of the specified resource types")
 	set_serviceaccountCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	set_serviceaccountCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

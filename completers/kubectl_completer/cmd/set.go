@@ -6,7 +6,7 @@ import (
 )
 
 var setCmd = &cobra.Command{
-	Use:     "set",
+	Use:     "set SUBCOMMAND",
 	Short:   "Set specific features on objects",
 	GroupID: "basic beginner",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -14,5 +14,6 @@ var setCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(setCmd).Standalone()
+
 	rootCmd.AddCommand(setCmd)
 }
