@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -29,12 +29,12 @@ func init() {
 			if len(c.Args) == 0 {
 				return carapace.ActionMessage("no resource specified")
 			} else {
-				return action.ActionContainers("", c.Args[0])
+				return kubectl.ActionContainers(kubectl.ContainerOpts{Namespace: "", Resource: c.Args[0]})
 			}
 		}),
 	})
 
 	carapace.Gen(execCmd).PositionalCompletion(
-		action.ActionApiResourceResources(),
+		kubectl.ActionApiResourceResources(),
 	)
 }

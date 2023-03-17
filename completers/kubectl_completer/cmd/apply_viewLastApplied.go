@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -26,7 +26,7 @@ func init() {
 	carapace.Gen(apply_viewLastAppliedCmd).FlagCompletion(carapace.ActionMap{
 		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
-		"output":    action.ActionOutputFormats(),
+		"output":    kubectl.ActionOutputFormats(),
 	})
 
 	carapace.Gen(apply_viewLastAppliedCmd).PositionalCompletion(
@@ -34,7 +34,7 @@ func init() {
 			if apply_editLastAppliedCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {
-				return action.ActionApiResourceResources()
+				return kubectl.ActionApiResourceResources()
 			}
 		}),
 	)

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -31,6 +31,6 @@ func init() {
 	})
 
 	carapace.Gen(top_podCmd).PositionalCompletion(
-		action.ActionResources("", "pods"),
+		kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "pods"}),
 	)
 }

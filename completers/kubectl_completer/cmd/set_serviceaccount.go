@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -31,33 +31,33 @@ func init() {
 	setCmd.AddCommand(set_serviceaccountCmd)
 
 	carapace.Gen(set_serviceaccountCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":   action.ActionDryRunModes(),
+		"dry-run":   kubectl.ActionDryRunModes(),
 		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
-		"output":    action.ActionOutputFormats(),
+		"output":    kubectl.ActionOutputFormats(),
 		"template":  carapace.ActionFiles(),
 	})
 
 	carapace.Gen(set_serviceaccountCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if set_serviceaccountCmd.Flag("filename").Changed {
-				return action.ActionResources("", "serviceaccounts")
+				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "serviceaccounts"})
 			} else {
-				return action.ActionApiResources()
+				return kubectl.ActionApiResources()
 			}
 		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if set_serviceaccountCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {
-				return action.ActionResources("", c.Args[0])
+				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: c.Args[0]})
 			}
 		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if set_serviceaccountCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {
-				return action.ActionResources("", "serviceaccounts")
+				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "serviceaccounts"})
 			}
 		}),
 	)

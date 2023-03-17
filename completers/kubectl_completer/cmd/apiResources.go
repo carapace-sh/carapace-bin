@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -26,9 +26,9 @@ func init() {
 	rootCmd.AddCommand(apiResourcesCmd)
 
 	carapace.Gen(apiResourcesCmd).FlagCompletion(carapace.ActionMap{
-		"api-group": action.ActionApiGroups(),
+		"api-group": kubectl.ActionApiGroups(),
 		"output":    carapace.ActionValues("wide", "name"),
 		"sort-by":   carapace.ActionValues("name", "kind"),
-		"verbs":     action.ActionResourceVerbs(),
+		"verbs":     kubectl.ActionResourceVerbs(),
 	})
 }

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -26,8 +26,8 @@ func init() {
 	clusterInfoCmd.AddCommand(clusterInfo_dumpCmd)
 
 	carapace.Gen(clusterInfo_dumpCmd).FlagCompletion(carapace.ActionMap{
-		"namespaces":       action.ActionResources("", "namespaces"),
-		"output":           action.ActionOutputFormats(),
+		"namespaces":       kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "namespaces"}),
+		"output":           kubectl.ActionOutputFormats(),
 		"output-directory": carapace.ActionDirectories(),
 		"template":         carapace.ActionFiles(),
 	})

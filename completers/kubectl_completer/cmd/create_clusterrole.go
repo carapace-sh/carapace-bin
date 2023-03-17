@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
@@ -35,10 +34,10 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(create_clusterroleCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":  action.ActionDryRunModes(),
-		"output":   action.ActionOutputFormats(),
+		"dry-run":  kubectl.ActionDryRunModes(),
+		"output":   kubectl.ActionOutputFormats(),
 		"template": carapace.ActionFiles(),
 		"validate": kubectl.ActionValidationModes(),
-		"verb":     action.ActionResourceVerbs(),
+		"verb":     kubectl.ActionResourceVerbs(),
 	})
 }

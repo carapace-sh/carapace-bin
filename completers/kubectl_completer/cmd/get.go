@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -44,17 +44,17 @@ func init() {
 	carapace.Gen(getCmd).FlagCompletion(carapace.ActionMap{
 		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
-		"output":    action.ActionOutputFormats(),
+		"output":    kubectl.ActionOutputFormats(),
 		"template":  carapace.ActionFiles(),
 	})
 
 	carapace.Gen(getCmd).PositionalCompletion(
-		action.ActionApiResources().UniqueList(","),
+		kubectl.ActionApiResources().UniqueList(","),
 	)
 
 	carapace.Gen(getCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionResources("", c.Args[0]).Invoke(c).Filter(c.Args[1:]).ToA()
+			return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: c.Args[0]}).Invoke(c).Filter(c.Args[1:]).ToA()
 		}),
 	)
 }
