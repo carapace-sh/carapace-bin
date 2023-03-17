@@ -7,9 +7,10 @@ import (
 )
 
 var drainCmd = &cobra.Command{
-	Use:   "drain",
-	Short: "Drain node in preparation for maintenance",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "drain",
+	Short:   "Drain node in preparation for maintenance",
+	GroupID: "cluster management",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

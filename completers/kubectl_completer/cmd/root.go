@@ -18,6 +18,17 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "basic beginner", Title: "Basic Commands (Beginner)"},
+		&cobra.Group{ID: "basic intermediate", Title: "Basic Commands (Intermediate)"},
+		&cobra.Group{ID: "deploy", Title: "Deploy Commands"},
+		&cobra.Group{ID: "cluster management", Title: "Cluster Management Commands"},
+		&cobra.Group{ID: "troubleshooting", Title: "Troubleshooting and Debugging Commands"},
+		&cobra.Group{ID: "advanced", Title: "Advanced Commands"},
+		&cobra.Group{ID: "settings", Title: "Settings Commands"},
+	)
+
 	rootCmd.PersistentFlags().String("as", "", "Username to impersonate for the operation. User could be a regular user or a service account in a namespace.")
 	rootCmd.PersistentFlags().StringArray("as-group", []string{}, "Group to impersonate for the operation, this flag can be repeated to specify multiple groups.")
 	rootCmd.PersistentFlags().String("as-uid", "", "UID to impersonate for the operation.")

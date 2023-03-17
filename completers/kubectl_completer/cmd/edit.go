@@ -8,9 +8,10 @@ import (
 )
 
 var editCmd = &cobra.Command{
-	Use:   "edit",
-	Short: "Edit a resource on the server",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "edit",
+	Short:   "Edit a resource on the server",
+	GroupID: "basic intermediate",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

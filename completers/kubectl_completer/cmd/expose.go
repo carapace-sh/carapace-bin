@@ -7,9 +7,10 @@ import (
 )
 
 var exposeCmd = &cobra.Command{
-	Use:   "expose",
-	Short: "Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "expose",
+	Short:   "Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service",
+	GroupID: "basic beginner",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -6,9 +6,10 @@ import (
 )
 
 var diffCmd = &cobra.Command{
-	Use:   "diff",
-	Short: "Diff the live version against a would-be applied version",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "diff",
+	Short:   "Diff the live version against a would-be applied version",
+	GroupID: "advanced",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

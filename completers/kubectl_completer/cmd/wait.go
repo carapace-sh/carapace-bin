@@ -7,9 +7,10 @@ import (
 )
 
 var waitCmd = &cobra.Command{
-	Use:   "wait",
-	Short: "Experimental: Wait for a specific condition on one or many resources",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "wait",
+	Short:   "Experimental: Wait for a specific condition on one or many resources",
+	GroupID: "advanced",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

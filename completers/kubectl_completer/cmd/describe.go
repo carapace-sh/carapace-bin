@@ -7,9 +7,10 @@ import (
 )
 
 var describeCmd = &cobra.Command{
-	Use:   "describe",
-	Short: "Show details of a specific resource or group of resources",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "describe",
+	Short:   "Show details of a specific resource or group of resources",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

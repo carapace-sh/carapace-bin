@@ -7,9 +7,10 @@ import (
 )
 
 var labelCmd = &cobra.Command{
-	Use:   "label",
-	Short: "Update the labels on a resource",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "label",
+	Short:   "Update the labels on a resource",
+	GroupID: "settings",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

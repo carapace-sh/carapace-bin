@@ -6,9 +6,10 @@ import (
 )
 
 var completionCmd = &cobra.Command{
-	Use:   "completion",
-	Short: "Output shell completion code for the specified shell (bash, zsh, fish, or powershell)",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "completion",
+	Short:   "Output shell completion code for the specified shell (bash, zsh, fish, or powershell)",
+	GroupID: "settings",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

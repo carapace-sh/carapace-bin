@@ -6,9 +6,10 @@ import (
 )
 
 var setCmd = &cobra.Command{
-	Use:   "set",
-	Short: "Set specific features on objects",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "set",
+	Short:   "Set specific features on objects",
+	GroupID: "basic beginner",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

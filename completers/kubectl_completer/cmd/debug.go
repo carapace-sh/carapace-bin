@@ -6,9 +6,10 @@ import (
 )
 
 var debugCmd = &cobra.Command{
-	Use:   "debug",
-	Short: "Create debugging sessions for troubleshooting workloads and nodes",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "debug",
+	Short:   "Create debugging sessions for troubleshooting workloads and nodes",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

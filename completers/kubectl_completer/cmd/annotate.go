@@ -7,9 +7,10 @@ import (
 )
 
 var annotateCmd = &cobra.Command{
-	Use:   "annotate",
-	Short: "Update the annotations on a resource",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "annotate",
+	Short:   "Update the annotations on a resource",
+	GroupID: "settings",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

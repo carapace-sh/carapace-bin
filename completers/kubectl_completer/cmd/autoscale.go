@@ -7,9 +7,10 @@ import (
 )
 
 var autoscaleCmd = &cobra.Command{
-	Use:   "autoscale",
-	Short: "Auto-scale a deployment, replica set, stateful set, or replication controller",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "autoscale",
+	Short:   "Auto-scale a deployment, replica set, stateful set, or replication controller",
+	GroupID: "deploy",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

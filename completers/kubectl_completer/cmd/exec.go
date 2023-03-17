@@ -7,9 +7,10 @@ import (
 )
 
 var execCmd = &cobra.Command{
-	Use:   "exec",
-	Short: "Execute a command in a container",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "exec",
+	Short:   "Execute a command in a container",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

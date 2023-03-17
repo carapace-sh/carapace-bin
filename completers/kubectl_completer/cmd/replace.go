@@ -8,9 +8,10 @@ import (
 )
 
 var replaceCmd = &cobra.Command{
-	Use:   "replace",
-	Short: "Replace a resource by file name or stdin",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "replace",
+	Short:   "Replace a resource by file name or stdin",
+	GroupID: "advanced",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

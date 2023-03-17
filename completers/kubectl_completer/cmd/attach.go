@@ -7,9 +7,10 @@ import (
 )
 
 var attachCmd = &cobra.Command{
-	Use:   "attach",
-	Short: "Attach to a running container",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "attach",
+	Short:   "Attach to a running container",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

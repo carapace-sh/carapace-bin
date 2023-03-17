@@ -7,9 +7,10 @@ import (
 )
 
 var getCmd = &cobra.Command{
-	Use:   "get",
-	Short: "Display one or many resources",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "get",
+	Short:   "Display one or many resources",
+	GroupID: "basic intermediate",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -10,9 +10,10 @@ import (
 )
 
 var cpCmd = &cobra.Command{
-	Use:   "cp",
-	Short: "Copy files and directories to and from containers",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "cp",
+	Short:   "Copy files and directories to and from containers",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
