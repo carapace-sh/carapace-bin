@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +28,7 @@ func init() {
 	rootCmd.AddCommand(eventsCmd)
 
 	carapace.Gen(eventsCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("json", "yaml", "name", "go-template", "go-template-file", "template", "templatefile", "jsonpath", "jsonpath-as-json", "jsonpath-file"),
+		"output": action.ActionOutputFormats(),
 		"template": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if eventsCmd.Flag("output").Value.String() == "go-template-file" {
 				return carapace.ActionFiles()

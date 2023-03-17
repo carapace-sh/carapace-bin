@@ -64,6 +64,7 @@ func init() {
 		"client-certificate":    carapace.ActionFiles(),
 		"client-key":            carapace.ActionFiles(),
 		"kubeconfig":            carapace.ActionFiles(),
+		"profile":               carapace.ActionValues("none", "cpu", "heap", "goroutine", "threadcreate", "block", "mutex"),
 		"profile-output":        carapace.ActionFiles(),
 		// TODO add completions for kubeconfig based flags
 	})
