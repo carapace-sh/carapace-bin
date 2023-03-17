@@ -7,7 +7,7 @@ import (
 )
 
 var getCmd = &cobra.Command{
-	Use:     "get",
+	Use:     "get [(-o|--output=)json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file|custom-columns|custom-columns-file|wide] (TYPE[.VERSION][.GROUP] [NAME | -l label] | TYPE[.VERSION][.GROUP]/NAME ...) [flags]",
 	Short:   "Display one or many resources",
 	GroupID: "basic intermediate",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var getCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(getCmd).Standalone()
+
 	getCmd.Flags().BoolP("all-namespaces", "A", false, "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.")
 	getCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	getCmd.Flags().Int64("chunk-size", 500, "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.")

@@ -13,6 +13,7 @@ var versionCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(versionCmd).Standalone()
+
 	versionCmd.Flags().Bool("client", false, "If true, shows client version only (no server required).")
 	versionCmd.Flags().StringP("output", "o", "", "One of 'yaml' or 'json'.")
 

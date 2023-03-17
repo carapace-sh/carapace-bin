@@ -8,7 +8,7 @@ import (
 )
 
 var create_priorityclassCmd = &cobra.Command{
-	Use:     "priorityclass",
+	Use:     "priorityclass NAME --value=VALUE --global-default=BOOL [--dry-run=server|client|none]",
 	Short:   "Create a priority class with the specified name",
 	Aliases: []string{"pc"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var create_priorityclassCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(create_priorityclassCmd).Standalone()
+
 	create_priorityclassCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_priorityclassCmd.Flags().String("description", "", "description is an arbitrary string that usually provides guidelines on when this priority class should be used.")
 	create_priorityclassCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

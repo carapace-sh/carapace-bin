@@ -13,5 +13,6 @@ var alpha_authCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(alpha_authCmd).Standalone()
+
 	alphaCmd.AddCommand(alpha_authCmd)
 }

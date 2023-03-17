@@ -7,7 +7,7 @@ import (
 )
 
 var exposeCmd = &cobra.Command{
-	Use:     "expose",
+	Use:     "expose (-f FILENAME | TYPE NAME) [--port=port] [--protocol=TCP|UDP|SCTP] [--target-port=number-or-name] [--name=name] [--external-ip=external-ip-of-service] [--type=type]",
 	Short:   "Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service",
 	GroupID: "basic beginner",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var exposeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(exposeCmd).Standalone()
+
 	exposeCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	exposeCmd.Flags().String("cluster-ip", "", "ClusterIP to be assigned to the service. Leave empty to auto-allocate, or set to 'None' to create a headless service.")
 	exposeCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

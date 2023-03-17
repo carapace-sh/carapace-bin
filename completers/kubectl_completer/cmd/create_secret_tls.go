@@ -8,13 +8,14 @@ import (
 )
 
 var create_secret_tlsCmd = &cobra.Command{
-	Use:   "tls",
+	Use:   "tls NAME --cert=path/to/cert/file --key=path/to/key/file [--dry-run=server|client|none]",
 	Short: "Create a TLS secret",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(create_secret_tlsCmd).Standalone()
+
 	create_secret_tlsCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_secret_tlsCmd.Flags().Bool("append-hash", false, "Append a hash of the secret to its name.")
 	create_secret_tlsCmd.Flags().String("cert", "", "Path to PEM encoded public key certificate.")

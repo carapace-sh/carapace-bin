@@ -13,5 +13,6 @@ var config_getUsersCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_getUsersCmd).Standalone()
+
 	configCmd.AddCommand(config_getUsersCmd)
 }

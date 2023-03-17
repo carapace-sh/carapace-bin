@@ -7,13 +7,14 @@ import (
 )
 
 var rollout_historyCmd = &cobra.Command{
-	Use:   "history",
+	Use:   "history (TYPE NAME | TYPE/NAME) [flags]",
 	Short: "View rollout history",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(rollout_historyCmd).Standalone()
+
 	rollout_historyCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	rollout_historyCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to get from a server.")
 	rollout_historyCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")

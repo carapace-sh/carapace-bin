@@ -7,13 +7,14 @@ import (
 )
 
 var set_envCmd = &cobra.Command{
-	Use:   "env",
+	Use:   "env RESOURCE/NAME KEY_1=VAL_1 ... KEY_N=VAL_N",
 	Short: "Update environment variables on a pod template",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(set_envCmd).Standalone()
+
 	set_envCmd.Flags().Bool("all", false, "If true, select all resources in the namespace of the specified resource types")
 	set_envCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	set_envCmd.Flags().StringP("containers", "c", "*", "The names of containers in the selected pod templates to change - may use wildcards")

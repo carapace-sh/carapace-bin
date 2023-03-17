@@ -7,13 +7,14 @@ import (
 )
 
 var set_imageCmd = &cobra.Command{
-	Use:   "image",
+	Use:   "image (-f FILENAME | TYPE NAME) CONTAINER_NAME_1=CONTAINER_IMAGE_1 ... CONTAINER_NAME_N=CONTAINER_IMAGE_N",
 	Short: "Update the image of a pod template",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(set_imageCmd).Standalone()
+
 	set_imageCmd.Flags().Bool("all", false, "Select all resources, in the namespace of the specified resource types")
 	set_imageCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	set_imageCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

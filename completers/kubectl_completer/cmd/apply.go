@@ -8,7 +8,7 @@ import (
 )
 
 var applyCmd = &cobra.Command{
-	Use:     "apply",
+	Use:     "apply (-f FILENAME | -k DIRECTORY)",
 	Short:   "Apply a configuration to a resource by file name or stdin",
 	GroupID: "advanced",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var applyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(applyCmd).Standalone()
+
 	applyCmd.Flags().Bool("all", false, "Select all resources in the namespace of the specified resource types.")
 	applyCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	applyCmd.Flags().String("cascade", "background", "Must be \"background\", \"orphan\", or \"foreground\". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.")
@@ -30,13 +31,13 @@ func init() {
 	applyCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	applyCmd.Flags().Bool("overwrite", true, "Automatically resolve conflicts between the modified and live configuration by using values from the modified configuration")
 	applyCmd.Flags().Bool("prune", false, "Automatically delete resource objects, that do not appear in the configs and are created by either apply or create --save-config. Should be used with either -l or --all.")
-	applyCmd.Flags().StringArray("prune-whitelist", []string{}, "Overwrite the default whitelist with <group/version/kind> for --prune")
+	applyCmd.Flags().StringArray("prune-allowlist", []string{}, "Overwrite the default allowlist with <group/version/kind> for --prune")
 	applyCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")
 	applyCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
 	applyCmd.Flags().Bool("server-side", false, "If true, apply runs in the server instead of the client.")
 	applyCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	applyCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	applyCmd.Flags().String("timeout", "0s", "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object")
+	applyCmd.Flags().Duration("timeout", 0, "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object")
 	applyCmd.Flags().String("validate", "strict", "Must be one of: strict (or true), warn, ignore (or false).")
 	applyCmd.Flags().Bool("wait", false, "If true, wait for resources to be gone before returning. This waits for finalizers.")
 	applyCmd.Flag("cascade").NoOptDefVal = "background"

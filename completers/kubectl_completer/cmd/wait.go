@@ -7,7 +7,7 @@ import (
 )
 
 var waitCmd = &cobra.Command{
-	Use:     "wait",
+	Use:     "wait ([-f FILENAME] | resource.group/resource.name | resource.group [(-l label | --all)]) [--for=delete|--for condition=available|--for=jsonpath='{}'=value]",
 	Short:   "Experimental: Wait for a specific condition on one or many resources",
 	GroupID: "advanced",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var waitCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(waitCmd).Standalone()
+
 	waitCmd.Flags().Bool("all", false, "Select all resources in the namespace of the specified resource types")
 	waitCmd.Flags().BoolP("all-namespaces", "A", false, "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.")
 	waitCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
@@ -27,7 +28,7 @@ func init() {
 	waitCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)")
 	waitCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	waitCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	waitCmd.Flags().String("timeout", "30s", "The length of time to wait before giving up.  Zero means check once and don't wait, negative means wait for a week.")
+	waitCmd.Flags().Duration("timeout", 0, "The length of time to wait before giving up.  Zero means check once and don't wait, negative means wait for a week.")
 	rootCmd.AddCommand(waitCmd)
 
 	carapace.Gen(waitCmd).FlagCompletion(carapace.ActionMap{

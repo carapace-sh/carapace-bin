@@ -6,7 +6,7 @@ import (
 )
 
 var kustomizeCmd = &cobra.Command{
-	Use:     "kustomize",
+	Use:     "kustomize DIR",
 	Short:   "Build a kustomization target from a directory or URL.",
 	GroupID: "advanced",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -14,6 +14,7 @@ var kustomizeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(kustomizeCmd).Standalone()
+
 	kustomizeCmd.Flags().Bool("as-current-user", false, "use the uid and gid of the command executor to run the function in the container")
 	kustomizeCmd.Flags().Bool("enable-alpha-plugins", false, "enable kustomize plugins")
 	kustomizeCmd.Flags().Bool("enable-helm", false, "Enable use of the Helm chart inflator generator.")

@@ -8,13 +8,14 @@ import (
 )
 
 var create_secret_dockerRegistryCmd = &cobra.Command{
-	Use:   "docker-registry",
+	Use:   "docker-registry NAME --docker-username=user --docker-password=password --docker-email=email [--docker-server=string] [--from-file=[key=]source] [--dry-run=server|client|none]",
 	Short: "Create a secret for use with a Docker registry",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(create_secret_dockerRegistryCmd).Standalone()
+
 	create_secret_dockerRegistryCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_secret_dockerRegistryCmd.Flags().Bool("append-hash", false, "Append a hash of the secret to its name.")
 	create_secret_dockerRegistryCmd.Flags().String("docker-email", "", "Email for Docker registry")

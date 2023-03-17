@@ -8,7 +8,7 @@ import (
 )
 
 var taintCmd = &cobra.Command{
-	Use:     "taint",
+	Use:     "taint NODE NAME KEY_1=VAL_1:TAINT_EFFECT_1 ... KEY_N=VAL_N:TAINT_EFFECT_N",
 	Short:   "Update the taints on one or more nodes",
 	GroupID: "cluster management",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var taintCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(taintCmd).Standalone()
+
 	taintCmd.Flags().Bool("all", false, "Select all nodes in the cluster")
 	taintCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	taintCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

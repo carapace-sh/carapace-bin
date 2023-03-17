@@ -6,12 +6,13 @@ import (
 )
 
 var config_unsetCmd = &cobra.Command{
-	Use:   "unset",
+	Use:   "unset PROPERTY_NAME",
 	Short: "Unset an individual value in a kubeconfig file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(config_unsetCmd).Standalone()
+
 	configCmd.AddCommand(config_unsetCmd)
 }

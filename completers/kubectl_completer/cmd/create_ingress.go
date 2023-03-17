@@ -8,7 +8,7 @@ import (
 )
 
 var create_ingressCmd = &cobra.Command{
-	Use:     "ingress",
+	Use:     "ingress NAME --rule=host/path=service:port[,tls[=secret]] ",
 	Short:   "Create an ingress with the specified name",
 	Aliases: []string{"ing"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var create_ingressCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(create_ingressCmd).Standalone()
+
 	create_ingressCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_ingressCmd.Flags().StringArray("annotation", []string{}, "Annotation to insert in the ingress object, in the format annotation=value")
 	create_ingressCmd.Flags().String("class", "", "Ingress Class to be used")

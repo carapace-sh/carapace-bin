@@ -7,13 +7,14 @@ import (
 )
 
 var set_resourcesCmd = &cobra.Command{
-	Use:   "resources",
+	Use:   "resources (-f FILENAME | TYPE NAME)  ([--limits=LIMITS & --requests=REQUESTS]",
 	Short: "Update resource requests/limits on objects with pod templates",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(set_resourcesCmd).Standalone()
+
 	set_resourcesCmd.Flags().Bool("all", false, "Select all resources, in the namespace of the specified resource types")
 	set_resourcesCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	set_resourcesCmd.Flags().StringP("containers", "c", "*", "The names of containers in the selected pod templates to change, all containers are selected by default - may use wildcards")

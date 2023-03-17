@@ -8,7 +8,7 @@ import (
 )
 
 var create_configmapCmd = &cobra.Command{
-	Use:     "configmap",
+	Use:     "configmap NAME [--from-file=[key=]source] [--from-literal=key1=value1] [--dry-run=server|client|none]",
 	Short:   "Create a config map from a local file, directory or literal value",
 	Aliases: []string{"cm"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var create_configmapCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(create_configmapCmd).Standalone()
+
 	create_configmapCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_configmapCmd.Flags().Bool("append-hash", false, "Append a hash of the configmap to its name.")
 	create_configmapCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

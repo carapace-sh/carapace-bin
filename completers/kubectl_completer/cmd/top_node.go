@@ -7,7 +7,7 @@ import (
 )
 
 var top_nodeCmd = &cobra.Command{
-	Use:     "node",
+	Use:     "node [NAME | -l label]",
 	Short:   "Display resource (CPU/memory) usage of nodes",
 	Aliases: []string{"nodes", "no"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var top_nodeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(top_nodeCmd).Standalone()
+
 	top_nodeCmd.Flags().Bool("no-headers", false, "If present, print output without headers")
 	top_nodeCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
 	top_nodeCmd.Flags().Bool("show-capacity", false, "Print node resources based on Capacity instead of Allocatable(default) of the nodes.")

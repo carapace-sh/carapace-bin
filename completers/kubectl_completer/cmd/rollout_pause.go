@@ -7,13 +7,14 @@ import (
 )
 
 var rollout_pauseCmd = &cobra.Command{
-	Use:   "pause",
+	Use:   "pause RESOURCE",
 	Short: "Mark the provided resource as paused",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(rollout_pauseCmd).Standalone()
+
 	rollout_pauseCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	rollout_pauseCmd.Flags().String("field-manager", "kubectl-rollout", "Name of the manager used to track field ownership.")
 	rollout_pauseCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to get from a server.")

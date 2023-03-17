@@ -8,7 +8,7 @@ import (
 )
 
 var create_serviceaccountCmd = &cobra.Command{
-	Use:     "serviceaccount",
+	Use:     "serviceaccount NAME [--dry-run=server|client|none]",
 	Short:   "Create a service account with the specified name",
 	Aliases: []string{"sa"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var create_serviceaccountCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(create_serviceaccountCmd).Standalone()
+
 	create_serviceaccountCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_serviceaccountCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_serviceaccountCmd.Flags().String("field-manager", "kubectl-create", "Name of the manager used to track field ownership.")

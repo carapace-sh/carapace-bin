@@ -8,13 +8,14 @@ import (
 )
 
 var apply_editLastAppliedCmd = &cobra.Command{
-	Use:   "edit-last-applied",
+	Use:   "edit-last-applied (RESOURCE/NAME | -f FILENAME)",
 	Short: "Edit latest last-applied-configuration annotations of a resource/object",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(apply_editLastAppliedCmd).Standalone()
+
 	apply_editLastAppliedCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	apply_editLastAppliedCmd.Flags().String("field-manager", "kubectl-client-side-apply", "Name of the manager used to track field ownership.")
 	apply_editLastAppliedCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files to use to edit the resource")

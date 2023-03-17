@@ -8,7 +8,7 @@ import (
 )
 
 var replaceCmd = &cobra.Command{
-	Use:     "replace",
+	Use:     "replace -f FILENAME",
 	Short:   "Replace a resource by file name or stdin",
 	GroupID: "advanced",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var replaceCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(replaceCmd).Standalone()
+
 	replaceCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	replaceCmd.Flags().String("cascade", "background", "Must be \"background\", \"orphan\", or \"foreground\". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.")
 	replaceCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
@@ -31,7 +32,7 @@ func init() {
 	replaceCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	replaceCmd.Flags().String("subresource", "", "If specified, replace will operate on the subresource of the requested object. Must be one of [status scale]. This flag is alpha and may change in the future.")
 	replaceCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	replaceCmd.Flags().String("timeout", "0s", "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object")
+	replaceCmd.Flags().Duration("timeout", 0, "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object")
 	replaceCmd.Flags().String("validate", "strict", "Must be one of: strict (or true), warn, ignore (or false).")
 	replaceCmd.Flags().Bool("wait", false, "If true, wait for resources to be gone before returning. This waits for finalizers.")
 	replaceCmd.Flag("cascade").NoOptDefVal = "background"

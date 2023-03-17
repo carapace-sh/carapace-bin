@@ -13,5 +13,6 @@ var config_currentContextCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_currentContextCmd).Standalone()
+
 	configCmd.AddCommand(config_currentContextCmd)
 }

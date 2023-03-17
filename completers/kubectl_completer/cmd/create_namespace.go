@@ -8,7 +8,7 @@ import (
 )
 
 var create_namespaceCmd = &cobra.Command{
-	Use:     "namespace",
+	Use:     "namespace NAME [--dry-run=server|client|none]",
 	Short:   "Create a namespace with the specified name",
 	Aliases: []string{"ns"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var create_namespaceCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(create_namespaceCmd).Standalone()
+
 	create_namespaceCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_namespaceCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_namespaceCmd.Flags().String("field-manager", "kubectl-create", "Name of the manager used to track field ownership.")

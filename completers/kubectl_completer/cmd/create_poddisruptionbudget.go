@@ -8,7 +8,7 @@ import (
 )
 
 var create_poddisruptionbudgetCmd = &cobra.Command{
-	Use:     "poddisruptionbudget",
+	Use:     "poddisruptionbudget NAME --selector=SELECTOR --min-available=N [--dry-run=server|client|none]",
 	Short:   "Create a pod disruption budget with the specified name",
 	Aliases: []string{"pdb"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -16,6 +16,7 @@ var create_poddisruptionbudgetCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(create_poddisruptionbudgetCmd).Standalone()
+
 	create_poddisruptionbudgetCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_poddisruptionbudgetCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_poddisruptionbudgetCmd.Flags().String("field-manager", "kubectl-create", "Name of the manager used to track field ownership.")

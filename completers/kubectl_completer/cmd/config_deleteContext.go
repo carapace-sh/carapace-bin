@@ -7,13 +7,14 @@ import (
 )
 
 var config_deleteContextCmd = &cobra.Command{
-	Use:   "delete-context",
+	Use:   "delete-context NAME",
 	Short: "Delete the specified context from the kubeconfig",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(config_deleteContextCmd).Standalone()
+
 	configCmd.AddCommand(config_deleteContextCmd)
 
 	carapace.Gen(config_deleteContextCmd).PositionalCompletion(

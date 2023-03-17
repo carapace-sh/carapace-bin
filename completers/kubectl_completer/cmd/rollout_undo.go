@@ -7,13 +7,14 @@ import (
 )
 
 var rollout_undoCmd = &cobra.Command{
-	Use:   "undo",
+	Use:   "undo (TYPE NAME | TYPE/NAME) [flags]",
 	Short: "Undo a previous rollout",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(rollout_undoCmd).Standalone()
+
 	rollout_undoCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	rollout_undoCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	rollout_undoCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to get from a server.")
