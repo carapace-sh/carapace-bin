@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -35,7 +35,7 @@ func init() {
 			splitted := strings.SplitN(strings.SplitN(resource, ":", 2)[0], "/", 2)
 
 			if len(splitted) == 2 {
-				return action.ActionContainers(splitted[0], "pods/"+splitted[1])
+				return kubectl.ActionContainers(kubectl.ContainerOpts{Namespace: splitted[0], Resource: "pods/" + splitted[1]})
 			} else {
 				return carapace.ActionMessage("missing resource argument")
 			}
@@ -56,9 +56,9 @@ func ActionPathOrContainer() carapace.Action {
 			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionResources("", "namespaces").Invoke(c).Suffix("/").ToA()
+					return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "namespaces"}).Invoke(c).Suffix("/").ToA()
 				case 1:
-					return action.ActionResources(c.Parts[0], "pods").Invoke(c).Suffix(":").ToA()
+					return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: c.Parts[0], Types: "pods"}).Invoke(c).Suffix(":").ToA()
 				default:
 					return carapace.ActionValues()
 				}

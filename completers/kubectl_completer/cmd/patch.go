@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -34,10 +34,10 @@ func init() {
 	rootCmd.AddCommand(patchCmd)
 
 	carapace.Gen(patchCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":    action.ActionDryRunModes(),
+		"dry-run":    kubectl.ActionDryRunModes(),
 		"filename":   carapace.ActionFiles(),
 		"kustomize":  carapace.ActionDirectories(),
-		"output":     action.ActionOutputFormats(),
+		"output":     kubectl.ActionOutputFormats(),
 		"patch-file": carapace.ActionFiles(),
 		"template":   carapace.ActionFiles(),
 		"type":       carapace.ActionValues("json", "merge", "strategic"),
@@ -48,14 +48,14 @@ func init() {
 			if patchCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {
-				return action.ActionApiResources()
+				return kubectl.ActionApiResources()
 			}
 		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if patchCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {
-				return action.ActionResources("", c.Args[0])
+				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: c.Args[0]})
 			}
 		}),
 	)

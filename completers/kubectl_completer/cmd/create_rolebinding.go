@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
@@ -34,11 +33,11 @@ func init() {
 	createCmd.AddCommand(create_rolebindingCmd)
 
 	carapace.Gen(create_rolebindingCmd).FlagCompletion(carapace.ActionMap{
-		"clusterrole":    action.ActionResources("", "clusterroles"),
-		"dry-run":        action.ActionDryRunModes(),
-		"output":         action.ActionOutputFormats(),
-		"role":           action.ActionResources("", "roles"),
-		"serviceaccount": action.ActionNamespaceServiceAccounts(),
+		"clusterrole":    kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "clusterroles"}),
+		"dry-run":        kubectl.ActionDryRunModes(),
+		"output":         kubectl.ActionOutputFormats(),
+		"role":           kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "roles"}),
+		"serviceaccount": kubectl.ActionNamespaceServiceAccounts(),
 		"template":       carapace.ActionFiles(),
 		"validate":       kubectl.ActionValidationModes(),
 	})

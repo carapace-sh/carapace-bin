@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -34,10 +34,10 @@ func init() {
 	rootCmd.AddCommand(scaleCmd)
 
 	carapace.Gen(scaleCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":   action.ActionDryRunModes(),
+		"dry-run":   kubectl.ActionDryRunModes(),
 		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
-		"output":    action.ActionOutputFormats(),
+		"output":    kubectl.ActionOutputFormats(),
 		"template":  carapace.ActionFiles(),
 	})
 
@@ -47,7 +47,7 @@ func init() {
 			case 0:
 				return carapace.ActionValues("deployments/", "replicasets/", "replicationcontrollers/").NoSpace()
 			case 1:
-				return action.ActionResources("", c.Parts[0])
+				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: c.Parts[0]})
 			default:
 				return carapace.ActionValues()
 			}

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -35,17 +35,17 @@ func init() {
 
 	// TODO field-manager
 	carapace.Gen(autoscaleCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":   action.ActionDryRunModes(),
+		"dry-run":   kubectl.ActionDryRunModes(),
 		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
-		"output":    action.ActionOutputFormats(),
+		"output":    kubectl.ActionOutputFormats(),
 		"template":  carapace.ActionFiles(),
 	})
 
 	carapace.Gen(autoscaleCmd).PositionalCompletion(
 		carapace.ActionValues("deployments", "replicasets", "replicationcontrollers"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionResources("", c.Args[0])
+			return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: c.Args[0]})
 		}),
 	)
 }

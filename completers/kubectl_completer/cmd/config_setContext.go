@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +22,6 @@ func init() {
 	configCmd.AddCommand(config_setContextCmd)
 
 	carapace.Gen(config_setContextCmd).PositionalCompletion(
-		action.ActionContexts(),
+		kubectl.ActionContexts(),
 	)
 }

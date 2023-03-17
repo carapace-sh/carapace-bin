@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
@@ -32,14 +31,14 @@ func init() {
 	rootCmd.AddCommand(taintCmd)
 
 	carapace.Gen(taintCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":  action.ActionDryRunModes(),
-		"output":   action.ActionOutputFormats(),
+		"dry-run":  kubectl.ActionDryRunModes(),
+		"output":   kubectl.ActionOutputFormats(),
 		"template": carapace.ActionFiles(),
 		"validate": kubectl.ActionValidationModes(),
 	})
 
 	carapace.Gen(taintCmd).PositionalCompletion(
 		carapace.ActionValues("nodes"),
-		action.ActionResources("", "nodes"),
+		kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "nodes"}),
 	)
 }

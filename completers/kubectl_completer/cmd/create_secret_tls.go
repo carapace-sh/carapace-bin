@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
@@ -33,9 +32,9 @@ func init() {
 
 	carapace.Gen(create_secret_tlsCmd).FlagCompletion(carapace.ActionMap{
 		"cert":     carapace.ActionFiles(),
-		"dry-run":  action.ActionDryRunModes(),
+		"dry-run":  kubectl.ActionDryRunModes(),
 		"key":      carapace.ActionFiles(),
-		"output":   action.ActionOutputFormats(),
+		"output":   kubectl.ActionOutputFormats(),
 		"template": carapace.ActionFiles(),
 		"validate": kubectl.ActionValidationModes(),
 	})

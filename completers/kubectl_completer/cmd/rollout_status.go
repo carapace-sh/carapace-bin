@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -30,6 +30,6 @@ func init() {
 	})
 
 	carapace.Gen(rollout_statusCmd).PositionalCompletion(
-		action.ActionApiResourceResources(),
+		kubectl.ActionApiResourceResources(),
 	)
 }

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -38,15 +38,15 @@ func init() {
 	rootCmd.AddCommand(deleteCmd)
 
 	carapace.Gen(deleteCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":   action.ActionDryRunModes(),
+		"dry-run":   kubectl.ActionDryRunModes(),
 		"kustomize": carapace.ActionDirectories(),
-		"output":    action.ActionOutputFormats(),
+		"output":    kubectl.ActionOutputFormats(),
 	})
 
 	carapace.Gen(deleteCmd).PositionalCompletion(
-		action.ActionApiResources().UniqueList(","),
+		kubectl.ActionApiResources().UniqueList(","),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionResources("", c.Args[0])
+			return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: c.Args[0]})
 		}),
 	)
 }

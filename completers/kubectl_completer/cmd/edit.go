@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
@@ -36,12 +35,12 @@ func init() {
 	carapace.Gen(editCmd).FlagCompletion(carapace.ActionMap{
 		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
-		"output":    action.ActionOutputFormats(),
+		"output":    kubectl.ActionOutputFormats(),
 		"template":  carapace.ActionFiles(),
 		"validate":  kubectl.ActionValidationModes(),
 	})
 
 	carapace.Gen(editCmd).PositionalCompletion(
-		action.ActionApiResourceResources(),
+		kubectl.ActionApiResourceResources(),
 	)
 }

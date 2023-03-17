@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(labelCmd).Standalone()
 
 	labelCmd.Flags().Bool("all", false, "Select all resources, in the namespace of the specified resource types")
-	labelCmd.Flags().BoolP("all-namespaces", "A", false, "If true, check the specified action in all namespaces.")
+	labelCmd.Flags().BoolP("all-namespaces", "A", false, "If true, check the specified kubectl in all namespaces.")
 	labelCmd.Flags().Bool("allow-missing-template-keys", true, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	labelCmd.Flags().String("dry-run", "none", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	labelCmd.Flags().String("field-manager", "kubectl-label", "Name of the manager used to track field ownership.")
@@ -37,10 +37,10 @@ func init() {
 	rootCmd.AddCommand(labelCmd)
 
 	carapace.Gen(labelCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":   action.ActionDryRunModes(),
+		"dry-run":   kubectl.ActionDryRunModes(),
 		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
-		"output":    action.ActionOutputFormats(),
+		"output":    kubectl.ActionOutputFormats(),
 		"template":  carapace.ActionFiles(),
 	})
 
@@ -49,14 +49,14 @@ func init() {
 			if labelCmd.Flag("filename").Changed {
 				return carapace.ActionValues() // TODO get labels for file
 			} else {
-				return action.ActionApiResources()
+				return kubectl.ActionApiResources()
 			}
 		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if labelCmd.Flag("all").Changed {
 				return carapace.ActionValues()
 			} else {
-				return action.ActionResources("", c.Args[0])
+				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: c.Args[0]})
 			}
 		}),
 	)
@@ -66,7 +66,7 @@ func init() {
 			if labelCmd.Flag("filename").Changed || labelCmd.Flag("all").Changed {
 				return carapace.ActionValues() // TODO support labels for file
 			} else {
-				return action.ActionLabels("", c.Args[0]+"/"+c.Args[1])
+				return kubectl.ActionLabels(kubectl.LabelOpts{Namespace: "", Resource: c.Args[0] + "/" + c.Args[1]})
 			}
 		}),
 	)

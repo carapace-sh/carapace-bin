@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -39,14 +39,14 @@ func init() {
 	setCmd.AddCommand(set_envCmd)
 
 	carapace.Gen(set_envCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":  action.ActionDryRunModes(),
+		"dry-run":  kubectl.ActionDryRunModes(),
 		"filename": carapace.ActionFiles(),
-		"from":     action.ActionApiResourceResources(),
-		"output":   action.ActionOutputFormats(),
+		"from":     kubectl.ActionApiResourceResources(),
+		"output":   kubectl.ActionOutputFormats(),
 		"template": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(set_envCmd).PositionalCompletion(
-		action.ActionApiResourceResources(),
+		kubectl.ActionApiResourceResources(),
 	)
 }

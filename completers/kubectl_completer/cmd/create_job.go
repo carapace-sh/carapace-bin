@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/kubectl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
 
@@ -30,9 +30,9 @@ func init() {
 	createCmd.AddCommand(create_jobCmd)
 
 	carapace.Gen(create_jobCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":  action.ActionDryRunModes(),
-		"from":     action.ActionResources("", "cronjobs"),
-		"output":   action.ActionOutputFormats(),
+		"dry-run":  kubectl.ActionDryRunModes(),
+		"from":     kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "cronjobs"}),
+		"output":   kubectl.ActionOutputFormats(),
 		"template": carapace.ActionFiles(),
 	})
 }
