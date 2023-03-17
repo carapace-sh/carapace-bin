@@ -239,8 +239,9 @@ var rootCmd = &cobra.Command{
 					out = strings.Replace(out, fmt.Sprintf("--spec '%v'", specPath), args[0], 1)
 					out = strings.Replace(out, fmt.Sprintf("'--spec', '%v'", specPath), fmt.Sprintf("'%v'", args[0]), 1) // xonsh callback
 					fmt.Fprintln(cmd.OutOrStdout(), out)
+				} else {
+					fmt.Println(invokeCompleter(args[0]))
 				}
-				fmt.Println(invokeCompleter(args[0]))
 			}
 		}
 
