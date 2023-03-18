@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "kotlin",
 	Short: "run Kotlin programs, scripts or REPL",
+	Long:  "https://kotlinlang.org/docs/command-line.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

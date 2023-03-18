@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "newrelic",
 	Short: "The New Relic CLI",
+	Long:  "https://github.com/newrelic/newrelic-cli",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
