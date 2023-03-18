@@ -1,7 +1,7 @@
 # Style
 
-[Text transformations](https://elv.sh/ref/builtin.html#styled) can be applied to files and specific values.
-
+[Style transformations](#style-transformations) can be applied to files and specific values.
+ 
 > This is only supported in [elvish], [powershell] and [zsh].
 
 ## File
@@ -23,7 +23,7 @@ export LS_COLORS=$(vivid generate dracula)
 
 ## Value
 
-Values can be styled with `carapace --style 'key=value'`
+Values can be styled with a comma separated list of [transformations](#style-transformations):
 
 ```sh
 # set
@@ -34,6 +34,36 @@ carapace --style 'carapace.Description='
 ```
 
 ![](./style-value.cast)
+
+> Generic configuration like default value and description style can be found under `carapace.{key}`
+
+
+## Style Transformations
+
+Transformations are adopted from [elvish](https://elv.sh/ref/builtin.html#styled):
+
+> Each `$style-transformer` can be one of the following:
+> - A boolean attribute name:
+>   - One of `bold`, `dim`, `italic`, `underlined`, `blink` and `inverse` for
+>     setting the corresponding attribute.
+>   - An attribute name prefixed by `no-` for unsetting the attribute.
+>   - An attribute name prefixed by `toggle-` for toggling the attribute
+>     between set and unset.
+> - A color name for setting the text color, which may be one of the
+>   following:
+>   - One of the 8 basic ANSI colors: `black`, `red`, `green`, `yellow`,
+>     `blue`, `magenta`, `cyan` and `white`.
+>   - The bright variant of the 8 basic ANSI colors, with a `bright-` prefix.
+>   - Any color from the xterm 256-color palette, as `colorX` (such as
+>     `color12`).
+>   - A 24-bit RGB color written as `#RRGGBB` (such as `'#778899'`).
+>     **Note**: You need to quote such values, since an unquoted `#` introduces
+>     a comment (e.g. use `'bg-#778899'` instead of `bg-#778899`).
+> - A color name prefixed by `fg-` to set the foreground color. This has
+>   the same effect as specifying the color name without the `fg-` prefix.
+> - A color name prefixed by `bg-` to set the background color.
+> - A function that receives a styled segment as the only argument and outputs
+>   a single styled segment, which will be applied to all the segments.
 
 
 [Elvish]:https://elv.sh/
