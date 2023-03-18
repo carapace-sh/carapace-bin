@@ -34,11 +34,8 @@ func loadSpec(path string) (string, *spec.Command, error) {
 }
 
 func addAliasCompletion(cmd *cobra.Command, specCommand spec.Command) {
-	if specCommand.Run == "" {
-		return
-	}
-
-	if len(specCommand.Flags) == 0 &&
+	if specCommand.Run != "" &&
+		len(specCommand.Flags) == 0 &&
 		len(specCommand.PersistentFlags) == 0 &&
 		len(specCommand.Completion.Positional) == 0 &&
 		len(specCommand.Completion.PositionalAny) == 0 &&
