@@ -62,8 +62,6 @@ Transformations are adopted from [elvish](https://elv.sh/ref/builtin.html#styled
 > - A color name prefixed by `fg-` to set the foreground color. This has
 >   the same effect as specifying the color name without the `fg-` prefix.
 > - A color name prefixed by `bg-` to set the background color.
-> - A function that receives a styled segment as the only argument and outputs
->   a single styled segment, which will be applied to all the segments.
 
 
 [Elvish]:https://elv.sh/
