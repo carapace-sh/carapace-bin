@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "terramate",
 	Short: "A tool for managing terraform stacks",
+	Long:  "https://github.com/mineiros-io/terramate",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

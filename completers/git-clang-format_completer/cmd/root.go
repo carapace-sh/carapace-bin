@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "git-clang-format",
 	Short: "run clang-format on lines that differ",
+	Long:  "https://clang.llvm.org/docs/ClangFormat.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

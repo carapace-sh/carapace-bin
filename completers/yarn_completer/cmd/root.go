@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "yarn",
 	Short: "Yarn is a package manager that doubles down as project manager",
+	Long:  "https://yarnpkg.com/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
