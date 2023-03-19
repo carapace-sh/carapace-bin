@@ -12,7 +12,7 @@ import (
 //	project@workspace:.
 //	yaml@npm:2.2.1
 func ActionDependencies() carapace.Action {
-	return carapace.ActionExecCommand("yarn", "info", "--json")(func(output []byte) carapace.Action {
+	return actionYarn("info", "--json")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		vals := make([]string, 0)
 

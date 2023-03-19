@@ -12,7 +12,7 @@ import (
 //	example (.)
 //	another (/tmp)
 func ActionWorkspaces() carapace.Action {
-	return carapace.ActionExecCommand("yarn", "workspaces", "list", "--json")(func(output []byte) carapace.Action {
+	return actionYarn("workspaces", "list", "--json")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		vals := make([]string, 0)
 
