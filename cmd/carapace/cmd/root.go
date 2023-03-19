@@ -236,8 +236,9 @@ var rootCmd = &cobra.Command{
 					}
 
 					// TODO revert the patching from specCompletion to use the integrated version for overlay to work (should move this somewhere else - best in specCompletion)
-					out = strings.Replace(out, fmt.Sprintf("--spec '%v'", specPath), args[0], 1)
-					out = strings.Replace(out, fmt.Sprintf("'--spec', '%v'", specPath), fmt.Sprintf("'%v'", args[0]), 1) // xonsh callback
+					// TODO only patch completion script
+					out = strings.Replace(out, fmt.Sprintf("--spec '%v'", specPath), args[0], -1)
+					out = strings.Replace(out, fmt.Sprintf("'--spec', '%v'", specPath), fmt.Sprintf("'%v'", args[0]), -1) // xonsh callback
 					fmt.Fprint(cmd.OutOrStdout(), out)
 				} else {
 					fmt.Print(invokeCompleter(args[0]))
