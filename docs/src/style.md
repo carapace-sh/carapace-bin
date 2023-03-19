@@ -1,6 +1,6 @@
 # Style
 
-[Style transformations](#style-transformations) can be applied to files and specific values.
+[Transformations](#transformations) can be applied to files and specific values.
  
 > This is only supported in [elvish], [powershell] and [zsh].
 
@@ -23,7 +23,7 @@ export LS_COLORS=$(vivid generate dracula)
 
 ## Value
 
-Values can be styled with a comma separated list of [transformations](#style-transformations):
+Values can be styled with a comma separated list of [transformations](#transformations):
 
 ```sh
 # set
@@ -38,7 +38,7 @@ carapace --style 'carapace.Description='
 > Generic configuration like default value and description style can be found under `carapace.{key}`
 
 
-## Style Transformations
+## Transformations
 
 Transformations are adopted from [elvish](https://elv.sh/ref/builtin.html#styled):
 
