@@ -67,7 +67,7 @@ func (s shim) DummyPath() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return fmt.Sprintf("%v/carapace/shims/%v", path, s.Name()), nil
+	return fmt.Sprintf("%v/carapace/.shims/%v", path, s.Name()), nil
 }
 
 func (s shim) NeedsUpdate() bool {
@@ -158,7 +158,7 @@ func (s shim) WriteDummy() error {
 	dummyDir := filepath.Dir(path)
 	if _, err := os.Stat(dummyDir); os.IsNotExist(err) {
 		carapace.LOG.Printf("creating shim dummy directory %#v\n", dummyDir)
-		if err := os.MkdirAll(dummyDir, os.ModePerm); err != nil {
+		if err := os.MkdirAll(dummyDir, 0700); err != nil {
 			return err
 		}
 	}
