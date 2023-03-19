@@ -3,6 +3,7 @@ package completers
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"regexp"
 	"sort"
 	"strings"
@@ -46,7 +47,12 @@ func SpecPath(name string) (string, error) {
 	if _, err := os.Stat(path); err != nil {
 		return "", err
 	}
-	return path, nil
+
+	abs, err := filepath.Abs(path)
+	if err != nil {
+		return "", err
+	}
+	return abs, nil
 }
 
 func Specs() (specs []string, dir string) {
