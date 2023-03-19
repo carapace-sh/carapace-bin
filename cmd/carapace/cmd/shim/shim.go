@@ -62,6 +62,14 @@ func (s shim) Path() (string, error) {
 	return fmt.Sprintf("%v/carapace/bin/%v", configDir, name), nil
 }
 
+func (s shim) DummyPath() (string, error) {
+	path, err := xdg.UserCacheDir()
+	if err != nil {
+		return "", err
+	}
+	return fmt.Sprintf("%v/carapace/shims/%v", path, s.Name()), nil
+}
+
 func (s shim) NeedsUpdate() bool {
 	path, err := s.Path()
 	if err != nil {
@@ -75,7 +83,19 @@ func (s shim) NeedsUpdate() bool {
 
 	shimInfo, err := os.Stat(path)
 	if err != nil {
-		return true
+		if !os.IsNotExist(err) {
+			return true
+		}
+
+		dummyPath, err := s.DummyPath()
+		if err != nil {
+			return true
+		}
+
+		shimInfo, err = os.Stat(dummyPath)
+		if err != nil {
+			return true
+		}
 	}
 
 	return shimInfo.ModTime().Before(targetInfo.ModTime())
@@ -108,19 +128,37 @@ func (s shim) Update() error {
 	if s.IsRunnable() {
 		return s.WriteShim()
 	}
+
+	if err := s.RemoveShim(); err != nil {
+		return err
+	}
 	return s.WriteDummy()
 }
 
-func (s shim) WriteDummy() error {
+func (s shim) RemoveShim() error {
 	path, err := s.Path()
 	if err != nil {
 		return err
 	}
 
-	binDir := filepath.Dir(path)
-	if _, err := os.Stat(binDir); os.IsNotExist(err) {
-		carapace.LOG.Printf("creating shim directory %#v\n", binDir)
-		if err := os.MkdirAll(binDir, os.ModePerm); err != nil {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		return nil
+	}
+
+	carapace.LOG.Printf("removing shim %#v", path)
+	return os.Remove(path)
+}
+
+func (s shim) WriteDummy() error {
+	path, err := s.DummyPath()
+	if err != nil {
+		return err
+	}
+
+	dummyDir := filepath.Dir(path)
+	if _, err := os.Stat(dummyDir); os.IsNotExist(err) {
+		carapace.LOG.Printf("creating shim dummy directory %#v\n", dummyDir)
+		if err := os.MkdirAll(dummyDir, os.ModePerm); err != nil {
 			return err
 		}
 	}
