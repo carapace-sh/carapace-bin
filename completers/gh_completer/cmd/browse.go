@@ -8,7 +8,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/git"
+	_git "github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/git"
 	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -24,18 +24,22 @@ func init() {
 	carapace.Gen(browseCmd).Standalone()
 
 	browseCmd.Flags().StringP("branch", "b", "", "Select another branch by passing in the branch name")
-	browseCmd.Flags().BoolP("commit", "c", false, "Open the last commit")
+	browseCmd.Flags().StringP("commit", "c", "", "Select another commit by passing in the commit SHA, default is the last commit")
 	browseCmd.Flags().BoolP("no-browser", "n", false, "Print destination URL instead of opening the browser")
 	browseCmd.Flags().BoolP("projects", "p", false, "Open repository projects")
 	browseCmd.Flags().BoolP("releases", "r", false, "Open repository releases")
 	browseCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
 	browseCmd.Flags().BoolP("settings", "s", false, "Open repository settings")
 	browseCmd.Flags().BoolP("wiki", "w", false, "Open repository wiki")
+	browseCmd.Flag("commit").NoOptDefVal = "last"
 	rootCmd.AddCommand(browseCmd)
 
 	carapace.Gen(browseCmd).FlagCompletion(carapace.ActionMap{
 		"branch": action.ActionBranches(browseCmd), // TODO merge with tags
-		"repo":   action.ActionRepoOverride(browseCmd),
+		"commit": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionBranchCommits(browseCmd, browseCmd.Flag("branch").Value.String())
+		}),
+		"repo": action.ActionRepoOverride(browseCmd),
 	})
 
 	carapace.Gen(browseCmd).PositionalCompletion(
@@ -47,12 +51,18 @@ func init() {
 			}
 
 			ref := browseCmd.Flag("branch").Value.String()
-			if browseCmd.Flag("commit").Changed {
-				commit, err := git.LastCommit()
-				if err != nil {
-					return carapace.ActionMessage(err.Error())
+			if flag := browseCmd.Flag("commit"); flag.Changed {
+				switch flag.Value.String() {
+				case "", "last":
+					commit, err := _git.LastCommit()
+					if err != nil {
+						return carapace.ActionMessage(err.Error())
+					}
+					ref = commit.Sha
+
+				default:
+					ref = flag.Value.String()
 				}
-				ref = commit.Sha
 			}
 
 			path := filepath.Dir(c.CallbackValue)
