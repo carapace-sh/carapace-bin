@@ -1,6 +1,8 @@
 package action
 
 import (
+	"fmt"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/styles"
 	"github.com/spf13/cobra"
@@ -30,6 +32,52 @@ func ActionBranches(cmd *cobra.Command) carapace.Action {
 			for index, branch := range branches {
 				vals[index*2] = branch.Name
 				vals[index*2+1] = branch.Target.AbbreviatedOid
+			}
+			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
+		})
+	})
+}
+
+type commitRef struct {
+	Target struct {
+		History struct {
+			Edges []struct {
+				Node struct {
+					AbbreviatedOid string
+					Message        string
+				}
+			}
+		}
+	}
+}
+
+type branchCommitsQuery struct {
+	Data struct {
+		Repository struct {
+			DefaultBranchRef commitRef
+			Ref              commitRef
+		}
+	}
+}
+
+func ActionBranchCommits(cmd *cobra.Command, branch string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		ref := `defaultBranchRef`
+		if branch != "" {
+			ref = fmt.Sprintf(`ref(qualifiedName: "refs/heads/%v")`, branch)
+		}
+
+		var queryResult branchCommitsQuery
+		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo) { %v { target { ... on Commit { history(first: 100) { edges { node { ... on Commit { abbreviatedOid message } } } } } } } }`, ref), &queryResult, func() carapace.Action {
+			commits := queryResult.Data.Repository.DefaultBranchRef.Target.History.Edges
+			if branch != "" {
+				commits = queryResult.Data.Repository.Ref.Target.History.Edges
+			}
+
+			vals := make([]string, len(commits)*2)
+			for index, commit := range commits {
+				vals[index*2] = commit.Node.AbbreviatedOid
+				vals[index*2+1] = commit.Node.Message
 			}
 			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
 		})
