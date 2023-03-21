@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -26,14 +27,15 @@ func init() {
 					}
 				}
 				return carapace.ActionValuesDescribed(vals...)
-			}),
+			}).Tag("commands"),
 			carapace.ActionValuesDescribed(
 				"actions", "Learn about working with GitHub Actions",
 				"environment", "Environment variables that can be used with gh",
+				"exit-codes", "Exit codes used by gh",
 				"formatting", "Formatting options for JSON data exported from gh",
 				"mintty", "Information about using gh with MinTTY",
 				"reference", "A comprehensive reference of all gh commands",
-			),
+			).Style(style.Blue).Tag("help topics"),
 		).ToA(),
 	)
 }
