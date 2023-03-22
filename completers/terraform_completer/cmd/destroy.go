@@ -7,9 +7,10 @@ import (
 )
 
 var destroyCmd = &cobra.Command{
-	Use:   "destroy",
-	Short: "Destroy previously-created infrastructure",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "destroy",
+	Short:   "Destroy previously-created infrastructure",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -40,6 +40,10 @@ func ActionExecute() carapace.Action { // TODO this still needed / correct? mayb
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "main", Title: "Main commands"},
+	)
+
 	rootCmd.Flags().StringS("chdir", "chdir", "", "Switch to a different working directory before executing the given subcommand.")
 	rootCmd.Flags().BoolS("help", "help", false, "Show this help output, or the help for a specified subcommand.")
 	rootCmd.Flags().BoolS("version", "version", false, "An alias for the \"version\" subcommand.")
