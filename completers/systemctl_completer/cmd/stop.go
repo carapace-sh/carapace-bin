@@ -7,9 +7,10 @@ import (
 )
 
 var stopCmd = &cobra.Command{
-	Use:   "stop",
-	Short: "Stop (deactivate) one or more units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "stop",
+	Short:   "Stop (deactivate) one or more units",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

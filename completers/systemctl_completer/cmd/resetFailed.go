@@ -7,9 +7,10 @@ import (
 )
 
 var resetFailedCmd = &cobra.Command{
-	Use:   "reset-failed",
-	Short: "Reset failed state for all, one, or more units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "reset-failed",
+	Short:   "Reset failed state for all, one, or more units",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

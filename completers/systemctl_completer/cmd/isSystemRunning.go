@@ -6,9 +6,10 @@ import (
 )
 
 var isSystemRunningCmd = &cobra.Command{
-	Use:   "is-system-running",
-	Short: "Check whether system is fully running",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "is-system-running",
+	Short:   "Check whether system is fully running",
+	GroupID: "system",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

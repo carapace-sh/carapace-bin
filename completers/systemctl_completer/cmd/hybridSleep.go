@@ -6,9 +6,10 @@ import (
 )
 
 var hybridSleepCmd = &cobra.Command{
-	Use:   "hybrid-sleep",
-	Short: "Hibernate and suspend the system",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "hybrid-sleep",
+	Short:   "Hibernate and suspend the system",
+	GroupID: "system",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -6,9 +6,10 @@ import (
 )
 
 var rescueCmd = &cobra.Command{
-	Use:   "rescue",
-	Short: "Enter system rescue mode",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rescue",
+	Short:   "Enter system rescue mode",
+	GroupID: "system",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

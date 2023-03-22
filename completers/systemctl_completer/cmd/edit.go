@@ -7,9 +7,10 @@ import (
 )
 
 var editCmd = &cobra.Command{
-	Use:   "edit",
-	Short: "Edit one or more unit files",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "edit",
+	Short:   "Edit one or more unit files",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

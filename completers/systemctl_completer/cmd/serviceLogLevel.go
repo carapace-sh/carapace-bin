@@ -8,9 +8,10 @@ import (
 )
 
 var serviceLogLevelCmd = &cobra.Command{
-	Use:   "service-log-level",
-	Short: "Get/set logging threshold for service",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "service-log-level",
+	Short:   "Get/set logging threshold for service",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var showCmd = &cobra.Command{
-	Use:   "show",
-	Short: "Show properties of one or more units/jobs or the manager",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "show",
+	Short:   "Show properties of one or more units/jobs or the manager",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

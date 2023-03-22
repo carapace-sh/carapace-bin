@@ -7,9 +7,10 @@ import (
 )
 
 var revertCmd = &cobra.Command{
-	Use:   "revert",
-	Short: "Revert one or more unit files to vendor version",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "revert",
+	Short:   "Revert one or more unit files to vendor version",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

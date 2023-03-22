@@ -7,9 +7,10 @@ import (
 )
 
 var isActiveCmd = &cobra.Command{
-	Use:   "is-active",
-	Short: "Check whether units are active",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "is-active",
+	Short:   "Check whether units are active",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

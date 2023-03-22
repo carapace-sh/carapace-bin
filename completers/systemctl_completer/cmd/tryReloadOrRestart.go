@@ -7,9 +7,10 @@ import (
 )
 
 var tryReloadOrRestartCmd = &cobra.Command{
-	Use:   "try-reload-or-restart",
-	Short: "If active, reload one or more units, if supported, otherwise restart",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "try-reload-or-restart",
+	Short:   "If active, reload one or more units, if supported, otherwise restart",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var unsetEnvironmentCmd = &cobra.Command{
-	Use:   "unset-environment",
-	Short: "Unset one or more environment variables",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "unset-environment",
+	Short:   "Unset one or more environment variables",
+	GroupID: "environment",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

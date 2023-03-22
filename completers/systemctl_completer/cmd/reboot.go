@@ -6,9 +6,10 @@ import (
 )
 
 var rebootCmd = &cobra.Command{
-	Use:   "reboot",
-	Short: "Shut down and reboot the system",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "reboot",
+	Short:   "Shut down and reboot the system",
+	GroupID: "system",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

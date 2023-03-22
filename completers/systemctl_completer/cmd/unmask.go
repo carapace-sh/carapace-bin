@@ -7,9 +7,10 @@ import (
 )
 
 var unmaskCmd = &cobra.Command{
-	Use:   "unmask",
-	Short: "Unmask one or more units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "unmask",
+	Short:   "Unmask one or more units",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var linkCmd = &cobra.Command{
-	Use:   "link",
-	Short: "Link one or more units files into the search path",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "link",
+	Short:   "Link one or more units files into the search path",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

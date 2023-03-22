@@ -7,9 +7,10 @@ import (
 )
 
 var thawCmd = &cobra.Command{
-	Use:   "thaw",
-	Short: "Resume execution of a frozen unit",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "thaw",
+	Short:   "Resume execution of a frozen unit",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

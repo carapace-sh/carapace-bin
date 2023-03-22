@@ -7,9 +7,10 @@ import (
 )
 
 var logTargetCmd = &cobra.Command{
-	Use:   "log-target",
-	Short: "Get/set logging target for manager",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "log-target",
+	Short:   "Get/set logging target for manager",
+	GroupID: "manager state",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

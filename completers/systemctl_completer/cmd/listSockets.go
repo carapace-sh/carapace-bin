@@ -7,9 +7,10 @@ import (
 )
 
 var listSocketsCmd = &cobra.Command{
-	Use:   "list-sockets",
-	Short: "List socket units currently in memory, ordered by address",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list-sockets",
+	Short:   "List socket units currently in memory, ordered by address",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

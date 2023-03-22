@@ -6,9 +6,10 @@ import (
 )
 
 var mountImageCmd = &cobra.Command{
-	Use:   "mount-image",
-	Short: "Mount an image from the host into a unit's namespace",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "mount-image",
+	Short:   "Mount an image from the host into a unit's namespace",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

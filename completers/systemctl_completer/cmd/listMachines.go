@@ -6,9 +6,10 @@ import (
 )
 
 var listMachinesCmd = &cobra.Command{
-	Use:   "list-machines",
-	Short: "List local containers and host",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list-machines",
+	Short:   "List local containers and host",
+	GroupID: "machine",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

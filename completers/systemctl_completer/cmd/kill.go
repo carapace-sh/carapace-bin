@@ -7,9 +7,10 @@ import (
 )
 
 var killCmd = &cobra.Command{
-	Use:   "kill",
-	Short: "Send signal to processes of a unit",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "kill",
+	Short:   "Send signal to processes of a unit",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

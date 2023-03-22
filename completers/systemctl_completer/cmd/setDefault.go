@@ -6,9 +6,10 @@ import (
 )
 
 var setDefaultCmd = &cobra.Command{
-	Use:   "set-default",
-	Short: "Set the default target",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "set-default",
+	Short:   "Set the default target",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

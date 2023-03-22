@@ -6,9 +6,10 @@ import (
 )
 
 var cancelCmd = &cobra.Command{
-	Use:   "cancel",
-	Short: "Cancel all, one, or more jobs",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "cancel",
+	Short:   "Cancel all, one, or more jobs",
+	GroupID: "job",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

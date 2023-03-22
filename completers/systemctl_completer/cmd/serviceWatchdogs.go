@@ -7,9 +7,10 @@ import (
 )
 
 var serviceWatchdogsCmd = &cobra.Command{
-	Use:   "service-watchdogs",
-	Short: "Get/set service watchdog state",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "service-watchdogs",
+	Short:   "Get/set service watchdog state",
+	GroupID: "manager state",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

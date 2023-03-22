@@ -6,9 +6,10 @@ import (
 )
 
 var emergencyCmd = &cobra.Command{
-	Use:   "emergency",
-	Short: "Enter system emergency mode",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "emergency",
+	Short:   "Enter system emergency mode",
+	GroupID: "system",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

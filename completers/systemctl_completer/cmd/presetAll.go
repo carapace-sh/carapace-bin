@@ -6,9 +6,10 @@ import (
 )
 
 var presetAllCmd = &cobra.Command{
-	Use:   "preset-all",
-	Short: "Enable/disable all unit files based on preset configuration",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "preset-all",
+	Short:   "Enable/disable all unit files based on preset configuration",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

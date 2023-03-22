@@ -7,9 +7,10 @@ import (
 )
 
 var listDependenciesCmd = &cobra.Command{
-	Use:   "list-dependencies",
-	Short: "Recursively show units which are required or wanted",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list-dependencies",
+	Short:   "Recursively show units which are required or wanted",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

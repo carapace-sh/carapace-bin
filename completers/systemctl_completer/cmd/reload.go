@@ -7,9 +7,10 @@ import (
 )
 
 var reloadCmd = &cobra.Command{
-	Use:   "reload",
-	Short: "Reload one or more units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "reload",
+	Short:   "Reload one or more units",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

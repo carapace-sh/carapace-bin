@@ -8,9 +8,10 @@ import (
 )
 
 var statusCmd = &cobra.Command{
-	Use:   "status",
-	Short: "Show runtime status of one or more units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "status",
+	Short:   "Show runtime status of one or more units",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

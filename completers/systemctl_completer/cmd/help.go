@@ -8,9 +8,10 @@ import (
 )
 
 var helpCmd = &cobra.Command{
-	Use:   "help",
-	Short: "Show manual for one or more units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "help",
+	Short:   "Show manual for one or more units",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
