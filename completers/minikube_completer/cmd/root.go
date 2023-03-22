@@ -18,6 +18,17 @@ func Execute() error {
 }
 
 func init() {
+	carapace.Gen(rootCmd).Standalone()
+
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "basic", Title: "Basic Commands"},
+		&cobra.Group{ID: "images", Title: "Images Commands"},
+		&cobra.Group{ID: "configuration", Title: "Configuration and Management Commands"},
+		&cobra.Group{ID: "networking", Title: "Networking and Connectivity Commands"},
+		&cobra.Group{ID: "advanced", Title: "Advanced Commands"},
+		&cobra.Group{ID: "troubleshooting", Title: "Troubleshooting Commands"},
+	)
+
 	rootCmd.PersistentFlags().Bool("add_dir_header", false, "If true, adds the file directory to the header of the log messages")
 	rootCmd.PersistentFlags().Bool("alsologtostderr", false, "log to standard error as well as files")
 	rootCmd.PersistentFlags().StringP("bootstrapper", "b", "kubeadm", "The name of the cluster bootstrapper that will set up the Kubernetes cluster.")

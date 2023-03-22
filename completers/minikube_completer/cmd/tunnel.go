@@ -5,9 +5,10 @@ import (
 )
 
 var tunnelCmd = &cobra.Command{
-	Use:   "tunnel",
-	Short: "Connect to LoadBalancer services",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "tunnel",
+	Short:   "Connect to LoadBalancer services",
+	GroupID: "networking",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var sshHostCmd = &cobra.Command{
-	Use:   "ssh-host",
-	Short: "Retrieve the ssh host key of the specified node",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ssh-host",
+	Short:   "Retrieve the ssh host key of the specified node",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

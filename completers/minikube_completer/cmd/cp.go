@@ -10,9 +10,10 @@ import (
 )
 
 var cpCmd = &cobra.Command{
-	Use:   "cp",
-	Short: "Copy the specified file into minikube",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "cp",
+	Short:   "Copy the specified file into minikube",
+	GroupID: "advanced",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

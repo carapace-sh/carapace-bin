@@ -5,9 +5,10 @@ import (
 )
 
 var dashboardCmd = &cobra.Command{
-	Use:   "dashboard",
-	Short: "Access the Kubernetes dashboard running within the minikube cluster",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "dashboard",
+	Short:   "Access the Kubernetes dashboard running within the minikube cluster",
+	GroupID: "basic",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

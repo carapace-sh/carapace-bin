@@ -7,9 +7,10 @@ import (
 )
 
 var pauseCmd = &cobra.Command{
-	Use:   "pause",
-	Short: "pause Kubernetes",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "pause",
+	Short:   "pause Kubernetes",
+	GroupID: "basic",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

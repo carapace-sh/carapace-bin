@@ -6,9 +6,10 @@ import (
 )
 
 var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Print the version of minikube",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "version",
+	Short:   "Print the version of minikube",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

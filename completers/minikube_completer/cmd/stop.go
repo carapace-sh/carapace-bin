@@ -6,9 +6,10 @@ import (
 )
 
 var stopCmd = &cobra.Command{
-	Use:   "stop",
-	Short: "Stops a running local Kubernetes cluster",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "stop",
+	Short:   "Stops a running local Kubernetes cluster",
+	GroupID: "basic",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

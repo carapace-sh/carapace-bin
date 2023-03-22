@@ -7,9 +7,10 @@ import (
 )
 
 var unpauseCmd = &cobra.Command{
-	Use:   "unpause",
-	Short: "unpause Kubernetes",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "unpause",
+	Short:   "unpause Kubernetes",
+	GroupID: "basic",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

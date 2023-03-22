@@ -11,9 +11,10 @@ import (
 )
 
 var mountCmd = &cobra.Command{
-	Use:   "mount",
-	Short: "Mounts the specified directory into minikube",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "mount",
+	Short:   "Mounts the specified directory into minikube",
+	GroupID: "advanced",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

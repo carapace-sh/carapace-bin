@@ -7,9 +7,10 @@ import (
 )
 
 var logsCmd = &cobra.Command{
-	Use:   "logs",
-	Short: "Returns logs to debug a local Kubernetes cluster",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "logs",
+	Short:   "Returns logs to debug a local Kubernetes cluster",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var sshCmd = &cobra.Command{
-	Use:   "ssh",
-	Short: "Log into the minikube environment (for debugging)",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ssh",
+	Short:   "Log into the minikube environment (for debugging)",
+	GroupID: "advanced",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
