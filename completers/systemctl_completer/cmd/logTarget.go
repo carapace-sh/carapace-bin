@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(logTargetCmd)
 
 	carapace.Gen(logTargetCmd).PositionalCompletion(
-		action.ActionTargets(),
+		action.ActionTargets(logTargetCmd),
 	)
 }

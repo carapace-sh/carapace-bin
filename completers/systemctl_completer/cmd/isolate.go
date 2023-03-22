@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(isolateCmd)
 
 	carapace.Gen(isolateCmd).PositionalCompletion(
-		action.ActionUnits(),
+		action.ActionUnits(isolateCmd),
 	)
 }

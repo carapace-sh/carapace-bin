@@ -19,7 +19,7 @@ func init() {
 
 	carapace.Gen(listSocketsCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionUnits().Invoke(c).Filter(c.Args).ToA()
+			return action.ActionUnits(listSocketsCmd).Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }
