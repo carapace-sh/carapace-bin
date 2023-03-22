@@ -7,9 +7,10 @@ import (
 )
 
 var applyCmd = &cobra.Command{
-	Use:   "apply",
-	Short: "Create or update infrastructure",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "apply",
+	Short:   "Create or update infrastructure",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
