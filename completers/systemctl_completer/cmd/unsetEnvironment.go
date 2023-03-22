@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/systemctl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/completers/vercel_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +19,7 @@ func init() {
 
 	carapace.Gen(unsetEnvironmentCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionEnvironmentVariables().Invoke(c).Filter(c.Args).ToA()
+			return action.ActionEnvironmentVariables(unsetEnvironmentCmd).Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

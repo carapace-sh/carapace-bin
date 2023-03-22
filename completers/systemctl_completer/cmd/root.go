@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/journalctl"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/systemctl"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -72,7 +73,7 @@ func init() {
 	rootCmd.Flags().String("what", "", "Which types of resources to remove")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"P":                action.ActionProperties(),
+		"P":                action.ActionProperties(rootCmd),
 		"check-inhibitors": carapace.ActionValues("auto", "yes", "no").StyleF(style.ForKeyword),
 		"host":             net.ActionHosts(),
 		"job-mode": carapace.ActionValuesDescribed(
@@ -91,17 +92,17 @@ func init() {
 			"all", "all processes",
 		),
 		"output":   journalctl.ActionOutputs(),
-		"property": action.ActionProperties(),
+		"property": action.ActionProperties(rootCmd),
 		"root":     carapace.ActionDirectories(),
 		"signal":   ps.ActionKillSignals(),
-		"state":    action.ActionStates(),
+		"state":    systemctl.ActionStates(),
 		"timestamp": carapace.ActionValuesDescribed(
 			"pretty", "Day YYYY-MM-DD HH:MM:SS TZ",
 			"us", "Day YYYY-MM-DD HH:MM:SS.UUUUUU TZ",
 			"utc", "Day YYYY-MM-DD HH:MM:SS UTC",
 			"us+utc", "Day YYYY-MM-DD HH:MM:SS.UUUUUU UTC",
 		),
-		"type": action.ActionTypes(),
+		"type": systemctl.ActionUnitTypes(),
 		"what": carapace.ActionValues("configuration", "state", "cache", "logs", "runtime"),
 	})
 }

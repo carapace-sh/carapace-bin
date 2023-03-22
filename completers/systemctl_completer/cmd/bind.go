@@ -18,7 +18,7 @@ func init() {
 	rootCmd.AddCommand(bindCmd)
 
 	carapace.Gen(bindCmd).PositionalCompletion(
-		action.ActionUnits(),
+		action.ActionUnits(bindCmd),
 		carapace.ActionFiles(),
 		carapace.ActionFiles(),
 	)

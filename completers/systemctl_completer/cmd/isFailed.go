@@ -19,7 +19,7 @@ func init() {
 
 	carapace.Gen(isFailedCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionUnits().Invoke(c).Filter(c.Args).ToA()
+			return action.ActionUnits(isFailedCmd).Invoke(c).Filter(c.Args).ToA()
 		}),
 	)
 }

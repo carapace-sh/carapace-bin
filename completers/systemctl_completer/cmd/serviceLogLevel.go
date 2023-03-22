@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/systemctl_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/systemctl"
 	"github.com/spf13/cobra"
 )
 
@@ -18,7 +19,7 @@ func init() {
 	rootCmd.AddCommand(serviceLogLevelCmd)
 
 	carapace.Gen(serviceLogLevelCmd).PositionalCompletion(
-		action.ActionServices(),
-		action.ActionLogLevels(),
+		action.ActionServices(serviceLogLevelCmd),
+		systemctl.ActionLogLevels(),
 	)
 }

@@ -1,4 +1,4 @@
-package action
+package systemctl
 
 import (
 	"strings"
@@ -6,10 +6,22 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-func ActionProperties(units ...string) carapace.Action {
+type PropertiesOpts struct {
+	User  bool
+	Units []string
+}
+
+// ActionProperties completes properties for given unit
+//
+//	Architecture (x86-64)
+//	ConfirmSpawn (no)
+func ActionProperties(opts PropertiesOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"show"}
-		args = append(args, units...)
+		if opts.User {
+			args = append(args, "user")
+		}
+		args = append(args, opts.Units...)
 		return carapace.ActionExecCommand("systemctl", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
