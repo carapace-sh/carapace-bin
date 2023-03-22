@@ -7,9 +7,10 @@ import (
 )
 
 var sshKeyCmd = &cobra.Command{
-	Use:   "ssh-key",
-	Short: "Retrieve the ssh identity key path of the specified node",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ssh-key",
+	Short:   "Retrieve the ssh identity key path of the specified node",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

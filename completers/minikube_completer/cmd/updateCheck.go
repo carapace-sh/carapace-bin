@@ -5,9 +5,10 @@ import (
 )
 
 var updateCheckCmd = &cobra.Command{
-	Use:   "update-check",
-	Short: "Print current and latest version number",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "update-check",
+	Short:   "Print current and latest version number",
+	GroupID: "troubleshooting",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

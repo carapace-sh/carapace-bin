@@ -7,9 +7,10 @@ import (
 )
 
 var serviceCmd = &cobra.Command{
-	Use:   "service",
-	Short: "Returns a URL to connect to a service",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "service",
+	Short:   "Returns a URL to connect to a service",
+	GroupID: "networking",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

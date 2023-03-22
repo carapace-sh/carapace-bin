@@ -6,9 +6,10 @@ import (
 )
 
 var podmanEnvCmd = &cobra.Command{
-	Use:   "podman-env",
-	Short: "Configure environment to use minikube's Podman service",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "podman-env",
+	Short:   "Configure environment to use minikube's Podman service",
+	GroupID: "images",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

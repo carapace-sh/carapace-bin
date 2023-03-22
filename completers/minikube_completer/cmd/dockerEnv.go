@@ -6,9 +6,10 @@ import (
 )
 
 var dockerEnvCmd = &cobra.Command{
-	Use:   "docker-env",
-	Short: "Configure environment to use minikube's Docker daemon",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "docker-env",
+	Short:   "Configure environment to use minikube's Docker daemon",
+	GroupID: "images",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

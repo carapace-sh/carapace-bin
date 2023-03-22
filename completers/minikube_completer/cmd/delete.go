@@ -5,9 +5,10 @@ import (
 )
 
 var deleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Deletes a local Kubernetes cluster",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "delete",
+	Short:   "Deletes a local Kubernetes cluster",
+	GroupID: "basic",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

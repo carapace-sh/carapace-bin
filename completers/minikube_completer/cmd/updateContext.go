@@ -5,9 +5,10 @@ import (
 )
 
 var updateContextCmd = &cobra.Command{
-	Use:   "update-context",
-	Short: "Update kubeconfig in case of an IP or port change",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "update-context",
+	Short:   "Update kubeconfig in case of an IP or port change",
+	GroupID: "configuration",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

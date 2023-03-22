@@ -7,9 +7,10 @@ import (
 )
 
 var statusCmd = &cobra.Command{
-	Use:   "status",
-	Short: "Gets the status of a local Kubernetes cluster",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "status",
+	Short:   "Gets the status of a local Kubernetes cluster",
+	GroupID: "basic",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

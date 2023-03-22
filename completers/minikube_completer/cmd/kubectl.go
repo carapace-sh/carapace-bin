@@ -7,9 +7,10 @@ import (
 )
 
 var kubectlCmd = &cobra.Command{
-	Use:   "kubectl",
-	Short: "Run a kubectl binary matching the cluster version",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "kubectl",
+	Short:   "Run a kubectl binary matching the cluster version",
+	GroupID: "advanced",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
