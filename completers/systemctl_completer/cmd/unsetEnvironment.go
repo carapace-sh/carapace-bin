@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/vercel_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/completers/systemctl_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
