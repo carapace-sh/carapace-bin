@@ -7,9 +7,10 @@ import (
 )
 
 var setEnvironmentCmd = &cobra.Command{
-	Use:   "set-environment",
-	Short: "Set one or more environment variables",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "set-environment",
+	Short:   "Set one or more environment variables",
+	GroupID: "environment",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

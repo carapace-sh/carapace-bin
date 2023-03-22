@@ -7,9 +7,10 @@ import (
 )
 
 var addWantsCmd = &cobra.Command{
-	Use:   "add-wants",
-	Short: "Add 'Wants' dependency for the target on specified one or more units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "add-wants",
+	Short:   "Add 'Wants' dependency for the target on specified one or more units",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

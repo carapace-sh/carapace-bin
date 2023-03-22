@@ -6,9 +6,10 @@ import (
 )
 
 var daemonReexecCmd = &cobra.Command{
-	Use:   "daemon-reexec",
-	Short: "Reexecute systemd manager",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "daemon-reexec",
+	Short:   "Reexecute systemd manager",
+	GroupID: "manager state",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

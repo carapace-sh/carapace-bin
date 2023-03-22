@@ -7,9 +7,10 @@ import (
 )
 
 var setPropertyCmd = &cobra.Command{
-	Use:   "set-property",
-	Short: "Sets one or more properties of a unit",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "set-property",
+	Short:   "Sets one or more properties of a unit",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

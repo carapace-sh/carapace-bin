@@ -6,9 +6,10 @@ import (
 )
 
 var listJobsCmd = &cobra.Command{
-	Use:   "list-jobs",
-	Short: "List jobs",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list-jobs",
+	Short:   "List jobs",
+	GroupID: "job",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

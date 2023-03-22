@@ -7,9 +7,10 @@ import (
 )
 
 var addRequiresCmd = &cobra.Command{
-	Use:   "add-requires",
-	Short: "Add 'Requires' dependency for the target on specified one or more units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "add-requires",
+	Short:   "Add 'Requires' dependency for the target on specified one or more units",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

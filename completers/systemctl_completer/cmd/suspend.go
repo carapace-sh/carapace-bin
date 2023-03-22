@@ -6,9 +6,10 @@ import (
 )
 
 var suspendCmd = &cobra.Command{
-	Use:   "suspend",
-	Short: "Suspend the system",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "suspend",
+	Short:   "Suspend the system",
+	GroupID: "system",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -6,9 +6,10 @@ import (
 )
 
 var exitCmd = &cobra.Command{
-	Use:   "exit",
-	Short: "Request user instance or container exit",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "exit",
+	Short:   "Request user instance or container exit",
+	GroupID: "system",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

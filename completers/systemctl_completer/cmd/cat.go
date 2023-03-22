@@ -7,9 +7,10 @@ import (
 )
 
 var catCmd = &cobra.Command{
-	Use:   "cat",
-	Short: "Show files and drop-ins of specified units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "cat",
+	Short:   "Show files and drop-ins of specified units",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

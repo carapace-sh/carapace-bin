@@ -7,9 +7,10 @@ import (
 )
 
 var listTimersCmd = &cobra.Command{
-	Use:   "list-timers",
-	Short: "List timer units currently in memory, ordered by next elapse",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list-timers",
+	Short:   "List timer units currently in memory, ordered by next elapse",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

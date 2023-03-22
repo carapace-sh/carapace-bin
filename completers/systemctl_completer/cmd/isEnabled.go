@@ -7,9 +7,10 @@ import (
 )
 
 var isEnabledCmd = &cobra.Command{
-	Use:   "is-enabled",
-	Short: "Check whether unit files are enabled",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "is-enabled",
+	Short:   "Check whether unit files are enabled",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

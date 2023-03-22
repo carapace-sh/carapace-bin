@@ -24,6 +24,16 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "unit", Title: "Unit Commands"},
+		&cobra.Group{ID: "unit file", Title: "Unit File Commands"},
+		&cobra.Group{ID: "machine", Title: "Machine Commands"},
+		&cobra.Group{ID: "job", Title: "Job Commands"},
+		&cobra.Group{ID: "environment", Title: "Environment Commands"},
+		&cobra.Group{ID: "manager state", Title: "Manager State Commands"},
+		&cobra.Group{ID: "system", Title: "System Commands"},
+	)
+
 	rootCmd.Flags().StringS("P", "P", "", "Equivalent to --value --property=NAME")
 	rootCmd.Flags().BoolP("all", "a", false, "Show all properties/all units currently in memory, including dead/empty ones")
 	rootCmd.Flags().String("boot-loader-entry", "", "Boot into a specific boot loader entry on next boot")

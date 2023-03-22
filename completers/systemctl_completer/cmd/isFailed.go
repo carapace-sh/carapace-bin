@@ -7,9 +7,10 @@ import (
 )
 
 var isFailedCmd = &cobra.Command{
-	Use:   "is-failed",
-	Short: "Check whether units are failed",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "is-failed",
+	Short:   "Check whether units are failed",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

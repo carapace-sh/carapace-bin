@@ -6,9 +6,10 @@ import (
 )
 
 var defaultCmd = &cobra.Command{
-	Use:   "default",
-	Short: "Enter system default mode",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "default",
+	Short:   "Enter system default mode",
+	GroupID: "system",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

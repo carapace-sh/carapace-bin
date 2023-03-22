@@ -6,9 +6,10 @@ import (
 )
 
 var hibernateCmd = &cobra.Command{
-	Use:   "hibernate",
-	Short: "Hibernate the system",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "hibernate",
+	Short:   "Hibernate the system",
+	GroupID: "system",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

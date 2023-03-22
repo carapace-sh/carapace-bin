@@ -7,9 +7,10 @@ import (
 )
 
 var importEnvironmentCmd = &cobra.Command{
-	Use:   "import-environment",
-	Short: "Import all or some environment variables",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "import-environment",
+	Short:   "Import all or some environment variables",
+	GroupID: "environment",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

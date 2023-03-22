@@ -7,9 +7,10 @@ import (
 )
 
 var listUnitsCmd = &cobra.Command{
-	Use:   "list-units",
-	Short: "List units currently in memory",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list-units",
+	Short:   "List units currently in memory",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

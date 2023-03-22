@@ -7,9 +7,10 @@ import (
 )
 
 var maskCmd = &cobra.Command{
-	Use:   "mask",
-	Short: "Mask one or more units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "mask",
+	Short:   "Mask one or more units",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

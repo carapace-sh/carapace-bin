@@ -7,9 +7,10 @@ import (
 )
 
 var disableCmd = &cobra.Command{
-	Use:   "disable",
-	Short: "Disable one or more unit files",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "disable",
+	Short:   "Disable one or more unit files",
+	GroupID: "unit file",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

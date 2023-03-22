@@ -6,9 +6,10 @@ import (
 )
 
 var showEnvironmentCmd = &cobra.Command{
-	Use:   "show-environment",
-	Short: "Dump environment",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "show-environment",
+	Short:   "Dump environment",
+	GroupID: "environment",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

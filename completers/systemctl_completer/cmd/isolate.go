@@ -7,9 +7,10 @@ import (
 )
 
 var isolateCmd = &cobra.Command{
-	Use:   "isolate",
-	Short: "Start one unit and stop all others",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "isolate",
+	Short:   "Start one unit and stop all others",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

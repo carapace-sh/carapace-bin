@@ -7,9 +7,10 @@ import (
 )
 
 var restartCmd = &cobra.Command{
-	Use:   "restart",
-	Short: "Start or restart one or more units",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "restart",
+	Short:   "Start or restart one or more units",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

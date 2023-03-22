@@ -7,9 +7,10 @@ import (
 )
 
 var bindCmd = &cobra.Command{
-	Use:   "bind",
-	Short: "Bind-mount a path from the host into a unit's namespace",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "bind",
+	Short:   "Bind-mount a path from the host into a unit's namespace",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

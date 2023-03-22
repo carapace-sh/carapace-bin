@@ -7,9 +7,10 @@ import (
 )
 
 var freezeCmd = &cobra.Command{
-	Use:   "freeze",
-	Short: "Freeze execution of unit processes",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "freeze",
+	Short:   "Freeze execution of unit processes",
+	GroupID: "unit",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
