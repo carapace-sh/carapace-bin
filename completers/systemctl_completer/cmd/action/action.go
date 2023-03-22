@@ -36,3 +36,9 @@ func ActionUnits(cmd *cobra.Command) carapace.Action {
 		return systemctl.ActionUnits(userFlag(cmd))
 	})
 }
+
+func ActionEnvironmentVariables(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return systemctl.ActionEnvironmentVariables(userFlag(cmd))
+	})
+}
