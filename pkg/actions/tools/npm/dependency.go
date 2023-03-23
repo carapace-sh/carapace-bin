@@ -2,6 +2,7 @@ package npm
 
 import (
 	"encoding/json"
+	"os/exec"
 
 	"github.com/rsteube/carapace"
 )
@@ -47,7 +48,13 @@ func ActionDependencyNames() carapace.Action {
 //	braces@3.0.2
 func ActionDependencies() carapace.Action {
 	return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("npm", "ls", "--json", "--all")(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommandE("npm", "ls", "--json", "--all", "--silent")(func(output []byte, err error) carapace.Action {
+			if err != nil {
+				if exitErr, ok := err.(*exec.ExitError); !ok || exitErr.ExitCode() != 1 {
+					return carapace.ActionMessage(err.Error())
+				}
+			}
+
 			var deps dependency
 			if err := json.Unmarshal(output, &deps); err != nil {
 				return carapace.ActionMessage(err.Error())
