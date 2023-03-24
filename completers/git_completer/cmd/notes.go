@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,8 @@ var notesCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(notesCmd).Standalone()
+
 	notesCmd.Flags().String("ref", "", "use notes from <notes-ref>")
 	rootCmd.AddCommand(notesCmd)
 }
