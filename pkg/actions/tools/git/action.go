@@ -21,6 +21,7 @@ type RefOption struct {
 	HeadCommits    int
 	Tags           bool
 	Stashes        bool
+	Notes          bool
 }
 
 func (o RefOption) Default() RefOption {
@@ -30,6 +31,7 @@ func (o RefOption) Default() RefOption {
 	o.HeadCommits = 100
 	o.Tags = true
 	o.Stashes = true
+	o.Notes = false
 	return o
 
 }
@@ -64,6 +66,10 @@ func ActionRefs(refOption RefOption) carapace.Action {
 
 		if refOption.Stashes {
 			batch = append(batch, ActionStashes())
+		}
+
+		if refOption.Notes {
+			batch = append(batch, ActionNotes())
 		}
 
 		return batch.ToA()
