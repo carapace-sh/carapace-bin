@@ -20,6 +20,11 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "", Title: ""}, // dummy command to have different highlighting than terraform
+		&cobra.Group{ID: "terragrunt", Title: "Terragrunt Commands"},
+	)
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		bridge.ActionCarapaceBin("terraform"),
 	)

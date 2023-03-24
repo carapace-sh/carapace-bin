@@ -6,9 +6,10 @@ import (
 )
 
 var hclfmtCmd = &cobra.Command{
-	Use:   "hclfmt",
-	Short: "Recursively find hcl files and rewrite them into a canonical format",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "hclfmt",
+	Short:   "Recursively find hcl files and rewrite them into a canonical format",
+	GroupID: "terragrunt",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

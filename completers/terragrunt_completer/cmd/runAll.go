@@ -9,6 +9,7 @@ import (
 var runAllCmd = &cobra.Command{
 	Use:                "run-all",
 	Short:              "Run a terraform command against a 'stack' by running the specified command in each subfolder",
+	GroupID:            "terragrunt",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
 }

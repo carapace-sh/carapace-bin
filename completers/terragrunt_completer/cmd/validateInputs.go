@@ -6,9 +6,10 @@ import (
 )
 
 var validateInputsCmd = &cobra.Command{
-	Use:   "validate-inputs",
-	Short: "Checks if the terragrunt configured inputs align with the terraform defined variables",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "validate-inputs",
+	Short:   "Checks if the terragrunt configured inputs align with the terraform defined variables",
+	GroupID: "terragrunt",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
