@@ -8,11 +8,18 @@ import (
 )
 
 // ActionNotes completes notes
-
+//
+//	e37823c1 (d10deda4)
+//	fc287455 (53797853)
 func ActionNotes() carapace.Action {
-	return carapace.ActionExecCommand("git", "log", "--pretty=format:%h\n%<(64,trunc)%s", "--show-notes")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("git", "notes", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
-		return carapace.ActionValuesDescribed(lines...).Style(styles.Git.Note)
+		vals := make([]string, 0)
+
+		for _, line := range lines[:len(lines)-1] {
+			vals = append(vals, line[41:49], line[:8])
+		}
+		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Note)
 	}).Tag("notes")
 }
 
