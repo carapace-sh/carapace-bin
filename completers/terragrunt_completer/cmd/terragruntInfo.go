@@ -6,9 +6,10 @@ import (
 )
 
 var terragruntInfoCmd = &cobra.Command{
-	Use:   "terragrunt-info",
-	Short: "Emits limited terragrunt state on stdout and exits",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "terragrunt-info",
+	Short:   "Emits limited terragrunt state on stdout and exits",
+	GroupID: "terragrunt",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

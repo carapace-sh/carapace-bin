@@ -6,9 +6,10 @@ import (
 )
 
 var renderJsonCmd = &cobra.Command{
-	Use:   "render-json",
-	Short: "Render the final terragrunt config as json",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "render-json",
+	Short:   "Render the final terragrunt config as json",
+	GroupID: "terragrunt",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -6,9 +6,10 @@ import (
 )
 
 var graphDependenciesCmd = &cobra.Command{
-	Use:   "graph-dependencies",
-	Short: "Prints the terragrunt dependency graph to stdout",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "graph-dependencies",
+	Short:   "Prints the terragrunt dependency graph to stdout",
+	GroupID: "terragrunt",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
