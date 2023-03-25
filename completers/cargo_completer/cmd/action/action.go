@@ -130,9 +130,18 @@ func ActionTargets(cmd *cobra.Command, opts TargetOpts) carapace.Action {
 	})
 }
 
+func ActionFeatures(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return cargo.ActionFeatures(cmd.Flag("manifest-path").Value.String())
+	})
+}
+
 func ActionDependencies(cmd *cobra.Command, includeVersion bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return cargo.ActionDependencies(cargo.DependencyOpts{Path: cmd.Flag("manifest-path").Value.String()})
+		return cargo.ActionDependencies(cargo.DependencyOpts{
+			Path:           cmd.Flag("manifest-path").Value.String(),
+			IncludeVersion: includeVersion,
+		})
 	})
 }
 

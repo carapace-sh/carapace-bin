@@ -44,16 +44,17 @@ func init() {
 
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringS("Z", "Z", "", "Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details")
-	rootCmd.Flags().String("color", "", "Coloring: auto, always, never")
+	rootCmd.PersistentFlags().StringSliceP("Z", "Z", []string{}, "Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details")
+	rootCmd.PersistentFlags().String("color", "", "Coloring: auto, always, never")
+	rootCmd.PersistentFlags().StringSlice("config", []string{}, "Override a configuration value")
 	rootCmd.Flags().String("explain", "", "Run `rustc --explain CODE`")
-	rootCmd.Flags().Bool("frozen", false, "Require Cargo.lock and cache are up to date")
-	rootCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	rootCmd.PersistentFlags().Bool("frozen", false, "Require Cargo.lock and cache are up to date")
+	rootCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.Flags().Bool("list", false, "List installed commands")
-	rootCmd.Flags().Bool("locked", false, "Require Cargo.lock is up to date")
-	rootCmd.Flags().Bool("offline", false, "Run without accessing the network")
-	rootCmd.Flags().BoolP("quiet", "q", false, "No output printed to stdout")
-	rootCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
+	rootCmd.PersistentFlags().Bool("locked", false, "Require Cargo.lock is up to date")
+	rootCmd.PersistentFlags().Bool("offline", false, "Run without accessing the network")
+	rootCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
+	rootCmd.PersistentFlags().CountP("verbose", "v", "Use verbose output (-vv very verbose/build.rs output)")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version info and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
@@ -118,6 +119,7 @@ func groupFor(name string) string {
 		"verify-project":
 		return groups[group_manifest].ID
 	case "init",
+		"install",
 		"new",
 		"search",
 		"uninstall":
