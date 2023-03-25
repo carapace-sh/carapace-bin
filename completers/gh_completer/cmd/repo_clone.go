@@ -33,8 +33,7 @@ func init() {
 			if args := repo_cloneCmd.Flags().Args(); len(args) > 0 {
 				repo = fmt.Sprintf("https://github.com/%v.git", args[0])
 			}
-			c.Args = append([]string{"clone", repo, ""}, c.Args...)
-			return bridge.ActionCarapaceBin("git").Invoke(c).ToA()
+			return bridge.ActionCarapaceBin("git", "clone", repo, "")
 		}),
 	)
 }
