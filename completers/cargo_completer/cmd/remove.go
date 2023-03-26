@@ -29,4 +29,10 @@ func init() {
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(removeCmd, false),
 	})
+
+	carapace.Gen(removeCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionDependencies(removeCmd, false).Invoke(c).Filter(c.Args).ToA()
+		}),
+	)
 }
