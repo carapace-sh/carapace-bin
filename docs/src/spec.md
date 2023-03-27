@@ -33,7 +33,7 @@ source <(carapace --spec example.yaml)
 
 ## Custom Macros
 
-Carapace provides a range of [custom macros](./specs/macros.md):
+Carapace provides a range of [custom macros](./spec/macros.md):
 
 ```sh
 carapace --macros                       # list macros
