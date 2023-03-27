@@ -68,3 +68,11 @@ Install from [rsteube/scoop-bucket](https://github.com/rsteube/scoop-bucket)
 scoop bucket add rsteube https://github.com/rsteube/scoop-bucket.git
 scoop install carapace-bin
 ```
+
+## Winget
+
+Install from [winget-pkgs](https://github.com/microsoft/winget-pkgs)
+
+```sh
+winget install -e --id rsteube.Carapace
+```
