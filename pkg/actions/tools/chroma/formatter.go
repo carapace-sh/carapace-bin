@@ -18,5 +18,5 @@ func ActionFormatters() carapace.Action {
 		"terminal256",
 		"terminal8",
 		"tokens",
-	)
+	).Tag("formatters")
 }

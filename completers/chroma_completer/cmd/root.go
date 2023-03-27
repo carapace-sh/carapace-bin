@@ -55,7 +55,11 @@ func init() {
 		"formatter": chroma.ActionFormatters(),
 		"lexer":     chroma.ActionLexers(),
 		"profile":   carapace.ActionFiles(),
-		"xml":       carapace.ActionDirectories(),
+		"style": carapace.Batch(
+			chroma.ActionStyles(),
+			carapace.ActionFiles(),
+		).ToA(),
+		"xml": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

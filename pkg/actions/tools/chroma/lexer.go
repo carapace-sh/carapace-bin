@@ -243,5 +243,5 @@ func ActionLexers() carapace.Action {
 		"Z80 Assembly",
 		"Zed",
 		"Zig",
-	)
+	).Tag("lexers")
 }
