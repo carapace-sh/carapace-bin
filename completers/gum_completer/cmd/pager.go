@@ -14,6 +14,7 @@ var pagerCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(pagerCmd).Standalone()
+
 	pagerCmd.Flags().String("align", "", "Text Alignment")
 	pagerCmd.Flags().String("background", "", "Background Color")
 	pagerCmd.Flags().Bool("bold", false, "Bold text")

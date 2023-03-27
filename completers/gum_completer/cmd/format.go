@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/chroma"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
@@ -16,11 +17,14 @@ var formatCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(formatCmd).Standalone()
+
+	formatCmd.Flags().StringP("language", "l", "", "Programming language to parse code")
 	formatCmd.Flags().String("theme", "", "Glamour theme to use for markdown formatting")
 	formatCmd.Flags().StringP("type", "t", "", "Format to use (markdown,template,code,emoji)")
 	rootCmd.AddCommand(formatCmd)
 
 	carapace.Gen(formatCmd).FlagCompletion(carapace.ActionMap{
+		"language": chroma.ActionLexers(),
 		"theme": carapace.Batch(
 			carapace.ActionValues("ascii", "dark", "dracula", "light", "notty", "pink").Tag("themes"),
 			carapace.ActionFiles(),

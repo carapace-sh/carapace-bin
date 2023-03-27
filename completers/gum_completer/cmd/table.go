@@ -14,6 +14,7 @@ var tableCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(tableCmd).Standalone()
+
 	tableCmd.Flags().String("cell.align", "", "Text Alignment")
 	tableCmd.Flags().String("cell.background", "", "Background Color")
 	tableCmd.Flags().Bool("cell.bold", false, "Bold text")

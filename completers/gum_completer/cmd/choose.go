@@ -14,6 +14,7 @@ var chooseCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(chooseCmd).Standalone()
+
 	chooseCmd.Flags().String("cursor", "", "Prefix to show on item that corresponds to the cursor position")
 	chooseCmd.Flags().String("cursor-prefix", "", "Prefix to show on the cursor item (hidden if limit is 1)")
 	chooseCmd.Flags().String("cursor.align", "", "Text Alignment")
@@ -31,6 +32,22 @@ func init() {
 	chooseCmd.Flags().Bool("cursor.strikethrough", false, "Strikethrough text")
 	chooseCmd.Flags().Bool("cursor.underline", false, "Underline text")
 	chooseCmd.Flags().String("cursor.width", "", "Text width")
+	chooseCmd.Flags().String("header", "", "Header value")
+	chooseCmd.Flags().String("header.align", "", "Text Alignment")
+	chooseCmd.Flags().String("header.background", "", "Background Color")
+	chooseCmd.Flags().Bool("header.bold", false, "Bold text")
+	chooseCmd.Flags().String("header.border", "", "Border Style")
+	chooseCmd.Flags().String("header.border-background", "", "Border Background Color")
+	chooseCmd.Flags().String("header.border-foreground", "", "Border Foreground Color")
+	chooseCmd.Flags().Bool("header.faint", false, "Faint text")
+	chooseCmd.Flags().String("header.foreground", "", "Foreground Color")
+	chooseCmd.Flags().String("header.height", "", "Text height")
+	chooseCmd.Flags().Bool("header.italic", false, "Italicize text")
+	chooseCmd.Flags().String("header.margin", "", "Text margin")
+	chooseCmd.Flags().String("header.padding", "", "Text padding")
+	chooseCmd.Flags().Bool("header.strikethrough", false, "Strikethrough text")
+	chooseCmd.Flags().Bool("header.underline", false, "Underline text")
+	chooseCmd.Flags().String("header.width", "", "Text width")
 	chooseCmd.Flags().String("height", "", "Height of the list")
 	chooseCmd.Flags().String("item.align", "", "Text Alignment")
 	chooseCmd.Flags().String("item.background", "", "Background Color")
@@ -49,6 +66,7 @@ func init() {
 	chooseCmd.Flags().String("item.width", "", "Text width")
 	chooseCmd.Flags().String("limit", "", "Maximum number of options to pick")
 	chooseCmd.Flags().Bool("no-limit", false, "Pick unlimited number of options (ignores limit)")
+	chooseCmd.Flags().Bool("ordered", false, "Maintain the order of the selected options")
 	chooseCmd.Flags().StringSlice("selected", []string{}, "Options that should start as selected")
 	chooseCmd.Flags().String("selected-prefix", "", "Prefix to show on selected items (hidden if limit is 1)")
 	chooseCmd.Flags().String("selected.align", "", "Text Alignment")
@@ -76,6 +94,12 @@ func init() {
 		"cursor.border-background": gum.ActionColors(),
 		"cursor.border-foreground": gum.ActionColors(),
 		"cursor.foreground":        gum.ActionColors(),
+		"header.align":             gum.ActionAlignments(),
+		"header.background":        gum.ActionColors(),
+		"header.border":            gum.ActionBorders(),
+		"header.border-background": gum.ActionColors(),
+		"header.border-foreground": gum.ActionColors(),
+		"header.foreground":        gum.ActionColors(),
 		"item.align":               gum.ActionAlignments(),
 		"item.background":          gum.ActionColors(),
 		"item.border":              gum.ActionBorders(),

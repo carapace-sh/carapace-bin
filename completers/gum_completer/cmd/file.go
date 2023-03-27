@@ -14,6 +14,7 @@ var fileCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(fileCmd).Standalone()
+
 	fileCmd.Flags().BoolP("all", "a", false, "Show hidden and 'dot' files")
 	fileCmd.Flags().StringP("cursor", "c", "", "The cursor character")
 	fileCmd.Flags().String("cursor.align", "", "Text Alignment")
