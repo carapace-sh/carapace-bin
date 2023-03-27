@@ -14,6 +14,7 @@ var writeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(writeCmd).Standalone()
+
 	writeCmd.Flags().String("base.align", "", "Text Alignment")
 	writeCmd.Flags().String("base.background", "", "Background Color")
 	writeCmd.Flags().Bool("base.bold", false, "Bold text")

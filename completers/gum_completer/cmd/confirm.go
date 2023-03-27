@@ -14,6 +14,7 @@ var confirmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(confirmCmd).Standalone()
+
 	confirmCmd.Flags().String("affirmative", "", "The title of the affirmative action")
 	confirmCmd.Flags().Bool("default", false, "Default confirmation action")
 	confirmCmd.Flags().String("negative", "", "The title of the negative action")

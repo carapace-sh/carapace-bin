@@ -14,6 +14,7 @@ var inputCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(inputCmd).Standalone()
+
 	inputCmd.Flags().String("char-limit", "", "Maximum value length (0 for no limit)")
 	inputCmd.Flags().String("cursor.align", "", "Text Alignment")
 	inputCmd.Flags().String("cursor.background", "", "Background Color")

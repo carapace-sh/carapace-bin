@@ -14,7 +14,24 @@ var filterCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(filterCmd).Standalone()
+
 	filterCmd.Flags().Bool("fuzzy", false, "Enable fuzzy matching")
+	filterCmd.Flags().String("header", "", "Header value")
+	filterCmd.Flags().String("header.align", "", "Text Alignment")
+	filterCmd.Flags().String("header.background", "", "Background Color")
+	filterCmd.Flags().Bool("header.bold", false, "Bold text")
+	filterCmd.Flags().String("header.border", "", "Border Style")
+	filterCmd.Flags().String("header.border-background", "", "Border Background Color")
+	filterCmd.Flags().String("header.border-foreground", "", "Border Foreground Color")
+	filterCmd.Flags().Bool("header.faint", false, "Faint text")
+	filterCmd.Flags().String("header.foreground", "", "Foreground Color")
+	filterCmd.Flags().String("header.height", "", "Text height")
+	filterCmd.Flags().Bool("header.italic", false, "Italicize text")
+	filterCmd.Flags().String("header.margin", "", "Text margin")
+	filterCmd.Flags().String("header.padding", "", "Text padding")
+	filterCmd.Flags().Bool("header.strikethrough", false, "Strikethrough text")
+	filterCmd.Flags().Bool("header.underline", false, "Underline text")
+	filterCmd.Flags().String("header.width", "", "Text width")
 	filterCmd.Flags().String("height", "", "Input height")
 	filterCmd.Flags().String("indicator", "", "Character for selection")
 	filterCmd.Flags().String("indicator.align", "", "Text Alignment")
@@ -120,6 +137,12 @@ func init() {
 	rootCmd.AddCommand(filterCmd)
 
 	carapace.Gen(filterCmd).FlagCompletion(carapace.ActionMap{
+		"header.align":                         gum.ActionAlignments(),
+		"header.background":                    gum.ActionColors(),
+		"header.border":                        gum.ActionBorders(),
+		"header.border-background":             gum.ActionColors(),
+		"header.border-foreground":             gum.ActionColors(),
+		"header.foreground":                    gum.ActionColors(),
 		"indicator.align":                      gum.ActionAlignments(),
 		"indicator.background":                 gum.ActionColors(),
 		"indicator.border":                     gum.ActionBorders(),

@@ -14,6 +14,7 @@ var joinCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(joinCmd).Standalone()
+
 	joinCmd.Flags().String("align", "", "Text alignment")
 	joinCmd.Flags().Bool("horizontal", false, "Join (potentially multi-line) strings horizontally")
 	joinCmd.Flags().Bool("vertical", false, "Join (potentially multi-line) strings vertically")
