@@ -42,18 +42,19 @@ func ActionCarapaceBin(command ...string) carapace.Action {
 		} else if !os.IsNotExist(err) {
 			return carapace.ActionMessage(err.Error())
 		}
-		return actionEmbedded(command[0]).Invoke(c).ToA()
+		return actionEmbedded(command...)
 	})
 }
 
-func actionEmbedded(completer string) carapace.Action {
+func actionEmbedded(command ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{completer, "export", ""}
+		args := []string{command[0], "export", ""}
+		args = append(args, command[1:]...)
 		args = append(args, c.Args...)
 		args = append(args, c.CallbackValue)
 		return carapace.ActionExecCommand("carapace", args...)(func(output []byte) carapace.Action {
 			if string(output) == "" {
-				return carapace.ActionValues()
+				return carapace.ActionFiles()
 			}
 			return carapace.ActionImport(output)
 		})
