@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -36,7 +35,7 @@ func init() {
 			if !rootCmd.Flag("f").Changed && (rootCmd.Flag("B").Changed || rootCmd.Flag("M").Changed || rootCmd.Flag("S").Changed) {
 				return carapace.ActionDirectories()
 			}
-			return os.ActionPathExecutables()
+			return carapace.ActionPathExecutables()
 		}),
 	)
 }

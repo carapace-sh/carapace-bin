@@ -43,6 +43,6 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		os.ActionPathExecutables(),
+		carapace.ActionPathExecutables(),
 	)
 }

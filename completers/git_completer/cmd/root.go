@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/shlex"
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

@@ -2,11 +2,12 @@ package action
 
 import (
 	"encoding/json"
+	"path/filepath"
+	"time"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace/pkg/cache"
 	"github.com/spf13/cobra"
-	"path/filepath"
-	"time"
 )
 
 type StackExport struct {

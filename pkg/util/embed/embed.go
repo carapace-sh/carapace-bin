@@ -2,8 +2,7 @@ package embed
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -23,7 +22,7 @@ func (s *stringValue) String() string { return string(*s) }
 func EmbedCarapaceBin(cmd *cobra.Command) {
 	carapace.Gen(cmd).PositionalCompletion(
 		carapace.Batch(
-			os.ActionPathExecutables(),
+			carapace.ActionPathExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	)

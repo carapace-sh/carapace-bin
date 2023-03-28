@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -89,7 +89,7 @@ func init() {
 
 			if len(c.Args) < 1 {
 				return carapace.Batch(
-					os.ActionPathExecutables(),
+					carapace.ActionPathExecutables(),
 					carapace.ActionFiles(),
 				).ToA()
 			}
@@ -111,7 +111,7 @@ func init() {
 
 	carapace.Gen(rootCmd).DashCompletion(
 		carapace.Batch(
-			os.ActionPathExecutables(),
+			carapace.ActionPathExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	)

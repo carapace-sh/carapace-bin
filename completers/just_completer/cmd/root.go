@@ -63,7 +63,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"chooser": carapace.Batch(
-			os.ActionPathExecutables(),
+			carapace.ActionPathExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 		"color":       carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),

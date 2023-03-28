@@ -171,9 +171,32 @@ func macros() {
 		panic(err.Error)
 	}
 
-	imports := make(map[string]bool)
-	macros := make([]string, 0)
-	descriptions := make(map[string]string)
+	// hardcoded the bridge macros
+	imports := map[string]bool{
+		`bridge "github.com/rsteube/carapace-bridge/pkg/actions/bridge"`: true,
+	}
+	macros := []string{
+		`"bridge.Argcomplete":                     spec.MacroV(bridge.ActionArgcomplete).NoFlag(),`,
+		`"bridge.Carapace":                        spec.MacroV(bridge.ActionCarapace).NoFlag(),`,
+		`"bridge.CarapaceBin":                     spec.MacroV(bridge.ActionCarapaceBin).NoFlag(),`,
+		`"bridge.Click":                           spec.MacroV(bridge.ActionClick).NoFlag(),`,
+		`"bridge.Cobra":                           spec.MacroV(bridge.ActionCobra).NoFlag(),`,
+		`"bridge.Complete":                        spec.MacroV(bridge.ActionComplete).NoFlag(),`,
+		`"bridge.Fish":                            spec.MacroV(bridge.ActionFish).NoFlag(),`,
+		`"bridge.Yargs":                           spec.MacroV(bridge.ActionYargs).NoFlag(),`,
+		`"bridge.Zsh":                            spec.MacroV(bridge.ActionZsh).NoFlag(),`,
+	}
+	descriptions := map[string]string{
+		"bridge.Argcomplete": "bridges https://github.com/kislyuk/argcomplete",
+		"bridge.Carapace":    "bridges https://github.com/rsteube/carapace",
+		"bridge.CarapaceBin": "bridges completions registered in carapace-bin",
+		"bridge.Click":       "bridges https://github.com/pallets/click",
+		"bridge.Cobra":       "bridges https://github.com/spf13/cobra",
+		"bridge.Complete":    "bridges https://github.com/posener/complete",
+		"bridge.Fish":        "bridges completions registered in fish shell",
+		"bridge.Yargs":       "bridges https://github.com/yargs/yargs",
+		"bridge.Zsh":         "bridges completions registered in zsh shell",
+	}
 
 	r := regexp.MustCompile(`^func Action(?P<name>[^(]+)\((?P<arg>[^(]*)\) carapace.Action {$`)
 	filepath.WalkDir(root+"/pkg/actions", func(path string, d fs.DirEntry, err error) error {

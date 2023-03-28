@@ -57,7 +57,7 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.Batch(
-			os.ActionPathExecutables(),
+			carapace.ActionPathExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	)
