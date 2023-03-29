@@ -48,29 +48,7 @@ var rootCmd = &cobra.Command{
     tcsh:       eval `+"`"+`carapace _chmod tcsh`+"`"+`
     xonsh:      exec($(carapace chmod xonsh))
     zsh:        source <(carapace chmod zsh)
-
-  Bridge completion:
-    bash:       source <(carapace --bridge vault/posener)
-    elvish:     eval (carapace --bridge vault/posener|slurp)
-    fish:       carapace --bridge vault/posener | source
-    nushell:    carapace --bridge vault/posener
-    oil:        source <(carapace --bridge vault/posener)
-    powershell: carapace --bridge vault/posener | Out-String | Invoke-Expression
-    tcsh:       eval `+"`"+`carapace --bridge vault/posener`+"`"+`
-    xonsh:      exec($(carapace --bridge vault/posener))
-    zsh:        source <(carapace --bridge vault/posener)
   
-  Spec completion:
-    bash:       source <(carapace --spec example.yaml)
-    elvish:     eval (carapace --spec example.yaml|slurp)
-    fish:       carapace --spec example.yaml | source
-    oil:        source <(carapace --spec example.yaml)
-    nushell:    carapace --spec example.yaml
-    powershell: carapace --spec example.yaml | Out-String | Invoke-Expression
-    tcsh:       eval `+"`"+`carapace --spec example.yaml`+"`"+`
-    xonsh:      exec($(carapace --spec example.yaml))
-    zsh:        source <(carapace --spec example.yaml)
-
   Style:
     set:        carapace --style 'carapace.Value=bold,magenta'
     clear:      carapace --style 'carapace.Description='
@@ -85,15 +63,6 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
 		switch args[0] {
-		case "--spec":
-			if len(args) > 1 {
-				out, err := specCompletion(args[1], args[2:]...)
-				if err != nil {
-					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-					return
-				}
-				fmt.Fprintln(cmd.OutOrStdout(), out)
-			}
 		case "--macros":
 			if len(args) > 1 {
 				printMacro(args[1])

@@ -37,7 +37,6 @@ func flagCmd(args []string) *cobra.Command {
 	cmd.Flags().String("run", "", "run spec")
 	cmd.Flags().Bool("schema", false, "json schema for spec files")
 	cmd.Flags().String("scrape", "", "scrape spec to go code")
-	cmd.Flags().String("spec", "", "spec completion")
 	cmd.Flags().String("style", "", "set style")
 	cmd.Flags().BoolP("version", "v", false, "version for carapace")
 
@@ -68,7 +67,6 @@ func flagCmd(args []string) *cobra.Command {
 		}),
 		"run":    carapace.ActionFiles(".yaml"),
 		"scrape": carapace.ActionFiles(".yaml"),
-		"spec":   carapace.ActionFiles(".yaml"),
 		"style":  carapace.ActionStyleConfig().NoSpace(),
 	})
 
