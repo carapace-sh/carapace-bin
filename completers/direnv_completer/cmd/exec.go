@@ -2,8 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +21,7 @@ func init() {
 	carapace.Gen(execCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
 		carapace.Batch(
-			os.ActionPathExecutables(),
+			carapace.ActionPathExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	)

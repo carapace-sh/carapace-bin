@@ -31,7 +31,7 @@ func init() {
 	carapace.Gen(recCmd).FlagCompletion(carapace.ActionMap{
 		"command": carapace.Batch(
 			carapace.ActionFiles(),
-			os.ActionPathExecutables(),
+			carapace.ActionPathExecutables(),
 		).ToA(),
 		"env": os.ActionEnvironmentVariables().UniqueList(","),
 	})

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -71,7 +70,7 @@ func init() {
 		"color": git.ActionColorModes(),
 		"f":     carapace.ActionFiles(),
 		"open-files-in-pager": carapace.Batch(
-			os.ActionPathExecutables(),
+			carapace.ActionPathExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	})

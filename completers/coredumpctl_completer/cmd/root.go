@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/time"
 	"github.com/spf13/cobra"
 )
@@ -41,7 +40,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"debugger": carapace.Batch(
-			os.ActionPathExecutables(),
+			carapace.ActionPathExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 		"directory": carapace.ActionDirectories(),

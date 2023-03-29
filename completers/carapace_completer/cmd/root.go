@@ -9,8 +9,6 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
-
-	os "github.com/rsteube/carapace-bin/pkg/actions/os"
 )
 
 var rootCmd = &cobra.Command{
@@ -58,7 +56,7 @@ func flagCmd(args []string) *cobra.Command {
 		"bridge": carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return os.ActionPathExecutables().Invoke(c).Suffix("/").ToA()
+				return carapace.ActionPathExecutables().Invoke(c).Suffix("/").ToA()
 			case 1:
 				return carapace.ActionValuesDescribed(
 					"argcomplete", "github.com/kislyuk/argcomplete",

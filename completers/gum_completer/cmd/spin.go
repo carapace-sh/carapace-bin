@@ -2,10 +2,9 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gum"
 	"github.com/rsteube/carapace-bin/pkg/util/embed"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -92,7 +91,7 @@ func init() {
 			switch len(c.Args) {
 			case 0:
 				return carapace.Batch(
-					os.ActionPathExecutables(),
+					carapace.ActionPathExecutables(),
 					carapace.ActionFiles(),
 				).ToA()
 			default:

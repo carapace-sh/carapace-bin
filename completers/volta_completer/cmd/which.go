@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -21,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(whichCmd)
 
 	carapace.Gen(whichCmd).PositionalCompletion(
-		os.ActionPathExecutables(),
+		carapace.ActionPathExecutables(),
 	)
 }

@@ -6,7 +6,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
-	"github.com/rsteube/carapace-bin/pkg/actions/bridge"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )

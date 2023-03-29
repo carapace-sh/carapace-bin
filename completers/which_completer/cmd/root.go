@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -33,6 +32,6 @@ func init() {
 	rootCmd.Flags().BoolP("version,", "v", false, "Print version and exit successfully.")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		os.ActionPathExecutables(),
+		carapace.ActionPathExecutables(),
 	)
 }
