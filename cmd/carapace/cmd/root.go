@@ -85,13 +85,6 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
 		switch args[0] {
-		case "--bridge":
-			if len(args) > 1 {
-				// TODO support multiple (comma separated)
-				if splitted := strings.SplitN(args[1], "/", 2); len(splitted) == 2 {
-					bridgeCompletion(splitted[0], splitted[1], args[2:]...)
-				}
-			}
 		case "--spec":
 			if len(args) > 1 {
 				out, err := specCompletion(args[1], args[2:]...)

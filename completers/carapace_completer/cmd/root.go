@@ -31,7 +31,6 @@ func flagCmd(args []string) *cobra.Command {
 		Run: func(cmd *cobra.Command, args []string) {},
 	}
 
-	cmd.Flags().String("bridge", "", "generic completion bridge")
 	cmd.Flags().BoolP("help", "h", false, "help for carapace")
 	cmd.Flags().String("list", "", "list completers")
 	cmd.Flags().String("macros", "test local json schema", "list spec macros")
@@ -53,23 +52,6 @@ func flagCmd(args []string) *cobra.Command {
 	}
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"bridge": carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-			switch len(c.Parts) {
-			case 0:
-				return carapace.ActionPathExecutables().Invoke(c).Suffix("/").ToA()
-			case 1:
-				return carapace.ActionValuesDescribed(
-					"argcomplete", "github.com/kislyuk/argcomplete",
-					"carapace", "github.com/rsteube/carapace",
-					"click", "github.com/pallets/click",
-					"cobra", "github.com/spf13/cobra",
-					"fish", "github.com/fish-shell/fish-shell",
-					"posener", "github.com/posener/complete",
-				)
-			default:
-				return carapace.ActionValues()
-			}
-		}),
 		"list": carapace.ActionValues("json"),
 		"macros": carapace.ActionExecCommand("carapace", "--macros")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")

@@ -92,6 +92,17 @@ name: ng
 description: CLI tool for Angular
 completion:
   positionalany: ["$_bridge.Yargs([ng])"]
+```
+
+## Zsh
+
+Commands registered in [zsh] can be bridged with the [`bridge.Zsh`] macro:
+
+```yaml
+name:  git
+description: the stupid content tracker
+completion:
+  positionalany: ["$_bridge.Zsh([git])"]
 ````
 
 [lazycomplete]:https://github.com/rsteube/lazycomplete
@@ -99,25 +110,28 @@ completion:
 
 
 [kislyuk/argcomplete]:https://github.com/kislyuk/argcomplete
-[`bridge.Argcomplete`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionArgcomplete
+[`bridge.Argcomplete`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionArgcomplete
 
 [rsteube/carapace]:https://github.com/rsteube/carapace
-[`bridge.Carapace`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionCarapace
+[`bridge.Carapace`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionCarapace
 
 [rsteube/carapace-bin]:https://github.com/rsteube/carapace-bin
-[`bridge.CarapaceBin`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionCarapaceBin
+[`bridge.CarapaceBin`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionCarapaceBin
 
 [pallets/click]:https://github.com/pallets/click
-[`bridge.Click`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionClick
+[`bridge.Click`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionClick
 
 [spf13/cobra]:https://github.com/spf13/cobra
-[`bridge.Cobra`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionCobra
+[`bridge.Cobra`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionCobra
 
 [posener/complete]:https://github.com/posener/complete
-[`bridge.Complete`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionComplete
+[`bridge.Complete`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionComplete
 
 [fish-shell/fish-shell]:https://github.com/fish-shell/fish-shell
-[`bridge.Fish`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionFish
+[`bridge.Fish`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionFish
 
 [yargs/yargs]:https://github.com/yargs/yargs
-[`bridge.Yargs`]:https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/bridge#ActionYargs
+[`bridge.Yargs`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionYargs
+
+[zsh]:https://www.zsh.org/
+[`bridge.Zsh`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionZsh

@@ -4,7 +4,6 @@
   - [Installation](./installation.md)
   - [Setup](./setup.md)
   - [Completers](./completers.md)
-  - [Bridge](./bridge.md)
   - [Style](./style.md)
   - [Spec](./spec.md)
     - [User](./spec/user.md)
