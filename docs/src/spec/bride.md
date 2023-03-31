@@ -19,6 +19,17 @@ completion:
   positionalany: ["$_bridge.Argcomplete([az])"]
 ````
 
+## Bash
+
+Commands registered in [bash] can be bridged with the [`bridge.Bash`] macro:
+
+```yaml
+name:  tail
+description: output the last part of files
+completion:
+  positionalany: ["$_bridge.Bash([tail])"]
+````
+
 ## Carapace
 
 [rsteube/carapace] based commands can be bridged with the [`bridge.Carapace`] macro:
@@ -84,6 +95,17 @@ completion:
   positionalany: ["$_bridge.Fish([git])"]
 ````
 
+## Powershell
+
+Commands registered in [powershell] can be bridged with the [`bridge.Powershell`] macro:
+
+```yaml
+name:  ConvertTo-Json
+description: convert to json
+completion:
+  positionalany: ["$_bridge.Powershell([ConvertTo-Json])"]
+````
+
 ## Yargs
 [yargs/yargs] based commands can be bridged with the [`bridge.Yargs`] macro:
 
@@ -108,6 +130,8 @@ completion:
 [lazycomplete]:https://github.com/rsteube/lazycomplete
 [shell startup delay]:https://jzelinskie.com/posts/dont-recommend-sourcing-shell-completion/
 
+[bash]:https://www.gnu.org/software/bash/
+[`bridge.Bash`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionBash
 
 [kislyuk/argcomplete]:https://github.com/kislyuk/argcomplete
 [`bridge.Argcomplete`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionArgcomplete
@@ -126,6 +150,9 @@ completion:
 
 [posener/complete]:https://github.com/posener/complete
 [`bridge.Complete`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionComplete
+
+[powershell]:https://microsoft.com/powershell
+[`bridge.Powershell`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionPowershell
 
 [fish-shell/fish-shell]:https://github.com/fish-shell/fish-shell
 [`bridge.Fish`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionFish
