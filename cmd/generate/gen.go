@@ -176,26 +176,30 @@ func macros() {
 		`bridge "github.com/rsteube/carapace-bridge/pkg/actions/bridge"`: true,
 	}
 	macros := []string{
-		`"bridge.Argcomplete":                     spec.MacroV(bridge.ActionArgcomplete).NoFlag(),`,
-		`"bridge.Carapace":                        spec.MacroV(bridge.ActionCarapace).NoFlag(),`,
-		`"bridge.CarapaceBin":                     spec.MacroV(bridge.ActionCarapaceBin).NoFlag(),`,
-		`"bridge.Click":                           spec.MacroV(bridge.ActionClick).NoFlag(),`,
-		`"bridge.Cobra":                           spec.MacroV(bridge.ActionCobra).NoFlag(),`,
-		`"bridge.Complete":                        spec.MacroV(bridge.ActionComplete).NoFlag(),`,
-		`"bridge.Fish":                            spec.MacroV(bridge.ActionFish).NoFlag(),`,
-		`"bridge.Yargs":                           spec.MacroV(bridge.ActionYargs).NoFlag(),`,
-		`"bridge.Zsh":                            spec.MacroV(bridge.ActionZsh).NoFlag(),`,
+		`"bridge.Argcomplete": spec.MacroV(bridge.ActionArgcomplete).NoFlag(),`,
+		`"bridge.Bash":        spec.MacroV(bridge.ActionBash).NoFlag(),`,
+		`"bridge.Carapace":    spec.MacroV(bridge.ActionCarapace).NoFlag(),`,
+		`"bridge.CarapaceBin": spec.MacroV(bridge.ActionCarapaceBin).NoFlag(),`,
+		`"bridge.Click":       spec.MacroV(bridge.ActionClick).NoFlag(),`,
+		`"bridge.Cobra":       spec.MacroV(bridge.ActionCobra).NoFlag(),`,
+		`"bridge.Complete":    spec.MacroV(bridge.ActionComplete).NoFlag(),`,
+		`"bridge.Fish":        spec.MacroV(bridge.ActionFish).NoFlag(),`,
+		`"bridge.Powershell":  spec.MacroV(bridge.ActionPowershell).NoFlag(),`,
+		`"bridge.Yargs":       spec.MacroV(bridge.ActionYargs).NoFlag(),`,
+		`"bridge.Zsh":         spec.MacroV(bridge.ActionZsh).NoFlag(),`,
 	}
 	descriptions := map[string]string{
 		"bridge.Argcomplete": "bridges https://github.com/kislyuk/argcomplete",
+		"bridge.Bash":        "bridges https://www.gnu.org/software/bash/",
 		"bridge.Carapace":    "bridges https://github.com/rsteube/carapace",
-		"bridge.CarapaceBin": "bridges completions registered in carapace-bin",
+		"bridge.CarapaceBin": "bridges https://github.com/rsteube/carapace-bin",
 		"bridge.Click":       "bridges https://github.com/pallets/click",
 		"bridge.Cobra":       "bridges https://github.com/spf13/cobra",
 		"bridge.Complete":    "bridges https://github.com/posener/complete",
-		"bridge.Fish":        "bridges completions registered in fish shell",
+		"bridge.Fish":        "bridges https://fishshell.com/",
+		"bridge.Powershell":  "bridges https://microsoft.com/powershell",
 		"bridge.Yargs":       "bridges https://github.com/yargs/yargs",
-		"bridge.Zsh":         "bridges completions registered in zsh shell",
+		"bridge.Zsh":         "bridges https://www.zsh.org/",
 	}
 
 	r := regexp.MustCompile(`^func Action(?P<name>[^(]+)\((?P<arg>[^(]*)\) carapace.Action {$`)
