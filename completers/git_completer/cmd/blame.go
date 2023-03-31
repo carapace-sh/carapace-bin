@@ -73,4 +73,8 @@ func init() {
 			return git.ActionRefFiles(c.Args[0])
 		}),
 	)
+
+	carapace.Gen(blameCmd).DashAnyCompletion(
+		carapace.ActionPositional(blameCmd),
+	)
 }
