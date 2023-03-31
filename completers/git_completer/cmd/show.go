@@ -1,8 +1,11 @@
 package cmd
 
 import (
+	"path/filepath"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -43,7 +46,11 @@ func init() {
 			case 0:
 				return git.ActionRefs(git.RefOption{}.Default()).NoSpace()
 			case 1:
-				return git.ActionRefFiles(c.Parts[0])
+				path, err := util.FindReverse(c.Dir, ".git")
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+				return git.ActionRefFiles(c.Parts[0]).Chdir(filepath.Dir(path))
 			default:
 				return carapace.ActionFiles()
 			}

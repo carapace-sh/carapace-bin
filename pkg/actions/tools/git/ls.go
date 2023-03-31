@@ -1,6 +1,7 @@
 package git
 
 import (
+	"fmt"
 	"path/filepath"
 	"strings"
 
@@ -42,13 +43,39 @@ func ActionLsRemoteRefs(opts LsRemoteRefOption) carapace.Action {
 //	pkg/
 func ActionRefFiles(ref string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"ls-tree", "--name-only", "--full-tree", ref}
+		rootDir, err := rootDir(c)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		relDir, err := filepath.Rel(rootDir, c.Dir)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		path := fmt.Sprintf("%v/%v", relDir, filepath.Dir(c.CallbackValue))
+		if path := filepath.Dir(path); path == "." {
+			path = ""
+		} else {
+			path += "/"
+		}
+
+		path = filepath.Clean(path) + "/"
+		if path = filepath.Dir(path); path == "." {
+			path = ""
+		} else {
+			path += "/"
+		}
+
 		prefix := ""
 		if dir := filepath.Dir(c.CallbackValue); dir != "." {
-			args = append(args, dir+"/")
 			prefix = dir + "/"
 		}
 
+		args := []string{"ls-tree", "--name-only", "--full-tree", ref}
+		if path != "" {
+			args = append(args, path)
+		}
 		return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			files := lines[:len(lines)-1]
