@@ -70,7 +70,7 @@ func init() {
 			if util.HasPathPrefix(c.Args[0]) {
 				return carapace.ActionValues()
 			}
-			return carapace.ActionFiles()
+			return git.ActionRefFiles(c.Args[0])
 		}),
 	)
 }

@@ -38,7 +38,7 @@ var rootCmd = &cobra.Command{
     xonsh:      exec($(carapace _carapace xonsh))
     zsh:        source <(carapace _carapace zsh)
 
-  Single completer:
+  Single completer or spec:
     bash:       source <(carapace chmod bash)
     elvish:     eval (carapace chmod elvish | slurp)
     fish:       carapace chmod fish | source
@@ -69,13 +69,9 @@ var rootCmd = &cobra.Command{
 			} else {
 				printMacros()
 			}
-		case "-h":
+		case "-h", "--help":
 			cmd.Help()
-		case "--help":
-			cmd.Help()
-		case "-v":
-			println(cmd.Version)
-		case "--version":
+		case "-v", "--version":
 			println(cmd.Version)
 		case "--list":
 			printCompleters()
