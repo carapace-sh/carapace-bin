@@ -14,7 +14,7 @@ var outputCmd = &cobra.Command{
 func init() {
 	carapace.Gen(outputCmd).Standalone()
 
-	outputCmd.Flags().BoolS("json", "json", false, "Machine readable output will be printed in JSON format.")
+	outputCmd.Flags().BoolS("json", "json", false, "Machine readable output will be printed in JSON format")
 	outputCmd.Flags().BoolS("no-color", "no-color", false, "Output won't contain any color")
 	outputCmd.Flags().BoolS("raw", "raw", false, "print the raw string directly")
 	outputCmd.Flags().StringS("state", "state", "", "Path to the state file to read")

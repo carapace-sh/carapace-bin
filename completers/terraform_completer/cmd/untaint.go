@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +23,10 @@ func init() {
 
 	untaintCmd.Flag("lock").NoOptDefVal = " "
 	untaintCmd.Flag("lock-timeout").NoOptDefVal = " "
+
+	carapace.Gen(untaintCmd).FlagCompletion(carapace.ActionMap{
+		"lock": action.ActionBool(),
+	})
 
 	// TODO positional completion
 }

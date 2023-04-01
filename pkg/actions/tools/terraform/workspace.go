@@ -1,4 +1,4 @@
-package action
+package terraform
 
 import (
 	"regexp"
@@ -7,6 +7,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionWorkspaces completes workspaces
 func ActionWorkspaces() carapace.Action {
 	return carapace.ActionExecCommand("terraform", "workspace", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

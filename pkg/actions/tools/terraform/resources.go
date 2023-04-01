@@ -1,4 +1,4 @@
-package action
+package terraform
 
 import (
 	"strings"
@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionResources completes resources
 func ActionResources() carapace.Action {
 	return carapace.ActionExecCommand("terraform", "state", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

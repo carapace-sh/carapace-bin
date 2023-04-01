@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/terraform"
 	"github.com/spf13/cobra"
 )
 
@@ -34,27 +35,27 @@ func init() {
 	planCmd.Flags().StringS("var-file", "var-file", "", "Load variable values from the given file.")
 	rootCmd.AddCommand(planCmd)
 
-	planCmd.Flag("refresh").NoOptDefVal = " "
-	planCmd.Flag("replace").NoOptDefVal = " "
-	planCmd.Flag("target").NoOptDefVal = " "
-	planCmd.Flag("var-file").NoOptDefVal = " "
 	planCmd.Flag("input").NoOptDefVal = " "
 	planCmd.Flag("lock").NoOptDefVal = " "
 	planCmd.Flag("lock-timeout").NoOptDefVal = " "
 	planCmd.Flag("out").NoOptDefVal = " "
 	planCmd.Flag("parallelism").NoOptDefVal = " "
+	planCmd.Flag("refresh").NoOptDefVal = " "
+	planCmd.Flag("replace").NoOptDefVal = " "
 	planCmd.Flag("state").NoOptDefVal = " "
+	planCmd.Flag("target").NoOptDefVal = " "
+	planCmd.Flag("var-file").NoOptDefVal = " "
 
 	carapace.Gen(planCmd).FlagCompletion(carapace.ActionMap{
 		"lock":    action.ActionBool(),
 		"out":     carapace.ActionFiles(),
 		"refresh": action.ActionBool(),
 		"replace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionResources().Invoke(c).ToMultiPartsA(".")
+			return terraform.ActionResources().Invoke(c).ToMultiPartsA(".")
 		}),
 		"state": carapace.ActionFiles(),
 		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionResources().Invoke(c).ToMultiPartsA(".")
+			return terraform.ActionResources().Invoke(c).ToMultiPartsA(".")
 		}),
 		"var-file": carapace.ActionFiles(),
 	})

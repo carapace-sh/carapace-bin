@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/terraform"
 	"github.com/spf13/cobra"
 )
 
@@ -52,11 +53,11 @@ func init() {
 		"out":     carapace.ActionFiles(),
 		"refresh": action.ActionBool(),
 		"replace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionResources().Invoke(c).ToMultiPartsA(".")
+			return terraform.ActionResources().Invoke(c).ToMultiPartsA(".")
 		}),
 		"state": carapace.ActionFiles(),
 		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionResources().Invoke(c).ToMultiPartsA(".")
+			return terraform.ActionResources().Invoke(c).ToMultiPartsA(".")
 		}),
 		"var-file": carapace.ActionFiles(),
 	})
