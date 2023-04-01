@@ -16,21 +16,23 @@ var applyCmd = &cobra.Command{
 func init() {
 	carapace.Gen(applyCmd).Standalone()
 
-	applyCmd.Flags().BoolS("auto-approve", "auto-approve", false, "Skip interactive approval of plan before applying.")
-	applyCmd.Flags().StringS("backup", "backup", "", "Path to backup the existing state file before modifying.")
-	applyCmd.Flags().BoolS("compact-warnings", "compact-warnings", false, "Show warnings in a more compact form that includes only the summary messages.")
-	applyCmd.Flags().StringS("input", "input", "", "Ask for input for variables if not directly set.")
-	applyCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation.")
-	applyCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock.")
-	applyCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color.")
-	applyCmd.Flags().StringS("parallelism", "parallelism", "", "Limit the number of parallel resource operations.")
-	applyCmd.Flags().StringS("state", "state", "", "Path to read and save state.")
-	applyCmd.Flags().StringS("state-out", "state-out", "", "Path to write state to that is different than \"-state\".")
+	applyCmd.Flags().BoolS("auto-approve", "auto-approve", false, "Skip interactive approval of plan before applying")
+	applyCmd.Flags().StringS("backup", "backup", "", "Path to backup the existing state file before modifying")
+	applyCmd.Flags().BoolS("compact-warnings", "compact-warnings", false, "Show wanings in a more compact form that includes only the summary messages")
+	applyCmd.Flags().BoolS("destroy", "destroy", false, "Destroy Terraform-managed infrastructure")
+	applyCmd.Flags().StringS("input", "input", "", "Ask for input for variables if not directly set")
+	applyCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation dangerous if others might concurrently run commands against the same workspace.")
+	applyCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock")
+	applyCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color")
+	applyCmd.Flags().StringS("parallelism", "parallelism", "", "Limit the number of parallel resource operations")
+	applyCmd.Flags().StringS("state", "state", "", "Path to read and save state")
+	applyCmd.Flags().StringS("state-out", "state-out", "", "Path to write state to that is different than \"-state\"")
 	rootCmd.AddCommand(applyCmd)
 
 	applyCmd.Flag("backup").NoOptDefVal = " "
-	applyCmd.Flag("lock-timeout").NoOptDefVal = " "
 	applyCmd.Flag("input").NoOptDefVal = " "
+	applyCmd.Flag("lock").NoOptDefVal = " "
+	applyCmd.Flag("lock-timeout").NoOptDefVal = " "
 	applyCmd.Flag("parallelism").NoOptDefVal = " "
 	applyCmd.Flag("state").NoOptDefVal = " "
 	applyCmd.Flag("state-out").NoOptDefVal = " "

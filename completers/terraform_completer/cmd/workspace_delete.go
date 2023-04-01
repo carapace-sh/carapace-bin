@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/terraform"
 	"github.com/spf13/cobra"
 )
 
@@ -28,6 +29,6 @@ func init() {
 	})
 
 	carapace.Gen(workspace_deleteCmd).PositionalCompletion(
-		action.ActionWorkspaces(),
+		terraform.ActionWorkspaces(),
 	)
 }
