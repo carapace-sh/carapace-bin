@@ -45,7 +45,7 @@ var rootCmd = &cobra.Command{
     nushell:    carapace chmod nushell
     oil:        source <(carapace chmod oil)
     powershell: carapace chmod powershell | Out-String | Invoke-Expression
-    tcsh:       eval `+"`"+`carapace _chmod tcsh`+"`"+`
+    tcsh:       eval `+"`"+`carapace chmod tcsh`+"`"+`
     xonsh:      exec($(carapace chmod xonsh))
     zsh:        source <(carapace chmod zsh)
   
