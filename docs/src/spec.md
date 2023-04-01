@@ -1,35 +1,32 @@
 # Spec
 
-Custom completions can be defined using [yaml specs](https://github.com/rsteube/carapace-spec).
+Custom completions can be defined using yaml files.
 
-```sh
-# bash
-source <(carapace --spec example.yaml) 
+> see [carapace-spec] for more documentation
 
-# elvish
-eval (carapace --spec example.yaml|slurp)
-
-# fish
-carapace --spec example.yaml | source 
-
-# oil
-source <(carapace --spec example.yaml) 
-
-# nushell
-carapace --spec example.yaml | save example.nu ; nu -c 'source example.nu' 
-
-# powershell
-carapace --spec example.yaml | Out-String | Invoke-Expression 
-
-# tcsh
-eval `carapace --spec example.yaml` 
-
-# xonsh
-exec($(carapace --spec example.yaml)) 
-
-# zsh
-source <(carapace --spec example.yaml) 
+```yaml
+name: mycmd
+description: my command
+flags:
+  --optarg?: optarg flag
+  -r, --repeatable*: repeatable flag
+  -v=: flag with value
+persistentflags:
+  --help: bool flag
+completion:
+  flag:
+    optarg: ["one", "two\twith description", "three\twith style\tblue"]
+    v: ["$files"]
+commands:
+- name: sub
+  description: subcommand
+  completion:
+    positional:
+      - ["$list(,)", "1", "2", "3"]
+      - ["$directories"]
 ```
+
+![](./spec.cast)
 
 ## Custom Macros
 
@@ -40,3 +37,8 @@ carapace --macros                       # list macros
 carapace --macros color.HexColors       # show macro details
 carapace --macros color.HexColors <TAB> # test macro
 ```
+
+![](./spec-macros.cast)
+
+
+[carapace-spec]:https://github.com/rsteube/carapace-spec
