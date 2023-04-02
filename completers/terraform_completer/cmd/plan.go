@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/terraform"
 	"github.com/spf13/cobra"
 )
@@ -21,12 +20,12 @@ func init() {
 	planCmd.Flags().BoolS("destroy", "destroy", false, "Select the \"destroy\" planning mode.")
 	planCmd.Flags().BoolS("detailed-exitcode", "detailed-exitcode", false, "Return detailed exit codes when the command exits.")
 	planCmd.Flags().StringS("input", "input", "", "Ask for input for variables if not directly set.")
-	planCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation.")
+	planCmd.Flags().BoolS("lock", "lock", false, "Don't hold a state lock during the operation.")
 	planCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock.")
 	planCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color.")
 	planCmd.Flags().StringS("out", "out", "", "Write a plan file to the given path.")
 	planCmd.Flags().StringS("parallelism", "parallelism", "", "Limit the number of concurrent operations.")
-	planCmd.Flags().StringS("refresh", "refresh", "", "Skip checking for external changes to remote objects while creating the plan.")
+	planCmd.Flags().BoolS("refresh", "refresh", false, "Skip checking for external changes to remote objects while creating the plan.")
 	planCmd.Flags().BoolS("refresh-only", "refresh-only", false, "Select the \"refresh only\" planning mode.")
 	planCmd.Flags().StringS("replace", "replace", "", "Force replacement of a particular resource instance using its resource address.")
 	planCmd.Flags().StringS("state", "state", "", "A legacy option used for the local backend only.")
@@ -36,20 +35,16 @@ func init() {
 	rootCmd.AddCommand(planCmd)
 
 	planCmd.Flag("input").NoOptDefVal = " "
-	planCmd.Flag("lock").NoOptDefVal = " "
 	planCmd.Flag("lock-timeout").NoOptDefVal = " "
 	planCmd.Flag("out").NoOptDefVal = " "
 	planCmd.Flag("parallelism").NoOptDefVal = " "
-	planCmd.Flag("refresh").NoOptDefVal = " "
 	planCmd.Flag("replace").NoOptDefVal = " "
 	planCmd.Flag("state").NoOptDefVal = " "
 	planCmd.Flag("target").NoOptDefVal = " "
 	planCmd.Flag("var-file").NoOptDefVal = " "
 
 	carapace.Gen(planCmd).FlagCompletion(carapace.ActionMap{
-		"lock":    action.ActionBool(),
-		"out":     carapace.ActionFiles(),
-		"refresh": action.ActionBool(),
+		"out": carapace.ActionFiles(),
 		"replace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return terraform.ActionResources().Invoke(c).ToMultiPartsA(".")
 		}),

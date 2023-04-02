@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,16 +15,11 @@ func init() {
 	carapace.Gen(state_pushCmd).Standalone()
 
 	state_pushCmd.Flags().BoolS("force", "force", false, "Write the state even if lineages don't match or the remote serial is higher")
-	state_pushCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation")
+	state_pushCmd.Flags().BoolS("lock", "lock", false, "Don't hold a state lock during the operation")
 	state_pushCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock")
 	stateCmd.AddCommand(state_pushCmd)
 
-	state_pushCmd.Flag("lock").NoOptDefVal = " "
 	state_pushCmd.Flag("lock-timeout").NoOptDefVal = " "
-
-	carapace.Gen(state_pushCmd).FlagCompletion(carapace.ActionMap{
-		"lock": action.ActionBool(),
-	})
 
 	carapace.Gen(state_pushCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
