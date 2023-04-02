@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,8 +16,8 @@ func init() {
 
 	importCmd.Flags().StringS("config", "config", "", "Path to a directory of Terraform configuration files")
 	importCmd.Flags().BoolS("ignore-remote-version", "ignore-remote-version", false, "A rare option used for the remote backend only")
-	importCmd.Flags().StringS("input", "input", "", "Disable interactive input prompts")
-	importCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation")
+	importCmd.Flags().BoolS("input", "input", false, "Disable interactive input prompts")
+	importCmd.Flags().BoolS("lock", "lock", false, "Don't hold a state lock during the operation")
 	importCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock")
 	importCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color")
 	importCmd.Flags().StringSliceS("var", "var", []string{}, "Set a variable in the Terraform configuration")
@@ -26,15 +25,11 @@ func init() {
 	rootCmd.AddCommand(importCmd)
 
 	importCmd.Flag("config").NoOptDefVal = " "
-	importCmd.Flag("input").NoOptDefVal = " "
-	importCmd.Flag("lock").NoOptDefVal = " "
 	importCmd.Flag("lock-timeout").NoOptDefVal = " "
 	importCmd.Flag("var-file").NoOptDefVal = " "
 
 	carapace.Gen(importCmd).FlagCompletion(carapace.ActionMap{
 		"config":   carapace.ActionDirectories(),
-		"input":    action.ActionBool(),
-		"lock":     action.ActionBool(),
 		"var-file": carapace.ActionFiles(),
 	})
 

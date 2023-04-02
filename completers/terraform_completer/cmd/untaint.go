@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,16 +16,11 @@ func init() {
 
 	untaintCmd.Flags().BoolS("allow-missing", "allow-missing", false, "succeed even if the resource is missing.")
 	untaintCmd.Flags().BoolS("ignore-remote-version", "ignore-remote-version", false, "A rare option used for the remote backend only.")
-	untaintCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation.")
+	untaintCmd.Flags().BoolS("lock", "lock", false, "Don't hold a state lock during the operation.")
 	untaintCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock.")
 	rootCmd.AddCommand(untaintCmd)
 
-	untaintCmd.Flag("lock").NoOptDefVal = " "
 	untaintCmd.Flag("lock-timeout").NoOptDefVal = " "
-
-	carapace.Gen(untaintCmd).FlagCompletion(carapace.ActionMap{
-		"lock": action.ActionBool(),
-	})
 
 	// TODO positional completion
 }

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/terraform"
 	"github.com/spf13/cobra"
 )
@@ -16,17 +15,15 @@ var workspace_newCmd = &cobra.Command{
 func init() {
 	carapace.Gen(workspace_newCmd).Standalone()
 
-	workspace_newCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation.")
+	workspace_newCmd.Flags().BoolS("lock", "lock", false, "Don't hold a state lock during the operation.")
 	workspace_newCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock.")
 	workspace_newCmd.Flags().StringS("state", "state", "", "Copy an existing state file into the new workspace.")
 	workspaceCmd.AddCommand(workspace_newCmd)
 
-	workspace_newCmd.Flag("lock").NoOptDefVal = " "
 	workspace_newCmd.Flag("lock-timeout").NoOptDefVal = " "
 	workspace_newCmd.Flag("state").NoOptDefVal = " "
 
 	carapace.Gen(workspace_newCmd).FlagCompletion(carapace.ActionMap{
-		"lock":  action.ActionBool(),
 		"state": carapace.ActionFiles(),
 	})
 

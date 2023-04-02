@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/terraform"
 	"github.com/spf13/cobra"
 )
@@ -17,8 +16,8 @@ func init() {
 	carapace.Gen(refreshCmd).Standalone()
 
 	refreshCmd.Flags().BoolS("compact-warnings", "compact-warnings", false, "show warnings in a more compact form")
-	refreshCmd.Flags().StringS("input", "input", "", "Ask for input for variables if not directly set")
-	refreshCmd.Flags().StringS("lock", "lock", "", "Don't hold a state lock during the operation")
+	refreshCmd.Flags().BoolS("input", "input", false, "Ask for input for variables if not directly set")
+	refreshCmd.Flags().BoolS("lock", "lock", false, "Don't hold a state lock during the operation")
 	refreshCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock")
 	refreshCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color")
 	refreshCmd.Flags().StringS("parallelism", "parallelism", "", "Limit the number of parallel resource operations")
@@ -27,8 +26,6 @@ func init() {
 	refreshCmd.Flags().StringS("var-file", "var-file", "", "Set variables in the Terraform configuration from a file")
 	rootCmd.AddCommand(refreshCmd)
 
-	refreshCmd.Flag("input").NoOptDefVal = " "
-	refreshCmd.Flag("lock").NoOptDefVal = " "
 	refreshCmd.Flag("lock-timeout").NoOptDefVal = " "
 	refreshCmd.Flag("parallelism").NoOptDefVal = " "
 	refreshCmd.Flag("target").NoOptDefVal = " "
@@ -36,8 +33,6 @@ func init() {
 
 	// TODO complete var
 	carapace.Gen(refreshCmd).FlagCompletion(carapace.ActionMap{
-		"input": action.ActionBool(),
-		"lock":  action.ActionBool(),
 		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return terraform.ActionResources().Invoke(c).ToMultiPartsA(".")
 		}),
