@@ -39,4 +39,8 @@ func init() {
 		"state":     carapace.ActionFiles(),
 		"state-out": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(applyCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

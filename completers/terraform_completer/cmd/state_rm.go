@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,5 +32,9 @@ func init() {
 		"state":  carapace.ActionFiles(),
 	})
 
-	// TODO positional completion
+	carapace.Gen(state_rmCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionResources(state_rmCmd).Invoke(c).Filter(c.Args).ToA().MultiParts(".")
+		}),
+	)
 }

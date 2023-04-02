@@ -24,6 +24,6 @@ func init() {
 
 	carapace.Gen(graphCmd).FlagCompletion(carapace.ActionMap{
 		"plan": carapace.ActionFiles(),
-		"type": carapace.ActionValues("plan", "plan-destroy", "apply", "validate", "input", "refresh"),
+		"type": carapace.ActionValues("plan", "plan-refresh-only", "plan-destroy", "apply"),
 	})
 }

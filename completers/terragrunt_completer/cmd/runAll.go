@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	terraform "github.com/rsteube/carapace-bin/completers/terraform_completer/cmd"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(runAllCmd)
 
 	carapace.Gen(runAllCmd).PositionalAnyCompletion(
-		terraform.ActionExecute(),
+		bridge.ActionCarapaceBin("terraform"),
 	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,5 +23,8 @@ func init() {
 
 	state_mvCmd.Flag("lock-timeout").NoOptDefVal = " "
 
-	// TODO positional completion
+	carapace.Gen(state_mvCmd).PositionalCompletion(
+		action.ActionResources(state_mvCmd).MultiParts("."),
+		action.ActionResources(state_mvCmd).MultiParts("."),
+	)
 }
