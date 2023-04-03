@@ -33,7 +33,14 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"attr": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			opts := nix.AttributeOpts{Source: "default.nix", Include: rootCmd.Flag("include").Value.String()}
+			arg, _ := rootCmd.Flags().GetStringSlice("arg")
+			argstr, _ := rootCmd.Flags().GetStringSlice("argstr")
+			opts := nix.AttributeOpts{
+				Source:  "default.nix",
+				Include: rootCmd.Flag("include").Value.String(),
+				Arg:     arg,
+				ArgStr:  argstr,
+			}
 			if len(c.Args) > 0 {
 				opts.Source = c.Args[0]
 			}

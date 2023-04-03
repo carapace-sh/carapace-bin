@@ -16,6 +16,8 @@ var attributeCompleteScript string
 type AttributeOpts struct {
 	Source  string
 	Include string
+	Arg     []string
+	ArgStr  []string
 }
 
 // ActionAttributes completes attributes
@@ -72,7 +74,20 @@ func ActionAttributes(opts AttributeOpts) carapace.Action {
 		if opts.Include != "" {
 			args = append(args, "-I", opts.Include)
 		}
-		// TODO handle passing through --arg and --argstr from original command
+
+		// pass through provided --arg and --argstr
+		for index, value := range opts.Arg {
+			if index%2 == 0 {
+				args = append(args, "--arg")
+			}
+			args = append(args, value)
+		}
+		for index, value := range opts.ArgStr {
+			if index%2 == 0 {
+				args = append(args, "--argstr")
+			}
+			args = append(args, value)
+		}
 
 		return carapace.ActionExecCommand("nix-instantiate", args...)(func(output []byte) carapace.Action {
 			var data []string
