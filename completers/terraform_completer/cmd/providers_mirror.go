@@ -6,7 +6,7 @@ import (
 )
 
 var providers_mirrorCmd = &cobra.Command{
-	Use:   "mirror",
+	Use:   "mirror [options] <target-dir>",
 	Short: "Save local copies of all required provider plugin",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

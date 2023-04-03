@@ -6,7 +6,7 @@ import (
 )
 
 var state_pushCmd = &cobra.Command{
-	Use:   "push",
+	Use:   "push [options] PATH",
 	Short: "Update remote state from a local state file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

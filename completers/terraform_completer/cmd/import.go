@@ -6,7 +6,7 @@ import (
 )
 
 var importCmd = &cobra.Command{
-	Use:   "import",
+	Use:   "import [options] ADDR ID",
 	Short: "Associate existing infrastructure with a Terraform resource",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

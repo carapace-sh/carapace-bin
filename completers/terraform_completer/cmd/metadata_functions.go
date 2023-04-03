@@ -6,7 +6,7 @@ import (
 )
 
 var metadata_functionsCmd = &cobra.Command{
-	Use:   "functions",
+	Use:   "functions -json",
 	Short: "Show signatures and descriptions for the available functions",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -6,7 +6,7 @@ import (
 )
 
 var state_replaceProviderCmd = &cobra.Command{
-	Use:   "replace-provider",
+	Use:   "replace-provider [options] FROM_PROVIDER_FQN TO_PROVIDER_FQN",
 	Short: "Replace provider in the state",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

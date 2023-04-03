@@ -7,7 +7,7 @@ import (
 )
 
 var workspace_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete [OPTIONS] NAME",
 	Short: "Delete a workspace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

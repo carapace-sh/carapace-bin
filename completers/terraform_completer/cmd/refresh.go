@@ -7,7 +7,7 @@ import (
 )
 
 var refreshCmd = &cobra.Command{
-	Use:   "refresh",
+	Use:   "refresh [options]",
 	Short: "Update the state to match remote systems",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

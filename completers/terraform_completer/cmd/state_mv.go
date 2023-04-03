@@ -7,7 +7,7 @@ import (
 )
 
 var state_mvCmd = &cobra.Command{
-	Use:   "mv",
+	Use:   "mv [options] SOURCE DESTINATION",
 	Short: "Move an item in the state",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -6,7 +6,7 @@ import (
 )
 
 var versionCmd = &cobra.Command{
-	Use:   "version",
+	Use:   "version [options]",
 	Short: "Show the current Terraform version",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

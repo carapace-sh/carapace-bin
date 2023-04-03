@@ -6,7 +6,7 @@ import (
 )
 
 var state_pullCmd = &cobra.Command{
-	Use:   "pull",
+	Use:   "pull [options]",
 	Short: "Pull current state and output to stdout",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

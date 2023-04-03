@@ -7,7 +7,7 @@ import (
 )
 
 var state_rmCmd = &cobra.Command{
-	Use:   "rm",
+	Use:   "rm [options] ADDRESS...",
 	Short: "Remove instances from the state",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

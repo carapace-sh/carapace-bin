@@ -7,7 +7,7 @@ import (
 )
 
 var planCmd = &cobra.Command{
-	Use:     "plan",
+	Use:     "plan [options]",
 	Short:   "Show changes required by the current configuration",
 	GroupID: "main",
 	Run:     func(cmd *cobra.Command, args []string) {},

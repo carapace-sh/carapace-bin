@@ -6,7 +6,7 @@ import (
 )
 
 var fmtCmd = &cobra.Command{
-	Use:   "fmt",
+	Use:   "fmt [options] [target...]",
 	Short: "Reformat your configuration in the standard style",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -22,7 +22,7 @@ func init() {
 	fmtCmd.Flags().BoolS("write", "write", false, "Don't write to source files")
 	rootCmd.AddCommand(fmtCmd)
 
-	carapace.Gen(fmtCmd).PositionalCompletion(
+	carapace.Gen(fmtCmd).PositionalAnyCompletion(
 		carapace.ActionDirectories(),
 	)
 }

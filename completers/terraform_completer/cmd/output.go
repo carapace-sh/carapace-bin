@@ -6,7 +6,7 @@ import (
 )
 
 var outputCmd = &cobra.Command{
-	Use:   "output",
+	Use:   "output [options] [NAME]",
 	Short: "Show output values from your root module",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

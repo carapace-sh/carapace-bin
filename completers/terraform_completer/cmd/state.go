@@ -6,7 +6,7 @@ import (
 )
 
 var stateCmd = &cobra.Command{
-	Use:   "state",
+	Use:   "state <subcommand> [options] [args]",
 	Short: "Advanced state management",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

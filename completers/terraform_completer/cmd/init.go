@@ -6,7 +6,7 @@ import (
 )
 
 var initCmd = &cobra.Command{
-	Use:     "init",
+	Use:     "init [options]",
 	Short:   "Prepare your working directory for other commands",
 	GroupID: "main",
 	Run:     func(cmd *cobra.Command, args []string) {},

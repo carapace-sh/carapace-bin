@@ -6,7 +6,7 @@ import (
 )
 
 var graphCmd = &cobra.Command{
-	Use:   "graph",
+	Use:   "graph [options]",
 	Short: "Generate a Graphviz graph of the steps in an operation",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

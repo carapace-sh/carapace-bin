@@ -7,7 +7,7 @@ import (
 )
 
 var logoutCmd = &cobra.Command{
-	Use:   "logout",
+	Use:   "logout [hostname]",
 	Short: "Remove locally-stored credentials for a remote host",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

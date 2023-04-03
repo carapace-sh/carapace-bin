@@ -7,7 +7,7 @@ import (
 )
 
 var state_showCmd = &cobra.Command{
-	Use:   "show",
+	Use:   "show [options] ADDRESS",
 	Short: "Show a resource in the state",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

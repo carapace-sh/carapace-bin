@@ -7,7 +7,7 @@ import (
 )
 
 var workspace_newCmd = &cobra.Command{
-	Use:   "new",
+	Use:   "new [OPTIONS] NAME",
 	Short: "Create a new workspace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
