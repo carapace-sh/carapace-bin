@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/terraform"
+	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -44,14 +44,10 @@ func init() {
 	planCmd.Flag("var-file").NoOptDefVal = " "
 
 	carapace.Gen(planCmd).FlagCompletion(carapace.ActionMap{
-		"out": carapace.ActionFiles(),
-		"replace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return terraform.ActionResources().Invoke(c).ToMultiPartsA(".")
-		}),
-		"state": carapace.ActionFiles(),
-		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return terraform.ActionResources().Invoke(c).ToMultiPartsA(".")
-		}),
+		"out":      carapace.ActionFiles(),
+		"replace":  action.ActionResources(planCmd).MultiParts("."),
+		"state":    carapace.ActionFiles(),
+		"target":   action.ActionResources(planCmd).MultiParts("."),
 		"var-file": carapace.ActionFiles(),
 	})
 }

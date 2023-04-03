@@ -1,9 +1,6 @@
 package cmd
 
 import (
-	"os"
-	"strings"
-
 	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -18,23 +15,6 @@ var rootCmd = &cobra.Command{
 
 func Execute() error {
 	return rootCmd.Execute()
-}
-
-func ActionExecute() carapace.Action { // TODO this still needed / correct? maybe use bridging action
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		// TODO don't change os.Args
-		backup := os.Args
-		for index, arg := range c.Args {
-			if strings.HasPrefix(arg, "-") && !strings.HasPrefix(arg, "--") {
-				c.Args[index] = "-" + arg
-			}
-		}
-		if strings.HasPrefix(c.CallbackValue, "-") && !strings.HasPrefix(c.CallbackValue, "--") {
-			c.CallbackValue = "-" + c.CallbackValue
-		}
-		os.Args = backup
-		return carapace.ActionExecute(rootCmd).Invoke(c).ToA()
-	})
 }
 
 func init() {
