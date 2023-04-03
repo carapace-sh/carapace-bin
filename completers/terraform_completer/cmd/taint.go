@@ -6,7 +6,7 @@ import (
 )
 
 var taintCmd = &cobra.Command{
-	Use:   "taint",
+	Use:   "taint [options] <address>",
 	Short: "Mark a resource instance as not fully functional",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

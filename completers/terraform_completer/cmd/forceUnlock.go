@@ -6,7 +6,7 @@ import (
 )
 
 var forceUnlockCmd = &cobra.Command{
-	Use:   "force-unlock",
+	Use:   "force-unlock LOCK_ID",
 	Short: "Release a stuck lock on the current workspace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/terraform_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
 var state_listCmd = &cobra.Command{
-	Use:   "list",
+	Use:   "list [options] [address...]",
 	Short: "List resources in the state",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -23,5 +24,9 @@ func init() {
 		"state": carapace.ActionFiles(),
 	})
 
-	// TODO address completion
+	carapace.Gen(state_listCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionResources(state_listCmd).Invoke(c).Filter(c.Args).ToMultiPartsA("_")
+		}),
+	)
 }

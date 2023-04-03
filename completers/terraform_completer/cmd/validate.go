@@ -6,7 +6,7 @@ import (
 )
 
 var validateCmd = &cobra.Command{
-	Use:     "validate",
+	Use:     "validate [options]",
 	Short:   "Check whether the configuration is valid",
 	GroupID: "main",
 	Run:     func(cmd *cobra.Command, args []string) {},

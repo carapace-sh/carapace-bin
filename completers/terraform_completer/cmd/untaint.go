@@ -6,7 +6,7 @@ import (
 )
 
 var untaintCmd = &cobra.Command{
-	Use:   "untaint",
+	Use:   "untaint [options] name",
 	Short: "Remove the 'tainted' state from a resource instance",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

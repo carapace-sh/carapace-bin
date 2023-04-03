@@ -6,7 +6,7 @@ import (
 )
 
 var getCmd = &cobra.Command{
-	Use:   "get",
+	Use:   "get [options] PATH",
 	Short: "Install or upgrade remote Terraform modules",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -28,7 +28,7 @@ func init() {
 	rootCmd.Flags().BoolS("help", "help", false, "Show this help output, or the help for a specified subcommand.")
 	rootCmd.Flags().BoolS("version", "version", false, "An alias for the \"version\" subcommand.")
 
-	rootCmd.Flag("chdir").NoOptDefVal = " "
+	rootCmd.Flag("chdir").NoOptDefVal = "."
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"chdir": carapace.ActionDirectories(),

@@ -6,7 +6,7 @@ import (
 )
 
 var metadataCmd = &cobra.Command{
-	Use:   "metadata",
+	Use:   "metadata <subcommand> [options] [args]",
 	Short: "Metadata related commands",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

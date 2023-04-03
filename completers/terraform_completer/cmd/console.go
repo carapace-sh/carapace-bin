@@ -6,7 +6,7 @@ import (
 )
 
 var consoleCmd = &cobra.Command{
-	Use:   "console",
+	Use:   "console [options]",
 	Short: "Try Terraform expressions at an interactive command prompt",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

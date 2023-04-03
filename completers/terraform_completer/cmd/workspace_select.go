@@ -7,7 +7,7 @@ import (
 )
 
 var workspace_selectCmd = &cobra.Command{
-	Use:   "select",
+	Use:   "select NAME",
 	Short: "Select a workspace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

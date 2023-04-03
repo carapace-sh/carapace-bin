@@ -7,7 +7,7 @@ import (
 )
 
 var loginCmd = &cobra.Command{
-	Use:   "login",
+	Use:   "login [hostname]",
 	Short: "Obtain and save credentials for a remote host",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -6,7 +6,7 @@ import (
 )
 
 var testCmd = &cobra.Command{
-	Use:   "test",
+	Use:   "test [options]",
 	Short: "Experimental support for module integration testing",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
