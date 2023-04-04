@@ -8,7 +8,7 @@ require (
 	github.com/rsteube/carapace v0.33.11
 	github.com/rsteube/carapace-bridge v0.0.17
 	github.com/rsteube/carapace-spec v0.6.5
-	github.com/spf13/cobra v1.6.1
+	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/mod v0.9.0
 	gopkg.in/ini.v1 v1.67.0
@@ -17,7 +17,7 @@ require (
 
 require (
 	github.com/iancoleman/orderedmap v0.0.0-20190318233801-ac98e3ecb4b0 // indirect
-	github.com/inconshreveable/mousetrap v1.0.1 // indirect
+	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/invopop/jsonschema v0.7.0 // indirect
 	github.com/stretchr/testify v1.7.0 // indirect
 )
