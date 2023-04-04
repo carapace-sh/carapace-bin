@@ -30,6 +30,7 @@ func init() {
 	pr_createCmd.Flags().StringSliceP("project", "p", []string{}, "Add the pull request to projects by `name`")
 	pr_createCmd.Flags().String("recover", "", "Recover input from a failed run of create")
 	pr_createCmd.Flags().StringSliceP("reviewer", "r", []string{}, "Request reviews from people or teams by their `handle`")
+	pr_createCmd.Flags().StringP("template", "T", "", "Template `file` to use as starting body text")
 	pr_createCmd.Flags().StringP("title", "t", "", "Title for the pull request")
 	pr_createCmd.Flags().BoolP("web", "w", false, "Open the web browser to create a pull request")
 	prCmd.AddCommand(pr_createCmd)
@@ -44,5 +45,6 @@ func init() {
 		"milestone": action.ActionMilestones(pr_createCmd),
 		"project":   action.ActionProjects(pr_createCmd, action.ProjectOpts{Open: true}),
 		"reviewer":  action.ActionAssignableUsers(pr_createCmd).UniqueList(","),
+		"template":  action.ActionPullRequestTemplates(pr_createCmd),
 	})
 }

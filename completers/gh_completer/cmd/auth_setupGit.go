@@ -8,7 +8,7 @@ import (
 
 var auth_setupGitCmd = &cobra.Command{
 	Use:   "setup-git",
-	Short: "Configure git to use GitHub CLI as a credential helper",
+	Short: "Setup git with GitHub CLI",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
