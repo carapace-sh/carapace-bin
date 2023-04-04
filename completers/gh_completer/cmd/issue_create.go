@@ -24,6 +24,7 @@ func init() {
 	issue_createCmd.Flags().StringP("milestone", "m", "", "Add the issue to a milestone by `name`")
 	issue_createCmd.Flags().StringSliceP("project", "p", []string{}, "Add the issue to projects by `name`")
 	issue_createCmd.Flags().String("recover", "", "Recover input from a failed run of create")
+	issue_createCmd.Flags().StringP("template", "T", "", "Template `name` to use as starting body text")
 	issue_createCmd.Flags().StringP("title", "t", "", "Supply a title. Will prompt for one otherwise.")
 	issue_createCmd.Flags().BoolP("web", "w", false, "Open the browser to create an issue")
 	issueCmd.AddCommand(issue_createCmd)
@@ -35,5 +36,6 @@ func init() {
 		"label":     action.ActionLabels(issue_createCmd).UniqueList(","),
 		"milestone": action.ActionMilestones(issue_createCmd),
 		"project":   action.ActionProjects(issue_createCmd, action.ProjectOpts{Open: true}),
+		"template":  action.ActionIssueTemplates(issue_createCmd),
 	})
 }

@@ -21,6 +21,7 @@ func init() {
 	run_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	run_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	run_listCmd.Flags().IntP("limit", "L", 20, "Maximum number of runs to fetch")
+	run_listCmd.Flags().StringP("status", "s", "", "Filter runs by status: {queued|completed|in_progress|requested|waiting|action_required|cancelled|failure|neutral|skipped|stale|startup_failure|success|timed_out}")
 	run_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	run_listCmd.Flags().StringP("user", "u", "", "Filter runs by user who triggered the run")
 	run_listCmd.Flags().StringP("workflow", "w", "", "Filter runs by workflow")
@@ -29,6 +30,7 @@ func init() {
 	carapace.Gen(run_listCmd).FlagCompletion(carapace.ActionMap{
 		"branch":   action.ActionBranches(run_listCmd),
 		"json":     action.ActionRunFields(),
+		"status":   carapace.ActionValues("queued", "completed", "in_progress", "requested", "waiting", "action_required", "cancelled", "failure", "neutral", "skipped", "stale", "startup_failure", "success", "timed_out"),
 		"user":     gh.ActionUsers(gh.HostOpts{}),
 		"workflow": action.ActionWorkflows(run_listCmd, action.WorkflowOpts{Enabled: true, Id: true, Name: true}),
 	})
