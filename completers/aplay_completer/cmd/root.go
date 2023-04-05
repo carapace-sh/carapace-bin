@@ -18,11 +18,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
-func ExecuteArecord() error {
-	rootCmd.Use = "arecord"
-	return rootCmd.Execute()
-}
-
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 

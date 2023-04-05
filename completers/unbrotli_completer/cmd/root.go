@@ -1,16 +1,27 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace-bin/completers/brotli_completer/cmd"
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/spf13/cobra"
 )
 
-/**
-Description for go:generate
-	Use: "unbrotli",
-	Short: "compress or decompress files",
-	Long:  "https://github.com/google/brotli",
-*/
+var rootCmd = &cobra.Command{
+	Use:                "unbrotli",
+	Short:              "compress or decompress files",
+	Long:               "https://github.com/google/brotli",
+	Run:                func(cmd *cobra.Command, args []string) {},
+	DisableFlagParsing: true,
+}
 
 func Execute() error {
-	return cmd.ExecuteUnbrotli()
+	return rootCmd.Execute()
+}
+
+func init() {
+	carapace.Gen(rootCmd).Standalone()
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin("brotli"),
+	)
 }

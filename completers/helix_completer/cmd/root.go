@@ -17,11 +17,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
-func ExecuteHx() error {
-	rootCmd.Use = "hx"
-	return rootCmd.Execute()
-}
-
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 

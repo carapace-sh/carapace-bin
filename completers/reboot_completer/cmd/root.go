@@ -1,16 +1,27 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace-bin/completers/halt_completer/cmd"
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/spf13/cobra"
 )
 
-/**
-Description for go:generate
-	Use: "reboot",
-	Short: "reboot the machine",
-	Long: "https://linux.die.net/man/8/reboot",
-*/
+var rootCmd = &cobra.Command{
+	Use:                "reboot",
+	Short:              "reboot the machine",
+	Long:               "https://linux.die.net/man/8/reboot",
+	Run:                func(cmd *cobra.Command, args []string) {},
+	DisableFlagParsing: true,
+}
 
 func Execute() error {
-	return cmd.ExecuteReboot()
+	return rootCmd.Execute()
+}
+
+func init() {
+	carapace.Gen(rootCmd).Standalone()
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin("halt"),
+	)
 }

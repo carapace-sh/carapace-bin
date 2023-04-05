@@ -16,11 +16,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
-func ExecuteUnbrotli() error {
-	rootCmd.Use = "unbrotli"
-	return rootCmd.Execute()
-}
-
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 

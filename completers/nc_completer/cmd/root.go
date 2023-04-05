@@ -1,16 +1,27 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace-bin/completers/netcat_completer/cmd"
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/spf13/cobra"
 )
 
-/**
-Description for go:generate
-	Use: "nc",
-	Short: "simple Unix utility which reads and writes data across network connections",
-	Long:  "https://nc110.sourceforge.io/",
-*/
+var rootCmd = &cobra.Command{
+	Use:                "nc",
+	Short:              "simple Unix utility which reads and writes data across network connections",
+	Long:               "https://nc110.sourceforge.io/",
+	Run:                func(cmd *cobra.Command, args []string) {},
+	DisableFlagParsing: true,
+}
 
 func Execute() error {
-	return cmd.ExecuteNc()
+	return rootCmd.Execute()
+}
+
+func init() {
+	carapace.Gen(rootCmd).Standalone()
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin("netcat"),
+	)
 }

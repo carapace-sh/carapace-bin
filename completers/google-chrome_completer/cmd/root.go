@@ -16,11 +16,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
-func ExecuteAlias(alias string) error {
-	rootCmd.Use = alias
-	return rootCmd.Execute()
-}
-
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 

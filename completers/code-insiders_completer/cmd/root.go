@@ -1,16 +1,27 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace-bin/completers/code_completer/cmd"
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/spf13/cobra"
 )
 
-/**
-Description for go:generate
-	Use: "code-insiders",
-	Short: "Visual Studio Code Insiders",
-	Long: "https://code.visualstudio.com/insiders/",
-*/
+var rootCmd = &cobra.Command{
+	Use:                "code-insiders",
+	Short:              "Visual Studio Code Insiders",
+	Long:               "https://code.visualstudio.com/insiders/",
+	Run:                func(cmd *cobra.Command, args []string) {},
+	DisableFlagParsing: true,
+}
 
 func Execute() error {
-	return cmd.ExecuteInsiders()
+	return rootCmd.Execute()
+}
+
+func init() {
+	carapace.Gen(rootCmd).Standalone()
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin("code"),
+	)
 }
