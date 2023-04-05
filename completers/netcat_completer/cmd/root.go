@@ -17,10 +17,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
-func ExecuteNc() error {
-	rootCmd.Use = "nc"
-	return rootCmd.Execute()
-}
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 

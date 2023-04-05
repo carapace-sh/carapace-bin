@@ -1,16 +1,27 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace-bin/completers/google-chrome_completer/cmd"
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/spf13/cobra"
 )
 
-/**
-Description for go:generate
-	Use: "chromium",
-	Short: "chromium browser",
-	Long: "https://www.chromium.org/Home",
-*/
+var rootCmd = &cobra.Command{
+	Use:                "chromium",
+	Short:              "chromium browser",
+	Long:               "https://www.chromium.org/Home",
+	Run:                func(cmd *cobra.Command, args []string) {},
+	DisableFlagParsing: true,
+}
 
 func Execute() error {
-	return cmd.ExecuteAlias("chromium")
+	return rootCmd.Execute()
+}
+
+func init() {
+	carapace.Gen(rootCmd).Standalone()
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin("google-chrome"),
+	)
 }

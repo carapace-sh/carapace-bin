@@ -1,16 +1,27 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace-bin/completers/grep_completer/cmd"
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/spf13/cobra"
 )
 
-/**
-Description for go:generate
-	Use: "fgrep",
-	Short: "print lines that match patterns",
-	Long: "https://en.wikipedia.org/wiki/Grep",
-*/
+var rootCmd = &cobra.Command{
+	Use:                "fgrep",
+	Short:              "print lines that match patterns",
+	Long:               "https://en.wikipedia.org/wiki/Grep",
+	Run:                func(cmd *cobra.Command, args []string) {},
+	DisableFlagParsing: true,
+}
 
 func Execute() error {
-	return cmd.ExecuteOverride("fgrep")
+	return rootCmd.Execute()
+}
+
+func init() {
+	carapace.Gen(rootCmd).Standalone()
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin("grep"),
+	)
 }

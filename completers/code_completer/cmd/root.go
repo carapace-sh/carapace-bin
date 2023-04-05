@@ -20,11 +20,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
-func ExecuteInsiders() error {
-	rootCmd.Use = "code-insiders"
-	return rootCmd.Execute()
-}
-
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 

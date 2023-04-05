@@ -16,18 +16,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
-func ExecutePoweroff() error {
-	rootCmd.Use = "poweroff"
-	rootCmd.Short = "poweroff the machine"
-	return Execute()
-}
-
-func ExecuteReboot() error {
-	rootCmd.Use = "reboot"
-	rootCmd.Short = "reboot the machine"
-	return Execute()
-}
-
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 

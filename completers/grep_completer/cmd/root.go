@@ -17,12 +17,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
-// ExecuteOverride overrides Use before execution
-func ExecuteOverride(use string) error {
-	rootCmd.Use = use
-	return rootCmd.Execute()
-}
-
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
