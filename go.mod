@@ -6,7 +6,7 @@ require (
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
 	github.com/pelletier/go-toml v1.9.5
 	github.com/rsteube/carapace v0.34.0
-	github.com/rsteube/carapace-bridge v0.0.17
+	github.com/rsteube/carapace-bridge v0.0.19
 	github.com/rsteube/carapace-spec v0.6.5
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
