@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/tea_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/time"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/tea"
@@ -43,6 +44,7 @@ func init() {
 		"fields": tea.ActionIssueFields().UniqueList(","),
 		"from":   time.ActionDate(),
 		"kind":   carapace.ActionValues("issues", "pulls", "all"),
+		"labels": action.ActionLabels(issues_listCmd).UniqueList(","),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 		"state":  carapace.ActionValues("all", "open", "closed").StyleF(style.ForKeyword),
