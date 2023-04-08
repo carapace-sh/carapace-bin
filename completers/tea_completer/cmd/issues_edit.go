@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/tea_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -31,6 +32,7 @@ func init() {
 
 	// TODO completion
 	carapace.Gen(issues_editCmd).FlagCompletion(carapace.ActionMap{
-		"remote": git.ActionRemotes(),
+		"remote":        git.ActionRemotes(),
+		"remove-labels": action.ActionLabels(issues_editCmd).UniqueList(","), // TODO assigned labels
 	})
 }
