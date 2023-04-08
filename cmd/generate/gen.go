@@ -185,6 +185,7 @@ func macros() {
 		`"bridge.Complete":    spec.MacroV(bridge.ActionComplete).NoFlag(),`,
 		`"bridge.Fish":        spec.MacroV(bridge.ActionFish).NoFlag(),`,
 		`"bridge.Powershell":  spec.MacroV(bridge.ActionPowershell).NoFlag(),`,
+		`"bridge.Urfavecli":   spec.MacroV(bridge.ActionUrfavecli).NoFlag(),`,
 		`"bridge.Yargs":       spec.MacroV(bridge.ActionYargs).NoFlag(),`,
 		`"bridge.Zsh":         spec.MacroV(bridge.ActionZsh).NoFlag(),`,
 	}
@@ -198,6 +199,7 @@ func macros() {
 		"bridge.Complete":    "bridges https://github.com/posener/complete",
 		"bridge.Fish":        "bridges https://fishshell.com/",
 		"bridge.Powershell":  "bridges https://microsoft.com/powershell",
+		"bridge.Urfavecli":   "bridges https://github.com/urfave/cli",
 		"bridge.Yargs":       "bridges https://github.com/yargs/yargs",
 		"bridge.Zsh":         "bridges https://www.zsh.org/",
 	}
