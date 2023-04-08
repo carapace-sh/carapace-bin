@@ -51,7 +51,7 @@ func init() {
 	search_prsCmd.Flags().String("owner", "", "Filter on repository owner")
 	search_prsCmd.Flags().String("project", "", "Filter on project board `number`")
 	search_prsCmd.Flags().String("reactions", "", "Filter on `number` of reactions")
-	search_prsCmd.Flags().StringSlice("repo", []string{}, "Filter on repository")
+	search_prsCmd.Flags().StringSliceP("repo", "R", []string{}, "Filter on repository")
 	search_prsCmd.Flags().String("review", "", "Filter based on review status: {none|required|approved|changes_requested}")
 	search_prsCmd.Flags().String("review-requested", "", "Filter on `user` or team requested to review")
 	search_prsCmd.Flags().String("reviewed-by", "", "Filter on `user` who reviewed")

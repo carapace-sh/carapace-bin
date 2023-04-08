@@ -46,7 +46,7 @@ func init() {
 	search_issuesCmd.Flags().String("owner", "", "Filter on repository owner")
 	search_issuesCmd.Flags().String("project", "", "Filter on project board `number`")
 	search_issuesCmd.Flags().String("reactions", "", "Filter on `number` of reactions")
-	search_issuesCmd.Flags().StringSlice("repo", []string{}, "Filter on repository")
+	search_issuesCmd.Flags().StringSliceP("repo", "R", []string{}, "Filter on repository")
 	search_issuesCmd.Flags().String("sort", "best-match", "Sort fetched results: {comments|created|interactions|reactions|reactions-+1|reactions--1|reactions-heart|reactions-smile|reactions-tada|reactions-thinking_face|updated}")
 	search_issuesCmd.Flags().String("state", "", "Filter based on state: {open|closed}")
 	search_issuesCmd.Flags().String("team-mentions", "", "Filter based on team mentions")
