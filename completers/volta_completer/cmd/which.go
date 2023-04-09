@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(whichCmd)
 
 	carapace.Gen(whichCmd).PositionalCompletion(
-		carapace.ActionPathExecutables(),
+		carapace.ActionExecutables(),
 	)
 }

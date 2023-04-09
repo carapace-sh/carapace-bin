@@ -125,7 +125,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"inspect-raw-lines": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 		"pager": carapace.Batch(
-			carapace.ActionPathExecutables(),
+			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 		"paging":       carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),

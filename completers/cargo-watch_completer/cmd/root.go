@@ -89,7 +89,7 @@ func init() {
 
 			if len(c.Args) < 1 {
 				return carapace.Batch(
-					carapace.ActionPathExecutables(),
+					carapace.ActionExecutables(),
 					carapace.ActionFiles(),
 				).ToA()
 			}
@@ -111,7 +111,7 @@ func init() {
 
 	carapace.Gen(rootCmd).DashCompletion(
 		carapace.Batch(
-			carapace.ActionPathExecutables(),
+			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	)

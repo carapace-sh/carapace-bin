@@ -32,6 +32,6 @@ func init() {
 	rootCmd.Flags().BoolP("version,", "v", false, "Print version and exit successfully.")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionPathExecutables(),
+		carapace.ActionExecutables(),
 	)
 }

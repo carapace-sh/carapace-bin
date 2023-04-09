@@ -40,7 +40,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"debugger": carapace.Batch(
-			carapace.ActionPathExecutables(),
+			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 		"directory": carapace.ActionDirectories(),

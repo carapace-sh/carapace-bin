@@ -35,7 +35,7 @@ func init() {
 			if !rootCmd.Flag("f").Changed && (rootCmd.Flag("B").Changed || rootCmd.Flag("M").Changed || rootCmd.Flag("S").Changed) {
 				return carapace.ActionDirectories()
 			}
-			return carapace.ActionPathExecutables()
+			return carapace.ActionExecutables()
 		}),
 	)
 }

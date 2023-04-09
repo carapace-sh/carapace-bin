@@ -91,7 +91,7 @@ func init() {
 			switch len(c.Args) {
 			case 0:
 				return carapace.Batch(
-					carapace.ActionPathExecutables(),
+					carapace.ActionExecutables(),
 					carapace.ActionFiles(),
 				).ToA()
 			default:

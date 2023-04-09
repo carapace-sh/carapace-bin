@@ -22,7 +22,7 @@ func (s *stringValue) String() string { return string(*s) }
 func EmbedCarapaceBin(cmd *cobra.Command) {
 	carapace.Gen(cmd).PositionalCompletion(
 		carapace.Batch(
-			carapace.ActionPathExecutables(),
+			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	)
