@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/tea_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/tea"
 	"github.com/spf13/cobra"
@@ -32,4 +33,8 @@ func init() {
 		"remote": git.ActionRemotes(),
 		"style":  carapace.ActionValues("merge", "rebase", "squash", "rebase-merge"),
 	})
+
+	carapace.Gen(pulls_mergeCmd).PositionalCompletion(
+		action.ActionPullrequests(pulls_mergeCmd, true),
+	)
 }

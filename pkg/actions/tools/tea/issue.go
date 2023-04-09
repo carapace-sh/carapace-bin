@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 )
 
 // ActionIssueFields completes issue fields
@@ -64,15 +64,7 @@ func ActionIssues(opts IssueOpts) carapace.Action {
 		return actionYamlQuery(repoOpts, &issues, args...)(func() carapace.Action {
 			vals := make([]string, 0)
 			for _, issue := range issues {
-				s := ""
-				switch issue.State {
-				case "open":
-					s = style.Green
-				case "closed":
-					s = style.Red
-				}
-
-				vals = append(vals, strconv.Itoa(issue.Index), issue.Title, s)
+				vals = append(vals, strconv.Itoa(issue.Index), issue.Title, styles.Tea.ForState(issue.State, c))
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/tea_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/tea"
 	"github.com/spf13/cobra"
@@ -27,4 +28,8 @@ func init() {
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 	})
+
+	carapace.Gen(pulls_rejectCmd).PositionalCompletion(
+		action.ActionPullrequests(pulls_rejectCmd, true),
+	)
 }

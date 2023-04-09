@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/tea_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/tea"
 	"github.com/spf13/cobra"
 )
@@ -25,4 +26,8 @@ func init() {
 	carapace.Gen(pulls_closeCmd).FlagCompletion(carapace.ActionMap{
 		"output": tea.ActionOutputFormats(),
 	})
+
+	carapace.Gen(pulls_closeCmd).PositionalCompletion(
+		action.ActionPullrequests(pulls_closeCmd, true),
+	)
 }
