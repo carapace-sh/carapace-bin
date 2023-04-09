@@ -9,7 +9,7 @@ User defined [Specs] are automatically loaded by `carapace _carapace` from [`${U
 
 ## Override
 
-[Specs] override an internal completer with the same name. E.g. if the internal `kubectl` completer does not work as expected it can be [bridged](./bride.md) instead:
+[Specs] override an internal completer with the same name. E.g. if the internal `kubectl` completer does not work as expected it can be [bridged](./bridge.md) instead:
 
 ```yaml
 name: kubectl

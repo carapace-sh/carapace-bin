@@ -76,6 +76,17 @@ completion:
   positionalany: ["$_bridge.Complete([vault])"]
 ```
 
+### Urfavecli
+
+[urfave/cli] based commands can be bridged with the [`bridge.Urfavecli`] macro:
+
+```yaml
+name: tea
+description: command line tool to interact with Gitea
+completion:
+  positionalany: ["$_bridge.Urfavecli([tea])"]
+```
+
 ### Yargs
 [yargs/yargs] based commands can be bridged with the [`bridge.Yargs`] macro:
 
@@ -89,9 +100,9 @@ completion:
 ## Shells
 
 > For shells custom configurations are loaded from [`${UserConfigDir}/carapace/bridge`].
-> Invoking completion in shells is quite tricky and has only limited success.
+> Invoking completion in shells is quite tricky though and edge cases are likely to fail.
 
-### Bash
+ Bash
 
 Commands registered in [bash] can be bridged with the [`bridge.Bash`] macro:
 
@@ -164,6 +175,9 @@ completion:
 
 [fish-shell/fish-shell]:https://github.com/fish-shell/fish-shell
 [`bridge.Fish`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionFish
+
+[urfave/cli]:https://github.com/urfave/cli
+[`bridge.Urfavecli`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionUrfavecli
 
 [yargs/yargs]:https://github.com/yargs/yargs
 [`bridge.Yargs`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionYargs
