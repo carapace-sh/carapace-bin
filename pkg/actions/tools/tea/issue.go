@@ -1,6 +1,11 @@
 package tea
 
-import "github.com/rsteube/carapace"
+import (
+	"strconv"
+
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
+)
 
 // ActionIssueFields completes issue fields
 //
@@ -24,4 +29,52 @@ func ActionIssueFields() carapace.Action {
 		"labels",
 		"comments",
 	)
+}
+
+type IssueOpts struct {
+	Login  string
+	Remote string
+	Repo   string
+	Open   bool
+	Closed bool
+}
+
+// ActionIssues completes issues
+func ActionIssues(opts IssueOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		var issues []struct {
+			Index int    `yaml:"index"`
+			Title string `yaml:"title"`
+			State string `yaml:"state"`
+		}
+
+		args := []string{"issue", "list"}
+		switch {
+		case opts.Closed && opts.Open:
+			args = append(args, "--state", "all")
+		case opts.Closed:
+			args = append(args, "--state", "closed")
+		case opts.Open:
+			args = append(args, "--state", "open")
+		default:
+			return carapace.ActionValues()
+		}
+
+		repoOpts := RepoOpts{Login: opts.Login, Remote: opts.Remote, Repo: opts.Repo}
+		return actionYamlQuery(repoOpts, &issues, args...)(func() carapace.Action {
+			vals := make([]string, 0)
+			for _, issue := range issues {
+				s := ""
+				switch issue.State {
+				case "open":
+					s = style.Green
+				case "closed":
+					s = style.Red
+				}
+
+				vals = append(vals, strconv.Itoa(issue.Index), issue.Title, s)
+			}
+			return carapace.ActionStyledValuesDescribed(vals...)
+		})
+	})
 }

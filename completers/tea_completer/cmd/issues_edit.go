@@ -32,7 +32,12 @@ func init() {
 
 	// TODO completion
 	carapace.Gen(issues_editCmd).FlagCompletion(carapace.ActionMap{
+		"add-labels":    action.ActionLabels(issues_editCmd).UniqueList(","), // TODO assigned labels
 		"remote":        git.ActionRemotes(),
 		"remove-labels": action.ActionLabels(issues_editCmd).UniqueList(","), // TODO assigned labels
 	})
+
+	carapace.Gen(issues_editCmd).PositionalCompletion(
+		action.ActionIssues(issues_editCmd, true),
+	)
 }
