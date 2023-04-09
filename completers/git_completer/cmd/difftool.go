@@ -30,7 +30,7 @@ func init() {
 
 	carapace.Gen(difftoolCmd).FlagCompletion(carapace.ActionMap{
 		"tool": carapace.Batch(
-			carapace.ActionPathExecutables(),
+			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	})

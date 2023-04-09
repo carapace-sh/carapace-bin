@@ -28,7 +28,7 @@ func init() {
 
 	carapace.Gen(mergetoolCmd).FlagCompletion(carapace.ActionMap{
 		"tool": carapace.Batch(
-			carapace.ActionPathExecutables(),
+			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	})

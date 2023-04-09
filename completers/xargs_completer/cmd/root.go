@@ -82,7 +82,7 @@ func xargsCmd() *cobra.Command {
 
 	carapace.Gen(cmd).PositionalCompletion(
 		carapace.Batch(
-			carapace.ActionPathExecutables(),
+			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	)

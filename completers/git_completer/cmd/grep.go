@@ -70,7 +70,7 @@ func init() {
 		"color": git.ActionColorModes(),
 		"f":     carapace.ActionFiles(),
 		"open-files-in-pager": carapace.Batch(
-			carapace.ActionPathExecutables(),
+			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	})
