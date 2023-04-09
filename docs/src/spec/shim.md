@@ -1,6 +1,6 @@
 # Shim
 
-Whe `carapace _carapace` is invoked it  creates [shims] in [`${UserConfigDir}/carapace/bin`] for [runnable specs].
+When `carapace _carapace` is invoked it  creates [shims] in [`${UserConfigDir}/carapace/bin`] for [runnable specs].
 
 For unix systems this is a simple shell script, but for windows an [embedded binary] is used.
 

@@ -7,7 +7,7 @@
   - [Style](./style.md)
   - [Spec](./spec.md)
     - [User](./spec/user.md)
-    - [Bridge](./spec/bride.md)
+    - [Bridge](./spec/bridge.md)
     - [Embed](./spec/embed.md)
     - [Run](./spec/run.md)
     - [Shim](./spec/shim.md)

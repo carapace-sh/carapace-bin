@@ -1,6 +1,6 @@
 # Embed
 
-The [bridged](./bride.md) completion can also be embedded as subcommand.
+The [bridged](./bridge.md) completion can also be embedded as subcommand.
 
 ```yaml
 name: embed
