@@ -33,6 +33,7 @@ func init() {
 	// TODO completion
 	carapace.Gen(pullsCmd).FlagCompletion(carapace.ActionMap{
 		"fields": tea.ActionPullrequestFields().UniqueList(","),
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 		"state":  carapace.ActionValues("all", "open", "closed").StyleF(style.ForKeyword),

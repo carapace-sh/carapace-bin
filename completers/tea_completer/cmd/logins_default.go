@@ -22,4 +22,8 @@ func init() {
 	carapace.Gen(logins_defaultCmd).FlagCompletion(carapace.ActionMap{
 		"output": tea.ActionOutputFormats(),
 	})
+
+	carapace.Gen(logins_defaultCmd).PositionalCompletion(
+		tea.ActionLogins(),
+	)
 }

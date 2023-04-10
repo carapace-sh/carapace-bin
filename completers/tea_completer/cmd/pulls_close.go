@@ -24,6 +24,7 @@ func init() {
 
 	// TODO completion
 	carapace.Gen(pulls_closeCmd).FlagCompletion(carapace.ActionMap{
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 	})
 

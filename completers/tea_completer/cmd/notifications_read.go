@@ -28,6 +28,7 @@ func init() {
 	notificationsCmd.AddCommand(notifications_readCmd)
 
 	carapace.Gen(notifications_readCmd).FlagCompletion(carapace.ActionMap{
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 		"states": tea.ActionNotificationStates().UniqueList(","),

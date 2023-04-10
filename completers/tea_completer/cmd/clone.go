@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/tea"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +20,10 @@ func init() {
 	cloneCmd.Flags().StringP("depth", "d", "", "num commits to fetch, defaults to all")
 	cloneCmd.Flags().StringP("login", "l", "", "Use a different Gitea Login. Optional")
 	rootCmd.AddCommand(cloneCmd)
+
+	carapace.Gen(cloneCmd).FlagCompletion(carapace.ActionMap{
+		"login": tea.ActionLogins(),
+	})
 
 	carapace.Gen(cloneCmd).PositionalCompletion(
 		carapace.ActionValues(), // TODO repo slug

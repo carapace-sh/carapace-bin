@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/tea"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +18,7 @@ func init() {
 
 	loginsCmd.AddCommand(logins_deleteCmd)
 
-	// TODO completion
+	carapace.Gen(logins_deleteCmd).PositionalCompletion(
+		tea.ActionLogins(),
+	)
 }

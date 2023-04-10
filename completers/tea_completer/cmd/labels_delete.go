@@ -27,6 +27,7 @@ func init() {
 
 	// TODO completion
 	carapace.Gen(labels_deleteCmd).FlagCompletion(carapace.ActionMap{
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 	})

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/tea"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,7 @@ func init() {
 	organizationsCmd.AddCommand(organizations_createCmd)
 
 	// TODO completion
+	carapace.Gen(organizations_createCmd).FlagCompletion(carapace.ActionMap{
+		"login": tea.ActionLogins(),
+	})
 }

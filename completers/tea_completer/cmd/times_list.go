@@ -32,6 +32,7 @@ func init() {
 	carapace.Gen(times_listCmd).FlagCompletion(carapace.ActionMap{
 		"fields": tea.ActionTimeFields().UniqueList(","),
 		"from":   time.ActionDate(),
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"until":  time.ActionDate(),
 	})

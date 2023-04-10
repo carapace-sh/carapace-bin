@@ -29,6 +29,7 @@ func init() {
 
 	// TODO output formats
 	carapace.Gen(labelsCmd).FlagCompletion(carapace.ActionMap{
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 	})
