@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/tea"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +24,10 @@ func init() {
 	organizations_listCmd.Flags().StringP("remote", "R", "", "Discover Gitea login from remote. Optional")
 	organizations_listCmd.Flags().StringP("repo", "r", "", "Override local repository path or gitea repository slug to interact with. Optional")
 	organizationsCmd.AddCommand(organizations_listCmd)
+
+	carapace.Gen(organizations_listCmd).FlagCompletion(carapace.ActionMap{
+		"login":  tea.ActionLogins(),
+		"output": tea.ActionOutputFormats(),
+		"remote": git.ActionRemotes(),
+	})
 }

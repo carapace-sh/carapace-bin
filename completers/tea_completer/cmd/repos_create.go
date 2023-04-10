@@ -34,6 +34,7 @@ func init() {
 
 	// TODO completion
 	carapace.Gen(repos_createCmd).FlagCompletion(carapace.ActionMap{
+		"login":      tea.ActionLogins(),
 		"output":     tea.ActionOutputFormats(),
 		"trustmodel": carapace.ActionValues("committer", "collaborator", "collaborator+committer"),
 	})

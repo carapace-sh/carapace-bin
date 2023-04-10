@@ -31,6 +31,7 @@ func init() {
 	// TODO completion
 	carapace.Gen(labels_updateCmd).FlagCompletion(carapace.ActionMap{
 		"color":  color.ActionHexColors(),
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 	})

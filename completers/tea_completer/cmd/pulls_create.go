@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/tea_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/tea"
 	"github.com/spf13/cobra"
 )
 
@@ -35,6 +36,7 @@ func init() {
 	// TODO completion
 	carapace.Gen(pulls_createCmd).FlagCompletion(carapace.ActionMap{
 		"labels": action.ActionLabels(pulls_createCmd).UniqueList(","),
+		"login":  tea.ActionLogins(),
 		"remote": git.ActionRemotes(),
 	})
 }

@@ -33,6 +33,7 @@ func init() {
 
 	// TODO completion
 	carapace.Gen(repos_createFromTemplateCmd).FlagCompletion(carapace.ActionMap{
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 	})
 }

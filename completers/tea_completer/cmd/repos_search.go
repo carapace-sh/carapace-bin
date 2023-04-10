@@ -31,6 +31,7 @@ func init() {
 	// TODO completion
 	carapace.Gen(repos_searchCmd).FlagCompletion(carapace.ActionMap{
 		"fields": tea.ActionRepositoryFields().UniqueList(","),
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"type":   carapace.ActionValues("fork", "mirror", "source"),
 	})

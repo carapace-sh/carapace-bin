@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/tea"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +25,7 @@ func init() {
 
 	// TODO completion
 	carapace.Gen(openCmd).FlagCompletion(carapace.ActionMap{
+		"login":  tea.ActionLogins(),
 		"remote": git.ActionRemotes(),
 	})
 }

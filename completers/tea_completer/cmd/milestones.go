@@ -32,6 +32,7 @@ func init() {
 	//TODO completion
 	carapace.Gen(milestonesCmd).FlagCompletion(carapace.ActionMap{
 		"fields": tea.ActionMilestoneFields().UniqueList(","),
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 		"state":  carapace.ActionValues("all", "open", "closed").StyleF(style.ForKeyword),

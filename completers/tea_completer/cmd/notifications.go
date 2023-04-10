@@ -33,6 +33,7 @@ func init() {
 	// TODO completion
 	carapace.Gen(notificationsCmd).FlagCompletion(carapace.ActionMap{
 		"fields": tea.ActionNotificationFields().UniqueList(","),
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 		"states": tea.ActionNotificationStates().UniqueList(","),

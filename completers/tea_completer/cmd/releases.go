@@ -26,6 +26,7 @@ func init() {
 
 	// TODO completion
 	carapace.Gen(releasesCmd).FlagCompletion(carapace.ActionMap{
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 	})

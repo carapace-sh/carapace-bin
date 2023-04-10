@@ -45,6 +45,7 @@ func init() {
 		"from":   time.ActionDate(),
 		"kind":   carapace.ActionValues("issues", "pulls", "all"),
 		"labels": action.ActionLabels(issues_listCmd).UniqueList(","),
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 		"state":  carapace.ActionValues("all", "open", "closed").StyleF(style.ForKeyword),

@@ -29,6 +29,7 @@ func init() {
 
 	// TODO completion
 	carapace.Gen(pulls_mergeCmd).FlagCompletion(carapace.ActionMap{
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 		"style":  carapace.ActionValues("merge", "rebase", "squash", "rebase-merge"),

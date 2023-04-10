@@ -29,6 +29,7 @@ func init() {
 	// TODO repo
 	carapace.Gen(admin_users_listCmd).FlagCompletion(carapace.ActionMap{
 		"fields": tea.ActionUserFields().UniqueList(","),
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 	})

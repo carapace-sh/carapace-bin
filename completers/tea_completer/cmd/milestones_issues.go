@@ -33,6 +33,7 @@ func init() {
 	carapace.Gen(milestones_issuesCmd).FlagCompletion(carapace.ActionMap{
 		"fields": tea.ActionMilestoneFields().UniqueList(","),
 		"kind":   carapace.ActionValues("issue", "pull"),
+		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
 		"state":  carapace.ActionValues("all", "open", "closed").StyleF(style.ForKeyword),
