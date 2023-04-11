@@ -37,7 +37,7 @@ func EmbedCarapaceBin(cmd *cobra.Command) {
 			flags.AddFlag(&pflag.Flag{
 				Name:                f.Name,
 				Shorthand:           f.Shorthand,
-				Style:               f.Style,
+				Mode:                f.Mode,
 				Usage:               f.Usage,
 				Value:               &value,
 				DefValue:            f.DefValue,
