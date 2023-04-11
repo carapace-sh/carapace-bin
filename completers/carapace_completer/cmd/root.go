@@ -105,6 +105,7 @@ func posCmd() *cobra.Command {
 			"nushell", "#29d866",
 			"oil", "#373a36",
 			"powershell", "#e8a16f",
+			"spec", style.Default,
 			"tcsh", "#412f09",
 			"xonsh", "#a8ffa9",
 			"zsh", "#efda53",
