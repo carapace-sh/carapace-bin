@@ -125,8 +125,8 @@ func ActionOptionValues(option string) carapace.Action {
 			"anticomp":                           actionBool,
 			"block_global":                       actionBool,
 			"block_list": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				if len(c.CallbackValue) > 0 {
-					return carapace.ActionMultiParts(c.CallbackValue[:1], func(c carapace.Context) carapace.Action {
+				if len(c.Value) > 0 {
+					return carapace.ActionMultiParts(c.Value[:1], func(c carapace.Context) carapace.Action {
 						switch len(c.Parts) {
 						case 2:
 							return http.ActionStatusCodes()
@@ -252,8 +252,8 @@ func ActionOptionValues(option string) carapace.Action {
 
 func actionOptionFiles() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if strings.HasPrefix(c.CallbackValue, "@") {
-			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "@")
+		if strings.HasPrefix(c.Value, "@") {
+			c.Value = strings.TrimPrefix(c.Value, "@")
 			return carapace.ActionFiles().Invoke(c).Prefix("@").ToA()
 		}
 		return carapace.ActionValues()
@@ -262,8 +262,8 @@ func actionOptionFiles() carapace.Action {
 
 func actionOptionFlowFilters() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if index := strings.LastIndex(c.CallbackValue, "~"); index != -1 {
-			return ActionFlowFilters().Invoke(c).Prefix(c.CallbackValue[:index+1]).ToA()
+		if index := strings.LastIndex(c.Value, "~"); index != -1 {
+			return ActionFlowFilters().Invoke(c).Prefix(c.Value[:index+1]).ToA()
 		}
 		return carapace.ActionValues()
 	})

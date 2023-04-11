@@ -13,7 +13,7 @@ import (
 //	#00afff (DeepSkyBlue1)
 func ActionColors() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if strings.HasPrefix(c.CallbackValue, "#") {
+		if strings.HasPrefix(c.Value, "#") {
 			return color.ActionHexColors()
 		}
 		return color.Action256Colors()

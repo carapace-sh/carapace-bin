@@ -28,13 +28,13 @@ func init() {
 			}
 			args := []string{}
 			args = append(args, c.Args...)
-			args = append(args, c.CallbackValue)
+			args = append(args, c.Value)
 			if err := firstPass.ParseFlags(args); err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
 
 			secondPass := xargsCmd()
-			if args := firstPass.Flags().Args(); len(args) > 0 && !(len(args) == 1 && args[0] == c.CallbackValue) {
+			if args := firstPass.Flags().Args(); len(args) > 0 && !(len(args) == 1 && args[0] == c.Value) {
 				subcmd := subCmd(args[0])
 				secondPass.AddCommand(subcmd)
 			}

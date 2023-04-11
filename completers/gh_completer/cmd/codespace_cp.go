@@ -34,13 +34,13 @@ func init() {
 
 	carapace.Gen(codespace_cpCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
-			} else if !strings.HasPrefix(c.CallbackValue, "remote:/") {
+			} else if !strings.HasPrefix(c.Value, "remote:/") {
 				return carapace.ActionValues("remote:/").NoSpace()
 			}
 
-			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "remote:")
+			c.Value = strings.TrimPrefix(c.Value, "remote:")
 			return action.ActionCodespacePath(
 				codespace_cpCmd.Flag("codespace").Value.String(),
 				codespace_cpCmd.Flag("expand").Changed,

@@ -10,12 +10,12 @@ import (
 
 func ActionSearch(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if len(c.CallbackValue) < 2 {
+		if len(c.Value) < 2 {
 			return carapace.ActionMessage("search needs at least 2 characters")
 		}
 
 		args := append([]string{"search"}, defaultArgs(cmd)...)
-		args = append(args, fmt.Sprintf("/^%v/", c.CallbackValue))
+		args = append(args, fmt.Sprintf("/^%v/", c.Value))
 		return carapace.ActionExecCommand("brew", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 

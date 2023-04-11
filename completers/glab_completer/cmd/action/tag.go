@@ -17,7 +17,7 @@ type tag struct {
 func ActionTags(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult []tag
-		return actionApi(cmd, fmt.Sprintf("projects/:fullpath/repository/tags?order_by=updated&per_page=100&search=%v", c.CallbackValue), &queryResult, func() carapace.Action {
+		return actionApi(cmd, fmt.Sprintf("projects/:fullpath/repository/tags?order_by=updated&per_page=100&search=%v", c.Value), &queryResult, func() carapace.Action {
 			vals := make([]string, 0, len(queryResult)*2)
 			for _, tag := range queryResult {
 				vals = append(vals, tag.Name, tag.Commit.Title)

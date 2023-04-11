@@ -42,25 +42,25 @@ func ActionRepositorySearch(opts SearchOpts) carapace.Action {
 		prefix := ""
 		if opts.Prefix {
 			prefix = "https://"
-			if !strings.HasPrefix(c.CallbackValue, prefix) {
+			if !strings.HasPrefix(c.Value, prefix) {
 				return carapace.ActionValues(prefix).NoSpace()
 			}
-			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, prefix)
+			c.Value = strings.TrimPrefix(c.Value, prefix)
 		}
 
-		if !strings.Contains(c.CallbackValue, "/") {
+		if !strings.Contains(c.Value, "/") {
 			return carapace.ActionValues(opts.Hosts()...).Invoke(c).Prefix(prefix).Suffix("/").ToA().NoSpace()
 		}
 
 		// TODO create repo completer with confighost prefix then use carapace.Batch for github.com/gitlab.com
-		switch strings.SplitAfter(c.CallbackValue, "/")[0] {
+		switch strings.SplitAfter(c.Value, "/")[0] {
 		case "github.com/":
-			splitted := strings.Split(c.CallbackValue, "/")
+			splitted := strings.Split(c.Value, "/")
 			switch len(splitted) {
 			case 0:
 				return gh.ActionConfigHosts().Invoke(c).Suffix("/").ToA()
 			default:
-				c.CallbackValue = strings.TrimPrefix(c.CallbackValue, splitted[0]+"/")
+				c.Value = strings.TrimPrefix(c.Value, splitted[0]+"/")
 				return gh.ActionOwnerRepositories(&cobra.Command{}).Invoke(c).Prefix(prefix + splitted[0] + "/").ToA()
 			}
 

@@ -9,13 +9,13 @@ import (
 
 func ActionInputFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if !strings.ContainsAny(c.CallbackValue, "+-") {
+		if !strings.ContainsAny(c.Value, "+-") {
 			return carapace.ActionExecCommand("pandoc", "--list-input-formats")(func(output []byte) carapace.Action {
 				lines := strings.Split(string(output), "\n")
 				return carapace.ActionValues(lines[:len(lines)-1]...)
 			})
 		}
-		fields := extensionFields(c.CallbackValue)
+		fields := extensionFields(c.Value)
 		fields = fields[:len(fields)-1] // omit currently completed extension
 		return ActionExtensions(fields[0]).Invoke(c).Filter(fields[1:]).Prefix(strings.Join(fields, "")).ToA()
 	})
@@ -23,13 +23,13 @@ func ActionInputFormats() carapace.Action {
 
 func ActionOutputFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if !strings.ContainsAny(c.CallbackValue, "+-") {
+		if !strings.ContainsAny(c.Value, "+-") {
 			return carapace.ActionExecCommand("pandoc", "--list-output-formats")(func(output []byte) carapace.Action {
 				lines := strings.Split(string(output), "\n")
 				return carapace.ActionValues(lines[:len(lines)-1]...)
 			})
 		}
-		fields := extensionFields(c.CallbackValue)
+		fields := extensionFields(c.Value)
 		fields = fields[:len(fields)-1] // omit currently completed extension
 		return ActionExtensions(fields[0]).Invoke(c).Filter(fields[1:]).Prefix(strings.Join(fields, "")).ToA()
 	})
@@ -69,7 +69,7 @@ func ActionExtensions(format string) carapace.Action {
 
 func ActionHighlightStyles() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if util.HasPathPrefix(c.CallbackValue) {
+		if util.HasPathPrefix(c.Value) {
 			return carapace.ActionFiles(".theme")
 		}
 		return carapace.ActionValues("pygments", "kate", "monochrome", "breezeDark", "espresso", "zenburn", "haddock", "tango")

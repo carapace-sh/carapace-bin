@@ -34,7 +34,7 @@ func ActionCodespaces() carapace.Action {
 
 func ActionCodespacePath(codespace string, expand bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		path := filepath.Dir(c.CallbackValue)
+		path := filepath.Dir(c.Value)
 
 		if !expand {
 			// scp treats each filename argument as a shell expression,
@@ -47,7 +47,7 @@ func ActionCodespacePath(codespace string, expand bool) carapace.Action {
 		}
 
 		args := []string{"codespace", "ssh", "--codespace", codespace, "--", "ls", "-1", "-p", path}
-		if splitted := strings.Split(c.CallbackValue, "/"); strings.HasPrefix(splitted[len(splitted)-1], ".") {
+		if splitted := strings.Split(c.Value, "/"); strings.HasPrefix(splitted[len(splitted)-1], ".") {
 			args = append(args, "-a") // show hidden
 		}
 		return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {

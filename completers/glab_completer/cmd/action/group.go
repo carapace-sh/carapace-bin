@@ -15,7 +15,7 @@ type group struct {
 
 func ActionGroups(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		query := fmt.Sprintf(`groups?all_available=true&search=%v`, url.QueryEscape(c.CallbackValue))
+		query := fmt.Sprintf(`groups?all_available=true&search=%v`, url.QueryEscape(c.Value))
 
 		var queryResult []group
 		return actionApi(cmd, query, &queryResult, func() carapace.Action {
@@ -30,7 +30,7 @@ func ActionGroups(cmd *cobra.Command) carapace.Action {
 
 func ActionSubgroups(cmd *cobra.Command, groupID string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		query := fmt.Sprintf(`groups/%v/subgroups?all_available=true&search=%v`, url.PathEscape(groupID), url.QueryEscape(c.CallbackValue))
+		query := fmt.Sprintf(`groups/%v/subgroups?all_available=true&search=%v`, url.PathEscape(groupID), url.QueryEscape(c.Value))
 
 		var queryResult []group
 		return actionApi(cmd, query, &queryResult, func() carapace.Action {

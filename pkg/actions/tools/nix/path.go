@@ -20,7 +20,7 @@ func ActionPaths() carapace.Action {
 			carapace.ActionFiles(".nix"),
 		)
 
-		if !strings.HasPrefix(c.CallbackValue, "channel:") {
+		if !strings.HasPrefix(c.Value, "channel:") {
 			batch = append(batch, carapace.ActionValues("channel:").NoSpace(':'))
 		} else {
 			batch = append(batch, ActionRemoteChannels().Prefix("channel:"))

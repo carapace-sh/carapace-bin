@@ -25,7 +25,7 @@ func ActionFiles(opts ServicePathOpts) carapace.Action {
 			opts.Index = 1 // default to 1
 		}
 
-		path := filepath.Dir(c.CallbackValue)
+		path := filepath.Dir(c.Value)
 		return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 			return actionExecCompose(opts.Files, "exec", "--no-TTY", "--index", strconv.Itoa(opts.Index), opts.Service, "ls", `-1`, `-p`, path)(func(output []byte) carapace.Action {
 				lines := strings.Split(string(output), "\n")

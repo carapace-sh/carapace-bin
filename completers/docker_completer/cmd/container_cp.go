@@ -23,7 +23,7 @@ func init() {
 	rootAlias(container_cpCmd, func(cmd *cobra.Command, isAlias bool) {
 		carapace.Gen(cmd).PositionalCompletion(
 			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				if util.HasPathPrefix(c.CallbackValue) {
+				if util.HasPathPrefix(c.Value) {
 					return carapace.ActionFiles()
 				}
 				return docker.ActionContainerPath()

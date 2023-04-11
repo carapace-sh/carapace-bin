@@ -188,11 +188,11 @@ func init() {
 	carapace.Gen(revListCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			prefix := ""
-			if strings.HasPrefix(c.CallbackValue, "^") {
+			if strings.HasPrefix(c.Value, "^") {
 				prefix = "^"
 			}
 
-			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, prefix)
+			c.Value = strings.TrimPrefix(c.Value, prefix)
 			return git.ActionRefs(git.RefOption{}.Default()).Invoke(c).Prefix(prefix).ToA()
 		}),
 	)

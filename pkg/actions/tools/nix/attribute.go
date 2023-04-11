@@ -30,7 +30,7 @@ func ActionAttributes(opts AttributeOpts) carapace.Action {
 			opts.Source = "default.nix"
 		}
 
-		attrPath := c.CallbackValue
+		attrPath := c.Value
 
 		if strings.HasPrefix(opts.Source, "<") {
 			// expression is a local channel, use as-is

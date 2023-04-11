@@ -35,7 +35,7 @@ func init() {
 	carapace.Gen(codespace_createCmd).FlagCompletion(carapace.ActionMap{
 		"branch": action.ActionBranches(codespace_createCmd),
 		"devcontainer-path": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			path := filepath.Dir(c.CallbackValue)
+			path := filepath.Dir(c.Value)
 			path = strings.TrimPrefix(path, "/")
 			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 				return action.ActionContents(codespace_createCmd, path, codespace_createCmd.Flag("branch").Value.String())

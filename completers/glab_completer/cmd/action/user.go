@@ -23,11 +23,11 @@ type userQuery struct {
 
 func ActionUsers(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if len(c.CallbackValue) < 3 {
+		if len(c.Value) < 3 {
 			return carapace.ActionMessage("search needs at least 3 characters")
 		}
 
-		query := fmt.Sprintf(`{ users(search: "%v") { nodes { username, name } } }`, c.CallbackValue)
+		query := fmt.Sprintf(`{ users(search: "%v") { nodes { username, name } } }`, c.Value)
 		var queryResult userQuery
 		return actionGraphql(cmd, query, &queryResult, func() carapace.Action {
 			vals := make([]string, 0, len(queryResult.Data.Users.Nodes)*2)
@@ -41,10 +41,10 @@ func ActionUsers(cmd *cobra.Command) carapace.Action {
 
 func ActionProjectMembers(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if len(c.CallbackValue) < 3 {
+		if len(c.Value) < 3 {
 			return carapace.ActionMessage("search needs at least 3 characters")
 		}
-		query := fmt.Sprintf(`/projects/:fullpath/members/all?query=%v`, url.QueryEscape(c.CallbackValue))
+		query := fmt.Sprintf(`/projects/:fullpath/members/all?query=%v`, url.QueryEscape(c.Value))
 
 		var queryResult []user
 		return actionApi(cmd, query, &queryResult, func() carapace.Action {

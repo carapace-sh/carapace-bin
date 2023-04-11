@@ -23,7 +23,7 @@ func init() {
 
 	carapace.Gen(cpCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
 			}
 			return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {

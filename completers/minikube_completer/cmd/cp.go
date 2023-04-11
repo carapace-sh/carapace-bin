@@ -27,7 +27,7 @@ func init() {
 				return action.ActionNodes().Invoke(c).Suffix(":/").ToA()
 			case 1:
 				node := c.Parts[0]
-				path := filepath.Dir(c.CallbackValue)
+				path := filepath.Dir(c.Value)
 				if path == "" {
 					path = "/"
 				}

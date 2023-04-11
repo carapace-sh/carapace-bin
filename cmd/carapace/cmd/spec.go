@@ -58,7 +58,7 @@ func addAliasCompletion(cmd *cobra.Command, specCommand spec.Command) {
 					execArgs := []string{mArgs[0], "export", mArgs[0]}
 					execArgs = append(execArgs, mArgs[1:]...)
 					execArgs = append(execArgs, c.Args...)
-					execArgs = append(execArgs, c.CallbackValue)
+					execArgs = append(execArgs, c.Value)
 					return carapace.ActionExecCommand("carapace", execArgs...)(func(output []byte) carapace.Action {
 						return carapace.ActionImport(output)
 					})

@@ -52,8 +52,8 @@ func init() {
 func ActionMultiplicativeSuffixes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		r := regexp.MustCompile(`^(?P<num>\d+)`)
-		if r.MatchString(c.CallbackValue) {
-			matches := r.FindStringSubmatch(c.CallbackValue)
+		if r.MatchString(c.Value) {
+			matches := r.FindStringSubmatch(c.Value)
 			return carapace.ActionValues("KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB").Invoke(c).Prefix(matches[1]).ToA()
 		}
 		return carapace.ActionValues()

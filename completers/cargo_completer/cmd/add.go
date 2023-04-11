@@ -67,7 +67,7 @@ func init() {
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionDirectories()
 			}
 

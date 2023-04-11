@@ -15,13 +15,13 @@ import (
 func ActionSources() carapace.Action {
 	return carapace.Batch(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
 			}
 			return docker.ActionRepositoryTags()
 		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			splitted := strings.SplitN(c.CallbackValue, ":", 2)
+			splitted := strings.SplitN(c.Value, ":", 2)
 			switch len(splitted) {
 			case 1:
 				return carapace.ActionValuesDescribed(
@@ -37,7 +37,7 @@ func ActionSources() carapace.Action {
 				).Suffix(":").Tag("sources")
 			case 2:
 				prefix := splitted[0] + ":"
-				c.CallbackValue = strings.TrimPrefix(c.CallbackValue, prefix)
+				c.Value = strings.TrimPrefix(c.Value, prefix)
 				return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 					// TODO podman, registry
 					switch splitted[0] {

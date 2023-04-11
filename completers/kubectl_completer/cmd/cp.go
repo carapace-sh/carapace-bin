@@ -50,7 +50,7 @@ func init() {
 
 func ActionPathOrContainer() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if util.HasPathPrefix(c.CallbackValue) {
+		if util.HasPathPrefix(c.Value) {
 			return carapace.ActionFiles()
 		} else {
 			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {

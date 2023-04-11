@@ -35,7 +35,7 @@ type repositoryQuery struct {
 func ActionRepositories(opts OwnerOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult repositoryQuery
-		return graphQlAction(opts.repo(), fmt.Sprintf(`search( type:REPOSITORY, query: """ user:%v "%v" in:name fork:true""", first: 100) { repos: edges { repo: node { ... on Repository { name description isArchived isPrivate isFork isMirror isTemplate isLocked } } } }`, opts.Owner, c.CallbackValue), &queryResult, func() carapace.Action {
+		return graphQlAction(opts.repo(), fmt.Sprintf(`search( type:REPOSITORY, query: """ user:%v "%v" in:name fork:true""", first: 100) { repos: edges { repo: node { ... on Repository { name description isArchived isPrivate isFork isMirror isTemplate isLocked } } } }`, opts.Owner, c.Value), &queryResult, func() carapace.Action {
 			repositories := queryResult.Data.Search.Repos
 			vals := make([]string, 0)
 			for _, repo := range repositories {

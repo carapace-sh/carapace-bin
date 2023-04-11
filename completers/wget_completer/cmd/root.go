@@ -197,7 +197,7 @@ func init() {
 		"output-document":  carapace.ActionFiles(),
 		"output-file":      carapace.ActionFiles(),
 		"pinnedpubkey": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if !strings.HasPrefix(c.CallbackValue, "sha256//") {
+			if !strings.HasPrefix(c.Value, "sha256//") {
 				return carapace.Batch(
 					carapace.ActionFiles(),
 					carapace.ActionValues("sha256//"),

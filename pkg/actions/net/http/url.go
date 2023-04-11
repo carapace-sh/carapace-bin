@@ -15,11 +15,11 @@ func ActionUrls() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		prefix := ""
 
-		if strings.HasPrefix(c.CallbackValue, "https://") {
-			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "https://")
+		if strings.HasPrefix(c.Value, "https://") {
+			c.Value = strings.TrimPrefix(c.Value, "https://")
 			prefix = "https://"
-		} else if strings.HasPrefix(c.CallbackValue, "http://") {
-			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "http://")
+		} else if strings.HasPrefix(c.Value, "http://") {
+			c.Value = strings.TrimPrefix(c.Value, "http://")
 			prefix = "http://"
 		}
 

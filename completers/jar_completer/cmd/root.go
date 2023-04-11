@@ -53,8 +53,8 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if strings.HasPrefix(c.CallbackValue, "@") {
-				c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "@")
+			if strings.HasPrefix(c.Value, "@") {
+				c.Value = strings.TrimPrefix(c.Value, "@")
 				return carapace.ActionFiles().Invoke(c).Prefix("@").ToA()
 			}
 			return carapace.ActionFiles()

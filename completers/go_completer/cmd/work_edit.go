@@ -50,7 +50,7 @@ func init() {
 				}
 				return golang.ActionWorkModules("").Invoke(c).Suffix("=").ToA()
 			case 1:
-				if util.HasPathPrefix(c.CallbackValue) {
+				if util.HasPathPrefix(c.Value) {
 					path, err := util.FindReverse(c.Dir, "go.work")
 					if err != nil {
 						return carapace.ActionMessage(err.Error())

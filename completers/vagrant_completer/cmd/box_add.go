@@ -40,7 +40,7 @@ func init() {
 
 	carapace.Gen(box_addCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles(".box", ".json")
 			}
 			return action.ActionCloudBoxSearch(box_addCmd.Flag("provider").Value.String())

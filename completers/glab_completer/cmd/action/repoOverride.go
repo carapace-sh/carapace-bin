@@ -15,7 +15,7 @@ func FakeRepoFlag(cmd *cobra.Command, value string) {
 func ActionRepo(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if flag := cmd.Flag("repo"); flag == nil {
-			FakeRepoFlag(cmd, c.CallbackValue)
+			FakeRepoFlag(cmd, c.Value)
 		}
 
 		configHosts, err := hosts()
@@ -23,10 +23,10 @@ func ActionRepo(cmd *cobra.Command) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		if strings.Contains(c.CallbackValue, "/") {
+		if strings.Contains(c.Value, "/") {
 			isKnownHost := false
 			for _, host := range configHosts {
-				if strings.HasPrefix(c.CallbackValue, host) {
+				if strings.HasPrefix(c.Value, host) {
 					isKnownHost = true
 					break
 				}

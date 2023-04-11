@@ -36,7 +36,7 @@ func actionCloudBoxSearch(provider string, page int) carapace.Action {
 		if provider != "" {
 			query = append(query, "provider="+url.QueryEscape(provider))
 		}
-		query = append(query, "q="+url.QueryEscape(c.CallbackValue))
+		query = append(query, "q="+url.QueryEscape(c.Value))
 		query = append(query, "page="+strconv.Itoa(page))
 
 		return carapace.ActionExecCommand("curl", "https://app.vagrantup.com/api/v1/search?"+strings.Join(query, "&"))(func(output []byte) carapace.Action {

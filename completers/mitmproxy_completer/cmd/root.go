@@ -96,8 +96,8 @@ func init() {
 		"scripts":          carapace.ActionFiles(),
 		"server-replay":    carapace.ActionFiles(),
 		"set": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if splitted := strings.SplitN(c.CallbackValue, "=", 2); len(splitted) > 1 {
-				c.CallbackValue = splitted[1]
+			if splitted := strings.SplitN(c.Value, "=", 2); len(splitted) > 1 {
+				c.Value = splitted[1]
 				return mitmproxy.ActionOptionValues(splitted[0]).Invoke(c).Prefix(splitted[0] + "=").ToA().NoSpace()
 			}
 			return mitmproxy.ActionOptionNames().NoSpace()

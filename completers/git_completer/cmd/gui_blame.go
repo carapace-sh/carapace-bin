@@ -21,7 +21,7 @@ func init() {
 
 	carapace.Gen(gui_blameCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
 			}
 			return git.ActionRefs(git.RefOption{}.Default())

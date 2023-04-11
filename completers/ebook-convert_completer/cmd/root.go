@@ -30,7 +30,7 @@ func init() {
 		carapace.Batch(
 			carapace.ActionFiles(),
 			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				if index := strings.LastIndex(c.CallbackValue, "."); index != -1 {
+				if index := strings.LastIndex(c.Value, "."); index != -1 {
 					return carapace.ActionValuesDescribed(
 						"mobi", "Mobipocket",
 						"epub", "Electronic Publication",
@@ -49,7 +49,7 @@ func init() {
 						"txt", "Plain Text File",
 						"txtz", "Zipped Plain Text File",
 						"zip", "Zipped File",
-					).Invoke(c).Prefix(c.CallbackValue[:index+1]).ToA().StyleF(style.ForPathExt)
+					).Invoke(c).Prefix(c.Value[:index+1]).ToA().StyleF(style.ForPathExt)
 				}
 				return carapace.ActionValues()
 			}),

@@ -65,9 +65,9 @@ func init() {
 				}
 			}
 
-			path := filepath.Dir(c.CallbackValue)
+			path := filepath.Dir(c.Value)
 			path = strings.TrimPrefix(path, "/")
-			if !strings.HasPrefix(c.CallbackValue, "/") {
+			if !strings.HasPrefix(c.Value, "/") {
 				root, err := util.FindReverse(c.Dir, ".git")
 				if err != nil {
 					return carapace.ActionMessage(err.Error())
@@ -76,7 +76,7 @@ func init() {
 				if err != nil {
 					return carapace.ActionMessage(err.Error())
 				}
-				abs := fmt.Sprintf("%v/%v", rel, c.CallbackValue)
+				abs := fmt.Sprintf("%v/%v", rel, c.Value)
 				r := regexp.MustCompile(`[^\/]+\/\.\.\/`)
 				for {
 					if match := r.FindString(abs); match != "" {
