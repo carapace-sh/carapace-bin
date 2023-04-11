@@ -50,7 +50,7 @@ func init() {
 		"owner":          gh.ActionOwners(gh.HostOpts{}),
 		"repo": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			dummyCmd := &cobra.Command{}
-			dummyCmd.Flags().String("repo", c.CallbackValue, "fake repo flag")
+			dummyCmd.Flags().String("repo", c.Value, "fake repo flag")
 			return action.ActionOwnerRepositories(dummyCmd).NoSpace()
 		}),
 		"sort":       carapace.ActionValues("author-date", "committer-date"),

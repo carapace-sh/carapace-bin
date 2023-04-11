@@ -39,7 +39,7 @@ func ActionRepositories() carapace.Action {
 //	gstreamer
 func ActionPackages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("pacman", "-Qs", "^"+c.CallbackValue)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("pacman", "-Qs", "^"+c.Value)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			r := regexp.MustCompile(`^(?P<group>[^/]+)/(?P<name>[^ ]+) (?P<version>[^ ]+)(?P<context>.*)$`)
 

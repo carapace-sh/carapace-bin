@@ -20,12 +20,12 @@ type topicQuery struct {
 
 func ActionTopicSearch(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if len(c.CallbackValue) < 2 {
+		if len(c.Value) < 2 {
 			return carapace.ActionMessage("topic search needs at least two characters")
 		}
 
 		var queryResult topicQuery
-		return ApiV3Action(cmd, fmt.Sprintf(`search/topics?per_page=100&q=%v`, url.QueryEscape(c.CallbackValue)), &queryResult, func() carapace.Action {
+		return ApiV3Action(cmd, fmt.Sprintf(`search/topics?per_page=100&q=%v`, url.QueryEscape(c.Value)), &queryResult, func() carapace.Action {
 			vals := make([]string, 0, len(queryResult.Items)*2)
 			for _, topic := range queryResult.Items {
 				vals = append(vals, topic.Name, topic.ShortDescription)

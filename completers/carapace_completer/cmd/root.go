@@ -118,7 +118,7 @@ func posCmd() *cobra.Command {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			args := []string{c.Args[0], "export", c.Args[0]}
 			args = append(args, c.Args[3:]...)
-			args = append(args, c.CallbackValue)
+			args = append(args, c.Value)
 			return carapace.ActionExecCommand("carapace", args...)(func(output []byte) carapace.Action {
 				if string(output) == "" {
 					return carapace.ActionValues()

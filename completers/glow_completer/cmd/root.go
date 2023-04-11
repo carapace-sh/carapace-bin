@@ -42,7 +42,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				if !strings.HasPrefix(c.CallbackValue, "https://") {
+				if !strings.HasPrefix(c.Value, "https://") {
 					return carapace.ActionFiles(".md")
 				}
 				return carapace.ActionValues()

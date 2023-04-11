@@ -53,7 +53,7 @@ func ActionRefFiles(ref string) carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		path := fmt.Sprintf("%v/%v", relDir, filepath.Dir(c.CallbackValue))
+		path := fmt.Sprintf("%v/%v", relDir, filepath.Dir(c.Value))
 		if path := filepath.Dir(path); path == "." {
 			path = ""
 		} else {
@@ -68,7 +68,7 @@ func ActionRefFiles(ref string) carapace.Action {
 		}
 
 		prefix := ""
-		if dir := filepath.Dir(c.CallbackValue); dir != "." {
+		if dir := filepath.Dir(c.Value); dir != "." {
 			prefix = dir + "/"
 		}
 

@@ -25,7 +25,7 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			// TODO patch user@instance and --flag=optarg as in gcloud completion script
 
-			if c.CallbackValue == "-" {
+			if c.Value == "-" {
 				return carapace.ActionValues("--").NoSpace() // seems shorthand flags aren't completed anyway so expand to longhand first
 			}
 			c.Setenv("CLOUDSDK_COMPONENT_MANAGER_DISABLE_UPDATE_CHECK", "1")

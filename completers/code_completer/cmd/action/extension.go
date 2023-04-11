@@ -34,13 +34,13 @@ type searchResult struct {
 
 func ActionExtensionSearch(category string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if len(c.CallbackValue) < 2 {
+		if len(c.Value) < 2 {
 			// skip search when less than two characters
 			return ActionMicrosoftExtensions(category)
 		}
 
 		term := ""
-		if splitted := strings.SplitN(c.CallbackValue, ".", 2); len(splitted) > 1 && len(splitted[1]) > 0 {
+		if splitted := strings.SplitN(c.Value, ".", 2); len(splitted) > 1 && len(splitted[1]) > 0 {
 			term = fmt.Sprintf("publisher:%v +%v", splitted[0], splitted[1])
 		} else {
 			term = "publisher:" + splitted[0]
@@ -71,7 +71,7 @@ func ActionExtensionSearch(category string) carapace.Action {
 				}
 			}
 
-			if c.CallbackValue != "Microsoft" {
+			if c.Value != "Microsoft" {
 				return carapace.Batch(
 					carapace.ActionValuesDescribed(vals...),
 					ActionMicrosoftExtensions(category), // always add microsoft extensions since searching for the aliased publisher is not working
@@ -86,6 +86,6 @@ func ActionExtensionSearch(category string) carapace.Action {
 func ActionMicrosoftExtensions(category string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// Microsoft extensions are aliased and only found by the 'Microsoft' publisher (though the actual name differs)
-		return ActionExtensionSearch(category).Invoke(carapace.Context{CallbackValue: "Microsoft"}).ToA()
+		return ActionExtensionSearch(category).Invoke(carapace.Context{Value: "Microsoft"}).ToA()
 	}).Cache(24*time.Hour, cache.String(category))
 }

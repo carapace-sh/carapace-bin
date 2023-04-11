@@ -43,7 +43,7 @@ func init() {
 			case 0:
 				return golang.ActionModules(golang.ModuleOpts{Direct: true, Indirect: true}).Invoke(c).Suffix("=").ToA()
 			case 1:
-				if util.HasPathPrefix(c.CallbackValue) {
+				if util.HasPathPrefix(c.Value) {
 					path, err := util.FindReverse(c.Dir, "go.mod")
 					if err != nil {
 						return carapace.ActionMessage(err.Error())

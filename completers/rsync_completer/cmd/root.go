@@ -170,7 +170,7 @@ func init() {
 		"backup-dir":      carapace.ActionDirectories(),
 		"checksum-choice": carapace.ActionValues("auto", "xxh128", "xxh3", "xxh64", "md5", "md4", "none"),
 		"chmod": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			if c.CallbackValue == "" {
+			if c.Value == "" {
 				return carapace.Batch(
 					fs.ActionFileModes(),
 					carapace.ActionValuesDescribed(
@@ -180,9 +180,9 @@ func init() {
 				).ToA()
 			}
 
-			if strings.HasPrefix(c.CallbackValue, "D") || strings.HasPrefix(c.CallbackValue, "F") {
-				prefix := string(c.CallbackValue[0])
-				c.CallbackValue = c.CallbackValue[1:]
+			if strings.HasPrefix(c.Value, "D") || strings.HasPrefix(c.Value, "F") {
+				prefix := string(c.Value[0])
+				c.Value = c.Value[1:]
 				return fs.ActionFileModes().Invoke(c).Prefix(prefix).ToA()
 			}
 			return fs.ActionFileModes()
@@ -248,7 +248,7 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
 			}
 

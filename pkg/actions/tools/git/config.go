@@ -83,10 +83,10 @@ func ActionConfigTypeOptions(t string) carapace.Action {
 		case "bool":
 			return carapace.ActionValues("true", "false")
 		case "bool-or-int":
-			integers := carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8", "9", "0").Invoke(c).Prefix(c.CallbackValue)
+			integers := carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8", "9", "0").Invoke(c).Prefix(c.Value)
 			return integers.Merge(carapace.ActionValues("true", "false").Invoke(c)).ToA()
 		case "int":
-			return carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8", "9", "0").Invoke(c).Prefix(c.CallbackValue).ToA()
+			return carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8", "9", "0").Invoke(c).Prefix(c.Value).ToA()
 		case "path":
 			return carapace.ActionFiles()
 		case "color":

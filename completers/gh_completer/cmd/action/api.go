@@ -75,7 +75,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
 				return ActionIssues(cmd, IssueOpts{Open: true, Closed: true})
 			case "{owner}":
-				if strings.HasPrefix(c.CallbackValue, ":") {
+				if strings.HasPrefix(c.Value, ":") {
 					return carapace.ActionValues(":owner")
 				} else {
 					return gh.ActionOwners(gh.HostOpts{}) // TODO host
@@ -88,7 +88,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
 				return ActionPullRequests(cmd, PullRequestOpts{Open: true, Closed: true, Merged: true})
 			case "{repo}":
-				if strings.HasPrefix(c.CallbackValue, ":") {
+				if strings.HasPrefix(c.Value, ":") {
 					return carapace.ActionValues(":repo")
 				} else {
 					return gh.ActionRepositories(gh.OwnerOpts{Owner: matchedData["{owner}"]})

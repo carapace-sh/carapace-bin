@@ -93,10 +93,10 @@ func ActionSearchRepositoryFields() carapace.Action {
 func ActionSearchRange(a carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		prefix := ""
-		if strings.HasPrefix(c.CallbackValue, "<=") || strings.HasPrefix(c.CallbackValue, ">=") {
-			prefix = c.CallbackValue[:2]
-		} else if strings.HasPrefix(c.CallbackValue, "<") || strings.HasPrefix(c.CallbackValue, ">") {
-			prefix = c.CallbackValue[:1]
+		if strings.HasPrefix(c.Value, "<=") || strings.HasPrefix(c.Value, ">=") {
+			prefix = c.Value[:2]
+		} else if strings.HasPrefix(c.Value, "<") || strings.HasPrefix(c.Value, ">") {
+			prefix = c.Value[:1]
 		}
 
 		return carapace.Batch(
@@ -108,7 +108,7 @@ func ActionSearchRange(a carapace.Action) carapace.Action {
 			),
 			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 				if prefix != "" {
-					c.CallbackValue = strings.TrimPrefix(c.CallbackValue, prefix)
+					c.Value = strings.TrimPrefix(c.Value, prefix)
 					return a.Invoke(c).Prefix(prefix).ToA()
 
 				}

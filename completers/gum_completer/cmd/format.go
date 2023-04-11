@@ -35,8 +35,8 @@ func init() {
 	carapace.Gen(formatCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if formatCmd.Flag("type").Value.String() == "emoji" {
-				if index := strings.LastIndex(c.CallbackValue, ":"); index != -1 {
-					return gh.ActionEmojis().Prefix(c.CallbackValue[:index])
+				if index := strings.LastIndex(c.Value, ":"); index != -1 {
+					return gh.ActionEmojis().Prefix(c.Value[:index])
 				}
 			}
 			return carapace.ActionValues()

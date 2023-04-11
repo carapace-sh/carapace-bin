@@ -12,7 +12,7 @@ import (
 //	en_US (English (United States))
 func ActionLocales() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if !strings.Contains(c.CallbackValue, "_") {
+		if !strings.Contains(c.Value, "_") {
 			return ActionLanguages().NoSpace()
 		}
 		return carapace.ActionValuesDescribed(

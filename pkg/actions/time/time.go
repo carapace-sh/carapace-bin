@@ -144,7 +144,7 @@ func ActionDateTime(opts DateTimeOpts) carapace.Action {
 	return carapace.ActionMultiParts(delimiter, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			if strings.Count(c.CallbackValue, "-") == 2 {
+			if strings.Count(c.Value, "-") == 2 {
 				return ActionDate().Invoke(c).Suffix(delimiter).ToA()
 			}
 			return ActionDate()

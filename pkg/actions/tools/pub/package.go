@@ -36,7 +36,7 @@ func ActionPackageSearch() carapace.Action {
 func actionPackageSearch(page int) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO verify on windows - should have a curl alias
-		return carapace.ActionExecCommand("curl", fmt.Sprintf("https://pub.dev/api/search?q=package:%v&page=%v", url.QueryEscape(c.CallbackValue), strconv.Itoa(page)))(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("curl", fmt.Sprintf("https://pub.dev/api/search?q=package:%v&page=%v", url.QueryEscape(c.Value), strconv.Itoa(page)))(func(output []byte) carapace.Action {
 			var result searchResult
 			err := json.Unmarshal(output, &result)
 			if err != nil {

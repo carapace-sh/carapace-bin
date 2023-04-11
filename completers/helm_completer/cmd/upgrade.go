@@ -86,7 +86,7 @@ func init() {
 	carapace.Gen(upgradeCmd).PositionalCompletion(
 		action.ActionReleases(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
 			}
 			return action.ActionRepositoryCharts()

@@ -31,7 +31,7 @@ func ActionPackages() carapace.Action {
 //	git-man
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("apt-cache", "search", "^"+c.CallbackValue)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("apt-cache", "search", "^"+c.Value)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			vals := make([]string, 0)
 

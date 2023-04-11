@@ -14,7 +14,7 @@ import (
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO crates.io has no prefix search so the results aren't very helpful at the moment
-		return carapace.ActionExecCommand("cargo", "search", "--limit", "100", c.CallbackValue)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("cargo", "search", "--limit", "100", c.Value)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			r := regexp.MustCompile(`^(?P<name>[^ ]+) = "(?P<version>[^"]+)" +#( (?P<description>.*))?$`)
 
@@ -57,11 +57,11 @@ func ActionGithubPackageSearch() carapace.Action {
 			batch = append(batch, actionGithubPackageIndex("3"))
 		}
 
-		if len(c.CallbackValue) > 3 {
-			batch = append(batch, actionGithubPackageIndex(fmt.Sprintf("%v/%v", c.CallbackValue[0:2], c.CallbackValue[2:4])))
-		} else if len(c.CallbackValue) > 1 {
+		if len(c.Value) > 3 {
+			batch = append(batch, actionGithubPackageIndex(fmt.Sprintf("%v/%v", c.Value[0:2], c.Value[2:4])))
+		} else if len(c.Value) > 1 {
 			batch = append(batch, carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				return actionGithubPackageIndex(c.CallbackValue[0:2]).Invoke(c).Prefix(c.CallbackValue[0:2]).ToA()
+				return actionGithubPackageIndex(c.Value[0:2]).Invoke(c).Prefix(c.Value[0:2]).ToA()
 			}))
 		}
 

@@ -50,12 +50,12 @@ func addRunFlags(cmd *cobra.Command) {
 		"cache-dir": carapace.ActionDirectories(),
 		"dry-run":   carapace.ActionValues("text", "json"),
 		"filter": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if index := strings.LastIndexAny(c.CallbackValue, "[]"); index != -1 && []rune(c.CallbackValue)[index] == '[' {
-				return git.ActionRefs(git.RefOption{}.Default()).Invoke(c).Prefix(c.CallbackValue[:index+1]).Suffix("]").ToA().NoSpace()
+			if index := strings.LastIndexAny(c.Value, "[]"); index != -1 && []rune(c.Value)[index] == '[' {
+				return git.ActionRefs(git.RefOption{}.Default()).Invoke(c).Prefix(c.Value[:index+1]).Suffix("]").ToA().NoSpace()
 			}
-			if index := strings.LastIndexAny(c.CallbackValue, "{}"); index != -1 && []rune(c.CallbackValue)[index] == '{' {
-				prefix := c.CallbackValue[:index+1]
-				c.CallbackValue = c.CallbackValue[index+1:]
+			if index := strings.LastIndexAny(c.Value, "{}"); index != -1 && []rune(c.Value)[index] == '{' {
+				prefix := c.Value[:index+1]
+				c.Value = c.Value[index+1:]
 				return carapace.ActionDirectories().Invoke(c).Prefix(prefix).ToA().NoSpace()
 			}
 			return npm.ActionDependencies().NoSpace()

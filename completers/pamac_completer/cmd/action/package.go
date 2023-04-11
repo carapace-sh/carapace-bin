@@ -22,10 +22,10 @@ func ActionPackageGroups() carapace.Action {
 
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if len(c.CallbackValue) == 0 {
+		if len(c.Value) == 0 {
 			return carapace.ActionValues()
 		}
-		return carapace.ActionExecCommand("pamac", "search", "--aur", c.CallbackValue)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("pamac", "search", "--aur", c.Value)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			r := regexp.MustCompile(`^(?P<name>[^ ]+) +(?P<installed>\[Installed\])? +(?P<version>[^ ]+) +(?P<repo>[^ ]+) $`)
 

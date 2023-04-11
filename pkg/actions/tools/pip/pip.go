@@ -42,7 +42,7 @@ func ActionInstalledPackages() carapace.Action {
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO pip search currently disabled due to load - basic workaround without paging
-		return carapace.ActionExecCommand("curl", fmt.Sprintf("https://pypi.org/search/?q=%v", c.CallbackValue))(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("curl", fmt.Sprintf("https://pypi.org/search/?q=%v", c.Value))(func(output []byte) carapace.Action {
 			re := regexp.MustCompile(`class="package-snippet__(name|description)">(?P<val>.*)<`)
 
 			vals := make([]string, 0)

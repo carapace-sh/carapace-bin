@@ -67,7 +67,7 @@ func init() {
 			}
 		}),
 		"install-extension": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles(".vsix")
 			}
 			return action.ActionExtensionSearch(rootCmd.Flag("category").Value.String())

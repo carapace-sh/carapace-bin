@@ -11,8 +11,8 @@ import (
 //	_~s_.*_@file
 func ActionModifyBodyPattern() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if len(c.CallbackValue) > 1 {
-			return carapace.ActionMultiParts(c.CallbackValue[:1], func(c carapace.Context) carapace.Action {
+		if len(c.Value) > 1 {
+			return carapace.ActionMultiParts(c.Value[:1], func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 1:
 					return actionOptionFlowFilters().NoSpace()
@@ -35,8 +35,8 @@ func ActionModifyBodyPattern() carapace.Action {
 //	_Accept-Encoding_zstd_@dist/
 func ActionModifyHeaderPattern() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if len(c.CallbackValue) > 1 {
-			return carapace.ActionMultiParts(c.CallbackValue[:1], func(c carapace.Context) carapace.Action {
+		if len(c.Value) > 1 {
+			return carapace.ActionMultiParts(c.Value[:1], func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 1:
 					return actionOptionFlowFilters().NoSpace()

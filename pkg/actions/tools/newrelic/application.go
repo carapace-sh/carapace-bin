@@ -81,7 +81,7 @@ func ActionApplicationGuids(profile string) carapace.Action {
       }
     }
   }
-}`, profiles[profile].AccountID, c.CallbackValue)
+}`, profiles[profile].AccountID, c.Value)
 
 		type response struct {
 			Actor struct {

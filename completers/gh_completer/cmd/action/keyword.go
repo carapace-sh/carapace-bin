@@ -14,11 +14,11 @@ import (
 func ActionBody(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionMultiParts(" ", func(c carapace.Context) carapace.Action {
 		switch {
-		case strings.HasPrefix(c.CallbackValue, ":"):
+		case strings.HasPrefix(c.Value, ":"):
 			return gh.ActionEmojis()
 
-		case strings.HasPrefix(c.CallbackValue, "@"):
-			c.CallbackValue = strings.TrimPrefix(c.CallbackValue, "@")
+		case strings.HasPrefix(c.Value, "@"):
+			c.Value = strings.TrimPrefix(c.Value, "@")
 			return ActionMentionableUsers(cmd).Invoke(c).Prefix("@").ToA()
 
 		default:
@@ -43,7 +43,7 @@ func ActionKeywordLinks(cmd *cobra.Command) carapace.Action {
 		return carapace.ActionMultiParts("#", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				if strings.Contains(c.CallbackValue, "/") {
+				if strings.Contains(c.Value, "/") {
 					return ActionOwnerRepositories(cmd).Invoke(c).Suffix("#").ToA()
 				}
 				return ActionOwnerRepositories(cmd)

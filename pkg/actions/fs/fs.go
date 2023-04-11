@@ -96,13 +96,13 @@ func ActionFileModesNumeric() carapace.Action {
 func ActionFileModes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		a := carapace.ActionValues().Invoke(c)
-		if len(c.CallbackValue) == 0 || !unicode.IsDigit([]rune(c.CallbackValue)[0]) {
+		if len(c.Value) == 0 || !unicode.IsDigit([]rune(c.Value)[0]) {
 			symbolic := carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 				return ActionFileModesSymbolic().NoSpace()
 			}).Invoke(c)
 			a = a.Merge(symbolic)
 		}
-		if len(c.CallbackValue) == 0 || unicode.IsDigit([]rune(c.CallbackValue)[0]) {
+		if len(c.Value) == 0 || unicode.IsDigit([]rune(c.Value)[0]) {
 			numeric := ActionFileModesNumeric().Invoke(c)
 			a = a.Merge(numeric)
 		}

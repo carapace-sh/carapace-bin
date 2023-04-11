@@ -30,7 +30,7 @@ func init() {
 
 	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
 		"diff": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
 			}
 			return action.ActionPackages(diffCmd)

@@ -27,8 +27,8 @@ func init() {
 	carapace.Gen(ci_runCmd).FlagCompletion(carapace.ActionMap{
 		"branch": action.ActionBranches(ci_runCmd),
 		"variables-file": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			if splitted := strings.SplitN(c.CallbackValue, ":", 2); len(splitted) == 2 {
-				c.CallbackValue = splitted[1]
+			if splitted := strings.SplitN(c.Value, ":", 2); len(splitted) == 2 {
+				c.Value = splitted[1]
 				return carapace.ActionFiles().Invoke(c).Prefix(splitted[0] + ":").ToA().NoSpace()
 			}
 			return carapace.ActionValues().NoSpace()

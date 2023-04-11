@@ -174,10 +174,10 @@ func ActionFormatOptions() carapace.Action {
 	})
 }
 
-func determineSeparator(callbackValue string) (result string, err error) {
-	resultIndex := len(callbackValue)
+func determineSeparator(s string) (result string, err error) {
+	resultIndex := len(s)
 	for _, separator := range []string{"==", "=@", "@", "=", ":=@", ":=", ":"} {
-		if index := strings.Index(callbackValue, separator); index != -1 && index < resultIndex {
+		if index := strings.Index(s, separator); index != -1 && index < resultIndex {
 			resultIndex = index
 			result = separator
 		}
@@ -191,7 +191,7 @@ func determineSeparator(callbackValue string) (result string, err error) {
 
 func ActionRequestItem() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if separator, err := determineSeparator(c.CallbackValue); err == nil {
+		if separator, err := determineSeparator(c.Value); err == nil {
 			return carapace.ActionMultiParts(separator, func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 1:
@@ -212,8 +212,8 @@ func ActionRequestItem() carapace.Action {
 		}
 
 		context := c
-		if index := strings.IndexAny(c.CallbackValue, ":=@"); index != -1 {
-			context.CallbackValue = context.CallbackValue[:index]
+		if index := strings.IndexAny(c.Value, ":=@"); index != -1 {
+			context.Value = context.Value[:index]
 		}
 
 		headers := http.ActionRequestHeaderNames().Invoke(c).Suffix(":") // use full context

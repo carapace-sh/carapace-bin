@@ -24,8 +24,8 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			current := c.CallbackValue
-			if c.CallbackValue == "-" {
+			current := c.Value
+			if c.Value == "-" {
 				return carapace.ActionValues("--").NoSpace() // no shorthand flags so expand to longhand first (which is needed for the completer)
 			}
 

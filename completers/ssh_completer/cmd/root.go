@@ -104,8 +104,8 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if strings.Contains(c.CallbackValue, "@") {
-				prefix := strings.SplitN(c.CallbackValue, "@", 2)[0]
+			if strings.Contains(c.Value, "@") {
+				prefix := strings.SplitN(c.Value, "@", 2)[0]
 				return net.ActionHosts().Invoke(c).Prefix(prefix + "@").ToA()
 			} else {
 				return net.ActionHosts()

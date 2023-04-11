@@ -20,7 +20,7 @@ type mentionableUsersQuery struct {
 func ActionMentionableUsers(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult mentionableUsersQuery
-		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ mentionableUsers(first: 100, query: "%v") { nodes { login, name } } }`, c.CallbackValue), &queryResult, func() carapace.Action {
+		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ mentionableUsers(first: 100, query: "%v") { nodes { login, name } } }`, c.Value), &queryResult, func() carapace.Action {
 			users := queryResult.Data.Repository.MentionableUsers.Nodes
 			vals := make([]string, len(users)*2)
 			for index, user := range users {
@@ -50,7 +50,7 @@ type assignableUserQuery struct {
 func ActionAssignableUsers(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult assignableUserQuery
-		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ assignableUsers(first: 100, query: "%v") { nodes { login, name } } }`, c.CallbackValue), &queryResult, func() carapace.Action {
+		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ assignableUsers(first: 100, query: "%v") { nodes { login, name } } }`, c.Value), &queryResult, func() carapace.Action {
 			users := queryResult.Data.Repository.AssignableUsers.Nodes
 			vals := make([]string, len(users)*2)
 			for index, user := range users {

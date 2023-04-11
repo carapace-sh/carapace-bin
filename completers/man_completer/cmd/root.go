@@ -87,7 +87,7 @@ func init() {
 
 func ActionManPages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("man", "-k", c.CallbackValue)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("man", "-k", c.Value)(func(output []byte) carapace.Action {
 			r := regexp.MustCompile(`^(?P<name>.*) \(\d+\) +- (?P<description>.*)$`)
 
 			vals := make([]string, 0)

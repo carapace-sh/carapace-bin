@@ -16,7 +16,7 @@ func ActionRepoOverride(cmd *cobra.Command) carapace.Action {
 		if _, err := util.FindReverse(c.Dir, ".git"); err == nil {
 			actions = append(actions, actionRemoteRepositories())
 		}
-		if c.CallbackValue != "" || len(actions) == 0 {
+		if c.Value != "" || len(actions) == 0 {
 			actions = append(actions, ActionOwnerRepositories(cmd))
 		}
 		return carapace.Batch(actions...).Invoke(c).Merge().ToA()

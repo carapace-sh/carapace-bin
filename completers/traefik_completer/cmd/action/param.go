@@ -371,16 +371,16 @@ func actionFlagNames() carapace.Action {
 		vals := make([]string, 0)
 		for key, value := range flags {
 			replacement := ""
-			if index := strings.Index(key, "<name>"); index != -1 && strings.HasPrefix(c.CallbackValue, key[:index]) {
-				replacement = strings.Split(c.CallbackValue[index:], ".")[0]
+			if index := strings.Index(key, "<name>"); index != -1 && strings.HasPrefix(c.Value, key[:index]) {
+				replacement = strings.Split(c.Value[index:], ".")[0]
 			}
 			vals = append(vals, strings.Replace(key, "<name>", replacement, -1), value)
 		}
 
-		if strings.HasPrefix(c.CallbackValue, "--accesslog.fields.headers.names.") {
+		if strings.HasPrefix(c.Value, "--accesslog.fields.headers.names.") {
 			return http.ActionRequestHeaderNames().Invoke(c).Prefix("--accesslog.fields.headers.names.").ToMultiPartsA(".")
 		}
-		if strings.HasPrefix(c.CallbackValue, "--accesslog.fields.names.") {
+		if strings.HasPrefix(c.Value, "--accesslog.fields.names.") {
 			return ActionAccessLogFieldNames().Invoke(c).Prefix("--accesslog.fields.names.").ToMultiPartsA(".")
 		}
 		return carapace.ActionValuesDescribed(vals...).Invoke(c).ToMultiPartsA(".")

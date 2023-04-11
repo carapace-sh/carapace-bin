@@ -30,7 +30,7 @@ func ActionConfigs() carapace.Action {
 //	crazy_satoshi (alpine (Up 4 seconds))
 func ActionContainers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})", "--filter", "name="+c.CallbackValue)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})", "--filter", "name="+c.Value)(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(styles.Docker.Container)
 		})
@@ -111,10 +111,10 @@ func ActionContainerPath() carapace.Action {
 			})
 		default:
 			container := c.Parts[0]
-			path := filepath.Dir(c.CallbackValue)
+			path := filepath.Dir(c.Value)
 
 			args := []string{"exec", container, "ls", "-1", "-p", path}
-			if splitted := strings.Split(c.CallbackValue, "/"); strings.HasPrefix(splitted[len(splitted)-1], ".") {
+			if splitted := strings.Split(c.Value, "/"); strings.HasPrefix(splitted[len(splitted)-1], ".") {
 				args = append(args, "-a") // show hidden
 			}
 			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {

@@ -51,12 +51,12 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"exec": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			// very simple support for exec completion (breaks easy
-			c.CallbackValue = c.CallbackValue + "FAKE_SUFFIX"
-			fields := strings.Fields(c.CallbackValue) // TODO dumb split on space
+			c.Value = c.Value + "FAKE_SUFFIX"
+			fields := strings.Fields(c.Value) // TODO dumb split on space
 
 			fields[len(fields)-1] = strings.TrimSuffix(fields[len(fields)-1], "FAKE_SUFFIX")
 
-			c.CallbackValue = fields[len(fields)-1]
+			c.Value = fields[len(fields)-1]
 			c.Args = make([]string, 0)
 			if len(fields) > 1 {
 				c.Args = fields[:len(fields)-1]
@@ -71,12 +71,12 @@ func init() {
 		"features": carapace.ActionValues(), // TODO cargo feature completion
 		"shell": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			// very simple support for exec completion (breaks easy
-			c.CallbackValue = c.CallbackValue + "FAKE_SUFFIX"
-			fields := strings.Fields(c.CallbackValue) // TODO dumb split on space
+			c.Value = c.Value + "FAKE_SUFFIX"
+			fields := strings.Fields(c.Value) // TODO dumb split on space
 
 			fields[len(fields)-1] = strings.TrimSuffix(fields[len(fields)-1], "FAKE_SUFFIX")
 
-			c.CallbackValue = fields[len(fields)-1]
+			c.Value = fields[len(fields)-1]
 			c.Args = make([]string, 0)
 			if len(fields) > 1 {
 				c.Args = fields[:len(fields)-1]

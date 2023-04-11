@@ -42,7 +42,7 @@ func init() {
 			case 0:
 				return carapace.ActionDirectories().NoSpace()
 			case 1:
-				path := filepath.Dir(c.CallbackValue)
+				path := filepath.Dir(c.Value)
 				if path == "" {
 					path = "/"
 				}

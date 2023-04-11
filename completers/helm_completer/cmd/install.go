@@ -83,7 +83,7 @@ func init() {
 	carapace.Gen(installCmd).PositionalCompletion(
 		carapace.ActionValues(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.CallbackValue) {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionDirectories()
 			}
 			return action.ActionRepositoryCharts()

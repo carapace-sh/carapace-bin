@@ -8,7 +8,7 @@ import (
 
 func ActionFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if strings.HasSuffix(c.CallbackValue, "%") {
+		if strings.HasSuffix(c.Value, "%") {
 			return carapace.ActionValuesDescribed(
 				"a", "the remote IP address",
 				"b", "the number of bytes actually transferred",
@@ -30,7 +30,7 @@ func ActionFormats() carapace.Action {
 				"t", "the current date time",
 				"u", "the authenticated username or an empty string",
 				"U", "the uid of the file",
-			).Invoke(c).Prefix(c.CallbackValue).ToA().NoSpace()
+			).Invoke(c).Prefix(c.Value).ToA().NoSpace()
 		}
 		return carapace.ActionValues()
 	})
