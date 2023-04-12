@@ -13,6 +13,7 @@ var storeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(storeCmd).Standalone()
 	storeCmd.PersistentFlags().StringP("platform", "p", "", "Target platform for store")
 	storeCmd.PersistentFlags().StringP("url", "u", "https://raw.githubusercontent.com/openfaas/store/master/functions.json", "Alternative Store URL starting with http(s)://")
 	rootCmd.AddCommand(storeCmd)

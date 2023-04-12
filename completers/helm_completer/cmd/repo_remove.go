@@ -13,6 +13,7 @@ var repo_removeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(repo_removeCmd).Standalone()
 	repoCmd.AddCommand(repo_removeCmd)
 
 	carapace.Gen(repo_removeCmd).PositionalAnyCompletion(

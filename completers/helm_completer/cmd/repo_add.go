@@ -12,6 +12,7 @@ var repo_addCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(repo_addCmd).Standalone()
 	repo_addCmd.Flags().Bool("allow-deprecated-repos", false, "by default, this command will not allow adding official repos that have been permanently deleted. This disables that behavior")
 	repo_addCmd.Flags().String("ca-file", "", "verify certificates of HTTPS-enabled servers using this CA bundle")
 	repo_addCmd.Flags().String("cert-file", "", "identify HTTPS client using this SSL certificate file")

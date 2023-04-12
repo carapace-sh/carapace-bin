@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var request_pullCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(request_pullCmd).Standalone()
 	request_pullCmd.Flags().BoolS("p", "p", false, "show patch text as well")
 	rootCmd.AddCommand(request_pullCmd)
 }

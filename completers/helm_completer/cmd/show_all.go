@@ -16,6 +16,7 @@ var show_allCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(show_allCmd).Standalone()
 	show_allCmd.Flags().String("ca-file", "", "verify certificates of HTTPS-enabled servers using this CA bundle")
 	show_allCmd.Flags().String("cert-file", "", "identify HTTPS client using this SSL certificate file")
 	show_allCmd.Flags().Bool("devel", false, "use development versions, too. Equivalent to version '>0.0.0-0'. If --version is set, this is ignored")

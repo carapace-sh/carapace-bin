@@ -13,6 +13,8 @@ var deployCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(deployCmd).Standalone()
+
 	deployCmd.Flags().StringArray("annotation", []string{}, "Set one or more annotation (ANNOTATION=VALUE)")
 	deployCmd.Flags().StringArray("constraint", []string{}, "Apply a constraint to the function")
 	deployCmd.Flags().StringArrayP("env", "e", []string{}, "Set one or more environment variables (ENVVAR=VALUE)")

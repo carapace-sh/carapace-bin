@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var fsckCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(fsckCmd).Standalone()
 	fsckCmd.Flags().Bool("cache", false, "make index objects head nodes")
 	fsckCmd.Flags().Bool("connectivity-only", false, "check only connectivity")
 	fsckCmd.Flags().Bool("dangling", false, "show dangling objects")

@@ -12,6 +12,8 @@ var completionCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(completionCmd).Standalone()
+
 	completionCmd.Flags().String("shell", "", "Outputs shell completion, must be bash or zsh")
 	rootCmd.AddCommand(completionCmd)
 

@@ -13,6 +13,7 @@ var cache_addCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(cache_addCmd).Standalone()
 	cache_addCmd.Flags().Bool("", false, "Add image to cache for all running minikube clusters")
 	cacheCmd.AddCommand(cache_addCmd)
 

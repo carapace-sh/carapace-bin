@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var update_server_infoCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(update_server_infoCmd).Standalone()
 	update_server_infoCmd.Flags().BoolP("force", "f", false, "update the info files from scratch")
 	rootCmd.AddCommand(update_server_infoCmd)
 }

@@ -13,6 +13,7 @@ var convertCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(convertCmd).Standalone()
 	convertCmd.Flags().String("build", "none", "Set the type of build (\"local\"|\"build-config\"(OpenShift only)|\"none\")")
 	convertCmd.Flags().String("build-branch", "", "Specify repository branch to use for buildconfig (default master)")
 	convertCmd.Flags().String("build-repo", "", "Specify source repository for buildconfig (default remote origin)")

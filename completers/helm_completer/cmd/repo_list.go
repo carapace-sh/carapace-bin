@@ -12,6 +12,7 @@ var repo_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(repo_listCmd).Standalone()
 	repo_listCmd.Flags().StringP("output", "o", "table", "prints the output in the specified format. Allowed values: table, json, yaml")
 	repoCmd.AddCommand(repo_listCmd)
 

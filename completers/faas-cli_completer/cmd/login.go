@@ -3,6 +3,7 @@ package cmd
 import (
 	"time"
 
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -13,6 +14,8 @@ var loginCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(loginCmd).Standalone()
+
 	loginCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	loginCmd.Flags().StringP("password", "p", "", "Gateway password")
 	loginCmd.Flags().BoolP("password-stdin", "s", false, "Reads the gateway password from stdin")

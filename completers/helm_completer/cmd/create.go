@@ -12,6 +12,7 @@ var createCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(createCmd).Standalone()
 	createCmd.Flags().StringP("starter", "p", "", "the name or absolute path to Helm starter scaffold")
 	rootCmd.AddCommand(createCmd)
 

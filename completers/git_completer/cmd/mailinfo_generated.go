@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var mailinfoCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mailinfoCmd).Standalone()
 
 	rootCmd.AddCommand(mailinfoCmd)
 }

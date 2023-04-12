@@ -15,6 +15,7 @@ var pullCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(pullCmd).Standalone()
 	pullCmd.Flags().String("ca-file", "", "verify certificates of HTTPS-enabled servers using this CA bundle")
 	pullCmd.Flags().String("cert-file", "", "identify HTTPS client using this SSL certificate file")
 	pullCmd.Flags().StringP("destination", "d", ".", "location to write the chart. If this and tardir are specified, tardir is appended to this")

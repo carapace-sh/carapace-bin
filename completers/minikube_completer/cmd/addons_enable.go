@@ -14,6 +14,7 @@ var addons_enableCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(addons_enableCmd).Standalone()
 	addons_enableCmd.Flags().Bool("force", false, "If true, will perform potentially dangerous operations. Use with discretion.")
 	addons_enableCmd.Flags().String("images", "", "Images used by this addon. Separated by commas.")
 	addons_enableCmd.Flags().Bool("refresh", false, "If true, pods might get deleted and restarted on addon enable")

@@ -13,6 +13,7 @@ var stopCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(stopCmd).Standalone()
 	stopCmd.Flags().Bool("all", false, "Set flag to stop all profiles (clusters)")
 	stopCmd.Flags().Bool("cancel-scheduled", false, "cancel any existing scheduled stop requests")
 	stopCmd.Flags().Bool("keep-context-active", false, "keep the kube-context active after cluster is stopped. Defaults to false.")

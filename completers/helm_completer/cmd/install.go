@@ -17,6 +17,7 @@ var installCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(installCmd).Standalone()
 	installCmd.Flags().Bool("atomic", false, "if set, the installation process deletes the installation on failure. The --wait flag will be set automatically if --atomic is used")
 	installCmd.Flags().String("ca-file", "", "verify certificates of HTTPS-enabled servers using this CA bundle")
 	installCmd.Flags().String("cert-file", "", "identify HTTPS client using this SSL certificate file")

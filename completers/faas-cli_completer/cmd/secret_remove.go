@@ -13,6 +13,7 @@ var secret_removeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(secret_removeCmd).Standalone()
 	secret_removeCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	secret_removeCmd.Flags().StringP("namespace", "n", "", "Namespace of the function")
 	secret_removeCmd.Flags().Bool("tls-no-verify", false, "Disable TLS validation")

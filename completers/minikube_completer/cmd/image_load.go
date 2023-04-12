@@ -14,6 +14,7 @@ var image_loadCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(image_loadCmd).Standalone()
 	image_loadCmd.Flags().Bool("daemon", false, "Cache image from docker daemon")
 	image_loadCmd.Flags().Bool("overwrite", true, "Overwrite image even if same image:tag name exists")
 	image_loadCmd.Flags().Bool("pull", false, "Pull the remote image (no caching)")

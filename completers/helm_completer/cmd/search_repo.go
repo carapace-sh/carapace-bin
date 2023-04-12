@@ -12,6 +12,7 @@ var search_repoCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(search_repoCmd).Standalone()
 	search_repoCmd.Flags().Bool("devel", false, "use development versions (alpha, beta, and release candidate releases), too. Equivalent to version '>0.0.0-0'. If --version is set, this is ignored")
 	search_repoCmd.Flags().Uint("max-col-width", 50, "maximum column width for output table")
 	search_repoCmd.Flags().StringP("output", "o", "table", "prints the output in the specified format. Allowed values: table, json, yaml")

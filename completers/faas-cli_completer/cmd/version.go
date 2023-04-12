@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,6 +12,7 @@ var versionCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(versionCmd).Standalone()
 	versionCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
 	versionCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	versionCmd.Flags().Bool("short-version", false, "Just print Git SHA")

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var quiltimportCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(quiltimportCmd).Standalone()
 	quiltimportCmd.Flags().String("author", "", "author name and email address for patches without any")
 	quiltimportCmd.Flags().BoolP("dry-run", "n", false, "dry run")
 	quiltimportCmd.Flags().Bool("keep-non-patch", false, "Pass -b to git mailinfo")

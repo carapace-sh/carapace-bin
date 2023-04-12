@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var show_refCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(show_refCmd).Standalone()
 	show_refCmd.Flags().String("abbrev", "", "use <n> digits to display SHA-1s")
 	show_refCmd.Flags().BoolP("dereference", "d", false, "dereference tags into object IDs")
 	show_refCmd.Flags().String("exclude-existing", "", "show refs from stdin that aren't in local repository")

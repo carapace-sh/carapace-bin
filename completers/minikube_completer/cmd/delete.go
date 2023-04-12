@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var deleteCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(deleteCmd).Standalone()
 	deleteCmd.Flags().Bool("all", false, "Set flag to delete all profiles")
 	deleteCmd.Flags().Bool("purge", false, "Set this flag to delete the '.minikube' folder from your user directory.")
 	rootCmd.AddCommand(deleteCmd)

@@ -15,6 +15,7 @@ var logsCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(logsCmd).Standalone()
 	logsCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	logsCmd.Flags().Bool("instance", false, "print the function instance name/id")
 	logsCmd.Flags().Int("lines", -1, "number of recent log lines file to display. Defaults to -1, unlimited if <=0")

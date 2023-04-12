@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var check_attrCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(check_attrCmd).Standalone()
 	check_attrCmd.Flags().BoolP("all", "a", false, "report all attributes set on file")
 	check_attrCmd.Flags().Bool("cached", false, "use .gitattributes only from the index")
 	check_attrCmd.Flags().Bool("stdin", false, "read file names from stdin")

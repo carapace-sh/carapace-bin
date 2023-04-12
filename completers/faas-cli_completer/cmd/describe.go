@@ -13,6 +13,8 @@ var describeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(describeCmd).Standalone()
+
 	describeCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
 	describeCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	describeCmd.Flags().String("name", "", "Name of the function")

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var columnCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(columnCmd).Standalone()
 	columnCmd.Flags().String("command", "", "lookup config vars")
 	columnCmd.Flags().String("indent", "", "Padding space on left border")
 	columnCmd.Flags().String("mode", "", "layout to use")

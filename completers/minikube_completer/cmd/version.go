@@ -13,6 +13,7 @@ var versionCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(versionCmd).Standalone()
 	versionCmd.Flags().StringP("output", "o", "", "One of 'yaml' or 'json'.")
 	versionCmd.Flags().Bool("short", false, "Print just the version number.")
 	rootCmd.AddCommand(versionCmd)

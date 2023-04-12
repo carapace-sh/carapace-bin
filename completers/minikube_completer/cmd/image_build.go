@@ -12,6 +12,7 @@ var image_buildCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(image_buildCmd).Standalone()
 	image_buildCmd.Flags().StringArray("build-env", []string{}, "Environment variables to pass to the build. (format: key=value)")
 	image_buildCmd.Flags().StringArray("build-opt", []string{}, "Specify arbitrary flags to pass to the build. (format: key=value)")
 	image_buildCmd.Flags().StringP("file", "f", "", "Path to the Dockerfile to use (optional)")

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var pack_objectsCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(pack_objectsCmd).Standalone()
 	pack_objectsCmd.Flags().Bool("all", false, "include objects reachable from any reference")
 	pack_objectsCmd.Flags().Bool("all-progress", false, "show progress meter during object writing phase")
 	pack_objectsCmd.Flags().Bool("all-progress-implied", false, "similar to --all-progress when progress meter is shown")

@@ -12,6 +12,7 @@ var pushCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(pushCmd).Standalone()
 	pushCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
 	pushCmd.Flags().Int("parallel", 1, "Push images in parallel to depth specified.")
 	pushCmd.Flags().String("tag", "latest", "Override latest tag on function Docker image, accepts 'latest', 'sha', 'branch', 'describe'")

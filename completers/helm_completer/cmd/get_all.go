@@ -13,6 +13,7 @@ var get_allCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(get_allCmd).Standalone()
 	get_allCmd.Flags().Int("revision", 0, "get the named release with revision")
 	get_allCmd.Flags().String("template", "", "go template for formatting the output, eg: {{.Release.Name}}")
 	getCmd.AddCommand(get_allCmd)

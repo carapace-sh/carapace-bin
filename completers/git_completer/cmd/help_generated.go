@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var helpCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(helpCmd).Standalone()
 	helpCmd.Flags().BoolP("all", "a", false, "print all available commands")
 	helpCmd.Flags().BoolP("config", "c", false, "print all configuration variable names")
 	helpCmd.Flags().BoolP("guides", "g", false, "print list of useful guides")

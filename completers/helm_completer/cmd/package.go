@@ -12,6 +12,7 @@ var packageCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(packageCmd).Standalone()
 	packageCmd.Flags().String("app-version", "", "set the appVersion on the chart to this version")
 	packageCmd.Flags().BoolP("dependency-update", "u", false, "update dependencies from \"Chart.yaml\" to dir \"charts/\" before packaging")
 	packageCmd.Flags().StringP("destination", "d", ".", "location to write the chart.")

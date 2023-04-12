@@ -13,6 +13,7 @@ var registryLoginCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(registryLoginCmd).Standalone()
 	registryLoginCmd.Flags().String("account-id", "", "Your AWS Account id")
 	registryLoginCmd.Flags().Bool("ecr", false, "If we are using ECR we need a different set of flags, so if this is set, we need to set --username and --password")
 	registryLoginCmd.Flags().String("password", "", "The registry password")

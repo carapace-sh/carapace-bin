@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var p4Cmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(p4Cmd).Standalone()
 
 	rootCmd.AddCommand(p4Cmd)
 }

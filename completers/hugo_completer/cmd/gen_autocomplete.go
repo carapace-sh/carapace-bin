@@ -12,6 +12,7 @@ var gen_autocompleteCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(gen_autocompleteCmd).Standalone()
 	gen_autocompleteCmd.PersistentFlags().StringP("completionfile", "f", "", "autocompletion file, defaults to stdout")
 	gen_autocompleteCmd.PersistentFlags().StringP("type", "t", "bash", "autocompletion type (bash, zsh, fish, or powershell)")
 	genCmd.AddCommand(gen_autocompleteCmd)

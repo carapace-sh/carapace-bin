@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var instawebCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(instawebCmd).Standalone()
 	instawebCmd.Flags().BoolP("browser", "b", false, "...     the browser to launch")
 	instawebCmd.Flags().BoolP("httpd", "d", false, "...       the command to launch")
 	instawebCmd.Flags().BoolP("local", "l", false, "only bind on 127.0.0.1")

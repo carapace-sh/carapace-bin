@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var fast_exportCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(fast_exportCmd).Standalone()
 	fast_exportCmd.Flags().Bool("anonymize", false, "anonymize output")
 	fast_exportCmd.Flags().String("export-marks", "", "Dump marks to this file")
 	fast_exportCmd.Flags().Bool("fake-missing-tagger", false, "Fake a tagger when tags lack one")

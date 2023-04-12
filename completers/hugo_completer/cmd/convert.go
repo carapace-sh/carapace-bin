@@ -12,6 +12,7 @@ var convertCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(convertCmd).Standalone()
 	convertCmd.PersistentFlags().StringP("output", "o", "", "filesystem path to write files to")
 	convertCmd.PersistentFlags().Bool("unsafe", false, "enable less safe operations, please backup first")
 	rootCmd.AddCommand(convertCmd)

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var repackCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(repackCmd).Standalone()
 	repackCmd.Flags().BoolS("A", "A", false, "same as -a, and turn unreachable objects loose")
 	repackCmd.Flags().BoolS("F", "F", false, "pass --no-reuse-object to git-pack-objects")
 	repackCmd.Flags().BoolS("a", "a", false, "pack everything in a single pack")

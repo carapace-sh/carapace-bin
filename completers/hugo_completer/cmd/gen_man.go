@@ -12,6 +12,7 @@ var gen_manCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(gen_manCmd).Standalone()
 	gen_manCmd.PersistentFlags().String("dir", "man/", "the directory to write the man pages.")
 	genCmd.AddCommand(gen_manCmd)
 

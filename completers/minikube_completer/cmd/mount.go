@@ -18,6 +18,7 @@ var mountCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mountCmd).Standalone()
 	mountCmd.Flags().String("9p-version", "9p2000.L", "Specify the 9p version that the mount should use")
 	mountCmd.Flags().String("gid", "docker", "Default group id used for the mount")
 	mountCmd.Flags().String("ip", "", "Specify the ip that the mount should be setup on")

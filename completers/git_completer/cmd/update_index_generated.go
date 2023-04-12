@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var update_indexCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(update_indexCmd).Standalone()
 	update_indexCmd.Flags().Bool("add", false, "do not ignore new files")
 	update_indexCmd.Flags().BoolP("again", "g", false, "only update entries that differ from HEAD")
 	update_indexCmd.Flags().Bool("assume-unchanged", false, "mark files as \"not changing\"")

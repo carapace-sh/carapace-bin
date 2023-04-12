@@ -13,6 +13,7 @@ var config_viewCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(config_viewCmd).Standalone()
 	config_viewCmd.Flags().String("format", "- {{.ConfigKey}}: {{.ConfigValue}}", "Go template format string for the config view output.")
 	configCmd.AddCommand(config_viewCmd)
 

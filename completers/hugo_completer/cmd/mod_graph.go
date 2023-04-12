@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,5 +12,6 @@ var mod_graphCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mod_graphCmd).Standalone()
 	modCmd.AddCommand(mod_graphCmd)
 }

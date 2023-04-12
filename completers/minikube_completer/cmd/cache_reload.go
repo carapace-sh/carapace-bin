@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,5 +12,6 @@ var cache_reloadCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(cache_reloadCmd).Standalone()
 	cacheCmd.AddCommand(cache_reloadCmd)
 }

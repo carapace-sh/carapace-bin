@@ -13,6 +13,7 @@ var secret_createCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(secret_createCmd).Standalone()
 	secret_createCmd.Flags().String("from-file", "", "Path and filename containing value for the secret")
 	secret_createCmd.Flags().String("from-literal", "", "Literal value for the secret")
 	secret_createCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")

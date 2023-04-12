@@ -13,6 +13,7 @@ var plugin_uninstallCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(plugin_uninstallCmd).Standalone()
 	pluginCmd.AddCommand(plugin_uninstallCmd)
 
 	carapace.Gen(plugin_uninstallCmd).PositionalCompletion(

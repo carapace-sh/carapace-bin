@@ -13,6 +13,7 @@ var store_deployCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(store_deployCmd).Standalone()
 	store_deployCmd.Flags().StringArray("annotation", []string{}, "Set one or more annotation (ANNOTATION=VALUE)")
 	store_deployCmd.Flags().StringArray("constraint", []string{}, "Apply a constraint to the function")
 	store_deployCmd.Flags().StringArrayP("env", "e", []string{}, "Adds one or more environment variables to the defined ones by store (ENVVAR=VALUE)")

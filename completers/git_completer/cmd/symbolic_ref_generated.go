@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var symbolic_refCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(symbolic_refCmd).Standalone()
 	symbolic_refCmd.Flags().BoolP("delete", "d", false, "delete symbolic ref")
 	symbolic_refCmd.Flags().StringS("m", "m", "", "reason of the update")
 	symbolic_refCmd.Flags().BoolP("quiet", "q", false, "suppress error message for non-symbolic (detached) refs")

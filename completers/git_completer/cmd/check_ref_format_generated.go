@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var check_ref_formatCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(check_ref_formatCmd).Standalone()
 
 	rootCmd.AddCommand(check_ref_formatCmd)
 }

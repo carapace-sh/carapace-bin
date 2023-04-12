@@ -14,6 +14,7 @@ var serviceCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(serviceCmd).Standalone()
 	serviceCmd.PersistentFlags().String("format", "http://{{.IP}}:{{.Port}}", "Format to output service URL in. This format will be applied to each url individually and they will be printed one at a time.")
 	serviceCmd.Flags().Bool("https", false, "Open the service URL with https instead of http (defaults to \"false\")")
 	serviceCmd.Flags().Int("interval", 1, "The initial time interval for each check that wait performs in seconds")
