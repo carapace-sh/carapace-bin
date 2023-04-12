@@ -6,6 +6,7 @@
 [![Completers](https://rsteube.github.io/carapace-bin/badge.svg)](https://rsteube.github.io/carapace-bin/completers.html)
 [![Macros](https://rsteube.github.io/carapace-bin/macros-badge.svg)](https://rsteube.github.io/carapace-bin/spec/macros.html)
 [![Packaging status](https://repology.org/badge/tiny-repos/carapace.svg)](https://repology.org/project/carapace/versions)
+[![faq](https://img.shields.io/badge/discussions-faq-white)](https://github.com/rsteube/carapace-bin/discussions/categories/q-a?discussions_q=category%3AQ%26A+label%3Afaq)
 
 Carapace-bin provides argument completion for multiple CLI commands ([full list](https://rsteube.github.io/carapace-bin/completers.html)), and works across multiple POSIX and non-POSIX shells.
 You can read more about it here: _[A pragmatic approach to shell completion](https://dev.to/rsteube/a-pragmatic-approach-to-shell-completion-4gp0)_.
