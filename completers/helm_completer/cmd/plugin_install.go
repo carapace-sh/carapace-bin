@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +18,9 @@ func init() {
 	pluginCmd.AddCommand(plugin_installCmd)
 
 	carapace.Gen(plugin_installCmd).PositionalCompletion(
-		carapace.ActionDirectories(),
+		carapace.Batch(
+			git.ActionRepositorySearch(git.SearchOpts{}.Default()),
+			carapace.ActionDirectories(),
+		).ToA(),
 	)
 }
