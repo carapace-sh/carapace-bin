@@ -6,9 +6,10 @@ import (
 )
 
 var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "print the client version information",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "version",
+	Short:   "print the client version information",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

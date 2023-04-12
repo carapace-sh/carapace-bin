@@ -6,9 +6,10 @@ import (
 )
 
 var envCmd = &cobra.Command{
-	Use:   "env",
-	Short: "helm client environment information",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "env",
+	Short:   "helm client environment information",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

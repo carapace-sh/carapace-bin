@@ -11,9 +11,10 @@ import (
 )
 
 var installCmd = &cobra.Command{
-	Use:   "install",
-	Short: "install a chart",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "install",
+	Short:   "install a chart",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

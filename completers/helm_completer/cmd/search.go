@@ -6,9 +6,10 @@ import (
 )
 
 var searchCmd = &cobra.Command{
-	Use:   "search",
-	Short: "search for a keyword in charts",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "search",
+	Short:   "search for a keyword in charts",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

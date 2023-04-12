@@ -9,9 +9,10 @@ import (
 )
 
 var pullCmd = &cobra.Command{
-	Use:   "pull",
-	Short: "download a chart from a repository and (optionally) unpack it in local directory",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "pull",
+	Short:   "download a chart from a repository and (optionally) unpack it in local directory",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

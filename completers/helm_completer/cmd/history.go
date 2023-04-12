@@ -7,9 +7,10 @@ import (
 )
 
 var historyCmd = &cobra.Command{
-	Use:   "history",
-	Short: "fetch release history",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "history",
+	Short:   "fetch release history",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

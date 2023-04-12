@@ -6,9 +6,10 @@ import (
 )
 
 var diffCmd = &cobra.Command{
-	Use:   "diff",
-	Short: "Preview helm upgrade changes as a diff",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "diff",
+	Short:   "Preview helm upgrade changes as a diff",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

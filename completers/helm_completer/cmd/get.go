@@ -6,9 +6,10 @@ import (
 )
 
 var getCmd = &cobra.Command{
-	Use:   "get",
-	Short: "download extended information of a named release",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "get",
+	Short:   "download extended information of a named release",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
