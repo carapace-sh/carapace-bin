@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -27,6 +30,7 @@ func init() {
 		&cobra.Group{ID: "troubleshooting", Title: "Troubleshooting and Debugging Commands"},
 		&cobra.Group{ID: "advanced", Title: "Advanced Commands"},
 		&cobra.Group{ID: "settings", Title: "Settings Commands"},
+		&cobra.Group{ID: "plugin", Title: "Plugin Commands"},
 	)
 
 	rootCmd.PersistentFlags().String("as", "", "Username to impersonate for the operation. User could be a regular user or a service account in a namespace.")
@@ -68,4 +72,36 @@ func init() {
 		"profile-output":        carapace.ActionFiles(),
 		// TODO add completions for kubeconfig based flags
 	})
+
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		if _, _, err := cmd.Find(args); len(args) > 1 && err == nil {
+			return // core command - skip plugin commands
+		}
+		addPluginCommands()
+	})
+}
+
+func addPluginCommands() {
+	if output, err := (carapace.Context{}).Command("kubectl", "plugin", "list", "--name-only").Output(); err == nil {
+		lines := strings.Split(string(output), "\n")
+
+		if len(lines) < 3 {
+			return
+		}
+
+		for _, name := range lines[2 : len(lines)-1] {
+			pluginCmd := &cobra.Command{
+				Use:                strings.TrimPrefix(name, "kubectl-"),
+				Run:                func(cmd *cobra.Command, args []string) {},
+				GroupID:            "plugin",
+				DisableFlagParsing: true,
+			}
+
+			carapace.Gen(pluginCmd).PositionalAnyCompletion(
+				bridge.ActionCarapaceBin(name),
+			)
+
+			rootCmd.AddCommand(pluginCmd)
+		}
+	}
 }
