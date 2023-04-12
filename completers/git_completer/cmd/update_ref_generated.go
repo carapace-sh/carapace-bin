@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var update_refCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(update_refCmd).Standalone()
 	update_refCmd.Flags().Bool("create-reflog", false, "create a reflog")
 	update_refCmd.Flags().BoolS("d", "d", false, "delete the reference")
 	update_refCmd.Flags().StringS("m", "m", "", "reason of the update")

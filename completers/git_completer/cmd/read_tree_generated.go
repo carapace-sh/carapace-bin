@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var read_treeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(read_treeCmd).Standalone()
 	read_treeCmd.Flags().Bool("aggressive", false, "3-way merge in presence of adds and removes")
 	read_treeCmd.Flags().Bool("debug-unpack", false, "debug unpack-trees")
 	read_treeCmd.Flags().BoolP("dry-run", "n", false, "don't update the index or the work tree")

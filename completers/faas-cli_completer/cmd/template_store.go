@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,6 +12,7 @@ var template_storeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(template_storeCmd).Standalone()
 	template_storeCmd.PersistentFlags().Bool("debug", false, "Enable debug output")
 	template_storeCmd.PersistentFlags().Bool("overwrite", false, "Overwrite existing templates?")
 	templateCmd.AddCommand(template_storeCmd)

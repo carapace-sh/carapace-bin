@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,5 +13,6 @@ var updateContextCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(updateContextCmd).Standalone()
 	rootCmd.AddCommand(updateContextCmd)
 }

@@ -13,6 +13,7 @@ var config_defaultsCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(config_defaultsCmd).Standalone()
 	config_defaultsCmd.Flags().String("output", "table", "Output format. Accepted values: [json]")
 	configCmd.AddCommand(config_defaultsCmd)
 

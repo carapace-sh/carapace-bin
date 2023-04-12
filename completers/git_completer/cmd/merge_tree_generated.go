@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var merge_treeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(merge_treeCmd).Standalone()
 
 	rootCmd.AddCommand(merge_treeCmd)
 }

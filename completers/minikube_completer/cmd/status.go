@@ -14,6 +14,7 @@ var statusCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(statusCmd).Standalone()
 	statusCmd.Flags().StringP("format", "f", `{{.Name}}
 type: Control Plane
 host: {{.Host}}

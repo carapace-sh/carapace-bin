@@ -14,6 +14,8 @@ var invokeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(invokeCmd).Standalone()
+
 	invokeCmd.Flags().BoolP("async", "a", false, "Invoke the function asynchronously")
 	invokeCmd.Flags().String("content-type", "text/plain", "The content-type HTTP header such as application/json")
 	invokeCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")

@@ -14,6 +14,7 @@ var logsCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(logsCmd).Standalone()
 	logsCmd.Flags().String("file", "", "If present, writes to the provided file instead of stdout.")
 	logsCmd.Flags().BoolP("follow", "f", false, "Show only the most recent journal entries, and continuously print new entries as they are appended to the journal.")
 	logsCmd.Flags().IntP("length", "n", 60, "Number of lines back to go within the log")

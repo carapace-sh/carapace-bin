@@ -12,6 +12,7 @@ var new_siteCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(new_siteCmd).Standalone()
 	new_siteCmd.Flags().Bool("force", false, "init inside non-empty directory")
 	new_siteCmd.Flags().StringP("format", "f", "toml", "config & frontmatter format")
 	newCmd.AddCommand(new_siteCmd)

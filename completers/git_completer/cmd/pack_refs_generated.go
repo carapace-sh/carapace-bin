@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var pack_refsCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(pack_refsCmd).Standalone()
 	pack_refsCmd.Flags().Bool("all", false, "pack everything")
 	pack_refsCmd.Flags().Bool("prune", false, "prune loose refs (default)")
 	rootCmd.AddCommand(pack_refsCmd)

@@ -16,6 +16,7 @@ var show_chartCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(show_chartCmd).Standalone()
 	show_chartCmd.Flags().String("ca-file", "", "verify certificates of HTTPS-enabled servers using this CA bundle")
 	show_chartCmd.Flags().String("cert-file", "", "identify HTTPS client using this SSL certificate file")
 	show_chartCmd.Flags().Bool("devel", false, "use development versions, too. Equivalent to version '>0.0.0-0'. If --version is set, this is ignored")

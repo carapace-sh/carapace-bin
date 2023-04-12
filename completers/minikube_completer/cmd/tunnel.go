@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var tunnelCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(tunnelCmd).Standalone()
 	tunnelCmd.Flags().BoolP("cleanup", "c", true, "call with cleanup=true to remove old tunnels")
 	rootCmd.AddCommand(tunnelCmd)
 }

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,6 +12,7 @@ var namespacesCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(namespacesCmd).Standalone()
 	namespacesCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	namespacesCmd.Flags().Bool("tls-no-verify", false, "Disable TLS validation")
 	namespacesCmd.Flags().StringP("token", "k", "", "Pass a JWT token to use instead of basic auth")

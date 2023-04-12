@@ -13,6 +13,7 @@ var plugin_updateCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(plugin_updateCmd).Standalone()
 	pluginCmd.AddCommand(plugin_updateCmd)
 
 	carapace.Gen(plugin_updateCmd).PositionalAnyCompletion(

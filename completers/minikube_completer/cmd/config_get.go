@@ -13,6 +13,7 @@ var config_getCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(config_getCmd).Standalone()
 	configCmd.AddCommand(config_getCmd)
 
 	carapace.Gen(config_getCmd).PositionalCompletion(

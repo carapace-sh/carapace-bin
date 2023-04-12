@@ -14,6 +14,7 @@ var templateCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(templateCmd).Standalone()
 	templateCmd.Flags().StringArrayP("api-versions", "a", []string{}, "Kubernetes api versions used for Capabilities.APIVersions")
 	templateCmd.Flags().Bool("atomic", false, "if set, the installation process deletes the installation on failure. The --wait flag will be set automatically if --atomic is used")
 	templateCmd.Flags().String("ca-file", "", "verify certificates of HTTPS-enabled servers using this CA bundle")

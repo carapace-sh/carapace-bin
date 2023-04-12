@@ -13,6 +13,7 @@ var store_describeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(store_describeCmd).Standalone()
 	store_describeCmd.Flags().BoolP("verbose", "v", false, "Verbose output for the field values")
 	storeCmd.AddCommand(store_describeCmd)
 

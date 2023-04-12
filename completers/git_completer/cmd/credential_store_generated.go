@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var credential_storeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(credential_storeCmd).Standalone()
 	credential_storeCmd.Flags().String("file", "", "fetch and store credentials in <path>")
 	rootCmd.AddCommand(credential_storeCmd)
 }

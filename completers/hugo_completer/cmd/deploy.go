@@ -13,6 +13,7 @@ var deployCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(deployCmd).Standalone()
 	deployCmd.Flags().Bool("confirm", false, "ask for confirmation before making changes to the target")
 	deployCmd.Flags().Bool("dryRun", false, "dry run")
 	deployCmd.Flags().Bool("force", false, "force upload of all files")

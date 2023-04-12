@@ -13,6 +13,7 @@ var config_unsetCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(config_unsetCmd).Standalone()
 	configCmd.AddCommand(config_unsetCmd)
 
 	carapace.Gen(config_unsetCmd).PositionalCompletion(

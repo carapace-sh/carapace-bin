@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var ls_filesCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(ls_filesCmd).Standalone()
 	ls_filesCmd.Flags().String("abbrev", "", "use <n> digits to display SHA-1s")
 	ls_filesCmd.Flags().BoolP("cached", "c", false, "show cached files in the output (default)")
 	ls_filesCmd.Flags().Bool("debug", false, "show debugging data")

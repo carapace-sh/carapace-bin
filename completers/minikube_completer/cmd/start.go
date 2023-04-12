@@ -17,6 +17,7 @@ var startCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(startCmd).Standalone()
 	startCmd.Flags().StringSlice("addons", []string{}, "Enable addons. see `minikube addons list` for a list of valid addon names.")
 	startCmd.Flags().StringSlice("apiserver-ips", []string{}, "A set of apiserver IP Addresses which are used in the generated certificate for kubernetes.  This can be used if you want to make the apiserver available from outside the machine")
 	startCmd.Flags().String("apiserver-name", "minikubeCA", "The authoritative apiserver hostname for apiserver certificates and connectivity. This can be used if you want to make the apiserver available from outside the machine")

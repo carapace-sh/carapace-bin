@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var fmt_merge_msgCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(fmt_merge_msgCmd).Standalone()
 	fmt_merge_msgCmd.Flags().BoolP("file", "F", false, "<file>     file to read from")
 	fmt_merge_msgCmd.Flags().String("log", "", "populate log with at most <n> entries from shortlog")
 	fmt_merge_msgCmd.Flags().BoolP("message", "m", false, "<text>  use <text> as start of message")

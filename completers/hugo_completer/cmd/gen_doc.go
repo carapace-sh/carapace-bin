@@ -12,6 +12,7 @@ var gen_docCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(gen_docCmd).Standalone()
 	gen_docCmd.PersistentFlags().String("dir", "/tmp/hugodoc/", "the directory to write the doc.")
 	genCmd.AddCommand(gen_docCmd)
 

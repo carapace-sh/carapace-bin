@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var interpret_trailersCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(interpret_trailersCmd).Standalone()
 	interpret_trailersCmd.Flags().String("if-exists", "", "action if trailer already exists")
 	interpret_trailersCmd.Flags().String("if-missing", "", "action if trailer is missing")
 	interpret_trailersCmd.Flags().Bool("in-place", false, "edit files in place")

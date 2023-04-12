@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var for_each_refCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(for_each_refCmd).Standalone()
 	for_each_refCmd.Flags().String("color", "", "respect format colors")
 	for_each_refCmd.Flags().String("contains", "", "print only refs which contain the commit")
 	for_each_refCmd.Flags().String("count", "", "show only <n> matched refs")

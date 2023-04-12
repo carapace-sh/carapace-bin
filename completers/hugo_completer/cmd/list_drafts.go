@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,5 +12,6 @@ var list_draftsCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(list_draftsCmd).Standalone()
 	listCmd.AddCommand(list_draftsCmd)
 }

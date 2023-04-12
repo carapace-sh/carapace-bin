@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var hash_objectCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(hash_objectCmd).Standalone()
 	hash_objectCmd.Flags().Bool("literally", false, "just hash any random garbage to create corrupt objects for debugging Git")
 	hash_objectCmd.Flags().Bool("no-filters", false, "store file as is without filters")
 	hash_objectCmd.Flags().String("path", "", "process file as it were from this path")

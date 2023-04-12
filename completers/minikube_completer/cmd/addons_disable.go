@@ -13,6 +13,7 @@ var addons_disableCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(addons_disableCmd).Standalone()
 	addonsCmd.AddCommand(addons_disableCmd)
 
 	carapace.Gen(addons_disableCmd).PositionalCompletion(

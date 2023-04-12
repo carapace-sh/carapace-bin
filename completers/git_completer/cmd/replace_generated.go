@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var replaceCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(replaceCmd).Standalone()
 	replaceCmd.Flags().Bool("convert-graft-file", false, "convert existing graft file")
 	replaceCmd.Flags().BoolP("delete", "d", false, "delete replace refs")
 	replaceCmd.Flags().BoolP("edit", "e", false, "edit existing object")

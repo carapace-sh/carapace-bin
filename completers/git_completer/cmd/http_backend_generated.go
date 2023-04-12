@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var http_backendCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(http_backendCmd).Standalone()
 
 	rootCmd.AddCommand(http_backendCmd)
 }

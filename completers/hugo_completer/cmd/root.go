@@ -18,6 +18,8 @@ func Execute() error {
 }
 
 func init() {
+	carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.Flags().StringP("baseURL", "b", "", "hostname (and path) to the root, e.g. http://spf13.com/")
 	rootCmd.Flags().BoolP("buildDrafts", "D", false, "include content marked as draft")
 	rootCmd.Flags().BoolP("buildExpired", "E", false, "include expired content")

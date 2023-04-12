@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var send_emailCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(send_emailCmd).Standalone()
 	send_emailCmd.Flags().Bool("8bit-encoding", false, "<str>  * Encoding to assume 8bit mails if undeclared")
 	send_emailCmd.Flags().Bool("annotate", false, "* Review each patch that will be sent in an editor.")
 	send_emailCmd.Flags().Bool("batch-size", false, "<int>  * send max <int> message per connection.")

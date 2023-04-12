@@ -13,6 +13,7 @@ var historyCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(historyCmd).Standalone()
 	historyCmd.Flags().Int("max", 256, "maximum number of revision to include in history")
 	historyCmd.Flags().StringP("output", "o", "table", "prints the output in the specified format. Allowed values: table, json, yaml")
 	rootCmd.AddCommand(historyCmd)

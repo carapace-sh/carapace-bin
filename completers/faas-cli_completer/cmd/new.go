@@ -13,6 +13,7 @@ var newCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(newCmd).Standalone()
 	newCmd.Flags().StringP("append", "a", "", "Append to existing YAML file")
 	newCmd.Flags().String("cpu-limit", "", "Set a limit for the CPU")
 	newCmd.Flags().String("cpu-request", "", "Set a request value for the CPU")

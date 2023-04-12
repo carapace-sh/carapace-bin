@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var check_mailmapCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(check_mailmapCmd).Standalone()
 	check_mailmapCmd.Flags().Bool("stdin", false, "also read contacts from stdin")
 	rootCmd.AddCommand(check_mailmapCmd)
 }

@@ -13,6 +13,7 @@ var addons_openCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(addons_openCmd).Standalone()
 	addons_openCmd.PersistentFlags().String("format", "http://{{.IP}}:{{.Port}}", "Format to output addons URL in.  This format will be applied to each url individually and they will be printed one at a time.")
 	addons_openCmd.Flags().Bool("https", false, "Open the addons URL with https instead of http")
 	addons_openCmd.Flags().Int("interval", 1, "The time interval for each check that wait performs in seconds")

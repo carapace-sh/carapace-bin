@@ -12,6 +12,7 @@ var completionCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(completionCmd).Standalone()
 	rootCmd.AddCommand(completionCmd)
 
 	carapace.Gen(completionCmd).PositionalCompletion(

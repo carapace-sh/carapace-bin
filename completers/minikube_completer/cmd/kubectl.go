@@ -14,6 +14,7 @@ var kubectlCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(kubectlCmd).Standalone()
 	kubectlCmd.Flags().Bool("ssh", false, "Use SSH for running kubernetes client on the node")
 	rootCmd.AddCommand(kubectlCmd)
 

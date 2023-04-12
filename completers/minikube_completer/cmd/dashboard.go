@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var dashboardCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(dashboardCmd).Standalone()
 	dashboardCmd.Flags().Bool("url", false, "Display dashboard URL instead of opening a browser")
 	rootCmd.AddCommand(dashboardCmd)
 }

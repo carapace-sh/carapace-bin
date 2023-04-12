@@ -13,6 +13,7 @@ var addons_configureCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(addons_configureCmd).Standalone()
 	addonsCmd.AddCommand(addons_configureCmd)
 
 	carapace.Gen(addons_configureCmd).PositionalCompletion(

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var gitwebCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(gitwebCmd).Standalone()
 
 	rootCmd.AddCommand(gitwebCmd)
 }

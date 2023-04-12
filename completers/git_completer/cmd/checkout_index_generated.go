@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var checkout_indexCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(checkout_indexCmd).Standalone()
 	checkout_indexCmd.Flags().BoolP("all", "a", false, "check out all files in the index")
 	checkout_indexCmd.Flags().BoolP("force", "f", false, "force overwrite of existing files")
 	checkout_indexCmd.Flags().BoolP("index", "u", false, "update stat information in the index file")

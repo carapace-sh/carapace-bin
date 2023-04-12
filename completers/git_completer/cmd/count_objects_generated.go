@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var count_objectsCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(count_objectsCmd).Standalone()
 	count_objectsCmd.Flags().BoolP("human-readable", "H", false, "print sizes in human readable format")
 	count_objectsCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 	rootCmd.AddCommand(count_objectsCmd)

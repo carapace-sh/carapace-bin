@@ -13,6 +13,7 @@ var get_manifestCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(get_manifestCmd).Standalone()
 	get_manifestCmd.Flags().Int("revision", 0, "get the named release with revision")
 	getCmd.AddCommand(get_manifestCmd)
 

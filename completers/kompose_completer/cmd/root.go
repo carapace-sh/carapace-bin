@@ -17,6 +17,8 @@ func Execute() error {
 }
 
 func init() {
+	carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.PersistentFlags().Bool("error-on-warning", false, "Treat any warning as an error")
 	rootCmd.PersistentFlags().StringArrayP("file", "f", []string{}, "Specify an alternative compose file")
 	rootCmd.Flags().BoolP("help", "h", false, "help for kompose")

@@ -15,6 +15,7 @@ var uninstallCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(uninstallCmd).Standalone()
 	uninstallCmd.Flags().String("description", "", "add a custom description")
 	uninstallCmd.Flags().Bool("dry-run", false, "simulate a uninstall")
 	uninstallCmd.Flags().Bool("keep-history", false, "remove all associated resources and mark the release as deleted, but retain the release history")

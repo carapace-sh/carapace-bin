@@ -15,6 +15,7 @@ var rollbackCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(rollbackCmd).Standalone()
 	rollbackCmd.Flags().Bool("cleanup-on-fail", false, "allow deletion of new resources created in this rollback when rollback fails")
 	rollbackCmd.Flags().Bool("dry-run", false, "simulate a rollback")
 	rollbackCmd.Flags().Bool("force", false, "force resource update through delete/recreate if needed")

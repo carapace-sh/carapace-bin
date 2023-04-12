@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var merge_baseCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(merge_baseCmd).Standalone()
 	merge_baseCmd.Flags().BoolP("all", "a", false, "output all common ancestors")
 	merge_baseCmd.Flags().Bool("fork-point", false, "find where <commit> forked from reflog of <ref>")
 	merge_baseCmd.Flags().Bool("independent", false, "list revs not reachable from others")

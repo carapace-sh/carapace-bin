@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -11,5 +12,6 @@ var mod_tidyCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(mod_tidyCmd).Standalone()
 	modCmd.AddCommand(mod_tidyCmd)
 }

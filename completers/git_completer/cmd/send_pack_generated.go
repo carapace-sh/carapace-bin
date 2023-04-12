@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var send_packCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(send_packCmd).Standalone()
 	send_packCmd.Flags().Bool("all", false, "push all refs")
 	send_packCmd.Flags().Bool("atomic", false, "request atomic transaction on remote side")
 	send_packCmd.Flags().BoolP("dry-run", "n", false, "dry run")

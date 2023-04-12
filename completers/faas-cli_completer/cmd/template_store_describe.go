@@ -13,6 +13,7 @@ var template_store_describeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(template_store_describeCmd).Standalone()
 	template_store_describeCmd.PersistentFlags().StringP("url", "u", "https://raw.githubusercontent.com/openfaas/store/master/templates.json", "Use as alternative store for templates")
 	template_storeCmd.AddCommand(template_store_describeCmd)
 

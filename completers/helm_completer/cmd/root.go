@@ -18,6 +18,8 @@ func Execute() error {
 }
 
 func init() {
+	carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.PersistentFlags().Bool("add-dir-header", false, "If true, adds the file directory to the header of the log messages")
 	rootCmd.PersistentFlags().Bool("alsologtostderr", false, "log to standard error as well as files")
 	rootCmd.PersistentFlags().Bool("debug", false, "enable verbose output")

@@ -13,6 +13,8 @@ var buildCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(buildCmd).Standalone()
+
 	buildCmd.Flags().StringArrayP("build-arg", "b", []string{}, "Add a build-arg for Docker (KEY=VALUE)")
 	buildCmd.Flags().StringArray("build-label", []string{}, "Add a label for Docker image (LABEL=VALUE)")
 	buildCmd.Flags().StringArrayP("build-option", "o", []string{}, "Set a build option, e.g. dev")

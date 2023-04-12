@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var verify_commitCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(verify_commitCmd).Standalone()
 	verify_commitCmd.Flags().Bool("raw", false, "print raw gpg status output")
 	verify_commitCmd.Flags().BoolP("verbose", "v", false, "print commit contents")
 	rootCmd.AddCommand(verify_commitCmd)

@@ -13,6 +13,7 @@ var get_hooksCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(get_hooksCmd).Standalone()
 	get_hooksCmd.Flags().Int("revision", 0, "get the named release with revision")
 	getCmd.AddCommand(get_hooksCmd)
 

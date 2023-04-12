@@ -13,6 +13,7 @@ var cache_deleteCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(cache_deleteCmd).Standalone()
 	cacheCmd.AddCommand(cache_deleteCmd)
 
 	carapace.Gen(cache_deleteCmd).PositionalCompletion(

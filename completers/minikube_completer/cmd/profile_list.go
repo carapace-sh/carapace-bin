@@ -12,6 +12,7 @@ var profile_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(profile_listCmd).Standalone()
 	profile_listCmd.Flags().BoolP("light", "l", false, "If true, returns list of profiles faster by skipping validating the status of the cluster.")
 	profile_listCmd.Flags().StringP("output", "o", "table", "The output format. One of 'json', 'table'")
 	profileCmd.AddCommand(profile_listCmd)

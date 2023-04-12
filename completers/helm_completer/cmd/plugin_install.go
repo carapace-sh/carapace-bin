@@ -12,6 +12,7 @@ var plugin_installCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(plugin_installCmd).Standalone()
 	plugin_installCmd.Flags().String("version", "", "specify a version constraint. If this is not specified, the latest version is installed")
 	pluginCmd.AddCommand(plugin_installCmd)
 

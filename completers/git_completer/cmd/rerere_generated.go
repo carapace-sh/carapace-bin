@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var rerereCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(rerereCmd).Standalone()
 	rerereCmd.Flags().Bool("rerere-autoupdate", false, "register clean resolutions in index")
 	rootCmd.AddCommand(rerereCmd)
 }

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var name_revCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(name_revCmd).Standalone()
 	name_revCmd.Flags().Bool("all", false, "list all commits reachable from all refs")
 	name_revCmd.Flags().Bool("always", false, "show abbreviated commit object as fallback")
 	name_revCmd.Flags().String("exclude", "", "ignore refs matching <pattern>")

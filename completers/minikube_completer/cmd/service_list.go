@@ -13,6 +13,7 @@ var service_listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(service_listCmd).Standalone()
 	service_listCmd.Flags().StringP("namespace", "n", "", "The services namespace")
 	serviceCmd.AddCommand(service_listCmd)
 

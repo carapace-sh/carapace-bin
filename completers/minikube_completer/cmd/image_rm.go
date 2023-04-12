@@ -13,6 +13,7 @@ var image_rmCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(image_rmCmd).Standalone()
 	imageCmd.AddCommand(image_rmCmd)
 
 	carapace.Gen(image_rmCmd).PositionalCompletion(

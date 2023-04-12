@@ -12,6 +12,7 @@ var listCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(listCmd).Standalone()
 	listCmd.Flags().BoolP("all", "a", false, "show all releases without any filter applied")
 	listCmd.Flags().BoolP("all-namespaces", "A", false, "list releases across all namespaces")
 	listCmd.Flags().BoolP("date", "d", false, "sort by release date")

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var merge_fileCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(merge_fileCmd).Standalone()
 	merge_fileCmd.Flags().StringS("L", "L", "", "set labels for file1/orig-file/file2")
 	merge_fileCmd.Flags().Bool("diff3", false, "use a diff3 based merge")
 	merge_fileCmd.Flags().String("marker-size", "", "for conflicts, use this marker size")

@@ -13,6 +13,7 @@ var modCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(modCmd).Standalone()
 	modCmd.Flags().StringP("baseURL", "b", "", "hostname (and path) to the root, e.g. http://spf13.com/")
 	modCmd.Flags().BoolP("buildDrafts", "D", false, "include content marked as draft")
 	modCmd.Flags().BoolP("buildExpired", "E", false, "include expired content")

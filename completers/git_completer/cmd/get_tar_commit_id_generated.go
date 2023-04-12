@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var get_tar_commit_idCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(get_tar_commit_idCmd).Standalone()
 
 	rootCmd.AddCommand(get_tar_commit_idCmd)
 }

@@ -13,6 +13,7 @@ var statusCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(statusCmd).Standalone()
 	statusCmd.Flags().StringP("output", "o", "table", "prints the output in the specified format. Allowed values: table, json, yaml")
 	statusCmd.Flags().Int("revision", 0, "if set, display the status of the named release with revision")
 	statusCmd.Flags().Bool("show-desc", false, "if set, display the description message of the named release")

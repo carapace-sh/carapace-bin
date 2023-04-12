@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var ls_treeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(ls_treeCmd).Standalone()
 	ls_treeCmd.Flags().String("abbrev", "", "use <n> digits to display SHA-1s")
 	ls_treeCmd.Flags().BoolS("d", "d", false, "only show trees")
 	ls_treeCmd.Flags().Bool("full-name", false, "use full path names")

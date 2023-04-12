@@ -17,6 +17,7 @@ var upgradeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(upgradeCmd).Standalone()
 	upgradeCmd.Flags().Bool("atomic", false, "if set, upgrade process rolls back changes made in case of failed upgrade. The --wait flag will be set automatically if --atomic is used")
 	upgradeCmd.Flags().String("ca-file", "", "verify certificates of HTTPS-enabled servers using this CA bundle")
 	upgradeCmd.Flags().String("cert-file", "", "identify HTTPS client using this SSL certificate file")

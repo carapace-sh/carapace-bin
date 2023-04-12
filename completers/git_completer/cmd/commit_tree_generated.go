@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,7 @@ var commit_treeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(commit_treeCmd).Standalone()
 	commit_treeCmd.Flags().StringS("F", "F", "", "read commit log message from file")
 	commit_treeCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
 	commit_treeCmd.Flags().StringS("m", "m", "", "commit message")

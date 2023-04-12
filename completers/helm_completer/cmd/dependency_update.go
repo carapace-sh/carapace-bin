@@ -12,6 +12,7 @@ var dependency_updateCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(dependency_updateCmd).Standalone()
 	dependency_updateCmd.Flags().String("keyring", "/home/user/.gnupg/pubring.gpg", "keyring containing public keys")
 	dependency_updateCmd.Flags().Bool("skip-refresh", false, "do not refresh the local repository cache")
 	dependency_updateCmd.Flags().Bool("verify", false, "verify the packages against signatures")
