@@ -6,9 +6,10 @@ import (
 )
 
 var repoCmd = &cobra.Command{
-	Use:   "repo",
-	Short: "add, list, remove, update, and index chart repositories",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "repo",
+	Short:   "add, list, remove, update, and index chart repositories",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

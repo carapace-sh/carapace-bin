@@ -8,9 +8,10 @@ import (
 )
 
 var templateCmd = &cobra.Command{
-	Use:   "template",
-	Short: "locally render templates",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "template",
+	Short:   "locally render templates",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

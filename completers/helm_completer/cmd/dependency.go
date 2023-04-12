@@ -6,9 +6,10 @@ import (
 )
 
 var dependencyCmd = &cobra.Command{
-	Use:   "dependency",
-	Short: "manage a chart's dependencies",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "dependency",
+	Short:   "manage a chart's dependencies",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

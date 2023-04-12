@@ -9,9 +9,10 @@ import (
 )
 
 var rollbackCmd = &cobra.Command{
-	Use:   "rollback",
-	Short: "roll back a release to a previous revision",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rollback",
+	Short:   "roll back a release to a previous revision",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

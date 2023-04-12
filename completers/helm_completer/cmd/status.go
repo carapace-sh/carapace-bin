@@ -7,9 +7,10 @@ import (
 )
 
 var statusCmd = &cobra.Command{
-	Use:   "status",
-	Short: "display the status of the named release",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "status",
+	Short:   "display the status of the named release",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

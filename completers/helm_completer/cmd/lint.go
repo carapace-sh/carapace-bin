@@ -6,9 +6,10 @@ import (
 )
 
 var lintCmd = &cobra.Command{
-	Use:   "lint",
-	Short: "examine a chart for possible issues",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "lint",
+	Short:   "examine a chart for possible issues",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

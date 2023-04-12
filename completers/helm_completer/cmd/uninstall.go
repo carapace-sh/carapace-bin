@@ -9,9 +9,10 @@ import (
 )
 
 var uninstallCmd = &cobra.Command{
-	Use:   "uninstall",
-	Short: "uninstall a release",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "uninstall",
+	Short:   "uninstall a release",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

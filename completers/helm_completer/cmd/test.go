@@ -9,9 +9,10 @@ import (
 )
 
 var testCmd = &cobra.Command{
-	Use:   "test",
-	Short: "run tests for a release",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "test",
+	Short:   "run tests for a release",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -6,9 +6,10 @@ import (
 )
 
 var createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "create a new chart with the given name",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "create",
+	Short:   "create a new chart with the given name",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

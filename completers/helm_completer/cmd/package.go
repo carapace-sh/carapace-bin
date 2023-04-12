@@ -6,9 +6,10 @@ import (
 )
 
 var packageCmd = &cobra.Command{
-	Use:   "package",
-	Short: "package a chart directory into a chart archive",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "package",
+	Short:   "package a chart directory into a chart archive",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

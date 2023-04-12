@@ -11,9 +11,10 @@ import (
 )
 
 var upgradeCmd = &cobra.Command{
-	Use:   "upgrade",
-	Short: "upgrade a release",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "upgrade",
+	Short:   "upgrade a release",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
