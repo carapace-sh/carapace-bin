@@ -15,6 +15,7 @@ var network_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(network_rmCmd).Standalone()
+
 	network_rmCmd.Flags().BoolP("force", "f", false, "Do not error if the network does not exist")
 	networkCmd.AddCommand(network_rmCmd)
 

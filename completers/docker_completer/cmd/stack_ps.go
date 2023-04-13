@@ -13,6 +13,7 @@ var stack_psCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(stack_psCmd).Standalone()
+
 	stack_psCmd.Flags().StringP("filter", "f", "", "Filter output based on conditions provided")
 	stack_psCmd.Flags().String("format", "", "Format output using a custom template:")
 	stack_psCmd.Flags().Bool("no-resolve", false, "Do not map IDs to Names")

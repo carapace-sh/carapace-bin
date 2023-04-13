@@ -13,6 +13,7 @@ var manifest_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(manifest_rmCmd).Standalone()
+
 	manifestCmd.AddCommand(manifest_rmCmd)
 
 	// TODO completion

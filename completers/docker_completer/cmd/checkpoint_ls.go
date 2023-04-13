@@ -15,6 +15,7 @@ var checkpoint_lsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(checkpoint_lsCmd).Standalone()
+
 	checkpoint_lsCmd.Flags().String("checkpoint-dir", "", "Use a custom checkpoint storage directory")
 	checkpointCmd.AddCommand(checkpoint_lsCmd)
 

@@ -14,9 +14,8 @@ var container_topCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_topCmd).Standalone()
+
 	containerCmd.AddCommand(container_topCmd)
 
-	rootAlias(container_topCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalAnyCompletion(docker.ActionContainers())
-	})
+	carapace.Gen(container_topCmd).PositionalAnyCompletion(docker.ActionContainers())
 }

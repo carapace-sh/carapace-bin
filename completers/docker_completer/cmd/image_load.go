@@ -13,13 +13,12 @@ var image_loadCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(image_loadCmd).Standalone()
+
 	image_loadCmd.Flags().StringP("input", "i", "", "Read from tar archive file, instead of STDIN")
 	image_loadCmd.Flags().BoolP("quiet", "q", false, "Suppress the load output")
 	imageCmd.AddCommand(image_loadCmd)
 
-	rootAlias(image_loadCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-			"input": carapace.ActionFiles(),
-		})
+	carapace.Gen(image_loadCmd).FlagCompletion(carapace.ActionMap{
+		"input": carapace.ActionFiles(),
 	})
 }

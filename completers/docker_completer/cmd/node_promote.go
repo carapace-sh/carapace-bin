@@ -14,6 +14,7 @@ var node_promoteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(node_promoteCmd).Standalone()
+
 	nodeCmd.AddCommand(node_promoteCmd)
 
 	carapace.Gen(node_promoteCmd).PositionalAnyCompletion(docker.ActionNodes())

@@ -13,6 +13,7 @@ var system_dfCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(system_dfCmd).Standalone()
+
 	system_dfCmd.Flags().String("format", "", "Format output using a custom template:")
 	system_dfCmd.Flags().BoolP("verbose", "v", false, "Show detailed information on space usage")
 	systemCmd.AddCommand(system_dfCmd)

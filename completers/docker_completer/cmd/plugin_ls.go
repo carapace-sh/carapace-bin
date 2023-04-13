@@ -14,7 +14,8 @@ var plugin_lsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(plugin_lsCmd).Standalone()
-	plugin_lsCmd.Flags().StringP("filter", "f", "", "Provide filter values (e.g. 'enabled=true')")
+
+	plugin_lsCmd.Flags().StringP("filter", "f", "", "Provide filter values (e.g. \"enabled=true\")")
 	plugin_lsCmd.Flags().String("format", "", "Format output using a custom template:")
 	plugin_lsCmd.Flags().Bool("no-trunc", false, "Don't truncate output")
 	plugin_lsCmd.Flags().BoolP("quiet", "q", false, "Only display plugin IDs")

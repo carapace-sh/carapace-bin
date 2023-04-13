@@ -15,14 +15,13 @@ var container_killCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_killCmd).Standalone()
+
 	container_killCmd.Flags().StringP("signal", "s", "", "Signal to send to the container")
 	containerCmd.AddCommand(container_killCmd)
 
-	rootAlias(container_killCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-			"signal": ps.ActionKillSignals(),
-		})
-
-		carapace.Gen(cmd).PositionalAnyCompletion(docker.ActionContainers())
+	carapace.Gen(container_killCmd).FlagCompletion(carapace.ActionMap{
+		"signal": ps.ActionKillSignals(),
 	})
+
+	carapace.Gen(container_killCmd).PositionalAnyCompletion(docker.ActionContainers())
 }

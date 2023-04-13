@@ -14,9 +14,8 @@ var container_pauseCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_pauseCmd).Standalone()
+
 	containerCmd.AddCommand(container_pauseCmd)
 
-	rootAlias(container_pauseCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalAnyCompletion(docker.ActionContainers())
-	})
+	carapace.Gen(container_pauseCmd).PositionalAnyCompletion(docker.ActionContainers())
 }

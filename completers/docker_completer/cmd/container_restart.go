@@ -15,6 +15,7 @@ var container_restartCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_restartCmd).Standalone()
+
 	container_restartCmd.Flags().StringP("signal", "s", "", "Signal to send to the container")
 	container_restartCmd.Flags().IntP("time", "t", 0, "Seconds to wait before killing the container")
 	containerCmd.AddCommand(container_restartCmd)
@@ -23,7 +24,5 @@ func init() {
 		"signal": ps.ActionKillSignals(),
 	})
 
-	rootAlias(container_restartCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalAnyCompletion(docker.ActionContainers())
-	})
+	carapace.Gen(container_restartCmd).PositionalAnyCompletion(docker.ActionContainers())
 }

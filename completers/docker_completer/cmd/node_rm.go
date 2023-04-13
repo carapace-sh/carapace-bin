@@ -15,6 +15,7 @@ var node_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(node_rmCmd).Standalone()
+
 	node_rmCmd.Flags().BoolP("force", "f", false, "Force remove a node from the swarm")
 	nodeCmd.AddCommand(node_rmCmd)
 

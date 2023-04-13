@@ -6,9 +6,10 @@ import (
 )
 
 var searchCmd = &cobra.Command{
-	Use:   "search",
-	Short: "Search the Docker Hub for images",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "search",
+	Short:   "Search the Docker Hub for images",
+	GroupID: "common",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -16,7 +17,7 @@ func init() {
 
 	searchCmd.Flags().StringP("filter", "f", "", "Filter output based on conditions provided")
 	searchCmd.Flags().String("format", "", "Pretty-print search using a Go template")
-	searchCmd.Flags().String("limit", "", "Max number of search results (default 25)")
+	searchCmd.Flags().Int("limit", 0, "Max number of search results")
 	searchCmd.Flags().Bool("no-trunc", false, "Don't truncate output")
 	rootCmd.AddCommand(searchCmd)
 }

@@ -15,6 +15,7 @@ var volume_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(volume_rmCmd).Standalone()
+
 	volume_rmCmd.Flags().BoolP("force", "f", false, "Force the removal of one or more volumes")
 	volumeCmd.AddCommand(volume_rmCmd)
 

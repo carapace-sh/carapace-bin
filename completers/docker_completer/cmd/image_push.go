@@ -14,14 +14,13 @@ var image_pushCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(image_pushCmd).Standalone()
+
 	image_pushCmd.Flags().BoolP("all-tags", "a", false, "Push all tags of an image to the repository")
 	image_pushCmd.Flags().Bool("disable-content-trust", true, "Skip image signing")
 	image_pushCmd.Flags().BoolP("quiet", "q", false, "Suppress verbose output")
 	imageCmd.AddCommand(image_pushCmd)
 
-	rootAlias(image_pushCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalCompletion(
-			docker.ActionRepositoryTags(),
-		)
-	})
+	carapace.Gen(image_pushCmd).PositionalCompletion(
+		docker.ActionRepositoryTags(),
+	)
 }

@@ -13,8 +13,7 @@ var system_infoCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(system_infoCmd).Standalone()
+
 	system_infoCmd.Flags().StringP("format", "f", "", "Format the output using the given Go template")
 	systemCmd.AddCommand(system_infoCmd)
-
-	rootAlias(system_infoCmd, func(cmd *cobra.Command, isAlias bool) {})
 }

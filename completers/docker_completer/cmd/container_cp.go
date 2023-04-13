@@ -15,25 +15,24 @@ var container_cpCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_cpCmd).Standalone()
+
 	container_cpCmd.Flags().BoolP("archive", "a", false, "Archive mode (copy all uid/gid information)")
 	container_cpCmd.Flags().BoolP("follow-link", "L", false, "Always follow symbol link in SRC_PATH")
 	container_cpCmd.Flags().BoolP("quiet", "q", false, "Suppress progress output during copy. Progress output is automatically suppressed if no terminal is attached")
 	containerCmd.AddCommand(container_cpCmd)
 
-	rootAlias(container_cpCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalCompletion(
-			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				if util.HasPathPrefix(c.Value) {
-					return carapace.ActionFiles()
-				}
-				return docker.ActionContainerPath()
-			}),
-			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				if util.HasPathPrefix(c.Args[0]) {
-					return docker.ActionContainerPath()
-				}
+	carapace.Gen(container_cpCmd).PositionalCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
-			}),
-		)
-	})
+			}
+			return docker.ActionContainerPath()
+		}),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if util.HasPathPrefix(c.Args[0]) {
+				return docker.ActionContainerPath()
+			}
+			return carapace.ActionFiles()
+		}),
+	)
 }

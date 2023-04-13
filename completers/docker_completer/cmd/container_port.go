@@ -14,14 +14,13 @@ var container_portCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_portCmd).Standalone()
+
 	containerCmd.AddCommand(container_portCmd)
 
-	rootAlias(container_portCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalCompletion(
-			docker.ActionContainers(),
-			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				return docker.ActionContainerPorts(c.Args[0])
-			}),
-		)
-	})
+	carapace.Gen(container_portCmd).PositionalCompletion(
+		docker.ActionContainers(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return docker.ActionContainerPorts(c.Args[0])
+		}),
+	)
 }

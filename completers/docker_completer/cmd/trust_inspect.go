@@ -14,6 +14,7 @@ var trust_inspectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(trust_inspectCmd).Standalone()
+
 	trust_inspectCmd.Flags().Bool("pretty", false, "Print the information in a human friendly format")
 	trustCmd.AddCommand(trust_inspectCmd)
 

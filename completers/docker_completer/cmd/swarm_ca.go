@@ -13,6 +13,7 @@ var swarm_caCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(swarm_caCmd).Standalone()
+
 	swarm_caCmd.Flags().String("ca-cert", "", "Path to the PEM-formatted root CA certificate to use for the new cluster")
 	swarm_caCmd.Flags().String("ca-key", "", "Path to the PEM-formatted root CA key to use for the new cluster")
 	swarm_caCmd.Flags().Duration("cert-expiry", 0, "Validity period for node certificates (ns|us|ms|s|m|h)")

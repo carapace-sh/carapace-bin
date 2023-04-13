@@ -14,11 +14,10 @@ var container_renameCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_renameCmd).Standalone()
+
 	containerCmd.AddCommand(container_renameCmd)
 
-	rootAlias(container_renameCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalCompletion(
-			docker.ActionContainers(),
-		)
-	})
+	carapace.Gen(container_renameCmd).PositionalCompletion(
+		docker.ActionContainers(),
+	)
 }

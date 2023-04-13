@@ -14,6 +14,7 @@ var config_inspectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_inspectCmd).Standalone()
+
 	config_inspectCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
 	config_inspectCmd.Flags().Bool("pretty", false, "Print the information in a human friendly format")
 	configCmd.AddCommand(config_inspectCmd)

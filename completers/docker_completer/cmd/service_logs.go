@@ -14,13 +14,14 @@ var service_logsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(service_logsCmd).Standalone()
+
 	service_logsCmd.Flags().Bool("details", false, "Show extra details provided to logs")
 	service_logsCmd.Flags().BoolP("follow", "f", false, "Follow log output")
 	service_logsCmd.Flags().Bool("no-resolve", false, "Do not map IDs to Names in output")
 	service_logsCmd.Flags().Bool("no-task-ids", false, "Do not include task IDs in output")
 	service_logsCmd.Flags().Bool("no-trunc", false, "Do not truncate output")
 	service_logsCmd.Flags().Bool("raw", false, "Do not neatly format logs")
-	service_logsCmd.Flags().String("since", "", "Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)")
+	service_logsCmd.Flags().String("since", "", "Show logs since timestamp (e.g. \"2013-01-02T13:23:37Z\") or relative (e.g. \"42m\" for 42 minutes)")
 	service_logsCmd.Flags().StringP("tail", "n", "all", "Number of lines to show from the end of the logs")
 	service_logsCmd.Flags().BoolP("timestamps", "t", false, "Show timestamps")
 	serviceCmd.AddCommand(service_logsCmd)

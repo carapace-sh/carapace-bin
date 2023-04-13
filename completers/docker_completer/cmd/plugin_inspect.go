@@ -14,6 +14,7 @@ var plugin_inspectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(plugin_inspectCmd).Standalone()
+
 	plugin_inspectCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
 	pluginCmd.AddCommand(plugin_inspectCmd)
 

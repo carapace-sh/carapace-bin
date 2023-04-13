@@ -14,5 +14,6 @@ var volumeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(volumeCmd).Standalone()
+
 	rootCmd.AddCommand(volumeCmd)
 }

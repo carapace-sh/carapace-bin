@@ -14,12 +14,11 @@ var container_exportCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_exportCmd).Standalone()
+
 	container_exportCmd.Flags().StringP("output", "o", "", "Write to a file, instead of STDOUT")
 	containerCmd.AddCommand(container_exportCmd)
 
-	rootAlias(container_exportCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalCompletion(
-			docker.ActionContainers(),
-		)
-	})
+	carapace.Gen(container_exportCmd).PositionalCompletion(
+		docker.ActionContainers(),
+	)
 }

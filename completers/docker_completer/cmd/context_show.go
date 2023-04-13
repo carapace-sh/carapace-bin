@@ -13,5 +13,6 @@ var context_showCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(context_showCmd).Standalone()
+
 	contextCmd.AddCommand(context_showCmd)
 }

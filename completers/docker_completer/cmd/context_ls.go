@@ -14,6 +14,7 @@ var context_lsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(context_lsCmd).Standalone()
+
 	context_lsCmd.Flags().String("format", "", "Format output using a custom template:")
 	context_lsCmd.Flags().BoolP("quiet", "q", false, "Only show context names")
 	contextCmd.AddCommand(context_lsCmd)

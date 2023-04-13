@@ -14,12 +14,11 @@ var image_tagCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(image_tagCmd).Standalone()
+
 	imageCmd.AddCommand(image_tagCmd)
 
-	rootAlias(image_tagCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalCompletion(
-			docker.ActionRepositoryTags(),
-			docker.ActionRepositoryTags(),
-		)
-	})
+	carapace.Gen(image_tagCmd).PositionalCompletion(
+		docker.ActionRepositoryTags(),
+		docker.ActionRepositoryTags(),
+	)
 }

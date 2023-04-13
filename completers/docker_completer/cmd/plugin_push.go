@@ -14,6 +14,7 @@ var plugin_pushCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(plugin_pushCmd).Standalone()
+
 	plugin_pushCmd.Flags().Bool("disable-content-trust", true, "Skip image signing")
 	pluginCmd.AddCommand(plugin_pushCmd)
 

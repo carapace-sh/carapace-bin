@@ -13,6 +13,7 @@ var swarm_joinTokenCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(swarm_joinTokenCmd).Standalone()
+
 	swarm_joinTokenCmd.Flags().BoolP("quiet", "q", false, "Only display token")
 	swarm_joinTokenCmd.Flags().Bool("rotate", false, "Rotate join token")
 	swarmCmd.AddCommand(swarm_joinTokenCmd)

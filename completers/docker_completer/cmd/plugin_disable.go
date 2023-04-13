@@ -14,6 +14,7 @@ var plugin_disableCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(plugin_disableCmd).Standalone()
+
 	plugin_disableCmd.Flags().BoolP("force", "f", false, "Force the disable of an active plugin")
 	pluginCmd.AddCommand(plugin_disableCmd)
 

@@ -14,6 +14,7 @@ var plugin_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(plugin_createCmd).Standalone()
+
 	plugin_createCmd.Flags().Bool("compress", false, "Compress the context using gzip")
 	pluginCmd.AddCommand(plugin_createCmd)
 

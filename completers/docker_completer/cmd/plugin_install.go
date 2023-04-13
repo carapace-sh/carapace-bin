@@ -14,6 +14,7 @@ var plugin_installCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(plugin_installCmd).Standalone()
+
 	plugin_installCmd.Flags().String("alias", "", "Local name for plugin")
 	plugin_installCmd.Flags().Bool("disable", false, "Do not enable the plugin on install")
 	plugin_installCmd.Flags().Bool("disable-content-trust", true, "Skip image verification")

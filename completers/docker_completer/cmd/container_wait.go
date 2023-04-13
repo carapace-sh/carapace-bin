@@ -14,9 +14,8 @@ var container_waitCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_waitCmd).Standalone()
+
 	containerCmd.AddCommand(container_waitCmd)
 
-	rootAlias(container_waitCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalAnyCompletion(docker.ActionContainers())
-	})
+	carapace.Gen(container_waitCmd).PositionalAnyCompletion(docker.ActionContainers())
 }

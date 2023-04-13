@@ -6,13 +6,15 @@ import (
 )
 
 var loginCmd = &cobra.Command{
-	Use:   "login [OPTIONS] [SERVER]",
-	Short: "Log in to a registry",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "login [OPTIONS] [SERVER]",
+	Short:   "Log in to a registry",
+	GroupID: "common",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(loginCmd).Standalone()
+
 	loginCmd.Flags().StringP("password", "p", "", "Password")
 	loginCmd.Flags().Bool("password-stdin", false, "Take the password from stdin")
 	loginCmd.Flags().StringP("username", "u", "", "Username")

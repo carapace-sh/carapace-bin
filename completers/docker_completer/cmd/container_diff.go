@@ -14,9 +14,8 @@ var container_diffCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_diffCmd).Standalone()
+
 	containerCmd.AddCommand(container_diffCmd)
 
-	rootAlias(container_diffCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalCompletion(docker.ActionContainers())
-	})
+	carapace.Gen(container_diffCmd).PositionalCompletion(docker.ActionContainers())
 }

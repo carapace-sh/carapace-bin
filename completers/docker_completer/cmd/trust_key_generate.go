@@ -13,6 +13,7 @@ var trust_key_generateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(trust_key_generateCmd).Standalone()
+
 	trust_key_generateCmd.Flags().String("dir", "", "Directory to generate key in, defaults to current directory")
 	trust_keyCmd.AddCommand(trust_key_generateCmd)
 
