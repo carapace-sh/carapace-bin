@@ -19,9 +19,11 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.Flags().String("ansi", "auto", "Control when to print ANSI control characters (\"never\"|\"always\"|\"auto\")")
 	rootCmd.Flags().Bool("compatibility", false, "Run compose in backward compatibility mode")
-	rootCmd.Flags().String("env-file", "", "Specify an alternate environment file.")
+	rootCmd.Flags().Bool("dry-run", false, "Execute command in dry run mode")
+	rootCmd.Flags().StringArray("env-file", []string{}, "Specify an alternate environment file.")
 	rootCmd.Flags().StringArrayP("file", "f", []string{}, "Compose configuration files")
 	rootCmd.Flags().Bool("no-ansi", false, "Do not print ANSI control characters (DEPRECATED)")
 	rootCmd.Flags().Int("parallel", -1, "Control max parallelism, -1 for unlimited")
