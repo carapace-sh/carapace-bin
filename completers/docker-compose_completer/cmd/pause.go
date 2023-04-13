@@ -14,6 +14,7 @@ var pauseCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(pauseCmd).Standalone()
+
 	rootCmd.AddCommand(pauseCmd)
 
 	carapace.Gen(pauseCmd).PositionalAnyCompletion(
