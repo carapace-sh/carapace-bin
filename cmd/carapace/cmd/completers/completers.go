@@ -55,6 +55,25 @@ func SpecPath(name string) (string, error) {
 	return abs, nil
 }
 
+func OverlayPath(name string) (string, error) {
+	// TODO code duplication
+	configDir, err := xdg.UserConfigDir()
+	if err != nil {
+		return "", err
+	}
+
+	path := fmt.Sprintf("%v/carapace/overlays/%v.yaml", configDir, name)
+	if _, err := os.Stat(path); err != nil {
+		return "", err
+	}
+
+	abs, err := filepath.Abs(path)
+	if err != nil {
+		return "", err
+	}
+	return abs, nil
+}
+
 func Specs() (specs []string, dir string) {
 	r := regexp.MustCompile(`^[0-9a-zA-Z_\-.]+\.yaml$`) // sanity check
 	specs = make([]string, 0)
