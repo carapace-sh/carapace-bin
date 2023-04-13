@@ -14,6 +14,7 @@ var context_inspectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(context_inspectCmd).Standalone()
+
 	context_inspectCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
 	contextCmd.AddCommand(context_inspectCmd)
 

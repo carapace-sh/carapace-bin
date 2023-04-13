@@ -14,6 +14,7 @@ var trust_signCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(trust_signCmd).Standalone()
+
 	trust_signCmd.Flags().Bool("local", false, "Sign a locally tagged image")
 	trustCmd.AddCommand(trust_signCmd)
 

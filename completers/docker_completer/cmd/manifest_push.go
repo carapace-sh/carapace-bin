@@ -13,6 +13,7 @@ var manifest_pushCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(manifest_pushCmd).Standalone()
+
 	manifest_pushCmd.Flags().Bool("insecure", false, "Allow push to an insecure registry")
 	manifest_pushCmd.Flags().BoolP("purge", "p", false, "Remove the local manifest list after push")
 	manifestCmd.AddCommand(manifest_pushCmd)

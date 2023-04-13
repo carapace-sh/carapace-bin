@@ -13,6 +13,7 @@ var manifest_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(manifest_createCmd).Standalone()
+
 	manifest_createCmd.Flags().BoolP("amend", "a", false, "Amend an existing manifest list")
 	manifest_createCmd.Flags().Bool("insecure", false, "Allow communication with an insecure registry")
 	manifestCmd.AddCommand(manifest_createCmd)

@@ -14,6 +14,7 @@ var volume_inspectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(volume_inspectCmd).Standalone()
+
 	volume_inspectCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
 	volumeCmd.AddCommand(volume_inspectCmd)
 

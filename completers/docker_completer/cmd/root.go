@@ -24,13 +24,19 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.AddGroup(&cobra.Group{ID: "management", Title: "Management Commands"})
+
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "common", Title: "Common Commands"},
+		&cobra.Group{ID: "management", Title: "Management Commands"},
+		&cobra.Group{ID: "swarm", Title: "Swarm Commands"},
+	)
+
 	rootCmd.Flags().String("config", "/home/rsteube/.docker", "Location of client config files")
 	rootCmd.Flags().StringP("context", "c", "", "Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with \"docker context use\")")
 	rootCmd.Flags().BoolP("debug", "D", false, "Enable debug mode")
 	rootCmd.PersistentFlags().BoolP("help", "h", false, "Print usage")
 	rootCmd.Flags().StringP("host", "H", "", "Daemon socket(s) to connect to")
-	rootCmd.Flags().StringP("log-level", "l", "info", "Set the logging level (\"debug\"|\"info\"|\"warn\"|\"error\"|\"fatal\")")
+	rootCmd.Flags().StringP("log-level", "l", "info", "Set the logging level (\"debug\", \"info\", \"warn\", \"error\", \"fatal\")")
 	rootCmd.Flags().Bool("tls", false, "Use TLS; implied by --tlsverify")
 	rootCmd.Flags().String("tlscacert", "/home/rsteube/.docker/ca.pem", "Trust certs signed only by this CA")
 	rootCmd.Flags().String("tlscert", "/home/rsteube/.docker/cert.pem", "Path to TLS certificate file")
@@ -75,18 +81,4 @@ func init() {
 			}
 		}
 	})
-}
-
-func rootAlias(cmd *cobra.Command, initCompletion func(cmd *cobra.Command, isAlias bool)) {
-	aliasCmd := *cmd
-	switch aliasCmd.Name() {
-	case "build", "run":
-	default:
-		aliasCmd.Hidden = true // hide legacy commands
-	}
-	rootCmd.AddCommand(&aliasCmd)
-
-	for i, c := range []*cobra.Command{cmd, &aliasCmd} {
-		initCompletion(c, i == 1)
-	}
 }

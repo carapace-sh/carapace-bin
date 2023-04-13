@@ -14,5 +14,6 @@ var manifestCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(manifestCmd).Standalone()
+
 	rootCmd.AddCommand(manifestCmd)
 }

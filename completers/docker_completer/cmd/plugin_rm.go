@@ -15,6 +15,7 @@ var plugin_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(plugin_rmCmd).Standalone()
+
 	plugin_rmCmd.Flags().BoolP("force", "f", false, "Force the removal of an active plugin")
 	pluginCmd.AddCommand(plugin_rmCmd)
 

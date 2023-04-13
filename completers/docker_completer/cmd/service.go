@@ -8,11 +8,12 @@ import (
 var serviceCmd = &cobra.Command{
 	Use:     "service",
 	Short:   "Manage services",
-	GroupID: "management",
+	GroupID: "swarm",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(serviceCmd).Standalone()
+
 	rootCmd.AddCommand(serviceCmd)
 }

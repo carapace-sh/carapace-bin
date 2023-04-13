@@ -14,5 +14,6 @@ var checkpointCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(checkpointCmd).Standalone()
+
 	rootCmd.AddCommand(checkpointCmd)
 }

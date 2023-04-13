@@ -14,6 +14,7 @@ var network_disconnectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(network_disconnectCmd).Standalone()
+
 	network_disconnectCmd.Flags().BoolP("force", "f", false, "Force the container to disconnect from a network")
 	networkCmd.AddCommand(network_disconnectCmd)
 

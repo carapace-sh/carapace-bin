@@ -15,6 +15,7 @@ var checkpoint_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(checkpoint_rmCmd).Standalone()
+
 	checkpoint_rmCmd.Flags().String("checkpoint-dir", "", "Use a custom checkpoint storage directory")
 	checkpointCmd.AddCommand(checkpoint_rmCmd)
 

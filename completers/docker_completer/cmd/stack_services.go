@@ -14,6 +14,7 @@ var stack_servicesCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(stack_servicesCmd).Standalone()
+
 	stack_servicesCmd.Flags().StringP("filter", "f", "", "Filter output based on conditions provided")
 	stack_servicesCmd.Flags().String("format", "", "Format output using a custom template:")
 	stack_servicesCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")

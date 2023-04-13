@@ -14,6 +14,7 @@ var network_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(network_createCmd).Standalone()
+
 	network_createCmd.Flags().Bool("attachable", false, "Enable manual container attachment")
 	network_createCmd.Flags().String("aux-address", "", "Auxiliary IPv4 or IPv6 addresses used by Network driver")
 	network_createCmd.Flags().String("config-from", "", "The network from which to copy the configuration")

@@ -13,6 +13,7 @@ var swarm_unlockKeyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(swarm_unlockKeyCmd).Standalone()
+
 	swarm_unlockKeyCmd.Flags().BoolP("quiet", "q", false, "Only display token")
 	swarm_unlockKeyCmd.Flags().Bool("rotate", false, "Rotate unlock key")
 	swarmCmd.AddCommand(swarm_unlockKeyCmd)

@@ -14,6 +14,7 @@ var network_inspectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(network_inspectCmd).Standalone()
+
 	network_inspectCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
 	network_inspectCmd.Flags().BoolP("verbose", "v", false, "Verbose output for diagnostics")
 	networkCmd.AddCommand(network_inspectCmd)

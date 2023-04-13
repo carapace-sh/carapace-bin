@@ -14,6 +14,7 @@ var node_psCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(node_psCmd).Standalone()
+
 	node_psCmd.Flags().StringP("filter", "f", "", "Filter output based on conditions provided")
 	node_psCmd.Flags().String("format", "", "Pretty-print tasks using a Go template")
 	node_psCmd.Flags().Bool("no-resolve", false, "Do not map IDs to Names")

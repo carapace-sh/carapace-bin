@@ -14,6 +14,7 @@ var stack_lsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(stack_lsCmd).Standalone()
+
 	stack_lsCmd.Flags().String("format", "", "Format output using a custom template:")
 	stackCmd.AddCommand(stack_lsCmd)
 }

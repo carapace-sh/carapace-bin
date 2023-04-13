@@ -14,6 +14,7 @@ var trust_signer_addCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(trust_signer_addCmd).Standalone()
+
 	trust_signer_addCmd.Flags().String("key", "", "Path to the signer's public key file")
 	trust_signerCmd.AddCommand(trust_signer_addCmd)
 

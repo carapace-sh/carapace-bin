@@ -14,6 +14,7 @@ var container_inspectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_inspectCmd).Standalone()
+
 	container_inspectCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
 	container_inspectCmd.Flags().BoolP("size", "s", false, "Display total file sizes")
 	containerCmd.AddCommand(container_inspectCmd)

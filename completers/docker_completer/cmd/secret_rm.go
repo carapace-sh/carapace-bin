@@ -15,6 +15,7 @@ var secret_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(secret_rmCmd).Standalone()
+
 	secretCmd.AddCommand(secret_rmCmd)
 
 	carapace.Gen(secret_rmCmd).PositionalAnyCompletion(docker.ActionSecrets())

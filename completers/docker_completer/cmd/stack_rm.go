@@ -15,6 +15,7 @@ var stack_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(stack_rmCmd).Standalone()
+
 	stackCmd.AddCommand(stack_rmCmd)
 
 	carapace.Gen(stack_rmCmd).PositionalAnyCompletion(

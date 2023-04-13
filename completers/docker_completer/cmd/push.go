@@ -1,0 +1,27 @@
+package cmd
+
+import (
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
+	"github.com/spf13/cobra"
+)
+
+var pushCmd = &cobra.Command{
+	Use:     "push [OPTIONS] NAME[:TAG]",
+	Short:   "Upload an image to a registry",
+	GroupID: "common",
+	Run:     func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(pushCmd).Standalone()
+
+	pushCmd.Flags().BoolP("all-tags", "a", false, "Push all tags of an image to the repository")
+	pushCmd.Flags().Bool("disable-content-trust", true, "Skip image signing")
+	pushCmd.Flags().BoolP("quiet", "q", false, "Suppress verbose output")
+	rootCmd.AddCommand(pushCmd)
+
+	carapace.Gen(pushCmd).PositionalCompletion(
+		docker.ActionRepositoryTags(),
+	)
+}

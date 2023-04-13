@@ -14,6 +14,7 @@ var image_inspectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(image_inspectCmd).Standalone()
+
 	image_inspectCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
 	imageCmd.AddCommand(image_inspectCmd)
 

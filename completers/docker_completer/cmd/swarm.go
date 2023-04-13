@@ -8,11 +8,12 @@ import (
 var swarmCmd = &cobra.Command{
 	Use:     "swarm",
 	Short:   "Manage Swarm",
-	GroupID: "management",
+	GroupID: "swarm",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(swarmCmd).Standalone()
+
 	rootCmd.AddCommand(swarmCmd)
 }

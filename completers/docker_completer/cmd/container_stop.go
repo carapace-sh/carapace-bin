@@ -14,11 +14,10 @@ var container_stopCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_stopCmd).Standalone()
+
 	container_stopCmd.Flags().StringP("signal", "s", "", "Signal to send to the container")
 	container_stopCmd.Flags().IntP("time", "t", 0, "Seconds to wait before killing the container")
 	containerCmd.AddCommand(container_stopCmd)
 
-	rootAlias(container_stopCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalAnyCompletion(docker.ActionContainers())
-	})
+	carapace.Gen(container_stopCmd).PositionalAnyCompletion(docker.ActionContainers())
 }

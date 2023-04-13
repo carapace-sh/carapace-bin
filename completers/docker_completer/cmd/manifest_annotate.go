@@ -13,6 +13,7 @@ var manifest_annotateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(manifest_annotateCmd).Standalone()
+
 	manifest_annotateCmd.Flags().String("arch", "", "Set architecture")
 	manifest_annotateCmd.Flags().String("os", "", "Set operating system")
 	manifest_annotateCmd.Flags().StringSlice("os-features", []string{}, "Set operating system feature")

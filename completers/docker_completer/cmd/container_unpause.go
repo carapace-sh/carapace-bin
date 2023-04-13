@@ -14,9 +14,8 @@ var container_unpauseCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_unpauseCmd).Standalone()
+
 	containerCmd.AddCommand(container_unpauseCmd)
 
-	rootAlias(container_unpauseCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalAnyCompletion(docker.ActionContainers())
-	})
+	carapace.Gen(container_unpauseCmd).PositionalAnyCompletion(docker.ActionContainers())
 }

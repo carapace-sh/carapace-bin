@@ -13,6 +13,7 @@ var swarm_leaveCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(swarm_leaveCmd).Standalone()
+
 	swarm_leaveCmd.Flags().BoolP("force", "f", false, "Force this node to leave the swarm, ignoring warnings")
 	swarmCmd.AddCommand(swarm_leaveCmd)
 }

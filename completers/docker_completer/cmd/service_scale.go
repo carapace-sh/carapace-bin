@@ -14,6 +14,7 @@ var service_scaleCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(service_scaleCmd).Standalone()
+
 	service_scaleCmd.Flags().BoolP("detach", "d", false, "Exit immediately instead of waiting for the service to converge")
 	serviceCmd.AddCommand(service_scaleCmd)
 

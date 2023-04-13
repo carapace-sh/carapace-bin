@@ -14,13 +14,12 @@ var image_pullCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(image_pullCmd).Standalone()
+
 	image_pullCmd.Flags().BoolP("all-tags", "a", false, "Download all tagged images in the repository")
 	image_pullCmd.Flags().Bool("disable-content-trust", true, "Skip image verification")
 	image_pullCmd.Flags().String("platform", "", "Set platform if server is multi-platform capable")
 	image_pullCmd.Flags().BoolP("quiet", "q", false, "Suppress verbose output")
 	imageCmd.AddCommand(image_pullCmd)
 
-	rootAlias(image_pullCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalCompletion(docker.ActionRepositoryTags())
-	})
+	carapace.Gen(image_pullCmd).PositionalCompletion(docker.ActionRepositoryTags())
 }

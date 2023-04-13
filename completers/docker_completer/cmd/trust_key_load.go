@@ -13,6 +13,7 @@ var trust_key_loadCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(trust_key_loadCmd).Standalone()
+
 	trust_key_loadCmd.Flags().String("name", "signer", "Name for the loaded key")
 	trust_keyCmd.AddCommand(trust_key_loadCmd)
 

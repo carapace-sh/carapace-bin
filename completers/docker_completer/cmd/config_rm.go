@@ -15,6 +15,7 @@ var config_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_rmCmd).Standalone()
+
 	configCmd.AddCommand(config_rmCmd)
 
 	carapace.Gen(config_rmCmd).PositionalAnyCompletion(docker.ActionConfigs())

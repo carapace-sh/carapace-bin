@@ -13,6 +13,7 @@ var config_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_createCmd).Standalone()
+
 	config_createCmd.Flags().StringP("label", "l", "", "Config labels")
 	config_createCmd.Flags().String("template-driver", "", "Template driver")
 	configCmd.AddCommand(config_createCmd)

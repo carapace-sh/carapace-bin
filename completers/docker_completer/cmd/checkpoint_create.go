@@ -14,6 +14,7 @@ var checkpoint_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(checkpoint_createCmd).Standalone()
+
 	checkpoint_createCmd.Flags().String("checkpoint-dir", "", "Use a custom checkpoint storage directory")
 	checkpoint_createCmd.Flags().Bool("leave-running", false, "Leave the container running after checkpoint")
 	checkpointCmd.AddCommand(checkpoint_createCmd)

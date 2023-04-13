@@ -6,12 +6,14 @@ import (
 )
 
 var logoutCmd = &cobra.Command{
-	Use:   "logout [SERVER]",
-	Short: "Log out from a registry",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "logout [SERVER]",
+	Short:   "Log out from a registry",
+	GroupID: "common",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(logoutCmd).Standalone()
+
 	rootCmd.AddCommand(logoutCmd)
 }

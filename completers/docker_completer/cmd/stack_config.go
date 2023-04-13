@@ -13,6 +13,7 @@ var stack_configCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(stack_configCmd).Standalone()
+
 	stack_configCmd.Flags().StringSliceP("compose-file", "c", []string{}, "Path to a Compose file, or \"-\" to read from stdin")
 	stack_configCmd.Flags().Bool("skip-interpolation", false, "Skip interpolation and output only merged config")
 	stackCmd.AddCommand(stack_configCmd)

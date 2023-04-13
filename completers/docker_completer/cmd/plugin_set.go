@@ -14,6 +14,7 @@ var plugin_setCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(plugin_setCmd).Standalone()
+
 	pluginCmd.AddCommand(plugin_setCmd)
 
 	carapace.Gen(plugin_setCmd).PositionalCompletion(docker.ActionPlugins())

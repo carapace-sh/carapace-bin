@@ -13,6 +13,7 @@ var context_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(context_createCmd).Standalone()
+
 	context_createCmd.Flags().String("description", "", "Description of the context")
 	context_createCmd.Flags().String("docker", "", "set the docker endpoint")
 	context_createCmd.Flags().String("from", "", "create context from a named context")

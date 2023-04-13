@@ -14,6 +14,7 @@ var trust_revokeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(trust_revokeCmd).Standalone()
+
 	trust_revokeCmd.Flags().BoolP("yes", "y", false, "Do not prompt for confirmation")
 	trustCmd.AddCommand(trust_revokeCmd)
 

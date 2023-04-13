@@ -13,8 +13,9 @@ var system_pruneCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(system_pruneCmd).Standalone()
+
 	system_pruneCmd.Flags().BoolP("all", "a", false, "Remove all unused images not just dangling ones")
-	system_pruneCmd.Flags().String("filter", "", "Provide filter values (e.g. 'label=<key>=<value>')")
+	system_pruneCmd.Flags().String("filter", "", "Provide filter values (e.g. \"label=<key>=<value>\")")
 	system_pruneCmd.Flags().BoolP("force", "f", false, "Do not prompt for confirmation")
 	system_pruneCmd.Flags().Bool("volumes", false, "Prune volumes")
 	systemCmd.AddCommand(system_pruneCmd)

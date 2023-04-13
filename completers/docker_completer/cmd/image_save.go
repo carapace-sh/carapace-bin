@@ -14,14 +14,13 @@ var image_saveCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(image_saveCmd).Standalone()
+
 	image_saveCmd.Flags().StringP("output", "o", "", "Write to a file, instead of STDOUT")
 	imageCmd.AddCommand(image_saveCmd)
 
-	rootAlias(image_saveCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-			"output": carapace.ActionFiles(),
-		})
-
-		carapace.Gen(cmd).PositionalAnyCompletion(docker.ActionRepositoryTags())
+	carapace.Gen(image_saveCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(image_saveCmd).PositionalAnyCompletion(docker.ActionRepositoryTags())
 }

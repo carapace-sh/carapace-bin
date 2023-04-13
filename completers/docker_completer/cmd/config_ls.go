@@ -14,6 +14,7 @@ var config_lsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_lsCmd).Standalone()
+
 	config_lsCmd.Flags().StringP("filter", "f", "", "Filter output based on conditions provided")
 	config_lsCmd.Flags().String("format", "", "Format output using a custom template:")
 	config_lsCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")

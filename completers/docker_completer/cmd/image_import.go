@@ -14,15 +14,14 @@ var image_importCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(image_importCmd).Standalone()
+
 	image_importCmd.Flags().StringP("change", "c", "", "Apply Dockerfile instruction to the created image")
 	image_importCmd.Flags().StringP("message", "m", "", "Set commit message for imported image")
 	image_importCmd.Flags().String("platform", "", "Set platform if server is multi-platform capable")
 	imageCmd.AddCommand(image_importCmd)
 
-	rootAlias(image_importCmd, func(cmd *cobra.Command, isAlias bool) {
-		carapace.Gen(cmd).PositionalCompletion(
-			carapace.ActionFiles(),
-			docker.ActionRepositoryTags(),
-		)
-	})
+	carapace.Gen(image_importCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+		docker.ActionRepositoryTags(),
+	)
 }

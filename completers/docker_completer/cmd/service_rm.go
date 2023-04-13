@@ -15,6 +15,7 @@ var service_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(service_rmCmd).Standalone()
+
 	serviceCmd.AddCommand(service_rmCmd)
 
 	carapace.Gen(service_rmCmd).PositionalAnyCompletion(docker.ActionServices())

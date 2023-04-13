@@ -15,6 +15,7 @@ var context_rmCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(context_rmCmd).Standalone()
+
 	context_rmCmd.Flags().BoolP("force", "f", false, "Force the removal of a context in use")
 	contextCmd.AddCommand(context_rmCmd)
 

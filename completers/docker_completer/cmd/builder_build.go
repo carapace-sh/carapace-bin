@@ -13,7 +13,8 @@ var builder_buildCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(builder_buildCmd).Standalone()
-	builder_buildCmd.Flags().String("add-host", "", "Add a custom host-to-IP mapping (host:ip)")
+
+	builder_buildCmd.Flags().String("add-host", "", "Add a custom host-to-IP mapping (\"host:ip\")")
 	builder_buildCmd.Flags().String("build-arg", "", "Set build-time variables")
 	builder_buildCmd.Flags().StringSlice("cache-from", []string{}, "Images to consider as cache sources")
 	builder_buildCmd.Flags().String("cgroup-parent", "", "Optional parent cgroup for the container")
@@ -24,13 +25,13 @@ func init() {
 	builder_buildCmd.Flags().String("cpuset-cpus", "", "CPUs in which to allow execution (0-3, 0,1)")
 	builder_buildCmd.Flags().String("cpuset-mems", "", "MEMs in which to allow execution (0-3, 0,1)")
 	builder_buildCmd.Flags().Bool("disable-content-trust", true, "Skip image verification")
-	builder_buildCmd.Flags().StringP("file", "f", "", "Name of the Dockerfile (Default is 'PATH/Dockerfile')")
+	builder_buildCmd.Flags().StringP("file", "f", "", "Name of the Dockerfile (Default is \"PATH/Dockerfile\")")
 	builder_buildCmd.Flags().Bool("force-rm", false, "Always remove intermediate containers")
 	builder_buildCmd.Flags().String("iidfile", "", "Write the image ID to the file")
 	builder_buildCmd.Flags().String("isolation", "", "Container isolation technology")
 	builder_buildCmd.Flags().String("label", "", "Set metadata for an image")
-	builder_buildCmd.Flags().IntP("memory", "m", 0, "Memory limit")
-	builder_buildCmd.Flags().Int("memory-swap", 0, "Swap limit equal to memory plus swap: '-1' to enable unlimited swap")
+	builder_buildCmd.Flags().StringP("memory", "m", "", "Memory limit")
+	builder_buildCmd.Flags().String("memory-swap", "", "Swap limit equal to memory plus swap: -1 to enable unlimited swap")
 	builder_buildCmd.Flags().String("network", "default", "Set the networking mode for the RUN instructions during build")
 	builder_buildCmd.Flags().Bool("no-cache", false, "Do not use cache when building the image")
 	builder_buildCmd.Flags().String("platform", "", "Set platform if server is multi-platform capable")
@@ -38,10 +39,16 @@ func init() {
 	builder_buildCmd.Flags().BoolP("quiet", "q", false, "Suppress the build output and print image ID on success")
 	builder_buildCmd.Flags().Bool("rm", true, "Remove intermediate containers after a successful build")
 	builder_buildCmd.Flags().StringSlice("security-opt", []string{}, "Security options")
-	builder_buildCmd.Flags().Int("shm-size", 0, "Size of /dev/shm")
+	builder_buildCmd.Flags().String("shm-size", "", "Size of \"/dev/shm\"")
 	builder_buildCmd.Flags().Bool("squash", false, "Squash newly built layers into a single new layer")
-	builder_buildCmd.Flags().StringP("tag", "t", "", "Name and optionally a tag in the 'name:tag' format")
+	builder_buildCmd.Flags().StringP("tag", "t", "", "Name and optionally a tag in the \"name:tag\" format")
 	builder_buildCmd.Flags().String("target", "", "Set the target build stage to build.")
 	builder_buildCmd.Flags().String("ulimit", "", "Ulimit options")
 	builderCmd.AddCommand(builder_buildCmd)
+
+	// TODO flag completion
+
+	carapace.Gen(builder_buildCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }
