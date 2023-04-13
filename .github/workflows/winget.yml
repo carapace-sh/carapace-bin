@@ -12,6 +12,6 @@ jobs:
         with:
           identifier: rsteube.Carapace
           max-versions-to-keep: 5 
-          installers-regex: '_windows_(386|amd64|arm64)\.zip$'
+          installers-regex: '_windows_amd64\.zip$'
           fork-user: rsteube-bot
           token: ${{ secrets.WINGET_TOKEN }}
