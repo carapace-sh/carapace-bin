@@ -1,0 +1,16 @@
+name: Publish to WinGet
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  winget:
+    runs-on: windows-latest
+    steps:
+      - uses: vedantmgoyal2009/winget-releaser@v2
+        with:
+          identifier: rsteube.Carapace
+          max-versions-to-keep: 5 
+          fork-user: rsteube-bot
+          token: ${{ secrets.WINGET_TOKEN }}
