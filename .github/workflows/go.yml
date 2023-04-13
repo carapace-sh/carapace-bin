@@ -95,3 +95,17 @@ jobs:
             git push --force https://rsteube:${GITHUB_TOKEN}@github.com/rsteube/carapace-bin.git master:gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+  winget:
+    runs-on: windows-latest
+    needs: build
+    steps:
+      - uses: vedantmgoyal2009/winget-releaser@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          identifier: rsteube.Carapace
+          max-versions-to-keep: 5 
+          installers-regex: '_windows_amd64\.zip$'
+          fork-user: rsteube-bot
+          token: ${{ secrets.WINGET_TOKEN }}
