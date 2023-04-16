@@ -267,15 +267,18 @@ func printCompletersJson() {
 		Name        string
 		Description string
 		Spec        string `json:",omitempty"`
+		Overlay     string `json:",omitempty"`
 	}
 
 	_completers := make([]_completer, 0)
 	for _, name := range completers.Names() {
-		specPath, _ := completers.SpecPath(name) // TODO handle error (log?)
+		specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+		overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
 		_completers = append(_completers, _completer{
 			Name:        name,
 			Description: completers.Description(name),
 			Spec:        specPath,
+			Overlay:     overlayPath,
 		})
 	}
 	if m, err := json.Marshal(_completers); err == nil { // TODO handle error (log?)

@@ -163,6 +163,7 @@ func ActionCompleters() carapace.Action {
 				Name        string
 				Description string
 				Spec        string
+				Overlay     string
 			}
 			if err := json.Unmarshal(output, &completers); err != nil {
 				return carapace.ActionMessage(err.Error())
@@ -170,11 +171,15 @@ func ActionCompleters() carapace.Action {
 
 			vals := make([]string, 0, len(completers))
 			for _, completer := range completers {
-				if completer.Spec == "" {
-					vals = append(vals, completer.Name, completer.Description, style.Default)
-				} else {
-					vals = append(vals, completer.Name, completer.Description, style.Blue)
+				s := style.Default
+				if completer.Spec != "" {
+					s = style.Blue
 				}
+				if completer.Overlay != "" {
+					s = style.Of(s, style.Underlined)
+				}
+
+				vals = append(vals, completer.Name, completer.Description, s)
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
