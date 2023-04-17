@@ -20,7 +20,6 @@ func init() {
 	developCmd.Flags().Bool("check", false, "Run the check phase.")
 	developCmd.Flags().StringP("command", "c", "", "Instead of starting an interactive shell, start the specified command and arguments.")
 	developCmd.Flags().Bool("configure", false, "Run the configure phase.")
-	developCmd.Flags().Bool("debugger", false, "start an interactive environment if evaluation fails")
 	developCmd.Flags().BoolP("ignore-environment", "i", false, "Clear the entire environment (except those specified wi--keep).    ")
 	developCmd.Flags().Bool("install", false, "Run the install phase.")
 	developCmd.Flags().Bool("installcheck", false, "Run the installcheck phase.")
