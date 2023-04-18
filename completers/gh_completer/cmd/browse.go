@@ -36,10 +36,7 @@ func init() {
 
 	carapace.Gen(browseCmd).FlagCompletion(carapace.ActionMap{
 		"branch": action.ActionBranches(browseCmd), // TODO merge with tags
-		"commit": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionBranchCommits(browseCmd, browseCmd.Flag("branch").Value.String())
-		}),
-		"repo": action.ActionRepoOverride(browseCmd),
+		"repo":   action.ActionRepoOverride(browseCmd),
 	})
 
 	carapace.Gen(browseCmd).PositionalCompletion(
