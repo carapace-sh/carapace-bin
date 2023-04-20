@@ -48,7 +48,7 @@ func init() {
 	search_prsCmd.Flags().Bool("no-milestone", false, "Filter on missing milestone")
 	search_prsCmd.Flags().Bool("no-project", false, "Filter on missing project")
 	search_prsCmd.Flags().String("order", "desc", "Order of results returned, ignored unless '--sort' flag is specified: {asc|desc}")
-	search_prsCmd.Flags().String("owner", "", "Filter on repository owner")
+	search_prsCmd.Flags().StringSlice("owner", []string{}, "Filter on repository owner")
 	search_prsCmd.Flags().String("project", "", "Filter on project board `number`")
 	search_prsCmd.Flags().String("reactions", "", "Filter on `number` of reactions")
 	search_prsCmd.Flags().StringSliceP("repo", "R", []string{}, "Filter on repository")

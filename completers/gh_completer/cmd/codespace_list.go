@@ -25,6 +25,7 @@ func init() {
 	codespace_listCmd.Flags().StringP("repo-deprecated", "r", "", "(Deprecated) Shorthand for --repo")
 	codespace_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	codespace_listCmd.Flags().StringP("user", "u", "", "The `username` to list codespaces for (used with --org)")
+	codespace_listCmd.Flags().BoolP("web", "w", false, "List codespaces in the web browser, cannot be used with --user or --org")
 	codespaceCmd.AddCommand(codespace_listCmd)
 
 	carapace.Gen(codespace_listCmd).FlagCompletion(carapace.ActionMap{

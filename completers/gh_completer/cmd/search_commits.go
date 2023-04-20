@@ -30,7 +30,7 @@ func init() {
 	search_commitsCmd.Flags().IntP("limit", "L", 30, "Maximum number of commits to fetch")
 	search_commitsCmd.Flags().Bool("merge", false, "Filter on merge commits")
 	search_commitsCmd.Flags().String("order", "desc", "Order of commits returned, ignored unless '--sort' flag is specified: {asc|desc}")
-	search_commitsCmd.Flags().String("owner", "", "Filter on repository owner")
+	search_commitsCmd.Flags().StringSlice("owner", []string{}, "Filter on repository owner")
 	search_commitsCmd.Flags().String("parent", "", "Filter by parent hash")
 	search_commitsCmd.Flags().StringSliceP("repo", "R", []string{}, "Filter on repository")
 	search_commitsCmd.Flags().String("sort", "best-match", "Sort fetched commits: {author-date|committer-date}")
