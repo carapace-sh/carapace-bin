@@ -32,7 +32,7 @@ func init() {
 	search_reposCmd.Flags().StringSlice("match", []string{}, "Restrict search to specific field of repository: {name|description|readme}")
 	search_reposCmd.Flags().String("number-topics", "", "Filter on `number` of topics")
 	search_reposCmd.Flags().String("order", "desc", "Order of repositories returned, ignored unless '--sort' flag is specified: {asc|desc}")
-	search_reposCmd.Flags().String("owner", "", "Filter on owner")
+	search_reposCmd.Flags().StringSlice("owner", []string{}, "Filter on owner")
 	search_reposCmd.Flags().String("size", "", "Filter on a size range, in kilobytes")
 	search_reposCmd.Flags().String("sort", "best-match", "Sort fetched repositories: {forks|help-wanted-issues|stars|updated}")
 	search_reposCmd.Flags().String("stars", "", "Filter on `number` of stars")

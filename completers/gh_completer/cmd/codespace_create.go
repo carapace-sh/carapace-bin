@@ -29,6 +29,7 @@ func init() {
 	codespace_createCmd.Flags().StringP("repo-deprecated", "r", "", "(Deprecated) Shorthand for --repo")
 	codespace_createCmd.Flags().Duration("retention-period", 0, "allowed time after shutting down before the codespace is automatically deleted (maximum 30 days), e.g. \"1h\", \"72h\"")
 	codespace_createCmd.Flags().BoolP("status", "s", false, "show status of post-create command and dotfiles")
+	codespace_createCmd.Flags().BoolP("web", "w", false, "create codespace from browser, cannot be used with --display-name, --idle-timeout, or --retention-period")
 	codespaceCmd.AddCommand(codespace_createCmd)
 
 	// TODO devcontainer-path
