@@ -37,6 +37,14 @@ carapace --style 'carapace.Description='
 
 > Generic configuration like default value and description style can be found under `carapace.{key}`
 
+## Theme
+
+How the default colors look depends on your [terminal color theme](https://github.com/rsteube/vincent).
+
+> It is recommeded to choose one with a high contrast so that every color is [well readable](https://gogh-co.github.io/Gogh/).
+
+![](./style-theme.cast)
+
 
 ## Transformations
 
