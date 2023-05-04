@@ -3,12 +3,12 @@ package styles
 import "github.com/rsteube/carapace/pkg/style"
 
 var Git = struct {
-	Branch     string `desc:"git branches"`
-	Commit     string `desc:"git commits"`
-	HeadCommit string `desc:"git HEAD~ commits"`
-	Note       string `desc:"git notes"`
-	Stash      string `desc:"git stashes"`
-	Tag        string `desc:"git tags"`
+	Branch     string `description:"git branches"`
+	Commit     string `description:"git commits"`
+	HeadCommit string `description:"git HEAD~ commits"`
+	Note       string `description:"git notes"`
+	Stash      string `description:"git stashes"`
+	Tag        string `description:"git tags"`
 }{
 	Branch:     style.Blue,
 	Commit:     style.Default,

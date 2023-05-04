@@ -65,7 +65,7 @@ func ActionModules(opts ModuleOpts) carapace.Action {
 				if opts.Direct && !r.Indirect {
 					vals = append(vals, formatModule(r.Path, r.Version, opts.IncludeVersion), style.Blue)
 				} else if opts.Indirect && r.Indirect {
-					vals = append(vals, formatModule(r.Path, r.Version, opts.IncludeVersion), style.Gray)
+					vals = append(vals, formatModule(r.Path, r.Version, opts.IncludeVersion), style.Of(style.Dim, style.White))
 				}
 			}
 		}

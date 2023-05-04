@@ -3,9 +3,9 @@ package styles
 import "github.com/rsteube/carapace/pkg/style"
 
 type tea struct {
-	StateClosed string `desc:"closed issues/pulls" tag:"issue styles"`
-	StateMerged string `desc:"merged pulls" tag:"issue styles"`
-	StateOpen   string `desc:"open issues/pulls" tag:"issue styles"`
+	StateClosed string `description:"closed issues/pulls" tag:"issue styles"`
+	StateMerged string `description:"merged pulls" tag:"issue styles"`
+	StateOpen   string `description:"open issues/pulls" tag:"issue styles"`
 }
 
 var Tea = tea{

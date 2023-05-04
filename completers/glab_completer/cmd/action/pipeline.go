@@ -37,7 +37,7 @@ func ActionPipelines(cmd *cobra.Command, status string) carapace.Action {
 				case "failed":
 					s = style.Red
 				default:
-					s = style.Gray
+					s = style.Of(style.Dim, style.White)
 				}
 
 				description := pipeline.Ref
