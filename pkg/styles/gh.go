@@ -3,33 +3,33 @@ package styles
 import "github.com/rsteube/carapace/pkg/style"
 
 type gh struct {
-	Draft             string `desc:"draft pulls" tag:"issue styles"`
-	JobFailed         string `desc:"jobs not finished successfully" tag:"job styles"`
-	JobInProgress     string `desc:"jobs in progress" tag:"job styles"`
-	JobSuccess        string `desc:"jobs successfully finished" tag:"job styles"`
-	OwnerOrganization string `desc:"organization" tag:"owner styles"`
-	OwnerUser         string `desc:"user" tag:"owner styles"`
-	RepoArchived      string `desc:"archived repository" tag:"repo styles"`
-	RepoFork          string `desc:"forked repository" tag:"repo styles"`
-	RepoLocked        string `desc:"locked repository" tag:"repo styles"`
-	RepoMirror        string `desc:"mirror repository" tag:"repo styles"`
-	RepoPrivate       string `desc:"private repository" tag:"repo styles"`
-	RepoPublic        string `desc:"public repository" tag:"repo styles"`
-	RepoTemplate      string `desc:"template repository" tag:"repo styles"`
-	StateClosed       string `desc:"closed issues/pulls" tag:"issue styles"`
-	StateMerged       string `desc:"merged pulls" tag:"issue styles"`
-	StateOpen         string `desc:"open issues/pulls" tag:"issue styles"`
+	Draft             string `description:"draft pulls" tag:"issue styles"`
+	JobFailed         string `description:"jobs not finished successfully" tag:"job styles"`
+	JobInProgress     string `description:"jobs in progress" tag:"job styles"`
+	JobSuccess        string `description:"jobs successfully finished" tag:"job styles"`
+	OwnerOrganization string `description:"organization" tag:"owner styles"`
+	OwnerUser         string `description:"user" tag:"owner styles"`
+	RepoArchived      string `description:"archived repository" tag:"repo styles"`
+	RepoFork          string `description:"forked repository" tag:"repo styles"`
+	RepoLocked        string `description:"locked repository" tag:"repo styles"`
+	RepoMirror        string `description:"mirror repository" tag:"repo styles"`
+	RepoPrivate       string `description:"private repository" tag:"repo styles"`
+	RepoPublic        string `description:"public repository" tag:"repo styles"`
+	RepoTemplate      string `description:"template repository" tag:"repo styles"`
+	StateClosed       string `description:"closed issues/pulls" tag:"issue styles"`
+	StateMerged       string `description:"merged pulls" tag:"issue styles"`
+	StateOpen         string `description:"open issues/pulls" tag:"issue styles"`
 }
 
 var Gh = gh{
-	Draft:             style.Gray,
+	Draft:             style.Of(style.Dim, style.White),
 	JobFailed:         style.Red,
 	JobInProgress:     style.Yellow,
 	JobSuccess:        style.Green,
 	OwnerOrganization: style.Blue,
 	OwnerUser:         style.Default,
 	RepoArchived:      style.Magenta,
-	RepoFork:          style.Gray,
+	RepoFork:          style.Of(style.Dim, style.White),
 	RepoLocked:        style.Bold,
 	RepoMirror:        style.Cyan,
 	RepoPrivate:       style.Red,

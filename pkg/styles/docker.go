@@ -3,13 +3,13 @@ package styles
 import "github.com/rsteube/carapace/pkg/style"
 
 var Docker = struct {
-	Container string `desc:"docker containers"`
-	Image     string `desc:"docker images"`
-	Network   string `desc:"docker networks"`
-	Node      string `desc:"docker nodes"`
-	Secret    string `desc:"docker secrets"`
-	Service   string `desc:"docker services"`
-	Volume    string `desc:"docker volumes"`
+	Container string `description:"docker containers"`
+	Image     string `description:"docker images"`
+	Network   string `description:"docker networks"`
+	Node      string `description:"docker nodes"`
+	Secret    string `description:"docker secrets"`
+	Service   string `description:"docker services"`
+	Volume    string `description:"docker volumes"`
 }{
 	Container: style.Blue,
 	Image:     style.Yellow,
