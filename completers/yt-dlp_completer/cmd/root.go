@@ -298,14 +298,30 @@ func init() {
 		"merge-output-format": ytdlp.ActionOutputFormats().UniqueList("/"),
 		"recode-video":        ytdlp.ActionVideoFormats(),
 		"remux-video":         ytdlp.ActionVideoFormats(),
-		"sponsorblock-mark": carapace.Batch(
-			ytdlp.ActionSponsorblockCategories(),
-			ytdlp.ActionSponsorblockCategories().Prefix("-"),
-		).ToA().UniqueList(","),
-		"sponsorblock-remove": carapace.Batch(
-			ytdlp.ActionSponsorblockCategories(),
-			ytdlp.ActionSponsorblockCategories().Prefix("-"),
-		).ToA().UniqueList(","),
+		"sponsorblock-mark": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			a := ytdlp.ActionSponsorblockCategories()
+			for index, part := range c.Parts {
+				c.Parts[index] = strings.TrimPrefix(part, "-")
+			}
+			a = a.Invoke(c).Filter(c.Parts).ToA()
+
+			if strings.HasPrefix(c.Value, "-") {
+				a = a.Prefix("-")
+			}
+			return a
+		}).NoSpace(),
+		"sponsorblock-remove": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			a := ytdlp.ActionSponsorblockCategories()
+			for index, part := range c.Parts {
+				c.Parts[index] = strings.TrimPrefix(part, "-")
+			}
+			a = a.Invoke(c).Filter(c.Parts).ToA()
+
+			if strings.HasPrefix(c.Value, "-") {
+				a = a.Prefix("-")
+			}
+			return a
+		}).NoSpace(),
 		"sub-langs": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			batch := carapace.Batch()
 			for _, arg := range c.Args {
