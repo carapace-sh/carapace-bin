@@ -20,5 +20,5 @@ func ActionSponsorblockCategories() carapace.Action {
 		"chapter",
 		"all",
 		"default",
-	)
+	).Tag("sponsorblock categories")
 }
