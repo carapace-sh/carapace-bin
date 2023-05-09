@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
+	"github.com/rsteube/carapace-bin/pkg/actions/time"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/ytdlp"
 	"github.com/spf13/cobra"
 )
@@ -285,8 +286,23 @@ func init() {
 		"convert-subs":           ytdlp.ActionSubtitleFormats(),
 		"convert-thumbnails":     ytdlp.ActionThumbnailFormats(),
 		"cookies-from-browser":   carapace.ActionValues("brave", "chrome", "chromium", "edge", "firefox", "opera", "safari", "vivaldi"),
+		"date":                   time.ActionDate(),
+		"dateafter":              time.ActionDate(),
+		"datebefore":             time.ActionDate(),
 		"download-archive":       carapace.ActionFiles(),
-		"ffmpeg-location":        carapace.ActionFiles(),
+		"downloader": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if !strings.Contains(c.Value, ":") {
+				return carapace.Batch(
+					ytdlp.ActionProtocols().Suffix(":").NoSpace(':'),
+					carapace.ActionFiles(),
+				).ToA()
+			}
+
+			protocol := strings.SplitN(c.Value, ":", 2)[0]
+			c.Value = strings.SplitN(c.Value, ":", 2)[1]
+			return carapace.ActionFiles().Invoke(c).Prefix(protocol + ":").ToA()
+		}),
+		"ffmpeg-location": carapace.ActionFiles(),
 		"format": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			batch := carapace.Batch()
 			for _, arg := range c.Args {

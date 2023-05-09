@@ -21,7 +21,9 @@ func ActionOutputFormats() carapace.Action {
 		"mov",
 		"mp4",
 		"webm",
-	)
+	).StyleF(func(s string, sc style.Context) string {
+		return style.ForPathExt("."+s, sc)
+	}).Tag("output formats")
 }
 
 // ActionSubtitleFormats completes subtitle formats
@@ -34,7 +36,9 @@ func ActionSubtitleFormats() carapace.Action {
 		"lrc",
 		"srt",
 		"vtt",
-	)
+	).StyleF(func(s string, sc style.Context) string {
+		return style.ForPathExt("."+s, sc)
+	}).Tag("subtitle formats")
 }
 
 // ActionThumbnailFormats completes thumbnail formats
@@ -46,7 +50,9 @@ func ActionThumbnailFormats() carapace.Action {
 		"jpg",
 		"png",
 		"webp",
-	)
+	).StyleF(func(s string, sc style.Context) string {
+		return style.ForPathExt("."+s, sc)
+	}).Tag("thumbnail formats")
 }
 
 // ActionVideoFormats completes video formats
@@ -73,7 +79,9 @@ func ActionVideoFormats() carapace.Action {
 		"opus",
 		"vorbis",
 		"wav",
-	)
+	).StyleF(func(s string, sc style.Context) string {
+		return style.ForPathExt("."+s, sc)
+	}).Tag("video formats")
 }
 
 // ActionFormats completes formats
@@ -100,7 +108,7 @@ func ActionFormats(url string) carapace.Action {
 			vals = append(vals, format.FormatID, description, s) // TODO enrich description
 		}
 		return carapace.ActionStyledValuesDescribed(vals...)
-	})
+	}).Tag("formats")
 }
 
 // ActionSubtitles completes subtitles
@@ -114,5 +122,5 @@ func ActionSubtitles(url string) carapace.Action {
 			vals = append(vals, id, s[0].Name)
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	})
+	}).Tag("subtitles")
 }
