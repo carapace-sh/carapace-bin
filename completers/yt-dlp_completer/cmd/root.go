@@ -312,6 +312,28 @@ func init() {
 		}),
 		"load-info-json":      carapace.ActionFiles(),
 		"merge-output-format": ytdlp.ActionOutputFormats().UniqueList("/"),
+		"output": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			index := strings.LastIndex(c.Value, "%(")
+			if index < 0 {
+				return carapace.ActionValues()
+			}
+
+			prefix := c.Value[:index+2]
+			c.Value = c.Value[index+2:]
+			batch := carapace.Batch(
+				ytdlp.ActionFields(),
+				ytdlp.ActionNumericMetaFields(),
+				ytdlp.ActionStringMetaFields(),
+				ytdlp.ActionChapterFields(),
+				ytdlp.ActionEpisodeFields(),
+				ytdlp.ActionTrackFields(),
+			)
+
+			if rootCmd.Flag("download-sections").Changed { // TODO also enabled when chapter: prefix?
+				batch = append(batch, ytdlp.ActionSectionFields())
+			}
+			return batch.Invoke(c).Merge().Prefix(prefix).ToA().NoSpace()
+		}),
 		"print-to-file": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 1:
