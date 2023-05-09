@@ -285,7 +285,7 @@ func init() {
 		"config-locations":       carapace.ActionFiles(),
 		"convert-subs":           ytdlp.ActionSubtitleFormats(),
 		"convert-thumbnails":     ytdlp.ActionThumbnailFormats(),
-		"cookies-from-browser":   carapace.ActionValues("brave", "chrome", "chromium", "edge", "firefox", "opera", "safari", "vivaldi"),
+		"cookies-from-browser":   ytdlp.ActionBrowsers(),
 		"date":                   time.ActionDate(),
 		"dateafter":              time.ActionDate(),
 		"datebefore":             time.ActionDate(),
@@ -312,8 +312,16 @@ func init() {
 		}),
 		"load-info-json":      carapace.ActionFiles(),
 		"merge-output-format": ytdlp.ActionOutputFormats().UniqueList("/"),
-		"recode-video":        ytdlp.ActionVideoFormats(),
-		"remux-video":         ytdlp.ActionVideoFormats(),
+		"print-to-file": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 1:
+				return carapace.ActionFiles()
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+		"recode-video": ytdlp.ActionVideoFormats(),
+		"remux-video":  ytdlp.ActionVideoFormats(),
 		"sponsorblock-mark": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			a := ytdlp.ActionSponsorblockCategories()
 			for index, part := range c.Parts {
