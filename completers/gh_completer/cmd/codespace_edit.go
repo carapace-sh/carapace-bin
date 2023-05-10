@@ -20,11 +20,13 @@ func init() {
 	codespace_editCmd.Flags().StringP("display-name", "d", "", "Set the display name")
 	codespace_editCmd.Flags().StringP("machine", "m", "", "Set hardware specifications for the VM")
 	codespace_editCmd.PersistentFlags().StringP("repo", "R", "", "Filter codespace selection by repository name (user/repo)")
+	codespace_editCmd.PersistentFlags().String("repo-owner", "", "Filter codespace selection by repository owner (username or org)")
 	codespaceCmd.AddCommand(codespace_editCmd)
 
 	carapace.Gen(codespace_editCmd).FlagCompletion(carapace.ActionMap{
-		"codespace": action.ActionCodespaces(),
-		"machine":   action.ActionCodespaceMachines(),
-		"repo":      gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"codespace":  action.ActionCodespaces(),
+		"machine":    action.ActionCodespaceMachines(),
+		"repo":       gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"repo-owner": gh.ActionOwners(gh.HostOpts{}),
 	})
 }
