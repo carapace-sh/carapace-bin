@@ -19,6 +19,7 @@ func init() {
 	codespace_stopCmd.PersistentFlags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_stopCmd.Flags().StringP("org", "o", "", "The `login` handle of the organization (admin-only)")
 	codespace_stopCmd.PersistentFlags().StringP("repo", "R", "", "Filter codespace selection by repository name (user/repo)")
+	codespace_stopCmd.PersistentFlags().String("repo-owner", "", "Filter codespace selection by repository owner (username or org)")
 	codespace_stopCmd.Flags().StringP("user", "u", "", "The `username` to stop codespace for (used with --org)")
 	codespaceCmd.AddCommand(codespace_stopCmd)
 

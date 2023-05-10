@@ -7,8 +7,8 @@ import (
 )
 
 var issue_editCmd = &cobra.Command{
-	Use:     "edit {<number> | <url>}",
-	Short:   "Edit an issue",
+	Use:     "edit {<numbers> | <urls>}",
+	Short:   "Edit issues",
 	GroupID: "targeted",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -50,7 +50,7 @@ func init() {
 		// TODO remove-project
 	})
 
-	carapace.Gen(issue_editCmd).PositionalCompletion(
+	carapace.Gen(issue_editCmd).PositionalAnyCompletion(
 		action.ActionIssues(issue_editCmd, action.IssueOpts{Open: true}),
 	)
 }

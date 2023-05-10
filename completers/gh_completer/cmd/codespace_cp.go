@@ -24,12 +24,14 @@ func init() {
 	codespace_cpCmd.Flags().StringP("profile", "p", "", "Name of the SSH profile to use")
 	codespace_cpCmd.Flags().BoolP("recursive", "r", false, "Recursively copy directories")
 	codespace_cpCmd.PersistentFlags().StringP("repo", "R", "", "Filter codespace selection by repository name (user/repo)")
+	codespace_cpCmd.PersistentFlags().String("repo-owner", "", "Filter codespace selection by repository owner (username or org)")
 	codespaceCmd.AddCommand(codespace_cpCmd)
 
 	// TODO profile completion
 	carapace.Gen(codespace_cpCmd).FlagCompletion(carapace.ActionMap{
-		"codespace": action.ActionCodespaces(),
-		"repo":      gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"codespace":  action.ActionCodespaces(),
+		"repo":       gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"repo-owner": gh.ActionOwners(gh.HostOpts{}),
 	})
 
 	carapace.Gen(codespace_cpCmd).PositionalAnyCompletion(

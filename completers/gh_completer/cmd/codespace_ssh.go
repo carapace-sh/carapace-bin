@@ -22,8 +22,8 @@ func init() {
 	codespace_sshCmd.Flags().String("debug-file", "", "Path of the file log to")
 	codespace_sshCmd.Flags().String("profile", "", "Name of the SSH profile to use")
 	codespace_sshCmd.PersistentFlags().StringP("repo", "R", "", "Filter codespace selection by repository name (user/repo)")
-	codespace_sshCmd.Flags().Int("server-port", 0, "SSH server port number (0 => pick unused)")
-	codespace_sshCmd.Flags().Bool("stdio", false, "Proxy sshd connection to stdio")
+	codespace_sshCmd.PersistentFlags().String("repo-owner", "", "Filter codespace selection by repository owner (username or org)")
+	codespace_sshCmd.Flags().String("server-port", "", "SSH server port number (0 => pick unused)")
 	codespaceCmd.AddCommand(codespace_sshCmd)
 
 	carapace.Gen(codespace_sshCmd).FlagCompletion(carapace.ActionMap{

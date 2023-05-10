@@ -20,12 +20,14 @@ func init() {
 	codespace_portsCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	codespace_portsCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	codespace_portsCmd.PersistentFlags().StringP("repo", "R", "", "Filter codespace selection by repository name (user/repo)")
+	codespace_portsCmd.PersistentFlags().String("repo-owner", "", "Filter codespace selection by repository owner (username or org)")
 	codespace_portsCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	codespaceCmd.AddCommand(codespace_portsCmd)
 
 	carapace.Gen(codespace_portsCmd).FlagCompletion(carapace.ActionMap{
-		"codespace": action.ActionCodespaces(),
-		"json":      action.ActionCodespacePortFields().UniqueList(","),
-		"repo":      gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"codespace":  action.ActionCodespaces(),
+		"json":       action.ActionCodespacePortFields().UniqueList(","),
+		"repo":       gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"repo-owner": gh.ActionOwners(gh.HostOpts{}),
 	})
 }

@@ -19,10 +19,12 @@ func init() {
 	codespace_logsCmd.PersistentFlags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_logsCmd.Flags().BoolP("follow", "f", false, "Tail and follow the logs")
 	codespace_logsCmd.PersistentFlags().StringP("repo", "R", "", "Filter codespace selection by repository name (user/repo)")
+	codespace_logsCmd.PersistentFlags().String("repo-owner", "", "Filter codespace selection by repository owner (username or org)")
 	codespaceCmd.AddCommand(codespace_logsCmd)
 
 	carapace.Gen(codespace_logsCmd).FlagCompletion(carapace.ActionMap{
-		"codespace": action.ActionCodespaces(),
-		"repo":      gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"codespace":  action.ActionCodespaces(),
+		"repo":       gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"repo-owner": gh.ActionOwners(gh.HostOpts{}),
 	})
 }

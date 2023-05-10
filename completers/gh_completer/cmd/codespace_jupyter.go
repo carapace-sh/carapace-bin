@@ -18,10 +18,12 @@ func init() {
 
 	codespace_jupyterCmd.PersistentFlags().StringP("codespace", "c", "", "Name of the codespace")
 	codespace_jupyterCmd.PersistentFlags().StringP("repo", "R", "", "Filter codespace selection by repository name (user/repo)")
+	codespace_jupyterCmd.PersistentFlags().String("repo-owner", "", "Filter codespace selection by repository owner (username or org)")
 	codespaceCmd.AddCommand(codespace_jupyterCmd)
 
 	carapace.Gen(codespace_jupyterCmd).FlagCompletion(carapace.ActionMap{
-		"codespace": action.ActionCodespaces(),
-		"repo":      gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"codespace":  action.ActionCodespaces(),
+		"repo":       gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"repo-owner": gh.ActionOwners(gh.HostOpts{}),
 	})
 }
