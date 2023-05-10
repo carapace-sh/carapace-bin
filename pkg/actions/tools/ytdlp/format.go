@@ -92,12 +92,14 @@ func ActionFormats(url string) carapace.Action {
 	return actionDump(url, func(d dump) carapace.Action {
 		vals := make([]string, 0)
 		for _, format := range d.Formats {
-			description := fmt.Sprintf("%v - %v - %v - %v",
-				format.Resolution,
-				strings.Split(format.Vcodec, ".")[0],
-				strings.Split(format.Acodec, ".")[0],
-				math.Round(format.Abr),
-			)
+			description := "audio only"
+			if format.Vcodec != "none" {
+				description = fmt.Sprintf("%v@%v", format.VideoExt, format.Resolution)
+			}
+
+			if format.Acodec != "none" {
+				description += fmt.Sprintf(" [%v@%vk]", strings.Split(format.Acodec, ".")[0], math.Round(format.Abr))
+			}
 
 			s := style.Default
 			switch {
@@ -105,7 +107,7 @@ func ActionFormats(url string) carapace.Action {
 				s = style.Yellow
 			}
 
-			vals = append(vals, format.FormatID, description, s) // TODO enrich description
+			vals = append(vals, format.FormatID, description, s)
 		}
 		return carapace.ActionStyledValuesDescribed(vals...)
 	}).Tag("formats")
