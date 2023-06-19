@@ -5,6 +5,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"runtime"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -67,7 +68,12 @@ func pathSnippet(shell string) (snippet string) {
 		snippet = fmt.Sprintf(`fish_add_path '%v'`, binDir)
 
 	case "nushell":
-		snippet = fmt.Sprintf(`let-env PATH = ($env.PATH | prepend "%v")`, binDir)
+		fixedBinDir := strings.ReplaceAll(binDir, `\`, `\\`)
+		if runtime.GOOS == "windows" {
+			snippet = fmt.Sprintf(`let-env Path = ($env.Path | prepend "%v")`, fixedBinDir)
+		} else {
+			snippet = fmt.Sprintf(`let-env PATH = ($env.PATH | prepend "%v")`, fixedBinDir)
+		}
 
 	case "powershell":
 		snippet = fmt.Sprintf(`[Environment]::SetEnvironmentVariable("PATH", "%v" + [IO.Path]::PathSeparator + [Environment]::GetEnvironmentVariable("PATH"))`, binDir)
@@ -115,14 +121,15 @@ let carapace_completer = {|spans|
   carapace $spans.0 nushell $spans | from json
 }
 
-let-env config = {
-  completions: {
-    external: {
-      enable: true
-      completer: $carapace_completer
-    }
-  }
-}`
+mut current = (($env | default {} config).config | default {} completions)
+$current.completions = ($current.completions | default {} external)
+$current.completions.external = ($current.completions.external 
+    | default true enable
+    | default $carapace_completer completer)
+
+let-env config = $current
+    `
+
 	return fmt.Sprintf(snippet, pathSnippet("nushell"))
 }
 
