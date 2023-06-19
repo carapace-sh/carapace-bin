@@ -15,7 +15,7 @@ var workflow_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(workflow_listCmd).Standalone()
 
-	workflow_listCmd.Flags().BoolP("all", "a", false, "Show all workflows, including disabled workflows")
-	workflow_listCmd.Flags().IntP("limit", "L", 50, "Maximum number of workflows to fetch")
+	workflow_listCmd.Flags().BoolP("all", "a", false, "Also show disabled workflows")
+	workflow_listCmd.Flags().StringP("limit", "L", "", "Maximum number of workflows to fetch")
 	workflowCmd.AddCommand(workflow_listCmd)
 }
