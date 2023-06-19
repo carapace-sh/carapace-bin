@@ -19,6 +19,7 @@ func init() {
 	planCmd.Flags().BoolS("compact-warnings", "compact-warnings", false, "Show warnings in a more compact form that includes only the summary messages.")
 	planCmd.Flags().BoolS("destroy", "destroy", false, "Select the \"destroy\" planning mode.")
 	planCmd.Flags().BoolS("detailed-exitcode", "detailed-exitcode", false, "Return detailed exit codes when the command exits.")
+	planCmd.Flags().String("generate-config-out", "", "write HCL configuration for resources to path")
 	planCmd.Flags().StringS("input", "input", "", "Ask for input for variables if not directly set.")
 	planCmd.Flags().BoolS("lock", "lock", false, "Don't hold a state lock during the operation.")
 	planCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock.")
@@ -34,6 +35,7 @@ func init() {
 	planCmd.Flags().StringS("var-file", "var-file", "", "Load variable values from the given file.")
 	rootCmd.AddCommand(planCmd)
 
+	planCmd.Flag("generate-config-out").NoOptDefVal = " "
 	planCmd.Flag("input").NoOptDefVal = " "
 	planCmd.Flag("lock-timeout").NoOptDefVal = " "
 	planCmd.Flag("out").NoOptDefVal = " "
@@ -44,10 +46,11 @@ func init() {
 	planCmd.Flag("var-file").NoOptDefVal = " "
 
 	carapace.Gen(planCmd).FlagCompletion(carapace.ActionMap{
-		"out":      carapace.ActionFiles(),
-		"replace":  action.ActionResources(planCmd).MultiParts("."),
-		"state":    carapace.ActionFiles(),
-		"target":   action.ActionResources(planCmd).MultiParts("."),
-		"var-file": carapace.ActionFiles(),
+		"generate-config-out": carapace.ActionFiles(),
+		"out":                 carapace.ActionFiles(),
+		"replace":             action.ActionResources(planCmd).MultiParts("."),
+		"state":               carapace.ActionFiles(),
+		"target":              action.ActionResources(planCmd).MultiParts("."),
+		"var-file":            carapace.ActionFiles(),
 	})
 }
