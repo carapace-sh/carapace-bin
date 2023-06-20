@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/internal/actions/net/ssh"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
@@ -30,14 +31,15 @@ func ActionHosts() carapace.Action {
 						} else if rIPv6.MatchString(host) {
 							batch = append(batch, carapace.ActionStyledValues(host, style.Bold).Tag("ipv6 addresses"))
 						} else {
-							batch = append(batch, carapace.ActionStyledValues(host, style.Blue).Tag("hostnames"))
+							batch = append(batch, carapace.ActionStyledValues(host, style.Blue).Tag("known hosts"))
 						}
 					}
 				}
 			} else {
-				return carapace.ActionMessage(err.Error())
+				batch = append(batch, carapace.ActionMessage(err.Error()))
 			}
 		}
+		batch = append(batch, ssh.ActionHosts().Style(style.Yellow))
 		return batch.ToA()
 	})
 }
