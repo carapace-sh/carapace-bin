@@ -13,7 +13,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/run"
-	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/util"
 	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
 

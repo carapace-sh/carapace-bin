@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 

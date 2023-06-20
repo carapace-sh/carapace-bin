@@ -9,7 +9,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
-	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 
