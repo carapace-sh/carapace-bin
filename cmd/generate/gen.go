@@ -162,7 +162,7 @@ func rootDir() (string, error) {
 		return "", err
 	}
 
-	return filepath.Dir(path), nil
+	return filepath.ToSlash(filepath.Dir(path)), nil
 }
 
 func macros() {
@@ -206,6 +206,7 @@ func macros() {
 
 	r := regexp.MustCompile(`^func Action(?P<name>[^(]+)\((?P<arg>[^(]*)\) carapace.Action {$`)
 	filepath.WalkDir(root+"/pkg/actions", func(path string, d fs.DirEntry, err error) error {
+		path = filepath.ToSlash(path)
 		if !d.IsDir() && strings.HasSuffix(path, ".go") {
 			file, err := os.Open(path)
 			if err != nil {
@@ -213,7 +214,7 @@ func macros() {
 			}
 			defer file.Close()
 
-			pkg := strings.Replace(filepath.Dir(strings.TrimPrefix(path, root+"/pkg/actions/")), "/", ".", -1)
+			pkg := strings.Replace(filepath.ToSlash(filepath.Dir(strings.TrimPrefix(path, root+"/pkg/actions/"))), "/", ".", -1)
 			_import := fmt.Sprintf(`	%v "github.com/rsteube/carapace-bin/pkg/actions/%v"`, strings.Replace(pkg, ".", "_", -1), strings.Replace(pkg, ".", "/", -1))
 
 			scanner := bufio.NewScanner(file)
