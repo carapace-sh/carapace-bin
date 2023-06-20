@@ -5,7 +5,7 @@ import (
 	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
-	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 

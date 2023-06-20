@@ -11,8 +11,8 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/cargo"
-	"github.com/rsteube/carapace-bin/pkg/util"
 	"github.com/rsteube/carapace/pkg/style"
+	"github.com/rsteube/carapace/pkg/util"
 )
 
 type manifestJson struct {

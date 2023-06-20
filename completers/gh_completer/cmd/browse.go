@@ -9,7 +9,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	_git "github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/git"
-	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 

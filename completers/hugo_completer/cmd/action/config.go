@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/pelletier/go-toml"
-	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/util"
 	"gopkg.in/yaml.v3"
 )
 

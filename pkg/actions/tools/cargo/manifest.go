@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/util"
 )
 
 type manifestJson struct {

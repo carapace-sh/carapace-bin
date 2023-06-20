@@ -7,7 +7,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
-	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/rsteube/carapace/pkg/util"
 )
 
 func ActionHostPort() carapace.Action {
