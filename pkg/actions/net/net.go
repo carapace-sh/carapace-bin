@@ -31,7 +31,7 @@ func ActionHosts() carapace.Action {
 						} else if rIPv6.MatchString(host) {
 							batch = append(batch, carapace.ActionStyledValues(host, style.Bold).Tag("ipv6 addresses"))
 						} else {
-							batch = append(batch, carapace.ActionStyledValues(host, style.Blue).Tag("known hosts"))
+							batch = append(batch, carapace.ActionStyledValues(host, style.Blue).Tag("hostnames"))
 						}
 					}
 				}
