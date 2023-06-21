@@ -25,6 +25,10 @@ func (c ContentOpts) repo() RepoOpts {
 	return RepoOpts{Host: c.Host, Owner: c.Owner, Name: c.Name}
 }
 
+// ActionContents completes contents
+//
+//	/README.md
+//	/.github/workflows/go.yml
 func ActionContents(opts ContentOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		ref := ""

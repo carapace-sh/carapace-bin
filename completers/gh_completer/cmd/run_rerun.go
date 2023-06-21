@@ -8,7 +8,7 @@ import (
 
 var run_rerunCmd = &cobra.Command{
 	Use:   "rerun [<run-id>]",
-	Short: "Rerun a failed run",
+	Short: "Rerun a run",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
