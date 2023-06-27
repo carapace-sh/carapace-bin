@@ -7,24 +7,31 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func initDeptestCmd(cmd *cobra.Command) {
-	cmd.Flags().String("arch", "", "set an alternate architecture")
-	cmd.Flags().String("cachedir", "", "set an alternate package cache location")
-	cmd.Flags().String("color", "", "colorize the output")
-	cmd.Flags().String("config", "", "set an alternate configuration file")
-	cmd.Flags().Bool("confirm", false, "always ask for confirmation")
-	cmd.Flags().StringP("dbpath", "b", "", "set an alternate database location")
-	cmd.Flags().Bool("debug", false, "display debug messages")
-	cmd.Flags().Bool("disable-download-timeout", false, "use relaxed timeouts for download")
-	cmd.Flags().String("gpgdir", "", "set an alternate home directory for GnuPG")
-	cmd.Flags().String("hookdir", "", "set an alternate hook location")
-	cmd.Flags().String("logfile", "", "set an alternate log file")
-	cmd.Flags().Bool("noconfirm", false, "do not ask for any confirmation")
-	cmd.Flags().StringP("root", "r", "", "set an alternate installation root")
-	cmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
-	cmd.Flags().BoolP("verbose", "v", false, "be verbose")
+var deptestCmd = &cobra.Command{
+	Use:     "deptest",
+	Aliases: []string{"T"},
+	Short:   "Operate on the package database",
+	Run:     func(cmd *cobra.Command, args []string) {},
+}
 
-	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+func init() {
+	deptestCmd.Flags().String("arch", "", "set an alternate architecture")
+	deptestCmd.Flags().String("cachedir", "", "set an alternate package cache location")
+	deptestCmd.Flags().String("color", "", "colorize the output")
+	deptestCmd.Flags().String("config", "", "set an alternate configuration file")
+	deptestCmd.Flags().Bool("confirm", false, "always ask for confirmation")
+	deptestCmd.Flags().StringP("dbpath", "b", "", "set an alternate database location")
+	deptestCmd.Flags().Bool("debug", false, "display debug messages")
+	deptestCmd.Flags().Bool("disable-download-timeout", false, "use relaxed timeouts for download")
+	deptestCmd.Flags().String("gpgdir", "", "set an alternate home directory for GnuPG")
+	deptestCmd.Flags().String("hookdir", "", "set an alternate hook location")
+	deptestCmd.Flags().String("logfile", "", "set an alternate log file")
+	deptestCmd.Flags().Bool("noconfirm", false, "do not ask for any confirmation")
+	deptestCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
+	deptestCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	deptestCmd.Flags().BoolP("verbose", "v", false, "be verbose")
+
+	carapace.Gen(deptestCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
 		"cachedir": carapace.ActionDirectories(),
 		"color":    carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
@@ -36,7 +43,7 @@ func initDeptestCmd(cmd *cobra.Command) {
 		"root":     carapace.ActionDirectories(),
 	})
 
-	carapace.Gen(cmd).PositionalAnyCompletion(
+	carapace.Gen(deptestCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return pacman.ActionPackages().Invoke(c).Filter(c.Args).ToA()
 		}),

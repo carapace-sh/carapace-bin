@@ -7,28 +7,35 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func initDatabaseCmd(cmd *cobra.Command) {
-	cmd.Flags().String("arch", "", "set an alternate architecture")
-	cmd.Flags().Bool("asdeps", false, "mark packages as non-explicitly installed")
-	cmd.Flags().Bool("asexplicit", false, "mark packages as explicitly installed")
-	cmd.Flags().String("cachedir", "", "set an alternate package cache location")
-	cmd.Flags().CountP("check", "k", "test local database for validity (-kk for sync databases)")
-	cmd.Flags().String("color", "", "colorize the output")
-	cmd.Flags().String("config", "", "set an alternate configuration file")
-	cmd.Flags().Bool("confirm", false, "always ask for confirmation")
-	cmd.Flags().StringP("dbpath", "b", "", "set an alternate database location")
-	cmd.Flags().Bool("debug", false, "display debug messages")
-	cmd.Flags().Bool("disable-download-timeout", false, "use relaxed timeouts for download")
-	cmd.Flags().String("gpgdir", "", "set an alternate home directory for GnuPG")
-	cmd.Flags().String("hookdir", "", "set an alternate hook location")
-	cmd.Flags().String("logfile", "", "set an alternate log file")
-	cmd.Flags().Bool("noconfirm", false, "do not ask for any confirmation")
-	cmd.Flags().BoolP("quiet", "q", false, "suppress output of success messages")
-	cmd.Flags().StringP("root", "r", "", "set an alternate installation root")
-	cmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
-	cmd.Flags().BoolP("verbose", "v", false, "be verbose")
+var databaseCmd = &cobra.Command{
+	Use:     "database",
+	Aliases: []string{"D"},
+	Short:   "Operate on the package database",
+	Run:     func(cmd *cobra.Command, args []string) {},
+}
 
-	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+func init() {
+	databaseCmd.Flags().String("arch", "", "set an alternate architecture")
+	databaseCmd.Flags().Bool("asdeps", false, "mark packages as non-explicitly installed")
+	databaseCmd.Flags().Bool("asexplicit", false, "mark packages as explicitly installed")
+	databaseCmd.Flags().String("cachedir", "", "set an alternate package cache location")
+	databaseCmd.Flags().CountP("check", "k", "test local database for validity (-kk for sync databases)")
+	databaseCmd.Flags().String("color", "", "colorize the output")
+	databaseCmd.Flags().String("config", "", "set an alternate configuration file")
+	databaseCmd.Flags().Bool("confirm", false, "always ask for confirmation")
+	databaseCmd.Flags().StringP("dbpath", "b", "", "set an alternate database location")
+	databaseCmd.Flags().Bool("debug", false, "display debug messages")
+	databaseCmd.Flags().Bool("disable-download-timeout", false, "use relaxed timeouts for download")
+	databaseCmd.Flags().String("gpgdir", "", "set an alternate home directory for GnuPG")
+	databaseCmd.Flags().String("hookdir", "", "set an alternate hook location")
+	databaseCmd.Flags().String("logfile", "", "set an alternate log file")
+	databaseCmd.Flags().Bool("noconfirm", false, "do not ask for any confirmation")
+	databaseCmd.Flags().BoolP("quiet", "q", false, "suppress output of success messages")
+	databaseCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
+	databaseCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	databaseCmd.Flags().BoolP("verbose", "v", false, "be verbose")
+
+	carapace.Gen(databaseCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
 		"cachedir": carapace.ActionDirectories(),
 		"color":    carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
@@ -40,7 +47,7 @@ func initDatabaseCmd(cmd *cobra.Command) {
 		"root":     carapace.ActionDirectories(),
 	})
 
-	carapace.Gen(cmd).PositionalAnyCompletion(
+	carapace.Gen(databaseCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return pacman.ActionPackages().Invoke(c).Filter(c.Args).ToA()
 		}),
