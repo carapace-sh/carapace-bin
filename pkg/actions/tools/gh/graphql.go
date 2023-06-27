@@ -26,6 +26,13 @@ func graphQlAction(opts RepoOpts, query string, v interface{}, transform func() 
 			opts.Host = "github.com"
 		}
 
+		if opts.Owner == "@me" {
+			var err error
+			if opts.Owner, err = userFor(opts.Host); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+		}
+
 		return carapace.ActionExecCommand("gh", "api", "--hostname", opts.Host, "--header", "Accept: application/vnd.github.merge-info-preview+json", "graphql", "-F", "owner="+opts.Owner, "-F", "repo="+opts.Name, "-f", fmt.Sprintf("query=query%v {%v}", queryParams, query))(func(output []byte) carapace.Action {
 			if err := json.Unmarshal(output, &v); err != nil {
 				return carapace.ActionMessage("failed to unmarshall response: " + err.Error())
