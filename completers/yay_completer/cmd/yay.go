@@ -9,7 +9,7 @@ import (
 var yayCmd = &cobra.Command{
 	Use:     "yay",
 	Aliases: []string{"Y"},
-	Short:   "",
+	Short:   "YAY specific operations",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

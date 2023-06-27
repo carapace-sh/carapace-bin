@@ -9,7 +9,7 @@ import (
 var webCmd = &cobra.Command{
 	Use:     "web",
 	Aliases: []string{"W"},
-	Short:   "",
+	Short:   "Web operations",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

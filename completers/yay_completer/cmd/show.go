@@ -8,7 +8,7 @@ import (
 var showCmd = &cobra.Command{
 	Use:     "show",
 	Aliases: []string{"P"},
-	Short:   "",
+	Short:   "Print information",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

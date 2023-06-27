@@ -9,7 +9,7 @@ import (
 var getpkgbuildCmd = &cobra.Command{
 	Use:     "getpkgbuild",
 	Aliases: []string{"G"},
-	Short:   "",
+	Short:   "Get PKGBUILD from ABS or AUR",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
