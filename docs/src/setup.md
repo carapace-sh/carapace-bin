@@ -1,46 +1,102 @@
 # Setup
 
-Depending on your shell, add the following changes to the corresponding config files:
+> This registers all the available [completers](./completers.md).
+> It is also possible to load a single one by replacing `_carapace` with the completer name (e.g. `carapace chmod`).
+>
+> Skipping a completer is not possible [yet](https://github.com/rsteube/carapace/pull/539), but registering a different one after carapace overrides it.
+> The script can also be edited manually to remove unwanted entries.
+
+## Bash
 
 ```sh
-# bash (~/.bashrc)
+# ~/.bashrc
 source <(carapace _carapace)
+```
 
-# elvish (~/.elvish/rc.elv)
+![](./setup-bash.png)
+
+## Elvish
+
+```sh
+# ~/.elvish/rc.elv
 eval (carapace _carapace|slurp)
+```
 
-# fish (~/.config/fish/config.fish)
+![](./setup-elvish.png)
+
+## Fish
+
+```sh
+# ~/.config/fish/config.fish
 mkdir -p ~/.config/fish/completions
 carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
 carapace _carapace | source
+```
 
-# nushell
+![](./setup-fish.png)
 
+## Nushell
+
+```sh
 ## ~/.config/nushell/env.nu
 mkdir ~/.cache/carapace
 carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
 
-## ~/.config/nushell/config.nu
+#~/.config/nushell/config.nu
 source ~/.cache/carapace/init.nu
+```
 
-# oil (~/.config/oil/oshrc)
-source <(carapace _carapace)
+![](./setup-nushell.png)
 
-# powershell (~/.config/powershell/Microsoft.PowerShell_profile.ps1)
-Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-carapace _carapace | Out-String | Invoke-Expression
+## Oil
 
-# tcsh (~/.tcshrc)
-set autolist
-eval `carapace _carapace`
-
-# xonsh (~/.config/xonsh/rc.xsh)
-COMPLETIONS_CONFIRM=True
-exec($(carapace _carapace))
-
-# zsh (~/.zshrc)
+```sh
+# ~/.config/oil/oshrc
 source <(carapace _carapace)
 ```
 
-> This registers all the available [completers](./completers.md). It is also possible to load a single one by replacing `_carapace` with the completer name (e.g. `carapace chmod`).
+![](./setup-oil.png)
+
+## Powershell
+
+```sh
+# ~/.config/powershell/Microsoft.PowerShell_profile.ps1
+Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+carapace _carapace | Out-String | Invoke-Expression
+```
+
+![](./setup-powershell.png)
+
+## Tcsh
+```sh
+# ~/.tcshrc
+set autolist
+eval `carapace _carapace`
+```
+
+![](./setup-tcsh.png)
+
+## Xonsh
+```sh
+# ~/.config/xonsh/rc.xsh
+COMPLETIONS_CONFIRM=True
+exec($(carapace _carapace))
+```
+
+![](./setup-xonsh.png)
+
+## Zsh
+
+```sh
+# ~/.zshrc
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+```
+
+Order of groups can be configured with the zstyle [group-order](https://zsh.sourceforge.io/Guide/zshguide06.html).
+```sh
+zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+```
+
+![](./setup-zsh.png)
