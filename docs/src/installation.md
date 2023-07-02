@@ -62,11 +62,11 @@ yum install carapace-bin
 
 ## Scoop
 
-Install from [rsteube/scoop-bucket](https://github.com/rsteube/scoop-bucket)
+Install from [ScoopInstaller/Extras](https://github.com/ScoopInstaller/Extras)
 
 ```sh
-scoop bucket add rsteube https://github.com/rsteube/scoop-bucket.git
-scoop install carapace-bin
+scoop bucket add extras
+scoop install extras/carapace-bin
 ```
 
 ## Winget
