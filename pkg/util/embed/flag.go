@@ -8,15 +8,21 @@ import (
 	"github.com/spf13/pflag"
 )
 
-// SubcommandsAsFlags embeds subcommands as flags (e.g. `pacman -Syu` where `S` is actually a subcommand).
-// Supports a single alias that is used as shorthand.
-func SubcommandsAsFlags(cmd *cobra.Command, subcommands ...*cobra.Command) {
+func subcommandsAsFlags(cmd *cobra.Command, shorthandOnly bool, subcommands ...*cobra.Command) {
 	carapace.Gen(cmd).PreRun(func(cmd *cobra.Command, args []string) {
 		flags := pflag.NewFlagSet("subcommands", pflag.ContinueOnError)
 		for _, s := range subcommands {
-			if len(s.Aliases) > 0 {
+			switch {
+			case shorthandOnly:
+				if len(s.Aliases) > 0 {
+					flags.BoolS(s.Name(), s.Aliases[0], false, s.Short)
+				}
+				// TODO handle misconfiguration
+
+			case len(s.Aliases) > 0:
 				flags.BoolP(s.Name(), s.Aliases[0], false, s.Short) // suppport one alias as shorthand
-			} else {
+
+			default:
 				flags.Bool(s.Name(), false, s.Short)
 			}
 		}
@@ -48,4 +54,15 @@ func SubcommandsAsFlags(cmd *cobra.Command, subcommands ...*cobra.Command) {
 			cmd.Flags().AddFlagSet(flags)
 		}
 	})
+}
+
+// SubcommandsAsFlags embeds subcommands as flags (e.g. `pacman -Syu` where `S` is actually a subcommand).
+// Supports a single alias that is used as shorthand.
+func SubcommandsAsFlags(cmd *cobra.Command, subcommands ...*cobra.Command) {
+	subcommandsAsFlags(cmd, false, subcommands...)
+}
+
+// SubcommandsAsFlagsS is like SubcommandsAsFlags but only adds the shorthand.
+func SubcommandsAsFlagsS(cmd *cobra.Command, subcommands ...*cobra.Command) {
+	subcommandsAsFlags(cmd, true, subcommands...)
 }
