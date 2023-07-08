@@ -76,6 +76,17 @@ completion:
   positionalany: ["$_bridge.Complete([vault])"]
 ```
 
+### Kingpin
+
+[alecthomas/kingpin] based commands can be bridged with the [`bridge.Kingpin`] macro:
+
+```yaml
+name: tsh
+description: Teleport Command Line Client
+completion:
+  positionalany: ["$_bridge.Kingpin([tsh])"]
+```
+
 ### Urfavecli
 
 [urfave/cli] based commands can be bridged with the [`bridge.Urfavecli`] macro:
@@ -169,6 +180,9 @@ completion:
 
 [posener/complete]:https://github.com/posener/complete
 [`bridge.Complete`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionComplete
+
+[alecthomas/kingpin]:https://github.com/alecthomas/kingpin
+[`bridge.Kingpin`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionKingpin
 
 [powershell]:https://microsoft.com/powershell
 [`bridge.Powershell`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionPowershell
