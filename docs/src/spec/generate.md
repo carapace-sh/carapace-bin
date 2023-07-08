@@ -14,6 +14,12 @@ For [cobra](https://github.com/spf13/cobra) use [carapace](https://github.com/rs
 
 ![](./generate-cobra.cast)
 
+## Kingpin
+
+For [kingpin](https://github.com/alecthomas/kingpin) use [carapace-spec-kingpin](https://github.com/rsteube/carapace-spec-kingpin).
+
+![](./generate-kingpin.cast)
+
 ## Kong
 
 For [kong](https://github.com/alecthomas/kong) use [carapace-spec-kong](https://github.com/rsteube/carapace-spec-kong).
