@@ -7,7 +7,7 @@ require (
 	github.com/pelletier/go-toml v1.9.5
 	github.com/rsteube/carapace v0.38.2
 	github.com/rsteube/carapace-bridge v0.1.1
-	github.com/rsteube/carapace-spec v0.7.1
+	github.com/rsteube/carapace-spec v0.9.0
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/mod v0.12.0
