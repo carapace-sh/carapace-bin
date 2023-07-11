@@ -9,7 +9,7 @@ import (
 var issue_createCmd = &cobra.Command{
 	Use:     "create",
 	Short:   "Create a new issue",
-	GroupID: "general",
+	GroupID: "General commands",
 	Aliases: []string{"new"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

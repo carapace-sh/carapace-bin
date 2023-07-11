@@ -9,7 +9,7 @@ import (
 var issue_unlockCmd = &cobra.Command{
 	Use:     "unlock {<number> | <url>}",
 	Short:   "Unlock issue conversation",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

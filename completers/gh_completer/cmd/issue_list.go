@@ -11,7 +11,7 @@ import (
 var issue_listCmd = &cobra.Command{
 	Use:     "list",
 	Short:   "List issues in a repository",
-	GroupID: "general",
+	GroupID: "General commands",
 	Aliases: []string{"ls"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -25,11 +25,11 @@ func init() {
 	issue_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	issue_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	issue_listCmd.Flags().StringSliceP("label", "l", []string{}, "Filter by label")
-	issue_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of issues to fetch")
+	issue_listCmd.Flags().StringP("limit", "L", "", "Maximum number of issues to fetch")
 	issue_listCmd.Flags().String("mention", "", "Filter by mention")
 	issue_listCmd.Flags().StringP("milestone", "m", "", "Filter by milestone number or title")
 	issue_listCmd.Flags().StringP("search", "S", "", "Search issues with `query`")
-	issue_listCmd.Flags().StringP("state", "s", "open", "Filter by state: {open|closed|all}")
+	issue_listCmd.Flags().StringP("state", "s", "", "Filter by state: {open|closed|all}")
 	issue_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	issue_listCmd.Flags().BoolP("web", "w", false, "List issues in the web browser")
 	issueCmd.AddCommand(issue_listCmd)

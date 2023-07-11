@@ -9,7 +9,7 @@ import (
 var release_createCmd = &cobra.Command{
 	Use:     "create [<tag>] [<files>...]",
 	Short:   "Create a new release",
-	GroupID: "general",
+	GroupID: "General commands",
 	Aliases: []string{"new"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

@@ -9,7 +9,7 @@ import (
 var issue_commentCmd = &cobra.Command{
 	Use:     "comment {<number> | <url>}",
 	Short:   "Add a comment to an issue",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,7 +9,7 @@ import (
 var repo_syncCmd = &cobra.Command{
 	Use:     "sync [<destination-repository>]",
 	Short:   "Sync a repository",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

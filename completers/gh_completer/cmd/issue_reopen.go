@@ -9,7 +9,7 @@ import (
 var issue_reopenCmd = &cobra.Command{
 	Use:     "reopen {<number> | <url>}",
 	Short:   "Reopen issue",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

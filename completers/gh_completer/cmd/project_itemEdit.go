@@ -26,6 +26,7 @@ func init() {
 	project_itemEditCmd.Flags().String("single-select-option-id", "", "ID of the single select option value to set on the field")
 	project_itemEditCmd.Flags().String("text", "", "Text value for the field")
 	project_itemEditCmd.Flags().String("title", "", "Title of the draft issue item")
+	project_itemEditCmd.MarkFlagRequired("id")
 	projectCmd.AddCommand(project_itemEditCmd)
 
 	// TODO missing flag completion

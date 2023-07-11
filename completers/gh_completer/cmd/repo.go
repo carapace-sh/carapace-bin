@@ -15,8 +15,8 @@ var repoCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repoCmd).Standalone()
 	repoCmd.AddGroup(
-		&cobra.Group{ID: "general", Title: "General commands"},
-		&cobra.Group{ID: "targeted", Title: "Targeted commands"},
+		&cobra.Group{ID: "Targeted commands", Title: ""},
+		&cobra.Group{ID: "General commands", Title: ""},
 	)
 
 	rootCmd.AddCommand(repoCmd)

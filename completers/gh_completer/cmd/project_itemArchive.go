@@ -21,6 +21,7 @@ func init() {
 	project_itemArchiveCmd.Flags().String("id", "", "ID of the item to archive")
 	project_itemArchiveCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
 	project_itemArchiveCmd.Flags().Bool("undo", false, "Unarchive an item")
+	project_itemArchiveCmd.MarkFlagRequired("id")
 	projectCmd.AddCommand(project_itemArchiveCmd)
 
 	carapace.Gen(project_itemArchiveCmd).FlagCompletion(carapace.ActionMap{

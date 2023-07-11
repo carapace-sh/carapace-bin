@@ -9,7 +9,7 @@ import (
 var issue_lockCmd = &cobra.Command{
 	Use:     "lock {<number> | <url>}",
 	Short:   "Lock issue conversation",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

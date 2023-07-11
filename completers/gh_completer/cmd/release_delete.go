@@ -9,7 +9,7 @@ import (
 var release_deleteCmd = &cobra.Command{
 	Use:     "delete <tag>",
 	Short:   "Delete a release",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

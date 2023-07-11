@@ -9,7 +9,7 @@ import (
 var release_editCmd = &cobra.Command{
 	Use:     "edit <tag>",
 	Short:   "Edit a release",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
@@ -25,6 +25,7 @@ func init() {
 	release_editCmd.Flags().String("tag", "", "The name of the tag")
 	release_editCmd.Flags().String("target", "", "Target `branch` or full commit SHA (default: main branch)")
 	release_editCmd.Flags().StringP("title", "t", "", "Release title")
+	release_editCmd.Flags().Bool("verify-tag", false, "Abort in case the git tag doesn't already exist in the remote repository")
 	releaseCmd.AddCommand(release_editCmd)
 
 	carapace.Gen(release_editCmd).FlagCompletion(carapace.ActionMap{

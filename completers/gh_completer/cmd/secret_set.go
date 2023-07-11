@@ -24,7 +24,7 @@ func init() {
 	secret_setCmd.Flags().StringP("org", "o", "", "Set `organization` secret")
 	secret_setCmd.Flags().StringSliceP("repos", "r", []string{}, "List of `repositories` that can access an organization or user secret")
 	secret_setCmd.Flags().BoolP("user", "u", false, "Set a secret for your user")
-	secret_setCmd.Flags().StringP("visibility", "v", "private", "Set visibility for an organization secret: {all|private|selected}")
+	secret_setCmd.Flags().StringP("visibility", "v", "", "Set visibility for an organization secret: {all|private|selected}")
 	secretCmd.AddCommand(secret_setCmd)
 
 	carapace.Gen(secret_setCmd).FlagCompletion(carapace.ActionMap{

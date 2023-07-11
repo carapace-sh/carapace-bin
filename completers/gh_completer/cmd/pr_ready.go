@@ -9,7 +9,7 @@ import (
 var pr_readyCmd = &cobra.Command{
 	Use:     "ready [<number> | <url> | <branch>]",
 	Short:   "Mark a pull request as ready for review",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

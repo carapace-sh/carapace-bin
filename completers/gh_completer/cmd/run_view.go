@@ -15,7 +15,7 @@ var run_viewCmd = &cobra.Command{
 func init() {
 	carapace.Gen(run_viewCmd).Standalone()
 
-	run_viewCmd.Flags().Uint64P("attempt", "a", 0, "The attempt number of the workflow run")
+	run_viewCmd.Flags().StringP("attempt", "a", "", "The attempt number of the workflow run")
 	run_viewCmd.Flags().Bool("exit-status", false, "Exit with non-zero status if run failed")
 	run_viewCmd.Flags().StringP("job", "j", "", "View a specific job ID from a run")
 	run_viewCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")

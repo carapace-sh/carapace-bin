@@ -9,7 +9,7 @@ import (
 var release_deleteAssetCmd = &cobra.Command{
 	Use:     "delete-asset <tag> <asset-name>",
 	Short:   "Delete an asset from a release",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

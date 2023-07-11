@@ -11,7 +11,7 @@ import (
 var pr_listCmd = &cobra.Command{
 	Use:     "list",
 	Short:   "List pull requests in a repository",
-	GroupID: "general",
+	GroupID: "General commands",
 	Aliases: []string{"ls"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -28,9 +28,9 @@ func init() {
 	pr_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	pr_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	pr_listCmd.Flags().StringSliceP("label", "l", []string{}, "Filter by label")
-	pr_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of items to fetch")
+	pr_listCmd.Flags().StringP("limit", "L", "", "Maximum number of items to fetch")
 	pr_listCmd.Flags().StringP("search", "S", "", "Search pull requests with `query`")
-	pr_listCmd.Flags().StringP("state", "s", "open", "Filter by state: {open|closed|merged|all}")
+	pr_listCmd.Flags().StringP("state", "s", "", "Filter by state: {open|closed|merged|all}")
 	pr_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	pr_listCmd.Flags().BoolP("web", "w", false, "List pull requests in the web browser")
 	prCmd.AddCommand(pr_listCmd)

@@ -9,7 +9,7 @@ import (
 var pr_editCmd = &cobra.Command{
 	Use:     "edit [<number> | <url> | <branch>]",
 	Short:   "Edit a pull request",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

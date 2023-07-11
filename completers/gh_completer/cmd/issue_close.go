@@ -9,7 +9,7 @@ import (
 var issue_closeCmd = &cobra.Command{
 	Use:     "close {<number> | <url>}",
 	Short:   "Close issue",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

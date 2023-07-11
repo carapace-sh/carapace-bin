@@ -20,6 +20,7 @@ func init() {
 	project_copyCmd.Flags().String("source-owner", "", "Login of the source owner. Use \"@me\" for the current user.")
 	project_copyCmd.Flags().String("target-owner", "", "Login of the target owner. Use \"@me\" for the current user.")
 	project_copyCmd.Flags().String("title", "", "Title for the new project")
+	project_copyCmd.MarkFlagRequired("title")
 	projectCmd.AddCommand(project_copyCmd)
 
 	carapace.Gen(project_copyCmd).FlagCompletion(carapace.ActionMap{

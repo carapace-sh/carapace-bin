@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -19,13 +20,15 @@ func init() {
 	auth_loginCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitHub instance to authenticate with")
 	auth_loginCmd.Flags().Bool("insecure-storage", false, "Save authentication credentials in plain text instead of credential store")
 	auth_loginCmd.Flags().StringSliceP("scopes", "s", []string{}, "Additional authentication scopes to request")
+	auth_loginCmd.Flags().Bool("secure-storage", false, "Save authentication credentials in secure credential store")
 	auth_loginCmd.Flags().BoolP("web", "w", false, "Open a browser to authenticate")
 	auth_loginCmd.Flags().Bool("with-token", false, "Read token from standard input")
+	auth_loginCmd.Flag("secure-storage").Hidden = true
 	authCmd.AddCommand(auth_loginCmd)
 
 	carapace.Gen(auth_loginCmd).FlagCompletion(carapace.ActionMap{
 		"git-protocol": carapace.ActionValues("ssh", "https"),
 		"hostname":     action.ActionConfigHosts(),
-		"scopes":       action.ActionAuthScopes().UniqueList(","),
+		"scopes":       gh.ActionAuthScopes().MultiParts(":").UniqueList(","),
 	})
 }

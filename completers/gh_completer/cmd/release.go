@@ -16,8 +16,8 @@ var releaseCmd = &cobra.Command{
 func init() {
 	carapace.Gen(releaseCmd).Standalone()
 	releaseCmd.AddGroup(
-		&cobra.Group{ID: "general", Title: "General commands"},
-		&cobra.Group{ID: "targeted", Title: "Targeted commands"},
+		&cobra.Group{ID: "General commands", Title: ""},
+		&cobra.Group{ID: "Targeted commands", Title: ""},
 	)
 
 	releaseCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")

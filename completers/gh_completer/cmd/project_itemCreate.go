@@ -19,6 +19,7 @@ func init() {
 	project_itemCreateCmd.Flags().String("format", "", "Output format: {json}")
 	project_itemCreateCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
 	project_itemCreateCmd.Flags().String("title", "", "Title for the draft issue")
+	project_itemCreateCmd.MarkFlagRequired("title")
 	projectCmd.AddCommand(project_itemCreateCmd)
 
 	carapace.Gen(project_itemCreateCmd).FlagCompletion(carapace.ActionMap{

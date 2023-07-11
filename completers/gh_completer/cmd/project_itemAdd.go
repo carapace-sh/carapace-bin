@@ -18,6 +18,7 @@ func init() {
 	project_itemAddCmd.Flags().String("format", "", "Output format: {json}")
 	project_itemAddCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
 	project_itemAddCmd.Flags().String("url", "", "URL of the issue or pull request to add to the project")
+	project_itemAddCmd.MarkFlagRequired("url")
 	projectCmd.AddCommand(project_itemAddCmd)
 
 	carapace.Gen(project_itemAddCmd).FlagCompletion(carapace.ActionMap{

@@ -9,14 +9,16 @@ import (
 var repo_unarchiveCmd = &cobra.Command{
 	Use:     "unarchive [<repository>]",
 	Short:   "Unarchive a repository",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(repo_unarchiveCmd).Standalone()
 
+	repo_unarchiveCmd.Flags().Bool("confirm", false, "Skip the confirmation prompt")
 	repo_unarchiveCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt")
+	repo_unarchiveCmd.Flag("confirm").Hidden = true
 	repoCmd.AddCommand(repo_unarchiveCmd)
 
 	carapace.Gen(repo_unarchiveCmd).PositionalCompletion(

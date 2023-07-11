@@ -9,7 +9,7 @@ import (
 var release_viewCmd = &cobra.Command{
 	Use:     "view [<tag>]",
 	Short:   "View information about a release",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

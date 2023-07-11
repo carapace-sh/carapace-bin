@@ -9,7 +9,7 @@ import (
 var repo_setDefaultCmd = &cobra.Command{
 	Use:     "set-default [<repository>]",
 	Short:   "Configure default repository for this directory",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

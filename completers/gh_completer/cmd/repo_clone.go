@@ -12,14 +12,14 @@ import (
 var repo_cloneCmd = &cobra.Command{
 	Use:     "clone <repository> [<directory>] [-- <gitflags>...]",
 	Short:   "Clone a repository locally",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(repo_cloneCmd).Standalone()
 
-	repo_cloneCmd.Flags().StringP("upstream-remote-name", "u", "upstream", "Upstream remote name when cloning a fork")
+	repo_cloneCmd.Flags().StringP("upstream-remote-name", "u", "", "Upstream remote name when cloning a fork")
 	repoCmd.AddCommand(repo_cloneCmd)
 
 	carapace.Gen(repo_cloneCmd).PositionalCompletion(

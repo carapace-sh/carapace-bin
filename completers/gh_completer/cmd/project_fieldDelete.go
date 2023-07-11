@@ -16,6 +16,7 @@ func init() {
 
 	project_fieldDeleteCmd.Flags().String("format", "", "Output format: {json}")
 	project_fieldDeleteCmd.Flags().String("id", "", "ID of the field to delete")
+	project_fieldDeleteCmd.MarkFlagRequired("id")
 	projectCmd.AddCommand(project_fieldDeleteCmd)
 
 	carapace.Gen(project_fieldDeleteCmd).FlagCompletion(carapace.ActionMap{

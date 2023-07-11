@@ -13,7 +13,7 @@ import (
 var repo_forkCmd = &cobra.Command{
 	Use:     "fork [<repository>] [-- <gitflags>...]",
 	Short:   "Create a fork of a repository",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
@@ -25,7 +25,7 @@ func init() {
 	repo_forkCmd.Flags().String("fork-name", "", "Rename the forked repository")
 	repo_forkCmd.Flags().String("org", "", "Create the fork in an organization")
 	repo_forkCmd.Flags().Bool("remote", false, "Add a git remote for the fork")
-	repo_forkCmd.Flags().String("remote-name", "origin", "Specify the name for the new remote")
+	repo_forkCmd.Flags().String("remote-name", "", "Specify the name for the new remote")
 	repoCmd.AddCommand(repo_forkCmd)
 
 	carapace.Gen(repo_forkCmd).FlagCompletion(carapace.ActionMap{
