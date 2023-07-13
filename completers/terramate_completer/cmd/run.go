@@ -22,7 +22,7 @@ func init() {
 	runCmd.Flags().Bool("no-recursive", false, "Do not recurse into child stacks")
 	runCmd.Flags().Bool("reverse", false, "Reverse the order of execution")
 
-	runCmd.Flags().SetInterspersed(true)
+	runCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).PositionalCompletion(
