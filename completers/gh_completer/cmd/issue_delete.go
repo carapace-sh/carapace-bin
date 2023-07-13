@@ -9,14 +9,16 @@ import (
 var issue_deleteCmd = &cobra.Command{
 	Use:     "delete {<number> | <url>}",
 	Short:   "Delete issue",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_deleteCmd).Standalone()
 
+	issue_deleteCmd.Flags().Bool("confirm", false, "confirm deletion without prompting")
 	issue_deleteCmd.Flags().Bool("yes", false, "confirm deletion without prompting")
+	issue_deleteCmd.Flag("confirm").Hidden = true
 	issueCmd.AddCommand(issue_deleteCmd)
 
 	carapace.Gen(issue_deleteCmd).PositionalCompletion(

@@ -9,7 +9,7 @@ import (
 var issue_pinCmd = &cobra.Command{
 	Use:     "pin {<number> | <url>}",
 	Short:   "Pin a issue",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

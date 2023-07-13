@@ -9,7 +9,7 @@ import (
 var pr_mergeCmd = &cobra.Command{
 	Use:     "merge [<number> | <url> | <branch>]",
 	Short:   "Merge a pull request",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

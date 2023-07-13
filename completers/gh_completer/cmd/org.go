@@ -15,7 +15,7 @@ var orgCmd = &cobra.Command{
 func init() {
 	carapace.Gen(orgCmd).Standalone()
 	orgCmd.AddGroup(
-		&cobra.Group{ID: "General commands", Title: "General commands"},
+		&cobra.Group{ID: "General commands", Title: ""},
 	)
 
 	rootCmd.AddCommand(orgCmd)

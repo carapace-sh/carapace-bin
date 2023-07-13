@@ -9,7 +9,7 @@ import (
 var release_uploadCmd = &cobra.Command{
 	Use:     "upload <tag> <files>...",
 	Short:   "Upload assets to a release",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

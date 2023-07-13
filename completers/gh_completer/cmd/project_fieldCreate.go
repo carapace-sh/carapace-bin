@@ -20,6 +20,8 @@ func init() {
 	project_fieldCreateCmd.Flags().String("name", "", "Name of the new field")
 	project_fieldCreateCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
 	project_fieldCreateCmd.Flags().StringSlice("single-select-options", []string{}, "Options for SINGLE_SELECT data type")
+	project_fieldCreateCmd.MarkFlagRequired("data-type")
+	project_fieldCreateCmd.MarkFlagRequired("name")
 	projectCmd.AddCommand(project_fieldCreateCmd)
 
 	carapace.Gen(project_fieldCreateCmd).FlagCompletion(carapace.ActionMap{

@@ -18,6 +18,7 @@ func init() {
 	gist_editCmd.Flags().StringP("add", "a", "", "Add a new file to the gist")
 	gist_editCmd.Flags().StringP("desc", "d", "", "New description for the gist")
 	gist_editCmd.Flags().StringP("filename", "f", "", "Select a file to edit")
+	gist_editCmd.Flags().StringP("remove", "r", "", "Remove a file from the gist")
 	gistCmd.AddCommand(gist_editCmd)
 
 	carapace.Gen(gist_editCmd).FlagCompletion(carapace.ActionMap{

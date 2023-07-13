@@ -9,7 +9,7 @@ import (
 var pr_reopenCmd = &cobra.Command{
 	Use:     "reopen {<number> | <url> | <branch>}",
 	Short:   "Reopen a pull request",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

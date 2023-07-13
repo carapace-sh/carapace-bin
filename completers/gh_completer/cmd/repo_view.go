@@ -9,7 +9,7 @@ import (
 var repo_viewCmd = &cobra.Command{
 	Use:     "view [<repository>]",
 	Short:   "View a repository",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

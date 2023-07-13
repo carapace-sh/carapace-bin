@@ -20,6 +20,7 @@ func init() {
 	project_itemDeleteCmd.Flags().String("format", "", "Output format: {json}")
 	project_itemDeleteCmd.Flags().String("id", "", "ID of the item to delete")
 	project_itemDeleteCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
+	project_itemDeleteCmd.MarkFlagRequired("id")
 	projectCmd.AddCommand(project_itemDeleteCmd)
 
 	carapace.Gen(project_itemDeleteCmd).FlagCompletion(carapace.ActionMap{

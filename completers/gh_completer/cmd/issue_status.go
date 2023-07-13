@@ -9,7 +9,7 @@ import (
 var issue_statusCmd = &cobra.Command{
 	Use:     "status",
 	Short:   "Show status of relevant issues",
-	GroupID: "general",
+	GroupID: "General commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,7 +9,7 @@ import (
 var pr_checkoutCmd = &cobra.Command{
 	Use:     "checkout {<number> | <url> | <branch>}",
 	Short:   "Check out a pull request in git",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

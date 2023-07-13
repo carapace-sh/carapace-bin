@@ -9,7 +9,7 @@ import (
 var issue_viewCmd = &cobra.Command{
 	Use:     "view {<number> | <url>}",
 	Short:   "View an issue",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

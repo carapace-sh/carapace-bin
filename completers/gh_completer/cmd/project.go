@@ -6,7 +6,7 @@ import (
 )
 
 var projectCmd = &cobra.Command{
-	Use:     "project <command> [flags]",
+	Use:     "project <command>",
 	Short:   "Work with GitHub Projects.",
 	GroupID: "core",
 	Run:     func(cmd *cobra.Command, args []string) {},

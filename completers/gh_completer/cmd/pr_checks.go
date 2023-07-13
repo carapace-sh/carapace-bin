@@ -9,7 +9,7 @@ import (
 var pr_checksCmd = &cobra.Command{
 	Use:     "checks [<number> | <url> | <branch>]",
 	Short:   "Show CI status for a single pull request",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(pr_checksCmd).Standalone()
 
 	pr_checksCmd.Flags().Bool("fail-fast", false, "Exit watch mode on first check failure")
-	pr_checksCmd.Flags().IntP("interval", "i", 10, "Refresh interval in seconds when using `--watch` flag")
+	pr_checksCmd.Flags().StringP("interval", "i", "", "Refresh interval in seconds when using `--watch` flag")
 	pr_checksCmd.Flags().Bool("required", false, "Only show checks that are required")
 	pr_checksCmd.Flags().Bool("watch", false, "Watch checks until they finish")
 	pr_checksCmd.Flags().BoolP("web", "w", false, "Open the web browser to show details about checks")

@@ -21,7 +21,7 @@ func init() {
 	variable_setCmd.Flags().StringP("env-file", "f", "", "Load variable names and values from a dotenv-formatted `file`")
 	variable_setCmd.Flags().StringP("org", "o", "", "Set `organization` variable")
 	variable_setCmd.Flags().StringSliceP("repos", "r", []string{}, "List of `repositories` that can access an organization variable")
-	variable_setCmd.Flags().StringP("visibility", "v", "private", "Set visibility for an organization variable: {all|private|selected}")
+	variable_setCmd.Flags().StringP("visibility", "v", "", "Set visibility for an organization variable: {all|private|selected}")
 	variableCmd.AddCommand(variable_setCmd)
 
 	carapace.Gen(variable_setCmd).FlagCompletion(carapace.ActionMap{

@@ -9,7 +9,7 @@ import (
 var pr_lockCmd = &cobra.Command{
 	Use:     "lock {<number> | <url>}",
 	Short:   "Lock pull request conversation",
-	GroupID: "targeted",
+	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

@@ -22,9 +22,11 @@ func init() {
 	codespace_listCmd.Flags().StringP("limit", "L", "", "Maximum number of codespaces to list")
 	codespace_listCmd.Flags().StringP("org", "o", "", "The `login` handle of the organization to list codespaces for (admin-only)")
 	codespace_listCmd.Flags().StringP("repo", "R", "", "Repository name with owner: user/repo")
+	codespace_listCmd.Flags().StringP("repo-deprecated", "r", "", "(Deprecated) Shorthand for --repo")
 	codespace_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	codespace_listCmd.Flags().StringP("user", "u", "", "The `username` to list codespaces for (used with --org)")
 	codespace_listCmd.Flags().BoolP("web", "w", false, "List codespaces in the web browser, cannot be used with --user or --org")
+	codespace_listCmd.Flag("repo-deprecated").Hidden = true
 	codespaceCmd.AddCommand(codespace_listCmd)
 
 	carapace.Gen(codespace_listCmd).FlagCompletion(carapace.ActionMap{

@@ -18,6 +18,7 @@ func init() {
 	project_createCmd.Flags().String("format", "", "Output format: {json}")
 	project_createCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
 	project_createCmd.Flags().String("title", "", "Title for the project")
+	project_createCmd.MarkFlagRequired("title")
 	projectCmd.AddCommand(project_createCmd)
 
 	carapace.Gen(project_createCmd).FlagCompletion(carapace.ActionMap{

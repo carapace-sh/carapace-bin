@@ -18,10 +18,10 @@ func init() {
 
 	label_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	label_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
-	label_listCmd.Flags().IntP("limit", "L", 30, "Maximum number of labels to fetch")
-	label_listCmd.Flags().String("order", "asc", "Order of labels returned: {asc|desc}")
+	label_listCmd.Flags().StringP("limit", "L", "", "Maximum number of labels to fetch")
+	label_listCmd.Flags().String("order", "", "Order of labels returned: {asc|desc}")
 	label_listCmd.Flags().StringP("search", "S", "", "Search label names and descriptions")
-	label_listCmd.Flags().String("sort", "created", "Sort fetched labels: {created|name}")
+	label_listCmd.Flags().String("sort", "", "Sort fetched labels: {created|name}")
 	label_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	label_listCmd.Flags().BoolP("web", "w", false, "List labels in the web browser")
 	labelCmd.AddCommand(label_listCmd)

@@ -15,7 +15,9 @@ var label_deleteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(label_deleteCmd).Standalone()
 
+	label_deleteCmd.Flags().Bool("confirm", false, "Confirm deletion without prompting")
 	label_deleteCmd.Flags().Bool("yes", false, "Confirm deletion without prompting")
+	label_deleteCmd.Flag("confirm").Hidden = true
 	labelCmd.AddCommand(label_deleteCmd)
 
 	carapace.Gen(label_deleteCmd).PositionalCompletion(

@@ -9,7 +9,7 @@ import (
 var pr_createCmd = &cobra.Command{
 	Use:     "create",
 	Short:   "Create a pull request",
-	GroupID: "general",
+	GroupID: "General commands",
 	Aliases: []string{"new"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -23,6 +23,7 @@ func init() {
 	pr_createCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	pr_createCmd.Flags().BoolP("draft", "d", false, "Mark pull request as a draft")
 	pr_createCmd.Flags().BoolP("fill", "f", false, "Do not prompt for title/body and just use commit info")
+	pr_createCmd.Flags().Bool("fill-first", false, "Do not prompt for title/body and just use first commit info")
 	pr_createCmd.Flags().StringP("head", "H", "", "The `branch` that contains commits for your pull request (default: current branch)")
 	pr_createCmd.Flags().StringSliceP("label", "l", []string{}, "Add labels by `name`")
 	pr_createCmd.Flags().StringP("milestone", "m", "", "Add the pull request to a milestone by `name`")

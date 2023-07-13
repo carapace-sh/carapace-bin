@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(run_watchCmd).Standalone()
 
 	run_watchCmd.Flags().Bool("exit-status", false, "Exit with non-zero status if run fails")
-	run_watchCmd.Flags().IntP("interval", "i", 3, "Refresh interval in seconds")
+	run_watchCmd.Flags().StringP("interval", "i", "", "Refresh interval in seconds")
 	runCmd.AddCommand(run_watchCmd)
 
 	carapace.Gen(run_watchCmd).PositionalCompletion(
