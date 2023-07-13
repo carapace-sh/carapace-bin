@@ -41,9 +41,7 @@ func init() {
 					}
 
 					if workspace.Name == c.Args[0] {
-						c.Dir = workspace.Location
-						c.Args = c.Args[1:]
-						return bridge.ActionCarapaceBin("yarn").Invoke(c).ToA()
+						return bridge.ActionCarapaceBin("yarn").Chdir(workspace.Location).Shift(1)
 					}
 				}
 				return carapace.ActionMessage("unknown workspace: %#v", c.Args[0])

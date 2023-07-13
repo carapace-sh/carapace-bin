@@ -5,7 +5,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/ps"
-	"github.com/rsteube/carapace-bin/pkg/util/embed"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -50,6 +50,8 @@ func init() {
 	rootCmd.Flags().StringP("url-arg", "a", "", "Allow client to send command line arguments in URL")
 	rootCmd.Flags().BoolP("version", "v", false, "Print the version and exit")
 
+	rootCmd.Flags().SetInterspersed(false)
+
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cwd": carapace.ActionDirectories(),
 		"gid": os.ActionGroups(),
@@ -65,5 +67,16 @@ func init() {
 		"uid":      os.ActionUsers(),
 	})
 
-	embed.EmbedCarapaceBin(rootCmd)
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
+		}),
+	)
 }

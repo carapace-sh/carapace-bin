@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/util/embed"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -16,7 +16,19 @@ var execCmd = &cobra.Command{
 func init() {
 	carapace.Gen(execCmd).Standalone()
 
+	execCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(execCmd)
 
-	embed.EmbedCarapaceBin(execCmd)
+	carapace.Gen(execCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
+
+	carapace.Gen(execCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
+		}),
+	)
 }

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/util/embed"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -18,9 +18,22 @@ func init() {
 
 	dlxCmd.Flags().StringSliceP("package", "p", []string{}, "The package(s) to install before running the command")
 	dlxCmd.Flags().BoolP("quiet", "q", false, "Only report critical errors instead of printing the full install logs")
+
+	dlxCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(dlxCmd)
 
 	// TODO package completion
 
-	embed.EmbedCarapaceBin(dlxCmd)
+	carapace.Gen(dlxCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
+
+	carapace.Gen(dlxCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
+		}),
+	)
 }

@@ -28,9 +28,6 @@ func init() {
 	)
 
 	carapace.Gen(bindKeyCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			c.Args = c.Args[1:]
-			return bridge.ActionCarapaceBin("tmux").Invoke(c).ToA()
-		}),
+		bridge.ActionCarapaceBin("tmux").Shift(1),
 	)
 }

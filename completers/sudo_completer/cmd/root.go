@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
-	"github.com/rsteube/carapace-bin/pkg/util/embed"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -47,6 +47,8 @@ func init() {
 
 	rootCmd.Flag("preserve-env").NoOptDefVal = " "
 
+	rootCmd.Flags().SetInterspersed(false)
+
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"group":        os.ActionGroups(),
 		"other-user":   os.ActionUsers(),
@@ -54,5 +56,16 @@ func init() {
 		"user":         os.ActionUsers(),
 	})
 
-	embed.EmbedCarapaceBin(rootCmd)
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
+		}),
+	)
 }
