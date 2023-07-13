@@ -28,9 +28,7 @@ func init() {
 
 	carapace.Gen(execCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			command := c.Args[0]
-			c.Args = c.Args[1:]
-			return bridge.ActionCarapaceBin(command).Invoke(c).ToA()
+			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
 		}),
 	)
 }

@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gum"
-	"github.com/rsteube/carapace-bin/pkg/util/embed"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -52,6 +51,7 @@ func init() {
 	spinCmd.Flags().Bool("title.underline", false, "Underline text")
 	spinCmd.Flags().String("title.width", "", "Text width")
 
+	spinCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(spinCmd)
 
 	carapace.Gen(spinCmd).FlagCompletion(carapace.ActionMap{
@@ -82,6 +82,19 @@ func init() {
 		"title.foreground":          gum.ActionColors(),
 	})
 
+	carapace.Gen(spinCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
+
+	carapace.Gen(spinCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
+		}),
+	)
+
 	carapace.Gen(spinCmd).DashAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if spinCmd.ArgsLenAtDash() > 0 {
@@ -95,12 +108,8 @@ func init() {
 					carapace.ActionFiles(),
 				).ToA()
 			default:
-				cmd := c.Args[0]
-				c.Args = c.Args[1:]
-				return bridge.ActionCarapaceBin(cmd).Invoke(c).ToA()
+				return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
 			}
 		}),
 	)
-
-	embed.EmbedCarapaceBin(spinCmd)
 }

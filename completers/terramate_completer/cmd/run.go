@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/util/embed"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +21,20 @@ func init() {
 	runCmd.Flags().Bool("dry-run", false, "Plan the execution but do not execute it")
 	runCmd.Flags().Bool("no-recursive", false, "Do not recurse into child stacks")
 	runCmd.Flags().Bool("reverse", false, "Reverse the order of execution")
+
+	runCmd.Flags().SetInterspersed(true)
 	rootCmd.AddCommand(runCmd)
 
-	embed.EmbedCarapaceBin(runCmd)
+	carapace.Gen(runCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
+
+	carapace.Gen(runCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
+		}),
+	)
 }

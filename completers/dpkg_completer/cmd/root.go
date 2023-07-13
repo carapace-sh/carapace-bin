@@ -30,37 +30,36 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			cmd := c.Args[0]
-			c.Args = c.Args[1:]
-			switch cmd {
+			// TODO use embed.SubcommandsAsFlags()
+			switch c.Args[0] {
 			case "-i", "--install":
-				return carapace.ActionExecute(installCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(installCmd).Shift(1)
 			case "--unpack":
-				return carapace.ActionExecute(unpackCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(unpackCmd).Shift(1)
 			case "-A", "--record-avail":
-				return carapace.ActionExecute(recordAvailCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(recordAvailCmd).Shift(1)
 			case "--configure":
-				return carapace.ActionExecute(configureCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(configureCmd).Shift(1)
 			case "--triggers-only":
-				return carapace.ActionExecute(triggersOnlyCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(triggersOnlyCmd).Shift(1)
 			case "--purge":
-				return carapace.ActionExecute(purgeCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(purgeCmd).Shift(1)
 			case "-V", "--verify":
-				return carapace.ActionExecute(verifyCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(verifyCmd).Shift(1)
 			case "--update-avail":
-				return carapace.ActionExecute(updateAvailCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(updateAvailCmd).Shift(1)
 			case "--merge-avail":
-				return carapace.ActionExecute(mergeAvailCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(mergeAvailCmd).Shift(1)
 			case "-s", "--status":
-				return carapace.ActionExecute(statusCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(statusCmd).Shift(1)
 			case "-p", "--print-avail":
-				return carapace.ActionExecute(printAvailCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(printAvailCmd).Shift(1)
 			case "-L", "--listfiles":
-				return carapace.ActionExecute(listfilesCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(listfilesCmd).Shift(1)
 			case "-C", "--audit":
-				return carapace.ActionExecute(auditCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(auditCmd).Shift(1)
 			case "--compare-versions":
-				return carapace.ActionExecute(compareVersionsCmd).Invoke(c).ToA()
+				return carapace.ActionExecute(compareVersionsCmd).Shift(1)
 			default:
 				return carapace.ActionValues()
 			}
