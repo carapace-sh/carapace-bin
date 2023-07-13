@@ -7,11 +7,10 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:                "xargs",
-	Short:              "build and execute command lines from standard input",
-	Long:               "https://linux.die.net/man/1/xargs",
-	Run:                func(cmd *cobra.Command, args []string) {},
-	DisableFlagParsing: true,
+	Use:   "xargs",
+	Short: "build and execute command lines from standard input",
+	Long:  "https://linux.die.net/man/1/xargs",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
@@ -20,85 +19,47 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			firstPass := xargsCmd()
-			firstPass.FParseErrWhitelist = cobra.FParseErrWhitelist{
-				UnknownFlags: true,
-			}
-			args := []string{}
-			args = append(args, c.Args...)
-			args = append(args, c.Value)
-			if err := firstPass.ParseFlags(args); err != nil {
-				return carapace.ActionMessage(err.Error())
-			}
+	rootCmd.Flags().StringS("E", "E", "", "set logical EOF string")
+	rootCmd.Flags().StringS("I", "I", "", "same as --replace=R")
+	rootCmd.Flags().StringP("arg-file", "a", "", "read arguments from FILE")
+	rootCmd.Flags().StringP("delimiter", "d", "", "items in input stream are separated by CHARACTER")
+	rootCmd.Flags().StringP("eof", "e", "", "equivalent to -E END if END is specified")
+	rootCmd.Flags().BoolP("exit", "x", false, "exit if the size (see -s) is exceeded")
+	rootCmd.Flags().Bool("help", false, "display this help and exit")
+	rootCmd.Flags().BoolP("interactive", "p", false, "prompt before running commands")
+	rootCmd.Flags().StringS("l", "l", "", "similar to -L but defaults to at most one non- blank input line")
+	rootCmd.Flags().StringP("max-args", "n", "", "use at most MAX-ARGS arguments per command line")
+	rootCmd.Flags().StringP("max-chars", "s", "", "limit length of command line to MAX-CHARS")
+	rootCmd.Flags().StringP("max-lines", "L", "", "use at most MAX-LINES non-blank input lines per command line")
+	rootCmd.Flags().StringP("max-procs", "P", "", "run at most MAX-PROCS processes at a time")
+	rootCmd.Flags().BoolP("no-run-if-empty", "r", false, "if there are no arguments, then do not run COMMAND")
+	rootCmd.Flags().BoolP("null", "0", false, "items are separated by a null")
+	rootCmd.Flags().BoolP("open-tty", "o", false, "Reopen stdin as /dev/tty in the child process")
+	rootCmd.Flags().String("process-slot-var", "", "set environment variable VAR in child processes")
+	rootCmd.Flags().StringP("replace", "i", "", "replace R in INITIAL-ARGS with names")
+	rootCmd.Flags().Bool("show-limits", false, "show limits on command-line length")
+	rootCmd.Flags().BoolP("verbose", "t", false, "print commands before executing them")
+	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-			secondPass := xargsCmd()
-			if args := firstPass.Flags().Args(); len(args) > 0 && !(len(args) == 1 && args[0] == c.Value) {
-				subcmd := subCmd(args[0])
-				secondPass.AddCommand(subcmd)
-			}
-			return carapace.ActionExecute(secondPass)
-		}),
-	)
-}
+	rootCmd.Flag("eof").NoOptDefVal = " "
+	rootCmd.Flag("replace").NoOptDefVal = "{}"
 
-func xargsCmd() *cobra.Command {
-	cmd := &cobra.Command{
-		Use: "xargs",
-		Run: func(cmd *cobra.Command, args []string) {},
-	}
+	rootCmd.Flags().SetInterspersed(false)
 
-	carapace.Gen(cmd).Standalone()
-
-	cmd.Flags().StringS("E", "E", "", "set logical EOF string")
-	cmd.Flags().StringS("I", "I", "", "same as --replace=R")
-	cmd.Flags().StringP("arg-file", "a", "", "read arguments from FILE")
-	cmd.Flags().StringP("delimiter", "d", "", "items in input stream are separated by CHARACTER")
-	cmd.Flags().StringP("eof", "e", "", "equivalent to -E END if END is specified")
-	cmd.Flags().BoolP("exit", "x", false, "exit if the size (see -s) is exceeded")
-	cmd.Flags().Bool("help", false, "display this help and exit")
-	cmd.Flags().BoolP("interactive", "p", false, "prompt before running commands")
-	cmd.Flags().StringS("l", "l", "", "similar to -L but defaults to at most one non- blank input line")
-	cmd.Flags().StringP("max-args", "n", "", "use at most MAX-ARGS arguments per command line")
-	cmd.Flags().StringP("max-chars", "s", "", "limit length of command line to MAX-CHARS")
-	cmd.Flags().StringP("max-lines", "L", "", "use at most MAX-LINES non-blank input lines per command line")
-	cmd.Flags().StringP("max-procs", "P", "", "run at most MAX-PROCS processes at a time")
-	cmd.Flags().BoolP("no-run-if-empty", "r", false, "if there are no arguments, then do not run COMMAND")
-	cmd.Flags().BoolP("null", "0", false, "items are separated by a null")
-	cmd.Flags().BoolP("open-tty", "o", false, "Reopen stdin as /dev/tty in the child process")
-	cmd.Flags().String("process-slot-var", "", "set environment variable VAR in child processes")
-	cmd.Flags().StringP("replace", "i", "", "replace R in INITIAL-ARGS with names")
-	cmd.Flags().Bool("show-limits", false, "show limits on command-line length")
-	cmd.Flags().BoolP("verbose", "t", false, "print commands before executing them")
-	cmd.Flags().Bool("version", false, "output version information and exit")
-
-	cmd.Flag("eof").NoOptDefVal = " "
-	cmd.Flag("replace").NoOptDefVal = "{}"
-
-	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"arg-file": carapace.ActionFiles(),
 	})
 
-	carapace.Gen(cmd).PositionalCompletion(
+	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 	)
 
-	return cmd
-}
-
-func subCmd(name string) *cobra.Command {
-	cmd := &cobra.Command{
-		Use:                name,
-		Run:                func(cmd *cobra.Command, args []string) {},
-		DisableFlagParsing: true,
-	}
-
-	carapace.Gen(cmd).PositionalAnyCompletion(
-		bridge.ActionCarapaceBin(name),
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
+		}),
 	)
-	return cmd
 }
