@@ -14,8 +14,8 @@ github.com/pelletier/go-toml v1.9.5/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCko
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rsteube/carapace v0.37.3/go.mod h1:jkLt41Ne2TD2xPuMdX/2O05Smhy8vMgG7O2TYvC0yOc=
-github.com/rsteube/carapace v0.38.2 h1:chQ/RrSMOnFDNo8cFBeQXODK0kgkywqVbk5NVh2z7jI=
-github.com/rsteube/carapace v0.38.2/go.mod h1:jkLt41Ne2TD2xPuMdX/2O05Smhy8vMgG7O2TYvC0yOc=
+github.com/rsteube/carapace v0.38.3 h1:MpJAarhpEL+kmZN+a+zWstdpB4z08GfDrUDXRujNMXk=
+github.com/rsteube/carapace v0.38.3/go.mod h1:jkLt41Ne2TD2xPuMdX/2O05Smhy8vMgG7O2TYvC0yOc=
 github.com/rsteube/carapace-bridge v0.1.1 h1:++/5eET1WWvzdWxqsYvnZLEawB3yK+3zDPRUTXqhB70=
 github.com/rsteube/carapace-bridge v0.1.1/go.mod h1:UCf8YBCX7mAn03TmCWSU8dg8FMWuik+ggUXiNKEC8NA=
 github.com/rsteube/carapace-pflag v0.2.0 h1:EYqFO9Haib3NDCPqKu0VxOGi9YQBkXk1IzlHdT0M0vw=
