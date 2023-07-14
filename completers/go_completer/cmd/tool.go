@@ -17,6 +17,8 @@ func init() {
 	carapace.Gen(toolCmd).Standalone()
 
 	toolCmd.Flags().BoolS("n", "n", false, "only print the command that would be executed")
+
+	toolCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(toolCmd)
 
 	carapace.Gen(toolCmd).PositionalCompletion(

@@ -19,5 +19,7 @@ func init() {
 	getCmd.Flags().BoolS("t", "t", false, "consider modules needed to build tests")
 	getCmd.Flags().BoolS("u", "u", false, "update modules providing dependencies")
 	addBuildFlags(getCmd)
+
+	getCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(getCmd)
 }

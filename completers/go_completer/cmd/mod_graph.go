@@ -14,5 +14,6 @@ var mod_graphCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mod_graphCmd).Standalone()
 
+	mod_graphCmd.Flags().SetInterspersed(false)
 	modCmd.AddCommand(mod_graphCmd)
 }

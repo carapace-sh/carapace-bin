@@ -26,6 +26,7 @@ func init() {
 	work_editCmd.Flags().StringArrayS("replace", "replace", []string{}, "add a replacement")
 	work_editCmd.Flags().StringArrayS("use", "use", []string{}, "add a use directive")
 
+	work_editCmd.Flags().SetInterspersed(false)
 	workCmd.AddCommand(work_editCmd)
 
 	carapace.Gen(work_editCmd).FlagCompletion(carapace.ActionMap{

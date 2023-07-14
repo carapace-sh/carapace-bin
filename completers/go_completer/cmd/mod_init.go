@@ -14,5 +14,6 @@ var mod_initCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mod_initCmd).Standalone()
 
+	mod_initCmd.Flags().SetInterspersed(false)
 	modCmd.AddCommand(mod_initCmd)
 }

@@ -17,6 +17,8 @@ func init() {
 	installCmd.Flags().BoolS("i", "i", false, "install the packages that are dependencies of the target")
 	installCmd.Flags().StringS("o", "o", "", "set output file or directory")
 	addBuildFlags(installCmd)
+
+	installCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{

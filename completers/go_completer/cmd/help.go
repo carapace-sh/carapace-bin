@@ -15,6 +15,7 @@ var helpCmd = &cobra.Command{
 func init() {
 	carapace.Gen(helpCmd).Standalone()
 
+	helpCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(helpCmd)
 
 	carapace.Gen(helpCmd).PositionalCompletion(

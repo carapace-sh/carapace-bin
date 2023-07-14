@@ -26,5 +26,7 @@ func init() {
 	listCmd.Flags().BoolS("u", "u", false, "add information about available upgrades")
 	listCmd.Flags().BoolS("versions", "versions", false, "set the Module's Versions field to list of all known versions")
 	addBuildFlags(listCmd)
+
+	listCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(listCmd)
 }

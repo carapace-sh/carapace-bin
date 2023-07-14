@@ -19,6 +19,8 @@ func init() {
 	mod_tidyCmd.Flags().BoolS("e", "e", false, "attempt to proceed despite errors")
 	mod_tidyCmd.Flags().StringS("go", "go", "", "update the 'go' directive to given version")
 	mod_tidyCmd.Flags().BoolS("v", "v", false, "print information about removed modules")
+
+	mod_tidyCmd.Flags().SetInterspersed(false)
 	modCmd.AddCommand(mod_tidyCmd)
 
 	carapace.Gen(mod_tidyCmd).FlagCompletion(carapace.ActionMap{

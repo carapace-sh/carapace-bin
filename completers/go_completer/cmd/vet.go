@@ -16,5 +16,7 @@ func init() {
 
 	vetCmd.Flags().BoolS("n", "n", false, "print commands that would be executed")
 	vetCmd.Flags().BoolS("x", "x", false, "print commands as they are executed")
+
+	vetCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(vetCmd)
 }

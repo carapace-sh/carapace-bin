@@ -18,5 +18,7 @@ func init() {
 	docCmd.Flags().BoolS("cmd", "cmd", false, "Treat a command like a regular package")
 	docCmd.Flags().BoolS("short", "short", false, "One-line representation for each symbol")
 	docCmd.Flags().BoolS("src", "src", false, "Show the full source code for the symbol")
+
+	docCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(docCmd)
 }

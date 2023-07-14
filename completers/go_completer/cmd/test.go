@@ -36,6 +36,8 @@ func init() {
 	testCmd.Flags().StringS("timeout", "timeout", "", "if a test binary runs longer than duration d, panic")
 	testCmd.Flags().BoolS("v", "v", false, "verbose output")
 	testCmd.Flags().StringS("vet", "vet", "", "configure the invocation of \"go vet\" during \"go test\" to use the comma-separated list of vet check")
+
+	testCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
