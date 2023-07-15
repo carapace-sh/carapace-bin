@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -22,15 +22,12 @@ func init() {
 	rootCmd.AddCommand(toolCmd)
 
 	carapace.Gen(toolCmd).PositionalCompletion(
-		ActionTools(),
+		golang.ActionTools(),
 	)
-}
 
-func ActionTools() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("go", "tool")(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
-			return carapace.ActionValues(lines[:len(lines)-1]...)
-		})
-	})
+	carapace.Gen(toolCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return bridge.ActionCarapaceBin("go-tool-" + c.Args[0]).Shift(1)
+		}),
+	)
 }
