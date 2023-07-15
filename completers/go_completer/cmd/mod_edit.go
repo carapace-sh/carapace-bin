@@ -29,6 +29,8 @@ func init() {
 	mod_editCmd.Flags().BoolS("print", "print", false, "print the final go.mod in its text format instead of writing back")
 	mod_editCmd.Flags().StringS("replace", "replace", "", "add a module replacement")
 	mod_editCmd.Flags().StringS("require", "require", "", "add a requirement")
+
+	mod_editCmd.Flags().SetInterspersed(false)
 	modCmd.AddCommand(mod_editCmd)
 
 	carapace.Gen(mod_editCmd).FlagCompletion(carapace.ActionMap{

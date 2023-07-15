@@ -16,5 +16,7 @@ func init() {
 
 	runCmd.Flags().StringS("exec", "exec", "", "invoke the binary using xprog")
 	addBuildFlags(runCmd)
+
+	runCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(runCmd)
 }

@@ -14,5 +14,6 @@ var mod_verifyCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mod_verifyCmd).Standalone()
 
+	mod_verifyCmd.Flags().SetInterspersed(false)
 	modCmd.AddCommand(mod_verifyCmd)
 }

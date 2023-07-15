@@ -14,5 +14,6 @@ var work_syncCmd = &cobra.Command{
 func init() {
 	carapace.Gen(work_syncCmd).Standalone()
 
+	work_syncCmd.Flags().SetInterspersed(false)
 	workCmd.AddCommand(work_syncCmd)
 }

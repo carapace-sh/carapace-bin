@@ -19,6 +19,8 @@ func init() {
 
 	buildCmd.Flags().StringS("o", "o", "", "set output file or directory")
 	addBuildFlags(buildCmd)
+
+	buildCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(buildCmd)
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
