@@ -6,7 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionPackages completes packages.
+// ActionPackages completes packages
 //
 //	encoding/json
 //	github.com/rsteube/carapace-bin/completers/go_completer
