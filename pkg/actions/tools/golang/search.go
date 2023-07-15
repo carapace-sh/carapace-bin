@@ -17,7 +17,10 @@ func ActionModuleSearch() carapace.Action {
 			opts.Prefix = false
 			return git.ActionRepositorySearch(opts).NoSpace()
 		case 1:
-			return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + c.Parts[0], Tags: true})
+			return carapace.Batch(
+				git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + c.Parts[0], Tags: true}),
+				carapace.ActionValues("latest"),
+			).ToA()
 		default:
 			return carapace.ActionValues()
 		}
