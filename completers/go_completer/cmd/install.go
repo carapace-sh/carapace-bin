@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,8 @@ func init() {
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
 		"o": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(installCmd).PositionalCompletion(
+		golang.ActionModuleSearch(),
+	)
 }
