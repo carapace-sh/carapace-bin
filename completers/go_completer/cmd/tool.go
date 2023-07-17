@@ -27,7 +27,12 @@ func init() {
 
 	carapace.Gen(toolCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin("go-tool-" + c.Args[0]).Shift(1)
+			switch c.Args[0] {
+			case "pprof":
+				return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
+			default:
+				return bridge.ActionCarapaceBin("go-tool-" + c.Args[0]).Shift(1)
+			}
 		}),
 	)
 }
