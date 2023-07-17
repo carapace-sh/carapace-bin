@@ -43,14 +43,19 @@ func ActionSymbols(pkg string) carapace.Action {
 	})
 }
 
+type MethodOrFieldOpts struct {
+	Package string
+	Symbol  string
+}
+
 // ActionMethodOrFields completes methods and fields of given symbol
 //
 //	Cache
 //	Chdir
-func ActionMethodOrFields(pkg, symbol string) carapace.Action {
-	return carapace.ActionExecCommand("go", "doc", "-short", pkg, symbol)(func(output []byte) carapace.Action {
+func ActionMethodOrFields(opts MethodOrFieldOpts) carapace.Action {
+	return carapace.ActionExecCommand("go", "doc", "-short", opts.Package, opts.Symbol)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
-		r := regexp.MustCompile(fmt.Sprintf(`^func \([^ ]+ \*?%v\) (?P<method>[^( =]+).*`, symbol))
+		r := regexp.MustCompile(fmt.Sprintf(`^func \([^ ]+ \*?%v\) (?P<method>[^( =]+).*`, opts.Symbol))
 
 		methods := make([]string, 0)
 		for _, line := range lines {
@@ -62,7 +67,7 @@ func ActionMethodOrFields(pkg, symbol string) carapace.Action {
 		found := false
 		fields := make([]string, 0)
 		for _, line := range lines {
-			if strings.HasPrefix(line, fmt.Sprintf("type %v ", symbol)) {
+			if strings.HasPrefix(line, fmt.Sprintf("type %v ", opts.Symbol)) {
 				found = true
 				continue
 			}

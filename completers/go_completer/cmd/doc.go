@@ -31,7 +31,7 @@ func init() {
 				return golang.ActionSymbols(c.Args[0]).NoSpace()
 
 			case 1:
-				return golang.ActionMethodOrFields(c.Args[0], c.Parts[0])
+				return golang.ActionMethodOrFields(golang.MethodOrFieldOpts{Package: c.Args[0], Symbol: c.Parts[0]})
 
 			default:
 				return carapace.ActionValues()
