@@ -27,6 +27,7 @@ func init() {
 	installCmd.Flags().BoolP("force", "f", false, "Force overwriting existing crates or binaries")
 	installCmd.Flags().String("git", "", "Git URL to install the specified crate from")
 	installCmd.Flags().BoolP("help", "h", false, "Print help")
+	installCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
 	installCmd.Flags().String("index", "", "Registry index to install from")
 	installCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs")
 	installCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error (unstable)")
