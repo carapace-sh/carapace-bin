@@ -43,14 +43,14 @@ func ActionSymbols(pkg string) carapace.Action {
 	})
 }
 
-// ActionMethodOrFields completes methods and (TODO fields) of given symbol
+// ActionMethodOrFields completes methods and fields of given symbol
 //
 //	Cache
 //	Chdir
 func ActionMethodOrFields(pkg, symbol string) carapace.Action {
 	return carapace.ActionExecCommand("go", "doc", "-short", pkg, symbol)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
-		r := regexp.MustCompile(fmt.Sprintf(`^func \([^ ]+ \*?%v\) (?P<method>[^( =]+).*`, symbol)) // TODO only methods for now (fields missing)
+		r := regexp.MustCompile(fmt.Sprintf(`^func \([^ ]+ \*?%v\) (?P<method>[^( =]+).*`, symbol))
 
 		methods := make([]string, 0)
 		for _, line := range lines {
