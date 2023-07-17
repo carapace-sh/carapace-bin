@@ -23,6 +23,8 @@ func init() {
 	subtractCmd.Flags().StringS("o", "o", "", "Output directory to write")
 	subtractCmd.Flags().StringS("pkg", "pkg", "", "Restrict output to package(s) matching specified package pattern")
 	subtractCmd.Flags().StringS("v", "v", "", "Verbose trace output level")
+
+	subtractCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(subtractCmd)
 
 	carapace.Gen(subtractCmd).FlagCompletion(carapace.ActionMap{

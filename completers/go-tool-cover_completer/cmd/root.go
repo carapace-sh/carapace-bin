@@ -28,6 +28,8 @@ func init() {
 
 	rootCmd.MarkFlagsMutuallyExclusive("html", "func", "mode")
 
+	rootCmd.Flags().SetInterspersed(false)
+
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"func":        carapace.ActionFiles(),
 		"html":        carapace.ActionFiles(),

@@ -23,6 +23,8 @@ func init() {
 	percentCmd.Flags().StringS("o", "o", "", "Output text format to file")
 	percentCmd.Flags().StringS("pkg", "pkg", "", "Restrict output to package(s) matching specified package pattern")
 	percentCmd.Flags().StringS("v", "v", "", "Verbose trace output level")
+
+	percentCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(percentCmd)
 
 	carapace.Gen(percentCmd).FlagCompletion(carapace.ActionMap{
