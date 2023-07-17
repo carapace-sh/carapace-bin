@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,20 @@ func init() {
 
 	docCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(docCmd)
+
+	carapace.Gen(docCmd).PositionalCompletion(
+		golang.ActionPackages(),
+		carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return golang.ActionSymbols(c.Args[0]).NoSpace()
+
+			case 1:
+				return golang.ActionMethodOrFields(c.Args[0], c.Parts[0])
+
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	)
 }
