@@ -10,6 +10,7 @@ import (
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -44,6 +45,7 @@ func init() {
 
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringP("C", "C", "", "Change to DIRECTORY before doing anything (nightly-only)")
 	rootCmd.PersistentFlags().StringSliceP("Z", "Z", []string{}, "Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details")
 	rootCmd.PersistentFlags().String("color", "", "Coloring: auto, always, never")
 	rootCmd.PersistentFlags().StringSlice("config", []string{}, "Override a configuration value")
@@ -58,6 +60,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Print version info and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"C":     carapace.ActionDirectories(),
 		"Z":     cargo.ActionNightlyFlags(),
 		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 	})
@@ -85,6 +88,10 @@ func init() {
 				}
 			}
 		}
+	})
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.Chdir(rootCmd.Flag("C").Value.String())
 	})
 }
 
