@@ -23,6 +23,8 @@ func init() {
 	intersectCmd.Flags().StringS("o", "o", "", "Output directory to write")
 	intersectCmd.Flags().StringS("pkg", "pkg", "", "Restrict output to package(s) matching specified package pattern")
 	intersectCmd.Flags().StringS("v", "v", "", "Verbose trace output level")
+
+	intersectCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(intersectCmd)
 
 	carapace.Gen(intersectCmd).FlagCompletion(carapace.ActionMap{

@@ -23,6 +23,8 @@ func init() {
 	textfmtCmd.Flags().StringS("o", "o", "", "Output text format to file")
 	textfmtCmd.Flags().StringS("pkg", "pkg", "", "Restrict output to package(s) matching specified package pattern")
 	textfmtCmd.Flags().StringS("v", "v", "", "Verbose trace output level")
+
+	textfmtCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(textfmtCmd)
 
 	carapace.Gen(textfmtCmd).FlagCompletion(carapace.ActionMap{

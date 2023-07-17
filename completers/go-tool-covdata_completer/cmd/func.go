@@ -22,6 +22,8 @@ func init() {
 	funcCmd.Flags().StringS("memprofilerate", "memprofilerate", "", "Set memprofile sampling rate to value")
 	funcCmd.Flags().StringS("pkg", "pkg", "", "Restrict output to package(s) matching specified package pattern")
 	funcCmd.Flags().StringS("v", "v", "", "Verbose trace output level")
+
+	funcCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(funcCmd)
 
 	carapace.Gen(funcCmd).FlagCompletion(carapace.ActionMap{
