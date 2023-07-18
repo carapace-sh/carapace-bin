@@ -15,10 +15,9 @@ var toolCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(toolCmd).Standalone()
+	toolCmd.Flags().SetInterspersed(false)
 
 	toolCmd.Flags().BoolS("n", "n", false, "only print the command that would be executed")
-
-	toolCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(toolCmd)
 
 	carapace.Gen(toolCmd).PositionalCompletion(

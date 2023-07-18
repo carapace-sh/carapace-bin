@@ -13,10 +13,9 @@ var runCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(runCmd).Standalone()
+	runCmd.Flags().SetInterspersed(false)
 
 	runCmd.Flags().StringS("exec", "exec", "", "invoke the binary using xprog")
 	addBuildFlags(runCmd)
-
-	runCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(runCmd)
 }

@@ -13,9 +13,8 @@ var mod_vendorCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mod_vendorCmd).Standalone()
+	mod_vendorCmd.Flags().SetInterspersed(false)
 
 	mod_vendorCmd.Flags().BoolS("v", "v", false, "print the names of vendored modules and packages")
-
-	mod_vendorCmd.Flags().SetInterspersed(false)
 	modCmd.AddCommand(mod_vendorCmd)
 }

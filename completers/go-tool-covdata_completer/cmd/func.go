@@ -14,6 +14,7 @@ var funcCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(funcCmd).Standalone()
+	funcCmd.Flags().SetInterspersed(false)
 
 	funcCmd.Flags().StringS("cpuprofile", "cpuprofile", "", "Write CPU profile to specified file")
 	funcCmd.Flags().BoolS("hw", "hw", false, "Panic on warnings (for stack trace)")
@@ -22,8 +23,6 @@ func init() {
 	funcCmd.Flags().StringS("memprofilerate", "memprofilerate", "", "Set memprofile sampling rate to value")
 	funcCmd.Flags().StringS("pkg", "pkg", "", "Restrict output to package(s) matching specified package pattern")
 	funcCmd.Flags().StringS("v", "v", "", "Verbose trace output level")
-
-	funcCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(funcCmd)
 
 	carapace.Gen(funcCmd).FlagCompletion(carapace.ActionMap{

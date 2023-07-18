@@ -20,6 +20,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 
 	rootCmd.Flags().BoolP("askpass", "A", false, "use a helper program for password prompting")
 	rootCmd.Flags().BoolP("background", "b", false, "run command in the background")
@@ -46,8 +47,6 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "display version information and exit")
 
 	rootCmd.Flag("preserve-env").NoOptDefVal = " "
-
-	rootCmd.Flags().SetInterspersed(false)
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"group":        os.ActionGroups(),

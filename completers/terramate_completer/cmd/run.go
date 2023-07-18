@@ -14,6 +14,7 @@ var runCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(runCmd).Standalone()
+	runCmd.Flags().SetInterspersed(false)
 
 	runCmd.Flags().Bool("continue-on-error", false, "Continue executing in other stacks in case of error")
 	runCmd.Flags().Bool("disable-check-gen-code", false, "Disable outdated generated code check")
@@ -21,8 +22,6 @@ func init() {
 	runCmd.Flags().Bool("dry-run", false, "Plan the execution but do not execute it")
 	runCmd.Flags().Bool("no-recursive", false, "Do not recurse into child stacks")
 	runCmd.Flags().Bool("reverse", false, "Reverse the order of execution")
-
-	runCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).PositionalCompletion(

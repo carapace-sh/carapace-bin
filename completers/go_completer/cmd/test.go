@@ -14,6 +14,7 @@ var testCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(testCmd).Standalone()
+	testCmd.Flags().SetInterspersed(false)
 
 	testCmd.Flags().BoolS("args", "args", false, "pass the remainder of the command line to the test binary")
 	testCmd.Flags().StringS("bench", "bench", "", "run only those benchmarks matching a regular expression")
@@ -36,8 +37,6 @@ func init() {
 	testCmd.Flags().StringS("timeout", "timeout", "", "if a test binary runs longer than duration d, panic")
 	testCmd.Flags().BoolS("v", "v", false, "verbose output")
 	testCmd.Flags().StringS("vet", "vet", "", "configure the invocation of \"go vet\" during \"go test\" to use the comma-separated list of vet check")
-
-	testCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{

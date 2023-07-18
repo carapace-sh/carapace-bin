@@ -13,10 +13,9 @@ var vetCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(vetCmd).Standalone()
+	vetCmd.Flags().SetInterspersed(false)
 
 	vetCmd.Flags().BoolS("n", "n", false, "print commands that would be executed")
 	vetCmd.Flags().BoolS("x", "x", false, "print commands as they are executed")
-
-	vetCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(vetCmd)
 }

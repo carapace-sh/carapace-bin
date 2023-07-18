@@ -16,11 +16,10 @@ var buildCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(buildCmd).Standalone()
+	buildCmd.Flags().SetInterspersed(false)
 
 	buildCmd.Flags().StringS("o", "o", "", "set output file or directory")
 	addBuildFlags(buildCmd)
-
-	buildCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(buildCmd)
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{

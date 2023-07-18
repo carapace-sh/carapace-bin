@@ -14,11 +14,10 @@ var mod_whyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mod_whyCmd).Standalone()
+	mod_whyCmd.Flags().SetInterspersed(false)
 
 	mod_whyCmd.Flags().BoolS("m", "m", false, "treat arguments as a list of modules")
 	mod_whyCmd.Flags().BoolS("vendor", "vendor", false, "exclude tests of dependencies")
-
-	mod_whyCmd.Flags().SetInterspersed(false)
 	modCmd.AddCommand(mod_whyCmd)
 
 	carapace.Gen(mod_whyCmd).PositionalCompletion(

@@ -13,8 +13,8 @@ var work_initCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(work_initCmd).Standalone()
-
 	work_initCmd.Flags().SetInterspersed(false)
+
 	workCmd.AddCommand(work_initCmd)
 
 	carapace.Gen(work_initCmd).PositionalAnyCompletion(

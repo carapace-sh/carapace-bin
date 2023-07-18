@@ -18,6 +18,7 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 
 	rootCmd.Flags().StringS("E", "E", "", "set logical EOF string")
 	rootCmd.Flags().StringS("I", "I", "", "same as --replace=R")
@@ -43,8 +44,6 @@ func init() {
 
 	rootCmd.Flag("eof").NoOptDefVal = " "
 	rootCmd.Flag("replace").NoOptDefVal = "{}"
-
-	rootCmd.Flags().SetInterspersed(false)
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"arg-file": carapace.ActionFiles(),

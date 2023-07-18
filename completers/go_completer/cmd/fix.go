@@ -13,7 +13,7 @@ var fixCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(fixCmd).Standalone()
-
 	fixCmd.Flags().SetInterspersed(false)
+
 	rootCmd.AddCommand(fixCmd)
 }

@@ -14,6 +14,7 @@ var mergeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mergeCmd).Standalone()
+	mergeCmd.Flags().SetInterspersed(false)
 
 	mergeCmd.Flags().StringS("cpuprofile", "cpuprofile", "", "Write CPU profile to specified file")
 	mergeCmd.Flags().BoolS("hw", "hw", false, "Panic on warnings (for stack trace)")
@@ -24,8 +25,6 @@ func init() {
 	mergeCmd.Flags().BoolS("pcombine", "pcombine", false, "Combine profiles derived from distinct program executables")
 	mergeCmd.Flags().StringS("pkg", "pkg", "", "Restrict output to package(s) matching specified package pattern")
 	mergeCmd.Flags().StringS("v", "v", "", "Verbose trace output level")
-
-	mergeCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(mergeCmd)
 
 	carapace.Gen(mergeCmd).FlagCompletion(carapace.ActionMap{

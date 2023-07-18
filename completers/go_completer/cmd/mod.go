@@ -13,7 +13,7 @@ var modCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(modCmd).Standalone()
-
 	modCmd.Flags().SetInterspersed(false)
+
 	rootCmd.AddCommand(modCmd)
 }

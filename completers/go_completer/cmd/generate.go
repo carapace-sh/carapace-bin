@@ -13,13 +13,12 @@ var generateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(generateCmd).Standalone()
+	generateCmd.Flags().SetInterspersed(false)
 
 	generateCmd.Flags().BoolS("n", "n", false, "print commands that would be executed")
 	generateCmd.Flags().StringS("run", "run", "", "specifies a regular expression to select matching directives")
 	generateCmd.Flags().BoolS("v", "v", false, "print the names of packages and files as they are processed")
 	generateCmd.Flags().BoolS("x", "x", false, "print commands as they are executed")
-
-	generateCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(generateCmd)
 
 	carapace.Gen(generateCmd).PositionalAnyCompletion(carapace.ActionFiles(".go"))
