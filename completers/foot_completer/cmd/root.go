@@ -20,6 +20,7 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 
 	rootCmd.Flags().StringP("app-id", "a", "", "window application ID (foot)")
 	rootCmd.Flags().BoolP("check-config", "C", false, "verify configuration, exit with 0 if ok, otherwise exit with 1")
@@ -45,8 +46,6 @@ func init() {
 
 	rootCmd.Flag("server").NoOptDefVal = " "
 	rootCmd.Flag("log-colorize").NoOptDefVal = " "
-
-	rootCmd.Flags().SetInterspersed(false)
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":            carapace.ActionFiles(),

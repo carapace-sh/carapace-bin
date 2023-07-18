@@ -16,6 +16,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-	rootCmd.Flags().SetInterspersed(false)
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 }

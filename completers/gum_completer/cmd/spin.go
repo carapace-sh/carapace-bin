@@ -15,6 +15,7 @@ var spinCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(spinCmd).Standalone()
+	spinCmd.Flags().SetInterspersed(false)
 
 	spinCmd.Flags().StringP("align", "a", "", "Alignment of spinner with regard to the title")
 	spinCmd.Flags().Bool("show-output", false, "Show output of command")
@@ -50,8 +51,6 @@ func init() {
 	spinCmd.Flags().Bool("title.strikethrough", false, "Strikethrough text")
 	spinCmd.Flags().Bool("title.underline", false, "Underline text")
 	spinCmd.Flags().String("title.width", "", "Text width")
-
-	spinCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(spinCmd)
 
 	carapace.Gen(spinCmd).FlagCompletion(carapace.ActionMap{

@@ -14,6 +14,7 @@ var textfmtCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(textfmtCmd).Standalone()
+	textfmtCmd.Flags().SetInterspersed(false)
 
 	textfmtCmd.Flags().StringS("cpuprofile", "cpuprofile", "", "Write CPU profile to specified file")
 	textfmtCmd.Flags().BoolS("hw", "hw", false, "Panic on warnings (for stack trace)")
@@ -23,8 +24,6 @@ func init() {
 	textfmtCmd.Flags().StringS("o", "o", "", "Output text format to file")
 	textfmtCmd.Flags().StringS("pkg", "pkg", "", "Restrict output to package(s) matching specified package pattern")
 	textfmtCmd.Flags().StringS("v", "v", "", "Verbose trace output level")
-
-	textfmtCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(textfmtCmd)
 
 	carapace.Gen(textfmtCmd).FlagCompletion(carapace.ActionMap{

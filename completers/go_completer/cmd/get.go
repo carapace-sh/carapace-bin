@@ -13,13 +13,12 @@ var getCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(getCmd).Standalone()
+	getCmd.Flags().SetInterspersed(false)
 
 	getCmd.Flags().BoolS("d", "d", false, "only download the source code needed to build")
 	getCmd.Flags().BoolS("insecure", "insecure", false, "permit using insecure schemes such as HTTP")
 	getCmd.Flags().BoolS("t", "t", false, "consider modules needed to build tests")
 	getCmd.Flags().BoolS("u", "u", false, "update modules providing dependencies")
 	addBuildFlags(getCmd)
-
-	getCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(getCmd)
 }

@@ -13,6 +13,7 @@ var listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(listCmd).Standalone()
+	listCmd.Flags().SetInterspersed(false)
 
 	listCmd.Flags().BoolS("compiled", "compiled", false, "set CompiledGoFiles to the Go source files presented to the compiler")
 	listCmd.Flags().BoolS("deps", "deps", false, "iterate over not just the named packages but also all their dependencies")
@@ -26,7 +27,5 @@ func init() {
 	listCmd.Flags().BoolS("u", "u", false, "add information about available upgrades")
 	listCmd.Flags().BoolS("versions", "versions", false, "set the Module's Versions field to list of all known versions")
 	addBuildFlags(listCmd)
-
-	listCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(listCmd)
 }

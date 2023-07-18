@@ -14,13 +14,12 @@ var docCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(docCmd).Standalone()
+	docCmd.Flags().SetInterspersed(false)
 
 	docCmd.Flags().BoolS("all", "all", false, "Show all the documentation for the package")
 	docCmd.Flags().BoolS("cmd", "cmd", false, "Treat a command like a regular package")
 	docCmd.Flags().BoolS("short", "short", false, "One-line representation for each symbol")
 	docCmd.Flags().BoolS("src", "src", false, "Show the full source code for the symbol")
-
-	docCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(docCmd)
 
 	carapace.Gen(docCmd).PositionalCompletion(

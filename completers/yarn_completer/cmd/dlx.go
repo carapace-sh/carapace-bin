@@ -15,11 +15,10 @@ var dlxCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(dlxCmd).Standalone()
+	dlxCmd.Flags().SetInterspersed(false)
 
 	dlxCmd.Flags().StringSliceP("package", "p", []string{}, "The package(s) to install before running the command")
 	dlxCmd.Flags().BoolP("quiet", "q", false, "Only report critical errors instead of printing the full install logs")
-
-	dlxCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(dlxCmd)
 
 	// TODO package completion

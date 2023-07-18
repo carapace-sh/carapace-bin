@@ -15,8 +15,8 @@ var execCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(execCmd).Standalone()
-
 	execCmd.Flags().SetInterspersed(false)
+
 	rootCmd.AddCommand(execCmd)
 
 	carapace.Gen(execCmd).PositionalCompletion(

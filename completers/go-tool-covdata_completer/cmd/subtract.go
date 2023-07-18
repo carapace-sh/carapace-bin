@@ -14,6 +14,7 @@ var subtractCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(subtractCmd).Standalone()
+	subtractCmd.Flags().SetInterspersed(false)
 
 	subtractCmd.Flags().StringS("cpuprofile", "cpuprofile", "", "Write CPU profile to specified file")
 	subtractCmd.Flags().BoolS("hw", "hw", false, "Panic on warnings (for stack trace)")
@@ -23,8 +24,6 @@ func init() {
 	subtractCmd.Flags().StringS("o", "o", "", "Output directory to write")
 	subtractCmd.Flags().StringS("pkg", "pkg", "", "Restrict output to package(s) matching specified package pattern")
 	subtractCmd.Flags().StringS("v", "v", "", "Verbose trace output level")
-
-	subtractCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(subtractCmd)
 
 	carapace.Gen(subtractCmd).FlagCompletion(carapace.ActionMap{

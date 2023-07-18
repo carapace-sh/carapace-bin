@@ -17,6 +17,7 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 
 	rootCmd.Flags().StringS("func", "func", "", "output coverage profile information for each function")
 	rootCmd.Flags().StringS("html", "html", "", "generate HTML representation of coverage profile")
@@ -27,8 +28,6 @@ func init() {
 	rootCmd.Flags().StringS("var", "var", "", "name of coverage variable to generate (default \"GoCover\")")
 
 	rootCmd.MarkFlagsMutuallyExclusive("html", "func", "mode")
-
-	rootCmd.Flags().SetInterspersed(false)
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"func":        carapace.ActionFiles(),

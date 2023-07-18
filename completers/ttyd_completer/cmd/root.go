@@ -21,6 +21,7 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 
 	rootCmd.Flags().StringP("auth-header", "H", "", "HTTP Header name for auth proxy")
 	rootCmd.Flags().StringP("base-path", "b", "", "Expected base path for requests coming from a reverse proxy")
@@ -49,8 +50,6 @@ func init() {
 	rootCmd.Flags().StringP("uid", "u", "", "User id to run with")
 	rootCmd.Flags().StringP("url-arg", "a", "", "Allow client to send command line arguments in URL")
 	rootCmd.Flags().BoolP("version", "v", false, "Print the version and exit")
-
-	rootCmd.Flags().SetInterspersed(false)
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cwd": carapace.ActionDirectories(),
