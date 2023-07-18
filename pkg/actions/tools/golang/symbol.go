@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/styles"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
@@ -21,13 +22,13 @@ func ActionSymbols(pkg string) carapace.Action {
 		styleFor := func(s string) string {
 			switch s {
 			case "var":
-				return style.Yellow
+				return styles.Golang.Variable
 			case "func":
-				return style.Blue
+				return styles.Golang.Function
 			case "type":
-				return style.Magenta
+				return styles.Golang.Type
 			case "const":
-				return style.Green
+				return styles.Golang.Constant
 			default:
 				return style.Default
 			}
@@ -86,8 +87,8 @@ func ActionMethodOrFields(opts MethodOrFieldOpts) carapace.Action {
 		}
 
 		return carapace.Batch(
-			carapace.ActionValues(methods...).Style(style.Blue),
-			carapace.ActionValues(fields...).Style(style.Yellow),
+			carapace.ActionValues(methods...).Style(styles.Golang.Function),
+			carapace.ActionValues(fields...).Style(styles.Golang.Field),
 		).ToA()
 	})
 }
