@@ -81,8 +81,10 @@ func ActionMethodOrFields(opts MethodOrFieldOpts) carapace.Action {
 				break
 			}
 
-			if line := strings.TrimSpace(line); line != "" && !strings.HasPrefix(line, "//") {
-				fields = append(fields, strings.Fields(line)[0])
+			line = strings.SplitN(line, "//", 2)[0]
+			line = strings.TrimSpace(line)
+			if f := strings.Fields(line); len(f) > 1 {
+				fields = append(fields, f[0])
 			}
 		}
 
