@@ -7,7 +7,6 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/styles"
-	"github.com/rsteube/carapace/pkg/style"
 )
 
 type SymbolOpts struct {
@@ -30,28 +29,31 @@ func ActionSymbols(opts SymbolOpts) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			r := regexp.MustCompile(`^ *(?P<type>var|func|type|const) (?P<symbol>[^( =]+).*`) // TODO incomplete (e.g. generics))
 
-			styleFor := func(s string) string {
-				switch s {
-				case "var":
-					return styles.Golang.Variable
-				case "func":
-					return styles.Golang.Function
-				case "type":
-					return styles.Golang.Type
-				case "const":
-					return styles.Golang.Constant
-				default:
-					return style.Default
-				}
-			}
-
-			vals := make([]string, 0)
+			variables := make([]string, 0)
+			functions := make([]string, 0)
+			types := make([]string, 0)
+			constants := make([]string, 0)
 			for _, line := range lines {
 				if matches := r.FindStringSubmatch(line); matches != nil {
-					vals = append(vals, matches[2], styleFor(matches[1]))
+					switch matches[1] {
+					case "var":
+						variables = append(variables, matches[2])
+					case "func":
+						functions = append(functions, matches[2])
+					case "type":
+						types = append(types, matches[2])
+					case "const":
+						constants = append(constants, matches[2])
+					default:
+					}
 				}
 			}
-			return carapace.ActionStyledValues(vals...)
+			return carapace.Batch(
+				carapace.ActionValues(variables...).Style(styles.Golang.Variable).Tag("variables"),
+				carapace.ActionValues(functions...).Style(styles.Golang.Function).Tag("functions"),
+				carapace.ActionValues(types...).Style(styles.Golang.Type).Tag("types"),
+				carapace.ActionValues(constants...).Style(styles.Golang.Constant).Tag("constants"),
+			).ToA()
 		})
 	})
 }
@@ -108,8 +110,8 @@ func ActionMethodOrFields(opts MethodOrFieldOpts) carapace.Action {
 			}
 
 			return carapace.Batch(
-				carapace.ActionValues(methods...).Style(styles.Golang.Function),
-				carapace.ActionValues(fields...).Style(styles.Golang.Field),
+				carapace.ActionValues(methods...).Style(styles.Golang.Function).Tag("functions"),
+				carapace.ActionValues(fields...).Style(styles.Golang.Field).Tag("fields"),
 			).ToA()
 		})
 	})
