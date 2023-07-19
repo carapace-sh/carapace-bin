@@ -44,6 +44,17 @@ completion:
   positionalany: ["$_bridge.CarapaceBin([gh])"]
 ```
 
+### Clap
+
+[clap-rs/clap] based commands can be bridged with the [`bridge.Clap`] macro:
+
+```yaml
+name: dyamic
+description: clap dynamic example
+completion:
+  positionalany: ["$_bridge.Clap([dynamic])"]
+```
+
 ### Click
 
 [pallets/click] based commands can be bridged with the [`bridge.Click`] macro:
@@ -171,6 +182,9 @@ completion:
 
 [rsteube/carapace-bin]:https://github.com/rsteube/carapace-bin
 [`bridge.CarapaceBin`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionCarapaceBin
+
+[clap-rs/clap]:https://github.com/clap-rs/clap
+[`bridge.Clap`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionClap
 
 [pallets/click]:https://github.com/pallets/click
 [`bridge.Click`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionClick
