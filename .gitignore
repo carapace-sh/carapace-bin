@@ -1,6 +1,4 @@
 carapace-bin.mp4
-cmd/carafmt/carafmt
-cmd/caralint/caralint
 cmd/carapace/carapace
 cmd/carapace/carapace.exe
 cmd/carapace/cmd/completers/description.go
@@ -9,9 +7,11 @@ cmd/carapace/cmd/completers/name.go
 cmd/carapace/cmd/completers_release.go
 cmd/carapace/cmd/macros.go
 cmd/carapace/cmd/shim/*.exe
-cmd/caraparse/caraparse
-cmd/generate/generate
-cmd/shim/shim
+cmd/carapace-fmt/carapace-fmt
+cmd/carapace-generate/carapace-generate
+cmd/carapace-lint/carapace-lint
+cmd/carapace-parse/carapace-parse
+cmd/carapace-shim/carapace-shim
 completers/*/*_completer
 completers/gh_completer/cmd/action/api.github.com.json
 completers_release

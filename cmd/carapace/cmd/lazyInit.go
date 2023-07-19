@@ -1,6 +1,6 @@
 package cmd
 
-//go:generate go run ../../generate/gen.go
+//go:generate go run ../../carapace-generate/gen.go
 
 import (
 	"fmt"
