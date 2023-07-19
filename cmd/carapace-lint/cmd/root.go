@@ -12,7 +12,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "caralint",
+	Use:   "carapace-lint",
 	Short: "",
 	Args:  cobra.MinimumNArgs(1),
 	CompletionOptions: cobra.CompletionOptions{

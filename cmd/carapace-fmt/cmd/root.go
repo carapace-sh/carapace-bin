@@ -9,13 +9,13 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	lint "github.com/rsteube/carapace-bin/cmd/caralint/cmd"
+	lint "github.com/rsteube/carapace-bin/cmd/carapace-lint/cmd"
 	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "carafmt",
+	Use:   "carapace-fmt",
 	Short: "",
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
