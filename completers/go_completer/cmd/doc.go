@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var docCmd = &cobra.Command{
@@ -16,6 +17,7 @@ func init() {
 	carapace.Gen(docCmd).Standalone()
 	docCmd.Flags().SetInterspersed(false)
 
+	docCmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
 	docCmd.Flags().BoolS("all", "all", false, "Show all the documentation for the package")
 	docCmd.Flags().BoolS("c", "c", false, "Respect case when matching symbols")
 	docCmd.Flags().BoolS("cmd", "cmd", false, "Treat a command like a regular package")
@@ -24,6 +26,10 @@ func init() {
 	docCmd.Flags().BoolS("u", "u", false, "Show documentation for unexported as well")
 
 	rootCmd.AddCommand(docCmd)
+
+	carapace.Gen(docCmd).FlagCompletion(carapace.ActionMap{
+		"C": carapace.ActionDirectories(),
+	})
 
 	carapace.Gen(docCmd).PositionalCompletion(
 		golang.ActionPackages(),
@@ -47,4 +53,8 @@ func init() {
 			}
 		}),
 	)
+
+	carapace.Gen(docCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.Chdir(cmd.Flag("C").Value.String())
+	})
 }

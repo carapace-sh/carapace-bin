@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var testCmd = &cobra.Command{
@@ -16,6 +17,7 @@ func init() {
 	carapace.Gen(testCmd).Standalone()
 	testCmd.Flags().SetInterspersed(false)
 
+	testCmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
 	testCmd.Flags().BoolS("args", "args", false, "pass the remainder of the command line to the test binary")
 	testCmd.Flags().StringS("bench", "bench", "", "run only those benchmarks matching a regular expression")
 	testCmd.Flags().StringS("benchtime", "benchtime", "", "Run enough iterations of each benchmark to take given duration")
@@ -40,6 +42,7 @@ func init() {
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
+		"C": carapace.ActionDirectories(),
 		"bench": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return golang.ActionTests(golang.TestOpts{Packages: c.Args, Benchmark: true}).UniqueList("|")
 		}),
@@ -47,6 +50,10 @@ func init() {
 		"run": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return golang.ActionTests(golang.TestOpts{Packages: c.Args, Example: true, Test: true}).UniqueList("|")
 		}),
+	})
+
+	carapace.Gen(testCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.Chdir(cmd.Flag("C").Value.String())
 	})
 
 }
