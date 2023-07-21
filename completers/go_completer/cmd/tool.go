@@ -5,6 +5,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var toolCmd = &cobra.Command{
@@ -17,8 +18,13 @@ func init() {
 	carapace.Gen(toolCmd).Standalone()
 	toolCmd.Flags().SetInterspersed(false)
 
+	toolCmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
 	toolCmd.Flags().BoolS("n", "n", false, "only print the command that would be executed")
 	rootCmd.AddCommand(toolCmd)
+
+	carapace.Gen(toolCmd).FlagCompletion(carapace.ActionMap{
+		"C": carapace.ActionDirectories(),
+	})
 
 	carapace.Gen(toolCmd).PositionalCompletion(
 		golang.ActionTools(),
@@ -34,4 +40,8 @@ func init() {
 			}
 		}),
 	)
+
+	carapace.Gen(toolCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.Chdir(cmd.Flag("C").Value.String())
+	})
 }
