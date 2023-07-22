@@ -27,6 +27,7 @@ func init() {
 	inputCmd.Flags().String("cursor.height", "", "Text height")
 	inputCmd.Flags().Bool("cursor.italic", false, "Italicize text")
 	inputCmd.Flags().String("cursor.margin", "", "Text margin")
+	inputCmd.Flags().String("cursor.mode", "", "Cursor mode")
 	inputCmd.Flags().String("cursor.padding", "", "Text padding")
 	inputCmd.Flags().Bool("cursor.strikethrough", false, "Strikethrough text")
 	inputCmd.Flags().Bool("cursor.underline", false, "Underline text")
@@ -65,8 +66,9 @@ func init() {
 	inputCmd.Flags().Bool("prompt.strikethrough", false, "Strikethrough text")
 	inputCmd.Flags().Bool("prompt.underline", false, "Underline text")
 	inputCmd.Flags().String("prompt.width", "", "Text width")
+	inputCmd.Flags().String("timeout", "", "Timeout until input aborts")
 	inputCmd.Flags().String("value", "", "Initial value (can also be passed via stdin)")
-	inputCmd.Flags().String("width", "", "Input width")
+	inputCmd.Flags().String("width", "", "Input width (0 for terminal width)")
 	rootCmd.AddCommand(inputCmd)
 
 	carapace.Gen(inputCmd).FlagCompletion(carapace.ActionMap{
@@ -76,6 +78,7 @@ func init() {
 		"cursor.border-background": gum.ActionColors(),
 		"cursor.border-foreground": gum.ActionColors(),
 		"cursor.foreground":        gum.ActionColors(),
+		"cursor.mode":              gum.ActionCursorModes(),
 		"header.align":             gum.ActionAlignments(),
 		"header.background":        gum.ActionColors(),
 		"header.border":            gum.ActionBorders(),

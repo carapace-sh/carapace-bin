@@ -125,6 +125,7 @@ func init() {
 	fileCmd.Flags().Bool("symlink.strikethrough", false, "Strikethrough text")
 	fileCmd.Flags().Bool("symlink.underline", false, "Underline text")
 	fileCmd.Flags().String("symlink.width", "", "Text width")
+	fileCmd.Flags().String("timeout", "", "Timeout until command aborts without a selection")
 	rootCmd.AddCommand(fileCmd)
 
 	carapace.Gen(fileCmd).FlagCompletion(carapace.ActionMap{

@@ -15,6 +15,21 @@ var filterCmd = &cobra.Command{
 func init() {
 	carapace.Gen(filterCmd).Standalone()
 
+	filterCmd.Flags().String("cursor-text.align", "", "Text Alignment")
+	filterCmd.Flags().String("cursor-text.background", "", "Background Color")
+	filterCmd.Flags().Bool("cursor-text.bold", false, "Bold text")
+	filterCmd.Flags().String("cursor-text.border", "", "Border Style")
+	filterCmd.Flags().String("cursor-text.border-background", "", "Border Background Color")
+	filterCmd.Flags().String("cursor-text.border-foreground", "", "Border Foreground Color")
+	filterCmd.Flags().Bool("cursor-text.faint", false, "Faint text")
+	filterCmd.Flags().String("cursor-text.foreground", "", "Foreground Color")
+	filterCmd.Flags().String("cursor-text.height", "", "Text height")
+	filterCmd.Flags().Bool("cursor-text.italic", false, "Italicize text")
+	filterCmd.Flags().String("cursor-text.margin", "", "Text margin")
+	filterCmd.Flags().String("cursor-text.padding", "", "Text padding")
+	filterCmd.Flags().Bool("cursor-text.strikethrough", false, "Strikethrough text")
+	filterCmd.Flags().Bool("cursor-text.underline", false, "Underline text")
+	filterCmd.Flags().String("cursor-text.width", "", "Text width")
 	filterCmd.Flags().Bool("fuzzy", false, "Enable fuzzy matching")
 	filterCmd.Flags().String("header", "", "Header value")
 	filterCmd.Flags().String("header.align", "", "Text Alignment")
@@ -100,6 +115,7 @@ func init() {
 	filterCmd.Flags().Bool("selected-indicator.underline", false, "Underline text")
 	filterCmd.Flags().String("selected-indicator.width", "", "Text width")
 	filterCmd.Flags().String("selected-prefix", "", "Character to indicate selected items (hidden if limit is 1)")
+	filterCmd.Flags().Bool("sort", false, "Sort the results")
 	filterCmd.Flags().Bool("strict", false, "Only returns if anything matched. Otherwise return Filter")
 	filterCmd.Flags().String("text.align", "", "Text Alignment")
 	filterCmd.Flags().String("text.background", "", "Background Color")
@@ -116,6 +132,7 @@ func init() {
 	filterCmd.Flags().Bool("text.strikethrough", false, "Strikethrough text")
 	filterCmd.Flags().Bool("text.underline", false, "Underline text")
 	filterCmd.Flags().String("text.width", "", "Text width")
+	filterCmd.Flags().String("timeout", "", "Timeout until filter command aborts")
 	filterCmd.Flags().String("unselected-prefix", "", "Character to indicate unselected items (hidden if limit is 1)")
 	filterCmd.Flags().String("unselected-prefix.align", "", "Text Alignment")
 	filterCmd.Flags().String("unselected-prefix.background", "", "Background Color")
@@ -137,6 +154,12 @@ func init() {
 	rootCmd.AddCommand(filterCmd)
 
 	carapace.Gen(filterCmd).FlagCompletion(carapace.ActionMap{
+		"cursor-text.align":                    gum.ActionAlignments(),
+		"cursor-text.background":               gum.ActionColors(),
+		"cursor-text.border":                   gum.ActionBorders(),
+		"cursor-text.border-background":        gum.ActionColors(),
+		"cursor-text.border-foreground":        gum.ActionColors(),
+		"cursor-text.foreground":               gum.ActionColors(),
 		"header.align":                         gum.ActionAlignments(),
 		"header.background":                    gum.ActionColors(),
 		"header.border":                        gum.ActionBorders(),

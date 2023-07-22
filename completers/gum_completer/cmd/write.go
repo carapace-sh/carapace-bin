@@ -72,6 +72,7 @@ func init() {
 	writeCmd.Flags().String("cursor.height", "", "Text height")
 	writeCmd.Flags().Bool("cursor.italic", false, "Italicize text")
 	writeCmd.Flags().String("cursor.margin", "", "Text margin")
+	writeCmd.Flags().String("cursor.mode", "", "Cursor mode")
 	writeCmd.Flags().String("cursor.padding", "", "Text padding")
 	writeCmd.Flags().Bool("cursor.strikethrough", false, "Strikethrough text")
 	writeCmd.Flags().Bool("cursor.underline", false, "Underline text")
@@ -158,7 +159,7 @@ func init() {
 	writeCmd.Flags().Bool("show-cursor-line", false, "Show cursor line")
 	writeCmd.Flags().Bool("show-line-numbers", false, "Show line numbers")
 	writeCmd.Flags().String("value", "", "Initial value (can be passed via stdin)")
-	writeCmd.Flags().String("width", "", "Text area width")
+	writeCmd.Flags().String("width", "", "Text area width (0 for terminal width)")
 	rootCmd.AddCommand(writeCmd)
 
 	carapace.Gen(writeCmd).FlagCompletion(carapace.ActionMap{
@@ -186,6 +187,7 @@ func init() {
 		"cursor.border-background":             gum.ActionColors(),
 		"cursor.border-foreground":             gum.ActionColors(),
 		"cursor.foreground":                    gum.ActionColors(),
+		"cursor.mode":                          gum.ActionCursorModes(),
 		"end-of-buffer.align":                  gum.ActionAlignments(),
 		"end-of-buffer.background":             gum.ActionColors(),
 		"end-of-buffer.border":                 gum.ActionBorders(),

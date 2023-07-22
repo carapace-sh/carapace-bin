@@ -18,7 +18,7 @@ func init() {
 	spinCmd.Flags().SetInterspersed(false)
 
 	spinCmd.Flags().StringP("align", "a", "", "Alignment of spinner with regard to the title")
-	spinCmd.Flags().Bool("show-output", false, "Show output of command")
+	spinCmd.Flags().Bool("show-output", false, "Show or pipe output of command during execution")
 	spinCmd.Flags().StringP("spinner", "s", "", "Spinner type")
 	spinCmd.Flags().String("spinner.align", "", "Text Alignment")
 	spinCmd.Flags().String("spinner.background", "", "Background Color")
@@ -35,6 +35,7 @@ func init() {
 	spinCmd.Flags().Bool("spinner.strikethrough", false, "Strikethrough text")
 	spinCmd.Flags().Bool("spinner.underline", false, "Underline text")
 	spinCmd.Flags().String("spinner.width", "", "Text width")
+	spinCmd.Flags().String("timeout", "", "Timeout until spin command aborts")
 	spinCmd.Flags().String("title", "", "Text to display to user while spinning")
 	spinCmd.Flags().String("title.align", "", "Text Alignment")
 	spinCmd.Flags().String("title.background", "", "Background Color")
