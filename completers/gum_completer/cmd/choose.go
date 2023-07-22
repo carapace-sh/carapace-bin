@@ -84,6 +84,7 @@ func init() {
 	chooseCmd.Flags().Bool("selected.strikethrough", false, "Strikethrough text")
 	chooseCmd.Flags().Bool("selected.underline", false, "Underline text")
 	chooseCmd.Flags().String("selected.width", "", "Text width")
+	chooseCmd.Flags().String("timeout", "", "Timeout until choose returns selected element")
 	chooseCmd.Flags().String("unselected-prefix", "", "Prefix to show on unselected items (hidden if limit is 1)")
 	rootCmd.AddCommand(chooseCmd)
 
