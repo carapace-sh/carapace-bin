@@ -27,7 +27,7 @@ func ActionSymbols(opts SymbolOpts) carapace.Action {
 		args = append(args, opts.Package)
 		return carapace.ActionExecCommand("go", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
-			r := regexp.MustCompile(`^ *(?P<type>var|func|type|const) (?P<symbol>[^( =]+).*`) // TODO incomplete (e.g. generics))
+			r := regexp.MustCompile(`^ *(?P<type>var|func|type|const) (?P<symbol>[^( =\[]+).*`) // TODO incomplete (e.g. generics))
 
 			variables := make([]string, 0)
 			functions := make([]string, 0)
@@ -77,19 +77,20 @@ func ActionMethodOrFields(opts MethodOrFieldOpts) carapace.Action {
 		args = append(args, opts.Package, opts.Symbol)
 		return carapace.ActionExecCommand("go", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
-			r := regexp.MustCompile(fmt.Sprintf(`^func \([^ ]+ \*?%v\) (?P<method>[^( =]+).*`, opts.Symbol))
+			rFunc := regexp.MustCompile(fmt.Sprintf(`^func \([^ ]+ \*?%v(\[[^)]+)?\) (?P<method>[^( =]+).*`, opts.Symbol))
+			rType := regexp.MustCompile(fmt.Sprintf(`^type %v[\[ ].*\{$`, opts.Symbol))
 
 			methods := make([]string, 0)
 			for _, line := range lines {
-				if matches := r.FindStringSubmatch(line); matches != nil {
-					methods = append(methods, matches[1])
+				if matches := rFunc.FindStringSubmatch(line); matches != nil {
+					methods = append(methods, matches[2])
 				}
 			}
 
 			found := false
 			fields := make([]string, 0)
 			for _, line := range lines {
-				if strings.HasPrefix(line, fmt.Sprintf("type %v ", opts.Symbol)) && strings.HasSuffix(line, "{") {
+				if rType.MatchString(line) {
 					found = true
 					continue
 				}
