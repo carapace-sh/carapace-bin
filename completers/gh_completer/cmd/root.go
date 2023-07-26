@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	"github.com/google/shlex"
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/rsteube/carapace/third_party/github.com/google/shlex"
 	"github.com/spf13/cobra"
 )
 
