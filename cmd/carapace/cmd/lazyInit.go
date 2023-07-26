@@ -70,9 +70,9 @@ func pathSnippet(shell string) (snippet string) {
 	case "nushell":
 		fixedBinDir := strings.ReplaceAll(binDir, `\`, `\\`)
 		if runtime.GOOS == "windows" {
-			snippet = fmt.Sprintf(`let-env Path = ($env.Path | prepend "%v")`, fixedBinDir)
+			snippet = fmt.Sprintf(`$env.Path = ($env.Path | prepend "%v")`, fixedBinDir)
 		} else {
-			snippet = fmt.Sprintf(`let-env PATH = ($env.PATH | prepend "%v")`, fixedBinDir)
+			snippet = fmt.Sprintf(`$env.PATH = ($env.PATH | prepend "%v")`, fixedBinDir)
 		}
 
 	case "powershell":
@@ -127,7 +127,7 @@ $current.completions.external = ($current.completions.external
     | default true enable
     | default $carapace_completer completer)
 
-let-env config = $current
+$env.config = $current
     `
 
 	return fmt.Sprintf(snippet, pathSnippet("nushell"))
