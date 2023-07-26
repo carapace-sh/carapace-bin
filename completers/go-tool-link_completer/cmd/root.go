@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -92,7 +93,7 @@ func init() {
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"linkmode":   carapace.ActionValues("internal", "external", "auto"),
+		"linkmode":   carapace.ActionValues("internal", "external", "auto").StyleF(style.ForKeyword),
 		"memprofile": carapace.ActionFiles(),
 		"o":          carapace.ActionFiles(),
 		"r":          carapace.ActionDirectories().List(","),
