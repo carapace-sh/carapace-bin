@@ -64,10 +64,12 @@ func addBuildFlags(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"C":         carapace.ActionDirectories(),
+		"asmflags":  bridge.ActionCarapaceBin("go", "tool", "asm").Split(),
 		"buildmode": golang.ActionBuildmodes(),
 		"buildvcs":  carapace.ActionValues("true", "false", "auto").StyleF(style.ForKeyword),
 		"compiler":  carapace.ActionValues("gccgo", "gc"),
 		"coverpkg":  golang.ActionPackages().UniqueList(","),
+		"gcflags":   bridge.ActionCarapaceBin("go", "tool", "compile").Split(),
 		"ldflags":   bridge.ActionCarapaceBin("go", "tool", "link").Split(),
 		"mod":       carapace.ActionValues("readonly", "vendor", "mod"),
 		"modfile":   carapace.ActionFiles(".mod"),
