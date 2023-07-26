@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -93,6 +94,7 @@ func init() {
 		"coveragecfg":  carapace.ActionFiles(),
 		"cpuprofile":   carapace.ActionFiles(),
 		"embedcfg":     carapace.ActionFiles(),
+		"goversion":    golang.ActionVersions(),
 		"linkobj":      carapace.ActionFiles(),
 		"memprofile":   carapace.ActionFiles(),
 		"mutexprofile": carapace.ActionFiles(),
