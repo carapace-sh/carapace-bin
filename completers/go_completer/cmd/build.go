@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -63,10 +64,11 @@ func addBuildFlags(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"C":         carapace.ActionDirectories(),
-		"buildmode": carapace.ActionValues("archive", "c-archive", "c-shared", "default", "shared", "exe", "pie", "plugin"),
+		"buildmode": golang.ActionBuildmodes(),
 		"buildvcs":  carapace.ActionValues("true", "false", "auto").StyleF(style.ForKeyword),
 		"compiler":  carapace.ActionValues("gccgo", "gc"),
 		"coverpkg":  golang.ActionPackages().UniqueList(","),
+		"ldflags":   bridge.ActionCarapaceBin("go", "tool", "link").Split(),
 		"mod":       carapace.ActionValues("readonly", "vendor", "mod"),
 		"modfile":   carapace.ActionFiles(".mod"),
 		"n":         carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8"),
