@@ -14,10 +14,11 @@ type TestOpts struct {
 	Test      bool
 }
 
-func (o *TestOpts) Default() {
+func (o TestOpts) Default() TestOpts {
 	o.Benchmark = true
 	o.Example = true
 	o.Test = true
+	return o
 }
 
 // ActionTests completes tests
