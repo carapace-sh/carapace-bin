@@ -13,4 +13,5 @@ git-repository-url = "https://github.com/rsteube/carapace-bin"
 edit-url-template = "https://github.com/rsteube/carapace-bin/edit/master/docs/{path}"
 
 [output.linkcheck]
-follow-web-links = false
+follow-web-links = true
+exclude = [ 'archlinux\.org' ]
