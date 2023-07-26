@@ -10,6 +10,6 @@ carapace --run "/home/rsteube/.config/carapace/specs/runnable.yaml" "$@"
 ```
 
 [`${UserConfigDir}/carapace/bin`]:https://pkg.go.dev/os#UserConfigDir
-[embedded binary]:https://github.com/rsteube/carapace-bin/blob/master/cmd/shim/main.go
+[embedded binary]:https://github.com/rsteube/carapace-bin/blob/master/cmd/carapace-shim/main.go
 [runnable specs]:run.md
 [shims]:https://en.wikipedia.org/wiki/Shim_(computing)
