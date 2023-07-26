@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"path/filepath"
-	"strings"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
@@ -49,59 +48,27 @@ func init() {
 	rootCmd.Flags().StringP("workdir", "C", "", "Change working directory before running command [default: crate root]")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"exec": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			// very simple support for exec completion (breaks easy
-			c.Value = c.Value + "FAKE_SUFFIX"
-			fields := strings.Fields(c.Value) // TODO dumb split on space
-
-			fields[len(fields)-1] = strings.TrimSuffix(fields[len(fields)-1], "FAKE_SUFFIX")
-
-			c.Value = fields[len(fields)-1]
-			c.Args = make([]string, 0)
-			if len(fields) > 1 {
-				c.Args = fields[:len(fields)-1]
-			}
-
-			prefix := ""
-			if len(c.Args) > 0 {
-				prefix = strings.Join(c.Args, " ") + " " // TODO won't work when multiple spaces or special characters were used
-			}
-			return bridge.ActionCarapaceBin("cargo").Invoke(c).Prefix(prefix).ToA()
-		}),
+		"exec":     bridge.ActionCarapaceBin("cargo").Split(),
 		"features": carapace.ActionValues(), // TODO cargo feature completion
 		"shell": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			// very simple support for exec completion (breaks easy
-			c.Value = c.Value + "FAKE_SUFFIX"
-			fields := strings.Fields(c.Value) // TODO dumb split on space
+			cmd := &cobra.Command{DisableFlagParsing: true}
+			carapace.Gen(cmd).Standalone()
 
-			fields[len(fields)-1] = strings.TrimSuffix(fields[len(fields)-1], "FAKE_SUFFIX")
-
-			c.Value = fields[len(fields)-1]
-			c.Args = make([]string, 0)
-			if len(fields) > 1 {
-				c.Args = fields[:len(fields)-1]
-			}
-
-			prefix := ""
-			if len(c.Args) > 0 {
-				prefix = strings.Join(c.Args, " ") + " " // TODO won't work when multiple spaces or special characters were used
-			}
-
-			if len(c.Args) < 1 {
-				return carapace.Batch(
+			carapace.Gen(cmd).PositionalCompletion(
+				carapace.Batch(
 					carapace.ActionExecutables(),
 					carapace.ActionFiles(),
-				).ToA()
-			}
+				).ToA(),
+			)
 
-			cmd := filepath.Base(c.Args[0])
-			if len(c.Args) > 1 {
-				c.Args = c.Args[1:]
-			} else {
-				c.Args = make([]string, 0)
-			}
-			return bridge.ActionCarapaceBin(cmd).Invoke(c).Prefix(prefix).ToA()
-		}),
+			carapace.Gen(cmd).PositionalAnyCompletion(
+				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
+				}),
+			)
+
+			return carapace.ActionExecute(cmd)
+		}).Split(),
 		"use-shell": os.ActionShells(),
 		"watch": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles()
