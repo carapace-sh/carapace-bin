@@ -3,7 +3,6 @@ module github.com/rsteube/carapace-bin
 go 1.19
 
 require (
-	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
 	github.com/pelletier/go-toml v1.9.5
 	github.com/rsteube/carapace v0.40.0
 	github.com/rsteube/carapace-bridge v0.1.3
