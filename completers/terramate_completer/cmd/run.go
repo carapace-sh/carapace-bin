@@ -24,16 +24,7 @@ func init() {
 	runCmd.Flags().Bool("reverse", false, "Reverse the order of execution")
 	rootCmd.AddCommand(runCmd)
 
-	carapace.Gen(runCmd).PositionalCompletion(
-		carapace.Batch(
-			carapace.ActionExecutables(),
-			carapace.ActionFiles(),
-		).ToA(),
-	)
-
 	carapace.Gen(runCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
-		}),
+		bridge.ActionCarapaceBin(),
 	)
 }

@@ -66,16 +66,7 @@ func init() {
 		"uid":      os.ActionUsers(),
 	})
 
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.Batch(
-			carapace.ActionExecutables(),
-			carapace.ActionFiles(),
-		).ToA(),
-	)
-
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
-		}),
+		bridge.ActionCarapaceBin(),
 	)
 }
