@@ -1,10 +1,9 @@
 package cmd
 
 import (
-	"path/filepath"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/cargo"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -48,27 +47,9 @@ func init() {
 	rootCmd.Flags().StringP("workdir", "C", "", "Change working directory before running command [default: crate root]")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"exec":     bridge.ActionCarapaceBin("cargo").Split(),
-		"features": carapace.ActionValues(), // TODO cargo feature completion
-		"shell": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			cmd := &cobra.Command{DisableFlagParsing: true}
-			carapace.Gen(cmd).Standalone()
-
-			carapace.Gen(cmd).PositionalCompletion(
-				carapace.Batch(
-					carapace.ActionExecutables(),
-					carapace.ActionFiles(),
-				).ToA(),
-			)
-
-			carapace.Gen(cmd).PositionalAnyCompletion(
-				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-					return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
-				}),
-			)
-
-			return carapace.ActionExecute(cmd)
-		}).Split(),
+		"exec":      bridge.ActionCarapaceBin("cargo").Split(),
+		"features":  cargo.ActionFeatures("").UniqueList(","),
+		"shell":     bridge.ActionCarapaceBin().SplitP(),
 		"use-shell": os.ActionShells(),
 		"watch": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles()
@@ -76,23 +57,8 @@ func init() {
 		"workdir": carapace.ActionDirectories(),
 	})
 
-	carapace.Gen(rootCmd).DashCompletion(
-		carapace.Batch(
-			carapace.ActionExecutables(),
-			carapace.ActionFiles(),
-		).ToA(),
-	)
-
 	carapace.Gen(rootCmd).DashAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			cmd := filepath.Base(c.Args[0])
-			if len(c.Args) > 1 {
-				c.Args = c.Args[1:]
-			} else {
-				c.Args = make([]string, 0)
-			}
-			return bridge.ActionCarapaceBin(cmd).Invoke(c).ToA()
-		}),
+		bridge.ActionCarapaceBin(),
 	)
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {

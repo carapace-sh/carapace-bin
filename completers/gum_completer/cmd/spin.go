@@ -82,34 +82,17 @@ func init() {
 		"title.foreground":          gum.ActionColors(),
 	})
 
-	carapace.Gen(spinCmd).PositionalCompletion(
-		carapace.Batch(
-			carapace.ActionExecutables(),
-			carapace.ActionFiles(),
-		).ToA(),
-	)
-
 	carapace.Gen(spinCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
-		}),
+		bridge.ActionCarapaceBin(),
 	)
 
+	// TODO is this still valid?
 	carapace.Gen(spinCmd).DashAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if spinCmd.ArgsLenAtDash() > 0 {
 				return carapace.ActionValues()
 			}
-
-			switch len(c.Args) {
-			case 0:
-				return carapace.Batch(
-					carapace.ActionExecutables(),
-					carapace.ActionFiles(),
-				).ToA()
-			default:
-				return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
-			}
+			return bridge.ActionCarapaceBin()
 		}),
 	)
 }

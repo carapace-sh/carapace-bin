@@ -23,16 +23,7 @@ func init() {
 
 	// TODO package completion
 
-	carapace.Gen(dlxCmd).PositionalCompletion(
-		carapace.Batch(
-			carapace.ActionExecutables(),
-			carapace.ActionFiles(),
-		).ToA(),
-	)
-
 	carapace.Gen(dlxCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
-		}),
+		bridge.ActionCarapaceBin(),
 	)
 }

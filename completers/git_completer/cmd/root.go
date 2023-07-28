@@ -89,10 +89,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
-		if f := rootCmd.Flag("C"); f != flag && f.Changed {
-			return action.Chdir(f.Value.String())
-		}
-		return action
+		return action.Chdir(rootCmd.Flag("C").Value.String())
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {

@@ -20,16 +20,10 @@ func init() {
 
 	carapace.Gen(execCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
-		carapace.Batch(
-			carapace.ActionExecutables(),
-			carapace.ActionFiles(),
-		).ToA(),
 	)
 
 	carapace.Gen(execCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin(c.Args[1]).Shift(2)
-		}),
+		bridge.ActionCarapaceBin().Shift(1),
 	)
 
 }

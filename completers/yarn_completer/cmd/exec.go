@@ -19,16 +19,7 @@ func init() {
 
 	rootCmd.AddCommand(execCmd)
 
-	carapace.Gen(execCmd).PositionalCompletion(
-		carapace.Batch(
-			carapace.ActionExecutables(),
-			carapace.ActionFiles(),
-		).ToA(),
-	)
-
 	carapace.Gen(execCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
-		}),
+		bridge.ActionCarapaceBin(),
 	)
 }
