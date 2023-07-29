@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
@@ -91,6 +92,19 @@ func ActionConfigTypeOptions(t string) carapace.Action {
 			return carapace.ActionFiles()
 		case "color":
 			return ActionColorConfigs()
+		default:
+			return carapace.ActionValues()
+		}
+	})
+}
+
+// ActionConfigValues completes config values
+func ActionConfigValues(config string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		splitted := strings.Split(config, ".")
+		switch splitted[0] {
+		case "alias":
+			return bridge.ActionCarapaceBin("git").Split()
 		default:
 			return carapace.ActionValues()
 		}

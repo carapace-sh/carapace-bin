@@ -68,7 +68,7 @@ func init() {
 					return git.ActionConfigTypeOptions(t)
 				}
 			}
-			return carapace.ActionValues()
+			return git.ActionConfigValues(c.Args[0])
 		}),
 	)
 }
