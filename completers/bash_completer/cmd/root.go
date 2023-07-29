@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -44,7 +45,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("c").Changed || rootCmd.Flag("s").Changed {
-				return carapace.ActionValues()
+				return bridge.ActionCarapaceBin().SplitP()
 			} else {
 				return carapace.ActionFiles()
 			}
