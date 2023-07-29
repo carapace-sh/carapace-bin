@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -32,6 +33,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show version information and exit.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"c": bridge.ActionCarapaceBin().SplitP(),
 		"rc": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles().NoSpace()
 		}),
