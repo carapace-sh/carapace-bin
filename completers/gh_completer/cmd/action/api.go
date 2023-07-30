@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
@@ -44,72 +43,73 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 			method = strings.ToLower(f.Value.String())
 		}
 
-		return http.ActionApiPathsDescribed(v3Paths[method], `{(.*)}`, func(c carapace.Context, matchedData map[string]string, segment string) carapace.Action {
-			switch segment {
-			// TODO completion for other placeholders
-			case "{archive_format}":
-				return carapace.ActionValues("zip")
-			case "{artifact_id}":
-				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
-				return ActionWorkflowArtifactIds(cmd, "")
-			case "{assignee}":
-				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
-				return ActionAssignableUsers(cmd)
-			case "{branch}":
-				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
-				return ActionBranches(cmd)
-			case "{coc_key}":
-				return ActionCocs(cmd)
-			case "{environment_name}":
-				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
-				return ActionEnvironments(cmd)
-			case "{gist_id}":
-				return ActionGists(cmd)
-			case "{gitignore_name}":
-				return ActionGitignoreTemplates(cmd)
-			case "{label}":
-				return gh.ActionLabels(gh.RepoOpts{Owner: matchedData["{owner}"], Name: matchedData["{repo}"]})
-			case "{license}":
-				return gh.ActionLicenses(gh.HostOpts{})
-			case "{issue_number}":
-				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
-				return ActionIssues(cmd, IssueOpts{Open: true, Closed: true})
-			case "{owner}":
-				if strings.HasPrefix(c.Value, ":") {
-					return carapace.ActionValues(":owner")
-				} else {
-					return gh.ActionOwners(gh.HostOpts{}) // TODO host
+		return carapace.ActionValuesDescribed(v3Paths[method]...).
+			MultiPartsP("/", `{(.*)}`, func(placeholder string, matches map[string]string) carapace.Action {
+				switch placeholder {
+				// TODO completion for other placeholders
+				case "{archive_format}":
+					return carapace.ActionValues("zip")
+				case "{artifact_id}":
+					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
+					return ActionWorkflowArtifactIds(cmd, "")
+				case "{assignee}":
+					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
+					return ActionAssignableUsers(cmd)
+				case "{branch}":
+					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
+					return ActionBranches(cmd)
+				case "{coc_key}":
+					return ActionCocs(cmd)
+				case "{environment_name}":
+					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
+					return ActionEnvironments(cmd)
+				case "{gist_id}":
+					return ActionGists(cmd)
+				case "{gitignore_name}":
+					return ActionGitignoreTemplates(cmd)
+				case "{label}":
+					return gh.ActionLabels(gh.RepoOpts{Owner: matches["{owner}"], Name: matches["{repo}"]})
+				case "{license}":
+					return gh.ActionLicenses(gh.HostOpts{})
+				case "{issue_number}":
+					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
+					return ActionIssues(cmd, IssueOpts{Open: true, Closed: true})
+				case "{owner}":
+					if strings.HasPrefix(c.Value, ":") {
+						return carapace.ActionValues(":owner")
+					} else {
+						return gh.ActionOwners(gh.HostOpts{}) // TODO host
+					}
+				case "{org}":
+					return gh.ActionOrganizations(gh.HostOpts{})
+				case "{package_type}":
+					return ActionPackageTypes()
+				case "{pull_number}":
+					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
+					return ActionPullRequests(cmd, PullRequestOpts{Open: true, Closed: true, Merged: true})
+				case "{repo}":
+					if strings.HasPrefix(c.Value, ":") {
+						return carapace.ActionValues(":repo")
+					} else {
+						return gh.ActionRepositories(gh.OwnerOpts{Owner: matches["{owner}"]})
+					}
+				case "{tag}": // only used with releases
+					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
+					return ActionReleases(cmd)
+				case "{template_owner}": // ignore this as it is already provided by `{owner}`
+					return carapace.ActionValues()
+				case "{template_repo}": // ignore this as it is already provided by `{repo}`
+					return carapace.ActionValues()
+				case "{username}":
+					return gh.ActionUsers(gh.HostOpts{})
+				case "{workflow_id}":
+					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
+					return ActionWorkflows(cmd, WorkflowOpts{Enabled: true, Disabled: true, Id: true})
+				default:
+					// static value or placeholder not yet handled
+					return carapace.ActionValues(placeholder)
 				}
-			case "{org}":
-				return gh.ActionOrganizations(gh.HostOpts{})
-			case "{package_type}":
-				return ActionPackageTypes()
-			case "{pull_number}":
-				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
-				return ActionPullRequests(cmd, PullRequestOpts{Open: true, Closed: true, Merged: true})
-			case "{repo}":
-				if strings.HasPrefix(c.Value, ":") {
-					return carapace.ActionValues(":repo")
-				} else {
-					return gh.ActionRepositories(gh.OwnerOpts{Owner: matchedData["{owner}"]})
-				}
-			case "{tag}": // only used with releases
-				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
-				return ActionReleases(cmd)
-			case "{template_owner}": // ignore this as it is already provided by `{owner}`
-				return carapace.ActionValues()
-			case "{template_repo}": // ignore this as it is already provided by `{repo}`
-				return carapace.ActionValues()
-			case "{username}":
-				return gh.ActionUsers(gh.HostOpts{})
-			case "{workflow_id}":
-				fakeRepoFlag(cmd, matchedData["{owner}"], matchedData["{repo}"])
-				return ActionWorkflows(cmd, WorkflowOpts{Enabled: true, Disabled: true, Id: true})
-			default:
-				// static value or placeholder not yet handled
-				return carapace.ActionValues(segment)
-			}
-		})
+			})
 	})
 }
 
