@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -34,6 +35,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "display version and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"command":      bridge.ActionCarapaceBin().Split(),
 		"debug-output": carapace.ActionFiles(),
 		"features": carapace.ActionValuesDescribed(
 			"stderr-nocaret", "^ no longer redirects stderr",
@@ -43,5 +45,7 @@ func init() {
 		"profile": carapace.ActionFiles(),
 	})
 
-	carapace.Gen(rootCmd).PositionalCompletion(carapace.ActionFiles())
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }
