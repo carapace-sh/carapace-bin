@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
 	"github.com/spf13/cobra"
 )
 
@@ -51,16 +50,17 @@ func actionGraphql(cmd *cobra.Command, query string, v interface{}, transform fu
 }
 
 func ActionApiPaths(cmd *cobra.Command) carapace.Action {
-	return http.ActionApiPaths(v4paths, ":[^/]+", func(c carapace.Context, matchedData map[string]string, segment string) carapace.Action {
-		switch segment {
-		// TODO completion for other placeholders
-		case ":group_id":
-			return ActionGroups(cmd)
-		case ":user_id":
-			return ActionUsers(cmd)
-		default:
-			// static value or placeholder not yet handled
-			return carapace.ActionValues(segment)
-		}
-	})
+	return carapace.ActionValues(v4paths...).
+		MultiPartsP("/", ":[^/]+", func(placeholder string, matches map[string]string) carapace.Action {
+			switch placeholder {
+			// TODO completion for other placeholders
+			case ":group_id":
+				return ActionGroups(cmd)
+			case ":user_id":
+				return ActionUsers(cmd)
+			default:
+				// static value or placeholder not yet handled
+				return carapace.ActionValues(placeholder)
+			}
+		})
 }
