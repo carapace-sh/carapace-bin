@@ -42,7 +42,7 @@ func init() {
 		"rcfile":    carapace.ActionFiles(),
 	})
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
+	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("c").Changed || rootCmd.Flag("s").Changed {
 				return bridge.ActionCarapaceBin().SplitP()
