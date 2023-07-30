@@ -21,8 +21,21 @@ type OpenApiPathOpts struct {
 	Method string
 }
 
-// ActionOpenApiPaths completes api paths with placeholders for given openapi spec
-// TODO wip - needs testing
+// ActionOpenApiPaths completes api paths
+//
+//	  http.ActionOpenApiPaths(http.OpenApiPathOpts{Spec: "petstore.json"}).
+//			MultiPartsP("/", "{.*}", func(placeholder string, matches map[string]string) carapace.Action {
+//				switch placeholder {
+//				case "{petId}":
+//					return carapace.ActionValues("pet1", "pet2", "pet3")
+//				case "{orderId}":
+//					return carapace.ActionValues("order1", "order2", "order3")
+//				case "{username}":
+//					return carapace.ActionValues("user1", "user2", "user3")
+//				default:
+//					return carapace.ActionValues()
+//				}
+//			})
 func ActionOpenApiPaths(opts OpenApiPathOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if splitted := strings.SplitN(opts.Spec, "\n", 2); len(splitted) == 1 {
