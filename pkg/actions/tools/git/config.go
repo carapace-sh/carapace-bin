@@ -4,6 +4,10 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/fs"
+	"github.com/rsteube/carapace-bin/pkg/actions/number"
+	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/text"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/rsteube/carapace/pkg/style"
 )
@@ -122,7 +126,7 @@ func ActionConfigTypeOptions(t string) carapace.Action {
 // ActionConfigValues completes config values
 func ActionConfigValues(config string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		// TODO complete more configurations
+		// TODO complete more configurations (see https://git-scm.com/docs/git-config)
 		_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 		if a, ok := (carapace.ActionMap{
 			"add.ignoreErrors":                     _bool,
@@ -245,7 +249,100 @@ func ActionConfigValues(config string) carapace.Action {
 				"plain", "show in one column",
 				"row", "fill rows before columns",
 			).StyleF(style.ForKeyword).UniqueList(","),
-			"column.branch": _bool,
+			"column.branch":                 _bool,
+			"commit.cleanup":                ActionCleanupMode(),
+			"commit.gpgSign":                _bool,
+			"commit.status":                 _bool,
+			"commit.template":               carapace.ActionFiles(),
+			"commit.verbose":                _bool,
+			"commitGraph.generationVersion": carapace.ActionValues("1", "2"),
+			"commitGraph.maxNewFilters":     carapace.ActionValues().Usage("generate at most n new Bloom filters"),
+			"commitGraph.readChangedPaths":  _bool,
+			"core.abbrev":                   carapace.ActionValues("auto", "no").StyleF(style.ForKeyword),
+			"core.alternateRefsCommand":     bridge.ActionCarapaceBin().SplitP(),
+			"core.askPass":                  _bool,
+			"core.attributesFile":           carapace.ActionFiles(),
+			"core.autocrlf":                 _bool,
+			"core.bare":                     _bool,
+
+			"core.bigFileThreshold":       carapace.ActionValues().Usage("the size of files considered \"big\""),
+			"core.checkRoundtripEncoding": text.ActionEncodings().UniqueList(","),
+			"core.checkStat":              carapace.ActionValues("default", "minimal"),
+			"core.commentChar":            carapace.ActionValues().Usage("consider a line that begins with this character commented"),
+			"core.commitGraph":            _bool,
+			"core.compression":            number.ActionRange(number.RangeOpts{Start: 1, End: 9}),
+			"core.createObject":           carapace.ActionValues("link", "rename"),
+			"core.deltaBaseCacheLimit":    carapace.ActionValues().Usage("Maximum number of bytes per thread to reserve for caching base objects that may be referenced by multiple deltified objects"),
+			"core.editor":                 bridge.ActionCarapaceBin().Split(),
+			"core.eol":                    carapace.ActionValues("lf", "crlf", "native"),
+			"core.excludesFile":           carapace.ActionFiles(),
+			"core.fileMode":               _bool,
+			"core.filesRefLockTimeout": carapace.ActionValuesDescribed(
+				"0", "no retry at all",
+				"-1", "try indefinitely",
+			).Usage("The length of time, in milliseconds, to retry when trying to lock an individual reference"),
+			"core.fsmonitor":            _bool,
+			"core.fsmonitorHookVersion": carapace.ActionValues("1", "2"),
+			"core.fsync":                carapace.ActionValues("committed", "added", "all"),
+			"core.fsyncMethod": carapace.ActionValuesDescribed(
+				"fsync", "uses the fsync() system call or platform equivalents",
+				"writeout-only", "issues pagecache writeback requests",
+				"batch", "enables a mode that uses writeout-only flushes to stage multiple updates in the disk writeback cache",
+			),
+			"core.fsyncObjectFiles": _bool,
+			"core.gitProxy":         bridge.ActionCarapaceBin().Split(),
+			"core.hideDotFiles":     _bool,
+			"core.hooksPath":        carapace.ActionDirectories(),
+			"core.ignoreCase":       _bool,
+			"core.ignoreStat":       _bool,
+			"core.logAllRefUpdates": _bool,
+			"core.looseCompression": number.ActionRange(number.RangeOpts{Start: -1, End: 9}),
+			"core.multiPackIndex":   _bool,
+			"core.notesRef":         ActionRefs(RefOption{}.Default()),
+			// "core.packedGitLimit":
+			// "core.packedGitWindowSize":
+			// "core.packedRefsTimeout":
+			"core.pager":             bridge.ActionCarapaceBin().Split(),
+			"core.precomposeUnicode": _bool,
+			"core.preferSymlinkRefs": _bool,
+			"core.preloadIndex":      _bool,
+			"core.protectHFS":        _bool,
+			"core.protectNTFS":       _bool,
+			"core.quotePath":         _bool,
+			// "core.repositoryFormatVersion":
+			"core.restrictinheritedhandles": carapace.ActionValues("auto", "true", "false").StyleF(style.ForKeyword),
+			"core.safecrlf":                 _bool,
+			"core.sharedRepository": carapace.Batch(
+				carapace.ActionValuesDescribed(
+					"group", "shareable between several users in a group",
+					"true", "shareable between several users in a group",
+					"all", "readable by all users",
+					"world", "readable by all users",
+					"everybody", "readable by all users",
+					"umask", "use permissions reported by umask",
+					"false", "not shared",
+				),
+				carapace.ActionMultiPartsN("", 2, func(c carapace.Context) carapace.Action {
+					switch len(c.Parts) {
+					case 0:
+						return carapace.ActionValues("0")
+					default:
+						return fs.ActionFileModesNumeric() // TODO verify when bug in ActionMultiPartsN is fixed
+					}
+				}),
+			).ToA(),
+			"core.sparseCheckout":     _bool,
+			"core.sparseCheckoutCone": _bool,
+			"core.splitIndex":         _bool,
+			"core.sshCommand":         bridge.ActionCarapaceBin().Split(),
+			"core.symlinks":           _bool,
+			"core.trustctime":         _bool,
+			"core.unsetenvvars":       os.ActionEnvironmentVariables().UniqueList(","),
+			"core.untrackedCache":     _bool,
+			"core.useReplaceRefs":     _bool,
+			"core.warnAmbiguousRefs":  _bool,
+			"core.whitespace":         ActionWhitespaceProblems().UniqueList(","), // TODO this is not correct yet, these can be prefixed with `-` and tabwith accepts a value delimited by `=`
+			"core.worktree":           carapace.ActionDirectories(),
 		}[config]); ok {
 			return a
 		}
