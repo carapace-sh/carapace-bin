@@ -322,13 +322,11 @@ func ActionConfigValues(config string) carapace.Action {
 					"umask", "use permissions reported by umask",
 					"false", "not shared",
 				),
-				carapace.ActionMultiPartsN("", 2, func(c carapace.Context) carapace.Action {
-					switch len(c.Parts) {
-					case 0:
-						return carapace.ActionValues("0")
-					default:
-						return fs.ActionFileModesNumeric() // TODO verify when bug in ActionMultiPartsN is fixed
+				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					if strings.HasPrefix(c.Value, "0") {
+						return fs.ActionFileModesNumeric().Prefix("0")
 					}
+					return carapace.ActionValues("0").NoSpace('0')
 				}),
 			).ToA(),
 			"core.sparseCheckout":     _bool,
