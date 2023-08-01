@@ -15,6 +15,7 @@ var configCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(configCmd).Standalone()
+	configCmd.Flags().SetInterspersed(false)
 
 	configCmd.Flags().Bool("add", false, "add a new variable: name value")
 	configCmd.Flags().String("blob", "", "read config from given blob object")
