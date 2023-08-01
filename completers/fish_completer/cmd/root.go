@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/fish"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -19,33 +20,42 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringP("command", "c", "", "evaluate the specified commands")
-	rootCmd.Flags().StringP("debug", "d", "", "enables debug output")
-	rootCmd.Flags().StringP("debug-output", "o", "", "Specify a file path to receive the debug output")
-	rootCmd.Flags().StringP("debug-stack-frames", "D", "", "specify  how  many  stack frames to display")
-	rootCmd.Flags().StringP("features", "f", "", "enables one or more feature flags")
-	rootCmd.Flags().StringP("init-command", "C", "", "evaluate the specified commands after reading  the configuration")
-	rootCmd.Flags().BoolP("interactive", "i", false, "specify that fish is to run in interactive mode")
-	rootCmd.Flags().BoolP("login", "l", false, "specify that fish is to run as a login shell")
-	rootCmd.Flags().BoolP("no-execute", "n", false, "do not execute any commands")
-	rootCmd.Flags().Bool("print-debug-categories", false, "outputs the list of debug categories")
-	rootCmd.Flags().Bool("print-rusage-self", false, "output stats from getrusage")
-	rootCmd.Flags().BoolP("private", "P", false, "enables private mode")
-	rootCmd.Flags().StringP("profile", "p", "", "output timing  information to the specified file")
-	rootCmd.Flags().BoolP("version", "v", false, "display version and exit")
+	rootCmd.Flags().StringP("command", "c", "", "Evaluate  the  specified  commands  instead  of  reading  from the commandline")
+	rootCmd.Flags().StringP("debug", "d", "", "Enables debug output and specify a pattern for matching debug categories")
+	rootCmd.Flags().StringP("debug-output", "o", "", "Specifies a file path to receive the debug output")
+	rootCmd.Flags().StringP("features", "f", "", "Enables one or more comma-separated feature flags")
+	rootCmd.Flags().StringP("init-command", "C", "", "Evaluate specified commands after reading the configuration")
+	rootCmd.Flags().BoolP("interactive", "i", false, "The shell is interactive")
+	rootCmd.Flags().BoolP("login", "l", false, "Act as if invoked as a login shell")
+	rootCmd.Flags().BoolP("no-config", "N", false, "Do not read configuration files")
+	rootCmd.Flags().BoolP("no-execute", "n", false, "Do not execute any commands, only perform syntax checking")
+	rootCmd.Flags().Bool("print-debug-categories", false, "Print all debug categories, and then exit")
+	rootCmd.Flags().Bool("print-rusage-self", false, "When fish exits, output stats from getrusage")
+	rootCmd.Flags().BoolP("private", "P", false, "Enables private mode")
+	rootCmd.Flags().StringP("profile", "p", "", "when fish exits, output timing information on all executed commands to the specified file")
+	rootCmd.Flags().String("profile-startup", "", "Will write timing for fish startup to specified file")
+	rootCmd.Flags().BoolP("version", "v", false, "Print version and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"command":      bridge.ActionCarapaceBin().Split(),
+		"command":      bridge.ActionCarapaceBin().SplitP(),
+		"debug":        fish.ActionDebugCategories().UniqueList(","),
 		"debug-output": carapace.ActionFiles(),
 		"features": carapace.ActionValuesDescribed(
 			"stderr-nocaret", "^ no longer redirects stderr",
 			"qmark-noglob", "? no longer globs",
 			"regex-easyesc", `string replace -r needs fewer \'s`,
 		).UniqueList(","),
-		"profile": carapace.ActionFiles(),
+		"init-command":    bridge.ActionCarapaceBin().SplitP(),
+		"profile":         carapace.ActionFiles(),
+		"profile-startup": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if rootCmd.Flag("command").Changed {
+				return carapace.ActionValues()
+			}
+			return carapace.ActionFiles()
+		}),
 	)
 }
