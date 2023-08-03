@@ -22,7 +22,7 @@ func init() {
 	carapace.Gen(rttCmd).PositionalCompletion(
 		action.ActionNodes(rttCmd),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionNodes(rttCmd).Invoke(c).Filter(c.Args[:1]).ToA()
+			return action.ActionNodes(rttCmd).Invoke(c).Filter(c.Args[:1]...).ToA() // TODO should work with FilterArgs
 		}),
 	)
 }

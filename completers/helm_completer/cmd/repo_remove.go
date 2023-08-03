@@ -17,8 +17,6 @@ func init() {
 	repoCmd.AddCommand(repo_removeCmd)
 
 	carapace.Gen(repo_removeCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionRepositories().Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionRepositories().FilterArgs(),
 	)
 }

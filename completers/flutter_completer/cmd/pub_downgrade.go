@@ -23,8 +23,6 @@ func init() {
 	pubCmd.AddCommand(pub_downgradeCmd)
 
 	carapace.Gen(pub_downgradeCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return pub.ActionDependencies().Invoke(c).Filter(c.Args).ToA()
-		}),
+		pub.ActionDependencies().FilterArgs(),
 	)
 }

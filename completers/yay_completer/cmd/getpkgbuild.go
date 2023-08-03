@@ -20,8 +20,6 @@ func init() {
 	getpkgbuildCmd.Flags().BoolP("-p", "--print", false, "Print pkgbuild of packages")
 
 	carapace.Gen(getpkgbuildCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return pacman.ActionPackageSearch().Invoke(c).Filter(c.Args).ToA()
-		}),
+		pacman.ActionPackageSearch().FilterArgs(),
 	)
 }

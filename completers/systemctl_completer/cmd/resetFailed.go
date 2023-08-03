@@ -19,8 +19,6 @@ func init() {
 	rootCmd.AddCommand(resetFailedCmd)
 
 	carapace.Gen(resetFailedCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionUnits(resetFailedCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionUnits(resetFailedCmd).FilterArgs(),
 	)
 }

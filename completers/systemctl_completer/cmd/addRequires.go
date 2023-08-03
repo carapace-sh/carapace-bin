@@ -23,8 +23,6 @@ func init() {
 	)
 
 	carapace.Gen(addRequiresCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionUnits(addRequiresCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionUnits(addRequiresCmd).FilterArgs(),
 	)
 }

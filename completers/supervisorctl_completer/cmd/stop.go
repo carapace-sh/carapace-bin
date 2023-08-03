@@ -23,7 +23,7 @@ func init() {
 				supervisor.ActionGroups(rootCmd.Flag("configuration").Value.String()),
 				supervisor.ActionProcesses(rootCmd.Flag("configuration").Value.String()),
 				carapace.ActionValues("all"),
-			).ToA().Invoke(c).Filter(c.Args).ToA()
+			).ToA().FilterArgs()
 		}),
 	)
 }

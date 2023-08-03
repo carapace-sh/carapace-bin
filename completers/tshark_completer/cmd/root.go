@@ -203,11 +203,9 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"disable-protocol": tshark.ActionProtocols(),
-		"elastic-mapping-filter": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return tshark.ActionProtocols().Invoke(c).Filter(c.Parts).ToA()
-		}),
-		"enable-protocol": tshark.ActionProtocols(),
+		"disable-protocol":       tshark.ActionProtocols(),
+		"elastic-mapping-filter": tshark.ActionProtocols().UniqueList(","),
+		"enable-protocol":        tshark.ActionProtocols(),
 		"export-objects": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:

@@ -37,8 +37,6 @@ func init() {
 	})
 
 	carapace.Gen(configCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionServices(configCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionServices(configCmd).FilterArgs(),
 	)
 }

@@ -33,14 +33,14 @@ func init() {
 					return carapace.ActionFiles()
 
 				default:
-					return fs.ActionArFileContents(c.Args[1]).Invoke(c).Filter(c.Args[1:]).ToA()
+					return fs.ActionArFileContents(c.Args[1]).Invoke(c).Filter(c.Args[1:]...).ToA()
 				}
 			}
 
 			if len(c.Args) == 0 {
 				return carapace.ActionFiles()
 			}
-			return fs.ActionArFileContents(c.Args[0]).Invoke(c).Filter(c.Args[1:]).ToA()
+			return fs.ActionArFileContents(c.Args[0]).Invoke(c).Filter(c.Args[1:]...).ToA()
 		}),
 	)
 }

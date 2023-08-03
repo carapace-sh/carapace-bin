@@ -82,7 +82,7 @@ func init() {
 			if rootCmd.Flag("file").Changed {
 				file = rootCmd.Flag("file").Value.String()
 			}
-			return make.ActionTargets(file).Invoke(c).Filter(c.Args).ToA()
+			return make.ActionTargets(file).FilterArgs()
 		}),
 	)
 }

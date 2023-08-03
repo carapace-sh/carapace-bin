@@ -35,8 +35,6 @@ func init() {
 	rootCmd.AddCommand(listCmd)
 
 	carapace.Gen(listCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionList(listCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionList(listCmd).FilterArgs(),
 	)
 }

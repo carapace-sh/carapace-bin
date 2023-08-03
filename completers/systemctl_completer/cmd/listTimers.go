@@ -19,8 +19,6 @@ func init() {
 	rootCmd.AddCommand(listTimersCmd)
 
 	carapace.Gen(listTimersCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionUnits(listTimersCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionUnits(listTimersCmd).FilterArgs(),
 	)
 }

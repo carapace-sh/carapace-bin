@@ -19,8 +19,6 @@ func init() {
 	rootCmd.AddCommand(importEnvironmentCmd)
 
 	carapace.Gen(importEnvironmentCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return os.ActionEnvironmentVariables().Invoke(c).Filter(c.Args).ToA()
-		}),
+		os.ActionEnvironmentVariables().FilterArgs(),
 	)
 }

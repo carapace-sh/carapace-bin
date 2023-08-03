@@ -20,8 +20,6 @@ func init() {
 	yayCmd.Flags().Bool("gendb", false, "Generates development package DB used for updating")
 
 	carapace.Gen(yayCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return pacman.ActionPackageSearch().Invoke(c).Filter(c.Args).ToA()
-		}),
+		pacman.ActionPackageSearch().FilterArgs(),
 	)
 }

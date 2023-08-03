@@ -23,7 +23,7 @@ func init() {
 
 	carapace.Gen(pluginCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionPlugins().Invoke(c).Filter(c.Args[1:]).ToA()
+			return action.ActionPlugins().Invoke(c).Filter(c.Args[1:]...).ToA() // TODO use filterargs with shift(1)
 		}),
 	)
 }

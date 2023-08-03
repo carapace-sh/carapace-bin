@@ -25,8 +25,6 @@ func init() {
 	})
 
 	carapace.Gen(state_listCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionResources(state_listCmd).Invoke(c).Filter(c.Args).ToMultiPartsA("_")
-		}),
+		action.ActionResources(state_listCmd).FilterArgs().MultiParts("_"),
 	)
 }

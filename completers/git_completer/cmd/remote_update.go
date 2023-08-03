@@ -19,8 +19,6 @@ func init() {
 	remoteCmd.AddCommand(remote_updateCmd)
 
 	carapace.Gen(remote_updateCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRemotes().Invoke(c).Filter(c.Args).ToA()
-		}),
+		git.ActionRemotes().FilterArgs(),
 	)
 }

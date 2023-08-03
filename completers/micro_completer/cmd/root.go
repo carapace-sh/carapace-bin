@@ -103,15 +103,15 @@ func init() {
 				case "available":
 					return carapace.ActionValues()
 				case "install":
-					return action.ActionAvailablePlugins().Invoke(c).Filter(c.Args).ToA()
+					return action.ActionAvailablePlugins().FilterArgs()
 				case "list":
 					return carapace.ActionValues()
 				case "remove":
-					return action.ActionInstalledPlugins().Invoke(c).Filter(c.Args).ToA()
+					return action.ActionInstalledPlugins().FilterArgs()
 				case "search":
 					return carapace.ActionValues()
 				case "update":
-					return action.ActionInstalledPlugins().Invoke(c).Filter(c.Args).ToA()
+					return action.ActionInstalledPlugins().FilterArgs()
 				default:
 					return carapace.ActionValues()
 				}

@@ -47,8 +47,6 @@ func init() {
 	})
 
 	carapace.Gen(forgetCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotIDs(forgetCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionSnapshotIDs(forgetCmd).FilterArgs(),
 	)
 }

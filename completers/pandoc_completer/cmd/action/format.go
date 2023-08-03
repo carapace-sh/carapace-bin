@@ -17,7 +17,7 @@ func ActionInputFormats() carapace.Action {
 		}
 		fields := extensionFields(c.Value)
 		fields = fields[:len(fields)-1] // omit currently completed extension
-		return ActionExtensions(fields[0]).Invoke(c).Filter(fields[1:]).Prefix(strings.Join(fields, "")).ToA()
+		return ActionExtensions(fields[0]).Invoke(c).Filter(fields[1:]...).Prefix(strings.Join(fields, "")).ToA()
 	})
 }
 
@@ -31,7 +31,7 @@ func ActionOutputFormats() carapace.Action {
 		}
 		fields := extensionFields(c.Value)
 		fields = fields[:len(fields)-1] // omit currently completed extension
-		return ActionExtensions(fields[0]).Invoke(c).Filter(fields[1:]).Prefix(strings.Join(fields, "")).ToA()
+		return ActionExtensions(fields[0]).Invoke(c).Filter(fields[1:]...).Prefix(strings.Join(fields, "")).ToA()
 	})
 }
 

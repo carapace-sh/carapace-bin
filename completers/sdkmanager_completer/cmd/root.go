@@ -59,10 +59,10 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("install").Changed {
-				return action.ActionAvailablePackages(rootCmd).Invoke(c).Filter(c.Args).ToMultiPartsA(";")
+				return action.ActionAvailablePackages(rootCmd).FilterArgs().MultiParts(";")
 			}
 			if rootCmd.Flag("uninstall").Changed {
-				return action.ActionInstalledPackages(rootCmd).Invoke(c).Filter(c.Args).ToA()
+				return action.ActionInstalledPackages(rootCmd).FilterArgs()
 			}
 			return carapace.ActionValues()
 		}),

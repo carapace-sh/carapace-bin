@@ -22,8 +22,6 @@ func init() {
 	rootCmd.AddCommand(envCmd)
 
 	carapace.Gen(envCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return golang.ActionEnvironmentVariables().Invoke(c).Filter(c.Args).ToA()
-		}),
+		golang.ActionEnvironmentVariables().FilterArgs(),
 	)
 }

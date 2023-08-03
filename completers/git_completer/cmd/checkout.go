@@ -54,16 +54,16 @@ func init() {
 
 	carapace.Gen(checkoutCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRefChanges(c.Args[0]).Invoke(c).Filter(c.Args[1:]).ToA()
+			return git.ActionRefChanges(c.Args[0]).Invoke(c).Filter(c.Args[1:]...).ToA()
 		}),
 	)
 
 	carapace.Gen(checkoutCmd).DashAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if args := checkoutCmd.Flags().Args(); len(args[:checkoutCmd.ArgsLenAtDash()]) > 0 {
-				return git.ActionRefChanges(args[0]).Invoke(c).Filter(args[1:]).ToA()
+				return git.ActionRefChanges(args[0]).Invoke(c).Filter(args[1:]...).ToA()
 			}
-			return git.ActionChanges(git.ChangeOpts{}.Default()).Invoke(c).Filter(c.Args).ToA()
+			return git.ActionChanges(git.ChangeOpts{}.Default()).FilterArgs()
 		}),
 	)
 }

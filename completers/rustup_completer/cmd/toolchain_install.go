@@ -33,8 +33,6 @@ func init() {
 	})
 
 	carapace.Gen(toolchain_installCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionDefaultChannels().Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionDefaultChannels().FilterArgs(),
 	)
 }

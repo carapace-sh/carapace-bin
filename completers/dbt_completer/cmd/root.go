@@ -71,9 +71,7 @@ func addModelsFlag(cmd *cobra.Command) {
 	cmd.Flag("models").Nargs = -1
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"models": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return dbt.ActionResources(dbt.ResourceOpts{Model: true}).Invoke(c).Filter(c.Parts).ToA()
-		}),
+		"models": dbt.ActionResources(dbt.ResourceOpts{Model: true}).FilterParts(), // TODO test this
 	})
 }
 
@@ -95,11 +93,7 @@ func addSelectionFlags(cmd *cobra.Command) {
 	cmd.Flag("select").Nargs = -1
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"exclude": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return dbt.ActionResources(dbt.ResourceOpts{}.Default()).Invoke(c).Filter(c.Parts).ToA()
-		}),
-		"select": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return dbt.ActionResources(dbt.ResourceOpts{}.Default()).Invoke(c).Filter(c.Parts).ToA()
-		}),
+		"exclude": dbt.ActionResources(dbt.ResourceOpts{}.Default()).FilterParts(),
+		"select":  dbt.ActionResources(dbt.ResourceOpts{}.Default()).FilterParts(),
 	})
 }

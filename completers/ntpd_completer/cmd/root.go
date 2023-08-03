@@ -63,9 +63,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return ActionPoolZones().Invoke(c).Filter(c.Args).ToA()
-		}),
+		ActionPoolZones().FilterArgs(),
 	)
 }
 

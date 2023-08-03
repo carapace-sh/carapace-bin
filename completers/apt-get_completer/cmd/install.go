@@ -18,8 +18,6 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return apt.ActionPackageSearch().Invoke(c).Filter(c.Args).ToA()
-		}),
+		apt.ActionPackageSearch().FilterArgs(),
 	)
 }

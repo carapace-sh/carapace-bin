@@ -18,8 +18,6 @@ func init() {
 	rootCmd.AddCommand(changelogCmd)
 
 	carapace.Gen(changelogCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return apt.ActionPackages().Invoke(c).Filter(c.Args).ToA()
-		}),
+		apt.ActionPackages().FilterArgs(),
 	)
 }

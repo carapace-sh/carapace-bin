@@ -28,8 +28,6 @@ func init() {
 	})
 
 	carapace.Gen(statsCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotIDs(statsCmd).Invoke(c).Filter(c.Parts).ToA()
-		}),
+		action.ActionSnapshotIDs(statsCmd).FilterArgs(),
 	)
 }

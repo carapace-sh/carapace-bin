@@ -20,8 +20,6 @@ func init() {
 	containerCmd.AddCommand(container_inspectCmd)
 
 	carapace.Gen(container_inspectCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return docker.ActionContainers().Invoke(c).Filter(c.Args).ToA()
-		}),
+		docker.ActionContainers().FilterArgs(),
 	)
 }

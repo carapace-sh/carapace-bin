@@ -19,8 +19,6 @@ func init() {
 	rootCmd.AddCommand(unsetEnvironmentCmd)
 
 	carapace.Gen(unsetEnvironmentCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionEnvironmentVariables(unsetEnvironmentCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionEnvironmentVariables(unsetEnvironmentCmd).FilterArgs(),
 	)
 }

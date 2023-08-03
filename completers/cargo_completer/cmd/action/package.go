@@ -49,7 +49,7 @@ func ActionGithubPackageSearch() carapace.Action {
 		if len(c.Args) < 2 {
 			batch = append(batch, actionGithubPackageIndex("2"))
 			batch = append(batch, carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				return actionGithubPackageIndex("").Invoke(c).Filter([]string{"1", "2", "3", "config.json"}).ToA()
+				return actionGithubPackageIndex("").Filter("1", "2", "3", "config.json")
 			}))
 		}
 

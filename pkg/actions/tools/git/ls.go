@@ -91,7 +91,7 @@ func ActionRefFiles(ref string) carapace.Action {
 					directories[index] = filepath.Base(dir)
 				}
 
-				filesA := carapace.ActionValues(files...).Invoke(c).Filter(directories)
+				filesA := carapace.ActionValues(files...).Invoke(c).Filter(directories...)
 
 				for index, dir := range directories {
 					directories[index] = dir + "/"

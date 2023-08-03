@@ -18,8 +18,6 @@ func init() {
 	configCmd.AddCommand(config_rmAllCmd)
 
 	carapace.Gen(config_rmAllCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionConfigKeys(config_rmAllCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionConfigKeys(config_rmAllCmd).FilterArgs(),
 	)
 }

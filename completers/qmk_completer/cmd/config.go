@@ -24,7 +24,7 @@ func init() {
 		carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return action.ActionConfigs().Invoke(c).Filter(c.Args).ToMultiPartsA(".").NoSpace()
+				return action.ActionConfigs().Invoke(c).Filter(c.Args...).ToMultiPartsA(".").NoSpace()
 			case 1:
 				return action.ActionConfigValues(c.Parts[0])
 			default:

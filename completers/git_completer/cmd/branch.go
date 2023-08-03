@@ -76,7 +76,7 @@ func init() {
 					branchCmd.Flag("copy").Changed ||
 					branchCmd.Flag("delete").Changed ||
 					branchCmd.Flag("edit-description").Changed {
-					return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true}).Invoke(c).Filter(c.Args).ToA()
+					return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true}).FilterArgs()
 				}
 			case 1:
 				if branchCmd.Flag("M").Changed ||
@@ -85,12 +85,12 @@ func init() {
 					branchCmd.Flag("move").Changed ||
 					branchCmd.Flag("copy").Changed ||
 					branchCmd.Flag("delete").Changed {
-					return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true}).Invoke(c).Filter(c.Args).ToA()
+					return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true}).FilterArgs()
 				}
 			default:
 				if branchCmd.Flag("D").Changed ||
 					branchCmd.Flag("delete").Changed {
-					return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true}).Invoke(c).Filter(c.Args).ToA()
+					return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true}).FilterArgs()
 				}
 			}
 			return carapace.ActionValues()

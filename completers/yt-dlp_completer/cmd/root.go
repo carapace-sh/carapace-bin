@@ -349,7 +349,7 @@ func init() {
 			for index, part := range c.Parts {
 				c.Parts[index] = strings.TrimPrefix(part, "-")
 			}
-			a = a.Invoke(c).Filter(c.Parts).ToA()
+			a = a.Invoke(c).Filter(c.Parts...).ToA()
 
 			if strings.HasPrefix(c.Value, "-") {
 				a = a.Prefix("-")
@@ -361,7 +361,7 @@ func init() {
 			for index, part := range c.Parts {
 				c.Parts[index] = strings.TrimPrefix(part, "-")
 			}
-			a = a.Invoke(c).Filter(c.Parts).ToA()
+			a = a.Invoke(c).Filter(c.Parts...).ToA()
 
 			if strings.HasPrefix(c.Value, "-") {
 				a = a.Prefix("-")

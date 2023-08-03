@@ -23,7 +23,7 @@ func init() {
 	removeCmd.Flags().BoolP("unneeded", "u", false, "remove packages only if they are not required by any other")
 	rootCmd.AddCommand(removeCmd)
 
-	carapace.Gen(removeCmd).PositionalAnyCompletion(carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return action.ActionInstalledPackages(true).Invoke(c).Filter(c.Args).ToA()
-	}))
+	carapace.Gen(removeCmd).PositionalAnyCompletion(
+		action.ActionInstalledPackages(true).FilterArgs(),
+	)
 }

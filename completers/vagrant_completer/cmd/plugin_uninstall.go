@@ -23,7 +23,7 @@ func init() {
 			return action.ActionPlugins(action.PluginOpts{
 				Local:  plugin_updateCmd.Flag("local").Changed,
 				Global: !plugin_updateCmd.Flag("local").Changed,
-			}).Invoke(c).Filter(c.Args).ToA()
+			}).Invoke(c).Filter(c.Args...).ToA()
 		}),
 	)
 }

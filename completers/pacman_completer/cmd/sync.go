@@ -75,8 +75,6 @@ func init() {
 	})
 
 	carapace.Gen(syncCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return pacman.ActionPackageSearch().Invoke(c).Filter(c.Args).ToA()
-		}),
+		pacman.ActionPackageSearch().FilterArgs(),
 	)
 }

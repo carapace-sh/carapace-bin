@@ -75,7 +75,7 @@ func init() {
 			if flag := rootCmd.Flag("f"); flag.Changed {
 				path = flag.Value.String()
 			}
-			return action.ActionTargets(path).Invoke(c).Filter(c.Args).ToA()
+			return action.ActionTargets(path).FilterArgs()
 		}),
 	)
 }

@@ -42,7 +42,7 @@ func init() {
 			return cargo.ActionDependencies(cargo.DependencyOpts{
 				Path:           rootCmd.Flag("manifest-path").Value.String(),
 				IncludeVersion: false,
-			}).Invoke(c).Filter(c.Args).ToA()
+			}).FilterArgs()
 		}),
 	)
 }

@@ -28,7 +28,7 @@ func init() {
 		"kubeconfig":              carapace.ActionFiles(),
 		"patches":                 carapace.ActionDirectories(),
 		"skip-phases": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionPhases().Invoke(c).Filter(c.Parts).ToMultiPartsA("/").NoSpace()
+			return action.ActionPhases().Invoke(c).Filter(c.Parts...).ToMultiPartsA("/").NoSpace() // TODO use UniqueList("/")
 		}),
 	})
 }

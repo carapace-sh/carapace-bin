@@ -22,7 +22,7 @@ func init() {
 			return carapace.Batch(
 				supervisor.ActionGroups(rootCmd.Flag("configuration").Value.String()),
 				carapace.ActionValues("all"),
-			).ToA().Invoke(c).Filter(c.Args).ToA()
+			).ToA().FilterArgs()
 		}),
 	)
 }
