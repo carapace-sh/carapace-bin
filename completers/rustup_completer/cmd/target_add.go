@@ -25,7 +25,7 @@ func init() {
 
 	carapace.Gen(target_addCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionTargets(false).Invoke(c).Filter(c.Args).ToMultiPartsA("-")
+			return action.ActionTargets(false).Invoke(c).Filter(c.Args...).ToMultiPartsA("-") // TODO user FilterArgs
 		}),
 	)
 }

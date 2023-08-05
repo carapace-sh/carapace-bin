@@ -73,8 +73,6 @@ func addRunFlags(cmd *cobra.Command) {
 	})
 
 	carapace.Gen(runCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return turbo.ActionPipelineTasks().Invoke(c).Filter(c.Args).ToA()
-		}),
+		turbo.ActionPipelineTasks().FilterArgs(),
 	)
 }

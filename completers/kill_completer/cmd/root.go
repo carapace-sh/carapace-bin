@@ -54,10 +54,8 @@ func init() {
 }
 
 func actionProcessIdsAndNames() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.Batch(
-			ps.ActionProcessIds(),
-			ps.ActionProcessExecutables(),
-		).Invoke(c).Merge().Filter(c.Args).ToA()
-	})
+	return carapace.Batch(
+		ps.ActionProcessIds(),
+		ps.ActionProcessExecutables(),
+	).ToA().FilterArgs()
 }

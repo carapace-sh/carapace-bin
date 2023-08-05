@@ -33,8 +33,6 @@ func init() {
 	})
 
 	carapace.Gen(state_rmCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionResources(state_rmCmd).Invoke(c).Filter(c.Args).ToA().MultiParts(".")
-		}),
+		action.ActionResources(state_rmCmd).FilterArgs().MultiParts("."),
 	)
 }

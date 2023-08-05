@@ -48,7 +48,7 @@ func init() {
 		"ignore-preflight-errors": action.ActionChecks().UniqueList(","),
 		"patches":                 carapace.ActionDirectories(),
 		"skip-phases": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return action.ActionPhases().Invoke(c).Filter(c.Parts).ToMultiPartsA("/").NoSpace()
+			return action.ActionPhases().Invoke(c).Filter(c.Parts...).ToMultiPartsA("/").NoSpace() // TODO user UniqueList("/")
 		}),
 	})
 }

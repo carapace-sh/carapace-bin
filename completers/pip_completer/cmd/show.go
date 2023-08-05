@@ -19,8 +19,6 @@ func init() {
 	rootCmd.AddCommand(showCmd)
 
 	carapace.Gen(showCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return pip.ActionInstalledPackages().Invoke(c).Filter(c.Args).ToA()
-		}),
+		pip.ActionInstalledPackages().FilterArgs(),
 	)
 }

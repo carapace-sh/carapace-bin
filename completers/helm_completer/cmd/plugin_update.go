@@ -17,8 +17,6 @@ func init() {
 	pluginCmd.AddCommand(plugin_updateCmd)
 
 	carapace.Gen(plugin_updateCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionPlugins().Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionPlugins().FilterArgs(),
 	)
 }

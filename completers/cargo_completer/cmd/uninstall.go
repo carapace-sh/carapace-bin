@@ -33,7 +33,7 @@ func init() {
 
 	carapace.Gen(uninstallCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionInstalledPackages(uninstallCmd.Flag("root").Value.String()).Invoke(c).Filter(c.Args).ToA()
+			return action.ActionInstalledPackages(uninstallCmd.Flag("root").Value.String()).FilterArgs()
 		}),
 	)
 }

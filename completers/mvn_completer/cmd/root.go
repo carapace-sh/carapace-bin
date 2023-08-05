@@ -74,7 +74,7 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return mvn.ActionGoalsAndPhases(rootCmd.Flag("file").Value.String()).Invoke(c).Filter(c.Args).ToA().MultiParts(":")
+			return mvn.ActionGoalsAndPhases(rootCmd.Flag("file").Value.String()).Invoke(c).Filter(c.Args...).ToA().MultiParts(":") // TODO use FilterArgs
 		}),
 	)
 }

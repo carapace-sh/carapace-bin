@@ -18,8 +18,6 @@ func init() {
 	rootCmd.AddCommand(removeCmd)
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return apt.ActionPackages().Invoke(c).Filter(c.Args).ToA()
-		}),
+		apt.ActionPackages().FilterArgs(),
 	)
 }

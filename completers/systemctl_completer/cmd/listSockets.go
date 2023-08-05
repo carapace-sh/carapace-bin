@@ -19,8 +19,6 @@ func init() {
 	rootCmd.AddCommand(listSocketsCmd)
 
 	carapace.Gen(listSocketsCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionUnits(listSocketsCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionUnits(listSocketsCmd).FilterArgs(),
 	)
 }

@@ -24,8 +24,6 @@ func init() {
 	})
 
 	carapace.Gen(target_removeCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionTargets(true).Invoke(c).Filter(c.Args).ToMultiPartsA("-")
-		}),
+		action.ActionTargets(true).FilterArgs().MultiParts("-"),
 	)
 }

@@ -21,8 +21,6 @@ func init() {
 	workspacesCmd.AddCommand(workspaces_focusCmd)
 
 	carapace.Gen(workspaces_focusCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return yarn.ActionWorkspaces().Invoke(c).Filter(c.Args).ToA()
-		}),
+		yarn.ActionWorkspaces().FilterArgs(),
 	)
 }

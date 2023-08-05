@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/devbox"
+	"github.com/rsteube/carapace/pkg/traverse"
 	"github.com/spf13/cobra"
 )
 
@@ -22,9 +23,8 @@ func init() {
 	})
 
 	carapace.Gen(rmCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			dir := rmCmd.Flag("config").Value.String()
-			return devbox.ActionInstalledPackages().Chdir(dir).Invoke(c).Filter(c.Args).ToA()
-		}),
+		devbox.ActionInstalledPackages().
+			ChdirF(traverse.Flag(rmCmd.Flag("config"))).
+			FilterArgs(),
 	)
 }

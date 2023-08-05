@@ -20,7 +20,7 @@ func init() {
 	carapace.Gen(clearCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.Batch(
-				supervisor.ActionProcesses(rootCmd.Flag("configuration").Value.String()).Invoke(c).Filter(c.Args).ToA(),
+				supervisor.ActionProcesses(rootCmd.Flag("configuration").Value.String()).FilterArgs(),
 				carapace.ActionValues("all"),
 			).ToA()
 		}),

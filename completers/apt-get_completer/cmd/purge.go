@@ -18,8 +18,6 @@ func init() {
 	rootCmd.AddCommand(purgeCmd)
 
 	carapace.Gen(purgeCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return apt.ActionPackages().Invoke(c).Filter(c.Args).ToA()
-		}),
+		apt.ActionPackages().FilterArgs(),
 	)
 }

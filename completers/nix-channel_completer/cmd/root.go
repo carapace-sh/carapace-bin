@@ -30,7 +30,7 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if (rootCmd.Flag("remove").Changed && len(c.Args) == 0) ||
 				rootCmd.Flag("update").Changed {
-				return nix.ActionLocalChannels().Invoke(c).Filter(c.Args).ToA()
+				return nix.ActionLocalChannels().FilterArgs()
 			} else if rootCmd.Flag("add").Changed {
 				switch len(c.Args) {
 				case 0:

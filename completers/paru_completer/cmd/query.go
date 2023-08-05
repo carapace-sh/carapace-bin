@@ -67,7 +67,7 @@ func init() {
 			if queryCmd.Flag("file").Changed {
 				return carapace.ActionFiles()
 			}
-			return pacman.ActionPackages().Invoke(c).Filter(c.Args).ToA()
+			return pacman.ActionPackages().FilterArgs()
 		}),
 	)
 }

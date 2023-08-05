@@ -161,7 +161,7 @@ func ActionFormatOptions() carapace.Action {
 					entryKeys[index] = strings.Split(entry, ":")[0]
 				}
 
-				return carapace.ActionValues(keys...).Invoke(c).Filter(entryKeys).Suffix(":").ToA()
+				return carapace.ActionValues(keys...).Invoke(c).Filter(entryKeys...).Suffix(":").ToA()
 			case 1:
 				if a, ok := options[c.Parts[0]]; ok {
 					return a

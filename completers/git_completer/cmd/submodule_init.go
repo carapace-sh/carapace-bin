@@ -18,8 +18,6 @@ func init() {
 	submoduleCmd.AddCommand(submodule_initCmd)
 
 	carapace.Gen(submodule_initCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionSubmodulePaths().Invoke(c).Filter(c.Args).ToA()
-		}),
+		git.ActionSubmodulePaths().FilterArgs(),
 	)
 }

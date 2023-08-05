@@ -18,8 +18,6 @@ func init() {
 	rootCmd.AddCommand(setLocaleCmd)
 
 	carapace.Gen(setLocaleCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionLocales().Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionLocales().FilterArgs(),
 	)
 }

@@ -50,9 +50,9 @@ func ActionFileModesSymbolic() carapace.Action {
 					"-", "removes the specified modes from the specified classes",
 					"=", "the modes specified are to be made the exact modes for the specified classes",
 				).Invoke(c)
-				return classes.Merge(operators).Filter(c.Parts).ToA()
+				return classes.Merge(operators).Filter(c.Parts...).ToA()
 			}
-			return classes.Filter(c.Parts).ToA()
+			return classes.Filter(c.Parts...).ToA()
 		} else {
 			return carapace.ActionStyledValuesDescribed(
 				"r", "read", style.Green,
@@ -61,7 +61,7 @@ func ActionFileModesSymbolic() carapace.Action {
 				"X", "special execute", style.Yellow,
 				"s", "setuid/gid", style.Magenta,
 				"t", "sticky", style.Magenta,
-			).Invoke(c).Filter(c.Parts).ToA()
+			).Invoke(c).Filter(c.Parts...).ToA()
 		}
 	}).Tag("symbolic filemodes")
 }

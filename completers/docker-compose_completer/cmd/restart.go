@@ -20,8 +20,6 @@ func init() {
 	rootCmd.AddCommand(restartCmd)
 
 	carapace.Gen(restartCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionServices(restartCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionServices(restartCmd).FilterArgs(),
 	)
 }

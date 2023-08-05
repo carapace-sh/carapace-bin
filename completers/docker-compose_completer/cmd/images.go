@@ -24,8 +24,6 @@ func init() {
 	})
 
 	carapace.Gen(imagesCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionServices(imagesCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionServices(imagesCmd).FilterArgs(),
 	)
 }

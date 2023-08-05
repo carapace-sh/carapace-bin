@@ -19,8 +19,6 @@ func init() {
 	rootCmd.AddCommand(catCmd)
 
 	carapace.Gen(catCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionUnits(catCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionUnits(catCmd).FilterArgs(),
 	)
 }

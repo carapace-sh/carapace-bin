@@ -61,7 +61,7 @@ func init() {
 			if tagCmd.Flag("delete").Changed ||
 				tagCmd.Flag("list").Changed ||
 				tagCmd.Flag("verify").Changed {
-				return git.ActionRefs(git.RefOption{Tags: true}).Invoke(c).Filter(c.Args).ToA()
+				return git.ActionRefs(git.RefOption{Tags: true}).FilterArgs()
 			}
 			switch len(c.Args) {
 			case 0:

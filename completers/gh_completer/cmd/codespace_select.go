@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers_release/gh_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )

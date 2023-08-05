@@ -49,7 +49,9 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return task.ActionTasks(rootCmd.Flag("taskfile").Value.String()).Chdir(rootCmd.Flag("dir").Value.String()).Invoke(c).Filter(c.Args).ToA()
+			return task.ActionTasks(rootCmd.Flag("taskfile").Value.String()).
+				Chdir(rootCmd.Flag("dir").Value.String()).
+				FilterArgs()
 		}),
 	)
 }

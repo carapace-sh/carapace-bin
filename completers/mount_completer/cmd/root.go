@@ -67,7 +67,7 @@ func init() {
 			for _, part := range c.Parts {
 				keys = append(keys, strings.Split(part, "=")[0])
 			}
-			return action.ActionOptions().Invoke(c).Filter(keys).ToA().NoSpace()
+			return action.ActionOptions().Invoke(c).Filter(keys...).ToA().NoSpace()
 		}),
 		"options-mode":   carapace.ActionValues("ignore", "append", "prepend", "replace"),
 		"options-source": carapace.ActionValues("fstab", "mtab", "disable").UniqueList(","),

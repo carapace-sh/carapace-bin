@@ -20,7 +20,7 @@ func init() {
 	carapace.Gen(diffCmd).PositionalCompletion(
 		action.ActionSnapshotIDs(diffCmd),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshotIDs(diffCmd).Invoke(c).Filter(c.Args[:1]).ToA()
+			return action.ActionSnapshotIDs(diffCmd).Invoke(c).Filter(c.Args[:1]...).ToA() // TODO use filterargs with shift
 		}),
 	)
 }

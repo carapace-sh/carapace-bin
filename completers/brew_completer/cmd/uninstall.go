@@ -29,8 +29,6 @@ func init() {
 	rootCmd.AddCommand(uninstallCmd)
 
 	carapace.Gen(uninstallCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionList(uninstallCmd).Invoke(c).Filter(c.Args).ToA()
-		}),
+		action.ActionList(uninstallCmd).FilterArgs(),
 	)
 }

@@ -20,11 +20,9 @@ func init() {
 	rootCmd.AddCommand(statusCmd)
 
 	carapace.Gen(statusCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.Batch(
-				action.ActionUnits(statusCmd),
-				ps.ActionProcessIds(),
-			).ToA().Invoke(c).Filter(c.Args).ToA()
-		}),
+		carapace.Batch(
+			action.ActionUnits(statusCmd),
+			ps.ActionProcessIds(),
+		).ToA().FilterArgs(),
 	)
 }

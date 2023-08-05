@@ -25,7 +25,7 @@ func init() {
 
 	carapace.Gen(initCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("bash", "fish", "powershell", "tcsh", "xonsh", "zsh").Invoke(c).Filter(c.Args).ToA()
+			return carapace.ActionValues("bash", "fish", "powershell", "tcsh", "xonsh", "zsh").FilterArgs()
 		}),
 	)
 }

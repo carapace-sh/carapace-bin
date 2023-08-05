@@ -24,7 +24,7 @@ func init() {
 
 	carapace.Gen(printCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return fs.ActionArFileContents(c.Args[0]).Invoke(c).Filter(c.Args[1:]).ToA()
+			return fs.ActionArFileContents(c.Args[0]).Filter(c.Args[1:]...)
 		}),
 	)
 }

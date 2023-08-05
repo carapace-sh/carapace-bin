@@ -17,10 +17,7 @@ func init() {
 
 	rootCmd.AddCommand(windowreparentCmd)
 
-	carapace.Gen(windowreparentCmd).PositionalCompletion(
-		action.ActionWindows(),
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionWindows().Invoke(c).Filter(c.Args).ToA()
-		}),
+	carapace.Gen(windowreparentCmd).PositionalAnyCompletion(
+		action.ActionWindows().FilterArgs(), // TODO verify
 	)
 }

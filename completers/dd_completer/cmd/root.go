@@ -45,7 +45,7 @@ func init() {
 					"seek", "skip N obs-sized blocks at start of output",
 					"skip", "skip N ibs-sized blocks at start of input",
 					"status", "The LEVEL of information to print to stderr",
-				).Invoke(c).Filter(keys).Suffix("=").ToA()
+				).Invoke(c).Filter(keys...).Suffix("=").ToA()
 			case 1:
 				switch c.Parts[0] {
 				case "conv":
