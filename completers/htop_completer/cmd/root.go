@@ -26,7 +26,7 @@ func init() {
 	rootCmd.Flags().String("drop-capabilities", "", "Drop Linux capabilities when running as root")
 	rootCmd.Flags().StringP("filter", "F", "", "Show only the commands matching the given filter")
 	rootCmd.Flags().BoolP("help", "h", false, "Print this help screen")
-	rootCmd.Flags().BoolP("highlight-changes", "H", false, "Highlight new and old processes")
+	rootCmd.Flags().StringP("highlight-changes", "H", "", "Highlight new and old processes")
 	rootCmd.Flags().BoolP("no-color", "C", false, "Use a monochrome color scheme")
 	rootCmd.Flags().BoolP("no-mouse", "m", false, "Disable the mouse")
 	rootCmd.Flags().BoolP("no-unicode", "U", false, "Do not use unicode but plain ASCII")
