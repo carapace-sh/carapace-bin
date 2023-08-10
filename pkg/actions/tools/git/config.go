@@ -341,6 +341,36 @@ func ActionConfigValues(config string) carapace.Action {
 			"core.warnAmbiguousRefs":  _bool,
 			"core.whitespace":         ActionWhitespaceProblems().UniqueList(","), // TODO this is not correct yet, these can be prefixed with `-` and tabwith accepts a value delimited by `=`
 			"core.worktree":           carapace.ActionDirectories(),
+			"credential.helper":       bridge.ActionCarapaceBin().Split(),
+			"credential.useHttpPath":  _bool,
+			"diff.algorithm":          ActionDiffAlgorithms(),
+			"diff.autoRefreshIndex":   _bool,
+			"diff.colorMoved":         ActionColorMovedModes(),
+			"diff.colorMovedWS":       ActionColorMovedWsModes(),
+			// "diff.context":
+			"diff.dirstat":  ActionDirstats().UniqueList(","),
+			"diff.external": bridge.ActionCarapaceBin().Split(),
+			// "diff.guitool":
+			"diff.ignoreSubmodules": carapace.ActionValues("none", "untracked", "dirty", "all"), // TODO custom action
+			"diff.indentHeuristic":  _bool,
+			// "diff.interHunkContext":
+			// "diff.mnemonicPrefix":
+			"diff.noprefix":  _bool,
+			"diff.orderFile": carapace.ActionFiles(),
+			"diff.relative":  _bool,
+			// "diff.renameLimit":
+			"diff.renames": carapace.ActionValues("true", "false", "copy").StyleF(style.ForKeyword),
+			// TODO
+			// "diff.statGraphWidth":
+			"diff.submodule": carapace.ActionValuesDescribed(
+				"short", "format just shows the names of the commits at the beginning and end of the range",
+				"log", "format lists the commits in the range like git-submodule summary does",
+				"diff", "format shows an inline diff of the changed contents of the submodule",
+			),
+			"diff.suppressBlankEmpty": _bool,
+			"diff.tool":               ActionDiffTools(),
+			// "diff.wordRegex":
+			"diff.wsErrorHighlight": ActionWsErrorHighlightModes().UniqueList(","),
 		}[config]); ok {
 			return a
 		}
@@ -365,6 +395,18 @@ func ActionConfigValues(config string) carapace.Action {
 			case 3:
 				return carapace.ActionMap{
 					"cmd": bridge.ActionCarapaceBin().SplitP(),
+					// TODO path
+				}[splitted[2]]
+			}
+		case "diff":
+			switch len(splitted) {
+			case 3:
+				return carapace.ActionMap{
+					"command":       bridge.ActionCarapaceBin().SplitP(),
+					"binary":        _bool,
+					"textconv":      bridge.ActionCarapaceBin().SplitP(),
+					"cachetextconv": _bool,
+
 					// TODO path
 				}[splitted[2]]
 			}
