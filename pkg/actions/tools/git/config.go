@@ -353,24 +353,37 @@ func ActionConfigValues(config string) carapace.Action {
 			// "diff.guitool":
 			"diff.ignoreSubmodules": carapace.ActionValues("none", "untracked", "dirty", "all"), // TODO custom action
 			"diff.indentHeuristic":  _bool,
-			// "diff.interHunkContext":
-			// "diff.mnemonicPrefix":
-			"diff.noprefix":  _bool,
-			"diff.orderFile": carapace.ActionFiles(),
-			"diff.relative":  _bool,
-			// "diff.renameLimit":
-			"diff.renames": carapace.ActionValues("true", "false", "copy").StyleF(style.ForKeyword),
-			// TODO
-			// "diff.statGraphWidth":
+			"diff.noprefix":         _bool,
+			"diff.orderFile":        carapace.ActionFiles(),
+			"diff.relative":         _bool,
+			"diff.renames":          carapace.ActionValues("true", "false", "copy").StyleF(style.ForKeyword),
 			"diff.submodule": carapace.ActionValuesDescribed(
 				"short", "format just shows the names of the commits at the beginning and end of the range",
 				"log", "format lists the commits in the range like git-submodule summary does",
 				"diff", "format shows an inline diff of the changed contents of the submodule",
 			),
-			"diff.suppressBlankEmpty": _bool,
-			"diff.tool":               ActionDiffTools(),
-			// "diff.wordRegex":
-			"diff.wsErrorHighlight": ActionWsErrorHighlightModes().UniqueList(","),
+			"diff.suppressBlankEmpty":   _bool,
+			"diff.tool":                 ActionDiffTools(),
+			"diff.wsErrorHighlight":     ActionWsErrorHighlightModes().UniqueList(","),
+			"extensions.objectFormat":   carapace.ActionValues("sha1", "sha256"),
+			"extensions.worktreeConfig": _bool,
+			"feature.experimental":      _bool,
+			"feature.manyFiles":         _bool,
+			// "fetch.fsck.skipList":
+			"fetch.fsckObjects": _bool,
+			"fetch.negotiationAlgorithm": carapace.ActionValuesDescribed(
+				"consecutive", "walk over consecutive commits checking each one",
+				"skipping", "skip commits in an effort to converge faster",
+				"noop", "do not send any information at all",
+				"default", "override settings made previously and use the default behaviour",
+			),
+			"fetch.output":            carapace.ActionValues("full", "compact"),
+			"fetch.prune":             _bool,
+			"fetch.pruneTags":         _bool,
+			"fetch.recurseSubmodules": carapace.ActionValues("true", "false", "ondemand").StyleF(style.ForKeyword),
+			"fetch.showForcedUpdates": _bool,
+			"fetch.writeCommitGraph":  _bool,
+			"remote.pushDefault":      ActionRemotes(),
 		}[config]); ok {
 			return a
 		}
@@ -395,7 +408,6 @@ func ActionConfigValues(config string) carapace.Action {
 			case 3:
 				return carapace.ActionMap{
 					"cmd": bridge.ActionCarapaceBin().SplitP(),
-					// TODO path
 				}[splitted[2]]
 			}
 		case "diff":
@@ -406,8 +418,35 @@ func ActionConfigValues(config string) carapace.Action {
 					"binary":        _bool,
 					"textconv":      bridge.ActionCarapaceBin().SplitP(),
 					"cachetextconv": _bool,
-
-					// TODO path
+				}[splitted[2]]
+			}
+		case "remote":
+			switch len(splitted) {
+			case 3:
+				return carapace.ActionMap{
+					// "fetch":
+					"mirror": _bool,
+					// "partialclonefilter":
+					"promisor": _bool,
+					// "proxy":
+					"proxyAuthMethod": carapace.ActionValuesDescribed(
+						"anyauth", "Automatically pick a suitable authentication method",
+						"basic", "HTTP Basic authentication",
+						"digest", "HTTP Digest authentication",
+						"negotiate", "GSS-Negotiate authentication",
+						"ntlm", "NTLM authentication",
+					),
+					"prune":     _bool,
+					"pruneTags": _bool,
+					// "push":
+					// "pushurl":
+					"receivepack":       bridge.ActionCarapaceBin().Split(),
+					"skipDefaultUpdate": _bool,
+					"skipFetchAll":      _bool,
+					// "tagOpt":
+					"uploadpack": bridge.ActionCarapaceBin().Split(),
+					// "url":
+					// "vcs":
 				}[splitted[2]]
 			}
 		}
