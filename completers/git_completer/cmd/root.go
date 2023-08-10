@@ -7,7 +7,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
-	"github.com/rsteube/carapace/third_party/github.com/google/shlex"
+	"github.com/rsteube/carapace-shlex"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -127,11 +127,11 @@ func addAliasCompletion(args []string) {
 				continue // aliases beginning with ! are arbitrary shell commands so don't add completion
 			}
 
-			args, err := shlex.Split(value)
+			tokens, err := shlex.Split(value) // TODO trim value?
 			if err == nil {
 				carapace.Gen(aliasCmd).PositionalAnyCompletion(
 					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						c.Args = append(args, c.Args...)
+						c.Args = append(tokens.Strings(), c.Args...)
 						return bridge.ActionCarapaceBin("git").Invoke(c).ToA()
 					}),
 				)
