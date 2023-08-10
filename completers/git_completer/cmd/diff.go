@@ -125,6 +125,7 @@ func addDiffFlags(cmd *cobra.Command) {
 		"color-moved":        git.ActionColorMovedModes(),
 		"color-moved-ws":     git.ActionColorMovedWsModes(),
 		"diff-algorithm":     git.ActionDiffAlgorithms(),
+		"ignore-submodules":  carapace.ActionValues("none", "untracked", "dirty", "all"),
 		"output":             carapace.ActionFiles(),
 		"submodule":          carapace.ActionValues("short", "long", "log"),
 		"word-diff":          git.ActionWordDiffModes(),

@@ -71,3 +71,34 @@ func ActionWsErrorHighlightModes() carapace.Action {
 		"all", "shorthand for old,new,context",
 	)
 }
+
+// ActionDiffTools returns diff tools
+//
+//	meld
+//	nvimdiff
+func ActionDiffTools() carapace.Action {
+	return carapace.ActionValues(
+		"araxis",
+		"bc",
+		"codecompare",
+		"deltawalker",
+		"diffmerge",
+		"diffuse",
+		"ecmerge",
+		"emerge",
+		"examdiff",
+		"guiffy",
+		"gvimdiff",
+		"kdiff3",
+		"kompare",
+		"meld",
+		"nvimdiff",
+		"opendiff",
+		"p4merge",
+		"smerge",
+		"tkdiff",
+		"vimdiff",
+		"winmerge",
+		"xxdiff",
+	)
+}
