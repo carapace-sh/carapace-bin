@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/make"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -85,4 +86,8 @@ func init() {
 			return make.ActionTargets(file).FilterArgs()
 		}),
 	)
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.Chdir(rootCmd.Flag("directory").Value.String())
+	})
 }
