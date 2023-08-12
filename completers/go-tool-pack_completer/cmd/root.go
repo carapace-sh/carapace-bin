@@ -37,10 +37,9 @@ func init() {
 			case "c", "r":
 				return carapace.ActionFiles()
 			case "x", "p":
-				// TODO untested - getting EOF error when trying to access archive
 				return carapace.ActionExecCommand("go", "tool", "pack", "t", c.Args[1])(func(output []byte) carapace.Action {
 					lines := strings.Split(string(output), "\n")
-					return carapace.ActionValues(lines...).StyleF(style.ForPathExt).MultiParts("/")
+					return carapace.ActionValues(lines[:len(lines)-1]...).StyleF(style.ForPathExt).MultiParts("/")
 				})
 			}
 			return carapace.ActionValues()
