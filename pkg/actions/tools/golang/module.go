@@ -92,3 +92,15 @@ func formatModule(path, version string, includeVersion bool) string {
 	}
 	return path
 }
+
+// ActionModuleDownloadModes completes module download modes
+//
+//	readonly (disable implicit automatic updating of go.mod)
+//	vendor (assumes that the vendor directory holds the correct copies of dependencies)
+func ActionModuleDownloadModes() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"readonly", "disable implicit automatic updating of go.mod",
+		"mod", "", // TODO description
+		"vendor", "assumes that the vendor directory holds the correct copies of dependencies",
+	)
+}
