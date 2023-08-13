@@ -2,6 +2,9 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/golangcilint"
 	"github.com/spf13/cobra"
 )
 
@@ -93,4 +96,28 @@ func init() {
 	runCmd.Flag("maligned.suggest-new").Hidden = true
 	runCmd.Flag("print-welcome").Hidden = true
 	rootCmd.AddCommand(runCmd)
+
+	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
+		"build-tags":       golang.ActionBuildTags().UniqueList(","),
+		"config":           carapace.ActionFiles(),
+		"disable":          golangcilint.ActionLinters().UniqueList(","),
+		"enable":           golangcilint.ActionLinters().UniqueList(","),
+		"errcheck.exclude": carapace.ActionFiles(),
+		"errcheck.ignore": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 1:
+				return golang.ActionPackages()
+			default:
+				return carapace.ActionValues()
+			}
+		}).List(","),
+		"go":                    golang.ActionVersions(),
+		"modules-download-mode": golang.ActionModuleDownloadModes(),
+		"new-from-patch":        carapace.ActionFiles(),
+		"new-from-rev":          git.ActionRefs(git.RefOption{}.Default()),
+		"out-format":            golangcilint.ActionOutFormats(),
+		"presets":               golangcilint.ActionPresets(),
+		"skip-dirs":             carapace.ActionDirectories().List(","),
+		"skip-files":            carapace.ActionFiles().List(","),
+	})
 }
