@@ -1,6 +1,7 @@
 package pacman
 
 import (
+	"os/exec"
 	"regexp"
 	"strings"
 
@@ -14,7 +15,13 @@ import (
 //	a52dec (A free library for decoding ATSC A/52 streams)
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("pacman", "-Ss", "^"+c.Value)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommandE("pacman", "-Ss", "^"+c.Value)(func(output []byte, err error) carapace.Action {
+			if err != nil {
+				if exitErr, ok := err.(*exec.ExitError); !ok || exitErr.ExitCode() != 1 { // pacman exits with `1` when there are no search results
+					return carapace.ActionMessage(err.Error())
+				}
+			}
+
 			lines := strings.Split(string(output), "\n")
 			r := regexp.MustCompile(`^(?P<group>[^/]+)/(?P<name>[^ ]+) (?P<version>[^ ]+)(?P<context>.*)$`)
 
