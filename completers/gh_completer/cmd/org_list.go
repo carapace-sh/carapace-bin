@@ -9,6 +9,7 @@ var org_listCmd = &cobra.Command{
 	Use:     "list",
 	Short:   "List organizations for the authenticated user.",
 	GroupID: "General commands",
+	Aliases: []string{"ls"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

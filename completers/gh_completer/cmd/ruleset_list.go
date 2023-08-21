@@ -7,9 +7,10 @@ import (
 )
 
 var ruleset_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List rulesets for a repository or organization",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List rulesets for a repository or organization",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
