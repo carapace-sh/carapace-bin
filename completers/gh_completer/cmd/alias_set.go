@@ -16,6 +16,7 @@ var alias_setCmd = &cobra.Command{
 func init() {
 	carapace.Gen(alias_setCmd).Standalone()
 
+	alias_setCmd.Flags().Bool("clobber", false, "Overwrite existing aliases of the same name")
 	alias_setCmd.Flags().BoolP("shell", "s", false, "Declare an alias to be passed through a shell interpreter")
 	aliasCmd.AddCommand(alias_setCmd)
 

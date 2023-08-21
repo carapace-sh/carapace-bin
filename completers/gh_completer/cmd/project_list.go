@@ -7,9 +7,10 @@ import (
 )
 
 var project_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List the projects for an owner",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List the projects for an owner",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
