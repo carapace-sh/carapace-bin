@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/paru"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -64,7 +65,7 @@ func init() {
 		"gpgdir":   carapace.ActionDirectories(),
 		"hookdir":  carapace.ActionDirectories(),
 		// TODO list
-		"ignore":      pacman.ActionPackageSearch().UniqueList(","),
+		"ignore":      paru.ActionPackageSearch().UniqueList(","),
 		"ignoregroup": pacman.ActionPackageGroups().UniqueList(","),
 		"logfile":     carapace.ActionFiles(),
 		"overwrite": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
@@ -77,6 +78,6 @@ func init() {
 	})
 
 	carapace.Gen(syncCmd).PositionalAnyCompletion(
-		pacman.ActionPackageSearch().FilterArgs(),
+		paru.ActionPackageSearch().FilterArgs(),
 	)
 }
