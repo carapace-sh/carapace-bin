@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/yay"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -55,7 +56,7 @@ func init() {
 		"dbpath":      carapace.ActionFiles(),
 		"gpgdir":      carapace.ActionDirectories(),
 		"hookdir":     carapace.ActionDirectories(),
-		"ignore":      pacman.ActionPackageSearch().UniqueList(","),
+		"ignore":      yay.ActionPackageSearch().UniqueList(","),
 		"ignoregroup": pacman.ActionPackageGroups().UniqueList(","),
 		"logfile":     carapace.ActionFiles(),
 		"overwrite": carapace.ActionCallback(func(c carapace.Context) carapace.Action {

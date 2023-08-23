@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/yay"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +20,6 @@ func init() {
 	yayCmd.Flags().Bool("gendb", false, "Generates development package DB used for updating")
 
 	carapace.Gen(yayCmd).PositionalAnyCompletion(
-		pacman.ActionPackageSearch().FilterArgs(),
+		yay.ActionPackageSearch().FilterArgs(),
 	)
 }

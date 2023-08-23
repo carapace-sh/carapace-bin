@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/yay"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +20,6 @@ func init() {
 	getpkgbuildCmd.Flags().BoolP("-p", "--print", false, "Print pkgbuild of packages")
 
 	carapace.Gen(getpkgbuildCmd).PositionalAnyCompletion(
-		pacman.ActionPackageSearch().FilterArgs(),
+		yay.ActionPackageSearch().FilterArgs(),
 	)
 }
