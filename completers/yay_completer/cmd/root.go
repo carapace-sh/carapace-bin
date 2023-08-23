@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/yay"
 	"github.com/rsteube/carapace-bin/pkg/util/embed"
 	"github.com/spf13/cobra"
 )
@@ -23,7 +23,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "show version")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		pacman.ActionPackageSearch(),
+		yay.ActionPackageSearch(),
 	)
 
 	// TODO add missing flags (permanent configuration, "new" flags, ...)
