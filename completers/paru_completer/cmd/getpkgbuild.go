@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/paru"
 	"github.com/spf13/cobra"
 )
 
@@ -21,6 +21,6 @@ func init() {
 	getpkgbuildCmd.Flags().BoolP("ssh", "s", false, "Clone package using SSH")
 
 	carapace.Gen(getpkgbuildCmd).PositionalAnyCompletion(
-		pacman.ActionPackageSearch().FilterArgs(),
+		paru.ActionPackageSearch().FilterArgs(),
 	)
 }

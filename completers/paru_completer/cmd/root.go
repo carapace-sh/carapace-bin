@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/paru"
 	"github.com/rsteube/carapace-bin/pkg/util/embed"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -29,7 +29,7 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			a := pacman.ActionPackageSearch()
+			a := paru.ActionPackageSearch()
 			rootCmd.Flags().Visit(func(f *pflag.Flag) {
 				if f.Changed {
 					a = carapace.ActionValues()
