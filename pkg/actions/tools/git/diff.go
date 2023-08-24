@@ -2,7 +2,7 @@ package git
 
 import "github.com/rsteube/carapace"
 
-// ActionDiffAlgorithms completes diff algorithms.
+// ActionDiffAlgorithms completes diff algorithms
 //
 //	myers (The basic greedy diff algorithm)
 //	minimal (Spend extra time to make sure the smallest possible diff is produced)
@@ -15,7 +15,7 @@ func ActionDiffAlgorithms() carapace.Action {
 	)
 }
 
-// ActionColorMovedModes completes color moved modes.
+// ActionColorMovedModes completes color moved modes
 //
 //	no (Moved lines are not highlighted)
 //	default (default mode)
@@ -30,7 +30,7 @@ func ActionColorMovedModes() carapace.Action {
 	)
 }
 
-// ActionColorMovedWsModes completed color moded whitespace modes.
+// ActionColorMovedWsModes completed color moded whitespace modes
 //
 //	no (Do not ignore whitespace when performing move detection)
 //	ignore-space-at-eol (Ignore changes in whitespace at EOL)
@@ -44,7 +44,7 @@ func ActionColorMovedWsModes() carapace.Action {
 	)
 }
 
-// ActionWordDiffModes completes word diff modes.
+// ActionWordDiffModes completes word diff modes
 //
 //	no (Do not ignore whitespace when performing move detection)
 //	ignore-space-at-eol (Ignore changes in whitespace at EOL)
@@ -57,7 +57,7 @@ func ActionWordDiffModes() carapace.Action {
 	)
 }
 
-// ActionWsErrorHighlightModes completes whitespace error highlight modes.
+// ActionWsErrorHighlightModes completes whitespace error highlight modes
 //
 //	context (context lines)
 //	old (old lines)

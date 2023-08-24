@@ -58,7 +58,7 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 	})
 }
 
-// ActionRefChanges completes changes compared to given ref.
+// ActionRefChanges completes changes compared to given ref
 //
 //	go.mod
 //	cmd/carapace/main.go
