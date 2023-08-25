@@ -30,7 +30,7 @@ func ActionColorMovedModes() carapace.Action {
 	)
 }
 
-// ActionColorMovedWsModes completed color moded whitespace modes
+// ActionColorMovedWsModes completed color moved whitespace modes
 //
 //	no (Do not ignore whitespace when performing move detection)
 //	ignore-space-at-eol (Ignore changes in whitespace at EOL)
@@ -72,7 +72,7 @@ func ActionWsErrorHighlightModes() carapace.Action {
 	)
 }
 
-// ActionDiffTools returns diff tools
+// ActionDiffTools completes diff tools
 //
 //	meld
 //	nvimdiff

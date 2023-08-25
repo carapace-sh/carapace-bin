@@ -7,7 +7,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionCommitters completes committers of repo
+// ActionCommitters completes committers
 //
 //	GitHub
 //	another

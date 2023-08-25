@@ -32,7 +32,7 @@ func ActionHeadCommits(limit int) carapace.Action {
 	}).Tag("head commits")
 }
 
-// ActionRefCommits completes recent commits of given ref
+// ActionRefCommits completes commits reachable by given ref
 //
 //	00 (commit message)
 //	01 (commit message)
@@ -52,7 +52,7 @@ func ActionRefCommits(ref string) carapace.Action {
 	}).Tag("ref commits")
 }
 
-// ActionRefParents completes parent of given ref
+// ActionRefParents completes parents of given ref
 //
 //	1 (7aca3ebc)
 //	2 (4f4f9e93)

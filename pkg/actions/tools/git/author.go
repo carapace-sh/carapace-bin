@@ -7,7 +7,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionAuthors completes authors of repo
+// ActionAuthors completes authors
 //
 //	Some Name (email@host.com)
 //	Another Name (email@another.com)

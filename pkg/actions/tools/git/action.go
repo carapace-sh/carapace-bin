@@ -36,7 +36,7 @@ func (o RefOption) Default() RefOption {
 
 }
 
-// ActionRefs completes git references (commits, branches, tags)
+// ActionRefs completes refs (commits, branches, tags)
 //
 //	HEAD~1 (last commit msg)
 //	v0.0.1 (last commit msg)

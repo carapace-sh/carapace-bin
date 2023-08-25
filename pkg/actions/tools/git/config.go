@@ -63,7 +63,7 @@ func ActionColors() carapace.Action {
 	)
 }
 
-// ActionTextAttributes completes test attributes
+// ActionTextAttributes completes text attributes
 func ActionTextAttributes() carapace.Action {
 	return carapace.ActionStyledValues(
 		"bold", style.Bold,
@@ -74,7 +74,7 @@ func ActionTextAttributes() carapace.Action {
 	)
 }
 
-// ActionColorConfigs completes color config
+// ActionColorConfigs completes color configs
 func ActionColorConfigs() carapace.Action {
 	return carapace.ActionMultiParts(" ", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
