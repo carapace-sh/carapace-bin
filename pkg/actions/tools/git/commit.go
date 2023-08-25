@@ -38,7 +38,7 @@ func ActionHeadCommits(limit int) carapace.Action {
 //	01 (commit message)
 func ActionRefCommits(ref string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		limit := 99 // TODO pass as argument
+		limit := 100
 		args := []string{"log", "--no-notes", "--first-parent", "--pretty=tformat:%h   %<(64,trunc)%s", "--max-count", strconv.Itoa(limit), ref}
 		return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
