@@ -37,7 +37,7 @@ func ActionLsRemoteRefs(opts LsRemoteRefOption) carapace.Action {
 	})
 }
 
-// ActionRefFiles completes files of a reference
+// ActionRefFiles completes files of given ref
 //
 //	go.mod
 //	pkg/
