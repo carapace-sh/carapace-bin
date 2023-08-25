@@ -42,38 +42,47 @@ func (o RefOption) Default() RefOption {
 //	v0.0.1 (last commit msg)
 func ActionRefs(refOption RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		batch := carapace.Batch()
+		if !strings.ContainsAny(c.Value, "~^") {
+			batch := carapace.Batch()
 
-		if refOption.LocalBranches {
-			batch = append(batch, ActionLocalBranches())
+			if refOption.LocalBranches {
+				batch = append(batch, ActionLocalBranches())
+			}
+
+			if refOption.RemoteBranches {
+				batch = append(batch, ActionRemoteBranches(""))
+			}
+
+			if refOption.Commits > 0 {
+				batch = append(batch, ActionRecentCommits(refOption.Commits))
+			}
+
+			if refOption.HeadCommits > 0 {
+				batch = append(batch, ActionHeadCommits(refOption.HeadCommits))
+			}
+
+			if refOption.Tags {
+				batch = append(batch, ActionTags())
+			}
+
+			if refOption.Stashes {
+				batch = append(batch, ActionStashes())
+			}
+
+			if refOption.Notes {
+				batch = append(batch, ActionNotes())
+			}
+
+			return batch.ToA()
 		}
 
-		if refOption.RemoteBranches {
-			batch = append(batch, ActionRemoteBranches(""))
+		index := max(strings.LastIndex(c.Value, "~"), strings.LastIndex(c.Value, "^"))
+		switch c.Value[index] {
+		case '^':
+			return ActionRefParents(c.Value[:index]).Prefix(c.Value[:index+1])
+		default: // '~'
+			return ActionRefCommits(c.Value[:index]).Prefix(c.Value[:index+1])
 		}
-
-		if refOption.Commits > 0 {
-			batch = append(batch, ActionRecentCommits(refOption.Commits))
-		}
-
-		if refOption.HeadCommits > 0 {
-			batch = append(batch, ActionHeadCommits(refOption.HeadCommits))
-		}
-
-		if refOption.Tags {
-			batch = append(batch, ActionTags())
-		}
-
-		if refOption.Stashes {
-			batch = append(batch, ActionStashes())
-		}
-
-		if refOption.Notes {
-			batch = append(batch, ActionNotes())
-		}
-
-		return batch.ToA()
-
 	})
 }
 
