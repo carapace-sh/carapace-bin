@@ -15,7 +15,7 @@ import (
 //	HEAD~1 (commit message)
 func ActionHeadCommits(limit int) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"log", "--no-notes", "--pretty=tformat:%h   %<(64,trunc)%s", "--max-count", strconv.Itoa(limit)}
+		args := []string{"log", "--no-notes", "--first-parent", "--pretty=tformat:%h   %<(64,trunc)%s", "--max-count", strconv.Itoa(limit)}
 		return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
