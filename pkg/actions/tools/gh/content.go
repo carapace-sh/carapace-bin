@@ -18,7 +18,7 @@ type ContentOpts struct {
 	Owner  string
 	Name   string
 	Branch string
-	Path   string
+	Path   string // TODO should be handled using `Context.Value`
 }
 
 func (c ContentOpts) repo() RepoOpts {
@@ -46,7 +46,7 @@ func ActionContents(opts ContentOpts) carapace.Action {
 				}
 				vals = append(vals, name, style.ForPathExt(name, c))
 			}
-			return carapace.ActionStyledValues(vals...)
+			return carapace.ActionStyledValues(vals...).NoSpace('/')
 		})
 	})
 }
