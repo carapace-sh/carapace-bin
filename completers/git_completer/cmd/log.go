@@ -306,13 +306,7 @@ func init() {
 			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
 			} else {
-				return carapace.ActionMultiParts("...", func(c carapace.Context) carapace.Action {
-					if len(c.Parts) < 2 {
-						return git.ActionRefs(git.RefOption{}.Default()).NoSpace()
-					} else {
-						return carapace.ActionValues()
-					}
-				})
+				return git.ActionRefRange(git.RefOption{}.Default())
 			}
 		}),
 	)
