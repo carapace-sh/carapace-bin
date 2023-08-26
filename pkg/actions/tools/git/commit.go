@@ -58,7 +58,7 @@ func ActionRefCommits(ref string) carapace.Action {
 //	2 (4f4f9e93)
 func ActionRefParents(ref string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"log", "--no-notes", "--pretty=%p", "--max-count", "1", ref}
+		args := []string{"log", "--no-notes", "--pretty=%P", "--max-count", "1", ref}
 		return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
 			vals := make([]string, 0)
 			for index, field := range strings.Fields(string(output)) {
