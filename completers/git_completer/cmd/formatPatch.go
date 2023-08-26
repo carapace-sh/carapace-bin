@@ -65,15 +65,6 @@ func init() {
 	})
 
 	carapace.Gen(formatPatchCmd).PositionalCompletion(
-		carapace.ActionMultiParts("...", func(c carapace.Context) carapace.Action {
-			switch len(c.Parts) {
-			case 0:
-				return git.ActionRefs(git.RefOption{}.Default()).NoSpace()
-			case 1:
-				return git.ActionRefs(git.RefOption{}.Default())
-			default:
-				return carapace.ActionValues()
-			}
-		}),
+		git.ActionRefRange(git.RefOption{}.Default()),
 	)
 }
