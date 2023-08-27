@@ -1,4 +1,4 @@
-package action
+package bat
 
 import (
 	"strings"
@@ -7,6 +7,10 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
+// ActionLanguages completes languages
+//
+//	Batch File (bat,cmd)
+//	BibTeX (bib)
 func ActionLanguages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("bat", "--list-languages")(func(output []byte) carapace.Action {
@@ -21,15 +25,6 @@ func ActionLanguages() carapace.Action {
 				}
 			}
 			return carapace.ActionStyledValuesDescribed(values...)
-		})
-	})
-}
-
-func ActionThemes() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("bat", "--list-themes")(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
-			return carapace.ActionValues(lines[:len(lines)-1]...)
 		})
 	})
 }

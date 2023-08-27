@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/bat_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/bat"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -51,10 +51,10 @@ func init() {
 		"color":       carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"decorations": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"italic-text": carapace.ActionValues("never", "always").StyleF(style.ForKeyword),
-		"language":    action.ActionLanguages(),
+		"language":    bat.ActionLanguages(),
 		"paging":      carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"style":       carapace.ActionValues("auto", "full", "plain", "changes", "header", "grid", "numbers", "snip").UniqueList(","),
-		"theme":       action.ActionThemes(),
+		"theme":       bat.ActionThemes(),
 		"wrap":        carapace.ActionValues("auto", "never", "character"),
 	})
 
