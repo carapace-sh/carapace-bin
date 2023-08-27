@@ -45,23 +45,21 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 
 		return carapace.ActionValuesDescribed(v3Paths[method]...).
 			MultiPartsP("/", `{(.*)}`, func(placeholder string, matches map[string]string) carapace.Action {
+				fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
+
 				switch placeholder {
 				// TODO completion for other placeholders
 				case "{archive_format}":
 					return carapace.ActionValues("zip")
 				case "{artifact_id}":
-					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
 					return ActionWorkflowArtifactIds(cmd, "")
 				case "{assignee}":
-					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
 					return ActionAssignableUsers(cmd)
 				case "{branch}":
-					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
 					return ActionBranches(cmd)
 				case "{coc_key}":
 					return ActionCocs(cmd)
 				case "{environment_name}":
-					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
 					return ActionEnvironments(cmd)
 				case "{gist_id}":
 					return ActionGists(cmd)
@@ -72,7 +70,6 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{license}":
 					return gh.ActionLicenses(gh.HostOpts{})
 				case "{issue_number}":
-					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
 					return ActionIssues(cmd, IssueOpts{Open: true, Closed: true})
 				case "{owner}":
 					if strings.HasPrefix(c.Value, ":") {
@@ -85,7 +82,6 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{package_type}":
 					return ActionPackageTypes()
 				case "{pull_number}":
-					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
 					return ActionPullRequests(cmd, PullRequestOpts{Open: true, Closed: true, Merged: true})
 				case "{repo}":
 					if strings.HasPrefix(c.Value, ":") {
@@ -94,7 +90,6 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 						return gh.ActionRepositories(gh.OwnerOpts{Owner: matches["{owner}"]})
 					}
 				case "{tag}": // only used with releases
-					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
 					return ActionReleases(cmd)
 				case "{template_owner}": // ignore this as it is already provided by `{owner}`
 					return carapace.ActionValues()
@@ -103,7 +98,6 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{username}":
 					return gh.ActionUsers(gh.HostOpts{})
 				case "{workflow_id}":
-					fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
 					return ActionWorkflows(cmd, WorkflowOpts{Enabled: true, Disabled: true, Id: true})
 				default:
 					// static value or placeholder not yet handled
@@ -114,8 +108,10 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 }
 
 func fakeRepoFlag(cmd *cobra.Command, owner, repo string) {
-	cmd.Flags().String("repo", fmt.Sprintf("%v/%v", owner, repo), "fake repo flag")
-	cmd.Flag("repo").Changed = true
+	if cmd.Flag("repo") == nil {
+		cmd.Flags().String("repo", fmt.Sprintf("%v/%v", owner, repo), "fake repo flag")
+		cmd.Flag("repo").Changed = true
+	}
 }
 
 func ActionPackageTypes() carapace.Action {
