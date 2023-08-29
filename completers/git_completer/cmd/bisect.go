@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(bisectCmd)
 
 	carapace.Gen(bisect_skipCmd).PositionalAnyCompletion(
-		git.ActionRefRange(git.RefOption{}.Default()),
+		git.ActionRefRanges(git.RefOption{}.Default()),
 	)
 }

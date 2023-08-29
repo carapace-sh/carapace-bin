@@ -34,7 +34,7 @@ func init() {
 	})
 
 	carapace.Gen(rangeDiffCmd).PositionalCompletion(
-		git.ActionRefRange(git.RefOption{}.Default()),
+		git.ActionRefRanges(git.RefOption{}.Default()),
 		git.ActionRefs(git.RefOption{}.Default()),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if !strings.Contains(c.Args[0], "...") {

@@ -65,6 +65,6 @@ func init() {
 	})
 
 	carapace.Gen(formatPatchCmd).PositionalCompletion(
-		git.ActionRefRange(git.RefOption{}.Default()),
+		git.ActionRefRanges(git.RefOption{}.Default()),
 	)
 }
