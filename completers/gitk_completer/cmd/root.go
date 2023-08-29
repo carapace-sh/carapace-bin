@@ -51,7 +51,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		git.ActionRefRange(git.RefOption{}.Default()),
+		git.ActionRefRanges(git.RefOption{}.Default()),
 	)
 
 	carapace.Gen(rootCmd).DashAnyCompletion(

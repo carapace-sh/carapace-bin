@@ -107,7 +107,7 @@ func init() {
 			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
 			} else {
-				return git.ActionRefRange(git.RefOption{}.Default())
+				return git.ActionRefRanges(git.RefOption{}.Default())
 			}
 		}),
 	)

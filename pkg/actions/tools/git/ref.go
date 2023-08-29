@@ -86,11 +86,11 @@ func ActionRefs(refOption RefOption) carapace.Action {
 	})
 }
 
-// ActionRefRange completes refs as range
+// ActionRefRanges completes refs as range
 //
 //	HEAD..HEAD~17 (last commit msg)
 //	v.0.0.3^2~03...v0.0.4~03 (last commit msg)
-func ActionRefRange(opts RefOption) carapace.Action {
+func ActionRefRanges(opts RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		delimiter := ".."
 		if strings.Contains(c.Value, "...") && strings.Count(c.Value, "..") == 1 {

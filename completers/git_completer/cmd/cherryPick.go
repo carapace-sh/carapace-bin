@@ -52,6 +52,6 @@ func init() {
 	})
 
 	carapace.Gen(cherryPickCmd).PositionalAnyCompletion(
-		git.ActionRefRange(git.RefOption{}.Default()),
+		git.ActionRefRanges(git.RefOption{}.Default()),
 	)
 }
