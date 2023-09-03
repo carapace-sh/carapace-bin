@@ -11,6 +11,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	spec "github.com/rsteube/carapace-spec"
+	"github.com/rsteube/carapace-spec/pkg/command"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"
 )
@@ -33,7 +34,7 @@ func loadSpec(path string) (string, *spec.Command, error) {
 	return abs, &specCmd, nil
 }
 
-func addAliasCompletion(cmd *cobra.Command, specCommand spec.Command) {
+func addAliasCompletion(cmd *cobra.Command, specCommand command.Command) {
 	if specCommand.Run != "" &&
 		len(specCommand.Flags) == 0 &&
 		len(specCommand.PersistentFlags) == 0 &&
@@ -103,7 +104,7 @@ func specCompletion(path string, args ...string) (string, error) {
 	}
 
 	cmd := spec.ToCobra()
-	addAliasCompletion(cmd, *spec) // TODO put this somewhere else
+	addAliasCompletion(cmd, command.Command(*spec)) // TODO put this somewhere else
 
 	a := []string{"_carapace"}
 	a = append(a, args...)
