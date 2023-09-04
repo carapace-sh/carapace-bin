@@ -15,9 +15,10 @@ var repo_contributorsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(repo_contributorsCmd).Standalone()
-	repo_contributorsCmd.Flags().StringP("order", "o", "commits", "Return contributors ordered by name, email, or commits (orders by commit date) fields")
-	repo_contributorsCmd.Flags().IntP("page", "p", 1, "Page number")
-	repo_contributorsCmd.Flags().IntP("per-page", "P", 30, "Number of items to list per page.")
+
+	repo_contributorsCmd.Flags().StringP("order", "o", "", "Return contributors ordered by name, email, or commits (orders by commit date) fields")
+	repo_contributorsCmd.Flags().StringP("page", "p", "", "Page number")
+	repo_contributorsCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	repo_contributorsCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or full URL or git URL")
 	repo_contributorsCmd.Flags().StringP("sort", "s", "", "Return contributors sorted in asc or desc order")
 	repoCmd.AddCommand(repo_contributorsCmd)

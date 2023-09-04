@@ -8,13 +8,14 @@ import (
 
 var issue_noteCmd = &cobra.Command{
 	Use:     "note <issue-id>",
-	Short:   "Add a comment or note to an issue on GitLab",
+	Short:   "Comment on an issue in GitLab",
 	Aliases: []string{"comment"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_noteCmd).Standalone()
+
 	issue_noteCmd.Flags().StringP("message", "m", "", "Comment/Note message")
 	issueCmd.AddCommand(issue_noteCmd)
 

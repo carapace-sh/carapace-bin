@@ -13,5 +13,6 @@ var authCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(authCmd).Standalone()
+
 	rootCmd.AddCommand(authCmd)
 }

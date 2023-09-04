@@ -14,6 +14,7 @@ var mr_closeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mr_closeCmd).Standalone()
+
 	mrCmd.AddCommand(mr_closeCmd)
 
 	carapace.Gen(mr_closeCmd).PositionalAnyCompletion(

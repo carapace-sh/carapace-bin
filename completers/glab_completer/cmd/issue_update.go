@@ -14,9 +14,10 @@ var issue_updateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(issue_updateCmd).Standalone()
+
 	issue_updateCmd.Flags().StringSliceP("assignee", "a", []string{}, "assign users via username, prefix with '!' or '-' to remove from existing assignees, '+' to add, otherwise replace existing assignees with given users")
 	issue_updateCmd.Flags().BoolP("confidential", "c", false, "Make issue confidential")
-	issue_updateCmd.Flags().StringP("description", "d", "", "Issue description")
+	issue_updateCmd.Flags().StringP("description", "d", "", "Issue description; set to \"-\" to open an editor")
 	issue_updateCmd.Flags().StringSliceP("label", "l", []string{}, "add labels")
 	issue_updateCmd.Flags().Bool("lock-discussion", false, "Lock discussion on issue")
 	issue_updateCmd.Flags().StringP("milestone", "m", "", "title of the milestone to assign, pass \"\" or 0 to unassign")

@@ -14,7 +14,8 @@ var config_setCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_setCmd).Standalone()
-	config_setCmd.Flags().BoolP("global", "g", false, "write to global ~/.config/glab-cli/config.yml file rather than the repository .glab-cli/config/config")
+
+	config_setCmd.Flags().BoolP("global", "g", false, "Write to global ~/.config/glab-cli/config.yml file rather than the repository .git/glab-cli/config.yml file")
 	config_setCmd.Flags().StringP("host", "h", "", "Set per-host setting")
 	configCmd.AddCommand(config_setCmd)
 

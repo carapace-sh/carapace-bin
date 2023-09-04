@@ -15,6 +15,7 @@ var issue_subscribeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(issue_subscribeCmd).Standalone()
+
 	issueCmd.AddCommand(issue_subscribeCmd)
 
 	carapace.Gen(issue_subscribeCmd).PositionalCompletion(

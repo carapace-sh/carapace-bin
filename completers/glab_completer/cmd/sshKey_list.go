@@ -13,6 +13,9 @@ var sshKey_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sshKey_listCmd).Standalone()
-	sshKey_listCmd.Flags().Bool("show-id", false, "Show IDs of SSH Keys")
+
+	sshKey_listCmd.Flags().StringP("page", "p", "", "Page number")
+	sshKey_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page")
+	sshKey_listCmd.Flags().Bool("show-id", false, "Shows IDs of SSH Keys")
 	sshKeyCmd.AddCommand(sshKey_listCmd)
 }

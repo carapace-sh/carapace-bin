@@ -14,8 +14,10 @@ var repo_transferCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(repo_transferCmd).Standalone()
+
 	repo_transferCmd.Flags().StringP("target-namespace", "t", "", "The namespace where your project should be transferred to")
 	repo_transferCmd.Flags().BoolP("yes", "y", false, "Danger: Skip confirmation prompt and force transfer operation. Transfer cannot be undone.")
+	repo_transferCmd.MarkFlagRequired("target-namespace")
 	repoCmd.AddCommand(repo_transferCmd)
 
 	// TODO target-namespace completion (user/group ?)

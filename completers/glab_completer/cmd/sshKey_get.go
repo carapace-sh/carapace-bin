@@ -14,6 +14,7 @@ var sshKey_getCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sshKey_getCmd).Standalone()
+
 	sshKeyCmd.AddCommand(sshKey_getCmd)
 
 	carapace.Gen(sshKey_getCmd).PositionalCompletion(

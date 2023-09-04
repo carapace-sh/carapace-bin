@@ -10,13 +10,14 @@ import (
 
 var ci_runCmd = &cobra.Command{
 	Use:     "run [flags]",
-	Short:   "Create or run a new CI pipeline",
+	Short:   "Create or run a new CI/CD pipeline",
 	Aliases: []string{"create"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(ci_runCmd).Standalone()
+
 	ci_runCmd.Flags().StringP("branch", "b", "", "Create pipeline on branch/ref <string>")
 	ci_runCmd.Flags().StringSlice("variables", []string{}, "Pass variables to pipeline in format <key>:<value>")
 	ci_runCmd.Flags().StringSlice("variables-env", []string{}, "Pass variables to pipeline in format <key>:<value>")

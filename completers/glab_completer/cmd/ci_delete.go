@@ -8,12 +8,14 @@ import (
 
 var ci_deleteCmd = &cobra.Command{
 	Use:   "delete <id> [flags]",
-	Short: "Delete a CI pipeline",
+	Short: "Delete a CI/CD pipeline",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(ci_deleteCmd).Standalone()
+
+	ci_deleteCmd.Flags().Bool("dry-run", false, "simulate process, but do not delete anything")
 	ci_deleteCmd.Flags().StringP("status", "s", "", "delete pipelines by status: {running|pending|success|failed|canceled|skipped|created|manual}")
 	ciCmd.AddCommand(ci_deleteCmd)
 

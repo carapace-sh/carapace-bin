@@ -13,5 +13,6 @@ var aliasCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(aliasCmd).Standalone()
+
 	rootCmd.AddCommand(aliasCmd)
 }

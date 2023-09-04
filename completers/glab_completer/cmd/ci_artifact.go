@@ -7,7 +7,7 @@ import (
 
 var ci_artifactCmd = &cobra.Command{
 	Use:     "artifact <refName> <jobName> [flags]",
-	Short:   "Download all Artifacts from the last pipeline",
+	Short:   "Download all artifacts from the last pipeline",
 	Aliases: []string{"push"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -15,7 +15,7 @@ var ci_artifactCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ci_artifactCmd).Standalone()
 
-	ci_artifactCmd.Flags().StringP("path", "p", "./", "Path to download the Artifact files")
+	ci_artifactCmd.Flags().StringP("path", "p", "", "Path to download the artifact files")
 	ciCmd.AddCommand(ci_artifactCmd)
 
 	carapace.Gen(ci_artifactCmd).FlagCompletion(carapace.ActionMap{

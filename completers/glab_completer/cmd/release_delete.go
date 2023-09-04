@@ -14,6 +14,7 @@ var release_deleteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(release_deleteCmd).Standalone()
+
 	release_deleteCmd.Flags().BoolP("with-tag", "t", false, "Delete associated tag")
 	release_deleteCmd.Flags().BoolP("yes", "y", false, "Skip confirmation prompt")
 	releaseCmd.AddCommand(release_deleteCmd)

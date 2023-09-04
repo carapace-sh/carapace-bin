@@ -14,9 +14,11 @@ var auth_loginCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(auth_loginCmd).Standalone()
+
 	auth_loginCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitLab instance to authenticate with")
 	auth_loginCmd.Flags().Bool("stdin", false, "Read token from standard input")
 	auth_loginCmd.Flags().StringP("token", "t", "", "Your GitLab access token")
+	auth_loginCmd.Flags().Bool("use-keyring", false, "Store token in your operating system's keyring")
 	authCmd.AddCommand(auth_loginCmd)
 
 	carapace.Gen(auth_loginCmd).FlagCompletion(carapace.ActionMap{

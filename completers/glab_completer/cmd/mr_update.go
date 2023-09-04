@@ -14,8 +14,9 @@ var mr_updateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mr_updateCmd).Standalone()
+
 	mr_updateCmd.Flags().StringSliceP("assignee", "a", []string{}, "assign users via username, prefix with '!' or '-' to remove from existing assignees, '+' to add, otherwise replace existing assignees with given users")
-	mr_updateCmd.Flags().StringP("description", "d", "", "merge request description")
+	mr_updateCmd.Flags().StringP("description", "d", "", "merge request description; set to \"-\" to open an editor")
 	mr_updateCmd.Flags().Bool("draft", false, "Mark merge request as a draft")
 	mr_updateCmd.Flags().StringSliceP("label", "l", []string{}, "add labels")
 	mr_updateCmd.Flags().Bool("lock-discussion", false, "Lock discussion on merge request")

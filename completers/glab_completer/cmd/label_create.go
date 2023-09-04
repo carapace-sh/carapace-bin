@@ -16,9 +16,11 @@ var label_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(label_createCmd).Standalone()
-	label_createCmd.Flags().StringP("color", "c", "#428BCA", "Color of label in plain or HEX code. (Default: #428BCA)")
+
+	label_createCmd.Flags().StringP("color", "c", "", "Color of label in plain or HEX code.")
 	label_createCmd.Flags().StringP("description", "d", "", "Label description")
 	label_createCmd.Flags().StringP("name", "n", "", "Name of label")
+	label_createCmd.MarkFlagRequired("name")
 	labelCmd.AddCommand(label_createCmd)
 
 	carapace.Gen(label_createCmd).FlagCompletion(carapace.ActionMap{

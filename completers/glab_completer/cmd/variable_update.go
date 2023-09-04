@@ -14,11 +14,12 @@ var variable_updateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(variable_updateCmd).Standalone()
+
 	variable_updateCmd.Flags().StringP("group", "g", "", "Set variable for a group")
 	variable_updateCmd.Flags().BoolP("masked", "m", false, "Whether the variable is masked")
 	variable_updateCmd.Flags().BoolP("protected", "p", false, "Whether the variable is protected")
-	variable_updateCmd.Flags().StringP("scope", "s", "*", "The environment_scope of the variable. All (*), or specific environments")
-	variable_updateCmd.Flags().StringP("type", "t", "env_var", "The type of a variable: {env_var|file}")
+	variable_updateCmd.Flags().StringP("scope", "s", "", "The environment_scope of the variable. All (*), or specific environments")
+	variable_updateCmd.Flags().StringP("type", "t", "", "The type of a variable: {env_var|file}")
 	variable_updateCmd.Flags().StringP("value", "v", "", "The value of a variable")
 	variableCmd.AddCommand(variable_updateCmd)
 
