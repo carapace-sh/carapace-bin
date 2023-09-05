@@ -14,6 +14,7 @@ var issue_board_viewCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(issue_board_viewCmd).Standalone()
+
 	issue_board_viewCmd.Flags().StringP("assignee", "a", "", "Filter board issues by assignee username")
 	issue_board_viewCmd.Flags().StringSliceP("labels", "l", []string{}, "Filter board issues by labels (comma separated)")
 	issue_board_viewCmd.Flags().StringP("milestone", "m", "", "Filter board issues by milestone")

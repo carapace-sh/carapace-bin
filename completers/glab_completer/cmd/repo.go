@@ -14,5 +14,6 @@ var repoCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(repoCmd).Standalone()
+
 	rootCmd.AddCommand(repoCmd)
 }

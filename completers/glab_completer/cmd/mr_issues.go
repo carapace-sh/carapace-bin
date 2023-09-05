@@ -15,6 +15,7 @@ var mr_issuesCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mr_issuesCmd).Standalone()
+
 	mrCmd.AddCommand(mr_issuesCmd)
 
 	carapace.Gen(mr_issuesCmd).PositionalAnyCompletion(

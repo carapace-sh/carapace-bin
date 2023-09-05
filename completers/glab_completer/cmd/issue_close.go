@@ -7,13 +7,14 @@ import (
 )
 
 var issue_closeCmd = &cobra.Command{
-	Use:   "close <id>",
+	Use:   "close [<id> | <url>] [flags]",
 	Short: "Close an issue",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_closeCmd).Standalone()
+
 	issueCmd.AddCommand(issue_closeCmd)
 
 	carapace.Gen(issue_closeCmd).PositionalCompletion(

@@ -14,6 +14,8 @@ var mr_rebaseCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mr_rebaseCmd).Standalone()
+
+	mr_rebaseCmd.Flags().Bool("skip-ci", false, "Rebase merge request while skipping CI/CD pipeline.")
 	mrCmd.AddCommand(mr_rebaseCmd)
 
 	carapace.Gen(mr_rebaseCmd).PositionalCompletion(

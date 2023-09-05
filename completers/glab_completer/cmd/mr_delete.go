@@ -15,6 +15,7 @@ var mr_deleteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mr_deleteCmd).Standalone()
+
 	mrCmd.AddCommand(mr_deleteCmd)
 
 	carapace.Gen(mr_deleteCmd).PositionalAnyCompletion(

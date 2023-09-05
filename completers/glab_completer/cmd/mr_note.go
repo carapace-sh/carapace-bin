@@ -15,6 +15,7 @@ var mr_noteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mr_noteCmd).Standalone()
+
 	mr_noteCmd.Flags().StringP("message", "m", "", "Comment/Note message")
 	mr_noteCmd.Flags().Bool("unique", false, "Don't create a comment/note if it already exists")
 	mrCmd.AddCommand(mr_noteCmd)

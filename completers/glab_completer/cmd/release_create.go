@@ -14,7 +14,8 @@ var release_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(release_createCmd).Standalone()
-	release_createCmd.Flags().StringP("assets-links", "a", "", "`JSON` string representation of assets links (e.g. `--assets='[{\"name\": \"Asset1\", \"url\":\"https://<domain>/some/location/1\", \"link_type\": \"other\", \"filepath\": \"path/to/file\"}]')`")
+
+	release_createCmd.Flags().StringP("assets-links", "a", "", "`JSON` string representation of assets links (e.g. `--assets-links='[{\"name\": \"Asset1\", \"url\":\"https://<domain>/some/location/1\", \"link_type\": \"other\", \"filepath\": \"path/to/file\"}]')`")
 	release_createCmd.Flags().StringSliceP("milestone", "m", []string{}, "The title of each milestone the release is associated with")
 	release_createCmd.Flags().StringP("name", "n", "", "The release name or title")
 	release_createCmd.Flags().StringP("notes", "N", "", "The release notes/description. You can use Markdown")

@@ -13,8 +13,9 @@ var completionCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(completionCmd).Standalone()
+
 	completionCmd.Flags().Bool("no-desc", false, "Do not include shell completion description")
-	completionCmd.Flags().StringP("shell", "s", "bash", "Shell type: {bash|zsh|fish|powershell}")
+	completionCmd.Flags().StringP("shell", "s", "", "Shell type: {bash|zsh|fish|powershell}")
 	rootCmd.AddCommand(completionCmd)
 
 	carapace.Gen(completionCmd).FlagCompletion(carapace.ActionMap{

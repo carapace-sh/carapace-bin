@@ -14,6 +14,7 @@ var issue_boardCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(issue_boardCmd).Standalone()
+
 	issue_boardCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the OWNER/REPO format or the project ID. Supports group namespaces")
 	issueCmd.AddCommand(issue_boardCmd)
 

@@ -14,6 +14,7 @@ var configCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(configCmd).Standalone()
-	configCmd.Flags().BoolP("global", "g", false, "use global config file")
+
+	configCmd.Flags().BoolP("global", "g", false, "Use global config file")
 	rootCmd.AddCommand(configCmd)
 }

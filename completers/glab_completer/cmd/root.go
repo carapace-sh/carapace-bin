@@ -8,8 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "glab <command> <subcommand> [flags]",
-	Short: "A GitLab CLI Tool",
-	Long:  "https://glab.readthedocs.io/en/latest/",
+	Short: "A GitLab CLI tool.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -19,6 +18,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.PersistentFlags().Bool("help", false, "Show help for command")
 	rootCmd.Flags().BoolP("version", "v", false, "show glab version information")
 

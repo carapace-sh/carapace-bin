@@ -7,7 +7,7 @@ import (
 )
 
 var issue_reopenCmd = &cobra.Command{
-	Use:     "reopen <id>",
+	Use:     "reopen [<id> | <url>] [flags]",
 	Short:   "Reopen a closed issue",
 	Aliases: []string{"open"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,6 +15,7 @@ var issue_reopenCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(issue_reopenCmd).Standalone()
+
 	issueCmd.AddCommand(issue_reopenCmd)
 
 	carapace.Gen(issue_reopenCmd).PositionalCompletion(
