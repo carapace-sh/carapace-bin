@@ -19,4 +19,8 @@ func init() {
 	alpha_auth_whoamiCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	alpha_auth_whoamiCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
 	alpha_authCmd.AddCommand(alpha_auth_whoamiCmd)
+
+	carapace.Gen(alpha_auth_whoamiCmd).FlagCompletion(carapace.ActionMap{
+		"template": carapace.ActionFiles(),
+	})
 }

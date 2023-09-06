@@ -23,7 +23,7 @@ func init() {
 	top_podCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
 	top_podCmd.Flags().String("sort-by", "", "If non-empty, sort pods list using specified field. The field can be either 'cpu' or 'memory'.")
 	top_podCmd.Flags().Bool("sum", false, "Print the sum of the resource usage")
-	top_podCmd.Flags().Bool("use-protocol-buffers", true, "Enables using protocol-buffers to access Metrics API.")
+	top_podCmd.Flags().Bool("use-protocol-buffers", false, "Enables using protocol-buffers to access Metrics API.")
 	topCmd.AddCommand(top_podCmd)
 
 	carapace.Gen(top_podCmd).FlagCompletion(carapace.ActionMap{

@@ -14,7 +14,7 @@ var config_setCmd = &cobra.Command{
 func init() {
 	carapace.Gen(config_setCmd).Standalone()
 
-	config_setCmd.Flags().Int("set-raw-bytes", 0, "When writing a []byte PROPERTY_VALUE, write the given string directly without base64 decoding.")
-	config_setCmd.Flag("set-raw-bytes").NoOptDefVal = "true"
+	config_setCmd.Flags().String("set-raw-bytes", "", "When writing a []byte PROPERTY_VALUE, write the given string directly without base64 decoding.")
+	config_setCmd.Flag("set-raw-bytes").NoOptDefVal = " "
 	configCmd.AddCommand(config_setCmd)
 }

@@ -16,9 +16,15 @@ var explainCmd = &cobra.Command{
 func init() {
 	carapace.Gen(explainCmd).Standalone()
 
-	explainCmd.Flags().String("api-version", "", "Get different explanations for particular API version (API group/version)")
-	explainCmd.Flags().Bool("recursive", false, "Print the fields of fields (Currently only 1 level deep)")
+	explainCmd.Flags().String("api-version", "", "Use given api-version (group/version) of the resource.")
+	explainCmd.Flags().String("output", "", "Format in which to render the schema. Valid values are: (plaintext, plaintext-openapiv2).")
+	explainCmd.Flags().Bool("recursive", false, "When true, print the name of all the fields recursively. Otherwise, print the available fields with their description.")
 	rootCmd.AddCommand(explainCmd)
+
+	// TODO api-version
+	carapace.Gen(explainCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("plaintext", "plaintext-openapiv2"),
+	})
 
 	carapace.Gen(explainCmd).PositionalCompletion(
 		kubectl.ActionApiResources(),

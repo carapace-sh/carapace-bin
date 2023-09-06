@@ -17,8 +17,8 @@ func init() {
 
 	apiResourcesCmd.Flags().String("api-group", "", "Limit to resources in the specified API group.")
 	apiResourcesCmd.Flags().Bool("cached", false, "Use the cached list of resources if available.")
-	apiResourcesCmd.Flags().StringSlice("categories", []string{}, "Limit to resources that belong the the specified categories.")
-	apiResourcesCmd.Flags().Bool("namespaced", true, "If false, non-namespaced resources will be returned, otherwise returning namespaced resources by default.")
+	apiResourcesCmd.Flags().StringSlice("categories", []string{}, "Limit to resources that belong to the specified categories.")
+	apiResourcesCmd.Flags().Bool("namespaced", false, "If false, non-namespaced resources will be returned, otherwise returning namespaced resources by default.")
 	apiResourcesCmd.Flags().Bool("no-headers", false, "When using the default or custom-column output format, don't print headers (default print headers).")
 	apiResourcesCmd.Flags().StringP("output", "o", "", "Output format. One of: (wide, name).")
 	apiResourcesCmd.Flags().String("sort-by", "", "If non-empty, sort list of resources using specified field. The field can be either 'name' or 'kind'.")

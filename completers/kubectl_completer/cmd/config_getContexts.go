@@ -6,7 +6,7 @@ import (
 )
 
 var config_getContextsCmd = &cobra.Command{
-	Use:   "get-contexts",
+	Use:   "get-contexts [(-o|--output=)name)]",
 	Short: "Describe one or many contexts",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
