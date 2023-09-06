@@ -45,3 +45,13 @@ func ActionWorkflowEvents() carapace.Action {
 		"workflow_run",
 	)
 }
+
+// ActionWorkflowFields completes workflow fields.
+func ActionWorkflowFields() carapace.Action {
+	return carapace.ActionValues(
+		"id",
+		"name",
+		"path",
+		"state",
+	)
+}
