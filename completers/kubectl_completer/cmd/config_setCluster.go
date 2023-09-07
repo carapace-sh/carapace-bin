@@ -15,13 +15,13 @@ func init() {
 	carapace.Gen(config_setClusterCmd).Standalone()
 
 	config_setClusterCmd.Flags().String("certificate-authority", "", "Path to certificate-authority file for the cluster entry in kubeconfig")
-	config_setClusterCmd.Flags().Int("embed-certs", 0, "embed-certs for the cluster entry in kubeconfig")
-	config_setClusterCmd.Flags().Int("insecure-skip-tls-verify", 0, "insecure-skip-tls-verify for the cluster entry in kubeconfig")
+	config_setClusterCmd.Flags().String("embed-certs", "", "embed-certs for the cluster entry in kubeconfig")
+	config_setClusterCmd.Flags().String("insecure-skip-tls-verify", "", "insecure-skip-tls-verify for the cluster entry in kubeconfig")
 	config_setClusterCmd.Flags().String("proxy-url", "", "proxy-url for the cluster entry in kubeconfig")
 	config_setClusterCmd.Flags().String("server", "", "server for the cluster entry in kubeconfig")
 	config_setClusterCmd.Flags().String("tls-server-name", "", "tls-server-name for the cluster entry in kubeconfig")
-	config_setClusterCmd.Flag("embed-certs").NoOptDefVal = "true"
-	config_setClusterCmd.Flag("insecure-skip-tls-verify").NoOptDefVal = "true"
+	config_setClusterCmd.Flag("embed-certs").NoOptDefVal = " "
+	config_setClusterCmd.Flag("insecure-skip-tls-verify").NoOptDefVal = " "
 	configCmd.AddCommand(config_setClusterCmd)
 
 	carapace.Gen(config_setClusterCmd).FlagCompletion(carapace.ActionMap{
