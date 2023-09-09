@@ -21,41 +21,51 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().String("color", "", "Specify when to use colored output.")
-	rootCmd.Flags().String("decorations", "", "Specify when to use the decorations that have been specified via '--style'.")
-	rootCmd.Flags().BoolP("diff", "d", false, "Only show lines that have been added/removed/modified with respect to the Git index.")
-	rootCmd.Flags().String("diff-context", "", "Include N lines of context around added/removed/modified lines when using '--diff'.")
-	rootCmd.Flags().String("file-name", "", "Specify the name to display for a file.")
-	rootCmd.Flags().BoolP("help", "h", false, "Print this help message.")
-	rootCmd.Flags().StringP("highlight-line", "H", "", "Highlight the specified line ranges with a different background color.")
-	rootCmd.Flags().String("italic-text", "", "Specify when to use ANSI sequences for italic text in the output.")
-	rootCmd.Flags().StringP("language", "l", "", "Explicitly set the language for syntax highlighting.")
-	rootCmd.Flags().StringP("line-range", "r", "", "Only print the specified range of lines for each file.")
-	rootCmd.Flags().BoolP("list-languages", "L", false, "Display a list of supported languages for syntax highlighting.")
-	rootCmd.Flags().Bool("list-themes", false, "Display a list of supported themes for syntax highlighting.")
-	rootCmd.Flags().StringP("map-syntax", "m", "", "Map a glob pattern to an existing syntax name.")
-	rootCmd.Flags().BoolP("number", "n", false, "Only show line numbers, no other decorations.")
-	rootCmd.Flags().String("pager", "", "Determine which pager is used.")
-	rootCmd.Flags().String("paging", "", "Specify when to use the pager.")
-	rootCmd.Flags().BoolP("plain", "p", false, "Only show plain style, no decorations. This is an alias for '--style=plain'.")
-	rootCmd.Flags().BoolP("show-all", "A", false, "Show non-printable characters like space, tab or newline.")
-	rootCmd.Flags().String("style", "", "Configure which elements to display in addition to the file contents.")
-	rootCmd.Flags().String("tabs", "", "Set the tab width to T spaces.")
-	rootCmd.Flags().String("terminal-width", "", "Explicitly set the width of the terminal instead of determining it automatically.")
-	rootCmd.Flags().String("theme", "", "Set the theme for syntax highlighting.")
-	rootCmd.Flags().BoolP("unbuffered", "u", false, "This option exists for POSIX-compliance reasons ('u' is for 'unbuffered').")
-	rootCmd.Flags().BoolP("version", "V", false, "Show version information.")
-	rootCmd.Flags().String("wrap", "", "Specify the text-wrapping mode (*auto*, never, character).")
+	rootCmd.Flags().BoolP("chop-long-lines", "S", false, "Truncate all lines longer than screen width")
+	rootCmd.Flags().String("color", "", "When to use colors")
+	rootCmd.Flags().String("decorations", "", "When to show the decorations")
+	rootCmd.Flags().BoolP("diff", "d", false, "Only show lines that have been added/removed/modified")
+	rootCmd.Flags().String("file-name", "", "Specify the name to display for a file")
+	rootCmd.Flags().BoolP("help", "h", false, "Print help")
+	rootCmd.Flags().StringP("highlight-line", "H", "", "Highlight lines N through M")
+	rootCmd.Flags().String("italic-text", "", "Use italics in output")
+	rootCmd.Flags().StringP("language", "l", "", "Set the language for syntax highlighting")
+	rootCmd.Flags().StringP("line-range", "r", "", "Only print the lines from N to M")
+	rootCmd.Flags().BoolP("list-languages", "L", false, "Display all supported languages")
+	rootCmd.Flags().Bool("list-themes", false, "Display all supported highlighting themes")
+	rootCmd.Flags().StringSliceP("map-syntax", "m", []string{}, "Use the specified syntax for files matching the glob pattern")
+	rootCmd.Flags().String("nonprintable-notation", "", "Set notation for non-printable characters")
+	rootCmd.Flags().BoolP("number", "n", false, "Show line numbers")
+	rootCmd.Flags().String("paging", "", "Specify when to use the pager, or use `-P` to disable")
+	rootCmd.Flags().CountP("plain", "p", "Show plain style")
+	rootCmd.Flags().BoolP("show-all", "A", false, "Show non-printable characters")
+	rootCmd.Flags().String("style", "", "Comma-separated list of style elements to display")
+	rootCmd.Flags().String("tabs", "", "Set the tab width to T spaces")
+	rootCmd.Flags().String("theme", "", "Set the color theme for syntax highlighting")
+	rootCmd.Flags().BoolP("version", "V", false, "Print version")
+	rootCmd.Flags().String("wrap", "", "Specify the text-wrapping mode")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color":       carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"decorations": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"italic-text": carapace.ActionValues("never", "always").StyleF(style.ForKeyword),
 		"language":    bat.ActionLanguages(),
-		"paging":      carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"style":       carapace.ActionValues("auto", "full", "plain", "changes", "header", "grid", "numbers", "snip").UniqueList(","),
-		"theme":       bat.ActionThemes(),
-		"wrap":        carapace.ActionValues("auto", "never", "character"),
+		"map-syntax": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValues()
+			default:
+				return bat.ActionLanguages()
+			}
+		}),
+		"nonprintable-notation": carapace.ActionValuesDescribed(
+			"caret", "Use character sequences like ˆG, ˆJ, ˆ@, .. to identify non-printable characters",
+			"unicode", "Use special Unicode code points to identify non-printable characters",
+		),
+		"paging": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"style":  bat.ActionStyles().UniqueList(","),
+		"theme":  bat.ActionThemes(),
+		"wrap":   carapace.ActionValues("auto", "never", "character"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
