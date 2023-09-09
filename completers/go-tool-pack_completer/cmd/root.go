@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "go-tool-pack",
 	Short: "Pack is a simple version of the traditional Unix ar tool",
+	Long:  "https://pkg.go.dev/cmd/pack",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "nix",
 	Short: "a tool for reproducible and declarative configuration management",
+	Long:  "https://github.com/NixOS/nix",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "fix",
+	Long:  "https://pkg.go.dev/cmd/fix",
 	Short: "Fix finds Go programs that use old APIs",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
