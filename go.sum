@@ -5,8 +5,8 @@ github.com/iancoleman/orderedmap v0.0.0-20190318233801-ac98e3ecb4b0 h1:i462o439Z
 github.com/iancoleman/orderedmap v0.0.0-20190318233801-ac98e3ecb4b0/go.mod h1:N0Wam8K1arqPXNWjMo21EXnBPOPp36vB07FNRdD2geA=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
-github.com/invopop/jsonschema v0.7.0 h1:2vgQcBz1n256N+FpX3Jq7Y17AjYt46Ig3zIWyy770So=
-github.com/invopop/jsonschema v0.7.0/go.mod h1:O9uiLokuu0+MGFlyiaqtWxwqJm41/+8Nj0lD7A36YH0=
+github.com/invopop/jsonschema v0.8.0 h1:9Vblm5uNqURXUSaX0QUYcI/Hcu5rrvOz5MbpWgw0VkM=
+github.com/invopop/jsonschema v0.8.0/go.mod h1:O9uiLokuu0+MGFlyiaqtWxwqJm41/+8Nj0lD7A36YH0=
 github.com/pelletier/go-toml v1.9.5 h1:4yBQzkHv+7BHq2PQUZF3Mx0IYxG7LsP222s7Agd3ve8=
 github.com/pelletier/go-toml v1.9.5/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCkoOuaOx1Y+c=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
@@ -20,8 +20,8 @@ github.com/rsteube/carapace-pflag v0.2.0 h1:EYqFO9Haib3NDCPqKu0VxOGi9YQBkXk1IzlH
 github.com/rsteube/carapace-pflag v0.2.0/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
 github.com/rsteube/carapace-shlex v0.0.4 h1:3GVn8PaM2RCxPTAiwVy9vDQI8Mi7DqrbdpDgf5ZzQmY=
 github.com/rsteube/carapace-shlex v0.0.4/go.mod h1:zPw1dOFwvLPKStUy9g2BYKanI6bsQMATzDMYQQybo3o=
-github.com/rsteube/carapace-spec v0.10.4 h1:k4QSjSk/EAdCUGinbR2/UU2soxP5R/NudNVz4LvoQUM=
-github.com/rsteube/carapace-spec v0.10.4/go.mod h1:fBSUVcQ9PQ7m0d1W/ovGHRvY1cliphCMTFtk1sH3X9k=
+github.com/rsteube/carapace-spec v0.10.5 h1:ZA62YgYpm/0y6TsbGWqpqpw5Xkq6CkfnW0fz4K9ozxw=
+github.com/rsteube/carapace-spec v0.10.5/go.mod h1:g6sfFykdrYbK3PEIc0rFrFFffPMsoGFSTTp6uaZEB0c=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/spf13/cobra v1.7.0 h1:hyqWnYt1ZQShIddO5kBpj3vu05/++x6tJ6dg8EC572I=
 github.com/spf13/cobra v1.7.0/go.mod h1:uLxZILRyS/50WlhOIKD7W6V5bgeIt+4sICxh6uRMrb0=
