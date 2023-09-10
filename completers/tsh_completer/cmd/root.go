@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tsh",
 	Short: "Teleport Command Line Client",
+	Long:  "https://github.com/gravitational/teleport",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
