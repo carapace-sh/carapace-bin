@@ -69,7 +69,7 @@ func init() {
 		"outputdir":    carapace.ActionDirectories(),
 		"run":          golang.ActionTests(golang.TestOpts{}.Default()).UniqueList("/"),
 		"shuffle":      carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
-		"skip":         golang.ActionTests(golang.TestOpts{}.Default()).List("/"),
+		"skip":         golang.ActionTests(golang.TestOpts{}.Default()).UniqueList("/"),
 		"trace":        carapace.ActionFiles(),
 		"vet": carapace.Batch(
 			carapace.ActionValues("off").StyleF(style.ForKeyword),
