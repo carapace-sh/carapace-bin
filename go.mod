@@ -1,6 +1,6 @@
 module github.com/rsteube/carapace-bin
 
-go 1.21
+go 1.21.1
 
 require (
 	github.com/pelletier/go-toml v1.9.5

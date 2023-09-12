@@ -9,14 +9,15 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/shim"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/ps"
 	"github.com/rsteube/carapace/pkg/style"
@@ -58,163 +59,152 @@ var rootCmd = &cobra.Command{
   Config is written to [%v/carapace].
   Specs are loaded from [%v/carapace/specs].
   `, suppressErr(xdg.UserCacheDir), suppressErr(xdg.UserConfigDir), suppressErr(xdg.UserConfigDir)),
-	Args:      cobra.MinimumNArgs(1),
-	ValidArgs: completers.Names(),
-	Run: func(cmd *cobra.Command, args []string) {
-		// since flag parsing is disabled do this manually
-		switch args[0] {
-		case "--macros":
-			if len(args) > 1 {
-				printMacro(args[1])
-			} else {
-				printMacros()
-			}
-		case "-h", "--help":
-			cmd.Help()
-		case "-v", "--version":
-			println(cmd.Version)
-		case "--list":
-			printCompleters()
-		case "--list=json":
-			printCompletersJson()
-		case "--run":
-			_, spec, err := loadSpec(args[1])
-			if err != nil {
-				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-				os.Exit(1)
-			}
-
-			cmd := spec.ToCobra()
-			cmd.SetArgs(args[2:])
-			cmd.Execute() // TODO handle error?
-		case "--schema":
-			if schema, err := spec.Schema(); err != nil {
-				fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
-			} else {
-				fmt.Fprintln(cmd.OutOrStdout(), schema)
-			}
-		case "--scrape":
-			if len(args) > 1 {
-				scrape(args[1])
-			}
-		case "--style":
-			if len(args) > 1 {
-				if err := setStyle(args[1]); err != nil {
-					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-				}
-			}
-		case "_carapace":
-			shell := ps.DetermineShell()
-			if len(args) > 1 {
-				shell = args[1]
-			}
-			if len(args) <= 2 {
-				if err := shim.Update(); err != nil {
-					fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
-				}
-
-				if err := updateSchema(); err != nil { // TODO do this only if needed
-					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-				}
-
-				if err := createOverlayDir(); err != nil { // TODO do this only if needed
-					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-				}
-			}
-			switch shell {
-			case "bash":
-				fmt.Fprintln(cmd.OutOrStdout(), bash_lazy(completers.Names()))
-			case "bash-ble":
-				fmt.Fprintln(cmd.OutOrStdout(), bash_ble_lazy(completers.Names()))
-			case "elvish":
-				fmt.Fprintln(cmd.OutOrStdout(), elvish_lazy(completers.Names()))
-			case "fish":
-				fmt.Fprintln(cmd.OutOrStdout(), fish_lazy(completers.Names()))
-			case "nushell":
-				fmt.Fprintln(cmd.OutOrStdout(), nushell_lazy(completers.Names()))
-			case "oil":
-				fmt.Fprintln(cmd.OutOrStdout(), oil_lazy(completers.Names()))
-			case "powershell":
-				fmt.Fprintln(cmd.OutOrStdout(), powershell_lazy(completers.Names()))
-			case "tcsh":
-				fmt.Fprintln(cmd.OutOrStdout(), tcsh_lazy(completers.Names()))
-			case "xonsh":
-				fmt.Fprintln(cmd.OutOrStdout(), xonsh_lazy(completers.Names()))
-			case "zsh":
-				fmt.Fprintln(cmd.OutOrStdout(), zsh_lazy(completers.Names()))
-			default:
-				fmt.Fprintln(os.Stderr, "could not determine shell")
-			}
-		default:
-			if overlayPath, err := overlayPath(args[0]); err == nil && len(args) > 2 { // and arg[1] is a known shell
-				cmd := &cobra.Command{
-					DisableFlagParsing: true,
-					CompletionOptions: cobra.CompletionOptions{
-						DisableDefaultCmd: true,
-					},
-				}
-
-				// TODO yuck
-				command := args[0]
-				shell := args[1]
-				args[0] = "_carapace"
-				args[1] = "export"
-				os.Args[1] = "_carapace"
-				os.Args[2] = "export"
-				os.Setenv("CARAPACE_LENIENT", "1")
-
-				carapace.Gen(cmd).PositionalAnyCompletion(
-					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						batch := carapace.Batch()
-						specPath, err := completers.SpecPath(command)
-						if err != nil {
-							batch = append(batch, carapace.ActionImport([]byte(invokeCompleter(command))))
-						} else {
-							out, err := specCompletion(specPath, args[1:]...)
-							if err != nil {
-								return carapace.ActionMessage(err.Error())
-							}
-
-							batch = append(batch, carapace.ActionImport([]byte(out)))
-						}
-
-						batch = append(batch, overlayCompletion(overlayPath, args[1:]...))
-						return batch.ToA()
-					}),
-				)
-
-				cmd.SetArgs(append([]string{"_carapace", shell}, args[2:]...))
-				cmd.Execute()
-			} else {
-				if specPath, err := completers.SpecPath(args[0]); err == nil {
-					out, err := specCompletion(specPath, args[1:]...)
-					if err != nil {
-						fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-						return
-					}
-
-					// TODO revert the patching from specCompletion to use the integrated version for overlay to work (should move this somewhere else - best in specCompletion)
-					// TODO only patch completion script
-					out = strings.Replace(out, fmt.Sprintf("--spec '%v'", specPath), args[0], -1)
-					out = strings.Replace(out, fmt.Sprintf("'--spec', '%v'", specPath), fmt.Sprintf("'%v'", args[0]), -1) // xonsh callback
-					fmt.Fprint(cmd.OutOrStdout(), out)
-				} else {
-					fmt.Print(invokeCompleter(args[0]))
-				}
-			}
-		}
-
-	},
-	FParseErrWhitelist: cobra.FParseErrWhitelist{
-		UnknownFlags: true,
-	},
-	DisableFlagParsing: true,
 	CompletionOptions: cobra.CompletionOptions{
 		DisableDefaultCmd: true,
 	},
+	RunE: func(cmd *cobra.Command, args []string) error {
+		if len(os.Args) == 1 {
+			return cmd.Usage()
+		}
+
+		switch {
+		case cmd.Flag("list").Changed:
+			// TODO pass value to printCompleters and handle variants there
+			switch cmd.Flag("list").Value.String() {
+			case "json":
+				printCompletersJson()
+			default:
+				printCompleters()
+			}
+
+		}
+
+		return nil
+	},
+}
+
+func Execute(version string) error {
+	rootCmd.Version = version
+	return rootCmd.Execute()
+}
+
+func init() {
+	rootCmd.Flags().SetInterspersed(false)
+
+	rootCmd.Flags().Bool("macros", false, "TODO")
+	rootCmd.Flags().String("list", "", "list completers")
+	rootCmd.Flags().String("run", "", "run spec")
+	rootCmd.Flags().String("schema", "", "TODO") // TODO
+	rootCmd.Flags().String("scrape", "", "scrape spec to go code")
+	rootCmd.Flags().String("style", "", "set style")
+
+	rootCmd.Flag("list").NoOptDefVal = " "
+
+	rootCmd.MarkFlagsMutuallyExclusive(
+		"macros",
+		"list",
+		"run",
+		"schema",
+		"scrape",
+		"style",
+	)
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"list":   carapace.ActionValues("json"),
+		"run":    carapace.ActionFiles(),
+		"scrape": carapace.ActionFiles(),
+		"style":  carapace.ActionStyleConfig(),
+	})
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		action.ActionCompleters(), // TODO not when flags are set
+	)
+
+	if len(os.Args) > 1 && !strings.HasPrefix(os.Args[1], "-") {
+		// TODO needs to be add only for current completer/spec
+		rootCmd.AddCommand(&cobra.Command{
+			Use:                os.Args[1],
+			Hidden:             true,
+			DisableFlagParsing: true,
+			CompletionOptions: cobra.CompletionOptions{
+				DisableDefaultCmd: true,
+			},
+			Run: func(cmd *cobra.Command, args []string) {
+				specs, _ := completers.Specs()
+				switch {
+				case slices.Contains(specs, cmd.Name()):
+					// TODO invoke spec
+					panic("TODO invoke spec")
+				case slices.Contains(completers.Names(), cmd.Name()):
+					fmt.Fprint(cmd.OutOrStdout(), invokeCompleter(cmd.Name()))
+				}
+			},
+		})
+	}
+
+	for m, f := range macros {
+		spec.AddMacro(m, f)
+	}
+
+	overrideInitScripts(rootCmd)
 }
 
 func suppressErr(f func() (string, error)) string { s, _ := f(); return s }
+
+func overrideInitScripts(cmd *cobra.Command) {
+	carapaceCmd, _, _ := cmd.Find([]string{"_carapace"})
+	oldRun := carapaceCmd.Run
+	carapaceCmd.Run = func(cmd *cobra.Command, args []string) {
+		carapace.LOG.Printf("%#v", args)
+		if len(args) > 1 {
+			oldRun(cmd, args)
+			return
+		}
+
+		shell := ps.DetermineShell()
+		if len(args) > 0 {
+			shell = args[0]
+		}
+		// TODO renable (fix args length)
+		// 		if len(args) <= 2 {
+		// 			if err := shim.Update(); err != nil {
+		// 				fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
+		// 			}
+
+		// 			if err := updateSchema(); err != nil { // TODO do this only if needed
+		// 				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+		// 			}
+
+		// 			if err := createOverlayDir(); err != nil { // TODO do this only if needed
+		// 				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+		// 			}
+		// 		}
+		switch shell {
+		case "bash":
+			fmt.Fprintln(cmd.OutOrStdout(), bash_lazy(completers.Names()))
+		case "bash-ble":
+			fmt.Fprintln(cmd.OutOrStdout(), bash_ble_lazy(completers.Names()))
+		case "elvish":
+			fmt.Fprintln(cmd.OutOrStdout(), elvish_lazy(completers.Names()))
+		case "fish":
+			fmt.Fprintln(cmd.OutOrStdout(), fish_lazy(completers.Names()))
+		case "nushell":
+			fmt.Fprintln(cmd.OutOrStdout(), nushell_lazy(completers.Names()))
+		case "oil":
+			fmt.Fprintln(cmd.OutOrStdout(), oil_lazy(completers.Names()))
+		case "powershell":
+			fmt.Fprintln(cmd.OutOrStdout(), powershell_lazy(completers.Names()))
+		case "tcsh":
+			fmt.Fprintln(cmd.OutOrStdout(), tcsh_lazy(completers.Names()))
+		case "xonsh":
+			fmt.Fprintln(cmd.OutOrStdout(), xonsh_lazy(completers.Names()))
+		case "zsh":
+			fmt.Fprintln(cmd.OutOrStdout(), zsh_lazy(completers.Names()))
+		default:
+			fmt.Fprintln(os.Stderr, "could not determine shell")
+		}
+	}
+}
 
 func printCompleters() {
 	maxlen := 0
@@ -395,18 +385,149 @@ func updateSchema() error {
 	return nil
 }
 
-func Execute(version string) error {
-	rootCmd.Version = version
-	return rootCmd.Execute()
-}
+// func(cmd *cobra.Command, args []string) {
+// 	// since flag parsing is disabled do this manually
+// 	switch args[0] {
+// 	case "--macros":
+// 		if len(args) > 1 {
+// 			printMacro(args[1])
+// 		} else {
+// 			printMacros()
+// 		}
+// 	case "-h", "--help":
+// 		cmd.Help()
+// 	case "-v", "--version":
+// 		println(cmd.Version)
+// 	case "--list":
+// 		printCompleters()
+// 	case "--list=json":
+// 		printCompletersJson()
+// 	case "--run":
+// 		_, spec, err := loadSpec(args[1])
+// 		if err != nil {
+// 			fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+// 			os.Exit(1)
+// 		}
 
-func init() {
-	rootCmd.Flags().Bool("list", false, "list completers")
-	rootCmd.Flags().String("run", "", "run spec")
-	rootCmd.Flags().String("scrape", "", "scrape spec to go code")
-	rootCmd.Flags().String("style", "", "set style")
+// 		cmd := spec.ToCobra()
+// 		cmd.SetArgs(args[2:])
+// 		cmd.Execute() // TODO handle error?
+// 	case "--schema":
+// 		if schema, err := spec.Schema(); err != nil {
+// 			fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
+// 		} else {
+// 			fmt.Fprintln(cmd.OutOrStdout(), schema)
+// 		}
+// 	case "--scrape":
+// 		if len(args) > 1 {
+// 			scrape(args[1])
+// 		}
+// 	case "--style":
+// 		if len(args) > 1 {
+// 			if err := setStyle(args[1]); err != nil {
+// 				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+// 			}
+// 		}
+// 	case "_carapace":
+// 		shell := ps.DetermineShell()
+// 		if len(args) > 1 {
+// 			shell = args[1]
+// 		}
+// 		if len(args) <= 2 {
+// 			if err := shim.Update(); err != nil {
+// 				fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
+// 			}
 
-	for m, f := range macros {
-		spec.AddMacro(m, f)
-	}
-}
+// 			if err := updateSchema(); err != nil { // TODO do this only if needed
+// 				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+// 			}
+
+// 			if err := createOverlayDir(); err != nil { // TODO do this only if needed
+// 				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+// 			}
+// 		}
+// 		switch shell {
+// 		case "bash":
+// 			fmt.Fprintln(cmd.OutOrStdout(), bash_lazy(completers.Names()))
+// 		case "bash-ble":
+// 			fmt.Fprintln(cmd.OutOrStdout(), bash_ble_lazy(completers.Names()))
+// 		case "elvish":
+// 			fmt.Fprintln(cmd.OutOrStdout(), elvish_lazy(completers.Names()))
+// 		case "fish":
+// 			fmt.Fprintln(cmd.OutOrStdout(), fish_lazy(completers.Names()))
+// 		case "nushell":
+// 			fmt.Fprintln(cmd.OutOrStdout(), nushell_lazy(completers.Names()))
+// 		case "oil":
+// 			fmt.Fprintln(cmd.OutOrStdout(), oil_lazy(completers.Names()))
+// 		case "powershell":
+// 			fmt.Fprintln(cmd.OutOrStdout(), powershell_lazy(completers.Names()))
+// 		case "tcsh":
+// 			fmt.Fprintln(cmd.OutOrStdout(), tcsh_lazy(completers.Names()))
+// 		case "xonsh":
+// 			fmt.Fprintln(cmd.OutOrStdout(), xonsh_lazy(completers.Names()))
+// 		case "zsh":
+// 			fmt.Fprintln(cmd.OutOrStdout(), zsh_lazy(completers.Names()))
+// 		default:
+// 			fmt.Fprintln(os.Stderr, "could not determine shell")
+// 		}
+// 	default:
+// 		if overlayPath, err := overlayPath(args[0]); err == nil && len(args) > 2 { // and arg[1] is a known shell
+// 			cmd := &cobra.Command{
+// 				DisableFlagParsing: true,
+// 				CompletionOptions: cobra.CompletionOptions{
+// 					DisableDefaultCmd: true,
+// 				},
+// 			}
+
+// 			// TODO yuck
+// 			command := args[0]
+// 			shell := args[1]
+// 			args[0] = "_carapace"
+// 			args[1] = "export"
+// 			os.Args[1] = "_carapace"
+// 			os.Args[2] = "export"
+// 			os.Setenv("CARAPACE_LENIENT", "1")
+
+// 			carapace.Gen(cmd).PositionalAnyCompletion(
+// 				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+// 					batch := carapace.Batch()
+// 					specPath, err := completers.SpecPath(command)
+// 					if err != nil {
+// 						batch = append(batch, carapace.ActionImport([]byte(invokeCompleter(command))))
+// 					} else {
+// 						out, err := specCompletion(specPath, args[1:]...)
+// 						if err != nil {
+// 							return carapace.ActionMessage(err.Error())
+// 						}
+
+// 						batch = append(batch, carapace.ActionImport([]byte(out)))
+// 					}
+
+// 					batch = append(batch, overlayCompletion(overlayPath, args[1:]...))
+// 					return batch.ToA()
+// 				}),
+// 			)
+
+// 			cmd.SetArgs(append([]string{"_carapace", shell}, args[2:]...))
+// 			cmd.Execute()
+// 		} else {
+// 			if specPath, err := completers.SpecPath(args[0]); err == nil {
+// 				out, err := specCompletion(specPath, args[1:]...)
+// 				if err != nil {
+// 					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+// 					return
+// 				}
+
+// 				// TODO revert the patching from specCompletion to use the integrated version for overlay to work (should move this somewhere else - best in specCompletion)
+// 				// TODO only patch completion script
+// 				out = strings.Replace(out, fmt.Sprintf("--spec '%v'", specPath), args[0], -1)
+// 				out = strings.Replace(out, fmt.Sprintf("'--spec', '%v'", specPath), fmt.Sprintf("'%v'", args[0]), -1) // xonsh callback
+// 				fmt.Fprint(cmd.OutOrStdout(), out)
+// 			} else {
+// 				fmt.Print(invokeCompleter(args[0]))
+// 			}
+// 		}
+// 	}
+
+//
+// }
