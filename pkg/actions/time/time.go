@@ -136,7 +136,7 @@ type DateTimeOpts struct {
 //
 //	2021-11-11 04:02:12
 //	2021-04-02 16:11:33
-func ActionDateTime(opts DateTimeOpts) carapace.Action {
+func ActionDateTime(opts DateTimeOpts) carapace.Action { // TODO might be best to just accept a pattern as in go lib here
 	delimiter := " "
 	if opts.Strict {
 		delimiter = "T"

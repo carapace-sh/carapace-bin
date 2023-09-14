@@ -2,7 +2,7 @@ version: '3'
 
 services:
   build: &base
-    image: ghcr.io/rsteube/carapace:v0.33.4
+    image: ghcr.io/rsteube/carapace
     command: sh -c 'sh -c "cd /carapace-bin/cmd/carapace && go generate ./... && go build -ldflags=\"-s -w\" ."'
     environment:
       TARGET: /carapace-bin/cmd/carapace/carapace
