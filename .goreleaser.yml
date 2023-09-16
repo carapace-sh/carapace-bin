@@ -29,26 +29,30 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+
 brews:
   -
     name: carapace
     description: "multi-shell multi-command argument completer"
     homepage: "https://github.com/rsteube/carapace-bin"
     license: "MIT"
-    tap:
+    repository:
       owner: rsteube
       name: homebrew-tap
       token: "{{ .Env.GORELEASER_GITHUB_TOKEN }}"
     commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
-scoop:
-  description: "multi-shell multi-command argument completer"
-  homepage: "https://github.com/rsteube/carapace-bin"
-  license: "MIT"
-  bucket:
-    owner: rsteube
-    name: scoop-bucket
-    token: "{{ .Env.GORELEASER_GITHUB_TOKEN }}"
-  commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
+
+scoops:
+  -
+    description: "multi-shell multi-command argument completer"
+    homepage: "https://github.com/rsteube/carapace-bin"
+    license: "MIT"
+    repository:
+      owner: rsteube
+      name: scoop-bucket
+      token: "{{ .Env.GORELEASER_GITHUB_TOKEN }}"
+    commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
+
 aurs:
   -
     description: "multi-shell multi-command argument completer"
@@ -74,6 +78,12 @@ nfpms:
       - deb
       - rpm
       - termux.deb
+
+snapcrafts:
+  -
+    summary: "multi-shell multi-command argument completer"
+    description: "multi-shell multi-command argument completer"
+    license: "MIT"
 
 publishers:
   - name: fury
