@@ -8,7 +8,7 @@ cp -r completers/cp_completer completers/ln_completer
 - update the package name in `main.go`
 - replace `root.go`
 ```sh
-ln --help | caraparse -n ln > completers/ln_completer/cmd/root.go
+ln --help | carapace-parse -n ln > completers/ln_completer/cmd/root.go
 ```
 - fix issues and add completions as required
 ```go
