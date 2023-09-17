@@ -4,7 +4,6 @@ package cmd
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"io"
 	"os"
@@ -69,14 +68,7 @@ var rootCmd = &cobra.Command{
 
 		switch {
 		case cmd.Flag("list").Changed:
-			// TODO pass value to printCompleters and handle variants there
-			switch cmd.Flag("list").Value.String() {
-			case "json":
-				printCompletersJson()
-			default:
-				printCompleters()
-			}
-
+			printCompleters(cmd.Flag("list").Value.String())
 		}
 
 		return nil
@@ -206,19 +198,6 @@ func overrideInitScripts(cmd *cobra.Command) {
 	}
 }
 
-func printCompleters() {
-	maxlen := 0
-	for _, name := range completers.Names() {
-		if len := len(name); len > maxlen {
-			maxlen = len
-		}
-	}
-
-	for _, name := range completers.Names() {
-		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, completers.Description(name))
-	}
-}
-
 func createOverlayDir() error {
 	configDir, err := xdg.UserConfigDir()
 	if err != nil {
@@ -249,31 +228,6 @@ func overlayCompletion(overlayPath string, args ...string) carapace.Action {
 		}
 		return carapace.ActionImport([]byte(out))
 	})
-}
-
-func printCompletersJson() {
-	// TODO move to completers package
-	type _completer struct {
-		Name        string
-		Description string
-		Spec        string `json:",omitempty"`
-		Overlay     string `json:",omitempty"`
-	}
-
-	_completers := make([]_completer, 0)
-	for _, name := range completers.Names() {
-		specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-		overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-		_completers = append(_completers, _completer{
-			Name:        name,
-			Description: completers.Description(name),
-			Spec:        specPath,
-			Overlay:     overlayPath,
-		})
-	}
-	if m, err := json.Marshal(_completers); err == nil { // TODO handle error (log?)
-		fmt.Println(string(m))
-	}
 }
 
 func printMacros() {
