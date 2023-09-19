@@ -33,4 +33,13 @@ func init() {
 		"output":    carapace.ActionValues("json", "m", "v", "graph", "compare"),
 		"packages":  golang.ActionPackages(),
 	})
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if rootCmd.Flag("output").Value.String() == "compare" {
+				return carapace.ActionFiles()
+			}
+			return carapace.ActionValues()
+		}),
+	)
 }
