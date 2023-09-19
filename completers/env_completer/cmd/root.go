@@ -1,9 +1,14 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/env"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/ps"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +24,7 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 
 	rootCmd.Flags().String("block-signal", "", "block delivery of SIG signal(s) to COMMAND")
 	rootCmd.Flags().StringP("chdir", "C", "", "change working directory to DIR")
@@ -33,6 +39,10 @@ func init() {
 	rootCmd.Flags().StringP("unset", "u", "", "remove variable from the environment")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
+	rootCmd.Flag("block-signal").NoOptDefVal = " "
+	rootCmd.Flag("default-signal").NoOptDefVal = " "
+	rootCmd.Flag("ignore-signal").NoOptDefVal = " "
+
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"block-signal":   ps.ActionKillSignals(),
 		"chdir":          carapace.ActionDirectories(),
@@ -40,4 +50,43 @@ func init() {
 		"ignore-signal":  ps.ActionKillSignals(),
 		"unset":          os.ActionEnvironmentVariables(),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			for index, arg := range c.Args {
+				if strings.Contains(arg, "=") {
+					splitted := strings.SplitN(arg, "=", 2)
+					c.Setenv(splitted[0], splitted[1])
+				} else {
+					return bridge.ActionCarapaceBin().Shift(index).Invoke(c).ToA()
+				}
+			}
+
+			return carapace.Batch(
+				carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+					switch len(c.Parts) {
+					case 0:
+						return carapace.Batch(
+							carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+								alreadySet := make([]string, 0)
+								for _, e := range c.Env {
+									alreadySet = append(alreadySet, strings.SplitN(e, "=", 2)[0])
+								}
+								a := env.ActionKnownEnvironmentVariables().Filter(alreadySet...).Suffix("=")
+								if !strings.Contains(c.Value, "_") {
+									return a.MultiParts("_") // only do multipart completion for first underscore
+								}
+								return a
+							}),
+							os.ActionEnvironmentVariables().Style(style.Blue).Suffix("="),
+						).ToA()
+					default:
+						return env.ActionEnvironmentVariableValues(c.Parts[0])
+					}
+				}),
+				carapace.ActionExecutables(),
+				carapace.ActionFiles(),
+			).ToA()
+		}),
+	)
 }
