@@ -13,7 +13,7 @@ import (
 )
 
 func bash_lazy(completers []string) string {
-	snippet := `%v
+	snippet := `%v%v
 
 _carapace_lazy() {
   source <(carapace $1 bash)
@@ -21,7 +21,7 @@ _carapace_lazy() {
 }
 complete -F _carapace_lazy %v
 `
-	return fmt.Sprintf(snippet, pathSnippet("bash"), strings.Join(completers, " "))
+	return fmt.Sprintf(snippet, pathSnippet("bash"), envSnippet("bash"), strings.Join(completers, " "))
 }
 
 func bash_ble_lazy(completers []string) string {
@@ -97,8 +97,54 @@ func pathSnippet(shell string) (snippet string) {
 	return
 }
 
+func envSnippet(shell string) string {
+	if os.Getenv("CARAPACE_ENV") == "0" {
+		return ""
+	}
+
+	switch shell {
+	case "bash":
+		return `
+
+get-env () { echo "${!1}"; }
+set-env () { export "$1=$2"; }
+unset-env () { unset "$1"; }`
+
+	case "fish":
+		return `
+
+function get-env -d "get environment variable"; echo $$argv[1]; end
+function set-env -d "set environment variable"; set -g -x $argv[1] $argv[2]; end
+function unset-env -d "unset environment variable"; set -e $argv[1]; end`
+
+	case "nushell":
+		return `
+
+def-env get-env [name] { $env | get $name }
+def-env set-env [name, value] { load-env { $name: $value } }
+def-env unset-env [name] { hide-env $name }`
+
+	case "powershell":
+		return `
+
+Function get-env([string]$name) { Get-Item "env:$name" }
+Function set-env([string]$name, [string]$value) { Set-Item "env:$name" "$value" }
+Function unset-env([string]$name) { Remove-Item "env:$name" }`
+
+	case "zsh":
+		return `
+
+get-env () { echo "${(P)1}"; }
+set-env () { export "$1=$2"; }
+unset-env () { unset "$1"; }`
+
+	default:
+		return ""
+	}
+}
+
 func fish_lazy(completers []string) string {
-	snippet := `%v
+	snippet := `%v%v
 
 function _carapace_lazy
    complete -c $argv[1] -e
@@ -111,11 +157,11 @@ end
 	for index, completer := range completers {
 		complete[index] = fmt.Sprintf(`complete -c '%v' -f -a '(_carapace_lazy %v)'`, completer, completer)
 	}
-	return fmt.Sprintf(snippet, pathSnippet("fish"), strings.Join(complete, "\n"))
+	return fmt.Sprintf(snippet, pathSnippet("fish"), envSnippet("fish"), strings.Join(complete, "\n"))
 }
 
 func nushell_lazy(completers []string) string {
-	snippet := `%v
+	snippet := `%v%v
 
 let carapace_completer = {|spans| 
   carapace $spans.0 nushell $spans | from json
@@ -130,7 +176,7 @@ $current.completions.external = ($current.completions.external
 $env.config = $current
     `
 
-	return fmt.Sprintf(snippet, pathSnippet("nushell"))
+	return fmt.Sprintf(snippet, pathSnippet("nushell"), envSnippet("nushell"))
 }
 
 func oil_lazy(completers []string) string {
@@ -146,7 +192,7 @@ complete -F _carapace_lazy %v
 }
 
 func powershell_lazy(completers []string) string {
-	snippet := `%v
+	snippet := `%v%v
 
 $_carapace_lazy = {
     param($wordToComplete, $commandAst, $cursorPosition)
@@ -160,7 +206,7 @@ $_carapace_lazy = {
 	for index, completer := range completers {
 		complete[index] = fmt.Sprintf(`Register-ArgumentCompleter -Native -CommandName '%v' -ScriptBlock $_carapace_lazy`, completer)
 	}
-	return fmt.Sprintf(snippet, pathSnippet("powershell"), strings.Join(complete, "\n"))
+	return fmt.Sprintf(snippet, pathSnippet("powershell"), envSnippet("powershell"), strings.Join(complete, "\n"))
 }
 
 func tcsh_lazy(completers []string) string {
@@ -198,12 +244,12 @@ def _carapace_lazy(context):
 }
 
 func zsh_lazy(completers []string) string {
-	snippet := `%v
+	snippet := `%v%v
 
 function _carapace_lazy {
     source <(carapace $words[1] zsh)
 }
 compdef _carapace_lazy %v
 `
-	return fmt.Sprintf(snippet, pathSnippet("zsh"), strings.Join(completers, " "))
+	return fmt.Sprintf(snippet, pathSnippet("zsh"), envSnippet("zsh"), strings.Join(completers, " "))
 }

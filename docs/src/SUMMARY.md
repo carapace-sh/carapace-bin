@@ -16,6 +16,7 @@
     - [Examples](./spec/examples.md)
     - [Macros](./spec/macros.md)
   - [Overlay](./overlay.md)
+  - [Environment](./environment.md)
   - [Development](./development.md)
     - [Build](./development/build.md)
     - [docker-compose](./development/docker-compose.md)
