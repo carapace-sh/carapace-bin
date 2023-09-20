@@ -103,7 +103,7 @@ func envSnippet(shell string) string {
 	}
 
 	switch shell {
-	case "bash":
+	case "bash", "oil":
 		return `
 
 get-env () { echo "${!1}"; }
@@ -197,7 +197,7 @@ $env.config = $current
 }
 
 func oil_lazy(completers []string) string {
-	snippet := `%v
+	snippet := `%v%v
 
 _carapace_lazy() {
   source <(carapace $1 oil)
@@ -205,7 +205,7 @@ _carapace_lazy() {
 }
 complete -F _carapace_lazy %v
 `
-	return fmt.Sprintf(snippet, pathSnippet("oil"), strings.Join(completers, " "))
+	return fmt.Sprintf(snippet, pathSnippet("oil"), envSnippet("oil"), strings.Join(completers, " "))
 }
 
 func powershell_lazy(completers []string) string {
