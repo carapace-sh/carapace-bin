@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:                "get-env <name>",
 	Short:              "get environment variable",
+	Long:               "https://rsteube.github.io/carapace-bin/environment.html",
 	DisableFlagParsing: true,
 	Run:                func(cmd *cobra.Command, args []string) {},
 }

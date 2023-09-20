@@ -13,6 +13,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:                "set-env <name> <value>",
 	Short:              "set environment variable",
+	Long:               "https://rsteube.github.io/carapace-bin/environment.html",
 	DisableFlagParsing: true,
 	Run:                func(cmd *cobra.Command, args []string) {},
 }
