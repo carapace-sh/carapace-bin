@@ -42,6 +42,10 @@ func checkPath(s string) func(c carapace.Context) bool {
 
 var knownVariables = map[string]variables{}
 
+// ActionKnownEnvironmentVariables completes known environment variables
+//
+//	GOARCH (The architecture, or processor, for which to compile code)
+//	GOOS (The operating system for which to compile code)
 func ActionKnownEnvironmentVariables() carapace.Action {
 	return carapace.Batch(
 		actionKnownEnvironmentVariables(),
@@ -65,6 +69,7 @@ func actionKnownEnvironmentVariables() carapace.Action {
 	}).Tag("known environment variables")
 }
 
+// ActionEnvironmentVariableValues completes values for given environment variable
 func ActionEnvironmentVariableValues(s string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if custom, err := loadCustomVariables(); err == nil {
