@@ -15,7 +15,7 @@ func init() {
 			"XDG_CACHE_HOME":  "base directory relative to which user-specific non-essential data files should be stored",
 			"XDG_RUNTIME_DIR": "base directory relative to which user-specific non-essential runtime files should be stored",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			"XDG_DATA_HOME":   carapace.ActionDirectories(),
 			"XDG_CONFIG_HOME": carapace.ActionDirectories(),
 			"XDG_STATE_HOME":  carapace.ActionDirectories(),

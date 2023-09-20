@@ -80,7 +80,7 @@ func init() {
 			"CARGO_TERM_QUIET":                       "Quiet mode, see term.quiet",
 			"CARGO_TERM_VERBOSE":                     "The default terminal verbosity, see term.verbose",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			"CARGO_BUILD_DEP_INFO_BASEDIR": carapace.ActionDirectories(),
 			"CARGO_LOG":                    carapace.ActionValues("debug", "info", "warn", "error", "trace").StyleF(style.ForLogLevel),
 			"CARGO_HOME":                   carapace.ActionDirectories(),

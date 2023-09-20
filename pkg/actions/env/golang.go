@@ -73,7 +73,7 @@ func init() {
 			"GOWORK":                "In module aware mode, use the given go.work file as a workspace file",
 			"PKG_CONFIG":            "Path to pkg-config tool",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			// TODO more flags
 			"AR": bridge.ActionCarapaceBin().Split(),
 			"CC": bridge.ActionCarapaceBin().Split(),

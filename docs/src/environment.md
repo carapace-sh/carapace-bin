@@ -10,6 +10,19 @@ For other shells custom functions are added.
 
 ![](./environment.cast)
 
-## Custom definitions
+## Custom variables
 
-*TODO:* define using `~/.config/carapace/env.yaml`
+Custom variables can be defined in `~/.config/carapace/env.yaml`
+
+```yaml
+names:
+  CUSTOM_EXAMPLE: example environment variable
+  CUSTOM_MACRO: macro example
+  HTTPS_PROXY: override existing variable
+completion:
+  CUSTOM_EXAMPLE: ["0\tdisabled\tred", "1\tenabled\tgreen"]
+  CUSTOM_MACRO: ["$_tools.gh.Labels({owner: rsteube, name: carapace}) ||| $uniquelist(,)"]
+  HTTPS_PROXY: ["https://localhost:8443\tdevelopment", "https://proxy.company:443\tproduction"]
+```
+
+![](./environment-custom.cast)

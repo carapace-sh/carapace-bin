@@ -14,7 +14,7 @@ func init() {
 			"HTTPS_PROXY":  "https proxy server",
 			"PATH":         "A list of directories to be searched when executing commands",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			"PATH": carapace.ActionDirectories().List(string(_os.PathListSeparator)).NoSpace(),
 		},
 	}
