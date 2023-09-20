@@ -21,7 +21,7 @@ func init() {
 			"DOCKER_TLS_VERIFY":           "When set Docker uses TLS and verifies the remote",
 			"BUILDKIT_PROGRESS":           "Set type of progress output",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			"DOCKER_CERT_PATH": carapace.ActionDirectories(),
 			"DOCKER_CONFIG":    carapace.ActionFiles(),
 			"DOCKER_HIDE_LEGACY_COMMANDS": carapace.ActionStyledValuesDescribed(

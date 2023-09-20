@@ -16,7 +16,7 @@ func init() {
 			"CARAPACE_SANDBOX":       "mock context for sandbox tests",
 			"CARAPACE_ZSH_HASH_DIRS": "zsh hash directories",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			"CARAPACE_COVERDIR": carapace.ActionDirectories(),
 			"CARAPACE_ENV":      carapace.ActionValues("0", "1"),
 			"CARAPACE_HIDDEN":   carapace.ActionValues("0", "1"),

@@ -40,7 +40,7 @@ func init() {
 			"AWS_USE_FIPS_ENDPOINT":               "Federal Information Processing Standard (FIPS) endoint",
 			"AWS_WEB_IDENTITY_TOKEN_FILE":         "Specifies the path to a file that contains an OAuth 2.0 access token",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			"AWS_CA_BUNDLE": carapace.ActionFiles(),
 			"AWS_CLI_AUTO_PROMPT": carapace.ActionValuesDescribed(
 				"on", "full auto-prompt mode each time you attempt to run an aws command",

@@ -17,7 +17,7 @@ func init() {
 			"TERM":    "The current terminal emulation",
 			"MAIL":    "Location of where the current user’s mail is stored",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			"HOME":    carapace.ActionDirectories(),
 			"LANG":    os.ActionLanguages(),
 			"LOGNAME": os.ActionUsers(),

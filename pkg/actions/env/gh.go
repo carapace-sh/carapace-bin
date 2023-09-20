@@ -24,7 +24,7 @@ func init() {
 			"GH_PROMPT_DISABLED":    "set to any value to disable interactive prompting in the terminal",
 			"GH_PATH":               "set the path to the gh executable",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			"GH_REPO":               gh.ActionOwnerRepositories(gh.HostOpts{}),
 			"GH_EDITOR":             bridge.ActionCarapaceBin().Split(),
 			"GH_BROWSER":            bridge.ActionCarapaceBin().Split(),

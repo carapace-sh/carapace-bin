@@ -10,7 +10,7 @@ func init() {
 		Names: map[string]string{
 			"NO_COLOR": "disable colors in supported commands",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			"NO_COLOR": carapace.ActionStyledValuesDescribed(
 				"0", "show colors", style.Carapace.KeywordNegative,
 				"1", "do not show colors", style.Carapace.KeywordPositive,

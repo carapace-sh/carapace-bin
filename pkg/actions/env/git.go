@@ -53,7 +53,7 @@ func init() {
 			"GIT_TRACE_SETUP":                  "shows information about what Git is discovering about the repository and environment it’s interacting with",
 			"GIT_WORK_TREE":                    "is the location of the root of the working directory for a non-bare repository",
 		},
-		Values: map[string]carapace.Action{
+		Completion: map[string]carapace.Action{
 			// TODO complete more variables
 			"GIT_ALTERNATE_OBJECT_DIRECTORIES": carapace.ActionDirectories().MultiParts(":"),
 			"GIT_ASKPASS":                      git.ActionConfigValues("core.askpass"),
