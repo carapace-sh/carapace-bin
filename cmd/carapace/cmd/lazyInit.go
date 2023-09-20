@@ -131,6 +131,23 @@ Function get-env([string]$name) { Get-Item "env:$name" }
 Function set-env([string]$name, [string]$value) { Set-Item "env:$name" "$value" }
 Function unset-env([string]$name) { Remove-Item "env:$name" }`
 
+	case "xonsh":
+		return `
+
+def _carapace_getenv(args):
+	print(__xonsh__.env[args[0]])
+aliases['get-env']=_carapace_getenv
+
+def _carapace_setenv(args):
+	__xonsh__.env[args[0]]=args[1]
+	os.environ[args[0]]=args[1]
+aliases['set-env']=_carapace_setenv
+
+def _carapace_unsetenv(args):
+	del __xonsh__.env[args[0]]
+	del os.environ[args[0]]
+aliases['unset-env']=_carapace_unsetenv`
+
 	case "zsh":
 		return `
 
@@ -223,7 +240,7 @@ func xonsh_lazy(completers []string) string {
 from xonsh.completers.tools import *
 import os
 
-%v
+%v%v
 
 @contextual_completer
 def _carapace_lazy(context):
@@ -231,7 +248,6 @@ def _carapace_lazy(context):
     if (context.command and
         context.command.arg_index > 0 and
         context.command.args[0].value in [%v]):
-        XSH.completers = XSH.completers.copy()
         exec(compile(subprocess.run(['carapace', context.command.args[0].value, 'xonsh'], stdout=subprocess.PIPE).stdout.decode('utf-8'), "", "exec"))
         return XSH.completers[context.command.args[0].value](context)
 `
@@ -240,7 +256,7 @@ def _carapace_lazy(context):
 		complete[index] = fmt.Sprintf(`'%v'`, completer)
 	}
 	snippet += `_add_one_completer('carapace_lazy', _carapace_lazy, 'start')`
-	return fmt.Sprintf(snippet, pathSnippet("xonsh"), strings.Join(complete, ", "))
+	return fmt.Sprintf(snippet, pathSnippet("xonsh"), envSnippet("xonsh"), strings.Join(complete, ", "))
 }
 
 func zsh_lazy(completers []string) string {
