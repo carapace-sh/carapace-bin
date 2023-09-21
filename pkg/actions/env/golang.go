@@ -3,13 +3,15 @@ package env
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
 func init() {
 	knownVariables["golang"] = variables{
-		Names: map[string]string{
+		Condition: conditions.ConditionPath("go"),
+		Variables: map[string]string{
 			"AR":                    "The command to use to manipulate library archives when building with the gccgo compiler",
 			"CC":                    "The command to use to compile C code",
 			"CGO_CFFLAGS_ALLOW":     "Like CGO_CFLAGS_ALLOW but for the Fortran compiler",
@@ -73,7 +75,7 @@ func init() {
 			"GOWORK":                "In module aware mode, use the given go.work file as a workspace file",
 			"PKG_CONFIG":            "Path to pkg-config tool",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			// TODO more flags
 			"AR": bridge.ActionCarapaceBin().Split(),
 			"CC": bridge.ActionCarapaceBin().Split(),

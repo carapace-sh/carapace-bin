@@ -8,7 +8,7 @@ import (
 func init() {
 	_bool := carapace.ActionValuesDescribed("0", "disabled", "1", "enabled").StyleF(style.ForKeyword)
 	knownVariables["carapace"] = variables{
-		Names: map[string]string{
+		Variables: map[string]string{
 			"CARAPACE_COVERDIR":      "coverage directory for sandbox tests",
 			"CARAPACE_ENV":           "register get-env, set-env and unset-env",
 			"CARAPACE_HIDDEN":        "show hidden commands/flags",
@@ -18,7 +18,7 @@ func init() {
 			"CARAPACE_SANDBOX":       "mock context for sandbox tests",
 			"CARAPACE_ZSH_HASH_DIRS": "zsh hash directories",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			"CARAPACE_COVERDIR": carapace.ActionDirectories(),
 			"CARAPACE_ENV":      _bool,
 			"CARAPACE_HIDDEN":   _bool,

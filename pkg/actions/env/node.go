@@ -2,14 +2,15 @@ package env
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
 func init() {
 	_bool := carapace.ActionValuesDescribed("0", "disabled", "1", "enabled").StyleF(style.ForKeyword)
 	knownVariables["node"] = variables{
-		Condition: checkPath("node"),
-		Names: map[string]string{
+		Condition: conditions.ConditionPath("node"),
+		Variables: map[string]string{
 			"NODE_DEBUG":                   "Comma-separated list of core modules that should print debug information",
 			"NODE_DEBUG_NATIVE":            "Comma-separated list of C++ core modules that should print debug information",
 			"NODE_DISABLE_COLORS":          "When set to 1, colors will not be used in the REPL",
@@ -27,7 +28,7 @@ func init() {
 			"NODE_TLS_REJECT_UNAUTHORIZED": "When set to 0, TLS certificate validation is disabled",
 			"NODE_V8_COVERAGE":             "When set, Node.js writes JavaScript  code  coverage information to dir",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			// TODO more completions
 			"NODE_DISABLE_COLORS":          _bool,
 			"NODE_NO_WARNINGS":             _bool,

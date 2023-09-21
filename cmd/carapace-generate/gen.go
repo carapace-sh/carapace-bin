@@ -18,6 +18,7 @@ import (
 
 func main() {
 	macros()
+	conditions()
 
 	names, descriptions := readCompleters()
 
@@ -269,23 +270,104 @@ func macros() {
 	}
 	sort.Strings(sortedDescriptions)
 
-	content := fmt.Sprintf(`package cmd
+	content := fmt.Sprintf(`package actions
 
 import (
 %v
 	spec "github.com/rsteube/carapace-spec"
 )
 
-var macros = map[string]spec.Macro{
+func init() {
+	MacroMap = map[string]spec.Macro{
 %v
-}
+	}
 
-var macroDescriptions = map[string]string {
+	MacroDescriptions = map[string]string {
 %v
+	}
 }
 `, strings.Join(sortedImports, "\n"), strings.Join(macros, "\n"), strings.Join(sortedDescriptions, "\n"))
 
-	os.WriteFile(root+"/cmd/carapace/cmd/macros.go", []byte(content), 0644)
-	execabs.Command("go", "fmt", root+"/cmd/carapace/cmd/macros.go").Run()
+	os.WriteFile(root+"/pkg/actions/actions_generated.go", []byte(content), 0644)
+	execabs.Command("go", "fmt", root+"/pkg/actions/actions_generated.go").Run()
+
+}
+
+func conditions() {
+	root, err := rootDir()
+	if err != nil {
+		panic(err.Error)
+	}
+
+	macros := make([]string, 0)
+	descriptions := make(map[string]string, 0)
+
+	r := regexp.MustCompile(`^func Condition(?P<name>[^(]+)\((?P<arg>[^(]*)\) condition.Condition {$`)
+	filepath.WalkDir(root+"/pkg/conditions", func(path string, d fs.DirEntry, err error) error { // TODO walkdir not necessary
+		path = filepath.ToSlash(path)
+		if !d.IsDir() && strings.HasSuffix(path, ".go") {
+			file, err := os.Open(path)
+			if err != nil {
+				log.Fatal(err)
+			}
+			defer file.Close()
+
+			scanner := bufio.NewScanner(file)
+			for scanner.Scan() {
+				if t := scanner.Text(); strings.HasPrefix(t, "func Condition") {
+					if r.MatchString(t) {
+						matches := r.FindStringSubmatch(t)
+
+						_func := fmt.Sprintf("Condition%v", matches[1])
+
+						if arg := matches[2]; strings.Contains(arg, ",") {
+							macros = append(macros, "// TODO unsupported signature: "+t)
+							continue
+						} else if arg == "" {
+							macros = append(macros, fmt.Sprintf(`"%v": condition.MacroN(%v),`, matches[1], _func))
+						} else if strings.Contains(arg, "...") {
+							macros = append(macros, fmt.Sprintf(`"%v": condition.MacroV(%v),`, matches[1], _func))
+						} else {
+							macros = append(macros, fmt.Sprintf(`"%v": condition.MacroI(%v),`, matches[1], _func))
+						}
+					}
+				} else if strings.HasPrefix(t, "// Condition") {
+					if splitted := strings.SplitN(strings.TrimPrefix(t, "// Condition"), " ", 2); len(splitted) > 1 {
+						descriptions[splitted[0]] = splitted[1]
+					}
+				}
+			}
+
+		}
+		return nil
+	})
+
+	sortedDescriptions := make([]string, 0)
+	for key, value := range descriptions {
+		sortedDescriptions = append(sortedDescriptions, fmt.Sprintf(`%#v: %#v,`, key, value))
+	}
+	sort.Strings(sortedDescriptions)
+
+	content := fmt.Sprintf(`package conditions
+
+import (
+	"github.com/rsteube/carapace-bin/internal/condition"
+	"github.com/rsteube/carapace-spec/pkg/macro"
+)
+
+func init() {
+	MacroMap = macro.MacroMap[condition.Macro]{
+%v
+	}
+
+	MacroDescriptions = map[string]string {
+%v
+	}
+			
+}
+`, strings.Join(macros, "\n"), strings.Join(sortedDescriptions, "\n"))
+
+	os.WriteFile(root+"/pkg/conditions/conditions_generated.go", []byte(content), 0644)
+	execabs.Command("go", "fmt", root+"/pkg/conditions/conditions_generated.go").Run()
 
 }

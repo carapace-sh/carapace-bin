@@ -2,12 +2,14 @@ package env
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
 func init() {
+	_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 	knownVariables["cargo"] = variables{
-		Names: map[string]string{
+		Variables: map[string]string{
 			"CARGO_BIN_NAME":                         "The name of the binary that is currently being compiled",
 			"CARGO_BUILD_DEP_INFO_BASEDIR":           "Dep-info relative directory, see build.dep-info-basedir",
 			"CARGO_BUILD_INCREMENTAL":                "Incremental compilation, see build.incremental",
@@ -80,7 +82,7 @@ func init() {
 			"CARGO_TERM_QUIET":                       "Quiet mode, see term.quiet",
 			"CARGO_TERM_VERBOSE":                     "The default terminal verbosity, see term.verbose",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			"CARGO_BUILD_DEP_INFO_BASEDIR": carapace.ActionDirectories(),
 			"CARGO_LOG":                    carapace.ActionValues("debug", "info", "warn", "error", "trace").StyleF(style.ForLogLevel),
 			"CARGO_HOME":                   carapace.ActionDirectories(),
@@ -89,7 +91,11 @@ func init() {
 				"0", "force disabled,", style.Red,
 				"1", "force enabled", style.Green,
 			),
-			"CARGO_CARGO_NEW_VCS": carapace.ActionValues("git", "hg", "pijul", "fossil", "none"),
+			"CARGO_CARGO_NEW_VCS":   carapace.ActionValues("git", "hg", "pijul", "fossil", "none"),
+			"CARGO_HTTP_USER_AGENT": http.ActionUserAgents(),
+			"CARGO_TERM_COLOR":      carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+			"CARGO_TERM_QUIET":      _bool,
+			"CARGO_TERM_VERBOSE":    _bool,
 			// TODO more completions
 		},
 	}

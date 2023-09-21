@@ -5,6 +5,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
 	"github.com/rsteube/carapace-bin/pkg/actions/time"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -12,8 +13,8 @@ import (
 func init() {
 	_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 	knownVariables["git"] = variables{
-		Condition: checkPath("git"),
-		Names: map[string]string{
+		Condition: conditions.ConditionPath("git"),
+		Variables: map[string]string{
 			"GIT_ALTERNATE_OBJECT_DIRECTORIES": "is a colon-separated list which tells Git where to check for objects",
 			"GIT_ASKPASS":                      "is an override for the core.askpass configuration value",
 			"GIT_AUTHOR_DATE":                  "is the timestamp used for the “author” field",
@@ -53,7 +54,7 @@ func init() {
 			"GIT_TRACE_SETUP":                  "shows information about what Git is discovering about the repository and environment it’s interacting with",
 			"GIT_WORK_TREE":                    "is the location of the root of the working directory for a non-bare repository",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			// TODO complete more variables
 			"GIT_ALTERNATE_OBJECT_DIRECTORIES": carapace.ActionDirectories().MultiParts(":"),
 			"GIT_ASKPASS":                      git.ActionConfigValues("core.askpass"),

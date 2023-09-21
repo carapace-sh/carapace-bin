@@ -3,13 +3,14 @@ package env
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 )
 
 func init() {
 	knownVariables["gh"] = variables{
-		Condition: checkPath("gh"),
-		Names: map[string]string{
+		Condition: conditions.ConditionPath("gh"),
+		Variables: map[string]string{
 			"GH_TOKEN":              "an authentication token for github.com API requests",
 			"GH_ENTERPRISE_TOKEN":   "an authentication token for API requests to GitHub Enterprise",
 			"GH_HOST":               "specify the GitHub hostname",
@@ -24,7 +25,7 @@ func init() {
 			"GH_PROMPT_DISABLED":    "set to any value to disable interactive prompting in the terminal",
 			"GH_PATH":               "set the path to the gh executable",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			"GH_REPO":               gh.ActionOwnerRepositories(gh.HostOpts{}),
 			"GH_EDITOR":             bridge.ActionCarapaceBin().Split(),
 			"GH_BROWSER":            bridge.ActionCarapaceBin().Split(),

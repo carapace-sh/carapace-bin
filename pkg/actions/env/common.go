@@ -9,7 +9,7 @@ import (
 
 func init() {
 	knownVariables["common"] = variables{
-		Names: map[string]string{
+		Variables: map[string]string{
 			"BROWSER":      "the browser to use",
 			"EDITOR":       "the editor to use",
 			"HTTP_PROXY":   "http proxy server",
@@ -18,7 +18,7 @@ func init() {
 			"PAGER":        "the pager to use",
 			"PATH":         "A list of directories to be searched when executing commands",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			"BROWSER": bridge.ActionCarapaceBin().Split(),
 			"EDITOR":  bridge.ActionCarapaceBin().Split(),
 			"PAGER":   bridge.ActionCarapaceBin().Split(),
