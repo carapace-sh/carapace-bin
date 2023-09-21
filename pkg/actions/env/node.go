@@ -26,11 +26,6 @@ func init() {
 			"NODE_SKIP_PLATFORM_CHECK":     "When set to 1, the check for a supported platform is skipped during Node.js startup",
 			"NODE_TLS_REJECT_UNAUTHORIZED": "When set to 0, TLS certificate validation is disabled",
 			"NODE_V8_COVERAGE":             "When set, Node.js writes JavaScript  code  coverage information to dir",
-			"OPENSSL_CONF":                 "Load an OpenSSL configuration file on startup",
-			"SSL_CERT_DIR":                 "If --use-openssl-ca is enabled, this overrides and sets OpenSSL's directory containing trusted certificates",
-			"SSL_CERT_FILE":                "If --use-openssl-ca is enabled, this overrides and sets OpenSSL's file containing trusted certificates",
-			"TZ":                           "Specify the timezone configuration",
-			"UV_THREADPOOL_SIZE":           "Sets the number of threads used in libuv's threadpool to size",
 		},
 		Completion: map[string]carapace.Action{
 			// TODO more completions
@@ -40,7 +35,6 @@ func init() {
 			"NODE_PENDING_DEPRECATION":     _bool,
 			"NODE_SKIP_PLATFORM_CHECK":     _bool,
 			"NODE_TLS_REJECT_UNAUTHORIZED": _bool,
-			"SSL_CERT_DIR":                 carapace.ActionDirectories(),
 		},
 	}
 
