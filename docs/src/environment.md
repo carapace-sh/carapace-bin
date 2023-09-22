@@ -1,5 +1,7 @@
 # Environment
 
+> feature in development
+
 Complex environment variable completion is provided with `get-env`, `set-env` and `unset-env`.
 
 In `elvish` the completion is simply overridden.
