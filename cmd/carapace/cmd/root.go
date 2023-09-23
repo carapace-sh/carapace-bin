@@ -17,6 +17,8 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/shim"
+	"github.com/rsteube/carapace-bin/pkg/actions"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/ps"
 	"github.com/rsteube/carapace/pkg/style"
@@ -63,6 +65,12 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
 		switch args[0] {
+		case "--conditions":
+			if len(args) > 1 {
+				//printCondition(args[1]) // TODO
+			} else {
+				printConditions() // TODO
+			}
 		case "--macros":
 			if len(args) > 1 {
 				printMacro(args[1])
@@ -121,27 +129,42 @@ var rootCmd = &cobra.Command{
 					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
 				}
 			}
+
+			completers := completers.Names()
+			if os.Getenv("CARAPACE_ENV") == "0" {
+				filtered := make([]string, 0, len(completers))
+				for _, name := range completers {
+					switch name {
+					case "get-env", "set-env", "unset-env":
+					default:
+						filtered = append(filtered, name)
+
+					}
+				}
+				completers = filtered
+			}
+
 			switch shell {
 			case "bash":
-				fmt.Fprintln(cmd.OutOrStdout(), bash_lazy(completers.Names()))
+				fmt.Fprintln(cmd.OutOrStdout(), bash_lazy(completers))
 			case "bash-ble":
-				fmt.Fprintln(cmd.OutOrStdout(), bash_ble_lazy(completers.Names()))
+				fmt.Fprintln(cmd.OutOrStdout(), bash_ble_lazy(completers))
 			case "elvish":
-				fmt.Fprintln(cmd.OutOrStdout(), elvish_lazy(completers.Names()))
+				fmt.Fprintln(cmd.OutOrStdout(), elvish_lazy(completers))
 			case "fish":
-				fmt.Fprintln(cmd.OutOrStdout(), fish_lazy(completers.Names()))
+				fmt.Fprintln(cmd.OutOrStdout(), fish_lazy(completers))
 			case "nushell":
-				fmt.Fprintln(cmd.OutOrStdout(), nushell_lazy(completers.Names()))
+				fmt.Fprintln(cmd.OutOrStdout(), nushell_lazy(completers))
 			case "oil":
-				fmt.Fprintln(cmd.OutOrStdout(), oil_lazy(completers.Names()))
+				fmt.Fprintln(cmd.OutOrStdout(), oil_lazy(completers))
 			case "powershell":
-				fmt.Fprintln(cmd.OutOrStdout(), powershell_lazy(completers.Names()))
+				fmt.Fprintln(cmd.OutOrStdout(), powershell_lazy(completers))
 			case "tcsh":
-				fmt.Fprintln(cmd.OutOrStdout(), tcsh_lazy(completers.Names()))
+				fmt.Fprintln(cmd.OutOrStdout(), tcsh_lazy(completers))
 			case "xonsh":
-				fmt.Fprintln(cmd.OutOrStdout(), xonsh_lazy(completers.Names()))
+				fmt.Fprintln(cmd.OutOrStdout(), xonsh_lazy(completers))
 			case "zsh":
-				fmt.Fprintln(cmd.OutOrStdout(), zsh_lazy(completers.Names()))
+				fmt.Fprintln(cmd.OutOrStdout(), zsh_lazy(completers))
 			default:
 				fmt.Fprintln(os.Stderr, "could not determine shell")
 			}
@@ -286,10 +309,10 @@ func printCompletersJson() {
 	}
 }
 
-func printMacros() {
+func printConditions() {
 	maxlen := 0
 	names := make([]string, 0)
-	for name := range macros {
+	for name := range conditions.MacroMap {
 		names = append(names, name)
 		if len := len(name); len > maxlen {
 			maxlen = len
@@ -298,12 +321,28 @@ func printMacros() {
 
 	sort.Strings(names)
 	for _, name := range names {
-		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, macroDescriptions[name])
+		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, conditions.MacroDescriptions[name])
+	}
+}
+
+func printMacros() {
+	maxlen := 0
+	names := make([]string, 0)
+	for name := range actions.MacroMap {
+		names = append(names, name)
+		if len := len(name); len > maxlen {
+			maxlen = len
+		}
+	}
+
+	sort.Strings(names)
+	for _, name := range names {
+		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, actions.MacroDescriptions[name])
 	}
 }
 
 func printMacro(name string) {
-	if m, ok := macros[name]; ok {
+	if m, ok := actions.MacroMap[name]; ok {
 		path := strings.Replace(name, ".", "/", -1)
 		signature := ""
 		if s := m.Signature(); s != "" {
@@ -313,7 +352,7 @@ func printMacro(name string) {
 		fmt.Printf(`signature:   $_%v%v
 description: %v
 reference:   https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/%v#Action%v
-`, name, signature, macroDescriptions[name], filepath.Dir(path), filepath.Base(path))
+`, name, signature, actions.MacroDescriptions[name], filepath.Dir(path), filepath.Base(path))
 	}
 }
 
@@ -406,7 +445,7 @@ func init() {
 	rootCmd.Flags().String("scrape", "", "scrape spec to go code")
 	rootCmd.Flags().String("style", "", "set style")
 
-	for m, f := range macros {
+	for m, f := range actions.MacroMap {
 		spec.AddMacro(m, f)
 	}
 }

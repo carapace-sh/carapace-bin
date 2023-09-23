@@ -2,20 +2,21 @@ package env
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
 func init() {
 	_bool := carapace.ActionValuesDescribed("0", "disabled", "1", "enabled").StyleF(style.ForKeyword)
 	knownVariables["rust"] = variables{
-		Condition: checkPath("rustc"),
-		Names: map[string]string{
+		Condition: conditions.ConditionPath("rustc"),
+		Variables: map[string]string{
 			"RUST_TEST_THREADS":   "The test framework Rust provides executes tests in parallel",
 			"RUST_TEST_NOCAPTURE": "Synonym for the --nocapture flag",
 			"RUST_MIN_STACK":      "Sets the minimum stack size for new threads",
 			"RUST_BACKTRACE":      "Produces a backtrace in the output of a program which panics",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			"RUST_TEST_THREADS":   carapace.ActionValues(),
 			"RUST_TEST_NOCAPTURE": _bool,
 			"RUST_MIN_STACK":      carapace.ActionValues(),

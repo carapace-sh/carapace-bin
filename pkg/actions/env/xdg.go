@@ -6,7 +6,7 @@ import (
 
 func init() {
 	knownVariables["xdg"] = variables{
-		Names: map[string]string{
+		Variables: map[string]string{
 			"XDG_DATA_HOME":   "base directory relative to which user-specific data files should be stored",
 			"XDG_CONFIG_HOME": "base directory relative to which user-specific configuration files should be stored",
 			"XDG_STATE_HOME":  "base directory relative to which user-specific state files should be stored",
@@ -15,7 +15,7 @@ func init() {
 			"XDG_CACHE_HOME":  "base directory relative to which user-specific non-essential data files should be stored",
 			"XDG_RUNTIME_DIR": "base directory relative to which user-specific non-essential runtime files should be stored",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			"XDG_DATA_HOME":   carapace.ActionDirectories(),
 			"XDG_CONFIG_HOME": carapace.ActionDirectories(),
 			"XDG_STATE_HOME":  carapace.ActionDirectories(),

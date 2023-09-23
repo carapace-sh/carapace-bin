@@ -7,7 +7,7 @@ import (
 
 func init() {
 	knownVariables["common_unix"] = variables{
-		Names: map[string]string{
+		Variables: map[string]string{
 			"USER":    "The current logged in user",
 			"HOME":    "The home directory of the current user",
 			"EDITOR":  "The default file editor to be used",
@@ -17,7 +17,7 @@ func init() {
 			"TERM":    "The current terminal emulation",
 			"MAIL":    "Location of where the current user’s mail is stored",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			"HOME":    carapace.ActionDirectories(),
 			"LANG":    os.ActionLanguages(),
 			"LOGNAME": os.ActionUsers(),

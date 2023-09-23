@@ -2,9 +2,11 @@ package env
 
 import (
 	"os"
-	"os/exec"
+	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/internal/condition"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
@@ -12,32 +14,41 @@ import (
 )
 
 type variables struct {
-	Condition  func(c carapace.Context) bool
-	Names      map[string]string
-	Completion map[string]carapace.Action
+	Condition          condition.Condition
+	Variables          map[string]string
+	VariableCompletion map[string]carapace.Action
+	// PlaceholderCompletion map[string]carapace.Action // TODO
 }
 
 func (v *variables) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	var env struct {
-		Names      map[string]string
-		Completion map[string][]string
+		Condition  []string
+		Variables  map[string]string
+		Completion struct {
+			Variable map[string][]string
+			// Placeholder map[string][]string // TODO
+		}
 	}
 	if err := unmarshal(&env); err != nil {
 		return err
 	}
-	v.Names = env.Names
-	v.Completion = make(map[string]carapace.Action)
-	for name, completion := range env.Completion {
-		v.Completion[name] = spec.NewAction(completion).Parse(&cobra.Command{})
+
+	conds := make([]condition.Condition, 0)
+	for _, c := range env.Condition {
+		m, err := conditions.MacroMap.Lookup(c)
+		if err != nil {
+			return err
+		}
+		conds = append(conds, m.Parse(c))
+	}
+
+	v.Condition = condition.Of(conds...)
+	v.Variables = env.Variables
+	v.VariableCompletion = make(map[string]carapace.Action)
+	for name, completion := range env.Completion.Variable {
+		v.VariableCompletion[name] = spec.NewAction(completion).Parse(&cobra.Command{})
 	}
 	return nil
-}
-
-func checkPath(s string) func(c carapace.Context) bool {
-	return func(c carapace.Context) bool {
-		_, err := exec.LookPath(s) // TODO copy function to carapace as this needs to use carapace.Context$Env
-		return err == nil
-	}
 }
 
 var knownVariables = map[string]variables{}
@@ -61,7 +72,7 @@ func actionKnownEnvironmentVariables() carapace.Action {
 				continue
 			}
 
-			for name, description := range v.Names {
+			for name, description := range v.Variables {
 				vals = append(vals, name, description)
 			}
 		}
@@ -72,50 +83,100 @@ func actionKnownEnvironmentVariables() carapace.Action {
 // ActionEnvironmentVariableValues completes values for given environment variable
 func ActionEnvironmentVariableValues(s string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if custom, err := loadCustomVariables(); err == nil {
-			if action, ok := custom.Completion[s]; ok {
-				return action
+		dir, err := xdg.UserConfigDir()
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		entries, err := os.ReadDir(dir + "/carapace/variables")
+		if err != nil {
+			return carapace.ActionMessage(err.Error()) // TODO ignore if not exists
+		}
+
+		found := false
+		batch := carapace.Batch()
+		for _, entry := range entries {
+			if !entry.IsDir() && strings.HasSuffix(entry.Name(), ".yaml") {
+				file := dir + "/carapace/variables/" + entry.Name()
+				batch = append(batch, carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					custom, err := loadCustomVariables(file)
+					if err != nil {
+						return carapace.ActionMessage(err.Error())
+					}
+
+					if custom.Condition == nil || custom.Condition(c) {
+						if action, ok := custom.VariableCompletion[s]; ok {
+							found = true
+							return action
+						}
+					}
+
+					for _, v := range knownVariables {
+						if action, ok := v.VariableCompletion[s]; ok {
+							found = true
+							return action
+						}
+					}
+					return carapace.ActionValues()
+				}))
 			}
 		}
 
-		for _, v := range knownVariables {
-			if action, ok := v.Completion[s]; ok {
-				return action
-			}
+		if a := batch.Invoke(c).Merge().ToA(); found {
+			return a
 		}
-		return carapace.ActionFiles()
+		return carapace.ActionFiles() // fallback
 	})
 }
 
 func actionCustomEnvironmentVariables() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		v, err := loadCustomVariables()
+		dir, err := xdg.UserConfigDir()
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 
-		vals := make([]string, 0)
-		for name, description := range v.Names {
-			vals = append(vals, name, description)
+		entries, err := os.ReadDir(dir + "/carapace/variables")
+		if err != nil {
+			return carapace.ActionMessage(err.Error()) // TODO ignore if not exists
 		}
-		return carapace.ActionValuesDescribed(vals...)
+
+		batch := carapace.Batch()
+		for _, entry := range entries {
+			if !entry.IsDir() && strings.HasSuffix(entry.Name(), ".yaml") {
+				file := dir + "/carapace/variables/" + entry.Name()
+				batch = append(batch, carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					custom, err := loadCustomVariables(file)
+					if err != nil {
+						return carapace.ActionMessage(err.Error())
+					}
+
+					if custom.Condition != nil && !custom.Condition(c) {
+						return carapace.ActionValues() // skip when condition failed
+					}
+
+					vals := make([]string, 0)
+					for name, description := range custom.Variables {
+						vals = append(vals, name, description)
+					}
+					return carapace.ActionValuesDescribed(vals...)
+
+				}))
+			}
+		}
+		return batch.ToA()
 	}).Tag("custom environment variables")
 }
 
-func loadCustomVariables() (*variables, error) {
-	dir, err := xdg.UserConfigDir()
-	if err != nil {
-		return nil, err
-	}
-
-	content, err := os.ReadFile(dir + "/carapace/env.yaml")
+func loadCustomVariables(file string) (*variables, error) {
+	content, err := os.ReadFile(file)
 	if err != nil {
 		if !os.IsNotExist(err) {
 			return nil, err
 		}
 		return &variables{
-			Names:      map[string]string{},
-			Completion: make(map[string]carapace.Action),
+			Variables:          map[string]string{},
+			VariableCompletion: make(map[string]carapace.Action),
 		}, nil
 	}
 

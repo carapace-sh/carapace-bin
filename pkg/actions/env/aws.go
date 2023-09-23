@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/aws"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/rsteube/carapace/pkg/style"
 )
@@ -12,8 +13,8 @@ import (
 func init() {
 	_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 	knownVariables["aws"] = variables{
-		Condition: checkPath("aws"),
-		Names: map[string]string{
+		Condition: conditions.ConditionPath("aws"),
+		Variables: map[string]string{
 			"AWS_ACCESS_KEY_ID":         "Specifies an AWS access key associated with an IAM account",
 			"AWS_CA_BUNDLE":             "Specifies the path to a certificate bundle to use for HTTPS certificate validation",
 			"AWS_CLI_AUTO_PROMPT":       "Enables the auto-prompt for the AWS CLI version 2",
@@ -40,7 +41,7 @@ func init() {
 			"AWS_USE_FIPS_ENDPOINT":               "Federal Information Processing Standard (FIPS) endoint",
 			"AWS_WEB_IDENTITY_TOKEN_FILE":         "Specifies the path to a file that contains an OAuth 2.0 access token",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			"AWS_CA_BUNDLE": carapace.ActionFiles(),
 			"AWS_CLI_AUTO_PROMPT": carapace.ActionValuesDescribed(
 				"on", "full auto-prompt mode each time you attempt to run an aws command",

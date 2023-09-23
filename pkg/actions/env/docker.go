@@ -2,13 +2,14 @@ package env
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
 func init() {
 	knownVariables["docker"] = variables{
-		Condition: checkPath("docker"),
-		Names: map[string]string{
+		Condition: conditions.ConditionPath("docker"),
+		Variables: map[string]string{
 			"DOCKER_API_VERSION":          "Override the negotiated API version to use for debugging",
 			"DOCKER_CERT_PATH":            "Location of your authentication keys",
 			"DOCKER_CONFIG":               "The location of your client configuration files",
@@ -21,7 +22,7 @@ func init() {
 			"DOCKER_TLS_VERIFY":           "When set Docker uses TLS and verifies the remote",
 			"BUILDKIT_PROGRESS":           "Set type of progress output",
 		},
-		Completion: map[string]carapace.Action{
+		VariableCompletion: map[string]carapace.Action{
 			"DOCKER_CERT_PATH": carapace.ActionDirectories(),
 			"DOCKER_CONFIG":    carapace.ActionFiles(),
 			"DOCKER_HIDE_LEGACY_COMMANDS": carapace.ActionStyledValuesDescribed(
