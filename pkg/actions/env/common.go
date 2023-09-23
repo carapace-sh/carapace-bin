@@ -4,18 +4,25 @@ import (
 	_os "os"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 )
 
 func init() {
 	knownVariables["common"] = variables{
 		Names: map[string]string{
+			"BROWSER":      "the browser to use",
+			"EDITOR":       "the editor to use",
 			"HTTP_PROXY":   "http proxy server",
-			"HTTP_TIMEOUT": "The HTTP timeout in seconds",
 			"HTTPS_PROXY":  "https proxy server",
+			"HTTP_TIMEOUT": "The HTTP timeout in seconds",
+			"PAGER":        "the pager to use",
 			"PATH":         "A list of directories to be searched when executing commands",
 		},
 		Completion: map[string]carapace.Action{
-			"PATH": carapace.ActionDirectories().List(string(_os.PathListSeparator)).NoSpace(),
+			"BROWSER": bridge.ActionCarapaceBin().Split(),
+			"EDITOR":  bridge.ActionCarapaceBin().Split(),
+			"PAGER":   bridge.ActionCarapaceBin().Split(),
+			"PATH":    carapace.ActionDirectories().List(string(_os.PathListSeparator)).NoSpace(),
 		},
 	}
 
