@@ -2,11 +2,13 @@ package env
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
 func init() {
 	knownVariables["starship"] = variables{
+		Condition: conditions.ConditionPath("starship"),
 		Variables: map[string]string{
 			"STARSHIP_CACHE":       "cache location",
 			"STARSHIP_CONFIG":      "config location",

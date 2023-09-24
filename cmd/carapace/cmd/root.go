@@ -310,18 +310,9 @@ func printCompletersJson() {
 }
 
 func printConditions() {
-	maxlen := 0
-	names := make([]string, 0)
-	for name := range conditions.MacroMap {
-		names = append(names, name)
-		if len := len(name); len > maxlen {
-			maxlen = len
-		}
-	}
-
-	sort.Strings(names)
-	for _, name := range names {
-		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, conditions.MacroDescriptions[name])
+	// TODO marshal ordered using yaml
+	for name, macro := range conditions.MacroMap {
+		fmt.Printf("%v: %#v\n", name, macro.Description)
 	}
 }
 

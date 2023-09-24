@@ -3,6 +3,7 @@ package env
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/terraform"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/rsteube/carapace/pkg/style"
 )
@@ -10,6 +11,7 @@ import (
 func init() {
 	_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 	knownVariables["terraform"] = variables{
+		Condition: conditions.ConditionPath("terraform"),
 		Variables: map[string]string{
 			"TF_LOG":                      "Enables detailed logs to appear on stderr which is useful for debugging",
 			"TF_LOG_PATH":                 "This specifies where the log should persist its output to",

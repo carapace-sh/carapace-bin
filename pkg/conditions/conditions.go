@@ -6,6 +6,5 @@ import (
 )
 
 var (
-	MacroMap          = make(macro.MacroMap[condition.Macro])
-	MacroDescriptions = make(map[string]string)
+	MacroMap = make(macro.MacroMap[condition.Macro])
 )

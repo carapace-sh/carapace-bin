@@ -3,12 +3,14 @@ package env
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
+	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
 func init() {
 	_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 	knownVariables["cargo"] = variables{
+		Condition: conditions.ConditionPath("cargo"),
 		Variables: map[string]string{
 			"CARGO_BIN_NAME":                         "The name of the binary that is currently being compiled",
 			"CARGO_BUILD_DEP_INFO_BASEDIR":           "Dep-info relative directory, see build.dep-info-basedir",
