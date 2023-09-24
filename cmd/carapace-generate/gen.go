@@ -324,11 +324,11 @@ func conditions() {
 							macros = append(macros, "// TODO unsupported signature: "+t)
 							continue
 						} else if arg == "" {
-							macros = append(macros, fmt.Sprintf(`"%v": condition.MacroN(%v),`, matches[1], _func))
+							macros = append(macros, fmt.Sprintf(`"%v": condition.MacroN(%v).WithDescription(%#v),`, matches[1], _func, descriptions[matches[1]]))
 						} else if strings.Contains(arg, "...") {
-							macros = append(macros, fmt.Sprintf(`"%v": condition.MacroV(%v),`, matches[1], _func))
+							macros = append(macros, fmt.Sprintf(`"%v": condition.MacroV(%v).WithDescription(%#v),`, matches[1], _func, descriptions[matches[1]]))
 						} else {
-							macros = append(macros, fmt.Sprintf(`"%v": condition.MacroI(%v),`, matches[1], _func))
+							macros = append(macros, fmt.Sprintf(`"%v": condition.MacroI(%v).WithDescription(%#v),`, matches[1], _func, descriptions[matches[1]]))
 						}
 					}
 				} else if strings.HasPrefix(t, "// Condition") {
@@ -342,12 +342,6 @@ func conditions() {
 		return nil
 	})
 
-	sortedDescriptions := make([]string, 0)
-	for key, value := range descriptions {
-		sortedDescriptions = append(sortedDescriptions, fmt.Sprintf(`%#v: %#v,`, key, value))
-	}
-	sort.Strings(sortedDescriptions)
-
 	content := fmt.Sprintf(`package conditions
 
 import (
@@ -359,13 +353,8 @@ func init() {
 	MacroMap = macro.MacroMap[condition.Macro]{
 %v
 	}
-
-	MacroDescriptions = map[string]string {
-%v
-	}
-			
 }
-`, strings.Join(macros, "\n"), strings.Join(sortedDescriptions, "\n"))
+`, strings.Join(macros, "\n"))
 
 	os.WriteFile(root+"/pkg/conditions/conditions_generated.go", []byte(content), 0644)
 	execabs.Command("go", "fmt", root+"/pkg/conditions/conditions_generated.go").Run()

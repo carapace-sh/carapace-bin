@@ -6,12 +6,18 @@ import (
 )
 
 type Macro struct {
-	macro macro.Macro[Condition]
+	macro.Macro[Condition]
+	Description string
+}
+
+func (m Macro) WithDescription(s string) Macro {
+	m.Description = s
+	return m
 }
 
 func (m Macro) Parse(s string) Condition {
 	return func(c carapace.Context) bool {
-		b, err := m.macro.Parse(s)
+		b, err := m.Macro.Parse(s)
 		if err != nil {
 			return false
 		}
@@ -19,11 +25,9 @@ func (m Macro) Parse(s string) Condition {
 	}
 }
 
-func (m Macro) Signature() string { return m.macro.Signature() }
-
 func MacroI[A any](f func(arg A) Condition) Macro {
 	return Macro{
-		macro: macro.MacroI[A, Condition](func(arg A) (*Condition, error) {
+		Macro: macro.MacroI[A, Condition](func(arg A) (*Condition, error) {
 			a := f(arg)
 			return &a, nil
 		}),
@@ -32,7 +36,7 @@ func MacroI[A any](f func(arg A) Condition) Macro {
 
 func MacroN(f func() Condition) Macro {
 	return Macro{
-		macro: macro.MacroN[Condition](func() (*Condition, error) {
+		Macro: macro.MacroN[Condition](func() (*Condition, error) {
 			a := f()
 			return &a, nil
 		}),
@@ -41,7 +45,7 @@ func MacroN(f func() Condition) Macro {
 
 func MacroV[A any](f func(args ...A) Condition) Macro {
 	return Macro{
-		macro: macro.MacroV[A, Condition](func(args ...A) (*Condition, error) {
+		Macro: macro.MacroV[A, Condition](func(args ...A) (*Condition, error) {
 			a := f(args...)
 			return &a, nil
 		}),
