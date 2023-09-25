@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,13 @@ func init() {
 	node_createCmd.Flags().StringP("token", "t", "", "Override cluster token (required when connecting to an external cluster)")
 	node_createCmd.Flags().Bool("wait", false, "Wait for the node(s) to be ready before returning.")
 	nodeCmd.AddCommand(node_createCmd)
+
+	// TODO
+	carapace.Gen(node_createCmd).FlagCompletion(carapace.ActionMap{
+		// "cluster":        carapace.ActionValues(),
+		// "image":          carapace.ActionValues(),
+		"k3s-arg": bridge.ActionCarapaceBin("k3s").Split(), // TODO verify
+		// "network":        carapace.ActionValues(),
+		"role": carapace.ActionValues("server", "agent"),
+	})
 }

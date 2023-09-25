@@ -18,4 +18,10 @@ func init() {
 	node_listCmd.Flags().Bool("no-headers", false, "Disable headers")
 	node_listCmd.Flags().StringP("output", "o", "", "Output format. One of: json|yaml")
 	nodeCmd.AddCommand(node_listCmd)
+
+	carapace.Gen(node_listCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("json", "yaml"),
+	})
+
+	// TODO positional
 }
