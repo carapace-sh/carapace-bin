@@ -88,23 +88,28 @@ func init() {
 		VariableCompletion: map[string]carapace.Action{
 			"CARGO_BUILD_DEP_INFO_BASEDIR": carapace.ActionDirectories(),
 			"CARGO_BUILD_INCREMENTAL":      _bool,
+			"CARGO_BUILD_RUSTFLAGS":        bridge.ActionCarapaceBin("rustc").Split(),
 			"CARGO_BUILD_RUSTDOCFLAGS":     bridge.ActionCarapaceBin("rustdoc").Split(),
 			"CARGO_BUILD_TARGET_DIR":       carapace.ActionDirectories(),
 			"CARGO_CARGO_NEW_VCS":          carapace.ActionValues("git", "hg", "pijul", "fossil", "none"),
 			"CARGO_HOME":                   carapace.ActionDirectories(),
+			"CARGO_HTTP_CHECK_REVOKE":      _bool,
+			"CARGO_HTTP_DEBUG":             _bool,
+			"CARGO_HTTP_MULTIPLEXING":      _bool,
 			"CARGO_HTTP_USER_AGENT":        http.ActionUserAgents(),
 			"CARGO_INCREMENTAL": carapace.ActionStyledValuesDescribed(
 				"0", "force disabled,", style.Red,
 				"1", "force enabled", style.Green,
 			),
-			"CARGO_LOG":          carapace.ActionValues("debug", "info", "warn", "error", "trace").StyleF(style.ForLogLevel),
-			"CARGO_MANIFEST_DIR": carapace.ActionDirectories(),
-			"CARGO_TARGET_DIR":   carapace.ActionDirectories(),
-			"CARGO_TERM_COLOR":   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
-			"CARGO_TERM_QUIET":   _bool,
-			"CARGO_TERM_VERBOSE": _bool,
+			"CARGO_LOG":                    carapace.ActionValues("debug", "info", "warn", "error", "trace").StyleF(style.ForLogLevel),
+			"CARGO_MANIFEST_DIR":           carapace.ActionDirectories(),
+			"CARGO_NET_GIT_FETCH_WITH_CLI": _bool,
+			"CARGO_NET_OFFLINE":            _bool,
+			"CARGO_TARGET_DIR":             carapace.ActionDirectories(),
+			"CARGO_TERM_COLOR":             carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+			"CARGO_TERM_QUIET":             _bool,
+			"CARGO_TERM_VERBOSE":           _bool,
 			// TODO more completions
-
 		},
 	}
 
