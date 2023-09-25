@@ -46,4 +46,48 @@ func init() {
 	cluster_createCmd.Flags().StringSliceP("volume", "v", []string{}, "Mount volumes into the nodes (Format: `[SOURCE:]DEST[@NODEFILTER[;NODEFILTER...]]`")
 	cluster_createCmd.Flags().Bool("wait", false, "Wait for the server(s) to be ready before returning. Use '--timeout DURATION' to not wait forever.")
 	clusterCmd.AddCommand(cluster_createCmd)
+
+	carapace.Gen(cluster_createCmd).FlagCompletion(carapace.ActionMap{
+		"api-port":           carapace.ActionValues(), // TODO
+		"config":             carapace.ActionFiles(),
+		"env":                carapace.ActionValues(),
+		"gpus":               carapace.ActionValues(),
+		"host-alias":         carapace.ActionValues(),
+		"image":              carapace.ActionValues(),
+		"k3s-arg":            carapace.ActionValues(),
+		"k3s-node-label":     carapace.ActionValues(),
+		"lb-config-override": carapace.ActionValues(),
+		"network":            carapace.ActionValues(),
+		"port":               carapace.ActionValues(),
+		"registry-config":    carapace.ActionValues(),
+		"registry-create":    carapace.ActionValues(),
+		"registry-use":       carapace.ActionValues(),
+		"runtime-label":      carapace.ActionValues(),
+		"runtime-ulimit":     carapace.ActionValues(),
+		"servers":            carapace.ActionValues(),
+		"servers-memory":     carapace.ActionValues(),
+		"subnet":             carapace.ActionValues(),
+		"timeout":            carapace.ActionValues(),
+		"token":              carapace.ActionValues(),
+		"volume":             carapace.ActionValues(),
+	})
+}
+
+func x() {
+	// KEY[=VALUE][@NODEFILTER[;NODEFILTER...]]
+	carapace.ActionMultiPartsN("@", 2, func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValues("TODO:key")
+				default:
+					return carapace.ActionValues("TODO:value")
+				}
+			})
+		default:
+			return carapace.ActionValues("TODO:nodefilter").List(";")
+		}
+	}).List(",")
 }
