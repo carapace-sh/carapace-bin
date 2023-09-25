@@ -1,4 +1,4 @@
-package action
+package python
 
 import (
 	"strings"
@@ -7,6 +7,10 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionModules completes modules
+//
+//	Cython
+//	DistUtilsExtra
 func ActionModules() carapace.Action {
 	return carapace.ActionExecCommand("python", "-c", "help('modules')")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
