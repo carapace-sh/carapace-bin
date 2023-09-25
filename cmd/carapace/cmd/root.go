@@ -322,9 +322,15 @@ func printConditions(format string) string {
 		}
 
 	case "markdown":
+		sortedNames := make([]string, 0)
+		for name := range conditions.MacroMap {
+			sortedNames = append(sortedNames, name)
+		}
+		sort.Strings(sortedNames)
+
 		s = append(s, "# Conditions", "")
-		for name, macro := range conditions.MacroMap {
-			s = append(s, fmt.Sprintf("- [%v](https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/conditions#Condition%v) %v", name, name, macro.Description))
+		for _, name := range sortedNames {
+			s = append(s, fmt.Sprintf("- [%v](https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/conditions#Condition%v) %v", name, name, conditions.MacroMap[name].Description))
 		}
 	}
 	return strings.Join(s, "\n")
