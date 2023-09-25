@@ -1,4 +1,4 @@
-# Environment
+# Variable
 
 > feature in development
 
@@ -9,7 +9,7 @@ For other shells custom functions are added.
 
 > Setting `CARAPACE_ENV=0` before sourcing `carapace _carapace` disables this behaviour.
 
-![](./environment.cast)
+![](./variable.cast)
 
 ## Custom variables
 
@@ -27,7 +27,7 @@ completion:
     HTTPS_PROXY: ["https://localhost:8443\tdevelopment", "https://proxy.company:443\tproduction"]
 ```
 
-![](./environment-custom.cast)
+![](./variable-custom.cast)
 
 It is also possible to define conditions.
 
@@ -40,6 +40,4 @@ completion:
     CUSTOM_CONDITION: ["within", "git", "repo"]
 ```
 
-![](./environment-condition.cast)
-
-> TODO document conditions
+![](./variable-condition.cast)
