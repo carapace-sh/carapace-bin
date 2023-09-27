@@ -2,6 +2,7 @@ package env
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
 	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace/pkg/style"
 )
@@ -23,12 +24,17 @@ func init() {
 			"BUILDKIT_PROGRESS":           "Set type of progress output",
 		},
 		VariableCompletion: map[string]carapace.Action{
-			"DOCKER_CERT_PATH": carapace.ActionDirectories(),
-			"DOCKER_CONFIG":    carapace.ActionFiles(),
+			"DOCKER_API_VERSION":      carapace.ActionValues(),
+			"DOCKER_CERT_PATH":        carapace.ActionDirectories(),
+			"DOCKER_CONFIG":           carapace.ActionFiles(),
+			"DOCKER_CONTENT_TRUST":    carapace.ActionValues("1"),
+			"DOCKER_CONTEXT":          docker.ActionContexts(),
+			"DOCKER_DEFAULT_PLATFORM": carapace.ActionValues(), // TODO
 			"DOCKER_HIDE_LEGACY_COMMANDS": carapace.ActionStyledValuesDescribed(
 				"0", "show", style.Carapace.KeywordNegative,
 				"1", "hide", style.Carapace.KeywordPositive,
 			),
+			"DOCKER_TLS_VERIFY": carapace.ActionValues("1"),
 			"BUILDKIT_PROGRESS": carapace.ActionValues("auto", "plain", "tty"),
 		},
 	}
