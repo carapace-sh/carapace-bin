@@ -23,6 +23,7 @@ func init() {
 	release_createCmd.Flags().Bool("latest", false, "Mark this release as \"Latest\" (default: automatic based on date and version)")
 	release_createCmd.Flags().StringP("notes", "n", "", "Release notes")
 	release_createCmd.Flags().StringP("notes-file", "F", "", "Read release notes from `file` (use \"-\" to read from standard input)")
+	release_createCmd.Flags().Bool("notes-from-tag", false, "Automatically generate notes from annotated tag")
 	release_createCmd.Flags().String("notes-start-tag", "", "Tag to use as the starting point for generating release notes")
 	release_createCmd.Flags().BoolP("prerelease", "p", false, "Mark the release as a prerelease")
 	release_createCmd.Flags().String("target", "", "Target `branch` or full commit SHA (default: main branch)")
@@ -33,6 +34,7 @@ func init() {
 	carapace.Gen(release_createCmd).FlagCompletion(carapace.ActionMap{
 		"discussion-category": action.ActionDiscussionCategories(release_createCmd),
 		"notes-file":          carapace.ActionFiles(),
+		"notes-from-tag":      action.ActionReleases(release_createCmd),
 		"notes-start-tag":     action.ActionReleases(release_createCmd),
 		"target":              action.ActionBranches(release_createCmd),
 	})
