@@ -37,3 +37,19 @@ func ActionCaches(opts RepoOpts) carapace.Action {
 		})
 	}).Tag("caches")
 }
+
+// ActionCacheFields completes label fields
+//
+//	id
+//	key
+func ActionCacheFields() carapace.Action {
+	return carapace.ActionValues(
+		"createdAt",
+		"id",
+		"key",
+		"lastAccessedAt",
+		"ref",
+		"sizeInBytes",
+		"version",
+	)
+}
