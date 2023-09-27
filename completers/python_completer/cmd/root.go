@@ -4,8 +4,8 @@ import (
 	"os"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/python_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/completers/python_completer/cmd/module"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/python"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -45,7 +45,7 @@ func init() {
 	rootCmd.Flags().BoolSliceS("O", "O", []bool{}, "remove assert and __debug__-dependent statements")
 	rootCmd.Flags().BoolS("S", "S", false, "don't imply 'import site' on initialization")
 	rootCmd.Flags().BoolSliceS("V", "V", []bool{}, "print the Python version number and exit")
-	rootCmd.Flags().StringS("W", "W", "", "warning control")
+	rootCmd.Flags().StringSliceS("W", "W", []string{}, "warning control")
 	rootCmd.Flags().StringArrayS("X", "X", []string{}, "set implementation-specific option")
 	rootCmd.Flags().BoolS("b", "b", false, "issue warnings about str(bytes_instance), str(bytearray_instance) and comparing bytes/bytearray with str")
 	rootCmd.Flags().StringS("c", "c", "", "program passed in as string")
@@ -61,6 +61,7 @@ func init() {
 	rootCmd.Flags().BoolS("x", "x", false, "skip first line of source")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"W": python.ActionWarningControls(),
 		"X": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -86,7 +87,7 @@ func init() {
 			}
 		}),
 		"check-hash-based-pycs": carapace.ActionValues("always", "default", "never").StyleF(style.ForKeyword),
-		"m":                     action.ActionModules(),
+		"m":                     python.ActionModules(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
