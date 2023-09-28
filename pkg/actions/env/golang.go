@@ -95,6 +95,7 @@ func init() {
 				carapace.ActionFiles(),
 				carapace.ActionValues("off").StyleF(style.ForKeyword),
 			).ToA(),
+			"GOFLAGS":    bridge.ActionCarapaceBin("go").Split(), // not entirely correct as it includes the subcommand but still helpful as that can be removed afterwards
 			"GOMODCACHE": carapace.ActionDirectories(),
 			"GOOS":       golang.ActionOperatingSystems(),
 			"GOTMPDIR":   carapace.ActionDirectories(),
