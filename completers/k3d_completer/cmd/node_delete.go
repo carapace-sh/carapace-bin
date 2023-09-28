@@ -20,6 +20,6 @@ func init() {
 	nodeCmd.AddCommand(node_deleteCmd)
 
 	carapace.Gen(node_deleteCmd).PositionalAnyCompletion(
-		k3d.ActionNodes().FilterArgs(),
+		k3d.ActionNodes(k3d.NodeOpts{}.Default()).FilterArgs(),
 	)
 }

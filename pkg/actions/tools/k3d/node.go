@@ -8,6 +8,18 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
+type NodeOpts struct {
+	Cluster string
+	Running bool
+	Stopped bool
+}
+
+func (n NodeOpts) Default() NodeOpts {
+	n.Running = true
+	n.Stopped = true
+	return n
+}
+
 type node struct {
 	Name          string
 	Role          string
@@ -19,6 +31,19 @@ type node struct {
 	}
 }
 
+func (n node) applies(opts NodeOpts) bool {
+	switch {
+	case opts.Cluster != "" && opts.Cluster != n.RuntimeLabels.K3dCluster:
+		return false
+	case opts.Running && n.State.Running:
+		return true
+	case opts.Stopped && !n.State.Running:
+		return true
+	default:
+		return false
+	}
+}
+
 func (n node) style() string {
 	if n.State.Running {
 		return style.Carapace.KeywordPositive
@@ -26,7 +51,7 @@ func (n node) style() string {
 	return style.Carapace.KeywordNegative
 }
 
-func ActionNodes() carapace.Action {
+func ActionNodes(opts NodeOpts) carapace.Action {
 	return carapace.ActionExecCommand("k3d", "node", "list", "--output", "json")(func(output []byte) carapace.Action {
 		var nodes []node
 		if err := json.Unmarshal(output, &nodes); err != nil {
@@ -35,7 +60,9 @@ func ActionNodes() carapace.Action {
 
 		vals := make([]string, 0)
 		for _, n := range nodes {
-			vals = append(vals, n.Name, fmt.Sprintf("%v.%v", n.RuntimeLabels.K3dCluster, n.Role), n.style())
+			if n.applies(opts) {
+				vals = append(vals, n.Name, fmt.Sprintf("%v.%v", n.RuntimeLabels.K3dCluster, n.Role), n.style())
+			}
 		}
 		return carapace.ActionStyledValuesDescribed(vals...)
 	})
