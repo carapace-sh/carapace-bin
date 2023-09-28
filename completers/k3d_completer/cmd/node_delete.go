@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/k3d"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	node_deleteCmd.Flags().BoolP("all", "a", false, "Delete all existing nodes")
 	node_deleteCmd.Flags().BoolP("registries", "r", false, "Also delete registries")
 	nodeCmd.AddCommand(node_deleteCmd)
+
+	carapace.Gen(node_deleteCmd).PositionalAnyCompletion(
+		k3d.ActionNodes().FilterArgs(),
+	)
 }
