@@ -107,14 +107,14 @@ func ActionEnvironmentVariableValues(s string) carapace.Action {
 					if custom.Condition == nil || custom.Condition(c) {
 						if action, ok := custom.VariableCompletion[s]; ok {
 							found = true
-							return action
+							return action.Usage(custom.Variables[s])
 						}
 					}
 
 					for _, v := range knownVariables {
 						if action, ok := v.VariableCompletion[s]; ok {
 							found = true
-							return action
+							return action.Usage(v.Variables[s])
 						}
 					}
 					return carapace.ActionValues()
