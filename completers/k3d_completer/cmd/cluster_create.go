@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/k3d"
 	"github.com/spf13/cobra"
 )
 
@@ -48,10 +49,17 @@ func init() {
 	clusterCmd.AddCommand(cluster_createCmd)
 
 	carapace.Gen(cluster_createCmd).FlagCompletion(carapace.ActionMap{
-		"api-port":           carapace.ActionValues(), // TODO
-		"config":             carapace.ActionFiles(),
-		"env":                carapace.ActionValues(),
-		"gpus":               carapace.ActionValues(),
+		"api-port": carapace.ActionValues(), // TODO
+		"config":   carapace.ActionFiles(),
+		"env": carapace.ActionMultiPartsN("@", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValues() // KEY=VALUE
+			default:
+				return k3d.ActionNodeFilter().List(";")
+			}
+		}),
+		"gpus":               carapace.ActionValues(), // TODO
 		"host-alias":         carapace.ActionValues(),
 		"image":              carapace.ActionValues(),
 		"k3s-arg":            carapace.ActionValues(),

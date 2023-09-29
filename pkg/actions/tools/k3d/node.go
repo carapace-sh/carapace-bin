@@ -67,3 +67,20 @@ func ActionNodes(opts NodeOpts) carapace.Action {
 		return carapace.ActionStyledValuesDescribed(vals...)
 	})
 }
+
+func ActionNodeGroups() carapace.Action {
+	return carapace.ActionValues("server", "servers", "agent", "agents", "loadbalancer", "all")
+}
+
+func ActionNodeFilter() carapace.Action { // TODO limit to specific cluster
+	return carapace.ActionMultiPartsN(":", 3, func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			return ActionNodeGroups()
+		case 1:
+			return carapace.ActionValues() // TODO subset
+		default:
+			return carapace.ActionValues() // TODO suffix
+		}
+	})
+}
