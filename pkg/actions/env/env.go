@@ -13,6 +13,18 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+type variablesMap map[string]func() variables
+
+func (m variablesMap) get() map[string]variables {
+	result := make(map[string]variables)
+	for k, v := range m {
+		result[k] = v() // TODO this should only be done once no matter how often get() is called
+	}
+	return result
+}
+
+var knownVariables = make(variablesMap)
+
 type variables struct {
 	Condition          condition.Condition
 	Variables          map[string]string
@@ -51,8 +63,6 @@ func (v *variables) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return nil
 }
 
-var knownVariables = map[string]variables{}
-
 // ActionKnownEnvironmentVariables completes known environment variables
 //
 //	GOARCH (The architecture, or processor, for which to compile code)
@@ -67,7 +77,7 @@ func ActionKnownEnvironmentVariables() carapace.Action {
 func actionKnownEnvironmentVariables() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := make([]string, 0)
-		for _, v := range knownVariables {
+		for _, v := range knownVariables.get() {
 			if v.Condition != nil && !v.Condition(c) {
 				continue
 			}
@@ -114,7 +124,7 @@ func ActionEnvironmentVariableValues(s string) carapace.Action {
 						}
 					}
 
-					for _, v := range knownVariables {
+					for _, v := range knownVariables.get() {
 						if action, ok := v.VariableCompletion[s]; ok {
 							found = true
 							return carapace.Batch(
