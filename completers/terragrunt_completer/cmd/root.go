@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"os/exec"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
@@ -26,6 +28,12 @@ func init() {
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		bridge.ActionCarapaceBin("terraform"),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			// TODO support `TERRAGRUNT_TFPATH`
+			if _, err := exec.LookPath("terraform"); err == nil {
+				return bridge.ActionCarapaceBin("terraform")
+			}
+			return bridge.ActionCarapaceBin("tofu")
+		}),
 	)
 }
