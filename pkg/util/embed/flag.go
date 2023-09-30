@@ -9,6 +9,29 @@ import (
 )
 
 func subcommandsAsFlags(cmd *cobra.Command, shorthandOnly bool, subcommands ...*cobra.Command) {
+	oldRunE := cmd.RunE
+	cmd.RunE = func(cmd *cobra.Command, args []string) error {
+		if len(args) > 0 {
+			for _, subcommand := range subcommands {
+				switch args[0] {
+				case "--" + subcommand.Name(), "-" + subcommand.Short: // TODO name only when shorthandonly
+					subcommand.SetArgs(args)
+					return subcommand.Execute()
+				}
+			}
+		}
+
+		switch {
+		case oldRunE != nil:
+			return oldRunE(cmd, args)
+		case cmd.Run != nil:
+			cmd.Run(cmd, args)
+			return nil
+		default:
+			return nil
+		}
+	}
+
 	carapace.Gen(cmd).PreRun(func(cmd *cobra.Command, args []string) {
 		flags := pflag.NewFlagSet("subcommands", pflag.ContinueOnError)
 		for _, s := range subcommands {
