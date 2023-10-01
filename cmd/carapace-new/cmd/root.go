@@ -107,6 +107,19 @@ func init() {
 		ActionCompleters(),
 	)
 
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			// TODO commands/completers
+			return carapace.ActionExecute(runCmd).Shift(1)
+		}),
+	)
+
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		if len(args) > 1 {
+			cmd.DisableFlagParsing = true
+		}
+	})
+
 	for m, f := range actions.MacroMap {
 		spec.AddMacro(m, f) // TODO only do this when needed
 	}
@@ -130,7 +143,7 @@ func ActionCompleters() carapace.Action {
 	})
 }
 
-func invokeCompleter(completer string) string { // TODO patching should only be necessary for the init script that can be generated without all the channel stuff
+func invokeCompleter(completer string) string { // TODO patching should only be necessary for the init script
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w

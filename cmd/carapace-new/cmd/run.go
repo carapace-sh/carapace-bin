@@ -8,7 +8,7 @@ import (
 
 var runCmd = &cobra.Command{
 	Use:   "--run",
-	Short: "",
+	Short: "TODO run description",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
