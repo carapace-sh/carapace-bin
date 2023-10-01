@@ -113,8 +113,9 @@ func init() {
 				return carapace.ActionExecute(subCmd).Shift(1)
 			}
 
-			os.Args = []string{os.Args[1], "_carapace", "export", os.Args[1], "_carapace"}
-			os.Args = append(os.Args, os.Args[5:]...)
+			// os.Args = []string{os.Args[1], "_carapace", "export", os.Args[1], "_carapace"}
+			// os.Args = append(os.Args, c.Args[1:]...)
+			os.Args = append([]string{os.Args[1], "_carapace", "export", os.Args[1], "_carapace"}, os.Args[5:]...)
 			return carapace.ActionImport([]byte(invokeCompleter(c.Args[0])))
 		}),
 	)
