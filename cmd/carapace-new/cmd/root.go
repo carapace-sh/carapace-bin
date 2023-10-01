@@ -3,9 +3,12 @@ package cmd
 //go:generate go run ../../carapace-generate/gen.go
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
+	"io"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -62,8 +65,7 @@ var rootCmd = &cobra.Command{
 	CompletionOptions: cobra.CompletionOptions{
 		DisableDefaultCmd: true,
 	},
-	DisableFlagParsing: true,
-	Args:               cobra.MinimumNArgs(1),
+	Args: cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if subCmd := subcommands[args[0]]; subCmd != nil {
 			subCmd.SetArgs(args[1:])
@@ -76,8 +78,20 @@ var rootCmd = &cobra.Command{
 func suppressErr(f func() (string, error)) string { s, _ := f(); return s }
 
 func Execute(version string) error {
-	rootCmd.Version = version
-	return rootCmd.Execute()
+	switch {
+	case len(os.Args) > 1 && os.Args[1] != "_carapace":
+		if subCmd := subcommands[os.Args[1]]; subCmd != nil {
+			subCmd.SetArgs(os.Args[2:])
+			return subCmd.Execute()
+		}
+
+		fmt.Print(invokeCompleter(os.Args[1]))
+		return nil
+
+	default:
+		rootCmd.Version = version
+		return rootCmd.Execute()
+	}
 }
 
 func init() {
@@ -92,33 +106,6 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		ActionCompleters(),
 	)
-
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if subCmd, ok := subcommands[c.Args[0]]; ok {
-				return carapace.ActionExecute(subCmd).Shift(1) // TODO usage message wrong (uses rootCmd)
-			}
-			return carapace.ActionValuesDescribed()
-		}),
-	)
-
-	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
-		if len(args) == 1 {
-			rootCmd.DisableFlagParsing = false
-		}
-
-		if len(args) > 0 && !strings.HasPrefix(args[0], "-") {
-			completerCmd := &cobra.Command{
-				Use: args[0],
-				Run: func(cmd *cobra.Command, args []string) {
-					// TODO patch os.Args and so on
-					os.Args[0] = "_carapace"
-					completers.ExecuteCompleter(args[0])
-				},
-			}
-			cmd.AddCommand(completerCmd)
-		}
-	})
 
 	for m, f := range actions.MacroMap {
 		spec.AddMacro(m, f) // TODO only do this when needed
@@ -141,4 +128,35 @@ func ActionCompleters() carapace.Action {
 		}
 		return carapace.ActionStyledValuesDescribed(vals...)
 	})
+}
+
+func invokeCompleter(completer string) string { // TODO patching should only be necessary for the init script that can be generated without all the channel stuff
+	old := os.Stdout
+	r, w, _ := os.Pipe()
+	os.Stdout = w
+
+	outC := make(chan string)
+	// copy the output in a separate goroutine so printing can't block indefinitely
+	go func() {
+		var buf bytes.Buffer
+		io.Copy(&buf, r)
+		outC <- buf.String()
+	}()
+
+	os.Args[1] = "_carapace"
+	completers.ExecuteCompleter(completer)
+
+	w.Close()
+	out := <-outC
+	os.Stdout = old
+
+	executable, err := os.Executable()
+	if err != nil {
+		panic(err.Error()) // TODO exit with error message
+	}
+	executableName := filepath.Base(executable)
+	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v %v", executableName, completer), -1)      // general callback
+	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '%v'", executableName, completer), -1) // xonsh callback
+	return patched
+
 }

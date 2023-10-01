@@ -14,6 +14,10 @@ var rootCmd = &cobra.Command{
 	DisableFlagParsing: true,
 }
 
+func Execute() error {
+	return rootCmd.Execute()
+}
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
