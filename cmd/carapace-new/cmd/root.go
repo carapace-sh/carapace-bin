@@ -109,8 +109,10 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			// TODO commands/completers
-			return carapace.ActionExecute(runCmd).Shift(1)
+			if subCmd := subcommands[c.Args[0]]; subCmd != nil {
+				return carapace.ActionExecute(subCmd).Shift(1)
+			}
+			return carapace.ActionValues("TODO") // TODO commands/completers
 		}),
 	)
 
