@@ -8,7 +8,7 @@ import (
 )
 
 var macrosCmd = &cobra.Command{
-	Use:   "macros",
+	Use:   "--macros",
 	Short: "list spec macros",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -20,6 +20,8 @@ func init() {
 	carapace.Gen(macrosCmd).PositionalCompletion(
 		ActionMacros(),
 	)
+
+	subcommands[macrosCmd.Name()] = macrosCmd
 
 	carapace.Gen(macrosCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {

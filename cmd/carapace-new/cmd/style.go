@@ -6,8 +6,8 @@ import (
 )
 
 var styleCmd = &cobra.Command{
-	Use:   "style",
-	Short: "",
+	Use:   "--style",
+	Short: "set style",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

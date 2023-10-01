@@ -3,6 +3,7 @@ package cmd
 //go:generate go run ../../carapace-generate/gen.go
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -10,7 +11,6 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace-new/cmd/completers"
 	"github.com/rsteube/carapace-bin/pkg/actions"
-	"github.com/rsteube/carapace-bin/pkg/util/embed"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/rsteube/carapace/pkg/xdg"
@@ -18,7 +18,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "carapace-new [flags] [COMPLETER] [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]",
+	Use:   "carapace-new [COMPLETER] [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]",
 	Short: "multi-shell multi-command argument completer",
 	Example: fmt.Sprintf(`  All completers and specs:
     bash:       source <(carapace _carapace bash)
@@ -54,6 +54,15 @@ var rootCmd = &cobra.Command{
 	CompletionOptions: cobra.CompletionOptions{
 		DisableDefaultCmd: true,
 	},
+	DisableFlagParsing: true,
+	Args:               cobra.MinimumNArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		if subCmd := subcommands[args[0]]; subCmd != nil {
+			subCmd.SetArgs(args[1:])
+			return subCmd.Execute()
+		}
+		return errors.New("unknown") // TODO
+	},
 }
 
 func suppressErr(f func() (string, error)) string { s, _ := f(); return s }
@@ -63,14 +72,35 @@ func Execute(version string) error {
 	return rootCmd.Execute()
 }
 
+var subcommands = make(map[string]*cobra.Command)
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+
+	rootCmd.Flags().BoolP("help", "h", false, "help for carapace")
+	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
+	for _, subCmd := range subcommands {
+		rootCmd.Flags().Bool(strings.TrimPrefix(subCmd.Name(), "--"), false, subCmd.Short)
+	}
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		ActionCompleters(),
 	)
 
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if subCmd, ok := subcommands[c.Args[0]]; ok {
+				return carapace.ActionExecute(subCmd).Shift(1)
+			}
+			return carapace.ActionValuesDescribed()
+		}),
+	)
+
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		if len(args) == 1 {
+			rootCmd.DisableFlagParsing = false
+		}
+
 		if len(args) > 0 && !strings.HasPrefix(args[0], "-") {
 			completerCmd := &cobra.Command{
 				Use: args[0],
@@ -83,14 +113,6 @@ func init() {
 			cmd.AddCommand(completerCmd)
 		}
 	})
-
-	embed.SubcommandsAsFlags(rootCmd,
-		listCmd,
-		macrosCmd,
-		runCmd,
-		scrapeCmd,
-		styleCmd,
-	)
 
 	for m, f := range actions.MacroMap {
 		spec.AddMacro(m, f) // TODO only do this when needed

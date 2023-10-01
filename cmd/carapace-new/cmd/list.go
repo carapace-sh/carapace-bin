@@ -7,8 +7,8 @@ import (
 )
 
 var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "",
+	Use:   "--list",
+	Short: "list completers",
 	Run: func(cmd *cobra.Command, args []string) {
 		println("TODO list completers")
 	},
