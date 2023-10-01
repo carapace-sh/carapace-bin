@@ -6,7 +6,7 @@ import (
 )
 
 var scrapeCmd = &cobra.Command{
-	Use:   "scrape",
+	Use:   "--scrape",
 	Short: "scrape spec to go code",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

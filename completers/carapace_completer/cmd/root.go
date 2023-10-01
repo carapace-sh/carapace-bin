@@ -1,187 +1,23 @@
 package cmd
 
 import (
-	"encoding/json"
-	"strings"
-
 	"github.com/rsteube/carapace"
-	spec "github.com/rsteube/carapace-spec"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
-	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
 	Use:                "carapace",
 	Short:              "multi-shell multi-command argument completer",
 	Long:               "https://github.com/rsteube/carapace-bin",
+	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
-	CompletionOptions: cobra.CompletionOptions{
-		DisableDefaultCmd: true,
-	},
-	Run: func(cmd *cobra.Command, args []string) {},
-}
-
-func flagCmd(args []string) *cobra.Command {
-	cmd := &cobra.Command{
-		Use: "carapace",
-		CompletionOptions: cobra.CompletionOptions{
-			DisableDefaultCmd: true,
-		},
-		Run: func(cmd *cobra.Command, args []string) {},
-	}
-
-	cmd.Flags().BoolP("help", "h", false, "help for carapace")
-	cmd.Flags().String("list", "", "list completers")
-	cmd.Flags().String("macros", "test local json schema", "list spec macros")
-	cmd.Flags().String("run", "", "run spec")
-	cmd.Flags().Bool("schema", false, "json schema for spec files")
-	cmd.Flags().String("scrape", "", "scrape spec to go code")
-	cmd.Flags().String("style", "", "set style")
-	cmd.Flags().BoolP("version", "v", false, "version for carapace")
-
-	cmd.Flag("list").NoOptDefVal = " "
-
-	if len(args) > 0 {
-		if f := cmd.Flag(strings.TrimPrefix(args[0], "--")); len(args) > 1 || f != nil && f.Value.Type() == "bool" {
-			cmd.Flags().VisitAll(func(f *pflag.Flag) {
-				f.Changed = true // only one flag shall be completed so fake the changed state
-			})
-		}
-	}
-
-	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"list": carapace.ActionValues("json"),
-		"macros": carapace.ActionExecCommand("carapace", "--macros")(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
-
-			vals := make([]string, 0)
-			for _, line := range lines[:len(lines)-1] {
-				if fields := strings.Fields(line); len(fields) > 1 {
-					vals = append(vals, fields[0], strings.Join(fields[1:], " "))
-				} else {
-					vals = append(vals, fields[0], "")
-				}
-			}
-			return carapace.ActionValuesDescribed(vals...).Invoke(carapace.Context{}).ToMultiPartsA(".")
-		}),
-		"run":    carapace.ActionFiles(".yaml"),
-		"scrape": carapace.ActionFiles(".yaml"),
-		"style":  carapace.ActionStyleConfig().NoSpace(),
-	})
-
-	carapace.Gen(cmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if len(args) > 0 && args[0] == "--macros" {
-				c.Args = args[2:]
-				return spec.ActionMacro("$_" + args[1]).Invoke(c).ToA()
-			}
-			return carapace.ActionValues()
-		}),
-	)
-
-	return cmd
-}
-
-func posCmd() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:                "carapace",
-		DisableFlagParsing: true,
-		CompletionOptions: cobra.CompletionOptions{
-			DisableDefaultCmd: true,
-		},
-		Run: func(cmd *cobra.Command, args []string) {},
-	}
-
-	carapace.Gen(cmd).PositionalCompletion(
-		ActionCompleters(),
-		carapace.ActionStyledValues(
-			"bash", "#d35673",
-			"bash-ble", "#c2039a",
-			"elvish", "#ffd6c9",
-			"export", style.Default,
-			"fish", "#7ea8fc",
-			"ion", "#0e5d6d",
-			"nushell", "#29d866",
-			"oil", "#373a36",
-			"powershell", "#e8a16f",
-			"spec", style.Default,
-			"tcsh", "#412f09",
-			"xonsh", "#a8ffa9",
-			"zsh", "#efda53",
-		),
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues(c.Args[0])
-		}),
-	)
-
-	carapace.Gen(cmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			args := []string{c.Args[0], "export", c.Args[0]}
-			args = append(args, c.Args[3:]...)
-			args = append(args, c.Value)
-			return carapace.ActionExecCommand("carapace", args...)(func(output []byte) carapace.Action {
-				if string(output) == "" {
-					return carapace.ActionValues()
-				}
-				return carapace.ActionImport(output)
-			})
-		}),
-	)
-
-	return cmd
-}
-
-func Execute() error {
-	return rootCmd.Execute()
 }
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if len(c.Args) == 0 {
-				return carapace.Batch(
-					carapace.ActionExecute(flagCmd(c.Args)),
-					carapace.ActionExecute(posCmd()),
-				).ToA()
-			}
-
-			if strings.HasPrefix(c.Args[0], "-") {
-				return carapace.ActionExecute(flagCmd(c.Args))
-			}
-			return carapace.ActionExecute(posCmd())
-		}),
+		bridge.ActionCarapace("carapace-new"), // TODO replace with carapace
 	)
-}
-
-func ActionCompleters() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("carapace", "--list=json")(func(output []byte) carapace.Action {
-			var completers []struct {
-				Name        string
-				Description string
-				Spec        string
-				Overlay     string
-			}
-			if err := json.Unmarshal(output, &completers); err != nil {
-				return carapace.ActionMessage(err.Error())
-			}
-
-			vals := make([]string, 0, len(completers))
-			for _, completer := range completers {
-				s := style.Default
-				if completer.Spec != "" {
-					s = style.Blue
-				}
-				if completer.Overlay != "" {
-					s = style.Of(s, style.Underlined)
-				}
-
-				vals = append(vals, completer.Name, completer.Description, s)
-			}
-			return carapace.ActionStyledValuesDescribed(vals...)
-		})
-	})
 }

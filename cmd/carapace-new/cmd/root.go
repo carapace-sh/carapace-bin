@@ -17,6 +17,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var subcommands = map[string]*cobra.Command{
+	"--list":   listCmd,
+	"--macros": macrosCmd,
+	"--run":    runCmd,
+	"--scrape": scrapeCmd,
+	"--style":  styleCmd,
+}
+
 var rootCmd = &cobra.Command{
 	Use:   "carapace-new [COMPLETER] [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]",
 	Short: "multi-shell multi-command argument completer",
@@ -72,15 +80,13 @@ func Execute(version string) error {
 	return rootCmd.Execute()
 }
 
-var subcommands = make(map[string]*cobra.Command)
-
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("help", "h", false, "help for carapace")
 	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
-	for _, subCmd := range subcommands {
-		rootCmd.Flags().Bool(strings.TrimPrefix(subCmd.Name(), "--"), false, subCmd.Short)
+	for name, cmd := range subcommands {
+		rootCmd.Flags().Bool(strings.TrimPrefix(name, "--"), false, cmd.Short)
 	}
 
 	carapace.Gen(rootCmd).PositionalCompletion(
@@ -90,7 +96,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if subCmd, ok := subcommands[c.Args[0]]; ok {
-				return carapace.ActionExecute(subCmd).Shift(1)
+				return carapace.ActionExecute(subCmd).Shift(1) // TODO usage message wrong (uses rootCmd)
 			}
 			return carapace.ActionValuesDescribed()
 		}),
@@ -107,7 +113,7 @@ func init() {
 				Run: func(cmd *cobra.Command, args []string) {
 					// TODO patch os.Args and so on
 					os.Args[0] = "_carapace"
-					executeCompleter(args[0])
+					completers.ExecuteCompleter(args[0])
 				},
 			}
 			cmd.AddCommand(completerCmd)

@@ -21,8 +21,6 @@ func init() {
 		ActionMacros(),
 	)
 
-	subcommands[macrosCmd.Name()] = macrosCmd
-
 	carapace.Gen(macrosCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return spec.ActionMacro("$_" + c.Args[0]).Shift(1) // not fully working for bridge

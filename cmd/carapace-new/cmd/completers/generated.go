@@ -1,6 +1,4 @@
-//go:build release
-
-package cmd
+package completers
 
 import (
 	acpi "github.com/rsteube/carapace-bin/completers_release/acpi_completer/cmd"
@@ -559,7 +557,7 @@ import (
 	zip "github.com/rsteube/carapace-bin/completers_release/zip_completer/cmd"
 )
 
-func executeCompleter(completer string) {
+func ExecuteCompleter(completer string) {
 	switch completer {
 	case "acpi":
 		acpi.Execute()
