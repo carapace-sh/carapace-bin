@@ -112,7 +112,9 @@ func init() {
 			if subCmd := subcommands[c.Args[0]]; subCmd != nil {
 				return carapace.ActionExecute(subCmd).Shift(1)
 			}
-			return carapace.ActionValues("TODO") // TODO commands/completers
+			os.Args = append([]string{os.Args[1], "_carapace"}, os.Args[5:]...)
+			// panic(fmt.Sprintf("%#v", os.Args))
+			return carapace.ActionImport([]byte(invokeCompleter(c.Args[0])))
 		}),
 	)
 
