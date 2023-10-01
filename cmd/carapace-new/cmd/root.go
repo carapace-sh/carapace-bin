@@ -114,11 +114,7 @@ func init() {
 			}
 
 			os.Args = []string{os.Args[1], "_carapace", "export", os.Args[1], "_carapace"}
-			// if len(os.Args) > 4 {
 			os.Args = append(os.Args, os.Args[5:]...)
-			// }
-			carapace.LOG.Printf("%#v", os.Args)
-			// panic(fmt.Sprintf("%#v", os.Args))
 			return carapace.ActionImport([]byte(invokeCompleter(c.Args[0])))
 		}),
 	)
