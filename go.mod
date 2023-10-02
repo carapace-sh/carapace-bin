@@ -25,3 +25,5 @@ require (
 )
 
 replace github.com/spf13/pflag => github.com/rsteube/carapace-pflag v0.2.0
+
+replace github.com/rsteube/carapace => ../carapace/
