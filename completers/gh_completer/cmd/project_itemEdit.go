@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(project_itemEditCmd).Standalone()
 
 	project_itemEditCmd.Flags().String("body", "", "Body of the draft issue item")
+	project_itemEditCmd.Flags().Bool("clear", false, "Remove field value")
 	project_itemEditCmd.Flags().String("date", "", "Date value for the field (YYYY-MM-DD)")
 	project_itemEditCmd.Flags().String("field-id", "", "ID of the field to update")
 	project_itemEditCmd.Flags().String("format", "", "Output format: {json}")
