@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -25,6 +26,7 @@ func init() {
 	carapace.Gen(serveCmd).FlagCompletion(carapace.ActionMap{
 		"dest-dir": carapace.ActionDirectories(),
 		"hostname": carapace.ActionValues("localhost", "0.0.0.0"),
+		"port":     net.ActionPorts(),
 	})
 
 	carapace.Gen(serveCmd).PositionalCompletion(
