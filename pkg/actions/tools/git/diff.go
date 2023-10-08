@@ -1,6 +1,12 @@
 package git
 
-import "github.com/rsteube/carapace"
+import (
+	"path/filepath"
+	"strings"
+
+	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
+)
 
 // ActionDiffAlgorithms completes diff algorithms
 //
@@ -101,4 +107,58 @@ func ActionDiffTools() carapace.Action {
 		"winmerge",
 		"xxdiff",
 	)
+}
+
+// ActionRefDiffs completes changes beetween refs
+// Accepts up to two refs
+// 0: compare current workspace to HEAD
+// 1: compare current workspace to given ref
+// 2: compare first ref to second ref
+func ActionRefDiffs(refs ...string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		args := []string{"diff", "--name-status"}
+		switch len(refs) {
+		case 0:
+			args = append(args, "HEAD")
+		case 1:
+			args = append(args, refs[0])
+		case 2:
+			args = append(args, refs[0], refs[1])
+		default:
+			return carapace.ActionMessage("only up to two refs allowed [ActionRefDiffs]")
+		}
+
+		return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+
+			root, err := rootDir(c)
+			if err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+
+			vals := make([]string, 0)
+			for _, line := range lines {
+				splitted := strings.Split(line, "\t")
+				if len(splitted) < 2 {
+					continue
+				}
+
+				relativePath, err := filepath.Rel(c.Dir, root+"/"+splitted[1])
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+
+				switch {
+				case strings.HasPrefix(relativePath, "../"):
+					vals = append(vals, relativePath, splitted[0])
+				case strings.HasPrefix(c.Value, "."):
+					vals = append(vals, "./"+relativePath, splitted[0])
+				default:
+					vals = append(vals, relativePath, splitted[0])
+				}
+
+			}
+			return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPathExt)
+		})
+	})
 }
