@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
@@ -49,21 +51,40 @@ func init() {
 	})
 
 	carapace.Gen(checkoutCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOption{}.Default()),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if strings.HasPrefix(c.Value, ".") {
+				return git.ActionRefDiffs()
+			}
+			return git.ActionRefs(git.RefOption{}.Default())
+		}),
 	)
 
 	carapace.Gen(checkoutCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRefChanges(c.Args[0]).Invoke(c).Filter(c.Args[1:]...).ToA()
+			toFilter := make([]string, 0)
+			for _, arg := range c.Args {
+				// TODO directories? globs possible? should work for most cases though
+				switch {
+				case !strings.HasPrefix(c.Value, "."):
+					toFilter = append(toFilter, strings.TrimPrefix(arg, "./"))
+				case !strings.HasPrefix(arg, "."):
+					toFilter = append(toFilter, "./"+arg)
+				default:
+					toFilter = append(toFilter, arg)
+				}
+			}
+
+			// multipart completion here as there can be a lot of differences
+			switch {
+			case strings.HasPrefix(c.Args[0], "."):
+				return git.ActionRefDiffs().Filter(toFilter...).MultiParts("/")
+			default:
+				return git.ActionRefDiffs(c.Args[0]).Filter(toFilter[1:]...).MultiParts("/")
+			}
 		}),
 	)
 
 	carapace.Gen(checkoutCmd).DashAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if args := checkoutCmd.Flags().Args(); len(args[:checkoutCmd.ArgsLenAtDash()]) > 0 {
-				return git.ActionRefChanges(args[0]).Invoke(c).Filter(args[1:]...).ToA()
-			}
-			return git.ActionChanges(git.ChangeOpts{}.Default()).FilterArgs()
-		}),
+		carapace.ActionPositional(checkoutCmd), // TODO should only be files, but will suffice for now,
 	)
 }
