@@ -71,16 +71,17 @@ func init() {
 				}
 			}
 
+			// multipart completion here as there can be a lot of differences
 			switch {
 			case strings.HasPrefix(c.Args[0], "."):
-				return git.ActionRefDiffs().Filter(toFilter...)
+				return git.ActionRefDiffs().Filter(toFilter...).MultiParts("/")
 			default:
-				return git.ActionRefDiffs(c.Args[0]).Filter(toFilter[1:]...)
+				return git.ActionRefDiffs(c.Args[0]).Filter(toFilter[1:]...).MultiParts("/")
 			}
 		}),
 	)
 
 	carapace.Gen(resetCmd).DashAnyCompletion(
-		carapace.ActionPositional(resetCmd),
+		carapace.ActionPositional(resetCmd), // TODO should only be files, but will suffice for now
 	)
 }
