@@ -18,7 +18,6 @@ import (
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/shim"
 	"github.com/rsteube/carapace-bin/pkg/actions"
-	"github.com/rsteube/carapace-bin/pkg/conditions"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/ps"
 	"github.com/rsteube/carapace/pkg/style"
@@ -66,14 +65,6 @@ var rootCmd = &cobra.Command{
 		// since flag parsing is disabled do this manually
 		// TODO switch to cobra flag parsing with interspersed=false (redirect completion from completers/carapace_completer to here)
 		switch args[0] {
-		case "--conditions":
-			if len(args) > 1 {
-				//printCondition(args[1]) // TODO
-			} else {
-				fmt.Fprintln(cmd.OutOrStdout(), printConditions("yaml-short")) // TODO
-			}
-		case "--conditions=markdown":
-			fmt.Fprintln(cmd.OutOrStdout(), printConditions("markdown")) // TODO
 		case "--macros":
 			if len(args) > 1 {
 				printMacro(args[1])
@@ -310,30 +301,6 @@ func printCompletersJson() {
 	if m, err := json.Marshal(_completers); err == nil { // TODO handle error (log?)
 		fmt.Println(string(m))
 	}
-}
-
-func printConditions(format string) string {
-	s := make([]string, 0)
-	switch format {
-	case "yaml-short":
-		// TODO marshal ordered using yaml
-		for name, macro := range conditions.MacroMap {
-			s = append(s, fmt.Sprintf("%v: %#v", name, macro.Description))
-		}
-
-	case "markdown":
-		sortedNames := make([]string, 0)
-		for name := range conditions.MacroMap {
-			sortedNames = append(sortedNames, name)
-		}
-		sort.Strings(sortedNames)
-
-		s = append(s, "# Conditions", "")
-		for _, name := range sortedNames {
-			s = append(s, fmt.Sprintf("- [%v](https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/conditions#Condition%v) %v", name, name, conditions.MacroMap[name].Description))
-		}
-	}
-	return strings.Join(s, "\n")
 }
 
 func printMacros() {
