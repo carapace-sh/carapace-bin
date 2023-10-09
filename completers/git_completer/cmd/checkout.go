@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -77,9 +78,9 @@ func init() {
 			// multipart completion here as there can be a lot of differences
 			switch {
 			case strings.HasPrefix(c.Args[0], "."):
-				return git.ActionRefDiffs().Filter(toFilter...).MultiParts("/")
+				return git.ActionRefDiffs().Filter(toFilter...).MultiParts("/").StyleF(style.ForPathExt)
 			default:
-				return git.ActionRefDiffs(c.Args[0]).Filter(toFilter[1:]...).MultiParts("/")
+				return git.ActionRefDiffs(c.Args[0]).Filter(toFilter[1:]...).MultiParts("/").StyleF(style.ForPathExt)
 			}
 		}),
 	)
