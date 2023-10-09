@@ -100,10 +100,28 @@ func ActionEnvironmentVariableValues(s string) carapace.Action {
 
 		entries, err := os.ReadDir(dir + "/carapace/variables")
 		if err != nil {
-			return carapace.ActionMessage(err.Error()) // TODO ignore if not exists
+			if !os.IsNotExist(err) {
+				return carapace.ActionMessage(err.Error()) // TODO ignore if not exists
+			}
+			entries = []os.DirEntry{}
 		}
 
 		found := false
+		var knownUsage string
+		var knownAction carapace.Action
+		for _, v := range knownVariables.get() {
+			if usage, ok := v.Variables[s]; ok {
+				knownUsage = usage
+			}
+			if action, ok := v.VariableCompletion[s]; ok {
+				found = true
+				knownAction = carapace.Batch(
+					carapace.ActionValues().Usage(knownUsage), // let action override usage if set
+					action,
+				).ToA()
+			}
+		}
+
 		batch := carapace.Batch()
 		for _, entry := range entries {
 			if !entry.IsDir() && strings.HasSuffix(entry.Name(), ".yaml") {
@@ -117,18 +135,13 @@ func ActionEnvironmentVariableValues(s string) carapace.Action {
 					if custom.Condition == nil || custom.Condition(c) {
 						if action, ok := custom.VariableCompletion[s]; ok {
 							found = true
+							usage := knownUsage
+							knownAction = carapace.ActionValues() // prevent default
+							if customUsage, ok := custom.Variables[s]; ok {
+								usage = customUsage
+							}
 							return carapace.Batch(
-								carapace.ActionValues().Usage(custom.Variables[s]), // let action override usage if set
-								action,
-							).ToA()
-						}
-					}
-
-					for _, v := range knownVariables.get() {
-						if action, ok := v.VariableCompletion[s]; ok {
-							found = true
-							return carapace.Batch(
-								carapace.ActionValues().Usage(v.Variables[s]), // let action override usage if set
+								carapace.ActionValues().Usage(usage), // let action override usage if set
 								action,
 							).ToA()
 						}
@@ -137,9 +150,11 @@ func ActionEnvironmentVariableValues(s string) carapace.Action {
 				}))
 			}
 		}
-
 		if a := batch.Invoke(c).Merge().ToA(); found {
-			return a
+			return carapace.Batch(
+				knownAction,
+				a,
+			).ToA()
 		}
 		return carapace.ActionFiles() // fallback
 	})
@@ -154,7 +169,10 @@ func actionCustomEnvironmentVariables() carapace.Action {
 
 		entries, err := os.ReadDir(dir + "/carapace/variables")
 		if err != nil {
-			return carapace.ActionMessage(err.Error()) // TODO ignore if not exists
+			if !os.IsNotExist(err) {
+				return carapace.ActionMessage(err.Error())
+			}
+			return carapace.ActionValues()
 		}
 
 		batch := carapace.Batch()
