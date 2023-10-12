@@ -27,3 +27,7 @@
       - [carapace-lint](./development/tools/carapace-lint.md)
       - [carapace-parse](./development/tools/carapace-parse.md)
       - [carapace-generate](./development/tools/carapace-generate.md)
+  - [Changelog](./changelog.md)
+    - [v0.28](./changelog/v0.28.md)
+    - [v0.27](./changelog/v0.27.md)
+    - [v0.26](./changelog/v0.26.md)
