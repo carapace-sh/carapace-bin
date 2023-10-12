@@ -12,6 +12,9 @@ additional-js = ["asciinema/asciinema-player.min.js", "asciinema/load.js"]
 git-repository-url = "https://github.com/rsteube/carapace-bin"
 edit-url-template = "https://github.com/rsteube/carapace-bin/edit/master/docs/{path}"
 
+[output.html.fold]
+enable = true
+
 [output.linkcheck]
 follow-web-links = true
 exclude = [ 'archlinux\.org' ]
