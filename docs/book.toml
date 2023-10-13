@@ -7,7 +7,7 @@ title = "carapace-bin"
 
 [output.html]
 default-theme = "Mocha"
-additional-css = ["asciinema/asciinema-player.css", "./theme/catppuccin.css", "./theme/catppuccin-highlight.css"]
+additional-css = ["asciinema/asciinema-player.css", "./theme/catppuccin.css"]
 additional-js = ["asciinema/asciinema-player.min.js", "asciinema/load.js"]
 git-repository-url = "https://github.com/rsteube/carapace-bin"
 edit-url-template = "https://github.com/rsteube/carapace-bin/edit/master/docs/{path}"
