@@ -64,7 +64,7 @@ func init() {
 
 			path := filepath.Dir(c.Value)
 			path = strings.TrimPrefix(path, "/")
-			if !strings.HasPrefix(c.Value, "/") {
+			if !strings.HasPrefix(c.Value, "/") && !browseCmd.Flag("repo").Changed && c.Getenv("GH_REPO") != "" {
 				root, err := util.FindReverse(c.Dir, ".git")
 				if err != nil {
 					return carapace.ActionMessage(err.Error())
