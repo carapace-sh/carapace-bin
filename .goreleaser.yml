@@ -80,10 +80,13 @@ nfpms:
       - termux.deb
 
 snapcrafts:
-  -
+  - name_template: "carapace_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     summary: "multi-shell multi-command argument completer"
     description: "multi-shell multi-command argument completer"
     license: "MIT"
+    grade: stable
+    confinement: classic
+    publish: true
 
 publishers:
   - name: fury
