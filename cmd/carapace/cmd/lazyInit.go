@@ -120,9 +120,9 @@ function unset-env -d "unset environment variable"; set -e $argv[1]; end`
 	case "nushell":
 		return `
 
-def-env get-env [name] { $env | get $name }
-def-env set-env [name, value] { load-env { $name: $value } }
-def-env unset-env [name] { hide-env $name }`
+def --env get-env [name] { $env | get $name }
+def --env set-env [name, value] { load-env { $name: $value } }
+def --env unset-env [name] { hide-env $name }`
 
 	case "powershell":
 		return `
