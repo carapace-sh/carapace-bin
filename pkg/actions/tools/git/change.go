@@ -10,6 +10,7 @@ import (
 )
 
 type ChangeOpts struct {
+	Ignored  bool
 	Staged   bool
 	Unstaged bool
 }
@@ -27,7 +28,11 @@ func (o ChangeOpts) Default() ChangeOpts {
 func ActionChanges(opts ChangeOpts) carapace.Action {
 	// TODO multiparts action to complete step by step
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("git", "status", "--porcelain")(func(output []byte) carapace.Action {
+		args := []string{"status", "--porcelain"}
+		if opts.Ignored {
+			args = append(args, "--ignored")
+		}
+		return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
 			if root, err := rootDir(c); err != nil {
 				return carapace.ActionMessage(err.Error())
 			} else {
@@ -35,7 +40,8 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 				for _, line := range strings.Split(string(output), "\n") {
 					if len(line) > 3 {
 						if (opts.Staged && line[1] == ' ') ||
-							(opts.Unstaged && line[1] != ' ') {
+							(opts.Unstaged && line[1] != ' ' && line[1] != '!') ||
+							(opts.Ignored && line[1] == '!') {
 							path := line[3:]
 							if splitted := strings.SplitN(path, " -> ", 2); len(splitted) > 1 { // renamed
 								path = splitted[1]
