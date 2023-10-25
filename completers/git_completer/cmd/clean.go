@@ -27,6 +27,12 @@ func init() {
 	rootCmd.AddCommand(cleanCmd)
 
 	carapace.Gen(cleanCmd).PositionalAnyCompletion(
-		git.ActionChanges(git.ChangeOpts{Unstaged: true}).FilterArgs(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			opts := git.ChangeOpts{
+				Ignored:  cleanCmd.Flag("x").Changed || cleanCmd.Flag("X").Changed,
+				Unstaged: !cleanCmd.Flag("X").Changed,
+			}
+			return git.ActionChanges(opts).FilterArgs()
+		}),
 	)
 }
