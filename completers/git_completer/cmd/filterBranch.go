@@ -34,9 +34,17 @@ func init() {
 	rootCmd.AddCommand(filterBranchCmd)
 
 	carapace.Gen(filterBranchCmd).FlagCompletion(carapace.ActionMap{
+		"commit-filter":       bridge.ActionCarapaceBin().SplitP(),
 		"d":                   carapace.ActionDirectories(),
+		"env-filter":          bridge.ActionCarapaceBin().SplitP(),
+		"index-filter":        bridge.ActionCarapaceBin().SplitP(),
+		"msg-filter":          bridge.ActionCarapaceBin().SplitP(),
+		"parent-filter":       bridge.ActionCarapaceBin().SplitP(),
+		"setup":               bridge.ActionCarapaceBin().SplitP(),
 		"state-branch":        git.ActionLocalBranches(),
 		"subdirectory-filter": carapace.ActionDirectories(),
+		"tag-name-filter":     bridge.ActionCarapaceBin().SplitP(),
+		"tree-filter":         bridge.ActionCarapaceBin().SplitP(),
 	})
 
 	carapace.Gen(filterBranchCmd).DashAnyCompletion(
