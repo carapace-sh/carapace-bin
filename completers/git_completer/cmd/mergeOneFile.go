@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var merge_one_fileCmd = &cobra.Command{
+var mergeOneFileCmd = &cobra.Command{
 	Use:     "merge-one-file",
 	Short:   "The standard helper program to use with git-merge-index",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -13,7 +13,7 @@ var merge_one_fileCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(merge_one_fileCmd).Standalone()
+	carapace.Gen(mergeOneFileCmd).Standalone()
 
-	rootCmd.AddCommand(merge_one_fileCmd)
+	rootCmd.AddCommand(mergeOneFileCmd)
 }
