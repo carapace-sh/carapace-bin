@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/net"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -14,13 +16,19 @@ var instawebCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(instawebCmd).Standalone()
-	instawebCmd.Flags().BoolP("browser", "b", false, "...     the browser to launch")
-	instawebCmd.Flags().BoolP("httpd", "d", false, "...       the command to launch")
+
+	instawebCmd.Flags().StringP("browser", "b", "", "the browser to launch")
+	instawebCmd.Flags().StringP("httpd", "d", "", "the command to launch")
 	instawebCmd.Flags().BoolP("local", "l", false, "only bind on 127.0.0.1")
-	instawebCmd.Flags().BoolP("module-path", "m", false, "...    the module path (only needed for apache2)")
-	instawebCmd.Flags().BoolP("port", "p", false, "...        the port to bind to")
+	instawebCmd.Flags().StringP("port", "p", "", "the port to bind to")
 	instawebCmd.Flags().Bool("restart", false, "restart the web server")
 	instawebCmd.Flags().Bool("start", false, "start the web server")
 	instawebCmd.Flags().Bool("stop", false, "stop the web server")
 	rootCmd.AddCommand(instawebCmd)
+
+	carapace.Gen(instawebCmd).FlagCompletion(carapace.ActionMap{
+		"browser": bridge.ActionCarapaceBin().Split(),
+		"httpd":   bridge.ActionCarapaceBin().Split(),
+		"port":    net.ActionPorts(),
+	})
 }
