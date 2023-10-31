@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var update_server_infoCmd = &cobra.Command{
+var updateServerInfoCmd = &cobra.Command{
 	Use:     "update-server-info",
 	Short:   "Update auxiliary info file to help dumb servers",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -13,7 +13,8 @@ var update_server_infoCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(update_server_infoCmd).Standalone()
-	update_server_infoCmd.Flags().BoolP("force", "f", false, "update the info files from scratch")
-	rootCmd.AddCommand(update_server_infoCmd)
+	carapace.Gen(updateServerInfoCmd).Standalone()
+
+	updateServerInfoCmd.Flags().BoolP("force", "f", false, "update the info files from scratch")
+	rootCmd.AddCommand(updateServerInfoCmd)
 }
