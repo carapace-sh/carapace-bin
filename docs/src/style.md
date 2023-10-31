@@ -41,7 +41,7 @@ carapace --style 'carapace.Description='
 
 How the default colors look depends on your [terminal color scheme](https://github.com/rsteube/vincent).
 
-> It is recommeded to choose one with a high contrast so that every color is [well readable](https://gogh-co.github.io/Gogh/).
+> It is recommended to choose one with a high contrast so that every color is [well readable](https://gogh-co.github.io/Gogh/).
 
 ![](./style-scheme.cast)
 
