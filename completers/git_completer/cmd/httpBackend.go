@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var http_backendCmd = &cobra.Command{
+var httpBackendCmd = &cobra.Command{
 	Use:     "http-backend",
 	Short:   "Server side implementation of Git over HTTP",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -13,7 +13,7 @@ var http_backendCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(http_backendCmd).Standalone()
+	carapace.Gen(httpBackendCmd).Standalone()
 
-	rootCmd.AddCommand(http_backendCmd)
+	rootCmd.AddCommand(httpBackendCmd)
 }
