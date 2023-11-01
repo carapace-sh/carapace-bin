@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var commit_graphCmd = &cobra.Command{
+var commitGraphCmd = &cobra.Command{
 	Use:     "commit-graph",
 	Short:   "Write and verify Git commit-graph files",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -13,7 +13,7 @@ var commit_graphCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(commit_graphCmd).Standalone()
-	commit_graphCmd.Flags().String("object-dir", "", "The object directory to store the graph")
-	rootCmd.AddCommand(commit_graphCmd)
+	carapace.Gen(commitGraphCmd).Standalone()
+
+	rootCmd.AddCommand(commitGraphCmd)
 }
