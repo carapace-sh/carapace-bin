@@ -21,7 +21,7 @@ func init() {
 	rootCmd.AddCommand(splitCmd)
 
 	carapace.Gen(splitCmd).FlagCompletion(carapace.ActionMap{
-		"revision": jj.ActionRevs(jj.RevsOption{}.Default()),
+		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(splitCmd).PositionalAnyCompletion(

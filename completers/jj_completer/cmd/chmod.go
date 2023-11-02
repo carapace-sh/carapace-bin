@@ -21,7 +21,7 @@ func init() {
 	rootCmd.AddCommand(chmodCmd)
 
 	carapace.Gen(chmodCmd).FlagCompletion(carapace.ActionMap{
-		"revision": jj.ActionRevs(jj.RevsOption{}.Default()),
+		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(chmodCmd).PositionalCompletion(

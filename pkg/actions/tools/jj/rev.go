@@ -4,7 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-type RevsOption struct {
+type RevOption struct {
 	LocalBranches  bool
 	RemoteBranches bool
 	Commits        int
@@ -12,7 +12,7 @@ type RevsOption struct {
 	Tags           bool
 }
 
-func (o RevsOption) Default() RevsOption {
+func (o RevOption) Default() RevOption {
 	o.LocalBranches = true
 	o.RemoteBranches = true
 	o.Commits = 100
@@ -23,7 +23,7 @@ func (o RevsOption) Default() RevsOption {
 }
 
 // ActionRevs completes refs (commits, branches, tags)
-func ActionRevs(revOption RevsOption) carapace.Action {
+func ActionRevs(revOption RevOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO other refs and ranges
 		// if !strings.ContainsAny(c.Value, "~^") {

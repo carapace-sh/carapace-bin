@@ -20,7 +20,7 @@ func init() {
 	rootCmd.AddCommand(filesCmd)
 
 	carapace.Gen(filesCmd).FlagCompletion(carapace.ActionMap{
-		"revision": jj.ActionRevs(jj.RevsOption{}.Default()),
+		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(filesCmd).PositionalAnyCompletion(
