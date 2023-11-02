@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
 var rebaseCmd = &cobra.Command{
-	Use:   "rebase",
+	Use:   "rebase [OPTIONS] --destination <DESTINATION>",
 	Short: "Move revisions to different parent(s)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -21,4 +22,11 @@ func init() {
 	rebaseCmd.Flags().StringSliceP("source", "s", []string{}, "Rebase specified revision(s) together their tree of descendants (can be repeated)")
 	rebaseCmd.MarkFlagRequired("destination")
 	rootCmd.AddCommand(rebaseCmd)
+
+	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
+		"branch":      jj.ActionRevs(jj.RevOption{LocalBranches: true, RemoteBranches: true, Tags: true}),
+		"destination": jj.ActionRevs(jj.RevOption{}.Default()),
+		"revision":    jj.ActionRevs(jj.RevOption{}.Default()),
+		"source":      jj.ActionRevs(jj.RevOption{}.Default()),
+	})
 }
