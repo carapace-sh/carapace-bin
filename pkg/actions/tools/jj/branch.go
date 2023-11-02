@@ -17,7 +17,9 @@ func ActionLocalBranches() carapace.Action {
 
 		vals := make([]string, 0)
 		for _, line := range lines[:len(lines)-1] {
-			vals = append(vals, strings.SplitN(line, ":", 2)...)
+			splitted := strings.SplitN(line, ": ", 2)
+			description := strings.SplitN(splitted[1], " ", 3)[2]
+			vals = append(vals, splitted[0], description)
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
 	}).Tag("local branches")
@@ -36,13 +38,15 @@ func ActionRemoteBranches(remote string) carapace.Action {
 		for _, line := range lines[:len(lines)-1] {
 			switch {
 			case strings.HasPrefix(line, "  @"):
-				splitted := strings.SplitN(line, ":", 2)
+				splitted := strings.SplitN(line, ": ", 2)
 				switch remote {
 				case "", strings.TrimPrefix(splitted[0], "  @"):
-					vals = append(vals, branch+strings.TrimSpace(splitted[0]), splitted[1])
+					splitted := strings.SplitN(line, ": ", 2)
+					description := strings.SplitN(splitted[1], " ", 3)[2]
+					vals = append(vals, branch+strings.TrimSpace(splitted[0]), description)
 				}
 			default:
-				branch = strings.SplitN(line, ":", 2)[0]
+				branch = strings.SplitN(line, ": ", 2)[0]
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
