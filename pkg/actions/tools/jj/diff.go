@@ -47,3 +47,24 @@ func ActionRevDiffs(revisions ...string) carapace.Action {
 		})
 	})
 }
+
+// ActionRevChanges completes changes made in given revisions
+func ActionRevChanges(revisions ...string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		args := []string{"log", "--summary", "--no-graph", "--template", ""}
+		for _, revision := range revisions {
+			args = append(args, "--revisions", revision)
+		}
+		return carapace.ActionExecCommand("jj", args...)(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+
+			vals := make([]string, 0)
+			for _, line := range lines[:len(lines)-1] {
+				if splitted := strings.SplitN(line, " ", 2); splitted != nil {
+					vals = append(vals, splitted[1], splitted[0]) // TODO state isn't always correct (will be overwritten)
+				}
+			}
+			return carapace.ActionValuesDescribed(vals...).MultiParts("/").StyleF(style.ForPathExt)
+		})
+	})
+}

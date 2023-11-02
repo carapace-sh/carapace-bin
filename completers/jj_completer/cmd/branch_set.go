@@ -22,7 +22,7 @@ func init() {
 	branchCmd.AddCommand(branch_setCmd)
 
 	carapace.Gen(branch_setCmd).FlagCompletion(carapace.ActionMap{
-		"revision": jj.ActionRevs(jj.RevsOption{}.Default()),
+		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(branch_setCmd).PositionalAnyCompletion(

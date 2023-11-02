@@ -21,7 +21,7 @@ func init() {
 	rootCmd.AddCommand(catCmd)
 
 	carapace.Gen(catCmd).FlagCompletion(carapace.ActionMap{
-		"revision": jj.ActionRevs(jj.RevsOption{}.Default()),
+		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(catCmd).PositionalAnyCompletion(
