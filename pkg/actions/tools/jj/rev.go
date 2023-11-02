@@ -9,9 +9,7 @@ type RevsOption struct {
 	RemoteBranches bool
 	Commits        int
 	HeadCommits    int
-	// Tags           bool
-	// Stashes        bool
-	// Notes          bool
+	Tags           bool
 }
 
 func (o RevsOption) Default() RevsOption {
@@ -19,9 +17,7 @@ func (o RevsOption) Default() RevsOption {
 	o.RemoteBranches = true
 	o.Commits = 100
 	o.HeadCommits = 100
-	// o.Tags = true
-	// o.Stashes = true
-	// o.Notes = false
+	o.Tags = true
 	return o
 
 }
@@ -49,17 +45,9 @@ func ActionRevs(revOption RevsOption) carapace.Action {
 			batch = append(batch, ActionHeadCommits(revOption.HeadCommits))
 		}
 
-		// if refOption.Tags {
-		// 	batch = append(batch, ActionTags())
-		// }
-
-		// if refOption.Stashes {
-		// 	batch = append(batch, ActionStashes())
-		// }
-
-		// if refOption.Notes {
-		// 	batch = append(batch, ActionNotes())
-		// }
+		if revOption.Tags {
+			batch = append(batch, ActionTags())
+		}
 
 		return batch.ToA()
 		// }
