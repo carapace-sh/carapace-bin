@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(sparse_helpCmd).Standalone()
 
 	sparseCmd.AddCommand(sparse_helpCmd)
+
+	carapace.Gen(sparse_helpCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(sparseCmd),
+	)
 }

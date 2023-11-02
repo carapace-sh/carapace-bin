@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(git_helpCmd).Standalone()
 
 	gitCmd.AddCommand(git_helpCmd)
+
+	carapace.Gen(git_helpCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(gitCmd),
+	)
 }
