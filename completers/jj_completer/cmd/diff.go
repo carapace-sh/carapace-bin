@@ -2,11 +2,13 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/jj"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
 var diffCmd = &cobra.Command{
-	Use:   "diff",
+	Use:   "diff [OPTIONS] [PATHS]...",
 	Short: "",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -25,4 +27,24 @@ func init() {
 	diffCmd.Flags().String("tool", "", "Generate diff by external command")
 	diffCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	rootCmd.AddCommand(diffCmd)
+
+	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
+		"from":     jj.ActionRevs(jj.RevOption{}.Default()),
+		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
+		"to":       jj.ActionRevs(jj.RevOption{}.Default()),
+		"tool":     bridge.ActionCarapaceBin().Split(),
+	})
+
+	carapace.Gen(diffCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			revisions := []string{"@"}
+			if f := diffCmd.Flag("from"); f.Changed {
+				revisions = []string{f.Value.String()}
+			}
+			if f := diffCmd.Flag("to"); f.Changed {
+				revisions = append(revisions, f.Value.String())
+			}
+			return jj.ActionRevDiffs(revisions...)
+		}),
+	)
 }
