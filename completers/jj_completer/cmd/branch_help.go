@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(branch_helpCmd).Standalone()
 
 	branchCmd.AddCommand(branch_helpCmd)
+
+	carapace.Gen(branch_helpCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(branchCmd),
+	)
 }

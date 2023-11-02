@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(git_remote_helpCmd).Standalone()
 
 	git_remoteCmd.AddCommand(git_remote_helpCmd)
+
+	carapace.Gen(git_remote_helpCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(git_remoteCmd),
+	)
 }
