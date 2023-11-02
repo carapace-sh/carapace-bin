@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "jj",
 	Short: "Jujutsu (An experimental VCS)",
+	Long:  "https://github.com/martinvonz/jj",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
