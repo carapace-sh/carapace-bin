@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	prevCmd.Flags().Bool("edit", false, "Edit the parent directly, instead of moving the working-copy commit")
 	prevCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(prevCmd)
+
+	carapace.Gen(prevCmd).PositionalCompletion(
+		jj.ActionPrevCommits(100),
+	)
 }

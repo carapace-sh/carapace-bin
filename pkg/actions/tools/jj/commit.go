@@ -27,6 +27,24 @@ func ActionHeadCommits(limit int) carapace.Action {
 	}).Tag("head commits")
 }
 
+// ActionPrevCommits completes head commits
+//
+//	04 (build(deps): bump github.com/creack/pty from 1.1.18 to 1.1.20 (#8265))
+//	03 (fix(release create): Handle latest flag value when updating the rel...)
+func ActionPrevCommits(limit int) carapace.Action {
+	return carapace.ActionExecCommand("jj", "log", "--no-graph", "--template", `commit_id.short() ++ "\t" ++ description.first_line() ++ "\n"`, "--revisions", "::@", "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+		format := "%0" + strconv.Itoa(len(strconv.Itoa(limit-1))) + "d"
+
+		vals := make([]string, 0)
+		for index, line := range lines[1 : len(lines)-1] {
+			splitted := strings.SplitN(line, "\t", 2)
+			vals = append(vals, fmt.Sprintf(format, index), splitted[1])
+		}
+		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.HeadCommit)
+	}).Tag("previous commits")
+}
+
 // ActionRecentCommits completes recent commits
 //
 //	3b61f0a729f7 (compat: added cobra bridge)
