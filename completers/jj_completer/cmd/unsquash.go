@@ -1,0 +1,22 @@
+package cmd
+
+import (
+	"github.com/rsteube/carapace"
+	"github.com/spf13/cobra"
+)
+
+var unsquashCmd = &cobra.Command{
+	Use:     "unsquash",
+	Short:   "Move changes from a revision's parent into the revision",
+	Aliases: []string{"unamend"},
+	Run:     func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(unsquashCmd).Standalone()
+
+	unsquashCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	unsquashCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to unsquash")
+	unsquashCmd.Flags().StringP("revision", "r", "", "")
+	rootCmd.AddCommand(unsquashCmd)
+}
