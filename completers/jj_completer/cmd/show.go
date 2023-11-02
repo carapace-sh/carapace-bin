@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
 var showCmd = &cobra.Command{
-	Use:   "show",
+	Use:   "show [OPTIONS] [REVISION]",
 	Short: "Show commit description and changes in a revision",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -22,4 +23,15 @@ func init() {
 	showCmd.Flags().String("tool", "", "Generate diff by external command")
 	showCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	rootCmd.AddCommand(showCmd)
+
+	carapace.Gen(showCmd).FlagCompletion(carapace.ActionMap{
+		"tool": carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	})
+
+	carapace.Gen(showCmd).PositionalCompletion(
+		jj.ActionRevs(jj.RevsOption{}.Default()),
+	)
 }
