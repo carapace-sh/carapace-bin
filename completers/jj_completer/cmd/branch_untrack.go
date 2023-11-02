@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	branch_untrackCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	branchCmd.AddCommand(branch_untrackCmd)
+
+	carapace.Gen(branch_untrackCmd).PositionalAnyCompletion(
+		jj.ActionRemoteBranches("").FilterArgs(), // TODO tracked branches
+	)
 }
