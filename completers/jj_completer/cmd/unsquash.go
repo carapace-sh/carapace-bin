@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	unsquashCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to unsquash")
 	unsquashCmd.Flags().StringP("revision", "r", "", "")
 	rootCmd.AddCommand(unsquashCmd)
+
+	carapace.Gen(unsquashCmd).FlagCompletion(carapace.ActionMap{
+		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
+	})
 }
