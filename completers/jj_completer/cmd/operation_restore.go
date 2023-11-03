@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,12 @@ func init() {
 	operation_restoreCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	operation_restoreCmd.Flags().StringSlice("what", []string{}, "What portions of the local state to restore (can be repeated)")
 	operationCmd.AddCommand(operation_restoreCmd)
+
+	carapace.Gen(operation_restoreCmd).FlagCompletion(carapace.ActionMap{
+		"what": carapace.ActionValues("repo", "remote-tracking"),
+	})
+
+	carapace.Gen(operation_restoreCmd).PositionalCompletion(
+		jj.ActionOperations(100),
+	)
 }
