@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/jj"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +29,9 @@ func init() {
 	obslogCmd.Flags().String("tool", "", "Generate diff by external command")
 	obslogCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	rootCmd.AddCommand(obslogCmd)
+
+	carapace.Gen(obslogCmd).FlagCompletion(carapace.ActionMap{
+		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
+		"tool":     bridge.ActionCarapaceBin().Split(),
+	})
 }
