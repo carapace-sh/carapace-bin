@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	git_pushCmd.Flags().String("remote", "", "The remote to push to (only named remotes are supported)")
 	git_pushCmd.Flags().StringSliceP("revisions", "r", []string{}, "Push branches pointing to these commits")
 	gitCmd.AddCommand(git_pushCmd)
+
+	carapace.Gen(git_pushCmd).FlagCompletion(carapace.ActionMap{
+		"branch":    jj.ActionLocalBranches(),
+		"change":    carapace.ActionValues(), // TODO
+		"remote":    jj.ActionRemotes(),
+		"revisions": jj.ActionRevs(jj.RevOption{}.Default()),
+	})
 }
