@@ -1,6 +1,7 @@
 package jj
 
 import (
+	"regexp"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -14,12 +15,13 @@ import (
 func ActionLocalBranches() carapace.Action {
 	return carapace.ActionExecCommand("jj", "branch", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
+		r := regexp.MustCompile(`^(?P<branch>[^: ]+)[: ]+(?P<description>.*)$`)
 
 		vals := make([]string, 0)
 		for _, line := range lines[:len(lines)-1] {
-			splitted := strings.SplitN(line, ": ", 2)
-			description := strings.SplitN(splitted[1], " ", 3)[2]
-			vals = append(vals, splitted[0], description)
+			if matches := r.FindStringSubmatch(line); matches != nil {
+				vals = append(vals, matches[1], matches[2])
+			}
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
 	}).Tag("local branches")
@@ -32,6 +34,7 @@ func ActionLocalBranches() carapace.Action {
 func ActionRemoteBranches(remote string) carapace.Action {
 	return carapace.ActionExecCommand("jj", "branch", "list", "--all")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
+		r := regexp.MustCompile(`^(?P<branch>[^: ]+)[: ]+(?P<description>.*)$`)
 
 		vals := make([]string, 0)
 		branch := ""
@@ -45,8 +48,11 @@ func ActionRemoteBranches(remote string) carapace.Action {
 					description := strings.SplitN(splitted[1], " ", 3)[2]
 					vals = append(vals, branch+strings.TrimSpace(splitted[0]), description)
 				}
+			case strings.HasPrefix(line, " "):
 			default:
-				branch = strings.SplitN(line, ": ", 2)[0]
+				if matches := r.FindStringSubmatch(line); matches != nil {
+					branch = matches[1]
+				}
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
