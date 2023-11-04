@@ -29,6 +29,6 @@ func init() {
 		"branch":    jj.ActionLocalBranches(),
 		"change":    carapace.ActionValues(), // TODO
 		"remote":    jj.ActionRemotes(),
-		"revisions": jj.ActionRevs(jj.RevOption{}.Default()),
+		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
 	})
 }

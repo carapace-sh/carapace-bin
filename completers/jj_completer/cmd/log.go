@@ -32,7 +32,7 @@ func init() {
 	rootCmd.AddCommand(logCmd)
 
 	carapace.Gen(logCmd).FlagCompletion(carapace.ActionMap{
-		"revisions": jj.ActionRevs(jj.RevOption{}.Default()),
+		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
 		"tool":      bridge.ActionCarapaceBin().Split(),
 	})
 
