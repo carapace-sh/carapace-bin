@@ -39,7 +39,7 @@ func ActionHosts() carapace.Action {
 				batch = append(batch, carapace.ActionMessage(err.Error()))
 			}
 		}
-		batch = append(batch, ssh.ActionHosts().Style(style.Yellow))
+		batch = append(batch, ssh.ActionHosts().Style(style.Yellow).Suppress(`open .*/.ssh/config: no such file or directory`))
 		return batch.ToA()
 	})
 }
