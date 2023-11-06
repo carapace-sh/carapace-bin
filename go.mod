@@ -10,7 +10,7 @@ require (
 	github.com/rsteube/carapace-spec v0.11.1
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
-	golang.org/x/mod v0.13.0
+	golang.org/x/mod v0.14.0
 	gopkg.in/ini.v1 v1.67.0
 	gopkg.in/yaml.v3 v3.0.1
 )
