@@ -100,3 +100,8 @@ zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'exter
 ```
 
 ![](./setup-zsh.png)
+
+## Case-insensitive matching
+
+For enabling case-insensitive matching of arguments or file/directory names with commands like `ls`,
+set the `CARAPACE_MATCH` environment variable to `CASE_INSENSITIVE` or `1`, either before or after registering the completers.
