@@ -46,7 +46,8 @@ func ActionRemoteBranches(remote string) carapace.Action {
 				case "", strings.TrimPrefix(splitted[0], "  @"):
 					splitted := strings.SplitN(line, ": ", 2)
 					description := strings.SplitN(splitted[1], " ", 3)[2]
-					vals = append(vals, branch+strings.TrimSpace(splitted[0]), description)
+					remote := strings.SplitN(strings.TrimSpace(splitted[0]), " ", 2)[0]
+					vals = append(vals, branch+remote, description)
 				}
 			case strings.HasPrefix(line, " "):
 			default:
