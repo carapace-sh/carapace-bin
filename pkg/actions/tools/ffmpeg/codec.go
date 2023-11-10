@@ -7,6 +7,10 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionCodecs completes codecs
+//
+//	4gv (4GV (Fourth Generation Vocoder))
+//	4xm (4X Movie)
 func ActionCodecs() carapace.Action {
 	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-codecs")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

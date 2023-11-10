@@ -7,8 +7,12 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
+// ActionProtocols completes protocols
+//
+//	concatf
+//	crypto
 func ActionProtocols() carapace.Action {
-	return carapace.ActionExecCommand("ffmpeg", "-protocols")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-protocols")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
 		found := false

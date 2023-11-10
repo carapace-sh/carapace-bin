@@ -340,39 +340,7 @@ func actionFlagArguments(flag string) carapace.Action {
 		}
 		return carapace.ActionValues("copy")
 	case "h", "?", "help":
-		return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
-			switch len(c.Parts) {
-			case 0:
-				return carapace.ActionValuesDescribed(
-					"long", "Print advanced tool options in addition to the basic tool options",
-					"full", "Print complete list of options",
-					"decoder=", "Print  detailed  information  about  the  decoder  named  decoder_name",
-					"encoder=", "Print detailed information about the encoder named encoder_name",
-					"demuxer=", "Print detailed information about the demuxer named demuxer_name",
-					"muxer=", "Print  detailed  information about the muxer named muxer_name",
-					"filter=", "Print detailed information about the filter named filter_name",
-					"bsf=", "Print detailed information about the bitstream filter named bitstream_filter_name",
-					"protocol=", "Print detailed information about the protocol named protocol_name",
-				)
-			default:
-				switch c.Parts[0] {
-				case "decoder":
-					return ffmpeg.ActionDecoders()
-				case "encoder":
-					return ffmpeg.ActionEncoders()
-				case "demuxer":
-					return ffmpeg.ActionDemuxers()
-				case "muxer":
-					return ffmpeg.ActionMuxers()
-				case "filter":
-					return ffmpeg.ActionFilters()
-				case "protocol":
-					return ffmpeg.ActionProtocols()
-				default:
-					return carapace.ActionValues()
-				}
-			}
-		})
+		return ffmpeg.ActionHelpTopics()
 
 	default:
 		//return carapace.ActionValues() // TODO

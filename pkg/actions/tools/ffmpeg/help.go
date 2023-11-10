@@ -1,9 +1,13 @@
-package action
+package ffmpeg
 
 import "github.com/rsteube/carapace"
 
+// ActionHelpTopics completes help topics
+//
+//	long (Print advanced tool options in addition to the basic tool opti
+//	muxer= (Print detailed information about the muxer)
 func ActionHelpTopics() carapace.Action {
-	return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+	return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
 			return carapace.ActionValuesDescribed(
@@ -17,7 +21,7 @@ func ActionHelpTopics() carapace.Action {
 				"bsf=", "Print detailed information about the bitstream filter",
 				"protocol=", "Print detailed information about the protocol",
 			)
-		case 1:
+		default:
 			switch c.Parts[0] {
 			case "decoder":
 				return ActionDecoders()
@@ -36,8 +40,6 @@ func ActionHelpTopics() carapace.Action {
 			default:
 				return carapace.ActionValues()
 			}
-		default:
-			return carapace.ActionValues()
 		}
 	})
 }

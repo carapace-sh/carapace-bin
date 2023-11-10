@@ -1,4 +1,4 @@
-package action
+package ffmpeg
 
 import (
 	"regexp"
@@ -7,10 +7,14 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-func ActionDemuxers() carapace.Action {
-	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-demuxers")(func(output []byte) carapace.Action {
+// ActionDevices completes devices
+//
+//	alsa (ALSA audio output)
+//	fbdev (Linux framebuffer)
+func ActionDevices() carapace.Action {
+	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-devices")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
-		r := regexp.MustCompile(`^.{3} (?P<demuxer>[^ ]+) +(?P<description>.*)$`)
+		r := regexp.MustCompile(`^.{3} (?P<devices>[^ ]+) +(?P<description>.*)$`)
 
 		vals := make([]string, 0)
 		for _, line := range lines[4 : len(lines)-1] {
