@@ -67,6 +67,7 @@ func init() {
 	rootCmd.Flags().BoolS("encoders", "encoders", false, "show available encoders")
 	rootCmd.Flags().StringSliceS("f", "f", []string{}, "Force inputor output file format")
 	rootCmd.Flags().StringSliceS("filter", "filter", []string{}, "set stream filtergraph")
+	rootCmd.Flags().StringSliceS("filter_complex", "filter_complex", []string{}, "Define a complex filtergraph")
 	rootCmd.Flags().BoolS("filter_complex_threads", "filter_complex_threads", false, "number of threads for -filter_complex")
 	rootCmd.Flags().StringSliceS("filter_script", "filter_script", []string{}, "read stream filtergraph description from a file")
 	rootCmd.Flags().BoolS("filter_threads", "filter_threads", false, "number of non-complex filter threads")
