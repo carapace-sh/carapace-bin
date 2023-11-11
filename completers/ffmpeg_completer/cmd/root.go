@@ -44,17 +44,6 @@ func init() {
 	// 	"help":    action.ActionHelpTopics(),
 	// 	"hwaccel": action.ActionHwAccelerations(),
 	// 	"i":       carapace.ActionFiles(),
-	// 	"loglevel": carapace.ActionValuesDescribed(
-	// 		"quiet", "Show nothing at all; be silent.",
-	// 		"panic", "Only show fatal errors which could lead the process to crash",
-	// 		"fatal", "Only show fatal errors.",
-	// 		"error", "Show all errors, including ones which can be recovered from.",
-	// 		"warning", "Show all warnings and errors.",
-	// 		"info", "Show informative messages during processing.",
-	// 		"verbose", "Same as \"info\", except more verbose.",
-	// 		"debug", "Show everything, including debugging information.",
-	// 		"trace", "",
-	// 	),
 	// 	"sinks": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 	// 		switch len(c.Parts) {
 	// 		case 0:
@@ -111,6 +100,7 @@ func actionFlags() carapace.Action {
 					"-h", "show help",
 					"-?", "show help",
 					"-help", "show help",
+					"-loglevel", "set logging level",
 					"--help", "show help",
 				).Style(style.Carapace.FlagArg),
 				carapace.ActionValuesDescribed(
@@ -140,7 +130,6 @@ func actionFlags() carapace.Action {
 					"-sources", "list sources of the input device",
 					"-sinks", "list sinks of the output device",
 					"-hwaccels", "show available HW acceleration methods",
-					"-loglevel", "set logging level",
 					"-v", "set logging level",
 					"-report", "generate a report",
 					"-max_alloc", "set maximum size of a single allocated block",
@@ -357,7 +346,8 @@ func actionFlagArguments(flag string) carapace.Action {
 		return carapace.ActionValues("copy")
 	case "h", "?", "help":
 		return ffmpeg.ActionHelpTopics()
-
+	case "loglevel":
+		return ffmpeg.ActionLogLevels()
 	default:
 		//return carapace.ActionValues() // TODO
 		return carapace.ActionFiles() // default file completion for now (positional)
