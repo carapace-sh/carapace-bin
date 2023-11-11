@@ -23,56 +23,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	// carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-	// 	"acodec": action.ActionCodecs(), // TODO only audio
-	// 	"af": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-	// 		return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
-	// 			switch len(c.Parts) {
-	// 			case 0:
-	// 				return action.ActionFilters().NoSpace()
-	// 			default:
-	// 				return carapace.ActionValues()
-	// 			}
-	// 		})
-	// 	}),
-	// 	"ar":      carapace.ActionValues("22050", "44100", "48000"),
-	// 	"c":       action.ActionCodecs(),
-	// 	"c:a":     action.ActionCodecs(),
-	// 	"c:v":     action.ActionCodecs(),
-	// 	"codec":   action.ActionCodecs(),
-	// 	"f":       action.ActionFormats(),
-	// 	"help":    action.ActionHelpTopics(),
-	// 	"hwaccel": action.ActionHwAccelerations(),
-	// 	"i":       carapace.ActionFiles(),
-	// 	"sinks": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-	// 		switch len(c.Parts) {
-	// 		case 0:
-	// 			return action.ActionDevices().NoSpace()
-	// 		default:
-	// 			return carapace.ActionValues()
-	// 		}
-	// 	}),
-	// 	"sources": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-	// 		switch len(c.Parts) {
-	// 		case 0:
-	// 			return action.ActionDevices().NoSpace()
-	// 		default:
-	// 			return carapace.ActionValues()
-	// 		}
-	// 	}),
-	// 	"vcodec": action.ActionCodecs(), // TODO only video
-	// 	"vf": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-	// 		return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
-	// 			switch len(c.Parts) {
-	// 			case 0:
-	// 				return action.ActionFilters().NoSpace()
-	// 			default:
-	// 				return carapace.ActionValues()
-	// 			}
-	// 		})
-	// 	}),
-	// })
-
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if strings.HasPrefix(c.Value, "-") {
@@ -97,11 +47,21 @@ func actionFlags() carapace.Action {
 			return carapace.Batch(
 				carapace.ActionValuesDescribed(
 					"-ab", "audio bitrate",
+					"-acodec", "force audio codec",
+					"-af", "set audio filters",
+					"-ar", "set audio sampling rate",
+					"-f", "force format",
 					"-h", "show help",
+					"-i", "input file",
+					"-hwaccels", "show available HW acceleration methods",
 					"-?", "show help",
 					"-help", "show help",
 					"-loglevel", "set logging level",
 					"--help", "show help",
+					"-sinks", "list sinks of the output device",
+					"-sources", "list sources of the input device",
+					"-vcodec", "force video codec",
+					"-vf", "set video filters",
 				).Style(style.Carapace.FlagArg),
 				carapace.ActionValuesDescribed(
 					"-b", "bitrate",
@@ -127,9 +87,6 @@ func actionFlags() carapace.Action {
 					"-sample_fmts", "show available audio sample formats",
 					"-dispositions", "show available stream dispositions",
 					"-colors", "show available color names",
-					"-sources", "list sources of the input device",
-					"-sinks", "list sinks of the output device",
-					"-hwaccels", "show available HW acceleration methods",
 					"-v", "set logging level",
 					"-report", "generate a report",
 					"-max_alloc", "set maximum size of a single allocated block",
@@ -178,7 +135,6 @@ func actionFlags() carapace.Action {
 					"-qsv_device", "set QSV hardware device",
 					"-init_hw_device", "initialise hardware device",
 					"-filter_hw_device", "set hardware device used when filtering",
-					"-f", "force format",
 					"-pre", "preset name",
 					"-map_metadata", "set metadata information of outfile from infile",
 					"-t", "record or transcode \"duration\" seconds of audio/video",
@@ -249,10 +205,8 @@ func actionFlags() carapace.Action {
 					"-display_hflip", "set display horizontal flip for strea",
 					"-display_vflip", "set display vertical flip for strea",
 					"-vn", "disable video",
-					"-vcodec", "force video codec",
 					"-timecode", "set initial TimeCode value",
 					"-pass", "select the pass number",
-					"-vf", "set video filters",
 					"-dn", "disable data",
 					"-pix_fmt", "set pixel format",
 					"-rc_override", "rate control override for specific intervals",
@@ -279,11 +233,8 @@ func actionFlags() carapace.Action {
 					"-vpre", "set the video options to the indicated preset",
 					"-aframes", "set the number of audio frames to output",
 					"-aq", "set audio quality",
-					"-ar", "set audio sampling rate",
 					"-ac", "set number of audio channels",
 					"-an", "disable audio",
-					"-acodec", "force audio codec",
-					"-af", "set audio filters",
 					"-atag", "force audio tag/fourcc",
 					"-sample_fmt", "set sample format",
 					"-channel_layout", "set channel layout",
@@ -324,6 +275,21 @@ func actionFlagArguments(flag string) carapace.Action {
 	switch splitted[0] {
 	case "ab":
 		return carapace.ActionValues("16", "32", "64", "128", "192", "256", "320")
+	case "acodec":
+		return ffmpeg.ActionCodecs() // TODO only audio
+	case "af":
+		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return ffmpeg.ActionFilters().NoSpace()
+				default:
+					return carapace.ActionValues()
+				}
+			})
+		})
+	case "ar":
+		return carapace.ActionValues("22050", "44100", "48000")
 	case "b":
 		if len(splitted) > 1 {
 			switch splitted[1] {
@@ -344,10 +310,48 @@ func actionFlagArguments(flag string) carapace.Action {
 			}
 		}
 		return carapace.ActionValues("copy")
+	case "f":
+		return ffmpeg.ActionFormats()
 	case "h", "?", "help":
 		return ffmpeg.ActionHelpTopics()
+	case "hwaccel":
+		return ffmpeg.ActionHardwareAccelerations()
+	case "i":
+		return carapace.ActionFiles()
 	case "loglevel":
 		return ffmpeg.ActionLogLevels()
+	case "sinks":
+		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return ffmpeg.ActionDevices().NoSpace()
+			default:
+				return carapace.ActionValues()
+			}
+		})
+	case "sources":
+		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return ffmpeg.ActionDevices().NoSpace()
+			default:
+				return carapace.ActionValues()
+			}
+		})
+	case "vcodec":
+		return ffmpeg.ActionCodecs() // TODO only video
+
+	case "vf":
+		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return ffmpeg.ActionFilters().NoSpace()
+				default:
+					return carapace.ActionValues()
+				}
+			})
+		})
 	default:
 		//return carapace.ActionValues() // TODO
 		return carapace.ActionFiles() // default file completion for now (positional)
