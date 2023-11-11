@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pass_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pass"
 	"github.com/spf13/cobra"
 )
 
@@ -22,9 +22,7 @@ func init() {
 	rootCmd.AddCommand(generateCmd)
 
 	carapace.Gen(generateCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionPassNames().Invoke(c).ToMultiPartsA("/")
-		}),
+		pass.ActionPasswords(),
 		carapace.ActionValues("8", "12", "16", "20", "24", "28", "32"),
 	)
 }

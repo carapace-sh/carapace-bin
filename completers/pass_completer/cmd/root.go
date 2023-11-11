@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pass"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +20,10 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		pass.ActionPasswords(),
+	)
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
 		// TODO support locally installed extension
