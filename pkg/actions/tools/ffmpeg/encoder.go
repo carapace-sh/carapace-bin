@@ -8,8 +8,12 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
+// ActionEncoders completes encoders
+//
+//	ac3 (ATSC A/52A (AC-3))
+//	ac3_fixed (ATSC A/52A (AC-3) (codec ac3))
 func ActionEncoders() carapace.Action {
-	return carapace.ActionExecCommand("ffmpeg", "-encoders")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-encoders")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		r := regexp.MustCompile(`^ (?P<type>.).{5} (?P<name>[^ ]+) +(?P<description>.*)$`)
 

@@ -7,8 +7,12 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionMuxers completes muxers
+//
+//	aax (CRI AAX)
+//	ac3 (raw AC-3)
 func ActionMuxers() carapace.Action {
-	return carapace.ActionExecCommand("ffmpeg", "-demuxers")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-demuxers")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		r := regexp.MustCompile(`^ .{1}(?P<type>.) (?P<name>[^ ]+) +(?P<description>.*)$`)
 

@@ -8,8 +8,12 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
+// ActionDecoders completes decoders
+//
+//	4xm (4X Movie)
+//	8bps (QuickTime 8BPS video)
 func ActionDecoders() carapace.Action {
-	return carapace.ActionExecCommand("ffmpeg", "-decoders")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-decoders")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		r := regexp.MustCompile(`^ (?P<type>.).{5} (?P<name>[^ ]+) +(?P<description>.*)$`)
 

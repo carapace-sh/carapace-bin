@@ -7,8 +7,12 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionFilters completes filters
+//
+//	acrusher (Reduce audio bit resolution.)
+//	acue (Delay filtering to match a cue.)
 func ActionFilters() carapace.Action {
-	return carapace.ActionExecCommand("ffmpeg", "-filters")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-filters")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		r := regexp.MustCompile(`^ .{3} (?P<name>[^ ]+) +[^ ]+ *(?P<description>.*)$`)
 

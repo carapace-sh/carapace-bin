@@ -1,4 +1,4 @@
-package action
+package ffmpeg
 
 import (
 	"strings"
@@ -6,8 +6,12 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-func ActionBitstreamFilters() carapace.Action {
-	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-bsfs")(func(output []byte) carapace.Action {
+// ActionHardwareAccelerations completes hardware accellerations
+//
+//	cuda
+//	drm
+func ActionHardwareAccelerations() carapace.Action {
+	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-hwaccels")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
 		vals := make([]string, 0)
