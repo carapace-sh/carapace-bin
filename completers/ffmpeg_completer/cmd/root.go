@@ -24,7 +24,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	// carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-	// 	"ab":     carapace.ActionValues("16", "32", "64", "128", "192", "256", "320"),
 	// 	"acodec": action.ActionCodecs(), // TODO only audio
 	// 	"af": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 	// 		return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
@@ -108,12 +107,14 @@ func actionFlags() carapace.Action {
 		case 0:
 			return carapace.Batch(
 				carapace.ActionValuesDescribed(
+					"-ab", "audio bitrate",
 					"-h", "show help",
 					"-?", "show help",
 					"-help", "show help",
 					"--help", "show help",
 				).Style(style.Carapace.FlagArg),
 				carapace.ActionValuesDescribed(
+					"-b", "bitrate",
 					"-c", "codec name",
 					"-codec", "codec name",
 				).Style(style.Carapace.FlagOptArg),
@@ -263,7 +264,6 @@ func actionFlags() carapace.Action {
 					"-timecode", "set initial TimeCode value",
 					"-pass", "select the pass number",
 					"-vf", "set video filters",
-					"-b", "video bitrate",
 					"-dn", "disable data",
 					"-pix_fmt", "set pixel format",
 					"-rc_override", "rate control override for specific intervals",
@@ -294,7 +294,6 @@ func actionFlags() carapace.Action {
 					"-ac", "set number of audio channels",
 					"-an", "disable audio",
 					"-acodec", "force audio codec",
-					"-ab", "audio bitrate",
 					"-af", "set audio filters",
 					"-atag", "force audio tag/fourcc",
 					"-sample_fmt", "set sample format",
@@ -314,6 +313,11 @@ func actionFlags() carapace.Action {
 			).ToA()
 		default:
 			switch c.Parts[0] {
+			case "-b":
+				return carapace.ActionValuesDescribed(
+					"a", "audio",
+					"v", "video",
+				)
 			case "-c", "-codec":
 				return carapace.ActionValuesDescribed(
 					"a", "audio",
@@ -329,6 +333,18 @@ func actionFlags() carapace.Action {
 func actionFlagArguments(flag string) carapace.Action {
 	splitted := strings.Split(strings.TrimLeft(flag, "-"), ":")
 	switch splitted[0] {
+	case "ab":
+		return carapace.ActionValues("16", "32", "64", "128", "192", "256", "320")
+	case "b":
+		if len(splitted) > 1 {
+			switch splitted[1] {
+			case "a":
+				return carapace.ActionValues("16", "32", "64", "128", "192", "256", "320")
+			case "v":
+				return carapace.ActionValues() // video bitrate
+			}
+		}
+		return carapace.ActionValues() // TODO invalid flag (missing a/v))
 	case "c", "codec":
 		if len(splitted) > 1 {
 			switch splitted[1] {
