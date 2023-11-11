@@ -1,12 +1,14 @@
-package action
+package pass
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
+	"github.com/rsteube/carapace/pkg/style"
 )
 
 func passwordStore() (string, error) {
@@ -21,17 +23,25 @@ func passwordStore() (string, error) {
 	}
 }
 
-func ActionPassDirectories() carapace.Action {
+// ActionDirectories completes password directories
+//
+//	dir1/
+//	dir2/
+func ActionDirectories() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if path, err := passwordStore(); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
-			return fs.ActionSubDirectories(path)
+			return fs.ActionSubDirectories(path).StyleF(style.ForPathExt)
 		}
 	})
 }
 
-func ActionPassNames() carapace.Action {
+// ActionPasswords completes password names
+//
+//	mypass
+//	dir/mypass2
+func ActionPasswords() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if path, err := passwordStore(); err != nil {
 			return carapace.ActionMessage(err.Error())
@@ -43,7 +53,14 @@ func ActionPassNames() carapace.Action {
 				}
 				return nil
 			})
-			return carapace.ActionValues(names...)
+			return carapace.ActionValues(names...).
+				MultiParts("/").
+				StyleF(func(s string, sc style.Context) string {
+					if strings.HasSuffix(s, "/") {
+						return style.ForPath(fmt.Sprintf("%v/%v", path, s), c)
+					}
+					return style.ForPath(fmt.Sprintf("%v/%v.gpg", path, s), c)
+				})
 		}
 	})
 }

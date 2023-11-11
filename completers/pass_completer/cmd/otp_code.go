@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pass_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pass"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +19,6 @@ func init() {
 	otpCmd.AddCommand(otp_codeCmd)
 
 	carapace.Gen(otp_codeCmd).PositionalCompletion(
-		action.ActionPassNames(),
+		pass.ActionPasswords(),
 	)
 }

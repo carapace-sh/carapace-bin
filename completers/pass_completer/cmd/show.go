@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pass_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pass"
 	"github.com/spf13/cobra"
 )
 
@@ -19,5 +19,5 @@ func init() {
 
 	showCmd.Flag("clip").NoOptDefVal = " "
 
-	carapace.Gen(showCmd).PositionalCompletion(action.ActionPassNames())
+	carapace.Gen(showCmd).PositionalCompletion(pass.ActionPasswords())
 }
