@@ -48,15 +48,6 @@ jobs:
       - name: "carapace-lint"
         run: go run ./cmd/carapace-lint completers/*/cmd/*.go
 
-      - name: setup-snapcraft
-        if: startsWith(github.ref, 'refs/tags/')
-        # FIXME: the mkdirs are a hack for https://github.com/goreleaser/goreleaser/issues/1715
-        run: |
-          sudo apt-get update
-          sudo apt-get -yq --no-install-suggests --no-install-recommends install snapcraft
-          mkdir -p $HOME/.cache/snapcraft/download
-          mkdir -p $HOME/.cache/snapcraft/stage-packages
-
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v4
         if: startsWith(github.ref, 'refs/tags/')
@@ -68,7 +59,6 @@ jobs:
           AUR_KEY: ${{ secrets.AUR_KEY }}
           FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
           GORELEASER_GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
-          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
 
   doc:
     runs-on: ubuntu-latest

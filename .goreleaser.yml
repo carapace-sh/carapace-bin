@@ -79,16 +79,6 @@ nfpms:
       - rpm
       - termux.deb
 
-snapcrafts:
-  - name_template: "carapace_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
-    name: "carapace"
-    summary: "multi-shell multi-command argument completer"
-    description: "multi-shell multi-command argument completer"
-    license: "MIT"
-    grade: stable
-    confinement: classic
-    publish: true
-
 publishers:
   - name: fury
     cmd: "bash -c \"[[ {{.ArtifactPath}} =~ ^.*.(deb|rpm)$ ]] && curl -F package=@{{abs .ArtifactPath}} https://$FURY_TOKEN@push.fury.io/rsteube/ || true\""
