@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/systemctl_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -20,9 +19,6 @@ func init() {
 	rootCmd.AddCommand(statusCmd)
 
 	carapace.Gen(statusCmd).PositionalAnyCompletion(
-		carapace.Batch(
-			action.ActionUnits(statusCmd),
-			ps.ActionProcessIds(),
-		).ToA().FilterArgs(),
+		action.ActionUnits(statusCmd).FilterArgs(),
 	)
 }
