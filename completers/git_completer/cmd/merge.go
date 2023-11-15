@@ -28,6 +28,7 @@ func init() {
 	mergeCmd.Flags().Bool("ff-only", false, "abort if fast-forward is not possible")
 	mergeCmd.Flags().StringP("file", "F", "", "read message from file")
 	mergeCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
+	mergeCmd.Flags().String("into-name", "", "use <name> instead of the real target")
 	mergeCmd.Flags().String("log", "", "add (at most <n>) entries from shortlog to merge commit message")
 	mergeCmd.Flags().StringP("message", "m", "", "merge commit message")
 	mergeCmd.Flags().BoolS("n", "n", false, "do not show a diffstat at the end of the merge")
@@ -37,7 +38,7 @@ func init() {
 	mergeCmd.Flags().BoolP("quiet", "q", false, "be more quiet")
 	mergeCmd.Flags().Bool("quit", false, "--abort but leave index and working tree alone")
 	mergeCmd.Flags().Bool("rerere-autoupdate", false, "update the index with reused conflict resolution if possible")
-	mergeCmd.Flags().Bool("signoff", false, "add Signed-off-by:")
+	mergeCmd.Flags().Bool("signoff", false, "add a Signed-off-by trailer")
 	mergeCmd.Flags().Bool("squash", false, "create a single commit instead of doing a merge")
 	mergeCmd.Flags().Bool("stat", false, "show a diffstat at the end of the merge")
 	mergeCmd.Flags().StringP("strategy", "s", "", "merge strategy to use")
@@ -53,6 +54,11 @@ func init() {
 		"cleanup":  git.ActionCleanupMode(),
 		"file":     carapace.ActionFiles(),
 		"gpg-sign": os.ActionGpgKeyIds(),
+		"into-name": git.ActionRefs(git.RefOption{
+			LocalBranches:  true,
+			RemoteBranches: true,
+			Tags:           true,
+		}),
 		"strategy": git.ActionMergeStrategy(),
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(mergeCmd.Flag("strategy").Value.String())
@@ -60,6 +66,10 @@ func init() {
 	})
 
 	carapace.Gen(mergeCmd).PositionalAnyCompletion(
-		git.ActionRefs(git.RefOption{}.Default()).FilterArgs(),
+		git.ActionRefs(git.RefOption{
+			LocalBranches:  true,
+			RemoteBranches: true,
+			Tags:           true,
+		}).FilterArgs(),
 	)
 }
