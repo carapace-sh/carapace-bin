@@ -27,8 +27,8 @@ type RefOption struct {
 func (o RefOption) Default() RefOption {
 	o.LocalBranches = true
 	o.RemoteBranches = true
-	o.Commits = 100
-	o.HeadCommits = 100
+	o.Commits = 0
+	o.HeadCommits = 1
 	o.Tags = true
 	o.Stashes = true
 	o.Notes = false
