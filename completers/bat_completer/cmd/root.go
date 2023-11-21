@@ -34,6 +34,8 @@ func init() {
 	rootCmd.Flags().BoolP("list-languages", "L", false, "Display all supported languages")
 	rootCmd.Flags().Bool("list-themes", false, "Display all supported highlighting themes")
 	rootCmd.Flags().StringSliceP("map-syntax", "m", []string{}, "Use the specified syntax for files matching the glob pattern")
+	rootCmd.Flags().BoolP("no-pager", "", false, "Disable paging")
+	rootCmd.Flags().BoolP("no-paging", "", false, "Disable paging")
 	rootCmd.Flags().String("nonprintable-notation", "", "Set notation for non-printable characters")
 	rootCmd.Flags().BoolP("number", "n", false, "Show line numbers")
 	rootCmd.Flags().String("paging", "", "Specify when to use the pager, or use `-P` to disable")
