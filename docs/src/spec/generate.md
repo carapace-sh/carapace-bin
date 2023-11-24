@@ -26,6 +26,12 @@ For [kong](https://github.com/alecthomas/kong) use [carapace-spec-kong](https://
 
 ![](./generate-kong.cast)
 
+## Man
+
+For manpages use [carapace-spec-man](https://github.com/rsteube/carapace-spec-man).
+
+![](./generate-man.cast)
+
 ## Urfavecli
 
 For [urfavecli](https://github.com/urfave/cli) use [carapce-spec-urfavecli](https://github.com/rsteube/carapace-spec-urfavecli).
