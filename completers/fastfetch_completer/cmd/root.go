@@ -35,8 +35,10 @@ type FlagData struct {
 }
 
 func init() {
+	carapace.Gen(rootCmd).Standalone()
+
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
-		carapace.Gen(rootCmd).Standalone()
+		rootCmd.ResetFlags()
 
 		var groups map[string][]FlagData
 		if out, err := exec.Command("fastfetch", "--help-raw").Output(); err == nil {
