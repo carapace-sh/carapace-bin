@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/fastfetch"
 	"github.com/spf13/cobra"
 )
 
@@ -50,8 +51,6 @@ func init() {
 			return
 		}
 
-		actionBools := carapace.ActionValues("true", "false")
-		actionColors := carapace.ActionValues("black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "default")
 		actionMap := carapace.ActionMap{}
 
 		for _, flags := range groups {
@@ -64,11 +63,11 @@ func init() {
 					switch flag.Arg.Type {
 					case "bool":
 						rootCmd.Flags().BoolP(flag.Long, flag.Short, false, flag.Desc)
-						actionMap[flag.Long] = actionBools
+						actionMap[flag.Long] = carapace.ActionValues("true", "false")
 
 					case "color":
 						rootCmd.Flags().StringP(flag.Long, flag.Short, "", flag.Desc)
-						actionMap[flag.Long] = actionColors
+						actionMap[flag.Long] = fastfetch.ActionColors()
 
 					case "command":
 						rootCmd.Flags().StringP(flag.Long, flag.Short, "", flag.Desc)
@@ -89,10 +88,7 @@ func init() {
 
 					case "config":
 						rootCmd.Flags().StringP(flag.Long, flag.Short, "", flag.Desc)
-						actionMap[flag.Long] = carapace.ActionExecCommand("fastfetch", "--list-presets", "autocompletion")(func(output []byte) carapace.Action {
-							presets := strings.Split(strings.TrimRight(string(output), "\n"), "\n")
-							return carapace.ActionValues(presets...)
-						})
+						actionMap[flag.Long] = fastfetch.ActionPresets()
 
 					case "enum":
 						rootCmd.Flags().StringP(flag.Long, flag.Short, "", flag.Desc)
@@ -104,13 +100,7 @@ func init() {
 
 					case "logo":
 						rootCmd.Flags().StringP(flag.Long, flag.Short, "", flag.Desc)
-						actionMap[flag.Long] = carapace.ActionExecCommand("fastfetch", "--list-logos", "autocompletion")(func(output []byte) carapace.Action {
-							res := []string{"none", "Disable logo", "small", "Show small logo if supported"}
-							for _, logo := range strings.Split(strings.TrimRight(string(output), "\n"), "\n") {
-								res = append(res, logo, "Builtin logo")
-							}
-							return carapace.ActionValuesDescribed(res...)
-						})
+						actionMap[flag.Long] = fastfetch.ActionLogos()
 
 					case "num":
 						rootCmd.Flags().IntP(flag.Long, flag.Short, 0, flag.Desc)
@@ -121,14 +111,7 @@ func init() {
 
 					case "structure":
 						rootCmd.Flags().StringP(flag.Long, flag.Short, "", flag.Desc)
-						actionMap[flag.Long] = carapace.ActionExecCommand("fastfetch", "--list-modules", "autocompletion")(func(output []byte) carapace.Action {
-							var texts []string
-							for _, line := range strings.Split(strings.TrimRight(string(output), "\n"), "\n") {
-								name, desc, _ := strings.Cut(line, ":")
-								texts = append(texts, name, desc)
-							}
-							return carapace.ActionValuesDescribed(texts...).UniqueList(":")
-						})
+						actionMap[flag.Long] = fastfetch.ActionModules().UniqueList(":")
 
 					default:
 						rootCmd.Flags().StringP(flag.Long, flag.Short, "", flag.Desc)
