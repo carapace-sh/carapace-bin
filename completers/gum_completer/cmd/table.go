@@ -15,6 +15,22 @@ var tableCmd = &cobra.Command{
 func init() {
 	carapace.Gen(tableCmd).Standalone()
 
+	tableCmd.Flags().StringP("border", "b", "", "border style")
+	tableCmd.Flags().String("border.align", "", "Text Alignment")
+	tableCmd.Flags().String("border.background", "", "Background Color")
+	tableCmd.Flags().Bool("border.bold", false, "Bold text")
+	tableCmd.Flags().String("border.border", "", "Border Style")
+	tableCmd.Flags().String("border.border-background", "", "Border Background Color")
+	tableCmd.Flags().String("border.border-foreground", "", "Border Foreground Color")
+	tableCmd.Flags().Bool("border.faint", false, "Faint text")
+	tableCmd.Flags().String("border.foreground", "", "Foreground Color")
+	tableCmd.Flags().String("border.height", "", "Text height")
+	tableCmd.Flags().Bool("border.italic", false, "Italicize text")
+	tableCmd.Flags().String("border.margin", "", "Text margin")
+	tableCmd.Flags().String("border.padding", "", "Text padding")
+	tableCmd.Flags().Bool("border.strikethrough", false, "Strikethrough text")
+	tableCmd.Flags().Bool("border.underline", false, "Underline text")
+	tableCmd.Flags().String("border.width", "", "Text width")
 	tableCmd.Flags().String("cell.align", "", "Text Alignment")
 	tableCmd.Flags().String("cell.background", "", "Background Color")
 	tableCmd.Flags().Bool("cell.bold", false, "Bold text")
@@ -48,6 +64,7 @@ func init() {
 	tableCmd.Flags().Bool("header.underline", false, "Underline text")
 	tableCmd.Flags().String("header.width", "", "Text width")
 	tableCmd.Flags().String("height", "", "Table height")
+	tableCmd.Flags().BoolP("print", "p", false, "static print")
 	tableCmd.Flags().String("selected.align", "", "Text Alignment")
 	tableCmd.Flags().String("selected.background", "", "Background Color")
 	tableCmd.Flags().Bool("selected.bold", false, "Bold text")
@@ -68,6 +85,13 @@ func init() {
 	rootCmd.AddCommand(tableCmd)
 
 	carapace.Gen(tableCmd).FlagCompletion(carapace.ActionMap{
+		"border":                     gum.ActionBorders(),
+		"border.align":               gum.ActionAlignments(),
+		"border.background":          gum.ActionColors(),
+		"border.border":              gum.ActionBorders(),
+		"border.border-background":   gum.ActionColors(),
+		"border.border-foreground":   gum.ActionColors(),
+		"border.foreground":          gum.ActionColors(),
 		"cell.background":            gum.ActionColors(),
 		"cell.border":                gum.ActionBorders(),
 		"cell.border-background":     gum.ActionColors(),
