@@ -43,9 +43,18 @@ func init() {
 			case 0:
 				return golang.ActionPackages()
 			default:
-				// TODO complete versions for golang.org/x/tools and others
-				if splitted := strings.Split(c.Parts[0], "/"); splitted[0] == "github.com" && len(splitted) > 2 {
-					url := "https://" + strings.Join(splitted[:3], "/")
+				// TODO complete versions for other packages
+				var url string
+				switch {
+				case strings.HasPrefix(c.Parts[0], "github.com/"):
+					if splitted := strings.Split(c.Parts[0], "/"); len(splitted) > 2 {
+						url = "https://" + strings.Join(splitted[:3], "/")
+					}
+				case strings.HasPrefix(c.Parts[0], "golang.org/x/tools/"):
+					url = "https://github.com/golang/tools"
+				}
+
+				if url != "" {
 					return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: url, Tags: true})
 				}
 				return carapace.ActionValues()
