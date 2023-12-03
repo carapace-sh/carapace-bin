@@ -4,9 +4,9 @@ go 1.21
 
 require (
 	github.com/pelletier/go-toml v1.9.5
-	github.com/rsteube/carapace v0.46.0
+	github.com/rsteube/carapace v0.46.1
 	github.com/rsteube/carapace-bridge v0.1.4
-	github.com/rsteube/carapace-shlex v0.1.0
+	github.com/rsteube/carapace-shlex v0.1.1
 	github.com/rsteube/carapace-spec v0.11.1
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/pflag v1.0.5
