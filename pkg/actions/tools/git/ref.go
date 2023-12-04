@@ -4,7 +4,6 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/styles"
 )
 
 func rootDir(c carapace.Context) (string, error) {
@@ -58,12 +57,8 @@ func ActionRefs(refOption RefOption) carapace.Action {
 				batch = append(batch, ActionRecentCommits(refOption.Commits))
 			}
 
-			switch refOption.HeadCommits {
-			case 0:
-			case 1: // add with `~` for convenience
-				batch = append(batch, carapace.ActionValues("HEAD~").NoSpace('~').Style(styles.Git.HeadCommit).Tag("head commits"))
-			default:
-				batch = append(batch, ActionHeadCommits(refOption.HeadCommits))
+			if refOption.HeadCommits > 0 {
+				batch = append(batch, ActionHeadCommits(refOption.HeadCommits).MultiParts("~"))
 			}
 
 			if refOption.Tags {
