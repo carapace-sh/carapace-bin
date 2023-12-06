@@ -7,31 +7,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace/pkg/style"
-	"gopkg.in/ini.v1"
 )
-
-// ActionRepositories completes package repositories
-//
-//	extra
-//	multilib
-func ActionRepositories() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		loadOptions := ini.LoadOptions{}
-		loadOptions.AllowBooleanKeys = true
-		loadOptions.UnparseableSections = []string{"options"}
-		if cfg, err := ini.LoadSources(loadOptions, "/etc/pacman.conf"); err != nil {
-			return carapace.ActionMessage(err.Error())
-		} else {
-			repos := make([]string, 0)
-			for _, section := range cfg.SectionStrings() {
-				if section != "DEFAULT" && section != "options" {
-					repos = append(repos, section)
-				}
-			}
-			return carapace.ActionValues(repos...)
-		}
-	})
-}
 
 // ActionPackages completes installed packages
 //
