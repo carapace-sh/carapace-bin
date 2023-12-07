@@ -21,7 +21,7 @@ func init() {
 	codespace_createCmd.Flags().StringP("branch", "b", "", "repository branch")
 	codespace_createCmd.Flags().Bool("default-permissions", false, "do not prompt to accept additional permissions requested by the codespace")
 	codespace_createCmd.Flags().String("devcontainer-path", "", "path to the devcontainer.json file to use when creating codespace")
-	codespace_createCmd.Flags().StringP("display-name", "d", "", "display name for the codespace")
+	codespace_createCmd.Flags().StringP("display-name", "d", "", "display name for the codespace (48 characters or less)")
 	codespace_createCmd.Flags().String("idle-timeout", "", "allowed inactivity before codespace is stopped, e.g. \"10m\", \"1h\"")
 	codespace_createCmd.Flags().StringP("location", "l", "", "location: {EastUs|SouthEastAsia|WestEurope|WestUs2} (determined automatically if not provided)")
 	codespace_createCmd.Flags().StringP("machine", "m", "", "hardware specifications for the VM")

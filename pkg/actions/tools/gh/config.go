@@ -2,36 +2,43 @@ package gh
 
 import (
 	"os"
+	"path/filepath"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh/config"
-	"github.com/rsteube/carapace/pkg/xdg"
+	"github.com/rsteube/carapace/pkg/traverse"
 	"gopkg.in/yaml.v3"
 )
 
-func userFor(host string) (string, error) {
-	if host == "" {
-		host = "github.com"
-	}
+type hostConfig map[string]struct {
+	User        string `yaml:"user"`
+	OauthToken  string `yaml:"oauth_token"`
+	GitProtocol string `yaml:"git_protocol"`
+	Users       map[string]struct {
+		OauthToken string `yaml:"oauth_token"`
+	} `yaml:"users"`
+}
 
-	configDir, err := xdg.UserConfigDir()
-	if err != nil {
-		return "", err
+func configDir(c carapace.Context) string {
+	if v := c.Getenv("GH_CONFIG_DIR"); v != "" {
+		return v
 	}
+	homeDir, _ := traverse.UserHomeDir(c) // TODO handle error
+	return filepath.Join(homeDir, ".config", "gh")
+}
 
-	content, err := os.ReadFile(configDir + "/gh/hosts.yml")
-	if err != nil {
-		return "", err
-	}
+func actionHostConfig(f func(config hostConfig) carapace.Action) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		content, err := os.ReadFile(configDir(c) + "/hosts.yml")
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
 
-	var hosts map[string]struct {
-		User string
-	}
-	if err := yaml.Unmarshal(content, &hosts); err != nil {
-		return "", err
-	}
-
-	return hosts[host].User, nil
+		var config hostConfig
+		if err := yaml.Unmarshal(content, &config); err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+		return f(config)
+	})
 }
 
 // ActionConfigHosts completes configured hosts
@@ -39,15 +46,30 @@ func userFor(host string) (string, error) {
 //	github.com
 //	another.com
 func ActionConfigHosts() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if config, err := config.ParseDefaultConfig(); err != nil {
-			return carapace.ActionMessage("failed to parse DefaultConfig: " + err.Error())
-		} else {
-			if hosts, err := config.Hosts(); err != nil {
-				return carapace.ActionMessage("failed ot loadd hosts: " + err.Error())
-			} else {
-				return carapace.ActionValues(hosts...)
+	return actionHostConfig(func(config hostConfig) carapace.Action {
+		vals := make([]string, 0)
+		for host := range config {
+			vals = append(vals, host)
+		}
+		return carapace.ActionValues(vals...)
+	})
+}
+
+// ActionConfigUsers completes configured users
+//
+//	userA
+//	userB
+func ActionConfigUsers(host string) carapace.Action {
+	return actionHostConfig(func(config hostConfig) carapace.Action {
+		vals := make([]string, 0)
+		for confHost, conf := range config {
+			switch host {
+			case "", confHost:
+				for user := range conf.Users {
+					vals = append(vals, user)
+				}
 			}
 		}
+		return carapace.ActionValues(vals...)
 	})
 }

@@ -9,14 +9,14 @@ import (
 
 var auth_loginCmd = &cobra.Command{
 	Use:   "login",
-	Short: "Authenticate with a GitHub host",
+	Short: "Log in to a GitHub account",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(auth_loginCmd).Standalone()
 
-	auth_loginCmd.Flags().StringP("git-protocol", "p", "", "The protocol to use for git operations: {ssh|https}")
+	auth_loginCmd.Flags().StringP("git-protocol", "p", "", "The protocol to use for git operations on this host: {ssh|https}")
 	auth_loginCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitHub instance to authenticate with")
 	auth_loginCmd.Flags().Bool("insecure-storage", false, "Save authentication credentials in plain text instead of credential store")
 	auth_loginCmd.Flags().StringSliceP("scopes", "s", []string{}, "Additional authentication scopes to request")

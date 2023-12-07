@@ -9,7 +9,7 @@ import (
 )
 
 func graphQlAction(opts RepoOpts, query string, v interface{}, transform func() carapace.Action) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+	return actionHostConfig(func(config hostConfig) carapace.Action {
 		params := make([]string, 0)
 		if strings.Contains(query, "$owner") {
 			params = append(params, "$owner: String!")
@@ -27,10 +27,11 @@ func graphQlAction(opts RepoOpts, query string, v interface{}, transform func() 
 		}
 
 		if opts.Owner == "@me" {
-			var err error
-			if opts.Owner, err = userFor(opts.Host); err != nil {
-				return carapace.ActionMessage(err.Error())
+			conf, ok := config[opts.Host]
+			if !ok {
+				return carapace.ActionMessage("unknown host")
 			}
+			opts.Owner = conf.User
 		}
 
 		return carapace.ActionExecCommand("gh", "api", "--hostname", opts.Host, "--header", "Accept: application/vnd.github.merge-info-preview+json", "graphql", "-F", "owner="+opts.Owner, "-F", "repo="+opts.Name, "-f", fmt.Sprintf("query=query%v {%v}", queryParams, query))(func(output []byte) carapace.Action {
