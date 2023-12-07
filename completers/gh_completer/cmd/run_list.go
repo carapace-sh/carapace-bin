@@ -19,6 +19,7 @@ func init() {
 	carapace.Gen(run_listCmd).Standalone()
 
 	run_listCmd.Flags().StringP("branch", "b", "", "Filter runs by branch")
+	run_listCmd.Flags().StringP("commit", "c", "", "Filter runs by the `SHA` of the commit")
 	run_listCmd.Flags().String("created", "", "Filter runs by the `date` it was created")
 	run_listCmd.Flags().StringP("event", "e", "", "Filter runs by which `event` triggered the run")
 	run_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
@@ -31,7 +32,10 @@ func init() {
 	runCmd.AddCommand(run_listCmd)
 
 	carapace.Gen(run_listCmd).FlagCompletion(carapace.ActionMap{
-		"branch":   action.ActionBranches(run_listCmd),
+		"branch": action.ActionBranches(run_listCmd),
+		"commit": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionBranchCommits(run_listCmd, run_listCmd.Flag("branch").Value.String())
+		}),
 		"created":  time.ActionDate(),
 		"event":    gh.ActionWorkflowEvents(),
 		"json":     action.ActionRunFields(),
