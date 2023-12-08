@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/vivid_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/vivid"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(generateCmd)
 
 	carapace.Gen(generateCmd).PositionalCompletion(
-		action.ActionThemes(),
+		vivid.ActionThemes(),
 	)
 }
