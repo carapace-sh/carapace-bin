@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/winetricks_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/winetricks"
 	"github.com/spf13/cobra"
 )
 
@@ -37,7 +37,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.Batch(
-				action.ActionVerbs(),
+				winetricks.ActionVerbs(),
 				carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 					switch len(c.Parts) {
 					case 0:
@@ -50,7 +50,7 @@ func init() {
 						case "arch":
 							return carapace.ActionValues("32", "64")
 						case "wineprefix":
-							return action.ActionPrefixes()
+							return winetricks.ActionPrefixes()
 
 						}
 					}
