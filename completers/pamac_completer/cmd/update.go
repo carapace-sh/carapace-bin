@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pamac_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pamac"
 	"github.com/spf13/cobra"
 )
 
@@ -32,6 +32,6 @@ func init() {
 
 	carapace.Gen(updateCmd).FlagCompletion(carapace.ActionMap{
 		"builddir": carapace.ActionDirectories(),
-		"ignore":   action.ActionInstalledPackages(false).UniqueList(","),
+		"ignore":   pamac.ActionInstalledPackages(false).UniqueList(","),
 	})
 }

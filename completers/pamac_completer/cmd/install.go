@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pamac_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pamac"
 	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -28,7 +28,7 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
-		"ignore": action.ActionPackageSearch().UniqueList(","),
+		"ignore": pamac.ActionPackageSearch().UniqueList(","),
 	})
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(
@@ -38,8 +38,8 @@ func init() {
 			}
 
 			return carapace.Batch(
-				action.ActionPackageGroups(),
-				action.ActionPackageSearch(),
+				pamac.ActionPackageGroups(),
+				pamac.ActionPackageSearch(),
 			).ToA()
 		}),
 	)
