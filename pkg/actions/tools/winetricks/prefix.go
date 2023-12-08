@@ -1,4 +1,4 @@
-package action
+package winetricks
 
 import (
 	"fmt"
@@ -7,6 +7,10 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionPrefixes completes prefixes
+//
+//	3m_library (3M Cloud Library (3M Company, 2015) [downloadable])
+//	7zip (7-Zip 19.00 (Igor Pavlov, 2019) [downloadable])
 func ActionPrefixes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		home, err := os.UserHomeDir()

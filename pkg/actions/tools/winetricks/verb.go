@@ -1,4 +1,4 @@
-package action
+package winetricks
 
 import (
 	"regexp"
@@ -8,6 +8,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionVerbs completes verbs
 func ActionVerbs() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("winetricks", "list-all")(func(output []byte) carapace.Action {
