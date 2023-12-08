@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pamac_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pamac"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +24,6 @@ func init() {
 	rootCmd.AddCommand(removeCmd)
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(
-		action.ActionInstalledPackages(true).FilterArgs(),
+		pamac.ActionInstalledPackages(true).FilterArgs(),
 	)
 }
