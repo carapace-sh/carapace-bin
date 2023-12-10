@@ -1,4 +1,4 @@
-package action
+package xdotool
 
 import (
 	"strings"
@@ -6,6 +6,10 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionWindows completes windows
+//
+//	1234
+//	1235
 func ActionWindows() carapace.Action {
 	return carapace.ActionExecCommand("xdotool", "search", "")(func(output []byte) carapace.Action {
 		ids := strings.Split(string(output), "\n")

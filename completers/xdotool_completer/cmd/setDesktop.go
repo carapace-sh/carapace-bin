@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/xdotool_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/xdotool"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(setDesktopCmd)
 
 	carapace.Gen(setDesktopCmd).PositionalCompletion(
-		action.ActionDesktops(),
+		xdotool.ActionDesktops(),
 	)
 }

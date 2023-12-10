@@ -1,7 +1,11 @@
-package action
+package xdotool
 
 import "github.com/rsteube/carapace"
 
+// ActionKeys completes keys
+//
+//	0 (U+0030 DIGIT ZERO)
+//	1 (U+0031 DIGIT ONE)
 func ActionKeys() carapace.Action {
 	// source https://gitlab.com/cunidev/gestures/-/wikis/xdotool-list-of-key-codes
 	return carapace.ActionValuesDescribed(

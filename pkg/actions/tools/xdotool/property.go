@@ -1,7 +1,11 @@
-package action
+package xdotool
 
 import "github.com/rsteube/carapace"
 
+// ActionProperties completes properties
+//
+//	ABOVE (Show window above all others (always on top))
+//	BELOW (Show window below all others)
 func ActionProperties() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"MODAL", "makes the window into a modal",

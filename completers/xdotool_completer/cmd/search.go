@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/xdotool_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/ps"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/xdotool"
 	"github.com/spf13/cobra"
 )
 
@@ -33,7 +33,7 @@ func init() {
 	rootCmd.AddCommand(searchCmd)
 
 	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{
-		"desktop": action.ActionDesktops(),
+		"desktop": xdotool.ActionDesktops(),
 		"pid":     ps.ActionProcessIds(),
 		"screen":  os.ActionScreens(true),
 	})
