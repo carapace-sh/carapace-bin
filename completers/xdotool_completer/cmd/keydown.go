@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/xdotool_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/xdotool"
 	"github.com/spf13/cobra"
 )
 
@@ -21,10 +21,10 @@ func init() {
 	rootCmd.AddCommand(keydownCmd)
 
 	carapace.Gen(keydownCmd).FlagCompletion(carapace.ActionMap{
-		"window": action.ActionWindows(),
+		"window": xdotool.ActionWindows(),
 	})
 
 	carapace.Gen(keydownCmd).PositionalAnyCompletion(
-		action.ActionKeys().UniqueList("+"),
+		xdotool.ActionKeys().UniqueList("+"),
 	)
 }
