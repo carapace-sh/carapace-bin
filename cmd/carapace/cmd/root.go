@@ -16,6 +16,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/lazyinit"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/shim"
 	"github.com/rsteube/carapace-bin/pkg/actions"
 	spec "github.com/rsteube/carapace-spec"
@@ -140,25 +141,25 @@ var rootCmd = &cobra.Command{
 
 			switch shell {
 			case "bash":
-				fmt.Fprintln(cmd.OutOrStdout(), bash_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Bash(completers))
 			case "bash-ble":
-				fmt.Fprintln(cmd.OutOrStdout(), bash_ble_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.BashBle(completers))
 			case "elvish":
-				fmt.Fprintln(cmd.OutOrStdout(), elvish_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Elvish(completers))
 			case "fish":
-				fmt.Fprintln(cmd.OutOrStdout(), fish_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Fish(completers))
 			case "nushell":
-				fmt.Fprintln(cmd.OutOrStdout(), nushell_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Nushell(completers))
 			case "oil":
-				fmt.Fprintln(cmd.OutOrStdout(), oil_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Oil(completers))
 			case "powershell":
-				fmt.Fprintln(cmd.OutOrStdout(), powershell_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Powershell(completers))
 			case "tcsh":
-				fmt.Fprintln(cmd.OutOrStdout(), tcsh_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Tcsh(completers))
 			case "xonsh":
-				fmt.Fprintln(cmd.OutOrStdout(), xonsh_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Xonsh(completers))
 			case "zsh":
-				fmt.Fprintln(cmd.OutOrStdout(), zsh_lazy(completers))
+				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Zsh(completers))
 			default:
 				fmt.Fprintln(os.Stderr, "could not determine shell")
 			}
