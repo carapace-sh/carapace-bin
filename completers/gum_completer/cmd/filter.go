@@ -99,6 +99,7 @@ func init() {
 	filterCmd.Flags().Bool("prompt.underline", false, "Underline text")
 	filterCmd.Flags().String("prompt.width", "", "Text width")
 	filterCmd.Flags().Bool("reverse", false, "Display from the bottom of the screen")
+	filterCmd.Flags().Bool("select-if-one", false, "Select the given option if there is only one")
 	filterCmd.Flags().String("selected-indicator.align", "", "Text Alignment")
 	filterCmd.Flags().String("selected-indicator.background", "", "Background Color")
 	filterCmd.Flags().Bool("selected-indicator.bold", false, "Bold text")

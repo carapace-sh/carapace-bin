@@ -67,6 +67,7 @@ func init() {
 	chooseCmd.Flags().String("limit", "", "Maximum number of options to pick")
 	chooseCmd.Flags().Bool("no-limit", false, "Pick unlimited number of options (ignores limit)")
 	chooseCmd.Flags().Bool("ordered", false, "Maintain the order of the selected options")
+	chooseCmd.Flags().Bool("select-if-one", false, "Select the given option if there is only one")
 	chooseCmd.Flags().StringSlice("selected", []string{}, "Options that should start as selected")
 	chooseCmd.Flags().String("selected-prefix", "", "Prefix to show on selected items (hidden if limit is 1)")
 	chooseCmd.Flags().String("selected.align", "", "Text Alignment")
