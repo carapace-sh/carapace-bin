@@ -2,7 +2,7 @@
 
 [Transformations](#transformations) can be applied to files and specific values.
  
-> This is only supported in [elvish], [powershell] and [zsh].
+> This is only supported in [elvish], [powershell], [xonsh] and [zsh].
 
 ## File
 
@@ -75,4 +75,5 @@ Transformations are adopted from [elvish](https://elv.sh/ref/builtin.html#styled
 [Elvish]:https://elv.sh/
 [Powershell]:https://microsoft.com/powershell
 [vivid]:https://github.com/sharkdp/vivid
+[Xonsh]:https://xon.sh/
 [Zsh]:https://www.zsh.org/
