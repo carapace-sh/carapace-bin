@@ -18,6 +18,8 @@ var (
 )
 
 func Names() []string {
+	names = append(names, "carapace") // TODO add here or in generate?
+
 	unique := make(map[string]string)
 	for _, name := range names {
 		unique[name] = name

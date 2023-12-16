@@ -3,25 +3,19 @@ package cmd
 //go:generate go run ../../carapace-generate/gen.go
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
-	"io"
 	"os"
-	"path/filepath"
-	"sort"
-	"strconv"
 	"strings"
 	"time"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/lazyinit"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/shim"
 	"github.com/rsteube/carapace-bin/pkg/actions"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/ps"
-	"github.com/rsteube/carapace/pkg/style"
 	"github.com/rsteube/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
 )
@@ -60,192 +54,44 @@ var rootCmd = &cobra.Command{
   Config is written to [%v/carapace].
   Specs are loaded from [%v/carapace/specs].
   `, suppressErr(xdg.UserCacheDir), suppressErr(xdg.UserConfigDir), suppressErr(xdg.UserConfigDir)),
-	Args:      cobra.MinimumNArgs(1),
-	ValidArgs: completers.Names(),
+	Args:               cobra.MinimumNArgs(1),
+	DisableFlagParsing: true,
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
-		// TODO switch to cobra flag parsing with interspersed=false (redirect completion from completers/carapace_completer to here)
 		switch args[0] {
 		case "--macros":
-			if len(args) > 1 {
-				printMacro(args[1])
-			} else {
-				printMacros()
-			}
+			macrosCmd.SetArgs(args[1:])
+			macrosCmd.Execute()
 		case "-h", "--help":
 			cmd.Help()
 		case "-v", "--version":
 			println(cmd.Version)
 		case "--list":
-			printCompleters()
-		case "--list=json":
-			printCompletersJson()
+			listCmd.SetArgs(args[1:])
+			listCmd.Execute()
 		case "--run":
-			_, spec, err := loadSpec(args[1])
-			if err != nil {
-				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-				os.Exit(1)
-			}
-
-			cmd := spec.ToCobra()
-			cmd.SetArgs(args[2:])
-			cmd.Execute() // TODO handle error?
+			runCmd.SetArgs(args[1:])
+			runCmd.Execute()
 		case "--schema":
-			if schema, err := spec.Schema(); err != nil {
-				fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
-			} else {
-				fmt.Fprintln(cmd.OutOrStdout(), schema)
-			}
-		case "--scrape":
-			if len(args) > 1 {
-				scrape(args[1])
-			}
+			schemaCmd.SetArgs(args[1:])
+			schemaCmd.Execute()
+		case "--codegen":
+			codegenCmd.SetArgs(args[1:])
+			codegenCmd.Execute()
 		case "--style":
-			if len(args) > 1 {
-				if err := setStyle(args[1]); err != nil {
-					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-				}
-			}
-		case "_carapace":
-			shell := ps.DetermineShell()
-			if len(args) > 1 {
-				shell = args[1]
-			}
-			if len(args) <= 2 {
-				if err := shim.Update(); err != nil {
-					fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
-				}
-
-				if err := updateSchema(); err != nil { // TODO do this only if needed
-					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-				}
-
-				if err := createOverlayDir(); err != nil { // TODO do this only if needed
-					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-				}
-			}
-
-			completers := completers.Names()
-			if os.Getenv("CARAPACE_ENV") == "0" {
-				filtered := make([]string, 0, len(completers))
-				for _, name := range completers {
-					switch name {
-					case "get-env", "set-env", "unset-env":
-					default:
-						filtered = append(filtered, name)
-
-					}
-				}
-				completers = filtered
-			}
-
-			switch shell {
-			case "bash":
-				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Bash(completers))
-			case "bash-ble":
-				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.BashBle(completers))
-			case "elvish":
-				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Elvish(completers))
-			case "fish":
-				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Fish(completers))
-			case "nushell":
-				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Nushell(completers))
-			case "oil":
-				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Oil(completers))
-			case "powershell":
-				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Powershell(completers))
-			case "tcsh":
-				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Tcsh(completers))
-			case "xonsh":
-				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Xonsh(completers))
-			case "zsh":
-				fmt.Fprintln(cmd.OutOrStdout(), lazyinit.Zsh(completers))
-			default:
-				fmt.Fprintln(os.Stderr, "could not determine shell")
-			}
+			styleCmd.SetArgs(args[1:])
+			styleCmd.Execute()
 		default:
-			if overlayPath, err := overlayPath(args[0]); err == nil && len(args) > 2 { // and arg[1] is a known shell
-				cmd := &cobra.Command{
-					DisableFlagParsing: true,
-					CompletionOptions: cobra.CompletionOptions{
-						DisableDefaultCmd: true,
-					},
-				}
-
-				// TODO yuck
-				command := args[0]
-				shell := args[1]
-				args[0] = "_carapace"
-				args[1] = "export"
-				os.Args[1] = "_carapace"
-				os.Args[2] = "export"
-				os.Setenv("CARAPACE_LENIENT", "1")
-
-				carapace.Gen(cmd).PositionalAnyCompletion(
-					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						batch := carapace.Batch()
-						specPath, err := completers.SpecPath(command)
-						if err != nil {
-							batch = append(batch, carapace.ActionImport([]byte(invokeCompleter(command))))
-						} else {
-							out, err := specCompletion(specPath, args[1:]...)
-							if err != nil {
-								return carapace.ActionMessage(err.Error())
-							}
-
-							batch = append(batch, carapace.ActionImport([]byte(out)))
-						}
-
-						batch = append(batch, overlayCompletion(overlayPath, args[1:]...))
-						return batch.ToA()
-					}),
-				)
-
-				cmd.SetArgs(append([]string{"_carapace", shell}, args[2:]...))
-				cmd.Execute()
-			} else {
-				if specPath, err := completers.SpecPath(args[0]); err == nil {
-					out, err := specCompletion(specPath, args[1:]...)
-					if err != nil {
-						fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-						return
-					}
-
-					// TODO revert the patching from specCompletion to use the integrated version for overlay to work (should move this somewhere else - best in specCompletion)
-					// TODO only patch completion script
-					out = strings.Replace(out, fmt.Sprintf("--spec '%v'", specPath), args[0], -1)
-					out = strings.Replace(out, fmt.Sprintf("'--spec', '%v'", specPath), fmt.Sprintf("'%v'", args[0]), -1) // xonsh callback
-					fmt.Fprint(cmd.OutOrStdout(), out)
-				} else {
-					fmt.Print(invokeCompleter(args[0]))
-				}
-			}
+			invokeCmd.SetArgs(args)
+			invokeCmd.Execute()
 		}
-
 	},
-	FParseErrWhitelist: cobra.FParseErrWhitelist{
-		UnknownFlags: true,
-	},
-	DisableFlagParsing: true,
 	CompletionOptions: cobra.CompletionOptions{
 		DisableDefaultCmd: true,
 	},
 }
 
 func suppressErr(f func() (string, error)) string { s, _ := f(); return s }
-
-func printCompleters() {
-	maxlen := 0
-	for _, name := range completers.Names() {
-		if len := len(name); len > maxlen {
-			maxlen = len
-		}
-	}
-
-	for _, name := range completers.Names() {
-		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, completers.Description(name))
-	}
-}
 
 func createOverlayDir() error {
 	configDir, err := xdg.UserConfigDir()
@@ -277,100 +123,6 @@ func overlayCompletion(overlayPath string, args ...string) carapace.Action {
 		}
 		return carapace.ActionImport([]byte(out))
 	})
-}
-
-func printCompletersJson() {
-	// TODO move to completers package
-	type _completer struct {
-		Name        string
-		Description string
-		Spec        string `json:",omitempty"`
-		Overlay     string `json:",omitempty"`
-	}
-
-	_completers := make([]_completer, 0)
-	for _, name := range completers.Names() {
-		specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-		overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-		_completers = append(_completers, _completer{
-			Name:        name,
-			Description: completers.Description(name),
-			Spec:        specPath,
-			Overlay:     overlayPath,
-		})
-	}
-	if m, err := json.Marshal(_completers); err == nil { // TODO handle error (log?)
-		fmt.Println(string(m))
-	}
-}
-
-func printMacros() {
-	maxlen := 0
-	names := make([]string, 0)
-	for name := range actions.MacroMap {
-		names = append(names, name)
-		if len := len(name); len > maxlen {
-			maxlen = len
-		}
-	}
-
-	sort.Strings(names)
-	for _, name := range names {
-		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, actions.MacroDescriptions[name])
-	}
-}
-
-func printMacro(name string) {
-	if m, ok := actions.MacroMap[name]; ok {
-		path := strings.Replace(name, ".", "/", -1)
-		signature := ""
-		if s := m.Signature(); s != "" {
-			signature = fmt.Sprintf("(%v)", s)
-		}
-
-		fmt.Printf(`signature:   $_%v%v
-description: %v
-reference:   https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/%v#Action%v
-`, name, signature, actions.MacroDescriptions[name], filepath.Dir(path), filepath.Base(path))
-	}
-}
-
-func invokeCompleter(completer string) string {
-	old := os.Stdout
-	r, w, _ := os.Pipe()
-	os.Stdout = w
-
-	outC := make(chan string)
-	// copy the output in a separate goroutine so printing can't block indefinitely
-	go func() {
-		var buf bytes.Buffer
-		io.Copy(&buf, r)
-		outC <- buf.String()
-	}()
-
-	os.Args[1] = "_carapace"
-	executeCompleter(completer)
-
-	w.Close()
-	out := <-outC
-	os.Stdout = old
-
-	executable, err := os.Executable()
-	if err != nil {
-		panic(err.Error()) // TODO exit with error message
-	}
-	executableName := filepath.Base(executable)
-	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v %v", executableName, completer), -1)      // general callback
-	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '%v'", executableName, completer), -1) // xonsh callback
-	return patched
-
-}
-
-func setStyle(s string) error {
-	if splitted := strings.SplitN(s, "=", 2); len(splitted) == 2 {
-		return style.Set(splitted[0], splitted[1])
-	}
-	return fmt.Errorf("invalid format: '%v'", s)
 }
 
 func updateSchema() error {
@@ -415,16 +167,138 @@ func updateSchema() error {
 
 func Execute(version string) error {
 	rootCmd.Version = version
+
+	if len(os.Args) > 1 {
+		if os.Args[1] == "carapace" {
+			os.Args[1] = "_carapace"
+		} else if len(os.Args) < 4 && os.Args[1] == "_carapace" {
+			shell := ps.DetermineShell()
+			if len(os.Args) > 2 {
+				shell = os.Args[2]
+			}
+
+			if err := shim.Update(); err != nil {
+				println(err.Error()) // TODO fail / exit 1 ?
+			}
+
+			if err := updateSchema(); err != nil { // TODO do this only if needed
+				println(err.Error())
+			}
+
+			if err := createOverlayDir(); err != nil { // TODO do this only if needed
+				println(err.Error())
+			}
+
+			completers := completers.Names()
+			if os.Getenv("CARAPACE_ENV") == "0" {
+				filtered := make([]string, 0, len(completers))
+				for _, name := range completers {
+					switch name {
+					case "get-env", "set-env", "unset-env":
+					default:
+						filtered = append(filtered, name)
+
+					}
+				}
+				completers = filtered
+			}
+
+			println(shell)
+
+			switch shell {
+			case "bash":
+				fmt.Println(lazyinit.Bash(completers))
+			case "bash-ble":
+				fmt.Println(lazyinit.BashBle(completers))
+			case "elvish":
+				fmt.Println(lazyinit.Elvish(completers))
+			case "fish":
+				fmt.Println(lazyinit.Fish(completers))
+			case "nushell":
+				fmt.Println(lazyinit.Nushell(completers))
+			case "oil":
+				fmt.Println(lazyinit.Oil(completers))
+			case "powershell":
+				fmt.Println(lazyinit.Powershell(completers))
+			case "tcsh":
+				fmt.Println(lazyinit.Tcsh(completers))
+			case "xonsh":
+				fmt.Println(lazyinit.Xonsh(completers))
+			case "zsh":
+				fmt.Println(lazyinit.Zsh(completers))
+			default:
+				// TODO
+				// println("could not determine shell")
+				return rootCmd.Execute()
+			}
+			return nil
+		}
+	}
 	return rootCmd.Execute()
 }
 
 func init() {
+	rootCmd.Flags().Bool("codegen", false, "generate code from spec file")
 	rootCmd.Flags().Bool("list", false, "list completers")
-	rootCmd.Flags().String("run", "", "run spec")
-	rootCmd.Flags().String("scrape", "", "scrape spec to go code")
-	rootCmd.Flags().String("style", "", "set style")
+	rootCmd.Flags().Bool("macros", false, "list spec macros")
+	rootCmd.Flags().BoolP("help", "h", false, "help for carapace")
+	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
+	rootCmd.Flags().Bool("run", false, "run spec")
+	rootCmd.Flags().Bool("schema", false, "json schema for spec files")
+	rootCmd.Flags().Bool("style", false, "set style")
+
+	rootCmd.MarkFlagsMutuallyExclusive(
+		"codegen",
+		"help",
+		"list",
+		"macros",
+		"run",
+		"schema",
+		"style",
+		"version",
+	)
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if strings.HasPrefix(c.Value, "-") {
+				cmd := &cobra.Command{}
+				cmd.Flags().AddFlagSet(rootCmd.Flags())
+				return carapace.ActionExecute(cmd)
+			}
+			return action.ActionCompleters()
+		}),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if !strings.HasPrefix(c.Args[0], "-") {
+				return carapace.ActionExecute(invokeCmd)
+			}
+			switch c.Args[0] {
+			case "--macros":
+				return carapace.ActionExecute(macrosCmd).Shift(1)
+			case "--help":
+				return carapace.ActionValues()
+			case "-v", "--version":
+				return carapace.ActionValues()
+			case "--list":
+				return carapace.ActionExecute(listCmd).Shift(1).Usage("list")
+			case "--run":
+				return carapace.ActionExecute(runCmd).Shift(1)
+			case "--schema":
+				return carapace.ActionExecute(schemaCmd).Shift(1)
+			case "--scrape":
+				return carapace.ActionExecute(codegenCmd).Shift(1)
+			case "--style":
+				return carapace.ActionExecute(styleCmd).Shift(1)
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	)
 
 	for m, f := range actions.MacroMap {
 		spec.AddMacro(m, f)
 	}
+	spec.Register(rootCmd)
 }
