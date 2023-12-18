@@ -6,13 +6,14 @@ import (
 )
 
 var validateCmd = &cobra.Command{
-	Use:   "validate",
+	Use:   "validate <file>...",
 	Short: "Validate a glob file path and parses all the files to ensure they are valid without running them.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(validateCmd).Standalone()
+
 	rootCmd.AddCommand(validateCmd)
 
 	carapace.Gen(validateCmd).PositionalAnyCompletion(
