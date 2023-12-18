@@ -6,13 +6,14 @@ import (
 )
 
 var newCmd = &cobra.Command{
-	Use:   "new",
+	Use:   "new <name>",
 	Short: "Create a new tape file with example tape file contents and documentation",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(newCmd).Standalone()
+
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(rootCmd).PositionalCompletion(
