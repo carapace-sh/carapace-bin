@@ -87,6 +87,16 @@ completion:
   positionalany: ["$_bridge.Complete([vault])"]
 ```
 
+### Inshellisense
+Commands provided by [microsoft/inshellisense] can be bridged with the [`bridge.Inshellisense`] macro:
+
+```yaml
+name: node
+description: Run the node interpreter
+completion:
+  positionalany: ["$_bridge.Inshellisense([node])"]
+```
+
 ### Kingpin
 
 [alecthomas/kingpin] based commands can be bridged with the [`bridge.Kingpin`] macro:
@@ -194,6 +204,9 @@ completion:
 
 [posener/complete]:https://github.com/posener/complete
 [`bridge.Complete`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionComplete
+
+[microsoft/inshellisense]:https://github.com/microsoft/inshellisense
+[`bridge.Inshellisense`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionInshellisense
 
 [alecthomas/kingpin]:https://github.com/alecthomas/kingpin
 [`bridge.Kingpin`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionKingpin
