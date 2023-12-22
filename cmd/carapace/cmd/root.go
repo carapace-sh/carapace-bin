@@ -59,9 +59,9 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
 		switch args[0] {
-		case "--macros":
-			macrosCmd.SetArgs(args[1:])
-			macrosCmd.Execute()
+		case "--macro":
+			macroCmd.SetArgs(args[1:])
+			macroCmd.Execute()
 		case "-h", "--help":
 			cmd.Help()
 		case "-v", "--version":
@@ -238,20 +238,20 @@ func Execute(version string) error {
 }
 
 func init() {
-	rootCmd.Flags().Bool("codegen", false, "generate code from spec file")
-	rootCmd.Flags().Bool("list", false, "list completers")
-	rootCmd.Flags().Bool("macros", false, "list spec macros")
+	rootCmd.Flags().Bool("codegen", false, "generate code for spec file")
 	rootCmd.Flags().BoolP("help", "h", false, "help for carapace")
-	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
+	rootCmd.Flags().Bool("list", false, "list completers")
+	rootCmd.Flags().Bool("macro", false, "list or execute macros")
 	rootCmd.Flags().Bool("run", false, "run spec")
 	rootCmd.Flags().Bool("schema", false, "json schema for spec files")
 	rootCmd.Flags().Bool("style", false, "set style")
+	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
 
 	rootCmd.MarkFlagsMutuallyExclusive(
 		"codegen",
 		"help",
 		"list",
-		"macros",
+		"macro",
 		"run",
 		"schema",
 		"style",
@@ -275,22 +275,22 @@ func init() {
 				return carapace.ActionExecute(invokeCmd)
 			}
 			switch c.Args[0] {
-			case "--macros":
-				return carapace.ActionExecute(macrosCmd).Shift(1)
+			case "--codegen":
+				return carapace.ActionExecute(codegenCmd).Shift(1)
 			case "--help":
-				return carapace.ActionValues()
-			case "-v", "--version":
 				return carapace.ActionValues()
 			case "--list":
 				return carapace.ActionExecute(listCmd).Shift(1).Usage("list")
+			case "--macro":
+				return carapace.ActionExecute(macroCmd).Shift(1)
 			case "--run":
 				return carapace.ActionExecute(runCmd).Shift(1)
 			case "--schema":
 				return carapace.ActionExecute(schemaCmd).Shift(1)
-			case "--scrape":
-				return carapace.ActionExecute(codegenCmd).Shift(1)
 			case "--style":
 				return carapace.ActionExecute(styleCmd).Shift(1)
+			case "-v", "--version":
+				return carapace.ActionValues()
 			default:
 				return carapace.ActionValues()
 			}

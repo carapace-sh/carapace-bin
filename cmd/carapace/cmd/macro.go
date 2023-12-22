@@ -13,8 +13,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var macrosCmd = &cobra.Command{
-	Use:   "--macros [macro] ...",
+var macroCmd = &cobra.Command{
+	Use:   "--macro [macro] ...",
 	Short: "",
 	Args:  cobra.ArbitraryArgs,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -30,14 +30,14 @@ var macrosCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(macrosCmd).Standalone()
-	macrosCmd.Flags().SetInterspersed(false)
+	carapace.Gen(macroCmd).Standalone()
+	macroCmd.Flags().SetInterspersed(false)
 
-	carapace.Gen(macrosCmd).PositionalCompletion(
+	carapace.Gen(macroCmd).PositionalCompletion(
 		carapace.ActionMultiPartsN("(", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionExecCommand("carapace", "--macros")(func(output []byte) carapace.Action {
+				return carapace.ActionExecCommand("carapace", "--macro")(func(output []byte) carapace.Action {
 					lines := strings.Split(string(output), "\n")
 
 					vals := make([]string, 0)
@@ -59,7 +59,7 @@ func init() {
 		}),
 	)
 
-	carapace.Gen(macrosCmd).PositionalAnyCompletion(
+	carapace.Gen(macroCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return spec.ActionMacro("$carapace." + c.Args[0]).Shift(1) // TODO macro prefix
 		}),
