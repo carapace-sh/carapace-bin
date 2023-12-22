@@ -19,7 +19,7 @@ Bridging completions from another engine for shells not natively supported by it
 name: az
 description: Azure Command-Line Interface
 completion:
-  positionalany: ["$_bridge.Argcomplete([az])"]
+  positionalany: ["$carapace.bridge.Argcomplete([az])"]
 ```
 
 ### Carapace
@@ -30,7 +30,7 @@ completion:
 name: freckles
 description: simple dotfile manager
 completion:
-  positionalany: ["$_bridge.Carapace([freckles])"]
+  positionalany: ["$carapace.bridge.Carapace([freckles])"]
 ```
 
 ### CarapaceBin
@@ -41,7 +41,7 @@ completion:
 name: github-cli
 description: Work seamlessly with GitHub from the command line
 completion:
-  positionalany: ["$_bridge.CarapaceBin([gh])"]
+  positionalany: ["$carapace.bridge.CarapaceBin([gh])"]
 ```
 
 ### Clap
@@ -52,7 +52,7 @@ completion:
 name: dyamic
 description: clap dynamic example
 completion:
-  positionalany: ["$_bridge.Clap([dynamic])"]
+  positionalany: ["$carapace.bridge.Clap([dynamic])"]
 ```
 
 ### Click
@@ -63,7 +63,7 @@ completion:
 name: watson
 description: Watson is a tool aimed at helping you monitoring your time
 completion:
-  positionalany: ["$_bridge.Click([watson])"]
+  positionalany: ["$carapace.bridge.Click([watson])"]
 ```
 
 ### Cobra
@@ -74,7 +74,7 @@ completion:
 name: kubectl
 description: kubectl controls the Kubernetes cluster manager
 completion:
-  positionalany: ["$_bridge.Cobra([kubectl])"]
+  positionalany: ["$carapace.bridge.Cobra([kubectl])"]
 ```
 
 ### Complete
@@ -84,7 +84,7 @@ completion:
 name: vault
 description: Manage Secrets & Protect Sensitive Data
 completion:
-  positionalany: ["$_bridge.Complete([vault])"]
+  positionalany: ["$carapace.bridge.Complete([vault])"]
 ```
 
 ### Inshellisense
@@ -94,7 +94,7 @@ Commands provided by [microsoft/inshellisense] can be bridged with the [`bridge.
 name: node
 description: Run the node interpreter
 completion:
-  positionalany: ["$_bridge.Inshellisense([node])"]
+  positionalany: ["$carapace.bridge.Inshellisense([node])"]
 ```
 
 ### Kingpin
@@ -105,7 +105,7 @@ completion:
 name: tsh
 description: Teleport Command Line Client
 completion:
-  positionalany: ["$_bridge.Kingpin([tsh])"]
+  positionalany: ["$carapace.bridge.Kingpin([tsh])"]
 ```
 
 ### Urfavecli
@@ -116,7 +116,7 @@ completion:
 name: tea
 description: command line tool to interact with Gitea
 completion:
-  positionalany: ["$_bridge.Urfavecli([tea])"]
+  positionalany: ["$carapace.bridge.Urfavecli([tea])"]
 ```
 
 ### Yargs
@@ -126,7 +126,7 @@ completion:
 name: ng
 description: CLI tool for Angular
 completion:
-  positionalany: ["$_bridge.Yargs([ng])"]
+  positionalany: ["$carapace.bridge.Yargs([ng])"]
 ```
 
 ## Shells
@@ -142,7 +142,7 @@ Commands registered in [bash] can be bridged with the [`bridge.Bash`] macro:
 name:  tail
 description: output the last part of files
 completion:
-  positionalany: ["$_bridge.Bash([tail])"]
+  positionalany: ["$carapace.bridge.Bash([tail])"]
 ```
 
 ### Fish
@@ -153,7 +153,7 @@ Commands registered in [fish-shell/fish-shell] can be bridged with the [`bridge.
 name:  git
 description: the stupid content tracker
 completion:
-  positionalany: ["$_bridge.Fish([git])"]
+  positionalany: ["$carapace.bridge.Fish([git])"]
 ```
 
 ### Powershell
@@ -164,7 +164,7 @@ Commands registered in [powershell] can be bridged with the [`bridge.Powershell`
 name:  ConvertTo-Json
 description: convert to json
 completion:
-  positionalany: ["$_bridge.Powershell([ConvertTo-Json])"]
+  positionalany: ["$carapace.bridge.Powershell([ConvertTo-Json])"]
 ```
 
 ### Zsh
@@ -175,7 +175,7 @@ Commands registered in [zsh] can be bridged with the [`bridge.Zsh`] macro:
 name:  git
 description: the stupid content tracker
 completion:
-  positionalany: ["$_bridge.Zsh([git])"]
+  positionalany: ["$carapace.bridge.Zsh([git])"]
 ```
 
 [lazycomplete]:https://github.com/rsteube/lazycomplete

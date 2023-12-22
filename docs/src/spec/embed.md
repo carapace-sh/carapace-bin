@@ -7,7 +7,7 @@ name: embed
 commands:
   - name: git
     completion:
-      positionalany: ["$chdir(~/.password-store)", "$_bridge.CarapaceBin([git])"]
+      positionalany: ["$chdir(~/.password-store)", "$carapace.bridge.CarapaceBin([git])"]
 ```
 
 ![](./embed.cast)
@@ -26,7 +26,7 @@ commands:
     name: list
     completion:
       positional:
-        - ["$_tools.gh.OwnerRepositories"]
+        - ["$carapace.tools.gh.OwnerRepositories"]
   -
     name: add
     flags:
@@ -35,14 +35,14 @@ commands:
       flag:
         permission: ["pull", "triage", "push", "maintain", "admin\t\tred"]
       positional:
-        - ["$_tools.gh.OwnerRepositories"]
-        - ["$_tools.gh.Users"]
+        - ["$carapace.tools.gh.OwnerRepositories"]
+        - ["$carapace.tools.gh.Users"]
   -
     name: remove
     completion:
       positional:
-        - ["$_tools.gh.OwnerRepositories"]
-        - ["$_tools.gh.Users"]
+        - ["$carapace.tools.gh.OwnerRepositories"]
+        - ["$carapace.tools.gh.Users"]
 ```
 
 ![](./embed-plugin.cast)
