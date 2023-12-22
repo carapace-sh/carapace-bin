@@ -1,6 +1,8 @@
 package main
 
-import "github.com/rsteube/carapace-bin/cmd/carapace/cmd"
+import (
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd"
+)
 
 var version = "develop"
 
