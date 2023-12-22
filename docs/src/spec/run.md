@@ -27,8 +27,8 @@ completion:
   flag:
     sort: [version:refname, authordate]
   positional:
-    - ["$_tools.git.RepositorySearch"]
-  positionalany: ["$_tools.git.LsRemoteRefs({url: '${C_ARG0}', branches: true, tags: true})"]
+    - ["$carapace.tools.git.RepositorySearch"]
+  positionalany: ["$carapace.tools.git.LsRemoteRefs({url: '${C_ARG0}', branches: true, tags: true})"]
 ```
 
 ![](./run-script.cast)

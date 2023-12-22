@@ -1,7 +1,5 @@
 # Variable
 
-> feature in development
-
 Complex environment variable completion is provided with `get-env`, `set-env` and `unset-env`.
 
 In `elvish` the completion is simply overridden.
@@ -23,7 +21,7 @@ variables:
 completion:
   variable:
     CUSTOM_EXAMPLE: ["0\tdisabled\tred", "1\tenabled\tgreen"]
-    CUSTOM_MACRO: ["$_tools.gh.Labels({owner: rsteube, name: carapace}) ||| $uniquelist(,)"]
+    CUSTOM_MACRO: ["$carapace.tools.gh.Labels({owner: rsteube, name: carapace}) ||| $uniquelist(,)"]
     HTTPS_PROXY: ["https://localhost:8443\tdevelopment", "https://proxy.company:443\tproduction"]
 ```
 

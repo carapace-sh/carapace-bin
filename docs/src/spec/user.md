@@ -15,7 +15,7 @@ User defined [Specs] are automatically loaded by `carapace _carapace` from [`${U
 name: kubectl
 description: kubectl controls the Kubernetes cluster manager
 completion:
-  positionalany: ["$_bridge.Cobra([kubectl])"]
+  positionalany: ["$carapace.bridge.Cobra([kubectl])"]
 ```
 
 ## JSON Schema
