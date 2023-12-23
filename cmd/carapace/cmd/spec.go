@@ -6,13 +6,9 @@ import (
 	"io"
 	"os"
 	"path/filepath"
-	"regexp"
 	"strings"
 
-	"github.com/rsteube/carapace"
 	spec "github.com/rsteube/carapace-spec"
-	"github.com/rsteube/carapace-spec/pkg/command"
-	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"
 )
 
@@ -32,50 +28,6 @@ func loadSpec(path string) (string, *spec.Command, error) {
 		return "", nil, err
 	}
 	return abs, &specCmd, nil
-}
-
-func addAliasCompletion(cmd *cobra.Command, specCommand command.Command) {
-	if specCommand.Run != "" &&
-		len(specCommand.Flags) == 0 &&
-		len(specCommand.PersistentFlags) == 0 &&
-		len(specCommand.Completion.Positional) == 0 &&
-		len(specCommand.Completion.PositionalAny) == 0 &&
-		len(specCommand.Completion.Dash) == 0 &&
-		len(specCommand.Completion.DashAny) == 0 {
-
-		cmd.DisableFlagParsing = true
-		carapace.Gen(cmd).PositionalAnyCompletion(
-			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				switch {
-				case regexp.MustCompile(`^\[.*\]$`).MatchString(string(specCommand.Run)):
-					var mArgs []string
-					if err := yaml.Unmarshal([]byte(specCommand.Run), &mArgs); err != nil {
-						return carapace.ActionMessage(err.Error())
-					}
-					if len(mArgs) == 0 {
-						return carapace.ActionMessage("empty alias: %#v", specCommand.Run)
-					}
-
-					execArgs := []string{mArgs[0], "export", mArgs[0]}
-					execArgs = append(execArgs, mArgs[1:]...)
-					execArgs = append(execArgs, c.Args...)
-					execArgs = append(execArgs, c.Value)
-					return carapace.ActionExecCommand("carapace", execArgs...)(func(output []byte) carapace.Action {
-						return carapace.ActionImport(output)
-					})
-
-				default:
-					return carapace.ActionValues()
-				}
-			}),
-		)
-	}
-
-	for _, subCommand := range specCommand.Commands {
-		if subCmd, _, err := cmd.Find([]string{subCommand.Name}); err == nil {
-			addAliasCompletion(subCmd, subCommand)
-		}
-	}
 }
 
 func scrape(path string) {
@@ -104,7 +56,6 @@ func specCompletion(path string, args ...string) (string, error) {
 	}
 
 	cmd := spec.ToCobra()
-	addAliasCompletion(cmd, command.Command(*spec)) // TODO put this somewhere else
 
 	a := []string{"_carapace"}
 	a = append(a, args...)
