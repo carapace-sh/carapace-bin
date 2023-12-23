@@ -33,9 +33,9 @@ commands:
 Carapace provides a range of [custom macros](./spec/macros.md):
 
 ```sh
-carapace --macros                       # list macros
-carapace --macros color.HexColors       # show macro details
-carapace --macros color.HexColors <TAB> # test macro
+carapace --macro                       # list macros
+carapace --macro color.HexColors       # show macro details
+carapace --macro color.HexColors <TAB> # test macro
 ```
 
 ![](./spec-macros.cast)

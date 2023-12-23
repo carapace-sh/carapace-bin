@@ -6,7 +6,7 @@ import (
 )
 
 var codegenCmd = &cobra.Command{
-	Use:   "--scrape [spec]",
+	Use:   "--codegen [spec]",
 	Short: "",
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
