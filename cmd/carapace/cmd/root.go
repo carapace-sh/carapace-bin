@@ -59,6 +59,9 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
 		switch args[0] {
+		case "--condition":
+			conditionCmd.SetArgs(args[1:])
+			conditionCmd.Execute()
 		case "--macro":
 			macroCmd.SetArgs(args[1:])
 			macroCmd.Execute()
@@ -239,6 +242,7 @@ func Execute(version string) error {
 
 func init() {
 	rootCmd.Flags().Bool("codegen", false, "generate code for spec file")
+	rootCmd.Flags().Bool("condition", false, "list or execute condition")
 	rootCmd.Flags().BoolP("help", "h", false, "help for carapace")
 	rootCmd.Flags().Bool("list", false, "list completers")
 	rootCmd.Flags().Bool("macro", false, "list or execute macros")
@@ -249,6 +253,7 @@ func init() {
 
 	rootCmd.MarkFlagsMutuallyExclusive(
 		"codegen",
+		"condition",
 		"help",
 		"list",
 		"macro",
@@ -277,6 +282,8 @@ func init() {
 			switch c.Args[0] {
 			case "--codegen":
 				return carapace.ActionExecute(codegenCmd).Shift(1)
+			case "--condition":
+				return carapace.ActionExecute(conditionCmd).Shift(1)
 			case "--help":
 				return carapace.ActionValues()
 			case "--list":
