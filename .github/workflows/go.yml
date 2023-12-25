@@ -79,7 +79,6 @@ jobs:
             sh .github/completers.sh > docs/src/completers.md
             sh .github/conditions.sh > docs/src/variable/conditions.md
             sh .github/macros.sh > docs/src/spec/macros.md
-            cmd/carapace/carapace --conditions=markdown > docs/src/variable/conditions.md
             mdbook build docs
             sh .github/badge.sh > docs/book/badge.svg
             sh .github/macros-badge.sh > docs/book/macros-badge.svg
