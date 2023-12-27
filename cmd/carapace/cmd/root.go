@@ -206,8 +206,6 @@ func Execute(version string) error {
 				completers = filtered
 			}
 
-			println(shell)
-
 			switch shell {
 			case "bash":
 				fmt.Println(lazyinit.Bash(completers))
