@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"time"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
@@ -127,47 +126,6 @@ func overlayCompletion(overlayPath string, args ...string) carapace.Action {
 		return carapace.ActionImport([]byte(out))
 	})
 }
-
-func updateSchema() error {
-	confDir, err := xdg.UserConfigDir()
-	if err != nil {
-		return err
-	}
-	path := fmt.Sprintf("%v/carapace/schema.json", confDir)
-
-	infoSchema, err := os.Stat(path)
-	if err != nil && !os.IsNotExist(err) {
-		return err
-	}
-
-	executable, err := os.Executable()
-	if err != nil && !os.IsNotExist(err) {
-		return err
-	}
-
-	infoCarapace, err := os.Stat(executable)
-	if err != nil && !os.IsNotExist(err) {
-		return err
-	}
-
-	if infoSchema == nil || !infoSchema.ModTime().Equal(infoCarapace.ModTime()) {
-		schema, err := spec.Schema()
-		if err != nil && !os.IsNotExist(err) {
-			return err
-		}
-
-		carapace.LOG.Printf("writing json schema to %#v", path)
-		if err := os.WriteFile(path, []byte(schema), os.ModePerm); err != nil {
-			return err
-		}
-
-		if err := os.Chtimes(path, time.Now(), infoCarapace.ModTime()); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
 func Execute(version string) error {
 	rootCmd.Version = version
 
@@ -182,10 +140,6 @@ func Execute(version string) error {
 
 			if err := shim.Update(); err != nil {
 				println(err.Error()) // TODO fail / exit 1 ?
-			}
-
-			if err := updateSchema(); err != nil { // TODO do this only if needed
-				println(err.Error())
 			}
 
 			if err := createOverlayDir(); err != nil { // TODO do this only if needed

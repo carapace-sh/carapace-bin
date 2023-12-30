@@ -20,11 +20,10 @@ completion:
 
 ## JSON Schema
 
-A [JSON Schema](http://json-schema.org/) is automatically written to [`${UserConfigDir}/carapace/schema.json`](https://pkg.go.dev/os#UserConfigDir).
-It can be used by adding the following header to the [Specs]:
+A [JSON Schema](http://json-schema.org/) can be used by adding the following header to the [Specs]:
 
 ```yaml
-# yaml-language-server: $schema=../schema.json
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 ```
 
 [Specs]:../spec.md
