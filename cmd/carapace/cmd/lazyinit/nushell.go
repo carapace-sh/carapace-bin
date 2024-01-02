@@ -12,7 +12,7 @@ let carapace_completer = {|spans|
   # overwrite
   let spans = (if $expanded_alias != null  {
     # put the first word of the expanded alias first in the span
-    $spans | skip 1 | prepend ($expanded_alias | split row " ")
+    $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
   } else {
     $spans
   })
