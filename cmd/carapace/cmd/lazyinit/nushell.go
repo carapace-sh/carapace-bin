@@ -19,14 +19,13 @@ let carapace_completer = {|spans|
 
   carapace $spans.0 nushell $spans
   | from json
-  | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
 }
 
 mut current = (($env | default {} config).config | default {} completions)
 $current.completions = ($current.completions | default {} external)
 $current.completions.external = ($current.completions.external
-    | default true enable
-    | default $carapace_completer completer)
+| default true enable
+| default $carapace_completer completer)
 
 $env.config = $current
     `
