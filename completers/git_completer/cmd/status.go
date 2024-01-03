@@ -49,7 +49,13 @@ func init() {
 		"untracked-files":   ActionUntrackedFilesModes(),
 	})
 
-	carapace.Gen(statusCmd).PositionalAnyCompletion(carapace.ActionFiles())
+	carapace.Gen(statusCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
+
+	carapace.Gen(statusCmd).DashAnyCompletion(
+		carapace.ActionPositional(statusCmd),
+	)
 }
 
 func ActionUntrackedFilesModes() carapace.Action {
