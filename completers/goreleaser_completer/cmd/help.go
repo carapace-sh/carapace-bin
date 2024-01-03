@@ -6,7 +6,7 @@ import (
 )
 
 var helpCmd = &cobra.Command{
-	Use:   "help",
+	Use:   "help [command]",
 	Short: "Help about any command",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -14,11 +14,9 @@ var helpCmd = &cobra.Command{
 func init() {
 	carapace.Gen(helpCmd).Standalone()
 
-	helpCmd.Flags().Bool("debug", false, "Enable debug mode")
-	helpCmd.Flags().BoolP("help", "h", false, "help for help")
 	rootCmd.AddCommand(helpCmd)
 
-	carapace.Gen(helpCmd).PositionalCompletion(
-		carapace.ActionValues("build", "check", "completion", "init", "release"),
+	carapace.Gen(helpCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(rootCmd),
 	)
 }

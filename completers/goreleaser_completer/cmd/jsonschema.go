@@ -15,7 +15,7 @@ var jsonschemaCmd = &cobra.Command{
 func init() {
 	carapace.Gen(jsonschemaCmd).Standalone()
 
-	jsonschemaCmd.Flags().StringP("output", "o", "-", "Where to save the JSONSchema file")
+	jsonschemaCmd.Flags().StringP("output", "o", "", "Where to save the JSONSchema file")
 	rootCmd.AddCommand(jsonschemaCmd)
 
 	carapace.Gen(jsonschemaCmd).FlagCompletion(carapace.ActionMap{
