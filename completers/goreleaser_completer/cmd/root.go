@@ -19,7 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().Bool("debug", false, "Enable debug mode")
-	rootCmd.Flags().BoolP("help", "h", false, "help for goreleaser")
+	rootCmd.PersistentFlags().Bool("debug", false, "Enable verbose mode")
+	rootCmd.PersistentFlags().Bool("verbose", false, "Enable verbose mode")
 	rootCmd.Flags().BoolP("version", "v", false, "version for goreleaser")
 }
