@@ -310,4 +310,8 @@ func init() {
 			}
 		}),
 	)
+
+	carapace.Gen(logCmd).DashAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }
