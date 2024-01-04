@@ -36,6 +36,7 @@ func init() {
 	rootCmd.Flags().BoolS("s", "s", false, "then commands are read from the standard input")
 	rootCmd.Flags().BoolP("verbose", "v", false, "verbose mode")
 	rootCmd.Flags().Bool("version", false, "Show version information ")
+	rootCmd.Flags().Bool("x", false, "Print commands and their arguments as they are executed.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"init-file": carapace.ActionFiles(),
