@@ -58,7 +58,12 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 						}
 					}
 				}
-				return carapace.ActionStyledValuesDescribed(untracked...)
+
+				action := carapace.ActionStyledValuesDescribed(untracked...)
+				if strings.HasPrefix(c.Value, "./") {
+					action = action.Prefix("./")
+				}
+				return action
 			}
 		})
 	}).Tag("changed files")
