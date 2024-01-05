@@ -61,7 +61,7 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 				return carapace.ActionStyledValuesDescribed(untracked...)
 			}
 		})
-	})
+	}).Tag("changed files")
 }
 
 // ActionRefChanges completes changes made in given ref
@@ -94,5 +94,5 @@ func ActionRefChanges(ref string) carapace.Action {
 
 			return carapace.ActionValues(vals...).StyleF(style.ForPathExt)
 		})
-	})
+	}).Tag("changed files")
 }

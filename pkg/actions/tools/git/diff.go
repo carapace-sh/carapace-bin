@@ -115,8 +115,24 @@ func ActionDiffTools() carapace.Action {
 // 1: compare current workspace to given ref
 // 2: compare first ref to second ref
 func ActionRefDiffs(refs ...string) carapace.Action {
+	return actionRefDiffs(false, refs...)
+}
+
+// ActionCachedDiffs completes changes between stage and given ref
+func ActionCachedDiffs(ref string) carapace.Action {
+	return actionRefDiffs(true, ref)
+}
+
+func actionRefDiffs(cached bool, refs ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"diff", "--name-status"}
+		if cached {
+			args = append(args, "--cached")
+			if len(refs) != 1 {
+				return carapace.ActionMessage("only up to two refs allowed [ActionCachedDiffs]")
+			}
+		}
+
 		switch len(refs) {
 		case 0:
 			args = append(args, "HEAD")
