@@ -85,7 +85,7 @@ func init() {
 				}
 
 				if len(filtered) > 0 { // multipart for potentially large diffs
-					action = action.MultiParts("/").StyleF(style.ForPathExt)
+					action = action.MultiParts("/").StyleF(style.ForPathExt).Tag("changed files")
 				}
 				batch = append(batch, action)
 			}
