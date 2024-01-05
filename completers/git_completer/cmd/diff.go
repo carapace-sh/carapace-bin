@@ -37,7 +37,7 @@ func init() {
 
 			filtered := make([]string, 0)
 			for index, arg := range c.Args {
-				if index == 0 && strings.Contains(arg, "...") { // assume refrange - TODO what about '{ref}..{ref}'
+				if index == 0 && strings.Contains(arg, "..") { // assume refrange - TODO what about '{ref}...{ref}'
 					filtered = append(filtered, arg)
 					break
 				}
@@ -54,7 +54,7 @@ func init() {
 					batch = append(batch, git.ActionRefRanges(git.RefOption{}.Default()))
 				default:
 					switch {
-					case strings.Contains(c.Args[0], "..."): // skip if we already have a refrange
+					case strings.Contains(c.Args[0], ".."): // skip if we already have a refrange
 					case diffCmd.Flag("cached").Changed: // skip as '-cached' accepts only on ref
 					default:
 						batch = append(batch, git.ActionRefs(git.RefOption{}.Default()))
@@ -63,8 +63,8 @@ func init() {
 			}
 
 			if len(filtered) > 0 {
-				// TODO support/suppress '{ref}..{ref}'??
-				filtered = append(strings.SplitN(filtered[0], "...", 2), filtered[1:]...) // split refrange if any
+				// TODO support/suppress '{ref}...{ref}'??
+				filtered = append(strings.SplitN(filtered[0], "..", 2), filtered[1:]...) // split refrange if any
 			}
 
 			switch len(filtered) {
