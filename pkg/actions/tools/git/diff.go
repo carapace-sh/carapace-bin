@@ -176,5 +176,5 @@ func actionRefDiffs(cached bool, refs ...string) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPathExt)
 		})
-	})
+	}).Tag("changed files")
 }
