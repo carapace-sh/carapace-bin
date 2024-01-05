@@ -62,12 +62,13 @@ func init() {
 				}
 			}
 
+			expanded := filtered
 			if len(filtered) > 0 {
 				// TODO support/suppress '{ref}...{ref}'??
-				filtered = append(strings.SplitN(filtered[0], "..", 2), filtered[1:]...) // split refrange if any
+				expanded = append(strings.SplitN(filtered[0], "..", 2), filtered[1:]...) // split refrange if any
 			}
 
-			switch len(filtered) {
+			switch len(expanded) {
 			case 0:
 				if !diffCmd.Flag("cached").Changed {
 					// TODO `git diff` fails on deleted files (seems still worth seeing them in completion though)
@@ -77,17 +78,17 @@ func init() {
 				// TODO handle --merge-base with more than 2 refs
 				var action carapace.Action
 				if diffCmd.Flag("cached").Changed {
-					if len(filtered) > 0 {
-						action = git.ActionCachedDiffs(filtered[0])
+					if len(expanded) > 0 {
+						action = git.ActionCachedDiffs(expanded[0])
 					}
 				} else {
-					action = git.ActionRefDiffs(filtered...)
+					action = git.ActionRefDiffs(expanded...)
 				}
 
-				if len(filtered) > 0 { // multipart for potentially large diffs
+				if len(expanded) > 0 { // multipart for potentially large diffs
 					action = action.MultiParts("/").StyleF(style.ForPathExt).Tag("changed files")
 				}
-				batch = append(batch, action)
+				batch = append(batch, action.Filter(c.Args[len(filtered):]...))
 			}
 
 			return batch.ToA()
