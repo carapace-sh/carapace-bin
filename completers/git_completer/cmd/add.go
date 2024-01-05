@@ -45,4 +45,8 @@ func init() {
 	carapace.Gen(addCmd).PositionalAnyCompletion(
 		git.ActionChanges(git.ChangeOpts{Unstaged: true}).FilterArgs(),
 	)
+
+	carapace.Gen(addCmd).DashAnyCompletion(
+		carapace.ActionPositional(addCmd),
+	)
 }
