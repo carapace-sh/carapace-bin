@@ -66,4 +66,8 @@ func init() {
 		git.ActionRepositorySearch(git.SearchOpts{}.Default()),
 		carapace.ActionDirectories(),
 	)
+
+	carapace.Gen(cloneCmd).DashAnyCompletion(
+		carapace.ActionPositional(cloneCmd),
+	)
 }

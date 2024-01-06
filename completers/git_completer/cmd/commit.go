@@ -69,4 +69,12 @@ func init() {
 		"template":           carapace.ActionFiles(),
 		"untracked-files":    carapace.ActionValues("all", "normal", "no"),
 	})
+
+	carapace.Gen(commitCmd).PositionalAnyCompletion(
+		git.ActionChanges(git.ChangeOpts{Staged: true, Unstaged: true}).FilterArgs(),
+	)
+
+	carapace.Gen(commitCmd).DashAnyCompletion(
+		carapace.ActionPositional(commitCmd),
+	)
 }
