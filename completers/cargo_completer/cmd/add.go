@@ -52,6 +52,7 @@ func init() {
 			return carapace.ActionValues()
 		}),
 		"features": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			// TODO remove pathprefix
 			if len(c.Args) == 1 && !util.HasPathPrefix(c.Args[0]) {
 				// TODO limit to specific version
 				return action.ActionGithubPackageFeatures(strings.Split(c.Args[0], "@")[0]).UniqueList(",")
@@ -67,12 +68,9 @@ func init() {
 	})
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionDirectories()
-			}
-
-			return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
+		carapace.Batch(
+			carapace.ActionDirectories(),
+			carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
 					return action.ActionGithubPackageSearch().NoSpace()
@@ -81,7 +79,7 @@ func init() {
 				default:
 					return carapace.ActionValues()
 				}
-			})
-		}),
+			}),
+		).ToA(),
 	)
 }

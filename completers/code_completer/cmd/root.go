@@ -67,10 +67,10 @@ func init() {
 			}
 		}),
 		"install-extension": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles(".vsix")
-			}
-			return action.ActionExtensionSearch(rootCmd.Flag("category").Value.String())
+			return carapace.Batch(
+				carapace.ActionFiles(".vsix"),
+				action.ActionExtensionSearch(rootCmd.Flag("category").Value.String()),
+			).ToA()
 		}),
 		"locale":              os.ActionLocales(),
 		"log":                 carapace.ActionValues("critical", "error", "warn", "info", "debug", "trace", "off").StyleF(style.ForLogLevel),
