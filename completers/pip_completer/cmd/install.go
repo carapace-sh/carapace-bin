@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/pip"
-	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -68,13 +67,10 @@ func init() {
 	})
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			} else {
-				// TODO support multiple index urls (--index-url) and update caching accordingly
-				return pip.ActionPackageSearch()
-			}
-		}),
+		carapace.Batch(
+			carapace.ActionFiles(),
+			// TODO support multiple index urls (--index-url) and update caching accordingly
+			pip.ActionPackageSearch(),
+		).ToA(),
 	)
 }

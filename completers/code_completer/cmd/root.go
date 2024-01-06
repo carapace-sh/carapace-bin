@@ -5,7 +5,6 @@ import (
 	"github.com/rsteube/carapace-bin/completers/code_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace/pkg/style"
-	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 

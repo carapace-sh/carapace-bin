@@ -6,7 +6,6 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/helm_completer/cmd/action"
-	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -84,11 +83,9 @@ func init() {
 
 	carapace.Gen(installCmd).PositionalCompletion(
 		carapace.ActionValues(),
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionDirectories()
-			}
-			return action.ActionRepositoryCharts()
-		}),
+		carapace.Batch(
+			carapace.ActionDirectories(),
+			action.ActionRepositoryCharts(),
+		).ToA(),
 	)
 }

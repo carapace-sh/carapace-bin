@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -18,12 +17,10 @@ func init() {
 	pluginCmd.AddCommand(plugin_importCmd)
 
 	carapace.Gen(pluginCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
+		carapace.Batch(
+			carapace.ActionFiles(),
 			// TODO plugin completion
-			return carapace.ActionValues()
-		}),
+			carapace.ActionValues(),
+		).ToA(),
 	)
 }

@@ -49,20 +49,17 @@ func init() {
 }
 
 func ActionPathOrContainer() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if util.HasPathPrefix(c.Value) {
-			return carapace.ActionFiles()
-		} else {
-			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-				switch len(c.Parts) {
-				case 0:
-					return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "namespaces"}).Invoke(c).Suffix("/").ToA()
-				case 1:
-					return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: c.Parts[0], Types: "pods"}).Invoke(c).Suffix(":").ToA()
-				default:
-					return carapace.ActionValues()
-				}
-			})
-		}
-	})
+	return carapace.Batch(
+		carapace.ActionFiles(),
+		carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "namespaces"}).Invoke(c).Suffix("/").ToA()
+			case 1:
+				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: c.Parts[0], Types: "pods"}).Invoke(c).Suffix(":").ToA()
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	).ToA()
 }
