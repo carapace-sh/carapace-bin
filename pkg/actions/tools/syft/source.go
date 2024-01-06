@@ -5,7 +5,6 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
-	"github.com/rsteube/carapace/pkg/util"
 )
 
 // ActionSources completes sources
@@ -14,12 +13,9 @@ import (
 //	alpine:3.6
 func ActionSources() carapace.Action {
 	return carapace.Batch(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return docker.ActionRepositoryTags()
-		}),
+		carapace.ActionFiles(),
+		docker.ActionRepositoryTags(),
+		// TODO verify this is still correct
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			splitted := strings.SplitN(c.Value, ":", 2)
 			switch len(splitted) {

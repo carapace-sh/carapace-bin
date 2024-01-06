@@ -27,6 +27,7 @@ func init() {
 			docker.ActionContainerPath(),
 		).ToA(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			// TODO remove haspathprefix
 			if util.HasPathPrefix(c.Args[0]) {
 				return docker.ActionContainerPath()
 			}
