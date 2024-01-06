@@ -44,6 +44,7 @@ func init() {
 			case 0:
 				return golang.ActionModules(golang.ModuleOpts{Direct: true, Indirect: true}).Invoke(c).Suffix("=").ToA()
 			case 1:
+				// TODO remove haspathprefix
 				if util.HasPathPrefix(c.Value) {
 					path, err := util.FindReverse(c.Dir, "go.mod")
 					if err != nil {

@@ -42,11 +42,9 @@ func init() {
 	})
 
 	carapace.Gen(installTestCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return action.ActionPackages(installTestCmd)
-		}),
+		carapace.Batch(
+			carapace.ActionFiles(),
+			action.ActionPackages(installTestCmd),
+		).ToA(),
 	)
 }

@@ -19,11 +19,9 @@ func init() {
 	cacheCmd.AddCommand(cache_addCmd)
 
 	carapace.Gen(cache_addCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return action.ActionPackages(cache_addCmd)
-		}),
+		carapace.Batch(
+			carapace.ActionFiles(),
+			action.ActionPackages(cache_addCmd),
+		).ToA(),
 	)
 }

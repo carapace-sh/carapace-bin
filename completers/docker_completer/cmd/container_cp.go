@@ -22,12 +22,10 @@ func init() {
 	containerCmd.AddCommand(container_cpCmd)
 
 	carapace.Gen(container_cpCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return docker.ActionContainerPath()
-		}),
+		carapace.Batch(
+			carapace.ActionFiles(),
+			docker.ActionContainerPath(),
+		).ToA(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if util.HasPathPrefix(c.Args[0]) {
 				return docker.ActionContainerPath()

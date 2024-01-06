@@ -247,12 +247,9 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-
-			return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+		carapace.Batch(
+			carapace.ActionFiles(),
+			carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
@@ -271,7 +268,7 @@ func init() {
 				default:
 					return carapace.ActionValues()
 				}
-			})
-		}),
+			}),
+		).ToA(),
 	)
 }

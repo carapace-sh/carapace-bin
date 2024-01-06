@@ -36,12 +36,10 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionDirectories()
-			}
-			return golang.ActionPackages()
-		}),
+		carapace.Batch(
+			carapace.ActionDirectories(),
+			golang.ActionPackages(),
+		).ToA(),
 		carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:

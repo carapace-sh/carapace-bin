@@ -68,10 +68,8 @@ func ActionExtensions(format string) carapace.Action {
 }
 
 func ActionHighlightStyles() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if util.HasPathPrefix(c.Value) {
-			return carapace.ActionFiles(".theme")
-		}
-		return carapace.ActionValues("pygments", "kate", "monochrome", "breezeDark", "espresso", "zenburn", "haddock", "tango")
-	})
+	return carapace.Batch(
+		carapace.ActionFiles(".theme"),
+		carapace.ActionValues("pygments", "kate", "monochrome", "breezeDark", "espresso", "zenburn", "haddock", "tango"),
+	).ToA()
 }

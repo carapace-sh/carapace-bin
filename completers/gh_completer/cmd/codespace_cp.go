@@ -36,6 +36,7 @@ func init() {
 
 	carapace.Gen(codespace_cpCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			// TODO remove haspathprefix
 			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionFiles()
 			} else if !strings.HasPrefix(c.Value, "remote:/") {

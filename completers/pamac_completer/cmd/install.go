@@ -32,15 +32,10 @@ func init() {
 	})
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles(".pkg", ".pkg.tar.gz", ".pkg.tar.xz", ".pkg.tar.zst")
-			}
-
-			return carapace.Batch(
-				pamac.ActionPackageGroups(),
-				pamac.ActionPackageSearch(),
-			).ToA()
-		}),
+		carapace.Batch(
+			carapace.ActionFiles(".pkg", ".pkg.tar.gz", ".pkg.tar.xz", ".pkg.tar.zst"),
+			pamac.ActionPackageGroups(),
+			pamac.ActionPackageSearch(),
+		).ToA(),
 	)
 }

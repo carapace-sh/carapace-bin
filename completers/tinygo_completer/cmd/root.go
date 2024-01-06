@@ -56,12 +56,10 @@ func init() {
 		"scheduler":  carapace.ActionValues("none", "coroutines", "tasks"),
 		"serial":     carapace.ActionValues("none", "uart", "usb"),
 		"size":       carapace.ActionValues("none", "short", "full"),
-		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return action.ActionTargets()
-		}),
+		"target": carapace.Batch(
+			carapace.ActionFiles(),
+			action.ActionTargets(),
+		).ToA(),
 		"wasm-abi": carapace.ActionValues("js", "generic"),
 	})
 

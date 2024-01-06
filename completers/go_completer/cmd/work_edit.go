@@ -51,6 +51,7 @@ func init() {
 				}
 				return golang.ActionWorkModules("").Invoke(c).Suffix("=").ToA()
 			case 1:
+				// TODO remove haspathprefix
 				if util.HasPathPrefix(c.Value) {
 					path, err := util.FindReverse(c.Dir, "go.work")
 					if err != nil {
