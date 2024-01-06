@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -23,6 +24,8 @@ func init() {
 			carapace.ActionFiles(),
 			git.ActionRefs(git.RefOption{}.Default()),
 		).ToA(),
-		carapace.ActionFiles(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return git.ActionRefFiles(c.Args[0]).Unless(condition.File(c.Args[0]))
+		}),
 	)
 }
