@@ -15,7 +15,7 @@ import (
 func ActionSources() carapace.Action {
 	return carapace.Batch(
 		carapace.ActionFiles(),
-		docker.ActionRepositoryTags().Unless(condition.CompletingPathPrefix),
+		docker.ActionRepositoryTags().Unless(condition.CompletingPath),
 		// TODO verify this is still correct
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			splitted := strings.SplitN(c.Value, ":", 2)
