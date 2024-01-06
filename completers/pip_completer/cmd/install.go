@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/pip"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -70,7 +71,7 @@ func init() {
 		carapace.Batch(
 			carapace.ActionFiles(),
 			// TODO support multiple index urls (--index-url) and update caching accordingly
-			pip.ActionPackageSearch(),
+			pip.ActionPackageSearch().Unless(condition.CompletingPath),
 		).ToA(),
 	)
 }

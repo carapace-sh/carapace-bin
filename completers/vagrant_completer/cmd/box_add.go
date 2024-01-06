@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/vagrant_completer/cmd/action"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -38,9 +39,12 @@ func init() {
 	})
 
 	carapace.Gen(box_addCmd).PositionalCompletion(
-		carapace.Batch(
-			carapace.ActionFiles(".box", ".json"),
-			action.ActionCloudBoxSearch(box_addCmd.Flag("provider").Value.String()),
-		).ToA(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			provider := box_addCmd.Flag("provider").Value.String()
+			return carapace.Batch(
+				carapace.ActionFiles(".box", ".json"),
+				action.ActionCloudBoxSearch(provider).Unless(condition.CompletingPath),
+			).ToA()
+		}),
 	)
 }
