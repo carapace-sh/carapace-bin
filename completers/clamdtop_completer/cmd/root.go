@@ -41,7 +41,7 @@ func init() {
 				default:
 					return carapace.ActionValues()
 				}
-			}).Unless(condition.Path),
+			}).Unless(condition.CompletingPath),
 		).ToA(),
 	)
 

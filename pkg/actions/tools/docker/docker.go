@@ -8,6 +8,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/styles"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/rsteube/carapace/pkg/style"
 )
 
@@ -129,6 +130,10 @@ func ActionContainerPath() carapace.Action {
 				})
 			}).Tag("container files")
 		}
+	}).Unless(func(c carapace.Context) bool {
+		// TODO maybe sth. more elegant?
+		c.Value = strings.Split(c.Value, ":")[0]
+		return condition.CompletingPath(c)
 	})
 }
 

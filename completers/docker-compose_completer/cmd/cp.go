@@ -27,7 +27,7 @@ func init() {
 			carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionServices(cpCmd).Suffix(":").Unless(condition.Path)
+					return action.ActionServices(cpCmd).Suffix(":").Unless(condition.CompletingPath)
 				case 1:
 					if index, err := cpCmd.Flags().GetInt("index"); err != nil {
 						return carapace.ActionMessage(err.Error())
@@ -44,7 +44,7 @@ func init() {
 			carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionServices(cpCmd).Suffix(":").Unless(condition.Path)
+					return action.ActionServices(cpCmd).Suffix(":").Unless(condition.CompletingPath)
 				case 1:
 					if index, err := cpCmd.Flags().GetInt("index"); err != nil {
 						return carapace.ActionMessage(err.Error())

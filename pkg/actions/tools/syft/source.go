@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
+	"github.com/rsteube/carapace/pkg/condition"
 )
 
 // ActionSources completes sources
@@ -14,7 +15,7 @@ import (
 func ActionSources() carapace.Action {
 	return carapace.Batch(
 		carapace.ActionFiles(),
-		docker.ActionRepositoryTags(),
+		docker.ActionRepositoryTags().Unless(condition.CompletingPathPrefix),
 		// TODO verify this is still correct
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			splitted := strings.SplitN(c.Value, ":", 2)
