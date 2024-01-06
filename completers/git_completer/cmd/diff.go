@@ -23,76 +23,7 @@ func init() {
 	rootCmd.AddCommand(diffCmd)
 
 	carapace.Gen(diffCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if diffCmd.Flag("no-index").Changed {
-				switch len(c.Args) {
-				case 0, 1:
-					return carapace.ActionFiles()
-				default:
-					return carapace.ActionValues()
-				}
-			}
-
-			batch := carapace.Batch()
-
-			filtered := make([]string, 0)
-			for index, arg := range c.Args {
-				if index == 0 && strings.Contains(arg, "..") { // assume refrange - TODO what about '{ref}...{ref}'
-					filtered = append(filtered, arg)
-					break
-				}
-
-				if err := c.Command("git", "rev-parse", "--verify", arg).Run(); err != nil {
-					break
-				}
-				filtered = append(filtered, arg)
-			}
-
-			if len(filtered) == len(c.Args) && diffCmd.Flags().ArgsLenAtDash() < 0 {
-				switch len(filtered) {
-				case 0:
-					batch = append(batch, git.ActionRefRanges(git.RefOption{}.Default()))
-				default:
-					switch {
-					case strings.Contains(c.Args[0], ".."): // skip if we already have a refrange
-					case diffCmd.Flag("cached").Changed: // skip as '-cached' accepts only on ref
-					default:
-						batch = append(batch, git.ActionRefs(git.RefOption{}.Default()))
-					}
-				}
-			}
-
-			expanded := filtered
-			if len(filtered) > 0 {
-				// TODO support/suppress '{ref}...{ref}'??
-				expanded = append(strings.SplitN(filtered[0], "..", 2), filtered[1:]...) // split refrange if any
-			}
-
-			switch len(expanded) {
-			case 0:
-				if !diffCmd.Flag("cached").Changed {
-					// TODO `git diff` fails on deleted files (seems still worth seeing them in completion though)
-					batch = append(batch, git.ActionChanges(git.ChangeOpts{Unstaged: true}))
-				}
-			default:
-				// TODO handle --merge-base with more than 2 refs
-				var action carapace.Action
-				if diffCmd.Flag("cached").Changed {
-					if len(expanded) > 0 {
-						action = git.ActionCachedDiffs(expanded[0])
-					}
-				} else {
-					action = git.ActionRefDiffs(expanded...)
-				}
-
-				if len(expanded) > 0 { // multipart for potentially large diffs
-					action = action.MultiParts("/").StyleF(style.ForPathExt).Tag("changed files")
-				}
-				batch = append(batch, action.Filter(c.Args[len(filtered):]...))
-			}
-
-			return batch.ToA()
-		}),
+		actionDiffArgs(diffCmd),
 	)
 
 	carapace.Gen(diffCmd).DashAnyCompletion(
@@ -202,5 +133,78 @@ func addDiffFlags(cmd *cobra.Command) {
 		"submodule":          carapace.ActionValues("short", "long", "log"),
 		"word-diff":          git.ActionWordDiffModes(),
 		"ws-error-highlight": git.ActionWsErrorHighlightModes().UniqueList(","),
+	})
+}
+
+func actionDiffArgs(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if cmd.Flag("no-index").Changed {
+			switch len(c.Args) {
+			case 0, 1:
+				return carapace.ActionFiles()
+			default:
+				return carapace.ActionValues()
+			}
+		}
+
+		batch := carapace.Batch()
+
+		filtered := make([]string, 0)
+		for index, arg := range c.Args {
+			if index == 0 && strings.Contains(arg, "..") { // assume refrange - TODO what about '{ref}...{ref}'
+				filtered = append(filtered, arg)
+				break
+			}
+
+			if err := c.Command("git", "rev-parse", "--verify", arg).Run(); err != nil {
+				break
+			}
+			filtered = append(filtered, arg)
+		}
+
+		if len(filtered) == len(c.Args) && cmd.Flags().ArgsLenAtDash() < 0 {
+			switch len(filtered) {
+			case 0:
+				batch = append(batch, git.ActionRefRanges(git.RefOption{}.Default()))
+			default:
+				switch {
+				case strings.Contains(c.Args[0], ".."): // skip if we already have a refrange
+				case cmd.Flag("cached").Changed: // skip as '-cached' accepts only on ref
+				default:
+					batch = append(batch, git.ActionRefs(git.RefOption{}.Default()))
+				}
+			}
+		}
+
+		expanded := filtered
+		if len(filtered) > 0 {
+			// TODO support/suppress '{ref}...{ref}'??
+			expanded = append(strings.SplitN(filtered[0], "..", 2), filtered[1:]...) // split refrange if any
+		}
+
+		switch len(expanded) {
+		case 0:
+			if !cmd.Flag("cached").Changed {
+				// TODO `git diff` fails on deleted files (seems still worth seeing them in completion though)
+				batch = append(batch, git.ActionChanges(git.ChangeOpts{Unstaged: true}).Filter(cmd.Flags().Args()...))
+			}
+		default:
+			// TODO handle --merge-base with more than 2 refs
+			var action carapace.Action
+			if cmd.Flag("cached").Changed {
+				if len(expanded) > 0 {
+					action = git.ActionCachedDiffs(expanded[0])
+				}
+			} else {
+				action = git.ActionRefDiffs(expanded...)
+			}
+
+			if len(expanded) > 0 { // multipart for potentially large diffs
+				action = action.MultiParts("/").StyleF(style.ForPathExt).Tag("changed files")
+			}
+			batch = append(batch, action.Filter(cmd.Flags().Args()[len(filtered):]...))
+		}
+
+		return batch.ToA()
 	})
 }
