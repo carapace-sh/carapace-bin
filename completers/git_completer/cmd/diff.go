@@ -110,7 +110,7 @@ func addDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().String("submodule", "", "Specify how differences in submodules are shown")
 	cmd.Flags().Bool("summary", false, "Output a condensed summary of extended header information")
 	cmd.Flags().BoolP("text", "a", false, "Treat all files as text")
-	cmd.Flags().String("textconv,", "", "Allow (or disallow) external text conversion filters to be run when comparing binary files")
+	cmd.Flags().String("textconv", "", "Allow (or disallow) external text conversion filters to be run when comparing binary files")
 	cmd.Flags().BoolP("theirs", "3", false, "compare with their branch")
 	cmd.Flags().BoolS("u", "u", false, "Generate patch")
 	cmd.Flags().StringP("unified", "U", "", "Generate diffs with <n> lines of context instead of the usual three")
