@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -37,7 +38,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionDirectories(),
-			golang.ActionPackages(),
+			golang.ActionPackages().Unless(condition.CompletingPath),
 		).ToA(),
 		carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
