@@ -141,7 +141,7 @@ func actionDiffArgs(cmd *cobra.Command) carapace.Action {
 		if cmd.Flag("no-index").Changed {
 			switch len(c.Args) {
 			case 0, 1:
-				return carapace.ActionFiles()
+				return carapace.ActionFiles().FilterArgs()
 			default:
 				return carapace.ActionValues()
 			}
