@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -79,7 +80,7 @@ func init() {
 				default:
 					return carapace.ActionValues()
 				}
-			}),
+			}).Unless(condition.Path),
 		).ToA(),
 	)
 }

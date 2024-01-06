@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -26,7 +27,7 @@ func init() {
 			carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionServices(cpCmd).Invoke(c).Suffix(":").ToA()
+					return action.ActionServices(cpCmd).Suffix(":").Unless(condition.Path)
 				case 1:
 					if index, err := cpCmd.Flags().GetInt("index"); err != nil {
 						return carapace.ActionMessage(err.Error())
@@ -43,7 +44,7 @@ func init() {
 			carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionServices(cpCmd).Invoke(c).Suffix(":").ToA()
+					return action.ActionServices(cpCmd).Suffix(":").Unless(condition.Path)
 				case 1:
 					if index, err := cpCmd.Flags().GetInt("index"); err != nil {
 						return carapace.ActionMessage(err.Error())

@@ -4,6 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/code_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -68,7 +69,7 @@ func init() {
 		"install-extension": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.Batch(
 				carapace.ActionFiles(".vsix"),
-				action.ActionExtensionSearch(rootCmd.Flag("category").Value.String()),
+				action.ActionExtensionSearch(rootCmd.Flag("category").Value.String()).Unless(condition.Path),
 			).ToA()
 		}),
 		"locale":              os.ActionLocales(),
