@@ -35,4 +35,8 @@ func init() {
 			return git.ActionChanges(opts).FilterArgs()
 		}),
 	)
+
+	carapace.Gen(cleanCmd).DashAnyCompletion(
+		carapace.ActionPositional(cleanCmd),
+	)
 }
