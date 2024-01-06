@@ -46,9 +46,6 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.Batch(
-			carapace.ActionDirectories(),
-			carapace.ActionValues(),
-		).ToA(),
+		carapace.ActionDirectories(),
 	)
 }
