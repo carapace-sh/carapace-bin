@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
-	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

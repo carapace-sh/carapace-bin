@@ -4,7 +4,6 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/util"
 )
 
 func ActionInputFormats() carapace.Action {

@@ -7,7 +7,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
-	"github.com/rsteube/carapace-shlex"
+	shlex "github.com/rsteube/carapace-shlex"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

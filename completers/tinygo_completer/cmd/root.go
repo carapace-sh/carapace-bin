@@ -4,7 +4,6 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/tinygo_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
-	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 
