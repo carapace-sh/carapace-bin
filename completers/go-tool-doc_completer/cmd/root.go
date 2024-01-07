@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -36,12 +36,10 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionDirectories()
-			}
-			return golang.ActionPackages()
-		}),
+		carapace.Batch(
+			carapace.ActionDirectories(),
+			golang.ActionPackages().Unless(condition.CompletingPath),
+		).ToA(),
 		carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
