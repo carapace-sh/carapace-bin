@@ -1,7 +1,11 @@
-package action
+package tinygo
 
 import "github.com/rsteube/carapace"
 
+// ActionTargets completes targets
+//
+//	arduino-mega1280
+//	arduino-mega2560
 func ActionTargets() carapace.Action {
 	return carapace.ActionValues(
 		"arduino-mega1280",
@@ -133,5 +137,5 @@ func ActionTargets() carapace.Action {
 		"x9pro",
 		"xiao",
 		"xtensa",
-	)
+	).Tag("targets")
 }
