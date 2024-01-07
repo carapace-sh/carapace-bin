@@ -1,8 +1,9 @@
-package action
+package rsync
 
 import "github.com/rsteube/carapace"
 
-func ActionFlags() carapace.Action {
+// ActionDebugFlags completes debug flags
+func ActionDebugFlags() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"BACKUP", "Mention files backed up",
 		"COPY", "Mention files copied locally on the receiving side",
@@ -19,5 +20,5 @@ func ActionFlags() carapace.Action {
 		"ALL", "Set all --info options (e.g. all4)",
 		"NONE", "Silence all --info options (same as all0)",
 		"HELP", "Output this help message",
-	)
+	).Tag("debug flags")
 }
