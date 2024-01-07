@@ -1,4 +1,4 @@
-package action
+package helm
 
 import (
 	"encoding/json"
@@ -12,6 +12,7 @@ type revision struct {
 	Description string
 }
 
+// ActionRevisions completes revisions
 func ActionRevisions(release string) carapace.Action {
 	return carapace.ActionExecCommand("helm", "history", "--output", "json", release)(func(output []byte) carapace.Action {
 		var revisions []revision

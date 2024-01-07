@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/helm_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/helm"
 	"github.com/spf13/cobra"
 )
 
@@ -23,6 +23,6 @@ func init() {
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).PositionalCompletion(
-		action.ActionReleases(),
+		helm.ActionReleases(),
 	)
 }

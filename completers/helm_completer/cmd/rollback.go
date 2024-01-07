@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/helm_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/helm"
 	"github.com/spf13/cobra"
 )
 
@@ -29,9 +29,9 @@ func init() {
 	rootCmd.AddCommand(rollbackCmd)
 
 	carapace.Gen(rollbackCmd).PositionalCompletion(
-		action.ActionReleases(),
+		helm.ActionReleases(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionRevisions(c.Args[0])
+			return helm.ActionRevisions(c.Args[0])
 		}),
 	)
 }

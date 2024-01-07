@@ -1,4 +1,4 @@
-package action
+package helm
 
 import (
 	"strings"
@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionPlugins completes plugins
 func ActionPlugins() carapace.Action {
 	return carapace.ActionExecCommand("helm", "plugin", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
