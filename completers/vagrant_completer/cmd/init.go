@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/vagrant_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/vagrant"
 	"github.com/spf13/cobra"
 )
 
@@ -25,7 +25,7 @@ func init() {
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
 		"box-version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return action.ActionCloudBoxVersions(c.Args[0], "")
+				return vagrant.ActionCloudBoxVersions(c.Args[0], "")
 			}
 			return carapace.ActionValues("")
 		}),
@@ -34,6 +34,6 @@ func init() {
 	})
 
 	carapace.Gen(initCmd).PositionalCompletion(
-		action.ActionCloudBoxSearch(""),
+		vagrant.ActionCloudBoxSearch(""),
 	)
 }

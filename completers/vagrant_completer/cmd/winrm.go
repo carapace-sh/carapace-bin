@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/vagrant_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/vagrant"
 	"github.com/spf13/cobra"
 )
 
@@ -25,6 +25,6 @@ func init() {
 	})
 
 	carapace.Gen(winrmCmd).PositionalCompletion(
-		action.ActionMachines(),
+		vagrant.ActionMachines(),
 	)
 }

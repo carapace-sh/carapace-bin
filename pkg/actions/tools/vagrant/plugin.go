@@ -1,4 +1,4 @@
-package action
+package vagrant
 
 import (
 	"regexp"
@@ -12,6 +12,7 @@ type PluginOpts struct {
 	Global bool
 }
 
+// ActionPlugins completes plugins
 func ActionPlugins(opts PluginOpts) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "plugin", "list", "--local")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

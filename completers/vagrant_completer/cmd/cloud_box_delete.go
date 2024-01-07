@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/vagrant_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/vagrant"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +20,6 @@ func init() {
 	cloud_boxCmd.AddCommand(cloud_box_deleteCmd)
 
 	carapace.Gen(cloud_box_deleteCmd).PositionalCompletion(
-		action.ActionCloudBoxSearch(""),
+		vagrant.ActionCloudBoxSearch(""),
 	)
 }

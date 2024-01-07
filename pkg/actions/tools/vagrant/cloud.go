@@ -1,4 +1,4 @@
-package action
+package vagrant
 
 import (
 	"encoding/json"
@@ -18,6 +18,7 @@ type boxQuery struct {
 	Boxes []box
 }
 
+// ActionCloudBoxSearch completes cloud boxes
 func ActionCloudBoxSearch(provider string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.Batch(
@@ -68,6 +69,7 @@ type boxDetails struct {
 	}
 }
 
+// ActionCloudBoxProviders completes cloud box providers
 func ActionCloudBoxProviders(name string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("curl", "https://app.vagrantup.com/api/v1/box/"+name)(func(output []byte) carapace.Action {
@@ -90,6 +92,7 @@ func ActionCloudBoxProviders(name string) carapace.Action {
 	})
 }
 
+// ActionCloudBoxVersions completes cloud box versions
 func ActionCloudBoxVersions(name string, provider string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("curl", "https://app.vagrantup.com/api/v1/box/"+name)(func(output []byte) carapace.Action {

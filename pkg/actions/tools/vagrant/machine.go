@@ -1,4 +1,4 @@
-package action
+package vagrant
 
 import (
 	"fmt"
@@ -9,6 +9,7 @@ import (
 	"github.com/rsteube/carapace/pkg/util"
 )
 
+// ActionMachines completes machines
 func ActionMachines() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		batch := carapace.Batch(
@@ -23,6 +24,7 @@ func ActionMachines() carapace.Action {
 	})
 }
 
+// ActionLocalMachines complets local machines
 func ActionLocalMachines() carapace.Action {
 	// TODO filter by status
 	return carapace.ActionExecCommand("vagrant", "status")(func(output []byte) carapace.Action {
@@ -40,6 +42,7 @@ func ActionLocalMachines() carapace.Action {
 	})
 }
 
+// ActionGlobalMachines completes global machines
 func ActionGlobalMachines() carapace.Action {
 	// TODO filter by status
 	return carapace.ActionExecCommand("vagrant", "global-status")(func(output []byte) carapace.Action {

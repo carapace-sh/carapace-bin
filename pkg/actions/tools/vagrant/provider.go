@@ -1,7 +1,8 @@
-package action
+package vagrant
 
 import "github.com/rsteube/carapace"
 
+// ActionProviders completes providers
 func ActionProviders() carapace.Action {
 	return carapace.ActionValues(
 		"aws",

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/vagrant_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/vagrant"
 	"github.com/spf13/cobra"
 )
 
@@ -19,10 +19,10 @@ func init() {
 	rootCmd.AddCommand(provisionCmd)
 
 	carapace.Gen(provisionCmd).FlagCompletion(carapace.ActionMap{
-		"provision-with": action.ActionProvisioners().UniqueList(","),
+		"provision-with": vagrant.ActionProvisioners().UniqueList(","),
 	})
 
 	carapace.Gen(provisionCmd).PositionalCompletion(
-		action.ActionMachines(),
+		vagrant.ActionMachines(),
 	)
 }
