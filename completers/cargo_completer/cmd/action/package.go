@@ -40,6 +40,10 @@ type content struct {
 
 func ActionGithubPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if len(c.Value) < 4 {
+			return carapace.ActionMessage("package search needs at least four characters") // TODO limit it for now
+		}
+
 		batch := carapace.Batch()
 
 		if len(c.Args) < 1 {
