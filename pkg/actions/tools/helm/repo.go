@@ -1,4 +1,4 @@
-package action
+package helm
 
 import (
 	"fmt"
@@ -15,6 +15,7 @@ type repositoriesFile struct {
 	}
 }
 
+// ActionRepositories completes repositories
 func ActionRepositories() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		dir, err := os.UserConfigDir()
@@ -64,6 +65,7 @@ func loadIndex(repo string) (index *index, err error) {
 	return index, err
 }
 
+// ActionCharts complets charts
 func ActionCharts(repo string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		index, err := loadIndex(repo)
@@ -86,6 +88,7 @@ func ActionCharts(repo string) carapace.Action {
 	})
 }
 
+// ActionChartVersions completes chart versions
 func ActionChartVersions(repo string, chart string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		index, err := loadIndex(repo)
@@ -105,6 +108,7 @@ func ActionChartVersions(repo string, chart string) carapace.Action {
 	})
 }
 
+// ActionRepositoryCharts completes repository charts
 func ActionRepositoryCharts() carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {

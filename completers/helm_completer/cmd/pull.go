@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/helm_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/helm"
 	"github.com/spf13/cobra"
 )
 
@@ -45,7 +45,7 @@ func init() {
 		"version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				if splitted := strings.Split(c.Args[0], "/"); len(splitted) == 2 {
-					return action.ActionChartVersions(splitted[0], splitted[1])
+					return helm.ActionChartVersions(splitted[0], splitted[1])
 				}
 			}
 			return carapace.ActionValues()
@@ -53,6 +53,6 @@ func init() {
 	})
 
 	carapace.Gen(pullCmd).PositionalCompletion(
-		action.ActionRepositoryCharts(),
+		helm.ActionRepositoryCharts(),
 	)
 }

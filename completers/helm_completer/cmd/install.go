@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/helm_completer/cmd/action"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/helm"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -75,7 +75,7 @@ func init() {
 		"version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 1 {
 				if splitted := strings.Split(c.Args[1], "/"); len(splitted) == 2 {
-					return action.ActionChartVersions(splitted[0], splitted[1])
+					return helm.ActionChartVersions(splitted[0], splitted[1])
 				}
 			}
 			return carapace.ActionValues()
@@ -84,11 +84,9 @@ func init() {
 
 	carapace.Gen(installCmd).PositionalCompletion(
 		carapace.ActionValues(),
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionDirectories()
-			}
-			return action.ActionRepositoryCharts()
-		}),
+		carapace.Batch(
+			carapace.ActionDirectories(),
+			helm.ActionRepositoryCharts().Unless(condition.CompletingPath),
+		).ToA(),
 	)
 }

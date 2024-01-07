@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/helm_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/helm"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +19,6 @@ func init() {
 	getCmd.AddCommand(get_allCmd)
 
 	carapace.Gen(get_allCmd).PositionalCompletion(
-		action.ActionReleases(),
+		helm.ActionReleases(),
 	)
 }

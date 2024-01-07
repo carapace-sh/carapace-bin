@@ -1,4 +1,4 @@
-package action
+package helm
 
 import (
 	"encoding/json"
@@ -16,6 +16,7 @@ type release struct {
 	AppVersion string `json:"app_version"`
 }
 
+// ActionReleases completes releases
 func ActionReleases() carapace.Action {
 	return carapace.ActionExecCommand("helm", "list", "--output", "json")(func(output []byte) carapace.Action {
 		var releases []release
