@@ -4,7 +4,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/time"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -103,12 +103,9 @@ func init() {
 	})
 
 	carapace.Gen(shortlogCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			} else {
-				return git.ActionRefRanges(git.RefOption{}.Default())
-			}
-		}),
+		carapace.Batch(
+			carapace.ActionFiles(),
+			git.ActionRefRanges(git.RefOption{}.Default()).Unless(condition.CompletingPath),
+		).ToA(),
 	)
 }
