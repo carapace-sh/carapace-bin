@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var tcipCmd = &cobra.Command{
-	Use:   "tcip",
+var tcpipCmd = &cobra.Command{
+	Use:   "tcpip",
 	Short: "restart adbd listening on TCP on PORT",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(tcipCmd).Standalone()
+	carapace.Gen(tcpipCmd).Standalone()
 
-	rootCmd.AddCommand(tcipCmd)
+	rootCmd.AddCommand(tcpipCmd)
 }
