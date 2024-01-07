@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -60,17 +60,12 @@ func init() {
 	})
 
 	carapace.Gen(blameCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionFiles(),
+			git.ActionRefs(git.RefOption{}.Default()).Unless(condition.CompletingPath),
+		).ToA(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return git.ActionRefs(git.RefOption{}.Default())
-		}),
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Args[0]) {
-				return carapace.ActionValues()
-			}
-			return git.ActionRefFiles(c.Args[0])
+			return git.ActionRefFiles(c.Args[0]).Unless(condition.File(c.Args[0]))
 		}),
 	)
 
