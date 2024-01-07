@@ -5,6 +5,8 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
+	"github.com/rsteube/carapace/pkg/condition"
+	"github.com/rsteube/carapace/pkg/traverse"
 	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -51,14 +53,10 @@ func init() {
 				}
 				return golang.ActionWorkModules("").Invoke(c).Suffix("=").ToA()
 			case 1:
-				if util.HasPathPrefix(c.Value) {
-					path, err := util.FindReverse(c.Dir, "go.work")
-					if err != nil {
-						return carapace.ActionMessage(err.Error())
-					}
-					return carapace.ActionFiles().Chdir(filepath.Dir(path))
-				}
-				return golang.ActionModuleSearch()
+				return carapace.Batch(
+					carapace.ActionDirectories().ChdirF(traverse.Parent("go.work")),
+					golang.ActionModuleSearch().Unless(condition.CompletingPath),
+				).ToA()
 			default:
 				return carapace.ActionValues()
 			}
