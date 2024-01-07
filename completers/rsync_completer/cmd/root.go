@@ -9,7 +9,8 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 	"github.com/rsteube/carapace-bin/pkg/actions/net"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/rsync"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -194,7 +195,7 @@ func init() {
 			for index, part := range c.Parts {
 				c.Parts[index] = r.ReplaceAllString(part, "")
 			}
-			return action.ActionFlags().UniqueList(",")
+			return rsync.ActionDebugFlags().UniqueList(",")
 		}),
 		"early-input":  carapace.ActionFiles(),
 		"exclude-from": carapace.ActionFiles(),
@@ -215,7 +216,7 @@ func init() {
 			for index, part := range c.Parts {
 				c.Parts[index] = r.ReplaceAllString(part, "")
 			}
-			return action.ActionFlags().UniqueList(",")
+			return rsync.ActionDebugFlags().UniqueList(",")
 		}),
 		"log-file":         carapace.ActionFiles(),
 		"log-file-format":  action.ActionFormats(),
@@ -247,12 +248,9 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-
-			return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+		carapace.Batch(
+			carapace.ActionFiles(),
+			carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
@@ -271,7 +269,7 @@ func init() {
 				default:
 					return carapace.ActionValues()
 				}
-			})
-		}),
+			}).Unless(condition.CompletingPath),
+		).ToA(),
 	)
 }
