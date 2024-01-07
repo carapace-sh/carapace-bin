@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/cargo_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -67,12 +68,9 @@ func init() {
 	})
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionDirectories()
-			}
-
-			return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
+		carapace.Batch(
+			carapace.ActionDirectories(),
+			carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
 					return action.ActionGithubPackageSearch().NoSpace()
@@ -81,7 +79,7 @@ func init() {
 				default:
 					return carapace.ActionValues()
 				}
-			})
-		}),
+			}).Unless(condition.CompletingPathS),
+		).ToA(),
 	)
 }
