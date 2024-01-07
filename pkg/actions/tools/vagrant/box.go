@@ -1,4 +1,4 @@
-package action
+package vagrant
 
 import (
 	"regexp"
@@ -7,6 +7,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionBoxes completes boxes
 func ActionBoxes() carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "box", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -23,6 +24,7 @@ func ActionBoxes() carapace.Action {
 	})
 }
 
+// ActionBoxProviders completes box providers
 func ActionBoxProviders(name string, version string) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "box", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -42,6 +44,7 @@ func ActionBoxProviders(name string, version string) carapace.Action {
 	})
 }
 
+// ActionBoxVersions completes box versions
 func ActionBoxVersions(name string, provider string) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "box", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

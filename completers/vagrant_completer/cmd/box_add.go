@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/vagrant_completer/cmd/action"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/vagrant"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -35,15 +35,16 @@ func init() {
 		"capath":        carapace.ActionDirectories(),
 		"cert":          carapace.ActionFiles(),
 		"checksum-type": carapace.ActionValues("md5", "sha1", "sha256"),
-		"provider":      action.ActionProviders(),
+		"provider":      vagrant.ActionProviders(),
 	})
 
 	carapace.Gen(box_addCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles(".box", ".json")
-			}
-			return action.ActionCloudBoxSearch(box_addCmd.Flag("provider").Value.String())
+			provider := box_addCmd.Flag("provider").Value.String()
+			return carapace.Batch(
+				carapace.ActionFiles(".box", ".json"),
+				vagrant.ActionCloudBoxSearch(provider).Unless(condition.CompletingPath),
+			).ToA()
 		}),
 	)
 }

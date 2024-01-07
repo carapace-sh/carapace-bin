@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/vagrant_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/vagrant"
 	"github.com/spf13/cobra"
 )
 
@@ -18,9 +18,9 @@ func init() {
 	snapshotCmd.AddCommand(snapshot_deleteCmd)
 
 	carapace.Gen(snapshot_deleteCmd).PositionalCompletion(
-		action.ActionLocalMachines(),
+		vagrant.ActionLocalMachines(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionSnapshots(c.Args[0])
+			return vagrant.ActionSnapshots(c.Args[0])
 		}),
 	)
 }

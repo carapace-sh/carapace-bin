@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/vagrant_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/vagrant"
 	"github.com/spf13/cobra"
 )
 
@@ -24,19 +24,19 @@ func init() {
 	carapace.Gen(box_removeCmd).FlagCompletion(carapace.ActionMap{
 		"box-version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return action.ActionBoxVersions(c.Args[0], box_removeCmd.Flag("provider").Value.String())
+				return vagrant.ActionBoxVersions(c.Args[0], box_removeCmd.Flag("provider").Value.String())
 			}
 			return carapace.ActionValues()
 		}),
 		"provider": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return action.ActionBoxProviders(c.Args[0], box_removeCmd.Flag("provider").Value.String())
+				return vagrant.ActionBoxProviders(c.Args[0], box_removeCmd.Flag("provider").Value.String())
 			}
-			return action.ActionProviders()
+			return vagrant.ActionProviders()
 		}),
 	})
 
 	carapace.Gen(box_removeCmd).PositionalCompletion(
-		action.ActionBoxes(),
+		vagrant.ActionBoxes(),
 	)
 }

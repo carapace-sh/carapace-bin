@@ -1,4 +1,4 @@
-package action
+package vagrant
 
 import (
 	"os"
@@ -9,6 +9,7 @@ import (
 	"github.com/rsteube/carapace/pkg/util"
 )
 
+// ActionProvisioners completes provisioners
 func ActionProvisioners() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		path, err := util.FindReverse(c.Dir, "Vagrantfile")

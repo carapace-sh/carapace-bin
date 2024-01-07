@@ -1,4 +1,4 @@
-package action
+package vagrant
 
 import (
 	"strings"
@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionSnapshots completes snapshots
 func ActionSnapshots(machine string) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "snapshot", "list", machine)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/vagrant_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/vagrant"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +20,7 @@ func init() {
 
 	carapace.Gen(plugin_uninstallCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionPlugins(action.PluginOpts{
+			return vagrant.ActionPlugins(vagrant.PluginOpts{
 				Local:  plugin_updateCmd.Flag("local").Changed,
 				Global: !plugin_updateCmd.Flag("local").Changed,
 			}).Invoke(c).Filter(c.Args...).ToA()
