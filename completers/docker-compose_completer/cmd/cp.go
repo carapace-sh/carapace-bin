@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -22,33 +22,30 @@ func init() {
 	rootCmd.AddCommand(cpCmd)
 
 	carapace.Gen(cpCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+		carapace.Batch(
+			carapace.ActionFiles(),
+			carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionServices(cpCmd).Invoke(c).Suffix(":").ToA()
-				case 1:
+					return action.ActionServices(cpCmd).Suffix(":")
+				default:
 					if index, err := cpCmd.Flags().GetInt("index"); err != nil {
 						return carapace.ActionMessage(err.Error())
 					} else {
 						return action.ActionFiles(cpCmd, c.Parts[0], index)
 					}
-				default:
-					return carapace.ActionValues()
 				}
-			})
-		}),
+			}).Unless(condition.CompletingPath),
+		).ToA(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if !util.HasPathPrefix(c.Args[0]) {
+			if !condition.File(c.Args[0])(c) {
 				return carapace.ActionFiles()
 			}
+
 			return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionServices(cpCmd).Invoke(c).Suffix(":").ToA()
+					return action.ActionServices(cpCmd).Suffix(":").Unless(condition.CompletingPath)
 				case 1:
 					if index, err := cpCmd.Flags().GetInt("index"); err != nil {
 						return carapace.ActionMessage(err.Error())
