@@ -5,7 +5,6 @@ import (
 	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
-	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -100,22 +99,18 @@ func init() {
 	carapace.Gen(startCmd).FlagCompletion(carapace.ActionMap{
 		"addons":     action.ActionAddons().UniqueList(","),
 		"base-image": docker.ActionRepositoryTags(),
-		"cni": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return carapace.ActionValues("auto", "bridge", "calico", "cilium", "flannel", "kindnet")
-		}),
+		"cni": carapace.Batch(
+			carapace.ActionFiles(),
+			carapace.ActionValues("auto", "bridge", "calico", "cilium", "flannel", "kindnet"),
+		).ToA(),
 		"container-runtime":  carapace.ActionValues("docker", "cri-o", "containerd"),
 		"cri-socket":         carapace.ActionFiles(),
 		"driver":             carapace.ActionValues("virtualbox", "vmwarefusion", "kvm2", "vmware", "none", "docker", "podman", "ssh", "auto-detect"),
 		"host-only-nic-type": carapace.ActionValues("Am79C970A", "Am79C973", "82540EM", "82543GC", "82545EM", "virtio"),
-		"hyperkit-vpnkit-sock": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return carapace.ActionValues("auto")
-		}),
+		"hyperkit-vpnkit-sock": carapace.Batch(
+			carapace.ActionFiles(),
+			carapace.ActionValues("auto"),
+		).ToA(),
 		"image-mirror-country": os.ActionLanguages(), // TODO country codes the same?
 		"mount-string": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
