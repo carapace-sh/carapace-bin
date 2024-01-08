@@ -2,15 +2,12 @@ package action
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/util"
 )
 
 func ActionRepo() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if util.HasPathPrefix(c.Value) {
-			return carapace.ActionDirectories()
-		}
-		return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+	return carapace.Batch(
+		carapace.ActionDirectories(),
+		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.ActionValuesDescribed(
@@ -22,11 +19,11 @@ func ActionRepo() carapace.Action {
 					"azure", "Microsoft Azure Blob Storage",
 					"gs", "Google Cloud Storage",
 					"rclone", "rclone",
-				).Invoke(c).Suffix(":").ToA()
+				).Suffix(":")
 			default:
 				// TODO completion
 				return carapace.ActionValues()
 			}
-		})
-	})
+		}),
+	).ToA()
 }
