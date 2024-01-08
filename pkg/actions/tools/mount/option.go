@@ -1,11 +1,12 @@
-package action
+package mount
 
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
 )
 
-func ActionOptions() carapace.Action {
+// ActionMountOptions completes mount options
+func ActionMountOptions() carapace.Action {
 	return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
@@ -67,5 +68,5 @@ func ActionOptions() carapace.Action {
 		default:
 			return carapace.ActionValues()
 		}
-	})
+	}).Tag("mount options")
 }

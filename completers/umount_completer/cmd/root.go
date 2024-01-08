@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/mount_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/mount"
 	"github.com/spf13/cobra"
 )
 
@@ -40,7 +40,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"test-opts": action.ActionOptions().UniqueList(","),
+		"test-opts": mount.ActionMountOptions().UniqueList(","),
 		"types":     fs.ActionFilesystemTypes().UniqueList(","),
 	})
 
@@ -52,7 +52,7 @@ func init() {
 				return carapace.ActionValues()
 			}
 			return carapace.Batch(
-				action.ActionSources(),
+				mount.ActionSources(),
 				fs.ActionMounts(),
 			).ToA()
 		}),
