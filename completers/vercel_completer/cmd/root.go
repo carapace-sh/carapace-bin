@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/vercel_completer/cmd/action"
-	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -47,11 +46,6 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionDirectories()
-			}
-			return carapace.ActionValues()
-		}),
+		carapace.ActionDirectories(),
 	)
 }
