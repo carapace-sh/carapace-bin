@@ -3,9 +3,11 @@ package npm
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/util"
 )
 
 // ActionPackageSearch completes packages@version for given registry
@@ -87,4 +89,20 @@ func ActionPackageTags(opts PackageOpts) carapace.Action {
 			return carapace.ActionValuesDescribed(vals...)
 		})
 	})
+}
+
+type packageJson struct {
+	Scripts    map[string]string
+	Workspaces []string
+}
+
+func loadPackageJson(c carapace.Context) (pj packageJson, err error) {
+	var packageFile string
+	if packageFile, err = util.FindReverse(c.Dir, "package.json"); err == nil {
+		var content []byte
+		if content, err = os.ReadFile(packageFile); err == nil {
+			err = json.Unmarshal(content, &pj)
+		}
+	}
+	return
 }

@@ -1,9 +1,10 @@
-package action
+package npm
 
 import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionWorkspaces completes workspaces
 func ActionWorkspaces() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		pj, err := loadPackageJson(c)
