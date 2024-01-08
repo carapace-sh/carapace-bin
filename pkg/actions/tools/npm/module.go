@@ -1,4 +1,4 @@
-package action
+package npm
 
 import (
 	"fmt"
@@ -13,6 +13,7 @@ func nodeModulesPath(c carapace.Context) (string, error) {
 	return util.FindReverse(c.Dir, "node_modules")
 }
 
+// ActionModules completes modules
 func ActionModules() carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		path, err := nodeModulesPath(c)

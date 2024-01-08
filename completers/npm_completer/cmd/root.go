@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/npm_completer/cmd/action"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/npm"
 	"github.com/spf13/cobra"
 )
 
@@ -26,6 +26,6 @@ func addWorkspaceFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"workspace": action.ActionWorkspaces(),
+		"workspace": npm.ActionWorkspaces(),
 	})
 }

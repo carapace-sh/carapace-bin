@@ -1,4 +1,4 @@
-package action
+package npm
 
 import (
 	"strings"
@@ -6,6 +6,7 @@ import (
 	"github.com/rsteube/carapace"
 )
 
+// ActionOwners completes owners
 func ActionOwners(pkg string) carapace.Action {
 	return carapace.ActionExecCommand("npm", "owner", "ls", pkg)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

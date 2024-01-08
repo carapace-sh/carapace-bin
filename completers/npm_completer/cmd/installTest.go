@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/npm_completer/cmd/action"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -42,11 +42,9 @@ func init() {
 	})
 
 	carapace.Gen(installTestCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return action.ActionPackages(installTestCmd)
-		}),
+		carapace.Batch(
+			carapace.ActionFiles(),
+			action.ActionPackages(installTestCmd).Unless(condition.CompletingPath),
+		).ToA(),
 	)
 }

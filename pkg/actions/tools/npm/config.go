@@ -1,17 +1,26 @@
-package action
+package npm
 
 import (
 	"encoding/json"
 
 	"github.com/rsteube/carapace"
-	"github.com/spf13/cobra"
 )
 
-func ActionConfigKeys(cmd *cobra.Command) carapace.Action {
+// ActionLocalConfigKeys completes local config keys
+func ActionLocalConfigKeys() carapace.Action {
+	return actionConfigKeys(false)
+}
+
+// ActionGlobalConfigKeys completes global config keys
+func ActionGlobalConfigKeys() carapace.Action {
+	return actionConfigKeys(false)
+}
+
+func actionConfigKeys(global bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 
 		args := []string{"config", "list", "--json"}
-		if flag := cmd.Flag("global"); flag != nil && flag.Changed {
+		if global {
 			args = append(args, "--global")
 		}
 
@@ -27,5 +36,5 @@ func ActionConfigKeys(cmd *cobra.Command) carapace.Action {
 			}
 			return carapace.ActionValues(vals...)
 		})
-	})
+	}).Tag("config keys")
 }
