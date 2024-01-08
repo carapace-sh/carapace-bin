@@ -7,7 +7,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/npm"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/pnpm"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -64,18 +64,14 @@ func init() {
 
 	carapace.Gen(addCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-
 			if strings.HasPrefix(c.Value, "https://") {
 				return git.ActionRepositorySearch(git.SearchOpts{}.Default())
 			}
 
 			return carapace.Batch(
-				npm.ActionPackageSearch(""),
-				git.ActionRepositorySearch(git.SearchOpts{}.Default()),
 				carapace.ActionFiles(),
+				npm.ActionPackageSearch("").Unless(condition.CompletingPath),
+				git.ActionRepositorySearch(git.SearchOpts{}.Default()).Unless(condition.CompletingPath),
 			).ToA()
 		}),
 	)
