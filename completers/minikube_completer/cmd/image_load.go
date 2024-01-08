@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -22,11 +22,9 @@ func init() {
 	imageCmd.AddCommand(image_loadCmd)
 
 	carapace.Gen(image_loadCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			}
-			return docker.ActionRepositoryTags()
-		}),
+		carapace.Batch(
+			carapace.ActionFiles(),
+			docker.ActionRepositoryTags().Unless(condition.CompletingPath),
+		).ToA(),
 	)
 }
