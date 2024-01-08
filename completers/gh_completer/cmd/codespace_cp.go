@@ -1,12 +1,10 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -35,18 +33,12 @@ func init() {
 	})
 
 	carapace.Gen(codespace_cpCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles()
-			} else if !strings.HasPrefix(c.Value, "remote:/") {
-				return carapace.ActionValues("remote:/").NoSpace()
-			}
-
-			c.Value = strings.TrimPrefix(c.Value, "remote:")
-			return action.ActionCodespacePath(
+		carapace.Batch(
+			carapace.ActionFiles(),
+			action.ActionCodespacePath(
 				codespace_cpCmd.Flag("codespace").Value.String(),
 				codespace_cpCmd.Flag("expand").Changed,
-			).Invoke(c).Prefix("remote:").ToA()
-		}),
+			).Prefix("remote:").Unless(condition.CompletingPath),
+		).ToA(),
 	)
 }
