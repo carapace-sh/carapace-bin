@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/pamac"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -32,15 +32,10 @@ func init() {
 	})
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionFiles(".pkg", ".pkg.tar.gz", ".pkg.tar.xz", ".pkg.tar.zst")
-			}
-
-			return carapace.Batch(
-				pamac.ActionPackageGroups(),
-				pamac.ActionPackageSearch(),
-			).ToA()
-		}),
+		carapace.Batch(
+			carapace.ActionFiles(".pkg", ".pkg.tar.gz", ".pkg.tar.xz", ".pkg.tar.zst"),
+			pamac.ActionPackageGroups().Unless(condition.CompletingPath),
+			pamac.ActionPackageSearch().Unless(condition.CompletingPath),
+		).ToA(),
 	)
 }
