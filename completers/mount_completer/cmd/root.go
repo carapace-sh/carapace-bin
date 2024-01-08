@@ -4,8 +4,8 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/mount_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/fs"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/mount"
 	"github.com/spf13/cobra"
 )
 
@@ -67,11 +67,11 @@ func init() {
 			for _, part := range c.Parts {
 				keys = append(keys, strings.Split(part, "=")[0])
 			}
-			return action.ActionOptions().Invoke(c).Filter(keys...).ToA().NoSpace()
+			return mount.ActionMountOptions().Invoke(c).Filter(keys...).ToA().NoSpace()
 		}),
 		"options-mode":   carapace.ActionValues("ignore", "append", "prepend", "replace"),
 		"options-source": carapace.ActionValues("fstab", "mtab", "disable").UniqueList(","),
-		"source":         action.ActionSources(),
+		"source":         mount.ActionSources(),
 		"target":         carapace.ActionDirectories(),
 		"target-prefix":  carapace.ActionDirectories(),
 		"types":          fs.ActionFilesystemTypes().UniqueList(","),
@@ -92,7 +92,7 @@ func init() {
 				}
 				return carapace.ActionDirectories()
 			}
-			return action.ActionSources()
+			return mount.ActionSources()
 		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("all").Changed {
