@@ -1,12 +1,12 @@
-package action
+package pandoc
 
 import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/util"
 )
 
+// ActionInputFormats completes input formats
 func ActionInputFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if !strings.ContainsAny(c.Value, "+-") {
@@ -18,9 +18,10 @@ func ActionInputFormats() carapace.Action {
 		fields := extensionFields(c.Value)
 		fields = fields[:len(fields)-1] // omit currently completed extension
 		return ActionExtensions(fields[0]).Invoke(c).Filter(fields[1:]...).Prefix(strings.Join(fields, "")).ToA()
-	})
+	}).Tag("input formats")
 }
 
+// ActionOutputFormats completes output formats
 func ActionOutputFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if !strings.ContainsAny(c.Value, "+-") {
@@ -32,7 +33,7 @@ func ActionOutputFormats() carapace.Action {
 		fields := extensionFields(c.Value)
 		fields = fields[:len(fields)-1] // omit currently completed extension
 		return ActionExtensions(fields[0]).Invoke(c).Filter(fields[1:]...).Prefix(strings.Join(fields, "")).ToA()
-	})
+	}).Tag("output formats")
 }
 
 func extensionFields(s string) []string {
@@ -51,6 +52,7 @@ func extensionFields(s string) []string {
 	return fields
 }
 
+// ActionFormats completes formats
 func ActionFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.Batch(
@@ -60,18 +62,24 @@ func ActionFormats() carapace.Action {
 	})
 }
 
+// ActionExtensions completes extensions
 func ActionExtensions(format string) carapace.Action {
 	return carapace.ActionExecCommand("pandoc", "--list-extensions", format)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		return carapace.ActionValues(lines[:len(lines)-1]...)
-	})
+	}).Tag("extensions")
 }
 
+// ActionHighlightStyles completes highlight styles
 func ActionHighlightStyles() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if util.HasPathPrefix(c.Value) {
-			return carapace.ActionFiles(".theme")
-		}
-		return carapace.ActionValues("pygments", "kate", "monochrome", "breezeDark", "espresso", "zenburn", "haddock", "tango")
-	})
+	return carapace.ActionValues(
+		"breezeDark",
+		"espresso",
+		"haddock",
+		"kate",
+		"monochrome",
+		"pygments",
+		"tango",
+		"zenburn",
+	).Tag("highlight styles")
 }

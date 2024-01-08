@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/pandoc_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/pandoc"
 	"github.com/spf13/cobra"
 )
 
@@ -113,27 +113,30 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		// TODO intended-code-classes
-		"abbreviations":           carapace.ActionFiles(),
-		"bibliography":            carapace.ActionFiles(),
-		"citation-abbreviations":  carapace.ActionFiles(),
-		"csl":                     carapace.ActionFiles(),
-		"data-dir":                carapace.ActionDirectories(),
-		"defaults":                carapace.ActionFiles(),
-		"email-obfuscation":       carapace.ActionValues("none", "javascript", "references"),
-		"eol":                     carapace.ActionValues("crlf", "lf", "native"),
-		"epub-cover-image":        carapace.ActionFiles(),
-		"epub-embed-font":         carapace.ActionFiles(),
-		"epub-metadata":           carapace.ActionFiles(),
-		"epub-subdirectory":       carapace.ActionDirectories(),
-		"extract-media":           carapace.ActionDirectories(),
-		"filter":                  carapace.ActionFiles(),
-		"from":                    action.ActionInputFormats(),
-		"highlight-style":         action.ActionHighlightStyles(),
+		"abbreviations":          carapace.ActionFiles(),
+		"bibliography":           carapace.ActionFiles(),
+		"citation-abbreviations": carapace.ActionFiles(),
+		"csl":                    carapace.ActionFiles(),
+		"data-dir":               carapace.ActionDirectories(),
+		"defaults":               carapace.ActionFiles(),
+		"email-obfuscation":      carapace.ActionValues("none", "javascript", "references"),
+		"eol":                    carapace.ActionValues("crlf", "lf", "native"),
+		"epub-cover-image":       carapace.ActionFiles(),
+		"epub-embed-font":        carapace.ActionFiles(),
+		"epub-metadata":          carapace.ActionFiles(),
+		"epub-subdirectory":      carapace.ActionDirectories(),
+		"extract-media":          carapace.ActionDirectories(),
+		"filter":                 carapace.ActionFiles(),
+		"from":                   pandoc.ActionInputFormats(),
+		"highlight-style": carapace.Batch(
+			carapace.ActionFiles(".theme"),
+			pandoc.ActionHighlightStyles(),
+		).ToA(),
 		"include-after-body":      carapace.ActionFiles(),
 		"include-before-body":     carapace.ActionFiles(),
 		"include-in-header":       carapace.ActionFiles(),
 		"ipynb-output":            carapace.ActionValues("all", "none", "best"),
-		"list-extensions":         action.ActionFormats(),
+		"list-extensions":         pandoc.ActionFormats(),
 		"log":                     carapace.ActionFiles(),
 		"lua-filter":              carapace.ActionFiles(".lua"),
 		"markdown-headings":       carapace.ActionValues("setext", "atx"),
@@ -141,11 +144,14 @@ func init() {
 		"output":                  carapace.ActionFiles(),
 		"pdf-engine":              carapace.ActionFiles(),
 		"print-default-data-file": carapace.ActionFiles(),
-		"print-default-template":  action.ActionFormats(),
-		"print-highlight-style":   action.ActionHighlightStyles(),
-		"read":                    action.ActionInputFormats(),
-		"reference-doc":           carapace.ActionFiles(),
-		"reference-location":      carapace.ActionValues("block", "section", "document"),
+		"print-default-template":  pandoc.ActionFormats(),
+		"print-highlight-style": carapace.Batch(
+			carapace.ActionFiles(".theme"),
+			pandoc.ActionHighlightStyles(),
+		).ToA(),
+		"read":               pandoc.ActionInputFormats(),
+		"reference-doc":      carapace.ActionFiles(),
+		"reference-location": carapace.ActionValues("block", "section", "document"),
 		"request-header": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -159,11 +165,11 @@ func init() {
 		"resource-path":      carapace.ActionDirectories(),
 		"syntax-definition":  carapace.ActionFiles(),
 		"template":           carapace.ActionFiles(),
-		"to":                 action.ActionOutputFormats(),
+		"to":                 pandoc.ActionOutputFormats(),
 		"top-level-division": carapace.ActionValues("default", "section", "chapter", "part"),
 		"track-changes":      carapace.ActionValues("accept", "reject", "all"),
 		"wrap":               carapace.ActionValues("auto", "none", "preserve"),
-		"write":              action.ActionOutputFormats(),
+		"write":              pandoc.ActionOutputFormats(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
