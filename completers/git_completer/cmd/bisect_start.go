@@ -31,4 +31,13 @@ func init() {
 			return git.ActionRefs(git.RefOption{}.Default())
 		}),
 	)
+
+	carapace.Gen(bisect_startCmd).DashAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if bisect_startCmd.Flags().ArgsLenAtDash() == 0 {
+				return carapace.ActionValues()
+			}
+			return git.ActionRefFiles(bisect_startCmd.Flags().Args()[0]).FilterArgs()
+		}),
+	)
 }
