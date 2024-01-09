@@ -45,4 +45,8 @@ func init() {
 	carapace.Gen(switchCmd).PositionalCompletion(
 		git.ActionRefs(git.RefOption{LocalBranches: true}),
 	)
+
+	carapace.Gen(switchCmd).DashAnyCompletion(
+		carapace.ActionPositional(switchCmd),
+	)
 }
