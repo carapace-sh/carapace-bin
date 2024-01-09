@@ -69,4 +69,12 @@ func init() {
 		"show-current-patch": carapace.ActionValues("diff", "raw"),
 		"whitespace":         git.ActionWhitespaceModes(),
 	})
+
+	carapace.Gen(amCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
+
+	carapace.Gen(amCmd).DashAnyCompletion(
+		carapace.ActionPositional(amCmd),
+	)
 }
