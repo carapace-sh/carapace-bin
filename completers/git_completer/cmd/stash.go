@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,8 @@ var stashCmd = &cobra.Command{
 func init() {
 	carapace.Gen(stashCmd).Standalone()
 	rootCmd.AddCommand(stashCmd)
+
+	carapace.Gen(stashCmd).DashAnyCompletion(
+		git.ActionChanges(git.ChangeOpts{Unstaged: true}).FilterArgs(),
+	)
 }
