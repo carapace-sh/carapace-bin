@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,17 @@ func init() {
 	carapace.Gen(stash_pushCmd).FlagCompletion(carapace.ActionMap{
 		"pathspec-from-file": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(stash_pushCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if stash_pushCmd.Flag("pathspec-from-file").Changed {
+				return carapace.ActionValues()
+			}
+			return git.ActionChanges(git.ChangeOpts{Unstaged: true})
+		}),
+	)
+
+	carapace.Gen(stash_pushCmd).DashAnyCompletion(
+		carapace.ActionPositional(stash_pushCmd),
+	)
 }
