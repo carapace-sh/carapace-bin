@@ -96,4 +96,8 @@ func init() {
 			return carapace.ActionValues()
 		}),
 	)
+
+	carapace.Gen(branchCmd).DashAnyCompletion(
+		carapace.ActionPositional(branchCmd),
+	)
 }
