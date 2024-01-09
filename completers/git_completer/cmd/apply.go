@@ -55,6 +55,10 @@ func init() {
 	})
 
 	carapace.Gen(applyCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(),
+		carapace.ActionFiles().FilterArgs(),
+	)
+
+	carapace.Gen(applyCmd).DashAnyCompletion(
+		carapace.ActionPositional(applyCmd),
 	)
 }
