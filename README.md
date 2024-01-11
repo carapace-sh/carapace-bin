@@ -73,4 +73,3 @@ exec($(carapace _carapace))
 # zsh (~/.zshrc)
 source <(carapace _carapace)
 ```
-XXX
