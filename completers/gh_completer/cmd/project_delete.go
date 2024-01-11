@@ -16,7 +16,9 @@ func init() {
 	carapace.Gen(project_deleteCmd).Standalone()
 
 	project_deleteCmd.Flags().String("format", "", "Output format: {json}")
+	project_deleteCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_deleteCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
+	project_deleteCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	projectCmd.AddCommand(project_deleteCmd)
 
 	carapace.Gen(project_deleteCmd).FlagCompletion(carapace.ActionMap{

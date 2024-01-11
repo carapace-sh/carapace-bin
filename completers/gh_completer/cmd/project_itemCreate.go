@@ -17,7 +17,9 @@ func init() {
 
 	project_itemCreateCmd.Flags().String("body", "", "Body for the draft issue")
 	project_itemCreateCmd.Flags().String("format", "", "Output format: {json}")
+	project_itemCreateCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_itemCreateCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
+	project_itemCreateCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_itemCreateCmd.Flags().String("title", "", "Title for the draft issue")
 	project_itemCreateCmd.MarkFlagRequired("title")
 	projectCmd.AddCommand(project_itemCreateCmd)

@@ -16,7 +16,9 @@ func init() {
 	carapace.Gen(project_itemAddCmd).Standalone()
 
 	project_itemAddCmd.Flags().String("format", "", "Output format: {json}")
+	project_itemAddCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_itemAddCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
+	project_itemAddCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_itemAddCmd.Flags().String("url", "", "URL of the issue or pull request to add to the project")
 	project_itemAddCmd.MarkFlagRequired("url")
 	projectCmd.AddCommand(project_itemAddCmd)

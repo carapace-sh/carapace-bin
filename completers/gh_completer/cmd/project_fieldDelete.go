@@ -16,6 +16,8 @@ func init() {
 
 	project_fieldDeleteCmd.Flags().String("format", "", "Output format: {json}")
 	project_fieldDeleteCmd.Flags().String("id", "", "ID of the field to delete")
+	project_fieldDeleteCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
+	project_fieldDeleteCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_fieldDeleteCmd.MarkFlagRequired("id")
 	projectCmd.AddCommand(project_fieldDeleteCmd)
 
