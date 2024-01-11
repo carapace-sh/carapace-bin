@@ -1,0 +1,20 @@
+package cmd
+
+import (
+	"github.com/rsteube/carapace"
+	"github.com/spf13/cobra"
+)
+
+var watchCmd = &cobra.Command{
+	Use:   "watch [SERVICE...]",
+	Short: "Watch build context for service and rebuild/refresh containers when files are updated",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(watchCmd).Standalone()
+
+	watchCmd.Flags().Bool("no-up", false, "Do not build & start services before watching")
+	watchCmd.Flags().Bool("quiet", false, "hide build output")
+	rootCmd.AddCommand(watchCmd)
+}

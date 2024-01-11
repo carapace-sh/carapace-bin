@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(killCmd).Standalone()
 
 	killCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file.")
-	killCmd.Flags().StringP("signal", "s", "SIGKILL", "SIGNAL to send to the container.")
+	killCmd.Flags().StringP("signal", "s", "", "SIGNAL to send to the container.")
 	rootCmd.AddCommand(killCmd)
 
 	carapace.Gen(killCmd).FlagCompletion(carapace.ActionMap{

@@ -16,10 +16,14 @@ var cpCmd = &cobra.Command{
 func init() {
 	carapace.Gen(cpCmd).Standalone()
 
+	cpCmd.Flags().Bool("all", false, "copy to all the containers of the service.")
 	cpCmd.Flags().BoolP("archive", "a", false, "Archive mode (copy all uid/gid information)")
 	cpCmd.Flags().BoolP("follow-link", "L", false, "Always follow symbol link in SRC_PATH")
-	cpCmd.Flags().Int("index", 0, "Index of the container if there are multiple instances of a service .")
+	cpCmd.Flags().String("index", "", "index of the container if service has multiple replicas")
+	cpCmd.Flag("all").Hidden = true
 	rootCmd.AddCommand(cpCmd)
+
+	// TODO index flag
 
 	carapace.Gen(cpCmd).PositionalCompletion(
 		carapace.Batch(
