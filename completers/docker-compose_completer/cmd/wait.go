@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	waitCmd.Flags().Bool("down-project", false, "Drops project when the first container stops")
 	rootCmd.AddCommand(waitCmd)
+
+	carapace.Gen(waitCmd).PositionalAnyCompletion(
+		action.ActionServices(waitCmd).FilterArgs(),
+	)
 }
