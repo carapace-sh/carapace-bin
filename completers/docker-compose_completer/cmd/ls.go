@@ -16,7 +16,7 @@ func init() {
 
 	lsCmd.Flags().BoolP("all", "a", false, "Show all stopped Compose projects")
 	lsCmd.Flags().String("filter", "", "Filter output based on conditions provided.")
-	lsCmd.Flags().String("format", "table", "Format the output. Values: [table | json].")
+	lsCmd.Flags().String("format", "", "Format the output. Values: [table | json].")
 	lsCmd.Flags().BoolP("quiet", "q", false, "Only display IDs.")
 	rootCmd.AddCommand(lsCmd)
 

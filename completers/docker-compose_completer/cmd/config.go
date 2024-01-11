@@ -16,12 +16,13 @@ var configCmd = &cobra.Command{
 func init() {
 	carapace.Gen(configCmd).Standalone()
 
-	configCmd.Flags().String("format", "yaml", "Format the output. Values: [yaml | json]")
+	configCmd.Flags().String("format", "", "Format the output. Values: [yaml | json]")
 	configCmd.Flags().String("hash", "", "Print the service config hash, one per line.")
 	configCmd.Flags().Bool("images", false, "Print the image names, one per line.")
 	configCmd.Flags().Bool("no-consistency", false, "Don't check model consistency - warning: may produce invalid Compose output")
 	configCmd.Flags().Bool("no-interpolate", false, "Don't interpolate environment variables.")
 	configCmd.Flags().Bool("no-normalize", false, "Don't normalize compose model.")
+	configCmd.Flags().Bool("no-path-resolution", false, "Don't resolve file paths.")
 	configCmd.Flags().StringP("output", "o", "", "Save to file (default to stdout)")
 	configCmd.Flags().Bool("profiles", false, "Print the profile names, one per line.")
 	configCmd.Flags().BoolP("quiet", "q", false, "Only validate the configuration, don't print anything.")

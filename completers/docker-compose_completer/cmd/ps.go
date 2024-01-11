@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -17,15 +18,18 @@ func init() {
 
 	psCmd.Flags().BoolP("all", "a", false, "Show all stopped containers (including those created by the run command)")
 	psCmd.Flags().String("filter", "", "Filter services by a property (supported filters: status).")
-	psCmd.Flags().String("format", "table", "Format the output. Values: [table | json]")
+	psCmd.Flags().String("format", "", "Format output using a custom template:")
+	psCmd.Flags().Bool("no-trunc", false, "Don't truncate output")
+	psCmd.Flags().Bool("orphans", false, "Include orphaned services (not declared by project)")
 	psCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")
 	psCmd.Flags().Bool("services", false, "Display services")
-	psCmd.Flags().StringArray("status", []string{}, "Filter services by status. Values: [paused | restarting | removing | running | dead | created | exited]")
+	psCmd.Flags().StringSlice("status", []string{}, "Filter services by status. Values: [paused | restarting | removing | running | dead | created | exited]")
 	rootCmd.AddCommand(psCmd)
 
 	carapace.Gen(psCmd).FlagCompletion(carapace.ActionMap{
+		"filter": carapace.ActionValues("status"),
 		"format": carapace.ActionValues("table", "json"),
-		"status": carapace.ActionValues("paused", "restarting", "removing", "running", "dead", "created", "exited"),
+		"status": carapace.ActionValues("paused", "restarting", "removing", "running", "dead", "created", "exited").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(psCmd).PositionalAnyCompletion(

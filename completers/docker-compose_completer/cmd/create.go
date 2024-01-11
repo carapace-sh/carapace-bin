@@ -18,11 +18,11 @@ func init() {
 
 	createCmd.Flags().Bool("build", false, "Build images before starting containers.")
 	createCmd.Flags().Bool("force-recreate", false, "Recreate containers even if their configuration and image haven't changed.")
-	createCmd.Flags().Bool("no-build", false, "Don't build an image, even if it's missing.")
+	createCmd.Flags().Bool("no-build", false, "Don't build an image, even if it's policy.")
 	createCmd.Flags().Bool("no-recreate", false, "If containers already exist, don't recreate them. Incompatible with --force-recreate.")
-	createCmd.Flags().String("pull", "missing", "Pull image before running (\"always\"|\"missing\"|\"never\")")
+	createCmd.Flags().String("pull", "", "Pull image before running (\"always\"|\"missing\"|\"never\"|\"build\")")
 	createCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file.")
-	createCmd.Flags().StringArray("scale", []string{}, "Scale SERVICE to NUM instances. Overrides the `scale` setting in the Compose file if present.")
+	createCmd.Flags().StringSlice("scale", []string{}, "Scale SERVICE to NUM instances. Overrides the `scale` setting in the Compose file if present.")
 	rootCmd.AddCommand(createCmd)
 
 	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{

@@ -19,6 +19,7 @@ func init() {
 	rmCmd.Flags().BoolP("force", "f", false, "Don't ask to confirm removal")
 	rmCmd.Flags().BoolP("stop", "s", false, "Stop the containers, if required, before removing")
 	rmCmd.Flags().BoolP("volumes", "v", false, "Remove any anonymous volumes attached to containers")
+	rmCmd.Flag("all").Hidden = true
 	rootCmd.AddCommand(rmCmd)
 
 	carapace.Gen(rmCmd).PositionalAnyCompletion(
