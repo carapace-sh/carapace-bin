@@ -8,8 +8,8 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/internal/actions/net/ssh"
+	"github.com/rsteube/carapace/pkg/execlog"
 	"github.com/rsteube/carapace/pkg/style"
-	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
 
 // ActionHosts completes known hosts
@@ -120,7 +120,7 @@ var AllDevices = IncludedDevices{
 //	wlp3s0 (wifi)
 func ActionDevices(includedDevices IncludedDevices) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if _, err := execabs.LookPath("nmcli"); err == nil {
+		if _, err := execlog.LookPath("nmcli"); err == nil {
 			return carapace.ActionExecCommand("nmcli", "--terse", "--fields", "device,type", "device", "status")(func(output []byte) carapace.Action {
 				lines := strings.Split(string(output), "\n")
 				vals := make([]string, 0)
@@ -132,7 +132,7 @@ func ActionDevices(includedDevices IncludedDevices) carapace.Action {
 				}
 				return carapace.ActionValuesDescribed(vals...)
 			})
-		} else if _, err := execabs.LookPath("ifconfig"); err == nil {
+		} else if _, err := execlog.LookPath("ifconfig"); err == nil {
 			// fallback to basic ifconfig if nmcli is not available
 			return carapace.ActionExecCommand("ifconfig")(func(output []byte) carapace.Action {
 				interfaces := []string{}

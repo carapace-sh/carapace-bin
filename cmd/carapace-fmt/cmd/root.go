@@ -10,7 +10,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	lint "github.com/rsteube/carapace-bin/cmd/carapace-lint/cmd"
-	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
+	"github.com/rsteube/carapace/pkg/execlog"
 	"github.com/spf13/cobra"
 )
 
@@ -47,7 +47,7 @@ func init() {
 }
 
 func checkGitStatus(path string) error {
-	if output, err := execabs.Command("git", "status", "--porcelain", path).Output(); err != nil {
+	if output, err := execlog.Command("git", "status", "--porcelain", path).Output(); err != nil {
 		return err
 	} else {
 		lines := strings.Split(string(output), "\n")
@@ -65,7 +65,7 @@ func format(path string) (string, error) {
 	if err := checkGitStatus(path); err != nil {
 		return "", err
 	}
-	if err := execabs.Command("go", "fmt", path).Run(); err != nil {
+	if err := execlog.Command("go", "fmt", path).Run(); err != nil {
 		return "", fmt.Errorf("failed execute go fmt on '%v': %v", path, err.Error())
 	}
 

@@ -10,7 +10,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions"
 	spec "github.com/rsteube/carapace-spec"
-	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
+	"github.com/rsteube/carapace/pkg/execlog"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +27,7 @@ var macroCmd = &cobra.Command{
 		default:
 			mArgs := []string{"_carapace", "macro"}
 			mArgs = append(mArgs, args...)
-			mCmd := execabs.Command("carapace", mArgs...)
+			mCmd := execlog.Command("carapace", mArgs...)
 			mCmd.Stdout = cmd.OutOrStdout()
 			mCmd.Stderr = cmd.ErrOrStderr()
 			mCmd.Run()

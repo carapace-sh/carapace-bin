@@ -6,7 +6,7 @@ import (
 	"errors"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
+	"github.com/rsteube/carapace/pkg/execlog"
 	"github.com/spf13/cobra"
 )
 
@@ -18,7 +18,7 @@ type plugin struct {
 
 func plugins(cwd string) (plugins []plugin, err error) {
 	stderr := bytes.Buffer{}
-	cmd := execabs.Command("pulumi", "--cwd", cwd, "plugin", "ls", "--json")
+	cmd := execlog.Command("pulumi", "--cwd", cwd, "plugin", "ls", "--json")
 	cmd.Stderr = &stderr
 	cmd.Env = append(cmd.Env, "PULUMI_SKIP_UPDATE_CHECK=1")
 	if output, cmdErr := cmd.Output(); cmdErr != nil {
