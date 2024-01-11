@@ -19,7 +19,9 @@ func init() {
 
 	project_itemArchiveCmd.Flags().String("format", "", "Output format: {json}")
 	project_itemArchiveCmd.Flags().String("id", "", "ID of the item to archive")
+	project_itemArchiveCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_itemArchiveCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
+	project_itemArchiveCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_itemArchiveCmd.Flags().Bool("undo", false, "Unarchive an item")
 	project_itemArchiveCmd.MarkFlagRequired("id")
 	projectCmd.AddCommand(project_itemArchiveCmd)

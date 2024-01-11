@@ -19,7 +19,9 @@ func init() {
 
 	project_itemDeleteCmd.Flags().String("format", "", "Output format: {json}")
 	project_itemDeleteCmd.Flags().String("id", "", "ID of the item to delete")
+	project_itemDeleteCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_itemDeleteCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
+	project_itemDeleteCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_itemDeleteCmd.MarkFlagRequired("id")
 	projectCmd.AddCommand(project_itemDeleteCmd)
 

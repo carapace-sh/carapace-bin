@@ -17,9 +17,11 @@ func init() {
 
 	project_fieldCreateCmd.Flags().String("data-type", "", "DataType of the new field.: {TEXT|SINGLE_SELECT|DATE|NUMBER}")
 	project_fieldCreateCmd.Flags().String("format", "", "Output format: {json}")
+	project_fieldCreateCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_fieldCreateCmd.Flags().String("name", "", "Name of the new field")
 	project_fieldCreateCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
 	project_fieldCreateCmd.Flags().StringSlice("single-select-options", []string{}, "Options for SINGLE_SELECT data type")
+	project_fieldCreateCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_fieldCreateCmd.MarkFlagRequired("data-type")
 	project_fieldCreateCmd.MarkFlagRequired("name")
 	projectCmd.AddCommand(project_fieldCreateCmd)

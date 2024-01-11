@@ -18,8 +18,10 @@ func init() {
 
 	project_editCmd.Flags().StringP("description", "d", "", "New description of the project")
 	project_editCmd.Flags().String("format", "", "Output format: {json}")
+	project_editCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_editCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
 	project_editCmd.Flags().String("readme", "", "New readme for the project")
+	project_editCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_editCmd.Flags().String("title", "", "New title for the project")
 	project_editCmd.Flags().String("visibility", "", "Change project visibility: {PUBLIC|PRIVATE}")
 	projectCmd.AddCommand(project_editCmd)

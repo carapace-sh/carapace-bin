@@ -15,8 +15,10 @@ var project_closeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(project_closeCmd).Standalone()
 
-	project_closeCmd.Flags().String("format", "", "Output format, must be 'json'")
+	project_closeCmd.Flags().String("format", "", "Output format: {json}")
+	project_closeCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_closeCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
+	project_closeCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_closeCmd.Flags().Bool("undo", false, "Reopen a closed project")
 	projectCmd.AddCommand(project_closeCmd)
 

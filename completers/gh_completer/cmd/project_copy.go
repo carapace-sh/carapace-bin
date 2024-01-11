@@ -17,8 +17,10 @@ func init() {
 
 	project_copyCmd.Flags().Bool("drafts", false, "Include draft issues when copying")
 	project_copyCmd.Flags().String("format", "", "Output format: {json}")
+	project_copyCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_copyCmd.Flags().String("source-owner", "", "Login of the source owner. Use \"@me\" for the current user.")
 	project_copyCmd.Flags().String("target-owner", "", "Login of the target owner. Use \"@me\" for the current user.")
+	project_copyCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_copyCmd.Flags().String("title", "", "Title for the new project")
 	project_copyCmd.MarkFlagRequired("title")
 	projectCmd.AddCommand(project_copyCmd)

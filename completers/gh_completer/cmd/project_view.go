@@ -16,7 +16,9 @@ func init() {
 	carapace.Gen(project_viewCmd).Standalone()
 
 	project_viewCmd.Flags().String("format", "", "Output format: {json}")
+	project_viewCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_viewCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user.")
+	project_viewCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_viewCmd.Flags().BoolP("web", "w", false, "Open a project in the browser")
 	projectCmd.AddCommand(project_viewCmd)
 

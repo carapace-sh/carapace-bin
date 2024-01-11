@@ -16,7 +16,9 @@ func init() {
 	carapace.Gen(project_markTemplateCmd).Standalone()
 
 	project_markTemplateCmd.Flags().String("format", "", "Output format: {json}")
+	project_markTemplateCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_markTemplateCmd.Flags().String("owner", "", "Login of the org owner.")
+	project_markTemplateCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_markTemplateCmd.Flags().Bool("undo", false, "Unmark the project as a template.")
 	projectCmd.AddCommand(project_markTemplateCmd)
 
