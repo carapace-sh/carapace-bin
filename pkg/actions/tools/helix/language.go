@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/execlog"
 	"github.com/rsteube/carapace/pkg/style"
-	"github.com/rsteube/carapace/third_party/golang.org/x/sys/execabs"
 )
 
 // ActionLanguages completes languages
@@ -16,7 +16,7 @@ import (
 func ActionLanguages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		cmd := "helix"
-		if _, err := execabs.LookPath("helix"); err != nil {
+		if _, err := execlog.LookPath("helix"); err != nil {
 			cmd = "hx"
 		}
 		return carapace.ActionExecCommand(cmd, "--health")(func(output []byte) carapace.Action {

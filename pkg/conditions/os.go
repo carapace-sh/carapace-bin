@@ -1,12 +1,12 @@
 package conditions
 
 import (
-	"os/exec"
 	"runtime"
 	"slices"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/internal/condition"
+	"github.com/rsteube/carapace/pkg/execlog"
 )
 
 // ConditionArch checks if the given names contain current `runtime.GOARCH`
@@ -36,7 +36,7 @@ func ConditionOs(s ...string) condition.Condition {
 func ConditionPath(s ...string) condition.Condition {
 	return func(c carapace.Context) bool {
 		for _, file := range s {
-			if _, err := exec.LookPath(file); err == nil {
+			if _, err := execlog.LookPath(file); err == nil {
 				return true
 			}
 		}

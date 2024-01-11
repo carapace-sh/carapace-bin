@@ -2,11 +2,11 @@ package cmd
 
 import (
 	"encoding/json"
-	"os/exec"
 	"strings"
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/fastfetch"
+	"github.com/rsteube/carapace/pkg/execlog"
 	"github.com/spf13/cobra"
 )
 
@@ -42,7 +42,7 @@ func init() {
 		rootCmd.ResetFlags()
 
 		var groups map[string][]FlagData
-		if out, err := exec.Command("fastfetch", "--help-raw").Output(); err == nil {
+		if out, err := execlog.Command("fastfetch", "--help-raw").Output(); err == nil {
 			json.Unmarshal(out, &groups)
 			if len(groups) == 0 {
 				return
