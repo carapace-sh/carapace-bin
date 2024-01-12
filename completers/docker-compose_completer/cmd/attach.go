@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	attachCmd.Flags().Bool("no-stdin", false, "Do not attach STDIN")
 	attachCmd.Flags().Bool("sig-proxy", false, "Proxy all received signals to the process")
 	rootCmd.AddCommand(attachCmd)
+
+	carapace.Gen(attachCmd).PositionalCompletion(
+		action.ActionServices(attachCmd).FilterArgs(),
+	)
 }

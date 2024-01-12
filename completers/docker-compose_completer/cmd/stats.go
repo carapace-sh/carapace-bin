@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	statsCmd.Flags().Bool("no-stream", false, "Disable streaming stats and only pull the first result")
 	statsCmd.Flags().Bool("no-trunc", false, "Do not truncate output")
 	rootCmd.AddCommand(statsCmd)
+
+	carapace.Gen(statsCmd).PositionalCompletion(
+		action.ActionServices(statsCmd),
+	)
 }

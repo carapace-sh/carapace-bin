@@ -3,7 +3,9 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace/pkg/style"
+	"github.com/rsteube/carapace/pkg/traverse"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -43,6 +45,11 @@ func init() {
 		"ansi":              carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"env-file":          carapace.ActionFiles(),
 		"file":              carapace.ActionFiles(),
+		"progress":          carapace.ActionValues("auto", "tty", "plain", "quiet"),
 		"project-directory": carapace.ActionDirectories(),
+	})
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.ChdirF(traverse.Flag(rootCmd.Flag("project-directory")))
 	})
 }
