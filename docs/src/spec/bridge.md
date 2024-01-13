@@ -134,7 +134,7 @@ completion:
 > For shells custom configurations are loaded from [`${UserConfigDir}/carapace/bridge`].
 > Invoking completion in shells is quite tricky though and edge cases are likely to fail.
 
- Bash
+### Bash
 
 Commands registered in [bash] can be bridged with the [`bridge.Bash`] macro:
 
