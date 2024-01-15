@@ -37,39 +37,64 @@ func init() {
 
 }
 func printCompleters() {
+	_m := mapCompleters()
+
 	maxlen := 0
-	for _, name := range completers.Names() {
+	for name := range _m {
 		if len := len(name); len > maxlen {
 			maxlen = len
 		}
 	}
 
-	for _, name := range completers.Names() {
-		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, completers.Description(name))
+	for _, c := range _m {
+		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", c.Name, c.Description)
 	}
 }
 
 func printCompletersJson() {
-	// TODO move to completers package
-	type _completer struct {
-		Name        string
-		Description string
-		Spec        string `json:",omitempty"`
-		Overlay     string `json:",omitempty"`
+	if m, err := json.Marshal(mapCompleters()); err == nil { // TODO handle error (log?)
+		fmt.Println(string(m))
 	}
+}
 
-	_completers := make([]_completer, 0)
+type _completer struct {
+	Name        string
+	Description string
+	Spec        string `json:",omitempty"`
+	Overlay     string `json:",omitempty"`
+	Bridge      string `json:",omitempty"`
+}
+
+func mapCompleters() map[string]_completer {
+	// TODO move to completers package
+
+	_completers := make(map[string]_completer, 0)
 	for _, name := range completers.Names() {
 		specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
 		overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-		_completers = append(_completers, _completer{
+		_completers[name] = _completer{
 			Name:        name,
 			Description: completers.Description(name),
 			Spec:        specPath,
 			Overlay:     overlayPath,
-		})
+		}
 	}
-	if m, err := json.Marshal(_completers); err == nil { // TODO handle error (log?)
-		fmt.Println(string(m))
+
+	for _, name := range completers.FishCompleters() {
+		if _, ok := _completers[name]; ok {
+			continue
+		}
+
+		specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+		overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+		_completers[name] = _completer{
+			Name:        name,
+			Description: completers.Description(name),
+			Spec:        specPath,
+			Overlay:     overlayPath,
+			Bridge:      "fish",
+		}
 	}
+
+	return _completers
 }

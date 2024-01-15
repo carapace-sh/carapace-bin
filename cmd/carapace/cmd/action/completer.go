@@ -10,11 +10,12 @@ import (
 func ActionCompleters() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("carapace", "--list", "--format", "json")(func(output []byte) carapace.Action {
-			var completers []struct {
+			var completers map[string]struct {
 				Name        string
 				Description string
 				Spec        string
 				Overlay     string
+				Bridge      string
 			}
 			if err := json.Unmarshal(output, &completers); err != nil {
 				return carapace.ActionMessage(err.Error())
@@ -25,6 +26,8 @@ func ActionCompleters() carapace.Action {
 				s := style.Default
 				if completer.Spec != "" {
 					s = style.Blue
+				} else if completer.Bridge != "" {
+					s = style.Dim
 				}
 				if completer.Overlay != "" {
 					s = style.Of(s, style.Underlined)

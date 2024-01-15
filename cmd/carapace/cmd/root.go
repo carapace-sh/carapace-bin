@@ -126,6 +126,7 @@ func overlayCompletion(overlayPath string, args ...string) carapace.Action {
 		return carapace.ActionImport([]byte(out))
 	})
 }
+
 func Execute(version string) error {
 	rootCmd.Version = version
 

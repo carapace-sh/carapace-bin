@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -21,6 +22,7 @@ var invokeCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if overlayPath, err := overlayPath(args[0]); err == nil && len(args) > 2 { // and arg[1] is a known shell
+			// TODO support bridges here
 			cmd := &cobra.Command{
 				DisableFlagParsing: true,
 				CompletionOptions: cobra.CompletionOptions{
@@ -69,11 +71,29 @@ var invokeCmd = &cobra.Command{
 
 				// TODO revert the patching from specCompletion to use the integrated version for overlay to work (should move this somewhere else - best in specCompletion)
 				// TODO only patch completion script
+				// TODO this isn't correct anymore
 				out = strings.Replace(out, fmt.Sprintf("--spec '%v'", specPath), args[0], -1)
 				out = strings.Replace(out, fmt.Sprintf("'--spec', '%v'", specPath), fmt.Sprintf("'%v'", args[0]), -1) // xonsh callback
 				fmt.Fprint(cmd.OutOrStdout(), out)
-			} else {
+			} else if slices.Contains(completers.Names(), args[0]) {
 				fmt.Print(invokeCompleter(args[0]))
+			} else if slices.Contains(completers.FishCompleters(), args[0]) {
+				_fishCmd := &cobra.Command{
+					Use:                args[0],
+					DisableFlagParsing: true,
+				}
+
+				carapace.Gen(_fishCmd).PositionalAnyCompletion(
+					bridge.ActionFish(args[0]),
+				)
+				carapace.Gen(_fishCmd).Standalone()
+
+				out, err := cmdCompletion(_fishCmd, args[1:]...)
+				if err != nil {
+					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+					return
+				}
+				fmt.Fprint(cmd.OutOrStdout(), out)
 			}
 		}
 	},
@@ -159,5 +179,39 @@ func invokeCompleter(completer string) string {
 	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v %v", executableName, completer), -1)      // general callback
 	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '%v'", executableName, completer), -1) // xonsh callback
 	return patched
+}
 
+// TODO use specCompletion and extract common code with invokeCompleter
+
+func cmdCompletion(cmd *cobra.Command, args ...string) (string, error) {
+	old := os.Stdout
+	r, w, _ := os.Pipe()
+	os.Stdout = w
+
+	outC := make(chan string)
+	// copy the output in a separate goroutine so printing can't block indefinitely
+	go func() {
+		var buf bytes.Buffer
+		io.Copy(&buf, r)
+		outC <- buf.String()
+	}()
+
+	a := []string{"_carapace"}
+	a = append(a, args...)
+	cmd.SetArgs(a)
+	cmd.Execute()
+
+	w.Close()
+	out := <-outC
+	os.Stdout = old
+
+	executable, err := os.Executable()
+	if err != nil {
+		return "", err
+	}
+
+	executableName := filepath.Base(executable)
+	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v %v", executableName, cmd.Name()), -1)      // general callback
+	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '%v'", executableName, cmd.Name()), -1) // xonsh callback
+	return patched, nil
 }
