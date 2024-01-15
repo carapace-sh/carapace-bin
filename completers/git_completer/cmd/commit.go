@@ -17,6 +17,7 @@ var commitCmd = &cobra.Command{
 func init() {
 	carapace.Gen(commitCmd).Standalone()
 
+	commitCmd.Flags().Bool("-no-gpg-sign", false, "countermand both commit.gpgSign and earlier --gpg-sign")
 	commitCmd.Flags().Bool("ahead-behind", false, "compute full ahead/behind values")
 	commitCmd.Flags().BoolP("all", "a", false, "commit all changed files")
 	commitCmd.Flags().Bool("amend", false, "amend previous commit")
@@ -33,7 +34,10 @@ func init() {
 	commitCmd.Flags().Bool("interactive", false, "interactively add files")
 	commitCmd.Flags().Bool("long", false, "show status in long format (default)")
 	commitCmd.Flags().StringP("message", "m", "", "commit message")
+	commitCmd.Flags().Bool("no-edit", false, "use the selected commit message without launching an editor")
 	commitCmd.Flags().Bool("no-post-rewrite", false, "bypass post-rewrite hook")
+	commitCmd.Flags().Bool("no-signoff", false, "countermand an earlier --signoff")
+	commitCmd.Flags().Bool("no-status", false, "do not include the output of git-status in the commit message")
 	commitCmd.Flags().BoolP("no-verify", "n", false, "bypass pre-commit and commit-msg hooks")
 	commitCmd.Flags().BoolP("null", "z", false, "terminate entries with NUL")
 	commitCmd.Flags().BoolP("only", "o", false, "commit only specified files")
