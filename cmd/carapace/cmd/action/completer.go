@@ -9,7 +9,7 @@ import (
 
 func ActionCompleters() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("carapace", "--list", "--format", "json")(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("carapace", "--list", "--all", "--format", "json")(func(output []byte) carapace.Action {
 			var completers map[string]struct {
 				Name        string
 				Description string

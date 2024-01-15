@@ -17,9 +17,9 @@ var listCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		switch cmd.Flag("format").Value.String() {
 		case "json":
-			printCompletersJson()
+			printCompletersJson(cmd.Flag("all").Changed)
 		default:
-			printCompleters()
+			printCompleters(cmd.Flag("all").Changed)
 		}
 	},
 }
@@ -27,6 +27,7 @@ var listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(listCmd).Standalone()
 
+	listCmd.Flags().BoolP("all", "a", false, "include bridged commands")
 	listCmd.Flags().String("format", "plain", "output format")
 
 	carapace.Gen(listCmd).FlagCompletion(carapace.ActionMap{
@@ -36,8 +37,8 @@ func init() {
 	})
 
 }
-func printCompleters() {
-	_m := mapCompleters()
+func printCompleters(all bool) {
+	_m := mapCompleters(all)
 
 	maxlen := 0
 	for name := range _m {
@@ -51,8 +52,8 @@ func printCompleters() {
 	}
 }
 
-func printCompletersJson() {
-	if m, err := json.Marshal(mapCompleters()); err == nil { // TODO handle error (log?)
+func printCompletersJson(all bool) {
+	if m, err := json.Marshal(mapCompleters(all)); err == nil { // TODO handle error (log?)
 		fmt.Println(string(m))
 	}
 }
@@ -65,7 +66,7 @@ type _completer struct {
 	Bridge      string `json:",omitempty"`
 }
 
-func mapCompleters() map[string]_completer {
+func mapCompleters(all bool) map[string]_completer {
 	// TODO move to completers package
 
 	_completers := make(map[string]_completer, 0)
@@ -80,19 +81,21 @@ func mapCompleters() map[string]_completer {
 		}
 	}
 
-	for _, name := range completers.FishCompleters() {
-		if _, ok := _completers[name]; ok {
-			continue
-		}
+	if all {
+		for _, name := range completers.FishCompleters() {
+			if _, ok := _completers[name]; ok {
+				continue
+			}
 
-		specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-		overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-		_completers[name] = _completer{
-			Name:        name,
-			Description: completers.Description(name),
-			Spec:        specPath,
-			Overlay:     overlayPath,
-			Bridge:      "fish",
+			specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+			overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+			_completers[name] = _completer{
+				Name:        name,
+				Description: completers.Description(name),
+				Spec:        specPath,
+				Overlay:     overlayPath,
+				Bridge:      "fish",
+			}
 		}
 	}
 
