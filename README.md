@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> Strong version shift in documentation while preparing for [v0.29](https://rsteube.github.io/carapace-bin/release_notes/v0.29.html)
+> Some parts in documentation (asciicasts) still need to be updated for changes made in [v0.29](https://rsteube.github.io/carapace-bin/release_notes/v0.29.html)
 
 # carapace-bin
 
