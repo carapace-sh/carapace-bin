@@ -25,6 +25,7 @@ func init() {
 	mergeCmd.Flags().Bool("continue", false, "continue the current in-progress merge")
 	mergeCmd.Flags().BoolP("edit", "e", false, "edit message before committing")
 	mergeCmd.Flags().Bool("ff", false, "allow fast-forward (default)")
+	mergeCmd.Flags().Bool("no-ff", false, "force merge commit")
 	mergeCmd.Flags().Bool("ff-only", false, "abort if fast-forward is not possible")
 	mergeCmd.Flags().StringP("file", "F", "", "read message from file")
 	mergeCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
