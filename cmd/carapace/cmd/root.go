@@ -5,6 +5,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -147,10 +148,20 @@ func Execute(version string) error {
 				println(err.Error())
 			}
 
-			completers := completers.Names()
+			uniqueNames := make(map[string]bool)
+			for _, name := range append(completers.Names(), completers.FishCompleters()...) {
+				uniqueNames[name] = true
+			}
+
+			completerNames := make([]string, 0)
+			for name := range uniqueNames {
+				completerNames = append(completerNames, name)
+			}
+			sort.Strings(completerNames)
+
 			if os.Getenv("CARAPACE_ENV") == "0" {
-				filtered := make([]string, 0, len(completers))
-				for _, name := range completers {
+				filtered := make([]string, 0, len(completerNames))
+				for _, name := range completerNames {
 					switch name {
 					case "get-env", "set-env", "unset-env":
 					default:
@@ -158,30 +169,30 @@ func Execute(version string) error {
 
 					}
 				}
-				completers = filtered
+				completerNames = filtered
 			}
 
 			switch shell {
 			case "bash":
-				fmt.Println(lazyinit.Bash(completers))
+				fmt.Println(lazyinit.Bash(completerNames))
 			case "bash-ble":
-				fmt.Println(lazyinit.BashBle(completers))
+				fmt.Println(lazyinit.BashBle(completerNames))
 			case "elvish":
-				fmt.Println(lazyinit.Elvish(completers))
+				fmt.Println(lazyinit.Elvish(completerNames))
 			case "fish":
-				fmt.Println(lazyinit.Fish(completers))
+				fmt.Println(lazyinit.Fish(completerNames))
 			case "nushell":
-				fmt.Println(lazyinit.Nushell(completers))
+				fmt.Println(lazyinit.Nushell(completerNames))
 			case "oil":
-				fmt.Println(lazyinit.Oil(completers))
+				fmt.Println(lazyinit.Oil(completerNames))
 			case "powershell":
-				fmt.Println(lazyinit.Powershell(completers))
+				fmt.Println(lazyinit.Powershell(completerNames))
 			case "tcsh":
-				fmt.Println(lazyinit.Tcsh(completers))
+				fmt.Println(lazyinit.Tcsh(completerNames))
 			case "xonsh":
-				fmt.Println(lazyinit.Xonsh(completers))
+				fmt.Println(lazyinit.Xonsh(completerNames))
 			case "zsh":
-				fmt.Println(lazyinit.Zsh(completers))
+				fmt.Println(lazyinit.Zsh(completerNames))
 			default:
 				// TODO
 				// println("could not determine shell")

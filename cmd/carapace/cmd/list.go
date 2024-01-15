@@ -97,6 +97,23 @@ func mapCompleters(all bool) map[string]_completer {
 				Bridge:      "fish",
 			}
 		}
+
+		// TODO configured order and so on
+		for _, name := range completers.ZshCompleters() {
+			if _, ok := _completers[name]; ok {
+				continue
+			}
+
+			specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+			overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+			_completers[name] = _completer{
+				Name:        name,
+				Description: completers.Description(name),
+				Spec:        specPath,
+				Overlay:     overlayPath,
+				Bridge:      "zsh",
+			}
+		}
 	}
 
 	return _completers
