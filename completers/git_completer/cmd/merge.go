@@ -32,6 +32,7 @@ func init() {
 	mergeCmd.Flags().String("log", "", "add (at most <n>) entries from shortlog to merge commit message")
 	mergeCmd.Flags().StringP("message", "m", "", "merge commit message")
 	mergeCmd.Flags().BoolS("n", "n", false, "do not show a diffstat at the end of the merge")
+	mergeCmd.Flags().Bool("no-ff", false, "force merge commit")
 	mergeCmd.Flags().Bool("no-verify", false, "bypass pre-merge-commit and commit-msg hooks")
 	mergeCmd.Flags().Bool("overwrite-ignore", false, "update ignored files (default)")
 	mergeCmd.Flags().Bool("progress", false, "force progress reporting")
