@@ -10,14 +10,18 @@ import (
 	"github.com/rsteube/carapace/pkg/execlog"
 )
 
-var zshFilter = []string{}
+var zshFilter = []string{"cd"}
 
-func filter(m map[string]bool, filter ...[]string) {
+func filter(m map[string]bool, filter ...[]string) map[string]bool {
 	for _, f := range filter {
 		for _, e := range f {
+			if e == "cd" {
+				panic("filter cd")
+			}
 			delete(m, e)
 		}
 	}
+	return m
 }
 
 func Zsh() []string {
@@ -51,10 +55,8 @@ func Zsh() []string {
 		}
 	}
 
-	filter(unique, genericFilter, zshFilter)
-
 	completers := make([]string, 0)
-	for name := range unique {
+	for name := range filter(unique, genericFilter, zshFilter) {
 		completers = append(completers, name)
 	}
 	sort.Strings(completers)

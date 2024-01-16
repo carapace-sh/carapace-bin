@@ -33,10 +33,8 @@ func Fish() []string {
 		}
 	}
 
-	filter(unique, genericFilter, fishFilter)
-
 	completers := make([]string, 0)
-	for c := range unique {
+	for c := range filter(unique, genericFilter, fishFilter) {
 		completers = append(completers, c)
 	}
 	return completers
