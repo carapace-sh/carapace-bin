@@ -12,7 +12,7 @@ const (
 func Bridges() []string {
 	v, ok := os.LookupEnv(CARAPACE_BRIDGES)
 	if !ok {
-		return []string{"fish", "zsh"}
+		return []string{"zsh", "fish"}
 	}
 	return strings.Split(v, ",")
 }

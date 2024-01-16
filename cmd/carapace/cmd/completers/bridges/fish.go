@@ -2,10 +2,22 @@ package bridges
 
 import (
 	"os"
+	"runtime"
 	"strings"
+
+	"github.com/rsteube/carapace/pkg/execlog"
 )
 
 func Fish() []string {
+	switch runtime.GOOS {
+	case "windows":
+		return []string{}
+	}
+
+	if _, err := execlog.LookPath("fish"); err != nil {
+		return []string{}
+	}
+
 	// TODO handle different OS/locations
 	entries, err := os.ReadDir("/usr/share/fish/completions")
 	if err != nil {

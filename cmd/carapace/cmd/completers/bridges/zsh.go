@@ -2,6 +2,7 @@ package bridges
 
 import (
 	"os"
+	"runtime"
 	"sort"
 	"strings"
 
@@ -10,6 +11,15 @@ import (
 )
 
 func Zsh() []string {
+	switch runtime.GOOS {
+	case "windows":
+		return []string{}
+	}
+
+	if _, err := execlog.LookPath("zsh"); err != nil {
+		return []string{}
+	}
+
 	out, err := execlog.Command("zsh", "--no-rcs", "-c", "printf '%s\n' $fpath").Output()
 	if err != nil {
 		carapace.LOG.Println(err.Error())
