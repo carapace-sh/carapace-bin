@@ -8,6 +8,8 @@ import (
 	"github.com/rsteube/carapace/pkg/execlog"
 )
 
+var fishFilter = []string{}
+
 func Fish() []string {
 	switch runtime.GOOS {
 	case "windows":
@@ -24,11 +26,18 @@ func Fish() []string {
 		return []string{}
 	}
 
-	completers := make([]string, 0)
+	unique := make(map[string]bool)
 	for _, entry := range entries {
 		if !entry.IsDir() && entry.Name() != "..fish" && strings.HasSuffix(entry.Name(), ".fish") {
-			completers = append(completers, strings.TrimSuffix(entry.Name(), ".fish"))
+			unique[strings.TrimSuffix(entry.Name(), ".fish")] = true
 		}
+	}
+
+	filter(unique, genericFilter, fishFilter)
+
+	completers := make([]string, 0)
+	for c := range unique {
+		completers = append(completers, c)
 	}
 	return completers
 }

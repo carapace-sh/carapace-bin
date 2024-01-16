@@ -10,6 +10,16 @@ import (
 	"github.com/rsteube/carapace/pkg/execlog"
 )
 
+var zshFilter = []string{}
+
+func filter(m map[string]bool, filter ...[]string) {
+	for _, f := range filter {
+		for _, e := range f {
+			delete(m, e)
+		}
+	}
+}
+
 func Zsh() []string {
 	switch runtime.GOOS {
 	case "windows":
@@ -41,10 +51,13 @@ func Zsh() []string {
 		}
 	}
 
+	filter(unique, genericFilter, zshFilter)
+
 	completers := make([]string, 0)
 	for name := range unique {
 		completers = append(completers, name)
 	}
 	sort.Strings(completers)
+
 	return completers
 }

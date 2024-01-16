@@ -13,3 +13,7 @@ var bridges = map[string]t{
 	"kubectl":  complete,
 	"minikube": cobra,
 }
+
+var genericFilter = []string{
+	"cd",
+}
