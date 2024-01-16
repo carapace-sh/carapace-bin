@@ -30,6 +30,7 @@ var invokeCmd = &cobra.Command{
 				},
 			}
 
+			// TODO handle args[0]=command/bridge
 			// TODO yuck
 			command := args[0]
 			shell := args[1]
