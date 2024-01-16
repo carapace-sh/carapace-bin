@@ -15,9 +15,6 @@ var zshFilter = []string{"cd"}
 func filter(m map[string]bool, filter ...[]string) map[string]bool {
 	for _, f := range filter {
 		for _, e := range f {
-			if e == "cd" {
-				panic("filter cd")
-			}
 			delete(m, e)
 		}
 	}
