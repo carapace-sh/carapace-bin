@@ -149,7 +149,14 @@ func Execute(version string) error {
 			}
 
 			uniqueNames := make(map[string]bool)
-			for _, name := range append(completers.Names(), completers.FishCompleters()...) {
+			// TODO enable/order by CARAPACE_BRIDGE
+			for _, name := range completers.Names() {
+				uniqueNames[name] = true
+			}
+			for _, name := range completers.FishCompleters() {
+				uniqueNames[name] = true
+			}
+			for _, name := range completers.ZshCompleters() {
 				uniqueNames[name] = true
 			}
 

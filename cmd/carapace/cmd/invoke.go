@@ -77,7 +77,7 @@ var invokeCmd = &cobra.Command{
 				fmt.Fprint(cmd.OutOrStdout(), out)
 			} else if slices.Contains(completers.Names(), args[0]) {
 				fmt.Print(invokeCompleter(args[0]))
-			} else if slices.Contains(completers.FishCompleters(), args[0]) {
+			} else if slices.Contains(completers.FishCompleters(), args[0]) { // TODO support completer/bridgename (register it under this name) to avoid having to load these every time
 				_fishCmd := &cobra.Command{
 					Use:                args[0],
 					DisableFlagParsing: true,
@@ -94,6 +94,24 @@ var invokeCmd = &cobra.Command{
 					return
 				}
 				fmt.Fprint(cmd.OutOrStdout(), out)
+			} else if slices.Contains(completers.ZshCompleters(), args[0]) { // TODO duplicates fish and should possibly be predefined using slash
+				_zshCmd := &cobra.Command{
+					Use:                args[0],
+					DisableFlagParsing: true,
+				}
+
+				carapace.Gen(_zshCmd).PositionalAnyCompletion(
+					bridge.ActionZsh(args[0]),
+				)
+				carapace.Gen(_zshCmd).Standalone()
+
+				out, err := cmdCompletion(_zshCmd, args[1:]...)
+				if err != nil {
+					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+					return
+				}
+				fmt.Fprint(cmd.OutOrStdout(), out)
+
 			}
 		}
 	},

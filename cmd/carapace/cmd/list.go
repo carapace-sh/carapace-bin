@@ -82,22 +82,6 @@ func mapCompleters(all bool) map[string]_completer {
 	}
 
 	if all {
-		for _, name := range completers.FishCompleters() {
-			if _, ok := _completers[name]; ok {
-				continue
-			}
-
-			specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-			overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-			_completers[name] = _completer{
-				Name:        name,
-				Description: completers.Description(name),
-				Spec:        specPath,
-				Overlay:     overlayPath,
-				Bridge:      "fish",
-			}
-		}
-
 		// TODO configured order and so on
 		for _, name := range completers.ZshCompleters() {
 			if _, ok := _completers[name]; ok {
@@ -108,12 +92,29 @@ func mapCompleters(all bool) map[string]_completer {
 			overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
 			_completers[name] = _completer{
 				Name:        name,
-				Description: completers.Description(name),
+				Description: completers.Description(name), // TODO
 				Spec:        specPath,
 				Overlay:     overlayPath,
 				Bridge:      "zsh",
 			}
 		}
+
+		for _, name := range completers.FishCompleters() {
+			if _, ok := _completers[name]; ok {
+				continue
+			}
+
+			specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+			overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+			_completers[name] = _completer{
+				Name:        name,
+				Description: completers.Description(name), // TODO
+				Spec:        specPath,
+				Overlay:     overlayPath,
+				Bridge:      "fish",
+			}
+		}
+
 	}
 
 	return _completers
