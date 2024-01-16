@@ -16,6 +16,7 @@ import (
 	"github.com/rsteube/carapace-bin/pkg/actions"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/ps"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/rsteube/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
 )
@@ -241,7 +242,29 @@ func init() {
 				cmd.Flags().AddFlagSet(rootCmd.Flags())
 				return carapace.ActionExecute(cmd)
 			}
-			return action.ActionCompleters()
+			return carapace.ActionMultiPartsN("/", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return action.ActionCompleters()
+				default:
+					return carapace.ActionStyledValues(
+						"bash", "#d35673",
+						"carapace", style.Default,
+						"carapace-bin", style.Default,
+						"clap", style.Default,
+						"click", style.Default,
+						"cobra", style.Default,
+						"complete", style.Default,
+						"fish", "#7ea8fc",
+						"inshellisense", style.Default,
+						"kingpin", style.Default,
+						"powershell", style.Default,
+						"urfavecli", style.Default,
+						"yargs", style.Default,
+						"zsh", "#efda53",
+					)
+				}
+			})
 		}),
 	)
 
