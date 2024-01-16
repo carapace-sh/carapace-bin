@@ -11,6 +11,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers/bridges"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/lazyinit"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/shim"
 	"github.com/rsteube/carapace-bin/internal/env"
@@ -158,11 +159,11 @@ func Execute(version string) error {
 			for _, b := range env.Bridges() {
 				switch b {
 				case "fish":
-					for _, name := range completers.FishCompleters() {
+					for _, name := range bridges.Fish() {
 						uniqueNames[name] = true
 					}
 				case "zsh":
-					for _, name := range completers.ZshCompleters() {
+					for _, name := range bridges.Zsh() {
 						uniqueNames[name] = true
 					}
 				}

@@ -7,6 +7,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers/bridges"
 	"github.com/rsteube/carapace-bin/internal/env"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -87,7 +88,7 @@ func mapCompleters(all bool) map[string]_completer {
 		for _, b := range env.Bridges() {
 			switch b {
 			case "fish":
-				for _, name := range completers.FishCompleters() {
+				for _, name := range bridges.Fish() {
 					if _, ok := _completers[name]; ok {
 						continue
 					}
@@ -103,7 +104,7 @@ func mapCompleters(all bool) map[string]_completer {
 					}
 				}
 			case "zsh":
-				for _, name := range completers.ZshCompleters() {
+				for _, name := range bridges.Zsh() {
 					if _, ok := _completers[name]; ok {
 						continue
 					}

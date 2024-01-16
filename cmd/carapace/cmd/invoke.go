@@ -12,6 +12,7 @@ import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers/bridges"
 	"github.com/rsteube/carapace-bin/internal/env"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
@@ -83,7 +84,7 @@ var invokeCmd = &cobra.Command{
 				for _, b := range env.Bridges() {
 					switch b {
 					case "fish":
-						if slices.Contains(completers.FishCompleters(), args[0]) { // TODO support completer/bridgename (register it under this name) to avoid having to load these every time
+						if slices.Contains(bridges.Fish(), args[0]) { // TODO support completer/bridgename (register it under this name) to avoid having to load these every time
 							_fishCmd := &cobra.Command{
 								Use:                args[0],
 								DisableFlagParsing: true,
@@ -103,7 +104,7 @@ var invokeCmd = &cobra.Command{
 							return
 						}
 					case "zsh":
-						if slices.Contains(completers.ZshCompleters(), args[0]) { // TODO duplicates fish and should possibly be predefined using slash
+						if slices.Contains(bridges.Zsh(), args[0]) { // TODO duplicates fish and should possibly be predefined using slash
 							_zshCmd := &cobra.Command{
 								Use:                args[0],
 								DisableFlagParsing: true,
