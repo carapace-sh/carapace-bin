@@ -19,11 +19,11 @@ func init() {
 				"CARAPACE_MATCH":         "match case insensitive",
 				"CARAPACE_SANDBOX":       "mock context for sandbox tests",
 				"CARAPACE_ZSH_HASH_DIRS": "zsh hash directories",
-				// carapace-bridge
-				"CARAPACE_BRIDGE": "order of implicit bridges",
+				// carapace-bin
+				"CARAPACE_BRIDGES": "order of implicit bridges",
 			},
 			VariableCompletion: map[string]carapace.Action{
-				"CARAPACE_BRIDGE": carapace.ActionStyledValues(
+				"CARAPACE_BRIDGES": carapace.ActionStyledValues(
 					"fish", "#7ea8fc",
 					"zsh", "#efda53",
 				).UniqueList(","),

@@ -13,6 +13,7 @@ import (
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/lazyinit"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/shim"
+	"github.com/rsteube/carapace-bin/internal/env"
 	"github.com/rsteube/carapace-bin/pkg/actions"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/ps"
@@ -154,11 +155,17 @@ func Execute(version string) error {
 			for _, name := range completers.Names() {
 				uniqueNames[name] = true
 			}
-			for _, name := range completers.FishCompleters() {
-				uniqueNames[name] = true
-			}
-			for _, name := range completers.ZshCompleters() {
-				uniqueNames[name] = true
+			for _, b := range env.Bridges() {
+				switch b {
+				case "fish":
+					for _, name := range completers.FishCompleters() {
+						uniqueNames[name] = true
+					}
+				case "zsh":
+					for _, name := range completers.ZshCompleters() {
+						uniqueNames[name] = true
+					}
+				}
 			}
 
 			completerNames := make([]string, 0)
