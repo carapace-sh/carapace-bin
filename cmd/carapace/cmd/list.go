@@ -7,6 +7,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/rsteube/carapace-bin/internal/env"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -83,38 +84,42 @@ func mapCompleters(all bool) map[string]_completer {
 
 	if all {
 		// TODO configured order and so on
-		for _, name := range completers.ZshCompleters() {
-			if _, ok := _completers[name]; ok {
-				continue
-			}
+		for _, b := range env.Bridges() {
+			switch b {
+			case "fish":
+				for _, name := range completers.FishCompleters() {
+					if _, ok := _completers[name]; ok {
+						continue
+					}
 
-			specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-			overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-			_completers[name] = _completer{
-				Name:        name,
-				Description: completers.Description(name), // TODO
-				Spec:        specPath,
-				Overlay:     overlayPath,
-				Bridge:      "zsh",
+					specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+					overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+					_completers[name] = _completer{
+						Name:        name,
+						Description: completers.Description(name), // TODO
+						Spec:        specPath,
+						Overlay:     overlayPath,
+						Bridge:      "fish",
+					}
+				}
+			case "zsh":
+				for _, name := range completers.ZshCompleters() {
+					if _, ok := _completers[name]; ok {
+						continue
+					}
+
+					specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+					overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+					_completers[name] = _completer{
+						Name:        name,
+						Description: completers.Description(name), // TODO
+						Spec:        specPath,
+						Overlay:     overlayPath,
+						Bridge:      "zsh",
+					}
+				}
 			}
 		}
-
-		for _, name := range completers.FishCompleters() {
-			if _, ok := _completers[name]; ok {
-				continue
-			}
-
-			specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-			overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-			_completers[name] = _completer{
-				Name:        name,
-				Description: completers.Description(name), // TODO
-				Spec:        specPath,
-				Overlay:     overlayPath,
-				Bridge:      "fish",
-			}
-		}
-
 	}
 
 	return _completers
