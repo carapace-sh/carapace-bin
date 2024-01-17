@@ -54,7 +54,10 @@ func init() {
 
 	carapace.Gen(getCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: c.Args[0]}).Filter(c.Args[1:]...)
+			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Namespace: rootCmd.Flag("namespace").Value.String(),
+				Types:     c.Args[0],
+			}).Filter(c.Args[1:]...)
 		}),
 	)
 }

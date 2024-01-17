@@ -30,8 +30,13 @@ func init() {
 	createCmd.AddCommand(create_jobCmd)
 
 	carapace.Gen(create_jobCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":  kubectl.ActionDryRunModes(),
-		"from":     kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "cronjobs"}),
+		"dry-run": kubectl.ActionDryRunModes(),
+		"from": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Namespace: rootCmd.Flag("namespace").Value.String(),
+				Types:     "cronjobs",
+			})
+		}),
 		"output":   kubectl.ActionOutputFormats(),
 		"template": carapace.ActionFiles(),
 	})

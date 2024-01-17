@@ -26,7 +26,13 @@ func init() {
 	clusterInfoCmd.AddCommand(clusterInfo_dumpCmd)
 
 	carapace.Gen(clusterInfo_dumpCmd).FlagCompletion(carapace.ActionMap{
-		"namespaces":       kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "namespaces"}),
+		"namespaces": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			var namespace string
+			if !clusterInfoCmd.Flag("all-namespaces").Changed {
+				namespace = rootCmd.Flag("namespace").Value.String()
+			}
+			return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: namespace, Types: "namespaces"})
+		}),
 		"output":           kubectl.ActionOutputFormats(),
 		"output-directory": carapace.ActionDirectories(),
 		"template":         carapace.ActionFiles(),

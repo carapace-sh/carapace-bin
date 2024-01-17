@@ -28,7 +28,10 @@ func init() {
 			if len(c.Args) == 0 {
 				return carapace.ActionMessage("no resource specified")
 			} else {
-				return kubectl.ActionContainers(kubectl.ContainerOpts{Namespace: "", Resource: c.Args[0]})
+				return kubectl.ActionContainers(kubectl.ContainerOpts{
+					Namespace: rootCmd.Flag("namespace").Value.String(),
+					Resource:  c.Args[0],
+				})
 			}
 		}),
 	})

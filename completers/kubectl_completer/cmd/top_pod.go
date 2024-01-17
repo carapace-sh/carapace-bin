@@ -31,6 +31,11 @@ func init() {
 	})
 
 	carapace.Gen(top_podCmd).PositionalCompletion(
-		kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "pods"}),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Namespace: rootCmd.Flag("namespace").Value.String(),
+				Types:     "pods",
+			})
+		}),
 	)
 }

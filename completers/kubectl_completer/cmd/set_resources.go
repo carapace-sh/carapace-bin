@@ -55,7 +55,10 @@ func init() {
 			if set_resourcesCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {
-				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: c.Args[0]})
+				return kubectl.ActionResources(kubectl.ResourceOpts{
+					Namespace: rootCmd.Flag("namespace").Value.String(),
+					Types:     c.Args[0],
+				})
 			}
 		}),
 	)
