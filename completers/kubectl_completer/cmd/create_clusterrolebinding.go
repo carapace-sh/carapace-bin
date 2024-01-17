@@ -33,7 +33,12 @@ func init() {
 	createCmd.AddCommand(create_clusterrolebindingCmd)
 
 	carapace.Gen(create_clusterrolebindingCmd).FlagCompletion(carapace.ActionMap{
-		"clusterrole":    kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "clusterrole"}),
+		"clusterrole": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Namespace: rootCmd.Flag("namespace").Value.String(),
+				Types:     "clusterrole",
+			})
+		}),
 		"dry-run":        kubectl.ActionDryRunModes(),
 		"output":         kubectl.ActionOutputFormats(),
 		"serviceaccount": kubectl.ActionNamespaceServiceAccounts(),

@@ -58,7 +58,10 @@ func init() {
 			if labelCmd.Flag("all").Changed {
 				return carapace.ActionValues()
 			} else {
-				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: c.Args[0]})
+				return kubectl.ActionResources(kubectl.ResourceOpts{
+					Namespace: rootCmd.Flag("namespace").Value.String(),
+					Types:     c.Args[0],
+				})
 			}
 		}),
 	)
@@ -68,7 +71,10 @@ func init() {
 			if labelCmd.Flag("filename").Changed || labelCmd.Flag("all").Changed {
 				return carapace.ActionValues() // TODO support labels for file
 			} else {
-				return kubectl.ActionLabels(kubectl.LabelOpts{Namespace: "", Resource: c.Args[0] + "/" + c.Args[1]})
+				return kubectl.ActionLabels(kubectl.LabelOpts{
+					Namespace: rootCmd.Flag("namespace").Value.String(),
+					Resource:  c.Args[0] + "/" + c.Args[1],
+				})
 			}
 		}),
 	)

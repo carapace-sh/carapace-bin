@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -68,6 +69,7 @@ func init() {
 		"client-certificate":    carapace.ActionFiles(),
 		"client-key":            carapace.ActionFiles(),
 		"kubeconfig":            carapace.ActionFiles(),
+		"namespace":             kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "namespaces"}),
 		"profile":               carapace.ActionValues("none", "cpu", "heap", "goroutine", "threadcreate", "block", "mutex"),
 		"profile-output":        carapace.ActionFiles(),
 		// TODO add completions for kubeconfig based flags

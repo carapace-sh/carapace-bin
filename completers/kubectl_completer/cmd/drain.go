@@ -37,6 +37,11 @@ func init() {
 	})
 
 	carapace.Gen(drainCmd).PositionalCompletion(
-		kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "nodes"}),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Namespace: rootCmd.Flag("namespace").Value.String(),
+				Types:     "nodes",
+			})
+		}),
 	)
 }

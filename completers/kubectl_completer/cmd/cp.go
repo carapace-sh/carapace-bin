@@ -35,7 +35,10 @@ func init() {
 			splitted := strings.SplitN(strings.SplitN(resource, ":", 2)[0], "/", 2)
 
 			if len(splitted) == 2 {
-				return kubectl.ActionContainers(kubectl.ContainerOpts{Namespace: splitted[0], Resource: "pods/" + splitted[1]})
+				return kubectl.ActionContainers(kubectl.ContainerOpts{
+					Namespace: rootCmd.Flag("namespace").Value.String(),
+					Resource:  "pods/" + splitted[1],
+				})
 			} else {
 				return carapace.ActionMessage("missing resource argument")
 			}
