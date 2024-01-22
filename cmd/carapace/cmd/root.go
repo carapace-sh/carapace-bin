@@ -9,12 +9,12 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/lazyinit"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/shim"
 	"github.com/rsteube/carapace-bin/pkg/actions"
 	spec "github.com/rsteube/carapace-spec"
 	"github.com/rsteube/carapace/pkg/ps"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/rsteube/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
 )
@@ -47,6 +47,9 @@ var rootCmd = &cobra.Command{
   Style:
     set:        carapace --style 'carapace.Value=bold,magenta'
     clear:      carapace --style 'carapace.Description='
+
+  Bridges:
+    set-env CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
 
   Shell parameter is optional and if left out carapace will try to detect it by parent process name.
   Some completions are cached at [%v/carapace].
@@ -126,6 +129,7 @@ func overlayCompletion(overlayPath string, args ...string) carapace.Action {
 		return carapace.ActionImport([]byte(out))
 	})
 }
+
 func Execute(version string) error {
 	rootCmd.Version = version
 
@@ -146,45 +150,22 @@ func Execute(version string) error {
 				println(err.Error())
 			}
 
-			completers := completers.Names()
-			if os.Getenv("CARAPACE_ENV") == "0" {
-				filtered := make([]string, 0, len(completers))
-				for _, name := range completers {
-					switch name {
-					case "get-env", "set-env", "unset-env":
-					default:
-						filtered = append(filtered, name)
-
-					}
-				}
-				completers = filtered
-			}
-
 			switch shell {
-			case "bash":
-				fmt.Println(lazyinit.Bash(completers))
-			case "bash-ble":
-				fmt.Println(lazyinit.BashBle(completers))
-			case "elvish":
-				fmt.Println(lazyinit.Elvish(completers))
-			case "fish":
-				fmt.Println(lazyinit.Fish(completers))
-			case "nushell":
-				fmt.Println(lazyinit.Nushell(completers))
-			case "oil":
-				fmt.Println(lazyinit.Oil(completers))
-			case "powershell":
-				fmt.Println(lazyinit.Powershell(completers))
-			case "tcsh":
-				fmt.Println(lazyinit.Tcsh(completers))
-			case "xonsh":
-				fmt.Println(lazyinit.Xonsh(completers))
-			case "zsh":
-				fmt.Println(lazyinit.Zsh(completers))
+			case "bash",
+				"bash-ble",
+				"elvish",
+				"fish",
+				"nushell",
+				"oil",
+				"powershell",
+				"tcsh",
+				"xonsh",
+				"zsh":
+				fmt.Println(lazyinit.Snippet(shell)) // TODO maybe just return an error for unknown shell
 			default:
 				// TODO
 				// println("could not determine shell")
-				return rootCmd.Execute()
+				return rootCmd.Execute() // TODO verify
 			}
 			return nil
 		}
@@ -222,7 +203,29 @@ func init() {
 				cmd.Flags().AddFlagSet(rootCmd.Flags())
 				return carapace.ActionExecute(cmd)
 			}
-			return action.ActionCompleters()
+			return carapace.ActionMultiPartsN("/", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return action.ActionCompleters(action.CompleterOpts{}.Default())
+				default:
+					return carapace.ActionStyledValues(
+						"bash", "#d35673",
+						"carapace", style.Default,
+						"carapace-bin", style.Default,
+						"clap", style.Default,
+						"click", style.Default,
+						"cobra", style.Default,
+						"complete", style.Default,
+						"fish", "#7ea8fc",
+						"inshellisense", style.Default,
+						"kingpin", style.Default,
+						"powershell", style.Default,
+						"urfavecli", style.Default,
+						"yargs", style.Default,
+						"zsh", "#efda53",
+					)
+				}
+			})
 		}),
 	)
 

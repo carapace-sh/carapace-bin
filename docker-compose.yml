@@ -5,6 +5,7 @@ services:
     image: ghcr.io/rsteube/carapace
     command: sh -c 'sh -c "cd /carapace-bin/cmd/carapace && go generate ./... && go build -ldflags=\"-s -w\" ."'
     environment:
+      CARAPACE_BRIDGES: zsh,fish,bash
       TARGET: /carapace-bin/cmd/carapace/carapace
     volumes:
       - '.:/carapace-bin/'

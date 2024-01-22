@@ -8,6 +8,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/rsteube/carapace-bin/pkg/env"
 	"github.com/rsteube/carapace/pkg/xdg"
 	"gopkg.in/yaml.v3"
 )
@@ -18,16 +19,32 @@ var (
 )
 
 func Names() []string {
-	names = append(names, "carapace") // TODO add here or in generate?
+	excludes := make(map[string]bool)
+	for _, e := range env.Excludes() {
+		excludes[e] = true
+	}
 
-	unique := make(map[string]string)
-	for _, name := range names {
-		unique[name] = name
+	unique := map[string]bool{
+		"carapace": true,
+	}
+
+	if os.Getenv("CARAPACE_ENV") != "0" {
+		unique["get-env"] = true
+		unique["set-env"] = true
+		unique["unset-env"] = true
+	}
+
+	if _, ok := excludes["*"]; !ok {
+		for _, name := range names {
+			if _, ok := excludes[name]; !ok {
+				unique[name] = true
+			}
+		}
 	}
 	//if specNames, err := Specs(); err == nil {
 	if specNames, _ := Specs(); true { // TODO use and handle err
 		for _, name := range specNames {
-			unique[name] = name
+			unique[name] = true
 		}
 	}
 
