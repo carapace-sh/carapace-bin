@@ -61,6 +61,9 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
 		switch args[0] {
+		case "--clear-cache":
+			clearCacheCmd.SetArgs(args[1:])
+			clearCacheCmd.Execute()
 		case "--condition":
 			conditionCmd.SetArgs(args[1:])
 			conditionCmd.Execute()
@@ -174,6 +177,7 @@ func Execute(version string) error {
 }
 
 func init() {
+	rootCmd.Flags().Bool("clear-cache", false, "clear caches")
 	rootCmd.Flags().Bool("codegen", false, "generate code for spec file")
 	rootCmd.Flags().Bool("condition", false, "list or execute condition")
 	rootCmd.Flags().BoolP("help", "h", false, "help for carapace")
@@ -185,6 +189,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
 
 	rootCmd.MarkFlagsMutuallyExclusive(
+		"clear-cache",
 		"codegen",
 		"condition",
 		"help",
@@ -235,6 +240,8 @@ func init() {
 				return carapace.ActionExecute(invokeCmd)
 			}
 			switch c.Args[0] {
+			case "--clear-cache":
+				return carapace.ActionExecute(clearCacheCmd).Shift(1)
 			case "--codegen":
 				return carapace.ActionExecute(codegenCmd).Shift(1)
 			case "--condition":
