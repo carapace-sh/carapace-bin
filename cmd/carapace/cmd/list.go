@@ -84,6 +84,21 @@ func mapCompleters(all bool) map[string]_completer {
 	}
 
 	if all {
+		for name, bridge := range bridges.Config() {
+			if _, ok := _completers[name]; ok {
+				continue
+			}
+			specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+			overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+			_completers[name] = _completer{
+				Name:        name,
+				Description: completers.Description(name), // TODO
+				Spec:        specPath,
+				Overlay:     overlayPath,
+				Bridge:      bridge,
+			}
+		}
+
 		// TODO configured order and so on
 		for _, b := range env.Bridges() {
 			switch b {
