@@ -13,8 +13,6 @@ import (
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
-	"github.com/rsteube/carapace-bridge/pkg/bridges"
-	"github.com/rsteube/carapace-bridge/pkg/env"
 	"github.com/spf13/cobra"
 )
 
@@ -141,93 +139,23 @@ func oldInvoke(cmd *cobra.Command, args []string) {
 		} else if slices.Contains(completers.Names(), args[0]) {
 			fmt.Print(invokeCompleter(args[0]))
 		} else {
-			for _, b := range env.Bridges() {
-				switch b {
-				case "bash":
-					if slices.Contains(bridges.Bash(), args[0]) { // TODO support completer/bridgename (register it under this name) to avoid having to load these every time
-						_bashCmd := &cobra.Command{
-							Use:                args[0],
-							DisableFlagParsing: true,
-						}
-
-						carapace.Gen(_bashCmd).PositionalAnyCompletion(
-							bridge.ActionBash(args[0]),
-						)
-						carapace.Gen(_bashCmd).Standalone()
-
-						out, err := cmdCompletion(_bashCmd, args[1:]...)
-						if err != nil {
-							fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-							return
-						}
-						fmt.Fprint(cmd.OutOrStdout(), out)
-						return
-					}
-
-				case "fish":
-					if slices.Contains(bridges.Fish(), args[0]) { // TODO support completer/bridgename (register it under this name) to avoid having to load these every time
-						_fishCmd := &cobra.Command{
-							Use:                args[0],
-							DisableFlagParsing: true,
-						}
-
-						carapace.Gen(_fishCmd).PositionalAnyCompletion(
-							bridge.ActionFish(args[0]),
-						)
-						carapace.Gen(_fishCmd).Standalone()
-
-						out, err := cmdCompletion(_fishCmd, args[1:]...)
-						if err != nil {
-							fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-							return
-						}
-						fmt.Fprint(cmd.OutOrStdout(), out)
-						return
-					}
-
-				case "inshellisense":
-					if slices.Contains(bridges.Inshellisense(), args[0]) { // TODO support completer/bridgename (register it under this name) to avoid having to load these every time
-						_fishCmd := &cobra.Command{
-							Use:                args[0],
-							DisableFlagParsing: true,
-						}
-
-						carapace.Gen(_fishCmd).PositionalAnyCompletion(
-							bridge.ActionInshellisense(args[0]),
-						)
-						carapace.Gen(_fishCmd).Standalone()
-
-						out, err := cmdCompletion(_fishCmd, args[1:]...)
-						if err != nil {
-							fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-							return
-						}
-						fmt.Fprint(cmd.OutOrStdout(), out)
-						return
-					}
-
-				case "zsh":
-					if slices.Contains(bridges.Zsh(), args[0]) { // TODO duplicates fish and should possibly be predefined using slash
-						_zshCmd := &cobra.Command{
-							Use:                args[0],
-							DisableFlagParsing: true,
-						}
-
-						carapace.Gen(_zshCmd).PositionalAnyCompletion(
-							bridge.ActionZsh(args[0]),
-						)
-						carapace.Gen(_zshCmd).Standalone()
-
-						out, err := cmdCompletion(_zshCmd, args[1:]...)
-						if err != nil {
-							fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-							return
-						}
-						fmt.Fprint(cmd.OutOrStdout(), out)
-						return
-					}
-				}
+			_bridgeCmd := &cobra.Command{
+				Use:                args[0],
+				DisableFlagParsing: true,
 			}
+
+			carapace.Gen(_bridgeCmd).PositionalAnyCompletion(
+				bridge.ActionBridges(args[0]),
+			)
+			carapace.Gen(_bridgeCmd).Standalone()
+
+			out, err := cmdCompletion(_bridgeCmd, args[1:]...)
+			if err != nil {
+				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+				return
+			}
+			fmt.Fprint(cmd.OutOrStdout(), out)
+			return
 		}
 	}
 }
