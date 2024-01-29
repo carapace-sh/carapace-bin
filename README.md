@@ -1,6 +1,3 @@
-> [!IMPORTANT]
-> Some parts in documentation (asciicasts) still need to be updated for changes made in [v0.29](https://rsteube.github.io/carapace-bin/release_notes/v0.29.html)
-
 # carapace-bin
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/rsteube/carapace-bin/pkg/actions)](https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions)
