@@ -82,7 +82,6 @@ var invokeCmd = &cobra.Command{
 
 func oldInvoke(cmd *cobra.Command, args []string) {
 	if overlayPath, err := overlayPath(args[0]); err == nil && len(args) > 2 { // and arg[1] is a known shell
-		// TODO support bridges here
 		cmd := &cobra.Command{
 			DisableFlagParsing: true,
 			CompletionOptions: cobra.CompletionOptions{
@@ -90,7 +89,6 @@ func oldInvoke(cmd *cobra.Command, args []string) {
 			},
 		}
 
-		// TODO handle args[0]=command/bridge
 		// TODO yuck
 		command := args[0]
 		shell := args[1]

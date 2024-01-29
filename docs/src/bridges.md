@@ -1,7 +1,5 @@
 # Bridges
 
-> feature under development
-
 With `~/.config/carapace/bridges.yaml` generic bridges can be configured for commands.
 
 ```yaml

@@ -99,7 +99,6 @@ func mapCompleters(all bool) map[string]_completer {
 			}
 		}
 
-		// TODO configured order and so on
 		for _, b := range env.Bridges() {
 			switch b {
 			case "bash":
