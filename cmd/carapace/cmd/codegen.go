@@ -10,7 +10,7 @@ var codegenCmd = &cobra.Command{
 	Short: "",
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		scrape(args[0])
+		codegen(args[0])
 	},
 }
 
