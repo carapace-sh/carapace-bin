@@ -1,5 +1,5 @@
-[!IMPORTANT]
-Version shift in documentation while preparing for [v0.30](https://rsteube.github.io/carapace-bin/release_notes/v0.30.html)
+> [!IMPORTANT]
+> Version shift in documentation while preparing for [v0.30](https://rsteube.github.io/carapace-bin/release_notes/v0.30.html)
 
 # carapace-bin
 
