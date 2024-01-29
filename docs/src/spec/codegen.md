@@ -6,4 +6,4 @@
 carapace --codegen [spec]
 ```
 
-![](./scrape.cast)
+![](./codegen.cast)

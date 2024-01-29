@@ -3,6 +3,7 @@
 ## github.yaml
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: github
 completion:
   positional:
@@ -15,6 +16,7 @@ completion:
 ## zipfile.yaml
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: zipfile
 completion:
   positional:
@@ -27,6 +29,7 @@ completion:
 ## refs.yaml
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: refs
 flags:
   -t, --tags: include tags # ${C_FLAG_TAGS}
@@ -44,37 +47,13 @@ completion:
 ## g.yaml
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: g
 commands:
-  - name: checkout
-    description: Switch branches or restore working tree files
-    group: git
-    run: "[git, checkout]"
-
-  - name: commit
-    description: Record changes to the repository
-    group: git
-    run: "[git, commit]"
-
-  - name: diff
-    description: Show changes between commits
-    group: git
-    run: "[git, diff]"
-
   - name: log
     description: Show commit logs
     group: git
     run: "[git, log]"
-
-  - name: push
-    description: Update remote refs along with associated objects
-    group: git
-    run: "[git, push]"
-
-  - name: switch
-    description: Switch branches
-    group: git
-    run: "[git, checkout]"
 
   - name: issue
     description: Manage issues
@@ -84,11 +63,6 @@ commands:
       - name: bugs
         description: List bugs
         run: "[gh, issue, list, --label, bug]"
-
-  - name: pr
-    description: Manage pull requests
-    group: gh
-    run: "[gh, pr]"
 
   - name: edit
     description: Edit changed files
