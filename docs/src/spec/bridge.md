@@ -16,8 +16,10 @@ Bridging completions from another engine for shells not natively supported by it
 [kislyuk/argcomplete] based commands can be bridged with the [`bridge.Argcomplete`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: az
 description: Azure Command-Line Interface
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Argcomplete([az])"]
 ```
@@ -27,8 +29,10 @@ completion:
 [rsteube/carapace] based commands can be bridged with the [`bridge.Carapace`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: freckles
 description: simple dotfile manager
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Carapace([freckles])"]
 ```
@@ -38,8 +42,10 @@ completion:
 [Completers](../completers.md) and [Specs](../spec.md) registered in [rsteube/carapace-bin] can be bridged with the [`bridge.CarapaceBin`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: github-cli
 description: Work seamlessly with GitHub from the command line
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.CarapaceBin([gh])"]
 ```
@@ -49,8 +55,10 @@ completion:
 [clap-rs/clap] based commands can be bridged with the [`bridge.Clap`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: dyamic
 description: clap dynamic example
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Clap([dynamic])"]
 ```
@@ -60,8 +68,10 @@ completion:
 [pallets/click] based commands can be bridged with the [`bridge.Click`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: watson
 description: Watson is a tool aimed at helping you monitoring your time
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Click([watson])"]
 ```
@@ -71,8 +81,10 @@ completion:
 [spf13/cobra] based commands can be bridged with the [`bridge.Cobra`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: kubectl
 description: kubectl controls the Kubernetes cluster manager
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Cobra([kubectl])"]
 ```
@@ -81,8 +93,10 @@ completion:
 [posener/complete] based commands can be bridged with the [`bridge.Complete`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: vault
 description: Manage Secrets & Protect Sensitive Data
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Complete([vault])"]
 ```
@@ -91,8 +105,10 @@ completion:
 Commands provided by [microsoft/inshellisense] can be bridged with the [`bridge.Inshellisense`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: node
 description: Run the node interpreter
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Inshellisense([node])"]
 ```
@@ -102,8 +118,10 @@ completion:
 [alecthomas/kingpin] based commands can be bridged with the [`bridge.Kingpin`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: tsh
 description: Teleport Command Line Client
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Kingpin([tsh])"]
 ```
@@ -113,8 +131,10 @@ completion:
 [urfave/cli] based commands can be bridged with the [`bridge.Urfavecli`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: tea
 description: command line tool to interact with Gitea
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Urfavecli([tea])"]
 ```
@@ -123,8 +143,10 @@ completion:
 [yargs/yargs] based commands can be bridged with the [`bridge.Yargs`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: ng
 description: CLI tool for Angular
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Yargs([ng])"]
 ```
@@ -139,8 +161,10 @@ completion:
 Commands registered in [bash] can be bridged with the [`bridge.Bash`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name:  tail
 description: output the last part of files
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Bash([tail])"]
 ```
@@ -150,8 +174,10 @@ completion:
 Commands registered in [fish-shell/fish-shell] can be bridged with the [`bridge.Fish`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name:  git
 description: the stupid content tracker
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Fish([git])"]
 ```
@@ -161,8 +187,10 @@ completion:
 Commands registered in [powershell] can be bridged with the [`bridge.Powershell`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name:  ConvertTo-Json
 description: convert to json
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Powershell([ConvertTo-Json])"]
 ```
@@ -172,8 +200,10 @@ completion:
 Commands registered in [zsh] can be bridged with the [`bridge.Zsh`] macro:
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name:  git
 description: the stupid content tracker
+parsing: disabled
 completion:
   positionalany: ["$carapace.bridge.Zsh([git])"]
 ```
