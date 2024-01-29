@@ -6,6 +6,7 @@
     - [Environment](./setup/environment.md)
   - [Completers](./completers.md)
   - [Style](./style.md)
+  - [Bridges](./bridges.md)
   - [Spec](./spec.md)
     - [User](./spec/user.md)
     - [Bridge](./spec/bridge.md)
