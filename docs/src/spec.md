@@ -5,6 +5,7 @@ Custom completions can be defined using yaml files.
 > see [carapace-spec] for more documentation
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: mycmd
 description: my command
 flags:

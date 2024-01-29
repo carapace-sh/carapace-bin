@@ -3,11 +3,12 @@
 The [bridged](./bridge.md) completion can also be embedded as subcommand.
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: embed
 commands:
   - name: git
     completion:
-      positionalany: ["$chdir(~/.password-store)", "$carapace.bridge.CarapaceBin([git])"]
+      positionalany: ["$carapace.bridge.CarapaceBin([git]) ||| $chdir(~/.password-store)"]
 ```
 
 ![](./embed.cast)
@@ -19,6 +20,7 @@ Embedding is also internally used to enable plugin completion for tools like `ca
 E.g. the [gh-repo-collab](https://github.com/mislav/gh-repo-collab) extension for [GitHub CLI](https://cli.github.com/):
 
 ```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: gh-repo-collab
 description: manage repository collaborators
 commands:
