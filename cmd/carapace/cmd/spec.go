@@ -30,10 +30,10 @@ func loadSpec(path string) (string, *spec.Command, error) {
 	return abs, &specCmd, nil
 }
 
-func scrape(path string) {
+func codegen(path string) {
 	// TODO yuck - all this needs some cleanup
 	if _, spec, err := loadSpec(path); err == nil {
-		spec.Scrape()
+		spec.Codegen()
 	}
 }
 
