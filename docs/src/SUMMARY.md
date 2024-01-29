@@ -3,6 +3,7 @@
 - [carapace-bin](./carapace-bin.md)
   - [Installation](./installation.md)
   - [Setup](./setup.md)
+    - [Environment](./setup/environment.md)
   - [Completers](./completers.md)
   - [Style](./style.md)
   - [Spec](./spec.md)

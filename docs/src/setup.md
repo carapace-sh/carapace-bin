@@ -10,6 +10,7 @@
 
 ```sh
 # ~/.bashrc
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)
 ```
 
@@ -19,6 +20,7 @@ source <(carapace _carapace)
 
 ```sh
 # ~/.elvish/rc.elv
+set-env CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 eval (carapace _carapace|slurp)
 ```
 
@@ -28,6 +30,7 @@ eval (carapace _carapace|slurp)
 
 ```sh
 # ~/.config/fish/config.fish
+set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 mkdir -p ~/.config/fish/completions
 carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
 carapace _carapace | source
@@ -39,6 +42,7 @@ carapace _carapace | source
 
 ```sh
 ## ~/.config/nushell/env.nu
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 mkdir ~/.cache/carapace
 carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
 
@@ -52,6 +56,7 @@ source ~/.cache/carapace/init.nu
 
 ```sh
 # ~/.config/oil/oshrc
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)
 ```
 
@@ -61,6 +66,7 @@ source <(carapace _carapace)
 
 ```sh
 # ~/.config/powershell/Microsoft.PowerShell_profile.ps1
+$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
@@ -71,6 +77,7 @@ carapace _carapace | Out-String | Invoke-Expression
 ## Tcsh
 ```sh
 # ~/.tcshrc
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 set autolist
 eval `carapace _carapace`
 ```
@@ -80,6 +87,7 @@ eval `carapace _carapace`
 ## Xonsh
 ```sh
 # ~/.config/xonsh/rc.xsh
+CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 COMPLETIONS_CONFIRM=True
 exec($(carapace _carapace))
 ```
@@ -90,6 +98,7 @@ exec($(carapace _carapace))
 
 ```sh
 # ~/.zshrc
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
 ```
@@ -100,8 +109,3 @@ zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'exter
 ```
 
 ![](./setup-zsh.png)
-
-## Case-insensitive matching
-
-For enabling case-insensitive matching of arguments or file/directory names with commands like `ls`,
-set the `CARAPACE_MATCH` environment variable to `CASE_INSENSITIVE` or `1`, either before or after registering the completers.
