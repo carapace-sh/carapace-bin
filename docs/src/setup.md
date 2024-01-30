@@ -2,9 +2,6 @@
 
 > This registers all the available [completers](./completers.md).
 > It is also possible to load a single one by replacing `_carapace` with the completer name (e.g. `carapace chmod`).
->
-> Skipping a completer is not possible [yet](https://github.com/rsteube/carapace/pull/539), but registering a different one after carapace overrides it.
-> The script can also be edited manually to remove unwanted entries.
 
 ## Bash
 
