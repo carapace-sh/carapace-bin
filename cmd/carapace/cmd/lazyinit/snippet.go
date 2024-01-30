@@ -50,6 +50,12 @@ func Snippet(shell string) string {
 		}
 	}
 
+	for name, s := range bridges.Config() {
+		if s != shell { // don't bridge native completions
+			uniqueNames[name] = true
+		}
+	}
+
 	for _, name := range completers.Names() {
 		uniqueNames[name] = true
 	}
