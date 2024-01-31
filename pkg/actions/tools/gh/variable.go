@@ -81,3 +81,18 @@ func ActionOrganisationVariables(opts OwnerOpts) carapace.Action {
 		})
 	})
 }
+
+// ActionVariableFields completes variable fields
+//
+//	name
+//	value
+func ActionVariableFields() carapace.Action {
+	return carapace.ActionValues(
+		"name",
+		"value",
+		"visibility",
+		"updatedAt",
+		"numSelectedRepos",
+		"selectedReposURL",
+	)
+}
