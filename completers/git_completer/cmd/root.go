@@ -89,7 +89,19 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
-		return action.Chdir(rootCmd.Flag("C").Value.String())
+		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if f := rootCmd.Flag("git-dir"); f.Changed {
+				c.Setenv("GIT_DIR", f.Value.String())
+			}
+			if f := rootCmd.Flag("work-tree"); f.Changed {
+				c.Setenv("GIT_WORK_TREE", f.Value.String())
+				action = action.Chdir(f.Value.String())
+			}
+			if f := rootCmd.Flag("C"); f.Changed {
+				action = action.Chdir(f.Value.String())
+			}
+			return action.Invoke(c).ToA()
+		})
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
