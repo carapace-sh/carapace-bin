@@ -29,7 +29,7 @@ func init() {
 	rootCmd.Flags().BoolP("help", "h", false, "show this help message and exit")
 	rootCmd.Flags().BoolP("patch", "p", false, "select hunks interactively")
 	rootCmd.Flags().BoolP("quiet", "q", false, "print less information")
-	rootCmd.Flags().Bool("staged,", false, "format lines in the stage instead of the working dir")
+	rootCmd.Flags().Bool("staged", false, "format lines in the stage instead of the working dir")
 	rootCmd.Flags().String("style", "", "passed to clang-format")
 	rootCmd.Flags().BoolP("verbose", "v", false, "print extra information")
 
