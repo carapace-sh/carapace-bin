@@ -1,6 +1,3 @@
-> [!IMPORTANT]
-> Version shift in documentation while preparing for [v0.30](https://rsteube.github.io/carapace-bin/release_notes/v0.30.html)
-
 # carapace-bin
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/rsteube/carapace-bin/pkg/actions)](https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions)
