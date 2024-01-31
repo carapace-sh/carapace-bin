@@ -13,6 +13,7 @@ import (
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/rsteube/carapace-bridge/pkg/bridges"
 	"github.com/spf13/cobra"
 )
 
@@ -137,22 +138,24 @@ func oldInvoke(cmd *cobra.Command, args []string) {
 		} else if slices.Contains(completers.Names(), args[0]) {
 			fmt.Print(invokeCompleter(args[0]))
 		} else {
-			_bridgeCmd := &cobra.Command{
-				Use:                args[0],
-				DisableFlagParsing: true,
-			}
+			if _, ok := bridges.Bridges()[args[0]]; ok {
+				_bridgeCmd := &cobra.Command{
+					Use:                args[0],
+					DisableFlagParsing: true,
+				}
 
-			carapace.Gen(_bridgeCmd).PositionalAnyCompletion(
-				bridge.ActionBridges(args[0]),
-			)
-			carapace.Gen(_bridgeCmd).Standalone()
+				carapace.Gen(_bridgeCmd).PositionalAnyCompletion(
+					bridge.ActionBridges(args[0]),
+				)
+				carapace.Gen(_bridgeCmd).Standalone()
 
-			out, err := cmdCompletion(_bridgeCmd, args[1:]...)
-			if err != nil {
-				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-				return
+				out, err := cmdCompletion(_bridgeCmd, args[1:]...)
+				if err != nil {
+					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+					return
+				}
+				fmt.Fprint(cmd.OutOrStdout(), out)
 			}
-			fmt.Fprint(cmd.OutOrStdout(), out)
 			return
 		}
 	}
