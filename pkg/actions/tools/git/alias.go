@@ -18,7 +18,7 @@ func Aliases(dir, gitDir string) (map[string]string, error) {
 		args = append(args, "-C", dir)
 	}
 	if gitDir != "" {
-		args = append(args, "-git-dir", gitDir)
+		args = append(args, "--git-dir", gitDir)
 	}
 	args = append(args, "config", "--get-regexp", "^alias\\.")
 

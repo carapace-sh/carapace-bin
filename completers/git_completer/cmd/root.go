@@ -105,11 +105,11 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
-		if _, _, err := cmd.Find(args); len(args) > 1 && err == nil {
-			return // core command - skip aliases and other commands
+		if cmd, _, _ := rootCmd.Find(args); cmd == rootCmd {
+			carapace.LOG.Println("adding aliases")
+			addAliasCompletion(args)
+			addOtherCommands()
 		}
-		addAliasCompletion(args)
-		addOtherCommands()
 	})
 }
 
@@ -120,34 +120,38 @@ func addAliasCompletion(args []string) {
 	cmd.Flags().String("git-dir", "", "path to repository")
 
 	cmd.ParseFlags(args[:len(args)-1])
-	if aliases, err := git.Aliases(cmd.Flag("C").Value.String(), cmd.Flag("git-dir").Value.String()); err == nil {
-		for key, value := range aliases {
-			if _, _, err := rootCmd.Find([]string{key}); err == nil {
-				continue // don't clobber existing commands
-			}
+	aliases, err := git.Aliases(cmd.Flag("C").Value.String(), cmd.Flag("git-dir").Value.String())
+	if err != nil {
+		carapace.LOG.Println(err.Error())
+		return
+	}
 
-			aliasCmd := &cobra.Command{
-				Use:                key,
-				Short:              fmt.Sprintf("alias for '%s'", value),
-				GroupID:            groups[group_alias].ID,
-				DisableFlagParsing: true,
-			}
+	for key, value := range aliases {
+		if _, _, err := rootCmd.Find([]string{key}); err == nil {
+			continue // don't clobber existing commands
+		}
 
-			rootCmd.AddCommand(aliasCmd)
+		aliasCmd := &cobra.Command{
+			Use:                key,
+			Short:              fmt.Sprintf("alias for '%s'", value),
+			GroupID:            groups[group_alias].ID,
+			DisableFlagParsing: true,
+		}
 
-			if strings.HasPrefix(value, "!") {
-				continue // aliases beginning with ! are arbitrary shell commands so don't add completion
-			}
+		rootCmd.AddCommand(aliasCmd)
 
-			tokens, err := shlex.Split(value) // TODO trim value?
-			if err == nil {
-				carapace.Gen(aliasCmd).PositionalAnyCompletion(
-					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						c.Args = append(tokens.Strings(), c.Args...)
-						return bridge.ActionCarapaceBin("git").Invoke(c).ToA()
-					}),
-				)
-			}
+		if strings.HasPrefix(value, "!") {
+			continue // aliases beginning with ! are arbitrary shell commands so don't add completion
+		}
+
+		tokens, err := shlex.Split(value) // TODO trim value?
+		if err == nil {
+			carapace.Gen(aliasCmd).PositionalAnyCompletion(
+				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					c.Args = append(tokens.Strings(), c.Args...)
+					return bridge.ActionCarapaceBin("git").Invoke(c).ToA()
+				}),
+			)
 		}
 	}
 }
