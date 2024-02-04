@@ -374,6 +374,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"fetch.recurseSubmodules": carapace.ActionValues("true", "false", "ondemand").StyleF(style.ForKeyword),
 			"fetch.showForcedUpdates": _bool,
 			"fetch.writeCommitGraph":  _bool,
+			"rerere.enabled":          _bool,
 			"remote.pushDefault":      ActionRemotes(),
 		}[config]); ok {
 			return a
@@ -382,7 +383,12 @@ func ActionConfigValues(config string) carapace.Action {
 		splitted := strings.Split(config, ".")
 		switch splitted[0] {
 		case "alias":
-			return bridge.ActionCarapaceBin("git").Split()
+			return carapace.Batch(
+				bridge.ActionCarapaceBin().Split().Prefix("!").Unless(func(c carapace.Context) bool {
+					return !strings.HasPrefix(c.Value, "!")
+				}),
+				bridge.ActionCarapaceBin("git").Split(),
+			).ToA()
 		case "branch":
 			switch len(splitted) {
 			case 3:
