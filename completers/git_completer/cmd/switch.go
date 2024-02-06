@@ -43,7 +43,10 @@ func init() {
 	})
 
 	carapace.Gen(switchCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOption{LocalBranches: true}),
+		carapace.Batch(
+			git.ActionRemoteBranchNames(""),
+			git.ActionRefs(git.RefOption{LocalBranches: true}),
+		).ToA(),
 	)
 
 	carapace.Gen(switchCmd).DashAnyCompletion(
