@@ -29,8 +29,8 @@ func ActionLocalBranches() carapace.Action {
 
 // ActionRemoteBranches completes remote branches
 //
-//	master (last commit msg)
-//	another (last commit msg)
+//	origin/master (last commit msg)
+//	upstream/another (last commit msg)
 func ActionRemoteBranches(remote string) carapace.Action {
 	return carapace.ActionExecCommand("git", "branch", "--remote", "--format", "%(refname:short)\n%(subject)")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -48,4 +48,29 @@ func ActionRemoteBranches(remote string) carapace.Action {
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
 	}).Tag("remote branches")
+}
+
+// ActionRemoteBranchNames is like ActionRemoteBranches but skips the remote prefix
+//
+//	master (last commit msg)
+//	another (last commit msg)
+func ActionRemoteBranchNames(remote string) carapace.Action {
+	return carapace.ActionExecCommand("git", "branch", "--remote", "--format", "%(refname:short)\n%(subject)")(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+
+		prefix := ""
+		if remote != "" {
+			prefix = remote + "/"
+		}
+
+		vals := make([]string, 0)
+		for index, line := range lines[:len(lines)-1] {
+			if index%2 == 0 && strings.HasPrefix(line, prefix) {
+				if _, branch, ok := strings.Cut(line, "/"); ok {
+					vals = append(vals, branch, lines[index+1])
+				}
+			}
+		}
+		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
+	}).Tag("remote branch names")
 }
