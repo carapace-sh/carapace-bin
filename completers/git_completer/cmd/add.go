@@ -8,6 +8,7 @@ import (
 
 var addCmd = &cobra.Command{
 	Use:     "add",
+	Aliases: []string{"stage"},
 	Short:   "Add file contents to the index",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: groups[group_main].ID,
