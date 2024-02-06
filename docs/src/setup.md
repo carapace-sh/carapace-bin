@@ -16,7 +16,7 @@ source <(carapace _carapace)
 ## Elvish
 
 ```sh
-# ~/.elvish/rc.elv
+# ~/.config/elvish/rc.elv
 set-env CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 eval (carapace _carapace|slurp)
 ```
