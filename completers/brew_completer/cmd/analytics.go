@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	analyticsCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	analyticsCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(analyticsCmd)
+
+	carapace.Gen(analyticsCmd).PositionalCompletion(
+		carapace.ActionValues("state", "on", "off").StyleF(style.ForKeyword),
+	)
 }
