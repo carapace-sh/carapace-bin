@@ -5,32 +5,34 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var Cmd = &cobra.Command{
-	Use:   "search",
-	Short: "Perform a substring search of cask tokens and formula names",
-	Run:   func(cmd *cobra.Command, args []string) {},
+var searchCmd = &cobra.Command{
+	Use:     "search",
+	Short:   "Perform a substring search of cask tokens and formula names for <text>",
+	GroupID: "main",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(Cmd).Standalone()
+	carapace.Gen(searchCmd).Standalone()
 
-	Cmd.Flags().Bool("archlinux", false, "Search for text in the given database.")
-	Cmd.Flags().String("cask", "", "Search online and locally for casks.")
-	Cmd.Flags().Bool("closed", false, "Search for only closed GitHub pull requests.")
-	Cmd.Flags().Bool("debian", false, "Search for text in the given database.")
-	Cmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
-	Cmd.Flags().Bool("desc", false, "Search for formulae with a description")
-	Cmd.Flags().Bool("fedora", false, "Search for text in the given database.")
-	Cmd.Flags().Bool("fink", false, "Search for text in the given database.")
-	Cmd.Flags().String("formula", "", "Search online and locally for formulae.")
-	Cmd.Flags().BoolP("help", "h", false, "Show this message.")
-	Cmd.Flags().Bool("macports", false, "Search for text in the given database.")
-	Cmd.Flags().Bool("open", false, "Search for only open GitHub pull requests.")
-	Cmd.Flags().Bool("opensuse", false, "Search for text in the given database.")
-	Cmd.Flags().Bool("pull-request", false, "Search for GitHub pull requests containing")
-	Cmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
-	Cmd.Flags().Bool("repology", false, "Search for text in the given database.")
-	Cmd.Flags().Bool("ubuntu", false, "Search for text in the given database.")
-	Cmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
-	rootCmd.AddCommand(Cmd)
+	searchCmd.Flags().Bool("archlinux", false, "Search for <text> in the given database.")
+	searchCmd.Flags().Bool("cask", false, "Search for casks.")
+	searchCmd.Flags().Bool("closed", false, "Search for only closed GitHub pull requests.")
+	searchCmd.Flags().Bool("debian", false, "Search for <text> in the given database.")
+	searchCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	searchCmd.Flags().Bool("desc", false, "Search for formulae with a description matching <text> and casks with a name or description matching <text>.")
+	searchCmd.Flags().Bool("eval-all", false, "Evaluate all available formulae and casks, whether installed or not, to search their descriptions. Implied if `HOMEBREW_EVAL_ALL` is set.")
+	searchCmd.Flags().Bool("fedora", false, "Search for <text> in the given database.")
+	searchCmd.Flags().Bool("fink", false, "Search for <text> in the given database.")
+	searchCmd.Flags().Bool("formula", false, "Search for formulae.")
+	searchCmd.Flags().Bool("help", false, "Show this message.")
+	searchCmd.Flags().Bool("macports", false, "Search for <text> in the given database.")
+	searchCmd.Flags().Bool("open", false, "Search for only open GitHub pull requests.")
+	searchCmd.Flags().Bool("opensuse", false, "Search for <text> in the given database.")
+	searchCmd.Flags().Bool("pull-request", false, "Search for GitHub pull requests containing <text>.")
+	searchCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
+	searchCmd.Flags().Bool("repology", false, "Search for <text> in the given database.")
+	searchCmd.Flags().Bool("ubuntu", false, "Search for <text> in the given database.")
+	searchCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	rootCmd.AddCommand(searchCmd)
 }
