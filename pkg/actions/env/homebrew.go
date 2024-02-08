@@ -3,7 +3,9 @@ package env
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/bat"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/rsteube/carapace-bin/pkg/conditions"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 )
@@ -97,20 +99,20 @@ func init() {
 				"HOMEBREW_ARTIFACT_DOMAIN":                  carapace.ActionValues(),
 				"HOMEBREW_API_AUTO_UPDATE_SECS":             carapace.ActionValues(),
 				"HOMEBREW_AUTO_UPDATE_SECS":                 carapace.ActionValues(),
-				"HOMEBREW_AUTOREMOVE":                       carapace.ActionValues(),
-				"HOMEBREW_BAT":                              carapace.ActionValues(),
+				"HOMEBREW_AUTOREMOVE":                       carapace.ActionValues("1"),
+				"HOMEBREW_BAT":                              carapace.ActionValues("1"),
 				"HOMEBREW_BAT_CONFIG_PATH":                  carapace.ActionFiles(),
-				"HOMEBREW_BAT_THEME":                        carapace.ActionValues(),
+				"HOMEBREW_BAT_THEME":                        bat.ActionThemes(),
 				"HOMEBREW_BOOTSNAP":                         carapace.ActionValues(),
 				"HOMEBREW_BOTTLE_DOMAIN":                    carapace.ActionValues(),
-				"HOMEBREW_BREW_GIT_REMOTE":                  carapace.ActionValues(),
+				"HOMEBREW_BREW_GIT_REMOTE":                  git.ActionRepositorySearch(git.SearchOpts{}.Default()),
 				"HOMEBREW_BROWSER":                          carapace.ActionFiles(),
 				"HOMEBREW_CACHE":                            carapace.ActionDirectories(),
 				"HOMEBREW_CASK_OPTS":                        carapace.ActionValues(),
 				"HOMEBREW_CLEANUP_MAX_AGE_DAYS":             carapace.ActionValues(),
 				"HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS":       carapace.ActionValues(),
 				"HOMEBREW_COLOR":                            carapace.ActionValues("1"),
-				"HOMEBREW_CORE_GIT_REMOTE":                  carapace.ActionValues(),
+				"HOMEBREW_CORE_GIT_REMOTE":                  git.ActionRepositorySearch(git.SearchOpts{}.Default()),
 				"HOMEBREW_CURL_PATH":                        carapace.ActionFiles(),
 				"HOMEBREW_CURL_RETRIES":                     carapace.ActionValues(),
 				"HOMEBREW_CURL_VERBOSE":                     carapace.ActionValues(),
