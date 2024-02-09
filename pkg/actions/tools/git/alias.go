@@ -27,11 +27,12 @@ func Aliases(dir, gitDir string) (map[string]string, error) {
 	} else {
 		scanner := bufio.NewScanner(bytes.NewReader(output))
 		for scanner.Scan() {
-			split := strings.SplitN(scanner.Text(), " ", 2)
-			name := strings.TrimPrefix(split[0], "alias.")
+			if splitted := strings.SplitN(scanner.Text(), " ", 2); len(splitted) == 2 && strings.HasPrefix(splitted[0], "alias.") {
+				name := strings.TrimPrefix(splitted[0], "alias.")
 
-			// in the case of duplicates, last alias wins
-			aliases[name] = split[1]
+				// in the case of duplicates, last alias wins
+				aliases[name] = splitted[1]
+			}
 		}
 	}
 
