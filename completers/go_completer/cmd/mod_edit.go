@@ -38,17 +38,15 @@ func init() {
 		"exclude":     golang.ActionModuleSearch(),
 		"go":          golang.ActionVersions(),
 		"module":      carapace.ActionFiles(),
-		"replace": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		"replace": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
 				return golang.ActionModules(golang.ModuleOpts{Direct: true, Indirect: true}).Invoke(c).Suffix("=").ToA()
-			case 1:
+			default:
 				return carapace.Batch(
 					carapace.ActionDirectories().ChdirF(traverse.Parent("go.mod")),
 					golang.ActionModuleSearch().Unless(condition.CompletingPath),
 				).ToA()
-			default:
-				return carapace.ActionValues()
 			}
 		}),
 		"require": golang.ActionModuleSearch(),
