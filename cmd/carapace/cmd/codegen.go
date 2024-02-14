@@ -9,8 +9,8 @@ var codegenCmd = &cobra.Command{
 	Use:   "--codegen [spec]",
 	Short: "",
 	Args:  cobra.MinimumNArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
-		codegen(args[0])
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return codegen(args[0])
 	},
 }
 
