@@ -30,11 +30,13 @@ func loadSpec(path string) (string, *spec.Command, error) {
 	return abs, &specCmd, nil
 }
 
-func codegen(path string) {
+func codegen(path string) error {
 	// TODO yuck - all this needs some cleanup
-	if _, spec, err := loadSpec(path); err == nil {
-		spec.Codegen()
+	_, spec, err := loadSpec(path)
+	if err != nil {
+		return err
 	}
+	return spec.Codegen()
 }
 
 func specCompletion(path string, args ...string) (string, error) {
