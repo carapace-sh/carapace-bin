@@ -145,11 +145,11 @@ func Execute(version string) error {
 			}
 
 			if err := shim.Update(); err != nil {
-				println(err.Error()) // TODO fail / exit 1 ?
+				carapace.LOG.Printf("failed to update shims: %v", err.Error())
 			}
 
 			if err := createOverlayDir(); err != nil { // TODO do this only if needed
-				println(err.Error())
+				carapace.LOG.Printf("failed to create overlay directory: %v", err.Error())
 			}
 
 			switch shell {
