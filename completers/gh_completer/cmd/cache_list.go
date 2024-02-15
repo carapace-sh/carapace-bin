@@ -19,6 +19,7 @@ func init() {
 
 	cache_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	cache_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	cache_listCmd.Flags().StringP("key", "k", "", "Filter by cache key prefix")
 	cache_listCmd.Flags().StringP("limit", "L", "", "Maximum number of caches to fetch")
 	cache_listCmd.Flags().StringP("order", "O", "", "Order of caches returned: {asc|desc}")
 	cache_listCmd.Flags().StringP("sort", "S", "", "Sort fetched caches: {created_at|last_accessed_at|size_in_bytes}")

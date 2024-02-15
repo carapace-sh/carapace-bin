@@ -17,7 +17,7 @@ func init() {
 
 	gist_createCmd.Flags().StringP("desc", "d", "", "A description for this gist")
 	gist_createCmd.Flags().StringP("filename", "f", "", "Provide a filename to be used when reading from standard input")
-	gist_createCmd.Flags().BoolP("public", "p", false, "List the gist publicly (default: secret)")
+	gist_createCmd.Flags().BoolP("public", "p", false, "List the gist publicly (default \"secret\")")
 	gist_createCmd.Flags().BoolP("web", "w", false, "Open the web browser with created gist")
 	gistCmd.AddCommand(gist_createCmd)
 
