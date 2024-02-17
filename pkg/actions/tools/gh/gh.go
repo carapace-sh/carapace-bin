@@ -1,7 +1,9 @@
 // package gh contains github related actions
 package gh
 
-import "github.com/rsteube/carapace/pkg/cache"
+import (
+	"github.com/rsteube/carapace/pkg/cache/key"
+)
 
 type HostOpts struct {
 	Host string
@@ -27,4 +29,4 @@ type RepoOpts struct {
 	Name  string
 }
 
-func (o RepoOpts) cacheKey() cache.Key { return cache.String(o.Host, o.Owner, o.Name) }
+func (o RepoOpts) cacheKey() key.Key { return key.String(o.Host, o.Owner, o.Name) }

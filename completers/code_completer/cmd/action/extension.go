@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/cache"
+	"github.com/rsteube/carapace/pkg/cache/key"
 	"github.com/spf13/cobra"
 )
 
@@ -87,5 +87,5 @@ func ActionMicrosoftExtensions(category string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// Microsoft extensions are aliased and only found by the 'Microsoft' publisher (though the actual name differs)
 		return ActionExtensionSearch(category).Invoke(carapace.Context{Value: "Microsoft"}).ToA()
-	}).Cache(24*time.Hour, cache.String(category))
+	}).Cache(24*time.Hour, key.String(category))
 }

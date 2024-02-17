@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/cache"
+	"github.com/rsteube/carapace/pkg/cache/key"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/rsteube/carapace/pkg/util"
 )
@@ -36,8 +36,8 @@ func (o ResourceOpts) Default() ResourceOpts {
 	return o
 }
 
-func (o ResourceOpts) key() cache.Key {
-	return cache.String(
+func (o ResourceOpts) key() key.Key {
+	return key.String(
 		strconv.FormatBool(o.Analysis),
 		strconv.FormatBool(o.Exposure),
 		strconv.FormatBool(o.Metric),
@@ -118,6 +118,6 @@ func ActionResources(opts ResourceOpts) carapace.Action {
 				}
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
-		}).Cache(24*time.Hour, opts.key(), cache.FileStats(path)) // TODO opts , manifest.json constantly gets new modification time??
+		}).Cache(24*time.Hour, opts.key(), key.FileStats(path)) // TODO opts , manifest.json constantly gets new modification time??
 	}).Tag("resources")
 }

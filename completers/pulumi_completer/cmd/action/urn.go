@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/cache"
+	"github.com/rsteube/carapace/pkg/cache/key"
 	"github.com/spf13/cobra"
 )
 
@@ -47,7 +47,7 @@ func ActionUrns(cmd *cobra.Command) carapace.Action {
 					return "", err
 				}
 
-				return cache.String(absWd, stack)()
+				return key.String(absWd, stack)()
 			},
 		).Invoke(c).ToA()
 	})

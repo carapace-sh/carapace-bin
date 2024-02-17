@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/cache"
+	"github.com/rsteube/carapace/pkg/cache/key"
 	"github.com/rsteube/carapace/pkg/util"
 )
 
@@ -26,6 +26,6 @@ func ActionProjects(file string) carapace.Action {
 		return carapace.ActionExecCommand("mvn", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[:len(lines)-1]...)
-		}).Cache(-1, cache.FileStats(file))
+		}).Cache(-1, key.FileStats(file))
 	})
 }
