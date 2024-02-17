@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/cache"
+	"github.com/rsteube/carapace/pkg/cache/key"
 )
 
 // ActionFormats completes formats
@@ -35,7 +35,7 @@ func ActionFormats(url string) carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}).Cache(1*time.Hour, cache.String(c.Args[0]))
+		}).Cache(1*time.Hour, key.String(c.Args[0]))
 	})
 }
 
@@ -64,6 +64,6 @@ func ActionSubLangs(url string) carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}).Cache(1*time.Hour, cache.String(c.Args[0]))
+		}).Cache(1*time.Hour, key.String(c.Args[0]))
 	})
 }

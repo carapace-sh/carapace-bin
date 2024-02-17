@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/cache"
+	"github.com/rsteube/carapace/pkg/cache/key"
 	"github.com/rsteube/carapace/pkg/style"
 	"github.com/rsteube/carapace/pkg/util"
 	"github.com/spf13/cobra"
@@ -126,7 +126,7 @@ func ActionTasks() carapace.Action {
 		if buildConfig, err := locateBuildConfig(); err != nil {
 			return "", err
 		} else {
-			return cache.FileChecksum(buildConfig)()
+			return key.FileChecksum(buildConfig)()
 		}
 	})
 }

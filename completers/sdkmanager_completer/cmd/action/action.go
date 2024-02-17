@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/cache"
+	"github.com/rsteube/carapace/pkg/cache/key"
 	"github.com/spf13/cobra"
 )
 
@@ -36,7 +36,7 @@ func ActionAvailablePackages(cmd *cobra.Command) carapace.Action {
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}).Cache(1*time.Hour, cache.String(sdk_root, channel))
+		}).Cache(1*time.Hour, key.String(sdk_root, channel))
 	})
 }
 
