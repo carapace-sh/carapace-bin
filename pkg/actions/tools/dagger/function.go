@@ -106,6 +106,8 @@ func ActionFunctions() carapace.Action {
 						switch localArg.TypeDef.AsObject.Name { // TODO more
 						case "Directory":
 							return carapace.ActionDirectories()
+						case "File":
+							return carapace.ActionFiles()
 						default:
 							return carapace.ActionValues()
 						}
