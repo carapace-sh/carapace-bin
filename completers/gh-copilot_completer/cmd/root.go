@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "gh-copilot",
 	Short: "Your AI command line copilot",
+	Long:  "https://github.com/github/gh-copilot",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
