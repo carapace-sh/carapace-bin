@@ -60,12 +60,23 @@ func init() {
 	carapace.Gen(pushCmd).PositionalCompletion(
 		git.ActionRemotes(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if pushCmd.Flag("set-upstream").Changed {
+			if pushCmd.Flag("set-upstream").Changed && c.Value == "" {
 				// if set-upstream is set the desired remote branch is likely named the same as the current
 				return git.ActionCurrentBranch()
-			} else {
-				return git.ActionRemoteBranches(c.Args[0])
 			}
+
+			return carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return git.ActionRefs(git.RefOption{
+						LocalBranches: true,
+						HeadCommits:   1,
+						Tags:          true,
+					}).NoSpace()
+				default:
+					return git.ActionRemoteBranchNames(c.Args[0])
+				}
+			})
 		}),
 	)
 }
