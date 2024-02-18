@@ -64,7 +64,7 @@ func init() {
 				// if set-upstream is set the desired remote branch is likely named the same as the current
 				return git.ActionCurrentBranch()
 			} else {
-				return git.ActionRemoteBranches(c.Args[0])
+				return git.ActionLocalBranches()
 			}
 		}),
 	)
