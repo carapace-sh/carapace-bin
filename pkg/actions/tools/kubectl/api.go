@@ -37,17 +37,21 @@ func ActionApiGroups() carapace.Action {
 	)
 }
 
+type ApiResourceResourcesOpts struct {
+	Namespace string
+}
+
 // ActionApiResourceResources completes api resources and resources separately
 //
 //	apiservices/v1.admissionregistration.k8s.io
 //	endpoints/kubernetes
-func ActionApiResourceResources() carapace.Action {
+func ActionApiResourceResources(opts ApiResourceResourcesOpts) carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
 			return ActionApiResources().Invoke(c).Suffix("/").ToA()
 		case 1:
-			return ActionResources(ResourceOpts{Namespace: "", Types: c.Parts[0]})
+			return ActionResources(ResourceOpts{Namespace: opts.Namespace, Types: c.Parts[0]})
 		default:
 			return carapace.ActionValues()
 		}

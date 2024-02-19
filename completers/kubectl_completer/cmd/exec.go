@@ -38,6 +38,10 @@ func init() {
 	})
 
 	carapace.Gen(execCmd).PositionalCompletion(
-		kubectl.ActionApiResourceResources(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionApiResourceResources(kubectl.ApiResourceResourcesOpts{
+				Namespace: rootCmd.Flag("namespace").Value.String(),
+			})
+		}),
 	)
 }
