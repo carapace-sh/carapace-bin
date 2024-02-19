@@ -43,7 +43,9 @@ func init() {
 			if apply_editLastAppliedCmd.Flag("filename").Changed {
 				return carapace.ActionValues()
 			} else {
-				return kubectl.ActionApiResourceResources()
+				return kubectl.ActionApiResourceResources(kubectl.ApiResourceResourcesOpts{
+					Namespace: rootCmd.Flag("namespace").Value.String(),
+				})
 			}
 		}),
 	)

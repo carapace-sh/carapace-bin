@@ -41,12 +41,16 @@ func init() {
 	carapace.Gen(set_envCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":  kubectl.ActionDryRunModes(),
 		"filename": carapace.ActionFiles(),
-		"from":     kubectl.ActionApiResourceResources(),
+		"from":     kubectl.ActionApiResourceResources(kubectl.ApiResourceResourcesOpts{}),
 		"output":   kubectl.ActionOutputFormats(),
 		"template": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(set_envCmd).PositionalCompletion(
-		kubectl.ActionApiResourceResources(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionApiResourceResources(kubectl.ApiResourceResourcesOpts{
+				Namespace: rootCmd.Flag("namespace").Value.String(),
+			})
+		}),
 	)
 }

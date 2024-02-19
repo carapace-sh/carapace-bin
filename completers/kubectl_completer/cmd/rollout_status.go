@@ -30,6 +30,10 @@ func init() {
 	})
 
 	carapace.Gen(rollout_statusCmd).PositionalCompletion(
-		kubectl.ActionApiResourceResources(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionApiResourceResources(kubectl.ApiResourceResourcesOpts{
+				Namespace: rootCmd.Flag("namespace").Value.String(),
+			})
+		}),
 	)
 }

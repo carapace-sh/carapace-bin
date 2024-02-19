@@ -22,7 +22,11 @@ func init() {
 	rootCmd.AddCommand(portForwardCmd)
 
 	carapace.Gen(portForwardCmd).PositionalCompletion(
-		kubectl.ActionApiResourceResources(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionApiResourceResources(kubectl.ApiResourceResourcesOpts{
+				Namespace: rootCmd.Flag("namespace").Value.String(),
+			})
+		}),
 		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
