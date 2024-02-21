@@ -138,6 +138,11 @@ func init() {
 		"network":      carapace.ActionValues("bridge", "container", "host", "none"),
 		"pid":          carapace.ActionValues("container", "host"),
 		"user":         os.ActionUsers(),
+		"volume":       docker.ActionVolumes(),
+		"volumes-from": carapace.Batch(
+			docker.ActionContainers(),
+			docker.ActionContainerIds(),
+		).ToA(),
 	})
 
 	carapace.Gen(container_runCmd).PositionalCompletion(

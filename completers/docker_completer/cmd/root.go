@@ -80,5 +80,23 @@ func init() {
 				}
 			}
 		}
+
+		addRootAlias("run", container_runCmd.Short, "common", []string{"docker", "container", "run"})
 	})
+}
+
+func addRootAlias(use string, short, groupID string, command []string) {
+	cmd := &cobra.Command{
+		Use:                use,
+		Short:              short,
+		GroupID:            groupID,
+		Run:                func(cmd *cobra.Command, args []string) {},
+		DisableFlagParsing: true,
+	}
+
+	carapace.Gen(cmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin(command...),
+	)
+
+	rootCmd.AddCommand(cmd)
 }
