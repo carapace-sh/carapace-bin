@@ -31,3 +31,8 @@ Currently available bridges:
 - [zsh](https://www.zsh.org/)
 
 > Bridging frameworks should be preferred to shells (e.g. zsh) as these generally work better and have less overhead.
+
+## Cache
+
+The list of completers is cached to not impact shell startup time.
+Clear the cache with `carapace --clear-cache` if your system changes.
