@@ -31,7 +31,11 @@ func init() {
 			if !clusterInfoCmd.Flag("all-namespaces").Changed {
 				namespace = rootCmd.Flag("namespace").Value.String()
 			}
-			return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: namespace, Types: "namespaces"})
+			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Context:   rootCmd.Flag("context").Value.String(),
+				Namespace: namespace,
+				Types:     "namespaces",
+			})
 		}),
 		"output":           kubectl.ActionOutputFormats(),
 		"output-directory": carapace.ActionDirectories(),

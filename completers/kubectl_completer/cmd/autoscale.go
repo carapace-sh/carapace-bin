@@ -49,6 +49,7 @@ func init() {
 		carapace.ActionValues("deployments", "replicasets", "replicationcontrollers"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Context:   rootCmd.Flag("context").Value.String(),
 				Namespace: rootCmd.Flag("namespace").Value.String(),
 				Types:     c.Args[0],
 			})

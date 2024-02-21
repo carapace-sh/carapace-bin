@@ -57,14 +57,16 @@ func init() {
 	rootCmd.PersistentFlags().StringSlice("vmodule", []string{}, "comma-separated list of pattern=N settings for file-filtered logging")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"kube-as-group":    os.ActionGroups(),
-		"kube-as-user":     os.ActionUsers(),
-		"kube-ca-file":     carapace.ActionFiles(),
-		"kube-context":     kubectl.ActionContexts(),
-		"kubeconfig":       carapace.ActionFiles(),
-		"log-dir":          carapace.ActionDirectories(),
-		"log-file":         carapace.ActionFiles(),
-		"namespace":        kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "namespaces"}),
+		"kube-as-group": os.ActionGroups(),
+		"kube-as-user":  os.ActionUsers(),
+		"kube-ca-file":  carapace.ActionFiles(),
+		"kube-context":  kubectl.ActionContexts(),
+		"kubeconfig":    carapace.ActionFiles(),
+		"log-dir":       carapace.ActionDirectories(),
+		"log-file":      carapace.ActionFiles(),
+		"namespace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionResources(kubectl.ResourceOpts{Types: "namespaces", Context: rootCmd.Flag("kube-context").Value.String()})
+		}),
 		"registry-config":  carapace.ActionFiles(),
 		"repository-cache": carapace.ActionFiles(),
 	})

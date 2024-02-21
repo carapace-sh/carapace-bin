@@ -51,6 +51,7 @@ func init() {
 				return carapace.ActionValues("deployments/", "replicasets/", "replicationcontrollers/").NoSpace()
 			case 1:
 				return kubectl.ActionResources(kubectl.ResourceOpts{
+					Context:   rootCmd.Flag("context").Value.String(),
 					Namespace: rootCmd.Flag("namespace").Value.String(),
 					Types:     c.Parts[0],
 				})

@@ -35,6 +35,7 @@ func init() {
 	carapace.Gen(create_rolebindingCmd).FlagCompletion(carapace.ActionMap{
 		"clusterrole": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Context:   rootCmd.Flag("context").Value.String(),
 				Namespace: rootCmd.Flag("namespace").Value.String(),
 				Types:     "clusterroles",
 			})
@@ -43,6 +44,7 @@ func init() {
 		"output":  kubectl.ActionOutputFormats(),
 		"role": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Context:   rootCmd.Flag("context").Value.String(),
 				Namespace: rootCmd.Flag("namespace").Value.String(),
 				Types:     "roles",
 			})

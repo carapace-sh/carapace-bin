@@ -23,16 +23,7 @@ type ReleasesOpts struct {
 
 // ActionReleases completes releases
 func ActionReleases(opts ReleasesOpts) carapace.Action {
-	args := []string{"list", "--output", "json"}
-	if opts.KubeContext != "" {
-		args = append(args, "--kube-context", opts.KubeContext)
-	}
-
-	if opts.Namespace != "" {
-		args = append(args, "--namespace", opts.Namespace)
-	}
-
-	return carapace.ActionExecCommand("helm", args...)(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("helm", "list", "--kube-context", opts.KubeContext, "--namespace", opts.Namespace, "--output", "json")(func(output []byte) carapace.Action {
 		var releases []release
 		if err := json.Unmarshal(output, &releases); err != nil {
 			return carapace.ActionMessage(err.Error())
