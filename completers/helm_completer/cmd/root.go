@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -59,11 +60,13 @@ func init() {
 		"kube-as-group": os.ActionGroups(),
 		"kube-as-user":  os.ActionUsers(),
 		"kube-ca-file":  carapace.ActionFiles(),
-		// TODO "kube-context"
-		"kubeconfig": carapace.ActionFiles(),
-		"log-dir":    carapace.ActionDirectories(),
-		"log-file":   carapace.ActionFiles(),
-		// TODO namespace
+		"kube-context":  kubectl.ActionContexts(),
+		"kubeconfig":    carapace.ActionFiles(),
+		"log-dir":       carapace.ActionDirectories(),
+		"log-file":      carapace.ActionFiles(),
+		"namespace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionResources(kubectl.ResourceOpts{Types: "namespaces", Context: rootCmd.Flag("kube-context").Value.String()})
+		}),
 		"registry-config":  carapace.ActionFiles(),
 		"repository-cache": carapace.ActionFiles(),
 	})

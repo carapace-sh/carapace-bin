@@ -68,10 +68,16 @@ func init() {
 		"certificate-authority": carapace.ActionFiles(),
 		"client-certificate":    carapace.ActionFiles(),
 		"client-key":            carapace.ActionFiles(),
+		"context":               kubectl.ActionContexts(),
 		"kubeconfig":            carapace.ActionFiles(),
-		"namespace":             kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "namespaces"}),
-		"profile":               carapace.ActionValues("none", "cpu", "heap", "goroutine", "threadcreate", "block", "mutex"),
-		"profile-output":        carapace.ActionFiles(),
+		"namespace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Context: rootCmd.Flag("context").Value.String(),
+				Types:   "namespaces",
+			})
+		}),
+		"profile":        carapace.ActionValues("none", "cpu", "heap", "goroutine", "threadcreate", "block", "mutex"),
+		"profile-output": carapace.ActionFiles(),
 		// TODO add completions for kubeconfig based flags
 	})
 

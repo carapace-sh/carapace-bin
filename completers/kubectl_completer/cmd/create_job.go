@@ -33,6 +33,7 @@ func init() {
 		"dry-run": kubectl.ActionDryRunModes(),
 		"from": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Context:   rootCmd.Flag("context").Value.String(),
 				Namespace: rootCmd.Flag("namespace").Value.String(),
 				Types:     "cronjobs",
 			})

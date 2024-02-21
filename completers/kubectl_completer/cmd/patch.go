@@ -58,6 +58,7 @@ func init() {
 				return carapace.ActionValues()
 			} else {
 				return kubectl.ActionResources(kubectl.ResourceOpts{
+					Context:   rootCmd.Flag("context").Value.String(),
 					Namespace: rootCmd.Flag("namespace").Value.String(),
 					Types:     c.Args[0],
 				})

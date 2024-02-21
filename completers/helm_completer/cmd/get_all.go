@@ -19,6 +19,11 @@ func init() {
 	getCmd.AddCommand(get_allCmd)
 
 	carapace.Gen(get_allCmd).PositionalCompletion(
-		helm.ActionReleases(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return helm.ActionReleases(helm.ReleasesOpts{
+				Namespace:   rootCmd.Flag("namespace").Value.String(),
+				KubeContext: rootCmd.Flag("kube-context").Value.String(),
+			})
+		}),
 	)
 }

@@ -44,6 +44,7 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if set_serviceaccountCmd.Flag("filename").Changed {
 				return kubectl.ActionResources(kubectl.ResourceOpts{
+					Context:   rootCmd.Flag("context").Value.String(),
 					Namespace: rootCmd.Flag("namespace").Value.String(),
 					Types:     "serviceaccounts",
 				})
@@ -56,6 +57,7 @@ func init() {
 				return carapace.ActionValues()
 			} else {
 				return kubectl.ActionResources(kubectl.ResourceOpts{
+					Context:   rootCmd.Flag("context").Value.String(),
 					Namespace: rootCmd.Flag("namespace").Value.String(),
 					Types:     c.Args[0],
 				})
@@ -66,6 +68,7 @@ func init() {
 				return carapace.ActionValues()
 			} else {
 				return kubectl.ActionResources(kubectl.ResourceOpts{
+					Context:   rootCmd.Flag("context").Value.String(),
 					Namespace: rootCmd.Flag("namespace").Value.String(),
 					Types:     "serviceaccounts",
 				})

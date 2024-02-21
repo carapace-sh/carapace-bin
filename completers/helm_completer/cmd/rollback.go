@@ -29,7 +29,12 @@ func init() {
 	rootCmd.AddCommand(rollbackCmd)
 
 	carapace.Gen(rollbackCmd).PositionalCompletion(
-		helm.ActionReleases(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return helm.ActionReleases(helm.ReleasesOpts{
+				Namespace:   rootCmd.Flag("namespace").Value.String(),
+				KubeContext: rootCmd.Flag("kube-context").Value.String(),
+			})
+		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return helm.ActionRevisions(c.Args[0])
 		}),

@@ -36,11 +36,11 @@ func init() {
 
 	carapace.Gen(describeCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			var namespace string
-			if !describeCmd.Flag("all-namespaces").Changed {
-				namespace = rootCmd.Flag("namespace").Value.String()
-			}
-			return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: namespace, Types: c.Args[0]}).Filter(c.Args[1:]...)
+			return kubectl.ActionResources(kubectl.ResourceOpts{
+				Context:   rootCmd.Flag("context").Value.String(),
+				Namespace: rootCmd.Flag("namespace").Value.String(),
+				Types:     c.Args[0],
+			}).Filter(c.Args[1:]...)
 		}),
 	)
 }

@@ -57,9 +57,17 @@ func ActionPathOrContainer() carapace.Action {
 		carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "namespaces"}).Invoke(c).Suffix("/").ToA()
+				return kubectl.ActionResources(kubectl.ResourceOpts{
+					Context:   rootCmd.Flag("context").Value.String(),
+					Namespace: "",
+					Types:     "namespaces",
+				}).Invoke(c).Suffix("/").ToA()
 			case 1:
-				return kubectl.ActionResources(kubectl.ResourceOpts{Namespace: c.Parts[0], Types: "pods"}).Invoke(c).Suffix(":").ToA()
+				return kubectl.ActionResources(kubectl.ResourceOpts{
+					Context:   rootCmd.Flag("context").Value.String(),
+					Namespace: c.Parts[0],
+					Types:     "pods",
+				}).Invoke(c).Suffix(":").ToA()
 			default:
 				return carapace.ActionValues()
 			}
