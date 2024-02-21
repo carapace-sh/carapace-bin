@@ -16,9 +16,23 @@ type release struct {
 	AppVersion string `json:"app_version"`
 }
 
+type ReleasesOpts struct {
+	KubeContext string
+	Namespace   string
+}
+
 // ActionReleases completes releases
-func ActionReleases() carapace.Action {
-	return carapace.ActionExecCommand("helm", "list", "--output", "json")(func(output []byte) carapace.Action {
+func ActionReleases(opts ReleasesOpts) carapace.Action {
+	args := []string{"list", "--output", "json"}
+	if opts.KubeContext != "" {
+		args = append(args, "--kube-context", opts.KubeContext)
+	}
+
+	if opts.Namespace != "" {
+		args = append(args, "--namespace", opts.Namespace)
+	}
+
+	return carapace.ActionExecCommand("helm", args...)(func(output []byte) carapace.Action {
 		var releases []release
 		if err := json.Unmarshal(output, &releases); err != nil {
 			return carapace.ActionMessage(err.Error())
