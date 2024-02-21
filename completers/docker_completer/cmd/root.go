@@ -1,7 +1,9 @@
 package cmd
 
 import (
+	"os"
 	"regexp"
+	"slices"
 	"strings"
 
 	"github.com/rsteube/carapace"
@@ -29,6 +31,7 @@ func init() {
 		&cobra.Group{ID: "common", Title: "Common Commands"},
 		&cobra.Group{ID: "management", Title: "Management Commands"},
 		&cobra.Group{ID: "swarm", Title: "Swarm Commands"},
+		&cobra.Group{ID: "legacy", Title: "Legacy Commands"},
 	)
 
 	rootCmd.Flags().String("config", "/home/rsteube/.docker", "Location of client config files")
@@ -81,22 +84,60 @@ func init() {
 			}
 		}
 
-		addRootAlias("run", container_runCmd.Short, "common", []string{"docker", "container", "run"})
+		addRootAlias("run", "common", false, container_runCmd)
+
+		hideLegacyCommands := os.Getenv("DOCKER_HIDE_LEGACY_COMMANDS") == "1"
+		addRootAlias("attach", "legacy", hideLegacyCommands, container_attachCmd)
+		addRootAlias("commit", "legacy", hideLegacyCommands, container_commitCmd)
+		addRootAlias("cp", "legacy", hideLegacyCommands, container_cpCmd)
+		addRootAlias("create", "legacy", hideLegacyCommands, container_createCmd)
+		addRootAlias("diff", "legacy", hideLegacyCommands, container_diffCmd)
+		addRootAlias("events", "legacy", hideLegacyCommands, system_eventsCmd)
+		addRootAlias("export", "legacy", hideLegacyCommands, container_exportCmd)
+		addRootAlias("history", "legacy", hideLegacyCommands, image_historyCmd)
+		addRootAlias("import", "legacy", hideLegacyCommands, image_importCmd)
+		addRootAlias("kill", "legacy", hideLegacyCommands, container_killCmd)
+		addRootAlias("load", "legacy", hideLegacyCommands, image_loadCmd)
+		addRootAlias("logs", "legacy", hideLegacyCommands, container_logsCmd)
+		addRootAlias("pause", "legacy", hideLegacyCommands, container_pauseCmd)
+		addRootAlias("port", "legacy", hideLegacyCommands, container_portCmd)
+		addRootAlias("rename", "legacy", hideLegacyCommands, container_renameCmd)
+		addRootAlias("restart", "legacy", hideLegacyCommands, container_restartCmd)
+		addRootAlias("rm", "legacy", hideLegacyCommands, container_rmCmd)
+		addRootAlias("rmi", "legacy", hideLegacyCommands, image_rmCmd)
+		addRootAlias("save", "legacy", hideLegacyCommands, image_saveCmd)
+		addRootAlias("start", "legacy", hideLegacyCommands, container_startCmd)
+		addRootAlias("stats", "legacy", hideLegacyCommands, container_statsCmd)
+		addRootAlias("stop", "legacy", hideLegacyCommands, container_stopCmd)
+		addRootAlias("tag", "legacy", hideLegacyCommands, image_tagCmd)
+		addRootAlias("top", "legacy", hideLegacyCommands, container_topCmd)
+		addRootAlias("unpause", "legacy", hideLegacyCommands, container_unpauseCmd)
+		addRootAlias("update", "legacy", hideLegacyCommands, container_updateCmd)
+		addRootAlias("wait", "legacy", hideLegacyCommands, container_waitCmd)
 	})
 }
 
-func addRootAlias(use string, short, groupID string, command []string) {
-	cmd := &cobra.Command{
+func addRootAlias(use string, groupID string, hidden bool, cmd *cobra.Command) {
+	aliasCmd := &cobra.Command{
 		Use:                use,
-		Short:              short,
+		Short:              cmd.Short,
 		GroupID:            groupID,
+		Hidden:             hidden,
 		Run:                func(cmd *cobra.Command, args []string) {},
 		DisableFlagParsing: true,
 	}
 
-	carapace.Gen(cmd).PositionalAnyCompletion(
-		bridge.ActionCarapaceBin(command...),
+	carapace.Gen(aliasCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			command := []string{cmd.Name()}
+			for cmd.HasParent() {
+				cmd = cmd.Parent()
+				command = append(command, cmd.Name())
+			}
+			slices.Reverse(command)
+			return bridge.ActionCarapaceBin(command...)
+		}),
 	)
 
-	rootCmd.AddCommand(cmd)
+	rootCmd.AddCommand(aliasCmd)
 }
