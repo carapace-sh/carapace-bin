@@ -5,6 +5,7 @@ import (
 
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -56,14 +57,14 @@ func init() {
 	rootCmd.PersistentFlags().StringSlice("vmodule", []string{}, "comma-separated list of pattern=N settings for file-filtered logging")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"kube-as-group": os.ActionGroups(),
-		"kube-as-user":  os.ActionUsers(),
-		"kube-ca-file":  carapace.ActionFiles(),
-		// TODO "kube-context"
-		"kubeconfig": carapace.ActionFiles(),
-		"log-dir":    carapace.ActionDirectories(),
-		"log-file":   carapace.ActionFiles(),
-		// TODO namespace
+		"kube-as-group":    os.ActionGroups(),
+		"kube-as-user":     os.ActionUsers(),
+		"kube-ca-file":     carapace.ActionFiles(),
+		"kube-context":     kubectl.ActionContexts(),
+		"kubeconfig":       carapace.ActionFiles(),
+		"log-dir":          carapace.ActionDirectories(),
+		"log-file":         carapace.ActionFiles(),
+		"namespace":        kubectl.ActionResources(kubectl.ResourceOpts{Namespace: "", Types: "namespaces"}),
 		"registry-config":  carapace.ActionFiles(),
 		"repository-cache": carapace.ActionFiles(),
 	})
