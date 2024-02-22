@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/helm"
+	"github.com/rsteube/carapace-bin/completers/helm_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,11 +25,6 @@ func init() {
 	})
 
 	carapace.Gen(statusCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return helm.ActionReleases(helm.ReleasesOpts{
-				Namespace:   rootCmd.Flag("namespace").Value.String(),
-				KubeContext: rootCmd.Flag("kube-context").Value.String(),
-			})
-		}),
+		action.ActionReleases(statusCmd),
 	)
 }

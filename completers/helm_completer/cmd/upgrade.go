@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/helm_completer/cmd/action"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/helm"
 	"github.com/rsteube/carapace/pkg/condition"
 	"github.com/spf13/cobra"
@@ -86,12 +87,7 @@ func init() {
 	})
 
 	carapace.Gen(upgradeCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return helm.ActionReleases(helm.ReleasesOpts{
-				Namespace:   rootCmd.Flag("namespace").Value.String(),
-				KubeContext: rootCmd.Flag("kube-context").Value.String(),
-			})
-		}),
+		action.ActionReleases(upgradeCmd),
 		carapace.Batch(
 			carapace.ActionFiles(),
 			helm.ActionRepositoryCharts().Unless(condition.CompletingPath),
