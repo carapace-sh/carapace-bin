@@ -22,7 +22,7 @@
     - [Conditions](./variable/conditions.md)
   - [Development](./development.md)
     - [Build](./development/build.md)
-    - [docker-compose](./development/docker-compose.md)
+    - [Docker](./development/docker.md)
     - [Creating completers](./development/creatingCompleters.md)
     - [Tools](./development/tools.md)
       - [carapace-fmt](./development/tools/carapace-fmt.md)
