@@ -35,7 +35,6 @@ Completers can also be built (and thus maintained) separately.
 ```sh
 cd completers/ln_completer
 go install -ldflags="-s -w"
-ln_completer _carapace
 ```
 
 ![](./build-separate.cast)
