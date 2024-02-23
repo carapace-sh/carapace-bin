@@ -21,6 +21,7 @@
   - [Variable](./variable.md)
     - [Conditions](./variable/conditions.md)
   - [Development](./development.md)
+    - [Project Layout](./development/projectLayout.md)
     - [Build](./development/build.md)
     - [Docker](./development/docker.md)
     - [Creating completers](./development/creatingCompleters.md)
