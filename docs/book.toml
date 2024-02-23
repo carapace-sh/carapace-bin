@@ -18,5 +18,5 @@ edit-url-template = "https://github.com/rsteube/carapace-bin/edit/master/docs/{p
 enable = true
 
 [output.linkcheck]
-# follow-web-links = true
+follow-web-links = true
 exclude = [ 'archlinux\.org' ]
