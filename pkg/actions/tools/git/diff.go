@@ -21,6 +21,25 @@ func ActionDiffAlgorithms() carapace.Action {
 	)
 }
 
+// ActionDiffFilters completes diff filters
+//
+//	A (Added)
+//	C (Copied)
+func ActionDiffFilters() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"A", "Added",
+		"C", "Copied",
+		"D", "Deleted",
+		"M", "Modified",
+		"R", "Renamed",
+		"T", "Changed",
+		"U", "Unmerged",
+		"X", "Unknown",
+		"B", "Broken",
+		"*", "All-or-none",
+	)
+}
+
 // ActionColorMovedModes completes color moved modes
 //
 //	no (Moved lines are not highlighted)
