@@ -53,8 +53,7 @@ func ActionUsers(opts HostOpts) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...).Style(styles.Gh.OwnerUser)
 		})
-	})
-
+	}).Tag("users")
 }
 
 // ActionOrganizations completes organizations
@@ -77,6 +76,5 @@ func ActionOrganizations(opts HostOpts) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...).Style(styles.Gh.OwnerOrganization)
 		})
-	})
-
+	}).Tag("organizations")
 }

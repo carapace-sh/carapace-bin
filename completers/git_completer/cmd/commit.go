@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/rsteube/carapace"
 	"github.com/rsteube/carapace-bin/pkg/actions/os"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -20,6 +21,8 @@ func init() {
 	commitCmd.Flags().Bool("-no-gpg-sign", false, "countermand both commit.gpgSign and earlier --gpg-sign")
 	commitCmd.Flags().Bool("ahead-behind", false, "compute full ahead/behind values")
 	commitCmd.Flags().BoolP("all", "a", false, "commit all changed files")
+	commitCmd.Flags().Bool("allow-empty", false, "allow recording an empty commit")
+	commitCmd.Flags().Bool("allow-empty-message", false, "allow recording a commit with an empty message")
 	commitCmd.Flags().Bool("amend", false, "amend previous commit")
 	commitCmd.Flags().String("author", "", "override author for commit")
 	commitCmd.Flags().Bool("branch", false, "show branch information")
@@ -34,7 +37,9 @@ func init() {
 	commitCmd.Flags().Bool("interactive", false, "interactively add files")
 	commitCmd.Flags().Bool("long", false, "show status in long format (default)")
 	commitCmd.Flags().StringP("message", "m", "", "commit message")
+	commitCmd.Flags().Bool("no-ahead-behind", false, "do not compute full ahead/behind values")
 	commitCmd.Flags().Bool("no-edit", false, "use the selected commit message without launching an editor")
+	commitCmd.Flags().Bool("no-gpg-sign", false, "don't GPG-sign the commit")
 	commitCmd.Flags().Bool("no-post-rewrite", false, "bypass post-rewrite hook")
 	commitCmd.Flags().Bool("no-signoff", false, "countermand an earlier --signoff")
 	commitCmd.Flags().Bool("no-status", false, "do not include the output of git-status in the commit message")
@@ -54,6 +59,7 @@ func init() {
 	commitCmd.Flags().String("squash", "", "use autosquash formatted message to squash specified commit")
 	commitCmd.Flags().Bool("status", false, "include status in commit message template")
 	commitCmd.Flags().StringP("template", "t", "", "use specified template file")
+	commitCmd.Flags().StringSlice("trailer", []string{}, "add custom trailer(s)")
 	commitCmd.Flags().StringP("untracked-files", "u", "", "show untracked files")
 	commitCmd.Flags().BoolP("verbose", "v", false, "show diff in commit message template")
 	rootCmd.AddCommand(commitCmd)
@@ -71,7 +77,22 @@ func init() {
 		"reuse-message":      git.ActionRefs(git.RefOption{Commits: 100, HeadCommits: 100}),
 		"squash":             git.ActionRefs(git.RefOption{Commits: 100, HeadCommits: 100}),
 		"template":           carapace.ActionFiles(),
-		"untracked-files":    carapace.ActionValues("all", "normal", "no"),
+		"trailer": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValues(
+					"Co-authored-by",
+					"Signed-off-by",
+					"Helped-by",
+				).Suffix(":")
+			default:
+				return carapace.Batch(
+					gh.ActionOwners(gh.HostOpts{}), // TODO include email
+					git.ActionAuthors(),
+				).ToA()
+			}
+		}),
+		"untracked-files": carapace.ActionValues("all", "normal", "no"),
 	})
 
 	carapace.Gen(commitCmd).PositionalAnyCompletion(
