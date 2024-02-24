@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/common"
 	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -22,7 +23,7 @@ func init() {
 	rangeDiffCmd.Flags().Bool("no-dual-color", false, "Do not recreate the original diffs’ coloring")
 	rangeDiffCmd.Flags().String("no-notes", "", "This flag is passed to the git log progeram")
 	rangeDiffCmd.Flags().String("notes", "", "This flag is passed to the git log program")
-	addDiffFlags(rangeDiffCmd)
+	common.AddDiffFlags(rangeDiffCmd)
 	rootCmd.AddCommand(rangeDiffCmd)
 
 	rangeDiffCmd.Flag("no-notes").NoOptDefVal = " "
