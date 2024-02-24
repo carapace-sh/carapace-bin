@@ -66,6 +66,9 @@ var rootCmd = &cobra.Command{
 		case "--condition":
 			conditionCmd.SetArgs(args[1:])
 			conditionCmd.Execute()
+		case "--diff":
+			diffCmd.SetArgs(args[1:])
+			diffCmd.Execute()
 		case "--macro":
 			macroCmd.SetArgs(args[1:])
 			macroCmd.Execute()
@@ -179,6 +182,7 @@ func init() {
 	rootCmd.Flags().Bool("clear-cache", false, "clear caches")
 	rootCmd.Flags().Bool("codegen", false, "generate code for spec file")
 	rootCmd.Flags().Bool("condition", false, "list or execute condition")
+	rootCmd.Flags().Bool("diff", false, "diff completion")
 	rootCmd.Flags().BoolP("help", "h", false, "help for carapace")
 	rootCmd.Flags().Bool("list", false, "list completers")
 	rootCmd.Flags().Bool("macro", false, "list or execute macros")
@@ -191,6 +195,7 @@ func init() {
 		"clear-cache",
 		"codegen",
 		"condition",
+		"diff",
 		"help",
 		"list",
 		"macro",
@@ -223,6 +228,8 @@ func init() {
 				return carapace.ActionExecute(codegenCmd).Shift(1)
 			case "--condition":
 				return carapace.ActionExecute(conditionCmd).Shift(1)
+			case "--diff":
+				return carapace.ActionExecute(diffCmd).Shift(1)
 			case "--help":
 				return carapace.ActionValues()
 			case "--list":
