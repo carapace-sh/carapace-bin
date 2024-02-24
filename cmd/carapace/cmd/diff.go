@@ -70,10 +70,10 @@ var diffCmd = &cobra.Command{
 			_bridge = "zsh"
 
 		}
-		joined := shlex.Join(args[1:])
+		joined := shlex.Join(args)
 		fmt.Printf("diff --git a/%v b/carapace\n", _bridge)
-		fmt.Printf("--- a/%v/carapace --macro '%v([%v])' %v\n", _bridge, macro, command, joined) // TODO macro by _bridge
-		fmt.Printf("+++ b/carapace/carapace %v export %v %v\n", command, command, joined)
+		fmt.Printf("--- a/%v/carapace --macro %v %v\n", _bridge, macro, joined) // TODO macro by _bridge
+		fmt.Printf("+++ b/carapace/carapace %v export %v\n", command, joined)
 		for _, v := range export.Values {
 			s := v.Value
 			if v.Description != "" {
