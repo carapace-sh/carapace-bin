@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -24,7 +25,7 @@ func init() {
 	difftoolCmd.Flags().Bool("tool-help", false, "print a list of diff tools that may be used with `--tool`")
 	difftoolCmd.Flags().Bool("trust-exit-code", false, "exit when an invoked diff tool returns a non - zero exit code")
 
-	addDiffFlags(difftoolCmd)
+	common.AddDiffFlags(difftoolCmd)
 	rootCmd.AddCommand(difftoolCmd)
 
 	carapace.Gen(difftoolCmd).FlagCompletion(carapace.ActionMap{
