@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/rsteube/carapace-bridge/pkg/bridges"
 	"github.com/rsteube/carapace-bridge/pkg/env"
@@ -16,10 +17,11 @@ import (
 var listCmd = &cobra.Command{
 	Use:   "--list",
 	Short: "",
+	Args:  cobra.ArbitraryArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		switch cmd.Flag("format").Value.String() {
 		case "json":
-			printCompletersJson(cmd.Flag("all").Changed)
+			printCompletersJson(cmd.Flag("all").Changed, args...)
 		default:
 			printCompleters(cmd.Flag("all").Changed)
 		}
@@ -38,6 +40,19 @@ func init() {
 		}),
 	})
 
+	carapace.Gen(listCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if listCmd.Flag("format").Value.String() != "json" {
+				return carapace.ActionValues()
+			}
+			return action.ActionCompleters(action.CompleterOpts{
+				Internal: true,
+				Spec:     true,
+				Bridge:   listCmd.Flag("all").Changed,
+			}).FilterArgs()
+		}),
+	)
+
 }
 func printCompleters(all bool) {
 	_m := mapCompleters(all)
@@ -54,8 +69,17 @@ func printCompleters(all bool) {
 	}
 }
 
-func printCompletersJson(all bool) {
-	if m, err := json.Marshal(mapCompleters(all)); err == nil { // TODO handle error (log?)
+func printCompletersJson(all bool, names ...string) {
+	completers := mapCompleters(all)
+	if len(names) > 0 {
+		filtered := make(map[string]_completer)
+		for _, name := range names {
+			filtered[name] = completers[name]
+		}
+		completers = filtered
+	}
+
+	if m, err := json.Marshal(completers); err == nil { // TODO handle error (log?)
 		fmt.Println(string(m))
 	}
 }
