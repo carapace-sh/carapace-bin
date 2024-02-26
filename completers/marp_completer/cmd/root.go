@@ -64,26 +64,31 @@ func init() {
 		"config":      carapace.ActionFiles(),
 		"config-file": carapace.ActionFiles(),
 		"engine": carapace.Batch(
-			carapace.ActionValues("@marp-team/marpit"), // TODO marpit engine module names
+			carapace.ActionValues("@marp-team/marpit"),
 			carapace.ActionFiles(),
 		).ToA(),
-		"image": carapace.ActionValues("png", "jpeg").StyleF(style.ForPathExt),
+		"image": carapace.ActionValues("png", "jpeg").StyleF(style.ForExtension),
 		"image-scale": carapace.ActionValuesDescribed(
 			"1", "default",
 			"2", "for PPTX conversion",
 		),
-		"images":    carapace.ActionValues("png", "jpeg").StyleF(style.ForPathExt),
+		"images":    carapace.ActionValues("png", "jpeg").StyleF(style.ForExtension),
 		"input-dir": carapace.ActionDirectories(),
 		"output":    carapace.ActionFiles(),
 		"template":  carapace.ActionValues("bare", "bespoke"),
 		"theme": carapace.Batch(
-			carapace.ActionValues("gaia"), // TODO theme names
+			carapace.ActionValues("default", "gaia", "uncover"),
 			carapace.ActionFiles(),
 		).ToA(),
 		"theme-set": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if rootCmd.Flag("input-dir").Changed {
+				return carapace.ActionValues()
+			}
+			return carapace.ActionFiles()
+		}),
 	)
 }
