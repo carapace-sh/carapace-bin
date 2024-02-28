@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/terramate"
+	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -13,6 +15,7 @@ var script_runCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(script_runCmd).Standalone()
+	script_runCmd.Flags().SetInterspersed(false)
 
 	script_runCmd.Flags().BoolS("X", "X", false, "Disable all safeguards")
 	script_runCmd.Flags().Bool("disable-check-gen-code", false, "Disable outdated generated code check")
@@ -21,4 +24,16 @@ func init() {
 	script_runCmd.Flags().Bool("dry-run", false, "Plan the execution but do not execute it")
 	script_runCmd.Flags().Bool("no-recursive", false, "Do not recurse into child stacks")
 	scriptCmd.AddCommand(script_runCmd)
+
+	carapace.Gen(script_runCmd).FlagCompletion(carapace.ActionMap{
+		"disable-safeguards": terramate.ActionSafeguards().UniqueList(","),
+	})
+
+	carapace.Gen(script_runCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin(),
+	)
+
+	carapace.Gen(script_runCmd).DashAnyCompletion(
+		carapace.ActionPositional(script_runCmd),
+	)
 }

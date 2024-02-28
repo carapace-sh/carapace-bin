@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/terramate"
 	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -31,12 +32,15 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-	"cloud-sync-terraform-plan-file": carapace.ActionValues(),
-	"disable-safeguards":             carapace.ActionValues("all", "none", "git", "git-untracked", "git-uncommitted", "outdated-code", "git-out-of-sync").UniqueList(","),
-	// TODO enable dynamic completion 
+		"cloud-sync-terraform-plan-file": carapace.ActionValues(), // TODO enable dynamic completion
+		"disable-safeguards":             terramate.ActionSafeguards().UniqueList(","),
 	})
 
 	carapace.Gen(runCmd).PositionalAnyCompletion(
 		bridge.ActionCarapaceBin(),
+	)
+
+	carapace.Gen(runCmd).DashAnyCompletion(
+		carapace.ActionPositional(runCmd),
 	)
 }
