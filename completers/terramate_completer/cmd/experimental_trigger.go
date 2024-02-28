@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/rsteube/carapace"
+	"github.com/rsteube/carapace-bin/pkg/actions/tools/terramate"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,10 @@ func init() {
 	experimental_triggerCmd.Flags().String("experimental-status", "", "Filter by status (Deprecated)")
 	experimental_triggerCmd.Flags().String("reason", "", "Reason for the stack being triggered")
 	experimentalCmd.AddCommand(experimental_triggerCmd)
+
+	carapace.Gen(experimental_triggerCmd).FlagCompletion(carapace.ActionMap{
+		"cloud-status": terramate.ActionCloudStatus(),
+	})
 
 	carapace.Gen(experimental_triggerCmd).PositionalCompletion(
 		terramate.ActionStacks(),
