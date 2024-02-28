@@ -5,7 +5,7 @@ import (
 	"github.com/rsteube/carapace/pkg/style"
 )
 
-// ActionCloudStatus
+// ActionCloudStatus completes cloud status
 //
 //	ok (The stack is not drifted and the last deployment succeeded)
 //	failed (The last deployment of the stack failed so the status is unknown)
