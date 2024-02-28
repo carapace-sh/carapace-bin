@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "terramate",
 	Short: "A tool for managing terraform stacks",
+	Long:  "https://github.com/mineiros-io/terramate",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -34,4 +35,16 @@ func init() {
 	rootCmd.Flags().StringSlice("tags", []string{}, "Filter stacks by tags. Use \":\" for logical AND and \",\" for logical OR. Example: --tags app:prod filters stacks containing tag \"app\" AND \"prod\". If multiple --tags are provided, an OR expression is created. Example: \"--tags a --tags b\" is the same as \"--tags a,b\"")
 	rootCmd.Flags().StringSliceP("verbose", "v", []string{}, "Increase verboseness of output")
 	rootCmd.Flags().Bool("version", false, "Terramate version")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"chdir":           carapace.ActionDirectories(),
+		"git-change-base": git.ActionRefs(git.RefOption{}.Default()),
+		"log-destination": carapace.ActionValues("stderr", "stdout"),
+		"log-fmt":         carapace.ActionValues("console", "text", "json"),
+		"log-level":       carapace.ActionValues("disabled", "trace", "debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel),
+	})
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.Chdir(rootCmd.Flag("chdir").Value.String())
+	})
 }

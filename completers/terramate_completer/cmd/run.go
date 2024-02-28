@@ -13,6 +13,7 @@ var runCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(runCmd).Standalone()
+	runCmd.Flags().SetInterspersed(false)
 
 	runCmd.Flags().BoolS("X", "X", false, "Disable all safeguards")
 	runCmd.Flags().Bool("cloud-sync-deployment", false, "Enable synchronization of stack execution with the Terramate Cloud")
@@ -27,4 +28,8 @@ func init() {
 	runCmd.Flags().Bool("no-recursive", false, "Do not recurse into child stacks")
 	runCmd.Flags().Bool("reverse", false, "Reverse the order of execution")
 	rootCmd.AddCommand(runCmd)
+
+	carapace.Gen(runCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin(),
+	)
 }

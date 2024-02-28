@@ -25,4 +25,13 @@ func init() {
 	createCmd.Flags().String("name", "", "Name of the stack, defaults to stack dir base name")
 	createCmd.Flags().Bool("no-generate", false, "Disable code generation for the newly created stacks")
 	rootCmd.AddCommand(createCmd)
+
+	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
+		"after":  terramate.ActionStacks().UniqueList(","),
+		"before": terramate.ActionStacks().UniqueList(","),
+	})
+
+	carapace.Gen(createCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

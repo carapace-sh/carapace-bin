@@ -17,4 +17,8 @@ func init() {
 	experimental_runGraphCmd.Flags().StringP("label", "l", "", "Label used in graph nodes (it could be either \"stack.name\" or \"stack.dir\"")
 	experimental_runGraphCmd.Flags().StringP("outfile", "o", "", "Output .dot file")
 	experimentalCmd.AddCommand(experimental_runGraphCmd)
+
+	carapace.Gen(experimental_runGraphCmd).FlagCompletion(carapace.ActionMap{
+		"outfile": carapace.ActionFiles(),
+	})
 }

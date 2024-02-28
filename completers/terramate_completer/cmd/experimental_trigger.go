@@ -18,4 +18,8 @@ func init() {
 	experimental_triggerCmd.Flags().String("experimental-status", "", "Filter by status (Deprecated)")
 	experimental_triggerCmd.Flags().String("reason", "", "Reason for the stack being triggered")
 	experimentalCmd.AddCommand(experimental_triggerCmd)
+
+	carapace.Gen(experimental_triggerCmd).PositionalCompletion(
+		terramate.ActionStacks(),
+	)
 }
