@@ -14,5 +14,6 @@ var generateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(generateCmd).Standalone()
 
+	generateCmd.Flags().Bool("detailed-exit-code", false, "Return detailed exit code (0 = ok, 1 = errors, 2 = no errors but changes were made")
 	rootCmd.AddCommand(generateCmd)
 }

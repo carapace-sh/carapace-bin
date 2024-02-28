@@ -16,10 +16,4 @@ func init() {
 
 	experimental_vendor_downloadCmd.Flags().StringP("dir", "d", "", "dir to vendor downloaded project")
 	experimental_vendorCmd.AddCommand(experimental_vendor_downloadCmd)
-
-	carapace.Gen(experimental_vendor_downloadCmd).FlagCompletion(carapace.ActionMap{
-		"dir": carapace.ActionDirectories(),
-	})
-
-	// TODO positional completion
 }

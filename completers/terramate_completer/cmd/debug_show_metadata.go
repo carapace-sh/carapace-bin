@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var experimental_metadataCmd = &cobra.Command{
+var debug_show_metadataCmd = &cobra.Command{
 	Use:   "metadata",
 	Short: "Shows metadata available on the project",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(experimental_metadataCmd).Standalone()
+	carapace.Gen(debug_show_metadataCmd).Standalone()
 
-	experimentalCmd.AddCommand(experimental_metadataCmd)
+	debug_showCmd.AddCommand(debug_show_metadataCmd)
 }
