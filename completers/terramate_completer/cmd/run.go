@@ -30,6 +30,12 @@ func init() {
 	runCmd.Flags().Bool("reverse", false, "Reverse the order of execution")
 	rootCmd.AddCommand(runCmd)
 
+	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
+	"cloud-sync-terraform-plan-file": carapace.ActionValues(),
+	"disable-safeguards":             carapace.ActionValues("all", "none", "git", "git-untracked", "git-uncommitted", "outdated-code", "git-out-of-sync").UniqueList(","),
+	// TODO enable dynamic completion 
+	})
+
 	carapace.Gen(runCmd).PositionalAnyCompletion(
 		bridge.ActionCarapaceBin(),
 	)
