@@ -14,6 +14,7 @@ var experimental_cloneCmd = &cobra.Command{
 func init() {
 	carapace.Gen(experimental_cloneCmd).Standalone()
 
+	experimental_cloneCmd.Flags().Bool("skip-child-stacks", false, "Clone ignores child stacks")
 	experimentalCmd.AddCommand(experimental_cloneCmd)
 
 	carapace.Gen(experimental_cloneCmd).PositionalCompletion(
