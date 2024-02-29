@@ -10,7 +10,6 @@ var configCmd = &cobra.Command{
 	Use:     "config",
 	Short:   "Get or set the configuration of a Dagger module",
 	GroupID: "module",
-	Aliases: []string{"mod"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
