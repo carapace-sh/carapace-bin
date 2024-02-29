@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: shallow clone
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         if: "!startsWith(github.ref, 'refs/tags/')"
 
       - name: deep clone
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         if: startsWith(github.ref, 'refs/tags/')
         with:
           fetch-depth: 0
@@ -30,7 +30,7 @@ jobs:
       - name: Build
         run: ls cmd/ | xargs -I'{}' sh -c "cd ./cmd/{} && go build -v ."
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: carapace
           path: ./cmd/carapace/carapace 
@@ -65,9 +65,9 @@ jobs:
     container: ghcr.io/rsteube/carapace
     needs: build
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: carapace
           path: ./cmd/carapace
