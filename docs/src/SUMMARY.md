@@ -28,6 +28,7 @@
       - [Manually](./development/creatingCompleters/manually.md)
       - [Parsing](./development/creatingCompleters/parsing.md)
       - [Scraping](./development/creatingCompleters/scraping.md)
+      - [Examples](./development/creatingCompleters/examples.md)
     - [Updating Completers](./development/updatingCompleters.md)
     - [Best Practices](./development/bestPractices.md)
       - [Coupled Actions](./development/bestPractices/coupledActions.md)
