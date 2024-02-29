@@ -10,6 +10,7 @@ var publishCmd = &cobra.Command{
 	Use:     "publish",
 	Short:   "Publish a Dagger module to the Daggerverse",
 	GroupID: "module",
+	Hidden:  true,
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
