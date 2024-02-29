@@ -6,8 +6,8 @@ import (
 )
 
 var codegenCmd = &cobra.Command{
-	Use:   "--codegen [spec]",
-	Short: "",
+	Use:   "--codegen spec",
+	Short: "generate code for spec file",
 	Args:  cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return codegen(args[0])

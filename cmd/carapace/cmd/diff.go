@@ -15,8 +15,8 @@ import (
 )
 
 var diffCmd = &cobra.Command{
-	Use:   "--diff",
-	Short: "",
+	Use:   "--diff command[/bridge] ...args",
+	Short: "diff completion",
 	Args:  cobra.MinimumNArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var stdout, stderr bytes.Buffer

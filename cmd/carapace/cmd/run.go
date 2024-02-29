@@ -10,8 +10,8 @@ import (
 )
 
 var runCmd = &cobra.Command{
-	Use:   "--run",
-	Short: "",
+	Use:   "--run spec ...args",
+	Short: "run spec",
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		_, spec, err := loadSpec(args[0])

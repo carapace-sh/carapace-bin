@@ -10,14 +10,13 @@ import (
 
 var clearCacheCmd = &cobra.Command{
 	Use:   "--clear-cache",
-	Short: "",
+	Short: "clear caches",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		cacheDir, err := xdg.UserCacheDir()
 		if err != nil {
 			return err
 		}
-		path := cacheDir + "/carapace"
-		return os.RemoveAll(path)
+		return os.RemoveAll(cacheDir + "/carapace")
 	},
 }
 
