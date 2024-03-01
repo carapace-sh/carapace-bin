@@ -16,7 +16,7 @@ import (
 
 var listCmd = &cobra.Command{
 	Use:   "--list",
-	Short: "",
+	Short: "list completers",
 	Args:  cobra.ArbitraryArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		switch cmd.Flag("format").Value.String() {

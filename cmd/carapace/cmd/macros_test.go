@@ -13,6 +13,6 @@ func TestMacros(t *testing.T) {
 			Expect(carapace.ActionStyledValues(
 				"Green", "color2",
 				"Grey", "color8",
-			).Usage("--macro [macro] ..."))
+			).Usage("--macro [macro] [...args]"))
 	})
 }
