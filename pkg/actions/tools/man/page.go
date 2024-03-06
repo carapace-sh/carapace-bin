@@ -7,11 +7,11 @@ import (
 	"github.com/rsteube/carapace"
 )
 
-// ActionManPages completes manpages
+// ActionPages completes man pages
 //
 //	git (the stupid content tracker)
 //	git-add (Add file contents to the index)
-func ActionManPages() carapace.Action {
+func ActionPages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("man", "-k", c.Value)(func(output []byte) carapace.Action {
 			r := regexp.MustCompile(`^(?P<name>.*) \(\d+\) +- (?P<description>.*)$`)
