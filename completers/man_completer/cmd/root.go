@@ -78,7 +78,7 @@ func init() {
 			if rootCmd.Flag("local-file").Changed {
 				return carapace.ActionFiles(".man")
 			}
-			return man.ActionManPages()
+			return man.ActionPages()
 		}),
 	)
 }
