@@ -7,7 +7,7 @@ require (
 	github.com/rsteube/carapace v0.50.2
 	github.com/rsteube/carapace-bridge v0.2.15
 	github.com/rsteube/carapace-shlex v0.1.2
-	github.com/rsteube/carapace-spec v0.15.0
+	github.com/rsteube/carapace-spec v0.16.0
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/mod v0.16.0
