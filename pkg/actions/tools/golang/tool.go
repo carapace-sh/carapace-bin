@@ -3,7 +3,7 @@ package golang
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionTools completes tools

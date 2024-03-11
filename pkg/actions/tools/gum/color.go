@@ -3,8 +3,8 @@ package gum
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/color"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/color"
 )
 
 // ActionColors completes colors

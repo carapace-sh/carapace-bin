@@ -1,7 +1,7 @@
 package action
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 func ActionExecKinds() carapace.Action {

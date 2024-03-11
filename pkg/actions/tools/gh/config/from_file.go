@@ -7,7 +7,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/ghinstance"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/ghinstance"
 	"gopkg.in/yaml.v3"
 )
 

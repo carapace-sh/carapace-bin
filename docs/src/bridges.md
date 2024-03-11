@@ -17,7 +17,7 @@ tsh: kingpin
 Currently available bridges:
 - [argcomplete](https://github.com/kislyuk/argcomplete)
 - [bash](https://www.gnu.org/software/bash/)
-- [carapace](https://github.com/rsteube/carapace)
+- [carapace](https://github.com/carapace-sh/carapace)
 - [clap](https://github.com/clap-rs/clap)
 - [click](https://github.com/pallets/click)
 - [cobra](https://github.com/spf13/cobra)

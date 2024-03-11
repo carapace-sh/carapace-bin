@@ -8,9 +8,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	lint "github.com/rsteube/carapace-bin/cmd/carapace-lint/cmd"
-	"github.com/rsteube/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace"
+	lint "github.com/carapace-sh/carapace-bin/cmd/carapace-lint/cmd"
+	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/spf13/cobra"
 )
 

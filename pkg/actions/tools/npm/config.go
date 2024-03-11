@@ -3,7 +3,7 @@ package npm
 import (
 	"encoding/json"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionLocalConfigKeys completes local config keys

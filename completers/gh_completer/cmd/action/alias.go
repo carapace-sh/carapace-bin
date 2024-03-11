@@ -3,8 +3,8 @@ package action
 import (
 	"errors"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/config"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/config"
 )
 
 func Aliases() (map[string]string, error) {

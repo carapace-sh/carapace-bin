@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
-	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
-	shlex "github.com/rsteube/carapace-shlex"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex"
 	"github.com/spf13/cobra"
 )
 

@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/common"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/git_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 

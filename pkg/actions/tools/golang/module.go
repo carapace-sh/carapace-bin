@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 type mod struct {
@@ -50,8 +50,8 @@ func (o ModuleOpts) Default() ModuleOpts {
 
 // ActionModules completes ModuleOpts
 //
-//	github.com/rsteube/carapace
-//	github.com/rsteube/carapace-spec@v0.0.1
+//	github.com/carapace-sh/carapace
+//	github.com/carapace-sh/carapace-spec@v0.0.1
 func ActionModules(opts ModuleOpts) carapace.Action {
 	return carapace.ActionExecCommand("go", "mod", "edit", "-json")(func(output []byte) carapace.Action {
 		var m mod

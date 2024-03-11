@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/rsteube/carapace/pkg/xdg"
+	"github.com/carapace-sh/carapace/pkg/xdg"
 )
 
 func main() {

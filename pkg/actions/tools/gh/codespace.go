@@ -1,6 +1,6 @@
 package gh
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionCodespaceViewFields completes codespace fields for view
 func ActionCodespaceViewFields() carapace.Action {

@@ -2,7 +2,7 @@ version: '3'
 
 services:
   build: &base
-    image: ghcr.io/rsteube/carapace
+    image: ghcr.io/carapace-sh/carapace
     command: sh -c 'sh -c "cd /carapace-bin/cmd/carapace && go generate ./... && go build -ldflags=\"-s -w\" ."'
     environment:
       CARAPACE_BRIDGES: zsh,fish,bash
@@ -66,7 +66,7 @@ services:
   inittrace:
     <<: *base
     working_dir: /carapace-bin
-    command: bash -c "GODEBUG=inittrace=1 go run ./cmd/carapace 2>&1 | grep 'init github.com/rsteube/carapace-bin' | awk '{print $$5\" \"$$6\" \"$$2}' | sort -r"
+    command: bash -c "GODEBUG=inittrace=1 go run ./cmd/carapace 2>&1 | grep 'init github.com/carapace-sh/carapace-bin' | awk '{print $$5\" \"$$6\" \"$$2}' | sort -r"
   
   lint:
     <<: *base

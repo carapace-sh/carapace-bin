@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 func Aliases(dir, gitDir string) (map[string]string, error) {

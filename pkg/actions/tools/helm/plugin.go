@@ -3,7 +3,7 @@ package helm
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionPlugins completes plugins

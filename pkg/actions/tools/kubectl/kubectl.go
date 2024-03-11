@@ -3,7 +3,7 @@ package kubectl
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionDryRunModes completes dry run modes

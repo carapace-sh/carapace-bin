@@ -2,7 +2,7 @@
 package jaeger
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionSamplingTypes completes sampling types

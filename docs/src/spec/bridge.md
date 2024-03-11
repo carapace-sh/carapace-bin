@@ -26,7 +26,7 @@ completion:
 
 ### Carapace
 
-[rsteube/carapace] based commands can be bridged with the [`bridge.Carapace`] macro:
+[carapace-sh/carapace] based commands can be bridged with the [`bridge.Carapace`] macro:
 
 ```yaml
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
@@ -39,7 +39,7 @@ completion:
 
 ### CarapaceBin
 
-[Completers](../completers.md) and [Specs](../spec.md) registered in [rsteube/carapace-bin] can be bridged with the [`bridge.CarapaceBin`] macro:
+[Completers](../completers.md) and [Specs](../spec.md) registered in [carapace-sh/carapace-bin] can be bridged with the [`bridge.CarapaceBin`] macro:
 
 ```yaml
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
@@ -212,48 +212,48 @@ completion:
 [shell startup delay]:https://jzelinskie.com/posts/dont-recommend-sourcing-shell-completion/
 
 [bash]:https://www.gnu.org/software/bash/
-[`bridge.Bash`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionBash
+[`bridge.Bash`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionBash
 
 [kislyuk/argcomplete]:https://github.com/kislyuk/argcomplete
-[`bridge.Argcomplete`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionArgcomplete
+[`bridge.Argcomplete`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionArgcomplete
 
-[rsteube/carapace]:https://github.com/rsteube/carapace
-[`bridge.Carapace`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionCarapace
+[carapace-sh/carapace]:https://github.com/carapace-sh/carapace
+[`bridge.Carapace`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionCarapace
 
-[rsteube/carapace-bin]:https://github.com/rsteube/carapace-bin
-[`bridge.CarapaceBin`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionCarapaceBin
+[carapace-sh/carapace-bin]:https://github.com/carapace-sh/carapace-bin
+[`bridge.CarapaceBin`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionCarapaceBin
 
 [clap-rs/clap]:https://github.com/clap-rs/clap
-[`bridge.Clap`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionClap
+[`bridge.Clap`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionClap
 
 [pallets/click]:https://github.com/pallets/click
-[`bridge.Click`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionClick
+[`bridge.Click`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionClick
 
 [spf13/cobra]:https://github.com/spf13/cobra
-[`bridge.Cobra`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionCobra
+[`bridge.Cobra`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionCobra
 
 [posener/complete]:https://github.com/posener/complete
-[`bridge.Complete`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionComplete
+[`bridge.Complete`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionComplete
 
 [microsoft/inshellisense]:https://github.com/microsoft/inshellisense
-[`bridge.Inshellisense`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionInshellisense
+[`bridge.Inshellisense`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionInshellisense
 
 [alecthomas/kingpin]:https://github.com/alecthomas/kingpin
-[`bridge.Kingpin`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionKingpin
+[`bridge.Kingpin`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionKingpin
 
 [powershell]:https://microsoft.com/powershell
-[`bridge.Powershell`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionPowershell
+[`bridge.Powershell`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionPowershell
 
 [fish-shell/fish-shell]:https://github.com/fish-shell/fish-shell
-[`bridge.Fish`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionFish
+[`bridge.Fish`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionFish
 
 [urfave/cli]:https://github.com/urfave/cli
-[`bridge.Urfavecli`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionUrfavecli
+[`bridge.Urfavecli`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionUrfavecli
 
 [yargs/yargs]:https://github.com/yargs/yargs
-[`bridge.Yargs`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionYargs
+[`bridge.Yargs`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionYargs
 
 [zsh]:https://www.zsh.org/
-[`bridge.Zsh`]:https://pkg.go.dev/github.com/rsteube/carapace-bridge/pkg/actions/bridge#ActionZsh
+[`bridge.Zsh`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionZsh
 
 [`${UserConfigDir}/carapace/bridge`]:https://pkg.go.dev/os#UserConfigDir

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/net"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/tshark"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tshark"
 	"github.com/spf13/cobra"
 )
 

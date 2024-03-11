@@ -3,7 +3,7 @@ package gh
 import (
 	"encoding/json"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 func apiV3Action(opts RepoOpts, query string, v interface{}, transform func() carapace.Action) carapace.Action {

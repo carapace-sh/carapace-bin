@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/ghinstance"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/ghinstance"
 )
 
 const (

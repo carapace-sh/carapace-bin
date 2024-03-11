@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/util"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/util"
 )
 
 type searchResult struct {

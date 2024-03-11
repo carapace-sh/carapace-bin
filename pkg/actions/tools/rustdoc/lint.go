@@ -1,6 +1,6 @@
 package rustdoc
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionLints completes lints
 //

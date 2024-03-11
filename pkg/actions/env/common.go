@@ -3,8 +3,8 @@ package env
 import (
 	_os "os"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 )
 
 func init() {

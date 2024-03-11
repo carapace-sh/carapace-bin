@@ -1,8 +1,8 @@
 package conditions
 
 import (
-	"github.com/rsteube/carapace-bin/internal/condition"
-	"github.com/rsteube/carapace-spec/pkg/macro"
+	"github.com/carapace-sh/carapace-bin/internal/condition"
+	"github.com/carapace-sh/carapace-spec/pkg/macro"
 )
 
 var (

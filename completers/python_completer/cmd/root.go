@@ -3,10 +3,10 @@ package cmd
 import (
 	"os"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/python_completer/cmd/module"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/python"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/python_completer/cmd/module"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/python"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 

@@ -1,8 +1,8 @@
 package actions
 
 import (
-	spec "github.com/rsteube/carapace-spec"
-	"github.com/rsteube/carapace-spec/pkg/macro"
+	spec "github.com/carapace-sh/carapace-spec"
+	"github.com/carapace-sh/carapace-spec/pkg/macro"
 )
 
 var (

@@ -3,13 +3,13 @@ package jj
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionRemotes completes remotes
 //
-//	carapace (https://github.com/rsteube/carapace)
-//	carapace-bin (https://github.com/rsteube/carapace-bin)
+//	carapace (https://github.com/carapace-sh/carapace)
+//	carapace-bin (https://github.com/carapace-sh/carapace-bin)
 func ActionRemotes() carapace.Action {
 	return carapace.ActionExecCommand("jj", "git", "remote", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

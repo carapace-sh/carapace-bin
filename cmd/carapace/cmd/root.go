@@ -7,14 +7,14 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/lazyinit"
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/shim"
-	"github.com/rsteube/carapace-bin/pkg/actions"
-	spec "github.com/rsteube/carapace-spec"
-	"github.com/rsteube/carapace/pkg/ps"
-	"github.com/rsteube/carapace/pkg/xdg"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/lazyinit"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/shim"
+	"github.com/carapace-sh/carapace-bin/pkg/actions"
+	spec "github.com/carapace-sh/carapace-spec"
+	"github.com/carapace-sh/carapace/pkg/ps"
+	"github.com/carapace-sh/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
 )
 

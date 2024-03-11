@@ -4,13 +4,13 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/rsync_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/fs"
-	"github.com/rsteube/carapace-bin/pkg/actions/net"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/rsync"
-	"github.com/rsteube/carapace/pkg/condition"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/rsync_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/rsync"
+	"github.com/carapace-sh/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 

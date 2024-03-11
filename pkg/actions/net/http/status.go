@@ -1,9 +1,9 @@
 package http
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/styles"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 // ActionStatusCodes completes http status codes

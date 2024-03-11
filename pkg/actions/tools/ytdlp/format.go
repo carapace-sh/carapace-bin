@@ -5,8 +5,8 @@ import (
 	"math"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 // ActionOutputFormats completes output formats

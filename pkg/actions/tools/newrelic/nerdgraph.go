@@ -3,7 +3,7 @@ package newrelic
 import (
 	"encoding/json"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 func actionNerdGraph[T any](query string, transform func(result T) carapace.Action) carapace.Action {

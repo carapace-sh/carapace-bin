@@ -1,7 +1,7 @@
 package env
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 func init() {

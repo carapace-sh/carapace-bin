@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/docker-compose_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/ps"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/docker-compose_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 

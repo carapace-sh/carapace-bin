@@ -3,9 +3,9 @@ package lazyinit
 import (
 	"sort"
 
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
-	"github.com/rsteube/carapace-bridge/pkg/bridges"
-	envbridges "github.com/rsteube/carapace-bridge/pkg/env"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/carapace-sh/carapace-bridge/pkg/bridges"
+	envbridges "github.com/carapace-sh/carapace-bridge/pkg/env"
 )
 
 func Snippet(shell string) string {

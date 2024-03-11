@@ -1,6 +1,6 @@
 package tmux
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionFeatures completes features
 //

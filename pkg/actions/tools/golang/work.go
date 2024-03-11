@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/util"
 )
 
 type work struct {
@@ -56,7 +56,7 @@ func ActionWorkUses(path string) carapace.Action {
 }
 
 // ActionWorkReplacements completes workspace replacements
-// github.com/rsteube/carapace-spec (github.com/rsteube/carapace-spec@v0.3.0
+// github.com/carapace-sh/carapace-spec (github.com/carapace-sh/carapace-spec@v0.3.0
 // github.com/spf13/pflag (../carapace-pflag/)
 func ActionWorkReplacements(path string) carapace.Action {
 	return actionWork(path, func(w work) carapace.Action {
@@ -75,7 +75,7 @@ func ActionWorkReplacements(path string) carapace.Action {
 // ActionWorkModules completes workspace modules
 //
 //	github.com/pelletier/go-toml
-//	github.com/rsteube/carapace
+//	github.com/carapace-sh/carapace
 func ActionWorkModules(path string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return actionWork(path, func(w work) carapace.Action {

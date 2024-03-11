@@ -3,7 +3,7 @@ package ffmpeg
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionHardwareAccelerations completes hardware accellerations

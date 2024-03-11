@@ -3,13 +3,13 @@ package cmd
 import (
 	"testing"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/sandbox"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/sandbox"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 func TestInvokeFlags(t *testing.T) {
-	sandbox.Package(t, "github.com/rsteube/carapace-bin/cmd/carapace")(func(s *sandbox.Sandbox) {
+	sandbox.Package(t, "github.com/carapace-sh/carapace-bin/cmd/carapace")(func(s *sandbox.Sandbox) {
 		s.Run("tail", "export", "tail", "--fo").
 			Expect(carapace.ActionStyledValuesDescribed(
 				"--follow", "output appended data as the file grows", style.Yellow,
@@ -27,7 +27,7 @@ func TestInvokeFlags(t *testing.T) {
 }
 
 func TestInvokePositional(t *testing.T) {
-	sandbox.Package(t, "github.com/rsteube/carapace-bin/cmd/carapace")(func(s *sandbox.Sandbox) {
+	sandbox.Package(t, "github.com/carapace-sh/carapace-bin/cmd/carapace")(func(s *sandbox.Sandbox) {
 		s.Run("git", "export", "git", "checko").
 			Expect(carapace.Batch(
 				carapace.ActionValuesDescribed(

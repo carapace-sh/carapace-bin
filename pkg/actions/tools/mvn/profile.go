@@ -1,6 +1,6 @@
 package mvn
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionProfiles completes profiles
 func ActionProfiles(file string) carapace.Action {

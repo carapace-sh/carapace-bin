@@ -3,17 +3,17 @@ package cmd
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/env"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
 	Use:                "set-env <name> <value>",
 	Short:              "set environment variable",
-	Long:               "https://rsteube.github.io/carapace-bin/environment.html",
+	Long:               "https://carapace-sh.github.io/carapace-bin/environment.html",
 	DisableFlagParsing: true,
 	Run:                func(cmd *cobra.Command, args []string) {},
 }

@@ -3,8 +3,8 @@ package cmd
 import (
 	"os"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/xdg"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
 )
 

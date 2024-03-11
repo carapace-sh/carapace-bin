@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionVerbs completes verbs

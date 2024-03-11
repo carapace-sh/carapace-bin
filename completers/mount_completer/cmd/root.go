@@ -3,9 +3,9 @@ package cmd
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/fs"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/mount"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/mount"
 	"github.com/spf13/cobra"
 )
 

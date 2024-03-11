@@ -1,6 +1,6 @@
 package chroma
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionFormatters completes formatters
 //

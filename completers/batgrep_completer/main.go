@@ -1,6 +1,6 @@
 package main
 
-import "github.com/rsteube/carapace-bin/completers/batgrep_completer/cmd"
+import "github.com/carapace-sh/carapace-bin/completers/batgrep_completer/cmd"
 
 func main() {
 	cmd.Execute()

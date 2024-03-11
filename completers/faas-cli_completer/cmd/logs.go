@@ -3,8 +3,8 @@ package cmd
 import (
 	"time"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/faas-cli_completer/cmd/action"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/faas-cli_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 

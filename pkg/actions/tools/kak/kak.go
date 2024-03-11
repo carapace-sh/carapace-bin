@@ -4,7 +4,7 @@ package kak
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionSessions completes kak sessions

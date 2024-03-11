@@ -9,8 +9,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/xdg"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/xdg"
 )
 
 func Update() error {

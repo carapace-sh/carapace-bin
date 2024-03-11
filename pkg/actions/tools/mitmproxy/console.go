@@ -1,6 +1,6 @@
 package mitmproxy
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionConsoleLayouts completes console layouts
 //

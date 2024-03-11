@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/conditions"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/conditions"
 	"github.com/spf13/cobra"
 )
 
@@ -76,7 +76,7 @@ func printCondition(name string) {
 
 		fmt.Printf(`signature:   $%v%v
 description: %v
-reference:   https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/conditions/%v#Condition%v
+reference:   https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/conditions/%v#Condition%v
 `, name, signature, m.Description, filepath.Dir(path), filepath.Base(path))
 	}
 }

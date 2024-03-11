@@ -1,9 +1,9 @@
 package conditions
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/internal/condition"
-	"github.com/rsteube/carapace/pkg/traverse"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/internal/condition"
+	"github.com/carapace-sh/carapace/pkg/traverse"
 )
 
 // ConditionParent checks if any parent directory contains one of the given file/directory

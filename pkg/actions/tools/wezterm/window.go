@@ -3,7 +3,7 @@ package wezterm
 import (
 	"strconv"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionWindows completes windows

@@ -1,8 +1,8 @@
 package mitmproxy
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net/http"
 )
 
 // ActionModifyBodyPattern completes body modification patterns

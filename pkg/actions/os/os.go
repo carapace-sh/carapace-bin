@@ -4,7 +4,7 @@ package os
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionShells completes available terminal shells

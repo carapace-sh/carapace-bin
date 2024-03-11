@@ -3,8 +3,8 @@ package tea
 import (
 	"fmt"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"gopkg.in/yaml.v3"
 )
 

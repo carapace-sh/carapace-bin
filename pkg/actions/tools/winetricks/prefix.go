@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionPrefixes completes prefixes

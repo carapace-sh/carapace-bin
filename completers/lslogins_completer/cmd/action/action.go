@@ -1,6 +1,6 @@
 package action
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 func ActionColumns() carapace.Action {
 	return carapace.ActionValuesDescribed(

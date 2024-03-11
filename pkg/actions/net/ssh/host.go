@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/internal/actions/net/ssh"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/internal/actions/net/ssh"
 )
 
 // ActionHosts completes ssh hosts

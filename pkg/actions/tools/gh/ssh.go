@@ -3,7 +3,7 @@ package gh
 import (
 	"strconv"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 type sshKey struct {

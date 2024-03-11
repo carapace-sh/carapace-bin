@@ -1,6 +1,6 @@
 package os
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionMouseButtons completes mouse button ids
 //

@@ -1,6 +1,6 @@
 {
   "name": "carapace",
-  "image": "ghcr.io/rsteube/carapace:v0.20.3",
+  "image": "ghcr.io/carapace-sh/carapace",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/elvish"
   },
@@ -10,5 +10,9 @@
   "containerEnv": {
     "TARGET": "/home/circleci/go/bin/carapace"
   },
-  "onCreateCommand": [ "sh", "-c", "cd cmd && go generate ./... && go install ./..."]
+  "onCreateCommand": [
+    "sh",
+    "-c",
+    "cd cmd && go generate ./... && go install ./..."
+  ]
 }

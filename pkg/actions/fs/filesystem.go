@@ -1,7 +1,7 @@
 package fs
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionFilesystemTypes completes file system types

@@ -1,6 +1,6 @@
 package action
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 func ActionAccessLogFieldNames() carapace.Action {
 	return carapace.ActionValuesDescribed(

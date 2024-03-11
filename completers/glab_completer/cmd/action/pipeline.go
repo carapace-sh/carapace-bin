@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/glab_completer/cmd/action/utils"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/glab_completer/cmd/action/utils"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 

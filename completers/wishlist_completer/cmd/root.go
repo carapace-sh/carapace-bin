@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
 
@@ -18,7 +18,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.PersistentFlags().StringP("config", "c", "", "Path to the config file to use. Defaults to, in order of preference: .wishlist/config.yaml, .wishlist/config.yml, .wishlist/config, /home/rsteube/.config/wishlist.yaml, /home/rsteube/.config/wishlist.yml, /home/rsteube/.config/wishlist, /home/rsteube/.ssh/config, /etc/ssh/ssh_config")
+	rootCmd.PersistentFlags().StringP("config", "c", "", "Path to the config file to use")
 	rootCmd.Flags().BoolP("help", "h", false, "help for wishlist")
 	rootCmd.Flags().BoolP("version", "v", false, "version for wishlist")
 

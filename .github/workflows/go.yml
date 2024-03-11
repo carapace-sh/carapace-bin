@@ -62,7 +62,7 @@ jobs:
 
   doc:
     runs-on: ubuntu-latest
-    container: ghcr.io/rsteube/carapace
+    container: ghcr.io/carapace-sh/carapace
     needs: build
     steps:
       - uses: actions/checkout@v4
@@ -92,7 +92,7 @@ jobs:
             git config user.email rsteube@users.noreply.github.com
             git add .
             git commit -m "initial commit [ci skip]"
-            git push --force https://rsteube:${GITHUB_TOKEN}@github.com/rsteube/carapace-bin.git master:gh-pages
+            git push --force https://rsteube:${GITHUB_TOKEN}@github.com/carapace-sh/carapace-bin.git master:gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

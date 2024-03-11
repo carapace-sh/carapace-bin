@@ -5,8 +5,8 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/carapace-sh/carapace/pkg/util"
 	"github.com/pelletier/go-toml"
-	"github.com/rsteube/carapace/pkg/util"
 	"gopkg.in/yaml.v3"
 )
 

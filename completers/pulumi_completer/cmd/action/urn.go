@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/cache/key"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/cache/key"
 	"github.com/spf13/cobra"
 )
 

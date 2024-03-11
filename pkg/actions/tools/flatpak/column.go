@@ -1,6 +1,6 @@
 package flatpak
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionApplicationColumns completes application columns
 //

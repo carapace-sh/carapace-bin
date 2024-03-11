@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/golang"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/golangcilint"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golangcilint"
 	"github.com/spf13/cobra"
 )
 

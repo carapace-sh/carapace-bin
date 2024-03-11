@@ -4,9 +4,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/cache/key"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/cache/key"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 // ActionTarFileContents completes contents of given tar file

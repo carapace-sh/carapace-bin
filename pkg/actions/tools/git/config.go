@@ -3,13 +3,13 @@ package git
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/fs"
-	"github.com/rsteube/carapace-bin/pkg/actions/number"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
-	"github.com/rsteube/carapace-bin/pkg/actions/text"
-	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/number"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/text"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 // ActionConfigs completes configs

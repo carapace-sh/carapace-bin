@@ -6,10 +6,10 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
-	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -34,16 +34,16 @@ func init() {
 		&cobra.Group{ID: "legacy", Title: "Legacy Commands"},
 	)
 
-	rootCmd.Flags().String("config", "/home/rsteube/.docker", "Location of client config files")
+	rootCmd.Flags().String("config", "~/.docker", "Location of client config files")
 	rootCmd.Flags().StringP("context", "c", "", "Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with \"docker context use\")")
 	rootCmd.Flags().BoolP("debug", "D", false, "Enable debug mode")
 	rootCmd.PersistentFlags().BoolP("help", "h", false, "Print usage")
 	rootCmd.Flags().StringP("host", "H", "", "Daemon socket(s) to connect to")
 	rootCmd.Flags().StringP("log-level", "l", "info", "Set the logging level (\"debug\", \"info\", \"warn\", \"error\", \"fatal\")")
 	rootCmd.Flags().Bool("tls", false, "Use TLS; implied by --tlsverify")
-	rootCmd.Flags().String("tlscacert", "/home/rsteube/.docker/ca.pem", "Trust certs signed only by this CA")
-	rootCmd.Flags().String("tlscert", "/home/rsteube/.docker/cert.pem", "Path to TLS certificate file")
-	rootCmd.Flags().String("tlskey", "/home/rsteube/.docker/key.pem", "Path to TLS key file")
+	rootCmd.Flags().String("tlscacert", "~/.docker/ca.pem", "Trust certs signed only by this CA")
+	rootCmd.Flags().String("tlscert", "~/.docker/cert.pem", "Path to TLS certificate file")
+	rootCmd.Flags().String("tlskey", "~/.docker/key.pem", "Path to TLS key file")
 	rootCmd.Flags().Bool("tlsverify", false, "Use TLS and verify the remote")
 	rootCmd.Flags().BoolP("version", "v", false, "Print version information and quit")
 

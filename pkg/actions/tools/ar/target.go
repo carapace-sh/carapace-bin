@@ -1,6 +1,6 @@
 package ar
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionTargets completes targets
 //

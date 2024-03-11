@@ -4,8 +4,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/traverse"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/traverse"
 	"gopkg.in/yaml.v3"
 )
 

@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/time"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
-	"github.com/rsteube/carapace/pkg/condition"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 

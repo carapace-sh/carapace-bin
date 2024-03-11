@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/restic_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/time"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/restic_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/spf13/cobra"
 )
 

@@ -1,6 +1,6 @@
 package git
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionWhitespaceModes completes whitespace modes
 //

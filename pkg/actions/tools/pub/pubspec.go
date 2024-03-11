@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/util"
 	"gopkg.in/yaml.v3"
 )
 

@@ -9,11 +9,11 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/completers"
-	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
-	"github.com/rsteube/carapace-bridge/pkg/bridges"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace-bridge/pkg/bridges"
 	"github.com/spf13/cobra"
 )
 

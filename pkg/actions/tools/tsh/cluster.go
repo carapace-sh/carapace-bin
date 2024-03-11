@@ -3,8 +3,8 @@ package tsh
 import (
 	"encoding/json"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 func ActionClusters() carapace.Action {

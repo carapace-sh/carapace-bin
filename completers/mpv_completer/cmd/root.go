@@ -3,9 +3,9 @@ package cmd
 import (
 	"os"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/mpv"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

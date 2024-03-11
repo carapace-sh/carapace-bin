@@ -4,7 +4,7 @@ package number
 import (
 	"fmt"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 type RangeOpts struct {

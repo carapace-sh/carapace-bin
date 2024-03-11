@@ -1,6 +1,6 @@
 package gum
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionBorders completes borders
 //

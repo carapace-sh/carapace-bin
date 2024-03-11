@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/fastfetch"
-	"github.com/rsteube/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/fastfetch"
+	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/spf13/cobra"
 )
 

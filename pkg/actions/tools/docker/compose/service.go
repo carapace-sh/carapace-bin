@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 type config struct {
@@ -47,8 +47,8 @@ func actionConfig(files []string, f func(c config) carapace.Action) carapace.Act
 
 // ActionServices completes services
 //
-//	elvish (ghcr.io/rsteube/carapace:v0.12.4)
-//	fish (ghcr.io/rsteube/carapace:v0.12.4)
+//	elvish (ghcr.io/carapace-sh/carapace:v0.12.4)
+//	fish (ghcr.io/carapace-sh/carapace:v0.12.4)
 func ActionServices(files ...string) carapace.Action {
 	return actionConfig(files, func(c config) carapace.Action {
 		vals := make([]string, 0)
