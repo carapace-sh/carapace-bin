@@ -1,8 +1,8 @@
 package action
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/color"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/color"
 )
 
 func ActionColors() carapace.Action {

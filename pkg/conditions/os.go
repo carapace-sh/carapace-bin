@@ -4,9 +4,9 @@ import (
 	"runtime"
 	"slices"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/internal/condition"
-	"github.com/rsteube/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/internal/condition"
+	"github.com/carapace-sh/carapace/pkg/execlog"
 )
 
 // ConditionArch checks if the given names contain current `runtime.GOARCH`

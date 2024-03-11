@@ -1,6 +1,6 @@
 package main
 
-import "github.com/rsteube/carapace-bin/completers/cargo-fmt_completer/cmd"
+import "github.com/carapace-sh/carapace-bin/completers/cargo-fmt_completer/cmd"
 
 func main() {
 	cmd.Execute()

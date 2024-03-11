@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/minikube_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/minikube_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
 	"github.com/spf13/cobra"
 )
 

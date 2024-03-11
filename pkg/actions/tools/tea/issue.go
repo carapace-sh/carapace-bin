@@ -3,8 +3,8 @@ package tea
 import (
 	"strconv"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/styles"
 )
 
 // ActionIssueFields completes issue fields

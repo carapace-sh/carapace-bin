@@ -1,7 +1,7 @@
 package golang
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionVersions completes go versions

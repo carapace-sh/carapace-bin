@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/run"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/run"
 )
 
 var remoteRE = regexp.MustCompile(`(.+)\s+(.+)\s+\((push|fetch)\)`)

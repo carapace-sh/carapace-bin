@@ -3,9 +3,9 @@ package mvn
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/cache/key"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/cache/key"
+	"github.com/carapace-sh/carapace/pkg/util"
 )
 
 // ActionProjects completes projects

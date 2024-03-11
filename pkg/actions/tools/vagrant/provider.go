@@ -1,6 +1,6 @@
 package vagrant
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionProviders completes providers
 func ActionProviders() carapace.Action {

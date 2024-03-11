@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions"
-	spec "github.com/rsteube/carapace-spec"
-	"github.com/rsteube/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions"
+	spec "github.com/carapace-sh/carapace-spec"
+	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/spf13/cobra"
 )
 
@@ -98,7 +98,7 @@ func printMacro(name string) {
 
 		fmt.Printf(`signature:   $carapace.%v%v
 description: %v
-reference:   https://pkg.go.dev/github.com/rsteube/carapace-bin/pkg/actions/%v#Action%v
+reference:   https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/%v#Action%v
 `, name, signature, actions.MacroDescriptions[name], filepath.Dir(path), filepath.Base(path))
 	}
 }

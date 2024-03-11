@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	spec "github.com/rsteube/carapace-spec"
+	spec "github.com/carapace-sh/carapace-spec"
 	"gopkg.in/yaml.v3"
 )
 

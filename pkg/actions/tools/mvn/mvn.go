@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/carapace-sh/carapace/pkg/util"
 )
 
 type plugin struct {

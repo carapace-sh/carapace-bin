@@ -3,8 +3,8 @@ package gh
 import (
 	"fmt"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/styles"
 )
 
 type repository struct {
@@ -63,7 +63,7 @@ func ActionRepositories(opts OwnerOpts) carapace.Action {
 
 // ActionOwnerRepositories completes owner/repository
 //
-//	rsteube/carapace
+//	carapace-sh/carapace
 //	spf13/cobra
 func ActionOwnerRepositories(opts HostOpts) carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {

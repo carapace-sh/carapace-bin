@@ -1,13 +1,13 @@
 package env
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/os"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/bat"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
-	"github.com/rsteube/carapace-bin/pkg/conditions"
-	"github.com/rsteube/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/bat"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace-bin/pkg/conditions"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 )
 
 func init() {

@@ -39,5 +39,5 @@ carapace.Gen(get_allCmd).PositionalCompletion(
 )
 ```
 
-[Action]:https://rsteube.github.io/carapace/carapace/action.html
-[ActionCallback]:https://rsteube.github.io/carapace/carapace/defaultActions/actionCallback.html
+[Action]:https://carapace-sh.github.io/carapace/carapace/action.html
+[ActionCallback]:https://carapace-sh.github.io/carapace/carapace/defaultActions/actionCallback.html

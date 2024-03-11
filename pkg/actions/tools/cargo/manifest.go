@@ -3,8 +3,8 @@ package cargo
 import (
 	"encoding/json"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/util"
 )
 
 type manifestJson struct {

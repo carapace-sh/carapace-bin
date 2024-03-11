@@ -9,8 +9,8 @@ cp -r completers/ln_completer completers/manually_completer
 - Update the package name in `main.go`.
 
 ```diff
--import "github.com/rsteube/carapace-bin/completers/ln_completer/cmd"
-+import "github.com/rsteube/carapace-bin/completers/manually_completer/cmd"
+-import "github.com/carapace-sh/carapace-bin/completers/ln_completer/cmd"
++import "github.com/carapace-sh/carapace-bin/completers/manually_completer/cmd"
 ```
 
 - Create the root command.

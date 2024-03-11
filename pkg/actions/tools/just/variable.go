@@ -3,7 +3,7 @@ package just
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionVariables completes variables

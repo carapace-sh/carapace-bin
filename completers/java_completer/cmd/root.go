@@ -3,8 +3,8 @@ package cmd
 import (
 	"os"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/java_completer/cmd/action"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/java_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 

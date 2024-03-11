@@ -3,7 +3,7 @@ package pandoc
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionInputFormats completes input formats

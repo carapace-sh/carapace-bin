@@ -1,7 +1,7 @@
 package tea
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 type RepoOpts struct {

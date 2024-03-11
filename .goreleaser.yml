@@ -34,7 +34,7 @@ brews:
   -
     name: carapace
     description: "multi-shell multi-command argument completer"
-    homepage: "https://github.com/rsteube/carapace-bin"
+    homepage: "https://github.com/carapace-sh/carapace-bin"
     license: "MIT"
     repository:
       owner: rsteube
@@ -45,7 +45,7 @@ brews:
 scoops:
   -
     description: "multi-shell multi-command argument completer"
-    homepage: "https://github.com/rsteube/carapace-bin"
+    homepage: "https://github.com/carapace-sh/carapace-bin"
     license: "MIT"
     repository:
       owner: rsteube
@@ -56,7 +56,7 @@ scoops:
 aurs:
   -
     description: "multi-shell multi-command argument completer"
-    homepage: "https://github.com/rsteube/carapace-bin"
+    homepage: "https://github.com/carapace-sh/carapace-bin"
     license: "MIT"
     maintainers:
       - rsteube <rsteube@users.noreply.github.com>

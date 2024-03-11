@@ -4,7 +4,7 @@ package aws
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 	"gopkg.in/ini.v1"
 )
 

@@ -5,9 +5,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
-	"github.com/rsteube/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-bin/pkg/styles"
 	"github.com/spf13/cobra"
 )
 

@@ -1,6 +1,6 @@
 package ps
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionFormatSpecifiers completes format specifiers
 //

@@ -3,9 +3,9 @@ package syft
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
-	"github.com/rsteube/carapace/pkg/condition"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
+	"github.com/carapace-sh/carapace/pkg/condition"
 )
 
 // ActionSources completes sources

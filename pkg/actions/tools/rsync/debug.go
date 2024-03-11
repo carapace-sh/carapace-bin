@@ -1,6 +1,6 @@
 package rsync
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionDebugFlags completes debug flags
 func ActionDebugFlags() carapace.Action {

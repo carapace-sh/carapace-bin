@@ -1,6 +1,6 @@
 package npm
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionScripts completes scripts
 func ActionScripts() carapace.Action {

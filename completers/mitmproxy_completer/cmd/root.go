@@ -3,9 +3,9 @@ package cmd
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/net"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/mitmproxy"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/mitmproxy"
 	"github.com/spf13/cobra"
 )
 

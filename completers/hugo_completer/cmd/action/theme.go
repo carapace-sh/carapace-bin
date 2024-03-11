@@ -5,8 +5,8 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/carapace-sh/carapace"
 	"github.com/pelletier/go-toml"
-	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 )
 

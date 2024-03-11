@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/number"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/number"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 // ActionDate completes `yyyy-MM-dd` dates separately

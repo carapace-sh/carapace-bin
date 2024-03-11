@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	youtubedl "github.com/rsteube/carapace-bin/pkg/actions/tools/youtubedl"
+	"github.com/carapace-sh/carapace"
+	youtubedl "github.com/carapace-sh/carapace-bin/pkg/actions/tools/youtubedl"
 	"github.com/spf13/cobra"
 )
 

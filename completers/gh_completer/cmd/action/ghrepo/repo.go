@@ -5,8 +5,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/ghinstance"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/git"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/ghinstance"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/git"
 )
 
 // Interface describes an object that represents a GitHub repository

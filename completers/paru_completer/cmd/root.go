@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/paru"
-	"github.com/rsteube/carapace-bin/pkg/util/embed"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/paru"
+	"github.com/carapace-sh/carapace-bin/pkg/util/embed"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

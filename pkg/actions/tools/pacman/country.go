@@ -3,7 +3,7 @@ package pacman
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionCountries completes mirror countries

@@ -4,7 +4,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 func actionYarn(args ...string) func(f func(output []byte) carapace.Action) carapace.Action {

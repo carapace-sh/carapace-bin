@@ -42,4 +42,4 @@ carapace --macro color.HexColors <TAB> # test macro
 ![](./spec-macros.cast)
 
 
-[carapace-spec]:https://github.com/rsteube/carapace-spec
+[carapace-spec]:https://github.com/carapace-sh/carapace-spec

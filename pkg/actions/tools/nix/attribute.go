@@ -7,7 +7,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 //go:embed attributeComplete.nix

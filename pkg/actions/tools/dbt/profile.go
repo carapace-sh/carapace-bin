@@ -3,7 +3,7 @@ package dbt
 import (
 	"os"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 	"gopkg.in/yaml.v3"
 )
 

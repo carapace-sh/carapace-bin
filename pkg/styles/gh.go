@@ -1,6 +1,6 @@
 package styles
 
-import "github.com/rsteube/carapace/pkg/style"
+import "github.com/carapace-sh/carapace/pkg/style"
 
 type gh struct {
 	Draft             string `description:"draft pulls" tag:"issue styles"`

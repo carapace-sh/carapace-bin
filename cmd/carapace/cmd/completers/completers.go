@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/rsteube/carapace-bin/pkg/env"
-	"github.com/rsteube/carapace/pkg/xdg"
+	"github.com/carapace-sh/carapace-bin/pkg/env"
+	"github.com/carapace-sh/carapace/pkg/xdg"
 	"gopkg.in/yaml.v3"
 )
 

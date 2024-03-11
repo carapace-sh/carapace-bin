@@ -3,10 +3,10 @@ package cmd
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/git_completer/cmd/common"
-	"github.com/rsteube/carapace-bin/pkg/actions/time"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/git_completer/cmd/common"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 

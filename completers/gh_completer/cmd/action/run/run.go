@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/rsteube/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace/pkg/execlog"
 )
 
 // Runnable is typically an exec.Cmd or its stub in tests

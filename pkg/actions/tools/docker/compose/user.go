@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 func actionContainerExecCommand(files []string, service string, index int, command string, args ...string) func(f func(output []byte) carapace.Action) carapace.Action {

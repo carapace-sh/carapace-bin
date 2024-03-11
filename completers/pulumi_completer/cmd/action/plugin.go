@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/spf13/cobra"
 )
 

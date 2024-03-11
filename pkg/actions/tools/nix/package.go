@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionChannelPackages completes local channels and their packages

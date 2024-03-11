@@ -12,9 +12,9 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/run"
-	"github.com/rsteube/carapace/pkg/execlog"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/run"
+	"github.com/carapace-sh/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace/pkg/util"
 )
 
 // ErrNotOnAnyBranch indicates that the user is in detached HEAD state

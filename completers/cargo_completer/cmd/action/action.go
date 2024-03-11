@@ -9,10 +9,10 @@ import (
 	"github.com/pelletier/go-toml"
 	"github.com/spf13/cobra"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/cargo"
-	"github.com/rsteube/carapace/pkg/style"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo"
+	"github.com/carapace-sh/carapace/pkg/style"
+	"github.com/carapace-sh/carapace/pkg/util"
 )
 
 type manifestJson struct {

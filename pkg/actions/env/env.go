@@ -4,11 +4,11 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/internal/condition"
-	"github.com/rsteube/carapace-bin/pkg/conditions"
-	spec "github.com/rsteube/carapace-spec"
-	"github.com/rsteube/carapace/pkg/xdg"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/internal/condition"
+	"github.com/carapace-sh/carapace-bin/pkg/conditions"
+	spec "github.com/carapace-sh/carapace-spec"
+	"github.com/carapace-sh/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"
 )

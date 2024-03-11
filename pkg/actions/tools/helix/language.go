@@ -4,9 +4,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace/pkg/execlog"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 // ActionLanguages completes languages

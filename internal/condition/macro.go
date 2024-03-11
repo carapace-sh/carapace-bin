@@ -1,8 +1,8 @@
 package condition
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-spec/pkg/macro"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-spec/pkg/macro"
 )
 
 type Macro struct {

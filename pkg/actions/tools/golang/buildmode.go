@@ -1,6 +1,6 @@
 package golang
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionBuildmodes completes build modes
 //

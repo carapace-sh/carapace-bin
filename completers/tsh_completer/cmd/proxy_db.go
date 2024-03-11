@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/net"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/tsh"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 

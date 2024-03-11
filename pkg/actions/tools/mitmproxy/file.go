@@ -3,7 +3,7 @@ package mitmproxy
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionAppendableFiles completes files with optional `+` prefix

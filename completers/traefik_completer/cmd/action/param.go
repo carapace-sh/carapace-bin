@@ -3,12 +3,12 @@ package action
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/aws"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/docker"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/jaeger"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net/http"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/aws"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jaeger"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 func ActionParameters() carapace.Action {

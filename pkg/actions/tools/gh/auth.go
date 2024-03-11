@@ -3,7 +3,7 @@ package gh
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionAuthScopes completes authentication scopes

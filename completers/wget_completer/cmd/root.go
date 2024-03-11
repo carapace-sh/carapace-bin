@@ -3,10 +3,10 @@ package cmd
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/fs"
-	"github.com/rsteube/carapace-bin/pkg/actions/net/http"
-	"github.com/rsteube/carapace-bin/pkg/actions/net/ssh"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net/http"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh"
 	"github.com/spf13/cobra"
 )
 

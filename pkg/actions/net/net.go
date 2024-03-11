@@ -6,10 +6,10 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/internal/actions/net/ssh"
-	"github.com/rsteube/carapace/pkg/execlog"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/internal/actions/net/ssh"
+	"github.com/carapace-sh/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 // ActionHosts completes known hosts

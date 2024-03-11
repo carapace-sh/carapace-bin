@@ -2,7 +2,7 @@
 
 ## Manually
 
-Download from [releases](https://github.com/rsteube/carapace-bin/releases) and add `carapace` to [PATH](https://en.wikipedia.org/wiki/PATH_(variable)).
+Download from [releases](https://github.com/carapace-sh/carapace-bin/releases) and add `carapace` to [PATH](https://en.wikipedia.org/wiki/PATH_(variable)).
 
 ## AUR
 

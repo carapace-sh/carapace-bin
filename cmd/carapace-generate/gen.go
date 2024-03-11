@@ -12,8 +12,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/rsteube/carapace/pkg/execlog"
-	"github.com/rsteube/carapace/pkg/util"
+	"github.com/carapace-sh/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace/pkg/util"
 )
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
 
 	imports := make([]string, 0, len(names))
 	for _, name := range names {
-		imports = append(imports, fmt.Sprintf(`	%v "github.com/rsteube/carapace-bin/completers/%v_completer/cmd"`, varName(name), name))
+		imports = append(imports, fmt.Sprintf(`	%v "github.com/carapace-sh/carapace-bin/completers/%v_completer/cmd"`, varName(name), name))
 	}
 
 	formattedNames := make([]string, 0)
@@ -174,7 +174,7 @@ func macros() {
 
 	// hardcoded the bridge macros
 	imports := map[string]bool{
-		`bridge "github.com/rsteube/carapace-bridge/pkg/actions/bridge"`: true,
+		`bridge "github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"`: true,
 	}
 	macros := []string{
 		`"bridge.Argcomplete":   spec.MacroV(bridge.ActionArgcomplete),`,
@@ -197,8 +197,8 @@ func macros() {
 	descriptions := map[string]string{
 		"bridge.Argcomplete":   "bridges https://github.com/kislyuk/argcomplete",
 		"bridge.Bash":          "bridges https://www.gnu.org/software/bash/",
-		"bridge.Carapace":      "bridges https://github.com/rsteube/carapace",
-		"bridge.CarapaceBin":   "bridges https://github.com/rsteube/carapace-bin",
+		"bridge.Carapace":      "bridges https://github.com/carapace-sh/carapace",
+		"bridge.CarapaceBin":   "bridges https://github.com/carapace-sh/carapace-bin",
 		"bridge.Clap":          "bridges https://github.com/clap-rs/clap",
 		"bridge.Click":         "bridges https://github.com/pallets/click",
 		"bridge.Cobra":         "bridges https://github.com/spf13/cobra",
@@ -206,7 +206,7 @@ func macros() {
 		"bridge.Fish":          "bridges https://fishshell.com/",
 		"bridge.Inshellisense": "bridges https://github.com/microsoft/inshellisense",
 		"bridge.Kingpin":       "bridges https://github.com/alecthomas/kingpin",
-		"bridge.Macro":         "bridges macros exposed with https://github.com/rsteube/carapace-spec",
+		"bridge.Macro":         "bridges macros exposed with https://github.com/carapace-sh/carapace-spec",
 		"bridge.Powershell":    "bridges https://microsoft.com/powershell",
 		"bridge.Urfavecli":     "bridges https://github.com/urfave/cli",
 		"bridge.Yargs":         "bridges https://github.com/yargs/yargs",
@@ -224,7 +224,7 @@ func macros() {
 			defer file.Close()
 
 			pkg := strings.Replace(filepath.ToSlash(filepath.Dir(strings.TrimPrefix(path, root+"/pkg/actions/"))), "/", ".", -1)
-			_import := fmt.Sprintf(`	%v "github.com/rsteube/carapace-bin/pkg/actions/%v"`, strings.Replace(pkg, ".", "_", -1), strings.Replace(pkg, ".", "/", -1))
+			_import := fmt.Sprintf(`	%v "github.com/carapace-sh/carapace-bin/pkg/actions/%v"`, strings.Replace(pkg, ".", "_", -1), strings.Replace(pkg, ".", "/", -1))
 
 			scanner := bufio.NewScanner(file)
 			for scanner.Scan() {
@@ -278,7 +278,7 @@ func macros() {
 
 import (
 %v
-	spec "github.com/rsteube/carapace-spec"
+	spec "github.com/carapace-sh/carapace-spec"
 )
 
 func init() {
@@ -349,8 +349,8 @@ func conditions() {
 	content := fmt.Sprintf(`package conditions
 
 import (
-	"github.com/rsteube/carapace-bin/internal/condition"
-	"github.com/rsteube/carapace-spec/pkg/macro"
+	"github.com/carapace-sh/carapace-bin/internal/condition"
+	"github.com/carapace-sh/carapace-spec/pkg/macro"
 )
 
 func init() {

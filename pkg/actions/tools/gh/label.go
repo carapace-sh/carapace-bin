@@ -3,7 +3,7 @@ package gh
 import (
 	"time"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 type label struct {

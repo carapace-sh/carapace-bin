@@ -1,6 +1,6 @@
 package tea
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionRepositoryFields completes repository fields
 //

@@ -3,7 +3,7 @@ package action
 import (
 	"fmt"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
 

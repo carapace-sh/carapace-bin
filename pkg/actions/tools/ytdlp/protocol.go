@@ -1,6 +1,6 @@
 package ytdlp
 
-import "github.com/rsteube/carapace"
+import "github.com/carapace-sh/carapace"
 
 // ActionProtocols completes protocols
 //

@@ -3,7 +3,7 @@ package brew
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionAllFormulae completes all formulae

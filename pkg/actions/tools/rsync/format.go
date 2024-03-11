@@ -1,7 +1,7 @@
 package rsync
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionFormats completes formats

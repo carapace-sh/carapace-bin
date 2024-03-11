@@ -3,7 +3,7 @@ package systemctl
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionUnitTypes completes unit types

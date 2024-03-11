@@ -5,14 +5,14 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/gh"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 )
 
 // ActionModuleSearch completes git repos in module format
 //
-//	github.com/rsteube/carapace@v0.0.1
+//	github.com/carapace-sh/carapace@v0.0.1
 //	github.com/spf13/cobra@v0.0.2
 func ActionModuleSearch() carapace.Action {
 	return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {

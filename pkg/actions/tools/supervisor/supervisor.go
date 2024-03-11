@@ -4,7 +4,7 @@ import (
 	"errors"
 	"os"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 func configPath(c carapace.Context) (string, error) {

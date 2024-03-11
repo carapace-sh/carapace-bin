@@ -2,7 +2,7 @@
 package gh
 
 import (
-	"github.com/rsteube/carapace/pkg/cache/key"
+	"github.com/carapace-sh/carapace/pkg/cache/key"
 )
 
 type HostOpts struct {

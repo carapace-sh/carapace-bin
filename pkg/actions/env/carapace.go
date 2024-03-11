@@ -1,10 +1,10 @@
 package env
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/cmd/carapace/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/env"
-	"github.com/rsteube/carapace/pkg/style"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/env"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 func init() {

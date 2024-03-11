@@ -7,10 +7,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/config"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/ghrepo"
-	"github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action/git"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/config"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/ghrepo"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/git"
 	"github.com/spf13/cobra"
 )
 

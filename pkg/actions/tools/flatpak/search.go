@@ -3,7 +3,7 @@ package flatpak
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 )
 
 // ActionApplicationSearch completes installable applications

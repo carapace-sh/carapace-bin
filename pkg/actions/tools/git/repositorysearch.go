@@ -3,9 +3,9 @@ package git
 import (
 	"strings"
 
-	"github.com/rsteube/carapace"
-	gh "github.com/rsteube/carapace-bin/completers/gh_completer/cmd/action"
-	glab "github.com/rsteube/carapace-bin/completers/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace"
+	gh "github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action"
+	glab "github.com/carapace-sh/carapace-bin/completers/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 

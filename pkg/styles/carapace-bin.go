@@ -1,6 +1,6 @@
 package styles
 
-import "github.com/rsteube/carapace/pkg/style"
+import "github.com/carapace-sh/carapace/pkg/style"
 
 var CarapaceBin = struct {
 	HttpStatusInformational string `description:"http informational" tag:"http status styles"`

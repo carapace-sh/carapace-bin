@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/pkg/actions/tools/make"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/make"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
