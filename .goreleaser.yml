@@ -70,7 +70,7 @@ aurs:
 nfpms:
   -
     description: "multi-shell multi-command argument completer"
-    homepage: "https://github.com/rsteube/carapace-bin"
+    homepage: "https://github.com/carapace-sh/carapace-bin"
     license: "MIT"
     maintainer: rsteube <rsteube@users.noreply.github.com>
     formats:
