@@ -5,7 +5,7 @@ go 1.21
 require (
 	github.com/carapace-sh/carapace v0.50.3-0.20240311152955-f3bd62ff6a23
 	github.com/carapace-sh/carapace-bridge v0.2.16-0.20240311173237-760172108463
-	github.com/carapace-sh/carapace-shlex v0.2.0
+	github.com/carapace-sh/carapace-shlex v1.0.0
 	github.com/carapace-sh/carapace-spec v0.17.1-0.20240311163627-73cd85d39b71
 	github.com/pelletier/go-toml v1.9.5
 	github.com/spf13/cobra v1.8.0
