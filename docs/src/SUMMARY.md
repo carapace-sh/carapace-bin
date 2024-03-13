@@ -38,6 +38,7 @@
       - [carapace-parse](./development/tools/carapace-parse.md)
       - [carapace-generate](./development/tools/carapace-generate.md)
   - [Release Notes](./release_notes.md)
+    - [v1.0](./release_notes/v1.0.md)
     - [v0.30](./release_notes/v0.30.md)
     - [v0.29](./release_notes/v0.29.md)
     - [v0.28](./release_notes/v0.28.md)
