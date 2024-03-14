@@ -19,7 +19,7 @@ func init() {
 	carapace.Gen(search_issuesCmd).Standalone()
 
 	search_issuesCmd.Flags().String("app", "", "Filter by GitHub App author")
-	search_issuesCmd.Flags().Bool("archived", false, "Restrict search to archived repositories")
+	search_issuesCmd.Flags().Bool("archived", false, "Filter based on the repository archived state {true|false}")
 	search_issuesCmd.Flags().String("assignee", "", "Filter by assignee")
 	search_issuesCmd.Flags().String("author", "", "Filter by author")
 	search_issuesCmd.Flags().String("closed", "", "Filter on closed at `date`")
@@ -70,7 +70,7 @@ func init() {
 		"label": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionLabels(cmd).UniqueList(",")
 		}),
-		"language": action.ActionLanguages(),
+		"language": gh.ActionLanguages(),
 		"match":    carapace.ActionValues("title", "body", "comments").UniqueList(","),
 		"mentions": gh.ActionUsers(gh.HostOpts{}),
 		"milestone": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {

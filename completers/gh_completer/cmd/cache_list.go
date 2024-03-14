@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -22,6 +23,7 @@ func init() {
 	cache_listCmd.Flags().StringP("key", "k", "", "Filter by cache key prefix")
 	cache_listCmd.Flags().StringP("limit", "L", "", "Maximum number of caches to fetch")
 	cache_listCmd.Flags().StringP("order", "O", "", "Order of caches returned: {asc|desc}")
+	cache_listCmd.Flags().StringP("ref", "r", "", "Filter by ref, formatted as refs/heads/<branch name> or refs/pull/<number>/merge")
 	cache_listCmd.Flags().StringP("sort", "S", "", "Sort fetched caches: {created_at|last_accessed_at|size_in_bytes}")
 	cache_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	cacheCmd.AddCommand(cache_listCmd)
@@ -29,6 +31,7 @@ func init() {
 	carapace.Gen(cache_listCmd).FlagCompletion(carapace.ActionMap{
 		"json":  gh.ActionCacheFields().UniqueList(","),
 		"order": carapace.ActionValues("asc", "desc").StyleF(style.ForKeyword),
+		"ref":   action.ActionCacheRefs(cache_listCmd),
 		"sort":  carapace.ActionValues("created_at", "last_accessed_at", "size_in_bytes"),
 	})
 }

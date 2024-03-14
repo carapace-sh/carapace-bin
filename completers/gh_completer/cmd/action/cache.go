@@ -15,3 +15,12 @@ func ActionCaches(cmd *cobra.Command) carapace.Action {
 		return gh.ActionCaches(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
 	})
 }
+func ActionCacheRefs(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		repo, err := repoOverride(cmd)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+		return gh.ActionCacheRefs(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
+	})
+}
