@@ -5,8 +5,11 @@ import (
 )
 
 // ActionLanguages completes repository languages
-// curl https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml | yj -yj | jq --raw-output  'to_entries[] | "\"\(.key)\", \"\(.value.type)\","'
+//
+//	Go (programming)
+//	Go Checksums (data)
 func ActionLanguages() carapace.Action {
+	// curl https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml | yj -yj | jq --raw-output  'to_entries[] | "\"\(.key)\", \"\(.value.type)\","'
 	return carapace.ActionValuesDescribed(
 		"1C Enterprise", "programming",
 		"2-Dimensional Array", "data",
@@ -165,6 +168,7 @@ func ActionLanguages() carapace.Action {
 		"Easybuild", "data",
 		"Ecere Projects", "data",
 		"Ecmarkup", "markup",
+		"Edge", "markup",
 		"EdgeQL", "programming",
 		"EditorConfig", "data",
 		"Edje Data Collection", "data",
@@ -225,6 +229,7 @@ func ActionLanguages() carapace.Action {
 		"Git Revision List", "data",
 		"Gleam", "programming",
 		"Glimmer JS", "programming",
+		"Glimmer TS", "programming",
 		"Glyph", "programming",
 		"Glyph Bitmap Distribution Format", "data",
 		"Gnuplot", "programming",
@@ -381,6 +386,7 @@ func ActionLanguages() carapace.Action {
 		"Modula-2", "programming",
 		"Modula-3", "programming",
 		"Module Management System", "programming",
+		"Mojo", "programming",
 		"Monkey", "programming",
 		"Monkey C", "programming",
 		"Moocode", "programming",
@@ -420,6 +426,7 @@ func ActionLanguages() carapace.Action {
 		"OASv3-json", "data",
 		"OASv3-yaml", "data",
 		"OCaml", "programming",
+		"Oberon", "programming",
 		"ObjDump", "data",
 		"Object Data Instance Notation", "data",
 		"ObjectScript", "programming",
@@ -467,6 +474,7 @@ func ActionLanguages() carapace.Action {
 		"PicoLisp", "programming",
 		"PigLatin", "programming",
 		"Pike", "programming",
+		"Pip Requirements", "data",
 		"PlantUML", "data",
 		"Pod", "prose",
 		"Pod 6", "prose",
@@ -536,6 +544,7 @@ func ActionLanguages() carapace.Action {
 		"Ring", "programming",
 		"Riot", "markup",
 		"RobotFramework", "programming",
+		"Roc", "programming",
 		"Roff", "markup",
 		"Roff Manpage", "markup",
 		"Rouge", "programming",
@@ -577,6 +586,7 @@ func ActionLanguages() carapace.Action {
 		"Slash", "programming",
 		"Slice", "programming",
 		"Slim", "markup",
+		"Slint", "markup",
 		"SmPL", "programming",
 		"Smali", "programming",
 		"Smalltalk", "programming",
@@ -619,6 +629,7 @@ func ActionLanguages() carapace.Action {
 		"Terraform Template", "markup",
 		"Texinfo", "prose",
 		"Text", "prose",
+		"TextGrid", "data",
 		"TextMate Properties", "data",
 		"Textile", "prose",
 		"Thrift", "programming",
