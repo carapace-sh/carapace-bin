@@ -1,4 +1,4 @@
-package action
+package gh
 
 import (
 	"github.com/carapace-sh/carapace"

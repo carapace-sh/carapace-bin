@@ -17,7 +17,7 @@ var search_reposCmd = &cobra.Command{
 func init() {
 	carapace.Gen(search_reposCmd).Standalone()
 
-	search_reposCmd.Flags().Bool("archived", false, "Filter based on archive state")
+	search_reposCmd.Flags().Bool("archived", false, "Filter based on the repository archived state {true|false}")
 	search_reposCmd.Flags().String("created", "", "Filter based on created at `date`")
 	search_reposCmd.Flags().String("followers", "", "Filter based on `number` of followers")
 	search_reposCmd.Flags().String("forks", "", "Filter on `number` of forks")
@@ -47,7 +47,7 @@ func init() {
 		"created":       action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"include-forks": carapace.ActionValues("false", "true", "only"),
 		"json":          action.ActionSearchRepositoryFields().UniqueList(","),
-		"language":      action.ActionLanguages(),
+		"language":      gh.ActionLanguages(),
 		"license":       gh.ActionLicenses(gh.HostOpts{}).UniqueList(","),
 		"match":         carapace.ActionValues("name", "description", "readme").UniqueList(","),
 		"order":         carapace.ActionValues("asc", "desc"),

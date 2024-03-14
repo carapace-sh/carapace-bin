@@ -19,7 +19,7 @@ func init() {
 	carapace.Gen(search_prsCmd).Standalone()
 
 	search_prsCmd.Flags().String("app", "", "Filter by GitHub App author")
-	search_prsCmd.Flags().Bool("archived", false, "Restrict search to archived repositories")
+	search_prsCmd.Flags().Bool("archived", false, "Filter based on the repository archived state {true|false}")
 	search_prsCmd.Flags().String("assignee", "", "Filter by assignee")
 	search_prsCmd.Flags().String("author", "", "Filter by author")
 	search_prsCmd.Flags().StringP("base", "B", "", "Filter on base branch name")
@@ -85,7 +85,7 @@ func init() {
 		"label": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionLabels(cmd).UniqueList(",")
 		}),
-		"language":  action.ActionLanguages(),
+		"language":  gh.ActionLanguages(),
 		"match":     carapace.ActionValues("title", "body", "comments").UniqueList(","),
 		"mentions":  gh.ActionUsers(gh.HostOpts{}),
 		"merged-at": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
