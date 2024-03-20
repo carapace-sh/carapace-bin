@@ -8,7 +8,7 @@ import (
 
 var auth_statusCmd = &cobra.Command{
 	Use:   "status",
-	Short: "View authentication status",
+	Short: "View all accounts and authentication status",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
