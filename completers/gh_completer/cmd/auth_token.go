@@ -18,7 +18,7 @@ func init() {
 
 	auth_tokenCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitHub instance authenticated with")
 	auth_tokenCmd.Flags().Bool("secure-storage", false, "Search only secure credential store for authentication token")
-	auth_tokenCmd.Flags().StringP("user", "u", "", "The account to log out of")
+	auth_tokenCmd.Flags().StringP("user", "u", "", "The account to output the token for")
 	auth_tokenCmd.Flag("secure-storage").Hidden = true
 	authCmd.AddCommand(auth_tokenCmd)
 

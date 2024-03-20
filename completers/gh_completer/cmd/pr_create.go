@@ -22,6 +22,7 @@ func init() {
 	pr_createCmd.Flags().StringP("body", "b", "", "Body for the pull request")
 	pr_createCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	pr_createCmd.Flags().BoolP("draft", "d", false, "Mark pull request as a draft")
+	pr_createCmd.Flags().Bool("dry-run", false, "Print details instead of creating the PR. May still push git changes.")
 	pr_createCmd.Flags().BoolP("fill", "f", false, "Use commit info for title and body")
 	pr_createCmd.Flags().Bool("fill-first", false, "Use first commit info for title and body")
 	pr_createCmd.Flags().Bool("fill-verbose", false, "Use commits msg+body for description")
