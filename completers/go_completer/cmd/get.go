@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,8 @@ func init() {
 	getCmd.Flags().BoolS("u", "u", false, "update modules providing dependencies")
 	addBuildFlags(getCmd)
 	rootCmd.AddCommand(getCmd)
+
+	carapace.Gen(getCmd).PositionalCompletion(
+		golang.ActionModuleSearch(),
+	)
 }
