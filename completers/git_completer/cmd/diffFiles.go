@@ -18,7 +18,6 @@ func init() {
 	carapace.Gen(diffFilesCmd).Standalone()
 
 	diffFilesCmd.Flags().StringS("G", "G", "", "Look for differences whose patch text contains added/removed lines that match <regex>")
-	diffFilesCmd.Flags().BoolP("cc", "c", false, "This compares stage 2 (our branch), stage 3 (their branch), and the working tree file")
 	diffFilesCmd.Flags().Bool("default", false, "Use argument as default revision")
 	diffFilesCmd.Flags().Bool("default-prefix", false, "Use the default source and destination prefixes")
 	diffFilesCmd.Flags().Bool("early-output", false, "undocumented")
@@ -27,7 +26,6 @@ func init() {
 	diffFilesCmd.Flags().StringP("ignore-matching-lines", "I", "", "Ignore changes whose all lines match <regex>")
 	diffFilesCmd.Flags().Bool("log-size", false, "Print log message size in bytes before the message")
 	diffFilesCmd.Flags().Bool("mailmap", false, "Use mailmap file to map author and committer name")
-	diffFilesCmd.Flags().Bool("no-abbrev", false, "Show the full 40-byte hexadecimal commit object name)")
 	diffFilesCmd.Flags().Bool("no-relative", false, "Do not show relative pathnames")
 	diffFilesCmd.Flags().Bool("no-textconv", false, "Disallow external text conversion filters to be run when comparing binary files")
 	diffFilesCmd.Flags().BoolS("q", "q", false, "Remain silent even for nonexistent files")
