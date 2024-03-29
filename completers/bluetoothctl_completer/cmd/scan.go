@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -14,5 +15,8 @@ var scanCmd = &cobra.Command{
 func init() {
 	carapace.Gen(scanCmd).Standalone()
 	rootCmd.AddCommand(scanCmd)
-	carapace.Gen(scanCmd).PositionalCompletion(carapace.ActionValues("on", "off", "bredr", "le"))
+
+	carapace.Gen(scanCmd).PositionalCompletion(
+		carapace.ActionValues("on", "off", "bredr", "le").StyleF(style.ForKeyword),
+	)
 }
