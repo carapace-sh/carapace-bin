@@ -2,7 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/bluetoothctl_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/bluetoothctl"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +17,9 @@ func init() {
 	carapace.Gen(agentCmd).Standalone()
 	rootCmd.AddCommand(agentCmd)
 	carapace.Gen(agentCmd).PositionalCompletion(
-		action.ActionAgents(),
+		carapace.Batch(
+			carapace.ActionValues("off", "on", "auto").StyleF(style.ForKeyword),
+			bluetoothctl.ActionAgentCapabilities(),
+		).ToA(),
 	)
 }
