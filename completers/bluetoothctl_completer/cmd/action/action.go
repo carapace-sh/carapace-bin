@@ -40,7 +40,11 @@ func ActionControllers() carapace.Action {
 
 func ActionDevices(filter string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("bluetoothctl", "devices", filter)(func(output []byte) carapace.Action {
+		args := []string{"devices"}
+		if filter != "" {
+			args = append(args, filter)
+		}
+		return carapace.ActionExecCommand("bluetoothctl", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			vals := make([]string, 0)
 

@@ -20,11 +20,12 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringS("agent", "a", "", "Register agent handler: <capability>")
+	rootCmd.Flags().StringP("agent", "a", "", "Register agent handler: <capability>")
 	rootCmd.Flags().BoolP("endpoints", "e", false, "Register media endpoints")
-	rootCmd.Flags().BoolP("monitor", "m", false, "Enable monitor output")
-	rootCmd.Flags().BoolP("version", "v", false, "Display version")
 	rootCmd.Flags().BoolP("help", "h", false, "Display help")
+	rootCmd.Flags().BoolP("monitor", "m", false, "Enable monitor output")
+	rootCmd.Flags().StringP("timeout", "t", "", "Timeout in seconds for non-interactive mode")
+	rootCmd.Flags().BoolP("version", "v", false, "Display version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"agent": action.ActionAgents(),
