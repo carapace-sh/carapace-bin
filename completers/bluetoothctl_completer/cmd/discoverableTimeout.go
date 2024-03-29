@@ -12,6 +12,6 @@ var discoverableTimeoutCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(discoverableCmd).Standalone()
-	rootCmd.AddCommand(discoverableCmd)
+	carapace.Gen(discoverableTimeoutCmd).Standalone()
+	rootCmd.AddCommand(discoverableTimeoutCmd)
 }
