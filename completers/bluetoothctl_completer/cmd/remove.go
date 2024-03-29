@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/bluetoothctl_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/bluetoothctl"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +16,6 @@ func init() {
 	carapace.Gen(removeCmd).Standalone()
 	rootCmd.AddCommand(removeCmd)
 	carapace.Gen(removeCmd).PositionalCompletion(
-		action.ActionDevices(""),
+		bluetoothctl.ActionDevices(bluetoothctl.DeviceOpts{}.Default()),
 	)
 }
