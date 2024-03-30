@@ -18,6 +18,7 @@ func init() {
 
 	config_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	config_listCmd.Flags().Bool("include-defaults", false, "Whether to explicitly include built-in default values in the list")
+	config_listCmd.Flags().StringP("template", "T", "", "Render each variable using the given template")
 	configCmd.AddCommand(config_listCmd)
 
 	carapace.Gen(config_listCmd).PositionalCompletion(

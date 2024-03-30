@@ -16,6 +16,7 @@ var diffCmd = &cobra.Command{
 func init() {
 	carapace.Gen(diffCmd).Standalone()
 
+	diffCmd.Flags().Int("context", 3, "Number of lines of context to show")
 	diffCmd.Flags().Bool("color-words", false, "Show a word-level diff with changes indicated only by color")
 	diffCmd.Flags().String("from", "", "Show changes from this revision")
 	diffCmd.Flags().Bool("git", false, "Show a Git-format diff")
