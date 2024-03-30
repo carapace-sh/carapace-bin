@@ -9,7 +9,7 @@ import (
 
 var diffCmd = &cobra.Command{
 	Use:   "diff [OPTIONS] [PATHS]...",
-	Short: "",
+	Short: "Compare file contents between two revisions",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
