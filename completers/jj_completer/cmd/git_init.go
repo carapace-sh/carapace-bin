@@ -20,7 +20,7 @@ func init() {
 	gitCmd.AddCommand(git_initCmd)
 
 	carapace.Gen(git_initCmd).FlagCompletion(carapace.ActionMap{
-		"git-repo": carapace.ActionFiles(),
+		"git-repo": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(git_initCmd).PositionalCompletion(
