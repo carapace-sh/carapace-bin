@@ -2,7 +2,6 @@ package transmission
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 // ActionTOS Completes a name for ToS values
@@ -35,5 +34,5 @@ func ActionTOS() carapace.Action {
 		"lowdelay",
 		"reliability",
 		"throughput",
-	).StyleF(style.ForKeyword)
+	)
 }

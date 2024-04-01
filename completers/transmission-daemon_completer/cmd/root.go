@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/transmission"
 	"github.com/spf13/cobra"
 )
 
@@ -78,11 +77,11 @@ func init() {
 		"allowed":           net.ActionIpv4Addresses(),
 		"bind-address-ipv4": net.ActionIpv4Addresses(),
 		"bind-address-ipv6": carapace.ActionValues("::0/0", "fe80::/10"),
-		"config-dir":        transmission.ActionAbsoluteDirectories(),
-		"download-dir":      transmission.ActionAbsoluteDirectories(),
-		"logfile":           transmission.ActionAbsoluteFiles(),
-		"pid-file":          transmission.ActionAbsoluteFiles(),
+		"config-dir":        carapace.ActionDirectories().Chdir("/"),
+		"download-dir":      carapace.ActionDirectories().Chdir("/"),
+		"logfile":           carapace.ActionFiles().Chdir("/"),
+		"pid-file":          carapace.ActionFiles().Chdir("/"),
 		"rpc-bind-address":  net.ActionIpv4Addresses(),
-		"watch":             transmission.ActionAbsoluteDirectories(),
+		"watch":             carapace.ActionDirectories().Chdir("/"),
 	})
 }

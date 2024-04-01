@@ -20,7 +20,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("help", "h", false, "Show a short help page and exit")
-	rootCmd.Flags().BoolP("magnent", "m", false, "Show a magnent link for the specified .torrent file")
+	rootCmd.Flags().BoolP("magnet", "m", false, "Show a magnet link for the specified .torrent file")
 	rootCmd.Flags().BoolP("scrape", "s", false, "Ask the torrent's trackers how many peers are in the torrent's swarm")
 	rootCmd.Flags().BoolP("version", "V", false, "Show version number and exit")
 

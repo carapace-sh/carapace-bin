@@ -4,11 +4,10 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/spf13/cobra"
 )
 
-// ActionFilter completes filters
-func ActionFilter() carapace.Action {
+// ActionFilters completes filters
+func ActionFilters() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.Batch(
 			actionFilterConditions(),
@@ -40,15 +39,9 @@ func actionFilterConditions() carapace.Action {
 	).ToA()
 }
 
-func getFilters(cmd *cobra.Command) (result []string) {
-	result, _ = cmd.Root().Flags().GetStringArray("filter")
-	return
-}
-
 // ActionIds completes torrent IDs, accounting for previously applied filters
-func ActionIds(cmd *cobra.Command) carapace.Action {
+func ActionIds(filters []string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		filters := getFilters(cmd)
 		return carapace.Batch(
 			actionIdsValues(),
 			getIdsDescribed(filters),
@@ -65,12 +58,11 @@ func actionIdsValues() carapace.Action {
 
 // Call into transmission-remote to the list of ids resulting from the filters
 func getIdsDescribed(rawFilters []string) carapace.Action {
-	filters := make([]string, len(rawFilters)*2+1)
-	for idx, f := range rawFilters {
-		filters[idx*2] = "-F"
-		filters[idx*2+1] = f
+	filters := make([]string, 0)
+	for _, f := range rawFilters {
+		filters = append(filters, "-F", f)
 	}
-	filters[len(filters)-1] = "-l"
+	filters = append(filters, "-l")
 
 	// Can't use --print-ids flag to get ids since it doesn't give descriptions and doesn't always return numeric ids
 	return carapace.ActionExecCommand("transmission-remote", filters...)(func(output []byte) carapace.Action {

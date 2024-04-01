@@ -47,10 +47,10 @@ func init() {
 	rootCmd.MarkFlagsMutuallyExclusive("uplimit", "no-uplimit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"config-dir":   transmission.ActionAbsoluteDirectories(),
-		"download-dir": transmission.ActionAbsoluteDirectories(),
-		"finish":       transmission.ActionAbsoluteFiles(),
+		"config-dir":   carapace.ActionDirectories().Chdir("/"),
+		"download-dir": carapace.ActionDirectories().Chdir("/"),
+		"finish":       carapace.ActionFiles().Chdir("/"),
 		"tos":          transmission.ActionTOS(),
 	})
-	carapace.Gen(rootCmd).PositionalCompletion(carapace.ActionFiles(".torrent", ".magnent"))
+	carapace.Gen(rootCmd).PositionalCompletion(carapace.ActionFiles(".torrent", ".magnet"))
 }

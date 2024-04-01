@@ -37,6 +37,6 @@ func init() {
 		"outfile": carapace.ActionFiles(".torrent"),
 	})
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.Batch(carapace.ActionDirectories(), carapace.ActionFiles()).ToA(),
+		carapace.ActionFiles(),
 	)
 }
