@@ -49,7 +49,8 @@ func init() {
 	rootCmd.Flags().Bool("window", false, "Display window controls")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"background": color.ActionHexColors(),
+		"background":   color.ActionHexColors(),
+		"border.color": color.ActionHexColors(),
 		"config": carapace.Batch(
 			carapace.ActionFiles(),
 			carapace.ActionValuesDescribed(
