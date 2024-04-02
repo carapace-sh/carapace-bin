@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/transmission"
 	"github.com/spf13/cobra"
 )
@@ -50,6 +51,7 @@ func init() {
 		"config-dir":   carapace.ActionDirectories().Chdir("/"),
 		"download-dir": carapace.ActionDirectories().Chdir("/"),
 		"finish":       carapace.ActionFiles().Chdir("/"),
+		"port":         net.ActionPorts(),
 		"tos":          transmission.ActionTOS(),
 	})
 	carapace.Gen(rootCmd).PositionalCompletion(carapace.ActionFiles(".torrent", ".magnet"))

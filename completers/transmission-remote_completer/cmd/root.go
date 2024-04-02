@@ -195,13 +195,23 @@ func init() {
 		"move":           carapace.ActionDirectories().Chdir("/"),
 		"netrc":          carapace.ActionFiles(),
 		"no-get":         carapace.ActionValuesDescribed("all", "Get all files").StyleF(style.ForKeyword),
+		"port":           net.ActionKnownPorts(),
 		"torrent": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			filters, _ := rootCmd.Flags().GetStringArray("filter")
 			return transmission.ActionIds(filters)
 		}),
 		"torrent-done-script": carapace.ActionDirectories().Chdir("/"),
 	})
-	carapace.Gen(rootCmd).PositionalCompletion(net.ActionHosts())
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return net.ActionHosts()
+			default:
+				return net.ActionKnownPorts()
+			}
+		}),
+	)
 }
 
 // Marks the flags so they're exclusive with --torrent

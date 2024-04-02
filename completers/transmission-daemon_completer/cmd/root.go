@@ -81,6 +81,7 @@ func init() {
 		"download-dir":      carapace.ActionDirectories().Chdir("/"),
 		"logfile":           carapace.ActionFiles().Chdir("/"),
 		"pid-file":          carapace.ActionFiles().Chdir("/"),
+		"port":              net.ActionPorts(),
 		"rpc-bind-address":  net.ActionIpv4Addresses(),
 		"watch":             carapace.ActionDirectories().Chdir("/"),
 	})
