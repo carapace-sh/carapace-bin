@@ -38,7 +38,7 @@ func init() {
 		"digest-alg":          carapace.ActionValues("sha256", "sha512"),
 		"format":              carapace.ActionValues("json"),
 		"owner":               gh.ActionOrganizations(gh.HostOpts{}),
-		"repo":                action.ActionRepoOverride(attestationCmd),
+		"repo":                action.ActionRepoOverride(attestation_verifyCmd),
 	})
 
 	carapace.Gen(attestation_verifyCmd).PositionalCompletion(
