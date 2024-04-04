@@ -113,7 +113,7 @@ func ActionPullRequestFields() carapace.Action {
 
 func actionPullRequests(cmd *cobra.Command, id string, f func(p pullrequest) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd)
+		repo, err := repoOverride(cmd, c)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
@@ -165,7 +165,7 @@ type commit struct {
 
 func ActionPullRequestCommits(cmd *cobra.Command, id string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd)
+		repo, err := repoOverride(cmd, c)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

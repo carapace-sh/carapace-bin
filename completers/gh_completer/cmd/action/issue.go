@@ -132,7 +132,7 @@ func ActionIssueFields() carapace.Action {
 
 func actionIssue(cmd *cobra.Command, issueId string, f func(i issue) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd)
+		repo, err := repoOverride(cmd, c)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
