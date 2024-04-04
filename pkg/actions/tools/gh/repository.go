@@ -2,6 +2,7 @@ package gh
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
@@ -73,6 +74,32 @@ func ActionOwnerRepositories(opts HostOpts) carapace.Action {
 		case 1:
 			return ActionRepositories(OwnerOpts{Owner: c.Parts[0]})
 		default:
+			return carapace.ActionValues()
+		}
+	})
+}
+
+// ActionHostOwnerRepositories completes [host/]owner/repository
+//
+//	carapace-sh/carapace
+//	github.com/carapace-sh/carapace
+func ActionHostOwnerRepositories() carapace.Action {
+	return carapace.ActionMultiPartsN("/", 3, func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			return carapace.Batch(
+				ActionConfigHosts(),
+				ActionOwners(HostOpts{}),
+			).ToA().Suffix("/")
+		case 1:
+			if strings.Contains(c.Parts[0], ".") {
+				return ActionOwners(HostOpts{Host: c.Parts[0]}).Suffix("/")
+			}
+			return ActionRepositories(OwnerOpts{Owner: c.Parts[0]})
+		default:
+			if strings.Contains(c.Parts[0], ".") {
+				return ActionRepositories(OwnerOpts{Host: c.Parts[0], Owner: c.Parts[1]})
+			}
 			return carapace.ActionValues()
 		}
 	})

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
@@ -25,7 +24,7 @@ func init() {
 	carapace.Gen(attestation_downloadCmd).FlagCompletion(carapace.ActionMap{
 		"digest-alg": carapace.ActionValues("sha256", "sha512"),
 		"owner":      gh.ActionOrganizations(gh.HostOpts{}),
-		"repo":       action.ActionRepoOverride(attestation_downloadCmd),
+		"repo":       gh.ActionHostOwnerRepositories(),
 	})
 
 	carapace.Gen(attestation_downloadCmd).PositionalCompletion(
