@@ -9,6 +9,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action"
 	_git "github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action/git"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -36,7 +37,7 @@ func init() {
 
 	carapace.Gen(browseCmd).FlagCompletion(carapace.ActionMap{
 		"branch": action.ActionBranches(browseCmd), // TODO merge with tags
-		"repo":   action.ActionRepoOverride(browseCmd),
+		"repo":   gh.ActionHostOwnerRepositories(),
 	})
 
 	carapace.Gen(browseCmd).PositionalCompletion(

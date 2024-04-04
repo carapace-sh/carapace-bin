@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -23,6 +23,6 @@ func init() {
 	repoCmd.AddCommand(repo_renameCmd)
 
 	carapace.Gen(repo_renameCmd).FlagCompletion(carapace.ActionMap{
-		"repo": action.ActionRepoOverride(repo_renameCmd),
+		"repo": gh.ActionHostOwnerRepositories(),
 	})
 }

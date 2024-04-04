@@ -23,7 +23,7 @@ func init() {
 
 	carapace.Gen(project_linkCmd).FlagCompletion(carapace.ActionMap{
 		"owner": gh.ActionOwners(gh.HostOpts{}),
-		"repo":  action.ActionRepoOverride(project_linkCmd),
+		"repo":  gh.ActionHostOwnerRepositories(),
 		"team":  action.ActionTeams(project_linkCmd),
 	})
 
