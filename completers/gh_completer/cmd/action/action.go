@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -34,10 +33,18 @@ func ActionConfigHosts() carapace.Action {
 
 func ApiV3Action(cmd *cobra.Command, query string, v interface{}, transform func() carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if repo, err := repoOverride(cmd); err != nil {
+		if repo, err := repoOverride(cmd, c); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
-			return carapace.ActionExecCommand("gh", "api", "--hostname", repo.RepoHost(), "--preview", "mercy", query)(func(output []byte) carapace.Action {
+			args := []string{
+				"api",
+				"--preview", "mercy",
+				query,
+			}
+			if repo.RepoHost() != "" {
+				args = append(args, "--hostname", repo.RepoHost())
+			}
+			return carapace.ActionExecCommand("gh", args...)(func(output []byte) carapace.Action {
 				if err := json.Unmarshal(output, &v); err != nil {
 					return carapace.ActionMessage("failed to unmarshall response: " + err.Error())
 				}
@@ -61,10 +68,20 @@ func GraphQlAction(cmd *cobra.Command, query string, v interface{}, transform fu
 			queryParams = "(" + queryParams + ")"
 		}
 
-		if repo, err := repoOverride(cmd); err != nil {
+		if repo, err := repoOverride(cmd, c); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
-			return carapace.ActionExecCommand(ghExecutable(), "api", "--hostname", repo.RepoHost(), "--header", "Accept: application/vnd.github.merge-info-preview+json", "graphql", "-F", "owner="+repo.RepoOwner(), "-F", "repo="+repo.RepoName(), "-f", fmt.Sprintf("query=query%v {%v}", queryParams, query))(func(output []byte) carapace.Action {
+			args := []string{
+				"api", "graphql",
+				"--header", "Accept: application/vnd.github.merge-info-preview+json",
+				"-F", "owner=" + repo.RepoOwner(),
+				"-F", "repo=" + repo.RepoName(),
+				"-f", fmt.Sprintf("query=query%v {%v}", queryParams, query),
+			}
+			if repo.RepoHost() != "" {
+				args = append(args, "--hostname", repo.RepoHost())
+			}
+			return carapace.ActionExecCommand(ghExecutable(), args...)(func(output []byte) carapace.Action {
 				if err := json.Unmarshal(output, &v); err != nil {
 					return carapace.ActionMessage("failed to unmarshall response: " + err.Error())
 				}
@@ -74,12 +91,12 @@ func GraphQlAction(cmd *cobra.Command, query string, v interface{}, transform fu
 	})
 }
 
-func repoOverride(cmd *cobra.Command) (ghrepo.Interface, error) {
+func repoOverride(cmd *cobra.Command, c carapace.Context) (ghrepo.Interface, error) {
 	repoOverride := ""
 	if flag := cmd.Flag("repo"); flag != nil {
 		repoOverride = flag.Value.String()
 	}
-	if repoFromEnv := os.Getenv("GH_REPO"); repoOverride == "" && repoFromEnv != "" {
+	if repoFromEnv := c.Getenv("GH_REPO"); repoOverride == "" && repoFromEnv != "" {
 		repoOverride = repoFromEnv
 	}
 	if repoOverride != "" {

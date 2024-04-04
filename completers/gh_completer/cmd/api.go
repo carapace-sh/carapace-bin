@@ -5,6 +5,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net/http"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var apiCmd = &cobra.Command{
@@ -48,4 +49,14 @@ func init() {
 			).Invoke(c).Merge().ToA()
 		}),
 	)
+
+	carapace.Gen(apiCmd).PreInvoke(func(cmd *cobra.Command, _ *pflag.Flag, action carapace.Action) carapace.Action {
+		if f := cmd.Flag("hostname"); f.Changed {
+			return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+				c.Setenv("GH_HOST", f.Value.String()) // TODO provide Action.SetEnv or similar in carapace
+				return action.Invoke(c).ToA()
+			})
+		}
+		return action
+	})
 }

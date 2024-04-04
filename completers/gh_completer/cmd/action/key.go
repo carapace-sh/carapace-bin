@@ -16,7 +16,7 @@ type deployKey struct {
 
 func ActionDeployKeys(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd)
+		repo, err := repoOverride(cmd, c)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

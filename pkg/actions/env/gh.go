@@ -27,6 +27,7 @@ func init() {
 				"GH_PATH":               "set the path to the gh executable",
 			},
 			VariableCompletion: map[string]carapace.Action{
+				"GH_HOST":               gh.ActionConfigHosts(),
 				"GH_REPO":               gh.ActionOwnerRepositories(gh.HostOpts{}),
 				"GH_EDITOR":             bridge.ActionCarapaceBin().Split(),
 				"GH_BROWSER":            bridge.ActionCarapaceBin().Split(),
