@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/molecule_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/molecule"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +22,7 @@ func init() {
 	initRoleCmd.Flags().String("verifier-name", "ansible", "Name of verifier to initialize")
 
 	carapace.Gen(initRoleCmd).FlagCompletion(carapace.ActionMap{
-		"driver-name":      action.ActionDrivers(),
+		"driver-name":      molecule.ActionDrivers(),
 		"provisioner-name": carapace.ActionExecutables(),
 		"verifier-name":    carapace.ActionValues("ansible", "testinfra"),
 	})

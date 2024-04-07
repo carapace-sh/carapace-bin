@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/molecule_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/molecule"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +19,7 @@ func init() {
 	sideEffectCmd.Flags().StringP("scenario-name", "s", "default", "Name of the scenario to target")
 
 	carapace.Gen(sideEffectCmd).FlagCompletion(carapace.ActionMap{
-		"scenario-name": action.ActionScenarios(),
+		"scenario-name": molecule.ActionScenarios(),
 	})
 
 	rootCmd.AddCommand(sideEffectCmd)

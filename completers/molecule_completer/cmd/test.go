@@ -2,7 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/molecule_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/molecule"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -30,9 +31,9 @@ func init() {
 	testCmd.MarkFlagsMutuallyExclusive("parallel", "no-parallel")
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		"destroy":       carapace.ActionValues("always", "never"),
-		"driver-name":   action.ActionDrivers(),
-		"scenario-name": action.ActionScenarios(),
+		"destroy":       carapace.ActionValues("always", "never").StyleF(style.ForKeyword),
+		"driver-name":   molecule.ActionDrivers(),
+		"scenario-name": molecule.ActionScenarios(),
 	})
 
 	rootCmd.AddCommand(testCmd)
