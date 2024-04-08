@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/molecule_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/molecule"
 	"github.com/spf13/cobra"
 )
@@ -20,7 +21,7 @@ func init() {
 	loginCmd.Flags().StringP("scenario-name", "s", "default", "Name of the scenario to target")
 
 	carapace.Gen(loginCmd).FlagCompletion(carapace.ActionMap{
-		// "host":          action.ActionInstances(loginCmd), // TODO
+		"host":          action.ActionInstances(loginCmd),
 		"scenario-name": molecule.ActionScenarios(),
 	})
 
