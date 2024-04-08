@@ -5,6 +5,7 @@ import (
 	"path"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/traverse"
 	"gopkg.in/yaml.v3"
 )
 
@@ -47,6 +48,12 @@ func ActionInstances(opts InstanceOpts) carapace.Action {
 
 		return carapace.ActionValues(inventory...)
 	})
+}
+
+func traverseEphemeralDir(envFilePath string) func(tc traverse.Context) (string, error) {
+	return func(tc traverse.Context) (string, error) {
+		return "", nil // TODO
+	}
 }
 
 // Find the location molecule is storing ephemeral data
