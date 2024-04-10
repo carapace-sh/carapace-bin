@@ -16,14 +16,25 @@ var squashCmd = &cobra.Command{
 func init() {
 	carapace.Gen(squashCmd).Standalone()
 
+	squashCmd.Flags().String("from", "@", "Revision to squash from")
 	squashCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	squashCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to squash")
+	squashCmd.Flags().String("into", "@", "Revision to squash into")
 	squashCmd.Flags().StringSliceP("message", "m", []string{}, "The description to use for squashed revision (don't open editor)")
-	squashCmd.Flags().StringP("revision", "r", "@", "")
+	squashCmd.Flags().StringP("revision", "r", "@", "Revision to squash into its parent")
+	squashCmd.Flags().String("to", "@", "Revision to squash into (alias for --into)")
+	squashCmd.Flags().String("tool", "", "Specify diff editor to use (implies --interactive)")
+
+	squashCmd.MarkFlagsMutuallyExclusive("revision", "into", "to")
+	squashCmd.MarkFlagsMutuallyExclusive("revision", "from")
+
 	rootCmd.AddCommand(squashCmd)
 
 	carapace.Gen(squashCmd).FlagCompletion(carapace.ActionMap{
+		"from":     jj.ActionRevs(jj.RevOption{}.Default()),
+		"into":     jj.ActionRevs(jj.RevOption{}.Default()),
 		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
+		"to":       jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(squashCmd).PositionalAnyCompletion(

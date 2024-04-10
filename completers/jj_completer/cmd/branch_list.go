@@ -16,9 +16,13 @@ var branch_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(branch_listCmd).Standalone()
 
-	branch_listCmd.Flags().BoolP("all", "a", false, "Show all tracking and non-tracking remote branches including the ones whose targets are synchronized with the local branches")
+	branch_listCmd.Flags().BoolP("all-remotes", "a", false, "Show all tracking and non-tracking remote branches including the ones whose targets are synchronized with the local branches")
+	branch_listCmd.Flags().BoolP("conflicted", "c", false, "Show only conflicted branches")
 	branch_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	branch_listCmd.Flags().StringSliceP("revisions", "r", []string{}, "Show branches whose local targets are in the given revisions")
+
+	branch_listCmd.MarkFlagsMutuallyExclusive("all-remotes", "conflicted")
+
 	branchCmd.AddCommand(branch_listCmd)
 
 	carapace.Gen(branch_listCmd).FlagCompletion(carapace.ActionMap{

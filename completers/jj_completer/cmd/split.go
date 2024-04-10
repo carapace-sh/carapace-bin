@@ -18,6 +18,7 @@ func init() {
 	splitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	splitCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to split. This is the default if no paths are provided")
 	splitCmd.Flags().StringP("revision", "r", "", "The revision to split")
+	splitCmd.Flags().BoolP("siblings", "s", false, "Split the revision into two siblings instead of parent and child")
 	rootCmd.AddCommand(splitCmd)
 
 	carapace.Gen(splitCmd).FlagCompletion(carapace.ActionMap{

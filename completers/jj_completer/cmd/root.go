@@ -28,9 +28,12 @@ func init() {
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.PersistentFlags().Bool("ignore-working-copy", false, "Don't snapshot the working copy, and don't update it")
 	rootCmd.PersistentFlags().Bool("no-pager", false, "Disable the pager")
+	rootCmd.PersistentFlags().Bool("quiet", false, "Silence non-primary output")
 	rootCmd.PersistentFlags().StringP("repository", "R", "", "Path to repository to operate on")
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Enable verbose logging")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
+
+	rootCmd.MarkFlagsMutuallyExclusive("quiet", "verbose")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"at-operation": carapace.ActionValues(), // TODO
