@@ -6,6 +6,7 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/traverse"
+	"github.com/carapace-sh/carapace/pkg/xdg"
 	"gopkg.in/yaml.v3"
 )
 
@@ -58,18 +59,11 @@ func traverseEphemeralDir(envFilePath string) func(tc traverse.Context) (string,
 
 // Find the location molecule is storing ephemeral data
 func getMoleculeEphemeralDir(envFilePath string) string {
-	// Default to the platform equivalent to "$HOME" joined with .cache/molecule"
-	// (molecule does not support windows)
-	ephemeralPath, err := os.UserHomeDir()
+	cacheDir, err := xdg.UserCacheDir()
 	if err != nil {
-		return ""
+		return "" // TODO error
 	}
-	ephemeralPath = path.Join(ephemeralPath, ".cache", "molecule")
-
-	// Check for more specific cache directory environment variable
-	if cacheHome, ok := os.LookupEnv("XDG_CACHE_HOME"); ok {
-		ephemeralPath = path.Join(cacheHome, "molecule")
-	}
+	ephemeralPath := path.Join(cacheDir, "molecule")
 
 	// Check for specific molecule environment variable
 	if moleculeEphemeral, ok := os.LookupEnv("MOLECULE_EPHEMERAL_DIRECTORY"); ok {
