@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"encoding/json"
-	"strings"
-
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tldr"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -32,29 +32,15 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "show program's version number and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"language": os.ActionLanguages(),
 		"platform": carapace.ActionValues("linux", "osx", "sunos", "windows", "common"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		ActionCommands(),
+		tldr.ActionCommands(),
 	)
 
-}
-
-func ActionCommands() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("tldr", "--list")(func(output []byte) carapace.Action {
-			var commands []string
-			fixedOutput := strings.Replace(string(output), `'`, `"`, -1)
-			if err := json.Unmarshal([]byte(fixedOutput), &commands); err != nil {
-				return carapace.ActionMessage(err.Error())
-			} else {
-				if len(commands) == 0 {
-					return carapace.ActionMessage("execute `tldr -u` first")
-				} else {
-					return carapace.ActionValues(commands...)
-				}
-			}
-		})
-	})
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin(),
+	)
 }
