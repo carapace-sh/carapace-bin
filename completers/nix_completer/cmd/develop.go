@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -45,4 +46,5 @@ func init() {
 		"keep":  os.ActionEnvironmentVariables(),
 		"unset": os.ActionEnvironmentVariables(),
 	})
+	carapace.Gen(developCmd).PositionalCompletion(nix.ActionDevShells())
 }

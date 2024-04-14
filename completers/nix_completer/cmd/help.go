@@ -17,5 +17,7 @@ func init() {
 
 	rootCmd.AddCommand(helpCmd)
 
-	// TODO positional completion
+	carapace.Gen(helpCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(rootCmd),
+	)
 }

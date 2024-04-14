@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -14,6 +15,7 @@ var store_copySigsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(store_copySigsCmd).Standalone()
 
+	store_copySigsCmd.Flags().Bool("stdin", false, "Read installables from the standard input")
 	store_copySigsCmd.Flags().StringP("substituter", "s", "", "Copy signatures from the specified store")
 	storeCmd.AddCommand(store_copySigsCmd)
 
@@ -21,7 +23,5 @@ func init() {
 	addFlakeFlags(store_copySigsCmd)
 	addLoggingFlags(store_copySigsCmd)
 
-	// TODO positional completion
-
-	// TODO positional completion
+	carapace.Gen(store_copySigsCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -14,11 +15,13 @@ var store_dumpPathCmd = &cobra.Command{
 func init() {
 	carapace.Gen(store_dumpPathCmd).Standalone()
 
+	store_dumpPathCmd.Flags().Bool("stdin", false, "Read installables from the standard input")
+
 	storeCmd.AddCommand(store_dumpPathCmd)
 
 	addEvaluationFlags(store_dumpPathCmd)
 	addFlakeFlags(store_dumpPathCmd)
 	addLoggingFlags(store_dumpPathCmd)
 
-	// TODO positional completion
+	carapace.Gen(store_dumpPathCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

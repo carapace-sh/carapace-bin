@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -15,11 +16,12 @@ func init() {
 	carapace.Gen(store_deleteCmd).Standalone()
 
 	store_deleteCmd.Flags().Bool("ignore-liveness", false, "Do not check whether the paths are reachable from a root")
+	store_deleteCmd.Flags().Bool("stdin", false, "Read installables from the standard input")
 	storeCmd.AddCommand(store_deleteCmd)
 
 	addEvaluationFlags(store_deleteCmd)
 	addFlakeFlags(store_deleteCmd)
 	addLoggingFlags(store_deleteCmd)
 
-	// TODO positional completion
+	carapace.Gen(store_deleteCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +20,7 @@ func init() {
 	shellCmd.Flags().StringP("command", "c", "", "Command and arguments to be executed, defaulting to $SHELL")
 	shellCmd.Flags().BoolP("ignore-environment", "i", false, "Clear the entire environment")
 	shellCmd.Flags().StringP("keep", "k", "", "Keep the environment variable name")
+	shellCmd.Flags().Bool("stdin", false, "Read installables from the standard input")
 	shellCmd.Flags().StringP("unset", "u", "", "Unset the environment variable name")
 	rootCmd.AddCommand(shellCmd)
 
@@ -27,7 +30,9 @@ func init() {
 	addFlakeFlags(shellCmd)
 	addLoggingFlags(shellCmd)
 
-	// TODO flag completion
-
-	// TODO positional completion
+	carapace.Gen(shellCmd).FlagCompletion(carapace.ActionMap{
+		"keep":  os.ActionEnvironmentVariables(),
+		"unset": os.ActionEnvironmentVariables(),
+	})
+	carapace.Gen(shellCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

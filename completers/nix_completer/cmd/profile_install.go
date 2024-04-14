@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
@@ -19,6 +17,7 @@ func init() {
 
 	profile_installCmd.Flags().String("priority", "", "The priority of the package to install")
 	profile_installCmd.Flags().String("profile", "", "The profile to operate on")
+	profile_installCmd.Flags().Bool("stdin", false, "Read installables from the standard input")
 	profileCmd.AddCommand(profile_installCmd)
 
 	addEvaluationFlags(profile_installCmd)
@@ -29,27 +28,5 @@ func init() {
 		"profile": carapace.ActionDirectories(),
 	})
 
-	carapace.Gen(profile_installCmd).PositionalAnyCompletion(
-		carapace.ActionMultiParts("#", func(c carapace.Context) carapace.Action {
-			switch len(c.Parts) {
-			case 0:
-				return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-					switch len(c.Parts) {
-					case 0:
-						return nix.ActionLocalChannels().Suffix("#")
-					case 1:
-						return carapace.ActionMessage("TODO: support branch completion") // TODO support branch completion
-					default:
-						return carapace.ActionValues()
-					}
-				})
-
-			case 1:
-				return nix.ActionPackages(strings.SplitN(c.Parts[0], "/", 2)[0])
-
-			default:
-				return carapace.ActionValues()
-			}
-		}),
-	)
+	carapace.Gen(profile_installCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

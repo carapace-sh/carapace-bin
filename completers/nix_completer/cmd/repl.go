@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -17,10 +18,12 @@ func init() {
 
 	rootCmd.AddCommand(replCmd)
 
+	replCmd.Flags().Bool("stdin", false, "Read installables from the standard input")
+
 	addEvaluationFlags(replCmd)
 	addFlakeFlags(replCmd)
 	addInterpretationFlags(replCmd)
 	addLoggingFlags(replCmd)
 
-	// TODO positional completion
+	carapace.Gen(replCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

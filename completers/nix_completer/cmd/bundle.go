@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -19,9 +20,12 @@ func init() {
 	bundleCmd.Flags().StringP("out-link", "o", "", "Override the name of the symlink to the build result")
 	rootCmd.AddCommand(bundleCmd)
 
-	// TODO flag completion
-
 	addEvaluationFlags(bundleCmd)
 	addFlakeFlags(bundleCmd)
 	addLoggingFlags(bundleCmd)
+
+	carapace.Gen(bundleCmd).FlagCompletion(carapace.ActionMap{
+		"bundler": nix.ActionFlakes(),
+	})
+	carapace.Gen(bundleCmd).PositionalCompletion(nix.ActionInstallables())
 }
