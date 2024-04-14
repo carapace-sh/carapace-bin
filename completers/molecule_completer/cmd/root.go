@@ -27,4 +27,9 @@ func init() {
 	rootCmd.Flags().BoolSliceP("verbose", "v", nil, "Increase Ansible verbosity level")
 
 	rootCmd.MarkFlagsMutuallyExclusive("debug", "no-debug")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"base-config": carapace.ActionFiles(),
+		"env-file":    carapace.ActionFiles(),
+	})
 }
