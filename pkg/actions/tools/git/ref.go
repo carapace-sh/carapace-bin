@@ -4,6 +4,8 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 func rootDir(c carapace.Context) (string, error) {
@@ -42,7 +44,7 @@ func (o RefOption) Default() RefOption {
 //	v0.0.1 (last commit msg)
 func ActionRefs(refOption RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if !strings.ContainsAny(c.Value, "~^") {
+		if !strings.ContainsAny(c.Value, "~^@") {
 			batch := carapace.Batch()
 
 			if refOption.LocalBranches {
@@ -76,10 +78,26 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			return batch.ToA()
 		}
 
-		index := max(strings.LastIndex(c.Value, "~"), strings.LastIndex(c.Value, "^"))
+		index := max(strings.LastIndex(c.Value, "~"), strings.LastIndex(c.Value, "^"), strings.LastIndex(c.Value, "@"))
 		switch c.Value[index] {
 		case '^':
 			return ActionRefParents(c.Value[:index]).Prefix(c.Value[:index+1])
+		case '@':
+			return carapace.Batch(
+				time.ActionDateTime(time.DateTimeOpts{}),
+				carapace.ActionValues("yesterday").Style(style.Blue).Suffix("}"),
+				carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
+					b := carapace.Batch()
+					if len(c.Parts)%2 == 1 {
+						b = append(b, carapace.ActionValues("year", "month", "week", "day", "hour", "second").Style(style.Blue).Suffix("."))
+					}
+					if len(c.Parts) > 0 && len(c.Parts)%2 == 0 {
+						b = append(b, carapace.ActionValues("ago").Style(style.Blue).Suffix("}"))
+					}
+					return b.ToA()
+				}),
+			).ToA().Prefix(c.Value[:index+1] + "{")
+
 		default: // '~'
 			return ActionRefCommits(c.Value[:index]).Prefix(c.Value[:index+1])
 		}
