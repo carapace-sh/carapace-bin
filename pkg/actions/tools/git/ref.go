@@ -85,7 +85,7 @@ func ActionRefs(refOption RefOption) carapace.Action {
 		case '@':
 			return carapace.Batch(
 				time.ActionDateTime(time.DateTimeOpts{}),
-				carapace.ActionValues("yesterday").Style(style.Blue).Suffix("}"),
+				carapace.ActionValues("yesterday", "push", "upstream").Style(style.Blue).Suffix("}"),
 				carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
 					b := carapace.Batch()
 					if len(c.Parts)%2 == 1 {
