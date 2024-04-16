@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	"path/filepath"
+	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
-	"github.com/carapace-sh/carapace/pkg/util"
+	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/spf13/cobra"
 )
 
@@ -41,19 +41,21 @@ func init() {
 	})
 
 	carapace.Gen(showCmd).PositionalAnyCompletion(
-		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			switch len(c.Parts) {
-			case 0:
-				return git.ActionRefs(git.RefOption{}.Default()).NoSpace()
-			case 1:
-				path, err := util.FindReverse(c.Dir, ".git")
-				if err != nil {
-					return carapace.ActionMessage(err.Error())
-				}
-				return git.ActionRefFiles(c.Parts[0]).Chdir(filepath.Dir(path))
-			default:
-				return carapace.ActionFiles()
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			delimiter := ":"
+			if strings.Contains(c.Value, "{") {
+				delimiter = "}:"
 			}
+
+			return carapace.ActionMultiPartsN(delimiter, 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return git.ActionRefs(git.RefOption{}.Default()).NoSpace()
+				default:
+					ref := c.Parts[0] + strings.TrimSuffix(delimiter, ":")
+					return git.ActionRefFiles(ref).ChdirF(traverse.GitWorkTree)
+				}
+			})
 		}),
 	)
 }
