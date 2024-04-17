@@ -79,6 +79,14 @@ services:
     #  user: 1000:1000
     command: bash -c 'go run ./cmd/carafmt completers/*/cmd/*.go'
 
+  nix:
+    build:
+      context: .docker
+      dockerfile: nix.Dockerfile
+    image: nixos/nix
+    volumes:
+      - '.:/carapace-bin:ro'
+
 
 volumes:
   go:
