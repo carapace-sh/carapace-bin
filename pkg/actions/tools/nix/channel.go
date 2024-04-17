@@ -30,7 +30,7 @@ func ActionLocalChannels() carapace.Action {
 //	nixos-21.11-small (unmaintained)
 //	nixos-22.05 (stable)
 func ActionRemoteChannels() carapace.Action {
-	return carapace.ActionExecCommand("curl", "https://monitoring.nixos.org/prometheus/api/v1/query?query=channel_revision")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("curl", "https://prometheus.nixos.org/api/v1/query?query=channel_revision")(func(output []byte) carapace.Action {
 		var response struct {
 			Data struct {
 				Result []struct {
