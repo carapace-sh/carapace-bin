@@ -29,6 +29,7 @@ func init() {
 	apiCmd.Flags().StringSliceP("preview", "p", []string{}, "GitHub API preview `names` to request (without the \"-preview\" suffix)")
 	apiCmd.Flags().StringSliceP("raw-field", "f", []string{}, "Add a string parameter in `key=value` format")
 	apiCmd.Flags().Bool("silent", false, "Do not print the response body")
+	apiCmd.Flags().Bool("slurp", false, "Use with \"--paginate\" to return an array of all pages of either JSON arrays or objects")
 	apiCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	apiCmd.Flags().Bool("verbose", false, "Include full HTTP request and response in the output")
 	rootCmd.AddCommand(apiCmd)
