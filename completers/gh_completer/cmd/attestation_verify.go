@@ -27,6 +27,7 @@ func init() {
 	attestation_verifyCmd.Flags().StringP("limit", "L", "", "Maximum number of attestations to fetch")
 	attestation_verifyCmd.Flags().Bool("no-public-good", false, "Only verify attestations signed with GitHub's Sigstore instance")
 	attestation_verifyCmd.Flags().StringP("owner", "o", "", "GitHub organization to scope attestation lookup by")
+	attestation_verifyCmd.Flags().String("predicate-type", "", "Filter attestations by provided predicate type")
 	attestation_verifyCmd.Flags().StringP("repo", "R", "", "Repository name in the format <owner>/<repo>")
 	attestation_verifyCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	attestationCmd.AddCommand(attestation_verifyCmd)
