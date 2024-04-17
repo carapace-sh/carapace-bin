@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -23,6 +24,5 @@ func init() {
 	carapace.Gen(registry_pinCmd).FlagCompletion(carapace.ActionMap{
 		"registry": carapace.ActionFiles(),
 	})
-
-	// TODO positional completion
+	carapace.Gen(registry_pinCmd).PositionalCompletion(nix.ActionFlakes())
 }

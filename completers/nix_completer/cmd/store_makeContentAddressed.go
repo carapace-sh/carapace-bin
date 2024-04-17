@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +17,7 @@ func init() {
 
 	store_makeContentAddressedCmd.Flags().String("from", "", "URL of the source Nix store")
 	store_makeContentAddressedCmd.Flags().Bool("json", false, "Produce output in JSON format")
+	store_makeContentAddressedCmd.Flags().Bool("stdin", false, "Read installables from the standard input")
 	store_makeContentAddressedCmd.Flags().String("to", "", "URL of the destination Nix store")
 	storeCmd.AddCommand(store_makeContentAddressedCmd)
 
@@ -24,6 +26,5 @@ func init() {
 	addLoggingFlags(store_makeContentAddressedCmd)
 
 	// TODO flag completion
-
-	// TODO positional completion
+	carapace.Gen(store_makeContentAddressedCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

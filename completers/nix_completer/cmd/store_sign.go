@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -15,6 +16,7 @@ func init() {
 	carapace.Gen(store_signCmd).Standalone()
 
 	store_signCmd.Flags().BoolP("key-file", "k", false, "File containing the secret signing key")
+	store_signCmd.Flags().Bool("stdin", false, "Read installables from the standard input")
 	storeCmd.AddCommand(store_signCmd)
 
 	addEvaluationFlags(store_signCmd)
@@ -25,5 +27,5 @@ func init() {
 		"key-file": carapace.ActionFiles(),
 	})
 
-	// TODO positional completion
+	carapace.Gen(store_signCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

@@ -23,6 +23,5 @@ func init() {
 	carapace.Gen(registry_addCmd).FlagCompletion(carapace.ActionMap{
 		"registry": carapace.ActionFiles(),
 	})
-
 	// TODO positional completion
 }

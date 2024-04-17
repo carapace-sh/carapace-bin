@@ -15,5 +15,15 @@ var daemonCmd = &cobra.Command{
 func init() {
 	carapace.Gen(daemonCmd).Standalone()
 
+	daemonCmd.Flags().Bool("default-trust", false, "Use Nix's default trust")
+	daemonCmd.Flags().Bool("force-trusted", false, "Force the daemon to trust connecting clients")
+	daemonCmd.Flags().Bool("force-untrusted", false, "Force the daemon to not trust connecting clients")
+	daemonCmd.Flags().Bool("stdio", false, "Attach to standard I/O instead of trying to bind to a Unix socket")
+
+	daemonCmd.MarkFlagsMutuallyExclusive("default-trust", "force-trusted", "force-untrusted")
+
+	addEvaluationFlags(daemonCmd)
+	addLoggingFlags(daemonCmd)
+
 	rootCmd.AddCommand(daemonCmd)
 }

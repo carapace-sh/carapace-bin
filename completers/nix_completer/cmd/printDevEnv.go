@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +18,7 @@ func init() {
 
 	printDevEnvCmd.Flags().Bool("json", false, "Produce output in JSON format")
 	printDevEnvCmd.Flags().String("profile", "", "The profile to operate on")
+	printDevEnvCmd.Flags().String("redirect", "", "Redirect a store path to a mutable location")
 	rootCmd.AddCommand(printDevEnvCmd)
 
 	addEvaluationFlags(printDevEnvCmd)
@@ -26,6 +28,5 @@ func init() {
 	carapace.Gen(printDevEnvCmd).FlagCompletion(carapace.ActionMap{
 		"profile": carapace.ActionFiles(),
 	})
-
-	// TODO positional completion
+	carapace.Gen(printDevEnvCmd).PositionalCompletion(nix.ActionInstallables())
 }
