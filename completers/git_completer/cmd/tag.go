@@ -47,13 +47,13 @@ func init() {
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":     git.ActionCleanupMode(),
 		"color":       git.ActionColorModes(),
-		"contains":    git.ActionRefs(git.RefOption{Commits: 100, HeadCommits: 100}),
+		"contains":    git.ActionRefs(git.RefOption{HeadCommits: true}),
 		"file":        carapace.ActionFiles(),
 		"local-user":  os.ActionGpgKeyIds(),
-		"merged":      git.ActionRefs(git.RefOption{Commits: 100, HeadCommits: 100}),
-		"no-contains": git.ActionRefs(git.RefOption{Commits: 100, HeadCommits: 100}),
-		"no-merged":   git.ActionRefs(git.RefOption{Commits: 100, HeadCommits: 100}),
-		"points-at":   git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Commits: 100, HeadCommits: 100}),
+		"merged":      git.ActionRefs(git.RefOption{HeadCommits: true}),
+		"no-contains": git.ActionRefs(git.RefOption{HeadCommits: true}),
+		"no-merged":   git.ActionRefs(git.RefOption{HeadCommits: true}),
+		"points-at":   git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, HeadCommits: true}),
 	})
 
 	carapace.Gen(tagCmd).PositionalAnyCompletion(
@@ -67,7 +67,7 @@ func init() {
 			case 0:
 				return git.ActionRefs(git.RefOption{Tags: true})
 			case 1:
-				return git.ActionRefs(git.RefOption{LocalBranches: true, Commits: 100, HeadCommits: 100})
+				return git.ActionRefs(git.RefOption{LocalBranches: true, HeadCommits: true})
 			default:
 				return carapace.ActionValues()
 			}

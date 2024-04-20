@@ -19,8 +19,7 @@ func rootDir(c carapace.Context) (string, error) {
 type RefOption struct {
 	LocalBranches  bool
 	RemoteBranches bool
-	Commits        int
-	HeadCommits    int
+	HeadCommits    bool
 	Tags           bool
 	Stashes        bool
 	Notes          bool
@@ -29,8 +28,7 @@ type RefOption struct {
 func (o RefOption) Default() RefOption {
 	o.LocalBranches = true
 	o.RemoteBranches = true
-	o.Commits = 0
-	o.HeadCommits = 1
+	o.HeadCommits = true
 	o.Tags = true
 	o.Stashes = true
 	o.Notes = false
@@ -55,12 +53,8 @@ func ActionRefs(refOption RefOption) carapace.Action {
 				batch = append(batch, ActionRemoteBranches(""))
 			}
 
-			if refOption.Commits > 0 {
-				batch = append(batch, ActionRecentCommits(refOption.Commits))
-			}
-
-			if refOption.HeadCommits > 0 {
-				batch = append(batch, ActionHeadCommits(refOption.HeadCommits).MultiParts("~"))
+			if refOption.HeadCommits {
+				batch = append(batch, carapace.ActionValues("HEAD~"))
 			}
 
 			if refOption.Tags {
