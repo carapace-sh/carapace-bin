@@ -25,7 +25,7 @@ func init() {
 	rootCmd.AddCommand(mergeTreeCmd)
 
 	carapace.Gen(mergeTreeCmd).FlagCompletion(carapace.ActionMap{
-		"merge-base": git.ActionRefs(git.RefOption{Commits: 1000}),
+		"merge-base": git.ActionRefs(git.RefOption{HeadCommits: true}),
 	})
 
 	carapace.Gen(mergeTreeCmd).PositionalCompletion(

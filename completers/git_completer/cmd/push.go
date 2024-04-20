@@ -75,7 +75,7 @@ func init() {
 				case 0:
 					return git.ActionRefs(git.RefOption{
 						LocalBranches: true,
-						HeadCommits:   1,
+						HeadCommits:   true,
 						Tags:          true,
 					}).NoSpace()
 				default:

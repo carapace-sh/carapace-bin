@@ -18,7 +18,6 @@ var commitCmd = &cobra.Command{
 func init() {
 	carapace.Gen(commitCmd).Standalone()
 
-	commitCmd.Flags().Bool("-no-gpg-sign", false, "countermand both commit.gpgSign and earlier --gpg-sign")
 	commitCmd.Flags().Bool("ahead-behind", false, "compute full ahead/behind values")
 	commitCmd.Flags().BoolP("all", "a", false, "commit all changed files")
 	commitCmd.Flags().Bool("allow-empty", false, "allow recording an empty commit")
@@ -70,12 +69,12 @@ func init() {
 	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":            git.ActionCleanupMode(),
 		"file":               carapace.ActionFiles(),
-		"fixup":              git.ActionRefs(git.RefOption{Commits: 100, HeadCommits: 100}),
+		"fixup":              git.ActionRefs(git.RefOption{HeadCommits: true}),
 		"gpg-sign":           os.ActionGpgKeyIds(),
 		"pathspec-from-file": carapace.ActionFiles(),
-		"reedit-message":     git.ActionRefs(git.RefOption{Commits: 100, HeadCommits: 100}),
-		"reuse-message":      git.ActionRefs(git.RefOption{Commits: 100, HeadCommits: 100}),
-		"squash":             git.ActionRefs(git.RefOption{Commits: 100, HeadCommits: 100}),
+		"reedit-message":     git.ActionRefs(git.RefOption{HeadCommits: true}),
+		"reuse-message":      git.ActionRefs(git.RefOption{HeadCommits: true}),
+		"squash":             git.ActionRefs(git.RefOption{HeadCommits: true}),
 		"template":           carapace.ActionFiles(),
 		"trailer": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
