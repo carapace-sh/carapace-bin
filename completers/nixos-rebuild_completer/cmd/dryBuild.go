@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var dry_buildCmd = &cobra.Command{
+var dryBuildCmd = &cobra.Command{
 	Use:   "dry-build",
 	Short: "Show what store paths would be built or downloaded, but otherwise do nothing",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(dry_buildCmd).Standalone()
-	rootCmd.AddCommand(dry_buildCmd)
+	carapace.Gen(dryBuildCmd).Standalone()
+	rootCmd.AddCommand(dryBuildCmd)
 }
