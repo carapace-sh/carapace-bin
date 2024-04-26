@@ -64,7 +64,7 @@ set autolist
 eval `carapace _carapace`
 
 # xonsh (~/.config/xonsh/rc.xsh)
-COMPLETIONS_CONFIRM=True
+$COMPLETIONS_CONFIRM=True
 exec($(carapace _carapace))
 
 # zsh (~/.zshrc)

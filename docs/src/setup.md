@@ -84,8 +84,8 @@ eval `carapace _carapace`
 ## Xonsh
 ```sh
 # ~/.config/xonsh/rc.xsh
-CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-COMPLETIONS_CONFIRM=True
+$CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+$COMPLETIONS_CONFIRM=True
 exec($(carapace _carapace))
 ```
 
