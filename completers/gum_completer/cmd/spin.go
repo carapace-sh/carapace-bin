@@ -18,6 +18,7 @@ func init() {
 	spinCmd.Flags().SetInterspersed(false)
 
 	spinCmd.Flags().StringP("align", "a", "", "Alignment of spinner with regard to the title")
+	spinCmd.Flags().Bool("show-error", false, "Show output of command only if the command fails")
 	spinCmd.Flags().Bool("show-output", false, "Show or pipe output of command during execution")
 	spinCmd.Flags().StringP("spinner", "s", "", "Spinner type")
 	spinCmd.Flags().String("spinner.align", "", "Text Alignment")
