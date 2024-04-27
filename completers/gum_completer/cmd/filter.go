@@ -82,6 +82,21 @@ func init() {
 	filterCmd.Flags().String("match.width", "", "Text width")
 	filterCmd.Flags().Bool("no-limit", false, "Pick unlimited number of options (ignores limit)")
 	filterCmd.Flags().String("placeholder", "", "Placeholder value")
+	filterCmd.Flags().String("placeholder.align", "", "Text Alignment")
+	filterCmd.Flags().String("placeholder.background", "", "Background Color")
+	filterCmd.Flags().Bool("placeholder.bold", false, "Bold text")
+	filterCmd.Flags().String("placeholder.border", "", "Border Style")
+	filterCmd.Flags().String("placeholder.border-background", "", "Border Background Color")
+	filterCmd.Flags().String("placeholder.border-foreground", "", "Border Foreground Color")
+	filterCmd.Flags().Bool("placeholder.faint", false, "Faint text")
+	filterCmd.Flags().String("placeholder.foreground", "", "Foreground Color")
+	filterCmd.Flags().String("placeholder.height", "", "Text height")
+	filterCmd.Flags().Bool("placeholder.italic", false, "Italicize text")
+	filterCmd.Flags().String("placeholder.margin", "", "Text margin")
+	filterCmd.Flags().String("placeholder.padding", "", "Text padding")
+	filterCmd.Flags().Bool("placeholder.strikethrough", false, "Strikethrough text")
+	filterCmd.Flags().Bool("placeholder.underline", false, "Underline text")
+	filterCmd.Flags().String("placeholder.width", "", "Text width")
 	filterCmd.Flags().String("prompt", "", "Prompt to display")
 	filterCmd.Flags().String("prompt.align", "", "Text Alignment")
 	filterCmd.Flags().String("prompt.background", "", "Background Color")
@@ -179,6 +194,12 @@ func init() {
 		"match.border-background":              gum.ActionColors(),
 		"match.border-foreground":              gum.ActionColors(),
 		"match.foreground":                     gum.ActionColors(),
+		"placeholder.align":                    gum.ActionAlignments(),
+		"placeholder.background":               gum.ActionColors(),
+		"placeholder.border":                   gum.ActionBorders(),
+		"placeholder.border-background":        gum.ActionColors(),
+		"placeholder.border-foreground":        gum.ActionColors(),
+		"placeholder.foreground":               gum.ActionColors(),
 		"prompt.align":                         gum.ActionAlignments(),
 		"prompt.background":                    gum.ActionColors(),
 		"prompt.border":                        gum.ActionBorders(),
