@@ -1,6 +1,7 @@
 package jj
 
 import (
+	"fmt"
 	"regexp"
 	"strings"
 
@@ -15,12 +16,12 @@ import (
 func ActionLocalBranches() carapace.Action {
 	return carapace.ActionExecCommand("jj", "branch", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
-		r := regexp.MustCompile(`^(?P<branch>[^: ]+)[: ]+(?P<description>.*)$`)
+		rLocal := regexp.MustCompile(`^(?P<branch>[^@: ]+): (?P<changeid>[^ ]+) (?P<commitid>[^ ]+) (?P<description>.*)$`)
 
 		vals := make([]string, 0)
 		for _, line := range lines[:len(lines)-1] {
-			if matches := r.FindStringSubmatch(line); matches != nil {
-				vals = append(vals, matches[1], matches[2])
+			if matches := rLocal.FindStringSubmatch(line); matches != nil {
+				vals = append(vals, matches[1], matches[4])
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
@@ -34,24 +35,22 @@ func ActionLocalBranches() carapace.Action {
 func ActionRemoteBranches(remote string) carapace.Action {
 	return carapace.ActionExecCommand("jj", "branch", "list", "--all")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
-		r := regexp.MustCompile(`^(?P<branch>[^: ]+)[: ]+(?P<description>.*)$`)
+		rLocal := regexp.MustCompile(`^(?P<branch>[^@: ]+): (?P<changeid>[^ ]+) (?P<commitid>[^ ]+) (?P<description>.*)$`)
+		rRemote := regexp.MustCompile(`^(?P<branch>[^@: ]+)@(?P<remote>[^: ]+): (?P<changeid>[^ ]+) (?P<commitid>[^ ]+) (?P<description>.*)$`)
+		rTracking := regexp.MustCompile(`^  @(?P<remote>[^: ]+): (?P<changeid>[^ ]+) (?P<commitid>[^ ]+) (?P<description>.*)$`)
 
 		vals := make([]string, 0)
 		branch := ""
 		for _, line := range lines[:len(lines)-1] {
 			switch {
 			case strings.HasPrefix(line, "  @"):
-				splitted := strings.SplitN(line, ": ", 2)
-				switch remote {
-				case "", strings.TrimPrefix(splitted[0], "  @"):
-					splitted := strings.SplitN(line, ": ", 2)
-					description := strings.SplitN(splitted[1], " ", 3)[2]
-					remote := strings.SplitN(strings.TrimSpace(splitted[0]), " ", 2)[0]
-					vals = append(vals, branch+remote, description)
+				if matches := rTracking.FindStringSubmatch(line); matches != nil {
+					vals = append(vals, fmt.Sprintf("%v@%v", branch, matches[1]), matches[4])
 				}
-			case strings.HasPrefix(line, " "):
 			default:
-				if matches := r.FindStringSubmatch(line); matches != nil {
+				if matches := rRemote.FindStringSubmatch(line); matches != nil {
+					vals = append(vals, fmt.Sprintf("%v@%v", matches[1], matches[2]), matches[5])
+				} else if matches := rLocal.FindStringSubmatch(line); matches != nil {
 					branch = matches[1]
 				}
 			}
