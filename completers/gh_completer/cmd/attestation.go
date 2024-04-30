@@ -9,7 +9,6 @@ var attestationCmd = &cobra.Command{
 	Use:     "attestation [subcommand]",
 	Short:   "Work with artifact attestations",
 	Aliases: []string{"at"},
-	Hidden:  true,
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

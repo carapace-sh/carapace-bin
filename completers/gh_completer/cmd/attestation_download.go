@@ -8,7 +8,7 @@ import (
 
 var attestation_downloadCmd = &cobra.Command{
 	Use:   "download [<file-path> | oci://<image-uri>] [--owner | --repo]",
-	Short: "Download an artifact's Sigstore bundle(s) for offline use",
+	Short: "Download an artifact's attestations for offline use",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

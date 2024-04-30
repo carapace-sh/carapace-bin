@@ -17,7 +17,7 @@ func init() {
 
 	run_rerunCmd.Flags().BoolP("debug", "d", false, "Rerun with debug logging")
 	run_rerunCmd.Flags().Bool("failed", false, "Rerun only failed jobs, including dependencies")
-	run_rerunCmd.Flags().StringP("job", "j", "", "Rerun a specific job from a run, including dependencies")
+	run_rerunCmd.Flags().StringP("job", "j", "", "Rerun a specific job ID from a run, including dependencies")
 	runCmd.AddCommand(run_rerunCmd)
 
 	carapace.Gen(run_rerunCmd).FlagCompletion(carapace.ActionMap{
