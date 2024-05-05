@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/make"
 	"github.com/spf13/cobra"
@@ -77,9 +75,6 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			file := "Makefile"
-			if rootCmd.Flag("directory").Changed {
-				file = fmt.Sprintf("%v/Makefile", rootCmd.Flag("directory").Value.String())
-			}
 			if rootCmd.Flag("file").Changed {
 				file = rootCmd.Flag("file").Value.String()
 			}
