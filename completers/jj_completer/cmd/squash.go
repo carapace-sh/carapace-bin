@@ -24,6 +24,7 @@ func init() {
 	squashCmd.Flags().StringP("revision", "r", "@", "Revision to squash into its parent")
 	squashCmd.Flags().String("to", "@", "Revision to squash into (alias for --into)")
 	squashCmd.Flags().String("tool", "", "Specify diff editor to use (implies --interactive)")
+	squashCmd.Flags().BoolP("use-destination-message", "u", false, "Use the description of the destination revision for the new squashed revision")
 
 	squashCmd.MarkFlagsMutuallyExclusive("revision", "into", "to")
 	squashCmd.MarkFlagsMutuallyExclusive("revision", "from")

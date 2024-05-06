@@ -26,6 +26,7 @@ func init() {
 	rootCmd.PersistentFlags().String("color", "", "When to colorize output (always, never, auto)")
 	rootCmd.PersistentFlags().StringSlice("config-toml", []string{}, "Additional configuration options (can be repeated)")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	rootCmd.PersistentFlags().Bool("ignore-immutable", false, "Allow rewriting of immutable commits")
 	rootCmd.PersistentFlags().Bool("ignore-working-copy", false, "Don't snapshot the working copy, and don't update it")
 	rootCmd.PersistentFlags().Bool("no-pager", false, "Disable the pager")
 	rootCmd.PersistentFlags().Bool("quiet", false, "Silence non-primary output")
