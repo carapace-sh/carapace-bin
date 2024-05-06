@@ -21,7 +21,12 @@ func ActionHeadCommits(limit int) carapace.Action {
 
 			vals := make([]string, 0)
 			for index, line := range lines[:len(lines)-1] {
-				vals = append(vals, "HEAD~"+fmt.Sprintf("%0"+strconv.Itoa(len(strconv.Itoa(limit-1)))+"d", index), strings.TrimSpace(line[10:]))
+				switch index {
+				case 0:
+					vals = append(vals, "HEAD~", strings.TrimSpace(line[10:]))
+				default:
+					vals = append(vals, "HEAD~"+fmt.Sprintf("%0"+strconv.Itoa(len(strconv.Itoa(limit-1)))+"d", index), strings.TrimSpace(line[10:]))
+				}
 			}
 			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.HeadCommit)
 		})
