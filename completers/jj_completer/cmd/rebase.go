@@ -28,9 +28,13 @@ func init() {
 	rootCmd.AddCommand(rebaseCmd)
 
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
-		"branch":      jj.ActionRevs(jj.RevOption{LocalBranches: true, RemoteBranches: true, Tags: true}),
-		"destination": jj.ActionRevs(jj.RevOption{}.Default()),
-		"revisions":   jj.ActionRevs(jj.RevOption{}.Default()),
-		"source":      jj.ActionRevs(jj.RevOption{}.Default()),
+		"after":         jj.ActionRevs(jj.RevOption{}.Default()),
+		"before":        jj.ActionRevs(jj.RevOption{}.Default()),
+		"branch":        jj.ActionRevs(jj.RevOption{LocalBranches: true, RemoteBranches: true, Tags: true}),
+		"destination":   jj.ActionRevs(jj.RevOption{}.Default()),
+		"insert-after":  jj.ActionRevs(jj.RevOption{}.Default()),
+		"insert-before": jj.ActionRevs(jj.RevOption{}.Default()),
+		"revisions":     jj.ActionRevs(jj.RevOption{}.Default()),
+		"source":        jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 }
