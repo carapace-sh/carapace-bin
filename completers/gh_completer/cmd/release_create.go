@@ -20,7 +20,7 @@ func init() {
 	release_createCmd.Flags().String("discussion-category", "", "Start a discussion in the specified category")
 	release_createCmd.Flags().BoolP("draft", "d", false, "Save the release as a draft instead of publishing it")
 	release_createCmd.Flags().Bool("generate-notes", false, "Automatically generate title and notes for the release")
-	release_createCmd.Flags().Bool("latest", false, "Mark this release as \"Latest\" (default [automatic based on date and version])")
+	release_createCmd.Flags().Bool("latest", false, "Mark this release as \"Latest\" (default [automatic based on date and version]). --latest=false to explicitly NOT set as latest")
 	release_createCmd.Flags().StringP("notes", "n", "", "Release notes")
 	release_createCmd.Flags().StringP("notes-file", "F", "", "Read release notes from `file` (use \"-\" to read from standard input)")
 	release_createCmd.Flags().Bool("notes-from-tag", false, "Automatically generate notes from annotated tag")

@@ -10,7 +10,7 @@ import (
 
 var cache_listCmd = &cobra.Command{
 	Use:     "list",
-	Short:   "List Github Actions caches",
+	Short:   "List GitHub Actions caches",
 	Aliases: []string{"ls"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
