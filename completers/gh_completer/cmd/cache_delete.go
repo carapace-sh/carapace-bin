@@ -8,7 +8,7 @@ import (
 
 var cache_deleteCmd = &cobra.Command{
 	Use:   "delete [<cache-id>| <cache-key> | --all]",
-	Short: "Delete Github Actions caches",
+	Short: "Delete GitHub Actions caches",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

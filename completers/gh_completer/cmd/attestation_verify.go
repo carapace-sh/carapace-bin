@@ -20,7 +20,7 @@ func init() {
 	attestation_verifyCmd.Flags().StringP("cert-identity-regex", "i", "", "Enforce that the certificate's subject alternative name matches the provided regex")
 	attestation_verifyCmd.Flags().String("cert-oidc-issuer", "", "Issuer of the OIDC token")
 	attestation_verifyCmd.Flags().String("custom-trusted-root", "", "Path to a custom trustedroot.json file to use for verification")
-	attestation_verifyCmd.Flags().Bool("deny-self-hosted-runners", false, "Fail verification for attestations generated on self-hosted runners.")
+	attestation_verifyCmd.Flags().Bool("deny-self-hosted-runners", false, "Fail verification for attestations generated on self-hosted runners")
 	attestation_verifyCmd.Flags().StringP("digest-alg", "d", "", "The algorithm used to compute a digest of the artifact: {sha256|sha512}")
 	attestation_verifyCmd.Flags().String("format", "", "Output format: {json}")
 	attestation_verifyCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")

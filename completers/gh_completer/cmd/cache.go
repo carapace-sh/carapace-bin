@@ -8,7 +8,7 @@ import (
 
 var cacheCmd = &cobra.Command{
 	Use:     "cache <command>",
-	Short:   "Manage Github Actions caches",
+	Short:   "Manage GitHub Actions caches",
 	GroupID: "actions",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

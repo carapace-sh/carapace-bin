@@ -8,7 +8,7 @@ import (
 
 var auth_statusCmd = &cobra.Command{
 	Use:   "status",
-	Short: "View all accounts and authentication status",
+	Short: "Display active account and authentication state on each known GitHub host",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
