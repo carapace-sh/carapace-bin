@@ -27,46 +27,7 @@ Supported shells:
 
 ## Getting Started
 
-Ensure carapace is added to [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) ([Installation](https://carapace-sh.github.io/carapace-bin/installation.html)).
-Then register the [completers](https://carapace-sh.github.io/carapace-bin/completers.html) ([Setup](https://carapace-sh.github.io/carapace-bin/setup.html)):
+Refer to [Installation] and [Setup] to get it up and running on your system.
 
-```sh
-# bash (~/.bashrc)
-source <(carapace _carapace)
-
-# elvish (~/.elvish/rc.elv)
-eval (carapace _carapace|slurp)
-
-# fish (~/.config/fish/config.fish)
-mkdir -p ~/.config/fish/completions
-carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
-carapace _carapace | source
-
-# nushell
-
-## ~/.config/nushell/env.nu
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
-
-## ~/.config/nushell/config.nu
-source ~/.cache/carapace/init.nu
-
-# oil (~/.config/oil/oshrc)
-source <(carapace _carapace)
-
-# powershell (~/.config/powershell/Microsoft.PowerShell_profile.ps1)
-Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-carapace _carapace | Out-String | Invoke-Expression
-
-# tcsh (~/.tcshrc)
-set autolist
-eval `carapace _carapace`
-
-# xonsh (~/.config/xonsh/rc.xsh)
-$COMPLETIONS_CONFIRM=True
-exec($(carapace _carapace))
-
-# zsh (~/.zshrc)
-source <(carapace _carapace)
-```
+[Installation]:https://carapace-sh.github.io/carapace-bin/installation.html
+[Setup]:https://carapace-sh.github.io/carapace-bin/setup.html
