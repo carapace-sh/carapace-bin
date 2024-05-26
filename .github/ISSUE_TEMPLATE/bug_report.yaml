@@ -39,6 +39,7 @@ body:
     options:
     - label: Linux
     - label: OSX
+    - label: Termux
     - label: Windows
 - type: checkboxes
   attributes:
