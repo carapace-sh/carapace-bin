@@ -25,6 +25,7 @@ func ActionSearchMultiRepo(cmd *cobra.Command, f func(cmd *cobra.Command) carapa
 			name := repo
 			batch = append(batch, carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 				dummyCmd := &cobra.Command{}
+				// TODO use fakeRepoFlag?
 				dummyCmd.Flags().String("repo", name, "fake repo flag")
 				if name != "" {
 					dummyCmd.Flag("repo").Changed = true
