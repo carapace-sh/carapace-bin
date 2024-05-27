@@ -10,7 +10,7 @@ func ActionOwnerRepositories(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		// TODO hack to enable completion outside git repo - this needs to be fixed in GraphQlAction/repooverride though
 		if cmd.Flag("repo") == nil {
-			cmd.Flags().String("repo", "", "")
+			fakeRepoFlag(cmd, "", "")
 		}
 
 		switch len(c.Parts) {

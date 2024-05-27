@@ -52,8 +52,7 @@ func ActionGistUrls(cmd *cobra.Command) carapace.Action {
 				case 1:
 					return gh.ActionUsers(gh.HostOpts{}).Invoke(c).Suffix("/").ToA()
 				case 2:
-					cmd.Flags().String("repo", fmt.Sprintf("%v/%v/", c.Parts[0], c.Parts[1]), "fake repo flag")
-					cmd.Flag("repo").Changed = true
+					fakeRepoFlag(cmd, c.Parts[0], c.Parts[1])
 					return ActionGistIds(cmd)
 				default:
 					return carapace.ActionValues()
@@ -104,8 +103,7 @@ func ActionGistFiles(cmd *cobra.Command, name string) carapace.Action {
 		switch len(splitted) {
 		case 1:
 		case 5:
-			cmd.Flags().String("repo", fmt.Sprintf("%v/%v/", splitted[2], splitted[3]), "fake repo flag")
-			cmd.Flag("repo").Changed = true
+			fakeRepoFlag(cmd, splitted[2], splitted[3])
 		default:
 			return carapace.ActionMessage("invalid gist id/url: " + name)
 		}

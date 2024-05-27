@@ -3,6 +3,7 @@ package action
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
@@ -107,10 +108,17 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 	})
 }
 
+var fakeRepoFlagMutex sync.Mutex
+
 func fakeRepoFlag(cmd *cobra.Command, owner, repo string) {
 	if cmd.Flag("repo") == nil {
-		cmd.Flags().String("repo", fmt.Sprintf("%v/%v", owner, repo), "fake repo flag")
-		cmd.Flag("repo").Changed = true
+		fakeRepoFlagMutex.Lock()
+		defer fakeRepoFlagMutex.Unlock()
+
+		if cmd.Flag("repo") == nil {
+			cmd.Flags().String("repo", fmt.Sprintf("%v/%v", owner, repo), "fake repo flag")
+			cmd.Flag("repo").Changed = true
+		}
 	}
 }
 
