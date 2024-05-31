@@ -1,4 +1,4 @@
-# Installation
+# Install
 
 ## Manually
 
