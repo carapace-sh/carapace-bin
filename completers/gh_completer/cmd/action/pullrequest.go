@@ -111,6 +111,20 @@ func ActionPullRequestFields() carapace.Action {
 	)
 }
 
+func ActionPullRequestCheckFields() carapace.Action {
+	return carapace.ActionValues(
+		"name",
+		"state",
+		"startedAt",
+		"completedAt",
+		"link",
+		"bucket",
+		"event",
+		"workflow",
+		"description",
+	)
+}
+
 func actionPullRequests(cmd *cobra.Command, id string, f func(p pullrequest) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		repo, err := repoOverride(cmd, c)

@@ -22,7 +22,7 @@ func init() {
 	variableCmd.AddCommand(variable_deleteCmd)
 
 	carapace.Gen(variable_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"env": action.ActionEnvironments(variable_listCmd),
+		"env": action.ActionEnvironments(variable_deleteCmd),
 		"org": gh.ActionOrganizations(gh.HostOpts{}),
 	})
 

@@ -25,7 +25,7 @@ func init() {
 	variableCmd.AddCommand(variable_setCmd)
 
 	carapace.Gen(variable_setCmd).FlagCompletion(carapace.ActionMap{
-		"env":        action.ActionEnvironments(variable_listCmd),
+		"env":        action.ActionEnvironments(variable_setCmd),
 		"env-file":   carapace.ActionFiles(),
 		"org":        gh.ActionOrganizations(gh.HostOpts{}),
 		"repos":      gh.ActionOwnerRepositories(gh.HostOpts{}).UniqueList(","),
