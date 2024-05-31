@@ -30,6 +30,8 @@ builds:
     gobinary: go-termux
 archives:
   - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    builds:
+     - default
     format_overrides:
       - goos: windows
         format: zip
