@@ -3,7 +3,8 @@ before:
     - go mod download
     - go generate ./cmd/...
 builds:
-  - env:
+  - id: default
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
