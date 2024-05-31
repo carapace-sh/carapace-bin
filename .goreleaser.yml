@@ -15,11 +15,14 @@ builds:
       - release
   - id: termux
     env:
-      - CGO_ENABLED=0
+      - CGO_ENABLED=1
     goos:
       - android
     goarch:
+      - amd64
       - arm64
+      - arm
+      - "386"
     main: ./cmd/carapace
     binary: carapace
     tags:
