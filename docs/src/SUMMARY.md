@@ -1,7 +1,7 @@
 # Summary
 
 - [carapace-bin](./carapace-bin.md)
-  - [Installation](./installation.md)
+  - [Install](./install.md)
   - [Setup](./setup.md)
     - [Environment](./setup/environment.md)
   - [Completers](./completers.md)

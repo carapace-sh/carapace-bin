@@ -76,6 +76,28 @@ scoop bucket add rsteube https://github.com/rsteube/scoop-bucket.git
 scoop install carapace-bin
 ```
 
+## Termux
+
+> **WIP**: repo currently manually created
+
+Install from [carapace-sh/termux](https://github.com/carapace-sh/termux) (gh_pages)
+
+### Manually
+
+```sh
+# $PREFIX/etc/apt/sources.list.d
+deb [trusted=yes] https://termux.carapace.sh termux extras  
+```
+
+```sh
+apt update && apt install carapace-bin
+```
+
+### Script
+```sh
+curl termux.carapace.sh | sh
+```
+
 ## Winget
 
 Install from [winget-pkgs](https://github.com/microsoft/winget-pkgs)

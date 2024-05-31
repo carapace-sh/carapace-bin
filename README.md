@@ -27,7 +27,7 @@ Supported shells:
 
 ## Getting Started
 
-Refer to [Installation] and [Setup] to get it up and running on your system.
+Refer to [Install] and [Setup] to get it up and running on your system.
 
-[Installation]:https://carapace-sh.github.io/carapace-bin/installation.html
+[Install]:https://carapace-sh.github.io/carapace-bin/install.html
 [Setup]:https://carapace-sh.github.io/carapace-bin/setup.html
