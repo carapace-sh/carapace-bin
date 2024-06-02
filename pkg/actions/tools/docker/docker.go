@@ -30,7 +30,7 @@ func ActionConfigs() carapace.Action {
 //	crazy_satoshi (alpine (Up 4 seconds))
 func ActionContainers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("docker", "container", "ls", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})", "--filter", "name="+c.Value)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("docker", "container", "ls", "--all", "--format", "{{.Names}}\n{{.Image}} ({{.Status}})", "--filter", "name="+c.Value)(func(output []byte) carapace.Action {
 			vals := strings.Split(string(output), "\n")
 			return carapace.ActionValuesDescribed(vals[:len(vals)-1]...).Style(styles.Docker.Container)
 		})
