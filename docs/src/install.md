@@ -47,6 +47,8 @@ nix-shell -p carapace
 
 Install from [fury.io](https://rsteube.fury.site/)
 
+### Yum
+
 ```toml
 # /etc/yum.repos.d/fury.repo
 [fury]
@@ -58,6 +60,13 @@ gpgcheck=0
 
 ```sh
 yum install carapace-bin
+```
+
+### Zypper
+
+```sh
+zypper ar --gpgcheck-allow-unsigned -f https://yum.fury.io/rsteube/ carapace
+zypper install carapace-bin
 ```
 
 ## Scoop
