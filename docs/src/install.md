@@ -90,11 +90,8 @@ scoop install carapace-bin
 > **WIP**: repo currently manually created
 
 Install from [carapace-sh/termux](https://github.com/carapace-sh/termux) (gh_pages)
-```sh
-curl termux.carapace.sh | sh
-```
 
-Or manually
+### Manually
 
 ```sh
 # $PREFIX/etc/apt/sources.list.d
@@ -103,6 +100,11 @@ deb [trusted=yes] https://termux.carapace.sh termux extras
 
 ```sh
 apt update && apt install carapace-bin
+```
+
+### Script
+```sh
+curl termux.carapace.sh | sh
 ```
 
 ## Winget
