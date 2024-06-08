@@ -101,5 +101,8 @@ func ActionRevSetFunctions() carapace.Action {
 		"file", "Commits modifying one of the paths specified",
 		"conflict", "Commits with conflicts",
 		"present", "Same as x, but evaluated to none() if any of the commits in x doesn't exist",
+		"reachable", "All commits reachable from srcs within domain",
+		"mutable", "All commits that jj does not treat as immutable (same as ~immutable())",
+		"immutable", "All commits that jj treats as immutable (same as (immutable_heads() | root()))",
 	).Tag("revset functions")
 }
