@@ -26,5 +26,10 @@ func init() {
 	addFlakeFlags(store_verifyCmd)
 	addLoggingFlags(store_verifyCmd)
 
+	carapace.Gen(store_verifyCmd).FlagCompletion(carapace.ActionMap{
+		"inputs-from":         nix.ActionFlakes(),
+		"output-lock-file":    carapace.ActionFiles(),
+		"reference-lock-file": carapace.ActionFiles("lock"),
+	})
 	carapace.Gen(store_verifyCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

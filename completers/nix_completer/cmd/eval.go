@@ -27,7 +27,11 @@ func init() {
 	addFlakeFlags(evalCmd)
 	addLoggingFlags(evalCmd)
 
-	// TODO flag completion
-
+	// TODO: --apply flag completion
+	carapace.Gen(evalCmd).FlagCompletion(carapace.ActionMap{
+		"inputs-from":         nix.ActionFlakes(),
+		"output-lock-file":    carapace.ActionFiles(),
+		"reference-lock-file": carapace.ActionFiles("lock"),
+	})
 	carapace.Gen(evalCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

@@ -22,7 +22,10 @@ func init() {
 	addLoggingFlags(flake_cloneCmd)
 
 	carapace.Gen(flake_cloneCmd).FlagCompletion(carapace.ActionMap{
-		"dest": carapace.ActionDirectories(),
+		"dest":                carapace.ActionDirectories(),
+		"inputs-from":         nix.ActionFlakes(),
+		"output-lock-file":    carapace.ActionFiles(),
+		"reference-lock-file": carapace.ActionFiles("lock"),
 	})
 	carapace.Gen(flake_cloneCmd).PositionalCompletion(nix.ActionFlakes())
 
