@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(git_pushCmd).Standalone()
 
 	git_pushCmd.Flags().Bool("all", false, "Push all branches (including deleted branches)")
+	git_pushCmd.Flags().Bool("allow-empty-description", false, "Allow commits with empty description messages to be pushed")
 	git_pushCmd.Flags().StringSliceP("branch", "b", []string{}, "Push only this branch (can be repeated)")
 	git_pushCmd.Flags().StringSliceP("change", "c", []string{}, "Push this commit by creating a branch based on its change ID (can be repeated)")
 	git_pushCmd.Flags().Bool("deleted", false, "Push all deleted branches")

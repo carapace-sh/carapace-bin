@@ -20,6 +20,7 @@ func init() {
 	branch_listCmd.Flags().BoolP("conflicted", "c", false, "Show only conflicted branches")
 	branch_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	branch_listCmd.Flags().StringSliceP("revisions", "r", []string{}, "Show branches whose local targets are in the given revisions")
+	branch_listCmd.Flags().StringP("template", "T", "", "Render each branch using the given template")
 
 	branch_listCmd.MarkFlagsMutuallyExclusive("all-remotes", "conflicted")
 
