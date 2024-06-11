@@ -22,5 +22,10 @@ func init() {
 	addFlakeFlags(editCmd)
 	addLoggingFlags(editCmd)
 
+	carapace.Gen(editCmd).FlagCompletion(carapace.ActionMap{
+		"inputs-from":         nix.ActionFlakes(),
+		"output-lock-file":    carapace.ActionFiles(),
+		"reference-lock-file": carapace.ActionFiles("lock"),
+	})
 	carapace.Gen(editCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

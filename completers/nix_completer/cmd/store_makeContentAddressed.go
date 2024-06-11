@@ -25,6 +25,11 @@ func init() {
 	addFlakeFlags(store_makeContentAddressedCmd)
 	addLoggingFlags(store_makeContentAddressedCmd)
 
-	// TODO flag completion
+	// TODO: --from/--to flag completion
+	carapace.Gen(store_makeContentAddressedCmd).FlagCompletion(carapace.ActionMap{
+		"inputs-from":         nix.ActionFlakes(),
+		"output-lock-file":    carapace.ActionFiles(),
+		"reference-lock-file": carapace.ActionFiles("lock"),
+	})
 	carapace.Gen(store_makeContentAddressedCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

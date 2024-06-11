@@ -269,8 +269,10 @@ func addFlakeFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("no-registries", false, "Don't allow lookups in the flake registries")
 	cmd.Flags().Bool("no-update-lock-file", false, "Do not allow any updates to the flake's lock file")
 	cmd.Flags().Bool("no-write-lock-file", false, "Do not write the flake's newly generated lock file")
+	cmd.Flags().String("output-lock-file", "", "Write the given lock file instead of flake.lock")
 	cmd.Flags().String("override-input", "", "Override a specific flake input (e.g. dwarffs/nixpkgs)")
 	cmd.Flags().Bool("recreate-lock-file", false, "Recreate the flake's lock file from scratch")
+	cmd.Flags().String("reference-lock-file", "", "Read the given lock file instead of flake.lock")
 	cmd.Flags().String("update-input", "", "Update a specific flake input (ignoring its previous entry in the lock file")
 
 	cmd.Flag("override-input").Nargs = 2

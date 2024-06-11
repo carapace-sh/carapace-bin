@@ -16,8 +16,4 @@ func init() {
 	carapace.Gen(derivationCmd).Standalone()
 
 	rootCmd.AddCommand(derivationCmd)
-
-	addEvaluationFlags(derivationCmd)
-	addFlakeFlags(derivationCmd)
-	addLoggingFlags(derivationCmd)
 }

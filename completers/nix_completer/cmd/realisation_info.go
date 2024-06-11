@@ -22,5 +22,10 @@ func init() {
 	addFlakeFlags(realisation_infoCmd)
 	addLoggingFlags(realisation_infoCmd)
 
+	carapace.Gen(realisation_infoCmd).FlagCompletion(carapace.ActionMap{
+		"inputs-from":         nix.ActionFlakes(),
+		"output-lock-file":    carapace.ActionFiles(),
+		"reference-lock-file": carapace.ActionFiles("lock"),
+	})
 	carapace.Gen(realisation_infoCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

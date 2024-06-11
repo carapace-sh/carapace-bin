@@ -31,8 +31,11 @@ func init() {
 	addLoggingFlags(shellCmd)
 
 	carapace.Gen(shellCmd).FlagCompletion(carapace.ActionMap{
-		"keep":  os.ActionEnvironmentVariables(),
-		"unset": os.ActionEnvironmentVariables(),
+		"inputs-from":         nix.ActionFlakes(),
+		"keep":                os.ActionEnvironmentVariables(),
+		"output-lock-file":    carapace.ActionFiles(),
+		"reference-lock-file": carapace.ActionFiles("lock"),
+		"unset":               os.ActionEnvironmentVariables(),
 	})
 	carapace.Gen(shellCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

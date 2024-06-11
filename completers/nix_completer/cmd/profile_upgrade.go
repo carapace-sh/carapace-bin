@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +23,9 @@ func init() {
 	addLoggingFlags(profile_upgradeCmd)
 
 	carapace.Gen(profile_upgradeCmd).FlagCompletion(carapace.ActionMap{
-		"profile": carapace.ActionDirectories(),
+		"inputs-from":         nix.ActionFlakes(),
+		"output-lock-file":    carapace.ActionFiles(),
+		"profile":             carapace.ActionDirectories(),
+		"reference-lock-file": carapace.ActionFiles("lock"),
 	})
 }

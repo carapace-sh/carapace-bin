@@ -24,5 +24,10 @@ func init() {
 	addFlakeFlags(searchCmd)
 	addLoggingFlags(searchCmd)
 
+	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{
+		"inputs-from":         nix.ActionFlakes(),
+		"output-lock-file":    carapace.ActionFiles(),
+		"reference-lock-file": carapace.ActionFiles("lock"),
+	})
 	carapace.Gen(searchCmd).PositionalCompletion(nix.ActionInstallables())
 }

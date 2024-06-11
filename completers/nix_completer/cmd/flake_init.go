@@ -18,7 +18,6 @@ func init() {
 	flake_initCmd.Flags().StringP("template", "t", "default", "The template to use")
 
 	addEvaluationFlags(flake_initCmd)
-	addFlakeFlags(flake_initCmd)
 	addLoggingFlags(flake_initCmd)
 
 	carapace.Gen(flake_initCmd).FlagCompletion(carapace.ActionMap{
