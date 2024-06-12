@@ -27,7 +27,8 @@ Supported shells:
 
 ## Getting Started
 
-Refer to [Install] and [Setup] to get it up and running on your system.
+[Read], [Install] and [Setup].
 
+[Read]:https://pixi.carapace.sh
 [Install]:https://carapace-sh.github.io/carapace-bin/install.html
 [Setup]:https://carapace-sh.github.io/carapace-bin/setup.html
