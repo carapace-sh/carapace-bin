@@ -1,6 +1,9 @@
 package cmd
 
 import (
+	"path/filepath"
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
@@ -29,6 +32,8 @@ func init() {
 	attestation_verifyCmd.Flags().StringP("owner", "o", "", "GitHub organization to scope attestation lookup by")
 	attestation_verifyCmd.Flags().String("predicate-type", "", "Filter attestations by provided predicate type")
 	attestation_verifyCmd.Flags().StringP("repo", "R", "", "Repository name in the format <owner>/<repo>")
+	attestation_verifyCmd.Flags().String("signer-repo", "", "Repository of reusable workflow that signed attestation in the format <owner>/<repo>")
+	attestation_verifyCmd.Flags().String("signer-workflow", "", "Workflow that signed attestation in the format [host/]<owner>/<repo>/<path>/<to>/<workflow>")
 	attestation_verifyCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	attestationCmd.AddCommand(attestation_verifyCmd)
 
@@ -39,6 +44,39 @@ func init() {
 		"format":              carapace.ActionValues("json"),
 		"owner":               gh.ActionOrganizations(gh.HostOpts{}),
 		"repo":                gh.ActionHostOwnerRepositories(),
+		"signer-repo":         gh.ActionHostOwnerRepositories(),
+		"signer-workflow": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			n := 3
+			if strings.Contains(strings.Split(c.Value, "/")[0], ".") {
+				n = 4
+			}
+
+			if count := strings.Count(c.Value, "/"); count < n-1 {
+				if count == n-2 {
+					return gh.ActionHostOwnerRepositories().NoSpace().Suffix("/")
+				}
+				return gh.ActionHostOwnerRepositories().NoSpace()
+			}
+
+			return carapace.ActionMultiPartsN("/", n, func(c carapace.Context) carapace.Action {
+				opts := gh.ContentOpts{
+					Owner: c.Parts[n-3],
+					Name:  c.Parts[n-2],
+				}
+				if n == 4 {
+					opts.Host = c.Parts[0]
+				}
+				opts.Path = filepath.Dir(c.Value)
+				prefix := filepath.Dir(c.Value)
+				switch {
+				case prefix == ".":
+					prefix = ""
+				default:
+					prefix += "/"
+				}
+				return gh.ActionContents(opts).Prefix(prefix)
+			})
+		}),
 	})
 
 	carapace.Gen(attestation_verifyCmd).PositionalCompletion(
