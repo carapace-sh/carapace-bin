@@ -9,7 +9,6 @@
 [![faq](https://img.shields.io/badge/discussions-faq-white)](https://github.com/carapace-sh/carapace-bin/discussions/categories/q-a?discussions_q=category%3AQ%26A+label%3Afaq)
 
 Carapace-bin provides argument completion for multiple CLI commands ([full list](https://carapace-sh.github.io/carapace-bin/completers.html)), and works across multiple POSIX and non-POSIX shells.
-You can read more about it here: _[A pragmatic approach to shell completion](https://dev.to/rsteube/a-pragmatic-approach-to-shell-completion-4gp0)_.
 
 [![asciicast](https://asciinema.org/a/533283.svg)](https://asciinema.org/a/533283)
 
