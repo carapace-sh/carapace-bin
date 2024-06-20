@@ -11,8 +11,10 @@ import (
 func ActionEnvironments() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		cmd := c.Command("tox", "--listenvs-all")
-		if output, err := cmd.Output(); err != nil && cmd.ProcessState.ExitCode() != 1 {
+		if output, err := cmd.Output(); err != nil || cmd.ProcessState.ExitCode() != 0 {
 			return carapace.ActionMessage(err.Error())
+		} else if strings.Contains(string(output), "ROOT: No tox.ini") {
+				return carapace.ActionValues()
 		} else {
 			lines := strings.Split(string(output), "\n")
 			lines = append(lines, "ALL")
@@ -20,4 +22,3 @@ func ActionEnvironments() carapace.Action {
 		}
 	})
 }
-
