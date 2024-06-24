@@ -18,6 +18,7 @@ var run_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(run_listCmd).Standalone()
 
+	run_listCmd.Flags().BoolP("all", "a", false, "Include disabled workflows")
 	run_listCmd.Flags().StringP("branch", "b", "", "Filter runs by branch")
 	run_listCmd.Flags().StringP("commit", "c", "", "Filter runs by the `SHA` of the commit")
 	run_listCmd.Flags().String("created", "", "Filter runs by the `date` it was created")
