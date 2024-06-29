@@ -37,4 +37,6 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"e":  tox.ActionEnvironments().UniqueList(","),
 	})
+
+	// TODO: without a subcommand, it defaults to the 'legacy' subcommand (and the legacy arguments work there)
 }
