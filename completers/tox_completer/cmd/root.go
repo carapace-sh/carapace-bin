@@ -20,10 +20,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	// TODO: support completion of comma separated values
 	rootCmd.Flags().StringS("e", "e", "", "enumerate, comma separated (ALL -> all environments, not set -> use <env_list> from config) (default: <env_list>)")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"e":  tox.ActionEnvironments(),
+		"e":  tox.ActionEnvironments().UniqueList(","),
 	})
 }
