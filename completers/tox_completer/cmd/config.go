@@ -14,6 +14,7 @@ var configCmd = &cobra.Command{
 func init() {
 	carapace.Gen(configCmd).Standalone()
 
+	// TODO: factor out arguments common across all subcommands into a function
 	configCmd.Flags().StringS("e", "e", "", "enumerate (ALL -> all environments, not set -> use <env_list> from config) (default: <env_list>)")
 	configCmd.Flags().String("colored", "", "should output be enriched with colors, default is yes unless TERM=dumb or NO_COLOR is defined. (default: no)")
 	configCmd.Flags().Bool("core", false, "show core options (by default is hidden unless -e ALL is passed) (default: False)")
