@@ -14,18 +14,13 @@ var dependsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(dependsCmd).Standalone()
 
-	dependsCmd.Flags().String("colored", "", "should output be enriched with colors, default is yes unless TERM=dumb or NO_COLOR is defined. (default: no)")
-	dependsCmd.Flags().String("exit-and-dump-after", "", "")
-	dependsCmd.Flags().BoolP("help", "h", false, "show this help message and exit")
-	dependsCmd.Flags().String("no-provision", "", "do not perform provision, but fail and if a path was provided write provision metadata as JSON to it (default: False)")
-	dependsCmd.Flags().Bool("no-recreate-provision", false, "if recreate is set do not recreate provision tox environment (default: False)")
-	dependsCmd.Flags().BoolP("quiet", "q", false, "decrease verbosity (default: 0)")
-	dependsCmd.Flags().BoolP("recreate", "r", false, "recreate the tox environments (default: False)")
-	dependsCmd.Flags().String("root", "", "project root directory (if not specified will be the folder of the config file) (default: None)")
-	dependsCmd.Flags().String("runner", "", "the tox run engine to use when not explicitly stated in tox env configuration (default: virtualenv)")
-	dependsCmd.Flags().BoolP("verbose", "v", false, "increase verbosity (default: 2)")
-	dependsCmd.Flags().Bool("version", false, "show program's and plugins version number and exit")
-	dependsCmd.Flags().String("workdir", "", "tox working directory (if not specified will be the folder of the config file) (default: None)")
+	add_common_flags(dependsCmd)
+
+	dependsCmd.Flags().String("result-json", "", "write a JSON file with detailed information about all commands and results involved (default: None)")
+	dependsCmd.Flags().String("hashseed", "", "set PYTHONHASHSEED to SEED before running commands. Defaults to a random integer in the range [1, 4294967295] ([1, 1024] on Windows). Passing 'notset' suppresses this behavior. (default: 264197440)")
+	dependsCmd.Flags().StringArray("discover", []string{}, "for Python discovery first try these Python executables (default: [])")
+	dependsCmd.Flags().Bool("list-dependencies", false, "list the dependencies installed during environment setup (default: False)")
+	dependsCmd.Flags().Bool("no-list-dependencies", false, "never list the dependencies installed during environment setup (default: True)")
 
 	rootCmd.AddCommand(dependsCmd)
 }
