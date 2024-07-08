@@ -20,8 +20,8 @@ func init() {
 	add_common_subcommand_flags(devenvCmd)
 
 	devenvCmd.Flags().StringS("e", "e", "", "environment to run (default: py)")
-	devenvCmd.Flags().String("skip-env", "", "exclude all environments selected that match this regular expression (default: '')")
 	devenvCmd.Flags().Bool("no-recreate-pkg", false, "if recreate is set do not recreate packaging tox environment(s) (default: False)")
+	devenvCmd.Flags().String("skip-env", "", "exclude all environments selected that match this regular expression (default: '')")
 
 	carapace.Gen(devenvCmd).FlagCompletion(carapace.ActionMap{
 		"e": tox.ActionEnvironments(),
