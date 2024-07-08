@@ -30,8 +30,9 @@ func init() {
 	execCmd.Flags().BoolP("notest", "n", false, "do not run the test commands (default: False)")
 
 	// these two are the same flag; there are two long flags for this
-	execCmd.Flags().BoolP("pkg-only,", "b", false, "only perform the packaging activity")
+	execCmd.Flags().BoolP("pkg-only", "b", false, "only perform the packaging activity")
 	execCmd.Flags().Bool("sdistonly", false, "only perform the packaging activity")
+	execCmd.MarkFlagsMutuallyExclusive("pkg-only", "sdistonly")
 
 	execCmd.Flags().String("installpkg", "", "use specified package for installation into venv, instead of packaging the project (default: None)")
 	execCmd.Flags().Bool("develop", false, "install package in development mode (default: False)")
