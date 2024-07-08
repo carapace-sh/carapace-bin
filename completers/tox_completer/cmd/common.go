@@ -25,7 +25,7 @@ func add_common_flags(cmd *cobra.Command) {
 	cmd.Flags().BoolSliceP("verbose", "v", []bool{}, "increase verbosity (default: 2)")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"colored":  carapace.ActionValues("yes", "no"),
+		"colored": carapace.ActionValues("yes", "no"),
 	})
 }
 
@@ -58,7 +58,7 @@ func add_env_select_flag(cmd *cobra.Command) {
 	cmd.Flags().StringS("e", "e", "", "enumerate, comma separated (ALL -> all environments, not set -> use <env_list> from config) (default: <env_list>)")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"e":  tox.ActionEnvironments().UniqueList(","),
+		"e": tox.ActionEnvironments().UniqueList(","),
 	})
 }
 
@@ -72,6 +72,6 @@ func add_common_run_flags(cmd *cobra.Command) {
 	cmd.Flags().Bool("skip-pkg-install", false, "skip package installation for this run (default: False)")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"skip-missing-interpreters":  carapace.ActionValues("config", "true", "false"),
+		"skip-missing-interpreters": carapace.ActionValues("config", "true", "false"),
 	})
 }

@@ -6,10 +6,10 @@ import (
 )
 
 var runCmd = &cobra.Command{
-	Use:   "run",
+	Use:     "run",
 	Aliases: []string{"r"},
-	Short: "run environments",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Short:   "run environments",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

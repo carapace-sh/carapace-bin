@@ -12,7 +12,7 @@ func ActionEnvironments() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("tox", "--listenvs-all")(func(output []byte) carapace.Action {
 			if strings.Contains(string(output), "ROOT: No tox.ini") {
-					return carapace.ActionValues()
+				return carapace.ActionValues()
 			} else {
 				lines := strings.Split(string(output), "\n")
 				lines = append(lines, "ALL")

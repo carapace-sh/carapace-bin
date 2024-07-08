@@ -6,10 +6,10 @@ import (
 )
 
 var quickstartCmd = &cobra.Command{
-	Use:   "quickstart",
+	Use:     "quickstart",
 	Aliases: []string{"q"},
-	Short: "Command line script to quickly create a tox config file for a Python project",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Short:   "Command line script to quickly create a tox config file for a Python project",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

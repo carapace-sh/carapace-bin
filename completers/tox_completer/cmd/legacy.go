@@ -6,10 +6,10 @@ import (
 )
 
 var legacyCmd = &cobra.Command{
-	Use:   "legacy",
+	Use:     "legacy",
 	Aliases: []string{"l"},
-	Short: "legacy entry-point command",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Short:   "legacy entry-point command",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func add_legacy_flags(cmd *cobra.Command) {
@@ -40,7 +40,7 @@ func add_legacy_flags(cmd *cobra.Command) {
 
 func init() {
 	carapace.Gen(legacyCmd).Standalone()
-	
+
 	add_common_flags(legacyCmd)
 	add_legacy_flags(legacyCmd)
 

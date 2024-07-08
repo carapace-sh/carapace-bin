@@ -6,10 +6,10 @@ import (
 )
 
 var configCmd = &cobra.Command{
-	Use:   "config",
+	Use:     "config",
 	Aliases: []string{"c"},
-	Short: "show tox configuration",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Short:   "show tox configuration",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -28,7 +28,7 @@ func init() {
 	configCmd.Flags().Bool("no-recreate-pkg", false, "if recreate is set do not recreate packaging tox environment(s) (default: False)")
 
 	carapace.Gen(configCmd).FlagCompletion(carapace.ActionMap{
-		"skip-missing-interpreters":  carapace.ActionValues("config", "true", "false"),
+		"skip-missing-interpreters": carapace.ActionValues("config", "true", "false"),
 	})
 
 	rootCmd.AddCommand(configCmd)

@@ -7,10 +7,10 @@ import (
 )
 
 var devenvCmd = &cobra.Command{
-	Use:   "devenv",
+	Use:     "devenv",
 	Aliases: []string{"d"},
-	Short: "sets up a development environment at ENVDIR based on the tox configuration specified",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Short:   "sets up a development environment at ENVDIR based on the tox configuration specified",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -24,7 +24,7 @@ func init() {
 	devenvCmd.Flags().Bool("no-recreate-pkg", false, "if recreate is set do not recreate packaging tox environment(s) (default: False)")
 
 	carapace.Gen(devenvCmd).FlagCompletion(carapace.ActionMap{
-		"e":  tox.ActionEnvironments(),
+		"e": tox.ActionEnvironments(),
 	})
 
 	// NOTE: this command has a single optional positional argument:

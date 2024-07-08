@@ -8,10 +8,10 @@ import (
 )
 
 var execCmd = &cobra.Command{
-	Use:   "exec",
+	Use:     "exec",
 	Aliases: []string{"e"},
-	Short: "execute an arbitrary command within a tox environment",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Short:   "execute an arbitrary command within a tox environment",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -26,7 +26,7 @@ func init() {
 	execCmd.Flags().String("skip-env", "", "exclude all environments selected that match this regular expression (default: '')")
 
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
-		"e":  tox.ActionEnvironments(),
+		"e": tox.ActionEnvironments(),
 	})
 
 	// The exec subcommand is designed to run an arbitrary command after '--',

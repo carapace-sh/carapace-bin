@@ -6,10 +6,10 @@ import (
 )
 
 var runParallelCmd = &cobra.Command{
-	Use:   "run-parallel",
+	Use:     "run-parallel",
 	Aliases: []string{"p"},
-	Short: "run environments in parallel",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Short:   "run environments in parallel",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -27,7 +27,7 @@ func init() {
 	runParallelCmd.Flags().Bool("parallel-no-spinner", false, "run tox environments in parallel, but don't show the spinner, implies --parallel")
 
 	carapace.Gen(runParallelCmd).FlagCompletion(carapace.ActionMap{
-		"parallel":  carapace.ActionValues("all", "auto", "0"),  // or any positive integer
+		"parallel": carapace.ActionValues("all", "auto", "0"), // or any positive integer
 	})
 
 	rootCmd.AddCommand(runParallelCmd)
