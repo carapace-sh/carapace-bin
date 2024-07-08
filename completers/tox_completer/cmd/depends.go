@@ -15,8 +15,6 @@ var dependsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(dependsCmd).Standalone()
 
-	add_common_flags(dependsCmd)
-	add_common_subcommand_flags(dependsCmd)
-
+	addCommonSubcommandFlags(dependsCmd)
 	rootCmd.AddCommand(dependsCmd)
 }

@@ -15,10 +15,7 @@ var listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(listCmd).Standalone()
 
-	add_common_flags(listCmd)
-	add_env_filtering_flags(listCmd)
-
 	listCmd.Flags().BoolS("d", "d", false, "list just default envs (default: False)")
-
+	addEnvFilteringFlags(listCmd)
 	rootCmd.AddCommand(listCmd)
 }

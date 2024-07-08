@@ -16,20 +16,17 @@ var devenvCmd = &cobra.Command{
 func init() {
 	carapace.Gen(devenvCmd).Standalone()
 
-	add_common_flags(devenvCmd)
-	add_common_subcommand_flags(devenvCmd)
-
 	devenvCmd.Flags().StringS("e", "e", "", "environment to run (default: py)")
 	devenvCmd.Flags().Bool("no-recreate-pkg", false, "if recreate is set do not recreate packaging tox environment(s) (default: False)")
 	devenvCmd.Flags().String("skip-env", "", "exclude all environments selected that match this regular expression (default: '')")
+	addCommonSubcommandFlags(devenvCmd)
+	rootCmd.AddCommand(devenvCmd)
 
 	carapace.Gen(devenvCmd).FlagCompletion(carapace.ActionMap{
 		"e": tox.ActionEnvironments(),
 	})
 
-	// NOTE: this command has a single optional positional argument:
-	// `path (default: venv)`
-	// This is arbitrary, so no completion.
-
-	rootCmd.AddCommand(devenvCmd)
+	carapace.Gen(devenvCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }

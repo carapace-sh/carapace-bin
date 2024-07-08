@@ -17,23 +17,18 @@ var execCmd = &cobra.Command{
 func init() {
 	carapace.Gen(execCmd).Standalone()
 
-	add_common_flags(execCmd)
-	add_common_subcommand_flags(execCmd)
-	add_pkg_only_flags(execCmd)
-	add_common_run_flags(execCmd)
-
 	execCmd.Flags().StringS("e", "e", "", "environment to run (default: py)")
 	execCmd.Flags().String("skip-env", "", "exclude all environments selected that match this regular expression (default: '')")
+	addCommonSubcommandFlags(execCmd)
+	addPkgOnlyFlags(execCmd)
+	addCommonRunFlags(execCmd)
+	rootCmd.AddCommand(execCmd)
 
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
 		"e": tox.ActionEnvironments(),
 	})
 
-	// The exec subcommand is designed to run an arbitrary command after '--',
-	// so here we can bridge to a new base completer.
 	carapace.Gen(execCmd).DashAnyCompletion(
 		bridge.ActionCarapaceBin(),
 	)
-
-	rootCmd.AddCommand(execCmd)
 }

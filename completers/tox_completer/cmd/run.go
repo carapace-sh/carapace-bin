@@ -15,12 +15,11 @@ var runCmd = &cobra.Command{
 func init() {
 	carapace.Gen(runCmd).Standalone()
 
-	add_common_flags(runCmd)
-	add_common_subcommand_flags(runCmd)
-	add_pkg_only_flags(runCmd)
-	add_env_filtering_flags(runCmd)
-	add_env_select_flag(runCmd)
-	add_common_run_flags(runCmd)
+	addCommonSubcommandFlags(runCmd)
+	addPkgOnlyFlags(runCmd)
+	addEnvFilteringFlags(runCmd)
+	addEnvSelectFlag(runCmd)
+	addCommonRunFlags(runCmd)
 
 	rootCmd.AddCommand(runCmd)
 }

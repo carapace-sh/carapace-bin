@@ -15,11 +15,9 @@ var quickstartCmd = &cobra.Command{
 func init() {
 	carapace.Gen(quickstartCmd).Standalone()
 
-	add_common_flags(quickstartCmd)
-
-	// NOTE: this command has a single optional positional argument:
-	// `root - folder to create the tox.ini file (default: {cwd})`
-	// This is arbitrary, so no completion.
-
 	rootCmd.AddCommand(quickstartCmd)
+
+	carapace.Gen(quickstartCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }
