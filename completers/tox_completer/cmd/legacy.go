@@ -14,6 +14,7 @@ var legacyCmd = &cobra.Command{
 func init() {
 	carapace.Gen(legacyCmd).Standalone()
 
+	// TODO: process this list
 	legacyCmd.Flags().StringS("e", "e", "", "enumerate (ALL -> all environments, not set -> use <env_list> from config) (default: <env_list>)")
 	legacyCmd.Flags().Bool("alwayscopy", false, "deprecated use VIRTUALENV_ALWAYS_COPY=1, override always copy setting to True in all envs (default: False)")
 	legacyCmd.Flags().String("colored", "", "should output be enriched with colors, default is yes unless TERM=dumb or NO_COLOR is defined. (default: no)")

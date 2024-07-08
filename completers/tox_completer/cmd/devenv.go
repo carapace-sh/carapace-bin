@@ -22,13 +22,17 @@ func init() {
 	devenvCmd.Flags().StringArray("discover", []string{}, "for Python discovery first try these Python executables (default: [])")
 	devenvCmd.Flags().Bool("list-dependencies", false, "list the dependencies installed during environment setup (default: False)")
 	devenvCmd.Flags().Bool("no-list-dependencies", false, "never list the dependencies installed during environment setup (default: True)")
-	devenvCmd.Flags().StringS("e", "e", "", "environment to run (default: py)")
+	devenvCmd.Flags().StringS("e", "e", "", "enumerate, comma separated (ALL -> all environments, not set -> use <env_list> from config) (default: <env_list>)")
 	devenvCmd.Flags().String("skip-env", "", "exclude all environments selected that match this regular expression (default: '')")
 	devenvCmd.Flags().Bool("no-recreate-pkg", false, "if recreate is set do not recreate packaging tox environment(s) (default: False)")
 
 	carapace.Gen(devenvCmd).FlagCompletion(carapace.ActionMap{
 		"e":  tox.ActionEnvironments(),
 	})
+
+	// NOTE: this command has a single optional positional argument:
+	// `path (default: venv)`
+	// This is arbitrary, so no completion.
 
 	rootCmd.AddCommand(devenvCmd)
 }

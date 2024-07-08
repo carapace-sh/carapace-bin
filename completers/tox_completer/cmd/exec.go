@@ -18,7 +18,6 @@ func init() {
 
 	add_common_flags(execCmd)
 
-
 	execCmd.Flags().String("result-json", "", "write a JSON file with detailed information about all commands and results involved (default: None)")
 	execCmd.Flags().String("hashseed", "", "set PYTHONHASHSEED to SEED before running commands. Defaults to a random integer in the range [1, 4294967295] ([1, 1024] on Windows). Passing 'notset' suppresses this behavior. (default: 2416698050)")
 	execCmd.Flags().StringArray("discover", []string{}, "for Python discovery first try these Python executables (default: [])")
