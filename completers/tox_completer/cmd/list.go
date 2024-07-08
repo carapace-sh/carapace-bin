@@ -7,6 +7,7 @@ import (
 
 var listCmd = &cobra.Command{
 	Use:   "list",
+	Aliases: []string{"l"},
 	Short: "list environments",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

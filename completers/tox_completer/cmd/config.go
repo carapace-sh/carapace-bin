@@ -8,6 +8,7 @@ import (
 
 var configCmd = &cobra.Command{
 	Use:   "config",
+	Aliases: []string{"c"},
 	Short: "show tox configuration",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

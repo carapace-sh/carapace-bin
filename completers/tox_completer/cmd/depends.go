@@ -7,6 +7,7 @@ import (
 
 var dependsCmd = &cobra.Command{
 	Use:   "depends",
+	Aliases: []string{"de"},
 	Short: "visualize tox environment dependencies",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

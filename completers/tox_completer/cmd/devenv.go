@@ -8,6 +8,7 @@ import (
 
 var devenvCmd = &cobra.Command{
 	Use:   "devenv",
+	Aliases: []string{"d"},
 	Short: "sets up a development environment at ENVDIR based on the tox configuration specified",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

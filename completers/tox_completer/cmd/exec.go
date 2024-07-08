@@ -9,6 +9,7 @@ import (
 
 var execCmd = &cobra.Command{
 	Use:   "exec",
+	Aliases: []string{"e"},
 	Short: "execute an arbitrary command within a tox environment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

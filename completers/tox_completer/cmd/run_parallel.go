@@ -7,6 +7,7 @@ import (
 
 var runParallelCmd = &cobra.Command{
 	Use:   "run-parallel",
+	Aliases: []string{"p"},
 	Short: "run environments in parallel",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
