@@ -30,18 +30,14 @@ def _carapace_completer(context):
     output, _ = sub_proc_get_output(
         'carapace', context.command, 'xonsh', *[a.value for a in context.args], fix_prefix(context.prefix)
     )
-    if not output:
-        return
 
-    for c in loads(output):
-        yield RichCompletion(
-            c["Value"],
-            display=c["Display"],
-            description=c["Description"],
-            prefix_len=len(context.raw_prefix),
-            append_closing_quote=False,
-            style=c["Style"],
-        )
+    try:
+        result = {RichCompletion(c["Value"], display=c["Display"], description=c["Description"], prefix_len=len(context.raw_prefix), append_closing_quote=False, style=c["Style"]) for c in loads(output)}
+    except:
+        result = {}
+    if len(result) == 0:
+        result = {RichCompletion(context.prefix, display=context.prefix, description='', prefix_len=len(context.raw_prefix), append_closing_quote=False)}
+    return result
 
 add_one_completer('carapace', _carapace_completer, 'start')
 `
