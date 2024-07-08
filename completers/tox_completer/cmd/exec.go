@@ -42,13 +42,10 @@ func init() {
 		"e":  tox.ActionEnvironments(),
 	})
 
-	carapace.Gen(execCmd).PositionalCompletion(
-		carapace.ActionValues("--"),
-	)
-
-	// TODO: how to get it to complete after `--`?
-	carapace.Gen(execCmd).PositionalAnyCompletion(
-		bridge.ActionCarapaceBin().Shift(1),
+	// The exec subcommand is designed to run an arbitrary command after '--',
+	// so here we can bridge to a new base completer.
+	carapace.Gen(execCmd).DashAnyCompletion(
+		bridge.ActionCarapaceBin(),
 	)
 
 	rootCmd.AddCommand(execCmd)
