@@ -19,7 +19,8 @@ func init() {
 	obslogCmd.Flags().Bool("color-words", false, "Show a word-level diff with changes indicated only by color")
 	obslogCmd.Flags().Bool("git", false, "Show a Git-format diff")
 	obslogCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	obslogCmd.Flags().StringP("limit", "l", "", "Limit number of revisions to show")
+	obslogCmd.Flags().StringP("limit", "n", "", "Limit number of revisions to show")
+	obslogCmd.Flags().StringS("limit-old-shorthand", "l", "", "Limit number of revisions to show")
 	obslogCmd.Flags().Bool("no-graph", false, "Don't show the graph, show a flat list of revisions")
 	obslogCmd.Flags().BoolP("patch", "p", false, "Show patch compared to the previous version of this change")
 	obslogCmd.Flags().StringP("revision", "r", "", "")
@@ -29,6 +30,8 @@ func init() {
 	obslogCmd.Flags().String("tool", "", "Generate diff by external command")
 	obslogCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	rootCmd.AddCommand(obslogCmd)
+
+	obslogCmd.MarkFlagsMutuallyExclusive("limit", "limit-old-shorthand")
 
 	carapace.Gen(obslogCmd).FlagCompletion(carapace.ActionMap{
 		"revision": jj.ActionRevs(jj.RevOption{}.Default()),

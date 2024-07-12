@@ -8,7 +8,7 @@ import (
 )
 
 var git_remote_addCmd = &cobra.Command{
-	Use:   "add [OPTIONS] <REMOTE> <URL",
+	Use:   "add [OPTIONS] <REMOTE> <URL>",
 	Short: "Add a Git remote",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

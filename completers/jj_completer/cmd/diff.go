@@ -21,6 +21,7 @@ func init() {
 	diffCmd.Flags().String("from", "", "Show changes from this revision")
 	diffCmd.Flags().Bool("git", false, "Show a Git-format diff")
 	diffCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	diffCmd.Flags().Bool("name-only", false, "For each path, show only its path")
 	diffCmd.Flags().StringP("revision", "r", "", "Show changes in this revision, compared to its parent(s)")
 	diffCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
 	diffCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or removed")
@@ -28,6 +29,8 @@ func init() {
 	diffCmd.Flags().String("tool", "", "Generate diff by external command")
 	diffCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	rootCmd.AddCommand(diffCmd)
+
+	diffCmd.MarkFlagsMutuallyExclusive("name-only", "summary")
 
 	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
 		"from":     jj.ActionRevs(jj.RevOption{}.Default()),

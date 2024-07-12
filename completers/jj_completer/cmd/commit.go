@@ -19,6 +19,7 @@ func init() {
 	commitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	commitCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which changes to include in the first commit")
 	commitCmd.Flags().StringSliceP("message", "m", []string{}, "The change description to use (don't open editor)")
+	commitCmd.Flags().Bool("reset-author", false, "Reset the author to the configured user")
 	rootCmd.AddCommand(commitCmd)
 
 	carapace.Gen(commitCmd).PositionalAnyCompletion(
