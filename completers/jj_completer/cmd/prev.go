@@ -15,6 +15,7 @@ var prevCmd = &cobra.Command{
 func init() {
 	carapace.Gen(prevCmd).Standalone()
 
+	prevCmd.Flags().Bool("conflict", false, "Jump to the next conflicted descendant")
 	prevCmd.Flags().Bool("edit", false, "Edit the parent directly, instead of moving the working-copy commit")
 	prevCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(prevCmd)
