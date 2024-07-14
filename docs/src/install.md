@@ -43,6 +43,14 @@ Install from [nixpkgs](https://search.nixos.org/packages?show=carapace)
 nix-shell -p carapace
 ```
 
+## PKGX
+
+Install from [pkgx.dev](https://pkgx.dev/pkgs/carapace.sh/)
+
+```sh
+pkgx install carapace
+```
+
 ## RPM
 
 Install from [fury.io](https://rsteube.fury.site/)
