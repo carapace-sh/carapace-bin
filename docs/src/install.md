@@ -122,3 +122,11 @@ Install from [winget-pkgs](https://github.com/microsoft/winget-pkgs)
 ```sh
 winget install -e --id rsteube.Carapace
 ```
+
+## X-CMD
+
+Install from [x-cmd.com](https://www.x-cmd.com/pkg/carapace-bin)
+
+```sh
+x env use carapace-bin
+```
