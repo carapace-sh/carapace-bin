@@ -13,7 +13,7 @@ func TestInvokeFlags(t *testing.T) {
 		s.Run("tail", "export", "tail", "--fo").
 			Expect(carapace.ActionStyledValuesDescribed(
 				"--follow", "output appended data as the file grows", style.Yellow,
-			).Tag("flags").
+			).Tag("longhand flags").
 				NoSpace('.').
 				Usage("carapace [flags] [COMPLETER] [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]")) // TODO fix usage
 
