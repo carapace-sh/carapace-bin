@@ -33,6 +33,7 @@ func init() {
 				}
 			})
 		}),
+		"values": carapace.ActionFiles(".yaml", ".yml"),
 	})
 
 	carapace.Gen(lintCmd).PositionalCompletion(
