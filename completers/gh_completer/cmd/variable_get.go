@@ -17,12 +17,16 @@ func init() {
 	carapace.Gen(variable_getCmd).Standalone()
 
 	variable_getCmd.Flags().StringP("env", "e", "", "Get a variable for an environment")
+	variable_getCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
+	variable_getCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
 	variable_getCmd.Flags().StringP("org", "o", "", "Get a variable for an organization")
+	variable_getCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	variableCmd.AddCommand(variable_getCmd)
 
-	carapace.Gen(variable_setCmd).FlagCompletion(carapace.ActionMap{
-		"env": action.ActionEnvironments(variable_setCmd),
-		"org": gh.ActionOrganizations(gh.HostOpts{}),
+	carapace.Gen(variable_getCmd).FlagCompletion(carapace.ActionMap{
+		"env":  action.ActionEnvironments(variable_setCmd),
+		"json": gh.ActionVariableFields().UniqueList(","),
+		"org":  gh.ActionOrganizations(gh.HostOpts{}),
 	})
 
 	carapace.Gen(variable_getCmd).PositionalCompletion(
