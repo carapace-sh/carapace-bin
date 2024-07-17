@@ -76,6 +76,7 @@ func init() {
 				}
 			})
 		}),
+		"values": carapace.ActionFiles(".yaml", ".yml"),
 	})
 
 	// TODO positional completion

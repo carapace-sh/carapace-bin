@@ -84,6 +84,7 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
+		"values": carapace.ActionFiles(".yaml", ".yml"),
 	})
 
 	carapace.Gen(upgradeCmd).PositionalCompletion(

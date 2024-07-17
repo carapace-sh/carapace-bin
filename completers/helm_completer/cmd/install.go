@@ -72,6 +72,7 @@ func init() {
 				}
 			})
 		}),
+		"values": carapace.ActionFiles(".yaml", ".yml"),
 		"version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 1 {
 				if splitted := strings.Split(c.Args[1], "/"); len(splitted) == 2 {
