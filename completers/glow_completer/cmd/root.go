@@ -5,6 +5,7 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/glow"
 	"github.com/spf13/cobra"
 )
 
@@ -34,7 +35,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(".yml", ".yaml"),
 		"style": carapace.Batch(
-			carapace.ActionValues("dark", "light", "auto"),
+			glow.ActionStyles(),
 			carapace.ActionFiles(".json"),
 		).ToA(),
 	})
