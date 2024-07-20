@@ -45,12 +45,17 @@ body:
 - type: dropdown
   attributes:
     label: Complexity
-    description: Complexity of the command.
+    description: |
+      Complexity of the command.
+        S (no subcommands, low argument complexity)
+        M (less than 20 subcommands, medium argument complexity)
+        L (over 20 subcommands, large argument complexity)
+        XL (bottomless pit - git, aws, gcloud, az, kubectl)
     options:
-    - S (no subcommands, low argument complexity)
-    - M (less than 20 subcommands, medium argument complexity)
-    - L (over 20 subcommands, large argument complexity)
-    - XL (bottomless pit - git, aws, gcloud, az, kubectl)
+    - S
+    - M
+    - L
+    - XL
   validations:
     required: true
 - type: textarea
