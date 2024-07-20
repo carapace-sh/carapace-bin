@@ -1,7 +1,7 @@
 name: Request
 description: Submit a request
 title: "<title>"
-labels: [enhancement, Fund]
+labels: [enhancement, fund]
 body:
 - type: textarea
   attributes:

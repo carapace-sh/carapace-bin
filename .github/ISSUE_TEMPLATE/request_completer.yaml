@@ -1,7 +1,7 @@
 name: Completer
 description: Request a new completer
 title: "<command> completer"
-labels: [enhancement, completer, Fund]
+labels: [enhancement, completer, fund]
 body:
 - type: input
   attributes:

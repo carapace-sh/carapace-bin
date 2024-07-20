@@ -1,7 +1,7 @@
 name: Bug
 description: File a bug/issue
 title: "<command>: <title>"
-labels: [bug,Fund]
+labels: [bug,fund]
 body:
 - type: textarea
   attributes:
