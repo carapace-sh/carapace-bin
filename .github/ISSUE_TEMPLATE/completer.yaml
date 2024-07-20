@@ -1,6 +1,6 @@
 name: Completer
-description: Request a new Completer
-title: "completer: <name>"
+description: Request a new completer
+title: "<name> completion"
 labels: [enhancement, completer, Fund]
 body:
 - type: input
