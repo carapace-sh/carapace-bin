@@ -1,7 +1,7 @@
 name: Completer
 description: Request a new Completer
-title: "completer: <title>"
-labels: [enhancement, completer, polar]
+title: "completer: <name>"
+labels: [enhancement, completer, Fund]
 body:
 - type: input
   attributes:
@@ -50,7 +50,7 @@ body:
     - S (no subcommands, low argument complexity)
     - M (less than 20 subcommands, medium argument complexity)
     - L (over 20 subcommands, large argument complexity)
-    - Bottomless Pit (git, aws, gcloud, az, kubectl)
+    - XL (bottomless pit - git, aws, gcloud, az, kubectl)
   validations:
     required: true
 - type: textarea
