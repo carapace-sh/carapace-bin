@@ -33,15 +33,6 @@ body:
     description: Repository of the command (if available).
   validations:
     required: false
-- type: checkboxes
-  attributes:
-    label: OS
-    description: Operating System the command supports.
-    options:
-    - label: Linux
-    - label: OSX
-    - label: Termux
-    - label: Windows
 - type: dropdown
   attributes:
     label: Complexity
