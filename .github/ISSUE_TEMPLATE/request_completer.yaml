@@ -46,7 +46,7 @@ body:
     - S
     - M
     - L
-    - XL
+    - "[XL](https://www.youtube.com/shorts/oQz2tkFhFGk)"
   validations:
     required: true
 - type: textarea
