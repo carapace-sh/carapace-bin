@@ -1,11 +1,11 @@
 name: Completer
 description: Request a new completer
-title: "<name> completion"
+title: "<command> completion"
 labels: [enhancement, completer, Fund]
 body:
 - type: input
   attributes:
-    label: Name
+    label: Command
     description: Name of the command (as typed on the command line).
   validations:
     required: true
