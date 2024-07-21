@@ -17,6 +17,12 @@ body:
     required: true
 - type: input
   attributes:
+    label: Release
+    description: Link to the release.
+  validations:
+    required: true
+- type: input
+  attributes:
     label: Changelog
     description: Changelog of the release (if available).
   validations:
