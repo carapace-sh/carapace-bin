@@ -37,8 +37,8 @@ body:
     label: OS
     description: Operating System where this occured.
     options:
+    - label: Darwin
     - label: Linux
-    - label: OSX
     - label: Termux
     - label: Windows
 - type: checkboxes
