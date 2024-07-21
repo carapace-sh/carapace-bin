@@ -1,6 +1,6 @@
 name: Update
 description: Request a completer update
-title: "<command> update"
+title: "<command> update <version>"
 labels: [enhancement, completer, fund]
 body:
 - type: input
