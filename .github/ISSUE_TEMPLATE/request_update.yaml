@@ -14,7 +14,7 @@ body:
     label: Version
     description: Version number of the release.
   validations:
-    required: false
+    required: true
 - type: input
   attributes:
     label: Changelog
