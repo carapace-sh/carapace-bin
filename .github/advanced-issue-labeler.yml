@@ -1,0 +1,35 @@
+# syntax - https://github.com/redhat-plumbers-in-action/advanced-issue-labeler#policy
+---
+policy:
+  - section:
+      - id: ["os"]
+        label:
+          - name: "ver: 1.6.x"
+            keys: ["v1_6", "v1.6", "1.6.x"]
+          - name: linux
+            keys: ["Linux"]
+          - name: darwin
+            keys: ["Darwin"]
+          - name: termux
+            keys: ["Termux"]
+          - name: windows
+            keys: ["Windows"]
+
+      - id: ["shell"]
+        label:
+          - name: bash
+            keys: ["Bash"]
+          - name: elvish
+            keys: ["Elvish"]
+          - name: fish
+            keys: ["Fish"]
+          - name: nushell
+            keys: ["Nushell"]
+          - name: oil
+            keys: ["Oil"]
+          - name: powershell
+            keys: ["Powershell"]
+          - name: xonsh
+            keys: ["Xonsh"]
+          - name: zsh
+            keys: ["Zsh"]
