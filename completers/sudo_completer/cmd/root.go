@@ -55,6 +55,13 @@ func init() {
 		"user":         os.ActionUsers(),
 	})
 
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		bridge.ActionCarapaceBin(),
 	)
