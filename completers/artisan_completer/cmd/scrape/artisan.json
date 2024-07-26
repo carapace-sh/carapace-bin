@@ -1,0 +1,6066 @@
+[
+  {
+    "name": "_complete",
+    "description": "Internal command to provide shell completion suggestions",
+    "synopsis": "_complete [-s|--shell SHELL] [-i|--input INPUT] [-c|--current CURRENT] [-a|--api-version API-VERSION] [-S|--symfony SYMFONY]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "shell",
+        "description": "The shell type (\"bash\", \"fish\", \"zsh\")",
+        "value_required": true,
+        "value_optional": false
+      },
+      {
+        "name": "input",
+        "description": "An array of input tokens (e.g. COMP_WORDS or argv)",
+        "value_required": true,
+        "value_optional": false
+      },
+      {
+        "name": "current",
+        "description": "The index of the \"input\" array that the cursor is in (e.g. COMP_CWORD)",
+        "value_required": true,
+        "value_optional": false
+      },
+      {
+        "name": "api-version",
+        "description": "The API version of the completion script",
+        "value_required": true,
+        "value_optional": false
+      },
+      {
+        "name": "symfony",
+        "description": "deprecated",
+        "value_required": true,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "about",
+    "description": "Display basic information about your application",
+    "synopsis": "about [--only [ONLY]] [--json]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "only",
+        "description": "The section to display",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "json",
+        "description": "Output the information as JSON",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "auth:clear-resets",
+    "description": "Flush expired password reset tokens",
+    "synopsis": "auth:clear-resets [<name>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the password broker",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "breeze:install",
+    "description": "Install the Breeze controllers and resources",
+    "synopsis": "breeze:install [--dark] [--pest] [--ssr] [--typescript] [--composer [COMPOSER]] [--] <stack>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "stack",
+        "description": "The development stack that should be installed (blade,livewire,livewire-functional,react,vue,api)",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "dark",
+        "description": "Indicate that dark mode support should be installed",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Indicate that Pest should be installed",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "ssr",
+        "description": "Indicates if Inertia SSR support should be installed",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "typescript",
+        "description": "Indicates if TypeScript is preferred for the Inertia stack",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "composer",
+        "description": "Absolute path to the Composer binary which should be used to install packages",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "cache:clear",
+    "description": "Flush the application cache",
+    "synopsis": "cache:clear [--tags [TAGS]] [--] [<store>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "store",
+        "description": "The name of the store you would like to clear",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "tags",
+        "description": "The cache tags you would like to clear",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "cache:forget",
+    "description": "Remove an item from the cache",
+    "synopsis": "cache:forget <key> [<store>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "key",
+        "description": "The key to remove",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "store",
+        "description": "The store to remove the key from",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "cache:prune-stale-tags",
+    "description": "Prune stale cache tags from the cache (Redis only)",
+    "synopsis": "cache:prune-stale-tags [<store>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "store",
+        "description": "The name of the store you would like to prune tags from",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "cashier:webhook",
+    "description": "Create the Stripe webhook to interact with Cashier.",
+    "synopsis": "cashier:webhook [--disabled] [--url [URL]] [--api-version [API-VERSION]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "disabled",
+        "description": "Immediately disable the webhook after creation",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "url",
+        "description": "The URL endpoint for the webhook",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "api-version",
+        "description": "The Stripe API version the webhook should use",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "channel:list",
+    "description": "List all registered private broadcast channels",
+    "synopsis": "channel:list",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "clear-compiled",
+    "description": "Remove the compiled class file",
+    "synopsis": "clear-compiled",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "completion",
+    "description": "Dump the shell completion script",
+    "synopsis": "completion [--debug] [--] [<shell>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "shell",
+        "description": "The shell type (e.g. \"bash\"), the value of the \"$SHELL\" env var will be used if this is not given",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "debug",
+        "description": "Tail the completion debug log",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "config:cache",
+    "description": "Create a cache file for faster configuration loading",
+    "synopsis": "config:cache",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "config:clear",
+    "description": "Remove the configuration cache file",
+    "synopsis": "config:clear",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "config:publish",
+    "description": "Publish configuration files to your application",
+    "synopsis": "config:publish [--all] [--force] [--] [<name>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the configuration file to publish",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "all",
+        "description": "Publish all configuration files",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Overwrite any existing configuration files",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "config:show",
+    "description": "Display all of the values for a given configuration file or key",
+    "synopsis": "config:show <config>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "config",
+        "description": "The configuration file or key to show",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "db",
+    "description": "Start a new database CLI session",
+    "synopsis": "db [--read] [--write] [--] [<connection>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "connection",
+        "description": "The database connection that should be used",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "read",
+        "description": "Connect to the read connection",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "write",
+        "description": "Connect to the write connection",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "db:monitor",
+    "description": "Monitor the number of connections on the specified database",
+    "synopsis": "db:monitor [--databases [DATABASES]] [--max [MAX]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "databases",
+        "description": "The database connections to monitor",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max",
+        "description": "The maximum number of connections that can be open before an event is dispatched",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "db:seed",
+    "description": "Seed the database with records",
+    "synopsis": "db:seed [--class [CLASS]] [--database [DATABASE]] [--force] [--] [<class>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "class",
+        "description": "The class name of the root seeder",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "class",
+        "description": "The class name of the root seeder",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "database",
+        "description": "The database connection to seed",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "db:show",
+    "description": "Display information about the given database",
+    "synopsis": "db:show [--database [DATABASE]] [--json] [--counts] [--views] [--types]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "json",
+        "description": "Output the database information as JSON",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "counts",
+        "description": "Show the table row count <bg=red;options=bold> Note: This can be slow on large databases </>",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "views",
+        "description": "Show the database views <bg=red;options=bold> Note: This can be slow on large databases </>",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "types",
+        "description": "Show the user defined types",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "db:table",
+    "description": "Display information about the given database table",
+    "synopsis": "db:table [--database [DATABASE]] [--json] [--] [<table>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "table",
+        "description": "The name of the table",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "json",
+        "description": "Output the table information as JSON",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "db:wipe",
+    "description": "Drop all tables, views, and types",
+    "synopsis": "db:wipe [--database [DATABASE]] [--drop-views] [--drop-types] [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection to use",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "drop-views",
+        "description": "Drop all tables and views",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "drop-types",
+        "description": "Drop all tables and types (Postgres only)",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "docs",
+    "description": "Access the Laravel documentation",
+    "synopsis": "docs [<page> [<section>]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "page",
+        "description": "The documentation page to open",
+        "default": null,
+        "required": false
+      },
+      {
+        "name": "section",
+        "description": "The section of the page to open",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "down",
+    "description": "Put the application into maintenance / demo mode",
+    "synopsis": "down [--redirect [REDIRECT]] [--render [RENDER]] [--retry [RETRY]] [--refresh [REFRESH]] [--secret [SECRET]] [--with-secret] [--status [STATUS]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "redirect",
+        "description": "The path that users should be redirected to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "render",
+        "description": "The view that should be prerendered for display during maintenance mode",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "retry",
+        "description": "The number of seconds after which the request may be retried",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "refresh",
+        "description": "The number of seconds after which the browser may refresh",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "secret",
+        "description": "The secret phrase that may be used to bypass maintenance mode",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "with-secret",
+        "description": "Generate a random secret phrase that may be used to bypass maintenance mode",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "status",
+        "description": "The status code that should be used when returning the maintenance mode response",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "dusk",
+    "description": "Run the Dusk tests for the application",
+    "synopsis": "dusk [--browse] [--without-tty]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "browse",
+        "description": "Open a browser instead of using headless mode",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "without-tty",
+        "description": "Disable output to TTY",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "dusk:chrome-driver",
+    "description": "Install the ChromeDriver binary",
+    "synopsis": "dusk:chrome-driver [--all] [--detect] [--proxy [PROXY]] [--ssl-no-verify] [--] [<version>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "version",
+        "description": "",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "all",
+        "description": "Install a ChromeDriver binary for every OS",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "detect",
+        "description": "Detect the installed Chrome / Chromium version",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "proxy",
+        "description": "The proxy to download the binary through (example: \"tcp://127.0.0.1:9000\")",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "ssl-no-verify",
+        "description": "Bypass SSL certificate verification when installing through a proxy",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "dusk:component",
+    "description": "Create a new Dusk component class",
+    "synopsis": "dusk:component <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the class",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "dusk:fails",
+    "description": "Run the failing Dusk tests from the last run and stop on failure",
+    "synopsis": "dusk:fails [--browse] [--without-tty] [--pest]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "browse",
+        "description": "Open a browser instead of using headless mode",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "without-tty",
+        "description": "Disable output to TTY",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Run the tests using Pest",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "dusk:install",
+    "description": "Install Dusk into the application",
+    "synopsis": "dusk:install [--proxy [PROXY]] [--ssl-no-verify]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "proxy",
+        "description": "The proxy to download the binary through (example: \"tcp://127.0.0.1:9000\")",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "ssl-no-verify",
+        "description": "Bypass SSL certificate verification when installing through a proxy",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "dusk:make",
+    "description": "Create a new Dusk test class",
+    "synopsis": "dusk:make <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the class",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "dusk:page",
+    "description": "Create a new Dusk page class",
+    "synopsis": "dusk:page <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the class",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "dusk:purge",
+    "description": "Purge dusk test debugging files",
+    "synopsis": "dusk:purge",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "env",
+    "description": "Display the current framework environment",
+    "synopsis": "env",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "env:decrypt",
+    "description": "Decrypt an environment file",
+    "synopsis": "env:decrypt [--key [KEY]] [--cipher [CIPHER]] [--env [ENV]] [--force] [--path [PATH]] [--filename [FILENAME]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "key",
+        "description": "The encryption key",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "cipher",
+        "description": "The encryption cipher",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "env",
+        "description": "The environment to be decrypted",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Overwrite the existing environment file",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "path",
+        "description": "Path to write the decrypted file",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "filename",
+        "description": "Filename of the decrypted file",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "env:encrypt",
+    "description": "Encrypt an environment file",
+    "synopsis": "env:encrypt [--key [KEY]] [--cipher [CIPHER]] [--env [ENV]] [--prune] [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "key",
+        "description": "The encryption key",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "cipher",
+        "description": "The encryption cipher",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "env",
+        "description": "The environment to be encrypted",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "prune",
+        "description": "Delete the original environment file",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Overwrite the existing encrypted environment file",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "event:cache",
+    "description": "Discover and cache the application's events and listeners",
+    "synopsis": "event:cache",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "event:clear",
+    "description": "Clear all cached events and listeners",
+    "synopsis": "event:clear",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "event:generate",
+    "description": "Generate the missing events and listeners based on registration",
+    "synopsis": "event:generate",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "event:list",
+    "description": "List the application's events and listeners",
+    "synopsis": "event:list [--event [EVENT]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "event",
+        "description": "Filter the events by name",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "fortify:install",
+    "description": "Install all of the Fortify resources",
+    "synopsis": "fortify:install",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "help",
+    "description": "Display help for a command",
+    "synopsis": "help [--format FORMAT] [--raw] [--] [<command_name>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "command_name",
+        "description": "The command name",
+        "default": "help",
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "format",
+        "description": "The output format (txt, xml, json, or md)",
+        "value_required": true,
+        "value_optional": false
+      },
+      {
+        "name": "raw",
+        "description": "To output raw command help",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "horizon",
+    "description": "Start a master supervisor in the foreground",
+    "synopsis": "horizon [--environment [ENVIRONMENT]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "environment",
+        "description": "The environment name",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "horizon:clear",
+    "description": "Delete all of the jobs from the specified queue",
+    "synopsis": "horizon:clear [--queue [QUEUE]] [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "queue",
+        "description": "The name of the queue to clear",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "horizon:clear-metrics",
+    "description": "Delete metrics for all jobs and queues",
+    "synopsis": "horizon:clear-metrics",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "horizon:continue",
+    "description": "Instruct the master supervisor to continue processing jobs",
+    "synopsis": "horizon:continue",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "horizon:continue-supervisor",
+    "description": "Instruct the supervisor to continue processing jobs",
+    "synopsis": "horizon:continue-supervisor <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the supervisor to resume",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "horizon:forget",
+    "description": "Delete a failed queue job",
+    "synopsis": "horizon:forget [--all] [--] [<id>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "id",
+        "description": "The ID of the failed job",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "all",
+        "description": "Delete all failed jobs",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "horizon:install",
+    "description": "Install all of the Horizon resources",
+    "synopsis": "horizon:install",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "horizon:list",
+    "description": "List all of the deployed machines",
+    "synopsis": "horizon:list",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "horizon:pause",
+    "description": "Pause the master supervisor",
+    "synopsis": "horizon:pause",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "horizon:pause-supervisor",
+    "description": "Pause a supervisor",
+    "synopsis": "horizon:pause-supervisor <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the supervisor to pause",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "horizon:publish",
+    "description": "Publish all of the Horizon resources",
+    "synopsis": "horizon:publish",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "horizon:purge",
+    "description": "Terminate any rogue Horizon processes",
+    "synopsis": "horizon:purge [--signal [SIGNAL]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "signal",
+        "description": "The signal to send to the rogue processes",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "horizon:snapshot",
+    "description": "Store a snapshot of the queue metrics",
+    "synopsis": "horizon:snapshot",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "horizon:status",
+    "description": "Get the current status of Horizon",
+    "synopsis": "horizon:status",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "horizon:supervisor",
+    "description": "Start a new supervisor",
+    "synopsis": "horizon:supervisor [--balance [BALANCE]] [--delay [DELAY]] [--backoff [BACKOFF]] [--max-jobs [MAX-JOBS]] [--max-time [MAX-TIME]] [--force] [--max-processes [MAX-PROCESSES]] [--min-processes [MIN-PROCESSES]] [--memory [MEMORY]] [--nice [NICE]] [--paused] [--queue [QUEUE]] [--sleep [SLEEP]] [--timeout [TIMEOUT]] [--tries [TRIES]] [--auto-scaling-strategy [AUTO-SCALING-STRATEGY]] [--balance-cooldown [BALANCE-COOLDOWN]] [--balance-max-shift [BALANCE-MAX-SHIFT]] [--workers-name [WORKERS-NAME]] [--parent-id [PARENT-ID]] [--rest [REST]] [--] <name> <connection>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of supervisor",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "connection",
+        "description": "The name of the connection to work",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "balance",
+        "description": "The balancing strategy the supervisor should apply",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "delay",
+        "description": "The number of seconds to delay failed jobs (Deprecated)",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "backoff",
+        "description": "The number of seconds to wait before retrying a job that encountered an uncaught exception",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max-jobs",
+        "description": "The number of jobs to process before stopping a child process",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max-time",
+        "description": "The maximum number of seconds a child process should run",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the worker to run even in maintenance mode",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "max-processes",
+        "description": "The maximum number of total workers to start",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "min-processes",
+        "description": "The minimum number of workers to assign per queue",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "memory",
+        "description": "The memory limit in megabytes",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "nice",
+        "description": "The process priority",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "paused",
+        "description": "Start the supervisor in a paused state",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "queue",
+        "description": "The names of the queues to work",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "sleep",
+        "description": "Number of seconds to sleep when no job is available",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "timeout",
+        "description": "The number of seconds a child process can run",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "tries",
+        "description": "Number of times to attempt a job before logging it failed",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "auto-scaling-strategy",
+        "description": "If supervisor should scale by jobs or time to complete",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "balance-cooldown",
+        "description": "The number of seconds to wait in between auto-scaling attempts",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "balance-max-shift",
+        "description": "The maximum number of processes to increase or decrease per one scaling",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "workers-name",
+        "description": "The name that should be assigned to the workers",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "parent-id",
+        "description": "The parent process ID",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "rest",
+        "description": "Number of seconds to rest between jobs",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "horizon:supervisors",
+    "description": "List all of the supervisors",
+    "synopsis": "horizon:supervisors",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "horizon:terminate",
+    "description": "Terminate the master supervisor so it can be restarted",
+    "synopsis": "horizon:terminate [--wait]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "wait",
+        "description": "Wait for all workers to terminate",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "horizon:timeout",
+    "description": "Get the maximum timeout for the given environment",
+    "synopsis": "horizon:timeout [<environment>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "environment",
+        "description": "The environment name",
+        "default": "production",
+        "required": false
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "horizon:work",
+    "description": "Start processing jobs on the queue as a daemon",
+    "synopsis": "horizon:work [--name [NAME]] [--delay [DELAY]] [--backoff [BACKOFF]] [--max-jobs [MAX-JOBS]] [--max-time [MAX-TIME]] [--daemon] [--force] [--memory [MEMORY]] [--once] [--stop-when-empty] [--queue [QUEUE]] [--sleep [SLEEP]] [--rest [REST]] [--supervisor [SUPERVISOR]] [--timeout [TIMEOUT]] [--tries [TRIES]] [--] [<connection>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "connection",
+        "description": "The name of the queue connection to work",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "name",
+        "description": "The name of the worker",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "delay",
+        "description": "The number of seconds to delay failed jobs (Deprecated)",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "backoff",
+        "description": "The number of seconds to wait before retrying a job that encountered an uncaught exception",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max-jobs",
+        "description": "The number of jobs to process before stopping",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max-time",
+        "description": "The maximum number of seconds the worker should run",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "daemon",
+        "description": "Run the worker in daemon mode (Deprecated)",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Force the worker to run even in maintenance mode",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "memory",
+        "description": "The memory limit in megabytes",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "once",
+        "description": "Only process the next job on the queue",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "stop-when-empty",
+        "description": "Stop when the queue is empty",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "queue",
+        "description": "The names of the queues to work",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "sleep",
+        "description": "Number of seconds to sleep when no job is available",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "rest",
+        "description": "Number of seconds to rest between jobs",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "supervisor",
+        "description": "The name of the supervisor the worker belongs to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "timeout",
+        "description": "The number of seconds a child process can run",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "tries",
+        "description": "Number of times to attempt a job before logging it failed",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "inertia:middleware",
+    "description": "Create a new Inertia middleware",
+    "synopsis": "inertia:middleware [--force] [--] [<name>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "Name of the Middleware that should be created",
+        "default": "HandleInertiaRequests",
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the Middleware already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "inertia:start-ssr",
+    "description": "Start the Inertia SSR server",
+    "synopsis": "inertia:start-ssr [--runtime [RUNTIME]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "runtime",
+        "description": "The runtime to use (`node` or `bun`)",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "inertia:stop-ssr",
+    "description": "Stop the Inertia SSR server",
+    "synopsis": "inertia:stop-ssr",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "inspire",
+    "description": "Display an inspiring quote",
+    "synopsis": "inspire",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "install:api",
+    "description": "Create an API routes file and install Laravel Sanctum or Laravel Passport",
+    "synopsis": "install:api [--composer [COMPOSER]] [--force] [--passport] [--without-migration-prompt]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "composer",
+        "description": "Absolute path to the Composer binary which should be used to install packages",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Overwrite any existing API routes file",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "passport",
+        "description": "Install Laravel Passport instead of Laravel Sanctum",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "without-migration-prompt",
+        "description": "Do not prompt to run pending migrations",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "install:broadcasting",
+    "description": "Create a broadcasting channel routes file",
+    "synopsis": "install:broadcasting [--composer [COMPOSER]] [--force] [--without-reverb] [--without-node]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "composer",
+        "description": "Absolute path to the Composer binary which should be used to install packages",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Overwrite any existing broadcasting routes file",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "without-reverb",
+        "description": "Do not prompt to install Laravel Reverb",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "without-node",
+        "description": "Do not prompt to install Node dependencies",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "jetstream:install",
+    "description": "Install the Jetstream components and resources",
+    "synopsis": "jetstream:install [--dark] [--teams] [--api] [--verification] [--pest] [--ssr] [--composer [COMPOSER]] [--] <stack>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "stack",
+        "description": "The development stack that should be installed (inertia,livewire)",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "dark",
+        "description": "Indicate that dark mode support should be installed",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "teams",
+        "description": "Indicates if team support should be installed",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "api",
+        "description": "Indicates if API support should be installed",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "verification",
+        "description": "Indicates if email verification support should be installed",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Indicates if Pest should be installed",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "ssr",
+        "description": "Indicates if Inertia SSR support should be installed",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "composer",
+        "description": "Absolute path to the Composer binary which should be used to install packages",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "key:generate",
+    "description": "Set the application key",
+    "synopsis": "key:generate [--show] [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "show",
+        "description": "Display the key instead of modifying files",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "lang:publish",
+    "description": "Publish all language files that are available for customization",
+    "synopsis": "lang:publish [--existing] [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "existing",
+        "description": "Publish and overwrite only the files that have already been published",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Overwrite any existing files",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "list",
+    "description": "List commands",
+    "synopsis": "list [--raw] [--format FORMAT] [--short] [--] [<namespace>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "namespace",
+        "description": "The namespace name",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "raw",
+        "description": "To output raw command list",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "format",
+        "description": "The output format (txt, xml, json, or md)",
+        "value_required": true,
+        "value_optional": false
+      },
+      {
+        "name": "short",
+        "description": "To skip describing commands' arguments",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "livewire:attribute",
+    "description": "Create a new Livewire attribute class",
+    "synopsis": "livewire:attribute [--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "livewire:configure-s3-upload-cleanup",
+    "description": "Configure temporary file upload s3 directory to automatically cleanup files older than 24hrs",
+    "synopsis": "livewire:configure-s3-upload-cleanup",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "livewire:copy",
+    "description": "Copy a Livewire component",
+    "synopsis": "livewire:copy [--inline] [--force] [--test] [--] <name> <new-name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "new-name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "inline",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "livewire:cp",
+    "description": "Copy a Livewire component",
+    "synopsis": "livewire:cp [--inline] [--force] [--test] [--] <name> <new-name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "new-name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "inline",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "livewire:delete",
+    "description": "Delete a Livewire component",
+    "synopsis": "livewire:delete [--inline] [--force] [--test] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "inline",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "livewire:form",
+    "description": "Create a new Livewire form class",
+    "synopsis": "livewire:form [--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "livewire:layout",
+    "description": "Create a new app layout file",
+    "synopsis": "livewire:layout [--force] [--stub [STUB]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "stub",
+        "description": "If you have several stubs, stored in subfolders",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "livewire:make",
+    "description": "Create a new Livewire component",
+    "synopsis": "livewire:make [--force] [--inline] [--test] [--pest] [--stub [STUB]] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "inline",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "stub",
+        "description": "If you have several stubs, stored in subfolders",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "livewire:move",
+    "description": "Move a Livewire component",
+    "synopsis": "livewire:move [--force] [--inline] [--] <name> <new-name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "new-name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "inline",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "livewire:mv",
+    "description": "Move a Livewire component",
+    "synopsis": "livewire:mv [--inline] [--force] [--] <name> <new-name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "new-name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "inline",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "livewire:publish",
+    "description": "Publish Livewire configuration",
+    "synopsis": "livewire:publish [--assets] [--config] [--pagination]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "assets",
+        "description": "Indicates if Livewire's front-end assets should be published",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "config",
+        "description": "Indicates if Livewire's config file should be published",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pagination",
+        "description": "Indicates if Livewire's pagination views should be published",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "livewire:rm",
+    "description": "Delete a Livewire component",
+    "synopsis": "livewire:rm [--inline] [--force] [--test] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "inline",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "livewire:stubs",
+    "description": "Publish Livewire stubs",
+    "synopsis": "livewire:stubs",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "livewire:touch",
+    "description": "Create a new Livewire component",
+    "synopsis": "livewire:touch [--force] [--inline] [--test] [--pest] [--stub [STUB]] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "inline",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "stub",
+        "description": "",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "livewire:upgrade",
+    "description": "Interactive upgrade helper to migrate from v2 to v3",
+    "synopsis": "livewire:upgrade [--run-only [RUN-ONLY]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "run-only",
+        "description": "",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "make:cache-table",
+    "description": "Create a migration for the cache database table",
+    "synopsis": "make:cache-table",
+    "definition": {},
+    "aliases": [
+      "cache:table"
+    ],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "make:cast",
+    "description": "Create a new custom Eloquent cast class",
+    "synopsis": "make:cast [-f|--force] [--inbound] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the cast",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the cast already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "inbound",
+        "description": "Generate an inbound cast class",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:channel",
+    "description": "Create a new channel class",
+    "synopsis": "make:channel [-f|--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the channel",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the channel already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:class",
+    "description": "Create a new class",
+    "synopsis": "make:class [-i|--invokable] [-f|--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the class",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "invokable",
+        "description": "Generate a single method, invokable class",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Create the class even if the class already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:command",
+    "description": "Create a new Artisan command",
+    "synopsis": "make:command [-f|--force] [--command [COMMAND]] [--test] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the command",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the console command already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "command",
+        "description": "The terminal command that will be used to invoke the class",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "test",
+        "description": "Generate an accompanying Test test for the Console command",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Generate an accompanying Pest test for the Console command",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Generate an accompanying PHPUnit test for the Console command",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:component",
+    "description": "Create a new view component class",
+    "synopsis": "make:component [-f|--force] [--inline] [--view] [--test] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the component",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the component already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "inline",
+        "description": "Create a component that renders an inline view",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "view",
+        "description": "Create an anonymous component with only a view",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "Generate an accompanying Test test for the Component",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Generate an accompanying Pest test for the Component",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Generate an accompanying PHPUnit test for the Component",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:controller",
+    "description": "Create a new controller class",
+    "synopsis": "make:controller [--api] [--type TYPE] [--force] [-i|--invokable] [-m|--model [MODEL]] [-p|--parent [PARENT]] [-r|--resource] [-R|--requests] [-s|--singleton] [--creatable] [--test] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the controller",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "api",
+        "description": "Exclude the create and edit methods from the controller",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "type",
+        "description": "Manually specify the controller stub file to use",
+        "value_required": true,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Create the class even if the controller already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "invokable",
+        "description": "Generate a single method, invokable controller class",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "model",
+        "description": "Generate a resource controller for the given model",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "parent",
+        "description": "Generate a nested resource controller class",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "resource",
+        "description": "Generate a resource controller class",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "requests",
+        "description": "Generate FormRequest classes for store and update",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "singleton",
+        "description": "Generate a singleton resource controller class",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "creatable",
+        "description": "Indicate that a singleton resource should be creatable",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "Generate an accompanying Test test for the Controller",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Generate an accompanying Pest test for the Controller",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Generate an accompanying PHPUnit test for the Controller",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:enum",
+    "description": "Create a new enum",
+    "synopsis": "make:enum [-s|--string] [-i|--int] [-f|--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the enum",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "string",
+        "description": "Generate a string backed enum.",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "int",
+        "description": "Generate an integer backed enum.",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Create the enum even if the enum already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:event",
+    "description": "Create a new event class",
+    "synopsis": "make:event [-f|--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the event",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the event already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:exception",
+    "description": "Create a new custom exception class",
+    "synopsis": "make:exception [-f|--force] [--render] [--report] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the exception",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the exception already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "render",
+        "description": "Create the exception with an empty render method",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "report",
+        "description": "Create the exception with an empty report method",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:factory",
+    "description": "Create a new model factory",
+    "synopsis": "make:factory [-m|--model [MODEL]] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the factory",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "model",
+        "description": "The name of the model",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "make:interface",
+    "description": "Create a new interface",
+    "synopsis": "make:interface [-f|--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the interface",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the interface even if the interface already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:job",
+    "description": "Create a new job class",
+    "synopsis": "make:job [-f|--force] [--sync] [--test] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the job",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the job already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "sync",
+        "description": "Indicates that job should be synchronous",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "Generate an accompanying Test test for the Job",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Generate an accompanying Pest test for the Job",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Generate an accompanying PHPUnit test for the Job",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:listener",
+    "description": "Create a new event listener class",
+    "synopsis": "make:listener [-e|--event [EVENT]] [-f|--force] [--queued] [--test] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the listener",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "event",
+        "description": "The event class being listened for",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Create the class even if the listener already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "queued",
+        "description": "Indicates the event listener should be queued",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "Generate an accompanying Test test for the Listener",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Generate an accompanying Pest test for the Listener",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Generate an accompanying PHPUnit test for the Listener",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:livewire",
+    "description": "Create a new Livewire component",
+    "synopsis": "make:livewire [--force] [--inline] [--test] [--pest] [--stub [STUB]] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "inline",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "stub",
+        "description": "",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "make:mail",
+    "description": "Create a new email class",
+    "synopsis": "make:mail [-f|--force] [-m|--markdown [MARKDOWN]] [--view [VIEW]] [--test] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the mailable",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the mailable already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "markdown",
+        "description": "Create a new Markdown template for the mailable",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "view",
+        "description": "Create a new Blade template for the mailable",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "test",
+        "description": "Generate an accompanying Test test for the Mailable",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Generate an accompanying Pest test for the Mailable",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Generate an accompanying PHPUnit test for the Mailable",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:middleware",
+    "description": "Create a new middleware class",
+    "synopsis": "make:middleware [--test] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the middleware",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "test",
+        "description": "Generate an accompanying Test test for the Middleware",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Generate an accompanying Pest test for the Middleware",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Generate an accompanying PHPUnit test for the Middleware",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:migration",
+    "description": "Create a new migration file",
+    "synopsis": "make:migration [--create [CREATE]] [--table [TABLE]] [--path [PATH]] [--realpath] [--fullpath] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the migration",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "create",
+        "description": "The table to be created",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "table",
+        "description": "The table to migrate",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "path",
+        "description": "The location where the migration file should be created",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "realpath",
+        "description": "Indicate any provided migration file paths are pre-resolved absolute paths",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "fullpath",
+        "description": "Output the full path of the migration (Deprecated)",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:model",
+    "description": "Create a new Eloquent model class",
+    "synopsis": "make:model [-a|--all] [-c|--controller] [-f|--factory] [--force] [-m|--migration] [--morph-pivot] [--policy] [-s|--seed] [-p|--pivot] [-r|--resource] [--api] [-R|--requests] [--test] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the model",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "all",
+        "description": "Generate a migration, seeder, factory, policy, resource controller, and form request classes for the model",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "controller",
+        "description": "Create a new controller for the model",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "factory",
+        "description": "Create a new factory for the model",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Create the class even if the model already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "migration",
+        "description": "Create a new migration file for the model",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "morph-pivot",
+        "description": "Indicates if the generated model should be a custom polymorphic intermediate table model",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "policy",
+        "description": "Create a new policy for the model",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "seed",
+        "description": "Create a new seeder for the model",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pivot",
+        "description": "Indicates if the generated model should be a custom intermediate table model",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "resource",
+        "description": "Indicates if the generated controller should be a resource controller",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "api",
+        "description": "Indicates if the generated controller should be an API resource controller",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "requests",
+        "description": "Create new form request classes and use them in the resource controller",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "Generate an accompanying Test test for the Model",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Generate an accompanying Pest test for the Model",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Generate an accompanying PHPUnit test for the Model",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:notification",
+    "description": "Create a new notification class",
+    "synopsis": "make:notification [-f|--force] [-m|--markdown [MARKDOWN]] [--test] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the notification",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the notification already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "markdown",
+        "description": "Create a new Markdown template for the notification",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "test",
+        "description": "Generate an accompanying Test test for the Notification",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Generate an accompanying Pest test for the Notification",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Generate an accompanying PHPUnit test for the Notification",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:notifications-table",
+    "description": "Create a migration for the notifications table",
+    "synopsis": "make:notifications-table",
+    "definition": {},
+    "aliases": [
+      "notifications:table"
+    ],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "make:observer",
+    "description": "Create a new observer class",
+    "synopsis": "make:observer [-f|--force] [-m|--model [MODEL]] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the observer",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the observer already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "model",
+        "description": "The model that the observer applies to",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "make:policy",
+    "description": "Create a new policy class",
+    "synopsis": "make:policy [-f|--force] [-m|--model [MODEL]] [-g|--guard [GUARD]] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the policy",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the policy already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "model",
+        "description": "The model that the policy applies to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "guard",
+        "description": "The guard that the policy relies on",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "make:provider",
+    "description": "Create a new service provider class",
+    "synopsis": "make:provider [-f|--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the provider",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the provider already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:queue-batches-table",
+    "description": "Create a migration for the batches database table",
+    "synopsis": "make:queue-batches-table",
+    "definition": {},
+    "aliases": [
+      "queue:batches-table"
+    ],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "make:queue-failed-table",
+    "description": "Create a migration for the failed queue jobs database table",
+    "synopsis": "make:queue-failed-table",
+    "definition": {},
+    "aliases": [
+      "queue:failed-table"
+    ],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "make:queue-table",
+    "description": "Create a migration for the queue jobs database table",
+    "synopsis": "make:queue-table",
+    "definition": {},
+    "aliases": [
+      "queue:table"
+    ],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "make:request",
+    "description": "Create a new form request class",
+    "synopsis": "make:request [-f|--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the request",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the request already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:resource",
+    "description": "Create a new resource",
+    "synopsis": "make:resource [-f|--force] [-c|--collection] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the resource",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the resource already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "collection",
+        "description": "Create a resource collection",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:rule",
+    "description": "Create a new validation rule",
+    "synopsis": "make:rule [-f|--force] [-i|--implicit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the rule",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the rule already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "implicit",
+        "description": "Generate an implicit rule",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:scope",
+    "description": "Create a new scope class",
+    "synopsis": "make:scope [-f|--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the scope",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the scope already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:seeder",
+    "description": "Create a new seeder class",
+    "synopsis": "make:seeder <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the seeder",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "make:session-table",
+    "description": "Create a migration for the session database table",
+    "synopsis": "make:session-table",
+    "definition": {},
+    "aliases": [
+      "session:table"
+    ],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "make:test",
+    "description": "Create a new test class",
+    "synopsis": "make:test [-f|--force] [-u|--unit] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the test",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the test even if the test already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "unit",
+        "description": "Create a unit test",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Create a Pest test",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Create a PHPUnit test",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:trait",
+    "description": "Create a new trait",
+    "synopsis": "make:trait [-f|--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the trait",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the trait even if the trait already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "make:view",
+    "description": "Create a new view",
+    "synopsis": "make:view [--extension [EXTENSION]] [-f|--force] [--test] [--pest] [--phpunit] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the view",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "extension",
+        "description": "The extension of the generated view",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Create the view even if the view already exists",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "test",
+        "description": "Generate an accompanying Test test for the View",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pest",
+        "description": "Generate an accompanying Pest test for the View",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "phpunit",
+        "description": "Generate an accompanying PHPUnit test for the View",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "migrate",
+    "description": "Run the database migrations",
+    "synopsis": "migrate [--database [DATABASE]] [--force] [--path [PATH]] [--realpath] [--schema-path [SCHEMA-PATH]] [--pretend] [--seed] [--seeder [SEEDER]] [--step] [--graceful] [--isolated [ISOLATED]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection to use",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "path",
+        "description": "The path(s) to the migrations files to be executed",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "realpath",
+        "description": "Indicate any provided migration file paths are pre-resolved absolute paths",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "schema-path",
+        "description": "The path to a schema dump file",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "pretend",
+        "description": "Dump the SQL queries that would be run",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "seed",
+        "description": "Indicates if the seed task should be re-run",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "seeder",
+        "description": "The class name of the root seeder",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "step",
+        "description": "Force the migrations to be run so they can be rolled back individually",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "graceful",
+        "description": "Return a successful exit code even if an error occurs",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "isolated",
+        "description": "Do not run the command if another instance of the command is already running",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "migrate:fresh",
+    "description": "Drop all tables and re-run all migrations",
+    "synopsis": "migrate:fresh [--database [DATABASE]] [--drop-views] [--drop-types] [--force] [--path [PATH]] [--realpath] [--schema-path [SCHEMA-PATH]] [--seed] [--seeder [SEEDER]] [--step]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection to use",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "drop-views",
+        "description": "Drop all tables and views",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "drop-types",
+        "description": "Drop all tables and types (Postgres only)",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "path",
+        "description": "The path(s) to the migrations files to be executed",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "realpath",
+        "description": "Indicate any provided migration file paths are pre-resolved absolute paths",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "schema-path",
+        "description": "The path to a schema dump file",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "seed",
+        "description": "Indicates if the seed task should be re-run",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "seeder",
+        "description": "The class name of the root seeder",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "step",
+        "description": "Force the migrations to be run so they can be rolled back individually",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "migrate:install",
+    "description": "Create the migration repository",
+    "synopsis": "migrate:install [--database [DATABASE]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection to use",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "migrate:refresh",
+    "description": "Reset and re-run all migrations",
+    "synopsis": "migrate:refresh [--database [DATABASE]] [--force] [--path [PATH]] [--realpath] [--seed] [--seeder [SEEDER]] [--step [STEP]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection to use",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "path",
+        "description": "The path(s) to the migrations files to be executed",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "realpath",
+        "description": "Indicate any provided migration file paths are pre-resolved absolute paths",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "seed",
+        "description": "Indicates if the seed task should be re-run",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "seeder",
+        "description": "The class name of the root seeder",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "step",
+        "description": "The number of migrations to be reverted & re-run",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "migrate:reset",
+    "description": "Rollback all database migrations",
+    "synopsis": "migrate:reset [--database [DATABASE]] [--force] [--path [PATH]] [--realpath] [--pretend]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection to use",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "path",
+        "description": "The path(s) to the migrations files to be executed",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "realpath",
+        "description": "Indicate any provided migration file paths are pre-resolved absolute paths",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pretend",
+        "description": "Dump the SQL queries that would be run",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "migrate:rollback",
+    "description": "Rollback the last database migration",
+    "synopsis": "migrate:rollback [--database [DATABASE]] [--force] [--path [PATH]] [--realpath] [--pretend] [--step [STEP]] [--batch BATCH]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection to use",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "path",
+        "description": "The path(s) to the migrations files to be executed",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "realpath",
+        "description": "Indicate any provided migration file paths are pre-resolved absolute paths",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "pretend",
+        "description": "Dump the SQL queries that would be run",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "step",
+        "description": "The number of migrations to be reverted",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "batch",
+        "description": "The batch of migrations (identified by their batch number) to be reverted",
+        "value_required": true,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "migrate:status",
+    "description": "Show the status of each migration",
+    "synopsis": "migrate:status [--database [DATABASE]] [--pending [PENDING]] [--path [PATH]] [--realpath]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection to use",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "pending",
+        "description": "Only list pending migrations",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "path",
+        "description": "The path(s) to the migrations files to use",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "realpath",
+        "description": "Indicate any provided migration file paths are pre-resolved absolute paths",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "model:prune",
+    "description": "Prune models that are no longer needed",
+    "synopsis": "model:prune [--model [MODEL]] [--except [EXCEPT]] [--path [PATH]] [--chunk [CHUNK]] [--pretend]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "model",
+        "description": "Class names of the models to be pruned",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "except",
+        "description": "Class names of the models to be excluded from pruning",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "path",
+        "description": "Absolute path(s) to directories where models are located",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "chunk",
+        "description": "The number of models to retrieve per chunk of models to be deleted",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "pretend",
+        "description": "Display the number of prunable records found instead of deleting them",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "model:show",
+    "description": "Show information about an Eloquent model",
+    "synopsis": "model:show [--database [DATABASE]] [--json] [--] <model>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "model",
+        "description": "The model to show",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection to use",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "json",
+        "description": "Output the model as JSON",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "nova:action",
+    "description": "Create a new action class",
+    "synopsis": "nova:action [--destructive] [--queued] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the action",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "destructive",
+        "description": "Indicate that the action deletes / destroys resources",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "queued",
+        "description": "Indicates the action should be queued",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "nova:asset",
+    "description": "Create a new asset",
+    "synopsis": "nova:asset <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:base-resource",
+    "description": "Create a new base resource class",
+    "synopsis": "nova:base-resource <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the resource",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:card",
+    "description": "Create a new card",
+    "synopsis": "nova:card <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:check-license",
+    "description": "Verify your Nova license key",
+    "synopsis": "nova:check-license",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "nova:custom-filter",
+    "description": "Create a new custom filter",
+    "synopsis": "nova:custom-filter <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:dashboard",
+    "description": "Create a new dashboard.",
+    "synopsis": "nova:dashboard <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:field",
+    "description": "Create a new field",
+    "synopsis": "nova:field <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:filter",
+    "description": "Create a new filter class",
+    "synopsis": "nova:filter [--boolean] [--date] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the filter",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "boolean",
+        "description": "Indicates if the generated filter should be a boolean filter",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "date",
+        "description": "Indicates if the generated filter should be a date filter",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "nova:install",
+    "description": "Install all of the Nova resources",
+    "synopsis": "nova:install",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "nova:lens",
+    "description": "Create a new lens class",
+    "synopsis": "nova:lens <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the lens",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:partition",
+    "description": "Create a new metric (partition) class",
+    "synopsis": "nova:partition <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the metric",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:progress",
+    "description": "Create a new metric (progress) class",
+    "synopsis": "nova:progress <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the metric",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:publish",
+    "description": "Publish all of the Nova resources",
+    "synopsis": "nova:publish [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "force",
+        "description": "Overwrite any existing files",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "nova:repeatable",
+    "description": "Create a new repeatable class",
+    "synopsis": "nova:repeatable [-m|--model MODEL] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the repeatable",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "model",
+        "description": "The model class being represented.",
+        "value_required": true,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "nova:resource",
+    "description": "Create a new resource class",
+    "synopsis": "nova:resource [-m|--model MODEL] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the resource",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "model",
+        "description": "The model class being represented.",
+        "value_required": true,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "nova:resource-tool",
+    "description": "Create a new resource tool",
+    "synopsis": "nova:resource-tool <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:stubs",
+    "description": "Publish all stubs that are available for customization",
+    "synopsis": "nova:stubs [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "force",
+        "description": "Overwrite any existing files",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "nova:table",
+    "description": "Create a new metric (table) class",
+    "synopsis": "nova:table <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the metric",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:tool",
+    "description": "Create a new tool",
+    "synopsis": "nova:tool <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:translate",
+    "description": "Create translation files for Nova",
+    "synopsis": "nova:translate [--force] [--] <language>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "language",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Overwrite any existing files",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "nova:trend",
+    "description": "Create a new metric (trend) class",
+    "synopsis": "nova:trend <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the metric",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "nova:upgrade",
+    "description": "Upgrade Laravel Nova 3 to 4",
+    "synopsis": "nova:upgrade",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "nova:user",
+    "description": "Create a new user",
+    "synopsis": "nova:user",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "nova:value",
+    "description": "Create a new metric (single value) class",
+    "synopsis": "nova:value <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the metric",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "octane:frankenphp",
+    "description": "Start the Octane FrankenPHP server",
+    "synopsis": "octane:frankenphp [--host [HOST]] [--port [PORT]] [--admin-host [ADMIN-HOST]] [--admin-port [ADMIN-PORT]] [--workers [WORKERS]] [--max-requests [MAX-REQUESTS]] [--caddyfile [CADDYFILE]] [--https] [--http-redirect] [--watch] [--poll] [--log-level [LOG-LEVEL]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "host",
+        "description": "The IP address the server should bind to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "port",
+        "description": "The port the server should be available on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "admin-host",
+        "description": "The host the admin server should be available on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "admin-port",
+        "description": "The port the admin server should be available on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "workers",
+        "description": "The number of workers that should be available to handle requests",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max-requests",
+        "description": "The number of requests to process before reloading the server",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "caddyfile",
+        "description": "The path to the FrankenPHP Caddyfile file",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "https",
+        "description": "Enable HTTPS, HTTP/2, and HTTP/3, and automatically generate and renew certificates",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "http-redirect",
+        "description": "Enable HTTP to HTTPS redirection (only enabled if --https is passed)",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "watch",
+        "description": "Automatically reload the server when the application is modified",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "poll",
+        "description": "Use file system polling while watching in order to watch files over a network",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "log-level",
+        "description": "Log messages at or above the specified log level",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "octane:install",
+    "description": "Install the Octane components and resources",
+    "synopsis": "octane:install [--server [SERVER]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "server",
+        "description": "The server that should be used to serve the application",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "octane:reload",
+    "description": "Reload the Octane workers",
+    "synopsis": "octane:reload [--server [SERVER]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "server",
+        "description": "The server that is running the application",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "octane:roadrunner",
+    "description": "Start the Octane RoadRunner server",
+    "synopsis": "octane:roadrunner [--host [HOST]] [--port [PORT]] [--rpc-host [RPC-HOST]] [--rpc-port [RPC-PORT]] [--workers [WORKERS]] [--max-requests [MAX-REQUESTS]] [--rr-config [RR-CONFIG]] [--watch] [--poll] [--log-level [LOG-LEVEL]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "host",
+        "description": "The IP address the server should bind to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "port",
+        "description": "The port the server should be available on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "rpc-host",
+        "description": "The RPC IP address the server should bind to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "rpc-port",
+        "description": "The RPC port the server should be available on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "workers",
+        "description": "The number of workers that should be available to handle requests",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max-requests",
+        "description": "The number of requests to process before reloading the server",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "rr-config",
+        "description": "The path to the RoadRunner .rr.yaml file",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "watch",
+        "description": "Automatically reload the server when the application is modified",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "poll",
+        "description": "Use file system polling while watching in order to watch files over a network",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "log-level",
+        "description": "Log messages at or above the specified log level",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "octane:start",
+    "description": "Start the Octane server",
+    "synopsis": "octane:start [--server [SERVER]] [--host [HOST]] [--port [PORT]] [--admin-port [ADMIN-PORT]] [--rpc-host [RPC-HOST]] [--rpc-port [RPC-PORT]] [--workers [WORKERS]] [--task-workers [TASK-WORKERS]] [--max-requests [MAX-REQUESTS]] [--rr-config [RR-CONFIG]] [--caddyfile [CADDYFILE]] [--https] [--http-redirect] [--watch] [--poll] [--log-level [LOG-LEVEL]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "server",
+        "description": "The server that should be used to serve the application",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "host",
+        "description": "The IP address the server should bind to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "port",
+        "description": "The port the server should be available on [default: \"8000\"]",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "admin-port",
+        "description": "The port the admin server should be available on [FrankenPHP only]",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "rpc-host",
+        "description": "The RPC IP address the server should bind to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "rpc-port",
+        "description": "The RPC port the server should be available on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "workers",
+        "description": "The number of workers that should be available to handle requests",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "task-workers",
+        "description": "The number of task workers that should be available to handle tasks",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max-requests",
+        "description": "The number of requests to process before reloading the server",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "rr-config",
+        "description": "The path to the RoadRunner .rr.yaml file",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "caddyfile",
+        "description": "The path to the FrankenPHP Caddyfile file",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "https",
+        "description": "Enable HTTPS, HTTP/2, and HTTP/3, and automatically generate and renew certificates [FrankenPHP only]",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "http-redirect",
+        "description": "Enable HTTP to HTTPS redirection (only enabled if --https is passed) [FrankenPHP only]",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "watch",
+        "description": "Automatically reload the server when the application is modified",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "poll",
+        "description": "Use file system polling while watching in order to watch files over a network",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "log-level",
+        "description": "Log messages at or above the specified log level",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "octane:status",
+    "description": "Get the current status of the Octane server",
+    "synopsis": "octane:status [--server [SERVER]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "server",
+        "description": "The server that is running the application",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "octane:stop",
+    "description": "Stop the Octane server",
+    "synopsis": "octane:stop [--server [SERVER]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "server",
+        "description": "The server that is running the application",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "octane:swoole",
+    "description": "Start the Octane Swoole server",
+    "synopsis": "octane:swoole [--host [HOST]] [--port [PORT]] [--workers [WORKERS]] [--task-workers [TASK-WORKERS]] [--max-requests [MAX-REQUESTS]] [--watch] [--poll]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "host",
+        "description": "The IP address the server should bind to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "port",
+        "description": "The port the server should be available on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "workers",
+        "description": "The number of workers that should be available to handle requests",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "task-workers",
+        "description": "The number of task workers that should be available to handle tasks",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max-requests",
+        "description": "The number of requests to process before reloading the server",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "watch",
+        "description": "Automatically reload the server when the application is modified",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "poll",
+        "description": "Use file system polling while watching in order to watch files over a network",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "optimize",
+    "description": "Cache framework bootstrap, configuration, and metadata to increase performance",
+    "synopsis": "optimize",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "optimize:clear",
+    "description": "Remove the cached bootstrap files",
+    "synopsis": "optimize:clear",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "package:discover",
+    "description": "Rebuild the cached package manifest",
+    "synopsis": "package:discover",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "passport:client",
+    "description": "Create a client for issuing access tokens",
+    "synopsis": "passport:client [--personal] [--password] [--client] [--name [NAME]] [--provider [PROVIDER]] [--redirect_uri [REDIRECT_URI]] [--user_id [USER_ID]] [--public]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "personal",
+        "description": "Create a personal access token client",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "password",
+        "description": "Create a password grant client",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "client",
+        "description": "Create a client credentials grant client",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "name",
+        "description": "The name of the client",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "provider",
+        "description": "The name of the user provider",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "redirect_uri",
+        "description": "The URI to redirect to after authorization",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "user_id",
+        "description": "The user ID the client should be assigned to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "public",
+        "description": "Create a public client (Auth code grant type only)",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "passport:hash",
+    "description": "Hash all of the existing secrets in the clients table",
+    "synopsis": "passport:hash [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "force",
+        "description": "Force the operation to run without confirmation prompt",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "passport:install",
+    "description": "Run the commands necessary to prepare Passport for use",
+    "synopsis": "passport:install [--uuids] [--force] [--length [LENGTH]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "uuids",
+        "description": "Use UUIDs for all client IDs",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Overwrite keys they already exist",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "length",
+        "description": "The length of the private key",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "passport:keys",
+    "description": "Create the encryption keys for API authentication",
+    "synopsis": "passport:keys [--force] [--length [LENGTH]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "force",
+        "description": "Overwrite keys they already exist",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "length",
+        "description": "The length of the private key",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "passport:purge",
+    "description": "Purge revoked and / or expired tokens and authentication codes",
+    "synopsis": "passport:purge [--revoked] [--expired] [--hours [HOURS]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "revoked",
+        "description": "Only purge revoked tokens and authentication codes",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "expired",
+        "description": "Only purge expired tokens and authentication codes",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "hours",
+        "description": "The number of hours to retain expired tokens",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "pennant:feature",
+    "description": "Create a new feature class",
+    "synopsis": "pennant:feature [-f|--force] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the feature",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "force",
+        "description": "Create the class even if the feature already exists",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "pennant:purge",
+    "description": "Delete Pennant features from storage",
+    "synopsis": "pennant:purge [--except [EXCEPT]] [--except-registered] [--store [STORE]] [--] [<features>...]",
+    "definition": {},
+    "aliases": [
+      "pennant:clear"
+    ],
+    "arguments": [
+      {
+        "name": "features",
+        "description": "The features to purge",
+        "default": [],
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "except",
+        "description": "The features that should be excluded from purging",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "except-registered",
+        "description": "Purge all features except those registered",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "store",
+        "description": "The store to purge the features from",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "pulse:check",
+    "description": "Take a snapshot of the current server's pulse",
+    "synopsis": "pulse:check [--once]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "once",
+        "description": "Take a single snapshot",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "pulse:clear",
+    "description": "Delete all Pulse data from storage",
+    "synopsis": "pulse:clear [--type [TYPE]] [--force]",
+    "definition": {},
+    "aliases": [
+      "pulse:purge"
+    ],
+    "arguments": [],
+    "options": [
+      {
+        "name": "type",
+        "description": "Only clear the specified type(s)",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "pulse:restart",
+    "description": "Restart any running \"work\" and \"check\" commands",
+    "synopsis": "pulse:restart",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "pulse:work",
+    "description": "Process incoming Pulse data from the ingest stream",
+    "synopsis": "pulse:work [--stop-when-empty]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "stop-when-empty",
+        "description": "Stop when the stream is empty",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "queue:clear",
+    "description": "Delete all of the jobs from the specified queue",
+    "synopsis": "queue:clear [--queue [QUEUE]] [--force] [--] [<connection>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "connection",
+        "description": "The name of the queue connection to clear",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "queue",
+        "description": "The name of the queue to clear",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the operation to run when in production",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "queue:failed",
+    "description": "List all of the failed queue jobs",
+    "synopsis": "queue:failed",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "queue:flush",
+    "description": "Flush all of the failed queue jobs",
+    "synopsis": "queue:flush [--hours [HOURS]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "hours",
+        "description": "The number of hours to retain failed job data",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "queue:forget",
+    "description": "Delete a failed queue job",
+    "synopsis": "queue:forget <id>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "id",
+        "description": "The ID of the failed job",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "queue:listen",
+    "description": "Listen to a given queue",
+    "synopsis": "queue:listen [--name [NAME]] [--delay [DELAY]] [--backoff [BACKOFF]] [--force] [--memory [MEMORY]] [--queue [QUEUE]] [--sleep [SLEEP]] [--rest [REST]] [--timeout [TIMEOUT]] [--tries [TRIES]] [--] [<connection>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "connection",
+        "description": "The name of connection",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "name",
+        "description": "The name of the worker",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "delay",
+        "description": "The number of seconds to delay failed jobs (Deprecated)",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "backoff",
+        "description": "The number of seconds to wait before retrying a job that encountered an uncaught exception",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the worker to run even in maintenance mode",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "memory",
+        "description": "The memory limit in megabytes",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "queue",
+        "description": "The queue to listen on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "sleep",
+        "description": "Number of seconds to sleep when no job is available",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "rest",
+        "description": "Number of seconds to rest between jobs",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "timeout",
+        "description": "The number of seconds a child process can run",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "tries",
+        "description": "Number of times to attempt a job before logging it failed",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "queue:monitor",
+    "description": "Monitor the size of the specified queues",
+    "synopsis": "queue:monitor [--max [MAX]] [--] <queues>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "queues",
+        "description": "The names of the queues to monitor",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "max",
+        "description": "The maximum number of jobs that can be on the queue before an event is dispatched",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "queue:prune-batches",
+    "description": "Prune stale entries from the batches database",
+    "synopsis": "queue:prune-batches [--hours [HOURS]] [--unfinished [UNFINISHED]] [--cancelled [CANCELLED]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "hours",
+        "description": "The number of hours to retain batch data",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "unfinished",
+        "description": "The number of hours to retain unfinished batch data",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "cancelled",
+        "description": "The number of hours to retain cancelled batch data",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "queue:prune-failed",
+    "description": "Prune stale entries from the failed jobs table",
+    "synopsis": "queue:prune-failed [--hours [HOURS]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "hours",
+        "description": "The number of hours to retain failed jobs data",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "queue:restart",
+    "description": "Restart queue worker daemons after their current job",
+    "synopsis": "queue:restart",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "queue:retry",
+    "description": "Retry a failed queue job",
+    "synopsis": "queue:retry [--queue [QUEUE]] [--range [RANGE]] [--] [<id>...]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "id",
+        "description": "The ID of the failed job or \"all\" to retry all jobs",
+        "default": [],
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "queue",
+        "description": "Retry all of the failed jobs for the specified queue",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "range",
+        "description": "Range of job IDs (numeric) to be retried (e.g. 1-5)",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "queue:retry-batch",
+    "description": "Retry the failed jobs for a batch",
+    "synopsis": "queue:retry-batch [--isolated [ISOLATED]] [--] <id>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "id",
+        "description": "The ID of the batch whose failed jobs should be retried",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "isolated",
+        "description": "Do not run the command if another instance of the command is already running",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "queue:work",
+    "description": "Start processing jobs on the queue as a daemon",
+    "synopsis": "queue:work [--name [NAME]] [--queue [QUEUE]] [--daemon] [--once] [--stop-when-empty] [--delay [DELAY]] [--backoff [BACKOFF]] [--max-jobs [MAX-JOBS]] [--max-time [MAX-TIME]] [--force] [--memory [MEMORY]] [--sleep [SLEEP]] [--rest [REST]] [--timeout [TIMEOUT]] [--tries [TRIES]] [--] [<connection>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "connection",
+        "description": "The name of the queue connection to work",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "name",
+        "description": "The name of the worker",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "queue",
+        "description": "The names of the queues to work",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "daemon",
+        "description": "Run the worker in daemon mode (Deprecated)",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "once",
+        "description": "Only process the next job on the queue",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "stop-when-empty",
+        "description": "Stop when the queue is empty",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "delay",
+        "description": "The number of seconds to delay failed jobs (Deprecated)",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "backoff",
+        "description": "The number of seconds to wait before retrying a job that encountered an uncaught exception",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max-jobs",
+        "description": "The number of jobs to process before stopping",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "max-time",
+        "description": "The maximum number of seconds the worker should run",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "force",
+        "description": "Force the worker to run even in maintenance mode",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "memory",
+        "description": "The memory limit in megabytes",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "sleep",
+        "description": "Number of seconds to sleep when no job is available",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "rest",
+        "description": "Number of seconds to rest between jobs",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "timeout",
+        "description": "The number of seconds a child process can run",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "tries",
+        "description": "Number of times to attempt a job before logging it failed",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "reverb:install",
+    "description": "Install the Reverb dependencies",
+    "synopsis": "reverb:install",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "reverb:restart",
+    "description": "Restart the Reverb server",
+    "synopsis": "reverb:restart",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "reverb:start",
+    "description": "Start the Reverb server",
+    "synopsis": "reverb:start [--host [HOST]] [--port [PORT]] [--hostname [HOSTNAME]] [--debug]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "host",
+        "description": "The IP address the server should bind to",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "port",
+        "description": "The port the server should listen on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "hostname",
+        "description": "The hostname the server is accessible from",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "debug",
+        "description": "Indicates whether debug messages should be displayed in the terminal",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "route:cache",
+    "description": "Create a route cache file for faster route registration",
+    "synopsis": "route:cache",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "route:clear",
+    "description": "Remove the route cache file",
+    "synopsis": "route:clear",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "route:list",
+    "description": "List all registered routes",
+    "synopsis": "route:list [--json] [--method [METHOD]] [--name [NAME]] [--domain [DOMAIN]] [--path [PATH]] [--except-path [EXCEPT-PATH]] [-r|--reverse] [--sort [SORT]] [--except-vendor] [--only-vendor]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "json",
+        "description": "Output the route list as JSON",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "method",
+        "description": "Filter the routes by method",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "name",
+        "description": "Filter the routes by name",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "domain",
+        "description": "Filter the routes by domain",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "path",
+        "description": "Only show routes matching the given path pattern",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "except-path",
+        "description": "Do not display the routes matching the given path pattern",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "reverse",
+        "description": "Reverse the ordering of the routes",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "sort",
+        "description": "The column (domain, method, uri, name, action, middleware) to sort by",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "except-vendor",
+        "description": "Do not display routes defined by vendor packages",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "only-vendor",
+        "description": "Only display routes defined by vendor packages",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "sail:add",
+    "description": "Add a service to an existing Sail installation",
+    "synopsis": "sail:add [<services>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "services",
+        "description": "The services that should be added",
+        "default": null,
+        "required": false
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "sail:install",
+    "description": "Install Laravel Sail's default Docker Compose file",
+    "synopsis": "sail:install [--with [WITH]] [--devcontainer]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "with",
+        "description": "The services that should be included in the installation",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "devcontainer",
+        "description": "Create a .devcontainer configuration directory",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "sail:publish",
+    "description": "Publish the Laravel Sail Docker files",
+    "synopsis": "sail:publish",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "sanctum:prune-expired",
+    "description": "Prune tokens expired for more than specified number of hours",
+    "synopsis": "sanctum:prune-expired [--hours [HOURS]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "hours",
+        "description": "The number of hours to retain expired Sanctum tokens",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "schedule:clear-cache",
+    "description": "Delete the cached mutex files created by scheduler",
+    "synopsis": "schedule:clear-cache",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "schedule:finish",
+    "description": "Handle the completion of a scheduled command",
+    "synopsis": "schedule:finish <id> [<code>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "id",
+        "description": "",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "code",
+        "description": "",
+        "default": "0",
+        "required": false
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "schedule:interrupt",
+    "description": "Interrupt the current schedule run",
+    "synopsis": "schedule:interrupt",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "schedule:list",
+    "description": "List all scheduled tasks",
+    "synopsis": "schedule:list [--timezone [TIMEZONE]] [--next]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "timezone",
+        "description": "The timezone that times should be displayed in",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "next",
+        "description": "Sort the listed tasks by their next due date",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "schedule:run",
+    "description": "Run the scheduled commands",
+    "synopsis": "schedule:run",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "schedule:test",
+    "description": "Run a scheduled command",
+    "synopsis": "schedule:test [--name [NAME]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "name",
+        "description": "The name of the scheduled command to run",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "schedule:work",
+    "description": "Start the schedule worker",
+    "synopsis": "schedule:work [--run-output-file [RUN-OUTPUT-FILE]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "run-output-file",
+        "description": "The file to direct <info>schedule:run</info> output to",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "schema:dump",
+    "description": "Dump the given database schema",
+    "synopsis": "schema:dump [--database [DATABASE]] [--path [PATH]] [--prune]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "database",
+        "description": "The database connection to use",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "path",
+        "description": "The path where the schema dump file should be stored",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "prune",
+        "description": "Delete all existing migration files",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "scout:delete-all-indexes",
+    "description": "Delete all indexes",
+    "synopsis": "scout:delete-all-indexes",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "scout:delete-index",
+    "description": "Delete an index",
+    "synopsis": "scout:delete-index <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the index",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "scout:flush",
+    "description": "Flush all of the model's records from the index",
+    "synopsis": "scout:flush <model>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "model",
+        "description": "Class name of the model to flush",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": []
+  },
+  {
+    "name": "scout:import",
+    "description": "Import the given model into the search index",
+    "synopsis": "scout:import [-c|--chunk [CHUNK]] [--] <model>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "model",
+        "description": "Class name of model to bulk import",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "chunk",
+        "description": "The number of records to import at a time (Defaults to configuration value: `scout.chunk.searchable`)",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "scout:index",
+    "description": "Create an index",
+    "synopsis": "scout:index [-k|--key [KEY]] [--] <name>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "name",
+        "description": "The name of the index",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "key",
+        "description": "The name of the primary key",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "scout:sync-index-settings",
+    "description": "Sync your configured index settings with your search engine (Meilisearch)",
+    "synopsis": "scout:sync-index-settings",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "serve",
+    "description": "Serve the application on the PHP development server",
+    "synopsis": "serve [--host [HOST]] [--port [PORT]] [--tries [TRIES]] [--no-reload]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "host",
+        "description": "The host address to serve the application on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "port",
+        "description": "The port to serve the application on",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "tries",
+        "description": "The max number of ports to attempt to serve from",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "no-reload",
+        "description": "Do not reload the development server on .env file changes",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "spark:install",
+    "description": "Install all of the Spark resources",
+    "synopsis": "spark:install",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "storage:link",
+    "description": "Create the symbolic links configured for the application",
+    "synopsis": "storage:link [--relative] [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "relative",
+        "description": "Create the symbolic link using relative paths",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Recreate existing symbolic links",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "storage:unlink",
+    "description": "Delete existing symbolic links configured for the application",
+    "synopsis": "storage:unlink",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "stub:publish",
+    "description": "Publish all stubs that are available for customization",
+    "synopsis": "stub:publish [--existing] [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "existing",
+        "description": "Publish and overwrite only the files that have already been published",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Overwrite any existing files",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "telescope:clear",
+    "description": "Delete all Telescope data from storage",
+    "synopsis": "telescope:clear",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "telescope:install",
+    "description": "Install all of the Telescope resources",
+    "synopsis": "telescope:install",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "telescope:pause",
+    "description": "Pause all Telescope watchers",
+    "synopsis": "telescope:pause",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "telescope:prune",
+    "description": "Prune stale entries from the Telescope database",
+    "synopsis": "telescope:prune [--hours [HOURS]] [--keep-exceptions]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "hours",
+        "description": "The number of hours to retain Telescope data",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "keep-exceptions",
+        "description": "Retain exception data",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "telescope:publish",
+    "description": "Publish all of the Telescope resources",
+    "synopsis": "telescope:publish [--force]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "force",
+        "description": "Overwrite any existing files",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "telescope:resume",
+    "description": "Unpause all Telescope watchers",
+    "synopsis": "telescope:resume",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "test",
+    "description": "Run the application tests",
+    "synopsis": "test [--without-tty] [--compact] [--coverage] [--min [MIN]] [-p|--parallel] [--profile] [--recreate-databases] [--drop-databases] [--without-databases]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "without-tty",
+        "description": "Disable output to TTY",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "compact",
+        "description": "Indicates whether the compact printer should be used",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "coverage",
+        "description": "Indicates whether code coverage information should be collected",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "min",
+        "description": "Indicates the minimum threshold enforcement for code coverage",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "parallel",
+        "description": "Indicates if the tests should run in parallel",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "profile",
+        "description": "Lists top 10 slowest tests",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "recreate-databases",
+        "description": "Indicates if the test databases should be re-created",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "drop-databases",
+        "description": "Indicates if the test databases should be dropped",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "without-databases",
+        "description": "Indicates if database configuration should be performed",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "tinker",
+    "description": "Interact with your application",
+    "synopsis": "tinker [--execute [EXECUTE]] [--] [<include>...]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "include",
+        "description": "Include file(s) before starting tinker",
+        "default": [],
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "execute",
+        "description": "Execute the given code using Tinker",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "ui",
+    "description": "Swap the front-end scaffolding for the application",
+    "synopsis": "ui [--auth] [--option [OPTION]] [--] <type>",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "type",
+        "description": "The preset type (bootstrap, vue, react)",
+        "default": null,
+        "required": true
+      }
+    ],
+    "options": [
+      {
+        "name": "auth",
+        "description": "Install authentication UI scaffolding",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "option",
+        "description": "Pass an option to the preset command",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "ui:auth",
+    "description": "Scaffold basic login and registration views and routes",
+    "synopsis": "ui:auth [--views] [--force] [--] [<type>]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [
+      {
+        "name": "type",
+        "description": "The preset type (bootstrap)",
+        "default": "bootstrap",
+        "required": false
+      }
+    ],
+    "options": [
+      {
+        "name": "views",
+        "description": "Only scaffold the authentication views",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Overwrite existing views by default",
+        "value_required": false,
+        "value_optional": false
+      }
+    ]
+  },
+  {
+    "name": "ui:controllers",
+    "description": "Scaffold the authentication controllers",
+    "synopsis": "ui:controllers",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "up",
+    "description": "Bring the application out of maintenance mode",
+    "synopsis": "up",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "vendor:publish",
+    "description": "Publish any publishable assets from vendor packages",
+    "synopsis": "vendor:publish [--existing] [--force] [--all] [--provider [PROVIDER]] [--tag [TAG]]",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": [
+      {
+        "name": "existing",
+        "description": "Publish and overwrite only the files that have already been published",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "force",
+        "description": "Overwrite any existing files",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "all",
+        "description": "Publish assets for all service providers without prompt",
+        "value_required": false,
+        "value_optional": false
+      },
+      {
+        "name": "provider",
+        "description": "The service provider that has assets you want to publish",
+        "value_required": false,
+        "value_optional": true
+      },
+      {
+        "name": "tag",
+        "description": "One or many tags that have assets you want to publish",
+        "value_required": false,
+        "value_optional": true
+      }
+    ]
+  },
+  {
+    "name": "view:cache",
+    "description": "Compile all of the application's Blade templates",
+    "synopsis": "view:cache",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  },
+  {
+    "name": "view:clear",
+    "description": "Clear all compiled view files",
+    "synopsis": "view:clear",
+    "definition": {},
+    "aliases": [],
+    "arguments": [],
+    "options": []
+  }
+]
