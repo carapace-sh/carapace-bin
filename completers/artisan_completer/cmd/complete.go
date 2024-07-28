@@ -20,4 +20,8 @@ func init() {
 	completeCmd.Flags().String("shell", "", "The shell type (\"bash\", \"fish\", \"zsh\")")
 	completeCmd.Flags().String("symfony", "", "deprecated")
 	rootCmd.AddCommand(completeCmd)
+
+	carapace.Gen(completeCmd).FlagCompletion(carapace.ActionMap{
+		"shell": carapace.ActionValues("bash", "fish", "zsh"),
+	})
 }
