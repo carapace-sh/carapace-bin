@@ -1,32 +1,71 @@
 package just
 
 import (
-	"strings"
+	"encoding/json"
 
 	"github.com/carapace-sh/carapace"
 )
 
+type attributes []map[string]string
+
+func (a attributes) Description() string {
+	for _, attr := range a {
+		if doc, ok := attr["doc"]; ok {
+			return doc
+		}
+	}
+	return ""
+}
+
+type recipe struct {
+	Attributes attributes `json:"attributes"`
+	Name       string     `json:"name"`
+	Doc        string     `json:"doc"`
+}
+
+func (r recipe) Description() string {
+	if doc := r.Doc; doc != "" {
+		return doc
+	}
+	return r.Attributes.Description()
+}
+
+type justfile struct {
+	Aliases map[string]struct {
+		Attributes attributes `json:"attributes"`
+		Name       string     `json:"name"`
+		Target     string     `json:"target"`
+	} `json:"aliases"`
+	Recipes map[string]recipe `json:"recipes"`
+}
+
 // ActionRecipes completes recipes
 // default
 // build (build project)
-func ActionRecipes(justfile string) carapace.Action {
+func ActionRecipes(path string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"--list"}
-		if justfile != "" {
-			args = append(args, "--justfile", justfile)
+		args := []string{"--dump", "--dump-format", "json"}
+		if path != "" {
+			args = append(args, "--justfile", path)
 		}
 
 		return carapace.ActionExecCommand("just", args...)(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
+			var jf justfile
+			if err := json.Unmarshal(output, &jf); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+
 			vals := make([]string, 0)
-			for _, line := range lines[1 : len(lines)-1] {
-				if splitted := strings.SplitN(line, "#", 2); len(splitted) == 2 {
-					vals = append(vals, strings.TrimSpace(splitted[0]), strings.TrimSpace(splitted[1]))
-				} else {
-					vals = append(vals, strings.TrimSpace(splitted[0]), "")
+			for _, recipe := range jf.Recipes {
+				vals = append(vals, recipe.Name, recipe.Description())
+			}
+
+			for _, alias := range jf.Aliases {
+				if recipe, ok := jf.Recipes[alias.Target]; ok {
+					vals = append(vals, alias.Name, recipe.Description())
 				}
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
+	}).Tag("recipes")
 }
