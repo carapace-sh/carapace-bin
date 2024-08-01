@@ -15,7 +15,7 @@ var auth_statusCmd = &cobra.Command{
 func init() {
 	carapace.Gen(auth_statusCmd).Standalone()
 
-	auth_statusCmd.Flags().StringP("hostname", "h", "", "Check a specific hostname's auth status")
+	auth_statusCmd.Flags().StringP("hostname", "h", "", "Check only a specific hostname's auth status")
 	auth_statusCmd.Flags().BoolP("show-token", "t", false, "Display the auth token")
 	authCmd.AddCommand(auth_statusCmd)
 
