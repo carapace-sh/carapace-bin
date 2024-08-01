@@ -11,6 +11,7 @@ import (
 // variableb
 func ActionVariables(justfile string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		// TODO use dump
 		args := []string{"--variables"}
 		if justfile != "" {
 			args = append(args, "--justfile", justfile)
