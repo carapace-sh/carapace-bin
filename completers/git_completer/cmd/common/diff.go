@@ -78,7 +78,7 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("pickaxe-all", false, "When -S or -G finds a change, show all the changes in that changeset")
 	cmd.Flags().Bool("pickaxe-regex", false, "Treat the <string> given to -S as an extended POSIX regular expression to match")
 	cmd.Flags().Bool("raw", false, "Generate the diff in raw format")
-	cmd.Flags().String("relative,", "", "exclude changes outside the directory")
+	cmd.Flags().String("relative", "", "exclude changes outside the directory")
 	cmd.Flags().Bool("rename-empty", false, "Whether to use empty blobs as rename source")
 	cmd.Flags().Bool("shortstat", false, "Output only the last line of the --stat format")
 	cmd.Flags().String("src-prefix", "", "Show the given source prefix instead of \"a/\"")

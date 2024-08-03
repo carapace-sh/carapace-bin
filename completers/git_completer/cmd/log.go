@@ -48,7 +48,6 @@ func init() {
 	logCmd.Flags().Bool("no-textconv", false, "Disallow external text conversion filters to be run when comparing binary files.")
 	logCmd.Flags().Bool("no-use-mailmap", false, "Do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses.")
 	logCmd.Flags().String("notes", "", "Show the notes that annotate the commit")
-	logCmd.Flags().String("relative", "", "When run from a subdirectory of the project, it can be told to exclude changes outside the directory and show pathnames relative to it with this option.")
 	logCmd.Flags().Bool("reverse", false, "Output the commits chosen to be shown (see Commit Limiting section above) in reverse order. Cannot be combined with --walk-reflogs.")
 	logCmd.Flags().String("rotate-to", "", "Discard the files before the named <file> from the output (i.e.  skip to), or move them to the end of the output (i.e.  rotate to).")
 	logCmd.Flags().Bool("show-pulls", false, "Include all commits from the default mode, but also any merge commits that are not TREESAME to the first parent but are TREESAME to a later parent.")
