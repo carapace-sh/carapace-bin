@@ -324,7 +324,7 @@ func actionFlagArguments(flag string) carapace.Action {
 		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return ffmpeg.ActionDevices().NoSpace()
+				return ffmpeg.ActionDevices('E').NoSpace()
 			default:
 				return carapace.ActionValues()
 			}
@@ -333,7 +333,7 @@ func actionFlagArguments(flag string) carapace.Action {
 		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return ffmpeg.ActionDevices().NoSpace()
+				return ffmpeg.ActionDevices('D').NoSpace()
 			default:
 				return carapace.ActionValues()
 			}
