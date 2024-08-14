@@ -8,31 +8,49 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
+type EncoderOpts struct {
+	Audio    bool
+	Subtitle bool
+	Video    bool
+}
+
+func (o EncoderOpts) Default() EncoderOpts {
+	o.Audio = true
+	o.Subtitle = true
+	o.Video = true
+	return o
+}
+
 // ActionEncoders completes encoders
 //
 //	ac3 (ATSC A/52A (AC-3))
 //	ac3_fixed (ATSC A/52A (AC-3) (codec ac3))
-func ActionEncoders() carapace.Action {
+func ActionEncoders(opts EncoderOpts) carapace.Action {
 	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-encoders")(func(output []byte) carapace.Action {
-		lines := strings.Split(string(output), "\n")
+		_, content, ok := strings.Cut(string(output), " ------")
+		if !ok {
+			return carapace.ActionMessage("failed to parse encoders")
+		}
+
+		lines := strings.Split(content, "\n")
 		r := regexp.MustCompile(`^ (?P<type>.).{5} (?P<name>[^ ]+) +(?P<description>.*)$`)
 
-		found := false
 		vals := make([]string, 0)
 		for _, line := range lines {
-			if !found {
-				found = line == " ------"
-				continue
-			}
-
 			if matches := r.FindStringSubmatch(line); matches != nil {
 				switch matches[1] {
-				case "V":
-					vals = append(vals, matches[2], matches[3], style.Blue)
 				case "A":
-					vals = append(vals, matches[2], matches[3], style.Yellow)
+					if opts.Audio {
+						vals = append(vals, matches[2], matches[3], style.Yellow)
+					}
 				case "S":
-					vals = append(vals, matches[2], matches[3], style.Magenta)
+					if opts.Subtitle {
+						vals = append(vals, matches[2], matches[3], style.Magenta)
+					}
+				case "V":
+					if opts.Video {
+						vals = append(vals, matches[2], matches[3], style.Blue)
+					}
 				}
 			}
 		}

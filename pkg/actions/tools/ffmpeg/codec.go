@@ -5,54 +5,56 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
+
+type CodecOpts struct {
+	Audio    bool
+	Subtitle bool
+	Video    bool
+}
+
+func (o CodecOpts) Default() CodecOpts {
+	o.Audio = true
+	o.Subtitle = true
+	o.Video = true
+	return o
+}
 
 // ActionCodecs completes codecs
 //
 //	4gv (4GV (Fourth Generation Vocoder))
 //	4xm (4X Movie)
-func ActionCodecs(codecType rune) carapace.Action {
-	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-codecs")(func(outputCodecs []byte) carapace.Action {
-		encodersCmd := carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-encoders")
-		return encodersCmd(func(outputEncoders []byte) carapace.Action {
-			linesCodecs := strings.Split(strings.TrimSpace(string(outputCodecs)), "\n")
-			linesEncoders := strings.Split(strings.TrimSpace(string(outputEncoders)), "\n")
+func ActionCodecs(opts CodecOpts) carapace.Action {
+	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-codecs")(func(output []byte) carapace.Action {
+		_, content, ok := strings.Cut(string(output), " -------")
+		if !ok {
+			return carapace.ActionMessage("failed to parse codecs")
+		}
 
-			r := regexp.MustCompile(`^ (?P<prefix>.{6}) (?P<codec>\w+) +(?P<description>.*)$`)
+		lines := strings.Split(content, "\n")
+		r := regexp.MustCompile(`^ .{2}(?P<type>.).{3} (?P<codec>[^ ]+) +(?P<description>.*)$`)
 
-			vals := make(map[string]string)
-
-			// copy
-			vals["copy"] = "copy the codec of the input"
-
-			// Parse codecs
-			for _, line := range linesCodecs {
-				if r.MatchString(line) {
-					matches := r.FindStringSubmatch(line)
-					prefix := matches[1]
-					if (codecType == '\u0000' || byte(codecType) == prefix[2]) && prefix[1] == 'E' {
-						vals[matches[2]] = matches[3]
+		vals := make([]string, 0)
+		for _, line := range lines[10 : len(lines)-1] {
+			if matches := r.FindStringSubmatch(line); matches != nil {
+				switch matches[1] {
+				case "A":
+					if opts.Audio {
+						vals = append(vals, matches[2], matches[3], style.Yellow)
+					}
+				case "S":
+					if opts.Subtitle {
+						vals = append(vals, matches[2], matches[3], style.Magenta)
+					}
+				case "V":
+					if opts.Video {
+						vals = append(vals, matches[2], matches[3], style.Blue)
 					}
 				}
 			}
-
-			// Parse encoders
-			for _, line := range linesEncoders {
-				if r.MatchString(line) {
-					matches := r.FindStringSubmatch(line)
-					prefix := matches[1]
-					if codecType == '\u0000' || (byte(codecType) == prefix[0]) {
-						vals[matches[2]] = matches[3]
-					}
-				}
-			}
-
-			result := []string{}
-			for codec, description := range vals {
-				result = append(result, codec, description)
-			}
-
-			return carapace.ActionValuesDescribed(result...)
-		})
-	})
+		}
+		vals = append(vals, "copy", "copy the codec of the input", style.Default)
+		return carapace.ActionStyledValuesDescribed(vals...)
+	}).Tag("codecs")
 }

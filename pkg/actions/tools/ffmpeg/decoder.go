@@ -8,31 +8,49 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
+type DecoderOpts struct {
+	Audio    bool
+	Subtitle bool
+	Video    bool
+}
+
+func (o DecoderOpts) Default() DecoderOpts {
+	o.Audio = true
+	o.Subtitle = true
+	o.Video = true
+	return o
+}
+
 // ActionDecoders completes decoders
 //
 //	4xm (4X Movie)
 //	8bps (QuickTime 8BPS video)
-func ActionDecoders() carapace.Action {
+func ActionDecoders(opts DecoderOpts) carapace.Action {
 	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-decoders")(func(output []byte) carapace.Action {
-		lines := strings.Split(string(output), "\n")
+		_, content, ok := strings.Cut(string(output), " ------")
+		if !ok {
+			return carapace.ActionMessage("failed to parse encoders")
+		}
+
+		lines := strings.Split(content, "\n")
 		r := regexp.MustCompile(`^ (?P<type>.).{5} (?P<name>[^ ]+) +(?P<description>.*)$`)
 
-		found := false
 		vals := make([]string, 0)
 		for _, line := range lines {
-			if !found {
-				found = line == " ------"
-				continue
-			}
-
 			if matches := r.FindStringSubmatch(line); matches != nil {
 				switch matches[1] {
-				case "V":
-					vals = append(vals, matches[2], matches[3], style.Blue)
 				case "A":
-					vals = append(vals, matches[2], matches[3], style.Yellow)
+					if opts.Audio {
+						vals = append(vals, matches[2], matches[3], style.Yellow)
+					}
 				case "S":
-					vals = append(vals, matches[2], matches[3], style.Magenta)
+					if opts.Subtitle {
+						vals = append(vals, matches[2], matches[3], style.Magenta)
+					}
+				case "V":
+					if opts.Video {
+						vals = append(vals, matches[2], matches[3], style.Blue)
+					}
 				}
 			}
 		}

@@ -21,5 +21,5 @@ func ActionHardwareAccelerations() carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
-	})
+	}).Tag("hardware accelerators")
 }

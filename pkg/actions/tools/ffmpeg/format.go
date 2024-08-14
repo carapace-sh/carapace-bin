@@ -24,5 +24,5 @@ func ActionFormats() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	})
+	}).Tag("formats")
 }

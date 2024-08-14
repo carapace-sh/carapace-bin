@@ -20,5 +20,5 @@ func ActionLogLevels() carapace.Action {
 		"verbose", "Same as \"info\", except more verbose",
 		"debug", "Show everything, including debugging information",
 		"trace", "",
-	).StyleF(style.ForLogLevel)
+	).StyleF(style.ForLogLevel).Tag("log levels")
 }

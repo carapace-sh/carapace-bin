@@ -5,26 +5,49 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
+
+type DeviceOpts struct {
+	Demuxing bool
+	Muxing   bool
+}
+
+func (o DeviceOpts) Default() DeviceOpts {
+	o.Demuxing = true
+	o.Muxing = true
+	return o
+}
 
 // ActionDevices completes devices
 //
 //	alsa (ALSA audio output)
 //	fbdev (Linux framebuffer)
-func ActionDevices(deviceType rune) carapace.Action {
+func ActionDevices(opts DeviceOpts) carapace.Action {
 	return carapace.ActionExecCommand("ffmpeg", "-hide_banner", "-devices")(func(output []byte) carapace.Action {
-		lines := strings.Split(string(output), "\n")
-		r := regexp.MustCompile(`^ (?P<prefix>.{2}) (?P<devices>[^ ]+) +(?P<description>.*)$`)
+		_, content, ok := strings.Cut(string(output), " ---")
+		if !ok {
+			return carapace.ActionMessage("failed to parse devices")
+		}
+
+		lines := strings.Split(content, "\n")
+		r := regexp.MustCompile(`^ (?P<demuxer>.)(?P<muxer>.) (?P<devices>[^ ]+) +(?P<description>.*)$`)
 
 		vals := make([]string, 0)
-		for _, line := range lines[4 : len(lines)-1] {
-			if r.MatchString(line) {
-				matches := r.FindStringSubmatch(line)
-				if deviceType == '\u0000' || strings.IndexByte(matches[1], byte(deviceType)) != -1 {
-					vals = append(vals, matches[2], matches[3])
+		for _, line := range lines[:len(lines)-1] {
+			if matches := r.FindStringSubmatch(line); matches != nil {
+				demuxer := matches[1] == "D" && opts.Demuxing
+				muxer := matches[2] == "E" && opts.Muxing
+				switch {
+				case demuxer && muxer:
+					vals = append(vals, matches[3], matches[4], style.Magenta)
+				case demuxer:
+					vals = append(vals, matches[3], matches[4], style.Blue)
+				case muxer:
+					vals = append(vals, matches[3], matches[4], style.Yellow)
 				}
 			}
 		}
-		return carapace.ActionValuesDescribed(vals...)
-	})
+		return carapace.ActionStyledValuesDescribed(vals...)
+	}).Tag("devices")
 }

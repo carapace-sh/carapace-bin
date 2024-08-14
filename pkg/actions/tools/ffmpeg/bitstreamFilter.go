@@ -21,5 +21,5 @@ func ActionBitstreamFilters() carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
-	})
+	}).Tag("bitstream filters")
 }
