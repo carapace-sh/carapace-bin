@@ -11,6 +11,8 @@ export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)
 ```
 
+If [ble.sh](https://github.com/akinomyoga/ble.sh) is attached, replace the last line with `source <(carapace _carapace bash-ble)`
+
 ![](./setup-bash.png)
 
 ## Elvish
