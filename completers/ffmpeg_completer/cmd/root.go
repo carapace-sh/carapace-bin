@@ -50,6 +50,8 @@ func actionFlags() carapace.Action {
 					"-acodec", "force audio codec",
 					"-af", "set audio filters",
 					"-ar", "set audio sampling rate",
+					"-c", "codec name",
+					"-codec", "codec name",
 					"-f", "force format",
 					"-h", "show help",
 					"-i", "input file",
@@ -58,6 +60,7 @@ func actionFlags() carapace.Action {
 					"-help", "show help",
 					"-loglevel", "set logging level",
 					"--help", "show help",
+					"-scodec", "force subtitle codec",
 					"-sinks", "list sinks of the output device",
 					"-sources", "list sources of the input device",
 					"-vcodec", "force video codec",
@@ -65,8 +68,6 @@ func actionFlags() carapace.Action {
 				).Style(style.Carapace.FlagArg),
 				carapace.ActionValuesDescribed(
 					"-b", "bitrate",
-					"-c", "codec name",
-					"-codec", "codec name",
 				).Style(style.Carapace.FlagOptArg),
 				carapace.ActionValuesDescribed(
 					"-L", "show license",
@@ -244,7 +245,6 @@ func actionFlags() carapace.Action {
 					"-apre", "set the audio options to the indicated preset",
 					"-s", "set frame size",
 					"-sn", "disable subtitle",
-					"-scodec", "force subtitle codec",
 					"-stag", "force subtitle tag/fourcc",
 					"-fix_sub_duration", "fix subtitles duration",
 					"-canvas_size", "set canvas size",
@@ -262,6 +262,7 @@ func actionFlags() carapace.Action {
 				return carapace.ActionValuesDescribed(
 					"a", "audio",
 					"v", "video",
+					"s", "subtitle",
 				)
 			default:
 				return carapace.ActionValues()
@@ -276,7 +277,10 @@ func actionFlagArguments(flag string) carapace.Action {
 	case "ab":
 		return carapace.ActionValues("16", "32", "64", "128", "192", "256", "320")
 	case "acodec":
-		return ffmpeg.ActionCodecs() // TODO only audio
+		return carapace.Batch(
+			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Audio: true}),
+			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Audio: true}),
+		).ToA()
 	case "af":
 		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
@@ -301,15 +305,18 @@ func actionFlagArguments(flag string) carapace.Action {
 		}
 		return carapace.ActionValues() // TODO invalid flag (missing a/v))
 	case "c", "codec":
+		audio := true
+		subtitle := true
+		video := true
 		if len(splitted) > 1 {
-			switch splitted[1] {
-			case "a":
-				return ffmpeg.ActionCodecs() // TODO audio codecs
-			case "v":
-				return ffmpeg.ActionCodecs() // TODO video codecs
-			}
+			audio = splitted[1] == "a"
+			subtitle = splitted[1] == "s"
+			video = splitted[1] == "v"
 		}
-		return carapace.ActionValues("copy")
+		return carapace.Batch(
+			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Audio: audio, Subtitle: subtitle, Video: video}),
+			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Audio: audio, Subtitle: subtitle, Video: video}),
+		).ToA()
 	case "f":
 		return ffmpeg.ActionFormats()
 	case "h", "?", "help":
@@ -320,11 +327,16 @@ func actionFlagArguments(flag string) carapace.Action {
 		return carapace.ActionFiles()
 	case "loglevel":
 		return ffmpeg.ActionLogLevels()
+	case "scodec":
+		return carapace.Batch(
+			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Subtitle: true}),
+			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Subtitle: true}),
+		).ToA()
 	case "sinks":
 		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return ffmpeg.ActionDevices().NoSpace()
+				return ffmpeg.ActionDevices(ffmpeg.DeviceOpts{Demuxing: true}).NoSpace()
 			default:
 				return carapace.ActionValues()
 			}
@@ -333,13 +345,16 @@ func actionFlagArguments(flag string) carapace.Action {
 		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return ffmpeg.ActionDevices().NoSpace()
+				return ffmpeg.ActionDevices(ffmpeg.DeviceOpts{Muxing: true}).NoSpace()
 			default:
 				return carapace.ActionValues()
 			}
 		})
 	case "vcodec":
-		return ffmpeg.ActionCodecs() // TODO only video
+		return carapace.Batch(
+			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Video: true}),
+			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Video: true}),
+		).ToA()
 
 	case "vf":
 		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {

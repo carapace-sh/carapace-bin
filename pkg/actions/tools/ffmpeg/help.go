@@ -1,6 +1,8 @@
 package ffmpeg
 
-import "github.com/carapace-sh/carapace"
+import (
+	"github.com/carapace-sh/carapace"
+)
 
 // ActionHelpTopics completes help topics
 //
@@ -24,9 +26,9 @@ func ActionHelpTopics() carapace.Action {
 		default:
 			switch c.Parts[0] {
 			case "decoder":
-				return ActionDecoders()
+				return ActionDecoders(DecoderOpts{}.Default())
 			case "encoder":
-				return ActionEncoders()
+				return ActionEncoders(EncoderOpts{}.Default())
 			case "demuxer":
 				return ActionDemuxers()
 			case "muxer":
