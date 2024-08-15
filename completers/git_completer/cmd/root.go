@@ -91,10 +91,18 @@ func init() {
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
 		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if f := rootCmd.Flag("git-dir"); f.Changed {
-				c.Setenv("GIT_DIR", f.Value.String())
+				gitDir, err := c.Abs(f.Value.String())
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+				c.Setenv("GIT_DIR", gitDir)
 			}
 			if f := rootCmd.Flag("work-tree"); f.Changed {
-				c.Setenv("GIT_WORK_TREE", f.Value.String())
+				workTree, err := c.Abs(f.Value.String())
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+				c.Setenv("GIT_WORK_TREE", workTree)
 				action = action.Chdir(f.Value.String())
 			}
 			if f := rootCmd.Flag("C"); f.Changed {
