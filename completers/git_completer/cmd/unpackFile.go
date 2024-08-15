@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var unpack_fileCmd = &cobra.Command{
+var unpackFileCmd = &cobra.Command{
 	Use:     "unpack-file",
 	Short:   "Creates a temporary file with a blob's contents",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -13,7 +13,7 @@ var unpack_fileCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(unpack_fileCmd).Standalone()
+	carapace.Gen(unpackFileCmd).Standalone()
 
-	rootCmd.AddCommand(unpack_fileCmd)
+	rootCmd.AddCommand(unpackFileCmd)
 }
