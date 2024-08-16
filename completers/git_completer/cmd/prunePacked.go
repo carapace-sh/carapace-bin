@@ -15,7 +15,7 @@ var prunePackedCmd = &cobra.Command{
 func init() {
 	carapace.Gen(prunePackedCmd).Standalone()
 
-	prunePackedCmd.Flags().BoolP("dry-run", "n", false, "dry run")
-	prunePackedCmd.Flags().BoolP("quiet", "q", false, "be quiet")
+	prunePackedCmd.Flags().BoolP("dry-run", "n", false, "only show objects that would have been removed")
+	prunePackedCmd.Flags().BoolP("quiet", "q", false, "squelch the progress indicator")
 	rootCmd.AddCommand(prunePackedCmd)
 }
