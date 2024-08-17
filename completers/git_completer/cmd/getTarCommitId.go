@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var get_tar_commit_idCmd = &cobra.Command{
+var getTarCommitIdCmd = &cobra.Command{
 	Use:     "get-tar-commit-id",
 	Short:   "Extract commit ID from an archive created using git-archive",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -13,7 +13,7 @@ var get_tar_commit_idCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(get_tar_commit_idCmd).Standalone()
+	carapace.Gen(getTarCommitIdCmd).Standalone()
 
-	rootCmd.AddCommand(get_tar_commit_idCmd)
+	rootCmd.AddCommand(getTarCommitIdCmd)
 }
