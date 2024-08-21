@@ -97,12 +97,16 @@ func ActionRevSetFunctions() carapace.Action {
 		"mine", "Commits where the author's email matches the email of the current user",
 		"committer", "Commits with the committer's name or email matching the given string pattern",
 		"empty", "Commits modifying no files. This also includes merges() without user modifications and root()",
-		"file", "Commits modifying one of the paths specified",
-		"file", "Commits modifying one of the paths specified",
+		"file", "Commits modifying paths matching the given fileset expression",
 		"conflict", "Commits with conflicts",
 		"present", "Same as x, but evaluated to none() if any of the commits in x doesn't exist",
 		"reachable", "All commits reachable from srcs within domain",
 		"mutable", "All commits that jj does not treat as immutable (same as ~immutable())",
 		"immutable", "All commits that jj treats as immutable (same as (immutable_heads() | root()))",
+		"diff_contains", "Commits containing diffs matching the given text pattern line by line",
+		"author_date", "Commits with author dates matching the specified date pattern",
+		"committer_date", "Commits with committer dates matching the specified date pattern",
+		"tracked_remote_branches", "All targets of tracked remote branches",
+		"untracked_remote_branches", "All targets of untracked remote branches",
 	).Tag("revset functions")
 }

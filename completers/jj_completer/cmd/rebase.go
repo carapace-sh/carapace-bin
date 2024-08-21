@@ -23,6 +23,7 @@ func init() {
 	rebaseCmd.Flags().StringArrayP("insert-after", "A", []string{}, "Revision(s) to insert after")
 	rebaseCmd.Flags().StringArrayP("insert-before", "B", []string{}, "Revision(s) to insert before")
 	rebaseCmd.Flags().StringP("revisions", "r", "", "Rebase only this revision, rebasing descendants onto this revision's parent(s)")
+	rebaseCmd.Flags().Bool("skip-emptied", false, "Abandon empty commits created by the rebase")
 	rebaseCmd.Flags().StringSliceP("source", "s", []string{}, "Rebase specified revision(s) together their tree of descendants (can be repeated)")
 	rebaseCmd.MarkFlagRequired("destination")
 	rootCmd.AddCommand(rebaseCmd)
