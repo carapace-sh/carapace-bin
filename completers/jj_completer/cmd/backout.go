@@ -17,11 +17,11 @@ func init() {
 
 	backoutCmd.Flags().StringSliceP("destination", "d", []string{}, "The revision to apply the reverse changes on top of")
 	backoutCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	backoutCmd.Flags().StringP("revision", "r", "", "The revision to apply the reverse of")
+	backoutCmd.Flags().StringP("revisions", "r", "", "The revision to apply the reverse of")
 	rootCmd.AddCommand(backoutCmd)
 
 	carapace.Gen(backoutCmd).FlagCompletion(carapace.ActionMap{
 		"destination": jj.ActionRevs(jj.RevOption{}.Default()),
-		"revision":    jj.ActionRevs(jj.RevOption{}.Default()),
+		"revisions":   jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 }
