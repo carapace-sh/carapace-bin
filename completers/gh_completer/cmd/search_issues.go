@@ -44,7 +44,7 @@ func init() {
 	search_issuesCmd.Flags().Bool("no-project", false, "Filter on missing project")
 	search_issuesCmd.Flags().String("order", "", "Order of results returned, ignored unless '--sort' flag is specified: {asc|desc}")
 	search_issuesCmd.Flags().StringSlice("owner", []string{}, "Filter on repository owner")
-	search_issuesCmd.Flags().String("project", "", "Filter on project board `number`")
+	search_issuesCmd.Flags().String("project", "", "Filter on project board `owner/number`")
 	search_issuesCmd.Flags().String("reactions", "", "Filter on `number` of reactions")
 	search_issuesCmd.Flags().StringSliceP("repo", "R", []string{}, "Filter on repository")
 	search_issuesCmd.Flags().String("sort", "", "Sort fetched results: {comments|created|interactions|reactions|reactions-+1|reactions--1|reactions-heart|reactions-smile|reactions-tada|reactions-thinking_face|updated}")

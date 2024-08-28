@@ -18,7 +18,7 @@ func init() {
 
 	pr_editCmd.Flags().StringSlice("add-assignee", []string{}, "Add assigned users by their `login`. Use \"@me\" to assign yourself.")
 	pr_editCmd.Flags().StringSlice("add-label", []string{}, "Add labels by `name`")
-	pr_editCmd.Flags().StringSlice("add-project", []string{}, "Add the pull request to projects by `name`")
+	pr_editCmd.Flags().StringSlice("add-project", []string{}, "Add the pull request to projects by `title`")
 	pr_editCmd.Flags().StringSlice("add-reviewer", []string{}, "Add reviewers by their `login`.")
 	pr_editCmd.Flags().StringP("base", "B", "", "Change the base `branch` for this pull request")
 	pr_editCmd.Flags().StringP("body", "b", "", "Set the new body.")
@@ -27,7 +27,7 @@ func init() {
 	pr_editCmd.Flags().StringSlice("remove-assignee", []string{}, "Remove assigned users by their `login`. Use \"@me\" to unassign yourself.")
 	pr_editCmd.Flags().StringSlice("remove-label", []string{}, "Remove labels by `name`")
 	pr_editCmd.Flags().Bool("remove-milestone", false, "Remove the milestone association from the pull request")
-	pr_editCmd.Flags().StringSlice("remove-project", []string{}, "Remove the pull request from projects by `name`")
+	pr_editCmd.Flags().StringSlice("remove-project", []string{}, "Remove the pull request from projects by `title`")
 	pr_editCmd.Flags().StringSlice("remove-reviewer", []string{}, "Remove reviewers by their `login`.")
 	pr_editCmd.Flags().StringP("title", "t", "", "Set the new title.")
 	prCmd.AddCommand(pr_editCmd)

@@ -17,7 +17,7 @@ var issue_developCmd = &cobra.Command{
 func init() {
 	carapace.Gen(issue_developCmd).Standalone()
 
-	issue_developCmd.Flags().StringP("base", "b", "", "Name of the base branch you want to make your new branch from")
+	issue_developCmd.Flags().StringP("base", "b", "", "Name of the remote branch you want to make your new branch from")
 	issue_developCmd.Flags().String("branch-repo", "", "Name or URL of the repository where you want to create your new branch")
 	issue_developCmd.Flags().BoolP("checkout", "c", false, "Checkout the branch after creating it")
 	issue_developCmd.Flags().StringP("issue-repo", "i", "", "Name or URL of the issue's repository")
