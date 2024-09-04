@@ -16,9 +16,12 @@ func init() {
 	carapace.Gen(prevCmd).Standalone()
 
 	prevCmd.Flags().Bool("conflict", false, "Jump to the next conflicted descendant")
-	prevCmd.Flags().Bool("edit", false, "Edit the parent directly, instead of moving the working-copy commit")
+	prevCmd.Flags().BoolP("edit", "e", false, "Edit the parent directly, instead of moving the working-copy commit")
 	prevCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	prevCmd.Flags().Bool("no-edit", false, "Instead of editing the target commit directly (like `jj edit`), create a new working-copy commit on top of the target commit (like `jj new`)")
 	rootCmd.AddCommand(prevCmd)
+
+	prevCmd.MarkFlagsMutuallyExclusive("edit", "no-edit")
 
 	carapace.Gen(prevCmd).PositionalCompletion(
 		jj.ActionPrevCommits(100),

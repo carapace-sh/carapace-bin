@@ -5,19 +5,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var untrackCmd = &cobra.Command{
+var file_untrackCmd = &cobra.Command{
 	Use:   "untrack [OPTIONS] <PATHS>...",
 	Short: "Stop tracking specified paths in the working copy",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(untrackCmd).Standalone()
+	carapace.Gen(file_untrackCmd).Standalone()
 
-	untrackCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	rootCmd.AddCommand(untrackCmd)
+	file_untrackCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	fileCmd.AddCommand(file_untrackCmd)
 
-	carapace.Gen(untrackCmd).PositionalAnyCompletion(
+	carapace.Gen(file_untrackCmd).PositionalAnyCompletion(
 		carapace.ActionFiles().FilterArgs(),
 	)
 }
