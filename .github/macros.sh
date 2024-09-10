@@ -3,6 +3,8 @@
 scriptdir=$(dirname $(readlink -f $0))
 
 echo "# Macros"
+echo "On top of the base [Macros](https://carapace-sh.github.io/carapace-spec/carapace-spec/macros.html) defined in [carapace-spec](https://carapace-sh.github.io/carapace-spec),"
+echo "carapace-bin also provides the following macros:"
 echo
 
 $scriptdir/../cmd/carapace/carapace --macro \
