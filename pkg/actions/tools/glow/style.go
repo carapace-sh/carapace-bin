@@ -9,6 +9,7 @@ func ActionStyles() carapace.Action {
 		"auto",
 		"dark",
 		"dracula",
+		"tokyo-night",
 		"light",
 		"notty",
 		"pink",
