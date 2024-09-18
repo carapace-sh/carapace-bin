@@ -19,6 +19,7 @@ func init() {
 	carapace.Gen(attestation_verifyCmd).Standalone()
 
 	attestation_verifyCmd.Flags().StringP("bundle", "b", "", "Path to bundle on disk, either a single bundle in a JSON file or a JSON lines file with multiple bundles")
+	attestation_verifyCmd.Flags().Bool("bundle-from-oci", false, "When verifying an OCI image, fetch the attestation bundle from the OCI registry instead of from GitHub")
 	attestation_verifyCmd.Flags().String("cert-identity", "", "Enforce that the certificate's subject alternative name matches the provided value exactly")
 	attestation_verifyCmd.Flags().StringP("cert-identity-regex", "i", "", "Enforce that the certificate's subject alternative name matches the provided regex")
 	attestation_verifyCmd.Flags().String("cert-oidc-issuer", "", "Issuer of the OIDC token")
@@ -26,6 +27,7 @@ func init() {
 	attestation_verifyCmd.Flags().Bool("deny-self-hosted-runners", false, "Fail verification for attestations generated on self-hosted runners")
 	attestation_verifyCmd.Flags().StringP("digest-alg", "d", "", "The algorithm used to compute a digest of the artifact: {sha256|sha512}")
 	attestation_verifyCmd.Flags().String("format", "", "Output format: {json}")
+	attestation_verifyCmd.Flags().String("hostname", "", "Configure host to use")
 	attestation_verifyCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	attestation_verifyCmd.Flags().StringP("limit", "L", "", "Maximum number of attestations to fetch")
 	attestation_verifyCmd.Flags().Bool("no-public-good", false, "Do not verify attestations signed with Sigstore public good instance")
@@ -42,6 +44,7 @@ func init() {
 		"custom-trusted-root": carapace.ActionFiles(),
 		"digest-alg":          carapace.ActionValues("sha256", "sha512"),
 		"format":              carapace.ActionValues("json"),
+		"hostname":            gh.ActionConfigHosts(),
 		"owner":               gh.ActionOrganizations(gh.HostOpts{}),
 		"repo":                gh.ActionHostOwnerRepositories(),
 		"signer-repo":         gh.ActionHostOwnerRepositories(),
