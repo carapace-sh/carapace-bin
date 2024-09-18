@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,7 @@ func init() {
 	attestation_inspectCmd.Flags().StringP("bundle", "b", "", "Path to bundle on disk, either a single bundle in a JSON file or a JSON lines file with multiple bundles")
 	attestation_inspectCmd.Flags().StringP("digest-alg", "d", "", "The algorithm used to compute a digest of the artifact: {sha256|sha512}")
 	attestation_inspectCmd.Flags().String("format", "", "Output format: {json}")
+	attestation_inspectCmd.Flags().String("hostname", "", "Configure host to use")
 	attestation_inspectCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	attestation_inspectCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	attestation_inspectCmd.MarkFlagRequired("bundle")
@@ -27,6 +29,7 @@ func init() {
 		"bundle":     carapace.ActionFiles(),
 		"digest-alg": carapace.ActionValues("sha256", "sha512"),
 		"format":     carapace.ActionValues("json"),
+		"hostname":   gh.ActionConfigHosts(),
 	})
 
 	carapace.Gen(attestation_inspectCmd).PositionalCompletion(
