@@ -31,7 +31,7 @@ func init() {
 
 			if len(c.Args) > 0 {
 				if previous := c.Args[len(c.Args)-1]; strings.HasPrefix(previous, "-") {
-					return actionFlagArguments(previous)
+					return actionFlagArguments(previous, c)
 				}
 			}
 			return carapace.ActionFiles()
@@ -271,16 +271,31 @@ func actionFlags() carapace.Action {
 	}).Tag("flags")
 }
 
-func actionFlagArguments(flag string) carapace.Action {
+func actionFlagArguments(flag string, c carapace.Context) carapace.Action {
 	splitted := strings.Split(strings.TrimLeft(flag, "-"), ":")
+	beforeInput := true
+	for _, arg := range c.Args {
+		if arg == "-i" {
+			beforeInput = false
+			break
+		}
+	}
+
 	switch splitted[0] {
 	case "ab":
 		return carapace.ActionValues("16", "32", "64", "128", "192", "256", "320")
 	case "acodec":
-		return carapace.Batch(
-			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Audio: true}),
-			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Audio: true}),
-		).ToA()
+		if beforeInput {
+			return carapace.Batch(
+				ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Audio: true, Decoding: true}),
+				ffmpeg.ActionDecoders(ffmpeg.DecoderOpts{Audio: true}),
+			).ToA()
+		} else {
+			return carapace.Batch(
+				ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Audio: true, Encoding: true}),
+				ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Audio: true}),
+			).ToA()
+		}
 	case "af":
 		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
@@ -313,10 +328,17 @@ func actionFlagArguments(flag string) carapace.Action {
 			subtitle = splitted[1] == "s"
 			video = splitted[1] == "v"
 		}
-		return carapace.Batch(
-			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Audio: audio, Subtitle: subtitle, Video: video}),
-			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Audio: audio, Subtitle: subtitle, Video: video}),
-		).ToA()
+		if beforeInput {
+			return carapace.Batch(
+				ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Audio: audio, Subtitle: subtitle, Video: video, Decoding: true}),
+				ffmpeg.ActionDecoders(ffmpeg.DecoderOpts{Audio: audio, Subtitle: subtitle, Video: video}),
+			).ToA()
+		} else {
+			return carapace.Batch(
+				ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Audio: audio, Subtitle: subtitle, Video: video, Encoding: true}),
+				ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Audio: audio, Subtitle: subtitle, Video: video}),
+			).ToA()
+		}
 	case "f":
 		return ffmpeg.ActionFormats()
 	case "h", "?", "help":
@@ -328,10 +350,17 @@ func actionFlagArguments(flag string) carapace.Action {
 	case "loglevel":
 		return ffmpeg.ActionLogLevels()
 	case "scodec":
-		return carapace.Batch(
-			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Subtitle: true}),
-			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Subtitle: true}),
-		).ToA()
+		if beforeInput {
+			return carapace.Batch(
+				ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Subtitle: true, Decoding: true}),
+				ffmpeg.ActionDecoders(ffmpeg.DecoderOpts{Subtitle: true}),
+			).ToA()
+		} else {
+			return carapace.Batch(
+				ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Subtitle: true, Encoding: true}),
+				ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Subtitle: true}),
+			).ToA()
+		}
 	case "sinks":
 		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
@@ -351,11 +380,17 @@ func actionFlagArguments(flag string) carapace.Action {
 			}
 		})
 	case "vcodec":
-		return carapace.Batch(
-			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Video: true}),
-			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Video: true}),
-		).ToA()
-
+		if beforeInput {
+			return carapace.Batch(
+				ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Video: true, Decoding: true}),
+				ffmpeg.ActionDecoders(ffmpeg.DecoderOpts{Video: true}),
+			).ToA()
+		} else {
+			return carapace.Batch(
+				ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Video: true, Encoding: true}),
+				ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Video: true}),
+			).ToA()
+		}
 	case "vf":
 		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
