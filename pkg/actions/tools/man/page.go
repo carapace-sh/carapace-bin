@@ -14,7 +14,7 @@ import (
 func ActionPages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("man", "-k", c.Value)(func(output []byte) carapace.Action {
-			r := regexp.MustCompile(`^(?P<name>.*) \(\d+\) +- (?P<description>.*)$`)
+			r := regexp.MustCompile(`^(?P<name>.*?) ?\(\d+\).* +- (?P<description>.*)$`)
 
 			vals := make([]string, 0)
 			for _, line := range strings.Split(string(output), "\n") {
