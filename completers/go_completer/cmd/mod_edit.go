@@ -45,7 +45,7 @@ func init() {
 			default:
 				return carapace.Batch(
 					carapace.ActionDirectories().ChdirF(traverse.Parent("go.mod")),
-					golang.ActionModuleSearch().Unless(condition.CompletingPath),
+					golang.ActionModuleSearch().UnlessF(condition.CompletingPath),
 				).ToA()
 			}
 		}),

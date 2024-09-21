@@ -55,7 +55,7 @@ func init() {
 			case 1:
 				return carapace.Batch(
 					carapace.ActionDirectories().ChdirF(traverse.Parent("go.work")),
-					golang.ActionModuleSearch().Unless(condition.CompletingPath),
+					golang.ActionModuleSearch().UnlessF(condition.CompletingPath),
 				).ToA()
 			default:
 				return carapace.ActionValues()

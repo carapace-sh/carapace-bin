@@ -49,7 +49,7 @@ func init() {
 	carapace.Gen(show_allCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(),
-			helm.ActionRepositoryCharts().Unless(condition.CompletingPath),
+			helm.ActionRepositoryCharts().UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }

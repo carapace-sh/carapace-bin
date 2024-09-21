@@ -44,7 +44,7 @@ func init() {
 	carapace.Gen(linkCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(),
-			action.ActionPackages(linkCmd).Unless(condition.CompletingPath),
+			action.ActionPackages(linkCmd).UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }

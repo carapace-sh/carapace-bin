@@ -24,7 +24,7 @@ func init() {
 	carapace.Gen(image_loadCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(),
-			docker.ActionRepositoryTags().Unless(condition.CompletingPath),
+			docker.ActionRepositoryTags().UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }

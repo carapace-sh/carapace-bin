@@ -70,8 +70,8 @@ func init() {
 
 			return carapace.Batch(
 				carapace.ActionFiles(),
-				npm.ActionPackageSearch("").Unless(condition.CompletingPath),
-				git.ActionRepositorySearch(git.SearchOpts{}.Default()).Unless(condition.CompletingPath),
+				npm.ActionPackageSearch("").UnlessF(condition.CompletingPath),
+				git.ActionRepositorySearch(git.SearchOpts{}.Default()).UnlessF(condition.CompletingPath),
 			).ToA()
 		}),
 	)

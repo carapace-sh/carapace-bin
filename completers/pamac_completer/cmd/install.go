@@ -34,8 +34,8 @@ func init() {
 	carapace.Gen(installCmd).PositionalAnyCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(".pkg", ".pkg.tar.gz", ".pkg.tar.xz", ".pkg.tar.zst"),
-			pamac.ActionPackageGroups().Unless(condition.CompletingPath),
-			pamac.ActionPackageSearch().Unless(condition.CompletingPath),
+			pamac.ActionPackageGroups().UnlessF(condition.CompletingPath),
+			pamac.ActionPackageSearch().UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }

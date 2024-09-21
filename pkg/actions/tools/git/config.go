@@ -384,7 +384,7 @@ func ActionConfigValues(config string) carapace.Action {
 		switch splitted[0] {
 		case "alias":
 			return carapace.Batch(
-				bridge.ActionCarapaceBin().Split().Prefix("!").Unless(func(c carapace.Context) bool {
+				bridge.ActionCarapaceBin().Split().Prefix("!").UnlessF(func(c carapace.Context) bool {
 					return !strings.HasPrefix(c.Value, "!")
 				}),
 				bridge.ActionCarapaceBin("git").Split(),

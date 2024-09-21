@@ -21,7 +21,7 @@ func init() {
 	carapace.Gen(cache_addCmd).PositionalAnyCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(),
-			action.ActionPackages(cache_addCmd).Unless(condition.CompletingPath),
+			action.ActionPackages(cache_addCmd).UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }

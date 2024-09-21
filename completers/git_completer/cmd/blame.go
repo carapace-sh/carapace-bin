@@ -62,10 +62,10 @@ func init() {
 	carapace.Gen(blameCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(),
-			git.ActionRefs(git.RefOption{}.Default()).Unless(condition.CompletingPath),
+			git.ActionRefs(git.RefOption{}.Default()).UnlessF(condition.CompletingPath),
 		).ToA(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRefFiles(c.Args[0]).Unless(condition.File(c.Args[0]))
+			return git.ActionRefFiles(c.Args[0]).UnlessF(condition.File(c.Args[0]))
 		}),
 	)
 

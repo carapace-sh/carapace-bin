@@ -71,6 +71,6 @@ func ActionPathOrContainer() carapace.Action {
 			default:
 				return carapace.ActionValues()
 			}
-		}).Unless(condition.CompletingPath),
+		}).UnlessF(condition.CompletingPath),
 	).ToA()
 }

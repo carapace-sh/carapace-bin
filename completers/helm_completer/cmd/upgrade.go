@@ -91,7 +91,7 @@ func init() {
 		action.ActionReleases(upgradeCmd),
 		carapace.Batch(
 			carapace.ActionFiles(),
-			helm.ActionRepositoryCharts().Unless(condition.CompletingPath),
+			helm.ActionRepositoryCharts().UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }

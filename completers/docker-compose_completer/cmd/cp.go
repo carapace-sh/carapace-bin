@@ -39,7 +39,7 @@ func init() {
 						return action.ActionFiles(cpCmd, c.Parts[0], index)
 					}
 				}
-			}).Unless(condition.CompletingPath),
+			}).UnlessF(condition.CompletingPath),
 		).ToA(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if !condition.File(c.Args[0])(c) {
@@ -49,7 +49,7 @@ func init() {
 			return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return action.ActionServices(cpCmd).Suffix(":").Unless(condition.CompletingPath)
+					return action.ActionServices(cpCmd).Suffix(":").UnlessF(condition.CompletingPath)
 				case 1:
 					if index, err := cpCmd.Flags().GetInt("index"); err != nil {
 						return carapace.ActionMessage(err.Error())

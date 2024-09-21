@@ -32,7 +32,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(),
-			git.ActionRefs(git.RefOption{}.Default()).Unless(condition.CompletingPath),
+			git.ActionRefs(git.RefOption{}.Default()).UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 
