@@ -272,103 +272,136 @@ func actionFlags() carapace.Action {
 }
 
 func actionFlagArguments(flag string) carapace.Action {
-	splitted := strings.Split(strings.TrimLeft(flag, "-"), ":")
-	switch splitted[0] {
-	case "ab":
-		return carapace.ActionValues("16", "32", "64", "128", "192", "256", "320")
-	case "acodec":
-		return carapace.Batch(
-			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Audio: true}),
-			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Audio: true}),
-		).ToA()
-	case "af":
-		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
-				switch len(c.Parts) {
-				case 0:
-					return ffmpeg.ActionFilters().NoSpace()
-				default:
-					return carapace.ActionValues()
-				}
-			})
-		})
-	case "ar":
-		return carapace.ActionValues("22050", "44100", "48000")
-	case "b":
-		if len(splitted) > 1 {
-			switch splitted[1] {
-			case "a":
-				return carapace.ActionValues("16", "32", "64", "128", "192", "256", "320")
-			case "v":
-				return carapace.ActionValues() // video bitrate
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		splitted := strings.Split(strings.TrimLeft(flag, "-"), ":")
+		beforeInput := true
+		for _, arg := range c.Args {
+			if arg == "-i" {
+				beforeInput = false
+				break
 			}
 		}
-		return carapace.ActionValues() // TODO invalid flag (missing a/v))
-	case "c", "codec":
-		audio := true
-		subtitle := true
-		video := true
-		if len(splitted) > 1 {
-			audio = splitted[1] == "a"
-			subtitle = splitted[1] == "s"
-			video = splitted[1] == "v"
-		}
-		return carapace.Batch(
-			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Audio: audio, Subtitle: subtitle, Video: video}),
-			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Audio: audio, Subtitle: subtitle, Video: video}),
-		).ToA()
-	case "f":
-		return ffmpeg.ActionFormats()
-	case "h", "?", "help":
-		return ffmpeg.ActionHelpTopics()
-	case "hwaccel":
-		return ffmpeg.ActionHardwareAccelerations()
-	case "i":
-		return carapace.ActionFiles()
-	case "loglevel":
-		return ffmpeg.ActionLogLevels()
-	case "scodec":
-		return carapace.Batch(
-			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Subtitle: true}),
-			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Subtitle: true}),
-		).ToA()
-	case "sinks":
-		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			switch len(c.Parts) {
-			case 0:
-				return ffmpeg.ActionDevices(ffmpeg.DeviceOpts{Demuxing: true}).NoSpace()
-			default:
-				return carapace.ActionValues()
-			}
-		})
-	case "sources":
-		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			switch len(c.Parts) {
-			case 0:
-				return ffmpeg.ActionDevices(ffmpeg.DeviceOpts{Muxing: true}).NoSpace()
-			default:
-				return carapace.ActionValues()
-			}
-		})
-	case "vcodec":
-		return carapace.Batch(
-			ffmpeg.ActionCodecs(ffmpeg.CodecOpts{Video: true}),
-			ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Video: true}),
-		).ToA()
 
-	case "vf":
-		return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
-			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		switch splitted[0] {
+		case "ab":
+			return carapace.ActionValues("16", "32", "64", "128", "192", "256", "320")
+		case "acodec":
+			if beforeInput {
+				return carapace.Batch(
+					ffmpeg.ActionDecodableCodecs(ffmpeg.CodecOpts{Audio: true}),
+					ffmpeg.ActionDecoders(ffmpeg.DecoderOpts{Audio: true}),
+				).ToA()
+			}
+			return carapace.Batch(
+				ffmpeg.ActionEncodableCodecs(ffmpeg.CodecOpts{Audio: true}),
+				ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Audio: true}),
+			).ToA()
+		case "af":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+					switch len(c.Parts) {
+					case 0:
+						return ffmpeg.ActionFilters().NoSpace()
+					default:
+						return carapace.ActionValues()
+					}
+				})
+			})
+		case "ar":
+			return carapace.ActionValues("22050", "44100", "48000")
+		case "b":
+			if len(splitted) > 1 {
+				switch splitted[1] {
+				case "a":
+					return carapace.ActionValues("16", "32", "64", "128", "192", "256", "320")
+				case "v":
+					return carapace.ActionValues() // video bitrate
+				}
+			}
+			return carapace.ActionValues() // TODO invalid flag (missing a/v))
+		case "c", "codec":
+			audio := true
+			subtitle := true
+			video := true
+			if len(splitted) > 1 {
+				audio = splitted[1] == "a"
+				subtitle = splitted[1] == "s"
+				video = splitted[1] == "v"
+			}
+			if beforeInput {
+				return carapace.Batch(
+					ffmpeg.ActionDecodableCodecs(ffmpeg.CodecOpts{Audio: audio, Subtitle: subtitle, Video: video}),
+					ffmpeg.ActionDecoders(ffmpeg.DecoderOpts{Audio: audio, Subtitle: subtitle, Video: video}),
+				).ToA()
+			}
+			return carapace.Batch(
+				ffmpeg.ActionEncodableCodecs(ffmpeg.CodecOpts{Audio: audio, Subtitle: subtitle, Video: video}),
+				ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Audio: audio, Subtitle: subtitle, Video: video}),
+			).ToA()
+		case "f":
+			return ffmpeg.ActionFormats()
+		case "h", "?", "help":
+			return ffmpeg.ActionHelpTopics()
+		case "hwaccel":
+			return ffmpeg.ActionHardwareAccelerations()
+		case "i":
+			return carapace.ActionFiles()
+		case "loglevel":
+			return ffmpeg.ActionLogLevels()
+		case "scodec":
+			if beforeInput {
+				return carapace.Batch(
+					ffmpeg.ActionDecodableCodecs(ffmpeg.CodecOpts{Subtitle: true}),
+					ffmpeg.ActionDecoders(ffmpeg.DecoderOpts{Subtitle: true}),
+				).ToA()
+			}
+			return carapace.Batch(
+				ffmpeg.ActionEncodableCodecs(ffmpeg.CodecOpts{Subtitle: true}),
+				ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Subtitle: true}),
+			).ToA()
+		case "sinks":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					return ffmpeg.ActionFilters().NoSpace()
+					return ffmpeg.ActionDevices(ffmpeg.DeviceOpts{Demuxing: true}).NoSpace()
 				default:
 					return carapace.ActionValues()
 				}
 			})
-		})
-	default:
-		//return carapace.ActionValues() // TODO
-		return carapace.ActionFiles() // default file completion for now (positional)
-	}
+		case "sources":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return ffmpeg.ActionDevices(ffmpeg.DeviceOpts{Muxing: true}).NoSpace()
+				default:
+					return carapace.ActionValues()
+				}
+			})
+		case "vcodec":
+			if beforeInput {
+				return carapace.Batch(
+					ffmpeg.ActionDecodableCodecs(ffmpeg.CodecOpts{Video: true}),
+					ffmpeg.ActionDecoders(ffmpeg.DecoderOpts{Video: true}),
+				).ToA()
+			}
+			return carapace.Batch(
+				ffmpeg.ActionEncodableCodecs(ffmpeg.CodecOpts{Video: true}),
+				ffmpeg.ActionEncoders(ffmpeg.EncoderOpts{Video: true}),
+			).ToA()
+		case "vf":
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+					switch len(c.Parts) {
+					case 0:
+						return ffmpeg.ActionFilters().NoSpace()
+					default:
+						return carapace.ActionValues()
+					}
+				})
+			})
+		default:
+			//return carapace.ActionValues() // TODO
+			return carapace.ActionFiles() // default file completion for now (positional)
+		}
+	})
 }
