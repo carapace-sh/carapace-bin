@@ -79,7 +79,7 @@ func init() {
 				default:
 					return carapace.ActionValues()
 				}
-			}).Unless(condition.CompletingPathS),
+			}).UnlessF(condition.CompletingPathS),
 		).ToA(),
 	)
 }

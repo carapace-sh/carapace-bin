@@ -43,7 +43,7 @@ func init() {
 			provider := box_addCmd.Flag("provider").Value.String()
 			return carapace.Batch(
 				carapace.ActionFiles(".box", ".json"),
-				vagrant.ActionCloudBoxSearch(provider).Unless(condition.CompletingPath),
+				vagrant.ActionCloudBoxSearch(provider).UnlessF(condition.CompletingPath),
 			).ToA()
 		}),
 	)

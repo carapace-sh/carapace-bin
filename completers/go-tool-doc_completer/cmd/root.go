@@ -38,7 +38,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionDirectories(),
-			golang.ActionPackages().Unless(condition.CompletingPath),
+			golang.ActionPackages().UnlessF(condition.CompletingPath),
 		).ToA(),
 		carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {

@@ -31,7 +31,7 @@ func init() {
 	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
 		"diff": carapace.Batch(
 			carapace.ActionFiles(),
-			action.ActionPackages(diffCmd).Unless(condition.CompletingPath),
+			action.ActionPackages(diffCmd).UnlessF(condition.CompletingPath),
 		).ToA(),
 	})
 }

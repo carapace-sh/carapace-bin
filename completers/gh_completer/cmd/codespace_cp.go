@@ -38,7 +38,7 @@ func init() {
 			action.ActionCodespacePath(
 				codespace_cpCmd.Flag("codespace").Value.String(),
 				codespace_cpCmd.Flag("expand").Changed,
-			).Prefix("remote:").Unless(condition.CompletingPath),
+			).Prefix("remote:").UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }

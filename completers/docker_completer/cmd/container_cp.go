@@ -24,7 +24,7 @@ func init() {
 	carapace.Gen(container_cpCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(),
-			docker.ActionContainerPath().Unless(condition.CompletingPath),
+			docker.ActionContainerPath().UnlessF(condition.CompletingPath),
 		).ToA(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if condition.File(c.Args[0])(c) {

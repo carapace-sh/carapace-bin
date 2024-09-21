@@ -40,9 +40,11 @@ func init() {
 	})
 
 	carapace.Gen(infoCmd).PositionalAnyCompletion(
-		carapace.Batch(
-			brew.ActionAllCasks().Unless(func(c carapace.Context) bool { return infoCmd.Flag("formula").Changed }),
-			brew.ActionAllFormulae().Unless(func(c carapace.Context) bool { return infoCmd.Flag("cask").Changed }),
-		).ToA().FilterArgs(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return carapace.Batch(
+				brew.ActionAllCasks().Unless(infoCmd.Flag("formula").Changed),
+				brew.ActionAllFormulae().Unless(infoCmd.Flag("cask").Changed),
+			).ToA().FilterArgs()
+		}),
 	)
 }

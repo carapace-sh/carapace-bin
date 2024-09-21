@@ -44,7 +44,7 @@ func init() {
 	carapace.Gen(installTestCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(),
-			action.ActionPackages(installTestCmd).Unless(condition.CompletingPath),
+			action.ActionPackages(installTestCmd).UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }

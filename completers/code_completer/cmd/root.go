@@ -69,7 +69,7 @@ func init() {
 		"install-extension": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.Batch(
 				carapace.ActionFiles(".vsix"),
-				action.ActionExtensionSearch(rootCmd.Flag("category").Value.String()).Unless(condition.CompletingPathS),
+				action.ActionExtensionSearch(rootCmd.Flag("category").Value.String()).UnlessF(condition.CompletingPathS),
 			).ToA()
 		}),
 		"locale":              os.ActionLocales(),

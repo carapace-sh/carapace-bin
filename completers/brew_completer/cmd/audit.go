@@ -61,8 +61,8 @@ func init() {
 			}
 
 			return carapace.Batch(
-				brew.ActionAllCasks().Unless(func(c carapace.Context) bool { return auditCmd.Flag("formula").Changed }),
-				brew.ActionAllFormulae().Unless(func(c carapace.Context) bool { return auditCmd.Flag("cask").Changed }),
+				brew.ActionAllCasks().Unless(auditCmd.Flag("formula").Changed),
+				brew.ActionAllFormulae().Unless(auditCmd.Flag("cask").Changed),
 			).ToA().FilterArgs()
 		}),
 	)

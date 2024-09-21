@@ -71,7 +71,7 @@ func init() {
 		carapace.Batch(
 			carapace.ActionFiles(),
 			// TODO support multiple index urls (--index-url) and update caching accordingly
-			pip.ActionPackageSearch().Unless(condition.CompletingPath),
+			pip.ActionPackageSearch().UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }

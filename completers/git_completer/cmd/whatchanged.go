@@ -41,7 +41,7 @@ func init() {
 	carapace.Gen(whatchangedCmd).PositionalAnyCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(),
-			git.ActionRefRanges(git.RefOption{}.Default()).Unless(condition.CompletingPath),
+			git.ActionRefRanges(git.RefOption{}.Default()).UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }

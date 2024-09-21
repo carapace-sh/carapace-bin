@@ -87,7 +87,7 @@ func init() {
 		carapace.ActionValues(),
 		carapace.Batch(
 			carapace.ActionDirectories(),
-			helm.ActionRepositoryCharts().Unless(condition.CompletingPath),
+			helm.ActionRepositoryCharts().UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
 }
