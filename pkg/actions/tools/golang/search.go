@@ -48,7 +48,7 @@ func ActionModuleSearch() carapace.Action {
 			return carapace.ActionValues()
 		case 1:
 			return carapace.Batch(
-				git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + c.Parts[0], Tags: true}),
+				git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + c.Parts[0], Branches: true, Tags: true}),
 				carapace.ActionValues("latest"),
 			).ToA()
 		default:
