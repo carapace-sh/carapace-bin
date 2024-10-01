@@ -7,7 +7,7 @@ import (
 
 var schedule_deleteCmd = &cobra.Command{
 	Use:   "delete [flags]",
-	Short: "Delete schedule with the specified ID.",
+	Short: "Delete the schedule with the specified ID.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

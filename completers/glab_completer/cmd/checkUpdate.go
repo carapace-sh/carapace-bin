@@ -7,7 +7,7 @@ import (
 
 var checkUpdateCmd = &cobra.Command{
 	Use:     "check-update",
-	Short:   "Check for latest glab releases",
+	Short:   "Check for latest glab releases.",
 	Aliases: []string{"update"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

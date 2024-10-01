@@ -7,7 +7,7 @@ import (
 
 var userCmd = &cobra.Command{
 	Use:   "user <command> [flags]",
-	Short: "Interact with user",
+	Short: "Interact with a GitLab user account.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,7 +8,7 @@ import (
 
 var issue_noteCmd = &cobra.Command{
 	Use:     "note <issue-id>",
-	Short:   "Comment on an issue in GitLab",
+	Short:   "Comment on an issue in GitLab.",
 	Aliases: []string{"comment"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -16,7 +16,7 @@ var issue_noteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(issue_noteCmd).Standalone()
 
-	issue_noteCmd.Flags().StringP("message", "m", "", "Comment/Note message")
+	issue_noteCmd.Flags().StringP("message", "m", "", "Message text.")
 	issueCmd.AddCommand(issue_noteCmd)
 
 	carapace.Gen(issue_noteCmd).PositionalCompletion(

@@ -8,29 +8,29 @@ import (
 
 var mr_updateCmd = &cobra.Command{
 	Use:   "update [<id> | <branch>]",
-	Short: "Update merge requests",
+	Short: "Update a merge request.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(mr_updateCmd).Standalone()
 
-	mr_updateCmd.Flags().StringSliceP("assignee", "a", []string{}, "assign users via username, prefix with '!' or '-' to remove from existing assignees, '+' to add, otherwise replace existing assignees with given users")
-	mr_updateCmd.Flags().StringP("description", "d", "", "merge request description; set to \"-\" to open an editor")
-	mr_updateCmd.Flags().Bool("draft", false, "Mark merge request as a draft")
-	mr_updateCmd.Flags().StringSliceP("label", "l", []string{}, "add labels")
-	mr_updateCmd.Flags().Bool("lock-discussion", false, "Lock discussion on merge request")
-	mr_updateCmd.Flags().StringP("milestone", "m", "", "title of the milestone to assign, pass \"\" or 0 to unassign")
-	mr_updateCmd.Flags().BoolP("ready", "r", false, "Mark merge request as ready to be reviewed and merged")
-	mr_updateCmd.Flags().Bool("remove-source-branch", false, "Toggles the removal of the Source Branch on merge")
-	mr_updateCmd.Flags().StringSlice("reviewer", []string{}, "request review from users by their usernames, prefix with '!' or '-' to remove from existing reviewers, '+' to add, otherwise replace existing reviewers with given users")
-	mr_updateCmd.Flags().Bool("squash-before-merge", false, "Toggles the option to squash commits into a single commit when merging")
-	mr_updateCmd.Flags().String("target-branch", "", "set target branch")
-	mr_updateCmd.Flags().StringP("title", "t", "", "Title of merge request")
-	mr_updateCmd.Flags().Bool("unassign", false, "unassign all users")
-	mr_updateCmd.Flags().StringSliceP("unlabel", "u", []string{}, "remove labels")
-	mr_updateCmd.Flags().Bool("unlock-discussion", false, "Unlock discussion on merge request")
-	mr_updateCmd.Flags().Bool("wip", false, "Mark merge request as a work in progress. Alternative to --draft")
+	mr_updateCmd.Flags().StringSliceP("assignee", "a", []string{}, "Assign users via username. Prefix with '!' or '-' to remove from existing assignees, '+' to add. Otherwise, replace existing assignees with given users.")
+	mr_updateCmd.Flags().StringP("description", "d", "", "Merge request description. Set to \"-\" to open an editor.")
+	mr_updateCmd.Flags().Bool("draft", false, "Mark merge request as a draft.")
+	mr_updateCmd.Flags().StringSliceP("label", "l", []string{}, "Add labels.")
+	mr_updateCmd.Flags().Bool("lock-discussion", false, "Lock discussion on merge request.")
+	mr_updateCmd.Flags().StringP("milestone", "m", "", "Title of the milestone to assign. Set to \"\" or 0 to unassign.")
+	mr_updateCmd.Flags().BoolP("ready", "r", false, "Mark merge request as ready to be reviewed and merged.")
+	mr_updateCmd.Flags().Bool("remove-source-branch", false, "Toggles the removal of the source branch on merge.")
+	mr_updateCmd.Flags().StringSlice("reviewer", []string{}, "Request review from users by their usernames. Prefix with '!' or '-' to remove from existing reviewers, '+' to add. Otherwise, replace existing reviewers with given users.")
+	mr_updateCmd.Flags().Bool("squash-before-merge", false, "Toggles the option to squash commits into a single commit when merging.")
+	mr_updateCmd.Flags().String("target-branch", "", "Set target branch.")
+	mr_updateCmd.Flags().StringP("title", "t", "", "Title of merge request.")
+	mr_updateCmd.Flags().Bool("unassign", false, "Unassign all users.")
+	mr_updateCmd.Flags().StringSliceP("unlabel", "u", []string{}, "Remove labels.")
+	mr_updateCmd.Flags().Bool("unlock-discussion", false, "Unlock discussion on merge request.")
+	mr_updateCmd.Flags().Bool("wip", false, "Mark merge request as a work in progress. Alternative to --draft.")
 	mrCmd.AddCommand(mr_updateCmd)
 
 	carapace.Gen(mr_updateCmd).FlagCompletion(carapace.ActionMap{

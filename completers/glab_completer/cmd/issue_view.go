@@ -16,11 +16,12 @@ var issue_viewCmd = &cobra.Command{
 func init() {
 	carapace.Gen(issue_viewCmd).Standalone()
 
-	issue_viewCmd.Flags().BoolP("comments", "c", false, "Show issue comments and activities")
-	issue_viewCmd.Flags().StringP("page", "p", "", "Page number")
-	issue_viewCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page")
-	issue_viewCmd.Flags().BoolP("system-logs", "s", false, "Show system activities / logs")
-	issue_viewCmd.Flags().BoolP("web", "w", false, "Open issue in a browser. Uses default browser or browser specified in BROWSER variable")
+	issue_viewCmd.Flags().BoolP("comments", "c", false, "Show issue comments and activities.")
+	issue_viewCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	issue_viewCmd.Flags().StringP("page", "p", "", "Page number.")
+	issue_viewCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
+	issue_viewCmd.Flags().BoolP("system-logs", "s", false, "Show system activities and logs.")
+	issue_viewCmd.Flags().BoolP("web", "w", false, "Open issue in a browser. Uses the default browser, or the browser specified in the $BROWSER variable.")
 	issueCmd.AddCommand(issue_viewCmd)
 
 	carapace.Gen(issue_viewCmd).PositionalCompletion(

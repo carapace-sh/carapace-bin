@@ -8,14 +8,14 @@ import (
 
 var issueCmd = &cobra.Command{
 	Use:   "issue [command] [flags]",
-	Short: "Work with GitLab issues",
+	Short: "Work with GitLab issues.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issueCmd).Standalone()
 
-	issueCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or full URL or git URL")
+	issueCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
 	rootCmd.AddCommand(issueCmd)
 
 	carapace.Gen(issueCmd).FlagCompletion(carapace.ActionMap{

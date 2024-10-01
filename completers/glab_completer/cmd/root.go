@@ -20,7 +20,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.PersistentFlags().Bool("help", false, "Show help for command")
+	rootCmd.PersistentFlags().Bool("help", false, "Show help for this command.")
 	rootCmd.Flags().BoolP("version", "v", false, "show glab version information")
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {

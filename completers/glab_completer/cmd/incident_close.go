@@ -7,7 +7,7 @@ import (
 
 var incident_closeCmd = &cobra.Command{
 	Use:     "close [<id> | <url>] [flags]",
-	Short:   "Close an incident",
+	Short:   "Close an incident.",
 	Aliases: []string{"resolve"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

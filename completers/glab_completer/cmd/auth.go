@@ -7,7 +7,7 @@ import (
 
 var authCmd = &cobra.Command{
 	Use:   "auth <command>",
-	Short: "Manage glab's authentication state",
+	Short: "Manage glab's authentication state.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

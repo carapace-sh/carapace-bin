@@ -7,7 +7,7 @@ import (
 
 var auth_gitCredentialCmd = &cobra.Command{
 	Use:    "git-credential",
-	Short:  "Implements Git credential helper manager",
+	Short:  "Implements Git credential helper manager.",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }

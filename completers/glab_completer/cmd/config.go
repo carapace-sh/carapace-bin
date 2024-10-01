@@ -7,7 +7,7 @@ import (
 
 var configCmd = &cobra.Command{
 	Use:     "config [flags]",
-	Short:   "Set and get glab settings",
+	Short:   "Set and get glab settings.",
 	Aliases: []string{"conf"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -15,6 +15,6 @@ var configCmd = &cobra.Command{
 func init() {
 	carapace.Gen(configCmd).Standalone()
 
-	configCmd.Flags().BoolP("global", "g", false, "Use global config file")
+	configCmd.Flags().BoolP("global", "g", false, "Use global config file.")
 	rootCmd.AddCommand(configCmd)
 }

@@ -8,7 +8,7 @@ import (
 
 var repo_mirrorCmd = &cobra.Command{
 	Use:   "mirror [ID | URL | PATH] [flags]",
-	Short: "Mirror a project/repository to the specified location using pull or push method.",
+	Short: "Mirror a project or repository to the specified location, using pull or push methods.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(repo_mirrorCmd).Standalone()
 
 	repo_mirrorCmd.Flags().Bool("allow-divergence", false, "Determines if divergent refs are skipped.")
-	repo_mirrorCmd.Flags().String("direction", "", "Mirror direction")
+	repo_mirrorCmd.Flags().String("direction", "", "Mirror direction. Options: pull, push.")
 	repo_mirrorCmd.Flags().Bool("enabled", false, "Determines if the mirror is enabled.")
 	repo_mirrorCmd.Flags().Bool("protected-branches-only", false, "Determines if only protected branches are mirrored.")
 	repo_mirrorCmd.Flags().String("url", "", "The target URL to which the repository is mirrored.")

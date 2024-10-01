@@ -8,7 +8,7 @@ import (
 
 var issue_deleteCmd = &cobra.Command{
 	Use:     "delete <id>",
-	Short:   "Delete an issue",
+	Short:   "Delete an issue.",
 	Aliases: []string{"del"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

@@ -8,14 +8,14 @@ import (
 
 var alias_setCmd = &cobra.Command{
 	Use:   "set <alias name> '<command>' [flags]",
-	Short: "Set an alias.",
+	Short: "Set an alias for a longer command.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(alias_setCmd).Standalone()
 
-	alias_setCmd.Flags().BoolP("shell", "s", false, "Declare an alias to be passed through a shell interpreter")
+	alias_setCmd.Flags().BoolP("shell", "s", false, "Declare an alias to be passed through a shell interpreter.")
 	aliasCmd.AddCommand(alias_setCmd)
 
 	carapace.Gen(alias_setCmd).PositionalCompletion(

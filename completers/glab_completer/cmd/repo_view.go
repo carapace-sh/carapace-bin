@@ -8,15 +8,16 @@ import (
 
 var repo_viewCmd = &cobra.Command{
 	Use:   "view [repository] [flags]",
-	Short: "View a project/repository",
+	Short: "View a project or repository.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(repo_viewCmd).Standalone()
 
-	repo_viewCmd.Flags().StringP("branch", "b", "", "View a specific branch of the repository")
-	repo_viewCmd.Flags().BoolP("web", "w", false, "Open a project in the browser")
+	repo_viewCmd.Flags().StringP("branch", "b", "", "View a specific branch of the repository.")
+	repo_viewCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	repo_viewCmd.Flags().BoolP("web", "w", false, "Open a project in the browser.")
 	repoCmd.AddCommand(repo_viewCmd)
 
 	carapace.Gen(repo_viewCmd).FlagCompletion(carapace.ActionMap{
@@ -27,6 +28,7 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
+		"output": carapace.ActionValues("text", "json"),
 	})
 
 	carapace.Gen(repo_viewCmd).PositionalCompletion(

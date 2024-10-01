@@ -8,7 +8,7 @@ import (
 
 var variable_exportCmd = &cobra.Command{
 	Use:     "export",
-	Short:   "Export project or group variables.",
+	Short:   "Export variables from a project or group.",
 	Aliases: []string{"ex"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -19,7 +19,7 @@ func init() {
 	variable_exportCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repository argument is set.")
 	variable_exportCmd.Flags().StringP("page", "p", "", "Page number.")
 	variable_exportCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
-	variable_exportCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or full URL or git URL")
+	variable_exportCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
 	variableCmd.AddCommand(variable_exportCmd)
 
 	carapace.Gen(variable_exportCmd).FlagCompletion(carapace.ActionMap{
