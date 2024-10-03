@@ -76,6 +76,15 @@ type TargetOpts struct {
 	Test    bool
 }
 
+func (t TargetOpts) Default() TargetOpts {
+	t.Bench = true
+	t.Bin = true
+	t.Example = true
+	t.Lib = true
+	t.Test = true
+	return t
+}
+
 func (t *TargetOpts) Includes(kinds []string) bool {
 	var match bool
 	for _, kind := range kinds {

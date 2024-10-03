@@ -8,7 +8,6 @@ import (
 
 var testCmd = &cobra.Command{
 	Use:     "test",
-	Aliases: []string{"t"},
 	Short:   "Execute all unit and integration tests and build examples of a local package",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: groupFor("test"),
@@ -19,9 +18,9 @@ func init() {
 
 	testCmd.Flags().Bool("all", false, "Alias for --workspace (deprecated)")
 	testCmd.Flags().Bool("all-features", false, "Activate all available features")
-	testCmd.Flags().Bool("all-targets", false, "Test all targets")
+	testCmd.Flags().Bool("all-targets", false, "Test all targets (does not include doctests)")
 	testCmd.Flags().StringSlice("bench", []string{}, "Test only the specified bench target")
-	testCmd.Flags().Bool("benches", false, "Test all benches")
+	testCmd.Flags().Bool("benches", false, "Test all bench targets")
 	testCmd.Flags().StringSlice("bin", []string{}, "Test only the specified binary")
 	testCmd.Flags().Bool("bins", false, "Test all binaries")
 	testCmd.Flags().Bool("doc", false, "Test only this library's documentation")
@@ -32,9 +31,8 @@ func init() {
 	testCmd.Flags().Bool("future-incompat-report", false, "Outputs a future incompatibility report at the end of the build")
 	testCmd.Flags().BoolP("help", "h", false, "Print help")
 	testCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
-	testCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs")
-	testCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error (unstable)")
-	testCmd.Flags().Bool("lib", false, "Test only this package's library unit tests")
+	testCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
+	testCmd.Flags().Bool("lib", false, "Test only this package's library")
 	testCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	testCmd.Flags().StringSlice("message-format", []string{}, "Error format")
 	testCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -47,7 +45,7 @@ func init() {
 	testCmd.Flags().StringSlice("target", []string{}, "Build for the target triple")
 	testCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	testCmd.Flags().StringSlice("test", []string{}, "Test only the specified test target")
-	testCmd.Flags().Bool("tests", false, "Test all tests")
+	testCmd.Flags().Bool("tests", false, "Test all test targets")
 	testCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
 	testCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
 	testCmd.Flags().Bool("workspace", false, "Test all packages in the workspace")

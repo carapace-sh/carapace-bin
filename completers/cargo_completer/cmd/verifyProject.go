@@ -16,7 +16,6 @@ func init() {
 
 	verifyProjectCmd.Flags().BoolP("help", "h", false, "Print help")
 	verifyProjectCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
-	verifyProjectCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	rootCmd.AddCommand(verifyProjectCmd)
 
 	carapace.Gen(verifyProjectCmd).FlagCompletion(carapace.ActionMap{

@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(treeCmd).Standalone()
 
 	treeCmd.Flags().Bool("all-features", false, "Activate all available features")
-	treeCmd.Flags().String("charset", "", "Character set to use in output: utf8, ascii")
+	treeCmd.Flags().String("charset", "", "Character set to use in output")
 	treeCmd.Flags().String("depth", "", "Maximum display depth of the dependency tree")
 	treeCmd.Flags().BoolP("duplicates", "d", false, "Show only dependencies which come in multiple versions (implies -i)")
 	treeCmd.Flags().StringSliceP("edges", "e", []string{}, "The kinds of dependencies to display (features, normal, build, dev, all, no-normal, no-build, no-dev, no-proc-macro)")
@@ -31,7 +31,6 @@ func init() {
 	treeCmd.Flags().StringSliceP("package", "p", []string{}, "Package to be used as the root of the tree")
 	treeCmd.Flags().String("prefix", "", "Change the prefix (indentation) of how each entry is displayed")
 	treeCmd.Flags().StringSlice("prune", []string{}, "Prune the given package from the display of the dependency tree")
-	treeCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	treeCmd.Flags().StringSlice("target", []string{}, "Filter dependencies matching the given target-triple (default host platform). Pass `all` to include all targets.")
 	treeCmd.Flags().Bool("workspace", false, "Display the tree for all packages in the workspace")
 	rootCmd.AddCommand(treeCmd)

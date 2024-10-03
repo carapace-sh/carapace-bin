@@ -19,7 +19,6 @@ func init() {
 	uninstallCmd.Flags().StringSlice("bin", []string{}, "Only uninstall the binary NAME")
 	uninstallCmd.Flags().BoolP("help", "h", false, "Print help")
 	uninstallCmd.Flags().StringSliceP("package", "p", []string{}, "Package to uninstall")
-	uninstallCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	uninstallCmd.Flags().String("root", "", "Directory to uninstall packages from")
 	rootCmd.AddCommand(uninstallCmd)
 

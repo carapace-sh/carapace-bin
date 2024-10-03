@@ -15,7 +15,6 @@ func init() {
 	carapace.Gen(logoutCmd).Standalone()
 
 	logoutCmd.Flags().BoolP("help", "h", false, "Print help")
-	logoutCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	logoutCmd.Flags().String("registry", "", "Registry to use")
 	rootCmd.AddCommand(logoutCmd)
 }

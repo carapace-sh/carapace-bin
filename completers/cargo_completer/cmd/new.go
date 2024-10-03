@@ -21,9 +21,8 @@ func init() {
 	newCmd.Flags().BoolP("help", "h", false, "Print help")
 	newCmd.Flags().Bool("lib", false, "Use a library template")
 	newCmd.Flags().String("name", "", "Set the resulting package name, defaults to the directory name")
-	newCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	newCmd.Flags().String("registry", "", "Registry to use")
-	newCmd.Flags().String("vcs", "", "Initialize a new repository for the given version control system (git, hg, pijul, or fossil) or do not initialize any version control at all (none), overriding a global configuration.")
+	newCmd.Flags().String("vcs", "", "Initialize a new repository for the given version control system, overriding a global configuration.")
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(newCmd).FlagCompletion(carapace.ActionMap{

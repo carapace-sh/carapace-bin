@@ -15,8 +15,8 @@ func init() {
 	carapace.Gen(generateLockfileCmd).Standalone()
 
 	generateLockfileCmd.Flags().BoolP("help", "h", false, "Print help")
+	generateLockfileCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages (unstable)")
 	generateLockfileCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
-	generateLockfileCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	rootCmd.AddCommand(generateLockfileCmd)
 
 	carapace.Gen(generateLockfileCmd).FlagCompletion(carapace.ActionMap{
