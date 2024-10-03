@@ -15,19 +15,19 @@ var removeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(removeCmd).Standalone()
 
-	removeCmd.Flags().Bool("build", false, "Remove as build dependency")
-	removeCmd.Flags().Bool("dev", false, "Remove as development dependency")
-	removeCmd.Flags().Bool("dry-run", false, "Don't actually write the manifest")
+	removeCmd.Flags().Bool("build", false, "Remove from build-dependencies")
+	removeCmd.Flags().Bool("dev", false, "Remove from dev-dependencies")
+	removeCmd.Flags().BoolP("dry-run", "n", false, "Don't actually write the manifest")
 	removeCmd.Flags().BoolP("help", "h", false, "Print help")
 	removeCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	removeCmd.Flags().StringP("package", "p", "", "Package to remove from")
-	removeCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
-	removeCmd.Flags().String("target", "", "Remove as dependency from the given target platform")
+	removeCmd.Flags().String("target", "", "Remove from target-dependencies")
 	rootCmd.AddCommand(removeCmd)
 
 	carapace.Gen(removeCmd).FlagCompletion(carapace.ActionMap{
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(removeCmd, false),
+		"target":        action.ActionTargets(removeCmd, action.TargetOpts{}.Default()),
 	})
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(

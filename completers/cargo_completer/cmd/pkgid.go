@@ -18,7 +18,6 @@ func init() {
 	pkgidCmd.Flags().BoolP("help", "h", false, "Print help")
 	pkgidCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	pkgidCmd.Flags().StringP("package", "p", "", "Argument to get the package ID specifier for")
-	pkgidCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	rootCmd.AddCommand(pkgidCmd)
 
 	carapace.Gen(pkgidCmd).FlagCompletion(carapace.ActionMap{

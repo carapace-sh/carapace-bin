@@ -8,7 +8,7 @@ import (
 
 var searchCmd = &cobra.Command{
 	Use:     "search",
-	Short:   "Search packages in crates.io",
+	Short:   "Search packages in the registry. Default registry is crates.io",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: groupFor("search"),
 }
@@ -17,10 +17,9 @@ func init() {
 	carapace.Gen(searchCmd).Standalone()
 
 	searchCmd.Flags().BoolP("help", "h", false, "Print help")
-	searchCmd.Flags().String("index", "", "Registry index URL to upload the package to")
+	searchCmd.Flags().String("index", "", "Registry index URL to search packages in")
 	searchCmd.Flags().String("limit", "", "Limit the number of results (default: 10, max: 100)")
-	searchCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
-	searchCmd.Flags().String("registry", "", "Registry to use")
+	searchCmd.Flags().String("registry", "", "Registry to search packages in")
 	rootCmd.AddCommand(searchCmd)
 
 	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{

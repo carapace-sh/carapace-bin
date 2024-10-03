@@ -13,7 +13,7 @@ import (
 
 var addCmd = &cobra.Command{
 	Use:     "add",
-	Short:   "Add dependency to a Cargo.toml manifest file",
+	Short:   "Add dependencies to a Cargo.toml manifest file",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: groupFor("add"),
 }
@@ -25,18 +25,19 @@ func init() {
 	addCmd.Flags().Bool("build", false, "Add as build dependency")
 	addCmd.Flags().Bool("default-features", false, "Re-enable the default features")
 	addCmd.Flags().Bool("dev", false, "Add as development dependency")
-	addCmd.Flags().Bool("dry-run", false, "Don't actually write the manifest")
+	addCmd.Flags().BoolP("dry-run", "n", false, "Don't actually write the manifest")
 	addCmd.Flags().StringSliceP("features", "F", []string{}, "Space or comma separated list of features to activate")
 	addCmd.Flags().String("git", "", "Git repository location")
 	addCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	addCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages (unstable)")
+	addCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
 	addCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	addCmd.Flags().Bool("no-default-features", false, "Disable the default features")
 	addCmd.Flags().Bool("no-optional", false, "Mark the dependency as required")
+	addCmd.Flags().Bool("no-public", false, "Mark the dependency as private (unstable)")
 	addCmd.Flags().Bool("optional", false, "Mark the dependency as optional")
 	addCmd.Flags().StringP("package", "p", "", "Package to modify")
 	addCmd.Flags().String("path", "", "Filesystem path to local crate to add")
-	addCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
+	addCmd.Flags().Bool("public", false, "Mark the dependency as public (unstable)")
 	addCmd.Flags().String("registry", "", "Package registry for this dependency")
 	addCmd.Flags().String("rename", "", "Rename the dependency")
 	addCmd.Flags().String("rev", "", "Git reference to download the crate from")

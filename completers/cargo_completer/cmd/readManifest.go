@@ -16,7 +16,6 @@ func init() {
 
 	readManifestCmd.Flags().BoolP("help", "h", false, "Print help")
 	readManifestCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
-	readManifestCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	rootCmd.AddCommand(readManifestCmd)
 
 	carapace.Gen(readManifestCmd).FlagCompletion(carapace.ActionMap{

@@ -8,7 +8,6 @@ import (
 
 var runCmd = &cobra.Command{
 	Use:     "run",
-	Aliases: []string{"r"},
 	Short:   "Run a binary or example of the local package",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: groupFor("run"),
@@ -23,14 +22,13 @@ func init() {
 	runCmd.Flags().StringSliceP("features", "F", []string{}, "Space or comma separated list of features to activate")
 	runCmd.Flags().BoolP("help", "h", false, "Print help")
 	runCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
-	runCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs")
-	runCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error (unstable)")
+	runCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
+	runCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	runCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	runCmd.Flags().StringSlice("message-format", []string{}, "Error format")
 	runCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	runCmd.Flags().StringP("package", "p", "", "Package with the target to run")
 	runCmd.Flags().String("profile", "", "Build artifacts with the specified profile")
-	runCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	runCmd.Flags().BoolP("release", "r", false, "Build artifacts in release mode, with optimizations")
 	runCmd.Flags().StringSlice("target", []string{}, "Build for the target triple")
 	runCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")

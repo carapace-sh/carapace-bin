@@ -23,7 +23,6 @@ func init() {
 	metadataCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	metadataCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	metadataCmd.Flags().Bool("no-deps", false, "Output information only about the workspace members and don't fetch dependencies")
-	metadataCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	rootCmd.AddCommand(metadataCmd)
 
 	carapace.Gen(metadataCmd).FlagCompletion(carapace.ActionMap{
