@@ -8,15 +8,15 @@ import (
 
 var release_deleteCmd = &cobra.Command{
 	Use:   "delete <tag>",
-	Short: "Delete a GitLab Release",
+	Short: "Delete a GitLab release.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(release_deleteCmd).Standalone()
 
-	release_deleteCmd.Flags().BoolP("with-tag", "t", false, "Delete associated tag")
-	release_deleteCmd.Flags().BoolP("yes", "y", false, "Skip confirmation prompt")
+	release_deleteCmd.Flags().BoolP("with-tag", "t", false, "Delete the associated tag.")
+	release_deleteCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt.")
 	releaseCmd.AddCommand(release_deleteCmd)
 
 	carapace.Gen(release_deleteCmd).PositionalCompletion(

@@ -7,7 +7,7 @@ import (
 
 var changelogCmd = &cobra.Command{
 	Use:   "changelog <command> [flags]",
-	Short: "Interact with the changelog API",
+	Short: "Interact with the changelog API.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

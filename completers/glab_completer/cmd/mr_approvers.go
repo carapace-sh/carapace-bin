@@ -8,7 +8,7 @@ import (
 
 var mr_approversCmd = &cobra.Command{
 	Use:   "approvers [<id> | <branch>] [flags]",
-	Short: "List eligible approvers for merge requests in any state",
+	Short: "List eligible approvers for merge requests in any state.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

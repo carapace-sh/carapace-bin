@@ -9,7 +9,7 @@ import (
 
 var label_createCmd = &cobra.Command{
 	Use:     "create [flags]",
-	Short:   "Create labels for repository/project",
+	Short:   "Create labels for a repository or project.",
 	Aliases: []string{"new"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -17,9 +17,9 @@ var label_createCmd = &cobra.Command{
 func init() {
 	carapace.Gen(label_createCmd).Standalone()
 
-	label_createCmd.Flags().StringP("color", "c", "", "Color of label in plain or HEX code.")
-	label_createCmd.Flags().StringP("description", "d", "", "Label description")
-	label_createCmd.Flags().StringP("name", "n", "", "Name of label")
+	label_createCmd.Flags().StringP("color", "c", "", "Color of the label, in plain or HEX code.")
+	label_createCmd.Flags().StringP("description", "d", "", "Label description.")
+	label_createCmd.Flags().StringP("name", "n", "", "Name of the label.")
 	label_createCmd.MarkFlagRequired("name")
 	labelCmd.AddCommand(label_createCmd)
 

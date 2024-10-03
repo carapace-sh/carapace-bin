@@ -10,7 +10,7 @@ import (
 
 var ci_runCmd = &cobra.Command{
 	Use:     "run [flags]",
-	Short:   "Create or run a new CI/CD pipeline",
+	Short:   "Create or run a new CI/CD pipeline.",
 	Aliases: []string{"create"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -18,11 +18,11 @@ var ci_runCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ci_runCmd).Standalone()
 
-	ci_runCmd.Flags().StringP("branch", "b", "", "Create pipeline on branch/ref <string>")
-	ci_runCmd.Flags().StringSlice("variables", []string{}, "Pass variables to pipeline in format <key>:<value>")
-	ci_runCmd.Flags().StringSlice("variables-env", []string{}, "Pass variables to pipeline in format <key>:<value>")
-	ci_runCmd.Flags().StringSlice("variables-file", []string{}, "Pass file contents as a file variable to pipeline in format <key>:<filename>")
-	ci_runCmd.Flags().StringP("variables-from", "f", "", "JSON file containing variables for pipeline execution")
+	ci_runCmd.Flags().StringP("branch", "b", "", "Create pipeline on branch/ref <string>.")
+	ci_runCmd.Flags().StringSlice("variables", []string{}, "Pass variables to pipeline in format <key>:<value>.")
+	ci_runCmd.Flags().StringSlice("variables-env", []string{}, "Pass variables to pipeline in format <key>:<value>.")
+	ci_runCmd.Flags().StringSlice("variables-file", []string{}, "Pass file contents as a file variable to pipeline in format <key>:<filename>.")
+	ci_runCmd.Flags().StringP("variables-from", "f", "", "JSON file containing variables for pipeline execution.")
 	ciCmd.AddCommand(ci_runCmd)
 
 	carapace.Gen(ci_runCmd).FlagCompletion(carapace.ActionMap{

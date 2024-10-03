@@ -8,7 +8,7 @@ import (
 
 var mr_deleteCmd = &cobra.Command{
 	Use:     "delete [<id> | <branch>]",
-	Short:   "Delete merge requests",
+	Short:   "Delete a merge request.",
 	Aliases: []string{"del"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

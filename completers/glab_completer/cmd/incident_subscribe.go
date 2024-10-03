@@ -7,7 +7,7 @@ import (
 
 var incident_subscribeCmd = &cobra.Command{
 	Use:     "subscribe <id>",
-	Short:   "Subscribe to an incident",
+	Short:   "Subscribe to an incident.",
 	Aliases: []string{"sub"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

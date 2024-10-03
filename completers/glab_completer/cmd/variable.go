@@ -8,7 +8,7 @@ import (
 
 var variableCmd = &cobra.Command{
 	Use:     "variable",
-	Short:   "Manage GitLab Project and Group Variables",
+	Short:   "Manage variables for a GitLab project or group.",
 	Aliases: []string{"var"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -16,7 +16,7 @@ var variableCmd = &cobra.Command{
 func init() {
 	carapace.Gen(variableCmd).Standalone()
 
-	variableCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or full URL or git URL")
+	variableCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
 	rootCmd.AddCommand(variableCmd)
 
 	carapace.Gen(variableCmd).FlagCompletion(carapace.ActionMap{

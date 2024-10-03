@@ -7,7 +7,7 @@ import (
 
 var repoCmd = &cobra.Command{
 	Use:     "repo <command> [flags]",
-	Short:   "Work with GitLab repositories and projects",
+	Short:   "Work with GitLab repositories and projects.",
 	Aliases: []string{"project"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

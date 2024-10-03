@@ -15,7 +15,7 @@ var sshKeyCmd = &cobra.Command{
 func init() {
 	carapace.Gen(sshKeyCmd).Standalone()
 
-	sshKeyCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or full URL or git URL")
+	sshKeyCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
 	rootCmd.AddCommand(sshKeyCmd)
 
 	carapace.Gen(sshKeyCmd).FlagCompletion(carapace.ActionMap{

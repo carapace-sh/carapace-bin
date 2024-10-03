@@ -7,7 +7,7 @@ import (
 
 var incident_noteCmd = &cobra.Command{
 	Use:     "note <incident-id>",
-	Short:   "Comment on an incident in GitLab",
+	Short:   "Comment on an incident in GitLab.",
 	Aliases: []string{"comment"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -15,7 +15,7 @@ var incident_noteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(incident_noteCmd).Standalone()
 
-	incident_noteCmd.Flags().StringP("message", "m", "", "Comment/Note message")
+	incident_noteCmd.Flags().StringP("message", "m", "", "Message text.")
 	incidentCmd.AddCommand(incident_noteCmd)
 
 	// TODO positional completion

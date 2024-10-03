@@ -8,14 +8,14 @@ import (
 
 var releaseCmd = &cobra.Command{
 	Use:   "release <command> [flags]",
-	Short: "Manage GitLab releases",
+	Short: "Manage GitLab releases.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(releaseCmd).Standalone()
 
-	releaseCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or full URL or git URL")
+	releaseCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
 	rootCmd.AddCommand(releaseCmd)
 
 	carapace.Gen(releaseCmd).FlagCompletion(carapace.ActionMap{

@@ -8,7 +8,7 @@ import (
 
 var mr_revokeCmd = &cobra.Command{
 	Use:     "revoke [<id> | <branch>]",
-	Short:   "Revoke approval on a merge request",
+	Short:   "Revoke approval on a merge request.",
 	Aliases: []string{"unapprove"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

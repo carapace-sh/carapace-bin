@@ -8,7 +8,7 @@ import (
 
 var variable_listCmd = &cobra.Command{
 	Use:     "list",
-	Short:   "List project or group variables",
+	Short:   "List variables for a project or group.",
 	Aliases: []string{"ls"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -16,8 +16,9 @@ var variable_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(variable_listCmd).Standalone()
 
-	variable_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group/subgroup. This option is ignored if a repo argument is set.")
-	variable_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format or full URL or git URL")
+	variable_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repository argument is set.")
+	variable_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	variable_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
 	variableCmd.AddCommand(variable_listCmd)
 
 	carapace.Gen(variable_listCmd).FlagCompletion(carapace.ActionMap{

@@ -8,14 +8,15 @@ import (
 
 var ci_traceCmd = &cobra.Command{
 	Use:   "trace [<job-id>] [flags]",
-	Short: "Trace a CI/CD job log in real time",
+	Short: "Trace a CI/CD job log in real time.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(ci_traceCmd).Standalone()
 
-	ci_traceCmd.Flags().StringP("branch", "b", "", "Check pipeline status for a branch. (Default is the current branch)")
+	ci_traceCmd.Flags().StringP("branch", "b", "", "The branch to search for the job. Default: current branch.")
+	ci_traceCmd.Flags().StringP("pipeline-id", "p", "", "The pipeline ID to search for the job.")
 	ciCmd.AddCommand(ci_traceCmd)
 
 	carapace.Gen(ci_statusCmd).FlagCompletion(carapace.ActionMap{

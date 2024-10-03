@@ -8,7 +8,7 @@ import (
 
 var issue_reopenCmd = &cobra.Command{
 	Use:     "reopen [<id> | <url>] [flags]",
-	Short:   "Reopen a closed issue",
+	Short:   "Reopen a closed issue.",
 	Aliases: []string{"open"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

@@ -15,6 +15,8 @@ var sshKey_getCmd = &cobra.Command{
 func init() {
 	carapace.Gen(sshKey_getCmd).Standalone()
 
+	sshKey_getCmd.Flags().StringP("page", "p", "", "Page number.")
+	sshKey_getCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	sshKeyCmd.AddCommand(sshKey_getCmd)
 
 	carapace.Gen(sshKey_getCmd).PositionalCompletion(

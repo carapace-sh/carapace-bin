@@ -7,7 +7,7 @@ import (
 
 var incident_unsubscribeCmd = &cobra.Command{
 	Use:     "unsubscribe <id>",
-	Short:   "Unsubscribe from an incident",
+	Short:   "Unsubscribe from an incident.",
 	Aliases: []string{"unsub"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
