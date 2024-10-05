@@ -8,7 +8,7 @@ import (
 
 var mergeCmd = &cobra.Command{
 	Use:   "merge [OPTIONS] [REVISIONS]...",
-	Short: "Merge work from multiple branches",
+	Short: "Merge work from multiple bookmarks",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

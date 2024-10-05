@@ -15,19 +15,19 @@ var git_pushCmd = &cobra.Command{
 func init() {
 	carapace.Gen(git_pushCmd).Standalone()
 
-	git_pushCmd.Flags().Bool("all", false, "Push all branches (including deleted branches)")
+	git_pushCmd.Flags().Bool("all", false, "Push all bookmarks (including deleted bookmarks)")
 	git_pushCmd.Flags().Bool("allow-empty-description", false, "Allow commits with empty description messages to be pushed")
-	git_pushCmd.Flags().StringSliceP("branch", "b", []string{}, "Push only this branch (can be repeated)")
-	git_pushCmd.Flags().StringSliceP("change", "c", []string{}, "Push this commit by creating a branch based on its change ID (can be repeated)")
-	git_pushCmd.Flags().Bool("deleted", false, "Push all deleted branches")
+	git_pushCmd.Flags().StringSliceP("bookmark", "b", []string{}, "Push only this bookmark (can be repeated)")
+	git_pushCmd.Flags().StringSliceP("change", "c", []string{}, "Push this commit by creating a bookmark based on its change ID (can be repeated)")
+	git_pushCmd.Flags().Bool("deleted", false, "Push all deleted bookmarks")
 	git_pushCmd.Flags().Bool("dry-run", false, "Only display what will change on the remote")
 	git_pushCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	git_pushCmd.Flags().String("remote", "", "The remote to push to (only named remotes are supported)")
-	git_pushCmd.Flags().StringSliceP("revisions", "r", []string{}, "Push branches pointing to these commits")
+	git_pushCmd.Flags().StringSliceP("revisions", "r", []string{}, "Push bookmarks pointing to these commits")
 	gitCmd.AddCommand(git_pushCmd)
 
 	carapace.Gen(git_pushCmd).FlagCompletion(carapace.ActionMap{
-		"branch":    jj.ActionLocalBranches(),
+		"bookmark":  jj.ActionLocalBookmarks(),
 		"change":    carapace.ActionValues(), // TODO
 		"remote":    jj.ActionRemotes(),
 		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
