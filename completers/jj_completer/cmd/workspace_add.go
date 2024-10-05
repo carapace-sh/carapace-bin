@@ -18,11 +18,17 @@ func init() {
 	workspace_addCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	workspace_addCmd.Flags().String("name", "", "A name for the workspace")
 	workspace_addCmd.Flags().StringP("revision", "r", "", "The revision that the workspace should be created at; a new working copy commit will be created on top of it")
+	workspace_addCmd.Flags().String("sparse-patterns", "", "How to handle sparse patterns when creating a new workspace")
 	workspaceCmd.AddCommand(workspace_addCmd)
 
 	carapace.Gen(workspace_addCmd).FlagCompletion(carapace.ActionMap{
 		"name":     jj.ActionWorkspaces(),
 		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
+		"sparse-patterns": carapace.ActionValuesDescribed(
+			"copy", "Copy all sparse patterns from the current workspace",
+			"full", "Include all files in the new workspace",
+			"empty", "Clear all files from the workspace (it will be empty)",
+		),
 	})
 
 	carapace.Gen(workspace_addCmd).PositionalCompletion(
