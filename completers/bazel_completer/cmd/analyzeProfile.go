@@ -8,7 +8,7 @@ import (
 
 var analyzeProfileCmd = &cobra.Command{
 	Use:   "analyze-profile",
-	Short: "Analyzes build profile data for the given profile data files",
+	Short: "Analyzes build profile data",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -28,4 +28,5 @@ func init() {
 
 	rootCmd.AddCommand(analyzeProfileCmd)
 
+	// TODO positional completion
 }
