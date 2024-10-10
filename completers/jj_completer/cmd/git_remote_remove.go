@@ -8,7 +8,7 @@ import (
 
 var git_remote_removeCmd = &cobra.Command{
 	Use:   "remove [OPTIONS] <REMOTE>",
-	Short: "Remove a Git remote and forget its branches",
+	Short: "Remove a Git remote and forget its bookmarks",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

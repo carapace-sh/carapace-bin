@@ -20,7 +20,7 @@ func init() {
 	squashCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	squashCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to squash")
 	squashCmd.Flags().String("into", "@", "Revision to squash into")
-	squashCmd.Flags().Bool("keep-emptied", false, "The source revision will not be abandoned")
+	squashCmd.Flags().BoolP("keep-emptied", "k", false, "The source revision will not be abandoned")
 	squashCmd.Flags().StringSliceP("message", "m", []string{}, "The description to use for squashed revision (don't open editor)")
 	squashCmd.Flags().StringP("revision", "r", "@", "Revision to squash into its parent")
 	squashCmd.Flags().String("to", "@", "Revision to squash into (alias for --into)")

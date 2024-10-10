@@ -31,7 +31,7 @@ func init() {
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
 		"after":         jj.ActionRevs(jj.RevOption{}.Default()),
 		"before":        jj.ActionRevs(jj.RevOption{}.Default()),
-		"branch":        jj.ActionRevs(jj.RevOption{LocalBranches: true, RemoteBranches: true, Tags: true}),
+		"branch":        jj.ActionRevs(jj.RevOption{LocalBookmarks: true, RemoteBookmarks: true, Tags: true}),
 		"destination":   jj.ActionRevs(jj.RevOption{}.Default()),
 		"insert-after":  jj.ActionRevs(jj.RevOption{}.Default()),
 		"insert-before": jj.ActionRevs(jj.RevOption{}.Default()),

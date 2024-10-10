@@ -30,7 +30,7 @@ func init() {
 
 			batch := carapace.Batch()
 			for _, remote := range remotes {
-				batch = append(batch, jj.ActionRemoteBranches(remote))
+				batch = append(batch, jj.ActionRemoteBookmarks(remote))
 			}
 			return batch.ToA()
 		}),

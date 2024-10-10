@@ -5,18 +5,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var branch_helpCmd = &cobra.Command{
+var bookmark_helpCmd = &cobra.Command{
 	Use:   "help",
 	Short: "Print this message or the help of the given subcommand(s)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(branch_helpCmd).Standalone()
+	carapace.Gen(bookmark_helpCmd).Standalone()
 
-	branchCmd.AddCommand(branch_helpCmd)
+	bookmarkCmd.AddCommand(bookmark_helpCmd)
 
-	carapace.Gen(branch_helpCmd).PositionalAnyCompletion(
-		carapace.ActionCommands(branchCmd),
+	carapace.Gen(bookmark_helpCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(bookmarkCmd),
 	)
 }

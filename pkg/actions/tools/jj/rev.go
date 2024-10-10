@@ -7,16 +7,16 @@ import (
 )
 
 type RevOption struct {
-	LocalBranches  bool
-	RemoteBranches bool
-	Commits        int
-	HeadCommits    int
-	Tags           bool
+	LocalBookmarks  bool
+	RemoteBookmarks bool
+	Commits         int
+	HeadCommits     int
+	Tags            bool
 }
 
 func (o RevOption) Default() RevOption {
-	o.LocalBranches = true
-	o.RemoteBranches = true
+	o.LocalBookmarks = true
+	o.RemoteBookmarks = true
 	o.Commits = 100
 	o.HeadCommits = 100
 	o.Tags = true
@@ -24,17 +24,17 @@ func (o RevOption) Default() RevOption {
 
 }
 
-// ActionRevs completes refs (commits, branches, tags)
+// ActionRevs completes refs (commits, bookmarks, tags)
 func ActionRevs(revOption RevOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		batch := carapace.Batch()
 
-		if revOption.LocalBranches {
-			batch = append(batch, ActionLocalBranches())
+		if revOption.LocalBookmarks {
+			batch = append(batch, ActionLocalBookmarks())
 		}
 
-		if revOption.RemoteBranches {
-			batch = append(batch, ActionRemoteBranches(""))
+		if revOption.RemoteBookmarks {
+			batch = append(batch, ActionRemoteBookmarks(""))
 		}
 
 		if revOption.Commits > 0 {
@@ -81,8 +81,8 @@ func ActionRevSetFunctions() carapace.Action {
 		"connected", "Same as x::x",
 		"all", "All visible commits in the repo",
 		"none", "No commits",
-		"branches", "All local branch targets",
-		"remote_branches", "All remote branch targets across all remotes",
+		"bookmarks", "All local bookmark targets",
+		"remote_bookmarks", "All remote bookmark targets across all remotes",
 		"tags", "All tag targets",
 		"git_refs", "All Git ref targets as of the last import",
 		"git_head", "The Git HEAD target as of the last import",
@@ -97,8 +97,8 @@ func ActionRevSetFunctions() carapace.Action {
 		"mine", "Commits where the author's email matches the email of the current user",
 		"committer", "Commits with the committer's name or email matching the given string pattern",
 		"empty", "Commits modifying no files. This also includes merges() without user modifications and root()",
-		"file", "Commits modifying paths matching the given fileset expression",
-		"conflict", "Commits with conflicts",
+		"files", "Commits modifying paths matching the given fileset expression",
+		"conflicts", "Commits with conflicts",
 		"present", "Same as x, but evaluated to none() if any of the commits in x doesn't exist",
 		"reachable", "All commits reachable from srcs within domain",
 		"mutable", "All commits that jj does not treat as immutable (same as ~immutable())",
@@ -106,7 +106,7 @@ func ActionRevSetFunctions() carapace.Action {
 		"diff_contains", "Commits containing diffs matching the given text pattern line by line",
 		"author_date", "Commits with author dates matching the specified date pattern",
 		"committer_date", "Commits with committer dates matching the specified date pattern",
-		"tracked_remote_branches", "All targets of tracked remote branches",
-		"untracked_remote_branches", "All targets of untracked remote branches",
+		"tracked_remote_bookmarks", "All targets of tracked remote bookmarks",
+		"untracked_remote_bookmarks", "All targets of untracked remote bookmarks",
 	).Tag("revset functions")
 }
