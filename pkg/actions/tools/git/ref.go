@@ -104,6 +104,11 @@ func ActionRefs(refOption RefOption) carapace.Action {
 //	v.0.0.3^2~03...v0.0.4~03 (last commit msg)
 func ActionRefRanges(opts RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if strings.HasPrefix(c.Value, "^") { // negate
+			c.Value = c.Value[1:]
+			return ActionRefs(opts).Invoke(c).ToA().NoSpace().Prefix("^")
+		}
+
 		delimiter := ".."
 		if strings.Contains(c.Value, "...") && strings.Count(c.Value, "..") == 1 {
 			delimiter = "..."
