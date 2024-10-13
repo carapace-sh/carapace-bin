@@ -46,7 +46,12 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 							if splitted := strings.SplitN(path, " -> ", 2); len(splitted) > 1 { // renamed
 								path = splitted[1]
 							}
-							if relativePath, err := filepath.Rel(c.Dir, root+"/"+path); err != nil {
+
+							evaluatedDir, err := filepath.EvalSymlinks(c.Dir)
+							if err != nil {
+								return carapace.ActionMessage(err.Error())
+							}
+							if relativePath, err := filepath.Rel(evaluatedDir, root+"/"+path); err != nil {
 								return carapace.ActionMessage(err.Error())
 							} else {
 								if status := line[:2]; strings.Contains(status, "D") { // deleted
