@@ -36,30 +36,35 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 			if root, err := rootDir(c); err != nil {
 				return carapace.ActionMessage(err.Error())
 			} else {
+				evaluatedDir, err := filepath.EvalSymlinks(c.Dir)
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+
 				untracked := make([]string, 0)
 				for _, line := range strings.Split(string(output), "\n") {
-					if len(line) > 3 {
-						if (opts.Staged && line[1] == ' ') ||
-							(opts.Unstaged && line[1] != ' ' && line[1] != '!') ||
-							(opts.Ignored && line[1] == '!') {
-							path := line[3:]
-							if splitted := strings.SplitN(path, " -> ", 2); len(splitted) > 1 { // renamed
-								path = splitted[1]
-							}
+					switch {
+					case len(line) < 4:
+						// skip
+					case opts.Staged && line[1] == ' ',
+						opts.Unstaged && line[1] != ' ' && line[1] != '!',
+						opts.Ignored && line[1] == '!':
 
-							evaluatedDir, err := filepath.EvalSymlinks(c.Dir)
-							if err != nil {
-								return carapace.ActionMessage(err.Error())
-							}
-							if relativePath, err := filepath.Rel(evaluatedDir, root+"/"+path); err != nil {
-								return carapace.ActionMessage(err.Error())
-							} else {
-								if status := line[:2]; strings.Contains(status, "D") { // deleted
-									untracked = append(untracked, relativePath, status, style.ForPathExt(relativePath, c))
-								} else {
-									untracked = append(untracked, relativePath, status, style.ForPath(relativePath, c))
-								}
-							}
+						path := line[3:]
+						if splitted := strings.SplitN(path, " -> ", 2); len(splitted) > 1 { // renamed
+							path = splitted[1]
+						}
+
+						relativePath, err := filepath.Rel(evaluatedDir, root+"/"+path)
+						if err != nil {
+							return carapace.ActionMessage(err.Error())
+						}
+
+						switch status := line[:2]; {
+						case strings.Contains(status, "D"): // deleted
+							untracked = append(untracked, relativePath, status, style.ForPathExt(relativePath, c))
+						default:
+							untracked = append(untracked, relativePath, status, style.ForPath(relativePath, c))
 						}
 					}
 				}
