@@ -30,7 +30,7 @@ func ActionHeadCommits(limit int) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.HeadCommit)
 		})
-	}).Tag("head commits")
+	}).Tag("head commits").UidF(Uid("ref"))
 }
 
 // ActionRefCommits completes commits reachable by given ref
