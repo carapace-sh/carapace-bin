@@ -3,7 +3,7 @@ module github.com/carapace-sh/carapace-bin
 go 1.23.0
 
 require (
-	github.com/carapace-sh/carapace v1.3.1
+	github.com/carapace-sh/carapace v1.3.2
 	github.com/carapace-sh/carapace-bridge v1.0.2
 	github.com/carapace-sh/carapace-shlex v1.0.1
 	github.com/carapace-sh/carapace-spec v1.0.5
