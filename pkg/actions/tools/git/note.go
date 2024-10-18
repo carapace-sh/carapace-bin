@@ -20,7 +20,7 @@ func ActionNotes() carapace.Action {
 			vals = append(vals, line[41:49], line[:8])
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Note)
-	}).Tag("notes")
+	}).Tag("notes").UidF(Uid("note")) // TODO ref?
 }
 
 // ActionNotesMergeStrategies completes notes merge strategies
