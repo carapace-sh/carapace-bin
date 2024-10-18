@@ -41,7 +41,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"language": os.ActionLanguages(),
-		"platform": carapace.ActionValues("linux", "macos"),
+		"platform": carapace.ActionValues("linux", "macos", "windows", "sunos", "osx", "android"),
 		"render":   carapace.ActionFiles(),
 	})
 
