@@ -4,8 +4,8 @@ github.com/buger/jsonparser v1.1.1 h1:2PnMjfWD7wBILjqQbt530v576A/cAbQvEW9gGIpYMU
 github.com/buger/jsonparser v1.1.1/go.mod h1:6RYKKt7H4d4+iWqouImQ9R2FZql3VbhNgx27UK13J/0=
 github.com/carapace-sh/carapace v1.3.3 h1:rxA1KHt6bZs0frgPz0JkknKQxtIKCZaY7TeAxuOWLQw=
 github.com/carapace-sh/carapace v1.3.3/go.mod h1:djegtVDi/3duSAqZNU+/nCq7XtDRMRZUb5bW0O/HnEs=
-github.com/carapace-sh/carapace-bridge v1.0.2 h1:q2yVrhpxjxA0p3ZcGHpjns99KE9lCrJLc3Zgaa7kMK4=
-github.com/carapace-sh/carapace-bridge v1.0.2/go.mod h1:1tuz7tWpJeGMHa6Yvwlkb9QCNqxRD5VsS/4iZdK9ofQ=
+github.com/carapace-sh/carapace-bridge v1.1.0 h1:WkeQGPg7Zu0S3M39c0hZDlPY7EJ7Lrol1iVCJoFa6gM=
+github.com/carapace-sh/carapace-bridge v1.1.0/go.mod h1:bKG97KfwYewrvke7ULgv0OYIJ6lHbJDPex8W29NlD6o=
 github.com/carapace-sh/carapace-pflag v1.0.0 h1:uJMhl+vwEM/Eb0UdxZUuv4jo4rUAyPijkRGP5gfCuCE=
 github.com/carapace-sh/carapace-pflag v1.0.0/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
 github.com/carapace-sh/carapace-shlex v1.0.1 h1:ww0JCgWpOVuqWG7k3724pJ18Lq8gh5pHQs9j3ojUs1c=
