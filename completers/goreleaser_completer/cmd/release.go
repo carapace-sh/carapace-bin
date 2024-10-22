@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/goreleaser"
 	"github.com/spf13/cobra"
 )
 
@@ -60,6 +61,6 @@ func init() {
 		"release-header-tmpl": carapace.ActionFiles(),
 		"release-notes":       carapace.ActionFiles(),
 		"release-notes-tmpl":  carapace.ActionFiles(),
-		"skip":                carapace.ActionValues("announce", "aur", "before", "docker", "homebrew", "ko", "nix", "publish", "sbom", "scoop", "sign", "snapcraft", "validate", "winget").UniqueList(","),
+		"skip":                goreleaser.ActionReleaseSteps().UniqueList(","),
 	})
 }
