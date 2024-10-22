@@ -48,15 +48,11 @@ jobs:
         run: go run ./cmd/carapace-lint completers/*/cmd/*.go
 
       - name: Run GoReleaser
-        run: |
-          git clone https://github.com/rsteube/goreleaser --branch termux-arm ../goreleaser
-          (cd ../goreleaser && go install)
-          goreleaser release --clean
-        # uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@v5
         if: startsWith(github.ref, 'refs/tags/')
-        # with:
-        #   version: latest
-        #   args: release --clean
+        with:
+          version: latest
+          args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AUR_KEY: ${{ secrets.AUR_KEY }}
