@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/git_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/spf13/cobra"
@@ -24,9 +25,15 @@ func init() {
 	showCmd.Flags().String("decorate-refs", "", "only decorate refs that match <pattern>")
 	showCmd.Flags().String("decorate-refs-exclude", "", "do not decorate refs that match <pattern>")
 	showCmd.Flags().Bool("mailmap", false, "alias of --use-mailmap")
-	showCmd.Flags().BoolP("quiet", "q", false, "suppress diff output")
 	showCmd.Flags().Bool("source", false, "show source")
 	showCmd.Flags().Bool("use-mailmap", false, "Use mail map file")
+	common.AddBisectionHelperOptions(showCmd)
+	common.AddCommitFormattingOptions(showCmd)
+	common.AddCommitLimitingOptions(showCmd)
+	common.AddCommitOrderingOptions(showCmd)
+	common.AddDiffFlags(showCmd)
+	common.AddHistorySimplificationOptions(showCmd)
+	common.AddObjectTraversalOptions(showCmd)
 	rootCmd.AddCommand(showCmd)
 
 	showCmd.Flag("decorate").NoOptDefVal = "short"
