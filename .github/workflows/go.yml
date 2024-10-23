@@ -48,7 +48,7 @@ jobs:
         run: go run ./cmd/carapace-lint completers/*/cmd/*.go
 
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@v6
         if: startsWith(github.ref, 'refs/tags/')
         with:
           version: latest
