@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/goreleaser"
 	"github.com/spf13/cobra"
 )
 
@@ -36,9 +37,11 @@ func init() {
 	buildCmd.Flag("skip-validate").Hidden = true
 	rootCmd.AddCommand(buildCmd)
 
-	// TODO build ids
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
+		"id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return goreleaser.ActionBuilds(buildCmd.Flag("config").Value.String()).UniqueList(",")
+		}),
 		"output": carapace.ActionFiles(),
 		"skip":   carapace.ActionValues("before", "post-hooks", "pre-hooks", "validate").UniqueList(","),
 	})
