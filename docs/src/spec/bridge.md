@@ -63,6 +63,8 @@ completion:
   positionalany: ["$carapace.bridge.Clap([dynamic])"]
 ```
 
+> needs [clap-rs/clap#3166](https://github.com/clap-rs/clap/issues/3166)
+
 ### Click
 
 [pallets/click] based commands can be bridged with the [`bridge.Click`] macro:

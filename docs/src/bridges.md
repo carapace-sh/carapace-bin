@@ -18,7 +18,7 @@ Currently available bridges:
 - [argcomplete](https://github.com/kislyuk/argcomplete)
 - [bash](https://www.gnu.org/software/bash/)
 - [carapace](https://github.com/carapace-sh/carapace)
-- [clap](https://github.com/clap-rs/clap)
+- [clap](https://github.com/clap-rs/clap) (needs [clap-rs/clap#3166](https://github.com/clap-rs/clap/issues/3166))
 - [click](https://github.com/pallets/click)
 - [cobra](https://github.com/spf13/cobra)
 - [complete](https://github.com/posener/complete)
