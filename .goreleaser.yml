@@ -31,7 +31,7 @@ builds:
       - release
     gobinary: go-termux
 archives:
-  - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  - id: default
     builds:
      - default
     format_overrides:
@@ -40,7 +40,7 @@ archives:
   - id: termux
     builds:
       - termux
-    name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}.termux'
+    name_template: '{{ .Binary }}_{{ .Version }}_termux_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
 
 brews:
   -
