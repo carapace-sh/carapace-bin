@@ -11,7 +11,7 @@ var commit, date string
 var version = "develop"
 
 func main() {
-	if strings.HasSuffix(version, "-next") {
+	if strings.Contains(version, "SNAPSHOT") {
 		version += fmt.Sprintf(" (%v) [%v]", date, commit)
 	}
 	cmd.Execute(version)
