@@ -28,6 +28,12 @@ apt-get update && apt-get install carapace-bin
 
 ## Homebrew
 
+Install from [homebrew-core](https://formulae.brew.sh/formula/carapace)
+
+```sh
+brew install carapace
+```
+
 Install from [rsteube/homebrew-tap](https://github.com/rsteube/homebrew-tap)
 
 ```sh
