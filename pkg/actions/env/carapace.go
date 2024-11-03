@@ -19,6 +19,7 @@ func init() {
 				"CARAPACE_LENIENT":       "allow unknown flags",
 				"CARAPACE_LOG":           "enable logging",
 				"CARAPACE_MATCH":         "match case insensitive",
+				"CARAPACE_NOSPACE":       "nospace suffixes",
 				"CARAPACE_SANDBOX":       "mock context for sandbox tests",
 				"CARAPACE_ZSH_HASH_DIRS": "zsh hash directories",
 				// carapace-bin
@@ -36,6 +37,9 @@ func init() {
 					"0", "CASE_SENSITIVE",
 					"1", "CASE_INSENSITIVE",
 				).StyleF(style.ForKeyword),
+				"CARAPACE_NOSPACE": carapace.ActionValuesDescribed(
+					"*", "match all",
+				).UniqueList(""),
 				"CARAPACE_SANDBOX": carapace.ActionValues(),
 				// carapace-bin
 				"CARAPACE_EXCLUDES": carapace.Batch(

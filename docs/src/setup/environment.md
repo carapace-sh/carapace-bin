@@ -65,6 +65,14 @@ Whether to match case insensitive.
 - `1` - case insensitive
 
 ![](./match.cast)
+
+## CARAPACE_NOSPACE
+
+Extend suffixes that prevent space suffix.
+
+- `*` - matches all
+
+![](./nospace.cast)
         
 ## CARAPACE_SANDBOX
 
