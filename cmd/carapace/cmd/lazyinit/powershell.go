@@ -2,6 +2,7 @@ package lazyinit
 
 import (
 	"fmt"
+	"runtime"
 	"strings"
 )
 
@@ -10,15 +11,21 @@ func Powershell(completers []string) string {
 
 $_carapace_lazy = {
     param($wordToComplete, $commandAst, $cursorPosition)
-    $completer = $commandAst.CommandElements[0].Value
+    $completer = $commandAst.CommandElements[0].Value.trimend(".exe")
     carapace $completer powershell | Out-String | Invoke-Expression
     & (Get-Item "Function:_${completer}_completer") $wordToComplete $commandAst $cursorPosition
 }
 %v
 `
-	complete := make([]string, len(completers))
-	for index, completer := range completers {
-		complete[index] = fmt.Sprintf(`Register-ArgumentCompleter -Native -CommandName '%v' -ScriptBlock $_carapace_lazy`, completer)
+
+	prefix := " # "
+	if runtime.GOOS == "windows" {
+		prefix = ""
+	}
+
+	complete := make([]string, 0, len(completers)*2)
+	for _, completer := range completers {
+		complete = append(complete, fmt.Sprintf(`Register-ArgumentCompleter -Native -ScriptBlock $_carapace_lazy -CommandName '%v'%v,'%v.exe'`, completer, prefix, completer))
 	}
 	return fmt.Sprintf(snippet, pathSnippet("powershell"), envSnippet("powershell"), strings.Join(complete, "\n"))
 }
