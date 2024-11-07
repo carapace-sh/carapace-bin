@@ -108,5 +108,7 @@ func ActionRevSetFunctions() carapace.Action {
 		"committer_date", "Commits with committer dates matching the specified date pattern",
 		"tracked_remote_bookmarks", "All targets of tracked remote bookmarks",
 		"untracked_remote_bookmarks", "All targets of untracked remote bookmarks",
+		"coalesce", "Get first non-none revset from a list of revsets",
+		"at_operation", "Query revisions based on historical state",
 	).Tag("revset functions")
 }
