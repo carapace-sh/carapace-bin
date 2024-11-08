@@ -16,10 +16,10 @@ var squashCmd = &cobra.Command{
 func init() {
 	carapace.Gen(squashCmd).Standalone()
 
-	squashCmd.Flags().String("from", "@", "Revision to squash from")
+	squashCmd.Flags().StringP("from", "f", "@", "Revision to squash from")
 	squashCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	squashCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to squash")
-	squashCmd.Flags().String("into", "@", "Revision to squash into")
+	squashCmd.Flags().StringP("into", "t", "@", "Revision to squash into")
 	squashCmd.Flags().BoolP("keep-emptied", "k", false, "The source revision will not be abandoned")
 	squashCmd.Flags().StringSliceP("message", "m", []string{}, "The description to use for squashed revision (don't open editor)")
 	squashCmd.Flags().StringP("revision", "r", "@", "Revision to squash into its parent")

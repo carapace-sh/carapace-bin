@@ -21,6 +21,8 @@ func init() {
 	diffCmd.Flags().String("from", "", "Show changes from this revision")
 	diffCmd.Flags().Bool("git", false, "Show a Git-format diff")
 	diffCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	diffCmd.Flags().BoolP("ignore-all-space", "w", false, "Ignore whitespace when comparing lines")
+	diffCmd.Flags().BoolP("ignore-space-change", "b", false, " Ignore changes in amount of whitespace when comparing lines")
 	diffCmd.Flags().Bool("name-only", false, "For each path, show only its path")
 	diffCmd.Flags().StringP("revision", "r", "", "Show changes in this revision, compared to its parent(s)")
 	diffCmd.Flags().Bool("stat", false, "Show a histogram of the changes")

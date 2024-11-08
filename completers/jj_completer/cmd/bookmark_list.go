@@ -19,6 +19,7 @@ func init() {
 	bookmark_listCmd.Flags().BoolP("all-remotes", "a", false, "Show all tracking and non-tracking remote bookmarks including the ones whose targets are synchronized with the local bookmarks")
 	bookmark_listCmd.Flags().BoolP("conflicted", "c", false, "Show only conflicted bookmarks")
 	bookmark_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	bookmark_listCmd.Flags().StringSlice("remote", []string{}, "Show all tracking and non-tracking remote bookmarks belonging to this remote")
 	bookmark_listCmd.Flags().StringSliceP("revisions", "r", []string{}, "Show bookmarks whose local targets are in the given revisions")
 	bookmark_listCmd.Flags().StringP("template", "T", "", "Render each bookmark using the given template")
 
@@ -27,6 +28,7 @@ func init() {
 	bookmarkCmd.AddCommand(bookmark_listCmd)
 
 	carapace.Gen(bookmark_listCmd).FlagCompletion(carapace.ActionMap{
+		"remote":    jj.ActionRemotes(),
 		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()).UniqueList(","),
 	})
 
