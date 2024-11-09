@@ -70,6 +70,15 @@ Whether to match case insensitive.
 
 Mock context for sandbox tests (internal).
       
+## CARAPACE_TOOLTIP
+
+Whether to enable tooltip style.
+
+- `0` - disabled
+- `1` - enabled
+
+![](./tooltip.cast)
+
 ## CARAPACE_ZSH_HASH_DIRS
 
 Zsh hash directories (internal).
