@@ -24,7 +24,7 @@ func init() {
 	create_roleCmd.Flags().Bool("save-config", false, "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.")
 	create_roleCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	create_roleCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	create_roleCmd.Flags().String("validate", "", "Validation mode.")
+	create_roleCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	create_roleCmd.Flags().StringSlice("verb", []string{}, "Verb that applies to the resources contained in the rule")
 	create_roleCmd.Flag("dry-run").NoOptDefVal = " "
 	create_roleCmd.Flag("validate").NoOptDefVal = " "

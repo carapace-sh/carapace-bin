@@ -18,7 +18,6 @@ func init() {
 
 	drainCmd.Flags().String("chunk-size", "", "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.")
 	drainCmd.Flags().Bool("delete-emptydir-data", false, "Continue even if there are pods using emptyDir (local data that will be deleted when the node is drained).")
-	drainCmd.Flags().Bool("delete-local-data", false, "Continue even if there are pods using emptyDir (local data that will be deleted when the node is drained).")
 	drainCmd.Flags().Bool("disable-eviction", false, "Force drain to use delete, even if eviction is supported. This will bypass checking PodDisruptionBudgets, use with caution.")
 	drainCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	drainCmd.Flags().Bool("force", false, "Continue even if there are pods that do not declare a controller.")
@@ -28,7 +27,6 @@ func init() {
 	drainCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
 	drainCmd.Flags().String("skip-wait-for-delete-timeout", "", "If pod DeletionTimestamp older than N seconds, skip waiting for the pod.  Seconds must be greater than 0 to skip.")
 	drainCmd.Flags().String("timeout", "", "The length of time to wait before giving up, zero means infinite")
-	drainCmd.Flag("delete-local-data").Hidden = true
 	drainCmd.Flag("dry-run").NoOptDefVal = " "
 	rootCmd.AddCommand(drainCmd)
 

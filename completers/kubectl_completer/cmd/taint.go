@@ -25,7 +25,7 @@ func init() {
 	taintCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
 	taintCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	taintCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	taintCmd.Flags().String("validate", "", "Validation mode.")
+	taintCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	taintCmd.Flag("dry-run").NoOptDefVal = " "
 	taintCmd.Flag("validate").NoOptDefVal = " "
 	rootCmd.AddCommand(taintCmd)

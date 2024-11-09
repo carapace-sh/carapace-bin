@@ -30,7 +30,7 @@ func init() {
 	createCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
 	createCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	createCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	createCmd.Flags().String("validate", "", "Validation mode.")
+	createCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	createCmd.Flags().Bool("windows-line-endings", false, "Only relevant if --edit=true. Defaults to the line ending native to your platform.")
 	createCmd.Flag("dry-run").NoOptDefVal = " "
 	createCmd.Flag("record").Hidden = true

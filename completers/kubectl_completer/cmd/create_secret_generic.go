@@ -27,7 +27,7 @@ func init() {
 	create_secret_genericCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	create_secret_genericCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
 	create_secret_genericCmd.Flags().String("type", "", "The type of secret to create")
-	create_secret_genericCmd.Flags().String("validate", "", "Validation mode.")
+	create_secret_genericCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	create_secret_genericCmd.Flag("dry-run").NoOptDefVal = " "
 	create_secret_genericCmd.Flag("validate").NoOptDefVal = " "
 	create_secretCmd.AddCommand(create_secret_genericCmd)

@@ -32,7 +32,7 @@ func init() {
 	replaceCmd.Flags().String("subresource", "", "If specified, replace will operate on the subresource of the requested object. Must be one of [status scale]. This flag is beta and may change in the future.")
 	replaceCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
 	replaceCmd.Flags().String("timeout", "", "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object")
-	replaceCmd.Flags().String("validate", "", "Validation mode.")
+	replaceCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	replaceCmd.Flags().Bool("wait", false, "If true, wait for resources to be gone before returning. This waits for finalizers.")
 	replaceCmd.Flag("cascade").NoOptDefVal = " "
 	replaceCmd.Flag("dry-run").NoOptDefVal = " "

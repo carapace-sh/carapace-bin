@@ -6,8 +6,8 @@ import (
 )
 
 var create_secretCmd = &cobra.Command{
-	Use:   "secret",
-	Short: "Create a secret using specified subcommand",
+	Use:   "secret (docker-registry | generic | tls)",
+	Short: "Create a secret using a specified subcommand",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

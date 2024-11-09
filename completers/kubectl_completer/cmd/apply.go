@@ -31,7 +31,6 @@ func init() {
 	applyCmd.Flags().Bool("overwrite", false, "Automatically resolve conflicts between the modified and live configuration by using values from the modified configuration")
 	applyCmd.Flags().Bool("prune", false, "Automatically delete resource objects, that do not appear in the configs and are created by either apply or create --save-config. Should be used with either -l or --all.")
 	applyCmd.Flags().StringSlice("prune-allowlist", []string{}, "Overwrite the default allowlist with <group/version/kind> for --prune")
-	applyCmd.Flags().StringSlice("prune-whitelist", []string{}, "Overwrite the default whitelist with <group/version/kind> for --prune")
 	applyCmd.Flags().Bool("record", false, "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.")
 	applyCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")
 	applyCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
@@ -39,11 +38,10 @@ func init() {
 	applyCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	applyCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
 	applyCmd.Flags().String("timeout", "", "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object")
-	applyCmd.Flags().String("validate", "", "Validation mode.")
+	applyCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	applyCmd.Flags().Bool("wait", false, "If true, wait for resources to be gone before returning. This waits for finalizers.")
 	applyCmd.Flag("cascade").NoOptDefVal = " "
 	applyCmd.Flag("dry-run").NoOptDefVal = " "
-	applyCmd.Flag("prune-whitelist").Hidden = true
 	applyCmd.Flag("record").Hidden = true
 	applyCmd.Flag("validate").NoOptDefVal = " "
 	rootCmd.AddCommand(applyCmd)

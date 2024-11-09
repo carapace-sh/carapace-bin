@@ -7,7 +7,7 @@ import (
 )
 
 var eventsCmd = &cobra.Command{
-	Use:   "events [(-o|--output=)json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file] [--for TYPE/NAME] [--watch] [--event=Normal,Warning]",
+	Use:   "events [(-o|--output=)json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file] [--for TYPE/NAME] [--watch] [--types=Normal,Warning]",
 	Short: "List events",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

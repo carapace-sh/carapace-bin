@@ -26,7 +26,7 @@ func init() {
 	create_priorityclassCmd.Flags().Bool("save-config", false, "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.")
 	create_priorityclassCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	create_priorityclassCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	create_priorityclassCmd.Flags().String("validate", "", "Validation mode.")
+	create_priorityclassCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	create_priorityclassCmd.Flags().String("value", "", "the value of this priority class.")
 	create_priorityclassCmd.Flag("dry-run").NoOptDefVal = " "
 	create_priorityclassCmd.Flag("validate").NoOptDefVal = " "

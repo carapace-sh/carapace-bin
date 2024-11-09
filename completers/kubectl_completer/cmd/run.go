@@ -7,7 +7,7 @@ import (
 )
 
 var runCmd = &cobra.Command{
-	Use:     "run",
+	Use:     "run NAME --image=image [--env=\"key=value\"] [--port=port] [--dry-run=server|client] [--overrides=inline-json] [--command] -- [COMMAND] [args...]",
 	Short:   "Run a particular image on the cluster",
 	GroupID: "basic beginner",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -52,17 +52,9 @@ func init() {
 	runCmd.Flags().BoolP("tty", "t", false, "Allocate a TTY for the container in the pod.")
 	runCmd.Flags().Bool("wait", false, "If true, wait for resources to be gone before returning. This waits for finalizers.")
 	runCmd.Flag("cascade").NoOptDefVal = " "
-	runCmd.Flag("cascade").Hidden = true
 	runCmd.Flag("dry-run").NoOptDefVal = " "
-	runCmd.Flag("filename").Hidden = true
-	runCmd.Flag("force").Hidden = true
-	runCmd.Flag("grace-period").Hidden = true
 	runCmd.MarkFlagRequired("image")
-	runCmd.Flag("kustomize").Hidden = true
 	runCmd.Flag("record").Hidden = true
-	runCmd.Flag("recursive").Hidden = true
-	runCmd.Flag("timeout").Hidden = true
-	runCmd.Flag("wait").Hidden = true
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{

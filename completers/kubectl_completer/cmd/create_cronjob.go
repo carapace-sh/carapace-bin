@@ -26,7 +26,7 @@ func init() {
 	create_cronjobCmd.Flags().String("schedule", "", "A schedule in the Cron format the job should be run with.")
 	create_cronjobCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	create_cronjobCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	create_cronjobCmd.Flags().String("validate", "", "Validation mode.")
+	create_cronjobCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	create_cronjobCmd.Flag("dry-run").NoOptDefVal = " "
 	create_cronjobCmd.MarkFlagRequired("image")
 	create_cronjobCmd.MarkFlagRequired("schedule")

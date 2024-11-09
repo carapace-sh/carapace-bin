@@ -7,7 +7,7 @@ import (
 
 var kustomizeCmd = &cobra.Command{
 	Use:     "kustomize DIR",
-	Short:   "Build a kustomization target from a directory or URL.",
+	Short:   "Build a kustomization target from a directory or URL",
 	GroupID: "advanced",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -20,7 +20,9 @@ func init() {
 	kustomizeCmd.Flags().Bool("enable-helm", false, "Enable use of the Helm chart inflator generator.")
 	kustomizeCmd.Flags().Bool("enable-managedby-label", false, "enable adding app.kubernetes.io/managed-by")
 	kustomizeCmd.Flags().StringSliceP("env", "e", []string{}, "a list of environment variables to be used by functions")
+	kustomizeCmd.Flags().StringSlice("helm-api-versions", []string{}, "Kubernetes api versions used by Helm for Capabilities.APIVersions")
 	kustomizeCmd.Flags().String("helm-command", "", "helm command (path to executable)")
+	kustomizeCmd.Flags().String("helm-kube-version", "", "Kubernetes version used by Helm for Capabilities.KubeVersion")
 	kustomizeCmd.Flags().String("load-restrictor", "", "if set to 'LoadRestrictionsNone', local kustomizations may load files from outside their root. This does, however, break the relocatability of the kustomization.")
 	kustomizeCmd.Flags().StringSlice("mount", []string{}, "a list of storage options read from the filesystem")
 	kustomizeCmd.Flags().Bool("network", false, "enable network access for functions that declare it")

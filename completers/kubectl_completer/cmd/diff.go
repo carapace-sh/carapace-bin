@@ -21,7 +21,7 @@ func init() {
 	diffCmd.Flags().Bool("force-conflicts", false, "If true, server-side apply will force the changes against conflicts.")
 	diffCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	diffCmd.Flags().Bool("prune", false, "Include resources that would be deleted by pruning. Can be used with -l and default shows all resources would be pruned")
-	diffCmd.Flags().StringSlice("prune-allowlist", []string{}, "Overwrite the default whitelist with <group/version/kind> for --prune")
+	diffCmd.Flags().StringSlice("prune-allowlist", []string{}, "Overwrite the default allowlist with <group/version/kind> for --prune")
 	diffCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")
 	diffCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
 	diffCmd.Flags().Bool("server-side", false, "If true, apply runs in the server instead of the client.")

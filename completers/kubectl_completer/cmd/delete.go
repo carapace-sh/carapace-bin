@@ -25,6 +25,7 @@ func init() {
 	deleteCmd.Flags().Bool("force", false, "If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of some resources may result in inconsistency or data loss and requires confirmation.")
 	deleteCmd.Flags().String("grace-period", "", "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion).")
 	deleteCmd.Flags().Bool("ignore-not-found", false, "Treat \"resource not found\" as a successful delete. Defaults to \"true\" when --all is specified.")
+	deleteCmd.Flags().BoolP("interactive", "i", false, "If true, delete resource only when user confirms.")
 	deleteCmd.Flags().StringP("kustomize", "k", "", "Process a kustomization directory. This flag can't be used together with -f or -R.")
 	deleteCmd.Flags().Bool("now", false, "If true, resources are signaled for immediate shutdown (same as --grace-period=1).")
 	deleteCmd.Flags().StringP("output", "o", "", "Output mode. Use \"-o name\" for shorter output (resource/name).")

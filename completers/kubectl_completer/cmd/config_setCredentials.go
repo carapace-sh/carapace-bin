@@ -23,10 +23,13 @@ func init() {
 	config_setCredentialsCmd.Flags().StringSlice("exec-arg", []string{}, "New arguments for the exec credential plugin command for the user entry in kubeconfig")
 	config_setCredentialsCmd.Flags().String("exec-command", "", "Command for the exec credential plugin for the user entry in kubeconfig")
 	config_setCredentialsCmd.Flags().StringSlice("exec-env", []string{}, "'key=value' environment values for the exec credential plugin")
+	config_setCredentialsCmd.Flags().String("exec-interactive-mode", "", "InteractiveMode of the exec credentials plugin for the user entry in kubeconfig")
+	config_setCredentialsCmd.Flags().String("exec-provide-cluster-info", "", "ProvideClusterInfo of the exec credentials plugin for the user entry in kubeconfig")
 	config_setCredentialsCmd.Flags().String("password", "", "password for the user entry in kubeconfig")
 	config_setCredentialsCmd.Flags().String("token", "", "token for the user entry in kubeconfig")
 	config_setCredentialsCmd.Flags().String("username", "", "username for the user entry in kubeconfig")
 	config_setCredentialsCmd.Flag("embed-certs").NoOptDefVal = " "
+	config_setCredentialsCmd.Flag("exec-provide-cluster-info").NoOptDefVal = " "
 	configCmd.AddCommand(config_setCredentialsCmd)
 
 	carapace.Gen(config_setCredentialsCmd).FlagCompletion(carapace.ActionMap{

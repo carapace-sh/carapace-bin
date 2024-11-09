@@ -26,7 +26,7 @@ func init() {
 	create_clusterrolebindingCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	create_clusterrolebindingCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
 	create_clusterrolebindingCmd.Flags().StringSlice("user", []string{}, "Usernames to bind to the clusterrole. The flag can be repeated to add multiple users.")
-	create_clusterrolebindingCmd.Flags().String("validate", "", "Validation mode.")
+	create_clusterrolebindingCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	create_clusterrolebindingCmd.MarkFlagRequired("clusterrole")
 	create_clusterrolebindingCmd.Flag("dry-run").NoOptDefVal = " "
 	create_clusterrolebindingCmd.Flag("validate").NoOptDefVal = " "

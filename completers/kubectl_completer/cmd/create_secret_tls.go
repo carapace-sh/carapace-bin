@@ -25,7 +25,7 @@ func init() {
 	create_secret_tlsCmd.Flags().Bool("save-config", false, "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.")
 	create_secret_tlsCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	create_secret_tlsCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	create_secret_tlsCmd.Flags().String("validate", "", "Validation mode.")
+	create_secret_tlsCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	create_secret_tlsCmd.Flag("dry-run").NoOptDefVal = " "
 	create_secret_tlsCmd.Flag("validate").NoOptDefVal = " "
 	create_secretCmd.AddCommand(create_secret_tlsCmd)
