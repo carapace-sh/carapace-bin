@@ -7,7 +7,7 @@ import (
 )
 
 var explainCmd = &cobra.Command{
-	Use:     "explain RESOURCE",
+	Use:     "explain TYPE [--recursive=FALSE|TRUE] [--api-version=api-version-group] [--output=plaintext|plaintext-openapiv2]",
 	Short:   "Get documentation for a resource",
 	GroupID: "basic intermediate",
 	Run:     func(cmd *cobra.Command, args []string) {},

@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(logsCmd).Standalone()
 
 	logsCmd.Flags().Bool("all-containers", false, "Get all containers' logs in the pod(s).")
+	logsCmd.Flags().Bool("all-pods", false, "Get logs from all pod(s). Sets prefix to true.")
 	logsCmd.Flags().StringP("container", "c", "", "Print the logs of this container")
 	logsCmd.Flags().BoolP("follow", "f", false, "Specify if the logs should be streamed.")
 	logsCmd.Flags().Bool("ignore-errors", false, "If watching / following pod logs, allow for any errors that occur to be non-fatal")

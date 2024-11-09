@@ -24,7 +24,7 @@ func init() {
 	create_service_clusteripCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	create_service_clusteripCmd.Flags().StringSlice("tcp", []string{}, "Port pairs can be specified as '<port>:<targetPort>'.")
 	create_service_clusteripCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	create_service_clusteripCmd.Flags().String("validate", "", "Validation mode.")
+	create_service_clusteripCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	create_service_clusteripCmd.Flag("dry-run").NoOptDefVal = " "
 	create_service_clusteripCmd.Flag("validate").NoOptDefVal = " "
 	create_serviceCmd.AddCommand(create_service_clusteripCmd)

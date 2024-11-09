@@ -23,7 +23,7 @@ func init() {
 	create_namespaceCmd.Flags().Bool("save-config", false, "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.")
 	create_namespaceCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	create_namespaceCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	create_namespaceCmd.Flags().String("validate", "", "Validation mode.")
+	create_namespaceCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
 	create_namespaceCmd.Flag("dry-run").NoOptDefVal = " "
 	create_namespaceCmd.Flag("validate").NoOptDefVal = " "
 	createCmd.AddCommand(create_namespaceCmd)
