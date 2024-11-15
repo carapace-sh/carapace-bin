@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers_release/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/completers/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
