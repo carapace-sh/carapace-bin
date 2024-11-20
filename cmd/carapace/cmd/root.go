@@ -82,6 +82,9 @@ var rootCmd = &cobra.Command{
 		case "--run":
 			runCmd.SetArgs(args[1:])
 			runCmd.Execute()
+		case "--selfupdate":
+			selfupdateCmd.SetArgs(args[1:])
+			selfupdateCmd.Execute()
 		case "--schema":
 			schemaCmd.SetArgs(args[1:])
 			schemaCmd.Execute()
@@ -187,6 +190,7 @@ func init() {
 	rootCmd.Flags().Bool("list", false, "list completers")
 	rootCmd.Flags().Bool("macro", false, "list or execute macros")
 	rootCmd.Flags().Bool("run", false, "run spec")
+	rootCmd.Flags().Bool("selfupdate", false, "update to nightly/stable")
 	rootCmd.Flags().Bool("schema", false, "json schema for spec files")
 	rootCmd.Flags().Bool("style", false, "set style")
 	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
@@ -201,6 +205,7 @@ func init() {
 		"macro",
 		"run",
 		"schema",
+		"selfupdate",
 		"style",
 		"version",
 	)
@@ -238,6 +243,8 @@ func init() {
 				return carapace.ActionExecute(macroCmd).Shift(1)
 			case "--run":
 				return carapace.ActionExecute(runCmd).Shift(1)
+			case "--selfupdate":
+				return carapace.ActionExecute(selfupdateCmd).Shift(1)
 			case "--schema":
 				return carapace.ActionExecute(schemaCmd).Shift(1)
 			case "--style":
