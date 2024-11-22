@@ -33,8 +33,8 @@ func init() {
 	rootCmd.Flags().String("color-scale", "", "highlight levels of 'field' distinctly")
 	rootCmd.Flags().String("color-scale-mode", "", "use gradient or fixed colors in --color-scale")
 	rootCmd.Flags().String("colour", "", "when to use terminal colours")
-	rootCmd.Flags().Bool("colour-scale", false, "highlight levels of 'field' distinctly")
-	rootCmd.Flags().Bool("colour-scale-mode", false, "use gradient or fixed colors in --color-scale")
+	rootCmd.Flags().String("colour-scale", "", "highlight levels of 'field' distinctly")
+	rootCmd.Flags().String("colour-scale-mode", "", "use gradient or fixed colors in --color-scale")
 	rootCmd.Flags().BoolP("context", "Z", false, "list each file's security context")
 	rootCmd.Flags().BoolP("created", "U", false, "use the created timestamp field")
 	rootCmd.Flags().BoolP("dereference", "X", false, "dereference symbolic links when displaying information")
@@ -81,16 +81,22 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "show version of eza")
 	rootCmd.Flags().StringP("width", "w", "", "set screen width in columns")
 
+	rootCmd.MarkFlagsMutuallyExclusive("color", "colour")
+	rootCmd.MarkFlagsMutuallyExclusive("color-scale", "colour-scale")
+	rootCmd.MarkFlagsMutuallyExclusive("color-scale-mode", "colour-scale-mode")
+
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"classify":         carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"color":            carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"color-scale":      carapace.ActionValues("all", "age", "size"),
-		"color-scale-mode": carapace.ActionValues("fixed", "gradient"),
-		"colour":           carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"icons":            carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"sort":             carapace.ActionValues("name", "Name", "size", "extension", "Extension", "modified", "changed", "accessed", "created", "inode", "type", "none"),
-		"time":             carapace.ActionValues("modified", "accessed", "created"),
-		"time-style":       carapace.ActionValues("default", "iso", "long-iso", "full-iso"),
+		"classify":          carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":             carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color-scale":       carapace.ActionValues("all", "age", "size"),
+		"color-scale-mode":  carapace.ActionValues("fixed", "gradient"),
+		"colour":            carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"colour-scale":      carapace.ActionValues("all", "age", "size"),
+		"colour-scale-mode": carapace.ActionValues("fixed", "gradient"),
+		"icons":             carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"sort":              carapace.ActionValues("name", "Name", "size", "extension", "Extension", "modified", "changed", "accessed", "created", "inode", "type", "none"),
+		"time":              carapace.ActionValues("modified", "accessed", "created"),
+		"time-style":        carapace.ActionValues("default", "iso", "long-iso", "full-iso"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
