@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/bloop"
 	"github.com/spf13/cobra"
 )
 
@@ -26,7 +27,7 @@ func init() {
 		"host":      net.ActionHosts(),
 		"pipe-name": carapace.ActionFiles(),
 		"port":      net.ActionPorts(),
-		"protocol":  carapace.ActionValues(), // TODO
+		"protocol":  bloop.ActionProtocols(),
 		"socket":    carapace.ActionFiles(),
 	})
 }

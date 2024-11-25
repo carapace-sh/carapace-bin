@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/bloop"
 	"github.com/spf13/cobra"
 )
 
 var cleanCmd = &cobra.Command{
-	Use:   "clean",
+	Use:   "clean <project>",
 	Short: "clean compilation caches",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -23,5 +24,12 @@ func init() {
 
 	cleanCmd.MarkFlagsMutuallyExclusive("include-dependencies", "propagate")
 
-	// TODO completion
+	carapace.Gen(cleanCmd).FlagCompletion(carapace.ActionMap{
+		"project":  bloop.ActionProjects(),
+		"projects": bloop.ActionProjects(),
+	})
+
+	carapace.Gen(cleanCmd).PositionalAnyCompletion(
+		bloop.ActionProjects().FilterArgs(),
+	)
 }

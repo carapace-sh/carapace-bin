@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/bloop"
 	"github.com/spf13/cobra"
 )
 
 var linkCmd = &cobra.Command{
-	Use:   "link",
+	Use:   "link <link>",
 	Short: "link projects",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -24,11 +25,14 @@ func init() {
 	linkCmd.Flags().BoolP("watch", "w", false, "run the command whenever projects' source files change")
 	rootCmd.AddCommand(linkCmd)
 
-	// TODO completion
 	carapace.Gen(linkCmd).FlagCompletion(carapace.ActionMap{
 		"main":     carapace.ActionValues(),
 		"optimize": carapace.ActionValues("debug", "release"),
-		"project":  carapace.ActionValues(),
-		"projects": carapace.ActionValues(),
+		"project":  bloop.ActionProjects(),
+		"projects": bloop.ActionProjects(),
 	})
+
+	carapace.Gen(linkCmd).PositionalAnyCompletion(
+		bloop.ActionProjects().FilterArgs(),
+	)
 }

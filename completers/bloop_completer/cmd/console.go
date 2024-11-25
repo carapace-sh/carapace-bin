@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/bloop"
 	"github.com/spf13/cobra"
 )
 
 var consoleCmd = &cobra.Command{
-	Use:   "console",
+	Use:   "console <project>",
 	Short: "start console",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -26,14 +27,17 @@ func init() {
 	consoleCmd.Flags().String("reporter", "", "pick reporter to show compilation messages")
 	rootCmd.AddCommand(consoleCmd)
 
-	// TODO completion
 	carapace.Gen(consoleCmd).FlagCompletion(carapace.ActionMap{
 		"ammonite-version": carapace.ActionValues(),
 		"args":             carapace.ActionValues(),
 		"out-file":         carapace.ActionFiles(),
-		"project":          carapace.ActionValues(),
-		"projects":         carapace.ActionValues(),
+		"project":          bloop.ActionProjects(),
+		"projects":         bloop.ActionProjects(),
 		"repl":             carapace.ActionValues("scalac", "ammonite"),
-		"reporter":         carapace.ActionValues(),
+		"reporter":         bloop.ActionReporters(),
 	})
+
+	carapace.Gen(consoleCmd).PositionalCompletion(
+		bloop.ActionProjects(),
+	)
 }
