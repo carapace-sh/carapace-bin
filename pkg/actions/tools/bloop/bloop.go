@@ -37,7 +37,7 @@ func ActionProtocols() carapace.Action {
 	return autocomplete("protocols").Tag("protocols")
 }
 
-// ActionReporters completes ActionReporters
+// ActionReporters completes reporters
 //
 //	scalac
 //	bloop
