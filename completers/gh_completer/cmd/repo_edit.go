@@ -16,6 +16,7 @@ var repo_editCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_editCmd).Standalone()
 
+	repo_editCmd.Flags().Bool("accept-visibility-change-consequences", false, "Accept the consequences of changing the repository visibility")
 	repo_editCmd.Flags().StringSlice("add-topic", []string{}, "Add repository topic")
 	repo_editCmd.Flags().Bool("allow-forking", false, "Allow forking of an organization repository")
 	repo_editCmd.Flags().Bool("allow-update-branch", false, "Allow a pull request head branch that is behind its base branch to be updated")
