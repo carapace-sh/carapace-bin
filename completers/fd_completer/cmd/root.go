@@ -21,23 +21,23 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringP("1", "", "","Limit to one result")
+	rootCmd.Flags().StringP("1", "", "", "Limit to one result")
 	rootCmd.Flags().BoolP("absolute-path", "a", false, "Show absolute instead of relative paths")
-	rootCmd.Flags().StringP("and", "","", "Add additional required search patterns")
-	rootCmd.Flags().StringP("base-directory", "","", "Change theb base directory")
-	rootCmd.Flags().StringP("batch-size", "","", "Maximum number of arguments for batch commands")
+	rootCmd.Flags().StringP("and", "", "", "Add additional required search patterns")
+	rootCmd.Flags().StringP("base-directory", "", "", "Change theb base directory")
+	rootCmd.Flags().StringP("batch-size", "", "", "Maximum number of arguments for batch commands")
 	rootCmd.Flags().BoolP("case-sensitive", "s", false, "Case-sensitive search (default: smart case)")
 	rootCmd.Flags().String("changed-before", "", "Filter by file modification time (older than)")
 	rootCmd.Flags().String("changed-within", "", "Filter by file modification time (newer than)")
 	rootCmd.Flags().StringP("color", "c", "", "When to use colors")
-	rootCmd.Flags().StringP("exact-depth", "", "","When to use colors")
+	rootCmd.Flags().StringP("exact-depth", "", "", "When to use colors")
 	rootCmd.Flags().StringP("exclude", "E", "", "Exclude entries that match the given glob pattern")
 	rootCmd.Flags().StringP("exec", "x", "", "Execute a command for each search result")
 	rootCmd.Flags().StringP("exec-batch", "X", "", "Execute a command with all search results at once")
 	rootCmd.Flags().StringP("extension", "e", "", "Filter by file extension")
 	rootCmd.Flags().BoolP("fixed-strings", "F", false, "fixed string search")
 	rootCmd.Flags().BoolP("follow", "L", false, "Follow symbolic links")
-	rootCmd.Flags().StringP("format", "", "","Print results according to template")
+	rootCmd.Flags().StringP("format", "", "", "Print results according to template")
 	rootCmd.Flags().BoolP("full-path", "p", false, "Search full path (default: file-/dirname only)")
 	rootCmd.Flags().BoolP("glob", "g", false, "Glob-based search (default: regular expression)")
 	rootCmd.Flags().BoolP("help", "h", false, "Prints help information")
@@ -77,7 +77,7 @@ func init() {
 		"hyperlink":        carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"owner":            os.ActionUserGroup(),
 		"strip-cwd-prefix": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"type":             carapace.ActionValues(
+		"type": carapace.ActionValues(
 			"file",
 			"directory",
 			"symlink",
