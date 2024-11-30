@@ -9,14 +9,10 @@ import (
 )
 
 var schemaCmd = &cobra.Command{
-	Use:   "--codegen spec",
+	Use:   "--schema",
 	Short: "json schema for spec files",
 	Run: func(cmd *cobra.Command, args []string) {
-		if schema, err := spec.Schema(); err != nil {
-			fmt.Fprintln(cmd.ErrOrStderr(), err.Error()) // TODO fail / exit 1 ?
-		} else {
-			fmt.Fprintln(cmd.OutOrStdout(), schema)
-		}
+		fmt.Fprintln(cmd.OutOrStdout(), spec.Schema())
 	},
 }
 
