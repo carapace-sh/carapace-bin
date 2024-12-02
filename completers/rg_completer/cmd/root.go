@@ -38,17 +38,22 @@ func init() {
 	rootCmd.Flags().String("dfa-size-limit", "", "The upper size limit of the regex DFA. The default limit is 10M.")
 	rootCmd.Flags().StringP("encoding", "E", "", "Specify the text encoding that ripgrep will use on all files searched.")
 	rootCmd.Flags().String("engine", "", "Specify which regular expression engine to use.")
+	rootCmd.Flags().String("field-context-separator", "", "Set the field context separator for contextual lines.")
+	rootCmd.Flags().String("field-match-separator", "", "Set the field match separator for matching lines.")
 	rootCmd.Flags().StringP("file", "f", "", "Search for patterns from the given file, with one pattern per line.")
 	rootCmd.Flags().Bool("files", false, "Print each file that would be searched without actually performing the search.")
 	rootCmd.Flags().BoolP("files-with-matches", "l", false, "Only print the paths with at least one match.")
 	rootCmd.Flags().Bool("files-without-match", false, "Only print the paths that contain zero matches.")
 	rootCmd.Flags().BoolP("fixed-strings", "F", false, "Treat the pattern as a literal string instead of a regular expression.")
 	rootCmd.Flags().BoolP("follow", "L", false, "When this flag is enabled, ripgrep will follow symbolic links while traversing")
+	rootCmd.Flags().String("generate", "", "Generate special output of man pages and completion scripts")
 	rootCmd.Flags().StringP("glob", "g", "", "Include or exclude files and directories for searching that match the given")
 	rootCmd.Flags().Bool("glob-case-insensitive", false, "Process glob patterns given with the -g/--glob flag case insensitively.")
 	rootCmd.Flags().Bool("heading", false, "Print the file path above clusters of matches from each file instead")
 	rootCmd.Flags().BoolP("help", "h", false, "Prints help information.")
 	rootCmd.Flags().Bool("hidden", false, "Search hidden files and directories.")
+	rootCmd.Flags().String("hostname-bin", "", "Control how ripgrep determines this system's hostname.")
+	rootCmd.Flags().String("hyperlink-format", "", "Set the format of hyperlinks to use when printing results.")
 	rootCmd.Flags().String("iglob", "", "Include or exclude files and directories for searching that match the given")
 	rootCmd.Flags().BoolP("ignore-case", "i", false, "When this flag is provided, the given patterns will be searched case")
 	rootCmd.Flags().String("ignore-file", "", "Specifies a path to one or more .gitignore format rules files.")
@@ -106,6 +111,7 @@ func init() {
 	rootCmd.Flags().Bool("stats", false, "Print aggregate statistics about this ripgrep search.")
 	rootCmd.Flags().BoolP("text", "a", false, "Search binary files as if they were text.")
 	rootCmd.Flags().StringP("threads", "j", "", "The approximate number of threads to use.")
+	rootCmd.Flags().Bool("trace", false, "Show trace messages with even more detail than --debug.")
 	rootCmd.Flags().Bool("trim", false, "When set, all ASCII whitespace at the beginning of each line printed will be")
 	rootCmd.Flags().StringP("type", "t", "", "Only search files matching TYPE.")
 	rootCmd.Flags().String("type-add", "", "Add a new glob for a particular file type.")
@@ -117,18 +123,8 @@ func init() {
 	rootCmd.Flags().Bool("vimgrep", false, "Show results with every match on its own line, including line numbers and")
 	rootCmd.Flags().BoolP("with-filename", "H", false, "Display the file path for matches.")
 	rootCmd.Flags().BoolP("word-regexp", "w", false, "Only show matches surrounded by word boundaries.")
-	rootCmd.Flags().String("hostname-bin", "", "Control how ripgrep determines this system's hostname.")
-	rootCmd.Flags().String("hyperlink-format", "", "Set the format of hyperlinks to use when printing results.")
-	rootCmd.Flags().String("field-context-separator", "", "Set the field context separator for contextual lines.")
-	rootCmd.Flags().String("field-match-separator", "", "Set the field match separator for matching lines.")
-	rootCmd.Flags().String("generate", "", "Generate special output of man pages and completion scripts")
-	rootCmd.Flags().Bool("trace", false, "Show trace messages with even more detail than --debug.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"hyperlink-format": carapace.ActionValues("default", "none", "file", "grep+", "kitty", "macvim", "textmate", "vscode", "vscode-insiders", "vscodium"),
-		"hostname-bin":     carapace.ActionFiles(),
-		"generate":         carapace.ActionValues("man", "complete-bash", "complete-zsh", "complete-fish", "complete-powershell"),
-		"pre":              carapace.ActionFiles(),
 		"color": carapace.ActionValuesDescribed(
 			"always", "always use colors",
 			"ansi", "always use ANSI colors (even on Windows)",
@@ -147,8 +143,12 @@ func init() {
 			"default", "use default engine",
 			"pcre2", "identical to --pcre2",
 		),
-		"file":        carapace.ActionFiles(),
-		"ignore-file": carapace.ActionFiles(),
+		"file":             carapace.ActionFiles(),
+		"generate":         carapace.ActionValues("man", "complete-bash", "complete-zsh", "complete-fish", "complete-powershell"),
+		"hostname-bin":     carapace.ActionFiles(),
+		"hyperlink-format": carapace.ActionValues("default", "none", "file", "grep+", "kitty", "macvim", "textmate", "vscode", "vscode-insiders", "vscodium"),
+		"ignore-file":      carapace.ActionFiles(),
+		"pre":              carapace.ActionFiles(),
 		"sort": carapace.ActionValuesDescribed(
 			"accessed", "sort by last accessed time",
 			"created", "sort by creation time",
