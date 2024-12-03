@@ -152,7 +152,10 @@ func init() {
 		).ToA(),
 		"hyperlink-format": carapace.ActionValues("default", "none", "file", "grep+", "kitty", "macvim", "textmate", "vscode", "vscode-insiders", "vscodium"),
 		"ignore-file":      carapace.ActionFiles(),
-		"pre":              carapace.ActionFiles(),
+		"pre": carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
 		"sort": carapace.ActionValuesDescribed(
 			"accessed", "sort by last accessed time",
 			"created", "sort by creation time",
