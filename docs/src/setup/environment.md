@@ -87,6 +87,8 @@ Whether to enable tooltip style.
 
 ![](./tooltip.cast)
 
+> Only affects Powershell.
+
 ## CARAPACE_ZSH_HASH_DIRS
 
 Zsh hash directories (internal).
