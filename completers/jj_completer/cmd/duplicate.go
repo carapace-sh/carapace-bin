@@ -15,8 +15,27 @@ var duplicateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(duplicateCmd).Standalone()
 
+	duplicateCmd.Flags().StringArray("after", []string{}, "Alias for --insert-after")
+	duplicateCmd.Flags().StringArray("before", []string{}, "Alias for --insert-before")
+	duplicateCmd.Flags().StringArrayP("destination", "d", []string{"@"}, "The revision(s) to duplicate onto (can be repeated to create a merge commit)")
 	duplicateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	duplicateCmd.Flags().StringArrayP("insert-after", "A", []string{}, "The revision(s) to insert after (can be repeated to create a merge commit)")
+	duplicateCmd.Flags().StringArrayP("insert-before", "B", []string{}, "The revision(s) to insert before (can be repeated to create a merge commit)")
 	rootCmd.AddCommand(duplicateCmd)
+
+	duplicateCmd.MarkFlagsMutuallyExclusive(
+		"after",
+		"before",
+		"destination",
+		"insert-after",
+		"insert-before",
+	)
+
+	carapace.Gen(duplicateCmd).FlagCompletion(carapace.ActionMap{
+		"destination":   jj.ActionRevs(jj.RevOption{}.Default()),
+		"insert-after":  jj.ActionRevs(jj.RevOption{}.Default()),
+		"insert-before": jj.ActionRevs(jj.RevOption{}.Default()),
+	})
 
 	carapace.Gen(duplicateCmd).PositionalAnyCompletion(
 		jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),

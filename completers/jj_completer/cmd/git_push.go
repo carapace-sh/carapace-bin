@@ -17,6 +17,8 @@ func init() {
 
 	git_pushCmd.Flags().Bool("all", false, "Push all bookmarks (including deleted bookmarks)")
 	git_pushCmd.Flags().Bool("allow-empty-description", false, "Allow commits with empty description messages to be pushed")
+	git_pushCmd.Flags().BoolP("allow-new", "N", false, "Allow pushing new bookmarks")
+	git_pushCmd.Flags().Bool("allow-private", false, "Allow pushing commits that are private")
 	git_pushCmd.Flags().StringSliceP("bookmark", "b", []string{}, "Push only this bookmark (can be repeated)")
 	git_pushCmd.Flags().StringSliceP("change", "c", []string{}, "Push this commit by creating a bookmark based on its change ID (can be repeated)")
 	git_pushCmd.Flags().Bool("deleted", false, "Push all deleted bookmarks")
