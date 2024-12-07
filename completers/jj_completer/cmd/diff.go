@@ -18,7 +18,7 @@ func init() {
 
 	diffCmd.Flags().Int("context", 3, "Number of lines of context to show")
 	diffCmd.Flags().Bool("color-words", false, "Show a word-level diff with changes indicated only by color")
-	diffCmd.Flags().String("from", "", "Show changes from this revision")
+	diffCmd.Flags().StringP("from", "-f", "", "Show changes from this revision")
 	diffCmd.Flags().Bool("git", false, "Show a Git-format diff")
 	diffCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	diffCmd.Flags().BoolP("ignore-all-space", "w", false, "Ignore whitespace when comparing lines")
@@ -27,7 +27,7 @@ func init() {
 	diffCmd.Flags().StringP("revision", "r", "", "Show changes in this revision, compared to its parent(s)")
 	diffCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
 	diffCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or removed")
-	diffCmd.Flags().String("to", "", "Show changes to this revision")
+	diffCmd.Flags().StringP("to", "t", "", "Show changes to this revision")
 	diffCmd.Flags().String("tool", "", "Generate diff by external command")
 	diffCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	rootCmd.AddCommand(diffCmd)

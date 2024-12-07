@@ -17,10 +17,10 @@ func init() {
 	carapace.Gen(operation_diffCmd).Standalone()
 
 	// Options
-	operation_diffCmd.Flags().String("from", "", "Show repository changes from this operation")
+	operation_diffCmd.Flags().StringP("from", "f", "", "Show repository changes from this operation")
 	operation_diffCmd.Flags().Bool("no-graph", false, "Don't show the graph, show a flat list of operations")
 	operation_diffCmd.Flags().String("operation", "", "Show repository changes in this operation, compared to its parent")
-	operation_diffCmd.Flags().String("to", "", "Show repository changes to this operation")
+	operation_diffCmd.Flags().StringP("to", "t", "", "Show repository changes to this operation")
 
 	// Diff formatting options
 	operation_diffCmd.Flags().Int("context", 3, "Number of lines of context to show")

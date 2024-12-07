@@ -110,5 +110,6 @@ func ActionRevSetFunctions() carapace.Action {
 		"untracked_remote_bookmarks", "All targets of untracked remote bookmarks",
 		"coalesce", "Get first non-none revset from a list of revsets",
 		"at_operation", "Query revisions based on historical state",
+		"fork_point", "Obtain the fork point of multiple commits",
 	).Tag("revset functions")
 }
