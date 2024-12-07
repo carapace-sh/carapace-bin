@@ -1,6 +1,6 @@
 # Selfupdate
 
-With `carapace --selfupdate` specific [nightly]/[stable] releases can be installed.
+With `carapace --selfupdate` specific [nightly] or [stable] releases can be installed.
 
 ![](./selfupdate.cast)
 
