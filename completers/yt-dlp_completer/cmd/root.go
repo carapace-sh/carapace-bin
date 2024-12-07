@@ -315,7 +315,7 @@ func init() {
 		"output": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			index := strings.LastIndex(c.Value, "%(")
 			if index < 0 {
-				return carapace.ActionValues()
+				return carapace.ActionFiles()
 			}
 
 			prefix := c.Value[:index+2]
@@ -334,6 +334,7 @@ func init() {
 			}
 			return batch.Invoke(c).Merge().Prefix(prefix).ToA().NoSpace()
 		}),
+		"paths": carapace.ActionFiles(),
 		"print-to-file": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 1:
