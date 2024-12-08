@@ -89,7 +89,7 @@ func actionDiffArgs(cmd *cobra.Command) carapace.Action {
 			var action carapace.Action
 			if cmd.Flag("cached").Changed {
 				if len(expanded) > 0 {
-					action = git.ActionCachedDiffs(expanded[0])
+					action = git.ActionCachedRefDiffs(expanded[0])
 				}
 			} else {
 				action = git.ActionRefDiffs(expanded...)

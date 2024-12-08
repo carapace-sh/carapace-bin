@@ -138,7 +138,7 @@ func ActionRefDiffs(refs ...string) carapace.Action {
 }
 
 // ActionCachedDiffs completes changes between stage and given ref
-func ActionCachedDiffs(ref string) carapace.Action {
+func ActionCachedRefDiffs(ref string) carapace.Action {
 	return actionRefDiffs(true, ref)
 }
 
