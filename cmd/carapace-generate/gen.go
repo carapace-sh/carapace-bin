@@ -133,6 +133,19 @@ func readCompleters() ([]string, map[string]string) {
 					description := readDescription(root, file.Name())
 					names = append(names, name)
 					descriptions[name] = description
+
+					if files, err := os.ReadDir(root + "/completers/" + file.Name()); err == nil {
+						for _, file := range files {
+							if file.IsDir() && file.Name() != "cmd" { // variants of completer (same binary name different ommand)
+								variant := fmt.Sprintf("%v/%v", name, file.Name())
+								// description := readDescription(root, file.Name())
+								description := "TODO"
+								names = append(names, variant)
+								descriptions[variant] = description
+
+							}
+						}
+					}
 				}
 			}
 		}
