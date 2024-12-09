@@ -75,7 +75,7 @@ func init() {
 	rootCmd.Flags().StringP("sort", "s", "", "which field to sort by")
 	rootCmd.Flags().Bool("stdin", false, "read file names from stdin, one per line or other separator ")
 	rootCmd.Flags().StringP("time", "t", "", "which timestamp field to list")
-	rootCmd.Flags().Bool("time-style", false, "how to format timestamps")
+	rootCmd.Flags().String("time-style", "", "how to format timestamps")
 	rootCmd.Flags().Bool("total-size", false, "show the size of a directory as the size of all")
 	rootCmd.Flags().BoolP("tree", "T", false, "recurse into directories as a tree")
 	rootCmd.Flags().BoolP("version", "v", false, "show version of eza")
