@@ -2,9 +2,11 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/color"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -30,8 +32,8 @@ func init() {
 	rootCmd.Flags().String("machine", "", "Operate on local container")
 	rootCmd.Flags().String("nice", "", "Nice level")
 	rootCmd.Flags().Bool("no-ask-password", false, "Do not prompt for password")
-	rootCmd.Flags().String("property", "", "Set service or scope unit property")
-	rootCmd.Flags().String("setenv", "", "Set environment variable")
+	rootCmd.Flags().StringSlice("property", nil, "Set service or scope unit property")
+	rootCmd.Flags().StringSlice("setenv", nil, "Set environment variable")
 	rootCmd.Flags().String("slice", "", "Run in the specified slice")
 	rootCmd.Flags().Bool("slice-inherit", false, "Inherit the slice")
 	rootCmd.Flags().String("unit", "", "Run under the specified unit name")
@@ -39,10 +41,11 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show package version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"chdir":  carapace.ActionDirectories(),
-		"group":  os.ActionGroups(),
-		"setenv": os.ActionEnvironmentVariables().UniqueList(","),
-		"user":   os.ActionUsers(),
+		"background": color.ActionAnsiBackgroundColors(false),
+		"chdir":      carapace.ActionDirectories(),
+		"group":      os.ActionGroups(),
+		"setenv":     os.ActionEnvironmentVariables(),
+		"user":       os.ActionUsers(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
@@ -55,4 +58,8 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		bridge.ActionCarapaceBin(),
 	)
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.Chdir(cmd.Flag("chdir").Value.String())
+	})
 }
