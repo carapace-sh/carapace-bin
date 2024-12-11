@@ -50,7 +50,7 @@ func init() {
 		// TODO rootDir for git actions
 		"branch":  git.ActionRefs(git.RefOption{LocalBranches: true}),
 		"dir":     carapace.ActionDirectories(),
-		"env":     env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":     env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"file":    carapace.ActionFiles(),
 		"rootDir": carapace.ActionDirectories(),
 		"tag":     git.ActionRefs(git.RefOption{Tags: true}),

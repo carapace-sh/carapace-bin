@@ -30,7 +30,7 @@ func init() {
 
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
 		"detach-keys": docker.ActionDetachKeys(),
-		"env":         env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":         env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"env-file":    carapace.ActionFiles(),
 	})
 }

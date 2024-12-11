@@ -40,7 +40,7 @@ func init() {
 	rootCmd.AddCommand(deployCmd)
 
 	carapace.Gen(deployCmd).FlagCompletion(carapace.ActionMap{
-		"env":       env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":       env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"handler":   carapace.ActionDirectories(),
 		"lang":      action.ActionLanguageTemplates(),
 		"namespace": action.ActionNamespaces(),

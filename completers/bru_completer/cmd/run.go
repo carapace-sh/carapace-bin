@@ -30,7 +30,7 @@ func init() {
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"cacert":  carapace.ActionFiles(),
-		"env":     env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":     env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"env-var": carapace.ActionValues(), // TODO
 		"format":  carapace.ActionValues("json", "junit", "html"),
 		"output":  carapace.ActionFiles(),

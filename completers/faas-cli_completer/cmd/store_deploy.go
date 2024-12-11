@@ -31,7 +31,7 @@ func init() {
 	storeCmd.AddCommand(store_deployCmd)
 
 	carapace.Gen(store_deployCmd).FlagCompletion(carapace.ActionMap{
-		"env":       env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":       env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"namespace": action.ActionNamespaces(),
 	})
 

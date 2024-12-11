@@ -44,7 +44,7 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(debugCmd).FlagCompletion(carapace.ActionMap{
-		"env":     env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":     env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"profile": carapace.ActionValues("legacy", "general", "baseline", "netadmin", "restricted", "sysadmin"),
 	})
 }

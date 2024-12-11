@@ -96,7 +96,7 @@ func init() {
 
 	carapace.Gen(service_createCmd).FlagCompletion(carapace.ActionMap{
 		"endpoint-mode": carapace.ActionValues("vip", "dnsrr"),
-		"env":           env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":           env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"env-file":      carapace.ActionFiles(),
 		"group":         os.ActionGroups(),
 		"isolation":     carapace.ActionValues("default", "hyperv", "process"),

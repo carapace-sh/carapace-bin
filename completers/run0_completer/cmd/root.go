@@ -45,7 +45,7 @@ func init() {
 		"background": color.ActionAnsiBackgroundColors(false),
 		"chdir":      carapace.ActionDirectories(),
 		"group":      os.ActionGroups(),
-		"setenv":     env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"setenv":     env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"user":       os.ActionUsers(),
 	})
 

@@ -39,6 +39,6 @@ func init() {
 		}),
 		"checkout-key": carapace.ActionFiles(),
 		"config":       carapace.ActionFiles(),
-		"env":          env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":          env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 	})
 }

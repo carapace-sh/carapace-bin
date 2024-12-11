@@ -32,7 +32,7 @@ func init() {
 	// TODO workdir completion
 	// TODO index
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
-		"env": env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env": env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"user": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				if index, err := execCmd.Flags().GetInt("index"); err != nil {

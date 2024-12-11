@@ -60,7 +60,7 @@ func init() {
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":           kubectl.ActionDryRunModes(),
-		"env":               env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":               env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"image-pull-policy": carapace.ActionValues("Never", "Always", "IfNotPresent"),
 		"output":            kubectl.ActionOutputFormats(),
 		"restart":           carapace.ActionValues("Always", "OnFailure", "Never"),

@@ -42,7 +42,7 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-		"env":    env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":    env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"volume": action.ActionVolumes(runCmd),
 	})
 

@@ -41,7 +41,7 @@ func init() {
 
 	carapace.Gen(set_envCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":  kubectl.ActionDryRunModes(),
-		"env":      env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":      env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"filename": carapace.ActionFiles(),
 		"from":     kubectl.ActionApiResourceResources(kubectl.ApiResourceResourcesOpts{}),
 		"output":   kubectl.ActionOutputFormats(),

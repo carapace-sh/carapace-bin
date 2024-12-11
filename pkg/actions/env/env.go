@@ -224,21 +224,21 @@ func loadCustomVariables(file string) (*variables, error) {
 	return &v, nil
 }
 
-type ConfigOpts struct {
-	// complete values attached (`KEY=VALUE`) or positional (`KEY VALUE`)
+type SetEnvOpts struct {
+	// complete values attached (`KEY[=VALUE]`) or positional (`KEY VALUE`)
 	Attached bool
 	// include user defined variables
 	User bool // TODO
 }
 
-func (o ConfigOpts) Default() ConfigOpts {
+func (o SetEnvOpts) Default() SetEnvOpts {
 	o.Attached = true
 	o.User = true
 	return o
 }
 
-// ActionConfigs completes environment variable configurations
-func ActionConfigs(opts ConfigOpts) carapace.Action {
+// ActionSetEnvs completes environment variables setters
+func ActionSetEnvs(opts SetEnvOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		keysAction := carapace.Batch(
 			carapace.ActionCallback(func(c carapace.Context) carapace.Action {

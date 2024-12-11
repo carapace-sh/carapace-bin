@@ -52,7 +52,7 @@ func init() {
 
 	carapace.Gen(upCmd).FlagCompletion(carapace.ActionMap{
 		"copy-extra": carapace.ActionDirectories(),
-		"env":        env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":        env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"handler":    carapace.ActionDirectories(),
 		"lang":       action.ActionLanguageTemplates(),
 		"name":       action.ActionFunctions(),

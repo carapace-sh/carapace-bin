@@ -35,7 +35,7 @@ func init() {
 	rootCmd.AddCommand(kustomizeCmd)
 
 	carapace.Gen(kustomizeCmd).FlagCompletion(carapace.ActionMap{
-		"env":     env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":     env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"output":  carapace.ActionFiles(),
 		"reorder": carapace.ActionValues("legacy", "none"),
 	})

@@ -21,6 +21,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		env.ActionConfigs(env.ConfigOpts{Attached: false, User: true}),
+		env.ActionSetEnvs(env.SetEnvOpts{Attached: false, User: true}),
 	)
 }

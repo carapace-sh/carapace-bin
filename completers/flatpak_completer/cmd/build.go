@@ -62,7 +62,7 @@ func init() {
 		"build-dir": carapace.ActionDirectories(),
 		// 	"device":              carapace.ActionValues(),
 		// 	"disallow":            carapace.ActionValues(),
-		"env": env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env": env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		// 	"env-fd":              carapace.ActionValues(),
 		// 	"filesystem":          carapace.ActionValues(),
 		// 	"metadata":            carapace.ActionValues(),

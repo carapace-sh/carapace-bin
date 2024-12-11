@@ -127,7 +127,7 @@ func init() {
 		"cidfile":      carapace.ActionFiles(),
 		"cpu-shares":   carapace.ActionValues("0", "10", "100", "200", "500", "800", "1000"),
 		"device":       carapace.ActionFiles(),
-		"env":          env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":          env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"env-file":     carapace.ActionFiles(),
 		"group-add":    os.ActionGroups(),
 		"isolation":    carapace.ActionValues("default", "hyperv", "process"),

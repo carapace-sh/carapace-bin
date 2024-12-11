@@ -29,7 +29,7 @@ func init() {
 
 	carapace.Gen(flashCmd).FlagCompletion(carapace.ActionMap{
 		"bootloader": action.ActionBootloaders(),
-		"env":        env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":        env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"keyboard": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionKeyboards().Invoke(c).ToMultiPartsA("/")
 		}),

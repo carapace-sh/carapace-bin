@@ -56,7 +56,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"exec":      bridge.ActionCarapaceBin("cargo").Split(),
-		"env":       env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"env":       env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"features":  cargo.ActionFeatures("").UniqueList(","),
 		"shell":     bridge.ActionCarapaceBin().SplitP(),
 		"use-shell": os.ActionShells(),

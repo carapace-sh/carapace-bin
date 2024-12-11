@@ -41,8 +41,8 @@ func init() {
 	rootCmd.PersistentFlags().BoolP("help", "h", false, "Output usage information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"build-env":     env.ActionConfigs(env.ConfigOpts{}.Default()),
-		"env":           env.ActionConfigs(env.ConfigOpts{}.Default()),
+		"build-env":     env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
+		"env":           env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"global-config": carapace.ActionDirectories(),
 		"local-config":  carapace.ActionFiles(),
 		"regions":       action.ActionRegions().UniqueList(","),
