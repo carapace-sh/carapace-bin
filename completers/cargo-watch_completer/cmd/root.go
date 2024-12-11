@@ -55,8 +55,8 @@ func init() {
 	rootCmd.Flags().StringP("workdir", "C", "", "Change working directory before running command [default: crate root]")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"exec":      bridge.ActionCarapaceBin("cargo").Split(),
 		"env":       env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
+		"exec":      bridge.ActionCarapaceBin("cargo").Split(),
 		"features":  cargo.ActionFeatures("").UniqueList(","),
 		"shell":     bridge.ActionCarapaceBin().SplitP(),
 		"use-shell": os.ActionShells(),
