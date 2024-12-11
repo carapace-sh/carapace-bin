@@ -8,7 +8,7 @@ import (
 )
 
 // ActionEnvironmentVariables completes environment values
-// see also env.ActionConfigs
+// see also env.ActionSetEnvs
 //
 //	SHELL (/bin/elvish)
 //	LANG (en_US.utf8)
