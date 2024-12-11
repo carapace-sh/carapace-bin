@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/color"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
@@ -44,7 +45,7 @@ func init() {
 		"background": color.ActionAnsiBackgroundColors(false),
 		"chdir":      carapace.ActionDirectories(),
 		"group":      os.ActionGroups(),
-		"setenv":     os.ActionEnvironmentVariables(),
+		"setenv":     env.ActionSetEnvs(env.SetEnvOpts{}.Default()),
 		"user":       os.ActionUsers(),
 	})
 
