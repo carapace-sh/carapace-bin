@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
@@ -53,6 +54,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"exec":      bridge.ActionCarapaceBin("cargo").Split(),
+		"env":       env.ActionConfigs(env.ConfigOpts{}.Default()),
 		"features":  cargo.ActionFeatures("").UniqueList(","),
 		"shell":     bridge.ActionCarapaceBin().SplitP(),
 		"use-shell": os.ActionShells(),

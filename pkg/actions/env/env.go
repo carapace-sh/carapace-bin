@@ -6,8 +6,10 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/internal/condition"
+	osAction "github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/conditions"
 	spec "github.com/carapace-sh/carapace-spec"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/carapace-sh/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"
@@ -220,4 +222,58 @@ func loadCustomVariables(file string) (*variables, error) {
 	}
 
 	return &v, nil
+}
+
+type ConfigOpts struct {
+	// complete values attached (`KEY=VALUE`) or positional (`KEY VALUE`)
+	Attached bool
+	// include user defined variables
+	User bool // TODO
+}
+
+func (o ConfigOpts) Default() ConfigOpts {
+	o.Attached = true
+	o.User = true
+	return o
+}
+
+// ActionConfigs completes environment variable configurations
+func ActionConfigs(opts ConfigOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		keysAction := carapace.Batch(
+			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+				alreadySet := make([]string, 0)
+				for _, e := range c.Env {
+					alreadySet = append(alreadySet, strings.SplitN(e, "=", 2)[0])
+				}
+				a := ActionKnownEnvironmentVariables().Filter(alreadySet...)
+				if !strings.Contains(c.Value, "_") {
+					return a.MultiParts("_") // only do multipart completion for first underscore
+				}
+				return a
+			}),
+			osAction.ActionEnvironmentVariables().Style(style.Blue),
+		).ToA()
+
+		switch {
+		case opts.Attached:
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return keysAction.NoSpace()
+				default:
+					return ActionEnvironmentVariableValues(c.Parts[0])
+				}
+			})
+		default:
+			switch len(c.Args) {
+			case 0:
+				return keysAction
+			case 1:
+				return ActionEnvironmentVariableValues(c.Args[0])
+			default:
+				return carapace.ActionValues()
+			}
+		}
+	})
 }
