@@ -1,8 +1,11 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/color"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
@@ -32,8 +35,8 @@ func init() {
 	rootCmd.Flags().String("machine", "", "Operate on local container")
 	rootCmd.Flags().String("nice", "", "Nice level")
 	rootCmd.Flags().Bool("no-ask-password", false, "Do not prompt for password")
-	rootCmd.Flags().StringSlice("property", nil, "Set service or scope unit property")
-	rootCmd.Flags().StringSlice("setenv", nil, "Set environment variable")
+	rootCmd.Flags().StringArray("property", nil, "Set service or scope unit property")
+	rootCmd.Flags().StringArray("setenv", nil, "Set environment variable")
 	rootCmd.Flags().String("slice", "", "Run in the specified slice")
 	rootCmd.Flags().Bool("slice-inherit", false, "Inherit the slice")
 	rootCmd.Flags().String("unit", "", "Run under the specified unit name")
@@ -44,7 +47,7 @@ func init() {
 		"background": color.ActionAnsiBackgroundColors(false),
 		"chdir":      carapace.ActionDirectories(),
 		"group":      os.ActionGroups(),
-		"setenv":     os.ActionEnvironmentVariables(),
+		"setenv":     env.ActionNameValues(false),
 		"user":       os.ActionUsers(),
 	})
 
@@ -60,6 +63,18 @@ func init() {
 	)
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
-		return action.Chdir(cmd.Flag("chdir").Value.String())
+		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			envs, err := rootCmd.Flags().GetStringArray("setenv")
+			if err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+			for _, e := range envs {
+				if name, value, ok := strings.Cut(e, "="); ok {
+					c.Setenv(name, value)
+				}
+			}
+			return action.Chdir(cmd.Flag("chdir").Value.String()).
+				Invoke(c).ToA()
+		})
 	})
 }

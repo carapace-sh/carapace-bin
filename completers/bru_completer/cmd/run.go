@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/spf13/cobra"
 )
 
@@ -29,7 +30,7 @@ func init() {
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"cacert":  carapace.ActionFiles(),
-		"env":     carapace.ActionValues(), // TODO
+		"env":     env.ActionNameValues(false),
 		"env-var": carapace.ActionValues(), // TODO
 		"format":  carapace.ActionValues("json", "junit", "html"),
 		"output":  carapace.ActionFiles(),

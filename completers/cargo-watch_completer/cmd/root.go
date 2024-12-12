@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
@@ -27,12 +30,12 @@ func init() {
 	rootCmd.Flags().BoolP("clear", "c", false, "Clear the screen before each run")
 	rootCmd.Flags().Bool("debug", false, "Show debug output")
 	rootCmd.Flags().StringP("delay", "d", "", "File updates debounce delay in seconds [default: 0.5]")
-	rootCmd.Flags().StringP("env", "E", "", "Set environment variables for the command")
-	rootCmd.Flags().String("env-file", "", "Set environment variables from a .env file")
+	rootCmd.Flags().StringArrayP("env", "E", nil, "Set environment variables for the command")
+	rootCmd.Flags().StringArray("env-file", nil, "Set environment variables from a .env file")
 	rootCmd.Flags().StringArrayP("exec", "x", []string{}, "Cargo command(s) to execute on changes [default: check]")
 	rootCmd.Flags().String("features", "", "List of features passed to cargo invocations")
 	rootCmd.Flags().BoolP("help", "h", false, "Display this message")
-	rootCmd.Flags().StringP("ignore", "i", "", "Ignore a glob/gitignore-style pattern")
+	rootCmd.Flags().StringArrayP("ignore", "i", nil, "Ignore a glob/gitignore-style pattern")
 	rootCmd.Flags().Bool("ignore-nothing", false, "Ignore nothing, not even target/ and .git/")
 	rootCmd.Flags().Bool("no-dot-ignores", false, "Don’t use .ignore files")
 	rootCmd.Flags().Bool("no-process-group", false, "Do not use a process group when running the command")
@@ -46,12 +49,13 @@ func init() {
 	rootCmd.Flags().Bool("skip-local-deps", false, "Don't try to find local dependencies of the current crate and watch their working directories. Only watch the current directory.")
 	rootCmd.Flags().String("use-shell", "", "Use a different shell. E.g. --use-shell=bash")
 	rootCmd.Flags().BoolP("version", "V", false, "Display version information")
-	rootCmd.Flags().StringP("watch", "w", "", "Watch specific file(s) or folder(s). Disables finding and watching local dependencies.")
+	rootCmd.Flags().StringArrayP("watch", "w", nil, "Watch specific file(s) or folder(s). Disables finding and watching local dependencies.")
 	rootCmd.Flags().Bool("watch-when-idle", false, "Ignore events emitted while the commands run.")
 	rootCmd.Flags().Bool("why", false, "Show paths that changed")
 	rootCmd.Flags().StringP("workdir", "C", "", "Change working directory before running command [default: crate root]")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"env":       env.ActionNameValues(false),
 		"exec":      bridge.ActionCarapaceBin("cargo").Split(),
 		"features":  cargo.ActionFeatures("").UniqueList(","),
 		"shell":     bridge.ActionCarapaceBin().SplitP(),
@@ -65,6 +69,18 @@ func init() {
 	)
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
-		return action.Chdir(rootCmd.Flag("workdir").Value.String())
+		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			envs, err := cmd.Flags().GetStringArray("env")
+			if err != nil {
+				return carapace.ActionValues(err.Error())
+			}
+			for _, e := range envs {
+				if k, v, ok := strings.Cut(e, "="); ok {
+					c.Setenv(k, v)
+				}
+			}
+			return action.Chdir(rootCmd.Flag("workdir").Value.String()).
+				Invoke(c).ToA()
+		})
 	})
 }

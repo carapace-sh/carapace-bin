@@ -8,8 +8,8 @@ import (
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
-	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -63,30 +63,14 @@ func init() {
 			}
 
 			return carapace.Batch(
-				carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
-					switch len(c.Parts) {
-					case 0:
-						return carapace.Batch(
-							carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-								alreadySet := make([]string, 0)
-								for _, e := range c.Env {
-									alreadySet = append(alreadySet, strings.SplitN(e, "=", 2)[0])
-								}
-								a := env.ActionKnownEnvironmentVariables().Filter(alreadySet...).Suffix("=")
-								if !strings.Contains(c.Value, "_") {
-									return a.MultiParts("_") // only do multipart completion for first underscore
-								}
-								return a
-							}),
-							os.ActionEnvironmentVariables().Style(style.Blue).Suffix("="),
-						).ToA()
-					default:
-						return env.ActionEnvironmentVariableValues(c.Parts[0])
-					}
-				}),
+				env.ActionNameValues(false),
 				carapace.ActionExecutables(),
 				carapace.ActionFiles(),
-			).ToA()
+			).Invoke(c).Merge().ToA()
 		}),
 	)
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.Chdir(rootCmd.Flag("chdir").Value.String())
+	})
 }

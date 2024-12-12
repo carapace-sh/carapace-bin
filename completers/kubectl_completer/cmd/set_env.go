@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
@@ -40,6 +41,7 @@ func init() {
 
 	carapace.Gen(set_envCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":  kubectl.ActionDryRunModes(),
+		"env":      env.ActionNameValues(false),
 		"filename": carapace.ActionFiles(),
 		"from":     kubectl.ActionApiResourceResources(kubectl.ApiResourceResourcesOpts{}),
 		"output":   kubectl.ActionOutputFormats(),

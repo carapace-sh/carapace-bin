@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,8 @@ func init() {
 	runCmd.Flags().Bool("verbose", false, "Enables verbose diagnostics")
 	runCmd.Flags().String("yarn", "", "Set the custom Yarn version")
 	rootCmd.AddCommand(runCmd)
+
+	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
+		"env": env.ActionNameValues(false),
+	})
 }
