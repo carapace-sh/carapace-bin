@@ -10,7 +10,7 @@
 
 Carapace-bin provides argument completion for multiple CLI commands ([full list](https://carapace-sh.github.io/carapace-bin/completers.html)), and works across multiple POSIX and non-POSIX shells.
 
-![](./docs/src/opengraph.png)
+![](./docs/src/opengraph-elvish.png)
 
 Supported shells:
 - [Bash](https://www.gnu.org/software/bash/)

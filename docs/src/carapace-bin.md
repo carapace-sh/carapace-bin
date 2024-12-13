@@ -2,7 +2,7 @@
 
 [carapace-bin](https://github.com/carapace-sh/carapace-bin) is a multi-shell multi-command argument completer based on [carapace-sh/carapace](https://github.com/carapace-sh/carapace).
 
-![](./opengraph.png)
+![](./opengraph-elvish.png)
 
 Supported shells:
 - [Bash](https://www.gnu.org/software/bash/)
