@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/docker-compose_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/spf13/cobra"
 )
 
@@ -31,6 +32,7 @@ func init() {
 	// TODO workdir completion
 	// TODO index
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
+		"env": env.ActionNameValues(false),
 		"user": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				if index, err := execCmd.Flags().GetInt("index"); err != nil {

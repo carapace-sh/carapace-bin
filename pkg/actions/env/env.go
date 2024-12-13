@@ -6,8 +6,10 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/internal/condition"
+	osAction "github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/conditions"
 	spec "github.com/carapace-sh/carapace-spec"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/carapace-sh/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"
@@ -63,11 +65,11 @@ func (v *variables) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return nil
 }
 
-// ActionKnownEnvironmentVariables completes known environment variables
+// ActionNames completes known environment variables
 //
 //	GOARCH (The architecture, or processor, for which to compile code)
 //	GOOS (The operating system for which to compile code)
-func ActionKnownEnvironmentVariables() carapace.Action {
+func ActionNames() carapace.Action {
 	return carapace.Batch(
 		actionKnownEnvironmentVariables(),
 		actionCustomEnvironmentVariables(),
@@ -90,8 +92,8 @@ func actionKnownEnvironmentVariables() carapace.Action {
 	}).Tag("known environment variables")
 }
 
-// ActionEnvironmentVariableValues completes values for given environment variable
-func ActionEnvironmentVariableValues(s string) carapace.Action {
+// ActionValues completes values for given environment variable
+func ActionValues(s string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		dir, err := xdg.UserConfigDir()
 		if err != nil {
@@ -220,4 +222,41 @@ func loadCustomVariables(file string) (*variables, error) {
 	}
 
 	return &v, nil
+}
+
+// ActionNameValues completes environment variable names and values
+func ActionNameValues(positional bool) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		keysAction := carapace.Batch(
+			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+				a := ActionNames()
+				if !strings.Contains(c.Value, "_") {
+					return a.MultiParts("_") // only do multipart completion for first underscore
+				}
+				return a
+			}),
+			osAction.ActionEnvironmentVariables().Style(style.Blue),
+		).ToA()
+
+		switch {
+		case positional:
+			switch len(c.Args) {
+			case 0:
+				return keysAction
+			case 1:
+				return ActionValues(c.Args[0])
+			default:
+				return carapace.ActionValues()
+			}
+		default:
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return keysAction.NoSpace()
+				default:
+					return ActionValues(c.Parts[0])
+				}
+			})
+		}
+	})
 }

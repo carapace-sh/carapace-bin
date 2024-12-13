@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/faas-cli_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/spf13/cobra"
 )
 
@@ -39,6 +40,7 @@ func init() {
 	rootCmd.AddCommand(deployCmd)
 
 	carapace.Gen(deployCmd).FlagCompletion(carapace.ActionMap{
+		"env":       env.ActionNameValues(false),
 		"handler":   carapace.ActionDirectories(),
 		"lang":      action.ActionLanguageTemplates(),
 		"namespace": action.ActionNamespaces(),

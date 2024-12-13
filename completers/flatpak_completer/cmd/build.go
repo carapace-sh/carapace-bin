@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/spf13/cobra"
 )
 
@@ -61,7 +62,7 @@ func init() {
 		"build-dir": carapace.ActionDirectories(),
 		// 	"device":              carapace.ActionValues(),
 		// 	"disallow":            carapace.ActionValues(),
-		// 	"env":                 carapace.ActionValues(),
+		"env": env.ActionNameValues(false),
 		// 	"env-fd":              carapace.ActionValues(),
 		// 	"filesystem":          carapace.ActionValues(),
 		// 	"metadata":            carapace.ActionValues(),

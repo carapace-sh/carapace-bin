@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/spf13/cobra"
 )
 
@@ -43,6 +44,7 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(debugCmd).FlagCompletion(carapace.ActionMap{
+		"env":     env.ActionNameValues(false),
 		"profile": carapace.ActionValues("legacy", "general", "baseline", "netadmin", "restricted", "sysadmin"),
 	})
 }

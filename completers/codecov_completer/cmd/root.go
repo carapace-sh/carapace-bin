@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -49,6 +50,7 @@ func init() {
 		// TODO rootDir for git actions
 		"branch":  git.ActionRefs(git.RefOption{LocalBranches: true}),
 		"dir":     carapace.ActionDirectories(),
+		"env":     env.ActionNameValues(false),
 		"file":    carapace.ActionFiles(),
 		"rootDir": carapace.ActionDirectories(),
 		"tag":     git.ActionRefs(git.RefOption{Tags: true}),

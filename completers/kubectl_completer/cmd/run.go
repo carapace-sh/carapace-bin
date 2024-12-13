@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl"
 	"github.com/spf13/cobra"
 )
@@ -59,6 +60,7 @@ func init() {
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":           kubectl.ActionDryRunModes(),
+		"env":               env.ActionNameValues(false),
 		"image-pull-policy": carapace.ActionValues("Never", "Always", "IfNotPresent"),
 		"output":            kubectl.ActionOutputFormats(),
 		"restart":           carapace.ActionValues("Always", "OnFailure", "Never"),

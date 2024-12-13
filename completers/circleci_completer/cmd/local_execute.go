@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -38,5 +39,6 @@ func init() {
 		}),
 		"checkout-key": carapace.ActionFiles(),
 		"config":       carapace.ActionFiles(),
+		"env":          env.ActionNameValues(false),
 	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/spf13/cobra"
 )
 
@@ -34,6 +35,7 @@ func init() {
 	rootCmd.AddCommand(kustomizeCmd)
 
 	carapace.Gen(kustomizeCmd).FlagCompletion(carapace.ActionMap{
+		"env":     env.ActionNameValues(false),
 		"output":  carapace.ActionFiles(),
 		"reorder": carapace.ActionValues("legacy", "none"),
 	})
