@@ -30,7 +30,7 @@ func ActionFlakes() carapace.Action {
 			carapace.ActionDirectories(),
 			carapace.ActionStyledValuesDescribed(vals...),
 		).ToA()
-	}).Cache(time.Minute).Suffix("#")
+	}).Cache(time.Minute)
 }
 
 func styleForRegistry(s string) string {
