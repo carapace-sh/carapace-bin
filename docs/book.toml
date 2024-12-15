@@ -4,7 +4,7 @@ language = "en"
 multilingual = false
 src = "src"
 title = "carapace-bin"
-description = "A multi-shell multi-command completion binary. Supports Bash, Elvish, Fish, Nushell, Oil, Powershell, Xonsh and Zsh."
+description = "A multi-shell completion binary."
 
 [output.html]
 default-theme = "Latte"

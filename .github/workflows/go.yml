@@ -81,6 +81,7 @@ jobs:
             mdbook build docs
             sh .github/badge.sh > docs/book/badge.svg
             sh .github/macros-badge.sh > docs/book/macros-badge.svg
+            sh docs/postprocessor/opengraph.sh
 
       - name: "push gh-pages"
         if: github.ref == 'refs/heads/master'
