@@ -71,22 +71,27 @@ jobs:
           name: carapace
           path: ./cmd/carapace
 
+      - name: Cache linkcheck
+        uses: actions/cache@v3
+        with:
+          path: ./docs/book/linkcheck/cache.json
+
       - name: "build docs"
         run: |
             chmod +x cmd/carapace/carapace
-            sed -i 's/\[output.linkcheck\]/#[output.linkcheck]/' docs/book.toml
+            sed -i 's/^follow-web-links.*/follow-web-links = false/' docs/book.toml
             sh .github/completers.sh > docs/src/completers.md
             sh .github/conditions.sh > docs/src/variable/conditions.md
             sh .github/macros.sh > docs/src/spec/macros.md
             mdbook build docs
-            sh .github/badge.sh > docs/book/badge.svg
-            sh .github/macros-badge.sh > docs/book/macros-badge.svg
+            sh .github/badge.sh > docs/book/html/badge.svg
+            sh .github/macros-badge.sh > docs/book/html/macros-badge.svg
             sh docs/postprocessor/opengraph.sh
 
       - name: "push gh-pages"
         if: github.ref == 'refs/heads/master'
         run: |
-            cd docs/book/
+            cd docs/book/html/
             git init
             git config user.name rsteube
             git config user.email rsteube@users.noreply.github.com
