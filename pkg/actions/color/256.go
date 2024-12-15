@@ -5,10 +5,10 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
-// Action256Colors completes  256 colors
+// Action256Colors completes 256 colors
 //
-//	10 (Grey (SYSTEM))
-//	100 (MediumPurple3)
+//	10 (Lime (SYSTEM))
+//	100 (Yellow4)
 func Action256Colors() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionStyledValuesDescribed(
