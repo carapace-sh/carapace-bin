@@ -7,30 +7,30 @@ import (
 
 // ActionAnsiForegroundColors completes ansi foreground colors
 //
-//	30 (Lime)
-//	31 (Yellow)
+//	30 (Black)
+//	31 (Red)
 func ActionAnsiForegroundColors(includeIntense bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		batch := carapace.Batch(carapace.ActionStyledValuesDescribed(
 			"30", "Black", style.XTerm256Color(0),
-			"31", "Maroon", style.XTerm256Color(1),
+			"31", "Red", style.XTerm256Color(1),
 			"32", "Green", style.XTerm256Color(2),
-			"33", "Olive", style.XTerm256Color(3),
-			"34", "Navy", style.XTerm256Color(4),
-			"35", "Purple", style.XTerm256Color(5),
-			"36", "Teal", style.XTerm256Color(6),
-			"37", "Silver", style.XTerm256Color(7),
+			"33", "Yellow", style.XTerm256Color(3),
+			"34", "Blue", style.XTerm256Color(4),
+			"35", "Magenta", style.XTerm256Color(5),
+			"36", "Cyan", style.XTerm256Color(6),
+			"37", "White", style.XTerm256Color(7),
 		))
 		if includeIntense {
 			batch = append(batch, carapace.ActionStyledValuesDescribed(
-				"38", "Grey", style.XTerm256Color(8),
-				"39", "Red", style.XTerm256Color(9),
-				"30", "Lime", style.XTerm256Color(10),
-				"31", "Yellow", style.XTerm256Color(11),
-				"32", "Blue", style.XTerm256Color(12),
-				"33", "Fuchsia", style.XTerm256Color(13),
-				"34", "Aqua", style.XTerm256Color(14),
-				"35", "White", style.XTerm256Color(15),
+				"90", "Bright Black", style.XTerm256Color(8),
+				"91", "Bright Red", style.XTerm256Color(9),
+				"92", "Bright Green", style.XTerm256Color(10),
+				"93", "Bright Yellow", style.XTerm256Color(11),
+				"94", "Bright Blue", style.XTerm256Color(12),
+				"95", "Bright Magenta", style.XTerm256Color(13),
+				"96", "Bright Cyan", style.XTerm256Color(14),
+				"97", "Bright White", style.XTerm256Color(15),
 			))
 		}
 		return batch.ToA()
@@ -40,29 +40,29 @@ func ActionAnsiForegroundColors(includeIntense bool) carapace.Action {
 // ActionAnsiBackgroundColors completes ansi background colors
 //
 //	40 (Black)
-//	41 (Maroon)
+//	41 (Red)
 func ActionAnsiBackgroundColors(includeIntense bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		batch := carapace.Batch(carapace.ActionStyledValuesDescribed(
 			"40", "Black", style.XTerm256Color(0),
-			"41", "Maroon", style.XTerm256Color(1),
+			"41", "Red", style.XTerm256Color(1),
 			"42", "Green", style.XTerm256Color(2),
-			"43", "Olive", style.XTerm256Color(3),
-			"44", "Navy", style.XTerm256Color(4),
-			"45", "Purple", style.XTerm256Color(5),
-			"46", "Teal", style.XTerm256Color(6),
-			"47", "Silver", style.XTerm256Color(7),
+			"43", "Yellow", style.XTerm256Color(3),
+			"44", "Blue", style.XTerm256Color(4),
+			"45", "Magenta", style.XTerm256Color(5),
+			"46", "Cyan", style.XTerm256Color(6),
+			"47", "White", style.XTerm256Color(7),
 		))
 		if includeIntense {
 			batch = append(batch, carapace.ActionStyledValuesDescribed(
-				"48", "Grey", style.XTerm256Color(8),
-				"49", "Red", style.XTerm256Color(9),
-				"50", "Lime", style.XTerm256Color(10),
-				"51", "Yellow", style.XTerm256Color(11),
-				"52", "Blue", style.XTerm256Color(12),
-				"53", "Fuchsia", style.XTerm256Color(13),
-				"54", "Aqua", style.XTerm256Color(14),
-				"55", "White", style.XTerm256Color(15),
+				"100", "Bright Black", style.XTerm256Color(8),
+				"101", "Bright Red", style.XTerm256Color(9),
+				"102", "Bright Green", style.XTerm256Color(10),
+				"103", "Bright Yellow", style.XTerm256Color(11),
+				"104", "Bright Blue", style.XTerm256Color(12),
+				"105", "Bright Magenta", style.XTerm256Color(13),
+				"106", "Bright Cyan", style.XTerm256Color(14),
+				"107", "Bright White", style.XTerm256Color(15),
 			))
 		}
 		return batch.ToA()

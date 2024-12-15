@@ -8,7 +8,7 @@ import (
 // ActionHexColors completes hex color codes
 // source: https://www.ditig.com/256-colors-cheat-sheet
 //
-//	#0000ff (Blue1)
+//	#0000ff (Blue)
 //	#00d75f (SpringGreen3)
 func ActionHexColors() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
