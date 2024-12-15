@@ -74,7 +74,7 @@ jobs:
       - name: "build docs"
         run: |
             chmod +x cmd/carapace/carapace
-            sed -i 's/\[output.linkcheck\]/#[output.linkcheck]/' docs/book.toml
+            # sed -i 's/\[output.linkcheck\]/#[output.linkcheck]/' docs/book.toml
             sh .github/completers.sh > docs/src/completers.md
             sh .github/conditions.sh > docs/src/variable/conditions.md
             sh .github/macros.sh > docs/src/spec/macros.md
