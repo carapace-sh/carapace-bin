@@ -29,7 +29,7 @@ builds:
     binary: carapace
     tags:
       - release
-    gobinary: go-termux
+    tool: go-termux
 archives:
   - id: default
     builds:
