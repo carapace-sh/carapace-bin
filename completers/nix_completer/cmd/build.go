@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/nix_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -39,5 +40,5 @@ func init() {
 		"profile":             carapace.ActionFiles(),
 		"reference-lock-file": carapace.ActionFiles("lock"),
 	})
-	carapace.Gen(buildCmd).PositionalCompletion(nix.ActionFlakes())
+	carapace.Gen(buildCmd).PositionalCompletion(action.ActionFlakeRefs([]string{"nix", "build"}))
 }
