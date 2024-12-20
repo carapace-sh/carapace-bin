@@ -11,7 +11,7 @@ func Powershell(completers []string) string {
 
 $_carapace_lazy = {
     param($wordToComplete, $commandAst, $cursorPosition)
-    $completer = $commandAst.CommandElements[0].Value.Replace("\.exe$", "")
+    $completer = $commandAst.CommandElements[0].Value -replace "\.exe$",""
     carapace $completer powershell | Out-String | Invoke-Expression
     & (Get-Item "Function:_${completer}_completer") $wordToComplete $commandAst $cursorPosition
 }
