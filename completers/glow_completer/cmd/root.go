@@ -10,7 +10,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "glow",
+	Use:   "glow [SOURCE|DIR]",
 	Short: "Render markdown on the CLI, with pizzazz!",
 	Long:  "https://github.com/charmbracelet/glow",
 	Run:   func(cmd *cobra.Command, args []string) {},
@@ -22,15 +22,16 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.Flags().BoolP("all", "a", false, "show system files and directories (TUI-mode only)")
 	rootCmd.PersistentFlags().String("config", "", "config file")
-	rootCmd.Flags().BoolP("help", "h", false, "help for glow")
-	rootCmd.Flags().BoolP("local", "l", false, "show local files only; no network (TUI-mode only)")
+	rootCmd.Flags().BoolP("line-numbers", "l", false, "show line numbers (TUI-mode only)")
 	rootCmd.Flags().BoolP("mouse", "m", false, "enable mouse wheel (TUI-mode only)")
 	rootCmd.Flags().BoolP("pager", "p", false, "display with pager")
-	rootCmd.Flags().StringP("style", "s", "auto", "style name or JSON path")
-	rootCmd.Flags().BoolP("version", "v", false, "version for glow")
-	rootCmd.Flags().UintP("width", "w", 0, "word-wrap at width")
+	rootCmd.Flags().BoolP("preserve-new-lines", "n", false, "preserve newlines in the output")
+	rootCmd.Flags().StringP("style", "s", "", "style name or JSON path")
+	rootCmd.Flags().StringP("width", "w", "", "word-wrap at width (set to 0 to disable)")
+	rootCmd.Flag("mouse").Hidden = true
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(".yml", ".yaml"),
