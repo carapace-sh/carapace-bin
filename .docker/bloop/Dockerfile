@@ -12,4 +12,4 @@ RUN cs install bloop --only-prebuilt=true
 
 ENV PATH="$PATH:/root/.local/share/coursier/bin"
 RUN bloop
-ENTRYPOINT [ "bash" ]
+ENTRYPOINT [ "elvish" ]

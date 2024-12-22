@@ -3,5 +3,6 @@ services:
     build:
       context: nix
     image: ghcr.io/carapace-sh/carapace-bin:nix
+    hostname: carapace-bin:nix
     volumes:
       - '..:/carapace-bin:ro'
