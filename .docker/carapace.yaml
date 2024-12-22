@@ -2,6 +2,7 @@ services:
   build: &base
     image: ghcr.io/carapace-sh/carapace
     command: sh -c 'sh -c "cd /carapace-bin/cmd/carapace && go generate ./... && go build -ldflags=\"-s -w\" ."'
+    user: 1000:1000
     environment:
       CARAPACE_BRIDGES: zsh,fish,bash
       TARGET: /carapace-bin/cmd/carapace/carapace
@@ -69,13 +70,12 @@ services:
   lint:
     <<: *base
     working_dir: /carapace-bin
-    command: bash -c 'go run ./cmd/caralint completers/*/cmd/*.go'
+    command: bash -c 'go run ./cmd/carapace-lint completers/*/cmd/*.go'
   
   fmt:
     <<: *base
     working_dir: /carapace-bin
-    #  user: 1000:1000
-    command: bash -c 'go run ./cmd/carafmt completers/*/cmd/*.go'
+    command: bash -c 'go run ./cmd/carapace-fmt completers/*/cmd/*.go'
 
 volumes:
   go:
