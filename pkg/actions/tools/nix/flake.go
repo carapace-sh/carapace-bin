@@ -13,8 +13,8 @@ import (
 
 // ActionFlakes completes flakes currently available
 //
-// nixpkgs
-// .
+//	nixops
+//	nixpkgs
 func ActionFlakes() carapace.Action {
 	return carapace.ActionExecCommand("nix", "registry", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -44,8 +44,7 @@ func styleForRegistry(s string) string {
 }
 
 // ActionFlakeAttributes completes attributes on a flake
-// Completions are only supplied for local flakes or flakes
-// in the registry.
+// Completions are only supplied for local flakes or flakes in the registry.
 //
 //	hello
 //	packages.x86_64-linux.hello
@@ -117,9 +116,7 @@ func directoryExists(path string) bool {
 }
 
 // ActionFlakeRefs completes a full flake reference
-// It will only complete attributes for local flakes or flakes
-// in the flake registry.
-// It takes in the subcommand being completed
+// It will only complete attributes for local flakes or flakes in the flake registry.
 //
 //	nixpkgs#hello
 //	.#foo
