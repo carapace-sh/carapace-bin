@@ -51,7 +51,7 @@ func getCurrentSystem(c carapace.Context) (string, error) {
 }
 
 // Completes <system>.<devshell>
-func actionDevShellsAndSystem(c carapace.Context, devShells *devShellsSchema) carapace.Action {
+func actionDevShellsAndSystem(_ carapace.Context, devShells *devShellsSchema) carapace.Action {
 	return carapace.ActionMultiPartsN(".", 2, func(c carapace.Context) carapace.Action {
 		if len(c.Parts) == 0 {
 			currentSystem, err := getCurrentSystem(c)

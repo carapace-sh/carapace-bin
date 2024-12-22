@@ -40,5 +40,8 @@ func init() {
 		"profile":             carapace.ActionFiles(),
 		"reference-lock-file": carapace.ActionFiles("lock"),
 	})
-	carapace.Gen(buildCmd).PositionalCompletion(action.ActionFlakeRefs([]string{"nix", "build"}))
+
+	carapace.Gen(buildCmd).PositionalCompletion(
+		action.ActionFlakeRefs(),
+	)
 }

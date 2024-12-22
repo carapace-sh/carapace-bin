@@ -16,15 +16,16 @@ import (
 // in the flake registry.
 // It takes in the subcommand being completed
 //
-// nixpkgs#hello
-// .#foo
-func ActionFlakeRefs(fullCmd []string) carapace.Action {
+//	nixpkgs#hello
+//	.#foo
+func ActionFlakeRefs() carapace.Action {
 	return carapace.ActionMultiPartsN("#", 2, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
+			// TODO add directory completion externally
 			return nix.ActionFlakes().Suffix("#")
 		default:
-			return ActionFlakeAttributes(fullCmd, c.Parts[0], c.Value)
+			return ActionFlakeAttributes(c.Parts[0])
 		}
 	})
 }
@@ -33,16 +34,15 @@ func ActionFlakeRefs(fullCmd []string) carapace.Action {
 // Completions are only supplied for local flakes or flakes
 // in the registry.
 //
-// hello
-// packages.x86_64-linux.hello
-func ActionFlakeAttributes(fullCmd []string, flake, flakePath string) carapace.Action {
+//	hello
+//	packages.x86_64-linux.hello
+func ActionFlakeAttributes(flake string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// Get completions from the flake registry
-		c.Setenv("NIX_GET_COMPLETIONS", fmt.Sprint(len(fullCmd)))
-		completionArgs := append(fullCmd[1:], flake)
+		c.Setenv("NIX_GET_COMPLETIONS", "2")
 
 		var stdout, stderr bytes.Buffer
-		cmd := c.Command("nix", completionArgs...)
+		cmd := c.Command("nix", "build", flake)
 		cmd.Stdout = &stdout
 		cmd.Stderr = &stderr
 
@@ -68,8 +68,7 @@ func ActionFlakeAttributes(fullCmd []string, flake, flakePath string) carapace.A
 		stdout.Reset()
 		stderr.Reset()
 
-		completionArgs = append(fullCmd[1:], flake+"#"+flakePath)
-		cmd = c.Command("nix", completionArgs...)
+		cmd = c.Command("nix", "build", fmt.Sprintf("%v#%v", flake, c.Value))
 		cmd.Stdout = &stdout
 		cmd.Stderr = &stderr
 

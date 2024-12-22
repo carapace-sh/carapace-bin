@@ -51,5 +51,8 @@ func init() {
 		"reference-lock-file": carapace.ActionFiles("lock"),
 		"unset":               os.ActionEnvironmentVariables(),
 	})
-	carapace.Gen(developCmd).PositionalCompletion(action.ActionFlakeRefs([]string{"nix", "develop"}))
+
+	carapace.Gen(developCmd).PositionalCompletion(
+		action.ActionFlakeRefs(),
+	)
 }

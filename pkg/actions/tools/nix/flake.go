@@ -25,12 +25,9 @@ func ActionFlakes() carapace.Action {
 				vals = append(vals, name[1], fields[2], styleForRegistry(fields[0]))
 			}
 		}
-		return carapace.Batch(
-			carapace.ActionValues(".", "..").StyleF(style.ForPath),
-			carapace.ActionDirectories(),
-			carapace.ActionStyledValuesDescribed(vals...),
-		).ToA()
-	}).Cache(time.Minute)
+		// TODO add directory completion externally
+		return carapace.ActionStyledValuesDescribed(vals...)
+	}).Cache(time.Minute).Tag("flakes")
 }
 
 func styleForRegistry(s string) string {
