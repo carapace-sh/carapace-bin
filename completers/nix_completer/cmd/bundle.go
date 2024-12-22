@@ -25,8 +25,14 @@ func init() {
 	addLoggingFlags(bundleCmd)
 
 	carapace.Gen(bundleCmd).FlagCompletion(carapace.ActionMap{
-		"bundler":             nix.ActionFlakes(),
-		"inputs-from":         nix.ActionFlakes(),
+		"bundler": carapace.Batch(
+			carapace.ActionDirectories(),
+			nix.ActionFlakes(),
+		).ToA(),
+		"inputs-from": carapace.Batch(
+			carapace.ActionDirectories(),
+			nix.ActionFlakes(),
+		).ToA(),
 		"output-lock-file":    carapace.ActionFiles(),
 		"reference-lock-file": carapace.ActionFiles("lock"),
 	})

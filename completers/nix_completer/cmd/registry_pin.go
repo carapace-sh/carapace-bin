@@ -24,5 +24,8 @@ func init() {
 	carapace.Gen(registry_pinCmd).FlagCompletion(carapace.ActionMap{
 		"registry": carapace.ActionFiles(),
 	})
-	carapace.Gen(registry_pinCmd).PositionalCompletion(nix.ActionFlakes())
+	carapace.Gen(registry_pinCmd).PositionalCompletion(carapace.Batch(
+		carapace.ActionDirectories(),
+		nix.ActionFlakes(),
+	).ToA())
 }

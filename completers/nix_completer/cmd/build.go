@@ -33,7 +33,10 @@ func init() {
 	rootCmd.AddCommand(buildCmd)
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from":         nix.ActionFlakes(),
+		"inputs-from": carapace.Batch(
+			carapace.ActionDirectories(),
+			nix.ActionFlakes(),
+		).ToA(),
 		"out-link":            carapace.ActionFiles(),
 		"output-lock-file":    carapace.ActionFiles(),
 		"profile":             carapace.ActionFiles(),
@@ -41,6 +44,9 @@ func init() {
 	})
 
 	carapace.Gen(buildCmd).PositionalCompletion(
-		nix.ActionFlakeRefs(),
+		carapace.Batch(
+			carapace.ActionDirectories(),
+			nix.ActionFlakeRefs(),
+		).ToA(),
 	)
 }

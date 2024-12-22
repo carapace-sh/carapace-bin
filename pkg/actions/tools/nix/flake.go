@@ -28,7 +28,6 @@ func ActionFlakes() carapace.Action {
 				vals = append(vals, name[1], fields[2], styleForRegistry(fields[0]))
 			}
 		}
-		// TODO add directory completion externally
 		return carapace.ActionStyledValuesDescribed(vals...)
 	}).Tag("flakes")
 }
@@ -128,7 +127,6 @@ func ActionFlakeRefs() carapace.Action {
 	return carapace.ActionMultiPartsN("#", 2, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			// TODO add directory completion externally
 			return ActionFlakes().Suffix("#")
 		default:
 			return ActionFlakeAttributes(c.Parts[0])

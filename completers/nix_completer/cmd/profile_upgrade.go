@@ -23,7 +23,10 @@ func init() {
 	addLoggingFlags(profile_upgradeCmd)
 
 	carapace.Gen(profile_upgradeCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from":         nix.ActionFlakes(),
+		"inputs-from": carapace.Batch(
+			carapace.ActionDirectories(),
+			nix.ActionFlakes(),
+		).ToA(),
 		"output-lock-file":    carapace.ActionFiles(),
 		"profile":             carapace.ActionDirectories(),
 		"reference-lock-file": carapace.ActionFiles("lock"),
