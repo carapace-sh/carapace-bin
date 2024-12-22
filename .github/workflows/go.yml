@@ -72,8 +72,9 @@ jobs:
           path: ./cmd/carapace
 
       - name: Cache linkcheck
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
+          key: linkcheck
           path: ./docs/book/linkcheck/cache.json
 
       - name: "build docs"
