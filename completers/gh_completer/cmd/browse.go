@@ -16,7 +16,7 @@ import (
 
 var browseCmd = &cobra.Command{
 	Use:     "browse [<number> | <path> | <commit-SHA>]",
-	Short:   "Open the repository in the browser",
+	Short:   "Open repositories, issues, pull requests, and more in the browser",
 	GroupID: "core",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
