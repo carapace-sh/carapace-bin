@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/nix_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -42,6 +41,6 @@ func init() {
 	})
 
 	carapace.Gen(buildCmd).PositionalCompletion(
-		action.ActionFlakeRefs(),
+		nix.ActionFlakeRefs(),
 	)
 }
