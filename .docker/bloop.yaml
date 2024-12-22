@@ -1,0 +1,7 @@
+services:
+  bloop:
+    build:
+      context: bloop
+    image: ghcr.io/carapace-sh/carapace-bin:bloop
+    volumes:
+      - '..:/carapace-bin:ro'

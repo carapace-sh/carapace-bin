@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   build: &base
     image: ghcr.io/carapace-sh/carapace
@@ -79,14 +77,9 @@ services:
     #  user: 1000:1000
     command: bash -c 'go run ./cmd/carafmt completers/*/cmd/*.go'
 
-  nix:
-    build:
-      context: .docker
-      dockerfile: nix.Dockerfile
-    image: nixos/nix
-    volumes:
-      - '.:/carapace-bin:ro'
-
+include:
+  - .docker/bloop.yaml
+  - .docker/nix.yaml
 
 volumes:
   go:
