@@ -6,7 +6,6 @@ import (
 	"os"
 	"slices"
 	"strings"
-	"time"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/style"
@@ -31,7 +30,7 @@ func ActionFlakes() carapace.Action {
 		}
 		// TODO add directory completion externally
 		return carapace.ActionStyledValuesDescribed(vals...)
-	}).Cache(time.Minute).Tag("flakes")
+	}).Tag("flakes")
 }
 
 func styleForRegistry(s string) string {
