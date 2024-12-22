@@ -6,7 +6,7 @@ services:
       CARAPACE_BRIDGES: zsh,fish,bash
       TARGET: /carapace-bin/cmd/carapace/carapace
     volumes:
-      - '.:/carapace-bin/'
+      - '..:/carapace-bin/'
       - 'go:/home/circleci/go/'
 
   bash:
@@ -76,10 +76,6 @@ services:
     working_dir: /carapace-bin
     #  user: 1000:1000
     command: bash -c 'go run ./cmd/carafmt completers/*/cmd/*.go'
-
-include:
-  - .docker/bloop.yaml
-  - .docker/nix.yaml
 
 volumes:
   go:

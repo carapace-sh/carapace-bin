@@ -1,0 +1,6 @@
+include:
+  # shells and build related services
+  - .docker/carapace.yaml
+  # tools
+  - .docker/bloop.yaml
+  - .docker/nix.yaml
