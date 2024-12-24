@@ -3,4 +3,5 @@ include:
   - .docker/carapace.yaml
   # tools
   - .docker/bloop.yaml
+  - .docker/gcloud.yaml
   - .docker/nix.yaml

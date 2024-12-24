@@ -1,0 +1,8 @@
+services:
+  gcloud:
+    build:
+      context: gcloud
+    image: ghcr.io/carapace-sh/carapace-bin:gcloud
+    hostname: carapace-bin:gcloud
+    volumes:
+      - '..:/carapace-bin:ro'
