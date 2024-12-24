@@ -23,5 +23,8 @@ func init() {
 	carapace.Gen(registry_removeCmd).FlagCompletion(carapace.ActionMap{
 		"registry": carapace.ActionFiles(),
 	})
-	carapace.Gen(registry_removeCmd).PositionalAnyCompletion(nix.ActionFlakes())
+	carapace.Gen(registry_removeCmd).PositionalAnyCompletion(carapace.Batch(
+		carapace.ActionDirectories(),
+		nix.ActionFlakes(),
+	).ToA())
 }

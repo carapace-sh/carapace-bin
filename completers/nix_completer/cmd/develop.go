@@ -43,12 +43,21 @@ func init() {
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"inputs-from":         nix.ActionFlakes(),
+		"inputs-from": carapace.Batch(
+			carapace.ActionDirectories(),
+			nix.ActionFlakes(),
+		).ToA(),
 		"keep":                os.ActionEnvironmentVariables(),
 		"output-lock-file":    carapace.ActionFiles(),
 		"profile":             carapace.ActionFiles(),
 		"reference-lock-file": carapace.ActionFiles("lock"),
 		"unset":               os.ActionEnvironmentVariables(),
 	})
-	carapace.Gen(developCmd).PositionalCompletion(nix.ActionDevShells())
+
+	carapace.Gen(developCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionDirectories(),
+			nix.ActionFlakeRefs(),
+		).ToA(),
+	)
 }

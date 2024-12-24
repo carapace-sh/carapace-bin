@@ -23,11 +23,17 @@ func init() {
 	addLoggingFlags(flake_checkCmd)
 
 	carapace.Gen(flake_checkCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from":         nix.ActionFlakes(),
+		"inputs-from": carapace.Batch(
+			carapace.ActionDirectories(),
+			nix.ActionFlakes(),
+		).ToA(),
 		"output-lock-file":    carapace.ActionFiles(),
 		"reference-lock-file": carapace.ActionFiles("lock"),
 	})
-	carapace.Gen(flake_checkCmd).PositionalCompletion(nix.ActionFlakes())
+	carapace.Gen(flake_checkCmd).PositionalCompletion(carapace.Batch(
+		carapace.ActionDirectories(),
+		nix.ActionFlakes(),
+	).ToA())
 
 	flakeCmd.AddCommand(flake_checkCmd)
 }

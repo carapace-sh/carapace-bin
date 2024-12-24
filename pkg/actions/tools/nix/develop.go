@@ -14,20 +14,44 @@ type devShellsSchema struct {
 	} `json:"devShells"`
 }
 
-// ActionDevShells completes a flake and development shells from that flake
-func ActionDevShells() carapace.Action {
-	return carapace.ActionMultiPartsN("#", 2, func(c carapace.Context) carapace.Action {
-		if len(c.Parts) == 0 {
-			return ActionFlakes()
+// ActionDevShells completes development shells from given flake
+func ActionDevShells(flake string) carapace.Action {
+	return carapace.ActionExecCommand("nix", "flake", "show", "--json", flake)(func(output []byte) carapace.Action {
+		devShells := &devShellsSchema{}
+		if err := json.Unmarshal(output, devShells); err != nil {
+			return carapace.ActionMessage(err.Error())
 		}
 
-		return carapace.ActionExecCommand("nix", "flake", "show", "--json", c.Parts[0])(func(output []byte) carapace.Action {
-			devShells := &devShellsSchema{}
-			if err := json.Unmarshal(output, devShells); err != nil {
-				return carapace.ActionMessage(err.Error())
+		return carapace.ActionMultiPartsN(".", 2, func(c carapace.Context) carapace.Action {
+			if len(c.Parts) == 0 {
+				currentSystem, err := getCurrentSystem(c)
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+
+				systems := make([]string, 0)
+				for system := range devShells.DevShells {
+					systems = append(systems, system)
+				}
+
+				return carapace.ActionValues(systems...).StyleF(func(s string, sc style.Context) string {
+					if s == currentSystem {
+						return style.Blue
+					}
+					return style.Default
+				}).Suffix(".")
 			}
 
-			return actionDevShellsAndSystem(c, devShells)
+			vals := make([]string, 0)
+			currentSystem, ok := devShells.DevShells[c.Parts[0]]
+			if !ok {
+				return carapace.ActionValues()
+			}
+
+			for name, value := range currentSystem {
+				vals = append(vals, name, value.Name)
+			}
+			return carapace.ActionValuesDescribed(vals...)
 		})
 	})
 }
@@ -48,39 +72,4 @@ func getCurrentSystem(c carapace.Context) (string, error) {
 	}
 
 	return config.System.Value, nil
-}
-
-// Completes <system>.<devshell>
-func actionDevShellsAndSystem(c carapace.Context, devShells *devShellsSchema) carapace.Action {
-	return carapace.ActionMultiPartsN(".", 2, func(c carapace.Context) carapace.Action {
-		if len(c.Parts) == 0 {
-			currentSystem, err := getCurrentSystem(c)
-			if err != nil {
-				return carapace.ActionMessage(err.Error())
-			}
-
-			systems := make([]string, 0)
-			for system := range devShells.DevShells {
-				systems = append(systems, system)
-			}
-
-			return carapace.ActionValues(systems...).StyleF(func(s string, sc style.Context) string {
-				if s == currentSystem {
-					return style.Blue
-				}
-				return style.Default
-			}).Suffix(".")
-		}
-
-		vals := make([]string, 0)
-		currentSystem, ok := devShells.DevShells[c.Parts[0]]
-		if !ok {
-			return carapace.ActionValues()
-		}
-
-		for name, value := range currentSystem {
-			vals = append(vals, name, value.Name)
-		}
-		return carapace.ActionValuesDescribed(vals...)
-	})
 }
