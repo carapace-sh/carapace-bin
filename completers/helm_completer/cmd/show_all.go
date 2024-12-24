@@ -39,7 +39,7 @@ func init() {
 		"version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				if splitted := strings.Split(c.Args[0], "/"); len(splitted) == 2 {
-					return helm.ActionChartVersions(splitted[0], splitted[1])
+					return helm.ActionChartVersions(helm.ChartVersionOpts{Repo: splitted[0], Chart: splitted[1]})
 				}
 			}
 			return carapace.ActionValues()
