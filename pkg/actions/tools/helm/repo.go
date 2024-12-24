@@ -88,10 +88,15 @@ func ActionCharts(repo string) carapace.Action {
 	})
 }
 
+type ChartVersionOpts struct {
+	Repo  string
+	Chart string
+}
+
 // ActionChartVersions completes chart versions
-func ActionChartVersions(repo string, chart string) carapace.Action {
+func ActionChartVersions(opts ChartVersionOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		index, err := loadIndex(repo)
+		index, err := loadIndex(opts.Repo)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
@@ -99,7 +104,7 @@ func ActionChartVersions(repo string, chart string) carapace.Action {
 		vals := make([]string, 0)
 		for _, charts := range index.Entries {
 			for _, c := range charts {
-				if c.Name == chart {
+				if c.Name == opts.Chart {
 					vals = append(vals, c.Version)
 				}
 			}
