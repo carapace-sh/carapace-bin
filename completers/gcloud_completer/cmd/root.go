@@ -26,10 +26,11 @@ func init() {
 			// TODO patch user@instance and --flag=optarg as in gcloud completion script
 
 			if c.Value == "-" {
-				return carapace.ActionValues("--").NoSpace() // seems shorthand flags aren't completed anyway so expand to longhand first
+				c.Value = "--" // seems shorthand flags aren't completed anyway so expand to longhand first
 			}
 			c.Setenv("CLOUDSDK_COMPONENT_MANAGER_DISABLE_UPDATE_CHECK", "1")
-			return bridge.ActionArgcomplete("gcloud").Invoke(c).ToA()
+			//lint:ignore SA1019 gcloud uses an old argcomplete version
+			return bridge.ActionArgcompleteLegacy("gcloud").Invoke(c).ToA()
 		}),
 	)
 }
