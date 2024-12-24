@@ -1,8 +1,15 @@
 package lazyinit
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+)
 
 func Nushell(completers []string) string {
+	windowsSnippet := ""
+	if runtime.GOOS == "windows" {
+		windowsSnippet = " | str replace --regex  '\\.exe$' ''"
+	}
 	snippet := `%v%v
 
 let carapace_completer = {|spans|
@@ -12,9 +19,9 @@ let carapace_completer = {|spans|
   # overwrite
   let spans = (if $expanded_alias != null  {
     # put the first word of the expanded alias first in the span
-    $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
+    $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1%v)
   } else {
-    $spans
+    $spans | skip 1 | prepend ($spans.0%v)
   })
 
   carapace $spans.0 nushell ...$spans
@@ -30,5 +37,5 @@ $current.completions.external = ($current.completions.external
 $env.config = $current
     `
 
-	return fmt.Sprintf(snippet, pathSnippet("nushell"), envSnippet("nushell"))
+	return fmt.Sprintf(snippet, pathSnippet("nushell"), envSnippet("nushell"), windowsSnippet, windowsSnippet)
 }
