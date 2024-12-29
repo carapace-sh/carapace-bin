@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/env"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
@@ -14,6 +15,7 @@ func init() {
 			Variables: map[string]string{
 				// carapace
 				"CARAPACE_COVERDIR":      "coverage directory for sandbox tests",
+				"CARAPACE_COMPLINE":      "current command line",
 				"CARAPACE_ENV":           "register get-env, set-env and unset-env",
 				"CARAPACE_HIDDEN":        "show hidden commands/flags",
 				"CARAPACE_LENIENT":       "allow unknown flags",
@@ -31,6 +33,7 @@ func init() {
 			VariableCompletion: map[string]carapace.Action{
 				// carapace
 				"CARAPACE_COVERDIR": carapace.ActionDirectories(),
+				"CARAPACE_COMPLINE": bridge.ActionCarapaceBin().Split(),
 				"CARAPACE_ENV":      _bool,
 				"CARAPACE_HIDDEN":   _bool,
 				"CARAPACE_LENIENT":  _bool,

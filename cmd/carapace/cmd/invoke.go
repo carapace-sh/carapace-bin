@@ -174,6 +174,7 @@ func init() {
 			switch c.Args[1] {
 			case "bash",
 				"bash-ble",
+				"cmd-clink",
 				"elvish",
 				"export",
 				"fish",
@@ -196,6 +197,7 @@ func init() {
 			switch c.Args[1] {
 			case "bash",
 				"bash-ble",
+				"cmd-clink",
 				"elvish",
 				"export",
 				"fish",

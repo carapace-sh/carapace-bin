@@ -14,6 +14,7 @@ Carapace-bin provides argument completion for multiple CLI commands ([full list]
 
 Supported shells:
 - [Bash](https://www.gnu.org/software/bash/)
+- [Cmd](https://en.wikipedia.org/wiki/Cmd.exe) ([experimental](https://github.com/carapace-sh/carapace/issues/1107))
 - [Elvish](https://elv.sh/)
 - [Fish](https://fishshell.com/)
 - [Ion](https://doc.redox-os.org/ion-manual/) ([experimental](https://github.com/carapace-sh/carapace/issues/88))
