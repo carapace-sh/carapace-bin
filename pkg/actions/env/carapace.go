@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/env"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
@@ -14,12 +15,14 @@ func init() {
 			Variables: map[string]string{
 				// carapace
 				"CARAPACE_COVERDIR":      "coverage directory for sandbox tests",
+				"CARAPACE_COMPLINE":      "TODO", // TODO
 				"CARAPACE_ENV":           "register get-env, set-env and unset-env",
 				"CARAPACE_HIDDEN":        "show hidden commands/flags",
 				"CARAPACE_LENIENT":       "allow unknown flags",
 				"CARAPACE_LOG":           "enable logging",
 				"CARAPACE_MATCH":         "match case insensitive",
 				"CARAPACE_NOSPACE":       "nospace suffixes",
+				"CARAPACE_SHELL":         "TODO", // TODO
 				"CARAPACE_SANDBOX":       "mock context for sandbox tests",
 				"CARAPACE_TOOLTIP":       "enable tooltip style",
 				"CARAPACE_ZSH_HASH_DIRS": "zsh hash directories",
@@ -30,6 +33,7 @@ func init() {
 			VariableCompletion: map[string]carapace.Action{
 				// carapace
 				"CARAPACE_COVERDIR": carapace.ActionDirectories(),
+				"CARAPACE_COMPLINE": bridge.ActionCarapaceBin().Split(),
 				"CARAPACE_ENV":      _bool,
 				"CARAPACE_HIDDEN":   _bool,
 				"CARAPACE_LENIENT":  _bool,
@@ -42,6 +46,21 @@ func init() {
 					"*", "match all",
 				).UniqueList(""),
 				"CARAPACE_SANDBOX": carapace.ActionValues(),
+				"CARAPACE_SHELL": carapace.ActionStyledValues(
+					"bash", "#d35673",
+					"bash-ble", "#c2039a",
+					"cmd-clink", "#2B3436",
+					"elvish", "#ffd6c9",
+					"export", style.Default,
+					"fish", "#7ea8fc",
+					"ion", "#0e5d6d",
+					"nushell", "#29d866",
+					"oil", "#373a36",
+					"powershell", "#e8a16f",
+					"tcsh", "#412f09",
+					"xonsh", "#a8ffa9",
+					"zsh", "#efda53",
+				),
 				"CARAPACE_TOOLTIP": _bool,
 				// carapace-bin
 				"CARAPACE_EXCLUDES": carapace.Batch(

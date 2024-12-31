@@ -71,6 +71,8 @@ func Snippet(shell string) string {
 		return Bash(completerNames)
 	case "bash-ble":
 		return BashBle(completerNames)
+	case "cmd-clink":
+		return CmdClink(completerNames)
 	case "elvish":
 		return Elvish(completerNames)
 	case "fish":

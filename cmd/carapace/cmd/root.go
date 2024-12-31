@@ -161,6 +161,7 @@ func Execute(version string) error {
 			switch shell {
 			case "bash",
 				"bash-ble",
+				"cmd-clink",
 				"elvish",
 				"fish",
 				"nushell",
