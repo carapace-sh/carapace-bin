@@ -3,5 +3,6 @@ include:
   - .docker/carapace.yaml
   # tools
   - .docker/bloop.yaml
+  - .docker/fzf-tab.yaml
   - .docker/gcloud.yaml
   - .docker/nix.yaml
