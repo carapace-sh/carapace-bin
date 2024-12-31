@@ -1,0 +1,8 @@
+services:
+  fzf-tab:
+    build:
+      context: fzf-tab
+    image: ghcr.io/carapace-sh/carapace-bin:fzf-tab
+    hostname: carapace-bin:fzf-tab
+    volumes:
+      - '..:/carapace-bin:ro'
