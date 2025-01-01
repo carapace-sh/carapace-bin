@@ -1,0 +1,8 @@
+services:
+  xbps:
+    build:
+      context: xbps
+    image: ghcr.io/carapace-sh/carapace-bin:xbps
+    hostname: carapace-bin:xbps
+    volumes:
+      - '..:/carapace-bin:ro'
