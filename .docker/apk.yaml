@@ -1,0 +1,8 @@
+services:
+  apk:
+    build:
+      context: apk
+    image: ghcr.io/carapace-sh/carapace-bin:apk
+    hostname: carapace-bin:apk
+    volumes:
+      - '..:/carapace-bin:ro'

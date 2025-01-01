@@ -2,6 +2,7 @@ include:
   # shells and build related services
   - .docker/carapace.yaml
   # tools
+  - .docker/apk.yaml
   - .docker/bloop.yaml
   - .docker/fzf-tab.yaml
   - .docker/gcloud.yaml

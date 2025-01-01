@@ -14,6 +14,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace-bridge/pkg/bridges"
+	"github.com/carapace-sh/carapace/pkg/uid"
 	"github.com/spf13/cobra"
 )
 
@@ -233,13 +234,9 @@ func invokeCompleter(completer string) string {
 	out := <-outC
 	os.Stdout = old
 
-	executable, err := os.Executable()
-	if err != nil {
-		panic(err.Error()) // TODO exit with error message
-	}
-	executableName := filepath.Base(executable)
-	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v %v", executableName, completer), -1)      // general callback
-	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '%v'", executableName, completer), -1) // xonsh callback
+	executable := uid.Executable()
+	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executable), fmt.Sprintf("%v %v", executable, completer), -1)      // general callback
+	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executable), fmt.Sprintf("'%v', '%v'", executable, completer), -1) // xonsh callback
 	return patched
 }
 
