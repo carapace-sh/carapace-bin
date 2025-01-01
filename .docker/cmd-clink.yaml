@@ -1,0 +1,8 @@
+services:
+  cmd-clink:
+    build:
+      context: cmd-clink
+    image: ghcr.io/carapace-sh/carapace-bin:cmd-clink
+    hostname: carapace-bin:cmd-clink
+    volumes:
+      - '..:/carapace-bin:ro'
