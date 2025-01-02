@@ -38,12 +38,14 @@ carapace _carapace | source
 ## Nushell
 
 ```sh
-## ~/.config/nushell/env.nu
+# ~/.config/nushell/env.nu
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+
+# run the following in terminal
 mkdir ~/.cache/carapace
 carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
 
-#~/.config/nushell/config.nu
+# ~/.config/nushell/config.nu
 source ~/.cache/carapace/init.nu
 ```
 
