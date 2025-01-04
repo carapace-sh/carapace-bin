@@ -24,7 +24,8 @@ func init() {
 
 	rootCmd.PersistentFlags().String("at-operation", "", "Operation to load the repo at")
 	rootCmd.PersistentFlags().String("color", "", "When to colorize output (always, never, auto)")
-	rootCmd.PersistentFlags().StringSlice("config-toml", []string{}, "Additional configuration options (can be repeated)")
+	rootCmd.PersistentFlags().StringSlice("config", []string{}, "Additional configuration options (can be repeated)")
+	rootCmd.PersistentFlags().StringSlice("config-file", []string{}, "Additional configuration files (can be repeated)")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.PersistentFlags().Bool("ignore-immutable", false, "Allow rewriting of immutable commits")
 	rootCmd.PersistentFlags().Bool("ignore-working-copy", false, "Don't snapshot the working copy, and don't update it")
@@ -39,7 +40,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"at-operation": carapace.ActionValues(), // TODO
 		"color":        carapace.ActionValues("always", "never", "auto").StyleF(style.ForKeyword),
-		"config-toml":  carapace.ActionFiles(),
+		"config-file":  carapace.ActionFiles(),
 		"repository":   carapace.ActionDirectories(),
 	})
 
