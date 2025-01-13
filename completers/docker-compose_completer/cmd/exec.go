@@ -9,22 +9,22 @@ import (
 
 var execCmd = &cobra.Command{
 	Use:   "exec [OPTIONS] SERVICE COMMAND [ARGS...]",
-	Short: "Execute a command in a running container.",
+	Short: "Execute a command in a running container",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(execCmd).Standalone()
 
-	execCmd.Flags().BoolP("detach", "d", false, "Detached mode: Run command in the background.")
+	execCmd.Flags().BoolP("detach", "d", false, "Detached mode: Run command in the background")
 	execCmd.Flags().StringSliceP("env", "e", []string{}, "Set environment variables")
-	execCmd.Flags().String("index", "", "index of the container if service has multiple replicas")
-	execCmd.Flags().BoolP("interactive", "i", false, "Keep STDIN open even if not attached.")
+	execCmd.Flags().String("index", "", "Index of the container if service has multiple replicas")
+	execCmd.Flags().BoolP("interactive", "i", false, "Keep STDIN open even if not attached")
 	execCmd.Flags().BoolP("no-TTY", "T", false, "Disable pseudo-TTY allocation. By default `docker compose exec` allocates a TTY.")
-	execCmd.Flags().Bool("privileged", false, "Give extended privileges to the process.")
-	execCmd.Flags().BoolP("tty", "t", false, "Allocate a pseudo-TTY.")
-	execCmd.Flags().StringP("user", "u", "", "Run the command as this user.")
-	execCmd.Flags().StringP("workdir", "w", "", "Path to workdir directory for this command.")
+	execCmd.Flags().Bool("privileged", false, "Give extended privileges to the process")
+	execCmd.Flags().BoolP("tty", "t", false, "Allocate a pseudo-TTY")
+	execCmd.Flags().StringP("user", "u", "", "Run the command as this user")
+	execCmd.Flags().StringP("workdir", "w", "", "Path to workdir directory for this command")
 	execCmd.Flag("interactive").Hidden = true
 	execCmd.Flag("tty").Hidden = true
 	rootCmd.AddCommand(execCmd)
@@ -43,6 +43,7 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
+		"workdir": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(execCmd).PositionalCompletion(

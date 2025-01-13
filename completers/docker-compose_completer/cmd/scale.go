@@ -15,7 +15,7 @@ var scaleCmd = &cobra.Command{
 func init() {
 	carapace.Gen(scaleCmd).Standalone()
 
-	scaleCmd.Flags().Bool("no-deps", false, "Don't start linked services.")
+	scaleCmd.Flags().Bool("no-deps", false, "Don't start linked services")
 	rootCmd.AddCommand(scaleCmd)
 
 	carapace.Gen(scaleCmd).PositionalAnyCompletion(

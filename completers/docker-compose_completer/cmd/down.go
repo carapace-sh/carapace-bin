@@ -14,10 +14,10 @@ var downCmd = &cobra.Command{
 func init() {
 	carapace.Gen(downCmd).Standalone()
 
-	downCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file.")
+	downCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file")
 	downCmd.Flags().String("rmi", "", "Remove images used by services. \"local\" remove only images that don't have a custom tag (\"local\"|\"all\")")
 	downCmd.Flags().StringP("timeout", "t", "", "Specify a shutdown timeout in seconds")
-	downCmd.Flags().BoolP("volumes", "v", false, "Remove named volumes declared in the \"volumes\" section of the Compose file and anonymous volumes attached to containers.")
+	downCmd.Flags().BoolP("volumes", "v", false, "Remove named volumes declared in the \"volumes\" section of the Compose file and anonymous volumes attached to containers")
 	rootCmd.AddCommand(downCmd)
 
 	// TODO volumes flag

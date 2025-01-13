@@ -8,7 +8,7 @@ import (
 
 var eventsCmd = &cobra.Command{
 	Use:   "events [OPTIONS] [SERVICE...]",
-	Short: "Receive real time events from containers.",
+	Short: "Receive real time events from containers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
