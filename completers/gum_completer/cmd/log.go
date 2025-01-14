@@ -67,6 +67,7 @@ func init() {
 	logCmd.Flags().Bool("message.strikethrough", false, "Strikethrough text")
 	logCmd.Flags().Bool("message.underline", false, "Underline text")
 	logCmd.Flags().String("message.width", "", "Text width")
+	logCmd.Flags().String("min-level", "", "Minimal level to show")
 	logCmd.Flags().String("prefix", "", "Prefix to print before the message")
 	logCmd.Flags().String("prefix.align", "", "Text Alignment")
 	logCmd.Flags().String("prefix.background", "", "Background Color")

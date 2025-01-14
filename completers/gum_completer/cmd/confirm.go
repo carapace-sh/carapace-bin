@@ -48,6 +48,8 @@ func init() {
 	confirmCmd.Flags().Bool("selected.strikethrough", false, "Strikethrough text")
 	confirmCmd.Flags().Bool("selected.underline", false, "Underline text")
 	confirmCmd.Flags().String("selected.width", "", "Text width")
+	confirmCmd.Flags().Bool("show-help", false, "Show help key binds")
+	confirmCmd.Flags().Bool("show-output", false, "Print prompt and chosen action to output")
 	confirmCmd.Flags().String("timeout", "", "Timeout until confirm returns selected value or default if provided")
 	confirmCmd.Flags().String("unselected.align", "", "Text Alignment")
 	confirmCmd.Flags().String("unselected.background", "", "Background Color")

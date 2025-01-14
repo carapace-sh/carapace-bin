@@ -81,6 +81,8 @@ func init() {
 	inputCmd.Flags().Bool("prompt.strikethrough", false, "Strikethrough text")
 	inputCmd.Flags().Bool("prompt.underline", false, "Underline text")
 	inputCmd.Flags().String("prompt.width", "", "Text width")
+	inputCmd.Flags().Bool("show-help", false, "Show help keybinds")
+	inputCmd.Flags().Bool("strip-ansi", false, "Strip ANSI sequences when reading from STDIN")
 	inputCmd.Flags().String("timeout", "", "Timeout until input aborts")
 	inputCmd.Flags().String("value", "", "Initial value (can also be passed via stdin)")
 	inputCmd.Flags().String("width", "", "Input width (0 for terminal width)")

@@ -19,7 +19,9 @@ func init() {
 
 	spinCmd.Flags().StringP("align", "a", "", "Alignment of spinner with regard to the title")
 	spinCmd.Flags().Bool("show-error", false, "Show output of command only if the command fails")
-	spinCmd.Flags().Bool("show-output", false, "Show or pipe output of command during execution")
+	spinCmd.Flags().Bool("show-output", false, "Show or pipe output of command during execution (shows both STDOUT and STDERR)")
+	spinCmd.Flags().Bool("show-stderr", false, "Show STDERR errput")
+	spinCmd.Flags().Bool("show-stdout", false, "Show STDOUT output")
 	spinCmd.Flags().StringP("spinner", "s", "", "Spinner type")
 	spinCmd.Flags().String("spinner.align", "", "Text Alignment")
 	spinCmd.Flags().String("spinner.background", "", "Background Color")
