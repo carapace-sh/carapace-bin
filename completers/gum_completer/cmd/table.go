@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -89,31 +89,8 @@ func init() {
 	tableCmd.Flags().StringSliceP("widths", "w", []string{}, "Column widths")
 	rootCmd.AddCommand(tableCmd)
 
+	common.AddFlagCompletion(tableCmd)
 	carapace.Gen(tableCmd).FlagCompletion(carapace.ActionMap{
-		"border":                     gum.ActionBorders(),
-		"border.align":               gum.ActionAlignments(),
-		"border.background":          gum.ActionColors(),
-		"border.border":              gum.ActionBorders(),
-		"border.border-background":   gum.ActionColors(),
-		"border.border-foreground":   gum.ActionColors(),
-		"border.foreground":          gum.ActionColors(),
-		"cell.background":            gum.ActionColors(),
-		"cell.border":                gum.ActionBorders(),
-		"cell.border-background":     gum.ActionColors(),
-		"cell.border-foreground":     gum.ActionColors(),
-		"cell.foreground":            gum.ActionColors(),
-		"file":                       carapace.ActionFiles(),
-		"header.align":               gum.ActionAlignments(),
-		"header.background":          gum.ActionColors(),
-		"header.border":              gum.ActionBorders(),
-		"header.border-background":   gum.ActionColors(),
-		"header.border-foreground":   gum.ActionColors(),
-		"header.foreground":          gum.ActionColors(),
-		"selected.align":             gum.ActionAlignments(),
-		"selected.background":        gum.ActionColors(),
-		"selected.border":            gum.ActionBorders(),
-		"selected.border-background": gum.ActionColors(),
-		"selected.border-foreground": gum.ActionColors(),
-		"selected.foreground":        gum.ActionColors(),
+		"file": carapace.ActionFiles(),
 	})
 }

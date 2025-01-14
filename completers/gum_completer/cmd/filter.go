@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -175,60 +175,5 @@ func init() {
 	filterCmd.Flags().String("width", "", "Input width")
 	rootCmd.AddCommand(filterCmd)
 
-	carapace.Gen(filterCmd).FlagCompletion(carapace.ActionMap{
-		"cursor-text.align":                    gum.ActionAlignments(),
-		"cursor-text.background":               gum.ActionColors(),
-		"cursor-text.border":                   gum.ActionBorders(),
-		"cursor-text.border-background":        gum.ActionColors(),
-		"cursor-text.border-foreground":        gum.ActionColors(),
-		"cursor-text.foreground":               gum.ActionColors(),
-		"header.align":                         gum.ActionAlignments(),
-		"header.background":                    gum.ActionColors(),
-		"header.border":                        gum.ActionBorders(),
-		"header.border-background":             gum.ActionColors(),
-		"header.border-foreground":             gum.ActionColors(),
-		"header.foreground":                    gum.ActionColors(),
-		"indicator.align":                      gum.ActionAlignments(),
-		"indicator.background":                 gum.ActionColors(),
-		"indicator.border":                     gum.ActionBorders(),
-		"indicator.border-background":          gum.ActionColors(),
-		"indicator.border-foreground":          gum.ActionColors(),
-		"indicator.foreground":                 gum.ActionColors(),
-		"match.align":                          gum.ActionAlignments(),
-		"match.background":                     gum.ActionColors(),
-		"match.border":                         gum.ActionBorders(),
-		"match.border-background":              gum.ActionColors(),
-		"match.border-foreground":              gum.ActionColors(),
-		"match.foreground":                     gum.ActionColors(),
-		"placeholder.align":                    gum.ActionAlignments(),
-		"placeholder.background":               gum.ActionColors(),
-		"placeholder.border":                   gum.ActionBorders(),
-		"placeholder.border-background":        gum.ActionColors(),
-		"placeholder.border-foreground":        gum.ActionColors(),
-		"placeholder.foreground":               gum.ActionColors(),
-		"prompt.align":                         gum.ActionAlignments(),
-		"prompt.background":                    gum.ActionColors(),
-		"prompt.border":                        gum.ActionBorders(),
-		"prompt.border-background":             gum.ActionColors(),
-		"prompt.border-foreground":             gum.ActionColors(),
-		"prompt.foreground":                    gum.ActionColors(),
-		"selected-indicator.align":             gum.ActionAlignments(),
-		"selected-indicator.background":        gum.ActionColors(),
-		"selected-indicator.border":            gum.ActionBorders(),
-		"selected-indicator.border-background": gum.ActionColors(),
-		"selected-indicator.border-foreground": gum.ActionColors(),
-		"selected-indicator.foreground":        gum.ActionColors(),
-		"text.align":                           gum.ActionAlignments(),
-		"text.background":                      gum.ActionColors(),
-		"text.border":                          gum.ActionBorders(),
-		"text.border-background":               gum.ActionColors(),
-		"text.border-foreground":               gum.ActionColors(),
-		"text.foreground":                      gum.ActionColors(),
-		"unselected-prefix.align":              gum.ActionAlignments(),
-		"unselected-prefix.background":         gum.ActionColors(),
-		"unselected-prefix.border":             gum.ActionBorders(),
-		"unselected-prefix.border-background":  gum.ActionColors(),
-		"unselected-prefix.border-foreground":  gum.ActionColors(),
-		"unselected-prefix.foreground":         gum.ActionColors(),
-	})
+	common.AddFlagCompletion(filterCmd)
 }

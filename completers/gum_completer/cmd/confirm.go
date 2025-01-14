@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -68,24 +68,5 @@ func init() {
 	confirmCmd.Flags().String("unselected.width", "", "Text width")
 	rootCmd.AddCommand(confirmCmd)
 
-	carapace.Gen(confirmCmd).FlagCompletion(carapace.ActionMap{
-		"prompt.align":                 gum.ActionAlignments(),
-		"prompt.background":            gum.ActionColors(),
-		"prompt.border":                gum.ActionBorders(),
-		"prompt.border-background":     gum.ActionColors(),
-		"prompt.border-foreground":     gum.ActionColors(),
-		"prompt.foreground":            gum.ActionColors(),
-		"selected.align":               gum.ActionAlignments(),
-		"selected.background":          gum.ActionColors(),
-		"selected.border":              gum.ActionBorders(),
-		"selected.border-background":   gum.ActionColors(),
-		"selected.border-foreground":   gum.ActionColors(),
-		"selected.foreground":          gum.ActionColors(),
-		"unselected.align":             gum.ActionAlignments(),
-		"unselected.background":        gum.ActionColors(),
-		"unselected.border":            gum.ActionBorders(),
-		"unselected.border-background": gum.ActionColors(),
-		"unselected.border-foreground": gum.ActionColors(),
-		"unselected.foreground":        gum.ActionColors(),
-	})
+	common.AddFlagCompletion(confirmCmd)
 }

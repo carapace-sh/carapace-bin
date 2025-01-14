@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -95,36 +95,5 @@ func init() {
 	pagerCmd.Flags().String("width", "", "Text width")
 	rootCmd.AddCommand(pagerCmd)
 
-	carapace.Gen(pagerCmd).FlagCompletion(carapace.ActionMap{
-		"align":                             gum.ActionAlignments(),
-		"background":                        gum.ActionColors(),
-		"border":                            gum.ActionBorders(),
-		"border-background":                 gum.ActionColors(),
-		"border-foreground":                 gum.ActionColors(),
-		"foreground":                        gum.ActionColors(),
-		"help.align":                        gum.ActionAlignments(),
-		"help.background":                   gum.ActionColors(),
-		"help.border":                       gum.ActionBorders(),
-		"help.border-background":            gum.ActionColors(),
-		"help.border-foreground":            gum.ActionColors(),
-		"help.foreground":                   gum.ActionColors(),
-		"line-number.align":                 gum.ActionAlignments(),
-		"line-number.background":            gum.ActionColors(),
-		"line-number.border":                gum.ActionBorders(),
-		"line-number.border-background":     gum.ActionColors(),
-		"line-number.border-foreground":     gum.ActionColors(),
-		"line-number.foreground":            gum.ActionColors(),
-		"match-highlight.align":             gum.ActionAlignments(),
-		"match-highlight.background":        gum.ActionColors(),
-		"match-highlight.border":            gum.ActionBorders(),
-		"match-highlight.border-background": gum.ActionColors(),
-		"match-highlight.border-foreground": gum.ActionColors(),
-		"match-highlight.foreground":        gum.ActionColors(),
-		"match.align":                       gum.ActionAlignments(),
-		"match.background":                  gum.ActionColors(),
-		"match.border":                      gum.ActionBorders(),
-		"match.border-background":           gum.ActionColors(),
-		"match.border-foreground":           gum.ActionColors(),
-		"match.foreground":                  gum.ActionColors(),
-	})
+	common.AddFlagCompletion(pagerCmd)
 }

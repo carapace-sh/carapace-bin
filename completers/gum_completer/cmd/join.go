@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +20,5 @@ func init() {
 	joinCmd.Flags().Bool("vertical", false, "Join (potentially multi-line) strings vertically")
 	rootCmd.AddCommand(joinCmd)
 
-	carapace.Gen(joinCmd).FlagCompletion(carapace.ActionMap{
-		"align": gum.ActionAlignments(),
-	})
+	common.AddFlagCompletion(joinCmd)
 }

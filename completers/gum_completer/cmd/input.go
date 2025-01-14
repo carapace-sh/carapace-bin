@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
 	"github.com/spf13/cobra"
 )
@@ -88,31 +89,8 @@ func init() {
 	inputCmd.Flags().String("width", "", "Input width (0 for terminal width)")
 	rootCmd.AddCommand(inputCmd)
 
+	common.AddFlagCompletion(inputCmd)
 	carapace.Gen(inputCmd).FlagCompletion(carapace.ActionMap{
-		"cursor.align":                  gum.ActionAlignments(),
-		"cursor.background":             gum.ActionColors(),
-		"cursor.border":                 gum.ActionBorders(),
-		"cursor.border-background":      gum.ActionColors(),
-		"cursor.border-foreground":      gum.ActionColors(),
-		"cursor.foreground":             gum.ActionColors(),
-		"cursor.mode":                   gum.ActionCursorModes(),
-		"header.align":                  gum.ActionAlignments(),
-		"header.background":             gum.ActionColors(),
-		"header.border":                 gum.ActionBorders(),
-		"header.border-background":      gum.ActionColors(),
-		"header.border-foreground":      gum.ActionColors(),
-		"header.foreground":             gum.ActionColors(),
-		"placeholder.align":             gum.ActionAlignments(),
-		"placeholder.background":        gum.ActionColors(),
-		"placeholder.border":            gum.ActionBorders(),
-		"placeholder.border-background": gum.ActionColors(),
-		"placeholder.border-foreground": gum.ActionColors(),
-		"placeholder.foreground":        gum.ActionColors(),
-		"prompt.align":                  gum.ActionAlignments(),
-		"prompt.background":             gum.ActionColors(),
-		"prompt.border":                 gum.ActionBorders(),
-		"prompt.border-background":      gum.ActionColors(),
-		"prompt.border-foreground":      gum.ActionColors(),
-		"prompt.foreground":             gum.ActionColors(),
+		"cursor.mode": gum.ActionCursorModes(),
 	})
 }

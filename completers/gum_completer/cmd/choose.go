@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -94,33 +94,10 @@ func init() {
 	chooseCmd.Flags().String("unselected-prefix", "", "Prefix to show on unselected items (hidden if limit is 1)")
 	rootCmd.AddCommand(chooseCmd)
 
+	common.AddFlagCompletion(chooseCmd)
 	carapace.Gen(chooseCmd).FlagCompletion(carapace.ActionMap{
-		"cursor.align":             gum.ActionAlignments(),
-		"cursor.background":        gum.ActionColors(),
-		"cursor.border":            gum.ActionBorders(),
-		"cursor.border-background": gum.ActionColors(),
-		"cursor.border-foreground": gum.ActionColors(),
-		"cursor.foreground":        gum.ActionColors(),
-		"header.align":             gum.ActionAlignments(),
-		"header.background":        gum.ActionColors(),
-		"header.border":            gum.ActionBorders(),
-		"header.border-background": gum.ActionColors(),
-		"header.border-foreground": gum.ActionColors(),
-		"header.foreground":        gum.ActionColors(),
-		"item.align":               gum.ActionAlignments(),
-		"item.background":          gum.ActionColors(),
-		"item.border":              gum.ActionBorders(),
-		"item.border-background":   gum.ActionColors(),
-		"item.border-foreground":   gum.ActionColors(),
-		"item.foreground":          gum.ActionColors(),
 		"selected": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues(c.Args...).UniqueList(",")
 		}),
-		"selected.align":             gum.ActionAlignments(),
-		"selected.background":        gum.ActionColors(),
-		"selected.border":            gum.ActionBorders(),
-		"selected.border-background": gum.ActionColors(),
-		"selected.border-foreground": gum.ActionColors(),
-		"selected.foreground":        gum.ActionColors(),
 	})
 }

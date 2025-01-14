@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -147,50 +147,7 @@ func init() {
 	fileCmd.Flags().String("timeout", "", "Timeout until command aborts without a selection")
 	rootCmd.AddCommand(fileCmd)
 
-	carapace.Gen(fileCmd).FlagCompletion(carapace.ActionMap{
-		"cursor.align":                  gum.ActionAlignments(),
-		"cursor.background":             gum.ActionColors(),
-		"cursor.border":                 gum.ActionBorders(),
-		"cursor.border-background":      gum.ActionColors(),
-		"cursor.border-foreground":      gum.ActionColors(),
-		"cursor.foreground":             gum.ActionColors(),
-		"directory.align":               gum.ActionAlignments(),
-		"directory.background":          gum.ActionColors(),
-		"directory.border":              gum.ActionBorders(),
-		"directory.border-background":   gum.ActionColors(),
-		"directory.border-foreground":   gum.ActionColors(),
-		"directory.foreground":          gum.ActionColors(),
-		"file-size.align":               gum.ActionAlignments(),
-		"file-size.background":          gum.ActionColors(),
-		"file-size.border":              gum.ActionBorders(),
-		"file-size.border-background":   gum.ActionColors(),
-		"file-size.border-foreground":   gum.ActionColors(),
-		"file-size.foreground":          gum.ActionColors(),
-		"file.align":                    gum.ActionAlignments(),
-		"file.background":               gum.ActionColors(),
-		"file.border":                   gum.ActionBorders(),
-		"file.border-background":        gum.ActionColors(),
-		"file.border-foreground":        gum.ActionColors(),
-		"file.foreground":               gum.ActionColors(),
-		"permissions.align":             gum.ActionAlignments(),
-		"permissions.background":        gum.ActionColors(),
-		"permissions.border":            gum.ActionBorders(),
-		"permissions.border-background": gum.ActionColors(),
-		"permissions.border-foreground": gum.ActionColors(),
-		"permissions.foreground":        gum.ActionColors(),
-		"selected.align":                gum.ActionAlignments(),
-		"selected.background":           gum.ActionColors(),
-		"selected.border":               gum.ActionBorders(),
-		"selected.border-background":    gum.ActionColors(),
-		"selected.border-foreground":    gum.ActionColors(),
-		"selected.foreground":           gum.ActionColors(),
-		"symlink.align":                 gum.ActionAlignments(),
-		"symlink.background":            gum.ActionColors(),
-		"symlink.border":                gum.ActionBorders(),
-		"symlink.border-background":     gum.ActionColors(),
-		"symlink.border-foreground":     gum.ActionColors(),
-		"symlink.foreground":            gum.ActionColors(),
-	})
+	common.AddFlagCompletion(fileCmd)
 
 	carapace.Gen(fileCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
