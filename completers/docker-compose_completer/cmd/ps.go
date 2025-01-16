@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(psCmd).Standalone()
 
 	psCmd.Flags().BoolP("all", "a", false, "Show all stopped containers (including those created by the run command)")
-	psCmd.Flags().String("filter", "", "Filter services by a property (supported filters: status).")
+	psCmd.Flags().String("filter", "", "Filter services by a property (supported filters: status)")
 	psCmd.Flags().String("format", "", "Format output using a custom template:")
 	psCmd.Flags().Bool("no-trunc", false, "Don't truncate output")
 	psCmd.Flags().Bool("orphans", false, "Include orphaned services (not declared by project)")

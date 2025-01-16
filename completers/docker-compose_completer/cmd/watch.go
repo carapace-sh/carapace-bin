@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(watchCmd).Standalone()
 
 	watchCmd.Flags().Bool("no-up", false, "Do not build & start services before watching")
+	watchCmd.Flags().Bool("prune", false, "Prune dangling images on rebuild")
 	watchCmd.Flags().Bool("quiet", false, "hide build output")
 	rootCmd.AddCommand(watchCmd)
 

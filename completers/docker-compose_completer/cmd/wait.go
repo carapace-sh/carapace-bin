@@ -8,7 +8,7 @@ import (
 
 var waitCmd = &cobra.Command{
 	Use:   "wait SERVICE [SERVICE...] [OPTIONS]",
-	Short: "Block until the first service container stops",
+	Short: "Block until containers of all (or specified) services stop.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,14 +8,14 @@ import (
 
 var portCmd = &cobra.Command{
 	Use:   "port [OPTIONS] SERVICE PRIVATE_PORT",
-	Short: "Print the public port for a port binding.",
+	Short: "Print the public port for a port binding",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(portCmd).Standalone()
 
-	portCmd.Flags().String("index", "", "index of the container if service has multiple replicas")
+	portCmd.Flags().String("index", "", "Index of the container if service has multiple replicas")
 	portCmd.Flags().String("protocol", "", "tcp or udp")
 	rootCmd.AddCommand(portCmd)
 

@@ -8,7 +8,7 @@ import (
 
 var attachCmd = &cobra.Command{
 	Use:   "attach [OPTIONS] SERVICE",
-	Short: "Attach local standard input, output, and error streams to a service's running container.",
+	Short: "Attach local standard input, output, and error streams to a service's running container",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
