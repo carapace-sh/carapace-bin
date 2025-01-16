@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -19,7 +19,9 @@ func init() {
 
 	spinCmd.Flags().StringP("align", "a", "", "Alignment of spinner with regard to the title")
 	spinCmd.Flags().Bool("show-error", false, "Show output of command only if the command fails")
-	spinCmd.Flags().Bool("show-output", false, "Show or pipe output of command during execution")
+	spinCmd.Flags().Bool("show-output", false, "Show or pipe output of command during execution (shows both STDOUT and STDERR)")
+	spinCmd.Flags().Bool("show-stderr", false, "Show STDERR errput")
+	spinCmd.Flags().Bool("show-stdout", false, "Show STDOUT output")
 	spinCmd.Flags().StringP("spinner", "s", "", "Spinner type")
 	spinCmd.Flags().String("spinner.align", "", "Text Alignment")
 	spinCmd.Flags().String("spinner.background", "", "Background Color")
@@ -55,8 +57,9 @@ func init() {
 	spinCmd.Flags().String("title.width", "", "Text width")
 	rootCmd.AddCommand(spinCmd)
 
+	common.AddFlagCompletion(spinCmd)
 	carapace.Gen(spinCmd).FlagCompletion(carapace.ActionMap{
-		"align": carapace.ActionValues("left", "right"),
+		"align": carapace.ActionValues("left", "right"), // differs from gum.ActionAlignments
 		"spinner": carapace.ActionValuesDescribed(
 			"line", "/",
 			"dot", "⢿",
@@ -70,17 +73,6 @@ func init() {
 			"meter", "▰",
 			"hamburger", "☲",
 		),
-		"spinner.background":        gum.ActionColors(),
-		"spinner.border":            gum.ActionBorders(),
-		"spinner.border-background": gum.ActionColors(),
-		"spinner.border-foreground": gum.ActionColors(),
-		"spinner.foreground":        gum.ActionColors(),
-		"title.align":               gum.ActionAlignments(),
-		"title.background":          gum.ActionColors(),
-		"title.border":              gum.ActionBorders(),
-		"title.border-background":   gum.ActionColors(),
-		"title.border-foreground":   gum.ActionColors(),
-		"title.foreground":          gum.ActionColors(),
 	})
 
 	carapace.Gen(spinCmd).PositionalAnyCompletion(

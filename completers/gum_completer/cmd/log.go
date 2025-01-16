@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -67,6 +67,7 @@ func init() {
 	logCmd.Flags().Bool("message.strikethrough", false, "Strikethrough text")
 	logCmd.Flags().Bool("message.underline", false, "Underline text")
 	logCmd.Flags().String("message.width", "", "Text width")
+	logCmd.Flags().String("min-level", "", "Minimal level to show")
 	logCmd.Flags().String("prefix", "", "Prefix to print before the message")
 	logCmd.Flags().String("prefix.align", "", "Text Alignment")
 	logCmd.Flags().String("prefix.background", "", "Background Color")
@@ -132,40 +133,11 @@ func init() {
 	logCmd.Flags().String("value.width", "", "Text width")
 	rootCmd.AddCommand(logCmd)
 
+	common.AddFlagCompletion(logCmd)
 	carapace.Gen(logCmd).FlagCompletion(carapace.ActionMap{
-		"file":                        carapace.ActionFiles(),
-		"formatter":                   carapace.ActionValues("json", "logfmt", "text"),
-		"key.align":                   gum.ActionAlignments(),
-		"key.background":              gum.ActionColors(),
-		"key.border":                  gum.ActionBorders(),
-		"key.border-background":       gum.ActionColors(),
-		"key.border-foreground":       gum.ActionColors(),
-		"key.foreground":              gum.ActionColors(),
-		"level":                       carapace.ActionValues("none", "debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel),
-		"level.align":                 gum.ActionAlignments(),
-		"level.background":            gum.ActionColors(),
-		"level.border":                gum.ActionBorders(),
-		"level.border-background":     gum.ActionColors(),
-		"level.border-foreground":     gum.ActionColors(),
-		"level.foreground":            gum.ActionColors(),
-		"message.align":               gum.ActionAlignments(),
-		"message.background":          gum.ActionColors(),
-		"message.border":              gum.ActionBorders(),
-		"message.border-background":   gum.ActionColors(),
-		"message.border-foreground":   gum.ActionColors(),
-		"message.foreground":          gum.ActionColors(),
-		"prefix.align":                gum.ActionAlignments(),
-		"prefix.background":           gum.ActionColors(),
-		"prefix.border":               gum.ActionBorders(),
-		"prefix.border-background":    gum.ActionColors(),
-		"prefix.border-foreground":    gum.ActionColors(),
-		"prefix.foreground":           gum.ActionColors(),
-		"separator.align":             gum.ActionAlignments(),
-		"separator.background":        gum.ActionColors(),
-		"separator.border":            gum.ActionBorders(),
-		"separator.border-background": gum.ActionColors(),
-		"separator.border-foreground": gum.ActionColors(),
-		"separator.foreground":        gum.ActionColors(),
+		"file":      carapace.ActionFiles(),
+		"formatter": carapace.ActionValues("json", "logfmt", "text"),
+		"level":     carapace.ActionValues("none", "debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel),
 		"time": carapace.ActionValuesDescribed(
 			"layout", time.Layout,
 			"ansic", time.ANSIC,
@@ -186,17 +158,5 @@ func init() {
 			"datetime", "2006-01-02 15:04:05",
 			"dateonly", "2006-01-02",
 			"timeonly", "15:04:05"),
-		"time.align":              gum.ActionAlignments(),
-		"time.background":         gum.ActionColors(),
-		"time.border":             gum.ActionBorders(),
-		"time.border-background":  gum.ActionColors(),
-		"time.border-foreground":  gum.ActionColors(),
-		"time.foreground":         gum.ActionColors(),
-		"value.align":             gum.ActionAlignments(),
-		"value.background":        gum.ActionColors(),
-		"value.border":            gum.ActionBorders(),
-		"value.border-background": gum.ActionColors(),
-		"value.border-foreground": gum.ActionColors(),
-		"value.foreground":        gum.ActionColors(),
 	})
 }

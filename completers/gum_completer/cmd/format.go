@@ -19,6 +19,7 @@ func init() {
 	carapace.Gen(formatCmd).Standalone()
 
 	formatCmd.Flags().StringP("language", "l", "", "Programming language to parse code")
+	formatCmd.Flags().Bool("strip-ansi", false, "Strip ANSI sequences when reading from STDIN")
 	formatCmd.Flags().String("theme", "", "Glamour theme to use for markdown formatting")
 	formatCmd.Flags().StringP("type", "t", "", "Format to use (markdown,template,code,emoji)")
 	rootCmd.AddCommand(formatCmd)

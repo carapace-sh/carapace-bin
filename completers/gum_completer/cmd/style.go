@@ -28,6 +28,8 @@ func init() {
 	styleCmd.Flags().String("margin", "", "Text margin")
 	styleCmd.Flags().String("padding", "", "Text padding")
 	styleCmd.Flags().Bool("strikethrough", false, "Strikethrough text")
+	styleCmd.Flags().Bool("strip-ansi", false, "Strip ANSI sequences when reading from STDIN")
+	styleCmd.Flags().Bool("trim", false, "Trim whitespaces on every input line")
 	styleCmd.Flags().Bool("underline", false, "Underline text")
 	styleCmd.Flags().String("width", "", "Text width")
 	rootCmd.AddCommand(styleCmd)

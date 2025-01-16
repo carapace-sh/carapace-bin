@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -47,6 +47,7 @@ func init() {
 	tableCmd.Flags().Bool("cell.underline", false, "Underline text")
 	tableCmd.Flags().String("cell.width", "", "Text width")
 	tableCmd.Flags().StringSliceP("columns", "c", []string{}, "Column names")
+	tableCmd.Flags().String("fields-per-record", "", "Sets the number of expected fields per record")
 	tableCmd.Flags().StringP("file", "f", "", "file path")
 	tableCmd.Flags().String("header.align", "", "Text Alignment")
 	tableCmd.Flags().String("header.background", "", "Background Color")
@@ -64,7 +65,9 @@ func init() {
 	tableCmd.Flags().Bool("header.underline", false, "Underline text")
 	tableCmd.Flags().String("header.width", "", "Text width")
 	tableCmd.Flags().String("height", "", "Table height")
+	tableCmd.Flags().Bool("lazy-quotes", false, "If LazyQuotes is true, a quote may appear in an unquoted field and a non-doubled quote may appear in a quoted field")
 	tableCmd.Flags().BoolP("print", "p", false, "static print")
+	tableCmd.Flags().StringP("return-column", "r", "", "Which column number should be returned instead of whole row as string. Default=0 returns whole Row")
 	tableCmd.Flags().String("selected.align", "", "Text Alignment")
 	tableCmd.Flags().String("selected.background", "", "Background Color")
 	tableCmd.Flags().Bool("selected.bold", false, "Bold text")
@@ -81,34 +84,13 @@ func init() {
 	tableCmd.Flags().Bool("selected.underline", false, "Underline text")
 	tableCmd.Flags().String("selected.width", "", "Text width")
 	tableCmd.Flags().StringP("separator", "s", "", "Row separator")
+	tableCmd.Flags().Bool("show-help", false, "Show help keybinds")
+	tableCmd.Flags().String("timeout", "", "Timeout until choose returns selected element")
 	tableCmd.Flags().StringSliceP("widths", "w", []string{}, "Column widths")
 	rootCmd.AddCommand(tableCmd)
 
+	common.AddFlagCompletion(tableCmd)
 	carapace.Gen(tableCmd).FlagCompletion(carapace.ActionMap{
-		"border":                     gum.ActionBorders(),
-		"border.align":               gum.ActionAlignments(),
-		"border.background":          gum.ActionColors(),
-		"border.border":              gum.ActionBorders(),
-		"border.border-background":   gum.ActionColors(),
-		"border.border-foreground":   gum.ActionColors(),
-		"border.foreground":          gum.ActionColors(),
-		"cell.background":            gum.ActionColors(),
-		"cell.border":                gum.ActionBorders(),
-		"cell.border-background":     gum.ActionColors(),
-		"cell.border-foreground":     gum.ActionColors(),
-		"cell.foreground":            gum.ActionColors(),
-		"file":                       carapace.ActionFiles(),
-		"header.align":               gum.ActionAlignments(),
-		"header.background":          gum.ActionColors(),
-		"header.border":              gum.ActionBorders(),
-		"header.border-background":   gum.ActionColors(),
-		"header.border-foreground":   gum.ActionColors(),
-		"header.foreground":          gum.ActionColors(),
-		"selected.align":             gum.ActionAlignments(),
-		"selected.background":        gum.ActionColors(),
-		"selected.border":            gum.ActionBorders(),
-		"selected.border-background": gum.ActionColors(),
-		"selected.border-foreground": gum.ActionColors(),
-		"selected.foreground":        gum.ActionColors(),
+		"file": carapace.ActionFiles(),
 	})
 }

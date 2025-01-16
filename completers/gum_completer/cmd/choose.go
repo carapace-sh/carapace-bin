@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -49,6 +49,7 @@ func init() {
 	chooseCmd.Flags().Bool("header.underline", false, "Underline text")
 	chooseCmd.Flags().String("header.width", "", "Text width")
 	chooseCmd.Flags().String("height", "", "Height of the list")
+	chooseCmd.Flags().String("input-delimiter", "", "Option delimiter when reading from STDIN")
 	chooseCmd.Flags().String("item.align", "", "Text Alignment")
 	chooseCmd.Flags().String("item.background", "", "Background Color")
 	chooseCmd.Flags().Bool("item.bold", false, "Bold text")
@@ -64,11 +65,13 @@ func init() {
 	chooseCmd.Flags().Bool("item.strikethrough", false, "Strikethrough text")
 	chooseCmd.Flags().Bool("item.underline", false, "Underline text")
 	chooseCmd.Flags().String("item.width", "", "Text width")
+	chooseCmd.Flags().String("label-delimiter", "", "Allows to set a delimiter, so options can be set as label:value")
 	chooseCmd.Flags().String("limit", "", "Maximum number of options to pick")
 	chooseCmd.Flags().Bool("no-limit", false, "Pick unlimited number of options (ignores limit)")
 	chooseCmd.Flags().Bool("ordered", false, "Maintain the order of the selected options")
+	chooseCmd.Flags().String("output-delimiter", "", "Option delimiter when writing to STDOUT")
 	chooseCmd.Flags().Bool("select-if-one", false, "Select the given option if there is only one")
-	chooseCmd.Flags().StringSlice("selected", []string{}, "Options that should start as selected")
+	chooseCmd.Flags().StringSlice("selected", []string{}, "Options that should start as selected (selects all if given '*')")
 	chooseCmd.Flags().String("selected-prefix", "", "Prefix to show on selected items (hidden if limit is 1)")
 	chooseCmd.Flags().String("selected.align", "", "Text Alignment")
 	chooseCmd.Flags().String("selected.background", "", "Background Color")
@@ -85,37 +88,16 @@ func init() {
 	chooseCmd.Flags().Bool("selected.strikethrough", false, "Strikethrough text")
 	chooseCmd.Flags().Bool("selected.underline", false, "Underline text")
 	chooseCmd.Flags().String("selected.width", "", "Text width")
+	chooseCmd.Flags().Bool("show-help", false, "Show help keybinds")
+	chooseCmd.Flags().Bool("strip-ansi", false, "Strip ANSI sequences when reading from STDIN")
 	chooseCmd.Flags().String("timeout", "", "Timeout until choose returns selected element")
 	chooseCmd.Flags().String("unselected-prefix", "", "Prefix to show on unselected items (hidden if limit is 1)")
 	rootCmd.AddCommand(chooseCmd)
 
+	common.AddFlagCompletion(chooseCmd)
 	carapace.Gen(chooseCmd).FlagCompletion(carapace.ActionMap{
-		"cursor.align":             gum.ActionAlignments(),
-		"cursor.background":        gum.ActionColors(),
-		"cursor.border":            gum.ActionBorders(),
-		"cursor.border-background": gum.ActionColors(),
-		"cursor.border-foreground": gum.ActionColors(),
-		"cursor.foreground":        gum.ActionColors(),
-		"header.align":             gum.ActionAlignments(),
-		"header.background":        gum.ActionColors(),
-		"header.border":            gum.ActionBorders(),
-		"header.border-background": gum.ActionColors(),
-		"header.border-foreground": gum.ActionColors(),
-		"header.foreground":        gum.ActionColors(),
-		"item.align":               gum.ActionAlignments(),
-		"item.background":          gum.ActionColors(),
-		"item.border":              gum.ActionBorders(),
-		"item.border-background":   gum.ActionColors(),
-		"item.border-foreground":   gum.ActionColors(),
-		"item.foreground":          gum.ActionColors(),
 		"selected": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.ActionValues(c.Args...).UniqueList(",")
 		}),
-		"selected.align":             gum.ActionAlignments(),
-		"selected.background":        gum.ActionColors(),
-		"selected.border":            gum.ActionBorders(),
-		"selected.border-background": gum.ActionColors(),
-		"selected.border-foreground": gum.ActionColors(),
-		"selected.foreground":        gum.ActionColors(),
 	})
 }

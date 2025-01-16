@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
 	"github.com/spf13/cobra"
 )
@@ -124,6 +125,7 @@ func init() {
 	writeCmd.Flags().Bool("line-number.strikethrough", false, "Strikethrough text")
 	writeCmd.Flags().Bool("line-number.underline", false, "Underline text")
 	writeCmd.Flags().String("line-number.width", "", "Text width")
+	writeCmd.Flags().String("max-lines", "", "Maximum number of lines (0 for no limit)")
 	writeCmd.Flags().String("placeholder", "", "Placeholder value")
 	writeCmd.Flags().String("placeholder.align", "", "Text Alignment")
 	writeCmd.Flags().String("placeholder.background", "", "Background Color")
@@ -157,66 +159,16 @@ func init() {
 	writeCmd.Flags().Bool("prompt.underline", false, "Underline text")
 	writeCmd.Flags().String("prompt.width", "", "Text width")
 	writeCmd.Flags().Bool("show-cursor-line", false, "Show cursor line")
+	writeCmd.Flags().Bool("show-help", false, "Show help key binds")
 	writeCmd.Flags().Bool("show-line-numbers", false, "Show line numbers")
+	writeCmd.Flags().Bool("strip-ansi", false, "Strip ANSI sequences when reading from STDIN")
+	writeCmd.Flags().String("timeout", "", "Timeout until choose returns selected element")
 	writeCmd.Flags().String("value", "", "Initial value (can be passed via stdin)")
 	writeCmd.Flags().String("width", "", "Text area width (0 for terminal width)")
 	rootCmd.AddCommand(writeCmd)
 
+	common.AddFlagCompletion(writeCmd)
 	carapace.Gen(writeCmd).FlagCompletion(carapace.ActionMap{
-		"base.align":                           gum.ActionAlignments(),
-		"base.background":                      gum.ActionColors(),
-		"base.border":                          gum.ActionBorders(),
-		"base.border-background":               gum.ActionColors(),
-		"base.border-foreground":               gum.ActionColors(),
-		"base.foreground":                      gum.ActionColors(),
-		"cursor-line-number.align":             gum.ActionAlignments(),
-		"cursor-line-number.background":        gum.ActionColors(),
-		"cursor-line-number.border":            gum.ActionBorders(),
-		"cursor-line-number.border-background": gum.ActionColors(),
-		"cursor-line-number.border-foreground": gum.ActionColors(),
-		"cursor-line-number.foreground":        gum.ActionColors(),
-		"cursor-line.align":                    gum.ActionAlignments(),
-		"cursor-line.background":               gum.ActionColors(),
-		"cursor-line.border":                   gum.ActionBorders(),
-		"cursor-line.border-background":        gum.ActionColors(),
-		"cursor-line.border-foreground":        gum.ActionColors(),
-		"cursor-line.foreground":               gum.ActionColors(),
-		"cursor.align":                         gum.ActionAlignments(),
-		"cursor.background":                    gum.ActionColors(),
-		"cursor.border":                        gum.ActionBorders(),
-		"cursor.border-background":             gum.ActionColors(),
-		"cursor.border-foreground":             gum.ActionColors(),
-		"cursor.foreground":                    gum.ActionColors(),
-		"cursor.mode":                          gum.ActionCursorModes(),
-		"end-of-buffer.align":                  gum.ActionAlignments(),
-		"end-of-buffer.background":             gum.ActionColors(),
-		"end-of-buffer.border":                 gum.ActionBorders(),
-		"end-of-buffer.border-background":      gum.ActionColors(),
-		"end-of-buffer.border-foreground":      gum.ActionColors(),
-		"end-of-buffer.foreground":             gum.ActionColors(),
-		"header.align":                         gum.ActionAlignments(),
-		"header.background":                    gum.ActionColors(),
-		"header.border":                        gum.ActionBorders(),
-		"header.border-background":             gum.ActionColors(),
-		"header.border-foreground":             gum.ActionColors(),
-		"header.foreground":                    gum.ActionColors(),
-		"line-number.align":                    gum.ActionAlignments(),
-		"line-number.background":               gum.ActionColors(),
-		"line-number.border":                   gum.ActionBorders(),
-		"line-number.border-background":        gum.ActionColors(),
-		"line-number.border-foreground":        gum.ActionColors(),
-		"line-number.foreground":               gum.ActionColors(),
-		"placeholder.align":                    gum.ActionAlignments(),
-		"placeholder.background":               gum.ActionColors(),
-		"placeholder.border":                   gum.ActionBorders(),
-		"placeholder.border-background":        gum.ActionColors(),
-		"placeholder.border-foreground":        gum.ActionColors(),
-		"placeholder.foreground":               gum.ActionColors(),
-		"prompt.align":                         gum.ActionAlignments(),
-		"prompt.background":                    gum.ActionColors(),
-		"prompt.border":                        gum.ActionBorders(),
-		"prompt.border-background":             gum.ActionColors(),
-		"prompt.border-foreground":             gum.ActionColors(),
-		"prompt.foreground":                    gum.ActionColors(),
+		"cursor.mode": gum.ActionCursorModes(),
 	})
 }

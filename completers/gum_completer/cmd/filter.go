@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -30,7 +30,8 @@ func init() {
 	filterCmd.Flags().Bool("cursor-text.strikethrough", false, "Strikethrough text")
 	filterCmd.Flags().Bool("cursor-text.underline", false, "Underline text")
 	filterCmd.Flags().String("cursor-text.width", "", "Text width")
-	filterCmd.Flags().Bool("fuzzy", false, "Enable fuzzy matching")
+	filterCmd.Flags().Bool("fuzzy", false, "Enable fuzzy matching; otherwise match from start of word")
+	filterCmd.Flags().Bool("fuzzy-sort", false, "Sort fuzzy results by their scores")
 	filterCmd.Flags().String("header", "", "Header value")
 	filterCmd.Flags().String("header.align", "", "Text Alignment")
 	filterCmd.Flags().String("header.background", "", "Background Color")
@@ -64,6 +65,7 @@ func init() {
 	filterCmd.Flags().Bool("indicator.strikethrough", false, "Strikethrough text")
 	filterCmd.Flags().Bool("indicator.underline", false, "Underline text")
 	filterCmd.Flags().String("indicator.width", "", "Text width")
+	filterCmd.Flags().String("input-delimiter", "", "Option delimiter when reading from STDIN")
 	filterCmd.Flags().String("limit", "", "Maximum number of options to pick")
 	filterCmd.Flags().String("match.align", "", "Text Alignment")
 	filterCmd.Flags().String("match.background", "", "Background Color")
@@ -81,6 +83,7 @@ func init() {
 	filterCmd.Flags().Bool("match.underline", false, "Underline text")
 	filterCmd.Flags().String("match.width", "", "Text width")
 	filterCmd.Flags().Bool("no-limit", false, "Pick unlimited number of options (ignores limit)")
+	filterCmd.Flags().String("output-delimiter", "", "Option delimiter when writing to STDOUT")
 	filterCmd.Flags().String("placeholder", "", "Placeholder value")
 	filterCmd.Flags().String("placeholder.align", "", "Text Alignment")
 	filterCmd.Flags().String("placeholder.background", "", "Background Color")
@@ -115,6 +118,7 @@ func init() {
 	filterCmd.Flags().String("prompt.width", "", "Text width")
 	filterCmd.Flags().Bool("reverse", false, "Display from the bottom of the screen")
 	filterCmd.Flags().Bool("select-if-one", false, "Select the given option if there is only one")
+	filterCmd.Flags().StringSlice("selected", []string{}, "Options that should start as selected (selects all if given '*')")
 	filterCmd.Flags().String("selected-indicator.align", "", "Text Alignment")
 	filterCmd.Flags().String("selected-indicator.background", "", "Background Color")
 	filterCmd.Flags().Bool("selected-indicator.bold", false, "Bold text")
@@ -131,8 +135,10 @@ func init() {
 	filterCmd.Flags().Bool("selected-indicator.underline", false, "Underline text")
 	filterCmd.Flags().String("selected-indicator.width", "", "Text width")
 	filterCmd.Flags().String("selected-prefix", "", "Character to indicate selected items (hidden if limit is 1)")
-	filterCmd.Flags().Bool("sort", false, "Sort the results")
+	filterCmd.Flags().Bool("show-help", false, "Show help keybinds")
+	filterCmd.Flags().Bool("sort", false, "Sort fuzzy results by their scores")
 	filterCmd.Flags().Bool("strict", false, "Only returns if anything matched. Otherwise return Filter")
+	filterCmd.Flags().Bool("strip-ansi", false, "Strip ANSI sequences when reading from STDIN")
 	filterCmd.Flags().String("text.align", "", "Text Alignment")
 	filterCmd.Flags().String("text.background", "", "Background Color")
 	filterCmd.Flags().Bool("text.bold", false, "Bold text")
@@ -169,60 +175,5 @@ func init() {
 	filterCmd.Flags().String("width", "", "Input width")
 	rootCmd.AddCommand(filterCmd)
 
-	carapace.Gen(filterCmd).FlagCompletion(carapace.ActionMap{
-		"cursor-text.align":                    gum.ActionAlignments(),
-		"cursor-text.background":               gum.ActionColors(),
-		"cursor-text.border":                   gum.ActionBorders(),
-		"cursor-text.border-background":        gum.ActionColors(),
-		"cursor-text.border-foreground":        gum.ActionColors(),
-		"cursor-text.foreground":               gum.ActionColors(),
-		"header.align":                         gum.ActionAlignments(),
-		"header.background":                    gum.ActionColors(),
-		"header.border":                        gum.ActionBorders(),
-		"header.border-background":             gum.ActionColors(),
-		"header.border-foreground":             gum.ActionColors(),
-		"header.foreground":                    gum.ActionColors(),
-		"indicator.align":                      gum.ActionAlignments(),
-		"indicator.background":                 gum.ActionColors(),
-		"indicator.border":                     gum.ActionBorders(),
-		"indicator.border-background":          gum.ActionColors(),
-		"indicator.border-foreground":          gum.ActionColors(),
-		"indicator.foreground":                 gum.ActionColors(),
-		"match.align":                          gum.ActionAlignments(),
-		"match.background":                     gum.ActionColors(),
-		"match.border":                         gum.ActionBorders(),
-		"match.border-background":              gum.ActionColors(),
-		"match.border-foreground":              gum.ActionColors(),
-		"match.foreground":                     gum.ActionColors(),
-		"placeholder.align":                    gum.ActionAlignments(),
-		"placeholder.background":               gum.ActionColors(),
-		"placeholder.border":                   gum.ActionBorders(),
-		"placeholder.border-background":        gum.ActionColors(),
-		"placeholder.border-foreground":        gum.ActionColors(),
-		"placeholder.foreground":               gum.ActionColors(),
-		"prompt.align":                         gum.ActionAlignments(),
-		"prompt.background":                    gum.ActionColors(),
-		"prompt.border":                        gum.ActionBorders(),
-		"prompt.border-background":             gum.ActionColors(),
-		"prompt.border-foreground":             gum.ActionColors(),
-		"prompt.foreground":                    gum.ActionColors(),
-		"selected-indicator.align":             gum.ActionAlignments(),
-		"selected-indicator.background":        gum.ActionColors(),
-		"selected-indicator.border":            gum.ActionBorders(),
-		"selected-indicator.border-background": gum.ActionColors(),
-		"selected-indicator.border-foreground": gum.ActionColors(),
-		"selected-indicator.foreground":        gum.ActionColors(),
-		"text.align":                           gum.ActionAlignments(),
-		"text.background":                      gum.ActionColors(),
-		"text.border":                          gum.ActionBorders(),
-		"text.border-background":               gum.ActionColors(),
-		"text.border-foreground":               gum.ActionColors(),
-		"text.foreground":                      gum.ActionColors(),
-		"unselected-prefix.align":              gum.ActionAlignments(),
-		"unselected-prefix.background":         gum.ActionColors(),
-		"unselected-prefix.border":             gum.ActionBorders(),
-		"unselected-prefix.border-background":  gum.ActionColors(),
-		"unselected-prefix.border-foreground":  gum.ActionColors(),
-		"unselected-prefix.foreground":         gum.ActionColors(),
-	})
+	common.AddFlagCompletion(filterCmd)
 }

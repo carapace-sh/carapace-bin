@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum"
+	"github.com/carapace-sh/carapace-bin/completers/gum_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -79,7 +79,24 @@ func init() {
 	fileCmd.Flags().Bool("file.strikethrough", false, "Strikethrough text")
 	fileCmd.Flags().Bool("file.underline", false, "Underline text")
 	fileCmd.Flags().String("file.width", "", "Text width")
+	fileCmd.Flags().String("header", "", "Header value")
+	fileCmd.Flags().String("header.align", "", "Text Alignment")
+	fileCmd.Flags().String("header.background", "", "Background Color")
+	fileCmd.Flags().Bool("header.bold", false, "Bold text")
+	fileCmd.Flags().String("header.border", "", "Border Style")
+	fileCmd.Flags().String("header.border-background", "", "Border Background Color")
+	fileCmd.Flags().String("header.border-foreground", "", "Border Foreground Color")
+	fileCmd.Flags().Bool("header.faint", false, "Faint text")
+	fileCmd.Flags().String("header.foreground", "", "Foreground Color")
+	fileCmd.Flags().String("header.height", "", "Text height")
+	fileCmd.Flags().Bool("header.italic", false, "Italicize text")
+	fileCmd.Flags().String("header.margin", "", "Text margin")
+	fileCmd.Flags().String("header.padding", "", "Text padding")
+	fileCmd.Flags().Bool("header.strikethrough", false, "Strikethrough text")
+	fileCmd.Flags().Bool("header.underline", false, "Underline text")
+	fileCmd.Flags().String("header.width", "", "Text width")
 	fileCmd.Flags().String("height", "", "Maximum number of files to display")
+	fileCmd.Flags().BoolP("permissions", "p", false, "Show file permissions")
 	fileCmd.Flags().String("permissions.align", "", "Text Alignment")
 	fileCmd.Flags().String("permissions.background", "", "Background Color")
 	fileCmd.Flags().Bool("permissions.bold", false, "Bold text")
@@ -110,6 +127,8 @@ func init() {
 	fileCmd.Flags().Bool("selected.strikethrough", false, "Strikethrough text")
 	fileCmd.Flags().Bool("selected.underline", false, "Underline text")
 	fileCmd.Flags().String("selected.width", "", "Text width")
+	fileCmd.Flags().Bool("show-help", false, "Show help key binds")
+	fileCmd.Flags().BoolP("size", "s", false, "Show file size")
 	fileCmd.Flags().String("symlink.align", "", "Text Alignment")
 	fileCmd.Flags().String("symlink.background", "", "Background Color")
 	fileCmd.Flags().Bool("symlink.bold", false, "Bold text")
@@ -128,50 +147,7 @@ func init() {
 	fileCmd.Flags().String("timeout", "", "Timeout until command aborts without a selection")
 	rootCmd.AddCommand(fileCmd)
 
-	carapace.Gen(fileCmd).FlagCompletion(carapace.ActionMap{
-		"cursor.align":                  gum.ActionAlignments(),
-		"cursor.background":             gum.ActionColors(),
-		"cursor.border":                 gum.ActionBorders(),
-		"cursor.border-background":      gum.ActionColors(),
-		"cursor.border-foreground":      gum.ActionColors(),
-		"cursor.foreground":             gum.ActionColors(),
-		"directory.align":               gum.ActionAlignments(),
-		"directory.background":          gum.ActionColors(),
-		"directory.border":              gum.ActionBorders(),
-		"directory.border-background":   gum.ActionColors(),
-		"directory.border-foreground":   gum.ActionColors(),
-		"directory.foreground":          gum.ActionColors(),
-		"file-size.align":               gum.ActionAlignments(),
-		"file-size.background":          gum.ActionColors(),
-		"file-size.border":              gum.ActionBorders(),
-		"file-size.border-background":   gum.ActionColors(),
-		"file-size.border-foreground":   gum.ActionColors(),
-		"file-size.foreground":          gum.ActionColors(),
-		"file.align":                    gum.ActionAlignments(),
-		"file.background":               gum.ActionColors(),
-		"file.border":                   gum.ActionBorders(),
-		"file.border-background":        gum.ActionColors(),
-		"file.border-foreground":        gum.ActionColors(),
-		"file.foreground":               gum.ActionColors(),
-		"permissions.align":             gum.ActionAlignments(),
-		"permissions.background":        gum.ActionColors(),
-		"permissions.border":            gum.ActionBorders(),
-		"permissions.border-background": gum.ActionColors(),
-		"permissions.border-foreground": gum.ActionColors(),
-		"permissions.foreground":        gum.ActionColors(),
-		"selected.align":                gum.ActionAlignments(),
-		"selected.background":           gum.ActionColors(),
-		"selected.border":               gum.ActionBorders(),
-		"selected.border-background":    gum.ActionColors(),
-		"selected.border-foreground":    gum.ActionColors(),
-		"selected.foreground":           gum.ActionColors(),
-		"symlink.align":                 gum.ActionAlignments(),
-		"symlink.background":            gum.ActionColors(),
-		"symlink.border":                gum.ActionBorders(),
-		"symlink.border-background":     gum.ActionColors(),
-		"symlink.border-foreground":     gum.ActionColors(),
-		"symlink.foreground":            gum.ActionColors(),
-	})
+	common.AddFlagCompletion(fileCmd)
 
 	carapace.Gen(fileCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
