@@ -1,81 +1,101 @@
 services:
-  build: &base
-    image: ghcr.io/carapace-sh/carapace
-    command: sh -c 'sh -c "cd /carapace-bin/cmd/carapace && go generate ./... && go build -ldflags=\"-s -w\" ."'
-    user: 1000:1000
-    environment:
-      CARAPACE_BRIDGES: zsh,fish,bash
-      TARGET: /carapace-bin/cmd/carapace/carapace
+  build:
+    image: golang
+    command: sh -c 'cp -r /carapace-bin /build &&  cd /build/cmd/carapace/ && go generate ./... && go build . && chown 1000:1000 carapace && mv carapace /carapace-bin/cmd/carapace/'
     volumes:
       - '..:/carapace-bin/'
-      - 'go:/home/circleci/go/'
-
+      
   bash:
-    <<: *base
-    command: bash
-
-  ble:
-    <<: *base
-    command: bash
+    image: ghcr.io/carapace-sh/base
+    volumes:
+      - '..:/carapace-bin/:ro'
     environment:
-      BLE: 1
-      TARGET: /carapace-bin/cmd/carapace/carapace
+      RC_BASH: |
+        export PATH="/carapace-bin/cmd/carapace/:$$PATH"
+        source <(carapace _carapace)
+
+  bash-ble:
+    image: ghcr.io/carapace-sh/shell-bash-ble
+    volumes:
+      - '..:/carapace-bin/:ro'
+    environment:
+      RC_BASH_BLE: |
+        export PATH="/carapace-bin/cmd/carapace/:$$PATH"
+        source <(carapace _carapace)
 
   elvish:
-    <<: *base
-    command: elvish
+    image: ghcr.io/carapace-sh/shell-elvish
+    volumes:
+      - '..:/carapace-bin/:ro'
+    environment:
+      RC_ELVISH: |
+        set paths = [ /carapace-bin/cmd/carapace/  $$@paths ]
+        eval (carapace _carapace|slurp)
 
   fish:
-    <<: *base
-    command: fish
-  
-  ion:
-    <<: *base
-    command: ion
-  
+    image: ghcr.io/carapace-sh/shell-fish
+    volumes:
+      - '..:/carapace-bin/:ro'
+    environment:
+      RC_FISH: |
+        fish_add_path /carapace-bin/cmd/carapace/
+        carapace _carapace | source
+
   nushell:
-    <<: *base
-    command: nu
+    image: ghcr.io/carapace-sh/shell-nushell
+    volumes:
+      - '..:/carapace-bin/:ro'
+    environment:
+      RC_NUSHELL_ENV: |
+        $$env.PATH = ($$env.PATH | split row (char esep) | prepend "/carapace-bin/cmd/carapace/")        
+        mkdir ~/.cache/
+        carapace _carapace nushell | save --force ~/.cache/carapace.nu
+      RC_NUSHELL: |
+        source ~/.cache/carapace.nu
+        $$env.config.completions.external.completer = $$carapace_completer
   
   oil:
-    <<: *base
-    command: osh --completion-display minimal
+    image: ghcr.io/carapace-sh/shell-oil
+    volumes:
+      - '..:/carapace-bin/:ro'
+    environment:
+      RC_OIL: |
+        export PATH="/carapace-bin/cmd/carapace/:$$PATH"
+        source <(carapace _carapace)
 
   powershell:
-    <<: *base
-    command: pwsh
+    image: ghcr.io/carapace-sh/shell-powershell
+    volumes:
+      - '..:/carapace-bin/:ro'
+    environment:
+      RC_POWERSHELL: |
+        [Environment]::SetEnvironmentVariable("PATH", "/carapace-bin/cmd/carapace/" + [IO.Path]::PathSeparator + [Environment]::GetEnvironmentVariable("PATH"))
+        carapace _carapace powershell | Out-String | Invoke-Expression
+        
   
   tcsh:
-    <<: *base
-    command: tcsh
-  
-  xonsh: 
-    <<: *base
-    command: xonsh
+    image: ghcr.io/carapace-sh/shell-tcsh
+    volumes:
+      - '..:/carapace-bin/:ro'
+    environment:
+      RC_TCSH: |
+        export PATH="/carapace-bin/cmd/carapace/:$$PATH"
+        eval `carapace _carapace`
+
+  xonsh:
+    image: ghcr.io/carapace-sh/shell-xonsh
+    volumes:
+      - '..:/carapace-bin/:ro'
+    environment:
+      RC_XONSH: |
+        $$PATH.insert(0,'/carapace-bin/cmd/carapace/')
+        exec($$(carapace _carapace))
 
   zsh:
-    <<: *base
-    command: zsh
-
-  test:
-    <<: *base
-    working_dir: /carapace-bin
-    command: go test -v ./...
-
-  inittrace:
-    <<: *base
-    working_dir: /carapace-bin
-    command: bash -c "GODEBUG=inittrace=1 go run ./cmd/carapace 2>&1 | grep 'init github.com/carapace-sh/carapace-bin' | awk '{print $$5\" \"$$6\" \"$$2}' | sort -r"
-  
-  lint:
-    <<: *base
-    working_dir: /carapace-bin
-    command: bash -c 'go run ./cmd/carapace-lint completers/*/cmd/*.go'
-  
-  fmt:
-    <<: *base
-    working_dir: /carapace-bin
-    command: bash -c 'go run ./cmd/carapace-fmt completers/*/cmd/*.go'
-
-volumes:
-  go:
+    image: ghcr.io/carapace-sh/shell-zsh
+    volumes:
+      - '..:/carapace-bin/:ro'
+    environment:
+      RC_ZSH: |
+        export PATH="/carapace-bin/cmd/carapace/:$$PATH"
+        source <(carapace _carapace
