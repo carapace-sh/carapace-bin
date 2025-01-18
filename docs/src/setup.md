@@ -74,7 +74,7 @@ carapace _carapace | Out-String | Invoke-Expression
 ## Tcsh
 ```sh
 # ~/.tcshrc
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+setenv CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 set autolist
 eval `carapace _carapace`
 ```
