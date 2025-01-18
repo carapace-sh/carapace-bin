@@ -79,7 +79,8 @@ services:
       - '..:/carapace-bin/:ro'
     environment:
       RC_TCSH: |
-        export PATH="/carapace-bin/cmd/carapace/:$$PATH"
+        setenv PATH "/carapace-bin/cmd/carapace/:$$PATH"
+        set autolist
         eval `carapace _carapace`
 
   xonsh:
