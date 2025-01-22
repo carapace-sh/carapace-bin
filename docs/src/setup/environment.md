@@ -89,6 +89,17 @@ Whether to enable tooltip style.
 
 > Only affects Powershell.
 
+## CARAPACE_UNFILTERED
+
+Whether to skip the final filtering step.
+
+![](./unfiltered.cast)
+
+> This enables fuzzy completion in [fish], but only works for (mostly) static values.
+
 ## CARAPACE_ZSH_HASH_DIRS
 
 Zsh hash directories (internal).
+
+
+[fish]:https://fishshell.com/
