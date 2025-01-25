@@ -22,6 +22,7 @@ func init() {
 				"CARAPACE_NOSPACE":       "nospace suffixes",
 				"CARAPACE_SANDBOX":       "mock context for sandbox tests",
 				"CARAPACE_TOOLTIP":       "enable tooltip style",
+				"CARAPACE_UNFILTERED":    "skip the final filtering step",
 				"CARAPACE_ZSH_HASH_DIRS": "zsh hash directories",
 				// carapace-bin
 				"CARAPACE_EXCLUDES": "internal completers to exclude",
@@ -41,8 +42,9 @@ func init() {
 				"CARAPACE_NOSPACE": carapace.ActionValuesDescribed(
 					"*", "match all",
 				).UniqueList(""),
-				"CARAPACE_SANDBOX": carapace.ActionValues(),
-				"CARAPACE_TOOLTIP": _bool,
+				"CARAPACE_SANDBOX":    carapace.ActionValues(),
+				"CARAPACE_TOOLTIP":    _bool,
+				"CARAPACE_UNFILTERED": _bool,
 				// carapace-bin
 				"CARAPACE_EXCLUDES": carapace.Batch(
 					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
