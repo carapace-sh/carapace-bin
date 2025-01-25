@@ -44,7 +44,14 @@ func init() {
 	carapace.Gen(restoreCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if restoreCmd.Flag("staged").Changed {
+				if f := restoreCmd.Flag("source"); f.Changed {
+					return git.ActionCachedRefDiffs(f.Value.String())
+				}
 				return git.ActionChanges(git.ChangeOpts{Staged: true}).FilterArgs()
+			}
+
+			if f := restoreCmd.Flag("source"); f.Changed {
+				return git.ActionRefDiffs(f.Value.String())
 			}
 			return git.ActionChanges(git.ChangeOpts{Unstaged: true}).FilterArgs()
 		}),
