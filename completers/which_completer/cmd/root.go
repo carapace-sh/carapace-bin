@@ -18,9 +18,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("all,", "a", false, "Print all matches in PATH, not just the first")
-	rootCmd.Flags().Bool("help,", false, "Print this help and exit successfully.")
-	rootCmd.Flags().BoolP("read-alias,", "i", false, "Read list of aliases from stdin.")
+	rootCmd.Flags().BoolP("all", "a", false, "Print all matches in PATH, not just the first")
+	rootCmd.Flags().Bool("help", false, "Print this help and exit successfully.")
+	rootCmd.Flags().BoolP("read-alias", "i", false, "Read list of aliases from stdin.")
 	rootCmd.Flags().Bool("read-functions", false, "Read shell functions from stdin.")
 	rootCmd.Flags().Bool("show-dot", false, "Don't expand a dot to current directory in output.")
 	rootCmd.Flags().Bool("show-tilde", false, "Output a tilde for HOME directory for non-root.")
@@ -29,7 +29,7 @@ func init() {
 	rootCmd.Flags().Bool("skip-functions", false, "Ignore option --read-functions; don't read stdin.")
 	rootCmd.Flags().Bool("skip-tilde", false, "Skip directories in PATH that start with a tilde.")
 	rootCmd.Flags().Bool("tty-only", false, "Stop processing options on the right if not on tty.")
-	rootCmd.Flags().BoolP("version,", "v", false, "Print version and exit successfully.")
+	rootCmd.Flags().BoolP("version", "v", false, "Print version and exit successfully.")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionExecutables(),
