@@ -1,11 +1,13 @@
 package git
 
 import (
+	"net/url"
 	"path/filepath"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/style"
+	"github.com/carapace-sh/carapace/pkg/uid"
 	"github.com/carapace-sh/carapace/pkg/util"
 )
 
@@ -55,7 +57,7 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 							path = splitted[1]
 						}
 
-						relativePath, err := filepath.Rel(evaluatedDir, root+"/"+path)
+						relativePath, err := filepath.Rel(evaluatedDir, filepath.Join(root, path))
 						if err != nil {
 							return carapace.ActionMessage(err.Error())
 						}
@@ -73,10 +75,20 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 				if strings.HasPrefix(c.Value, "./") {
 					action = action.Prefix("./")
 				}
-				return action
+				return action.UidF(func(s string, uc uid.Context) (*url.URL, error) {
+					abs, err := filepath.Abs(filepath.Join(evaluatedDir, s))
+					if err != nil {
+						return nil, err
+					}
+					rel, err := filepath.Rel(root, abs)
+					if err != nil {
+						return nil, err
+					}
+					return Uid("change")(rel, uc)
+				})
 			}
 		})
-	}).Tag("changed files")
+	}).Tag("changes")
 }
 
 // ActionRefChanges completes changes made in given ref
@@ -109,5 +121,5 @@ func ActionRefChanges(ref string) carapace.Action {
 
 			return carapace.ActionValues(vals...).StyleF(style.ForPathExt)
 		})
-	}).Tag("changed files")
+	}).Tag("ref changes")
 }
