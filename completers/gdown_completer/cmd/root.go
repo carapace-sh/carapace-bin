@@ -41,7 +41,7 @@ func init() {
 			"xlsx", "Spreadsheet",
 			"pptx", "Slides",
 		),
-		"speed":  actions.ActionSpeed(),
 		"output": carapace.ActionFiles(),
+		"speed":  actions.ActionSpeed(),
 	})
 }
