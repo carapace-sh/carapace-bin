@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"github.com/carapace-sh/carapace-bin/completers/gdown_completer/cmd/actions"
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/gdown_completer/cmd/actions"
 	"github.com/spf13/cobra"
 )
 
