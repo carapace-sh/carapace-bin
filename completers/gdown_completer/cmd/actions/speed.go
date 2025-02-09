@@ -1,6 +1,9 @@
 package actions
 
-import "github.com/carapace-sh/carapace"
+import (
+	"github.com/carapace-sh/carapace"
+	"regexp"
+)
 
 func ActionSpeed() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
