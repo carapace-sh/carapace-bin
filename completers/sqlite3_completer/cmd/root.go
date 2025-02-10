@@ -42,7 +42,7 @@ func init() {
 	rootCmd.Flags().StringS("maxsize", "maxsize", "", "maximum size for a --deserialize database")
 	rootCmd.Flags().BoolS("memtrace", "memtrace", false, "trace all memory allocations and deallocations")
 	rootCmd.Flags().StringS("mmap", "mmap", "", "default mmap size set to N")
-	rootCmd.Flags().StringS("newline", "newline", "", "set output row separator. Default: '\n'")
+	rootCmd.Flags().StringS("newline", "newline", "", "set output row separator. Default: '\\n'")
 	rootCmd.Flags().BoolS("no-rowid-in-view", "no-rowid-in-view", false, "Disable rowid-in-view using sqlite3_config()")
 	rootCmd.Flags().BoolS("nofollow", "nofollow", false, "refuse to open symbolic links to database files")
 	rootCmd.Flags().StringS("nonce", "nonce", "", "set the safe-mode escape nonce")
@@ -61,6 +61,10 @@ func init() {
 	rootCmd.Flags().StringS("vfs", "vfs", "", "use NAME as the default VFS")
 	rootCmd.Flags().BoolS("vfstrace", "vfstrace", false, "enable tracing of all VFS calls")
 	rootCmd.Flags().BoolS("zip", "zip", false, "open the file as a ZIP Archive")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"init": carapace.ActionFiles(),
+	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionFiles(),
