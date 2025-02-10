@@ -5,7 +5,7 @@ go 1.23.1
 require (
 	github.com/carapace-sh/carapace v1.6.1
 	github.com/carapace-sh/carapace-bridge v1.2.3
-	github.com/carapace-sh/carapace-selfupdate v0.0.8
+	github.com/carapace-sh/carapace-selfupdate v0.0.10
 	github.com/carapace-sh/carapace-shlex v1.0.1
 	github.com/carapace-sh/carapace-spec v1.1.1
 	github.com/pelletier/go-toml v1.9.5
