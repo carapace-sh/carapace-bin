@@ -13,6 +13,17 @@ source <(carapace _carapace)
 
 ![](./setup-bash.png)
 
+## Cmd
+
+```lua
+# ~/AppData/Local/clink/carapace.lua
+load(io.popen('carapace _carapace cmd-clink'):read("*a"))()
+```
+
+![](./setup-cmd.png)
+
+> Needs [clink](https://chrisant996.github.io/clink/).
+
 ## Elvish
 
 ```sh
