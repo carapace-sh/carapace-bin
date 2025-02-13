@@ -19,6 +19,7 @@ func init() {
 	carapace.Gen(buildCmd).Standalone()
 	buildCmd.Flags().SetInterspersed(false)
 
+	buildCmd.Flags().BoolS("json", "json", false, "Emit build output in JSON suitable for automated processing")
 	buildCmd.Flags().StringS("o", "o", "", "set output file or directory")
 	addBuildFlags(buildCmd)
 	rootCmd.AddCommand(buildCmd)
