@@ -17,12 +17,9 @@ func init() {
 
 	splitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	splitCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to split. This is the default if no paths are provided")
-	splitCmd.Flags().BoolP("parallel", "p", false, "Split the revision into two siblings instead of parent and child")
+	splitCmd.Flags().BoolP("parallel", "p", false, "Split the revision into two parallel instead of parent and child")
 	splitCmd.Flags().StringP("revision", "r", "", "The revision to split")
-	splitCmd.Flags().BoolP("siblings", "s", false, "Split the revision into two siblings instead of parent and child") // deprecated in v0.19.0
 	rootCmd.AddCommand(splitCmd)
-
-	splitCmd.MarkFlagsMutuallyExclusive("parallel", "siblings")
 
 	carapace.Gen(splitCmd).FlagCompletion(carapace.ActionMap{
 		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
