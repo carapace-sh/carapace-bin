@@ -47,8 +47,14 @@ func ActionModuleSearch() carapace.Action {
 
 			return carapace.ActionValues()
 		case 1:
+			repo := c.Parts[0]
+			if strings.HasPrefix(repo, "github.com") {
+				if splitted := strings.SplitN(repo, "/", 4); len(splitted) > 3 {
+					repo = strings.Join(splitted[:3], "/")
+				}
+			}
 			return carapace.Batch(
-				git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + c.Parts[0], Branches: true, Tags: true}),
+				git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + repo, Branches: true, Tags: true}),
 				carapace.ActionValues("latest"),
 			).ToA()
 		default:

@@ -40,8 +40,10 @@ func init() {
 				"GOAMD64":               "For GOARCH=amd64, the microarchitecture level for which to compile",
 				"GOARCH":                "The architecture, or processor, for which to compile code",
 				"GOARM":                 "For GOARCH=arm, the ARM architecture for which to compile",
+				"GOAUTH":                "semicolon-separated list of authentication commands for go-import and HTTPS module mirror interactions",
 				"GOBIN":                 "The directory where 'go install' will install a command",
 				"GOCACHE":               "The directory where the go command will store cached information for reuse in future builds",
+				"GOCACHEPROG":           "A command that implements the go command build cache externally",
 				"GOCOVERDIR":            "Directory into which to write code coverage data",
 				"GODEBUG":               "Enable various debugging facilities",
 				"GOENV":                 "The location of the Go environment configuration file",
@@ -90,8 +92,27 @@ func init() {
 				"GCCGOTOOLDIR": carapace.ActionDirectories(),
 				"GO111MODULE":  carapace.ActionValues("off", "on", "auto").StyleF(style.ForKeyword),
 				"GOARCH":       golang.ActionArchitectures(),
-				"GOBIN":        carapace.ActionDirectories(),
-				"GOCACHE":      carapace.ActionDirectories(),
+				"GOAUTH": carapace.ActionMultiParts(";", func(c carapace.Context) carapace.Action {
+					return carapace.Batch(
+						carapace.ActionMultiPartsN(" ", 2, func(c carapace.Context) carapace.Action {
+							switch len(c.Parts) {
+							case 0:
+								return carapace.ActionValuesDescribed("git", "Runs 'git credential fill' in dir and uses its credentials").Suffix(" ")
+							default:
+								return carapace.ActionDirectories()
+							}
+						}),
+						// carapace.ActionExecutables(),
+						// carapace.ActionFiles(),
+						carapace.ActionStyledValuesDescribed(
+							"off", "Disables authentication", style.Red,
+							"netrc", "Uses credentials from NETRC or the .netrc file in your home directory", style.Default,
+						),
+					).ToA()
+				}),
+				"GOBIN":       carapace.ActionDirectories(),
+				"GOCACHE":     carapace.ActionDirectories(),
+				"GOCACHEPROG": bridge.ActionCarapaceBin().Split(),
 				"GOENV": carapace.Batch(
 					carapace.ActionFiles(),
 					carapace.ActionValues("off").StyleF(style.ForKeyword),

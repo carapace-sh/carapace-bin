@@ -17,6 +17,7 @@ func init() {
 	installCmd.Flags().SetInterspersed(false)
 
 	installCmd.Flags().BoolS("i", "i", false, "install the packages that are dependencies of the target")
+	installCmd.Flags().BoolS("json", "json", false, "Emit build output in JSON suitable for automated processing")
 	installCmd.Flags().StringS("o", "o", "", "set output file or directory")
 	addBuildFlags(installCmd)
 	rootCmd.AddCommand(installCmd)

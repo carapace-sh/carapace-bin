@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"path/filepath"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
@@ -36,7 +38,7 @@ func init() {
 			case "pprof":
 				return bridge.ActionCarapaceBin(c.Args[0]).Shift(1)
 			default:
-				return bridge.ActionCarapaceBin("go-tool-" + c.Args[0]).Shift(1)
+				return bridge.ActionCarapaceBin("go-tool-" + filepath.Base(c.Args[0])).Shift(1)
 			}
 		}),
 	)
