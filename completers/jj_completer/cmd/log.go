@@ -20,7 +20,6 @@ func init() {
 	logCmd.Flags().Bool("git", false, "Show a Git-format diff")
 	logCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	logCmd.Flags().StringP("limit", "n", "", "Limit number of revisions to show")
-	logCmd.Flags().StringS("limit-old-shorthand", "l", "", "Limit number of revisions to show")
 	logCmd.Flags().Bool("no-graph", false, "Don't show the graph, show a flat list of revisions")
 	logCmd.Flags().BoolP("patch", "p", false, "Show patch")
 	logCmd.Flags().Bool("reversed", false, "Show revisions in the opposite order (older revisions first)")
@@ -31,8 +30,6 @@ func init() {
 	logCmd.Flags().String("tool", "", "Generate diff by external command")
 	logCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	rootCmd.AddCommand(logCmd)
-
-	logCmd.MarkFlagsMutuallyExclusive("limit", "limit-old-shorthand")
 
 	carapace.Gen(logCmd).FlagCompletion(carapace.ActionMap{
 		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),

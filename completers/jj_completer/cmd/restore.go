@@ -18,8 +18,14 @@ func init() {
 	restoreCmd.Flags().StringP("changes-in", "c", "", "Undo the changes in a revision as compared to the merge of its parents")
 	restoreCmd.Flags().StringP("from", "f", "@", "Revision to restore from (source)")
 	restoreCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	restoreCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to restore")
+	restoreCmd.Flags().StringP("into", "t", "@", "Revision to restore into (destination)")
 	restoreCmd.Flags().Bool("restore-descendants", false, "Preserve the content (not the diff) when rebasing descendants")
-	restoreCmd.Flags().StringP("to", "t", "@", "Revision to restore into (destination)")
+	restoreCmd.Flags().String("to", "@", "Revision to restore into (alias for --into)")
+	restoreCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
+
+	restoreCmd.MarkFlagsMutuallyExclusive("into", "to")
+
 	rootCmd.AddCommand(restoreCmd)
 
 	carapace.Gen(restoreCmd).FlagCompletion(carapace.ActionMap{
