@@ -24,6 +24,13 @@ func init() {
 	commitCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
 	rootCmd.AddCommand(commitCmd)
 
+	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
+		"tool": carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+	})
+
 	carapace.Gen(commitCmd).PositionalAnyCompletion(
 		jj.ActionRevDiffs().FilterArgs(),
 	)
