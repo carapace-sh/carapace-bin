@@ -30,6 +30,7 @@ func init() {
 
 	carapace.Gen(restoreCmd).FlagCompletion(carapace.ActionMap{
 		"from": jj.ActionRevs(jj.RevOption{}.Default()),
+		"into": jj.ActionRevs(jj.RevOption{}.Default()),
 		"to":   jj.ActionRevs(jj.RevOption{}.Default()),
 		"tool": carapace.Batch(
 			carapace.ActionExecutables(),
