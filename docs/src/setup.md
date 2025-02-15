@@ -39,12 +39,17 @@ eval (carapace _carapace|slurp)
 ```sh
 # ~/.config/fish/config.fish
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
-mkdir -p ~/.config/fish/completions
-carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
 carapace _carapace | source
 ```
 
 ![](./setup-fish.png)
+
+> With [4.0b1](https://github.com/fish-shell/fish-shell/releases/tag/4.0b1) onwards the following workaround is not needed anymore:
+> ```sh
+> mkdir -p ~/.config/fish/completions
+> carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
+> ```
+> see [fish-shell/fish#6716](https://github.com/fish-shell/fish-shell/issues/6716)
 
 ## Nushell
 
