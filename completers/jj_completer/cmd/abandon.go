@@ -17,6 +17,7 @@ func init() {
 
 	abandonCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	abandonCmd.Flags().Bool("restore-descendants", false, "Preserve the content (not the diff) when rebasing descendants")
+	abandonCmd.Flags().Bool("retain-bookmarks", false, "Move bookmarks to the parent revisions instead of deleting them")
 	abandonCmd.Flags().BoolP("summary", "s", false, "Do not print every abandoned commit on a separate line")
 	rootCmd.AddCommand(abandonCmd)
 

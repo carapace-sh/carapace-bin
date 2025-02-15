@@ -17,11 +17,14 @@ func init() {
 	carapace.Gen(describeCmd).Standalone()
 
 	describeCmd.Flags().String("author", "", "Set author to the provided string")
+	describeCmd.Flags().Bool("edit", true, "Open an editor")
 	describeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	describeCmd.Flags().StringSliceP("message", "m", []string{}, "The change description to use (don't open editor)")
 	describeCmd.Flags().Bool("no-edit", false, "Don't open an editor")
 	describeCmd.Flags().Bool("reset-author", false, "Reset the author to the configured user")
 	describeCmd.Flags().Bool("stdin", false, "Read the change description from stdin")
+
+	describeCmd.MarkFlagsMutuallyExclusive("edit", "no-edit")
 	rootCmd.AddCommand(describeCmd)
 
 	carapace.Gen(describeCmd).PositionalCompletion(

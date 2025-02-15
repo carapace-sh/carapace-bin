@@ -14,14 +14,8 @@ var initCmd = &cobra.Command{
 func init() {
 	carapace.Gen(initCmd).Standalone()
 
-	initCmd.Flags().Bool("git", false, "Use the Git backend, creating a jj repo backed by a Git repo")
-	initCmd.Flags().String("git-repo", "", "Path to a git repo the jj repo will be backed by")
 	initCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(initCmd)
-
-	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
-		"git-repo": carapace.ActionDirectories(),
-	})
 
 	carapace.Gen(initCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
