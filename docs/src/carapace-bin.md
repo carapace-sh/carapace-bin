@@ -10,7 +10,7 @@ Supported shells:
 - [Fish](https://fishshell.com/)
 - [Ion](https://doc.redox-os.org/ion-manual/) ([experimental](https://github.com/carapace-sh/carapace/issues/88))
 - [Nushell](https://www.nushell.sh/)
-- [Oil](http://www.oilshell.org/)
+- [Oil](http://oils.pub/)
 - [Powershell](https://microsoft.com/powershell)
 - [Tcsh](https://www.tcsh.org/) ([experimental](https://github.com/carapace-sh/carapace/issues/331))
 - [Xonsh](https://xon.sh/)
