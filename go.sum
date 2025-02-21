@@ -1,5 +1,5 @@
-github.com/carapace-sh/carapace v1.7.1 h1:GjMjPNEMHhTstneZD2M3Ypjb+lW5YNEV1AfYmRhsG4c=
-github.com/carapace-sh/carapace v1.7.1/go.mod h1:fHdo3nEFe1QnIXxeA/Z1O9dCI83sfCsKfxrogpHfgtM=
+github.com/carapace-sh/carapace v1.8.0 h1:PN44P9HrDFpvMTiu7klklP80LCguztvlyKFdQu/iSU0=
+github.com/carapace-sh/carapace v1.8.0/go.mod h1:C0PH0NpNW+Gb2nvnJ8nl2yRvvPxEHqVgYU8fphWGoEg=
 github.com/carapace-sh/carapace-bridge v1.2.3 h1:lalVNRCyUqdPAJbrqkmIDKNnZYsBlo83JBsdP9WFzKM=
 github.com/carapace-sh/carapace-bridge v1.2.3/go.mod h1:rEOS3MgzTQrCssS8WunHxPz31jZYNudcA7w1W5HrJs0=
 github.com/carapace-sh/carapace-pflag v1.0.0 h1:uJMhl+vwEM/Eb0UdxZUuv4jo4rUAyPijkRGP5gfCuCE=
@@ -10,7 +10,6 @@ github.com/carapace-sh/carapace-shlex v1.0.1 h1:ww0JCgWpOVuqWG7k3724pJ18Lq8gh5pH
 github.com/carapace-sh/carapace-shlex v1.0.1/go.mod h1:lJ4ZsdxytE0wHJ8Ta9S7Qq0XpjgjU0mdfCqiI2FHx7M=
 github.com/carapace-sh/carapace-spec v1.1.1 h1:NR4hibTNi/T94sGNIrq8c6wW8t4RznCKAUQZ+plSH2U=
 github.com/carapace-sh/carapace-spec v1.1.1/go.mod h1:7IrOEi2Jxo9Dquu/B4E9qouNKYCsAMqs45E0DsuJZqU=
-github.com/cpuguy83/go-md2man/v2 v2.0.4/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
@@ -22,7 +21,6 @@ github.com/pelletier/go-toml v1.9.5/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCko
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
-github.com/spf13/cobra v1.8.1/go.mod h1:wHxEcudfqmLYa8iTfL+OuZPbBZkmvliBWKIezN3kD9Y=
 github.com/spf13/cobra v1.9.1 h1:CXSaggrXdbHK9CF+8ywj8Amf7PBRmPCOJugH954Nnlo=
 github.com/spf13/cobra v1.9.1/go.mod h1:nDyEzZ8ogv936Cinf6g1RU9MRY64Ir93oCnqb9wxYW0=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
