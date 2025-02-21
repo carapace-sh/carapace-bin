@@ -12,7 +12,7 @@ var route_deleteCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(route_deleteCmd)
+	carapace.Gen(route_deleteCmd).Standalone()
 
 	routeCmd.AddCommand(route_deleteCmd)
 }

@@ -12,7 +12,8 @@ var defaultCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(defaultCmd)
+	carapace.Gen(defaultCmd).Standalone()
+
 	carapace.Gen(loggingCmd).PositionalCompletion(
 		carapace.ActionValues(
 			"allow",

@@ -12,7 +12,7 @@ var resetCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(resetCmd)
+	carapace.Gen(resetCmd).Standalone()
 
 	rootCmd.AddCommand(resetCmd)
 }

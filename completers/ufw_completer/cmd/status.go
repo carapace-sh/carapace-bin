@@ -12,7 +12,7 @@ var statusCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(statusCmd)
+	carapace.Gen(statusCmd).Standalone()
 
 	carapace.Gen(statusCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(

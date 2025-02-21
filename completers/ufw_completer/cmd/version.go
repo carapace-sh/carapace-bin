@@ -12,7 +12,7 @@ var versionCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(versionCmd)
+	carapace.Gen(versionCmd).Standalone()
 
 	rootCmd.AddCommand(versionCmd)
 }

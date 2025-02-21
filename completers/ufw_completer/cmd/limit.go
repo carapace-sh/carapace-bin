@@ -12,7 +12,7 @@ var limitCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(limitCmd)
+	carapace.Gen(limitCmd).Standalone()
 
 	rootCmd.AddCommand(limitCmd)
 }

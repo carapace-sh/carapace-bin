@@ -13,7 +13,7 @@ var app_updateCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(app_updateCmd)
+	carapace.Gen(app_updateCmd).Standalone()
 
 	app_updateCmd.Flags().String("add-new", "", "")
 

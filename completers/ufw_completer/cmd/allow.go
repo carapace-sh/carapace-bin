@@ -12,7 +12,7 @@ var allowCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(allowCmd)
+	carapace.Gen(allowCmd).Standalone()
 
 	rootCmd.AddCommand(allowCmd)
 }

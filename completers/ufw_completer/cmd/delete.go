@@ -12,7 +12,7 @@ var deleteCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(deleteCmd)
+	carapace.Gen(deleteCmd).Standalone()
 
 	rootCmd.AddCommand(deleteCmd)
 }

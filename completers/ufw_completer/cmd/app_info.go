@@ -13,7 +13,7 @@ var app_infoCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(app_infoCmd)
+	carapace.Gen(app_infoCmd).Standalone()
 
 	carapace.Gen(app_infoCmd).PositionalCompletion(
 		actions.ActionUfwProfiles(),

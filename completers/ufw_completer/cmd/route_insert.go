@@ -12,7 +12,7 @@ var route_insertCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(route_insertCmd)
+	carapace.Gen(route_insertCmd).Standalone()
 
 	routeCmd.AddCommand(route_insertCmd)
 }

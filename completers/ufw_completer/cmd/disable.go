@@ -12,7 +12,7 @@ var disableCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(disableCmd)
+	carapace.Gen(disableCmd).Standalone()
 
 	rootCmd.AddCommand(disableCmd)
 }

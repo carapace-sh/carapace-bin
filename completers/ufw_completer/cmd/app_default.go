@@ -12,7 +12,7 @@ var app_defaultCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(app_defaultCmd)
+	carapace.Gen(app_defaultCmd).Standalone()
 
 	appCmd.AddCommand(app_defaultCmd)
 }

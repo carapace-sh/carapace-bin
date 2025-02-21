@@ -12,7 +12,7 @@ var app_listCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(app_listCmd)
+	carapace.Gen(app_listCmd).Standalone()
 
 	appCmd.AddCommand(app_listCmd)
 }

@@ -12,7 +12,7 @@ var rejectCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(rejectCmd)
+	carapace.Gen(rejectCmd).Standalone()
 
 	rootCmd.AddCommand(rejectCmd)
 }

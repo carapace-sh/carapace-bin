@@ -12,7 +12,7 @@ var prependCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(prependCmd)
+	carapace.Gen(prependCmd).Standalone()
 
 	rootCmd.AddCommand(prependCmd)
 }

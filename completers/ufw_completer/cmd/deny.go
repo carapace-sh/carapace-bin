@@ -12,7 +12,7 @@ var denyCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(denyCmd)
+	carapace.Gen(denyCmd).Standalone()
 
 	rootCmd.AddCommand(denyCmd)
 }
