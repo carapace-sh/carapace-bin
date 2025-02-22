@@ -16,10 +16,9 @@ func init() {
 	carapace.Gen(app_updateCmd).Standalone()
 
 	app_updateCmd.Flags().String("add-new", "", "")
+	appCmd.AddCommand(app_updateCmd)
 
 	carapace.Gen(app_updateCmd).PositionalCompletion(
 		actions.ActionUfwProfiles(),
 	)
-
-	appCmd.AddCommand(app_updateCmd)
 }

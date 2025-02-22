@@ -14,11 +14,11 @@ var statusCmd = &cobra.Command{
 func init() {
 	carapace.Gen(statusCmd).Standalone()
 
+	rootCmd.AddCommand(statusCmd)
+
 	carapace.Gen(statusCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
 			"numbered", "show firewall status as numbered list of RULES",
 			"verbose", "show verbose firewall status",
 		))
-
-	rootCmd.AddCommand(statusCmd)
 }

@@ -14,6 +14,8 @@ var loggingCmd = &cobra.Command{
 func init() {
 	carapace.Gen(loggingCmd).Standalone()
 
+	rootCmd.AddCommand(loggingCmd)
+
 	carapace.Gen(loggingCmd).PositionalCompletion(
 		carapace.ActionValues(
 			"full",
@@ -23,6 +25,4 @@ func init() {
 			"off",
 			"on",
 		))
-
-	rootCmd.AddCommand(loggingCmd)
 }

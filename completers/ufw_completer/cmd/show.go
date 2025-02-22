@@ -14,6 +14,8 @@ var showCmd = &cobra.Command{
 func init() {
 	carapace.Gen(showCmd).Standalone()
 
+	rootCmd.AddCommand(showCmd)
+
 	carapace.Gen(showCmd).PositionalCompletion(
 		carapace.ActionValues(
 			"added",
@@ -25,6 +27,4 @@ func init() {
 			"raw",
 			"user-rules",
 		))
-
-	rootCmd.AddCommand(showCmd)
 }
