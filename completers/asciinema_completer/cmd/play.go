@@ -14,9 +14,11 @@ var playCmd = &cobra.Command{
 func init() {
 	carapace.Gen(playCmd).Standalone()
 
-	playCmd.Flags().BoolP("help", "h", false, "show this help message and exit")
-	playCmd.Flags().StringP("idle-time-limit", "i", "", "limit idle time during playback to given number of seconds")
-	playCmd.Flags().StringP("speed", "s", "", "playback speedup (can be fractional)")
+	playCmd.Flags().StringP("idle-time-limit", "i", "", "Limit idle time to a given number of seconds")
+	playCmd.Flags().BoolP("loop", "l", false, "Loop loop loop loop")
+	playCmd.Flags().BoolP("pause-on-markers", "m", false, "Automatically pause on markers")
+	playCmd.Flags().StringP("speed", "s", "", "Set playback speed")
+
 	rootCmd.AddCommand(playCmd)
 
 	carapace.Gen(playCmd).PositionalCompletion(

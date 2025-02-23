@@ -14,7 +14,6 @@ var catCmd = &cobra.Command{
 func init() {
 	carapace.Gen(catCmd).Standalone()
 
-	catCmd.Flags().BoolP("help", "h", false, "show this help message and exit")
 	rootCmd.AddCommand(catCmd)
 
 	carapace.Gen(catCmd).PositionalCompletion(

@@ -18,6 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("help", "h", false, "show this help message and exit")
+	rootCmd.PersistentFlags().BoolP("help", "h", false, "show this help message and exit")
+	rootCmd.PersistentFlags().BoolP("quiet", "q", false, "Quiet mode, i.e. suppress diagnostic messages")
+	rootCmd.PersistentFlags().String("server-url", "", "asciinema server URL")
 	rootCmd.Flags().Bool("version", false, "show program's version number and exit")
 }
