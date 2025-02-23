@@ -14,6 +14,5 @@ var authCmd = &cobra.Command{
 func init() {
 	carapace.Gen(authCmd).Standalone()
 
-	authCmd.Flags().BoolP("help", "h", false, "show this help message and exit")
 	rootCmd.AddCommand(authCmd)
 }
