@@ -6,7 +6,7 @@ import (
 )
 
 func ActionUfwProfiles() carapace.Action {
-	return carapace.ActionExecCommand("sudo", "ufw", "app", "list")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("ufw", "app", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")[1:]
 		var profiles []string
 
