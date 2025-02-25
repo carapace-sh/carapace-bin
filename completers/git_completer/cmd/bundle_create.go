@@ -29,4 +29,8 @@ func init() {
 	carapace.Gen(bundle_createCmd).PositionalAnyCompletion(
 		git.ActionRefs(git.RefOption{}.Default()),
 	)
+
+	carapace.Gen(bundle_createCmd).DashAnyCompletion(
+		carapace.ActionPositional(bundle_createCmd),
+	)
 }
