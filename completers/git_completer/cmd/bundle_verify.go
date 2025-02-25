@@ -20,4 +20,8 @@ func init() {
 	carapace.Gen(bundle_verifyCmd).PositionalCompletion(
 		carapace.ActionFiles(),
 	)
+
+	carapace.Gen(bundle_verifyCmd).DashAnyCompletion(
+		carapace.ActionPositional(bundle_verifyCmd),
+	)
 }
