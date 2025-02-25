@@ -17,4 +17,8 @@ func init() {
 	bisectCmd.Flags().Bool("term-good", false, "show term for good/old")
 
 	bisectCmd.AddCommand(bisect_termsCmd)
+
+	carapace.Gen(bisect_termsCmd).DashAnyCompletion(
+		carapace.ActionPositional(bisect_termsCmd),
+	)
 }

@@ -30,4 +30,8 @@ func init() {
 	})
 
 	// TODO positional completion
+	//
+	carapace.Gen(archimportCmd).DashAnyCompletion(
+		carapace.ActionPositional(archimportCmd),
+	)
 }

@@ -19,4 +19,8 @@ func init() {
 	carapace.Gen(bisect_runCmd).PositionalCompletion(
 		carapace.ActionFiles(),
 	)
+
+	carapace.Gen(bisect_runCmd).DashAnyCompletion(
+		carapace.ActionPositional(bisect_runCmd),
+	)
 }

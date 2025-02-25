@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(bisect_skipCmd).Standalone()
 
 	bisectCmd.AddCommand(bisect_skipCmd)
+
+	carapace.Gen(bisect_skipCmd).DashAnyCompletion(
+		carapace.ActionPositional(bisect_skipCmd),
+	)
 }

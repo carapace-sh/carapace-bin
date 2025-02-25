@@ -18,4 +18,8 @@ func init() {
 	bisect_visualizeCmd.Flags().Bool("stat", false, "")
 
 	bisectCmd.AddCommand(bisect_visualizeCmd)
+
+	carapace.Gen(bisect_visualizeCmd).DashAnyCompletion(
+		carapace.ActionPositional(bisect_visualizeCmd),
+	)
 }
