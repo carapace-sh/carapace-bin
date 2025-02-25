@@ -51,4 +51,8 @@ func init() {
 	carapace.Gen(archiveCmd).PositionalAnyCompletion(
 		carapace.ActionDirectories(), // TODO shouldn't thi bee the path from the ref?
 	)
+
+	carapace.Gen(archiveCmd).DashAnyCompletion(
+		carapace.ActionPositional(archiveCmd),
+	)
 }

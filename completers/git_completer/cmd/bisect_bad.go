@@ -20,4 +20,8 @@ func init() {
 	carapace.Gen(bisect_badCmd).PositionalCompletion(
 		git.ActionRefs(git.RefOption{}.Default()),
 	)
+
+	carapace.Gen(bisect_badCmd).DashAnyCompletion(
+		carapace.ActionPositional(bisect_badCmd),
+	)
 }
