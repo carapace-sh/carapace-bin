@@ -54,4 +54,8 @@ func init() {
 	carapace.Gen(cherryPickCmd).PositionalAnyCompletion(
 		git.ActionRefRanges(git.RefOption{}.Default()),
 	)
+
+	carapace.Gen(cherryPickCmd).DashAnyCompletion(
+		carapace.ActionPositional(cherryPickCmd),
+	)
 }

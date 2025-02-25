@@ -40,4 +40,8 @@ func init() {
 			return carapace.ActionFiles()
 		}),
 	)
+
+	carapace.Gen(checkoutIndexCmd).DashAnyCompletion(
+		carapace.ActionPositional(checkoutIndexCmd),
+	)
 }

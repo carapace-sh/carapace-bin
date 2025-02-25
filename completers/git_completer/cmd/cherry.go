@@ -40,4 +40,8 @@ func init() {
 			})
 		}),
 	)
+
+	carapace.Gen(cherryCmd).DashAnyCompletion(
+		carapace.ActionPositional(cherryCmd),
+	)
 }

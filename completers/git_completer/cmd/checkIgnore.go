@@ -31,4 +31,8 @@ func init() {
 			return carapace.ActionFiles()
 		}),
 	)
+
+	carapace.Gen(checkIgnoreCmd).DashAnyCompletion(
+		carapace.ActionPositional(checkIgnoreCmd),
+	)
 }

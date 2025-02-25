@@ -37,4 +37,8 @@ func init() {
 		carapace.ActionValues("blob", "tree", "commit", "tag"),
 		git.ActionRefs(git.RefOption{}.Default()),
 	)
+
+	carapace.Gen(catFileCmd).DashAnyCompletion(
+		carapace.ActionPositional(catFileCmd),
+	)
 }
