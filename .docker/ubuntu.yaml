@@ -1,0 +1,8 @@
+services:
+ ubuntu:
+    build:
+      context: ubuntu
+    image: ghcr.io/carapace-sh/carapace-bin:ubuntu
+    hostname: carapace-bin:ubuntu
+    volumes:
+      - '..:/carapace-bin:ro'
