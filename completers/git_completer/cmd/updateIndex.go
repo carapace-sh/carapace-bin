@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -55,7 +56,10 @@ func init() {
 	rootCmd.AddCommand(updateIndexCmd)
 
 	carapace.Gen(updateIndexCmd).FlagCompletion(carapace.ActionMap{
-		"chmod":         carapace.ActionValues("+x", "-x"),
+		"chmod": carapace.ActionStyledValues(
+			"+x", style.Carapace.KeywordPositive,
+			"-x", style.Carapace.KeywordNegative,
+		),
 		"index-version": carapace.ActionValues("2", "3", "4"),
 	})
 
