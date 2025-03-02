@@ -8,4 +8,5 @@ include:
   - .docker/fzf-tab.yaml
   - .docker/gcloud.yaml
   - .docker/nix.yaml
+  - .docker/ubuntu.yaml
   - .docker/xbps.yaml
