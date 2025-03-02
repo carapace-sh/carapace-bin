@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -41,6 +42,10 @@ func init() {
 	rootCmd.AddCommand(addCmd)
 
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
+		"chmod": carapace.ActionStyledValues(
+			"+x", style.Carapace.KeywordPositive,
+			"-x", style.Carapace.KeywordNegative,
+		),
 		"pathspec-from-file": carapace.ActionFiles(),
 	})
 
