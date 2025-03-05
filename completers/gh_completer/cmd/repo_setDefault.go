@@ -16,8 +16,8 @@ var repo_setDefaultCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_setDefaultCmd).Standalone()
 
-	repo_setDefaultCmd.Flags().BoolP("unset", "u", false, "unset the current default repository")
-	repo_setDefaultCmd.Flags().BoolP("view", "v", false, "view the current default repository")
+	repo_setDefaultCmd.Flags().BoolP("unset", "u", false, "Unset the current default repository")
+	repo_setDefaultCmd.Flags().BoolP("view", "v", false, "View the current default repository")
 	repoCmd.AddCommand(repo_setDefaultCmd)
 
 	carapace.Gen(repo_setDefaultCmd).PositionalCompletion(

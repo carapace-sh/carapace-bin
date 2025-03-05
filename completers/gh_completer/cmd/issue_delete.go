@@ -16,8 +16,8 @@ var issue_deleteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(issue_deleteCmd).Standalone()
 
-	issue_deleteCmd.Flags().Bool("confirm", false, "confirm deletion without prompting")
-	issue_deleteCmd.Flags().Bool("yes", false, "confirm deletion without prompting")
+	issue_deleteCmd.Flags().Bool("confirm", false, "Confirm deletion without prompting")
+	issue_deleteCmd.Flags().Bool("yes", false, "Confirm deletion without prompting")
 	issue_deleteCmd.Flag("confirm").Hidden = true
 	issueCmd.AddCommand(issue_deleteCmd)
 

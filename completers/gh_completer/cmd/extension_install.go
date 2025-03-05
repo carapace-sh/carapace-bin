@@ -18,8 +18,8 @@ var extension_installCmd = &cobra.Command{
 func init() {
 	carapace.Gen(extension_installCmd).Standalone()
 
-	extension_installCmd.Flags().Bool("force", false, "force upgrade extension, or ignore if latest already installed")
-	extension_installCmd.Flags().String("pin", "", "pin extension to a release tag or commit ref")
+	extension_installCmd.Flags().Bool("force", false, "Force upgrade extension, or ignore if latest already installed")
+	extension_installCmd.Flags().String("pin", "", "Pin extension to a release tag or commit ref")
 	extensionCmd.AddCommand(extension_installCmd)
 
 	carapace.Gen(extension_installCmd).FlagCompletion(carapace.ActionMap{

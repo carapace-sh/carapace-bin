@@ -34,8 +34,11 @@ func init() {
 	attestation_verifyCmd.Flags().StringP("owner", "o", "", "GitHub organization to scope attestation lookup by")
 	attestation_verifyCmd.Flags().String("predicate-type", "", "Filter attestations by provided predicate type")
 	attestation_verifyCmd.Flags().StringP("repo", "R", "", "Repository name in the format <owner>/<repo>")
+	attestation_verifyCmd.Flags().String("signer-digest", "", "Digest associated with the signer workflow")
 	attestation_verifyCmd.Flags().String("signer-repo", "", "Repository of reusable workflow that signed attestation in the format <owner>/<repo>")
 	attestation_verifyCmd.Flags().String("signer-workflow", "", "Workflow that signed attestation in the format [host/]<owner>/<repo>/<path>/<to>/<workflow>")
+	attestation_verifyCmd.Flags().String("source-digest", "", "Digest associated with the source workflow")
+	attestation_verifyCmd.Flags().String("source-ref", "", "Ref associated with the source workflow")
 	attestation_verifyCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	attestationCmd.AddCommand(attestation_verifyCmd)
 
