@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(codespace_rebuildCmd).Standalone()
 
 	codespace_rebuildCmd.PersistentFlags().StringP("codespace", "c", "", "Name of the codespace")
-	codespace_rebuildCmd.Flags().Bool("full", false, "perform a full rebuild")
+	codespace_rebuildCmd.Flags().Bool("full", false, "Perform a full rebuild")
 	codespace_rebuildCmd.PersistentFlags().StringP("repo", "R", "", "Filter codespace selection by repository name (user/repo)")
 	codespace_rebuildCmd.PersistentFlags().String("repo-owner", "", "Filter codespace selection by repository owner (username or org)")
 	codespaceCmd.AddCommand(codespace_rebuildCmd)

@@ -7,7 +7,7 @@ import (
 )
 
 var gist_renameCmd = &cobra.Command{
-	Use:   "rename {<id> | <url>} <oldFilename> <newFilename>",
+	Use:   "rename {<id> | <url>} <old-filename> <new-filename>",
 	Short: "Rename a file in a gist",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

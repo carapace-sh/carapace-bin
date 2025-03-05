@@ -18,7 +18,7 @@ func init() {
 	workflow_runCmd.Flags().StringSliceP("field", "F", []string{}, "Add a string parameter in `key=value` format, respecting @ syntax (see \"gh help api\").")
 	workflow_runCmd.Flags().Bool("json", false, "Read workflow inputs as JSON via STDIN")
 	workflow_runCmd.Flags().StringSliceP("raw-field", "f", []string{}, "Add a string parameter in `key=value` format")
-	workflow_runCmd.Flags().StringP("ref", "r", "", "The branch or tag name which contains the version of the workflow file you'd like to run")
+	workflow_runCmd.Flags().StringP("ref", "r", "", "Branch or tag name which contains the version of the workflow file you'd like to run")
 	workflowCmd.AddCommand(workflow_runCmd)
 
 	carapace.Gen(workflow_runCmd).FlagCompletion(carapace.ActionMap{

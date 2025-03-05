@@ -15,6 +15,7 @@ var gist_deleteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(gist_deleteCmd).Standalone()
 
+	gist_deleteCmd.Flags().Bool("yes", false, "Confirm deletion without prompting")
 	gistCmd.AddCommand(gist_deleteCmd)
 
 	carapace.Gen(gist_deleteCmd).PositionalCompletion(

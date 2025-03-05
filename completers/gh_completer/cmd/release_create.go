@@ -19,6 +19,7 @@ func init() {
 
 	release_createCmd.Flags().String("discussion-category", "", "Start a discussion in the specified category")
 	release_createCmd.Flags().BoolP("draft", "d", false, "Save the release as a draft instead of publishing it")
+	release_createCmd.Flags().Bool("fail-on-no-commits", false, "Fail if there are no commits since the last release (no impact on the first release)")
 	release_createCmd.Flags().Bool("generate-notes", false, "Automatically generate title and notes for the release")
 	release_createCmd.Flags().Bool("latest", false, "Mark this release as \"Latest\" (default [automatic based on date and version]). --latest=false to explicitly NOT set as latest")
 	release_createCmd.Flags().StringP("notes", "n", "", "Release notes")

@@ -8,7 +8,7 @@ import (
 )
 
 var project_linkCmd = &cobra.Command{
-	Use:   "link [<number>] [flag]",
+	Use:   "link [<number>]",
 	Short: "Link a project to a repository or a team",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
