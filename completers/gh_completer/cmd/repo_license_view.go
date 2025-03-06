@@ -7,7 +7,7 @@ import (
 )
 
 var repo_license_viewCmd = &cobra.Command{
-	Use:   "view {<license-key> | <SPDX-ID>}",
+	Use:   "view {<license-key> | <spdx-id>}",
 	Short: "View a specific repository license",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -16,8 +16,8 @@ var repo_deleteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_deleteCmd).Standalone()
 
-	repo_deleteCmd.Flags().Bool("confirm", false, "confirm deletion without prompting")
-	repo_deleteCmd.Flags().Bool("yes", false, "confirm deletion without prompting")
+	repo_deleteCmd.Flags().Bool("confirm", false, "Confirm deletion without prompting")
+	repo_deleteCmd.Flags().Bool("yes", false, "Confirm deletion without prompting")
 	repo_deleteCmd.Flag("confirm").Hidden = true
 	repoCmd.AddCommand(repo_deleteCmd)
 
