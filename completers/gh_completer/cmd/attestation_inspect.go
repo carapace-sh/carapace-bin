@@ -7,8 +7,8 @@ import (
 )
 
 var attestation_inspectCmd = &cobra.Command{
-	Use:    "inspect [<file path> | oci://<OCI image URI>] --bundle <path-to-bundle>",
-	Short:  "Inspect a sigstore bundle",
+	Use:    "inspect <path-to-sigstore-bundle>",
+	Short:  "Inspect a Sigstore bundle",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }

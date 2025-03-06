@@ -7,7 +7,7 @@ import (
 )
 
 var project_fieldListCmd = &cobra.Command{
-	Use:   "field-list number",
+	Use:   "field-list [<number>]",
 	Short: "List the fields in a project",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

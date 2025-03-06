@@ -8,7 +8,7 @@ import (
 )
 
 var project_unlinkCmd = &cobra.Command{
-	Use:   "unlink [<number>] [flag]",
+	Use:   "unlink [<number>]",
 	Short: "Unlink a project from a repository or a team",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

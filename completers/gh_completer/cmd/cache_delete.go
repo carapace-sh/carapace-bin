@@ -7,7 +7,7 @@ import (
 )
 
 var cache_deleteCmd = &cobra.Command{
-	Use:   "delete [<cache-id>| <cache-key> | --all]",
+	Use:   "delete [<cache-id> | <cache-key> | --all]",
 	Short: "Delete GitHub Actions caches",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(cache_deleteCmd).Standalone()
 
 	cache_deleteCmd.Flags().BoolP("all", "a", false, "Delete all caches")
+	cache_deleteCmd.Flags().Bool("succeed-on-no-caches", false, "Return exit code 0 if no caches found. Must be used in conjunction with `--all`")
 	cacheCmd.AddCommand(cache_deleteCmd)
 
 	carapace.Gen(cache_deleteCmd).PositionalCompletion(
