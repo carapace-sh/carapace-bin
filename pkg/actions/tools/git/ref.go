@@ -91,6 +91,7 @@ func ActionRefs(refOption RefOption) carapace.Action {
 						}
 						return b.ToA()
 					}),
+					ActionReflogs(c.Value[:index]).Suffix("}"),
 				).ToA().Prefix(c.Value[:index+1] + "{")
 
 			default: // '~'

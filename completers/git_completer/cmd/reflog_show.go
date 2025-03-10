@@ -19,6 +19,6 @@ func init() {
 	reflogCmd.AddCommand(reflog_showCmd)
 
 	carapace.Gen(reflog_showCmd).PositionalAnyCompletion(
-		bridge.ActionCarapaceBin("git", "log"),
+		bridge.ActionCarapaceBin("git", "log", "-g", "--abbrev-commit", "--pretty=oneline"),
 	)
 }
