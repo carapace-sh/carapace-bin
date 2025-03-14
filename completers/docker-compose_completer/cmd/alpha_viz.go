@@ -18,6 +18,6 @@ func init() {
 	alpha_vizCmd.Flags().String("indentation-size", "", "Number of tabs or spaces to use for indentation")
 	alpha_vizCmd.Flags().Bool("networks", false, "Include service's attached networks in output graph")
 	alpha_vizCmd.Flags().Bool("ports", false, "Include service's exposed ports in output graph")
-	alpha_vizCmd.Flags().Bool("spaces", false, "If given, space character ' ' will be used to indent,")
+	alpha_vizCmd.Flags().Bool("spaces", false, "If given, space character ' ' will be used to indent")
 	alphaCmd.AddCommand(alpha_vizCmd)
 }

@@ -43,7 +43,7 @@ func init() {
 	upCmd.Flags().Bool("wait", false, "Wait for services to be running|healthy. Implies detached mode.")
 	upCmd.Flags().String("wait-timeout", "", "Maximum duration in seconds to wait for the project to be running|healthy")
 	upCmd.Flags().BoolP("watch", "w", false, "Watch source code and rebuild/refresh containers when files are updated.")
-	upCmd.Flags().BoolP("y", "y", false, "Assume \"yes\" as answer to all prompts and run non-interactively")
+	upCmd.Flags().BoolP("yes", "y", false, "Assume \"yes\" as answer to all prompts and run non-interactively")
 	rootCmd.AddCommand(upCmd)
 
 	carapace.Gen(upCmd).FlagCompletion(carapace.ActionMap{
