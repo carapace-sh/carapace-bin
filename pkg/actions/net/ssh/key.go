@@ -95,3 +95,41 @@ func ActionPrivateKeys() carapace.Action {
 		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
 	})
 }
+
+// ActionSigningKeys completes the contents of public keys for which a private key exists
+func ActionSigningKeys() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		abs, err := c.Abs("~/.ssh/")
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		entries, err := os.ReadDir(abs)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		vals := make([]string, 0)
+		for _, entry := range entries {
+			if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".pub") {
+				continue
+			}
+
+			path := abs + entry.Name()
+			privatePath := strings.TrimSuffix(path, ".pub")
+
+			if _, err := os.Stat(privatePath); err != nil {
+				continue
+			}
+
+			if contents, err := os.ReadFile(path); err == nil {
+				pubKeyLine := strings.Split(string(contents), "\n")[0]
+				pubKeyFields := strings.Fields(pubKeyLine)
+				if len(pubKeyFields) > 1 {
+					vals = append(vals, pubKeyFields[0]+" "+pubKeyFields[1], privatePath)
+				}
+			}
+		}
+		return carapace.ActionValuesDescribed(vals...)
+	})
+}
