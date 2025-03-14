@@ -23,6 +23,7 @@ func init() {
 	runCmd.Flags().BoolP("detach", "d", false, "Run container in background and print container ID")
 	runCmd.Flags().String("entrypoint", "", "Override the entrypoint of the image")
 	runCmd.Flags().StringSliceP("env", "e", []string{}, "Set environment variables")
+	runCmd.Flags().StringSlice("env-from-file", []string{}, "Set environment variables from file")
 	runCmd.Flags().BoolP("interactive", "i", false, "Keep STDIN open even if not attached")
 	runCmd.Flags().StringSliceP("label", "l", []string{}, "Add or override a label")
 	runCmd.Flags().String("name", "", "Assign a name to the container")
@@ -44,9 +45,10 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-		"env":    env.ActionNameValues(false),
-		"pull":   carapace.ActionValues("always", "missing", "never").StyleF(style.ForKeyword),
-		"volume": action.ActionVolumes(runCmd),
+		"env":           env.ActionNameValues(false),
+		"env-from-file": carapace.ActionFiles(),
+		"pull":          carapace.ActionValues("always", "missing", "never").StyleF(style.ForKeyword),
+		"volume":        action.ActionVolumes(runCmd),
 	})
 
 	carapace.Gen(runCmd).PositionalCompletion(

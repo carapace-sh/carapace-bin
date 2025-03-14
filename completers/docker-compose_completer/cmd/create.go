@@ -24,7 +24,7 @@ func init() {
 	createCmd.Flags().Bool("quiet-pull", false, "Pull without printing progress information")
 	createCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file")
 	createCmd.Flags().StringSlice("scale", []string{}, "Scale SERVICE to NUM instances. Overrides the `scale` setting in the Compose file if present.")
-	createCmd.Flags().BoolP("y", "y", false, "Assume \"yes\" as answer to all prompts and run non-interactively")
+	createCmd.Flags().BoolP("yes", "y", false, "Assume \"yes\" as answer to all prompts and run non-interactively")
 	rootCmd.AddCommand(createCmd)
 
 	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
