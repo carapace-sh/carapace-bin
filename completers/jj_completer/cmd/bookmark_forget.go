@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(bookmark_forgetCmd).Standalone()
 
 	bookmark_forgetCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	bookmark_forgetCmd.Flags().Bool("include-remotes", false, "When forgetting a local bookmark, also forget any corresponding remote bookmarks")
 	bookmarkCmd.AddCommand(bookmark_forgetCmd)
 
 	carapace.Gen(bookmark_forgetCmd).PositionalAnyCompletion(
