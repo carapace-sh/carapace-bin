@@ -44,9 +44,23 @@ func init() {
 	})
 
 	carapace.Gen(buildCmd).PositionalCompletion(
-		carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakeRefs(),
-		).ToA(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if f := buildCmd.Flag("file"); f.Changed {
+				arg, _ := rootCmd.Flags().GetStringSlice("arg")
+				argstr, _ := rootCmd.Flags().GetStringSlice("argstr")
+				opts := nix.AttributeOpts{
+					Source:  "default.nix",
+					Include: buildCmd.Flag("include").Value.String(),
+					Arg:     arg,
+					ArgStr:  argstr,
+				}
+				return nix.ActionAttributes(opts)
+			}
+
+			return carapace.Batch(
+				carapace.ActionDirectories(),
+				nix.ActionFlakeRefs(),
+			).ToA()
+		}),
 	)
 }
