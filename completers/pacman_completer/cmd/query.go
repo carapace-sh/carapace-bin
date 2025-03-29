@@ -15,6 +15,8 @@ var queryCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(queryCmd).Standalone()
+
 	queryCmd.Flags().String("arch", "", "set an alternate architecture")
 	queryCmd.Flags().String("cachedir", "", "set an alternate package cache location")
 	queryCmd.Flags().BoolP("changelog", "c", false, "view the changelog of a package")

@@ -15,6 +15,8 @@ var deptestCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(deptestCmd).Standalone()
+
 	deptestCmd.Flags().String("arch", "", "set an alternate architecture")
 	deptestCmd.Flags().String("cachedir", "", "set an alternate package cache location")
 	deptestCmd.Flags().String("color", "", "colorize the output")

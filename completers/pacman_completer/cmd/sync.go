@@ -15,6 +15,8 @@ var syncCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(syncCmd).Standalone()
+
 	syncCmd.Flags().String("arch", "", "set an alternate architecture")
 	syncCmd.Flags().Bool("asdeps", false, "install packages as non-explicitly installed")
 	syncCmd.Flags().Bool("asexplicit", false, "install packages as explicitly installed")

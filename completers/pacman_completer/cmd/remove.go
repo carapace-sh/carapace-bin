@@ -15,6 +15,8 @@ var removeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(removeCmd).Standalone()
+
 	removeCmd.Flags().String("arch", "", "set an alternate architecture")
 	removeCmd.Flags().String("assume-installed", "", "add a virtual package to satisfy dependencies")
 	removeCmd.Flags().String("cachedir", "", "set an alternate package cache location")
