@@ -15,6 +15,8 @@ var databaseCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(databaseCmd).Standalone()
+
 	databaseCmd.Flags().String("arch", "", "set an alternate architecture")
 	databaseCmd.Flags().Bool("asdeps", false, "mark packages as non-explicitly installed")
 	databaseCmd.Flags().Bool("asexplicit", false, "mark packages as explicitly installed")

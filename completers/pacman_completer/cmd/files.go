@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -15,6 +14,8 @@ var filesCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(filesCmd).Standalone()
+
 	filesCmd.Flags().String("arch", "", "set an alternate architecture")
 	filesCmd.Flags().String("cachedir", "", "set an alternate package cache location")
 	filesCmd.Flags().String("color", "", "colorize the output")
@@ -49,6 +50,6 @@ func init() {
 	})
 
 	carapace.Gen(filesCmd).PositionalAnyCompletion(
-		pacman.ActionPackages().FilterArgs(),
+		carapace.ActionFiles().Chdir("/"),
 	)
 }

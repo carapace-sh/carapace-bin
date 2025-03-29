@@ -15,6 +15,8 @@ var upgradeCmd = &cobra.Command{
 }
 
 func init() {
+	carapace.Gen(upgradeCmd).Standalone()
+
 	upgradeCmd.Flags().String("arch", "", "set an alternate architecture")
 	upgradeCmd.Flags().Bool("asdeps", false, "install packages as non-explicitly installed")
 	upgradeCmd.Flags().Bool("asexplicit", false, "install packages as explicitly installed")
