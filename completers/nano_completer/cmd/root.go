@@ -15,6 +15,7 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -26,6 +27,7 @@ func init() {
 	rootCmd.Flags().BoolP("boldtext", "D", false, "Use bold instead of reverse video text")
 	rootCmd.Flags().BoolP("bookstyle", "O", false, "Leading whitespace means new paragraph")
 	rootCmd.Flags().BoolP("breaklonglines", "b", false, "Automatically hard-wrap overlong lines")
+	rootCmd.Flags().BoolP("colonparsing", "@", false, "Accept 'filename:linenumber' notation")
 	rootCmd.Flags().BoolP("constantshow", "c", false, "Constantly show cursor position")
 	rootCmd.Flags().BoolP("cutfromcursor", "k", false, "Cut from cursor to end of line")
 	rootCmd.Flags().BoolP("emptyline", "e", false, "Keep the line below the title bar empty")
@@ -37,9 +39,11 @@ func init() {
 	rootCmd.Flags().BoolP("indicator", "q", false, "Show a position+portion indicator")
 	rootCmd.Flags().BoolP("jumpyscrolling", "j", false, "Scroll per half-screen, not per line")
 	rootCmd.Flags().BoolP("linenumbers", "l", false, "Show line numbers in front of the text")
+	rootCmd.Flags().BoolP("listsyntaxes", "z", false, "List the names of available syntaxes")
 	rootCmd.Flags().BoolP("locking", "G", false, "Use (vim-style) lock files")
 	rootCmd.Flags().BoolP("magic", "!", false, "Also try magic to determine syntax")
 	rootCmd.Flags().BoolP("minibar", "_", false, "Show a feedback bar at the bottom")
+	rootCmd.Flags().BoolP("modernbindings", "/", false, "Use better-known key bindings")
 	rootCmd.Flags().BoolP("mouse", "m", false, "Enable the use of the mouse")
 	rootCmd.Flags().BoolP("multibuffer", "F", false, "Read a file into a new buffer by default")
 	rootCmd.Flags().BoolP("noconvert", "N", false, "Don't convert files from DOS/Mac format")
@@ -62,7 +66,6 @@ func init() {
 	rootCmd.Flags().BoolP("softwrap", "S", false, "Display overlong lines on multiple rows")
 	rootCmd.Flags().StringP("speller", "s", "", "Use this alternative spell checker")
 	rootCmd.Flags().BoolP("stateflags", "%", false, "Show some states on the title bar")
-	rootCmd.Flags().BoolP("suspendable", "z", false, "Enable suspension")
 	rootCmd.Flags().StringP("syntax", "Y", "", "Syntax definition to use for coloring")
 	rootCmd.Flags().StringP("tabsize", "T", "", "Make a tab this number of columns wide")
 	rootCmd.Flags().BoolP("tabstospaces", "E", false, "Convert typed tabs to spaces")
@@ -73,6 +76,7 @@ func init() {
 	rootCmd.Flags().BoolP("wordbounds", "W", false, "Detect word boundaries more accurately")
 	rootCmd.Flags().StringP("wordchars", "X", "", "Which other characters are word parts")
 	rootCmd.Flags().BoolP("zap", "Z", false, "Let Bsp and Del erase a marked region")
+	rootCmd.Flags().BoolP("zero", "0", false, "Hide all bars, use whole terminal")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"backupdir":    carapace.ActionDirectories(),
