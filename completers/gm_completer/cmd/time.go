@@ -13,10 +13,11 @@ var timeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(timeCmd).Standalone()
+	timeCmd.Flags().SetInterspersed(false)
 
 	rootCmd.AddCommand(timeCmd)
 
-	carapace.Gen(timeCmd).PositionalCompletion(carapace.ActionCommands(rootCmd))
-
-	carapace.Gen(timeCmd).PositionalAnyCompletion(carapace.ActionFiles())
+	carapace.Gen(timeCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin("gm"),
+	)
 }
