@@ -5,6 +5,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/completers/journalctl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -36,7 +37,7 @@ func init() {
 	rootCmd.Flags().String("facility", "", "Show entries with the specified facilities")
 	rootCmd.Flags().StringP("field", "F", "", "List all values that a specified field takes")
 	rootCmd.Flags().BoolP("fields", "N", false, "List all field names currently used")
-	rootCmd.Flags().String("file", "", "Show journal file")
+	rootCmd.Flags().StringArray("file", nil, "Show journal file")
 	rootCmd.Flags().Bool("flush", false, "Flush all journal data from /run into /var")
 	rootCmd.Flags().BoolP("follow", "f", false, "Follow the journal")
 	rootCmd.Flags().Bool("force", false, "Override of the FSS key pair with --setup-keys")
@@ -71,11 +72,11 @@ func init() {
 	rootCmd.Flags().Bool("smart-relinquish-var", false, "Similar, but NOP if log directory is on root mount")
 	rootCmd.Flags().Bool("sync", false, "Synchronize unwritten journal messages to disk")
 	rootCmd.Flags().Bool("system", false, "Show the system journal")
-	rootCmd.Flags().StringP("unit", "u", "", "Show logs from the specified unit")
+	rootCmd.Flags().StringArrayP("unit", "u", nil, "Show logs from the specified unit")
 	rootCmd.Flags().StringP("until", "U", "", "Show entries not newer than the specified date")
 	rootCmd.Flags().Bool("update-catalog", false, "Update the message catalog database")
 	rootCmd.Flags().Bool("user", false, "Show the user journal for the current user")
-	rootCmd.Flags().String("user-unit", "", "Show logs from the specified user unit")
+	rootCmd.Flags().StringArray("user-unit", nil, "Show logs from the specified user unit")
 	rootCmd.Flags().Bool("utc", false, "Express time in Coordinated Universal Time (UTC)")
 	rootCmd.Flags().String("vacuum-files", "", "Leave only the specified number of journal files")
 	rootCmd.Flags().String("vacuum-size", "", "Reduce disk usage below specified size")
@@ -109,9 +110,13 @@ func init() {
 			carapace.ActionValues("yesterday", "today", "tomorrow"),
 			time.ActionDateTime(time.DateTimeOpts{}),
 		).ToA(),
+		"unit": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return systemctl.ActionUnits(rootCmd.Flag("user").Changed)
+		}),
 		"until": carapace.Batch(
 			carapace.ActionValues("yesterday", "today", "tomorrow"),
 			time.ActionDateTime(time.DateTimeOpts{}),
 		).ToA(),
+		"user-unit": systemctl.ActionUnits(true),
 	})
 }
