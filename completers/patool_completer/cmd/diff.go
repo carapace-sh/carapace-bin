@@ -16,7 +16,8 @@ func init() {
 
 	rootCmd.AddCommand(diffCmd)
 
-	carapace.Gen(diffCmd).PositionalAnyCompletion(
+	carapace.Gen(diffCmd).PositionalCompletion(
+		carapace.ActionFiles(),
 		carapace.ActionFiles(),
 	)
 }

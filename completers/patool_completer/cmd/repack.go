@@ -16,7 +16,8 @@ func init() {
 
 	rootCmd.AddCommand(repackCmd)
 
-	carapace.Gen(repackCmd).PositionalAnyCompletion(
+	carapace.Gen(repackCmd).PositionalCompletion(
+		carapace.ActionFiles(),
 		carapace.ActionFiles(),
 	)
 }
