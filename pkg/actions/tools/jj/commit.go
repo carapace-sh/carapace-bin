@@ -11,17 +11,15 @@ import (
 
 // ActionHeadCommits completes head commits
 //
-//	534f6d79780e ([HEAD~04] build(deps): bump github.com/creack/pty from 1.1.18 to 1.1.20 (#8265))
-//	5eff7a529adc ([HEAD~03] fix(release create): Handle latest flag value when updating the rel...)
+//	@  (HEAD)
+//	@- (commit message)
 func ActionHeadCommits(limit int) carapace.Action {
-	return carapace.ActionExecCommand("jj", "log", "--no-graph", "--template", `commit_id.short() ++ "\t" ++ description.first_line() ++ "\n"`, "--revisions", "::@", "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("jj", "log", "--no-graph", "--template", `description.first_line() ++ "\n"`, "--revisions", "::@", "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
-		format := "[HEAD~%0" + strconv.Itoa(len(strconv.Itoa(limit-1))) + "d] %v"
 
 		vals := make([]string, 0)
 		for index, line := range lines[:len(lines)-1] {
-			splitted := strings.SplitN(line, "\t", 2)
-			vals = append(vals, splitted[0], fmt.Sprintf(format, index, splitted[1]))
+			vals = append(vals, "@"+strings.Repeat("-", index), line)
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.HeadCommit)
 	}).Tag("head commits")
