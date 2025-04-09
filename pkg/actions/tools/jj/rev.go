@@ -18,7 +18,7 @@ func (o RevOption) Default() RevOption {
 	o.LocalBookmarks = true
 	o.RemoteBookmarks = true
 	o.Commits = 100
-	o.HeadCommits = 100
+	o.HeadCommits = 20
 	o.Tags = true
 	return o
 
