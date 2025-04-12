@@ -2,7 +2,9 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net/http"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -224,21 +226,21 @@ func init() {
 		"ca-certificate":              carapace.ActionFiles(),
 		"certificate":                 carapace.ActionFiles(),
 		"conf-path":                   carapace.ActionFiles(),
-		"console-log-level":           carapace.ActionValues("debug", "info", "notice", "warn", "error"),
+		"console-log-level":           carapace.ActionValues("debug", "info", "notice", "warn", "error").StyleF(style.ForLogLevel),
 		"dht-file-path":               carapace.ActionFiles(),
 		"dht-file-path6":              carapace.ActionFiles(),
 		"dir":                         carapace.ActionDirectories(),
 		"download-result":             carapace.ActionValues("default", "full", "hide"),
 		"event-poll":                  carapace.ActionValues("epll", "poll", "select"),
 		"file-allocation":             carapace.ActionValues("none", "prealloc", "trunc", "falloc"),
-		"follow-metalink":             carapace.ActionValues("true", "mem", "false"),
-		"follow-torrent":              carapace.ActionValues("true", "mem", "false"),
+		"follow-metalink":             carapace.ActionValues("true", "mem", "false").StyleF(style.ForKeyword),
+		"follow-torrent":              carapace.ActionValues("true", "mem", "false").StyleF(style.ForKeyword),
 		"ftp-type":                    carapace.ActionValues("binary", "ascii"),
 		"help":                        carapace.ActionValues("#basic", "#advanced", "#http", "#https", "#ftp", "#metalink", "#bittorrent", "#cookie", "#hook", "#file", "#rpc", "#checksum", "#experimental", "#deprecated", "#help", "#all"),
 		"input-file":                  carapace.ActionFiles(),
 		"load-cookies":                carapace.ActionFiles(),
 		"log":                         carapace.ActionFiles(),
-		"log-level":                   carapace.ActionValues("debug", "info", "notice", "warn", "error"),
+		"log-level":                   carapace.ActionValues("debug", "info", "notice", "warn", "error").StyleF(style.ForLogLevel),
 		"metalink-file":               carapace.ActionFiles(),
 		"metalink-preferred-protocol": carapace.ActionValues("http", "https", "ftp", "none"),
 		"min-tls-version":             carapace.ActionValues("TLSv1.1", "TLSv1.2", "TLSv1.3"),
@@ -262,6 +264,7 @@ func init() {
 		"stream-piece-selector":       carapace.ActionValues("default", "inorder", "random", "geom"),
 		"torrent-file":                carapace.ActionFiles(".torrent"),
 		"uri-selector":                carapace.ActionValues("inorder", "feedback", "adaptive"),
+		"user-agent":                  http.ActionUserAgents(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
