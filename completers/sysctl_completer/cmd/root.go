@@ -10,13 +10,14 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "sysctl",
 	Short: "configure kernel parameters at runtime",
-	Long:  "https://linux.die.net/man/8/sysctl",
+	Long:  "https://man7.org/linux/man-pages/man8/sysctl.8.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -26,6 +27,7 @@ func init() {
 	rootCmd.Flags().BoolP("binary", "b", false, "print value without new line")
 	rootCmd.Flags().BoolS("d", "d", false, "alias of -h")
 	rootCmd.Flags().Bool("deprecated", false, "include deprecated parameters to listing")
+	rootCmd.Flags().Bool("dry-run", false, "Print the key and values but do not write")
 	rootCmd.Flags().BoolS("f", "f", false, "alias of -p")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help and exit")
 	rootCmd.Flags().BoolP("ignore", "e", false, "ignore unknown variables errors")
