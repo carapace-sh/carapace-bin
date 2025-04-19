@@ -8,9 +8,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "pwait",
+	Use:   "pidwait",
 	Short: "wait for processes based on name and other attributes",
-	Long:  "https://linux.die.net/man/1/pgrep",
+	Long:  "https://man7.org/linux/man-pages/man1/pgrep.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
