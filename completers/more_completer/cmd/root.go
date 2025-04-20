@@ -7,18 +7,20 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "more",
-	Short: "file perusal filter for crt viewing",
-	Long:  "https://linux.die.net/man/1/more",
+	Short: "display the contents of a file in a terminal",
+	Long:  "https://man7.org/linux/man-pages/man1/more.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("clean-print", "p", false, "do not scroll, clean screen and display text")
+	rootCmd.Flags().BoolP("exit-on-eof", "e", false, "exit on end-of-file")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
 	rootCmd.Flags().StringP("lines", "n", "", "the number of lines per screenful")
 	rootCmd.Flags().BoolP("logical", "f", false, "count logical rather than screen lines")
