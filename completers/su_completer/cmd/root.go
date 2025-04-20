@@ -9,13 +9,14 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "su",
 	Short: "run a command with substitute user and group ID",
-	Long:  "https://linux.die.net/man/1/su",
+	Long:  "https://man7.org/linux/man-pages/man1/su.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -25,6 +26,7 @@ func init() {
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
 	rootCmd.Flags().BoolP("login", "l", false, "make the shell a login shell")
 	rootCmd.Flags().BoolS("m", "m", false, "do not reset environment variables")
+	rootCmd.Flags().BoolS("no-pty", "T", false, "do not create a new pseudo-terminal (bad security!)")
 	rootCmd.Flags().BoolP("preserve-environment", "p", false, "do not reset environment variables")
 	rootCmd.Flags().BoolP("pty", "P", false, "create a new pseudo-terminal")
 	rootCmd.Flags().String("session-command", "", "pass a single command and do not create a new session")
