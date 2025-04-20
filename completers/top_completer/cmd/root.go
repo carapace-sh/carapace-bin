@@ -44,6 +44,9 @@ func init() {
 	rootCmd.Flags().BoolP("width", "w", false, "In Batch mode, when used without an argument top will format output using the COLUMNS= and LINES= environment variables, if set.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"filter-any-user":   os.ActionUsers(),
+		"filter-only-euser": os.ActionUsers(),
+		"pid":               ps.ActionProcessIds().UniqueList(","),
 		"scale-summary-mem": carapace.ActionValuesDescribed(
 			"k", "kibibytes",
 			"m", "mebibytes",
@@ -52,7 +55,6 @@ func init() {
 			"p", "pebibytes",
 			"e", "exbibytes",
 		),
-		"filter-any-user": os.ActionUsers(),
 		"scale-task-mem": carapace.ActionValuesDescribed(
 			"k", "kibibytes",
 			"m", "mebibytes",
@@ -60,8 +62,6 @@ func init() {
 			"t", "tebibytes",
 			"p", "pebibytes",
 		),
-		"sort-override":     action.ActionFields(),
-		"pid":               ps.ActionProcessIds().UniqueList(","),
-		"filter-only-euser": os.ActionUsers(),
+		"sort-override": action.ActionFields(),
 	})
 }
