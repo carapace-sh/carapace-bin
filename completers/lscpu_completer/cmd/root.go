@@ -2,19 +2,21 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
 	Use:   "lscpu",
 	Short: "display information about the CPU architecture",
-	Long:  "https://linux.die.net/man/1/lscpu",
+	Long:  "https://man7.org/linux/man-pages/man1/lscpu.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -24,32 +26,38 @@ func init() {
 	rootCmd.Flags().StringP("extended", "e", "", "print out an extended readable format")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
 	rootCmd.Flags().BoolP("hex", "x", false, "print hexadecimal masks rather than lists of CPUs")
+	rootCmd.Flags().String("hierarchic", "", "use subsections in summary")
 	rootCmd.Flags().BoolP("json", "J", false, "use JSON for default or extended format")
 	rootCmd.Flags().BoolP("offline", "c", false, "print offline CPUs only")
 	rootCmd.Flags().BoolP("online", "b", false, "print online CPUs only (default for -p)")
 	rootCmd.Flags().Bool("output-all", false, "print all available columns for -e, -p or -C")
 	rootCmd.Flags().StringP("parse", "p", "", "print out a parsable format")
 	rootCmd.Flags().BoolP("physical", "y", false, "print physical instead of logical IDs")
+	rootCmd.Flags().BoolP("raw", "r", false, "use raw output format (for -e, -p and -C)")
 	rootCmd.Flags().StringP("sysroot", "s", "", "use specified directory as system root")
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
 	rootCmd.Flag("caches").NoOptDefVal = " "
 	rootCmd.Flag("extended").NoOptDefVal = " "
+	rootCmd.Flag("hierarchic").NoOptDefVal = " "
 	rootCmd.Flag("parse").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"caches":   ActionCacheColumns().UniqueList(","),
-		"extended": ActionFormatColumns().UniqueList(","),
-		"parse":    ActionFormatColumns().UniqueList(","),
-		"sysroot":  carapace.ActionDirectories(),
+		"caches":     ActionCacheColumns().UniqueList(","),
+		"extended":   ActionFormatColumns().UniqueList(","),
+		"hierarchic": carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"parse":      ActionFormatColumns().UniqueList(","),
+		"sysroot":    carapace.ActionDirectories(),
 	})
 }
 
 func ActionFormatColumns() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"BOGOMIPS", "crude measurement of CPU speed",
 		"CPU", "logical CPU number",
 		"CORE", "logical core number",
 		"SOCKET", "logical socket number",
+		"CLUSTER", "logical cluster number",
 		"NODE", "logical NUMA node number",
 		"BOOK", "logical book number",
 		"DRAWER", "logical drawer number",
@@ -58,8 +66,11 @@ func ActionFormatColumns() carapace.Action {
 		"ADDRESS", "physical address of a CPU",
 		"CONFIGURED", "shows if the hypervisor has allocated the CPU",
 		"ONLINE", "shows if Linux currently makes use of the CPU",
+		"MHZ", "shows the current MHz of the CPU",
+		"SCALMHZ%", "shows scaling percentage of the CPU frequency",
 		"MAXMHZ", "shows the maximum MHz of the CPU",
 		"MINMHZ", "shows the minimum MHz of the CPU",
+		"MODELNAME", "shows CPU model name",
 	)
 }
 
