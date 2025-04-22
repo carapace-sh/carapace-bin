@@ -22,6 +22,9 @@ func init() {
 	proxy_kubeCmd.Flags().StringP("format", "f", "", "Optional format to print the commands for setting environment variables, one of: unix, command-prompt, powershell, text. Default is unix.")
 	proxy_kubeCmd.Flags().StringP("kube-namespace", "n", "", "Configure the default Kubernetes namespace.")
 	proxy_kubeCmd.Flags().StringP("port", "p", "", "Specifies the source port used by the proxy listener")
+	proxy_kubeCmd.Flags().StringP("set-context-name", "", "", "Define a custom context name or template.")
+	proxy_kubeCmd.Flags().StringArrayP("labels", "", nil, "List of comma separated labels to filter by labels (e.g. key1=value1,key2=value2)")
+	proxy_kubeCmd.Flags().BoolP("exec", "", false, "Run the proxy in the background and reexec into a new shell with $KUBECONFIG already pointed to our config file.")
 	proxyCmd.AddCommand(proxy_kubeCmd)
 
 	carapace.Gen(proxy_kubeCmd).FlagCompletion(carapace.ActionMap{
