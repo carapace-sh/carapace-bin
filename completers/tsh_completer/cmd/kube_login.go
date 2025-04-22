@@ -28,4 +28,8 @@ func init() {
 	carapace.Gen(kube_loginCmd).FlagCompletion(carapace.ActionMap{
 		"cluster": tsh.ActionClusters(),
 	})
+
+	carapace.Gen(kube_loginCmd).PositionalCompletion(
+		tsh.ActionKubeClusters(),
+	)
 }
