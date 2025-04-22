@@ -29,4 +29,8 @@ func init() {
 		"format":  carapace.ActionValues("unix", "command-prompt", "powershell", "text"),
 		"port":    net.ActionPorts(),
 	})
+
+	carapace.Gen(proxy_kubeCmd).PositionalCompletion(
+		tsh.ActionKubeClusters(),
+	)
 }
