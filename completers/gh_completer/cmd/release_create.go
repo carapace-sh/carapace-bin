@@ -7,7 +7,7 @@ import (
 )
 
 var release_createCmd = &cobra.Command{
-	Use:     "create [<tag>] [<files>...]",
+	Use:     "create [<tag>] [<filename>... | <pattern>...]",
 	Short:   "Create a new release",
 	GroupID: "General commands",
 	Aliases: []string{"new"},

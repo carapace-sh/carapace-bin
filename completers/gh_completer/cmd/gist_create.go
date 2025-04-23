@@ -6,7 +6,7 @@ import (
 )
 
 var gist_createCmd = &cobra.Command{
-	Use:     "create [<filename>... | -]",
+	Use:     "create [<filename>... | <pattern>... | -]",
 	Short:   "Create a new gist",
 	Aliases: []string{"new"},
 	Run:     func(cmd *cobra.Command, args []string) {},
