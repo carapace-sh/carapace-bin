@@ -32,7 +32,12 @@ func ActionInstallables() carapace.Action {
 			).ToA()
 
 		case 1:
-			return ActionPackages(strings.SplitN(c.Parts[0], "/", 2)[0])
+			switch c.Parts[0] {
+			case ".":
+				return ActionFlakeAttributes(".")
+			default:
+				return ActionPackages(strings.SplitN(c.Parts[0], "/", 2)[0])
+			}
 
 		default:
 			return carapace.ActionValues()
