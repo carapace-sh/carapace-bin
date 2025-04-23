@@ -24,7 +24,7 @@ func init() {
 	apply_editLastAppliedCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")
 	apply_editLastAppliedCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	apply_editLastAppliedCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	apply_editLastAppliedCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false).")
+	apply_editLastAppliedCmd.Flags().String("validate", "", "Must be one of: strict (or true), warn, ignore (or false). \"true\" or \"strict\" will use a schema to validate the input and fail the request if invalid. It will perform server side validation if ServerSideFieldValidation is enabled on the api-server, but will fall back to less reliable client-side validation if not. \"warn\" will warn about unknown or duplicate fields without blocking the request if server-side field validation is enabled on the API server, and behave as \"ignore\" otherwise. \"false\" or \"ignore\" will not perform any schema validation, silently dropping any unknown or duplicate fields.")
 	apply_editLastAppliedCmd.Flags().Bool("windows-line-endings", false, "Defaults to the line ending native to your platform.")
 	apply_editLastAppliedCmd.Flag("record").Hidden = true
 	apply_editLastAppliedCmd.Flag("validate").NoOptDefVal = " "

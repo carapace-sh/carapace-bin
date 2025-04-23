@@ -24,7 +24,7 @@ func init() {
 	drainCmd.Flags().String("grace-period", "", "Period of time in seconds given to each pod to terminate gracefully. If negative, the default value specified in the pod will be used.")
 	drainCmd.Flags().Bool("ignore-daemonsets", false, "Ignore DaemonSet-managed pods.")
 	drainCmd.Flags().String("pod-selector", "", "Label selector to filter pods on the node")
-	drainCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.")
+	drainCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.")
 	drainCmd.Flags().String("skip-wait-for-delete-timeout", "", "If pod DeletionTimestamp older than N seconds, skip waiting for the pod.  Seconds must be greater than 0 to skip.")
 	drainCmd.Flags().String("timeout", "", "The length of time to wait before giving up, zero means infinite")
 	drainCmd.Flag("dry-run").NoOptDefVal = " "

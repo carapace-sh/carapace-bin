@@ -28,7 +28,7 @@ func init() {
 	patchCmd.Flags().Bool("record", false, "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.")
 	patchCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")
 	patchCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
-	patchCmd.Flags().String("subresource", "", "If specified, patch will operate on the subresource of the requested object. Must be one of [status scale]. This flag is beta and may change in the future.")
+	patchCmd.Flags().String("subresource", "", "If specified, patch will operate on the subresource of the requested object.")
 	patchCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
 	patchCmd.Flags().String("type", "", "The type of patch being provided; one of [json merge strategic]")
 	patchCmd.Flag("dry-run").NoOptDefVal = " "

@@ -23,6 +23,7 @@ func init() {
 	kustomizeCmd.Flags().StringSliceP("env", "e", []string{}, "a list of environment variables to be used by functions")
 	kustomizeCmd.Flags().StringSlice("helm-api-versions", []string{}, "Kubernetes api versions used by Helm for Capabilities.APIVersions")
 	kustomizeCmd.Flags().String("helm-command", "", "helm command (path to executable)")
+	kustomizeCmd.Flags().Bool("helm-debug", false, "Enable debug output from the Helm chart inflator generator.")
 	kustomizeCmd.Flags().String("helm-kube-version", "", "Kubernetes version used by Helm for Capabilities.KubeVersion")
 	kustomizeCmd.Flags().String("load-restrictor", "", "if set to 'LoadRestrictionsNone', local kustomizations may load files from outside their root. This does, however, break the relocatability of the kustomization.")
 	kustomizeCmd.Flags().StringSlice("mount", []string{}, "a list of storage options read from the filesystem")

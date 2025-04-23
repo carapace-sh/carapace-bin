@@ -47,7 +47,7 @@ func init() {
 	rootCmd.Flags().BoolP("help", "h", false, "help for kubectl")
 	rootCmd.PersistentFlags().Bool("insecure-skip-tls-verify", false, "If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure")
 	rootCmd.PersistentFlags().String("kubeconfig", "", "Path to the kubeconfig file to use for CLI requests.")
-	rootCmd.PersistentFlags().String("log-flush-frequency", "5s", "Maximum number of seconds between log flushes")
+	rootCmd.PersistentFlags().String("log-flush-frequency", "", "Maximum number of seconds between log flushes")
 	rootCmd.PersistentFlags().Bool("match-server-version", false, "Require server version to match client version")
 	rootCmd.PersistentFlags().StringP("namespace", "n", "", "If present, the namespace scope for this CLI request")
 	rootCmd.PersistentFlags().String("password", "", "Password for basic authentication to the API server")
@@ -59,7 +59,7 @@ func init() {
 	rootCmd.PersistentFlags().String("token", "", "Bearer token for authentication to the API server")
 	rootCmd.PersistentFlags().String("user", "", "The name of the kubeconfig user to use")
 	rootCmd.PersistentFlags().String("username", "", "Username for basic authentication to the API server")
-	rootCmd.PersistentFlags().StringS("v", "v", "0", "number for the log level verbosity")
+	rootCmd.PersistentFlags().StringP("v", "v", "", "number for the log level verbosity")
 	rootCmd.PersistentFlags().String("vmodule", "", "comma-separated list of pattern=N settings for file-filtered logging (only works for the default text log format)")
 	rootCmd.PersistentFlags().Bool("warnings-as-errors", false, "Treat warnings received from the server as errors and exit with a non-zero exit code")
 
