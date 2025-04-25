@@ -13,5 +13,6 @@ var kubeconfigCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(kubeconfigCmd).Standalone()
+
 	rootCmd.AddCommand(kubeconfigCmd)
 }

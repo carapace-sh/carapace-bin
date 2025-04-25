@@ -13,10 +13,6 @@ var config_print_joinDefaultsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_print_joinDefaultsCmd).Standalone()
-	config_print_joinDefaultsCmd.Flags().StringSlice("component-configs", []string{}, "A comma-separated list for component config API objects to print the default values for. Available values: [KubeProxyConfiguration KubeletConfiguration]. If this flag is not set, no component configs will be printed.")
-	config_printCmd.AddCommand(config_print_joinDefaultsCmd)
 
-	carapace.Gen(config_print_joinDefaultsCmd).FlagCompletion(carapace.ActionMap{
-		"component-configs": carapace.ActionValues("KubeProxyConfiguration", "KubeletConfiguration").UniqueList(","),
-	})
+	config_printCmd.AddCommand(config_print_joinDefaultsCmd)
 }

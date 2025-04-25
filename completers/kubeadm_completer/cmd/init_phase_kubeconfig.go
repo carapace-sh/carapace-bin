@@ -13,5 +13,6 @@ var init_phase_kubeconfigCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(init_phase_kubeconfigCmd).Standalone()
+
 	init_phaseCmd.AddCommand(init_phase_kubeconfigCmd)
 }

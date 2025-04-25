@@ -13,5 +13,6 @@ var config_imagesCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_imagesCmd).Standalone()
+
 	configCmd.AddCommand(config_imagesCmd)
 }
