@@ -13,5 +13,6 @@ var certs_certificateKeyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(certs_certificateKeyCmd).Standalone()
+
 	certsCmd.AddCommand(certs_certificateKeyCmd)
 }

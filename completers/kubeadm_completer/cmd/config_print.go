@@ -13,5 +13,6 @@ var config_printCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_printCmd).Standalone()
+
 	configCmd.AddCommand(config_printCmd)
 }

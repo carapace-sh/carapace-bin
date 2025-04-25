@@ -13,5 +13,6 @@ var init_phase_addonCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(init_phase_addonCmd).Standalone()
+
 	init_phaseCmd.AddCommand(init_phase_addonCmd)
 }

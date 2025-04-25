@@ -6,12 +6,13 @@ import (
 )
 
 var token_deleteCmd = &cobra.Command{
-	Use:   "delete",
+	Use:   "delete [token-value] ...",
 	Short: "Delete bootstrap tokens on the server",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(token_deleteCmd).Standalone()
+
 	tokenCmd.AddCommand(token_deleteCmd)
 }

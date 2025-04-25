@@ -13,5 +13,6 @@ var token_generateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(token_generateCmd).Standalone()
+
 	tokenCmd.AddCommand(token_generateCmd)
 }

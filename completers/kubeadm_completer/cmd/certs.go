@@ -13,5 +13,6 @@ var certsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(certsCmd).Standalone()
+
 	rootCmd.AddCommand(certsCmd)
 }

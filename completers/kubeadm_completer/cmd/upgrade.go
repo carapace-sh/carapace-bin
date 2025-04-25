@@ -13,5 +13,6 @@ var upgradeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(upgradeCmd).Standalone()
+
 	rootCmd.AddCommand(upgradeCmd)
 }

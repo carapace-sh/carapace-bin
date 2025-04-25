@@ -13,9 +13,10 @@ var certs_renew_allCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(certs_renew_allCmd).Standalone()
-	certs_renew_allCmd.Flags().String("cert-dir", "/etc/kubernetes/pki", "The path where to save the certificates")
+
+	certs_renew_allCmd.Flags().String("cert-dir", "", "The path where to save the certificates")
 	certs_renew_allCmd.Flags().String("config", "", "Path to a kubeadm configuration file.")
-	certs_renew_allCmd.Flags().String("kubeconfig", "/etc/kubernetes/admin.conf", "The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.")
+	certs_renew_allCmd.Flags().String("kubeconfig", "", "The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.")
 	certs_renewCmd.AddCommand(certs_renew_allCmd)
 
 	carapace.Gen(certs_renew_allCmd).FlagCompletion(carapace.ActionMap{

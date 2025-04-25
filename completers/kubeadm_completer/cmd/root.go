@@ -26,7 +26,7 @@ func init() {
 	rootCmd.PersistentFlags().Uint64("log-file-max-size", 1800, "Defines the maximum size a log file can grow to. Unit is megabytes. If the value is 0, the maximum file size is unlimited.")
 	rootCmd.PersistentFlags().Bool("logtostderr", true, "log to standard error instead of files")
 	rootCmd.PersistentFlags().Bool("one-output", false, "If true, only write logs to their native severity level (vs also writing to each lower severity level)")
-	rootCmd.PersistentFlags().String("rootfs", "", "[EXPERIMENTAL] The path to the 'real' host root filesystem.")
+	rootCmd.PersistentFlags().String("rootfs", "", "The path to the 'real' host root filesystem. This will cause kubeadm to chroot into the provided path.")
 	rootCmd.PersistentFlags().Bool("skip-headers", false, "If true, avoid header prefixes in the log messages")
 	rootCmd.PersistentFlags().Bool("skip-log-headers", false, "If true, avoid headers when opening log files")
 	rootCmd.PersistentFlags().String("stderrthreshold", "", "logs at or above this threshold go to stderr")

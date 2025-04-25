@@ -13,5 +13,6 @@ var certs_renewCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(certs_renewCmd).Standalone()
+
 	certsCmd.AddCommand(certs_renewCmd)
 }

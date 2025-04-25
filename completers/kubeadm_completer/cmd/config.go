@@ -13,7 +13,8 @@ var configCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(configCmd).Standalone()
-	configCmd.PersistentFlags().String("kubeconfig", "~/.kube/config", "The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.")
+
+	configCmd.PersistentFlags().String("kubeconfig", "", "The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.")
 	rootCmd.AddCommand(configCmd)
 
 	carapace.Gen(configCmd).FlagCompletion(carapace.ActionMap{

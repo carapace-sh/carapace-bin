@@ -13,9 +13,10 @@ var certs_generateCsrCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(certs_generateCsrCmd).Standalone()
+
 	certs_generateCsrCmd.Flags().String("cert-dir", "", "The path where to save the certificates")
 	certs_generateCsrCmd.Flags().String("config", "", "Path to a kubeadm configuration file.")
-	certs_generateCsrCmd.Flags().String("kubeconfig-dir", "/etc/kubernetes", "The path where to save the kubeconfig file.")
+	certs_generateCsrCmd.Flags().String("kubeconfig-dir", "", "The path where to save the kubeconfig file.")
 	certsCmd.AddCommand(certs_generateCsrCmd)
 
 	carapace.Gen(certs_generateCsrCmd).FlagCompletion(carapace.ActionMap{

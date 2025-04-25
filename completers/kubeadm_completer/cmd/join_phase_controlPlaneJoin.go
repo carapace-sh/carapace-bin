@@ -13,5 +13,6 @@ var join_phase_controlPlaneJoinCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(join_phase_controlPlaneJoinCmd).Standalone()
+
 	join_phaseCmd.AddCommand(join_phase_controlPlaneJoinCmd)
 }

@@ -13,7 +13,9 @@ var init_phase_markControlPlaneCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(init_phase_markControlPlaneCmd).Standalone()
+
 	init_phase_markControlPlaneCmd.Flags().String("config", "", "Path to a kubeadm configuration file.")
+	init_phase_markControlPlaneCmd.Flags().Bool("dry-run", false, "Don't apply any changes; just output what would be done.")
 	init_phase_markControlPlaneCmd.Flags().String("node-name", "", "Specify the node name.")
 	init_phaseCmd.AddCommand(init_phase_markControlPlaneCmd)
 

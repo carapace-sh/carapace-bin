@@ -13,5 +13,6 @@ var init_phase_kubeletFinalizeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(init_phase_kubeletFinalizeCmd).Standalone()
+
 	init_phaseCmd.AddCommand(init_phase_kubeletFinalizeCmd)
 }
