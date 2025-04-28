@@ -21,13 +21,14 @@ func init() {
 	incident_listCmd.Flags().String("author", "", "Filter incident by author <username>.")
 	incident_listCmd.Flags().BoolP("closed", "c", false, "Get only closed incidents.")
 	incident_listCmd.Flags().BoolP("confidential", "C", false, "Filter by confidential incidents.")
+	incident_listCmd.Flags().StringP("epic", "e", "", "List issues belonging to a given epic (requires --group, no pagination support).")
 	incident_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repo argument is set.")
 	incident_listCmd.Flags().String("in", "", "search in: title, description.")
 	incident_listCmd.Flags().StringSliceP("label", "l", []string{}, "Filter incident by label <name>.")
 	incident_listCmd.Flags().StringP("milestone", "m", "", "Filter incident by milestone <id>.")
 	incident_listCmd.Flags().BoolP("mine", "M", false, "Filter only incidents assigned to me.")
-	incident_listCmd.Flags().StringSlice("not-assignee", []string{}, "Filter incident by not being assigneed to <username>.")
-	incident_listCmd.Flags().StringSlice("not-author", []string{}, "Filter by not being by author(s) <username>.")
+	incident_listCmd.Flags().String("not-assignee", "", "Filter incident by not being assigned to <username>.")
+	incident_listCmd.Flags().String("not-author", "", "Filter incident by not being by author(s) <username>.")
 	incident_listCmd.Flags().StringSlice("not-label", []string{}, "Filter incident by lack of label <name>.")
 	incident_listCmd.Flags().BoolP("opened", "o", false, "Get only open incidents.")
 	incident_listCmd.Flags().StringP("output", "O", "", "Options: 'text' or 'json'.")
@@ -40,6 +41,7 @@ func init() {
 	incident_listCmd.Flag("opened").Hidden = true
 	incidentCmd.AddCommand(incident_listCmd)
 
+	// TODO complete epic
 	carapace.Gen(incident_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee":      action.ActionProjectMembers(incident_listCmd),
 		"author":        action.ActionUsers(incident_listCmd),

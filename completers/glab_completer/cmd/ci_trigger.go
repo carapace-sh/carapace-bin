@@ -15,7 +15,7 @@ var ci_triggerCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ci_triggerCmd).Standalone()
 
-	ci_triggerCmd.Flags().StringP("branch", "b", "", "The branch to search for the job. Default: current branch.")
+	ci_triggerCmd.Flags().StringP("branch", "b", "", "The branch to search for the job. (default current branch)")
 	ci_triggerCmd.Flags().StringP("pipeline-id", "p", "", "The pipeline ID to search for the job.")
 	ciCmd.AddCommand(ci_triggerCmd)
 
@@ -23,4 +23,6 @@ func init() {
 		"branch":      action.ActionBranches(ci_triggerCmd),
 		"pipeline-id": action.ActionPipelines(ci_triggerCmd, ""),
 	})
+
+	// TODO complete job ids
 }

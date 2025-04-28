@@ -15,11 +15,13 @@ var ci_traceCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ci_traceCmd).Standalone()
 
-	ci_traceCmd.Flags().StringP("branch", "b", "", "The branch to search for the job. Default: current branch.")
+	ci_traceCmd.Flags().StringP("branch", "b", "", "The branch to search for the job. (default current branch)")
 	ci_traceCmd.Flags().StringP("pipeline-id", "p", "", "The pipeline ID to search for the job.")
 	ciCmd.AddCommand(ci_traceCmd)
 
 	carapace.Gen(ci_statusCmd).FlagCompletion(carapace.ActionMap{
 		"branch": action.ActionBranches(ci_statusCmd),
 	})
+
+	// TODO complete job ids
 }

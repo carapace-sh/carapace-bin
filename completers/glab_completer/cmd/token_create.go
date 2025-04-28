@@ -17,7 +17,8 @@ func init() {
 	carapace.Gen(token_createCmd).Standalone()
 
 	token_createCmd.Flags().StringP("access-level", "A", "", "Access level of the token: one of 'guest', 'reporter', 'developer', 'maintainer', 'owner'.")
-	token_createCmd.Flags().StringP("duration", "D", "", "Sets the token duration, in hours. Maximum of 8760. Examples: 24h, 168h, 504w.")
+	token_createCmd.Flags().String("description", "", "Sets the token's description.")
+	token_createCmd.Flags().StringP("duration", "D", "", "Sets the token duration, in hours. Maximum of 8760. Examples: 24h, 168h, 504h.")
 	token_createCmd.Flags().StringP("expires-at", "E", "", "Sets the token's expiration date and time, in YYYY-MM-DD format. If not specified, --duration is used.")
 	token_createCmd.Flags().StringP("group", "g", "", "Create a group access token. Ignored if a user or repository argument is set.")
 	token_createCmd.Flags().StringP("output", "F", "", "Format output as 'text' for the token value, 'json' for the actual API token structure.")

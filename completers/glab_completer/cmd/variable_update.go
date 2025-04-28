@@ -15,6 +15,7 @@ var variable_updateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(variable_updateCmd).Standalone()
 
+	variable_updateCmd.Flags().StringP("description", "d", "", "Set description of a variable.")
 	variable_updateCmd.Flags().StringP("group", "g", "", "Set variable for a group.")
 	variable_updateCmd.Flags().BoolP("masked", "m", false, "Whether the variable is masked.")
 	variable_updateCmd.Flags().BoolP("protected", "p", false, "Whether the variable is protected.")

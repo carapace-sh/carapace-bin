@@ -18,6 +18,8 @@ func init() {
 
 	variable_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repository argument is set.")
 	variable_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	variable_listCmd.Flags().StringP("page", "p", "", "Page number.")
+	variable_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	variable_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
 	variableCmd.AddCommand(variable_listCmd)
 

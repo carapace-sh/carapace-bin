@@ -16,7 +16,7 @@ var ci_getCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ci_getCmd).Standalone()
 
-	ci_getCmd.Flags().StringP("branch", "b", "", "Check pipeline status for a branch. (Default: current branch)")
+	ci_getCmd.Flags().StringP("branch", "b", "", "Check pipeline status for a branch. (default current branch)")
 	ci_getCmd.Flags().StringP("output", "F", "", "Format output. Options: text, json.")
 	ci_getCmd.Flags().StringP("output-format", "o", "", "Use output.")
 	ci_getCmd.Flags().StringP("pipeline-id", "p", "", "Provide pipeline ID.")

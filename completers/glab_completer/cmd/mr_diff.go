@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(mr_diffCmd).Standalone()
 
 	mr_diffCmd.Flags().String("color", "", "Use color in diff output: always, never, auto.")
+	mr_diffCmd.Flags().Bool("raw", false, "Use raw diff format that can be piped to commands")
 	mrCmd.AddCommand(mr_diffCmd)
 
 	carapace.Gen(mr_diffCmd).FlagCompletion(carapace.ActionMap{
