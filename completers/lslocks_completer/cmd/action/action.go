@@ -1,18 +1,24 @@
 package action
 
-import "github.com/carapace-sh/carapace"
+import (
+	"regexp"
+	"strings"
+
+	"github.com/carapace-sh/carapace"
+)
 
 func ActionColumns() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"COMMAND", "command of the process holding the lock",
-		"PID", "PID of the process holding the lock",
-		"TYPE", "kind of lock",
-		"SIZE", "size of the lock",
-		"MODE", "lock access mode",
-		"M", "mandatory state of the lock: 0 (none), 1 (set)",
-		"START", "relative byte offset of the lock",
-		"END", "ending offset of the lock",
-		"PATH", "path of the locked file",
-		"BLOCKER", "PID of the process blocking the lock",
-	)
+	return carapace.ActionExecCommand("lslocks", "--list-columns")(func(output []byte) carapace.Action {
+		re := regexp.MustCompile(`^\s*(\S+)\s+<[^>]+>\s+(.*)$`)
+		var values []string
+
+		for _, line := range strings.Split(string(output), "\n") {
+			if matches := re.FindStringSubmatch(line); len(matches) == 3 {
+				name, description := matches[1], matches[2]
+				values = append(values, name, description)
+			}
+		}
+
+		return carapace.ActionValuesDescribed(values...)
+	})
 }

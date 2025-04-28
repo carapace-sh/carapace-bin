@@ -17,12 +17,14 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("bytes", "b", false, "print SIZE in bytes rather than in human readable format")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
 	rootCmd.Flags().BoolP("json", "J", false, "use JSON output format")
+	rootCmd.Flags().BoolP("list-columns", "H", false, "list the available columns")
 	rootCmd.Flags().BoolP("noheadings", "n", false, "don't print headings")
 	rootCmd.Flags().BoolP("noinaccessible", "i", false, "ignore locks without read permissions")
 	rootCmd.Flags().BoolP("notruncate", "u", false, "don't truncate text in columns")
