@@ -7,7 +7,7 @@ import (
 )
 
 var repo_cloneCmd = &cobra.Command{
-	Use:   "clone <repo> [flags] [<dir>] [-- [<gitflags>...]]",
+	Use:   "clone <repo> [flags] [<dir>] [-- <gitflags>...]",
 	Short: "Clone a GitLab repository or project.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -26,6 +26,7 @@ func init() {
 	issue_updateCmd.Flags().Bool("unassign", false, "Unassign all users.")
 	issue_updateCmd.Flags().StringSliceP("unlabel", "u", []string{}, "Remove labels.")
 	issue_updateCmd.Flags().Bool("unlock-discussion", false, "Unlock discussion on issue.")
+	issue_updateCmd.Flags().StringP("weight", "w", "", "Set weight of the issue.")
 	issueCmd.AddCommand(issue_updateCmd)
 
 	carapace.Gen(issue_updateCmd).FlagCompletion(carapace.ActionMap{

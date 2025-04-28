@@ -15,7 +15,7 @@ var config_getCmd = &cobra.Command{
 func init() {
 	carapace.Gen(config_getCmd).Standalone()
 
-	config_getCmd.Flags().BoolP("global", "g", false, "Read from global config file (~/.config/glab-cli/config.yml). Default: checks 'Environment variables → Local → Global'.")
+	config_getCmd.Flags().BoolP("global", "g", false, "Read from global config file (~/.config/glab-cli/config.yml). (default checks 'Environment variables → Local → Global')")
 	config_getCmd.Flags().StringP("host", "h", "", "Get per-host setting.")
 	configCmd.AddCommand(config_getCmd)
 

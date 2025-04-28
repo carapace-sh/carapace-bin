@@ -21,14 +21,16 @@ func init() {
 	issue_listCmd.Flags().String("author", "", "Filter issue by author <username>.")
 	issue_listCmd.Flags().BoolP("closed", "c", false, "Get only closed issues.")
 	issue_listCmd.Flags().BoolP("confidential", "C", false, "Filter by confidential issues.")
+	issue_listCmd.Flags().StringP("epic", "e", "", "List issues belonging to a given epic (requires --group, no pagination support).")
 	issue_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repo argument is set.")
 	issue_listCmd.Flags().String("in", "", "search in: title, description.")
 	issue_listCmd.Flags().StringP("issue-type", "t", "", "Filter issue by its type. Options: issue, incident, test_case.")
+	issue_listCmd.Flags().StringP("iteration", "i", "", "Filter issue by iteration <id>.")
 	issue_listCmd.Flags().StringSliceP("label", "l", []string{}, "Filter issue by label <name>.")
 	issue_listCmd.Flags().StringP("milestone", "m", "", "Filter issue by milestone <id>.")
 	issue_listCmd.Flags().BoolP("mine", "M", false, "Filter only issues assigned to me.")
-	issue_listCmd.Flags().StringSlice("not-assignee", []string{}, "Filter issue by not being assigneed to <username>.")
-	issue_listCmd.Flags().StringSlice("not-author", []string{}, "Filter by not being by author(s) <username>.")
+	issue_listCmd.Flags().String("not-assignee", "", "Filter issue by not being assigned to <username>.")
+	issue_listCmd.Flags().String("not-author", "", "Filter issue by not being by author(s) <username>.")
 	issue_listCmd.Flags().StringSlice("not-label", []string{}, "Filter issue by lack of label <name>.")
 	issue_listCmd.Flags().BoolP("opened", "o", false, "Get only open issues.")
 	issue_listCmd.Flags().StringP("output", "O", "", "Options: 'text' or 'json'.")
@@ -41,6 +43,7 @@ func init() {
 	issue_listCmd.Flag("opened").Hidden = true
 	issueCmd.AddCommand(issue_listCmd)
 
+	// TODO complete epic, iteration
 	carapace.Gen(issue_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee":      action.ActionProjectMembers(issue_listCmd),
 		"author":        action.ActionUsers(issue_listCmd),
