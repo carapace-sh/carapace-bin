@@ -2,7 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/completers/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -20,5 +21,11 @@ func init() {
 
 	carapace.Gen(alias_setCmd).PositionalCompletion(
 		action.ActionAliases(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if !alias_setCmd.Flag("shell").Changed {
+				return bridge.ActionCarapaceBin("glab").Split()
+			}
+			return bridge.ActionCarapaceBin().SplitP()
+		}),
 	)
 }
