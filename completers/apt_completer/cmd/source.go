@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers_release/apt_completer/cmd/common"
+	"github.com/carapace-sh/carapace-bin/completers/apt_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/apt"
 	"github.com/spf13/cobra"
 )
