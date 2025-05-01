@@ -2,19 +2,21 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/df_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
 	Use:   "df",
 	Short: "report file system disk space usage",
-	Long:  "https://linux.die.net/man/1/df",
+	Long:  "https://man7.org/linux/man-pages/man1/df.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -37,13 +39,12 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "(ignored)")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
-	types := []string{"adfs", "cgroup2", "efivarfs", "hfs", "pipefs", "securityfs", "ufs", "autofs", "configfs", "ext2", "hpfs", "proc", "sockfs", "vfat", "bdev", "cpuset", "ext3", "hugetlbfs", "pstore", "swap"}
+	rootCmd.Flag("output").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		// TODO should be lists of values (comma separated)
-		"exclude-type": carapace.ActionValues(types...),
-		"output":       carapace.ActionValues("avail", "file", "fstype", "iavail", "ipcent", "itotal", "iused", "pcent", "size", "source", "target", "used"),
-		"type":         carapace.ActionValues(types...),
+		"exclude-type": action.ActionFilesystemTypes(),
+		"output":       action.ActionColumns().UniqueList(","),
+		"type":         action.ActionFilesystemTypes(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
