@@ -20,6 +20,7 @@ func init() {
 		carapace.Batch(
 			carapace.ActionCommands(rootCmd),
 			carapace.ActionValuesDescribed(
+				"accessibility", "Learn about GitHub CLI's accessibility experiences",
 				"actions", "Learn about working with GitHub Actions",
 				"environment", "Environment variables that can be used with gh",
 				"exit-codes", "Exit codes used by gh",
