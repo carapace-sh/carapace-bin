@@ -8,17 +8,17 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "cut",
 	Short: "remove sections from each line of files",
-	Long:  "https://linux.die.net/man/1/cut",
+	Long:  "https://man7.org/linux/man-pages/man1/cut.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("M", "M", false, "from first to M'th (included) byte, character or field")
 	rootCmd.Flags().StringP("bytes", "b", "", "select only these bytes")
 	rootCmd.Flags().StringP("characters", "c", "", "select only these characters")
 	rootCmd.Flags().Bool("complement", false, "complement the set of selected bytes, characters")

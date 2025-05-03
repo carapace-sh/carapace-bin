@@ -9,13 +9,14 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "chown",
 	Short: "change file owner and group",
-	Long:  "https://en.wikipedia.org/wiki/Chown",
+	Long:  "https://man7.org/linux/man-pages/man1/chown.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -24,11 +25,12 @@ func init() {
 	rootCmd.Flags().BoolS("P", "P", false, "do not traverse any symbolic links (default)")
 	rootCmd.Flags().BoolP("changes", "c", false, "like verbose but report only when a change is made")
 	rootCmd.Flags().Bool("dereference", false, "affect the referent of each symbolic link")
-	rootCmd.Flags().String("from", "", "change the owner and/or group of each file only if its current owner and/or group match those specified here.")
+	rootCmd.Flags().String("from", "", "change the ownership of each file only if its current owner and/or group match those specified here")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("no-dereference", "h", false, "affect symbolic links instead of any referenced file")
 	rootCmd.Flags().Bool("no-preserve-root", false, "do not treat '/' specially (the default)")
 	rootCmd.Flags().Bool("preserve-root", false, "fail to operate recursively on '/'")
+	rootCmd.Flags().Bool("quiet", false, "suppress most error messages")
 	rootCmd.Flags().BoolP("recursive", "R", false, "operate on files and directories recursively")
 	rootCmd.Flags().String("reference", "", "use RFILE's owner and group rather than specifying OWNER:GROUP values")
 	rootCmd.Flags().StringP("silent", "f", "", "suppress most error messages")

@@ -6,9 +6,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "factor",
-	Short: "factor numbers",
-	Long:  "https://man7.org/linux/man-pages/man1/factor.1.html",
+	Use:   "nproc",
+	Short: "print the number of processing units available",
+	Long:  "https://www.man7.org/linux/man-pages/man1/nproc.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -19,7 +19,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("exponents", "h", false, "print repeated factors in form p^e unless e is 1")
+	rootCmd.Flags().Bool("all", false, "print the number of installed processors")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
+	rootCmd.Flags().String("ignore", "", "if possible, exclude N processing units")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 }

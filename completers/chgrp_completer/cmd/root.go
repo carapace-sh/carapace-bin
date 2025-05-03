@@ -9,13 +9,14 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "chgrp",
 	Short: "change group ownership",
-	Long:  "https://en.wikipedia.org/wiki/Chgrp",
+	Long:  "https://man7.org/linux/man-pages/man1/chgrp.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -24,6 +25,7 @@ func init() {
 	rootCmd.Flags().BoolS("P", "P", false, "do not traverse any symbolic links (default)")
 	rootCmd.Flags().BoolP("changes", "c", false, "like verbose but report only when a change is made")
 	rootCmd.Flags().Bool("dereference", false, "affect the referent of each symbolic link (this is the default), rather than the symbolic link itself")
+	rootCmd.Flags().String("from", "", "change the ownership of each file only if its current owner and/or group match those specified here")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("no-dereference", "h", false, "affect symbolic links instead of any referenced file (useful only on systems that can change the ownership of a symlink)")
 	rootCmd.Flags().Bool("no-preserve-root", false, "do not treat '/' specially (the default)")
@@ -36,6 +38,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"from":      os.ActionUserGroup(),
 		"reference": carapace.ActionFiles(),
 	})
 
