@@ -32,14 +32,14 @@ builds:
     tool: go-termux
 archives:
   - id: default
-    builds:
+    ids:
      - default
     name_template: 'carapace-bin_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
     format_overrides:
       - goos: windows
-        format: zip
+        formats: ['zip']
   - id: termux
-    builds:
+    ids:
       - termux
     name_template: 'carapace-bin_{{ .Version }}_termux_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
 
