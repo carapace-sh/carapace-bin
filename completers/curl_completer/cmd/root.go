@@ -19,6 +19,7 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -26,7 +27,9 @@ func init() {
 	rootCmd.Flags().String("alt-svc", "", "Enable alt-svc with this cache file")
 	rootCmd.Flags().Bool("anyauth", false, "Pick any authentication method")
 	rootCmd.Flags().BoolP("append", "a", false, "Append to target file when uploading")
+	rootCmd.Flags().String("aws-sigv4", "", "AWS V4 signature auth")
 	rootCmd.Flags().Bool("basic", false, "Use HTTP Basic Authentication")
+	rootCmd.Flags().Bool("ca-native", false, "Load CA certs from the OS")
 	rootCmd.Flags().String("cacert", "", "CA certificate to verify peer against")
 	rootCmd.Flags().String("capath", "", "CA directory to verify peer against")
 	rootCmd.Flags().StringP("cert", "E", "", "Client certificate file and password")
@@ -42,8 +45,10 @@ func init() {
 	rootCmd.Flags().StringP("cookie", "b", "", "Send cookies from string/file")
 	rootCmd.Flags().StringP("cookie-jar", "c", "", "Write cookies to <filename> after operation")
 	rootCmd.Flags().Bool("create-dirs", false, "Create necessary local directory hierarchy")
+	rootCmd.Flags().String("create-file-mode", "", "File mode for created files")
 	rootCmd.Flags().Bool("crlf", false, "Convert LF to CRLF in upload")
 	rootCmd.Flags().String("crlfile", "", "Get a CRL list in PEM format from the given file")
+	rootCmd.Flags().String("curves", "", "(EC) TLS key exchange algorithms to request")
 	rootCmd.Flags().StringP("data", "d", "", "HTTP POST data")
 	rootCmd.Flags().String("data-ascii", "", "HTTP POST ASCII data")
 	rootCmd.Flags().String("data-binary", "", "HTTP POST binary data")
@@ -59,8 +64,12 @@ func init() {
 	rootCmd.Flags().String("dns-ipv4-addr", "", "IPv4 address to use for DNS requests")
 	rootCmd.Flags().String("dns-ipv6-addr", "", "IPv6 address to use for DNS requests")
 	rootCmd.Flags().String("dns-servers", "", "DNS server addrs to use")
+	rootCmd.Flags().Bool("doh-cert-status", false, "Verify DoH server cert status OCSP-staple")
+	rootCmd.Flags().Bool("doh-insecure", false, "Allow insecure DoH server connections")
 	rootCmd.Flags().String("doh-url", "", "Resolve host names over DOH")
+	rootCmd.Flags().Bool("dump-ca-embed", false, "Write the embedded CA bundle to standard output")
 	rootCmd.Flags().StringP("dump-header", "D", "", "Write the received headers to <filename>")
+	rootCmd.Flags().String("ech", "", "Configure ECH")
 	rootCmd.Flags().String("egd-file", "", "EGD socket path for random data")
 	rootCmd.Flags().String("engine", "", "Crypto engine to use")
 	rootCmd.Flags().String("etag-compare", "", "Get an ETag from a file and send a conditional request")
@@ -68,8 +77,10 @@ func init() {
 	rootCmd.Flags().String("expect100-timeout", "", "How long to wait for 100-continue")
 	rootCmd.Flags().BoolP("fail", "f", false, "Fail silently (no output at all) on HTTP errors")
 	rootCmd.Flags().Bool("fail-early", false, "Fail on first transfer error, do not continue")
+	rootCmd.Flags().Bool("fail-with-body", false, "Fail on HTTP errors but save the body")
 	rootCmd.Flags().Bool("false-start", false, "Enable TLS False Start")
 	rootCmd.Flags().StringP("form", "F", "", "Specify multipart MIME data")
+	rootCmd.Flags().Bool("form-escape", false, "Escape form fields using backslash")
 	rootCmd.Flags().String("form-string", "", "Specify multipart MIME data")
 	rootCmd.Flags().String("ftp-account", "", "Account data string")
 	rootCmd.Flags().String("ftp-alternative-to-user", "", "String to replace USER [name]")
@@ -85,24 +96,31 @@ func init() {
 	rootCmd.Flags().BoolP("get", "G", false, "Put the post data in the URL and use GET")
 	rootCmd.Flags().BoolP("globoff", "g", false, "Disable URL sequences and ranges using {} and []")
 	rootCmd.Flags().String("happy-eyeballs-timeout-ms", "", "How long to wait in milliseconds for IPv6 before trying IPv4")
+	rootCmd.Flags().String("haproxy-clientip", "", "Set address in HAProxy PROXY")
 	rootCmd.Flags().String("haproxy-protocol", "", "HAProxy PROXY protocol v1 header")
 	rootCmd.Flags().BoolP("head", "I", false, "Show document info only")
 	rootCmd.Flags().StringArrayP("header", "H", []string{}, "Pass custom header(s) to server")
 	rootCmd.Flags().BoolP("help", "h", false, "This help text")
 	rootCmd.Flags().String("hostpubmd5", "", "Acceptable MD5 hash of the host public key")
+	rootCmd.Flags().String("hostpubsha256", "", "Acceptable SHA256 hash of host public key")
+	rootCmd.Flags().String("hsts", "", "Enable HSTS with this cache file")
 	rootCmd.Flags().Bool("http0.9", false, "Allow HTTP 0.9 responses")
 	rootCmd.Flags().BoolP("http1.0", "0", false, "Use HTTP 1.0")
 	rootCmd.Flags().Bool("http1.1", false, "Use HTTP 1.1")
 	rootCmd.Flags().Bool("http2", false, "Use HTTP 2")
 	rootCmd.Flags().String("http2-prior-knowledge", "", "HTTP 2 without HTTP/1.1 Upgrade")
 	rootCmd.Flags().Bool("http3", false, "Use HTTP v3")
+	rootCmd.Flags().Bool("http3-only", false, "Use HTTP/3 only")
 	rootCmd.Flags().String("ignore-content-length", "", "the size of the remote resource")
-	rootCmd.Flags().BoolP("include", "i", false, "Include protocol response headers in the output")
 	rootCmd.Flags().BoolP("insecure", "k", false, "Allow insecure server connections when using SSL")
 	rootCmd.Flags().String("interface", "", "Use network INTERFACE (or address)")
+	rootCmd.Flags().String("ip-tos", "", "Set IP Type of Service or Traffic Class")
+	rootCmd.Flags().String("ipfs-gateway", "", "Gateway for IPFS")
 	rootCmd.Flags().BoolP("ipv4", "4", false, "Resolve names to IPv4 addresses")
 	rootCmd.Flags().BoolP("ipv6", "6", false, "Resolve names to IPv6 addresses")
+	rootCmd.Flags().String("json", "", "HTTP POST JSON")
 	rootCmd.Flags().StringP("junk-session-cookies", "j", "", "session cookies read from file")
+	rootCmd.Flags().String("keepalive-cnt", "", "Maximum number of keepalive probes")
 	rootCmd.Flags().String("keepalive-time", "", "Interval time for keepalive probes")
 	rootCmd.Flags().String("key", "", "Private key file name")
 	rootCmd.Flags().String("key-type", "", "Private key file type (DER/PEM/ENG)")
@@ -123,6 +141,7 @@ func init() {
 	rootCmd.Flags().String("max-redirs", "", "Maximum number of redirects allowed")
 	rootCmd.Flags().StringP("max-time", "m", "", "Maximum time allowed for the transfer")
 	rootCmd.Flags().Bool("metalink", false, "Process given URLs as metalink XML file")
+	rootCmd.Flags().Bool("mptcp", false, "Enable Multipath TCP")
 	rootCmd.Flags().Bool("negotiate", false, "Use HTTP Negotiate (SPNEGO) authentication")
 	rootCmd.Flags().BoolP("netrc", "n", false, "Must read .netrc for user name and password")
 	rootCmd.Flags().String("netrc-file", "", "Specify FILE for netrc")
@@ -130,6 +149,7 @@ func init() {
 	rootCmd.Flags().BoolP("next", ":", false, "Make next URL use its separate set of options")
 	rootCmd.Flags().Bool("no-alpn", false, "Disable the ALPN TLS extension")
 	rootCmd.Flags().BoolP("no-buffer", "N", false, "Disable buffering of the output stream")
+	rootCmd.Flags().Bool("no-clobber", false, "Do not overwrite files that already exist")
 	rootCmd.Flags().Bool("no-keepalive", false, "Disable TCP keepalive on the connection")
 	rootCmd.Flags().Bool("no-npn", false, "Disable the NPN TLS extension")
 	rootCmd.Flags().String("no-progress-meter", "", "not show the progress meter")
@@ -157,6 +177,7 @@ func init() {
 	rootCmd.Flags().StringP("proxy", "x", "", "Use this proxy")
 	rootCmd.Flags().String("proxy-anyauth", "", "any proxy authentication method")
 	rootCmd.Flags().Bool("proxy-basic", false, "Use Basic authentication on the proxy")
+	rootCmd.Flags().Bool("proxy-ca-native", false, "Load CA certs from the OS to verify proxy")
 	rootCmd.Flags().String("proxy-cacert", "", "CA certificate to verify peer against for proxy")
 	rootCmd.Flags().String("proxy-capath", "", "CA directory to verify peer against for proxy")
 	rootCmd.Flags().String("proxy-cert", "", "Set client certificate for proxy")
@@ -165,6 +186,7 @@ func init() {
 	rootCmd.Flags().String("proxy-crlfile", "", "Set a CRL list for proxy")
 	rootCmd.Flags().Bool("proxy-digest", false, "Use Digest authentication on the proxy")
 	rootCmd.Flags().String("proxy-header", "", "Pass custom header(s) to proxy")
+	rootCmd.Flags().Bool("proxy-http2", false, "Use HTTP/2 with HTTPS proxy")
 	rootCmd.Flags().String("proxy-insecure", "", "HTTPS proxy connections without verifying the proxy")
 	rootCmd.Flags().String("proxy-key", "", "Private key for HTTPS proxy")
 	rootCmd.Flags().String("proxy-key-type", "", "Private key file type for proxy")
@@ -174,6 +196,7 @@ func init() {
 	rootCmd.Flags().String("proxy-pinnedpubkey", "", "FILE/HASHES public key to verify proxy with")
 	rootCmd.Flags().String("proxy-service-name", "", "SPNEGO proxy service name")
 	rootCmd.Flags().String("proxy-ssl-allow-beast", "", "security flaw for interop for HTTPS proxy")
+	rootCmd.Flags().Bool("proxy-ssl-auto-client-cert", false, "Auto client certificate for proxy")
 	rootCmd.Flags().String("proxy-tls13-ciphers", "", "TLS 1.3 ciphersuites for proxy (OpenSSL)")
 	rootCmd.Flags().String("proxy-tlsauthtype", "", "TLS authentication type for HTTPS proxy")
 	rootCmd.Flags().String("proxy-tlspassword", "", "TLS password for HTTPS proxy")
@@ -186,16 +209,19 @@ func init() {
 	rootCmd.Flags().BoolP("quote", "Q", false, "Send command(s) to server before transfer")
 	rootCmd.Flags().String("random-file", "", "File for reading random data from")
 	rootCmd.Flags().StringP("range", "r", "", "Retrieve only the bytes within RANGE")
+	rootCmd.Flags().String("rate", "", "Request rate for serial transfers")
 	rootCmd.Flags().Bool("raw", false, "Do HTTP \"raw\"; no transfer decoding")
 	rootCmd.Flags().StringP("referer", "e", "", "Referrer URL")
 	rootCmd.Flags().StringP("remote-header-name", "J", "", "the header-provided filename")
 	rootCmd.Flags().BoolP("remote-name", "O", false, "Write output to a file named as the remote file")
 	rootCmd.Flags().String("remote-name-all", "", "the remote file name for all URLs")
 	rootCmd.Flags().BoolP("remote-time", "R", false, "Set the remote file's time on the local output")
+	rootCmd.Flags().Bool("remove-on-error", false, "Remove output file on errors")
 	rootCmd.Flags().StringP("request", "X", "", "Specify request command to use")
 	rootCmd.Flags().String("request-target", "", "the target for this request")
 	rootCmd.Flags().String("resolve", "", "Resolve the host+port to this address")
 	rootCmd.Flags().String("retry", "", "Retry request if transient problems occur")
+	rootCmd.Flags().Bool("retry-all-errors", false, "Retry all errors (with --retry)")
 	rootCmd.Flags().String("retry-connrefused", "", "on connection refused (use with --retry)")
 	rootCmd.Flags().String("retry-delay", "", "Wait time between retries")
 	rootCmd.Flags().String("retry-max-time", "", "Retry only within this period")
@@ -203,7 +229,9 @@ func init() {
 	rootCmd.Flags().Bool("sasl-ir", false, "Enable initial response in SASL authentication")
 	rootCmd.Flags().String("service-name", "", "SPNEGO service name")
 	rootCmd.Flags().BoolP("show-error", "S", false, "Show error even when -s is used")
+	rootCmd.Flags().BoolP("show-headers", "i", false, "Show response headers in output")
 	rootCmd.Flags().BoolP("silent", "s", false, "Silent mode")
+	rootCmd.Flags().Bool("skip-existing", false, "Skip download if local file already exists")
 	rootCmd.Flags().String("socks4", "", "SOCKS4 proxy on given host + port")
 	rootCmd.Flags().String("socks4a", "", "SOCKS4a proxy on given host + port")
 	rootCmd.Flags().String("socks5", "", "SOCKS5 proxy on given host + port")
@@ -216,9 +244,11 @@ func init() {
 	rootCmd.Flags().StringP("speed-time", "y", "", "Trigger 'speed-limit' abort after this time")
 	rootCmd.Flags().Bool("ssl", false, "Try SSL/TLS")
 	rootCmd.Flags().String("ssl-allow-beast", "", "security flaw to improve interop")
+	rootCmd.Flags().Bool("ssl-auto-client-cert", false, "Use auto client certificate (Schannel)")
 	rootCmd.Flags().String("ssl-no-revoke", "", "cert revocation checks (Schannel)")
 	rootCmd.Flags().Bool("ssl-reqd", false, "Require SSL/TLS")
 	rootCmd.Flags().String("ssl-revoke-best-effort", "", "revocation offline or missing revocation list errors (Schannel)")
+	rootCmd.Flags().String("ssl-sessions", "", "Load/save SSL session tickets from/to this file")
 	rootCmd.Flags().BoolP("sslv2", "2", false, "Use SSLv2")
 	rootCmd.Flags().BoolP("sslv3", "3", false, "Use SSLv3")
 	rootCmd.Flags().Bool("stderr", false, "Where to redirect stderr")
@@ -230,6 +260,7 @@ func init() {
 	rootCmd.Flags().String("tftp-blksize", "", "Set TFTP BLKSIZE option")
 	rootCmd.Flags().String("tftp-no-options", "", "not send any TFTP options")
 	rootCmd.Flags().StringP("time-cond", "z", "", "Transfer based on a time condition")
+	rootCmd.Flags().Bool("tls-earlydata", false, "Allow use of TLSv1.3 early data (0RTT)")
 	rootCmd.Flags().String("tls-max", "", "Set maximum allowed TLS version")
 	rootCmd.Flags().String("tls13-ciphers", "", "TLS 1.3 ciphersuites (OpenSSL)")
 	rootCmd.Flags().String("tlsauthtype", "", "TLS authentication type")
@@ -243,15 +274,21 @@ func init() {
 	rootCmd.Flags().Bool("tr-encoding", false, "Request compressed transfer encoding")
 	rootCmd.Flags().String("trace", "", "Write a debug trace to FILE")
 	rootCmd.Flags().String("trace-ascii", "", "Like --trace, but without hex output")
+	rootCmd.Flags().StringSlice("trace-config", []string{}, "Details to log in trace/verbose output")
+	rootCmd.Flags().Bool("trace-ids", false, "Transfer + connection ids in verbose output")
 	rootCmd.Flags().Bool("trace-time", false, "Add time stamps to trace/verbose output")
 	rootCmd.Flags().String("unix-socket", "", "Connect through this Unix domain socket")
 	rootCmd.Flags().StringP("upload-file", "T", "", "Transfer local FILE to destination")
+	rootCmd.Flags().String("upload-flags", "", "IMAP upload behavior")
 	rootCmd.Flags().String("url", "", "URL to work with")
+	rootCmd.Flags().String("url-query", "", "Add a URL query part")
 	rootCmd.Flags().BoolP("use-ascii", "B", false, "Use ASCII/text transfer")
 	rootCmd.Flags().StringP("user", "u", "", "Server user and password")
 	rootCmd.Flags().StringP("user-agent", "A", "", "Send User-Agent <name> to server")
+	rootCmd.Flags().String("variable", "", "Set variable")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Make the operation more talkative")
 	rootCmd.Flags().BoolP("version", "V", false, "Show version number and quit")
+	rootCmd.Flags().String("vlan-priority", "", "Set VLAN priority")
 	rootCmd.Flags().StringP("write-out", "w", "", "Use output FORMAT after completion")
 	rootCmd.Flags().Bool("xattr", false, "Store metadata in extended file attributes")
 
@@ -277,9 +314,17 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"cookie":       carapace.ActionFiles(),
-		"cookie-jar":   carapace.ActionFiles(),
-		"crlfile":      carapace.ActionFiles(),
+		"cookie":     carapace.ActionFiles(),
+		"cookie-jar": carapace.ActionFiles(),
+		"crlfile":    carapace.ActionFiles(),
+		"ech": carapace.ActionValuesDescribed(
+			"false", "Do not attempt ECH",
+			"grease", "Send a GREASE ECH extension",
+			"true", "Attempt ECH if possible, but do not fail if ECH is not attempted",
+			"hard", "Attempt ECH and fail if that is not possible",
+			"ecl:", "A base64 encoded ECHConfigList that is used for ECH",
+			"pn:", "A name to use to over-ride the \"public_name\" field of an ECHConfigList",
+		),
 		"egd-file":     carapace.ActionFiles(),
 		"engine":       action.ActionEngines(),
 		"etag-compare": carapace.ActionFiles(),
@@ -299,6 +344,8 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
+		"hsts":            carapace.ActionFiles(),
+		"ip-tos":          carapace.ActionValues("CS0", "CS1", "CS2", "CS3", "CS4", "CS5", "CS6", "CS7", "AF11", "AF12", "AF13", "AF21", "AF22", "AF23", "AF31", "AF32", "AF33", "AF41", "AF42", "AF43", "EF", "VOICE-ADMIT", "ECT1", "ECT0", "CE", "LE", "LOWCOST", "LOWDELAY", "THROUGHPUT", "RELIABILITY", "MINCOST"),
 		"key":             carapace.ActionFiles(),
 		"key-type":        carapace.ActionValues("DER", "PEM", "ENG"),
 		"krb":             carapace.ActionValues("clear", "safe", "confidential", "private"),
@@ -311,10 +358,13 @@ func init() {
 		"proxy-ciphers":   ssh.ActionCiphers().UniqueList(":"),
 		"proxy-key":       carapace.ActionFiles(),
 		"random-file":     carapace.ActionFiles(),
+		"ssl-sessions":    carapace.ActionFiles(),
 		"trace":           carapace.ActionFiles(),
 		"unix-socket":     carapace.ActionFiles(),
 		"upload-file":     carapace.ActionFiles(),
+		"upload-flags":    carapace.ActionValues("answered", "deleted", "draft", "flagged", "seen").UniqueList(","),
 		"user-agent":      http.ActionUserAgents(),
+		"vlan-priority":   carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
