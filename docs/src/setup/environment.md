@@ -66,6 +66,17 @@ Whether to match case insensitive.
 
 ![](./match.cast)
 
+## CARAPACE_MERGEFLAGS
+
+Whether to merge flags to single tag group.
+
+- `0` - disabled
+- `1` - enabled
+
+![](./mergeflags.cast)
+
+> Enabled by default in Zsh for side-by-side view.
+
 ## CARAPACE_NOSPACE
 
 Extend suffixes that prevent space suffix.
@@ -95,11 +106,12 @@ Whether to skip the final filtering step.
 
 ![](./unfiltered.cast)
 
-> This enables fuzzy completion in [fish], but only works for (mostly) static values.
+> This enables fuzzy completion in [Fish], but only works for (mostly) static values.
 
 ## CARAPACE_ZSH_HASH_DIRS
 
 Zsh hash directories (internal).
 
 
-[fish]:https://fishshell.com/
+[Fish]:https://fishshell.com/
+[Zsh]:https://www.zsh.org/
