@@ -7,13 +7,13 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
-// ActionLinters completes linters
+// ActionFormatters completes formatters
 //
-//	deadcode (Finds unused code)
-//	dogsled (Checks assignments with too many blank identifiers)
-func ActionLinters(config string) carapace.Action {
+//	gci (Checks if code and import statements are formatted)
+//	gofmt (Checks if the code is formatted)
+func ActionFormatters(config string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"linters", "--json"}
+		args := []string{"formatters", "--json"}
 		if config != "" {
 			args = append(args, "--config", config)
 		}
@@ -43,5 +43,5 @@ func ActionLinters(config string) carapace.Action {
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
-	}).Tag("linters")
+	}).Tag("formatters")
 }
