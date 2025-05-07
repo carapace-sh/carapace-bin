@@ -15,10 +15,7 @@ func init() {
 	carapace.Gen(versionCmd).Standalone()
 
 	versionCmd.Flags().Bool("debug", false, "Add build information")
-	versionCmd.Flags().String("format", "", "The version's format can be: 'short', 'json'")
+	versionCmd.Flags().Bool("json", false, "Display as JSON")
+	versionCmd.Flags().Bool("short", false, "Display only the version number")
 	rootCmd.AddCommand(versionCmd)
-
-	carapace.Gen(versionCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("short", "json"),
-	})
 }

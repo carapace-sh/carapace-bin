@@ -14,5 +14,6 @@ var help_lintersCmd = &cobra.Command{
 func init() {
 	carapace.Gen(help_lintersCmd).Standalone()
 
+	help_lintersCmd.Flags().Bool("json", false, "Display as JSON")
 	helpCmd.AddCommand(help_lintersCmd)
 }
