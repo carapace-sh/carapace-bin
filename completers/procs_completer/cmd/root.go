@@ -3,6 +3,8 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/procs_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -62,4 +64,12 @@ func init() {
 		"theme":              carapace.ActionValues("auto", "dark", "light"),
 		"use-config":         carapace.ActionValues("default", "large"),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.Batch(
+			docker.ActionContainers().Suppress(".*"), // TODO only active containers
+			ps.ActionProcessExecutables(),
+			ps.ActionProcessIds(),
+		).ToA(),
+	)
 }
