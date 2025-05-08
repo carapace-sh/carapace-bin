@@ -119,4 +119,15 @@ func init() {
 		).ToA(),
 		"user-unit": systemctl.ActionUnits(systemctl.UnitOpts{User: true, Active: true, Inactive: true}),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return journalctl.ActionJournalFields().Suffix("=")
+			default:
+				return journalctl.ActionJournalFieldValues(c.Parts[0])
+			}
+		}),
+	)
 }
