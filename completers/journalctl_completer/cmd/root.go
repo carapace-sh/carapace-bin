@@ -111,12 +111,12 @@ func init() {
 			time.ActionDateTime(time.DateTimeOpts{}),
 		).ToA(),
 		"unit": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return systemctl.ActionUnits(rootCmd.Flag("user").Changed)
+			return systemctl.ActionUnits(systemctl.UnitOpts{User: rootCmd.Flag("user").Changed, Active: true, Inactive: true})
 		}),
 		"until": carapace.Batch(
 			carapace.ActionValues("yesterday", "today", "tomorrow"),
 			time.ActionDateTime(time.DateTimeOpts{}),
 		).ToA(),
-		"user-unit": systemctl.ActionUnits(true),
+		"user-unit": systemctl.ActionUnits(systemctl.UnitOpts{User: true, Active: true, Inactive: true}),
 	})
 }

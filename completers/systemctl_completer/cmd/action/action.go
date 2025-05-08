@@ -33,7 +33,7 @@ func ActionTargets(cmd *cobra.Command) carapace.Action {
 
 func ActionUnits(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return systemctl.ActionUnits(userFlag(cmd))
+		return systemctl.ActionUnits(systemctl.UnitOpts{User: userFlag(cmd), Active: true, Inactive: true})
 	})
 }
 
