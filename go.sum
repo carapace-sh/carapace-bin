@@ -8,8 +8,8 @@ github.com/carapace-sh/carapace-selfupdate v0.0.10 h1:ZvutqGwVvSj6TmI/tLcort63JD
 github.com/carapace-sh/carapace-selfupdate v0.0.10/go.mod h1:4RavsY8l/RFtA9UXluUnEM5DF7zUkknMeRe/VN8QCGY=
 github.com/carapace-sh/carapace-shlex v1.0.1 h1:ww0JCgWpOVuqWG7k3724pJ18Lq8gh5pHQs9j3ojUs1c=
 github.com/carapace-sh/carapace-shlex v1.0.1/go.mod h1:lJ4ZsdxytE0wHJ8Ta9S7Qq0XpjgjU0mdfCqiI2FHx7M=
-github.com/carapace-sh/carapace-spec v1.1.1 h1:NR4hibTNi/T94sGNIrq8c6wW8t4RznCKAUQZ+plSH2U=
-github.com/carapace-sh/carapace-spec v1.1.1/go.mod h1:7IrOEi2Jxo9Dquu/B4E9qouNKYCsAMqs45E0DsuJZqU=
+github.com/carapace-sh/carapace-spec v1.1.2 h1:MColbjIiwhOCF/A0U3DGydnWRMvB2rMQGcPczC2KVsQ=
+github.com/carapace-sh/carapace-spec v1.1.2/go.mod h1:qhZK26RGXksjj9VAipA05GVstbSxKuCm9mQsqVl1b8w=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
