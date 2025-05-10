@@ -22,7 +22,7 @@ func init() {
 	rootCmd.Flags().Bool("enable-profiling", false, "Enable collection of profiling data and provide it on http://localhost:6060/debug/pprof/")
 	rootCmd.Flags().BoolP("help", "h", false, "help for gdu")
 	rootCmd.Flags().StringSliceP("ignore-dirs", "i", []string{"/proc", "/dev", "/sys", "/run"}, "Absolute paths to ignore (separated by comma)")
-	rootCmd.Flags().StringSliceP("ignore-dirs-pattern", "I", []string{}, "Absolute path patterns to ignore (separated by comma)")
+	rootCmd.Flags().StringSliceP("ignore-dirs-pattern", "I", nil, "Absolute path patterns to ignore (separated by comma)")
 	rootCmd.Flags().StringP("ignore-from", "X", "", "Read absolute path patterns to ignore from file")
 	rootCmd.Flags().StringP("input-file", "f", "", "Import analysis from JSON file")
 	rootCmd.Flags().StringP("log-file", "l", "/dev/null", "Path to a logfile")

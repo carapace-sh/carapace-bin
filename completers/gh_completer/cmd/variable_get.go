@@ -18,7 +18,7 @@ func init() {
 
 	variable_getCmd.Flags().StringP("env", "e", "", "Get a variable for an environment")
 	variable_getCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	variable_getCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	variable_getCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	variable_getCmd.Flags().StringP("org", "o", "", "Get a variable for an organization")
 	variable_getCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	variableCmd.AddCommand(variable_getCmd)

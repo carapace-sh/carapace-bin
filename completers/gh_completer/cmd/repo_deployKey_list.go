@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(repo_deployKey_listCmd).Standalone()
 
 	repo_deployKey_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	repo_deployKey_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	repo_deployKey_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	repo_deployKey_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	repo_deployKeyCmd.AddCommand(repo_deployKey_listCmd)
 

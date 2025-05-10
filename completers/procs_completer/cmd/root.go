@@ -29,7 +29,7 @@ func init() {
 	rootCmd.Flags().String("gen-completion-out", "", "Generate shell completion file and write to stdout")
 	rootCmd.Flags().Bool("gen-config", false, "Generate configuration sample file")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help")
-	rootCmd.Flags().StringSliceP("insert", "i", []string{}, "Insert column to slot")
+	rootCmd.Flags().StringSliceP("insert", "i", nil, "Insert column to slot")
 	rootCmd.Flags().String("interval", "", "Interval to calculate throughput")
 	rootCmd.Flags().Bool("json", false, "JSON output")
 	rootCmd.Flags().BoolP("list", "l", false, "Show list of kind")

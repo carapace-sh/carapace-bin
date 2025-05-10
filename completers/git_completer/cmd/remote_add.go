@@ -19,7 +19,7 @@ func init() {
 	remote_addCmd.Flags().StringP("master", "m", "", "master branch")
 	remote_addCmd.Flags().String("mirror", "", "set up remote as a mirror to push to or fetch from")
 	remote_addCmd.Flags().Bool("tags", false, "import all tags and associated objects when fetching")
-	remote_addCmd.Flags().StringArrayP("track", "t", []string{}, "branch(es) to track")
+	remote_addCmd.Flags().StringArrayP("track", "t", nil, "branch(es) to track")
 
 	remote_addCmd.Flag("mirror").NoOptDefVal = " "
 

@@ -22,7 +22,7 @@ func init() {
 	debugCmd.Flags().String("copy-to", "", "Create a copy of the target Pod with this name.")
 	debugCmd.Flags().String("custom", "", "Path to a JSON or YAML file containing a partial container spec to customize built-in debug profiles.")
 	debugCmd.Flags().String("env", "", "Environment variables to set in the container.")
-	debugCmd.Flags().StringSliceP("filename", "f", []string{}, "identifying the resource to debug")
+	debugCmd.Flags().StringSliceP("filename", "f", nil, "identifying the resource to debug")
 	debugCmd.Flags().String("image", "", "Container image to use for debug container.")
 	debugCmd.Flags().String("image-pull-policy", "", "The image pull policy for the container. If left empty, this value will not be specified by the client and defaulted by the server.")
 	debugCmd.Flags().Bool("keep-annotations", false, "If true, keep the original pod annotations.(This flag only works when used with '--copy-to')")

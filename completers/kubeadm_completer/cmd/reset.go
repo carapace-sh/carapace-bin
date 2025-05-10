@@ -21,9 +21,9 @@ func init() {
 	resetCmd.Flags().String("cri-socket", "", "Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.")
 	resetCmd.Flags().Bool("dry-run", false, "Don't apply any changes; just output what would be done.")
 	resetCmd.Flags().BoolP("force", "f", false, "Reset the node without prompting for confirmation.")
-	resetCmd.Flags().StringSlice("ignore-preflight-errors", []string{}, "A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.")
+	resetCmd.Flags().StringSlice("ignore-preflight-errors", nil, "A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.")
 	resetCmd.Flags().String("kubeconfig", "", "The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.")
-	resetCmd.Flags().StringSlice("skip-phases", []string{}, "List of phases to be skipped")
+	resetCmd.Flags().StringSlice("skip-phases", nil, "List of phases to be skipped")
 	rootCmd.AddCommand(resetCmd)
 
 	carapace.Gen(resetCmd).FlagCompletion(carapace.ActionMap{

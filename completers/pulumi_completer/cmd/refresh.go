@@ -28,7 +28,7 @@ func init() {
 	refreshCmd.PersistentFlags().StringP("stack", "s", "", "The name of the stack to operate on. Defaults to the current stack")
 	refreshCmd.PersistentFlags().Bool("suppress-outputs", false, "Suppress display of stack outputs (in case they contain sensitive values)")
 	refreshCmd.PersistentFlags().String("suppress-permalink", "", "Suppress display of the state permalink")
-	refreshCmd.PersistentFlags().StringArrayP("target", "t", []string{}, "Specify a single resource URN to refresh. Multiple resource can be specified using: --target urn1 --target urn2")
+	refreshCmd.PersistentFlags().StringArrayP("target", "t", nil, "Specify a single resource URN to refresh. Multiple resource can be specified using: --target urn1 --target urn2")
 	refreshCmd.PersistentFlags().BoolP("yes", "y", false, "Automatically approve and perform the refresh after previewing it")
 	refreshCmd.Flag("suppress-permalink").NoOptDefVal = "false"
 	rootCmd.AddCommand(refreshCmd)

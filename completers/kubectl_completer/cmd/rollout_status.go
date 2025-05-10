@@ -15,7 +15,7 @@ var rollout_statusCmd = &cobra.Command{
 func init() {
 	carapace.Gen(rollout_statusCmd).Standalone()
 
-	rollout_statusCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to get from a server.")
+	rollout_statusCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files identifying the resource to get from a server.")
 	rollout_statusCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	rollout_statusCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")
 	rollout_statusCmd.Flags().String("revision", "", "Pin to a specific revision for showing its status. Defaults to 0 (last revision).")

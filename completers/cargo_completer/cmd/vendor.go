@@ -18,7 +18,7 @@ func init() {
 	vendorCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	vendorCmd.Flags().Bool("no-delete", false, "Don't delete older crates in the vendor directory")
 	vendorCmd.Flags().Bool("respect-source-config", false, "Respect `[source]` config in `.cargo/config`")
-	vendorCmd.Flags().StringSliceP("sync", "s", []string{}, "Additional `Cargo.toml` to sync and vendor")
+	vendorCmd.Flags().StringSliceP("sync", "s", nil, "Additional `Cargo.toml` to sync and vendor")
 	vendorCmd.Flags().Bool("versioned-dirs", false, "Always include version in subdir name")
 	rootCmd.AddCommand(vendorCmd)
 

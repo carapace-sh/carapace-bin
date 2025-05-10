@@ -22,11 +22,11 @@ func init() {
 	upgrade_applyCmd.Flags().Bool("dry-run", false, "Do not change any state, just output what actions would be performed.")
 	upgrade_applyCmd.Flags().Bool("etcd-upgrade", false, "Perform the upgrade of etcd.")
 	upgrade_applyCmd.Flags().BoolP("force", "f", false, "Force upgrading although some requirements might not be met. This also implies non-interactive mode.")
-	upgrade_applyCmd.Flags().StringSlice("ignore-preflight-errors", []string{}, "A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.")
+	upgrade_applyCmd.Flags().StringSlice("ignore-preflight-errors", nil, "A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.")
 	upgrade_applyCmd.Flags().String("kubeconfig", "", "The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.")
 	upgrade_applyCmd.Flags().String("patches", "", "Path to a directory that contains files named \"target[suffix][+patchtype].extension\". For example, \"kube-apiserver0+merge.yaml\" or just \"etcd.json\". \"target\" can be one of \"kube-apiserver\", \"kube-controller-manager\", \"kube-scheduler\", \"etcd\", \"kubeletconfiguration\", \"corednsdeployment\". \"patchtype\" can be one of \"strategic\", \"merge\" or \"json\" and they match the patch formats supported by kubectl. The default \"patchtype\" is \"strategic\". \"extension\" must be either \"json\" or \"yaml\". \"suffix\" is an optional string that can be used to determine which patches are applied first alpha-numerically.")
 	upgrade_applyCmd.Flags().Bool("print-config", false, "Specifies whether the configuration file that will be used in the upgrade should be printed or not.")
-	upgrade_applyCmd.Flags().StringSlice("skip-phases", []string{}, "List of phases to be skipped")
+	upgrade_applyCmd.Flags().StringSlice("skip-phases", nil, "List of phases to be skipped")
 	upgrade_applyCmd.Flags().BoolP("yes", "y", false, "Perform the upgrade and do not prompt for confirmation (non-interactive mode).")
 	upgradeCmd.AddCommand(upgrade_applyCmd)
 

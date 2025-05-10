@@ -20,7 +20,7 @@ func init() {
 	llCmd.Flags().Bool("json", false, "output as json")
 	llCmd.Flags().Bool("link", false, "output only packages that are linked")
 	llCmd.Flags().BoolP("long", "l", false, "show extended information")
-	llCmd.Flags().StringArray("omit", []string{}, "omit dependency types")
+	llCmd.Flags().StringArray("omit", nil, "omit dependency types")
 	llCmd.Flags().Bool("package-lock-only", false, "only use the package-lock.json")
 	llCmd.Flags().BoolP("parseable", "p", false, "output parseable results")
 	llCmd.Flags().Bool("unicode", false, "output unicode characters")

@@ -19,15 +19,15 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringSlice("arg", []string{}, "Pass [name] [expr] to Nix functions.")
-	rootCmd.Flags().StringSlice("argstr", []string{}, "Pass [name] [string] to Nix functions")
+	rootCmd.Flags().StringSlice("arg", nil, "Pass [name] [expr] to Nix functions.")
+	rootCmd.Flags().StringSlice("argstr", nil, "Pass [name] [string] to Nix functions")
 	rootCmd.Flags().String("command", "", "Run the command in an interactive shell")
 	rootCmd.Flags().String("exclude", "", "Do not build any dependencies whose store path matches the regexp")
 	rootCmd.Flags().StringP("expr", "E", "", "Nix expression to build")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
 	rootCmd.Flags().StringP("include", "I", "", "Include paths")
 	rootCmd.Flags().String("keep", "", "Environment variable to keep in --pure")
-	rootCmd.Flags().StringSliceP("packages", "p", []string{}, "Packages to add from nixpkgs")
+	rootCmd.Flags().StringSliceP("packages", "p", nil, "Packages to add from nixpkgs")
 	rootCmd.Flags().Bool("pure", false, "Clear most of the environment for the shell")
 	rootCmd.Flags().String("run", "", "Run the command in a non-interactive shell")
 

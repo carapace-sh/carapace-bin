@@ -14,6 +14,6 @@ var entity_tags_deleteValuesCmd = &cobra.Command{
 func init() {
 	carapace.Gen(entity_tags_deleteValuesCmd).Standalone()
 	entity_tags_deleteValuesCmd.Flags().StringP("guid", "g", "", "the entity GUID to delete tag values on")
-	entity_tags_deleteValuesCmd.Flags().StringSliceP("value", "v", []string{}, "the tag key:value pairs to delete from the entity")
+	entity_tags_deleteValuesCmd.Flags().StringSliceP("value", "v", nil, "the tag key:value pairs to delete from the entity")
 	entity_tagsCmd.AddCommand(entity_tags_deleteValuesCmd)
 }

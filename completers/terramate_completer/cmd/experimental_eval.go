@@ -15,6 +15,6 @@ func init() {
 	carapace.Gen(experimental_evalCmd).Standalone()
 
 	experimental_evalCmd.Flags().Bool("as-json", false, "Outputs the result as a JSON value")
-	experimental_evalCmd.Flags().StringSliceP("global", "g", []string{}, "set/override globals. eg.: --global name=<expr>")
+	experimental_evalCmd.Flags().StringSliceP("global", "g", nil, "set/override globals. eg.: --global name=<expr>")
 	experimentalCmd.AddCommand(experimental_evalCmd)
 }

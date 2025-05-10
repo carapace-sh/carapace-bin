@@ -21,7 +21,7 @@ func init() {
 	join_phase_controlPlanePrepare_allCmd.Flags().Bool("control-plane", false, "Create a new control plane instance on this node")
 	join_phase_controlPlanePrepare_allCmd.Flags().String("discovery-file", "", "For file-based discovery, a file or URL from which to load cluster information.")
 	join_phase_controlPlanePrepare_allCmd.Flags().String("discovery-token", "", "For token-based discovery, the token used to validate cluster information fetched from the API server.")
-	join_phase_controlPlanePrepare_allCmd.Flags().StringSlice("discovery-token-ca-cert-hash", []string{}, "For token-based discovery, validate that the root CA public key matches this hash (format: \"<type>:<value>\").")
+	join_phase_controlPlanePrepare_allCmd.Flags().StringSlice("discovery-token-ca-cert-hash", nil, "For token-based discovery, validate that the root CA public key matches this hash (format: \"<type>:<value>\").")
 	join_phase_controlPlanePrepare_allCmd.Flags().Bool("discovery-token-unsafe-skip-ca-verification", false, "For token-based discovery, allow joining without --discovery-token-ca-cert-hash pinning.")
 	join_phase_controlPlanePrepare_allCmd.Flags().Bool("dry-run", false, "Don't apply any changes; just output what would be done.")
 	join_phase_controlPlanePrepare_allCmd.Flags().String("node-name", "", "Specify the node name.")

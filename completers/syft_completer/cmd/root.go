@@ -36,8 +36,8 @@ func init() {
 }
 
 func addCommonFlags(cmd *cobra.Command) {
-	cmd.Flags().StringArray("catalogers", []string{}, "enable one or more package catalogers")
-	cmd.Flags().StringArray("exclude", []string{}, "exclude paths from being scanned using a glob expression")
+	cmd.Flags().StringArray("catalogers", nil, "enable one or more package catalogers")
+	cmd.Flags().StringArray("exclude", nil, "exclude paths from being scanned using a glob expression")
 	cmd.Flags().String("file", "", "file to write the default report output to (default is STDOUT)")
 	cmd.Flags().String("name", "", "set the name of the target being analyzed")
 	cmd.Flags().StringArrayP("output", "o", []string{"syft-table"}, "report output format, options=[syft-json cyclonedx-xml cyclonedx-json github-json spdx-tag-value spdx-json syft-table syft-text template]")

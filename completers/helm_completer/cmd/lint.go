@@ -14,11 +14,11 @@ var lintCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(lintCmd).Standalone()
-	lintCmd.Flags().StringArray("set", []string{}, "set values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2)")
-	lintCmd.Flags().StringArray("set-file", []string{}, "set values from respective files specified via the command line (can specify multiple or separate values with commas: key1=path1,key2=path2)")
-	lintCmd.Flags().StringArray("set-string", []string{}, "set STRING values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2)")
+	lintCmd.Flags().StringArray("set", nil, "set values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2)")
+	lintCmd.Flags().StringArray("set-file", nil, "set values from respective files specified via the command line (can specify multiple or separate values with commas: key1=path1,key2=path2)")
+	lintCmd.Flags().StringArray("set-string", nil, "set STRING values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2)")
 	lintCmd.Flags().Bool("strict", false, "fail on lint warnings")
-	lintCmd.Flags().StringSliceP("values", "f", []string{}, "specify values in a YAML file or a URL (can specify multiple)")
+	lintCmd.Flags().StringSliceP("values", "f", nil, "specify values in a YAML file or a URL (can specify multiple)")
 	lintCmd.Flags().Bool("with-subcharts", false, "lint dependent charts")
 	rootCmd.AddCommand(lintCmd)
 

@@ -21,8 +21,8 @@ func init() {
 	refreshCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock")
 	refreshCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color")
 	refreshCmd.Flags().StringS("parallelism", "parallelism", "", "Limit the number of parallel resource operations")
-	refreshCmd.Flags().StringArrayS("target", "target", []string{}, "Resource to target")
-	refreshCmd.Flags().StringArrayS("var", "var", []string{}, "Set a variable in the Terraform configuration")
+	refreshCmd.Flags().StringArrayS("target", "target", nil, "Resource to target")
+	refreshCmd.Flags().StringArrayS("var", "var", nil, "Set a variable in the Terraform configuration")
 	refreshCmd.Flags().StringS("var-file", "var-file", "", "Set variables in the Terraform configuration from a file")
 	rootCmd.AddCommand(refreshCmd)
 

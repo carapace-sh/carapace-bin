@@ -121,7 +121,7 @@ func init() {
 	rootCmd.Flags().String("https-proxy-passwd", "", "Set password for --https-proxy")
 	rootCmd.Flags().String("https-proxy-user", "", "Set user for --https-proxy")
 	rootCmd.Flags().Bool("human-readable", false, "Print sizes and speed in human readable format (e.g., 1.2Ki, 3.4Mi) in the console readout")
-	rootCmd.Flags().StringSliceP("index-out", "O", []string{}, "Set file path for file with index=INDEX")
+	rootCmd.Flags().StringSliceP("index-out", "O", nil, "Set file path for file with index=INDEX")
 	rootCmd.Flags().StringP("input-file", "i", "", "Downloads URIs found in FILE")
 	rootCmd.Flags().String("interface", "", "Bind sockets to given interface")
 	rootCmd.Flags().Bool("keep-unfinished-download-result", false, "Keep unfinished download results even if doing so exceeds --max-download-result")

@@ -14,11 +14,11 @@ var lsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(lsCmd).Standalone()
-	lsCmd.Flags().StringArrayP("host", "H", []string{}, "only consider snapshots for this `host`, when no snapshot ID is given (can be specified multiple times)")
+	lsCmd.Flags().StringArrayP("host", "H", nil, "only consider snapshots for this `host`, when no snapshot ID is given (can be specified multiple times)")
 	lsCmd.Flags().BoolP("long", "l", false, "use a long listing format showing size and mode")
-	lsCmd.Flags().StringArray("path", []string{}, "only consider snapshots which include this (absolute) `path`, when no snapshot ID is given")
+	lsCmd.Flags().StringArray("path", nil, "only consider snapshots which include this (absolute) `path`, when no snapshot ID is given")
 	lsCmd.Flags().Bool("recursive", false, "include files in subfolders of the listed directories")
-	lsCmd.Flags().StringSlice("tag", []string{}, "only consider snapshots which include this `taglist`, when no snapshot ID is given")
+	lsCmd.Flags().StringSlice("tag", nil, "only consider snapshots which include this `taglist`, when no snapshot ID is given")
 	rootCmd.AddCommand(lsCmd)
 
 	carapace.Gen(lsCmd).FlagCompletion(carapace.ActionMap{

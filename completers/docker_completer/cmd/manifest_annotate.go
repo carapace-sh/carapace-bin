@@ -16,7 +16,7 @@ func init() {
 
 	manifest_annotateCmd.Flags().String("arch", "", "Set architecture")
 	manifest_annotateCmd.Flags().String("os", "", "Set operating system")
-	manifest_annotateCmd.Flags().StringSlice("os-features", []string{}, "Set operating system feature")
+	manifest_annotateCmd.Flags().StringSlice("os-features", nil, "Set operating system feature")
 	manifest_annotateCmd.Flags().String("os-version", "", "Set operating system version")
 	manifest_annotateCmd.Flags().String("variant", "", "Set architecture variant")
 	manifestCmd.AddCommand(manifest_annotateCmd)

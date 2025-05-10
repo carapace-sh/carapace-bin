@@ -71,7 +71,7 @@ func init() {
 	chooseCmd.Flags().Bool("ordered", false, "Maintain the order of the selected options")
 	chooseCmd.Flags().String("output-delimiter", "", "Option delimiter when writing to STDOUT")
 	chooseCmd.Flags().Bool("select-if-one", false, "Select the given option if there is only one")
-	chooseCmd.Flags().StringSlice("selected", []string{}, "Options that should start as selected (selects all if given '*')")
+	chooseCmd.Flags().StringSlice("selected", nil, "Options that should start as selected (selects all if given '*')")
 	chooseCmd.Flags().String("selected-prefix", "", "Prefix to show on selected items (hidden if limit is 1)")
 	chooseCmd.Flags().String("selected.align", "", "Text Alignment")
 	chooseCmd.Flags().String("selected.background", "", "Background Color")

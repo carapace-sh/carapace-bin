@@ -25,7 +25,7 @@ func init() {
 	repo_createCmd.Flags().Bool("readme", false, "Initialize project with `README.md`.")
 	repo_createCmd.Flags().String("remoteName", "", "Remote name for the Git repository you're in. Defaults to `origin` if not provided.")
 	repo_createCmd.Flags().BoolP("skipGitInit", "s", false, "Skip run 'git init'.")
-	repo_createCmd.Flags().StringSliceP("tag", "t", []string{}, "The list of tags for the project.")
+	repo_createCmd.Flags().StringSliceP("tag", "t", nil, "The list of tags for the project.")
 	repoCmd.AddCommand(repo_createCmd)
 
 	carapace.Gen(repo_createCmd).FlagCompletion(carapace.ActionMap{

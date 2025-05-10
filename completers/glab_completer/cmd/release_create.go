@@ -17,7 +17,7 @@ func init() {
 
 	release_createCmd.Flags().StringP("assets-links", "a", "", "'JSON' string representation of assets links, like `--assets-links='[{\"name\": \"Asset1\", \"url\":\"https://<domain>/some/location/1\", \"link_type\": \"other\", \"direct_asset_path\": \"path/to/file\"}]'.`")
 	release_createCmd.Flags().String("experimental-notes-text-or-file", "", "[EXPERIMENTAL] Value to use as release notes. If a file exists with this value as path, its content will be used. Otherwise, the value itself will be used as text.")
-	release_createCmd.Flags().StringSliceP("milestone", "m", []string{}, "The title of each milestone the release is associated with.")
+	release_createCmd.Flags().StringSliceP("milestone", "m", nil, "The title of each milestone the release is associated with.")
 	release_createCmd.Flags().StringP("name", "n", "", "The release name or title.")
 	release_createCmd.Flags().Bool("no-close-milestone", false, "Prevent closing milestones after creating the release.")
 	release_createCmd.Flags().Bool("no-update", false, "Prevent updating the existing release.")

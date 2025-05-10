@@ -14,7 +14,7 @@ var config_setAllCmd = &cobra.Command{
 func init() {
 	carapace.Gen(config_setAllCmd).Standalone()
 	config_setAllCmd.PersistentFlags().Bool("path", false, "Parse the keys as paths in a map or list rather than raw strings")
-	config_setAllCmd.PersistentFlags().StringArray("plaintext", []string{}, "Marks a value as plaintext (unencrypted)")
-	config_setAllCmd.PersistentFlags().StringArray("secret", []string{}, "Marks a value as secret to be encrypted")
+	config_setAllCmd.PersistentFlags().StringArray("plaintext", nil, "Marks a value as plaintext (unencrypted)")
+	config_setAllCmd.PersistentFlags().StringArray("secret", nil, "Marks a value as secret to be encrypted")
 	configCmd.AddCommand(config_setAllCmd)
 }

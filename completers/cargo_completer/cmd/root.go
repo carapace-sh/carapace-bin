@@ -46,9 +46,9 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringS("C", "C", "", "Change to DIRECTORY before doing anything (nightly-only)")
-	rootCmd.PersistentFlags().StringSliceS("Z", "Z", []string{}, "Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details")
+	rootCmd.PersistentFlags().StringSliceS("Z", "Z", nil, "Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details")
 	rootCmd.PersistentFlags().String("color", "", "Coloring: auto, always, never")
-	rootCmd.PersistentFlags().StringSlice("config", []string{}, "Override a configuration value")
+	rootCmd.PersistentFlags().StringSlice("config", nil, "Override a configuration value")
 	rootCmd.Flags().String("explain", "", "Provide a detailed explanation of a rustc error message")
 	rootCmd.PersistentFlags().Bool("frozen", false, "Equivalent to specifying both --locked and --offline")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help")

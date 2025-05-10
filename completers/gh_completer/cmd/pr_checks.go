@@ -19,7 +19,7 @@ func init() {
 	pr_checksCmd.Flags().Bool("fail-fast", false, "Exit watch mode on first check failure")
 	pr_checksCmd.Flags().StringP("interval", "i", "", "Refresh interval in seconds when using `--watch` flag")
 	pr_checksCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	pr_checksCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	pr_checksCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	pr_checksCmd.Flags().Bool("required", false, "Only show checks that are required")
 	pr_checksCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	pr_checksCmd.Flags().Bool("watch", false, "Watch checks until they finish")

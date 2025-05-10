@@ -23,7 +23,7 @@ func init() {
 	eventsCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	eventsCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	eventsCmd.Flags().String("template", "", "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].")
-	eventsCmd.Flags().StringSlice("types", []string{}, "Output only events of given types.")
+	eventsCmd.Flags().StringSlice("types", nil, "Output only events of given types.")
 	eventsCmd.Flags().BoolP("watch", "w", false, "After listing the requested events, watch for more events.")
 	rootCmd.AddCommand(eventsCmd)
 

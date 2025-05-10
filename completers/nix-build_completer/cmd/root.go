@@ -19,8 +19,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringSlice("arg", []string{}, "Pass [name] [expr] to Nix functions.")
-	rootCmd.Flags().StringSlice("argstr", []string{}, "Pass [name] [string] to Nix functions")
+	rootCmd.Flags().StringSlice("arg", nil, "Pass [name] [expr] to Nix functions.")
+	rootCmd.Flags().StringSlice("argstr", nil, "Pass [name] [string] to Nix functions")
 	rootCmd.Flags().StringP("attr", "A", "", "Attribute to build")
 	rootCmd.Flags().Bool("dry-run", false, "Show what store paths would be built or downloaded")
 	rootCmd.Flags().Bool("help", false, "Show usage information")

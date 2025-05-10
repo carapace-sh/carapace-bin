@@ -18,8 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringSliceS("D", "D", []string{}, "predefined symbol with optional simple value -D=identifier=value")
-	rootCmd.Flags().StringSliceS("I", "I", []string{}, "include directory")
+	rootCmd.Flags().StringSliceS("D", "D", nil, "predefined symbol with optional simple value -D=identifier=value")
+	rootCmd.Flags().StringSliceS("I", "I", nil, "include directory")
 	rootCmd.Flags().BoolS("compiling-runtime", "compiling-runtime", false, "source to be compiled is part of the Go runtime")
 	rootCmd.Flags().StringS("d", "d", "", "enable debugging settings")
 	rootCmd.Flags().BoolS("debug", "debug", false, "dump instructions as they are parsed")

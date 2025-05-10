@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(repo_editCmd).Standalone()
 
 	repo_editCmd.Flags().Bool("accept-visibility-change-consequences", false, "Accept the consequences of changing the repository visibility")
-	repo_editCmd.Flags().StringSlice("add-topic", []string{}, "Add repository topic")
+	repo_editCmd.Flags().StringSlice("add-topic", nil, "Add repository topic")
 	repo_editCmd.Flags().Bool("allow-forking", false, "Allow forking of an organization repository")
 	repo_editCmd.Flags().Bool("allow-update-branch", false, "Allow a pull request head branch that is behind its base branch to be updated")
 	repo_editCmd.Flags().String("default-branch", "", "Set the default branch `name` for the repository")
@@ -35,7 +35,7 @@ func init() {
 	repo_editCmd.Flags().Bool("enable-squash-merge", false, "Enable merging pull requests via squashed commit")
 	repo_editCmd.Flags().Bool("enable-wiki", false, "Enable wiki in the repository")
 	repo_editCmd.Flags().StringP("homepage", "h", "", "Repository home page `URL`")
-	repo_editCmd.Flags().StringSlice("remove-topic", []string{}, "Remove repository topic")
+	repo_editCmd.Flags().StringSlice("remove-topic", nil, "Remove repository topic")
 	repo_editCmd.Flags().Bool("template", false, "Make the repository available as a template repository")
 	repo_editCmd.Flags().String("visibility", "", "Change the visibility of the repository to {public,private,internal}")
 	repoCmd.AddCommand(repo_editCmd)

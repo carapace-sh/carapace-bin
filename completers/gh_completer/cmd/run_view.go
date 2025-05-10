@@ -19,7 +19,7 @@ func init() {
 	run_viewCmd.Flags().Bool("exit-status", false, "Exit with non-zero status if run failed")
 	run_viewCmd.Flags().StringP("job", "j", "", "View a specific job ID from a run")
 	run_viewCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	run_viewCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	run_viewCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	run_viewCmd.Flags().Bool("log", false, "View full log for either a run or specific job")
 	run_viewCmd.Flags().Bool("log-failed", false, "View the log for any failed steps in a run or specific job")
 	run_viewCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")

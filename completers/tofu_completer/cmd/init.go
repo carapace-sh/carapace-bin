@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(initCmd).Standalone()
 
 	initCmd.Flags().BoolS("backend", "backend", false, "Configure the backend for this configuration")
-	initCmd.Flags().StringSliceS("backend-config", "backend-config", []string{}, "Backend configuration")
+	initCmd.Flags().StringSliceS("backend-config", "backend-config", nil, "Backend configuration")
 	initCmd.Flags().BoolS("force-copy", "force-copy", false, "Suppress prompts about copying state data")
 	initCmd.Flags().StringS("from-module", "from-module", "", "Copy the contents of the given module into the target directory before initialization")
 	initCmd.Flags().BoolS("get", "get", false, "Download any modules for this configuration")

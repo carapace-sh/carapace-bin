@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(consoleCmd).Standalone()
 
 	consoleCmd.Flags().StringS("state", "state", "", "Legacy option for the local backend only")
-	consoleCmd.Flags().StringArrayS("var", "var", []string{}, "Set a variable in the Terraform configuration")
+	consoleCmd.Flags().StringArrayS("var", "var", nil, "Set a variable in the Terraform configuration")
 	consoleCmd.Flags().StringS("var-file", "var-file", "", "Set variables in the Terraform configuration from a file")
 
 	consoleCmd.Flag("state").NoOptDefVal = " "

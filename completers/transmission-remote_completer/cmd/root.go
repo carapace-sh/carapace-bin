@@ -46,7 +46,7 @@ func init() {
 	rootCmd.Flags().BoolP("encryption-tolerated", "et", false, "Prefer unencrypted peer connections")
 	rootCmd.Flags().Bool("exit", false, "Initiate a shutdown")
 	rootCmd.Flags().BoolP("files", "f", false, "Get a file list for the current torrent(s)")
-	rootCmd.Flags().StringArrayP("filter", "F", []string{}, "Filter selected torrents (may be specified more than once)")
+	rootCmd.Flags().StringArrayP("filter", "F", nil, "Filter selected torrents (may be specified more than once)")
 	rootCmd.Flags().String("find", "", "Tell transmission where to look for the current torrent's data")
 	rootCmd.Flags().StringSliceP("get", "g", nil, "Mark file(s) for download. (e.g. \"all\", \"1\", \"1,3-5\")")
 	rootCmd.Flags().Float64S("global-seedratio", "gsr", 0, "All torrents, unless overriden by a per-torrent setting, should seed until this ratio")

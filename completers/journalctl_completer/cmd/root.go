@@ -44,7 +44,7 @@ func init() {
 	rootCmd.Flags().StringP("grep", "g", "", "Show entries with MESSAGE matching PATTERN")
 	rootCmd.Flags().Bool("header", false, "Show journal header information")
 	rootCmd.Flags().BoolP("help", "h", false, "Show this help text")
-	rootCmd.Flags().StringArrayP("identifier", "t", []string{}, "Show entries with the specified syslog identifier")
+	rootCmd.Flags().StringArrayP("identifier", "t", nil, "Show entries with the specified syslog identifier")
 	rootCmd.Flags().String("image", "", "Operate on files in filesystem image")
 	rootCmd.Flags().String("interval", "", "Time interval for changing the FSS sealing key")
 	rootCmd.Flags().StringP("lines", "n", "", "Number of journal entries to show")

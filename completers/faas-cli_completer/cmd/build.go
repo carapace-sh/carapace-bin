@@ -15,10 +15,10 @@ var buildCmd = &cobra.Command{
 func init() {
 	carapace.Gen(buildCmd).Standalone()
 
-	buildCmd.Flags().StringArrayP("build-arg", "b", []string{}, "Add a build-arg for Docker (KEY=VALUE)")
-	buildCmd.Flags().StringArray("build-label", []string{}, "Add a label for Docker image (LABEL=VALUE)")
-	buildCmd.Flags().StringArrayP("build-option", "o", []string{}, "Set a build option, e.g. dev")
-	buildCmd.Flags().StringArray("copy-extra", []string{}, "Extra paths that will be copied into the function build context")
+	buildCmd.Flags().StringArrayP("build-arg", "b", nil, "Add a build-arg for Docker (KEY=VALUE)")
+	buildCmd.Flags().StringArray("build-label", nil, "Add a label for Docker image (LABEL=VALUE)")
+	buildCmd.Flags().StringArrayP("build-option", "o", nil, "Set a build option, e.g. dev")
+	buildCmd.Flags().StringArray("copy-extra", nil, "Extra paths that will be copied into the function build context")
 	buildCmd.Flags().Bool("disable-stack-pull", false, "Disables the template configuration in the stack.yml")
 	buildCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
 	buildCmd.Flags().String("handler", "", "Directory with handler for function, e.g. handler.js")

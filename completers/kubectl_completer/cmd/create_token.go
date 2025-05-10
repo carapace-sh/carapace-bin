@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(create_tokenCmd).Standalone()
 
 	create_tokenCmd.Flags().Bool("allow-missing-template-keys", false, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
-	create_tokenCmd.Flags().StringSlice("audience", []string{}, "Audience of the requested token. If unset, defaults to requesting a token for use with the Kubernetes API server. May be repeated to request a token valid for multiple audiences.")
+	create_tokenCmd.Flags().StringSlice("audience", nil, "Audience of the requested token. If unset, defaults to requesting a token for use with the Kubernetes API server. May be repeated to request a token valid for multiple audiences.")
 	create_tokenCmd.Flags().String("bound-object-kind", "", "Kind of an object to bind the token to. Supported kinds are Node, Pod, Secret. If set, --bound-object-name must be provided.")
 	create_tokenCmd.Flags().String("bound-object-name", "", "Name of an object to bind the token to. The token will expire when the object is deleted. Requires --bound-object-kind.")
 	create_tokenCmd.Flags().String("bound-object-uid", "", "UID of an object to bind the token to. Requires --bound-object-kind and --bound-object-name. If unset, the UID of the existing object is used.")

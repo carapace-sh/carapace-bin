@@ -30,7 +30,7 @@ func init() {
 	releaseCmd.Flags().String("release-notes", "", "Load custom release notes from a markdown file (will skip GoReleaser changelog generation)")
 	releaseCmd.Flags().String("release-notes-tmpl", "", "Load custom release notes from a templated markdown file (overrides --release-notes)")
 	releaseCmd.Flags().Bool("rm-dist", false, "Removes the 'dist' directory")
-	releaseCmd.Flags().StringSlice("skip", []string{}, "Skip the given options (valid options are announce, aur, before, chocolatey, docker, homebrew, ko, nfpm, nix, notarize, publish, sbom, scoop, sign, snapcraft, validate, winget)")
+	releaseCmd.Flags().StringSlice("skip", nil, "Skip the given options (valid options are announce, aur, before, chocolatey, docker, homebrew, ko, nfpm, nix, notarize, publish, sbom, scoop, sign, snapcraft, validate, winget)")
 	releaseCmd.Flags().Bool("skip-announce", false, "Skips announcing releases (implies --skip=validate)")
 	releaseCmd.Flags().Bool("skip-before", false, "Skips global before hooks")
 	releaseCmd.Flags().Bool("skip-docker", false, "Skips Docker Images/Manifests builds")

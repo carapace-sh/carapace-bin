@@ -22,7 +22,7 @@ func init() {
 	updateCmd.Flags().Bool("global-style", false, "Use global layout")
 	updateCmd.Flags().Bool("ignore-scripts", false, "do not run scripts specified in package.json")
 	updateCmd.Flags().Bool("legacy-bundling", false, "Use legacy bundling")
-	updateCmd.Flags().StringArray("omit", []string{}, "omit dependency types")
+	updateCmd.Flags().StringArray("omit", nil, "omit dependency types")
 	updateCmd.Flags().Bool("package-lock", false, "Only update package-lock.json")
 	updateCmd.Flags().Bool("strict-peer-deps", false, "Fail and abort for any conflicting `peerDependencies`")
 	addWorkspaceFlags(updateCmd)

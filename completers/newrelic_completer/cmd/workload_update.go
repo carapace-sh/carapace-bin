@@ -14,11 +14,11 @@ var workload_updateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(workload_updateCmd).Standalone()
-	workload_updateCmd.Flags().StringSliceP("entityGuid", "e", []string{}, "the list of entity Guids composing the workload")
-	workload_updateCmd.Flags().StringSliceP("entitySearchQuery", "q", []string{}, "a list of search queries, combined using an OR operator")
+	workload_updateCmd.Flags().StringSliceP("entityGuid", "e", nil, "the list of entity Guids composing the workload")
+	workload_updateCmd.Flags().StringSliceP("entitySearchQuery", "q", nil, "a list of search queries, combined using an OR operator")
 	workload_updateCmd.Flags().StringP("guid", "g", "", "the GUID of the workload you want to update")
 	workload_updateCmd.Flags().StringP("name", "n", "", "the name of the workload")
-	workload_updateCmd.Flags().IntSliceP("scopeAccountIds", "s", []int{}, "accounts that will be used to get entities from")
+	workload_updateCmd.Flags().IntSliceP("scopeAccountIds", "s", nil, "accounts that will be used to get entities from")
 	workloadCmd.AddCommand(workload_updateCmd)
 
 	// TODO guid completion

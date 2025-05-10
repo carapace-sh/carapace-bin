@@ -17,7 +17,7 @@ func init() {
 	buildCmd.Flags().String("engine", "docker", "Engine used to build the container: 'docker', 'podman'")
 	buildCmd.Flags().String("name", "devbox", "name for the container")
 	buildCmd.Flags().Bool("no-cache", false, "Do not use a cache")
-	buildCmd.Flags().StringSlice("tags", []string{}, "tags for the container")
+	buildCmd.Flags().StringSlice("tags", nil, "tags for the container")
 	rootCmd.AddCommand(buildCmd)
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{

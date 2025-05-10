@@ -20,7 +20,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.PersistentFlags().Bool("error-on-warning", false, "Treat any warning as an error")
-	rootCmd.PersistentFlags().StringArrayP("file", "f", []string{}, "Specify an alternative compose file")
+	rootCmd.PersistentFlags().StringArrayP("file", "f", nil, "Specify an alternative compose file")
 	rootCmd.Flags().BoolP("help", "h", false, "help for kompose")
 	rootCmd.PersistentFlags().String("provider", "kubernetes", "Specify a provider. Kubernetes or OpenShift.")
 	rootCmd.PersistentFlags().Bool("suppress-warnings", false, "Suppress all warnings")

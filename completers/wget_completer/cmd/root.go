@@ -70,7 +70,7 @@ func init() {
 	rootCmd.Flags().Bool("ftps-fallback-to-ftp", false, "fall back to FTP if FTPS is not supported in the target server")
 	rootCmd.Flags().Bool("ftps-implicit", false, "use implicit FTPS (default port is 990)")
 	rootCmd.Flags().Bool("ftps-resume-ssl", false, "resume the SSL/TLS session started in the control connection")
-	rootCmd.Flags().StringArray("header", []string{}, "insert STRING among the headers")
+	rootCmd.Flags().StringArray("header", nil, "insert STRING among the headers")
 	rootCmd.Flags().BoolP("help", "h", false, "print this help")
 	rootCmd.Flags().Bool("hsts-file", false, "path of HSTS database (will override default)")
 	rootCmd.Flags().String("http-password", "", "set http password to PASS")

@@ -20,7 +20,7 @@ func init() {
 	set_serviceaccountCmd.Flags().Bool("allow-missing-template-keys", false, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	set_serviceaccountCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	set_serviceaccountCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
-	set_serviceaccountCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to get from a server.")
+	set_serviceaccountCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files identifying the resource to get from a server.")
 	set_serviceaccountCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	set_serviceaccountCmd.Flags().Bool("local", false, "If true, set serviceaccount will NOT contact api-server but run locally.")
 	set_serviceaccountCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")

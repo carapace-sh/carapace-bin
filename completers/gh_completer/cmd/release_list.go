@@ -21,7 +21,7 @@ func init() {
 	release_listCmd.Flags().Bool("exclude-drafts", false, "Exclude draft releases")
 	release_listCmd.Flags().Bool("exclude-pre-releases", false, "Exclude pre-releases")
 	release_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	release_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	release_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	release_listCmd.Flags().StringP("limit", "L", "", "Maximum number of items to fetch")
 	release_listCmd.Flags().StringP("order", "O", "", "Order of releases returned: {asc|desc}")
 	release_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")

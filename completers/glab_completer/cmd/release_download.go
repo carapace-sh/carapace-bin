@@ -15,7 +15,7 @@ var release_downloadCmd = &cobra.Command{
 func init() {
 	carapace.Gen(release_downloadCmd).Standalone()
 
-	release_downloadCmd.Flags().StringSliceP("asset-name", "n", []string{}, "Download only assets that match the name or a glob pattern.")
+	release_downloadCmd.Flags().StringSliceP("asset-name", "n", nil, "Download only assets that match the name or a glob pattern.")
 	release_downloadCmd.Flags().StringP("dir", "D", "", "Directory to download the release assets to.")
 	releaseCmd.AddCommand(release_downloadCmd)
 

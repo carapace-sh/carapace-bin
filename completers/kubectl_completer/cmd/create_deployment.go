@@ -19,7 +19,7 @@ func init() {
 	create_deploymentCmd.Flags().Bool("allow-missing-template-keys", false, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	create_deploymentCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_deploymentCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
-	create_deploymentCmd.Flags().StringSlice("image", []string{}, "Image names to run. A deployment can have multiple images set for multi-container pod.")
+	create_deploymentCmd.Flags().StringSlice("image", nil, "Image names to run. A deployment can have multiple images set for multi-container pod.")
 	create_deploymentCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	create_deploymentCmd.Flags().String("port", "", "The containerPort that this deployment exposes.")
 	create_deploymentCmd.Flags().StringP("replicas", "r", "", "Number of replicas to create. Default is 1.")

@@ -18,7 +18,7 @@ func init() {
 	maintenance_runCmd.Flags().Bool("auto", false, "run tasks based on the state of the repository")
 	maintenance_runCmd.Flags().Bool("quiet", false, "don't report progress or other information to stderr")
 	maintenance_runCmd.Flags().Bool("schedule", false, "run tasks based on frequency")
-	maintenance_runCmd.Flags().StringSlice("task", []string{}, "run a specific task")
+	maintenance_runCmd.Flags().StringSlice("task", nil, "run a specific task")
 	maintenanceCmd.AddCommand(maintenance_runCmd)
 
 	carapace.Gen(maintenance_runCmd).FlagCompletion(carapace.ActionMap{

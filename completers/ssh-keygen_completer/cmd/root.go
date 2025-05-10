@@ -34,7 +34,7 @@ func init() {
 	rootCmd.Flags().BoolS("L", "L", false, "Prints the contents of one or more certificates")
 	rootCmd.Flags().StringS("M", "M", "", "Moduli")
 	rootCmd.Flags().StringS("N", "N", "", "Provides the new passphrase")
-	rootCmd.Flags().StringSliceS("O", "O", []string{}, "Specify a key/value option")
+	rootCmd.Flags().StringSliceS("O", "O", nil, "Specify a key/value option")
 	rootCmd.Flags().StringS("P", "P", "", "Provides the (old) passphrase")
 	rootCmd.Flags().BoolS("Q", "Q", false, "Test whether keys have been revoked in a KRL")
 	rootCmd.Flags().StringS("R", "R", "", "Removes all keys belonging to the specified hostname from a known_hosts file")

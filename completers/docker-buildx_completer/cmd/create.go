@@ -18,11 +18,11 @@ func init() {
 	createCmd.Flags().String("buildkitd-flags", "", "Flags for buildkitd daemon")
 	createCmd.Flags().String("config", "", "BuildKit config file")
 	createCmd.Flags().String("driver", "", "Driver to use (available: \"docker-container\", \"kubernetes\", \"remote\")")
-	createCmd.Flags().StringArray("driver-opt", []string{}, "Options for the driver")
+	createCmd.Flags().StringArray("driver-opt", nil, "Options for the driver")
 	createCmd.Flags().Bool("leave", false, "Remove a node from builder instead of changing it")
 	createCmd.Flags().String("name", "", "Builder instance name")
 	createCmd.Flags().String("node", "", "Create/modify node with given name")
-	createCmd.Flags().StringArray("platform", []string{}, "Fixed platforms for current node")
+	createCmd.Flags().StringArray("platform", nil, "Fixed platforms for current node")
 	createCmd.Flags().Bool("use", false, "Set the current builder instance")
 	rootCmd.AddCommand(createCmd)
 

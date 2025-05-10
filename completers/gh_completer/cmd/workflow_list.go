@@ -18,7 +18,7 @@ func init() {
 
 	workflow_listCmd.Flags().BoolP("all", "a", false, "Include disabled workflows")
 	workflow_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	workflow_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	workflow_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	workflow_listCmd.Flags().StringP("limit", "L", "", "Maximum number of workflows to fetch")
 	workflow_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	workflowCmd.AddCommand(workflow_listCmd)

@@ -19,7 +19,7 @@ func init() {
 	build_iosCmd.Flags().String("build-number", "", "An identifier used as an internal version number.")
 	build_iosCmd.Flags().Bool("codesign", false, "Codesign the application bundle (only available on device builds).")
 	build_iosCmd.Flags().Bool("config-only", false, "Update the project configuration without performing a build.")
-	build_iosCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	build_iosCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_iosCmd.Flags().Bool("debug", false, "Build a debug version of your app.")
 	build_iosCmd.Flags().Bool("flavor", false, "Build a custom app flavor as defined by platform-specific build setup.")
 	build_iosCmd.Flags().BoolP("help", "h", false, "Print this usage information.")

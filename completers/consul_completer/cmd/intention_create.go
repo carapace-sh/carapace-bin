@@ -19,7 +19,7 @@ func init() {
 	intention_createCmd.Flags().Bool("allow", false, "Create an intention that allows when matched.")
 	intention_createCmd.Flags().Bool("deny", false, "Create an intention that denies when matched.")
 	intention_createCmd.Flags().Bool("file", false, "Read intention data from one or more files.")
-	intention_createCmd.Flags().StringArray("meta", []string{}, "Metadata to set on the intention, formatted as key=value.")
+	intention_createCmd.Flags().StringArray("meta", nil, "Metadata to set on the intention, formatted as key=value.")
 	intention_createCmd.Flags().String("namespace", "", "Specifies the namespace to query.")
 	intention_createCmd.Flags().Bool("replace", false, "Replace matching intentions.")
 	intentionCmd.AddCommand(intention_createCmd)

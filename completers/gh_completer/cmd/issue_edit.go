@@ -16,16 +16,16 @@ var issue_editCmd = &cobra.Command{
 func init() {
 	carapace.Gen(issue_editCmd).Standalone()
 
-	issue_editCmd.Flags().StringSlice("add-assignee", []string{}, "Add assigned users by their `login`. Use \"@me\" to assign yourself.")
-	issue_editCmd.Flags().StringSlice("add-label", []string{}, "Add labels by `name`")
-	issue_editCmd.Flags().StringSlice("add-project", []string{}, "Add the issue to projects by `title`")
+	issue_editCmd.Flags().StringSlice("add-assignee", nil, "Add assigned users by their `login`. Use \"@me\" to assign yourself.")
+	issue_editCmd.Flags().StringSlice("add-label", nil, "Add labels by `name`")
+	issue_editCmd.Flags().StringSlice("add-project", nil, "Add the issue to projects by `title`")
 	issue_editCmd.Flags().StringP("body", "b", "", "Set the new body.")
 	issue_editCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	issue_editCmd.Flags().StringP("milestone", "m", "", "Edit the milestone the issue belongs to by `name`")
-	issue_editCmd.Flags().StringSlice("remove-assignee", []string{}, "Remove assigned users by their `login`. Use \"@me\" to unassign yourself.")
-	issue_editCmd.Flags().StringSlice("remove-label", []string{}, "Remove labels by `name`")
+	issue_editCmd.Flags().StringSlice("remove-assignee", nil, "Remove assigned users by their `login`. Use \"@me\" to unassign yourself.")
+	issue_editCmd.Flags().StringSlice("remove-label", nil, "Remove labels by `name`")
 	issue_editCmd.Flags().Bool("remove-milestone", false, "Remove the milestone association from the issue")
-	issue_editCmd.Flags().StringSlice("remove-project", []string{}, "Remove the issue from projects by `title`")
+	issue_editCmd.Flags().StringSlice("remove-project", nil, "Remove the issue from projects by `title`")
 	issue_editCmd.Flags().StringP("title", "t", "", "Set the new title.")
 	issueCmd.AddCommand(issue_editCmd)
 

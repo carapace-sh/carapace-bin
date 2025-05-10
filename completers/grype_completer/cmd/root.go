@@ -24,7 +24,7 @@ func init() {
 	rootCmd.Flags().Bool("by-cve", false, "orient results by CVE instead of the original vulnerability ID when possible")
 	rootCmd.PersistentFlags().StringP("config", "c", "", "application config file")
 	rootCmd.Flags().String("distro", "", "distro to match against in the format: <distro>:<version>")
-	rootCmd.Flags().StringArray("exclude", []string{}, "exclude paths from being scanned using a glob expression")
+	rootCmd.Flags().StringArray("exclude", nil, "exclude paths from being scanned using a glob expression")
 	rootCmd.Flags().StringP("fail-on", "f", "", "set the return code to 1 if a vulnerability is found with a severity >= the given severity")
 	rootCmd.Flags().String("file", "", "file to write the report output to (default is STDOUT)")
 	rootCmd.Flags().Bool("only-fixed", false, "ignore matches for vulnerabilities that are not fixed")

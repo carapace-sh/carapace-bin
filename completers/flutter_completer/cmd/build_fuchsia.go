@@ -14,7 +14,7 @@ var build_fuchsiaCmd = &cobra.Command{
 func init() {
 	carapace.Gen(build_fuchsiaCmd).Standalone()
 
-	build_fuchsiaCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	build_fuchsiaCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_fuchsiaCmd.Flags().Bool("debug", false, "Build a debug version of your app.")
 	build_fuchsiaCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	build_fuchsiaCmd.Flags().Bool("no-null-assertions", false, "Perform additional null assertions on the boundaries of migrated and un-migrated code.")

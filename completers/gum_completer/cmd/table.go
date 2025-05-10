@@ -46,7 +46,7 @@ func init() {
 	tableCmd.Flags().Bool("cell.strikethrough", false, "Strikethrough text")
 	tableCmd.Flags().Bool("cell.underline", false, "Underline text")
 	tableCmd.Flags().String("cell.width", "", "Text width")
-	tableCmd.Flags().StringSliceP("columns", "c", []string{}, "Column names")
+	tableCmd.Flags().StringSliceP("columns", "c", nil, "Column names")
 	tableCmd.Flags().String("fields-per-record", "", "Sets the number of expected fields per record")
 	tableCmd.Flags().StringP("file", "f", "", "file path")
 	tableCmd.Flags().String("header.align", "", "Text Alignment")
@@ -86,7 +86,7 @@ func init() {
 	tableCmd.Flags().StringP("separator", "s", "", "Row separator")
 	tableCmd.Flags().Bool("show-help", false, "Show help keybinds")
 	tableCmd.Flags().String("timeout", "", "Timeout until choose returns selected element")
-	tableCmd.Flags().StringSliceP("widths", "w", []string{}, "Column widths")
+	tableCmd.Flags().StringSliceP("widths", "w", nil, "Column widths")
 	rootCmd.AddCommand(tableCmd)
 
 	common.AddFlagCompletion(tableCmd)

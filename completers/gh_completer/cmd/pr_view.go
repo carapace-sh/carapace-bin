@@ -18,7 +18,7 @@ func init() {
 
 	pr_viewCmd.Flags().BoolP("comments", "c", false, "View pull request comments")
 	pr_viewCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	pr_viewCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	pr_viewCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	pr_viewCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	pr_viewCmd.Flags().BoolP("web", "w", false, "Open a pull request in the browser")
 	prCmd.AddCommand(pr_viewCmd)

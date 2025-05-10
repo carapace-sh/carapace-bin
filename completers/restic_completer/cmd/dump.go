@@ -15,9 +15,9 @@ var dumpCmd = &cobra.Command{
 func init() {
 	carapace.Gen(dumpCmd).Standalone()
 	dumpCmd.Flags().StringP("archive", "a", "tar", "set archive `format` as \"tar\" or \"zip\"")
-	dumpCmd.Flags().StringArrayP("host", "H", []string{}, "only consider snapshots for this host when the snapshot ID is \"latest\" (can be specified multiple times)")
-	dumpCmd.Flags().StringArray("path", []string{}, "only consider snapshots which include this (absolute) `path` for snapshot ID \"latest\"")
-	dumpCmd.Flags().StringSlice("tag", []string{}, "only consider snapshots which include this `taglist` for snapshot ID \"latest\"")
+	dumpCmd.Flags().StringArrayP("host", "H", nil, "only consider snapshots for this host when the snapshot ID is \"latest\" (can be specified multiple times)")
+	dumpCmd.Flags().StringArray("path", nil, "only consider snapshots which include this (absolute) `path` for snapshot ID \"latest\"")
+	dumpCmd.Flags().StringSlice("tag", nil, "only consider snapshots which include this `taglist` for snapshot ID \"latest\"")
 	rootCmd.AddCommand(dumpCmd)
 
 	carapace.Gen(dumpCmd).FlagCompletion(carapace.ActionMap{

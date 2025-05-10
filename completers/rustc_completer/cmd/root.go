@@ -18,7 +18,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringArrayS("L", "L", []string{}, "Add a directory to the library search path")
+	rootCmd.Flags().StringArrayS("L", "L", nil, "Add a directory to the library search path")
 	rootCmd.Flags().BoolS("O", "O", false, "Equivalent to -C opt-level=2")
 	rootCmd.Flags().StringP("allow", "A", "", "Set lint allowed")
 	rootCmd.Flags().String("cap-lints", "", "Set the most restrictive lint level")
@@ -33,7 +33,7 @@ func init() {
 	rootCmd.Flags().StringP("forbid", "F", "", "Set lint forbidden")
 	rootCmd.Flags().BoolS("g", "g", false, "Equivalent to -C debuginfo=2")
 	rootCmd.Flags().BoolP("help", "h", false, "Display this message")
-	rootCmd.Flags().StringArrayS("l", "l", []string{}, "Link the generated crate(s) to the specified native library NAME")
+	rootCmd.Flags().StringArrayS("l", "l", nil, "Link the generated crate(s) to the specified native library NAME")
 	rootCmd.Flags().StringS("o", "o", "", "Write output to <filename>")
 	rootCmd.Flags().String("out-dir", "", "Write output to compiler-chosen filename in <dir>")
 	rootCmd.Flags().String("print", "", "Compiler information to print on stdout")

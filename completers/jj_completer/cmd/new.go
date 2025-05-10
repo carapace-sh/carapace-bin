@@ -18,7 +18,7 @@ func init() {
 	newCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	newCmd.Flags().StringP("insert-after", "A", "", "Insert the new change between the target commit(s) and their children")
 	newCmd.Flags().StringP("insert-before", "B", "", "Insert the new change between the target commit(s) and their parents")
-	newCmd.Flags().StringSliceP("message", "m", []string{}, "The change description to use")
+	newCmd.Flags().StringSliceP("message", "m", nil, "The change description to use")
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(newCmd).FlagCompletion(carapace.ActionMap{

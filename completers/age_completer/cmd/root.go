@@ -22,11 +22,11 @@ func init() {
 	rootCmd.Flags().BoolP("armor", "a", false, "Encrypt to a PEM encoded format.")
 	rootCmd.Flags().BoolP("decrypt", "d", false, "Decrypt the input to the output.")
 	rootCmd.Flags().BoolP("encrypt", "e", false, "Encrypt the input to the output. Default if omitted.")
-	rootCmd.Flags().StringArrayP("identity", "i", []string{}, "Use the identity file at PATH. Can be repeated.")
+	rootCmd.Flags().StringArrayP("identity", "i", nil, "Use the identity file at PATH. Can be repeated.")
 	rootCmd.Flags().StringP("output", "o", "", "Write the result to the file at path OUTPUT.")
 	rootCmd.Flags().BoolP("passphrase", "p", false, "Encrypt with a passphrase.")
-	rootCmd.Flags().StringArrayP("recipient", "r", []string{}, "Encrypt to the specified RECIPIENT. Can be repeated.")
-	rootCmd.Flags().StringArrayP("recipients-file", "R", []string{}, "Encrypt to recipients listed at PATH. Can be repeated.")
+	rootCmd.Flags().StringArrayP("recipient", "r", nil, "Encrypt to the specified RECIPIENT. Can be repeated.")
+	rootCmd.Flags().StringArrayP("recipients-file", "R", nil, "Encrypt to recipients listed at PATH. Can be repeated.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"identity": carapace.Batch(

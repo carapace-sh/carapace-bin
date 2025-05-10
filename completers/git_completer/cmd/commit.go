@@ -58,7 +58,7 @@ func init() {
 	commitCmd.Flags().String("squash", "", "use autosquash formatted message to squash specified commit")
 	commitCmd.Flags().Bool("status", false, "include status in commit message template")
 	commitCmd.Flags().StringP("template", "t", "", "use specified template file")
-	commitCmd.Flags().StringSlice("trailer", []string{}, "add custom trailer(s)")
+	commitCmd.Flags().StringSlice("trailer", nil, "add custom trailer(s)")
 	commitCmd.Flags().StringP("untracked-files", "u", "", "show untracked files")
 	commitCmd.Flags().BoolP("verbose", "v", false, "show diff in commit message template")
 	rootCmd.AddCommand(commitCmd)

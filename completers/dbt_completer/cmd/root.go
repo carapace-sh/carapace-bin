@@ -66,7 +66,7 @@ func addProjectDirFlag(cmd *cobra.Command) {
 }
 
 func addModelsFlag(cmd *cobra.Command) {
-	cmd.Flags().StringSliceP("models", "m", []string{}, "Specify the nodes to include")
+	cmd.Flags().StringSliceP("models", "m", nil, "Specify the nodes to include")
 
 	cmd.Flag("models").Nargs = -1
 
@@ -86,8 +86,8 @@ func addProfileFlag(cmd *cobra.Command) {
 }
 
 func addSelectionFlags(cmd *cobra.Command) {
-	cmd.Flags().StringSlice("exclude", []string{}, "Specify the models to exclude")
-	cmd.Flags().StringSliceP("select", "s", []string{}, "Specify the nodes to include")
+	cmd.Flags().StringSlice("exclude", nil, "Specify the models to exclude")
+	cmd.Flags().StringSliceP("select", "s", nil, "Specify the nodes to include")
 
 	cmd.Flag("exclude").Nargs = -1
 	cmd.Flag("select").Nargs = -1

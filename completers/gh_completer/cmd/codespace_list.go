@@ -18,7 +18,7 @@ func init() {
 	carapace.Gen(codespace_listCmd).Standalone()
 
 	codespace_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	codespace_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	codespace_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	codespace_listCmd.Flags().StringP("limit", "L", "", "Maximum number of codespaces to list")
 	codespace_listCmd.Flags().StringP("org", "o", "", "The `login` handle of the organization to list codespaces for (admin-only)")
 	codespace_listCmd.Flags().StringP("repo", "R", "", "Repository name with owner: user/repo")

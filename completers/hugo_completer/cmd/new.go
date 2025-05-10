@@ -22,7 +22,7 @@ func init() {
 	newCmd.Flags().Bool("cleanDestinationDir", false, "remove files from destination not found in static directories")
 	newCmd.Flags().StringP("contentDir", "c", "", "filesystem path to content directory")
 	newCmd.Flags().StringP("destination", "d", "", "filesystem path to write files to")
-	newCmd.Flags().StringSlice("disableKinds", []string{}, "disable different kind of pages (home, RSS etc.)")
+	newCmd.Flags().StringSlice("disableKinds", nil, "disable different kind of pages (home, RSS etc.)")
 	newCmd.Flags().String("editor", "", "edit new content with this editor, if provided")
 	newCmd.Flags().Bool("enableGitInfo", false, "add Git revision, date and author info to the pages")
 	newCmd.Flags().Bool("forceSyncStatic", false, "copy all files when static is changed.")
@@ -42,7 +42,7 @@ func init() {
 	newCmd.Flags().String("profile-mutex", "", "write Mutex profile to `file`")
 	newCmd.Flags().Bool("templateMetrics", false, "display metrics about template executions")
 	newCmd.Flags().Bool("templateMetricsHints", false, "calculate some improvement hints when combined with --templateMetrics")
-	newCmd.Flags().StringSliceP("theme", "t", []string{}, "themes to use (located in /themes/THEMENAME/)")
+	newCmd.Flags().StringSliceP("theme", "t", nil, "themes to use (located in /themes/THEMENAME/)")
 	newCmd.Flags().String("trace", "", "write trace to `file` (not useful in general)")
 	rootCmd.AddCommand(newCmd)
 

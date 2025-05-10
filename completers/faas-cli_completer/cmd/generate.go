@@ -15,7 +15,7 @@ var generateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(generateCmd).Standalone()
 
-	generateCmd.Flags().StringArray("annotation", []string{}, "Any annotations you want to add (to store functions only)")
+	generateCmd.Flags().StringArray("annotation", nil, "Any annotations you want to add (to store functions only)")
 	generateCmd.Flags().String("api", "openfaas.com/v1", "CRD API version e.g openfaas.com/v1, serving.knative.dev/v1")
 	generateCmd.Flags().String("arch", "x86_64", "Desired image arch. (Default x86_64)")
 	generateCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")

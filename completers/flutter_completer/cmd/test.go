@@ -18,7 +18,7 @@ func init() {
 	testCmd.Flags().StringP("concurrency", "j", "", "The number of concurrent test processes to run.")
 	testCmd.Flags().Bool("coverage", false, "Whether to collect coverage information.")
 	testCmd.Flags().String("coverage-path", "", "Where to store coverage information (if coverage is enabled).")
-	testCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	testCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	testCmd.Flags().String("dds-port", "", "Dart Development Service (DDS) will be bound to the provided port.")
 	testCmd.Flags().String("device-user", "", "Identifier number for a user or work profile on Android only.")
 	testCmd.Flags().BoolP("exclude-tags", "x", false, "Run only tests that do not have the specified tags.")

@@ -19,7 +19,7 @@ func init() {
 	set_selectorCmd.Flags().Bool("allow-missing-template-keys", false, "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.")
 	set_selectorCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	set_selectorCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
-	set_selectorCmd.Flags().StringSliceP("filename", "f", []string{}, "identifying the resource.")
+	set_selectorCmd.Flags().StringSliceP("filename", "f", nil, "identifying the resource.")
 	set_selectorCmd.Flags().Bool("local", false, "If true, annotation will NOT contact api-server but run locally.")
 	set_selectorCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	set_selectorCmd.Flags().Bool("record", false, "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.")

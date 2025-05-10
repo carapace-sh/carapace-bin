@@ -33,10 +33,10 @@ func init() {
 	rootCmd.Flags().String("log-destination", "", "Destination of log messages")
 	rootCmd.Flags().String("log-fmt", "", "Log format to use: 'console', 'text', or 'json'")
 	rootCmd.Flags().String("log-level", "", "Log level to use: 'disabled', 'trace', 'debug', 'info', 'warn', 'error', or 'fatal'")
-	rootCmd.Flags().StringSlice("no-tags", []string{}, "Filter stacks that do not have the given tags")
+	rootCmd.Flags().StringSlice("no-tags", nil, "Filter stacks that do not have the given tags")
 	rootCmd.Flags().Bool("quiet", false, "Disable output")
-	rootCmd.Flags().StringSlice("tags", []string{}, "Filter stacks by tags. Use \":\" for logical AND and \",\" for logical OR. Example: --tags app:prod filters stacks containing tag \"app\" AND \"prod\". If multiple --tags are provided, an OR expression is created. Example: \"--tags a --tags b\" is the same as \"--tags a,b\"")
-	rootCmd.Flags().StringSliceP("verbose", "v", []string{}, "Increase verboseness of output")
+	rootCmd.Flags().StringSlice("tags", nil, "Filter stacks by tags. Use \":\" for logical AND and \",\" for logical OR. Example: --tags app:prod filters stacks containing tag \"app\" AND \"prod\". If multiple --tags are provided, an OR expression is created. Example: \"--tags a --tags b\" is the same as \"--tags a,b\"")
+	rootCmd.Flags().StringSliceP("verbose", "v", nil, "Increase verboseness of output")
 	rootCmd.Flags().Bool("version", false, "Terramate version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

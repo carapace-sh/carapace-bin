@@ -14,6 +14,6 @@ var entity_tags_createCmd = &cobra.Command{
 func init() {
 	carapace.Gen(entity_tags_createCmd).Standalone()
 	entity_tags_createCmd.Flags().StringP("guid", "g", "", "the entity GUID to create tag values on")
-	entity_tags_createCmd.Flags().StringSliceP("tag", "t", []string{}, "the tag names to add to the entity")
+	entity_tags_createCmd.Flags().StringSliceP("tag", "t", nil, "the tag names to add to the entity")
 	entity_tagsCmd.AddCommand(entity_tags_createCmd)
 }

@@ -21,7 +21,7 @@ func init() {
 	repo_listCmd.Flags().Bool("archived", false, "Show only archived repositories")
 	repo_listCmd.Flags().Bool("fork", false, "Show only forks")
 	repo_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	repo_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	repo_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	repo_listCmd.Flags().StringP("language", "l", "", "Filter by primary coding language")
 	repo_listCmd.Flags().StringP("limit", "L", "", "Maximum number of repositories to list")
 	repo_listCmd.Flags().Bool("no-archived", false, "Omit archived repositories")
@@ -29,7 +29,7 @@ func init() {
 	repo_listCmd.Flags().Bool("public", false, "Show only public repositories")
 	repo_listCmd.Flags().Bool("source", false, "Show only non-forks")
 	repo_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
-	repo_listCmd.Flags().StringSlice("topic", []string{}, "Filter by topic")
+	repo_listCmd.Flags().StringSlice("topic", nil, "Filter by topic")
 	repo_listCmd.Flags().String("visibility", "", "Filter by repository visibility: {public|private|internal}")
 	repo_listCmd.Flag("private").Hidden = true
 	repo_listCmd.Flag("public").Hidden = true

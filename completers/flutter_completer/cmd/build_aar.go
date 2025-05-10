@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(build_aarCmd).Standalone()
 
 	build_aarCmd.Flags().String("build-number", "", "An identifier used as an internal version number.")
-	build_aarCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	build_aarCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_aarCmd.Flags().Bool("debug", false, "Build a debug version of the current project.")
 	build_aarCmd.Flags().Bool("flavor", false, "Build a custom app flavor as defined by platform-specific build setup.")
 	build_aarCmd.Flags().BoolP("help", "h", false, "Print this usage information.")

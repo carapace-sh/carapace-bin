@@ -35,7 +35,7 @@ func init() {
 	)
 
 	rootCmd.PersistentFlags().String("as", "", "Username to impersonate for the operation. User could be a regular user or a service account in a namespace.")
-	rootCmd.PersistentFlags().StringSlice("as-group", []string{}, "Group to impersonate for the operation, this flag can be repeated to specify multiple groups.")
+	rootCmd.PersistentFlags().StringSlice("as-group", nil, "Group to impersonate for the operation, this flag can be repeated to specify multiple groups.")
 	rootCmd.PersistentFlags().String("as-uid", "", "UID to impersonate for the operation.")
 	rootCmd.PersistentFlags().String("cache-dir", "", "Default cache directory")
 	rootCmd.PersistentFlags().String("certificate-authority", "", "Path to a cert file for the certificate authority")
