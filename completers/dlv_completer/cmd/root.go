@@ -33,7 +33,7 @@ func init() {
 	rootCmd.PersistentFlags().String("log-dest", "", "Writes logs to the specified file or file descriptor (see 'dlv help log').")
 	rootCmd.PersistentFlags().String("log-output", "", "Comma separated list of components that should produce debug output (see 'dlv help log')")
 	rootCmd.PersistentFlags().Bool("only-same-user", true, "Only connections from the same user that started this instance of Delve are allowed to connect.")
-	rootCmd.PersistentFlags().StringArrayP("redirect", "r", []string{}, "Specifies redirect rules for target process (see 'dlv help redirect')")
+	rootCmd.PersistentFlags().StringArrayP("redirect", "r", nil, "Specifies redirect rules for target process (see 'dlv help redirect')")
 	rootCmd.PersistentFlags().String("wd", "", "Working directory for running the program.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

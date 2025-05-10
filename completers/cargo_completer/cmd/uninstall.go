@@ -16,9 +16,9 @@ var uninstallCmd = &cobra.Command{
 func init() {
 	carapace.Gen(uninstallCmd).Standalone()
 
-	uninstallCmd.Flags().StringSlice("bin", []string{}, "Only uninstall the binary NAME")
+	uninstallCmd.Flags().StringSlice("bin", nil, "Only uninstall the binary NAME")
 	uninstallCmd.Flags().BoolP("help", "h", false, "Print help")
-	uninstallCmd.Flags().StringSliceP("package", "p", []string{}, "Package to uninstall")
+	uninstallCmd.Flags().StringSliceP("package", "p", nil, "Package to uninstall")
 	uninstallCmd.Flags().String("root", "", "Directory to uninstall packages from")
 	rootCmd.AddCommand(uninstallCmd)
 

@@ -18,7 +18,7 @@ func add_legacy_flags(cmd *cobra.Command) {
 	cmd.Flags().Bool("hi", false, "show live configuration (default: False)")
 	cmd.MarkFlagsMutuallyExclusive("help-ini", "hi")
 	cmd.Flags().Bool("alwayscopy", false, "deprecated use VIRTUALENV_ALWAYS_COPY=1, override always copy setting to True in all envs (default: False)")
-	cmd.Flags().StringArray("force-dep", []string{}, "Forces a certain version of one of the dependencies when configuring the virtual environment. REQ Examples 'pytest<6.1' or 'django>=2.2'. (default: [])")
+	cmd.Flags().StringArray("force-dep", nil, "Forces a certain version of one of the dependencies when configuring the virtual environment. REQ Examples 'pytest<6.1' or 'django>=2.2'. (default: [])")
 	cmd.Flags().BoolP("listenvs", "l", false, "show list of test environments (with description if verbose) (default: False)")
 	cmd.Flags().BoolP("listenvs-all", "a", false, "show list of all defined environments (with description if verbose) (default: False)")
 	cmd.Flags().StringP("parallel", "p", "0", "run tox environments in parallel, the argument controls limit: all, auto - cpu count, some positive number, zero is turn off (default: 0)")

@@ -32,7 +32,7 @@ func init() {
 	rootCmd.Flags().Bool("no-show-cursor", false, "don't show the cursor on the mirrored screen")
 	rootCmd.Flags().Bool("no-verbose", false, "disable debug logging (default)")
 	rootCmd.Flags().StringP("region", "r", "", "capture custom region R")
-	rootCmd.Flags().StringSliceP("scaling", "s", []string{}, "scaling mode")
+	rootCmd.Flags().StringSliceP("scaling", "s", nil, "scaling mode")
 	rootCmd.Flags().BoolP("show-cursor", "c", false, "show the cursor on the mirrored screen (default)")
 	rootCmd.Flags().BoolP("stream", "S", false, "accept a stream of additional options on stdin")
 	rootCmd.Flags().Bool("toggle-freeze", false, "toggle freeze state of screen capture")

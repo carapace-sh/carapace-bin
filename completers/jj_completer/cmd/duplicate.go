@@ -15,12 +15,12 @@ var duplicateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(duplicateCmd).Standalone()
 
-	duplicateCmd.Flags().StringArray("after", []string{}, "Alias for --insert-after")
-	duplicateCmd.Flags().StringArray("before", []string{}, "Alias for --insert-before")
+	duplicateCmd.Flags().StringArray("after", nil, "Alias for --insert-after")
+	duplicateCmd.Flags().StringArray("before", nil, "Alias for --insert-before")
 	duplicateCmd.Flags().StringArrayP("destination", "d", []string{"@"}, "The revision(s) to duplicate onto (can be repeated to create a merge commit)")
 	duplicateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	duplicateCmd.Flags().StringArrayP("insert-after", "A", []string{}, "The revision(s) to insert after (can be repeated to create a merge commit)")
-	duplicateCmd.Flags().StringArrayP("insert-before", "B", []string{}, "The revision(s) to insert before (can be repeated to create a merge commit)")
+	duplicateCmd.Flags().StringArrayP("insert-after", "A", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
+	duplicateCmd.Flags().StringArrayP("insert-before", "B", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
 	rootCmd.AddCommand(duplicateCmd)
 
 	duplicateCmd.MarkFlagsMutuallyExclusive(

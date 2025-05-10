@@ -24,7 +24,7 @@ func init() {
 	rootCmd.Flags().StringS("E", "E", "", "set entry symbol name")
 	rootCmd.Flags().StringS("H", "H", "", "set header type")
 	rootCmd.Flags().StringS("I", "I", "", "use linker as ELF dynamic linker")
-	rootCmd.Flags().StringSliceS("L", "L", []string{}, "add specified directory to library path")
+	rootCmd.Flags().StringSliceS("L", "L", nil, "add specified directory to library path")
 	rootCmd.Flags().StringS("R", "R", "", "set address rounding quantum (default -1)")
 	rootCmd.Flags().StringS("T", "T", "", "set text segment address (default -1)")
 	rootCmd.Flags().StringS("X", "X", "", "add string value definition of the form importpath.name=value")

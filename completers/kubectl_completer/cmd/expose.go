@@ -21,7 +21,7 @@ func init() {
 	exposeCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	exposeCmd.Flags().String("external-ip", "", "Additional external IP address (not managed by Kubernetes) to accept for the service. If this IP is routed to a node, the service can be accessed by this IP in addition to its generated service IP.")
 	exposeCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
-	exposeCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to expose a service")
+	exposeCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files identifying the resource to expose a service")
 	exposeCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	exposeCmd.Flags().StringP("labels", "l", "", "Labels to apply to the service created by this call.")
 	exposeCmd.Flags().String("load-balancer-ip", "", "IP to assign to the LoadBalancer. If empty, an ephemeral IP will be created and used (cloud-provider specific).")

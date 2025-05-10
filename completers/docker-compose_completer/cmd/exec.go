@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(execCmd).Standalone()
 
 	execCmd.Flags().BoolP("detach", "d", false, "Detached mode: Run command in the background")
-	execCmd.Flags().StringSliceP("env", "e", []string{}, "Set environment variables")
+	execCmd.Flags().StringSliceP("env", "e", nil, "Set environment variables")
 	execCmd.Flags().String("index", "", "Index of the container if service has multiple replicas")
 	execCmd.Flags().BoolP("interactive", "i", false, "Keep STDIN open even if not attached")
 	execCmd.Flags().BoolP("no-TTY", "T", false, "Disable pseudo-TTY allocation. By default `docker compose exec` allocates a TTY.")

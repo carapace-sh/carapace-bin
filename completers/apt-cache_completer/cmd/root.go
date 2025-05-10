@@ -36,7 +36,7 @@ func init() {
 	rootCmd.Flags().Bool("no-recommends", false, "Omit recommends")
 	rootCmd.Flags().Bool("no-replaces", false, "Omit replaces")
 	rootCmd.Flags().Bool("no-suggests", false, "Omit suggests")
-	rootCmd.Flags().StringArrayP("option", "o", []string{}, "Set a Configuration Option")
+	rootCmd.Flags().StringArrayP("option", "o", nil, "Set a Configuration Option")
 	rootCmd.Flags().StringP("pkg-cache", "p", "", "Select the file to store the package cache")
 	rootCmd.Flags().BoolP("quiet", "q", false, "Quiet")
 	rootCmd.Flags().Bool("recurse", false, "Make depends and rdepends recursive so that all packages mentioned are printed once")

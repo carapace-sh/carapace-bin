@@ -14,6 +14,6 @@ var experimental_partialEvalCmd = &cobra.Command{
 func init() {
 	carapace.Gen(experimental_partialEvalCmd).Standalone()
 
-	experimental_partialEvalCmd.Flags().StringSliceP("global", "g", []string{}, "set/override globals. eg.: --global name=<expr>")
+	experimental_partialEvalCmd.Flags().StringSliceP("global", "g", nil, "set/override globals. eg.: --global name=<expr>")
 	experimentalCmd.AddCommand(experimental_partialEvalCmd)
 }

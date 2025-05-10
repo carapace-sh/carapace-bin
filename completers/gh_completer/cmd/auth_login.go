@@ -19,7 +19,7 @@ func init() {
 	auth_loginCmd.Flags().StringP("git-protocol", "p", "", "The protocol to use for git operations on this host: {ssh|https}")
 	auth_loginCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitHub instance to authenticate with")
 	auth_loginCmd.Flags().Bool("insecure-storage", false, "Save authentication credentials in plain text instead of credential store")
-	auth_loginCmd.Flags().StringSliceP("scopes", "s", []string{}, "Additional authentication scopes to request")
+	auth_loginCmd.Flags().StringSliceP("scopes", "s", nil, "Additional authentication scopes to request")
 	auth_loginCmd.Flags().Bool("secure-storage", false, "Save authentication credentials in secure credential store")
 	auth_loginCmd.Flags().Bool("skip-ssh-key", false, "Skip generate/upload SSH key prompt")
 	auth_loginCmd.Flags().BoolP("web", "w", false, "Open a browser to authenticate")

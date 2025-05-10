@@ -20,7 +20,7 @@ func init() {
 	swarm_initCmd.Flags().Duration("cert-expiry", 0, "Validity period for node certificates (ns|us|ms|s|m|h)")
 	swarm_initCmd.Flags().String("data-path-addr", "", "Address or interface to use for data path traffic (format: \"<ip|interface>\")")
 	swarm_initCmd.Flags().Uint32("data-path-port", 0, "Port number to use for data path traffic (1024 - 49151). If no value is set or is set to 0, the default port (4789) is used.")
-	swarm_initCmd.Flags().StringSlice("default-addr-pool", []string{}, "default address pool in CIDR format")
+	swarm_initCmd.Flags().StringSlice("default-addr-pool", nil, "default address pool in CIDR format")
 	swarm_initCmd.Flags().Uint32("default-addr-pool-mask-length", 0, "default address pool subnet mask length")
 	swarm_initCmd.Flags().Duration("dispatcher-heartbeat", 0, "Dispatcher heartbeat period (ns|us|ms|s|m|h)")
 	swarm_initCmd.Flags().String("external-ca", "", "Specifications of one or more certificate signing endpoints")

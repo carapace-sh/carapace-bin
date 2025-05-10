@@ -15,7 +15,7 @@ var assembleCmd = &cobra.Command{
 func init() {
 	carapace.Gen(assembleCmd).Standalone()
 
-	assembleCmd.Flags().StringArray("DartDefines", []string{}, "Additional key-value pairs that will be available as constants.")
+	assembleCmd.Flags().StringArray("DartDefines", nil, "Additional key-value pairs that will be available as constants.")
 	assembleCmd.Flags().String("build-inputs", "", "A file path where a newline-separated file containing all inputs used will be written after a build.")
 	assembleCmd.Flags().String("build-outputs", "", "A file path where a newline-separated file containing all outputs created will be written after a build.")
 	assembleCmd.Flags().StringP("define", "d", "", "Allows passing configuration to a target, as in \"--define=target=key=value\".")

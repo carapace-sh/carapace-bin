@@ -22,7 +22,7 @@ func init() {
 	secret_setCmd.Flags().StringP("env-file", "f", "", "Load secret names and values from a dotenv-formatted `file`")
 	secret_setCmd.Flags().Bool("no-store", false, "Print the encrypted, base64-encoded value instead of storing it on GitHub")
 	secret_setCmd.Flags().StringP("org", "o", "", "Set `organization` secret")
-	secret_setCmd.Flags().StringSliceP("repos", "r", []string{}, "List of `repositories` that can access an organization or user secret")
+	secret_setCmd.Flags().StringSliceP("repos", "r", nil, "List of `repositories` that can access an organization or user secret")
 	secret_setCmd.Flags().BoolP("user", "u", false, "Set a secret for your user")
 	secret_setCmd.Flags().StringP("visibility", "v", "", "Set visibility for an organization secret: {all|private|selected}")
 	secretCmd.AddCommand(secret_setCmd)

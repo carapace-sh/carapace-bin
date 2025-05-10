@@ -17,7 +17,7 @@ func init() {
 	build_xcarchiveCmd.Flags().Bool("analyze-size", false, "Produce additional profile information for artifact output size.")
 	build_xcarchiveCmd.Flags().String("build-name", "", "A \"x.y.z\" string used as the version number shown to users.")
 	build_xcarchiveCmd.Flags().String("build-number", "", "An identifier used as an internal version number.")
-	build_xcarchiveCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	build_xcarchiveCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_xcarchiveCmd.Flags().Bool("debug", false, "Build a debug version of your app.")
 	build_xcarchiveCmd.Flags().String("export-options-plist", "", "Optionally export an IPA with these options.")
 	build_xcarchiveCmd.Flags().Bool("flavor", false, "Build a custom app flavor as defined by platform-specific build setup.")

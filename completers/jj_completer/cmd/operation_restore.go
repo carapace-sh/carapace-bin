@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(operation_restoreCmd).Standalone()
 
 	operation_restoreCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	operation_restoreCmd.Flags().StringSlice("what", []string{}, "What portions of the local state to restore (can be repeated)")
+	operation_restoreCmd.Flags().StringSlice("what", nil, "What portions of the local state to restore (can be repeated)")
 	operationCmd.AddCommand(operation_restoreCmd)
 
 	carapace.Gen(operation_restoreCmd).FlagCompletion(carapace.ActionMap{

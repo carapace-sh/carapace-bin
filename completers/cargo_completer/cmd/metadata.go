@@ -16,8 +16,8 @@ func init() {
 	carapace.Gen(metadataCmd).Standalone()
 
 	metadataCmd.Flags().Bool("all-features", false, "Activate all available features")
-	metadataCmd.Flags().StringSliceP("features", "F", []string{}, "Space or comma separated list of features to activate")
-	metadataCmd.Flags().StringSlice("filter-platform", []string{}, "Only include resolve dependencies matching the given target-triple")
+	metadataCmd.Flags().StringSliceP("features", "F", nil, "Space or comma separated list of features to activate")
+	metadataCmd.Flags().StringSlice("filter-platform", nil, "Only include resolve dependencies matching the given target-triple")
 	metadataCmd.Flags().String("format-version", "", "Format version")
 	metadataCmd.Flags().BoolP("help", "h", false, "Print help")
 	metadataCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")

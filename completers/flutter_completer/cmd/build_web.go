@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(build_webCmd).Standalone()
 
 	build_webCmd.Flags().Bool("csp", false, "Disable dynamic generation of code in the generated output.")
-	build_webCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	build_webCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_webCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	build_webCmd.Flags().Bool("native-null-assertions", false, "Enables additional runtime null checks in web applications.")
 	build_webCmd.Flags().Bool("no-native-null-assertions", false, "Disables additional runtime null checks in web applications.")

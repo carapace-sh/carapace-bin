@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(repo_autolink_viewCmd).Standalone()
 
 	repo_autolink_viewCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	repo_autolink_viewCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	repo_autolink_viewCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	repo_autolink_viewCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	repo_autolinkCmd.AddCommand(repo_autolink_viewCmd)
 

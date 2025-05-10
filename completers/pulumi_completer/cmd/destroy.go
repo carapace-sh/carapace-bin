@@ -32,7 +32,7 @@ func init() {
 	destroyCmd.PersistentFlags().StringP("stack", "s", "", "The name of the stack to operate on. Defaults to the current stack")
 	destroyCmd.PersistentFlags().Bool("suppress-outputs", false, "Suppress display of stack outputs (in case they contain sensitive values)")
 	destroyCmd.PersistentFlags().String("suppress-permalink", "", "Suppress display of the state permalink")
-	destroyCmd.PersistentFlags().StringArrayP("target", "t", []string{}, "Specify a single resource URN to destroy. All resources necessary to destroy this target will also be destroyed. Multiple resources can be specified using: --target urn1 --target urn2. Wildcards (*, **) are also supported")
+	destroyCmd.PersistentFlags().StringArrayP("target", "t", nil, "Specify a single resource URN to destroy. All resources necessary to destroy this target will also be destroyed. Multiple resources can be specified using: --target urn1 --target urn2. Wildcards (*, **) are also supported")
 	destroyCmd.PersistentFlags().Bool("target-dependents", false, "Allows destroying of dependent targets discovered but not specified in --target list")
 	destroyCmd.PersistentFlags().BoolP("yes", "y", false, "Automatically approve and perform the destroy after previewing it")
 	destroyCmd.Flag("refresh").NoOptDefVal = "true"

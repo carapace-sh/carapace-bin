@@ -18,8 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringArrayS("e", "e", []string{}, "file(s) to load environment variables from (default .env), may be supplied more than once")
-	rootCmd.Flags().StringArrayS("f", "f", []string{}, "desired state file name(s), may be supplied more than once to merge state files")
+	rootCmd.Flags().StringArrayS("e", "e", nil, "file(s) to load environment variables from (default .env), may be supplied more than once")
+	rootCmd.Flags().StringArrayS("f", "f", nil, "desired state file name(s), may be supplied more than once to merge state files")
 	rootCmd.Flags().String("group", "", "limit execution to specific group of apps.")
 	rootCmd.Flags().String("target", "", "limit execution to specific app.")
 	rootCmd.Flags().Int("diff-context", -1, "number of lines of context to show around changes in helm diff output")

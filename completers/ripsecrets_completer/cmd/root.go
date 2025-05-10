@@ -18,7 +18,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringSlice("additional-pattern", []string{}, "Additional regex pattern used to find secrets")
+	rootCmd.Flags().StringSlice("additional-pattern", nil, "Additional regex pattern used to find secrets")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.Flags().Bool("install-pre-commit", false, "Install ripsecrets as a pre-commit hook")
 	rootCmd.Flags().Bool("only-matching", false, "Print only the matched (non-empty) parts of a matching line")

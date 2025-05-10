@@ -14,7 +14,7 @@ var compile_aotSnapshotCmd = &cobra.Command{
 func init() {
 	carapace.Gen(compile_aotSnapshotCmd).Standalone()
 
-	compile_aotSnapshotCmd.Flags().StringSliceP("define", "D", []string{}, "Define an environment declaration.")
+	compile_aotSnapshotCmd.Flags().StringSliceP("define", "D", nil, "Define an environment declaration.")
 	compile_aotSnapshotCmd.Flags().Bool("enable-asserts", false, "Enable assert statements.")
 	compile_aotSnapshotCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	compile_aotSnapshotCmd.Flags().Bool("no-sound-null-safety", false, "Do not respect the nullability of types at runtime.")

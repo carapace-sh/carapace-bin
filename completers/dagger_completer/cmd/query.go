@@ -20,7 +20,7 @@ func init() {
 	queryCmd.Flags().String("doc", "", "Read query from file (defaults to reading from stdin)")
 	queryCmd.PersistentFlags().Bool("focus", false, "Only show output for focused commands")
 	queryCmd.PersistentFlags().StringP("mod", "m", "", "Path to dagger.json config file for the module or a directory containing that file. Either local path (e.g. \"/path/to/some/dir\") or a github repo (e.g. \"github.com/dagger/dagger/path/to/some/subdir\")")
-	queryCmd.Flags().StringSlice("var", []string{}, "List of query variables, in key=value format")
+	queryCmd.Flags().StringSlice("var", nil, "List of query variables, in key=value format")
 	queryCmd.Flags().String("var-json", "", "Query variables in JSON format (overrides --var)")
 	rootCmd.AddCommand(queryCmd)
 

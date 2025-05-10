@@ -18,7 +18,7 @@ func init() {
 
 	repo_viewCmd.Flags().StringP("branch", "b", "", "View a specific branch of the repository")
 	repo_viewCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	repo_viewCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	repo_viewCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	repo_viewCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	repo_viewCmd.Flags().BoolP("web", "w", false, "Open a repository in the browser")
 	repoCmd.AddCommand(repo_viewCmd)

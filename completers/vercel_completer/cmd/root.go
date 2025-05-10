@@ -20,14 +20,14 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringSliceP("build-env", "b", []string{}, "Similar to `--env` but for build time only.")
+	rootCmd.Flags().StringSliceP("build-env", "b", nil, "Similar to `--env` but for build time only.")
 	rootCmd.Flags().BoolP("confirm", "c", false, "Confirm default options and skip questions")
 	rootCmd.Flags().BoolP("debug", "d", false, "Debug mode")
-	rootCmd.Flags().StringSliceP("env", "e", []string{}, "Include an env var during run time (e.g.: `-e KEY=value`). Can appear many times.")
+	rootCmd.Flags().StringSliceP("env", "e", nil, "Include an env var during run time (e.g.: `-e KEY=value`). Can appear many times.")
 	rootCmd.Flags().BoolP("force", "f", false, "Force a new deployment even if nothing has changed")
 	rootCmd.Flags().StringP("global-config", "Q", "", "Path to the global `.vercel` directory")
 	rootCmd.Flags().StringP("local-config", "A", "", "Path to the local `vercel.json` file")
-	rootCmd.Flags().StringSliceP("meta", "m", []string{}, "Add metadata for the deployment (e.g.: `-m KEY=value`). Can appear many times.")
+	rootCmd.Flags().StringSliceP("meta", "m", nil, "Add metadata for the deployment (e.g.: `-m KEY=value`). Can appear many times.")
 	rootCmd.Flags().BoolP("no-clipboard", "C", false, "Do not attempt to copy URL to clipboard")
 	rootCmd.Flags().BoolP("platform-version", "V", false, "Set the platform version to deploy to")
 	rootCmd.Flags().Bool("prod", false, "Create a production deployment")

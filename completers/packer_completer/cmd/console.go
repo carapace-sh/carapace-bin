@@ -15,7 +15,7 @@ var consoleCmd = &cobra.Command{
 func init() {
 	carapace.Gen(consoleCmd).Standalone()
 
-	consoleCmd.Flags().StringArrayS("var", "var", []string{}, "Variable for templates, can be used multiple times.")
+	consoleCmd.Flags().StringArrayS("var", "var", nil, "Variable for templates, can be used multiple times.")
 	consoleCmd.Flags().StringS("var-file", "var-file", "", "JSON or HCL2 file containing user variables.")
 	rootCmd.AddCommand(consoleCmd)
 

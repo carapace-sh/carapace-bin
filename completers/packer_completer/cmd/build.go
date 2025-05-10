@@ -24,7 +24,7 @@ func init() {
 	buildCmd.Flags().StringS("only", "only", "", "Build only the specified builds.")
 	buildCmd.Flags().StringS("parallel-builds", "parallel-builds", "", "Number of builds to run in parallel. 1 disables parallelization. 0 means no limit (Default: 0)")
 	buildCmd.Flags().BoolS("timestamp-ui", "timestamp-ui", false, "Enable prefixing of each ui output with an RFC3339 timestamp.")
-	buildCmd.Flags().StringArrayS("var", "var", []string{}, "Variable for templates, can be used multiple times.")
+	buildCmd.Flags().StringArrayS("var", "var", nil, "Variable for templates, can be used multiple times.")
 	buildCmd.Flags().StringS("var-file", "var-file", "", "JSON or HCL2 file containing user variables.")
 	rootCmd.AddCommand(buildCmd)
 

@@ -19,7 +19,7 @@ func init() {
 	validateCmd.Flags().BoolS("machine-readable", "machine-readable", false, "Produce machine-readable output.")
 	validateCmd.Flags().StringS("only", "only", "", "Validate only these builds.")
 	validateCmd.Flags().BoolS("syntax-only", "syntax-only", false, "Only check syntax. Do not verify config of the template.")
-	validateCmd.Flags().StringArrayS("var", "var", []string{}, "Variable for templates, can be used multiple times.")
+	validateCmd.Flags().StringArrayS("var", "var", nil, "Variable for templates, can be used multiple times.")
 	validateCmd.Flags().StringS("var-file", "var-file", "", "JSON or HCL2 file containing user variables.")
 	rootCmd.AddCommand(validateCmd)
 

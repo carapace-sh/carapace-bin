@@ -21,14 +21,14 @@ func init() {
 	carapace.Gen(work_editCmd).Standalone()
 	work_editCmd.Flags().SetInterspersed(false)
 
-	work_editCmd.Flags().StringArrayS("dropreplace", "dropreplace", []string{}, "drop a replacement")
-	work_editCmd.Flags().StringArrayS("dropuse", "dropuse", []string{}, "drop a use directive")
+	work_editCmd.Flags().StringArrayS("dropreplace", "dropreplace", nil, "drop a replacement")
+	work_editCmd.Flags().StringArrayS("dropuse", "dropuse", nil, "drop a use directive")
 	work_editCmd.Flags().BoolS("fmt", "fmt", false, "reformat the go.work file without making other changes")
 	work_editCmd.Flags().StringS("go", "go", "", "set the expected Go language version")
 	work_editCmd.Flags().BoolS("json", "json", false, "print the final go.work in JSON format")
 	work_editCmd.Flags().BoolS("print", "print", false, "print the final go.work in its text format")
-	work_editCmd.Flags().StringArrayS("replace", "replace", []string{}, "add a replacement")
-	work_editCmd.Flags().StringArrayS("use", "use", []string{}, "add a use directive")
+	work_editCmd.Flags().StringArrayS("replace", "replace", nil, "add a replacement")
+	work_editCmd.Flags().StringArrayS("use", "use", nil, "add a use directive")
 	workCmd.AddCommand(work_editCmd)
 
 	carapace.Gen(work_editCmd).FlagCompletion(carapace.ActionMap{

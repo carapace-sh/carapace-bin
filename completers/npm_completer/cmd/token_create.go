@@ -13,7 +13,7 @@ var token_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(token_createCmd).Standalone()
-	token_createCmd.Flags().StringArray("cidr", []string{}, "addresses used to limit access")
+	token_createCmd.Flags().StringArray("cidr", nil, "addresses used to limit access")
 	token_createCmd.Flags().Bool("read-only", false, "mark token as unable to publish")
 
 	tokenCmd.AddCommand(token_createCmd)

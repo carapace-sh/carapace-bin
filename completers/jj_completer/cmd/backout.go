@@ -15,7 +15,7 @@ var backoutCmd = &cobra.Command{
 func init() {
 	carapace.Gen(backoutCmd).Standalone()
 
-	backoutCmd.Flags().StringSliceP("destination", "d", []string{}, "The revision to apply the reverse changes on top of")
+	backoutCmd.Flags().StringSliceP("destination", "d", nil, "The revision to apply the reverse changes on top of")
 	backoutCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	backoutCmd.Flags().StringP("revisions", "r", "", "The revision to apply the reverse of")
 	rootCmd.AddCommand(backoutCmd)

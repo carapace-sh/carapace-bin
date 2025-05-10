@@ -34,7 +34,7 @@ func init() {
 	rootCmd.PersistentFlags().Bool("debug", false, "enable verbose output")
 	rootCmd.Flags().BoolP("help", "h", false, "help for helm")
 	rootCmd.PersistentFlags().String("kube-apiserver", "", "the address and the port for the Kubernetes API server")
-	rootCmd.PersistentFlags().StringArray("kube-as-group", []string{}, "group to impersonate for the operation, this flag can be repeated to specify multiple groups.")
+	rootCmd.PersistentFlags().StringArray("kube-as-group", nil, "group to impersonate for the operation, this flag can be repeated to specify multiple groups.")
 	rootCmd.PersistentFlags().String("kube-as-user", "", "username to impersonate for the operation")
 	rootCmd.PersistentFlags().String("kube-ca-file", "", "the certificate authority file for the Kubernetes API server connection")
 	rootCmd.PersistentFlags().String("kube-context", "", "name of the kubeconfig context to use")
@@ -54,7 +54,7 @@ func init() {
 	rootCmd.PersistentFlags().Bool("skip-log-headers", false, "If true, avoid headers when opening log files")
 	rootCmd.PersistentFlags().Int("stderrthreshold", 2, "logs at or above this threshold go to stderr")
 	rootCmd.PersistentFlags().IntP("v", "v", 0, "number for the log level verbosity")
-	rootCmd.PersistentFlags().StringSlice("vmodule", []string{}, "comma-separated list of pattern=N settings for file-filtered logging")
+	rootCmd.PersistentFlags().StringSlice("vmodule", nil, "comma-separated list of pattern=N settings for file-filtered logging")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"kube-as-group": os.ActionGroups(),

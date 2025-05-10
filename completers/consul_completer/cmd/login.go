@@ -17,7 +17,7 @@ func init() {
 	addServerFlags(loginCmd)
 
 	loginCmd.Flags().String("bearer-token-file", "", "Path to a file containing a secret bearer token to use with this auth method.")
-	loginCmd.Flags().StringArray("meta", []string{}, "Metadata to set on the token, formatted as key=value.")
+	loginCmd.Flags().StringArray("meta", nil, "Metadata to set on the token, formatted as key=value.")
 	loginCmd.Flags().String("method", "", "Name of the auth method to login to.")
 	loginCmd.Flags().String("namespace", "", "Specifies the namespace to query.")
 	loginCmd.Flags().String("token-sink-file", "", "The most recent token's SecretID is kept up to date in this file.")

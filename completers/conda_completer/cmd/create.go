@@ -21,7 +21,7 @@ func init() {
 	createCmd.Flags().Bool("dev", false, "Use `sys.executable -m conda` in wrapper scripts instead of CONDA_EXE.")
 	createCmd.Flags().Bool("download-only", false, "Solve an environment and ensure package caches are populated")
 	createCmd.Flags().BoolP("dry-run", "d", false, "Only display what would have been done.")
-	createCmd.Flags().StringArray("file", []string{}, "Read package versions from the given file.")
+	createCmd.Flags().StringArray("file", nil, "Read package versions from the given file.")
 	createCmd.Flags().BoolP("help", "h", false, "Show this help message and exit.")
 	createCmd.Flags().BoolP("insecure", "k", false, "Allow conda to perform \"insecure\" SSL connections and transfers.")
 	createCmd.Flags().Bool("json", false, "Report all output as json.")

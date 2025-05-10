@@ -29,7 +29,7 @@ func init() {
 	rootCmd.PersistentFlags().BoolP("help", "h", false, "show this help message and exit")
 	rootCmd.PersistentFlags().String("no-provision", "", "do not perform provision, but fail and if a path was provided write provision metadata as JSON to it (default: False)")
 	rootCmd.PersistentFlags().Bool("no-recreate-provision", false, "if recreate is set do not recreate provision tox environment (default: False)")
-	rootCmd.PersistentFlags().StringArrayP("override", "x", []string{}, "configuration override(s), e.g., -x testenv:pypy3.ignore_errors=True (default: [])")
+	rootCmd.PersistentFlags().StringArrayP("override", "x", nil, "configuration override(s), e.g., -x testenv:pypy3.ignore_errors=True (default: [])")
 	rootCmd.PersistentFlags().CountP("quiet", "q", "decrease verbosity (default: 0)")
 	rootCmd.PersistentFlags().BoolP("recreate", "r", false, "recreate the tox environments (default: False)")
 	rootCmd.PersistentFlags().String("root", "", "project root directory (if not specified will be the folder of the config file) (default: None)")
@@ -53,7 +53,7 @@ func init() {
 
 // addCommonSubcommandFlags defines the flags on a tox subcommand that are common across a majority of subcommands.
 func addCommonSubcommandFlags(cmd *cobra.Command) {
-	cmd.Flags().StringArray("discover", []string{}, "for Python discovery first try these Python executables (default: [])")
+	cmd.Flags().StringArray("discover", nil, "for Python discovery first try these Python executables (default: [])")
 	cmd.Flags().String("hashseed", "", "set PYTHONHASHSEED to SEED before running commands. Defaults to a random integer in the range [1, 4294967295] ([1, 1024] on Windows). Passing 'notset' suppresses this behavior. (default: 264197440)")
 	cmd.Flags().Bool("list-dependencies", false, "list the dependencies installed during environment setup (default: False)")
 	cmd.Flags().Bool("no-list-dependencies", false, "never list the dependencies installed during environment setup (default: True)")
@@ -77,8 +77,8 @@ func addPkgOnlyFlags(cmd *cobra.Command) {
 
 // addEnvFilteringFlags adds the -m, -f, and --skip-env flags
 func addEnvFilteringFlags(cmd *cobra.Command) {
-	cmd.Flags().StringArrayS("f", "f", []string{}, "factors to evaluate (passing multiple factors means 'AND', passing this option multiple times means 'OR') (default: [])")
-	cmd.Flags().StringArrayS("m", "m", []string{}, "labels to evaluate (default: [])")
+	cmd.Flags().StringArrayS("f", "f", nil, "factors to evaluate (passing multiple factors means 'AND', passing this option multiple times means 'OR') (default: [])")
+	cmd.Flags().StringArrayS("m", "m", nil, "labels to evaluate (default: [])")
 	cmd.Flags().String("skip-env", "", "exclude all environments selected that match this regular expression (default: '')")
 
 	cmd.Flag("f").Nargs = -1

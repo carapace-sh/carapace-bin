@@ -45,7 +45,7 @@ func init() {
 	rootCmd.PersistentFlags().Int("stderrthreshold", 2, "logs at or above this threshold go to stderr")
 	rootCmd.PersistentFlags().String("user", "", "Specifies the user executing the operation. Useful for auditing operations executed by 3rd party tools. Defaults to the operating system username.")
 	rootCmd.PersistentFlags().IntP("v", "v", 0, "number for the log level verbosity")
-	rootCmd.PersistentFlags().StringArray("vmodule", []string{}, "comma-separated list of pattern=N settings for file-filtered logging")
+	rootCmd.PersistentFlags().StringArray("vmodule", nil, "comma-separated list of pattern=N settings for file-filtered logging")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"log_dir":  carapace.ActionDirectories(),

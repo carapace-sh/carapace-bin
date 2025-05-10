@@ -14,7 +14,7 @@ var newCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(newCmd).Standalone()
-	newCmd.PersistentFlags().StringArrayP("config", "c", []string{}, "Config to save")
+	newCmd.PersistentFlags().StringArrayP("config", "c", nil, "Config to save")
 	newCmd.PersistentFlags().Bool("config-path", false, "Config keys contain a path to a property in a map or list to set")
 	newCmd.PersistentFlags().StringP("description", "d", "", "The project description; if not specified, a prompt will request it")
 	newCmd.PersistentFlags().String("dir", "", "The location to place the generated project; if not specified, the current directory is used")

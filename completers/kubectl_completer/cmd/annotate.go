@@ -22,7 +22,7 @@ func init() {
 	annotateCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	annotateCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
 	annotateCmd.Flags().String("field-selector", "", "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.")
-	annotateCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to update the annotation")
+	annotateCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files identifying the resource to update the annotation")
 	annotateCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	annotateCmd.Flags().Bool("list", false, "If true, display the annotations for a given resource.")
 	annotateCmd.Flags().Bool("local", false, "If true, annotation will NOT contact api-server but run locally.")

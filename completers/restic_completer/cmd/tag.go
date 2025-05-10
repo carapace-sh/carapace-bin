@@ -14,12 +14,12 @@ var tagCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(tagCmd).Standalone()
-	tagCmd.Flags().StringSlice("add", []string{}, "`tags` which will be added to the existing tags in the format `tag[,tag,...]` (can be given multiple times)")
-	tagCmd.Flags().StringArrayP("host", "H", []string{}, "only consider snapshots for this `host`, when no snapshot ID is given (can be specified multiple times)")
-	tagCmd.Flags().StringArray("path", []string{}, "only consider snapshots which include this (absolute) `path`, when no snapshot-ID is given")
-	tagCmd.Flags().StringSlice("remove", []string{}, "`tags` which will be removed from the existing tags in the format `tag[,tag,...]` (can be given multiple times)")
-	tagCmd.Flags().StringSlice("set", []string{}, "`tags` which will replace the existing tags in the format `tag[,tag,...]` (can be given multiple times)")
-	tagCmd.Flags().StringSlice("tag", []string{}, "only consider snapshots which include this `taglist`, when no snapshot-ID is given")
+	tagCmd.Flags().StringSlice("add", nil, "`tags` which will be added to the existing tags in the format `tag[,tag,...]` (can be given multiple times)")
+	tagCmd.Flags().StringArrayP("host", "H", nil, "only consider snapshots for this `host`, when no snapshot ID is given (can be specified multiple times)")
+	tagCmd.Flags().StringArray("path", nil, "only consider snapshots which include this (absolute) `path`, when no snapshot-ID is given")
+	tagCmd.Flags().StringSlice("remove", nil, "`tags` which will be removed from the existing tags in the format `tag[,tag,...]` (can be given multiple times)")
+	tagCmd.Flags().StringSlice("set", nil, "`tags` which will replace the existing tags in the format `tag[,tag,...]` (can be given multiple times)")
+	tagCmd.Flags().StringSlice("tag", nil, "only consider snapshots which include this `taglist`, when no snapshot-ID is given")
 	rootCmd.AddCommand(tagCmd)
 
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{

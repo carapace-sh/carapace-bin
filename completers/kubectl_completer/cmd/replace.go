@@ -20,7 +20,7 @@ func init() {
 	replaceCmd.Flags().String("cascade", "", "Must be \"background\", \"orphan\", or \"foreground\". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.")
 	replaceCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	replaceCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
-	replaceCmd.Flags().StringSliceP("filename", "f", []string{}, "The files that contain the configurations to replace.")
+	replaceCmd.Flags().StringSliceP("filename", "f", nil, "The files that contain the configurations to replace.")
 	replaceCmd.Flags().Bool("force", false, "If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of some resources may result in inconsistency or data loss and requires confirmation.")
 	replaceCmd.Flags().String("grace-period", "", "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion).")
 	replaceCmd.Flags().StringP("kustomize", "k", "", "Process a kustomization directory. This flag can't be used together with -f or -R.")

@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(build_iosFrameworkCmd).Standalone()
 
 	build_iosFrameworkCmd.Flags().Bool("cocoapods", false, "Produce a Flutter.podspec instead of an engine Flutter.xcframework (recommended if host app uses CocoaPods).")
-	build_iosFrameworkCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	build_iosFrameworkCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_iosFrameworkCmd.Flags().Bool("debug", false, "Produce a framework for the debug build configuration.")
 	build_iosFrameworkCmd.Flags().Bool("flavor", false, "Build a custom app flavor as defined by platform-specific build setup.")
 	build_iosFrameworkCmd.Flags().BoolP("help", "h", false, "Print this usage information.")

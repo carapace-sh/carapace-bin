@@ -16,7 +16,7 @@ func init() {
 
 	image_buildCmd.Flags().String("add-host", "", "Add a custom host-to-IP mapping (\"host:ip\")")
 	image_buildCmd.Flags().String("build-arg", "", "Set build-time variables")
-	image_buildCmd.Flags().StringSlice("cache-from", []string{}, "Images to consider as cache sources")
+	image_buildCmd.Flags().StringSlice("cache-from", nil, "Images to consider as cache sources")
 	image_buildCmd.Flags().String("cgroup-parent", "", "Optional parent cgroup for the container")
 	image_buildCmd.Flags().Bool("compress", false, "Compress the build context using gzip")
 	image_buildCmd.Flags().Int64("cpu-period", 0, "Limit the CPU CFS (Completely Fair Scheduler) period")
@@ -38,7 +38,7 @@ func init() {
 	image_buildCmd.Flags().Bool("pull", false, "Always attempt to pull a newer version of the image")
 	image_buildCmd.Flags().BoolP("quiet", "q", false, "Suppress the build output and print image ID on success")
 	image_buildCmd.Flags().Bool("rm", true, "Remove intermediate containers after a successful build")
-	image_buildCmd.Flags().StringSlice("security-opt", []string{}, "Security options")
+	image_buildCmd.Flags().StringSlice("security-opt", nil, "Security options")
 	image_buildCmd.Flags().String("shm-size", "", "Size of \"/dev/shm\"")
 	image_buildCmd.Flags().Bool("squash", false, "Squash newly built layers into a single new layer")
 	image_buildCmd.Flags().StringP("tag", "t", "", "Name and optionally a tag in the \"name:tag\" format")

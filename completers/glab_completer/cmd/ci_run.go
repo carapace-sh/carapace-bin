@@ -19,9 +19,9 @@ func init() {
 	carapace.Gen(ci_runCmd).Standalone()
 
 	ci_runCmd.Flags().StringP("branch", "b", "", "Create pipeline on branch/ref <string>.")
-	ci_runCmd.Flags().StringSlice("variables", []string{}, "Pass variables to pipeline in format <key>:<value>.")
-	ci_runCmd.Flags().StringSlice("variables-env", []string{}, "Pass variables to pipeline in format <key>:<value>.")
-	ci_runCmd.Flags().StringSlice("variables-file", []string{}, "Pass file contents as a file variable to pipeline in format <key>:<filename>.")
+	ci_runCmd.Flags().StringSlice("variables", nil, "Pass variables to pipeline in format <key>:<value>.")
+	ci_runCmd.Flags().StringSlice("variables-env", nil, "Pass variables to pipeline in format <key>:<value>.")
+	ci_runCmd.Flags().StringSlice("variables-file", nil, "Pass file contents as a file variable to pipeline in format <key>:<filename>.")
 	ci_runCmd.Flags().StringP("variables-from", "f", "", "JSON file containing variables for pipeline execution.")
 	ci_runCmd.Flags().BoolP("web", "w", false, "Open pipeline in a browser. Uses default browser, or browser specified in BROWSER environment variable.")
 	ciCmd.AddCommand(ci_runCmd)

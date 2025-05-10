@@ -25,7 +25,7 @@ func init() {
 	importCmd.PersistentFlags().StringP("out", "o", "", "The path to the file that will contain the generated resource declarations")
 	importCmd.PersistentFlags().IntP("parallel", "p", 2147483647, "Allow P resource operations to run in parallel at once (1 for no parallelism). Defaults to unbounded.")
 	importCmd.PersistentFlags().String("parent", "", "The name and URN of the parent resource in the format name=urn, where name is the variable name of the parent resource")
-	importCmd.PersistentFlags().StringSlice("properties", []string{}, "The property names to use for the import in the format name1,name2")
+	importCmd.PersistentFlags().StringSlice("properties", nil, "The property names to use for the import in the format name1,name2")
 	importCmd.PersistentFlags().Bool("protect", true, "Allow resources to be imported with protection from deletion enabled")
 	importCmd.PersistentFlags().String("provider", "", "The name and URN of the provider to use for the import in the format name=urn, where name is the variable name for the provider resource")
 	importCmd.PersistentFlags().Bool("skip-preview", false, "Do not perform a preview before performing the refresh")

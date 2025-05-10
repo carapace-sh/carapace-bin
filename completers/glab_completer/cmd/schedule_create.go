@@ -19,7 +19,7 @@ func init() {
 	schedule_createCmd.Flags().String("cronTimeZone", "", "Cron timezone.")
 	schedule_createCmd.Flags().String("description", "", "Description of the schedule.")
 	schedule_createCmd.Flags().String("ref", "", "Target branch or tag.")
-	schedule_createCmd.Flags().StringSlice("variable", []string{}, "Pass variables to schedule in the format <key>:<value>.")
+	schedule_createCmd.Flags().StringSlice("variable", nil, "Pass variables to schedule in the format <key>:<value>.")
 	schedule_createCmd.MarkFlagRequired("cron")
 	schedule_createCmd.MarkFlagRequired("description")
 	schedule_createCmd.MarkFlagRequired("ref")

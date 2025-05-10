@@ -20,7 +20,7 @@ func init() {
 	variable_setCmd.Flags().StringP("env", "e", "", "Set deployment `environment` variable")
 	variable_setCmd.Flags().StringP("env-file", "f", "", "Load variable names and values from a dotenv-formatted `file`")
 	variable_setCmd.Flags().StringP("org", "o", "", "Set `organization` variable")
-	variable_setCmd.Flags().StringSliceP("repos", "r", []string{}, "List of `repositories` that can access an organization variable")
+	variable_setCmd.Flags().StringSliceP("repos", "r", nil, "List of `repositories` that can access an organization variable")
 	variable_setCmd.Flags().StringP("visibility", "v", "", "Set visibility for an organization variable: {all|private|selected}")
 	variableCmd.AddCommand(variable_setCmd)
 

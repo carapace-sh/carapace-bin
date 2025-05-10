@@ -25,7 +25,7 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolS("i", "i", false, "append 'w' and 'q' commands to ed scripts")
 	rootCmd.Flags().BoolP("initial-tab", "T", false, "make tabs line up by prepending a tab")
-	rootCmd.Flags().StringArrayP("label", "L", []string{}, "use LABEL instead of file name")
+	rootCmd.Flags().StringArrayP("label", "L", nil, "use LABEL instead of file name")
 	rootCmd.Flags().BoolP("merge", "m", false, "output actual merged file")
 	rootCmd.Flags().BoolP("overlap-only", "x", false, "like -e, but incorporate only overlapping changes")
 	rootCmd.Flags().BoolP("show-all", "A", false, "output all changes, bracketing conflicts")

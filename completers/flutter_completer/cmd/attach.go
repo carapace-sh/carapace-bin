@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(attachCmd).Standalone()
 
 	attachCmd.Flags().String("app-id", "", "The package name (Android) or bundle identifier (iOS) for the app")
-	attachCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	attachCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	attachCmd.Flags().String("dds-port", "", "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port.")
 	attachCmd.Flags().Bool("debug", false, "Build a debug version of your app (default mode).")
 	attachCmd.Flags().String("debug-uri", "", "The URL at which the observatory is listening.")

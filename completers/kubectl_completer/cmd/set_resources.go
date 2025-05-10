@@ -20,7 +20,7 @@ func init() {
 	set_resourcesCmd.Flags().StringP("containers", "c", "", "The names of containers in the selected pod templates to change, all containers are selected by default - may use wildcards")
 	set_resourcesCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	set_resourcesCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
-	set_resourcesCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to get from a server.")
+	set_resourcesCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files identifying the resource to get from a server.")
 	set_resourcesCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	set_resourcesCmd.Flags().String("limits", "", "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges.")
 	set_resourcesCmd.Flags().Bool("local", false, "If true, set resources will NOT contact api-server but run locally.")

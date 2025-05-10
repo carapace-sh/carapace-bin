@@ -24,7 +24,7 @@ func init() {
 	run_listCmd.Flags().String("created", "", "Filter runs by the `date` it was created")
 	run_listCmd.Flags().StringP("event", "e", "", "Filter runs by which `event` triggered the run")
 	run_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	run_listCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	run_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	run_listCmd.Flags().StringP("limit", "L", "", "Maximum number of runs to fetch")
 	run_listCmd.Flags().StringP("status", "s", "", "Filter runs by status: {queued|completed|in_progress|requested|waiting|pending|action_required|cancelled|failure|neutral|skipped|stale|startup_failure|success|timed_out}")
 	run_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")

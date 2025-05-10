@@ -20,7 +20,7 @@ func init() {
 	createCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	createCmd.Flags().Bool("edit", false, "Edit the API resource before creating")
 	createCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
-	createCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files to use to create the resource")
+	createCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files to use to create the resource")
 	createCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	createCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	createCmd.Flags().String("raw", "", "Raw URI to POST to the server.  Uses the transport specified by the kubeconfig file.")

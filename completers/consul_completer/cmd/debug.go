@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(debugCmd).Standalone()
 
 	debugCmd.Flags().Bool("archive", false, "Boolean value for if the files should be archived and compressed.")
-	debugCmd.Flags().StringArray("capture", []string{}, "One or more types of information to capture.")
+	debugCmd.Flags().StringArray("capture", nil, "One or more types of information to capture.")
 	debugCmd.Flags().String("duration", "", "The total time to record information.")
 	debugCmd.Flags().String("interval", "", "The interval in which to capture dynamic information.")
 	debugCmd.Flags().String("output", "", "The path to the compressed archive that will be created with the information after collection.")

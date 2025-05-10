@@ -18,9 +18,9 @@ func init() {
 
 	auth_refreshCmd.Flags().StringP("hostname", "h", "", "The GitHub host to use for authentication")
 	auth_refreshCmd.Flags().Bool("insecure-storage", false, "Save authentication credentials in plain text instead of credential store")
-	auth_refreshCmd.Flags().StringSliceP("remove-scopes", "r", []string{}, "Authentication scopes to remove from gh")
+	auth_refreshCmd.Flags().StringSliceP("remove-scopes", "r", nil, "Authentication scopes to remove from gh")
 	auth_refreshCmd.Flags().Bool("reset-scopes", false, "Reset authentication scopes to the default minimum set of scopes")
-	auth_refreshCmd.Flags().StringSliceP("scopes", "s", []string{}, "Additional authentication scopes for gh to have")
+	auth_refreshCmd.Flags().StringSliceP("scopes", "s", nil, "Additional authentication scopes for gh to have")
 	auth_refreshCmd.Flags().Bool("secure-storage", false, "Save authentication credentials in secure credential store")
 	auth_refreshCmd.Flag("secure-storage").Hidden = true
 	authCmd.AddCommand(auth_refreshCmd)

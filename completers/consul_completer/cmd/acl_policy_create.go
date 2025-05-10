@@ -24,7 +24,7 @@ func init() {
 	acl_policy_createCmd.Flags().String("namespace", "", "Specifies the namespace to query.")
 	acl_policy_createCmd.Flags().String("rules", "", "The policy rules.")
 	acl_policy_createCmd.Flags().Bool("token-secret", false, "Indicates the token provided with -from-token is a SecretID and not an AccessorID")
-	acl_policy_createCmd.Flags().StringArray("valid-datacenter", []string{}, "Datacenter that the policy should be valid within.")
+	acl_policy_createCmd.Flags().StringArray("valid-datacenter", nil, "Datacenter that the policy should be valid within.")
 	acl_policyCmd.AddCommand(acl_policy_createCmd)
 
 	carapace.Gen(acl_policy_createCmd).FlagCompletion(carapace.ActionMap{

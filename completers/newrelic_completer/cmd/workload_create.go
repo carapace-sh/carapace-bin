@@ -14,8 +14,8 @@ var workload_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(workload_createCmd).Standalone()
-	workload_createCmd.Flags().StringSliceP("entityGuid", "e", []string{}, "the list of entity Guids composing the workload")
-	workload_createCmd.Flags().StringSliceP("entitySearchQuery", "q", []string{}, "a list of search queries, combined using an OR operator")
+	workload_createCmd.Flags().StringSliceP("entityGuid", "e", nil, "the list of entity Guids composing the workload")
+	workload_createCmd.Flags().StringSliceP("entitySearchQuery", "q", nil, "a list of search queries, combined using an OR operator")
 	workload_createCmd.Flags().StringP("name", "n", "", "the name of the workload")
 	workload_createCmd.Flags().IntSliceP("scopeAccountIds", "s", []int{}, "accounts that will be used to get entities from")
 	workloadCmd.AddCommand(workload_createCmd)

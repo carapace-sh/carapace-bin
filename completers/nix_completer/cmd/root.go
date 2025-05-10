@@ -187,7 +187,7 @@ func init() {
 
 	rootCmd.PersistentFlags().Bool("help", false, "Show usage information")
 	rootCmd.PersistentFlags().Bool("offline", false, "Disable substituters and consider all previously downloaded files up-to-date")
-	rootCmd.PersistentFlags().StringSlice("option", []string{}, "Set the Nix configuration setting name to value")
+	rootCmd.PersistentFlags().StringSlice("option", nil, "Set the Nix configuration setting name to value")
 	rootCmd.PersistentFlags().Bool("refresh", false, "Consider all previously downloaded files out-of-date")
 	rootCmd.PersistentFlags().Bool("version", false, "Show version information")
 
@@ -251,8 +251,8 @@ func init() {
 }
 
 func addEvaluationFlags(cmd *cobra.Command) {
-	cmd.Flags().StringSlice("arg", []string{}, "Pass the value expr as the argument name to Nix functions")
-	cmd.Flags().StringSlice("argstr", []string{}, "Pass the string string as the argument name to Nix functions")
+	cmd.Flags().StringSlice("arg", nil, "Pass the value expr as the argument name to Nix functions")
+	cmd.Flags().StringSlice("argstr", nil, "Pass the string string as the argument name to Nix functions")
 	cmd.Flags().Bool("debugger", false, "Start an interactive environment if evaluation fail")
 	cmd.Flags().String("eval-store", "", "The Nix store to use for evaluations")
 	cmd.Flags().Bool("impure", false, "Allow access to mutable paths and repositories")

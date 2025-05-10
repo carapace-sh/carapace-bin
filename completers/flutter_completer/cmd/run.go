@@ -19,7 +19,7 @@ func init() {
 	runCmd.Flags().Bool("await-first-frame-when-tracing", false, "Wait for the first frame when tracing startup.")
 	runCmd.Flags().Bool("build", false, "If necessary, build the app before running.")
 	runCmd.Flags().Bool("cache-sksl", false, "Cache the shader in the SkSL format instead of in binary or GLSL formats.")
-	runCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	runCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	runCmd.Flags().StringP("dart-entrypoint-args", "a", "", "Pass a list of arguments to the Dart entrypoint at application startup.")
 	runCmd.Flags().String("dds-port", "", "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port.")
 	runCmd.Flags().Bool("debug", false, "Build a debug version of your app (default mode).")

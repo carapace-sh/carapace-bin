@@ -18,7 +18,7 @@ var blameCmd = &cobra.Command{
 func init() {
 	carapace.Gen(blameCmd).Standalone()
 
-	blameCmd.Flags().StringSliceS("C", "C", []string{}, "find line copies within and across files")
+	blameCmd.Flags().StringSliceS("C", "C", nil, "find line copies within and across files")
 	blameCmd.Flags().StringS("L", "L", "", "process only line range <start>,<end> or function :<funcname>")
 	blameCmd.Flags().StringS("M", "M", "", "find line movements within and across files")
 	blameCmd.Flags().StringS("S", "S", "", "use revisions from <file> instead of calling git-rev-list")

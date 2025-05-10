@@ -22,7 +22,7 @@ func init() {
 	driveCmd.Flags().Bool("build", false, "(deprecated) Build the app before running.")
 	driveCmd.Flags().Bool("cache-sksl", false, "Cache the shader in the SkSL format instead of in binary or GLSL formats.")
 	driveCmd.Flags().String("chrome-binary", "", "Location of the Chrome binary.")
-	driveCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	driveCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	driveCmd.Flags().StringP("dart-entrypoint-args", "a", "", "Pass a list of arguments to the Dart entrypoint at application startup.")
 	driveCmd.Flags().String("dds-port", "", "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port.")
 	driveCmd.Flags().Bool("debug", false, "Build a debug version of your app (default mode).")

@@ -23,7 +23,7 @@ func init() {
 	psCmd.Flags().Bool("orphans", false, "Include orphaned services (not declared by project)")
 	psCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")
 	psCmd.Flags().Bool("services", false, "Display services")
-	psCmd.Flags().StringSlice("status", []string{}, "Filter services by status. Values: [paused | restarting | removing | running | dead | created | exited]")
+	psCmd.Flags().StringSlice("status", nil, "Filter services by status. Values: [paused | restarting | removing | running | dead | created | exited]")
 	rootCmd.AddCommand(psCmd)
 
 	carapace.Gen(psCmd).FlagCompletion(carapace.ActionMap{

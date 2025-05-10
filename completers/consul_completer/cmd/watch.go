@@ -23,7 +23,7 @@ func init() {
 	watchCmd.Flags().String("service", "", "Specifies the service to watch.")
 	watchCmd.Flags().Bool("shell", false, "Use a shell to run the command.")
 	watchCmd.Flags().String("state", "", "Specifies the states to watch.")
-	watchCmd.Flags().StringArray("tag", []string{}, "Specifies the service tag(s) to filter on.")
+	watchCmd.Flags().StringArray("tag", nil, "Specifies the service tag(s) to filter on.")
 	watchCmd.Flags().String("type", "", "Specifies the watch type.")
 	rootCmd.AddCommand(watchCmd)
 

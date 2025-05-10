@@ -20,7 +20,7 @@ func init() {
 	autoscaleCmd.Flags().String("cpu-percent", "", "The target average CPU utilization (represented as a percent of requested CPU) over all the pods. If it's not specified or negative, a default autoscaling policy will be used.")
 	autoscaleCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	autoscaleCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
-	autoscaleCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to autoscale.")
+	autoscaleCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files identifying the resource to autoscale.")
 	autoscaleCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	autoscaleCmd.Flags().String("max", "", "The upper limit for the number of pods that can be set by the autoscaler. Required.")
 	autoscaleCmd.Flags().String("min", "", "The lower limit for the number of pods that can be set by the autoscaler. If it's not specified or negative, the server will apply a default value.")

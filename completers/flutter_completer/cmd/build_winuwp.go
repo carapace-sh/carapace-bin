@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(build_winuwpCmd).Standalone()
 
 	build_winuwpCmd.Flags().Bool("analyze-size", false, "Produce additional profile information for artifact output size.")
-	build_winuwpCmd.Flags().StringArray("dart-define", []string{}, "Additional key-value pairs that will be available as constants.")
+	build_winuwpCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_winuwpCmd.Flags().Bool("debug", false, "Build a debug version of your app.")
 	build_winuwpCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	build_winuwpCmd.Flags().Bool("no-analyze-size", false, "Do not produce additional profile information for artifact output size.")

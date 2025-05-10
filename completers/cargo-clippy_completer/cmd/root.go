@@ -30,10 +30,10 @@ func init() {
 			dashCmd := &cobra.Command{}
 			carapace.Gen(dashCmd).Standalone()
 
-			dashCmd.Flags().StringArrayP("allow", "A", []string{}, "Set lint allowed")
-			dashCmd.Flags().StringArrayP("deny", "D", []string{}, "Set lint denied")
-			dashCmd.Flags().StringArrayP("forbid", "F", []string{}, "Set lint forbidden")
-			dashCmd.Flags().StringArrayP("warn", "W", []string{}, "Set lint warnings")
+			dashCmd.Flags().StringArrayP("allow", "A", nil, "Set lint allowed")
+			dashCmd.Flags().StringArrayP("deny", "D", nil, "Set lint denied")
+			dashCmd.Flags().StringArrayP("forbid", "F", nil, "Set lint forbidden")
+			dashCmd.Flags().StringArrayP("warn", "W", nil, "Set lint warnings")
 
 			carapace.Gen(dashCmd).FlagCompletion(carapace.ActionMap{
 				"allow":  actionLintsAndCategories(),

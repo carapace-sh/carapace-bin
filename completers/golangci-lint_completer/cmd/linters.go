@@ -17,9 +17,9 @@ func init() {
 
 	lintersCmd.Flags().StringP("config", "c", "", "Read config from file path `PATH`")
 	lintersCmd.Flags().String("default", "", "Default set of linters to enable")
-	lintersCmd.Flags().StringSliceP("disable", "D", []string{}, "Disable specific linter")
-	lintersCmd.Flags().StringSliceP("enable", "E", []string{}, "Enable specific linter")
-	lintersCmd.Flags().StringSlice("enable-only", []string{}, "Override linters configuration section to only run the specific linter(s)")
+	lintersCmd.Flags().StringSliceP("disable", "D", nil, "Disable specific linter")
+	lintersCmd.Flags().StringSliceP("enable", "E", nil, "Enable specific linter")
+	lintersCmd.Flags().StringSlice("enable-only", nil, "Override linters configuration section to only run the specific linter(s)")
 	lintersCmd.Flags().Bool("fast-only", false, "Filter enabled linters to run only fast linters")
 	lintersCmd.Flags().Bool("json", false, "Display as JSON")
 	lintersCmd.Flags().Bool("no-config", false, "Don't read config file")

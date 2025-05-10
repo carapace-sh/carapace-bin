@@ -23,7 +23,7 @@ func init() {
 	packageCmd.Flags().StringP("prefix", "p", "", "Full path to environment location (i.e. prefix).")
 	packageCmd.Flags().BoolP("reset", "r", false, "Remove all untracked files and exit.")
 	packageCmd.Flags().BoolP("untracked", "u", false, "Display all untracked files and exit.")
-	packageCmd.Flags().StringArrayP("which", "w", []string{}, "Given some PATH print which conda package the file came from.")
+	packageCmd.Flags().StringArrayP("which", "w", nil, "Given some PATH print which conda package the file came from.")
 	rootCmd.AddCommand(packageCmd)
 
 	carapace.Gen(packageCmd).FlagCompletion(carapace.ActionMap{

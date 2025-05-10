@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(cleanCmd).Standalone()
 
 	cleanCmd.Flags().BoolP("all", "a", false, "Remove index cache, lock files, unused cache packages, and tarballs.")
-	cleanCmd.Flags().StringArrayS("c", "c", []string{}, "Remove temporary files that could not be deleted earlier due to being in-use.")
+	cleanCmd.Flags().StringArrayS("c", "c", nil, "Remove temporary files that could not be deleted earlier due to being in-use.")
 	cleanCmd.Flags().BoolP("dry-run", "d", false, "Only display what would have been done.")
 	cleanCmd.Flags().BoolP("force-pkgs-dirs", "f", false, "Remove *all* writable package caches.")
 	cleanCmd.Flags().BoolP("help", "h", false, "Show this help message and exit.")

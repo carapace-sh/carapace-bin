@@ -22,7 +22,7 @@ func init() {
 	labelCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	labelCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
 	labelCmd.Flags().String("field-selector", "", "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.")
-	labelCmd.Flags().StringSliceP("filename", "f", []string{}, "Filename, directory, or URL to files identifying the resource to update the labels")
+	labelCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files identifying the resource to update the labels")
 	labelCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	labelCmd.Flags().Bool("list", false, "If true, display the labels for a given resource.")
 	labelCmd.Flags().Bool("local", false, "If true, label will NOT contact api-server but run locally.")

@@ -15,7 +15,7 @@ var diffCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(diffCmd).Standalone()
-	diffCmd.Flags().StringArray("diff", []string{}, "argument to compare")
+	diffCmd.Flags().StringArray("diff", nil, "argument to compare")
 	diffCmd.Flags().Bool("diff-name-only", false, "print only filenames")
 	diffCmd.Flags().Int("diff-unified", 3, "numver of lines of context to print")
 	diffCmd.Flags().String("diff-dest-prefix", "", "destination prefix to be used in output")

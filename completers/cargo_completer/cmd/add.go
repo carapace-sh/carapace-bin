@@ -26,7 +26,7 @@ func init() {
 	addCmd.Flags().Bool("default-features", false, "Re-enable the default features")
 	addCmd.Flags().Bool("dev", false, "Add as development dependency")
 	addCmd.Flags().BoolP("dry-run", "n", false, "Don't actually write the manifest")
-	addCmd.Flags().StringSliceP("features", "F", []string{}, "Space or comma separated list of features to activate")
+	addCmd.Flags().StringSliceP("features", "F", nil, "Space or comma separated list of features to activate")
 	addCmd.Flags().String("git", "", "Git repository location")
 	addCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	addCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")

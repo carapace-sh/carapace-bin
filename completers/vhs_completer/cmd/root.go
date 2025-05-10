@@ -19,7 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().BoolP("help", "h", false, "help for vhs")
-	rootCmd.Flags().StringSliceP("output", "o", []string{}, "file name(s) of video output")
+	rootCmd.Flags().StringSliceP("output", "o", nil, "file name(s) of video output")
 	rootCmd.Flags().BoolP("publish", "p", false, "publish your GIF to vhs.charm.sh and get a shareable URL")
 	rootCmd.Flags().BoolP("version", "v", false, "version for vhs")
 	rootCmd.PersistentFlags().BoolP("quiet", "q", false, "quiet do not log messages. If publish flag is provided, it will log shareable URL")

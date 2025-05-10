@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(release_viewCmd).Standalone()
 
 	release_viewCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	release_viewCmd.Flags().StringSlice("json", []string{}, "Output JSON with the specified `fields`")
+	release_viewCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	release_viewCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	release_viewCmd.Flags().BoolP("web", "w", false, "Open the release in the browser")
 	releaseCmd.AddCommand(release_viewCmd)

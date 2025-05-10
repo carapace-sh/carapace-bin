@@ -16,8 +16,8 @@ func init() {
 	carapace.Gen(run_downloadCmd).Standalone()
 
 	run_downloadCmd.Flags().StringP("dir", "D", "", "The directory to download artifacts into")
-	run_downloadCmd.Flags().StringSliceP("name", "n", []string{}, "Download artifacts that match any of the given names")
-	run_downloadCmd.Flags().StringSliceP("pattern", "p", []string{}, "Download artifacts that match a glob pattern")
+	run_downloadCmd.Flags().StringSliceP("name", "n", nil, "Download artifacts that match any of the given names")
+	run_downloadCmd.Flags().StringSliceP("pattern", "p", nil, "Download artifacts that match a glob pattern")
 	runCmd.AddCommand(run_downloadCmd)
 
 	carapace.Gen(run_downloadCmd).FlagCompletion(carapace.ActionMap{

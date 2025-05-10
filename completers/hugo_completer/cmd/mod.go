@@ -22,7 +22,7 @@ func init() {
 	modCmd.Flags().Bool("cleanDestinationDir", false, "remove files from destination not found in static directories")
 	modCmd.Flags().StringP("contentDir", "c", "", "filesystem path to content directory")
 	modCmd.Flags().StringP("destination", "d", "", "filesystem path to write files to")
-	modCmd.Flags().StringSlice("disableKinds", []string{}, "disable different kind of pages (home, RSS etc.)")
+	modCmd.Flags().StringSlice("disableKinds", nil, "disable different kind of pages (home, RSS etc.)")
 	modCmd.Flags().Bool("enableGitInfo", false, "add Git revision, date and author info to the pages")
 	modCmd.Flags().Bool("forceSyncStatic", false, "copy all files when static is changed.")
 	modCmd.Flags().Bool("gc", false, "enable to run some cleanup tasks (remove unused cache files) after the build")
@@ -40,7 +40,7 @@ func init() {
 	modCmd.Flags().String("profile-mutex", "", "write Mutex profile to `file`")
 	modCmd.Flags().Bool("templateMetrics", false, "display metrics about template executions")
 	modCmd.Flags().Bool("templateMetricsHints", false, "calculate some improvement hints when combined with --templateMetrics")
-	modCmd.Flags().StringSliceP("theme", "t", []string{}, "themes to use (located in /themes/THEMENAME/)")
+	modCmd.Flags().StringSliceP("theme", "t", nil, "themes to use (located in /themes/THEMENAME/)")
 	modCmd.Flags().String("trace", "", "write trace to `file` (not useful in general)")
 	rootCmd.AddCommand(modCmd)
 

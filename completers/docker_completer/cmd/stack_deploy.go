@@ -16,7 +16,7 @@ var stack_deployCmd = &cobra.Command{
 func init() {
 	carapace.Gen(stack_deployCmd).Standalone()
 
-	stack_deployCmd.Flags().StringSliceP("compose-file", "c", []string{}, "Path to a Compose file, or \"-\" to read from stdin")
+	stack_deployCmd.Flags().StringSliceP("compose-file", "c", nil, "Path to a Compose file, or \"-\" to read from stdin")
 	stack_deployCmd.Flags().Bool("prune", false, "Prune services that are no longer referenced")
 	stack_deployCmd.Flags().String("resolve-image", "always", "Query the registry to resolve image digest and supported platforms (\"always\", \"changed\", \"never\")")
 	stack_deployCmd.Flags().Bool("with-registry-auth", false, "Send registry authentication details to Swarm agents")

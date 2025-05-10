@@ -22,7 +22,7 @@ func init() {
 	installCmd.Flags().Bool("dev", false, "Use `sys.executable -m conda` in wrapper scripts instead of CONDA_EXE.")
 	installCmd.Flags().Bool("download-only", false, "Solve an environment and ensure package caches are populated")
 	installCmd.Flags().BoolP("dry-run", "d", false, "Only display what would have been done.")
-	installCmd.Flags().StringArray("file", []string{}, "Read package versions from the given file.")
+	installCmd.Flags().StringArray("file", nil, "Read package versions from the given file.")
 	installCmd.Flags().Bool("force-reinstall", false, "Ensure that any user-requested package for the current operation is uninstalled and reinstalled")
 	installCmd.Flags().Bool("freeze-installed", false, "Do not update or change already-installed dependencies.")
 	installCmd.Flags().BoolP("help", "h", false, "Show this help message and exit.")

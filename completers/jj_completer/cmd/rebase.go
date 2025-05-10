@@ -15,16 +15,16 @@ var rebaseCmd = &cobra.Command{
 func init() {
 	carapace.Gen(rebaseCmd).Standalone()
 
-	rebaseCmd.Flags().StringArray("after", []string{}, "Alias for `--insert-after`")
-	rebaseCmd.Flags().StringArray("before", []string{}, "Alias for `--insert-before`")
-	rebaseCmd.Flags().StringSliceP("branch", "b", []string{}, "Rebase the whole branch relative to destination's ancestors (can be repeated)")
-	rebaseCmd.Flags().StringSliceP("destination", "d", []string{}, "The revision(s) to rebase onto (can be repeated to create a merge commit)")
+	rebaseCmd.Flags().StringArray("after", nil, "Alias for `--insert-after`")
+	rebaseCmd.Flags().StringArray("before", nil, "Alias for `--insert-before`")
+	rebaseCmd.Flags().StringSliceP("branch", "b", nil, "Rebase the whole branch relative to destination's ancestors (can be repeated)")
+	rebaseCmd.Flags().StringSliceP("destination", "d", nil, "The revision(s) to rebase onto (can be repeated to create a merge commit)")
 	rebaseCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	rebaseCmd.Flags().StringArrayP("insert-after", "A", []string{}, "Revision(s) to insert after")
-	rebaseCmd.Flags().StringArrayP("insert-before", "B", []string{}, "Revision(s) to insert before")
+	rebaseCmd.Flags().StringArrayP("insert-after", "A", nil, "Revision(s) to insert after")
+	rebaseCmd.Flags().StringArrayP("insert-before", "B", nil, "Revision(s) to insert before")
 	rebaseCmd.Flags().StringP("revisions", "r", "", "Rebase only this revision, rebasing descendants onto this revision's parent(s)")
 	rebaseCmd.Flags().Bool("skip-emptied", false, "Abandon empty commits created by the rebase")
-	rebaseCmd.Flags().StringSliceP("source", "s", []string{}, "Rebase specified revision(s) together their tree of descendants (can be repeated)")
+	rebaseCmd.Flags().StringSliceP("source", "s", nil, "Rebase specified revision(s) together their tree of descendants (can be repeated)")
 	rebaseCmd.MarkFlagRequired("destination")
 	rootCmd.AddCommand(rebaseCmd)
 

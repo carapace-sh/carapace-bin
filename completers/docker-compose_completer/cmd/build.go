@@ -15,7 +15,7 @@ var buildCmd = &cobra.Command{
 func init() {
 	carapace.Gen(buildCmd).Standalone()
 
-	buildCmd.Flags().StringSlice("build-arg", []string{}, "Set build-time variables for services")
+	buildCmd.Flags().StringSlice("build-arg", nil, "Set build-time variables for services")
 	buildCmd.Flags().String("builder", "", "Set builder to use")
 	buildCmd.Flags().Bool("compress", false, "Compress the build context using gzip. DEPRECATED")
 	buildCmd.Flags().Bool("force-rm", false, "Always remove intermediate containers. DEPRECATED")

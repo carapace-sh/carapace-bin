@@ -22,7 +22,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("?", "?", false, "print help message")
-	rootCmd.Flags().StringArrayS("D", "D", []string{}, "set a system property")
+	rootCmd.Flags().StringArrayS("D", "D", nil, "set a system property")
 	rootCmd.Flags().BoolS("X", "X", false, "print help on non-standard options")
 	rootCmd.Flags().StringS("agentlib", "agentlib", "", "load native agent library")
 	rootCmd.Flags().StringS("agentpath", "agentpath", "", "load native agent library by full pathname")
@@ -47,7 +47,7 @@ func init() {
 	rootCmd.Flags().StringS("verbose", "verbose", "", "enable verbose output")
 	rootCmd.Flags().BoolS("version", "version", false, "print product version and exit")
 
-	rootCmd.Flags().StringArrayS("XX", "XX", []string{}, "Advanced options")
+	rootCmd.Flags().StringArrayS("XX", "XX", nil, "Advanced options")
 	rootCmd.Flags().BoolS("Xbatch", "Xbatch", false, "disable background compilation")
 	rootCmd.Flags().StringS("Xbootclasspath", "Xbootclasspath", "", "set search path for bootstrap classes and resources")
 	rootCmd.Flags().StringS("Xbootclasspath/a", "Xbootclasspath/a", "", "append to end of bootstrap class path")

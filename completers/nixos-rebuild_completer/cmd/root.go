@@ -36,7 +36,7 @@ func init() {
 	rootCmd.PersistentFlags().Bool("no-build-nix", false, "Do not rebuild the 'nixUnstable' nixpkgs attribute before rebuilding")
 	rootCmd.PersistentFlags().BoolP("no-build-output", "-Q", false, "Do not output on stdout or stderr")
 	rootCmd.PersistentFlags().Bool("offline", false, "Disable substituters and consider all previously downloaded files up-to-date")
-	rootCmd.PersistentFlags().StringSlice("option", []string{}, "Set the Nix configuration setting name to value")
+	rootCmd.PersistentFlags().StringSlice("option", nil, "Set the Nix configuration setting name to value")
 	rootCmd.PersistentFlags().BoolP("print-build-logs", "L", false, "Print full build logs on standard error")
 	rootCmd.PersistentFlags().StringP("profile-name", "p", "", "Specify Nix profile to place the new configuration in")
 	rootCmd.PersistentFlags().Bool("quiet", false, "Decrease the logging verbosity level")

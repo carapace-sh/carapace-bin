@@ -18,7 +18,7 @@ func init() {
 	findDupesCmd.Flags().Bool("global-style", false, "Use global layout")
 	findDupesCmd.Flags().Bool("ignore-scripts", false, "Disable scripts")
 	findDupesCmd.Flags().Bool("legacy-bundling", false, "Use legacy bundling")
-	findDupesCmd.Flags().StringArray("omit", []string{}, "omit dependency type")
+	findDupesCmd.Flags().StringArray("omit", nil, "omit dependency type")
 	findDupesCmd.Flags().Bool("package-lock", false, "When false ignore package.lock")
 	findDupesCmd.Flags().Bool("strict-peer-deps", false, "Fail and abort for any conflicting `peerDependencies`")
 	addWorkspaceFlags(findDupesCmd)

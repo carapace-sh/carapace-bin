@@ -20,7 +20,7 @@ func init() {
 	fastExportCmd.Flags().BoolS("C", "C", false, "Perform copy detection")
 	fastExportCmd.Flags().BoolS("M", "M", false, "Perform move detection")
 	fastExportCmd.Flags().Bool("anonymize", false, "Anonymize the contents of the repository while still retaining the shape of the history and stored tree")
-	fastExportCmd.Flags().StringSlice("anonymize-map", []string{}, "Convert token <from> to <to> in the anonymized output")
+	fastExportCmd.Flags().StringSlice("anonymize-map", nil, "Convert token <from> to <to> in the anonymized output")
 	fastExportCmd.Flags().String("export-marks", "", "Dumps the internal marks table to <file> when complete")
 	fastExportCmd.Flags().Bool("export-marks.", false, "")
 	fastExportCmd.Flags().Bool("fake-missing-tagger", false, "Fake a tagger to be able to fast-import the output")

@@ -20,8 +20,8 @@ func init() {
 	importCmd.Flags().BoolS("lock", "lock", false, "Don't hold a state lock during the operation")
 	importCmd.Flags().StringS("lock-timeout", "lock-timeout", "", "Duration to retry a state lock")
 	importCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color")
-	importCmd.Flags().StringSliceS("var", "var", []string{}, "Set a variable in the Terraform configuration")
-	importCmd.Flags().StringSliceS("var-file", "var-file", []string{}, "Set variables in the Terraform configuration from a file")
+	importCmd.Flags().StringSliceS("var", "var", nil, "Set a variable in the Terraform configuration")
+	importCmd.Flags().StringSliceS("var-file", "var-file", nil, "Set variables in the Terraform configuration from a file")
 	rootCmd.AddCommand(importCmd)
 
 	importCmd.Flag("config").NoOptDefVal = " "

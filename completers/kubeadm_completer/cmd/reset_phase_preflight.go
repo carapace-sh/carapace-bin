@@ -18,7 +18,7 @@ func init() {
 
 	reset_phase_preflightCmd.Flags().Bool("dry-run", false, "Don't apply any changes; just output what would be done.")
 	reset_phase_preflightCmd.Flags().BoolP("force", "f", false, "Reset the node without prompting for confirmation.")
-	reset_phase_preflightCmd.Flags().StringSlice("ignore-preflight-errors", []string{}, "A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.")
+	reset_phase_preflightCmd.Flags().StringSlice("ignore-preflight-errors", nil, "A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.")
 	reset_phaseCmd.AddCommand(reset_phase_preflightCmd)
 
 	carapace.Gen(reset_phase_preflightCmd).FlagCompletion(carapace.ActionMap{
