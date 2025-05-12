@@ -27,6 +27,7 @@ type recipe struct {
 	Attributes attributes `json:"attributes"`
 	Name       string     `json:"name"`
 	Doc        string     `json:"doc"`
+	Private    bool       `json:"private"`
 }
 
 func (r recipe) Description() string {
@@ -63,7 +64,9 @@ func ActionRecipes(path string) carapace.Action {
 
 			vals := make([]string, 0)
 			for _, recipe := range jf.Recipes {
-				vals = append(vals, recipe.Name, recipe.Description())
+				if !recipe.Private {
+					vals = append(vals, recipe.Name, recipe.Description())
+				}
 			}
 
 			for _, alias := range jf.Aliases {
