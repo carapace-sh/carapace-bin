@@ -43,7 +43,32 @@ type justfile struct {
 		Name       string     `json:"name"`
 		Target     string     `json:"target"`
 	} `json:"aliases"`
-	Recipes map[string]recipe `json:"recipes"`
+	Recipes map[string]recipe   `json:"recipes"`
+	Modules map[string]justfile `json:"modules"`
+}
+
+func (jf justfile) AllRecipesWithPrefix(prefix string) []string {
+	vals := make([]string, 0, 4)
+	for _, recipe := range jf.Recipes {
+		if !recipe.Private {
+			vals = append(vals, prefix+recipe.Name, recipe.Description())
+		}
+	}
+
+	for _, alias := range jf.Aliases {
+		if recipe, ok := jf.Recipes[alias.Target]; ok {
+			vals = append(vals, prefix+alias.Name, recipe.Description())
+		}
+	}
+
+	for mod, jf := range jf.Modules {
+		vals = append(vals, jf.AllRecipesWithPrefix(prefix+mod+"::")...)
+	}
+	return vals
+}
+
+func (jf justfile) AllRecipes() []string {
+	return jf.AllRecipesWithPrefix("")
 }
 
 // ActionRecipes completes recipes
@@ -62,18 +87,7 @@ func ActionRecipes(path string) carapace.Action {
 				return carapace.ActionMessage(err.Error())
 			}
 
-			vals := make([]string, 0)
-			for _, recipe := range jf.Recipes {
-				if !recipe.Private {
-					vals = append(vals, recipe.Name, recipe.Description())
-				}
-			}
-
-			for _, alias := range jf.Aliases {
-				if recipe, ok := jf.Recipes[alias.Target]; ok {
-					vals = append(vals, alias.Name, recipe.Description())
-				}
-			}
+			vals := jf.AllRecipes()
 			return carapace.ActionValuesDescribed(vals...)
 		})
 	}).Tag("recipes")
