@@ -6,12 +6,18 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
-type attributes []map[string]string
+type attributes []any
 
 func (a attributes) Description() string {
 	for _, attr := range a {
-		if doc, ok := attr["doc"]; ok {
-			return doc
+		switch attr := attr.(type) {
+		case map[string]interface{}:
+			if doc, ok := attr["doc"]; ok {
+				if doc == nil {
+					return ""
+				}
+				return doc.(string)
+			}
 		}
 	}
 	return ""
