@@ -18,7 +18,7 @@ func ActionDiffAlgorithms() carapace.Action {
 		"minimal", "Spend extra time to make sure the smallest possible diff is produced",
 		"patience", "Use patience diff algorithm when generating patches",
 		"histogram", "This algorithm extends the patience algorithm to support low-occurrence common elements",
-	)
+	).Tag("diff algorithms")
 }
 
 // ActionDiffFilters completes diff filters
