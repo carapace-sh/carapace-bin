@@ -63,7 +63,7 @@ func init() {
 		"gpg-sign":      os.ActionGpgKeyIds(),
 		"onto":          git.ActionRefs(git.RefOption{}.Default()),
 		"rebase-merges": carapace.ActionValues("rebase-cousins", "no-rebase-cousins"),
-		"strategy":      git.ActionMergeStrategy(),
+		"strategy":      git.ActionMergeStrategies(),
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(rebaseCmd.Flag("strategy").Value.String())
 		}),

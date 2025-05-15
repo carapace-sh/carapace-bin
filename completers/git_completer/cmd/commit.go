@@ -67,7 +67,7 @@ func init() {
 	commitCmd.Flag("untracked-files").NoOptDefVal = " "
 
 	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup":            git.ActionCleanupMode(),
+		"cleanup":            git.ActionCleanupModes(),
 		"file":               carapace.ActionFiles(),
 		"fixup":              git.ActionRefs(git.RefOption{HeadCommits: true}),
 		"gpg-sign":           os.ActionGpgKeyIds(),

@@ -2,18 +2,18 @@ package git
 
 import "github.com/carapace-sh/carapace"
 
-// ActionMergeStrategy completes merge strategies
+// ActionMergeStrategies completes merge strategies
 //
 //	octopus (resolve cases with more than two heads)
 //	ours (auto-resolve cleanly by favoring our version)
-func ActionMergeStrategy() carapace.Action {
+func ActionMergeStrategies() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"octopus", "resolve cases with more than two heads",
 		"ours", "auto-resolve cleanly by favoring our version",
 		"recursive", "recursively resolve two heads using a 3-way merge algorithm",
 		"resolve", "resolve two heads using a 3-way merge algorithm",
 		"subtree", "modified recursive straty with tree adjustment",
-	)
+	).Tag("merge strategies")
 }
 
 // ActionMergeStrategyOptions completes merge strategy options

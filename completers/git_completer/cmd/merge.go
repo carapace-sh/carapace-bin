@@ -63,7 +63,7 @@ func init() {
 	mergeCmd.Flag("gpg-sign").NoOptDefVal = " "
 
 	carapace.Gen(mergeCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup":  git.ActionCleanupMode(),
+		"cleanup":  git.ActionCleanupModes(),
 		"file":     carapace.ActionFiles(),
 		"gpg-sign": os.ActionGpgKeyIds(),
 		"into-name": git.ActionRefs(git.RefOption{
@@ -71,7 +71,7 @@ func init() {
 			RemoteBranches: true,
 			Tags:           true,
 		}),
-		"strategy": git.ActionMergeStrategy(),
+		"strategy": git.ActionMergeStrategies(),
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(mergeCmd.Flag("strategy").Value.String())
 		}),
