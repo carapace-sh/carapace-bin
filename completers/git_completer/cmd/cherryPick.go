@@ -42,10 +42,10 @@ func init() {
 	cherryPickCmd.Flag("gpg-sign").NoOptDefVal = " "
 
 	carapace.Gen(cherryPickCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup":  git.ActionCleanupMode(),
+		"cleanup":  git.ActionCleanupModes(),
 		"gpg-sign": os.ActionGpgKeyIds(),
 		"mainline": carapace.ActionValues("1", "2", "3", "4", "5"),
-		"strategy": git.ActionMergeStrategy(),
+		"strategy": git.ActionMergeStrategies(),
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(cherryPickCmd.Flag("strategy").Value.String())
 		}),

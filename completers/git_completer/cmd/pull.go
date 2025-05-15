@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -76,14 +78,12 @@ func init() {
 	pullCmd.Flags().Bool("verify-signatures", false, "verify that the named commit has a valid GPG signature")
 	rootCmd.AddCommand(pullCmd)
 
+	pullCmd.Flag("gpg-sign").NoOptDefVal = " "
+
 	carapace.Gen(pullCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup": carapace.ActionValuesDescribed(
-			"default", "act as 'strip' if the message is to be edited and as 'whitespace' otherwise",
-			"scissors", "same as whitespace but cut from scissor line",
-			"strip", "remove both whitespace and commentary lines",
-			"verbatim", "don't change the commit message at all",
-			"whitespace", "remove leading and trailing whitespace lines",
-		),
+		"cleanup":         git.ActionCleanupModes(),
+		"gpg-sign":        os.ActionGpgKeyIds(),
+		"negotiation-tip": git.ActionRefs(git.RefOption{}.Default()), // TODO refs ok here?
 		"rebase": carapace.ActionValuesDescribed(
 			"false", "merge after fetching",
 			"interactive", "allow list of commits to be edited",
@@ -96,7 +96,14 @@ func init() {
 			"on-demand", "only when submodule reference in superproject is updated",
 			"yes", "always recurse",
 		).StyleF(style.ForKeyword),
-		"strategy": carapace.ActionValues("octopus", "ours", "recursive", "resolve", "subtree"),
+		"refmap":          carapace.ActionValues(), // TODO
+		"server-option":   carapace.ActionValues(), // TODO
+		"shallow-exclude": git.ActionRefs(git.RefOption{}.Default()),
+		"shallow-since":   time.ActionDate(),
+		"strategy":        git.ActionMergeStrategies(),
+		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return git.ActionMergeStrategyOptions(pullCmd.Flag("strategy").Value.String())
+		}),
 	})
 
 	carapace.Gen(pullCmd).PositionalCompletion(

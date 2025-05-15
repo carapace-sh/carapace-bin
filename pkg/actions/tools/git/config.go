@@ -241,7 +241,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"color.ui":                             _bool,
 			"column.ui":                            ActionColumnLayoutModes().UniqueList(","),
 			"column.branch":                        _bool,
-			"commit.cleanup":                       ActionCleanupMode(),
+			"commit.cleanup":                       ActionCleanupModes(),
 			"commit.gpgSign":                       _bool,
 			"commit.status":                        _bool,
 			"commit.template":                      carapace.ActionFiles(),

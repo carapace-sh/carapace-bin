@@ -45,7 +45,7 @@ func init() {
 	tagCmd.Flag("color").NoOptDefVal = " "
 
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup":     git.ActionCleanupMode(),
+		"cleanup":     git.ActionCleanupModes(),
 		"color":       git.ActionColorModes(),
 		"contains":    git.ActionRefs(git.RefOption{HeadCommits: true}),
 		"file":        carapace.ActionFiles(),

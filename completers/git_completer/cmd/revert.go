@@ -35,9 +35,9 @@ func init() {
 	revertCmd.Flag("gpg-sign").NoOptDefVal = " "
 
 	carapace.Gen(revertCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup":  git.ActionCleanupMode(),
+		"cleanup":  git.ActionCleanupModes(),
 		"gpg-sign": os.ActionGpgKeyIds(),
-		"strategy": git.ActionMergeStrategy(),
+		"strategy": git.ActionMergeStrategies(),
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(revertCmd.Flag("strategy").Value.String())
 		}),
