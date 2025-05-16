@@ -1,0 +1,8 @@
+services:
+ brew:
+    build:
+      context: brew
+    image: ghcr.io/carapace-sh/carapace-bin:brew
+    hostname: carapace-bin:brew
+    volumes:
+      - '..:/carapace-bin:ro'
