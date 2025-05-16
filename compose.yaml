@@ -4,6 +4,7 @@ include:
   # tools
   - .docker/apk.yaml
   - .docker/bloop.yaml
+  - .docker/brew.yaml
   - .docker/cmd-clink.yaml
   - .docker/fzf-tab.yaml
   - .docker/gcloud.yaml
