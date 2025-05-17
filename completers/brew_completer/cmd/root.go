@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"os"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/util/embed"
 	"github.com/spf13/cobra"
@@ -24,6 +26,16 @@ func init() {
 		&cobra.Group{ID: "developer", Title: "developer commands"},
 		&cobra.Group{ID: "external", Title: "external commands"},
 	)
+
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		if _, ok := os.LookupEnv("HOMEBREW_DEVELOPER"); !ok {
+			for _, c := range cmd.Commands() {
+				if c.GroupID == "developer" {
+					c.Hidden = true
+				}
+			}
+		}
+	})
 
 	embed.SubcommandsAsFlags(rootCmd,
 		flagCacheCmd,
