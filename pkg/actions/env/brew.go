@@ -12,7 +12,7 @@ import (
 
 func init() {
 	knownVariables["brew"] = func() variables {
-		_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+		_bool := carapace.ActionValues("true").StyleF(style.ForKeyword) // brew bool variables are true just by being set
 		return variables{
 			Condition: conditions.ConditionPath("brew"),
 			Variables: map[string]string{
