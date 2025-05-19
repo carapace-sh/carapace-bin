@@ -33,4 +33,8 @@ func init() {
 	rootCmd.Flags().Bool("uninstall-service", false, "Remove launchd service file ~/Library/LaunchAgents/com.koekeishiya.skhd.plist")
 	rootCmd.Flags().BoolP("verbose", "B", false, "Output debug information")
 	rootCmd.Flags().BoolP("version", "v", false, "Print version number to stdout")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"config": carapace.ActionFiles(),
+	})
 }
