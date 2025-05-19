@@ -30,11 +30,8 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "Print version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"log-level": action.ActionLogLevel(),
-		"version-file-strategy": carapace.ActionValuesDescribed(
-			"local", "Use the local version of Node defined within the current directory",
-			"recursive", "Use the version of Node defined within the current dirctory and all parent directories",
-		),
-		"resolve-engines": carapace.ActionValues("true", "false"),
+		"log-level":             action.ActionLogLevel(),
+		"version-file-strategy": action.ActionVersionFileStrategy(),
+		"resolve-engines":       action.ActionResolveEngines(),
 	})
 }
