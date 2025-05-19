@@ -26,10 +26,10 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "B", false, "Output debug information")
 	rootCmd.Flags().BoolP("profile", "P", false, "Output profiling information")
 	rootCmd.Flags().BoolP("version", "v", false, "Print version number to stdout")
-	rootCmd.Flags().BoolP("config", "c", false, "Specify location of config file")
+	rootCmd.Flags().StringP("config", "c", "", "Specify location of config file")
 	rootCmd.Flags().BoolP("observe", "o", false, "Output keycode and modifiers of event. Ctrl+C to quit")
 	rootCmd.Flags().BoolP("reload", "r", false, "Signal a running instance of skhd to reload its config file")
 	rootCmd.Flags().BoolP("no-hotload", "h", false, "Disable system for hotloading config file")
-	rootCmd.Flags().BoolP("key", "k", false, "Synthesize a keypress (same syntax as when defining a hotkey)")
-	rootCmd.Flags().BoolP("text", "t", false, "Synthesize a line of text")
+	rootCmd.Flags().StringP("key", "k", "", "Synthesize a keypress (same syntax as when defining a hotkey)")
+	rootCmd.Flags().StringP("text", "t", "", "Synthesize a line of text")
 }
