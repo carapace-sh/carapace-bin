@@ -11,8 +11,8 @@ cmd/carapace-generate/carapace-generate
 cmd/carapace-lint/carapace-lint
 cmd/carapace-parse/carapace-parse
 cmd/carapace-shim/carapace-shim
-completers/*/*_completer
-completers/gh_completer/cmd/action/api.github.com.json
+completers/common/*/*_completer
+completers/common/gh_completer/cmd/action/api.github.com.json
 completers_release
 dist
 docs/book

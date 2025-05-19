@@ -4,8 +4,8 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	gh "github.com/carapace-sh/carapace-bin/completers/gh_completer/cmd/action"
-	glab "github.com/carapace-sh/carapace-bin/completers/glab_completer/cmd/action"
+	gh "github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"     // TODO move to pkg/actions/tools
+	glab "github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action" // TODO move to pkg/actions/tools
 	"github.com/spf13/cobra"
 )
 

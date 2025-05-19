@@ -2,8 +2,6 @@ module github.com/carapace-sh/carapace-bin
 
 go 1.23.1
 
-toolchain go1.24.1
-
 require (
 	github.com/carapace-sh/carapace v1.8.2
 	github.com/carapace-sh/carapace-bridge v1.2.9
