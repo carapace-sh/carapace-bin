@@ -20,11 +20,12 @@ func main() {
 	macros()
 	conditions()
 
-	names, descriptions := readCompleters()
+	goos := "common" // TODO support other goos
+	names, descriptions := readCompleters(goos)
 
 	imports := make([]string, 0, len(names))
 	for _, name := range names {
-		imports = append(imports, fmt.Sprintf(`	%v "github.com/carapace-sh/carapace-bin/completers/%v_completer/cmd"`, varName(name), name))
+		imports = append(imports, fmt.Sprintf(`	%v "github.com/carapace-sh/carapace-bin/completers/%v/%v_completer/cmd"`, varName(name), goos, name))
 	}
 
 	formattedNames := make([]string, 0)
@@ -81,12 +82,12 @@ func executeCompleter(completer string) {
 	execlog.Command("cp", "-r", root+"/completers", root+"/completers_release").Run()
 
 	for _, name := range names {
-		files, err := os.ReadDir(fmt.Sprintf("%v/completers_release/%v_completer/cmd/", root, name))
+		files, err := os.ReadDir(fmt.Sprintf("%v/completers_release/%v/%v_completer/cmd/", root, goos, name))
 		if err == nil {
 			initFuncs := make([]string, 0)
 			for _, file := range files {
 				if !file.IsDir() && strings.HasSuffix(file.Name(), ".go") {
-					path := fmt.Sprintf("%v/completers_release/%v_completer/cmd/%v", root, name, file.Name())
+					path := fmt.Sprintf("%v/completers_release/%v/%v_completer/cmd/%v", root, goos, name, file.Name())
 					content, err := os.ReadFile(path)
 					if err == nil && strings.Contains(string(content), "func init() {") {
 						patched := strings.Replace(string(content), "func init() {", fmt.Sprintf("func init_%v() {", strings.TrimSuffix(file.Name(), ".go")), 1)
@@ -96,7 +97,7 @@ func executeCompleter(completer string) {
 				}
 			}
 
-			path := fmt.Sprintf("%v/completers_release/%v_completer/cmd/root.go", root, name)
+			path := fmt.Sprintf("%v/completers_release/%v/%v_completer/cmd/root.go", root, goos, name)
 			content, err := os.ReadFile(path)
 			if err == nil {
 				patched := make([]string, 0)
@@ -122,15 +123,15 @@ func varName(name string) string {
 	).Replace(name)
 }
 
-func readCompleters() ([]string, map[string]string) {
+func readCompleters(goos string) ([]string, map[string]string) {
 	names := make([]string, 0)
 	descriptions := make(map[string]string)
 	if root, err := rootDir(); err == nil {
-		if files, err := os.ReadDir(root + "/completers/"); err == nil {
+		if files, err := os.ReadDir(filepath.Join(root, "completers", goos)); err == nil {
 			for _, file := range files {
 				if file.IsDir() && strings.HasSuffix(file.Name(), "_completer") {
 					name := strings.TrimSuffix(file.Name(), "_completer")
-					description := readDescription(root, file.Name())
+					description := readDescription(root, goos, file.Name())
 					names = append(names, name)
 					descriptions[name] = description
 				}
@@ -140,8 +141,8 @@ func readCompleters() ([]string, map[string]string) {
 	return names, descriptions
 }
 
-func readDescription(root string, completer string) string {
-	if content, err := os.ReadFile(fmt.Sprintf("%v/completers/%v/cmd/root.go", root, completer)); err == nil {
+func readDescription(root, goos, completer string) string {
+	if content, err := os.ReadFile(fmt.Sprintf("%v/completers/%v/%v/cmd/root.go", root, goos, completer)); err == nil {
 		re := regexp.MustCompile("^\tShort: +\"(?P<description>.*)\",$")
 		for _, line := range strings.Split(string(content), "\n") {
 			if re.MatchString(line) {

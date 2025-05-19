@@ -45,7 +45,7 @@ jobs:
         run: go install honnef.co/go/tools/cmd/staticcheck@latest && staticcheck ./...
 
       - name: "carapace-lint"
-        run: go run ./cmd/carapace-lint completers/*/cmd/*.go
+        run: go run ./cmd/carapace-lint completers/*/*/cmd/*.go
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
