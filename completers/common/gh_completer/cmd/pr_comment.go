@@ -19,9 +19,11 @@ func init() {
 	pr_commentCmd.Flags().StringP("body", "b", "", "The comment body `text`")
 	pr_commentCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	pr_commentCmd.Flags().Bool("create-if-none", false, "Create a new comment if no comments are found. Can be used only with --edit-last")
-	pr_commentCmd.Flags().Bool("edit-last", false, "Edit the last comment of the same author")
+	pr_commentCmd.Flags().Bool("delete-last", false, "Delete the last comment of the current user")
+	pr_commentCmd.Flags().Bool("edit-last", false, "Edit the last comment of the current user")
 	pr_commentCmd.Flags().BoolP("editor", "e", false, "Skip prompts and open the text editor to write the body in")
 	pr_commentCmd.Flags().BoolP("web", "w", false, "Open the web browser to write the comment")
+	pr_commentCmd.Flags().Bool("yes", false, "Skip the delete confirmation prompt when --delete-last is provided")
 	prCmd.AddCommand(pr_commentCmd)
 
 	carapace.Gen(pr_commentCmd).FlagCompletion(carapace.ActionMap{
