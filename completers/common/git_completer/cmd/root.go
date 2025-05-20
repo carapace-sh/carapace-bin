@@ -156,7 +156,7 @@ func addAliasCompletion(args []string) {
 		if err == nil {
 			carapace.Gen(aliasCmd).PositionalAnyCompletion(
 				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-					c.Args = append(tokens.Strings(), c.Args...)
+					c.Args = append(tokens.Words().Strings(), c.Args...)
 					return bridge.ActionCarapaceBin("git").Invoke(c).ToA()
 				}),
 			)
