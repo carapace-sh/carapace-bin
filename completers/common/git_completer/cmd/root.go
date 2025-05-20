@@ -148,12 +148,26 @@ func addAliasCompletion(args []string) {
 
 		rootCmd.AddCommand(aliasCmd)
 
-		if strings.HasPrefix(value, "!") {
-			continue // aliases beginning with ! are arbitrary shell commands so don't add completion
-		}
+		switch {
+		case strings.HasPrefix(value, "!"): // shell alias
+			tokens, err := shlex.Split(strings.TrimPrefix(value, "!"))
+			if err != nil {
+				carapace.LOG.Println("failed to parse shell alias: " + err.Error())
+				continue
+			}
+			carapace.Gen(aliasCmd).PositionalAnyCompletion(
+				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					c.Args = append(tokens.CurrentPipeline().Words().Strings(), c.Args...)
+					return bridge.ActionCarapaceBin().Invoke(c).ToA()
+				}),
+			)
 
-		tokens, err := shlex.Split(value) // TODO trim value?
-		if err == nil {
+		default: // git alias
+			tokens, err := shlex.Split(value)
+			if err != nil {
+				carapace.LOG.Println("failed to parse git alias: " + err.Error())
+				continue
+			}
 			carapace.Gen(aliasCmd).PositionalAnyCompletion(
 				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 					c.Args = append(tokens.Words().Strings(), c.Args...)
