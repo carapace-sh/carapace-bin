@@ -51,9 +51,10 @@ func ActionAliases() carapace.Action {
 }
 
 func ActionInstalledVersions() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return ActionLocalVersions().Invoke(c).Merge(
-			ActionAliases().Invoke(c),
+	return carapace.ActionCallback(func(carapace.Context) carapace.Action {
+		return carapace.Batch(
+			ActionLocalVersions(),
+			ActionAliases(),
 		).ToA()
 	})
 }
