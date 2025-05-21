@@ -1,0 +1,8 @@
+services:
+  issue-2781:
+    build:
+      context: issue-2781
+    image: ghcr.io/carapace-sh/carapace-bin:issue-2781
+    hostname: carapace-bin:issue-2781
+    volumes:
+      - '..:/carapace-bin:ro'
