@@ -24,8 +24,8 @@ func init() {
 }
 
 func addCommonFlags(cmd *cobra.Command) {
-	cmd.Flags().String("node-dist-mirror", "https://nodejs.org/dist", "<https://nodejs.org/dist/> mirror")
 	cmd.Flags().String("fnm-dir", "", "The root directory of fnm installation")
+	cmd.Flags().String("node-dist-mirror", "https://nodejs.org/dist", "<https://nodejs.org/dist/> mirror")
 	cmd.Flags().String("log-level", "info", "The log level of fnm commands")
 	cmd.Flags().String("arch", "", "Override the architecture of the installed Node binary. Defaults to arch of fnm binary")
 	cmd.Flags().String("version-file-strategy", "local", "A strategy for how to resolve the Node version. Used whenever `fnm use` or `fnm install` is called without a version, or when `--use-on-cd` is configured on evaluation")

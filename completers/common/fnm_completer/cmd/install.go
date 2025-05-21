@@ -16,8 +16,8 @@ func init() {
 
 	addCommonFlags(installCmd)
 
-	installCmd.Flags().Bool("lts", false, "Install latest LTS")
 	installCmd.Flags().Bool("latest", false, "Install latest version")
+	installCmd.Flags().Bool("lts", false, "Install latest LTS")
 	installCmd.Flags().String("progress", "auto", "Show an interactive progress bar for the download status")
 
 	carapace.Gen(installCmd).Standalone()

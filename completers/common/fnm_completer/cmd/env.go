@@ -16,8 +16,8 @@ func init() {
 
 	addCommonFlags(envCmd)
 
-	envCmd.Flags().String("shell", "", "The shell syntax to use. Infers when missing")
 	envCmd.Flags().Bool("json", false, "Print JSON instead of shell commands")
+	envCmd.Flags().String("shell", "", "The shell syntax to use. Infers when missing")
 	envCmd.Flags().Bool("use-on-cd", false, "Print the script to change Node versions every directory change")
 
 	carapace.Gen(envCmd).Standalone()
