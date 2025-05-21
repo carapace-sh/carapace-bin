@@ -26,6 +26,6 @@ func init() {
 	})
 
 	carapace.Gen(uninstallCmd).PositionalAnyCompletion(
-		action.ActionInstalledVersions(),
+		action.ActionInstalledVersions().Filter("system"),
 	)
 }
