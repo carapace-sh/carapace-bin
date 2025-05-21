@@ -12,9 +12,7 @@ var currentCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(currentCmd)
-
-	addCommonFlags(currentCmd)
-
 	carapace.Gen(currentCmd).Standalone()
+
+	rootCmd.AddCommand(currentCmd)
 }

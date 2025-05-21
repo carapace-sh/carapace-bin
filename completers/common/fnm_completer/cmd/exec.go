@@ -13,13 +13,10 @@ var execCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(execCmd)
-
-	addCommonFlags(execCmd)
+	carapace.Gen(execCmd).Standalone()
 
 	execCmd.Flags().String("using", "", "Either an explicit version, or a filename with the version written in it")
-
-	carapace.Gen(execCmd).Standalone()
+	rootCmd.AddCommand(execCmd)
 
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
 		"using": action.ActionLocalVersions(),

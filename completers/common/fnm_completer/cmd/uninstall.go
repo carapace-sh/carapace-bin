@@ -13,13 +13,10 @@ var uninstallCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(uninstallCmd)
-
-	addCommonFlags(uninstallCmd)
+	carapace.Gen(uninstallCmd).Standalone()
 
 	uninstallCmd.Flags().String("using", "", "Either an explicit version, or a filename with the version written in it")
-
-	carapace.Gen(uninstallCmd).Standalone()
+	rootCmd.AddCommand(uninstallCmd)
 
 	carapace.Gen(uninstallCmd).FlagCompletion(carapace.ActionMap{
 		"using": action.ActionLocalVersions(),

@@ -12,15 +12,12 @@ var installCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(installCmd)
-
-	addCommonFlags(installCmd)
+	carapace.Gen(installCmd).Standalone()
 
 	installCmd.Flags().Bool("latest", false, "Install latest version")
 	installCmd.Flags().Bool("lts", false, "Install latest LTS")
 	installCmd.Flags().String("progress", "auto", "Show an interactive progress bar for the download status")
-
-	carapace.Gen(installCmd).Standalone()
+	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
 		"progress": carapace.ActionValues("auto", "never", "always"),

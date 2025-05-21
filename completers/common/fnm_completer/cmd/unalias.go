@@ -13,11 +13,9 @@ var unaliasCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(unaliasCmd)
-
-	addCommonFlags(unaliasCmd)
-
 	carapace.Gen(unaliasCmd).Standalone()
+
+	rootCmd.AddCommand(unaliasCmd)
 
 	carapace.Gen(unaliasCmd).PositionalAnyCompletion(
 		action.ActionAliases(),

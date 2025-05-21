@@ -13,14 +13,11 @@ var useCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(useCmd)
-
-	addCommonFlags(useCmd)
+	carapace.Gen(useCmd).Standalone()
 
 	useCmd.Flags().Bool("install-if-missing", false, "Install the version if it isn't installed yet")
 	useCmd.Flags().Bool("silent-if-unchanged", false, "Don't output a message identifying the version being used if it will not change due to execution of this command")
-
-	carapace.Gen(useCmd).Standalone()
+	rootCmd.AddCommand(useCmd)
 
 	carapace.Gen(useCmd).PositionalAnyCompletion(
 		action.ActionInstalledVersions(),

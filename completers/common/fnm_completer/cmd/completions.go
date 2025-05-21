@@ -12,13 +12,10 @@ var completionsCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(completionsCmd)
-
-	addCommonFlags(completionsCmd)
+	carapace.Gen(completionsCmd).Standalone()
 
 	completionsCmd.Flags().String("shell", "", "The shell syntax to use. Infers when missing")
-
-	carapace.Gen(completionsCmd).Standalone()
+	rootCmd.AddCommand(completionsCmd)
 
 	carapace.Gen(completionsCmd).FlagCompletion(carapace.ActionMap{
 		"shell": carapace.ActionValues("bash", "zsh", "fish", "powershell"),

@@ -12,15 +12,12 @@ var envCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(envCmd)
-
-	addCommonFlags(envCmd)
+	carapace.Gen(envCmd).Standalone()
 
 	envCmd.Flags().Bool("json", false, "Print JSON instead of shell commands")
 	envCmd.Flags().String("shell", "", "The shell syntax to use. Infers when missing")
 	envCmd.Flags().Bool("use-on-cd", false, "Print the script to change Node versions every directory change")
-
-	carapace.Gen(envCmd).Standalone()
+	rootCmd.AddCommand(envCmd)
 
 	carapace.Gen(envCmd).FlagCompletion(carapace.ActionMap{
 		"shell": carapace.ActionValues("bash", "zsh", "fish", "powershell"),

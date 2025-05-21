@@ -13,9 +13,7 @@ var listCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(listCmd)
-
-	addCommonFlags(listCmd)
-
 	carapace.Gen(listCmd).Standalone()
+
+	rootCmd.AddCommand(listCmd)
 }
