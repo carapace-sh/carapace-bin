@@ -25,7 +25,7 @@ func init() {
 		"using": action.ActionLocalVersions(),
 	})
 
-	carapace.Gen(unaliasCmd).PositionalAnyCompletion(
+	carapace.Gen(uninstallCmd).PositionalAnyCompletion(
 		action.ActionInstalledVersions(),
 	)
 }
