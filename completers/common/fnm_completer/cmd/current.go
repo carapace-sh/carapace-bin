@@ -13,7 +13,7 @@ var currentCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(currentCmd).Standalone()
+	rootCmd.AddCommand(currentCmd)
 
 	currentCmd.Flags().String("node-dist-mirror", "https://nodejs.org/dist", "<https://nodejs.org/dist/> mirror")
 	currentCmd.Flags().String("fnm-dir", "", "The root directory of fnm installation")
@@ -23,6 +23,8 @@ func init() {
 	currentCmd.Flags().Bool("corepack-enabled", false, "Enable corepack support for each new installation. This will make fnm call `corepack enable` on every Node.js installation. For more information about corepack see <https://nodejs.org/api/corepack.html>")
 	currentCmd.Flags().String("resolve-engines", "true", "Resolve `engines.node` field in `package.json` whenever a `.node-version` or `.nvmrc` file is not present. This feature is enabled by default. To disable it, provide `--resolve-engines=false`")
 	currentCmd.Flags().BoolP("help", "h", false, "Print help (see summary with '-h')")
+
+	carapace.Gen(currentCmd).Standalone()
 
 	carapace.Gen(currentCmd).FlagCompletion(carapace.ActionMap{
 		"log-level":             action.ActionLogLevel(),

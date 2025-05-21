@@ -17,8 +17,6 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 func init() {
-	carapace.Gen(rootCmd).Standalone()
-
 	rootCmd.Flags().String("node-dist-mirror", "https://nodejs.org/dist", "<https://nodejs.org/dist/> mirror")
 	rootCmd.Flags().String("fnm-dir", "", "The root directory of fnm installation")
 	rootCmd.Flags().String("log-level", "info", "The log level of fnm commands")
@@ -28,6 +26,8 @@ func init() {
 	rootCmd.Flags().String("resolve-engines", "true", "Resolve `engines.node` field in `package.json` whenever a `.node-version` or `.nvmrc` file is not present. This feature is enabled by default. To disable it, provide `--resolve-engines=false`")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see summary with '-h')")
 	rootCmd.Flags().BoolP("version", "v", false, "Print version")
+
+	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"log-level":             action.ActionLogLevel(),

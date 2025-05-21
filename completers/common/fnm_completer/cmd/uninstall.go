@@ -13,7 +13,7 @@ var uninstallCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(uninstallCmd).Standalone()
+	rootCmd.AddCommand(uninstallCmd)
 
 	uninstallCmd.Flags().String("node-dist-mirror", "https://nodejs.org/dist", "<https://nodejs.org/dist/> mirror")
 	uninstallCmd.Flags().String("using", "", "Either an explicit version, or a filename with the version written in it")
@@ -25,6 +25,8 @@ func init() {
 	uninstallCmd.Flags().String("resolve-engines", "true", "Resolve `engines.node` field in `package.json` whenever a `.node-version` or `.nvmrc` file is not present. This feature is enabled by default. To disable it, provide `--resolve-engines=false`")
 	uninstallCmd.Flags().BoolP("help", "h", false, "Print help (see summary with '-h')")
 
+	carapace.Gen(uninstallCmd).Standalone()
+
 	carapace.Gen(uninstallCmd).FlagCompletion(carapace.ActionMap{
 		"using":                 action.ActionLocalVersions(),
 		"log-level":             action.ActionLogLevel(),
@@ -32,7 +34,6 @@ func init() {
 		"resolve-engines":       action.ActionResolveEngines(),
 	})
 
-	// TESTME:
 	carapace.Gen(unaliasCmd).PositionalAnyCompletion(
 		action.ActionInstalledVersions(),
 	)

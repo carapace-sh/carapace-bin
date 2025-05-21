@@ -13,7 +13,7 @@ var installCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(installCmd).Standalone()
+	rootCmd.AddCommand(installCmd)
 
 	installCmd.Flags().Bool("lts", false, "Install latest LTS")
 	installCmd.Flags().String("node-dist-mirror", "https://nodejs.org/dist", "<https://nodejs.org/dist/> mirror")
@@ -26,6 +26,8 @@ func init() {
 	installCmd.Flags().Bool("corepack-enabled", false, "Enable corepack support for each new installation. This will make fnm call `corepack enable` on every Node.js installation. For more information about corepack see <https://nodejs.org/api/corepack.html>")
 	installCmd.Flags().String("resolve-engines", "true", "Resolve `engines.node` field in `package.json` whenever a `.node-version` or `.nvmrc` file is not present. This feature is enabled by default. To disable it, provide `--resolve-engines=false`")
 	installCmd.Flags().BoolP("help", "h", false, "Print help (see summary with '-h')")
+
+	carapace.Gen(installCmd).Standalone()
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
 		"progress":              carapace.ActionValues("auto", "never", "always"),

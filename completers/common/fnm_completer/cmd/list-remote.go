@@ -14,7 +14,7 @@ var listRemoteCmd = &cobra.Command{
 }
 
 func init() {
-	carapace.Gen(listRemoteCmd).Standalone()
+	rootCmd.AddCommand(listRemoteCmd)
 
 	listRemoteCmd.Flags().String("filter", "", "Filter versions by a user-defined version or a semver range")
 	listRemoteCmd.Flags().String("node-dist-mirror", "https://nodejs.org/dist", "<https://nodejs.org/dist/> mirror")
@@ -28,6 +28,8 @@ func init() {
 	listRemoteCmd.Flags().Bool("corepack-enabled", false, "Enable corepack support for each new installation. This will make fnm call `corepack enable` on every Node.js installation. For more information about corepack see <https://nodejs.org/api/corepack.html>")
 	listRemoteCmd.Flags().String("resolve-engines", "true", "Resolve `engines.node` field in `package.json` whenever a `.node-version` or `.nvmrc` file is not present. This feature is enabled by default. To disable it, provide `--resolve-engines=false`")
 	listRemoteCmd.Flags().BoolP("help", "h", false, "Print help (see summary with '-h')")
+
+	carapace.Gen(listRemoteCmd).Standalone()
 
 	carapace.Gen(listRemoteCmd).FlagCompletion(carapace.ActionMap{
 		"sort":                  carapace.ActionValues("asc", "desc"),
