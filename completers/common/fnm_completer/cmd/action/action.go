@@ -25,8 +25,19 @@ func ActionResolveEngines() carapace.Action {
 	return carapace.ActionValues("true", "false")
 }
 
+func ActionLocalVersions() carapace.Action {
+	return withLocalFnmVersions(func(versions []fnmVersion) carapace.Action {
+		var versionsStr []string
+		for _, version := range versions {
+			versionsStr = append(versionsStr, version.version)
+		}
+
+		return carapace.ActionValues(versionsStr...)
+	})
+}
+
 func ActionAliases() carapace.Action {
-	return withFnmVersions(func(versions []fnmVersion) carapace.Action {
+	return withLocalFnmVersions(func(versions []fnmVersion) carapace.Action {
 		var aliases []string
 		for _, version := range versions {
 			for _, alias := range version.aliases {
@@ -43,7 +54,7 @@ type fnmVersion struct {
 	aliases []string
 }
 
-func withFnmVersions(callback func([]fnmVersion) carapace.Action) carapace.Action {
+func withLocalFnmVersions(callback func([]fnmVersion) carapace.Action) carapace.Action {
 	return carapace.ActionExecCommand("fnm", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
