@@ -11,3 +11,5 @@ include:
   - .docker/nix.yaml
   - .docker/ubuntu.yaml
   - .docker/xbps.yaml
+  # issues
+  - .docker/issue-2781.yaml # infinite recursion in fish
