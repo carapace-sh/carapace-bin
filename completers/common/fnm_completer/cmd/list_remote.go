@@ -18,8 +18,8 @@ func init() {
 	addCommonFlags(listRemoteCmd)
 
 	listRemoteCmd.Flags().String("filter", "", "Filter versions by a user-defined version or a semver range")
-	listRemoteCmd.Flags().String("lts", "", "Show only LTS versions (optionally filter by LTS codename)")
 	listRemoteCmd.Flags().Bool("latest", false, "Only show the latest matching version")
+	listRemoteCmd.Flags().String("lts", "", "Show only LTS versions (optionally filter by LTS codename)")
 	listRemoteCmd.Flags().String("sort", "asc", "Version sorting order")
 
 	carapace.Gen(listRemoteCmd).Standalone()
