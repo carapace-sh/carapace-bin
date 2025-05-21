@@ -78,7 +78,7 @@ func withLocalFnmVersions(callback func([]fnmVersion) carapace.Action) carapace.
 
 			matches := versionRe.FindStringSubmatch(line)
 
-			if len(matches) < 2 {
+			if len(matches) < 3 {
 				continue
 			}
 
@@ -86,8 +86,11 @@ func withLocalFnmVersions(callback func([]fnmVersion) carapace.Action) carapace.
 				version: matches[1],
 			}
 
-			if len(matches) == 3 {
-				version.aliases = strings.Split(matches[2], ", ")
+			for _, alias := range strings.Split(matches[2], ", ") {
+				value := strings.TrimSpace(alias)
+				if value != "" {
+					version.aliases = append(version.aliases, value)
+				}
 			}
 
 			versions = append(versions, version)
