@@ -1,6 +1,7 @@
 package action
 
 import (
+	"regexp"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -54,6 +55,10 @@ type fnmVersion struct {
 	aliases []string
 }
 
+var (
+	versionRe = regexp.MustCompile(`\*\s(?P<version>[^\s]+)\s?(?P<aliases>.*)`)
+)
+
 func withLocalFnmVersions(callback func([]fnmVersion) carapace.Action) carapace.Action {
 	return carapace.ActionExecCommand("fnm", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -63,20 +68,38 @@ func withLocalFnmVersions(callback func([]fnmVersion) carapace.Action) carapace.
 		for _, line := range lines {
 			// line format: https://github.com/Schniz/fnm/blob/master/src/commands/ls_local.rs#L38
 
-			parts := strings.Split(line, " ")
-			if len(parts) < 2 {
+			matches := versionRe.FindStringSubmatch(line)
+
+			if len(matches) < 2 {
 				continue
 			}
 
 			version := fnmVersion{
-				version: parts[1],
+				version: matches[1],
 			}
 
-			if len(parts) > 2 {
-				for _, alias := range parts[2:] {
-					version.aliases = append(version.aliases, strings.Trim(alias, ","))
-				}
+			if len(matches) == 3 {
+				version.aliases = strings.Split(matches[2], ", ")
 			}
+
+			versions = append(versions, version)
+
+			// parts := strings.Split(line, " ")
+			// if len(parts) < 2 {
+			// 	continue
+			// }
+			//
+			// version := fnmVersion{
+			// 	version: parts[1],
+			// }
+			//
+			// if len(parts) > 2 {
+			// 	for _, alias := range parts[2:] {
+			// 		version.aliases = append(version.aliases, strings.Trim(alias, ","))
+			// 	}
+			// }
+			//
+			// versions = append(versions, version)
 		}
 
 		return callback(versions)
