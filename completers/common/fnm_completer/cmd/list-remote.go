@@ -7,9 +7,10 @@ import (
 )
 
 var listRemoteCmd = &cobra.Command{
-	Use:   "list-remote",
-	Short: "List all remote Node.js versions",
-	Run:   func(*cobra.Command, []string) {},
+	Use:     "list-remote",
+	Short:   "List all remote Node.js versions",
+	Aliases: []string{"ls-remote"},
+	Run:     func(*cobra.Command, []string) {},
 }
 
 func init() {

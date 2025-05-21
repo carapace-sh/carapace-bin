@@ -7,9 +7,10 @@ import (
 )
 
 var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List all locally installed Node.js versions",
-	Run:   func(*cobra.Command, []string) {},
+	Use:     "list",
+	Short:   "List all locally installed Node.js versions",
+	Aliases: []string{"ls"},
+	Run:     func(*cobra.Command, []string) {},
 }
 
 func init() {
