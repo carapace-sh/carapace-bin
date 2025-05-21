@@ -41,9 +41,7 @@ func ActionAliases() carapace.Action {
 	return withLocalFnmVersions(func(versions []fnmVersion) carapace.Action {
 		var aliases []string
 		for _, version := range versions {
-			for _, alias := range version.aliases {
-				aliases = append(aliases, alias)
-			}
+			aliases = append(aliases, version.aliases...)
 		}
 
 		return carapace.ActionValues(aliases...)
