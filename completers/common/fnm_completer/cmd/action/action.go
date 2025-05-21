@@ -91,23 +91,6 @@ func withLocalFnmVersions(callback func([]fnmVersion) carapace.Action) carapace.
 			}
 
 			versions = append(versions, version)
-
-			// parts := strings.Split(line, " ")
-			// if len(parts) < 2 {
-			// 	continue
-			// }
-			//
-			// version := fnmVersion{
-			// 	version: parts[1],
-			// }
-			//
-			// if len(parts) > 2 {
-			// 	for _, alias := range parts[2:] {
-			// 		version.aliases = append(version.aliases, strings.Trim(alias, ","))
-			// 	}
-			// }
-			//
-			// versions = append(versions, version)
 		}
 
 		return callback(versions)
