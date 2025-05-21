@@ -50,6 +50,14 @@ func ActionAliases() carapace.Action {
 	})
 }
 
+func ActionInstalledVersions() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return ActionLocalVersions().Invoke(c).Merge(
+			ActionAliases().Invoke(c),
+		).ToA()
+	})
+}
+
 type fnmVersion struct {
 	version string
 	aliases []string

@@ -34,10 +34,6 @@ func init() {
 
 	// TESTME:
 	carapace.Gen(unaliasCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionLocalVersions().Invoke(c).Merge(
-				action.ActionAliases().Invoke(c),
-			).ToA()
-		}),
+		action.ActionInstalledVersions(),
 	)
 }

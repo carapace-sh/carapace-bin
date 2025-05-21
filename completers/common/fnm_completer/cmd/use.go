@@ -31,4 +31,8 @@ func init() {
 		"version-file-strategy": action.ActionVersionFileStrategy(),
 		"resolve-engines":       action.ActionResolveEngines(),
 	})
+
+	carapace.Gen(useCmd).PositionalAnyCompletion(
+		action.ActionInstalledVersions(),
+	)
 }
