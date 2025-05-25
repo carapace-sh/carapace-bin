@@ -3,11 +3,11 @@ module github.com/carapace-sh/carapace-bin
 go 1.23.1
 
 require (
-	github.com/carapace-sh/carapace v1.8.2
+	github.com/carapace-sh/carapace v1.8.3
 	github.com/carapace-sh/carapace-bridge v1.2.10
 	github.com/carapace-sh/carapace-selfupdate v0.0.10
 	github.com/carapace-sh/carapace-shlex v1.0.1
-	github.com/carapace-sh/carapace-spec v1.1.2
+	github.com/carapace-sh/carapace-spec v1.1.3
 	github.com/pelletier/go-toml v1.9.5
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.6
