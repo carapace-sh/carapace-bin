@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -18,7 +19,9 @@ func init() {
 
 	fetchCmd.Flags().Bool("all", false, "fetch from all remotes")
 	fetchCmd.Flags().BoolP("append", "a", false, "append to .git/FETCH_HEAD instead of overwriting")
-	fetchCmd.Flags().Bool("auto-gc", false, "run 'gc --auto' after fetching")
+	fetchCmd.Flags().Bool("atomic", false, "Use an atomic transaction to update local refs")
+	fetchCmd.Flags().Bool("auto-gc", false, "run git maintenance run --auto at the end")
+	fetchCmd.Flags().Bool("auto-maintenance", false, "run git maintenance run --auto at the end")
 	fetchCmd.Flags().String("deepen", "", "deepen history of shallow clone")
 	fetchCmd.Flags().String("depth", "", "deepen history of shallow clone")
 	fetchCmd.Flags().Bool("dry-run", false, "dry run")
@@ -29,19 +32,28 @@ func init() {
 	fetchCmd.Flags().StringP("jobs", "j", "", "number of submodules fetched in parallel")
 	fetchCmd.Flags().BoolP("keep", "k", false, "keep downloaded pack")
 	fetchCmd.Flags().BoolP("multiple", "m", false, "fetch from multiple remotes")
-	fetchCmd.Flags().BoolS("n", "n", false, "do not fetch all tags (--no-tags)")
+	fetchCmd.Flags().Bool("negotiate-only", false, "do not fetch anything from the server")
 	fetchCmd.Flags().String("negotiation-tip", "", "report that we have only objects reachable from this object")
+	fetchCmd.Flags().Bool("no-auto-gc", false, "do not run git maintenance run --auto at the end")
+	fetchCmd.Flags().Bool("no-auto-maintenance", false, "do not run git maintenance run --auto at the end")
+	fetchCmd.Flags().Bool("no-recurse-submodules", false, "disable recursive fetching of submodules")
+	fetchCmd.Flags().BoolP("no-tags", "n", false, "disable automatic tag following")
+	fetchCmd.Flags().Bool("no-write-fetch-head", false, "do not write the list of remote refs fetched")
+	fetchCmd.Flags().Bool("prefetch", false, "place all refs into the refs/prefetch/ namespace")
 	fetchCmd.Flags().Bool("progress", false, "force progress reporting")
 	fetchCmd.Flags().BoolP("prune", "p", false, "prune remote-tracking branches no longer on remote")
 	fetchCmd.Flags().BoolP("prune-tags", "P", false, "prune local tags no longer on remote and clobber changed tags")
 	fetchCmd.Flags().BoolP("quiet", "q", false, "be more quiet")
 	fetchCmd.Flags().String("recurse-submodules", "", "control recursive fetching of submodules")
+	fetchCmd.Flags().String("recurse-submodules-default", "", "used internally to temporarily provide a non-negative default value")
 	fetchCmd.Flags().String("refmap", "", "specify fetch refmap")
 	fetchCmd.Flags().StringP("server-option", "o", "", "option to transmit")
 	fetchCmd.Flags().Bool("set-upstream", false, "set upstream for git pull/fetch")
 	fetchCmd.Flags().String("shallow-exclude", "", "deepen history of shallow clone, excluding rev")
 	fetchCmd.Flags().String("shallow-since", "", "deepen history of shallow repository based on time")
 	fetchCmd.Flags().Bool("show-forced-updates", false, "check for forced-updates on all updated branches")
+	fetchCmd.Flags().Bool("stdin", false, "Read refspecs, one per line, from stdin")
+	fetchCmd.Flags().String("submodule-prefix", "", "prepend <path> to paths printed in informative messages")
 	fetchCmd.Flags().BoolP("tags", "t", false, "fetch all tags and associated objects")
 	fetchCmd.Flags().Bool("unshallow", false, "convert to a complete repository")
 	fetchCmd.Flags().BoolP("update-head-ok", "u", false, "allow updating of HEAD ref")
@@ -49,15 +61,21 @@ func init() {
 	fetchCmd.Flags().String("upload-pack", "", "path to upload pack on remote end")
 	fetchCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
 	fetchCmd.Flags().Bool("write-commit-graph", false, "write the commit-graph after fetching")
+	fetchCmd.Flags().Bool("write-fetch-head", false, "write the list of remote refs fetched")
+
 	rootCmd.AddCommand(fetchCmd)
+
+	carapace.Gen(fetchCmd).FlagCompletion(carapace.ActionMap{
+		"recurse-submodules":         carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+		"recurse-submodules-default": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+	})
 
 	carapace.Gen(fetchCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if !fetchCmd.Flag("all").Changed {
-				return git.ActionRemotes().FilterArgs()
-			} else {
+			if fetchCmd.Flag("all").Changed {
 				return carapace.ActionValues()
 			}
+			return git.ActionRemotes().FilterArgs()
 		}),
 	)
 }
