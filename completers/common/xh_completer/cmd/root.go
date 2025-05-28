@@ -80,8 +80,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"pretty":            carapace.ActionValues("all", "colors", "format", "none"),
 		"style":             carapace.ActionValues("auto", "solarized", "monokai", "fruity"),
-		"print":             carapace.ActionValues("h", "b", "m").UniqueList(","),
-		"history-print":     carapace.ActionValues("h", "b", "m").UniqueList(","),
+		"print":             carapace.ActionValues("h", "b", "m").UniqueList(""),
+		"history-print":     carapace.ActionValues("h", "b", "m").UniqueList(""),
 		"output":            carapace.ActionFiles(),
 		"session":           carapace.ActionFiles(),
 		"session-read-only": carapace.ActionFiles(),
