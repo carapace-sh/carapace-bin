@@ -230,6 +230,7 @@ func init() {
 	rootCmd.Flags().String("service-name", "", "SPNEGO service name")
 	rootCmd.Flags().BoolP("show-error", "S", false, "Show error even when -s is used")
 	rootCmd.Flags().BoolP("show-headers", "i", false, "Show response headers in output")
+	rootCmd.Flags().String("sigalgs", "", "TLS signature algorithms to use")
 	rootCmd.Flags().BoolP("silent", "s", false, "Silent mode")
 	rootCmd.Flags().Bool("skip-existing", false, "Skip download if local file already exists")
 	rootCmd.Flags().String("socks4", "", "SOCKS4 proxy on given host + port")
