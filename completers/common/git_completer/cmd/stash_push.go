@@ -24,6 +24,7 @@ func init() {
 	stash_pushCmd.Flags().Bool("pathspec-file-nul", false, "pathspec elemts are seperated by NUL")
 	stash_pushCmd.Flags().String("pathspec-from-file", "", "read pathspec from file")
 	stash_pushCmd.Flags().BoolP("quiet", "q", false, "suppress feedback messages")
+	stash_pushCmd.Flags().BoolP("staged", "S", false, "only stash staged")
 	stashCmd.AddCommand(stash_pushCmd)
 
 	carapace.Gen(stash_pushCmd).FlagCompletion(carapace.ActionMap{
