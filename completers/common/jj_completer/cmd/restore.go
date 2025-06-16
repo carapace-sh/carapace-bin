@@ -40,9 +40,20 @@ func init() {
 
 	carapace.Gen(restoreCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			fromFlag := restoreCmd.Flag("from")
+			intoFlag := restoreCmd.Flag("into")
+			if !intoFlag.Changed {
+				intoFlag = restoreCmd.Flag("to")
+			}
+
+			if !fromFlag.Changed && !intoFlag.Changed {
+				fromFlag.Value.Set("parents(@)")
+				intoFlag.Value.Set("@")
+			}
+
 			return jj.ActionRevDiffs(
-				restoreCmd.Flag("from").Value.String(),
-				restoreCmd.Flag("to").Value.String(),
+				fromFlag.Value.String(),
+				intoFlag.Value.String(),
 			).FilterArgs()
 		}),
 	)
