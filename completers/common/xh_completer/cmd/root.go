@@ -78,6 +78,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"auth-type":         carapace.ActionValues("basic", "bearer", "digest"),
+		"cert":              carapace.ActionFiles(),
+		"cert-key":          carapace.ActionFiles(),
 		"history-print":     carapace.ActionValues("h", "b", "m").UniqueList(""),
 		"http-version":      carapace.ActionValues("1.0", "1.1", "2", "2-prior-knowledge"),
 		"output":            carapace.ActionFiles(),
