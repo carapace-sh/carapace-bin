@@ -15,6 +15,7 @@ var run_watchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(run_watchCmd).Standalone()
 
+	run_watchCmd.Flags().Bool("compact", false, "Show only relevant/failed steps")
 	run_watchCmd.Flags().Bool("exit-status", false, "Exit with non-zero status if run fails")
 	run_watchCmd.Flags().StringP("interval", "i", "", "Refresh interval in seconds")
 	runCmd.AddCommand(run_watchCmd)

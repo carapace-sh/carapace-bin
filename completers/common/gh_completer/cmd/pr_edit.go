@@ -16,7 +16,7 @@ var pr_editCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pr_editCmd).Standalone()
 
-	pr_editCmd.Flags().StringSlice("add-assignee", nil, "Add assigned users by their `login`. Use \"@me\" to assign yourself.")
+	pr_editCmd.Flags().StringSlice("add-assignee", nil, "Add assigned users by their `login`. Use \"@me\" to assign yourself, or \"@copilot\" to assign Copilot.")
 	pr_editCmd.Flags().StringSlice("add-label", nil, "Add labels by `name`")
 	pr_editCmd.Flags().StringSlice("add-project", nil, "Add the pull request to projects by `title`")
 	pr_editCmd.Flags().StringSlice("add-reviewer", nil, "Add reviewers by their `login`.")
@@ -24,7 +24,7 @@ func init() {
 	pr_editCmd.Flags().StringP("body", "b", "", "Set the new body.")
 	pr_editCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	pr_editCmd.Flags().StringP("milestone", "m", "", "Edit the milestone the pull request belongs to by `name`")
-	pr_editCmd.Flags().StringSlice("remove-assignee", nil, "Remove assigned users by their `login`. Use \"@me\" to unassign yourself.")
+	pr_editCmd.Flags().StringSlice("remove-assignee", nil, "Remove assigned users by their `login`. Use \"@me\" to unassign yourself, or \"@copilot\" to unassign Copilot.")
 	pr_editCmd.Flags().StringSlice("remove-label", nil, "Remove labels by `name`")
 	pr_editCmd.Flags().Bool("remove-milestone", false, "Remove the milestone association from the pull request")
 	pr_editCmd.Flags().StringSlice("remove-project", nil, "Remove the pull request from projects by `title`")
