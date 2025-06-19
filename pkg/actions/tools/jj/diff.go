@@ -7,7 +7,7 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
-// ActionRevDiffs completes changes beetween revisions
+// ActionRevDiffs completes changes between revisions
 // Accepts up to two revisions
 //
 //	0: compare current workspace to parent revision
