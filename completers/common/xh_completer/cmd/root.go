@@ -87,11 +87,10 @@ func init() {
 		"session-read-only": carapace.ActionFiles(),
 		"ssl":               carapace.ActionValues("auto", "tls1", "tls1.1", "tls1.2", "tls1.3"),
 		"style":             carapace.ActionValues("auto", "solarized", "monokai", "fruity"),
-		"verify": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			actionStatic := carapace.ActionValuesDescribed("no", "Skip SSL verification").Invoke(c)
-			actionFiles := carapace.ActionFiles().Invoke(c)
-			return actionStatic.Merge(actionFiles).ToA()
-		}),
+		"verify": carapace.Batch(
+			carapace.ActionValuesDescribed("no", "Skip SSL verification"),
+			carapace.ActionFiles(),
+		).ToA(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
