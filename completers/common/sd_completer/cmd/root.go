@@ -40,6 +40,13 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValues(), // positional 1 ≙ string/regex to find
 		carapace.ActionValues(), // positional 2 ≙ string to replace with
-		carapace.ActionFiles(),  // positional 3 ≙ optional files to replace in (default is to read from stdin)
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(), // positional 3 ≙ optional files to replace in (default is to read from stdin)
+	)
+
+	carapace.Gen(rootCmd).DashAnyCompletion(
+		carapace.ActionPositional(rootCmd),
 	)
 }
