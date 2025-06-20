@@ -89,7 +89,7 @@ func format(path string) (string, error) {
 
 	writer := bufio.NewWriter(tmpfile)
 
-	r := regexp.MustCompile(`\.Flags\(\)\.(Bool|String)[^(]*\("(?P<name>[^"]+)"`)
+	r := regexp.MustCompile(`\.Flags\(\)\.(Bool|String|Float|Int|Uint|Count)[^(]*\("(?P<name>[^"]+)"`)
 
 	toSort := make(map[string]string)
 	for scanner.Scan() {
