@@ -34,6 +34,8 @@ Install from [homebrew-core](https://formulae.brew.sh/formula/carapace)
 brew install carapace
 ```
 
+---
+
 Install from [rsteube/homebrew-tap](https://github.com/rsteube/homebrew-tap)
 
 ```sh
@@ -92,6 +94,8 @@ scoop bucket add extras
 scoop install extras/carapace-bin
 ```
 
+---
+
 Install from [rsteube/scoop-bucket](https://github.com/rsteube/scoop-bucket)
 
 ```sh
@@ -101,9 +105,16 @@ scoop install carapace-bin
 
 ## Termux
 
-> **WIP**: repo currently manually created
+Install from [termux/termux-packages](https://github.com/termux/termux-packages)
+
+```sh
+pkg install carapace
+```
+
+---
 
 Install from [carapace-sh/termux](https://github.com/carapace-sh/termux) (gh_pages)
+> **WIP**: repo currently manually created
 
 ### Manually
 
