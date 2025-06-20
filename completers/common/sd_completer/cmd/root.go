@@ -38,8 +38,8 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionMessage("string / regex to find"),
-		carapace.ActionMessage("string to replace with"),
-		carapace.ActionFiles(),
+		carapace.ActionValues(), // positional 1 ≙ string/regex to find
+		carapace.ActionValues(), // positional 2 ≙ string to replace with
+		carapace.ActionFiles(),  // positional 3 ≙ optional files to replace in (default is to read from stdin)
 	)
 }
