@@ -20,8 +20,8 @@ func init() {
 	operation_showCmd.Flags().BoolP("patch", "p", false, "Show patch of modifications to changes")
 
 	// Diff formatting options
-	operation_showCmd.Flags().Int("context", 3, "Number of lines of context to show")
 	operation_showCmd.Flags().Bool("color-words", false, "Show a word-level diff with changes indicated only by color")
+	operation_showCmd.Flags().Int("context", 3, "Number of lines of context to show")
 	operation_showCmd.Flags().Bool("git", false, "Show a Git-format diff")
 	operation_showCmd.Flags().Bool("name-only", false, "For each path, show only its path")
 	operation_showCmd.Flags().StringP("revision", "r", "", "Show changes in this revision, compared to its parent(s)")

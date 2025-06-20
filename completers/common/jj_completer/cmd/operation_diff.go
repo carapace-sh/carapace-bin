@@ -23,8 +23,8 @@ func init() {
 	operation_diffCmd.Flags().StringP("to", "t", "", "Show repository changes to this operation")
 
 	// Diff formatting options
-	operation_diffCmd.Flags().Int("context", 3, "Number of lines of context to show")
 	operation_diffCmd.Flags().Bool("color-words", false, "Show a word-level diff with changes indicated only by color")
+	operation_diffCmd.Flags().Int("context", 3, "Number of lines of context to show")
 	operation_diffCmd.Flags().Bool("git", false, "Show a Git-format diff")
 	operation_diffCmd.Flags().Bool("name-only", false, "For each path, show only its path")
 	operation_diffCmd.Flags().StringP("revision", "r", "", "Show changes in this revision, compared to its parent(s)")

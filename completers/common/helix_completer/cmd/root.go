@@ -29,10 +29,10 @@ func init() {
 	rootCmd.Flags().Bool("hsplit", false, "Splits all given files horizontally into different windows")
 	rootCmd.Flags().String("log", "", "Specifies a file to use for logging")
 	rootCmd.Flags().Bool("tutor", false, "Loads the tutorial")
-	rootCmd.Flags().StringP("working-dir", "w", "", "Specify an initial working directory")
 	rootCmd.Flags().CountS("v", "v", "Increases logging verbosity each use for up to 3 times")
 	rootCmd.Flags().BoolP("version", "V", false, "Prints version information")
 	rootCmd.Flags().Bool("vsplit", false, "Splits all given files vertically into different windows")
+	rootCmd.Flags().StringP("working-dir", "w", "", "Specify an initial working directory")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":      carapace.ActionFiles(),
