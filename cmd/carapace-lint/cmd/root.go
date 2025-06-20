@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"regexp"
+	"sort"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -33,22 +34,39 @@ var rootCmd = &cobra.Command{
 	},
 }
 
+var fixFlagsOrder bool
+
 func Execute() error {
 	return rootCmd.Execute()
 }
 
 func init() {
+	rootCmd.Flags().BoolVar(&fixFlagsOrder, "fix-flags-order", false, "auto-fix flags order")
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(".go"),
 	)
 }
+
+type (
+	sourceLine struct {
+		Source     string
+		LineNumber int
+		FlagName   string
+	}
+
+	flagsBlockDef struct {
+		Start int // inclusive
+		End   int // exclusive
+	}
+)
 
 func Lint(path string) error {
 	if !strings.HasSuffix(path, ".go") {
 		return nil
 	}
 
-	file, err := os.Open(path)
+	file, err := os.OpenFile(path, os.O_RDWR, 0644)
 	if err != nil {
 		return err
 	}
@@ -59,21 +77,93 @@ func Lint(path string) error {
 
 	r := regexp.MustCompile(`\.Flags\(\)\.(Bool|String|Float|Int|Uint|Count)[^(]*\("(?P<name>[^"]+)"`)
 
-	previous := ""
-	line := 0
+	lines := []sourceLine{}
 	for scanner.Scan() {
-		if !r.MatchString(scanner.Text()) {
-			previous = ""
+		line := scanner.Text()
+
+		if r.MatchString(line) {
+			matches := r.FindStringSubmatch(line)
+
+			lines = append(lines, sourceLine{
+				LineNumber: len(lines) + 1,
+				Source:     line,
+				FlagName:   matches[2],
+			})
 		} else {
-			matches := r.FindStringSubmatch(scanner.Text())
-			current := matches[2]
-			if previous != "" && previous > current {
-				return fmt.Errorf("%v [%v]: flag '%v' should be before '%v'", path, line, current, previous)
-			}
-			previous = current
+			lines = append(lines, sourceLine{
+				LineNumber: len(lines) + 1,
+				Source:     line,
+			})
 		}
-		line += 1
 	}
+
+	defs := []flagsBlockDef{}
+
+	i := 0
+	for i < len(lines) {
+		// regular line, do nothing
+		if !lines[i].isFlagLine() {
+			i++
+			continue
+		}
+
+		// `i` is the start of a contiguous "flags block".
+		// we now have to find it's end
+		j := i
+		for j < len(lines) && lines[j].isFlagLine() {
+			j++
+		}
+
+		// the flags block consists of only one flag line.
+		// there is no need to sort
+		if i == j {
+			continue
+		}
+
+		defs = append(defs, flagsBlockDef{
+			Start: i,
+			End:   j,
+		})
+		i = j
+	}
+
+	if fixFlagsOrder {
+		for _, def := range defs {
+			sort.Slice(lines[def.Start:def.End], func(a, b int) bool {
+				return lines[def.Start+a].FlagName < lines[def.Start+b].FlagName
+			})
+		}
+
+		if _, err := file.Seek(0, 0); err != nil {
+			return fmt.Errorf("resetting file offset failed: %v", err)
+		}
+
+		for i, line := range lines {
+			_, _ = file.WriteString(line.Source)
+
+			isLastLine := i == len(lines)-1
+			if !isLastLine {
+				_, _ = file.WriteString("\n")
+			}
+		}
+	} else {
+		for _, def := range defs {
+			block := lines[def.Start:def.End]
+			for blockIndex := range block {
+				if blockIndex == 0 {
+					continue
+				}
+
+				prev := block[blockIndex-1]
+				current := block[blockIndex]
+
+				if current.FlagName < prev.FlagName {
+					return fmt.Errorf("%s [%d]: flag '%s' should be before '%s'", path, current.LineNumber, current.FlagName, prev.FlagName)
+				}
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -119,4 +209,8 @@ outer:
 		line += 1
 	}
 	return nil
+}
+
+func (l sourceLine) isFlagLine() bool {
+	return l.FlagName != ""
 }
