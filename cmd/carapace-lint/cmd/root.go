@@ -57,7 +57,7 @@ func Lint(path string) error {
 	scanner := bufio.NewScanner(file)
 	scanner.Split(bufio.ScanLines)
 
-	r := regexp.MustCompile(`\.Flags\(\)\.(Bool|String)[^(]*\("(?P<name>[^"]+)"`)
+	r := regexp.MustCompile(`\.Flags\(\)\.(Bool|String|Float|Int|Uint|Count)[^(]*\("(?P<name>[^"]+)"`)
 
 	previous := ""
 	line := 0
