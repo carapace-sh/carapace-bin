@@ -19,8 +19,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("preview", "p", false, "Display changes in a human reviewable format (the specifics of the format are likely to change in the future)")
 	rootCmd.Flags().BoolP("fixed-strings", "F", false, "Treat FIND and REPLACE_WITH args as literal strings")
+	rootCmd.Flags().BoolP("preview", "p", false, "Display changes in a human reviewable format (the specifics of the format are likely to change in the future)")
 	rootCmd.Flags().IntP("max-replacements", "n", 0, "Limit the number of replacements that can occur per file. 0 indicates unlimited replacements")
 	rootCmd.Flags().StringP("flags", "f", "", "Regex flags. May be combined")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see a summary with '-h')")
