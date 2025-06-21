@@ -110,7 +110,7 @@ func Lint(path string) error {
 		}
 
 		// the flags block consists of only one flag line
-		if i == j {
+		if j-i == 1 {
 			continue
 		}
 
