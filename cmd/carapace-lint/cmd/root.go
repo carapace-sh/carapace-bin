@@ -97,10 +97,8 @@ func Lint(path string) error {
 		}
 	}
 
-	defs := []flagsBlockDef{}
-
-	i := 0
-	for i < len(lines) {
+	var defs []flagsBlockDef
+	for i := 0; i < len(lines); {
 		// regular line, do nothing
 		if !lines[i].isFlagLine() {
 			i++
@@ -109,13 +107,12 @@ func Lint(path string) error {
 
 		// `i` is the start of a contiguous "flags block".
 		// we now have to find it's end
-		j := i
+		j := i + 1
 		for j < len(lines) && lines[j].isFlagLine() {
 			j++
 		}
 
-		// the flags block consists of only one flag line.
-		// there is no need to sort
+		// the flags block consists of only one flag line
 		if i == j {
 			continue
 		}
@@ -124,7 +121,9 @@ func Lint(path string) error {
 			Start: i,
 			End:   j,
 		})
-		i = j
+
+		// we know that `j` is no flag line and can safely skip it
+		i = j + 1
 	}
 
 	if fixFlagsOrder {
