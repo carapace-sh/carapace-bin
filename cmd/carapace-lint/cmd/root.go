@@ -109,7 +109,8 @@ func Lint(path string) error {
 			j++
 		}
 
-		// the flags block consists of only one flag line
+		// the flags block consists of only one flag line.
+		// no need to sort it
 		if j-i == 1 {
 			continue
 		}
