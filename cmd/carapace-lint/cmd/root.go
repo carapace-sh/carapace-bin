@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"os"
 	"regexp"
@@ -66,34 +67,30 @@ func Lint(path string) error {
 		return nil
 	}
 
-	file, err := os.OpenFile(path, os.O_RDWR, 0644)
+	content, err := os.ReadFile(path)
 	if err != nil {
 		return err
 	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
 
 	r := regexp.MustCompile(`\.Flags\(\)\.(Bool|String|Float|Int|Uint|Count)[^(]*\("(?P<name>[^"]+)"`)
 
-	lines := []sourceLine{}
-	for scanner.Scan() {
-		line := scanner.Text()
+	contentLines := bytes.Split(content, []byte{'\n'})
+	lines := make([]sourceLine, len(contentLines))
 
-		if r.MatchString(line) {
-			matches := r.FindStringSubmatch(line)
+	for i, line := range contentLines {
+		lineSource := string(line)
 
-			lines = append(lines, sourceLine{
-				LineNumber: len(lines) + 1,
-				Source:     line,
+		if matches := r.FindStringSubmatch(lineSource); matches != nil {
+			lines[i] = sourceLine{
+				LineNumber: i + 1,
+				Source:     lineSource,
 				FlagName:   matches[2],
-			})
+			}
 		} else {
-			lines = append(lines, sourceLine{
-				LineNumber: len(lines) + 1,
-				Source:     line,
-			})
+			lines[i] = sourceLine{
+				LineNumber: i + 1,
+				Source:     lineSource,
+			}
 		}
 	}
 
@@ -133,28 +130,22 @@ func Lint(path string) error {
 			})
 		}
 
-		if _, err := file.Seek(0, 0); err != nil {
-			return fmt.Errorf("resetting file offset failed: %v", err)
-		}
-
+		var buf bytes.Buffer
 		for i, line := range lines {
-			_, _ = file.WriteString(line.Source)
-
+			buf.WriteString(line.Source)
 			isLastLine := i == len(lines)-1
 			if !isLastLine {
-				_, _ = file.WriteString("\n")
+				buf.WriteByte('\n')
 			}
 		}
+
+		return os.WriteFile(path, buf.Bytes(), 0644)
 	} else {
 		for _, def := range defs {
 			block := lines[def.Start:def.End]
-			for blockIndex := range block {
-				if blockIndex == 0 {
-					continue
-				}
-
-				prev := block[blockIndex-1]
-				current := block[blockIndex]
+			for i := 1; i < len(block); i++ {
+				prev := block[i-1]
+				current := block[i]
 
 				if current.FlagName < prev.FlagName {
 					return fmt.Errorf("%s [%d]: flag '%s' should be before '%s'", path, current.LineNumber, current.FlagName, prev.FlagName)
