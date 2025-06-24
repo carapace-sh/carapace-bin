@@ -36,5 +36,5 @@ func init() {
 		"output-lock-file":    carapace.ActionFiles(),
 		"reference-lock-file": carapace.ActionFiles("lock"),
 	})
-	carapace.Gen(evalCmd).PositionalAnyCompletion(nix.ActionInstallables())
+	carapace.Gen(evalCmd).PositionalAnyCompletion(nix.ActionFlakeRefs())
 }
