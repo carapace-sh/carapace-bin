@@ -9,7 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:                "reboot",
 	Short:              "reboot the machine",
-	Long:               "https://linux.die.net/man/8/reboot",
+	Long:               "https://www.freedesktop.org/software/systemd/man/latest/reboot.html",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
 }

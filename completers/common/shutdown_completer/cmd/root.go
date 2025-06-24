@@ -9,13 +9,14 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "shutdown",
 	Short: "Shut down the system",
-	Long:  "https://linux.die.net/man/8/shutdown",
+	Long:  "https://www.freedesktop.org/software/systemd/man/latest/shutdown.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -27,6 +28,7 @@ func init() {
 	rootCmd.Flags().Bool("no-wall", false, "Don't send wall message before halt/power-off/reboot")
 	rootCmd.Flags().BoolP("poweroff", "P", false, "Power-off the machine")
 	rootCmd.Flags().BoolP("reboot", "r", false, "Reboot the machine")
+	rootCmd.Flags().Bool("show", false, "Show pending shutdown")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.Batch(
