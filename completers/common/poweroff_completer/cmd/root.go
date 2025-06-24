@@ -9,7 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:                "poweroff",
 	Short:              "poweroff the machine",
-	Long:               "https://linux.die.net/man/8/poweroff",
+	Long:               "https://www.freedesktop.org/software/systemd/man/latest/poweroff.html",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
 }

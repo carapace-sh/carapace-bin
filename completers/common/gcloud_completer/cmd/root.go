@@ -30,7 +30,7 @@ func init() {
 			}
 			c.Setenv("CLOUDSDK_COMPONENT_MANAGER_DISABLE_UPDATE_CHECK", "1")
 			//lint:ignore SA1019 gcloud uses an old argcomplete version
-			return bridge.ActionArgcompleteLegacy("gcloud").Invoke(c).ToA()
+			return bridge.ActionArgcompleteV1("gcloud").Invoke(c).ToA()
 		}),
 	)
 }

@@ -66,6 +66,9 @@ var rootCmd = &cobra.Command{
 		case "--condition":
 			conditionCmd.SetArgs(args[1:])
 			conditionCmd.Execute()
+		case "--detect":
+			detectCmd.SetArgs(args[1:])
+			detectCmd.Execute()
 		case "--diff":
 			diffCmd.SetArgs(args[1:])
 			diffCmd.Execute()
@@ -186,6 +189,7 @@ func init() {
 	rootCmd.Flags().Bool("clear-cache", false, "clear caches")
 	rootCmd.Flags().Bool("codegen", false, "generate code for spec file")
 	rootCmd.Flags().Bool("condition", false, "list or execute condition")
+	rootCmd.Flags().Bool("detect", false, "detect bridge by invoking command")
 	rootCmd.Flags().Bool("diff", false, "diff completion")
 	rootCmd.Flags().BoolP("help", "h", false, "help for carapace")
 	rootCmd.Flags().Bool("list", false, "list completers")
@@ -200,6 +204,7 @@ func init() {
 		"clear-cache",
 		"codegen",
 		"condition",
+		"detect",
 		"diff",
 		"help",
 		"list",
@@ -234,6 +239,8 @@ func init() {
 				return carapace.ActionExecute(codegenCmd).Shift(1)
 			case "--condition":
 				return carapace.ActionExecute(conditionCmd).Shift(1)
+			case "--detect":
+				return carapace.ActionExecute(detectCmd).Shift(1)
 			case "--diff":
 				return carapace.ActionExecute(diffCmd).Shift(1)
 			case "--help":
