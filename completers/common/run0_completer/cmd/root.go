@@ -15,7 +15,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "run0",
 	Short: "Elevate privileges interactively",
-	Long:  "https://www.man7.org/linux/man-pages/man1/run0.1.html",
+	Long:  "https://www.freedesktop.org/software/systemd/man/latest/run0.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -35,8 +35,11 @@ func init() {
 	rootCmd.Flags().String("machine", "", "Operate on local container")
 	rootCmd.Flags().String("nice", "", "Nice level")
 	rootCmd.Flags().Bool("no-ask-password", false, "Do not prompt for password")
+	rootCmd.Flags().Bool("pipe", false, "Request direct pipe for stdio")
 	rootCmd.Flags().StringArray("property", nil, "Set service or scope unit property")
+	rootCmd.Flags().Bool("pty", false, "Request allocation of a pseudo TTY for stdio")
 	rootCmd.Flags().StringArray("setenv", nil, "Set environment variable")
+	rootCmd.Flags().String("shell-prompt-prefix", "", "Set $SHELL_PROMPT_PREFIX")
 	rootCmd.Flags().String("slice", "", "Run in the specified slice")
 	rootCmd.Flags().Bool("slice-inherit", false, "Inherit the slice")
 	rootCmd.Flags().String("unit", "", "Run under the specified unit name")
