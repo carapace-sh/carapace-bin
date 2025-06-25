@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/systemctl_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +19,10 @@ func init() {
 	rootCmd.AddCommand(statusCmd)
 
 	carapace.Gen(statusCmd).PositionalAnyCompletion(
-		action.ActionUnits(statusCmd).FilterArgs(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			opts := systemctl.UnitFileOpts{}.Default()
+			opts.User = statusCmd.Root().Flag("user").Changed
+			return systemctl.ActionUnitFiles(opts).FilterArgs()
+		}),
 	)
 }
