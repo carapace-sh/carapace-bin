@@ -15,6 +15,7 @@ var tag_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(tag_listCmd).Standalone()
 
+	tag_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	tag_listCmd.Flags().StringP("template", "T", "", "Render each tag using the given template")
 	tagCmd.AddCommand(tag_listCmd)
 

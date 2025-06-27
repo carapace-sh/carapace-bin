@@ -15,10 +15,15 @@ var splitCmd = &cobra.Command{
 func init() {
 	carapace.Gen(splitCmd).Standalone()
 
+	splitCmd.Flags().StringSliceP("destination", "d", nil, "The revision(s) to rebase onto (can be repeated to create a merge commit)")
 	splitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	splitCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to split. This is the default if no paths are provided")
-	splitCmd.Flags().BoolP("parallel", "p", false, "Split the revision into two parallel instead of parent and child")
+	splitCmd.Flags().StringSliceP("insert-after", "A", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
+	splitCmd.Flags().StringSliceP("insert-before", "B", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
+	splitCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to split")
+	splitCmd.Flags().StringSliceP("message", "m", nil, "The change description to use (don't open editor)")
+	splitCmd.Flags().BoolP("parallel", "p", false, "Split the revision into two parallel revisions instead of a parent and child")
 	splitCmd.Flags().StringP("revision", "r", "", "The revision to split")
+	splitCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
 	rootCmd.AddCommand(splitCmd)
 
 	carapace.Gen(splitCmd).FlagCompletion(carapace.ActionMap{

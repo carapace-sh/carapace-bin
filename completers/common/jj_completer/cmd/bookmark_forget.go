@@ -8,7 +8,7 @@ import (
 
 var bookmark_forgetCmd = &cobra.Command{
 	Use:     "forget [OPTIONS] [NAMES]...",
-	Short:   "Forget everything about a bookmark, including its local and remote targets",
+	Short:   "Forget a bookmark without marking it as a deletion to be pushed",
 	Aliases: []string{"f"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

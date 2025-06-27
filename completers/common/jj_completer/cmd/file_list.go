@@ -17,6 +17,7 @@ func init() {
 
 	file_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	file_listCmd.Flags().StringP("revision", "r", "@", "The revision to list files in")
+	file_listCmd.Flags().StringP("template", "T", "", "Render each file entry using the given template")
 	fileCmd.AddCommand(file_listCmd)
 
 	carapace.Gen(file_listCmd).FlagCompletion(carapace.ActionMap{

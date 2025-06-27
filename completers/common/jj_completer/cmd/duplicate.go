@@ -8,7 +8,7 @@ import (
 
 var duplicateCmd = &cobra.Command{
 	Use:   "duplicate [OPTIONS] [REVISIONS]...",
-	Short: "Create a new change with the same content as an existing one",
+	Short: "Create new changes with the same content as existing ones",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -17,10 +17,10 @@ func init() {
 
 	duplicateCmd.Flags().StringArray("after", nil, "Alias for --insert-after")
 	duplicateCmd.Flags().StringArray("before", nil, "Alias for --insert-before")
-	duplicateCmd.Flags().StringArrayP("destination", "d", []string{"@"}, "The revision(s) to duplicate onto (can be repeated to create a merge commit)")
+	duplicateCmd.Flags().StringSliceP("destination", "d", []string{"@"}, "The revision(s) to duplicate onto (can be repeated to create a merge commit)")
 	duplicateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	duplicateCmd.Flags().StringArrayP("insert-after", "A", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
-	duplicateCmd.Flags().StringArrayP("insert-before", "B", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
+	duplicateCmd.Flags().StringSliceP("insert-after", "A", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
+	duplicateCmd.Flags().StringSliceP("insert-before", "B", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
 	rootCmd.AddCommand(duplicateCmd)
 
 	duplicateCmd.MarkFlagsMutuallyExclusive(

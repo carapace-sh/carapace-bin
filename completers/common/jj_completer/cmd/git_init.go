@@ -14,8 +14,8 @@ var git_initCmd = &cobra.Command{
 func init() {
 	carapace.Gen(git_initCmd).Standalone()
 
-	git_initCmd.Flags().Bool("colocate", false, "Specifies that the `jj` repo should also be a valid `git` repo")
-	git_initCmd.Flags().String("git-repo", "", "Specifies a path to an existing git repository to be used to back the new `jj` repo")
+	git_initCmd.Flags().Bool("colocate", false, "Specifies that the `jj` repo should also be a valid `git` repo, allowing the use of both `jj` and `git` commands in the same directory")
+	git_initCmd.Flags().String("git-repo", "", "Specifies a path to an **existing** git repository to be used as the backing git repo for the newly created `jj` repo")
 	git_initCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	gitCmd.AddCommand(git_initCmd)
 

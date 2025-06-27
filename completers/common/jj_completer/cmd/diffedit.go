@@ -15,11 +15,12 @@ var diffeditCmd = &cobra.Command{
 func init() {
 	carapace.Gen(diffeditCmd).Standalone()
 
-	diffeditCmd.Flags().StringP("from", "f", "@", "Show changes from this revision. Defaults to @ if --to is specified")
+	diffeditCmd.Flags().StringP("from", "f", "@", "Show changes from this revision")
 	diffeditCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	diffeditCmd.Flags().Bool("restore-descendants", false, "Preserve the content (not the diff) when rebasing descendants")
-	diffeditCmd.Flags().StringP("revision", "r", "@", "The revision to touch up. Defaults to @ if neither --to nor --from are specified")
-	diffeditCmd.Flags().StringP("to", "t", "@", "Edit changes in this revision. Defaults to @ if --from is specified")
+	diffeditCmd.Flags().StringP("revision", "r", "@", "The revision to touch up")
+	diffeditCmd.Flags().StringP("to", "t", "@", "Edit changes in this revision")
+	diffeditCmd.Flags().String("tool", "", "Specify diff editor to be used")
 	rootCmd.AddCommand(diffeditCmd)
 
 	carapace.Gen(diffeditCmd).FlagCompletion(carapace.ActionMap{

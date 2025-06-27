@@ -15,21 +15,19 @@ var operation_showCmd = &cobra.Command{
 func init() {
 	carapace.Gen(operation_showCmd).Standalone()
 
-	// Options
-	operation_showCmd.Flags().Bool("no-graph", false, "Don't show the graph, show a flat list of operations")
-	operation_showCmd.Flags().BoolP("patch", "p", false, "Show patch of modifications to changes")
-
-	// Diff formatting options
 	operation_showCmd.Flags().Bool("color-words", false, "Show a word-level diff with changes indicated only by color")
-	operation_showCmd.Flags().Int("context", 3, "Number of lines of context to show")
+	operation_showCmd.Flags().String("context", "", "Number of lines of context to show")
 	operation_showCmd.Flags().Bool("git", false, "Show a Git-format diff")
+	operation_showCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	operation_showCmd.Flags().Bool("ignore-all-space", false, "Ignore whitespace when comparing lines")
+	operation_showCmd.Flags().Bool("ignore-space-change", false, "Ignore changes in amount of whitespace when comparing lines")
 	operation_showCmd.Flags().Bool("name-only", false, "For each path, show only its path")
-	operation_showCmd.Flags().StringP("revision", "r", "", "Show changes in this revision, compared to its parent(s)")
+	operation_showCmd.Flags().Bool("no-graph", false, "Don't show the graph, show a flat list of modified changes")
+	operation_showCmd.Flags().BoolP("patch", "p", false, "Show patch of modifications to changes")
 	operation_showCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
-	operation_showCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or removed")
+	operation_showCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or deleted")
 	operation_showCmd.Flags().String("tool", "", "Generate diff by external command")
 	operation_showCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
-
 	operationCmd.AddCommand(operation_showCmd)
 
 	carapace.Gen(operation_showCmd).PositionalCompletion(

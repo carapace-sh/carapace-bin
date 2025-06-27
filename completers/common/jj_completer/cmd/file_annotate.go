@@ -16,7 +16,8 @@ func init() {
 	carapace.Gen(file_annotateCmd).Standalone()
 
 	file_annotateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	file_annotateCmd.Flags().StringP("revision", "r", "@", "Revision to start at")
+	file_annotateCmd.Flags().StringP("revision", "r", "@", "an optional revision to start at")
+	file_annotateCmd.Flags().StringP("template", "T", "", "Render each line using the given template")
 	fileCmd.AddCommand(file_annotateCmd)
 
 	carapace.Gen(file_annotateCmd).FlagCompletion(carapace.ActionMap{

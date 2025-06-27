@@ -8,7 +8,7 @@ import (
 
 var newCmd = &cobra.Command{
 	Use:   "new [OPTIONS] [REVISIONS]...",
-	Short: "Create a new, empty change and edit it in the working copy",
+	Short: "Create a new, empty change and (by default) edit it in the working copy",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -16,9 +16,10 @@ func init() {
 	carapace.Gen(newCmd).Standalone()
 
 	newCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	newCmd.Flags().StringP("insert-after", "A", "", "Insert the new change between the target commit(s) and their children")
-	newCmd.Flags().StringP("insert-before", "B", "", "Insert the new change between the target commit(s) and their parents")
+	newCmd.Flags().StringSliceP("insert-after", "A", nil, "Insert the new change after the given commit(s)")
+	newCmd.Flags().StringSliceP("insert-before", "B", nil, "Insert the new change before the given commit(s)")
 	newCmd.Flags().StringSliceP("message", "m", nil, "The change description to use")
+	newCmd.Flags().Bool("no-edit", false, "Do not edit the newly created change")
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(newCmd).FlagCompletion(carapace.ActionMap{

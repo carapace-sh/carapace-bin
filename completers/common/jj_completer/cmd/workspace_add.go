@@ -17,7 +17,7 @@ func init() {
 
 	workspace_addCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	workspace_addCmd.Flags().String("name", "", "A name for the workspace")
-	workspace_addCmd.Flags().StringP("revision", "r", "", "The revision that the workspace should be created at; a new working copy commit will be created on top of it")
+	workspace_addCmd.Flags().StringSliceP("revision", "r", nil, "A list of parent revisions for the working-copy commit of the newly created workspace. You may specify nothing, or any number of parents")
 	workspace_addCmd.Flags().String("sparse-patterns", "", "How to handle sparse patterns when creating a new workspace")
 	workspaceCmd.AddCommand(workspace_addCmd)
 

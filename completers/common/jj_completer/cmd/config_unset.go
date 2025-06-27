@@ -8,8 +8,8 @@ import (
 
 var config_unsetCmd = &cobra.Command{
 	Use:     "unset [OPTIONS] <--user|--repo> <NAME>",
-	Short:   "Update config file to unset the given option",
-	Aliases: []string{},
+	Short:   "Update a config file to unset the given option",
+	Aliases: []string{"u"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

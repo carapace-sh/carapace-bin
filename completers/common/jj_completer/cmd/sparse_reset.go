@@ -14,6 +14,6 @@ var sparse_resetCmd = &cobra.Command{
 func init() {
 	carapace.Gen(sparse_resetCmd).Standalone()
 
-	sparse_resetCmd.Flags().BoolP("help", "h", false, "Print help (see a summary with '-h')")
+	sparse_resetCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	sparseCmd.AddCommand(sparse_resetCmd)
 }
