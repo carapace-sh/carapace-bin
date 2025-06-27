@@ -36,9 +36,13 @@ func init() {
 				"CARAPACE_COVERDIR": carapace.ActionDirectories(),
 				"CARAPACE_COMPLINE": bridge.ActionCarapaceBin().Split(),
 				"CARAPACE_ENV":      _bool,
-				"CARAPACE_HIDDEN":   _bool,
-				"CARAPACE_LENIENT":  _bool,
-				"CARAPACE_LOG":      _bool,
+				"CARAPACE_HIDDEN": carapace.ActionStyledValuesDescribed(
+					"0", "disabled", style.Carapace.KeywordNegative,
+					"1", "enabled", style.Carapace.KeywordPositive,
+					"2", "enabled including _carapace", style.Carapace.KeywordPositive,
+				),
+				"CARAPACE_LENIENT": _bool,
+				"CARAPACE_LOG":     _bool,
 				"CARAPACE_MATCH": carapace.ActionValuesDescribed(
 					"0", "CASE_SENSITIVE",
 					"1", "CASE_INSENSITIVE",
