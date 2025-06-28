@@ -22,15 +22,15 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().SetInterspersed(false)
 
-	rootCmd.Flags().BoolS("clear", "L", false, "Clear any persisted authentications and exit")
-	rootCmd.Flags().StringS("config", "C", "", "Parse and check configuration file, do not execute command")
-	rootCmd.Flags().BoolS("shell", "s", false, "Execute shell from $SHELL or /etc/passwd")
-	rootCmd.Flags().BoolS("silent", "n", false, "Non interactive mode, fail if password entry is needed")
-	rootCmd.Flags().StringS("user", "u", "root", "Execute command as specified user")
+	rootCmd.Flags().StringS("C", "C", "", "Parse and check configuration file, do not execute command")
+	rootCmd.Flags().BoolS("L", "L", false, "Clear any persisted authentications and exit")
+	rootCmd.Flags().BoolS("n", "n", false, "Non interactive mode, fail if password entry is needed")
+	rootCmd.Flags().BoolS("s", "s", false, "Execute shell from $SHELL or /etc/passwd")
+	rootCmd.Flags().StringS("u", "u", "", "Execute command as specified user")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"config": carapace.ActionFiles(),
-		"user":   os.ActionUsers(),
+		"C": carapace.ActionFiles(),
+		"u": os.ActionUsers(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
