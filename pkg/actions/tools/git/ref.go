@@ -54,7 +54,7 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			}
 
 			if refOption.HeadCommits {
-				batch = append(batch, ActionHeadCommits(1).NoSpace('~'))
+				batch = append(batch, ActionHeadCommits(1))
 			}
 
 			if refOption.Tags {
