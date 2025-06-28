@@ -26,7 +26,7 @@ func init() {
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
 	rootCmd.Flags().BoolP("login", "l", false, "make the shell a login shell")
 	rootCmd.Flags().BoolS("m", "m", false, "do not reset environment variables")
-	rootCmd.Flags().BoolS("no-pty", "T", false, "do not create a new pseudo-terminal (bad security!)")
+	rootCmd.Flags().BoolP("no-pty", "T", false, "do not create a new pseudo-terminal (bad security!)")
 	rootCmd.Flags().BoolP("preserve-environment", "p", false, "do not reset environment variables")
 	rootCmd.Flags().BoolP("pty", "P", false, "create a new pseudo-terminal")
 	rootCmd.Flags().String("session-command", "", "pass a single command and do not create a new session")

@@ -2,6 +2,7 @@ package action
 
 import (
 	"regexp"
+	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl"
@@ -29,12 +30,14 @@ func ActionServices(cmd *cobra.Command) carapace.Action {
 
 func ActionArchitectures() carapace.Action {
 	return carapace.ActionExecCommand("systemd-analyze", "architectures")(func(output []byte) carapace.Action {
-		re := regexp.MustCompile(`(?m)^(\S+)\s+(\S+)$`)
-		matches := re.FindAllSubmatch(output, -1)
+		lines := strings.Split(string(output), "\n")
+		re := regexp.MustCompile(`^(\S+)\s+(.*)$`)
 
-		var vals []string
-		for _, match := range matches {
-			vals = append(vals, string(match[1]), string(match[2]))
+		vals := make([]string, 0)
+		for _, line := range lines[1:] {
+			if matches := re.FindStringSubmatch(line); matches != nil {
+				vals = append(vals, matches[1], matches[2])
+			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
 	})

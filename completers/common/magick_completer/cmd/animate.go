@@ -18,7 +18,7 @@ func init() {
 	animateCmd.Flags().CountS("alpha", "alpha", "on, activate, off, deactivate, set, opaque, copy\", transparent, extract, background, or shape the alpha channel")
 	animateCmd.Flags().CountS("antialias", "antialias", "remove pixel-aliasing")
 	animateCmd.Flags().StringSliceS("authenticate", "authenticate", nil, "decrypt image with this password")
-	animateCmd.Flags().CountS("backdrop", "backdrop", "background color")
+	animateCmd.Flags().CountS("backdrop", "backdrop", "display the image centered on a backdrop")
 	animateCmd.Flags().StringSliceS("background", "background", nil, "background color")
 	animateCmd.Flags().StringSliceS("border", "border", nil, "surround image with a border of color")
 	animateCmd.Flags().StringSliceS("bordercolor", "bordercolor", nil, "border color")
