@@ -14,6 +14,6 @@ var sparse_editCmd = &cobra.Command{
 func init() {
 	carapace.Gen(sparse_editCmd).Standalone()
 
-	sparse_editCmd.Flags().BoolP("help", "h", false, "Print help (see a summary with '-h')")
+	sparse_editCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	sparseCmd.AddCommand(sparse_editCmd)
 }

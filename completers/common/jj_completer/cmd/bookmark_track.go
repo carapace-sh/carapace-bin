@@ -7,9 +7,10 @@ import (
 )
 
 var bookmark_trackCmd = &cobra.Command{
-	Use:   "track [OPTIONS] <NAMES>...",
-	Short: "Start tracking given remote bookmarks",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "track [OPTIONS] <NAMES>...",
+	Short:   "Start tracking given remote bookmarks",
+	Aliases: []string{"t"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

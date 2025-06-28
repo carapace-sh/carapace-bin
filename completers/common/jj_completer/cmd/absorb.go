@@ -17,8 +17,8 @@ func init() {
 
 	absorbCmd.Flags().StringP("from", "f", "@", "Source revision to absorb from")
 	absorbCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	absorbCmd.Flags().StringP("into", "t", "mutable()", "Destination revisions to absorb into")
-	absorbCmd.Flags().String("to", "mutable()", "Alias for --into")
+	absorbCmd.Flags().StringSliceP("into", "t", []string{"mutable()"}, "Destination revisions to absorb into")
+	absorbCmd.Flags().StringSlice("to", []string{"mutable()"}, "Alias for --into")
 	rootCmd.AddCommand(absorbCmd)
 
 	absorbCmd.MarkFlagsMutuallyExclusive("into", "to")

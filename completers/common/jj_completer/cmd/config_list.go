@@ -8,7 +8,7 @@ import (
 
 var config_listCmd = &cobra.Command{
 	Use:     "list [OPTIONS] [NAME]",
-	Short:   "List variables set in config file, along with their values",
+	Short:   "List variables set in config files, along with their values",
 	Aliases: []string{"l"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -18,7 +18,10 @@ func init() {
 
 	config_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	config_listCmd.Flags().Bool("include-defaults", false, "Whether to explicitly include built-in default values in the list")
+	config_listCmd.Flags().Bool("include-overridden", false, "Allow printing overridden values")
+	config_listCmd.Flags().Bool("repo", false, "Target the repo-level config")
 	config_listCmd.Flags().StringP("template", "T", "", "Render each variable using the given template")
+	config_listCmd.Flags().Bool("user", false, "Target the user-level config")
 	configCmd.AddCommand(config_listCmd)
 
 	carapace.Gen(config_listCmd).PositionalCompletion(

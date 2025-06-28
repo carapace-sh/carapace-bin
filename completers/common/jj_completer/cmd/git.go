@@ -7,7 +7,7 @@ import (
 
 var gitCmd = &cobra.Command{
 	Use:   "git",
-	Short: "Commands for working with the underlying Git repo",
+	Short: "Commands for working with Git remotes and the underlying Git repo",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

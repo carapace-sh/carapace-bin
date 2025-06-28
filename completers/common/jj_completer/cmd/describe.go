@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(describeCmd).Standalone()
 
 	describeCmd.Flags().String("author", "", "Set author to the provided string")
-	describeCmd.Flags().Bool("edit", true, "Open an editor")
+	describeCmd.Flags().Bool("edit", false, "Open an editor")
 	describeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	describeCmd.Flags().StringSliceP("message", "m", nil, "The change description to use (don't open editor)")
 	describeCmd.Flags().Bool("no-edit", false, "Don't open an editor")

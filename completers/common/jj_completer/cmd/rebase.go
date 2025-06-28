@@ -15,17 +15,17 @@ var rebaseCmd = &cobra.Command{
 func init() {
 	carapace.Gen(rebaseCmd).Standalone()
 
-	rebaseCmd.Flags().StringArray("after", nil, "Alias for `--insert-after`")
-	rebaseCmd.Flags().StringArray("before", nil, "Alias for `--insert-before`")
+	rebaseCmd.Flags().StringArray("after", nil, "Alias for --insert-after")
+	rebaseCmd.Flags().StringArray("before", nil, "Alias for --insert-before")
 	rebaseCmd.Flags().StringSliceP("branch", "b", nil, "Rebase the whole branch relative to destination's ancestors (can be repeated)")
 	rebaseCmd.Flags().StringSliceP("destination", "d", nil, "The revision(s) to rebase onto (can be repeated to create a merge commit)")
 	rebaseCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	rebaseCmd.Flags().StringArrayP("insert-after", "A", nil, "Revision(s) to insert after")
-	rebaseCmd.Flags().StringArrayP("insert-before", "B", nil, "Revision(s) to insert before")
-	rebaseCmd.Flags().StringP("revisions", "r", "", "Rebase only this revision, rebasing descendants onto this revision's parent(s)")
-	rebaseCmd.Flags().Bool("skip-emptied", false, "Abandon empty commits created by the rebase")
-	rebaseCmd.Flags().StringSliceP("source", "s", nil, "Rebase specified revision(s) together their tree of descendants (can be repeated)")
-	rebaseCmd.MarkFlagRequired("destination")
+	rebaseCmd.Flags().StringSliceP("insert-after", "A", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
+	rebaseCmd.Flags().StringSliceP("insert-before", "B", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
+	rebaseCmd.Flags().Bool("keep-divergent", false, "Keep divergent commits while rebasing")
+	rebaseCmd.Flags().StringSliceP("revisions", "r", nil, "Rebase the given revisions, rebasing descendants onto this revision's parent(s)")
+	rebaseCmd.Flags().Bool("skip-emptied", false, "If true, when rebasing would produce an empty commit, the commit is abandoned. It will not be abandoned if it was already empty before the rebase. Will never skip merge commits with multiple non-empty parents")
+	rebaseCmd.Flags().StringSliceP("source", "s", nil, "Rebase specified revision(s) together with their trees of descendants (can be repeated)")
 	rootCmd.AddCommand(rebaseCmd)
 
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{

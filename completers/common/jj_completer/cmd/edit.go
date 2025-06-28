@@ -8,7 +8,7 @@ import (
 
 var editCmd = &cobra.Command{
 	Use:   "edit [OPTIONS] <REVISION>",
-	Short: "Edit a commit in the working copy",
+	Short: "Sets the specified revision as the working-copy revision",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

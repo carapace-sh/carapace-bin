@@ -7,10 +7,9 @@ import (
 )
 
 var file_showCmd = &cobra.Command{
-	Use:     "show [OPTIONS] <PATH>",
-	Short:   "Print contents of a file in a revision",
-	Aliases: []string{},
-	Run:     func(cmd *cobra.Command, args []string) {},
+	Use:   "show [OPTIONS] <PATH>",
+	Short: "Print contents of files in a revision",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
