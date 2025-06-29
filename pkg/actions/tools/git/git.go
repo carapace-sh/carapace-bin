@@ -39,7 +39,7 @@ func Uid(host string, opts ...string) func(s string, uc uid.Context) (*url.URL, 
 		}
 		for i := 0; i < len(opts); i += 2 {
 			if opts[i+1] != "" { // implicitly skip empty values
-				values.Set(opts[i], opts[i+1])
+				values.Add(opts[i], opts[i+1])
 			}
 		}
 		uid.RawQuery = values.Encode()
