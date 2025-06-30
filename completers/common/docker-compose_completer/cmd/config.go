@@ -7,10 +7,9 @@ import (
 )
 
 var configCmd = &cobra.Command{
-	Use:     "config [OPTIONS] [SERVICE...]",
-	Short:   "Parse, resolve and render compose file in canonical format",
-	Aliases: []string{"convert"},
-	Run:     func(cmd *cobra.Command, args []string) {},
+	Use:   "config [OPTIONS] [SERVICE...]",
+	Short: "Parse, resolve and render compose file in canonical format",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -20,7 +19,9 @@ func init() {
 	configCmd.Flags().String("format", "", "Format the output. Values: [yaml | json]")
 	configCmd.Flags().String("hash", "", "Print the service config hash, one per line.")
 	configCmd.Flags().Bool("images", false, "Print the image names, one per line.")
+	configCmd.Flags().Bool("lock-image-digests", false, "Produces an override file with image digests")
 	configCmd.Flags().Bool("no-consistency", false, "Don't check model consistency - warning: may produce invalid Compose output")
+	configCmd.Flags().Bool("no-env-resolution", false, "Don't resolve service env files")
 	configCmd.Flags().Bool("no-interpolate", false, "Don't interpolate environment variables")
 	configCmd.Flags().Bool("no-normalize", false, "Don't normalize compose model")
 	configCmd.Flags().Bool("no-path-resolution", false, "Don't resolve file paths")
