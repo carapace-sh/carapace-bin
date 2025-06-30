@@ -1,0 +1,8 @@
+services:
+ redhat:
+    build:
+      context: redhat
+    image: ghcr.io/carapace-sh/carapace-bin:redhat
+    hostname: carapace-bin:redhat
+    volumes:
+      - '..:/carapace-bin:ro'
