@@ -33,7 +33,7 @@ func init() {
 		// TODO support additional installed extension(s)
 		potentialDirs := []string{"/usr/lib/password-store/extensions/otp.bash"}
 		if nixPofile, err := traverse.NixProfile(carapace.NewContext()); err == nil { // Support home-manager
-			potentialDirs = append(potentialDirs, filepath.Join(nixPofile, "/usr/lib/password-store/extensions/otp.bash"))
+			potentialDirs = append(potentialDirs, filepath.Join(nixPofile, "/lib/password-store/extensions/otp.bash"))
 		}
 
 		for _, path := range potentialDirs {
