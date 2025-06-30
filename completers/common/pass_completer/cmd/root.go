@@ -2,9 +2,11 @@ package cmd
 
 import (
 	"os"
+	"path/filepath"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pass"
+	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/spf13/cobra"
 )
 
@@ -28,18 +30,12 @@ func init() {
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
 		otpCmd.Hidden = true
 
-		homeDir, err := os.UserHomeDir()
-		if err != nil {
-			// Should never happen...
-			return
+		// TODO support additional installed extension(s)
+		potentialDirs := []string{"/usr/lib/password-store/extensions/otp.bash"}
+		if nixPofile, err := traverse.NixProfile(carapace.NewContext()); err == nil { // Support home-manager
+			potentialDirs = append(potentialDirs, filepath.Join(nixPofile, "/usr/lib/password-store/extensions/otp.bash"))
 		}
 
-		// TODO support additional installed extension(s)
-		potentialDirs := []string{
-			"/usr/lib/password-store/extensions/otp.bash",
-			// Support home-manager
-			homeDir + "/.nix-profile/lib/password-store/extensions/otp.bash",
-		}
 		for _, path := range potentialDirs {
 			if _, err := os.Stat(path); err != nil {
 				otpCmd.Hidden = false
