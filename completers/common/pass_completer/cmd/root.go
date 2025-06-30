@@ -26,9 +26,25 @@ func init() {
 	)
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
-		// TODO support locally installed extension
-		if _, err := os.Stat("/usr/lib/password-store/extensions/otp.bash"); os.IsNotExist(err) {
-			otpCmd.Hidden = true
+		otpCmd.Hidden = true
+
+		homeDir, err := os.UserHomeDir()
+		if err != nil {
+			// Should never happen...
+			return
+		}
+
+		// TODO support additional installed extension(s)
+		potentialDirs := []string{
+			"/usr/lib/password-store/extensions/otp.bash",
+			// Support home-manager
+			homeDir + "/.nix-profile/lib/password-store/extensions/otp.bash",
+		}
+		for _, path := range potentialDirs {
+			if _, err := os.Stat(path); err != nil {
+				otpCmd.Hidden = false
+				return
+			}
 		}
 	})
 }
