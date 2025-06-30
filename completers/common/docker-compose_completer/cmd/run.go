@@ -31,6 +31,8 @@ func init() {
 	runCmd.Flags().Bool("no-deps", false, "Don't start linked services")
 	runCmd.Flags().StringSliceP("publish", "p", nil, "Publish a container's port(s) to the host")
 	runCmd.Flags().String("pull", "", "Pull image before running (\"always\"|\"missing\"|\"never\")")
+	runCmd.Flags().BoolP("quiet", "q", false, "Don't print anything to STDOUT")
+	runCmd.Flags().Bool("quiet-build", false, "Suppress progress output from the build process")
 	runCmd.Flags().Bool("quiet-pull", false, "Pull without printing progress information")
 	runCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file")
 	runCmd.Flags().Bool("rm", false, "Automatically remove the container when it exits")

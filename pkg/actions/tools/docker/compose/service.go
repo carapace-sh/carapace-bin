@@ -36,7 +36,7 @@ func actionExecCompose(files []string, arg ...string) func(f func(output []byte)
 }
 
 func actionConfig(files []string, f func(c config) carapace.Action) carapace.Action {
-	return actionExecCompose(files, "convert", "--format", "json")(func(output []byte) carapace.Action {
+	return actionExecCompose(files, "config", "--format", "json")(func(output []byte) carapace.Action {
 		var c config
 		if err := json.Unmarshal(output, &c); err != nil {
 			return carapace.ActionMessage(err.Error())
