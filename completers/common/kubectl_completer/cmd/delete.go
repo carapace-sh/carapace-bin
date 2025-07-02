@@ -40,6 +40,7 @@ func init() {
 
 	carapace.Gen(deleteCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":   kubectl.ActionDryRunModes(),
+		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),
 		"output":    kubectl.ActionOutputFormats(),
 	})
