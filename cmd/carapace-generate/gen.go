@@ -193,6 +193,7 @@ func macros() {
 		`"bridge.Macro":               spec.MacroV(bridge.ActionMacro),`,
 		`"bridge.Powershell":          spec.MacroV(bridge.ActionPowershell),`,
 		`"bridge.Urfavecli":           spec.MacroV(bridge.ActionUrfavecli),`,
+		`"bridge.UrfavecliV1":         spec.MacroV(bridge.ActionUrfavecliV1),`,
 		`"bridge.Yargs":               spec.MacroV(bridge.ActionYargs),`,
 		`"bridge.Zsh":                 spec.MacroV(bridge.ActionZsh),`,
 	}
@@ -212,6 +213,7 @@ func macros() {
 		"bridge.Macro":         "bridges macros exposed with https://github.com/carapace-sh/carapace-spec",
 		"bridge.Powershell":    "bridges https://microsoft.com/powershell",
 		"bridge.Urfavecli":     "bridges https://github.com/urfave/cli",
+		"bridge.UrfavecliV1":   "bridges https://github.com/urfave/cli",
 		"bridge.Yargs":         "bridges https://github.com/yargs/yargs",
 		"bridge.Zsh":           "bridges https://www.zsh.org/",
 	}
