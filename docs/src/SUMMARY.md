@@ -40,6 +40,7 @@
       - [carapace-generate](./development/tools/carapace-generate.md)
   - [Release Notes](./release_notes.md)
     - [v1.x](./release_notes/v1.x.md)
+    - [v1.4](./release_notes/v1.4.md)
     - [v1.3](./release_notes/v1.3.md)
     - [v1.2](./release_notes/v1.2.md)
     - [v1.1](./release_notes/v1.1.md)
