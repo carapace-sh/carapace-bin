@@ -113,16 +113,16 @@ func repoOverride(cmd *cobra.Command, c carapace.Context) (ghrepo.Interface, err
 		default:
 			return ghrepo.NewWithHost(splitted[1], splitted[2], splitted[0]), nil
 		}
-	} else {
-		if remotes, err := git.Remotes(); err == nil {
-			for _, remote := range remotes {
-				if remote.Resolved == "base" {
-					return ghrepo.FromURL(remote.FetchURL) // TODO ssh translator
-				}
+	}
+
+	if remotes, err := git.Remotes(); err == nil {
+		for _, remote := range remotes {
+			if remote.Resolved == "base" {
+				return ghrepo.FromURL(remote.FetchURL) // TODO ssh translator
 			}
 		}
 	}
-	return ghrepo.New("", ""), nil
+	return nil, errors.New("no default repository defined")
 }
 
 // https://yourbasic.org/golang/formatting-byte-size-to-human-readable-format/
