@@ -36,6 +36,7 @@ Whether to show hidden commands/flags.
         
 - `0` - disabled
 - `1` - enabled
+- `2` - enabled including `_carapace`
 
 ![](./hidden.cast)
 

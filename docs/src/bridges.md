@@ -16,6 +16,7 @@ tsh: kingpin
 
 Currently available bridges:
 - [argcomplete](https://github.com/kislyuk/argcomplete)
+- [argcomplete@v1](https://github.com/kislyuk/argcomplete) (legacy)
 - [bash](https://www.gnu.org/software/bash/)
 - [carapace](https://github.com/carapace-sh/carapace)
 - [clap](https://github.com/clap-rs/clap) (needs [clap-rs/clap#3166](https://github.com/clap-rs/clap/issues/3166))
@@ -27,6 +28,7 @@ Currently available bridges:
 - [kingpin](https://github.com/alecthomas/kingpin)
 - [powershell](https://microsoft.com/powershell)
 - [urfavecli](https://github.com/urfave/cli)
+- [urfavecli@v1](https://github.com/urfave/cli) (legacy)
 - [yargs](https://github.com/yargs/yargs)
 - [zsh](https://www.zsh.org/)
 
