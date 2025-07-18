@@ -8,11 +8,11 @@ Alias bridges a command while retaining the argument completion.
 
 ```yaml
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: log-by-author
-run: "[git, log, --author]"
+name: example
+run: "[gh, issue, --repo, '${REPO}']"
 ```
 
-![](./run-alias.cast)
+![](./run/alias.cast)
 
 ## Script
 
@@ -33,4 +33,4 @@ completion:
   positionalany: ["$carapace.tools.git.LsRemoteRefs({url: '${C_ARG0}', branches: true, tags: true})"]
 ```
 
-![](./run-script.cast)
+![](./run/script.cast)
