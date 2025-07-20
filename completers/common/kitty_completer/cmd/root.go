@@ -70,23 +70,20 @@ func init() {
 				return carapace.ActionValues()
 			}
 
+			var nospace bool
 			batch := carapace.Batch()
 			for _, matchResult := range matchResults {
 				for _, group := range matchResult.Groups {
-					includeFiles := true // no explicit file completion and some positions need this
 					switch group.Title {
 					case "Directories":
-						includeFiles = false
 						batch = append(batch, carapace.ActionDirectories())
 					case "Executables":
-						includeFiles = false
 						dir := filepath.ToSlash(filepath.Dir(c.Value))
 						batch = append(batch,
 							carapace.ActionDirectories(),
 							carapace.ActionExecutables(dir).Prefix(dir+"/"),
 						)
 					case "Executables in PATH":
-						includeFiles = false
 						batch = append(batch, carapace.ActionExecutables())
 					case "Options":
 						longhandMatches := make(matches, 0)
@@ -108,13 +105,25 @@ func init() {
 					case "Sub-commands":
 						batch = append(batch, group.Matches.Action().Tag("commands"))
 					default:
-						batch = append(batch, group.Matches.Action().Tag(strings.ToLower(group.Title)))
+						switch {
+						case group.IsFiles:
+							// TODO this tries to use carapace file completion via retain (switch to provided values if there is an issue)
+							retain := make([]string, 0)
+							for _, match := range group.Matches {
+								retain = append(retain, filepath.ToSlash(match.Word))
+							}
+							batch = append(batch, carapace.ActionFiles().Retain(retain...))
+						default:
+							batch = append(batch, group.Matches.Action().Tag(strings.ToLower(group.Title)))
+						}
 					}
 
-					if includeFiles {
-						batch = append(batch, carapace.ActionFiles())
-					}
+					nospace = nospace || group.NoTrailingSpace
 				}
+			}
+
+			if nospace {
+				return batch.ToA().NoSpace()
 			}
 			return batch.ToA()
 		}),
@@ -123,8 +132,10 @@ func init() {
 
 type matchResult struct {
 	Groups []struct {
-		Title   string  `json:"title"`
-		Matches matches `json:"matches"`
+		Title           string  `json:"title"`
+		NoTrailingSpace bool    `json:"no_trailing_space"`
+		IsFiles         bool    `json:"is_files"`
+		Matches         matches `json:"matches"`
 	} `json:"groups"`
 	Delegate struct {
 	} `json:"delegate"`
