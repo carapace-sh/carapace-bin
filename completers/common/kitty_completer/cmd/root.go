@@ -29,17 +29,23 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			args := []string{"kitty"}
-			args = append(args, c.Args...)
-			args = append(args, c.Value)
+			request := []string{"kitty"}
+			request = append(request, c.Args...)
+			request = append(request, c.Value)
 
-			matchRequests := [][]string{args}
+			matchRequests := [][]string{request}
 			if c.Value == "-" { // some longhand flags are missing when called with `-`
 				longhandRequest := []string{"kitty"}
 				longhandRequest = append(longhandRequest, c.Args...)
 				longhandRequest = append(longhandRequest, "--")
 				matchRequests = append(matchRequests, longhandRequest)
 			}
+
+			// partial directories aren't always completed (e.g. tmp directory with `kitty /tm`)
+			filepathRequest := []string{"kitty"}
+			filepathRequest = append(filepathRequest, c.Args...)
+			filepathRequest = append(filepathRequest, filepath.Dir(c.Value))
+			matchRequests = append(matchRequests, filepathRequest)
 
 			m, err := json.Marshal(matchRequests)
 			if err != nil {
