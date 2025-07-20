@@ -26,6 +26,7 @@ Currently available bridges:
 - [fish](https://fishshell.com/)
 - [inshellisense](https://github.com/microsoft/inshellisense)
 - [kingpin](https://github.com/alecthomas/kingpin)
+- [kitten](https://github.com/kovidgoyal/kitty)
 - [powershell](https://microsoft.com/powershell)
 - [urfavecli](https://github.com/urfave/cli)
 - [urfavecli@v1](https://github.com/urfave/cli) (legacy)
