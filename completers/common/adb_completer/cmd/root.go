@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -26,4 +27,13 @@ func init() {
 	rootCmd.Flags().BoolS("e", "e", false, "use TCP/IP device (error if multiple TCP/IP devices available)")
 	rootCmd.Flags().StringS("s", "s", "", "use device with given serial (overrides $ANDROID_SERIAL)")
 	rootCmd.Flags().StringS("t", "t", "", "use device with given transport id")
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, _ *pflag.Flag, action carapace.Action) carapace.Action {
+		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if f := cmd.Flag("s"); f.Changed {
+				c.Setenv("ANDROID_SERIAL", f.Value.String())
+			}
+			return action.Invoke(c).ToA()
+		})
+	})
 }
