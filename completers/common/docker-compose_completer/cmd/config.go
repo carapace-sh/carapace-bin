@@ -20,6 +20,8 @@ func init() {
 	configCmd.Flags().String("hash", "", "Print the service config hash, one per line.")
 	configCmd.Flags().Bool("images", false, "Print the image names, one per line.")
 	configCmd.Flags().Bool("lock-image-digests", false, "Produces an override file with image digests")
+	configCmd.Flags().Bool("models", false, "Print the model names, one per line.")
+	configCmd.Flags().Bool("networks", false, "Print the network names, one per line.")
 	configCmd.Flags().Bool("no-consistency", false, "Don't check model consistency - warning: may produce invalid Compose output")
 	configCmd.Flags().Bool("no-env-resolution", false, "Don't resolve service env files")
 	configCmd.Flags().Bool("no-interpolate", false, "Don't interpolate environment variables")
