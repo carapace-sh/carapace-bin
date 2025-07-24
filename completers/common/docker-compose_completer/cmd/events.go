@@ -16,6 +16,8 @@ func init() {
 	carapace.Gen(eventsCmd).Standalone()
 
 	eventsCmd.Flags().Bool("json", false, "Output events as a stream of json objects")
+	eventsCmd.Flags().String("since", "", "Show all events created since timestamp")
+	eventsCmd.Flags().String("until", "", "Stream events until this timestamp")
 	rootCmd.AddCommand(eventsCmd)
 
 	carapace.Gen(eventsCmd).PositionalAnyCompletion(

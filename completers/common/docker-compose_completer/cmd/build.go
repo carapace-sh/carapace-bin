@@ -26,9 +26,11 @@ func init() {
 	buildCmd.Flags().Bool("parallel", false, "Build images in parallel. DEPRECATED")
 	buildCmd.Flags().Bool("print", false, "Print equivalent bake file")
 	buildCmd.Flags().String("progress", "", "Set type of ui output (auto, tty, plain, json, quiet)")
+	buildCmd.Flags().String("provenance", "", "Add a provenance attestation")
 	buildCmd.Flags().Bool("pull", false, "Always attempt to pull a newer version of the image")
 	buildCmd.Flags().Bool("push", false, "Push service images")
-	buildCmd.Flags().BoolP("quiet", "q", false, "Don't print anything to STDOUT")
+	buildCmd.Flags().BoolP("quiet", "q", false, "Suppress the build output")
+	buildCmd.Flags().String("sbom", "", "Add a SBOM attestation")
 	buildCmd.Flags().String("ssh", "", "Set SSH authentications used when building service images. (use 'default' for using your default SSH Agent)")
 	buildCmd.Flags().Bool("with-dependencies", false, "Also build dependencies (transitively)")
 	buildCmd.Flag("compress").Hidden = true
