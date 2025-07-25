@@ -7,5 +7,5 @@ import (
 )
 
 func body(target string) []byte {
-	return []byte(fmt.Sprintf("#!/bin/sh\ncarapace --run \"%v\" \"$@\"", target))
+	return fmt.Appendf(nil, "#!/bin/sh\nexec carapace --run \"%v\" \"$@\"", target)
 }
