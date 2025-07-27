@@ -11,6 +11,7 @@ func ActionReleaseSteps() carapace.Action {
 		"announce",
 		"archive",
 		"aur",
+		"aur-source",
 		"before",
 		"chocolatey",
 		"docker",

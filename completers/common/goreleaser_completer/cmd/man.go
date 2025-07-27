@@ -7,7 +7,7 @@ import (
 
 var manCmd = &cobra.Command{
 	Use:    "man",
-	Short:  "Generates GoReleaser's command line manpages",
+	Short:  "Generates manpages",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }

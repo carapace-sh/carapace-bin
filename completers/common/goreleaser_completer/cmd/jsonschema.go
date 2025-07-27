@@ -7,7 +7,7 @@ import (
 
 var jsonschemaCmd = &cobra.Command{
 	Use:     "jsonschema",
-	Short:   "outputs goreleaser's JSON schema",
+	Short:   "Outputs goreleaser's JSON schema",
 	Aliases: []string{"schema"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
