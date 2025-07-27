@@ -29,28 +29,10 @@ func init() {
 	releaseCmd.Flags().String("release-header-tmpl", "", "Load custom release notes header from a templated markdown file (overrides --release-header)")
 	releaseCmd.Flags().String("release-notes", "", "Load custom release notes from a markdown file (will skip GoReleaser changelog generation)")
 	releaseCmd.Flags().String("release-notes-tmpl", "", "Load custom release notes from a templated markdown file (overrides --release-notes)")
-	releaseCmd.Flags().Bool("rm-dist", false, "Removes the 'dist' directory")
-	releaseCmd.Flags().StringSlice("skip", nil, "Skip the given options (valid options are announce, aur, before, chocolatey, docker, homebrew, ko, nfpm, nix, notarize, publish, sbom, scoop, sign, snapcraft, validate, winget)")
-	releaseCmd.Flags().Bool("skip-announce", false, "Skips announcing releases (implies --skip=validate)")
-	releaseCmd.Flags().Bool("skip-before", false, "Skips global before hooks")
-	releaseCmd.Flags().Bool("skip-docker", false, "Skips Docker Images/Manifests builds")
-	releaseCmd.Flags().Bool("skip-ko", false, "Skips Ko builds")
-	releaseCmd.Flags().Bool("skip-publish", false, "Skips publishing artifacts (implies --skip=announce)")
-	releaseCmd.Flags().Bool("skip-sbom", false, "Skips cataloging artifacts")
-	releaseCmd.Flags().Bool("skip-sign", false, "Skips signing artifacts")
-	releaseCmd.Flags().Bool("skip-validate", false, "Skips git checks")
+	releaseCmd.Flags().StringSlice("skip", nil, "Skip the given options (valid options are announce, archive, aur, aur-source, before, chocolatey, docker, homebrew, ko, nfpm, nix, notarize, publish, sbom, scoop, sign, snapcraft, validate, winget)")
 	releaseCmd.Flags().Bool("snapshot", false, "Generate an unversioned snapshot release, skipping all validations and without publishing any artifacts (implies --skip=announce,publish,validate)")
 	releaseCmd.Flags().String("timeout", "", "Timeout to the entire release process")
 	releaseCmd.Flag("deprecated").Hidden = true
-	releaseCmd.Flag("rm-dist").Hidden = true
-	releaseCmd.Flag("skip-announce").Hidden = true
-	releaseCmd.Flag("skip-before").Hidden = true
-	releaseCmd.Flag("skip-docker").Hidden = true
-	releaseCmd.Flag("skip-ko").Hidden = true
-	releaseCmd.Flag("skip-publish").Hidden = true
-	releaseCmd.Flag("skip-sbom").Hidden = true
-	releaseCmd.Flag("skip-sign").Hidden = true
-	releaseCmd.Flag("skip-validate").Hidden = true
 	rootCmd.AddCommand(releaseCmd)
 
 	carapace.Gen(releaseCmd).FlagCompletion(carapace.ActionMap{
