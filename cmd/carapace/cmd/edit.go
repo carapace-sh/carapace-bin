@@ -22,9 +22,7 @@ var editCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		for index, arg := range args {
-			args[index] = filepath.Join(dir, "carapace", arg)
-		}
+		dir = filepath.Join(dir, "carapace")
 
 		e, err := editor()
 		if err != nil {
@@ -36,6 +34,7 @@ var editCmd = &cobra.Command{
 		command.Stdout = cmd.OutOrStdout()
 		command.Stderr = cmd.ErrOrStderr()
 		command.Stdin = cmd.InOrStdin()
+		command.Dir = dir
 		return command.Run()
 	},
 }
