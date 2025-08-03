@@ -17,6 +17,7 @@ func init() {
 				"CARAPACE_COVERDIR":      "coverage directory for sandbox tests",
 				"CARAPACE_COMPLINE":      "current command line",
 				"CARAPACE_ENV":           "register get-env, set-env and unset-env",
+				"CARAPACE_EDITOR":        "editor to use",
 				"CARAPACE_HIDDEN":        "show hidden commands/flags",
 				"CARAPACE_LENIENT":       "allow unknown flags",
 				"CARAPACE_LOG":           "enable logging",
@@ -36,6 +37,7 @@ func init() {
 				"CARAPACE_COVERDIR": carapace.ActionDirectories(),
 				"CARAPACE_COMPLINE": bridge.ActionCarapaceBin().Split(),
 				"CARAPACE_ENV":      _bool,
+				"CARAPACE_EDITOR":   bridge.ActionCarapaceBin().Split(),
 				"CARAPACE_HIDDEN": carapace.ActionStyledValuesDescribed(
 					"0", "disabled", style.Carapace.KeywordNegative,
 					"1", "enabled", style.Carapace.KeywordPositive,
