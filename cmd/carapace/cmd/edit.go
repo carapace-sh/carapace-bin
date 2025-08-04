@@ -71,7 +71,7 @@ func editor() ([]string, error) {
 		return nil, err
 	}
 	words := tokens.Words().Strings()
-	if len(words) == 0 {
+	if len(words) == 0 || words[0] == "" {
 		return nil, errors.New("unable to determine editor")
 	}
 	return words, nil
