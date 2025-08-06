@@ -40,5 +40,7 @@ func init() {
 		"reference-lock-file": carapace.ActionFiles("lock"),
 		"unset":               os.ActionEnvironmentVariables(),
 	})
-	carapace.Gen(shellCmd).PositionalAnyCompletion(nix.ActionInstallables())
+	carapace.Gen(shellCmd).PositionalAnyCompletion(
+		nix.ActionFlakeRefs(),
+	)
 }
