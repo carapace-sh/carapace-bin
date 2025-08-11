@@ -5,6 +5,7 @@
     - [Selfupdate](./install/selfupdate.md)
   - [Setup](./setup.md)
     - [Environment](./setup/environment.md)
+    - [UserConfigDir](./setup/userConfigDir.md)
   - [Completers](./completers.md)
   - [Style](./style.md)
   - [Bridges](./bridges.md)

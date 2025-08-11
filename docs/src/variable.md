@@ -11,7 +11,7 @@ For other shells custom functions are added.
 
 ## Custom variables
 
-Custom variables can be defined in `~/.config/carapace/variables/{group}.yaml`
+Custom variables can be defined in `${UserConfigDir}/carapace/variables/{group}.yaml`
 
 ```yaml
 variables:
