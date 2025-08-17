@@ -11,7 +11,7 @@ var Docker = struct {
 	Service   string `description:"docker services"`
 	Volume    string `description:"docker volumes"`
 }{
-	Container: style.Blue,
+	Container: style.Blue, // TODO deprecated (now styled based on state)
 	Image:     style.Yellow,
 	Network:   style.Magenta,
 	Node:      style.Cyan,
