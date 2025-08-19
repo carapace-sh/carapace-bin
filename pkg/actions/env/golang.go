@@ -113,6 +113,7 @@ func init() {
 				"GOBIN":       carapace.ActionDirectories(),
 				"GOCACHE":     carapace.ActionDirectories(),
 				"GOCACHEPROG": bridge.ActionCarapaceBin().Split(),
+				"GODEBUG":     golang.ActionGodebugKeyValues().List(","),
 				"GOENV": carapace.Batch(
 					carapace.ActionFiles(),
 					carapace.ActionValues("off").StyleF(style.ForKeyword),

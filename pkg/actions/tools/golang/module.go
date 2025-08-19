@@ -5,14 +5,24 @@ import (
 	"fmt"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 type mod struct {
 	Module struct {
+		Path       string
+		Deprecated string
+	}
+	Go        string
+	Toolchain string
+	Tool      []struct {
 		Path string
 	}
-	Go      string
+	Godebug []struct {
+		Key   string
+		Value string
+	}
 	Require []struct {
 		Path     string
 		Version  string
@@ -24,14 +34,22 @@ type mod struct {
 	}
 	Replace []struct {
 		Old struct {
-			Path string
+			Path    string
+			Version string
 		}
 		New struct {
 			Path    string
 			Version string
 		}
 	}
-	Retract interface{}
+	Retract []struct {
+		Low       string
+		High      string
+		Rationale string
+	}
+	Ignore []struct {
+		Path string
+	}
 }
 
 type ModuleOpts struct {
@@ -48,17 +66,91 @@ func (o ModuleOpts) Default() ModuleOpts {
 	return o
 }
 
-// ActionModules completes ModuleOpts
-//
-//	github.com/carapace-sh/carapace
-//	github.com/carapace-sh/carapace-spec@v0.0.1
-func ActionModules(opts ModuleOpts) carapace.Action {
+func actionGoMod(f func(m mod) carapace.Action) carapace.Action {
 	return carapace.ActionExecCommand("go", "mod", "edit", "-json")(func(output []byte) carapace.Action {
 		var m mod
 		if err := json.Unmarshal(output, &m); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
+		return f(m)
+	})
+}
 
+// ActionModVersions completes tags of module repositiory
+//
+//	v0.0.3 (da4ba1e4f4e22b7b278d450719820a08d9e51f79)
+//	v0.0.4 (e6815a3c05828b937fce6183f14ba68cc3173726)
+func ActionModVersions() carapace.Action {
+	return actionGoMod(func(m mod) carapace.Action {
+		return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: "https://" + m.Module.Path, Tags: true})
+	}).Tag("mod versions")
+}
+
+// ActionModGodebugs completes godebug instructions
+// TODO needs https://github.com/golang/go/issues/75105
+func ActionModGodebugs() carapace.Action {
+	return actionGoMod(func(m mod) carapace.Action {
+		vals := make([]string, 0)
+		for _, d := range m.Godebug {
+			vals = append(vals, d.Key, d.Value)
+		}
+		return carapace.ActionValuesDescribed(vals...)
+	}).Tag("mod godebugs")
+}
+
+// ActionModRetracts completes retract instructions
+//
+//	[v0.5.0,v0.5.4]
+//	v0.4.0
+func ActionModRetracts() carapace.Action {
+	return actionGoMod(func(m mod) carapace.Action {
+		vals := make([]string, 0)
+		for _, r := range m.Retract {
+			switch r.Low {
+			case r.High:
+				vals = append(vals, r.Low, r.Rationale)
+			default:
+				vals = append(vals, fmt.Sprintf("[%v,%v]", r.Low, r.High), r.Rationale)
+			}
+		}
+		return carapace.ActionValuesDescribed(vals...)
+	}).Tag("mod retracts")
+}
+
+// ActionModIgnores completes ignore instructions
+//
+//	dist
+//	./third_party
+func ActionModIgnores() carapace.Action {
+	return actionGoMod(func(m mod) carapace.Action {
+		vals := make([]string, 0)
+		for _, i := range m.Ignore {
+			vals = append(vals, i.Path)
+		}
+		return carapace.ActionValues(vals...)
+	}).Tag("mod ignores")
+}
+
+// ActionModTools completes tool instructions
+//
+//	github.com/some/tool
+//	github.com/another/tool
+func ActionModTools() carapace.Action {
+	return actionGoMod(func(m mod) carapace.Action {
+		vals := make([]string, 0)
+		for _, t := range m.Tool {
+			vals = append(vals, t.Path)
+		}
+		return carapace.ActionValues(vals...)
+	}).Tag("mod tools")
+}
+
+// ActionModules completes modules
+//
+//	github.com/carapace-sh/carapace
+//	github.com/carapace-sh/carapace-spec@v0.0.1
+func ActionModules(opts ModuleOpts) carapace.Action {
+	return actionGoMod(func(m mod) carapace.Action {
 		vals := make([]string, 0)
 		if opts.Direct && m.Require != nil {
 			for _, r := range m.Require {

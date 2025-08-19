@@ -1,0 +1,263 @@
+package golang
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
+)
+
+// ActionGodebugKeyValues completes godebug keys and values
+func ActionGodebugKeyValues() carapace.Action {
+	return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			return ActionGodebugKeys().Suffix("=")
+		default:
+			return ActionGodebugValues(c.Parts[0])
+		}
+	})
+}
+
+// ActionGodebugKeys completes godebug keys
+//
+//	asyncpreemptoff (disables signal-based asynchronous goroutine preemption)
+//	cgocheck (disable all checks for packages)
+func ActionGodebugKeys() carapace.Action {
+	return carapace.Batch(
+		// https://pkg.go.dev/runtime#hdr-Environment_Variables
+		carapace.ActionValuesDescribed(
+			"asyncpreemptoff", "disables signal-based asynchronous goroutine preemption",
+			"cgocheck", "disable all checks for packages",
+			"checkfinalizers", "run multiple partial non-parallel stop-the-world collections",
+			"clobberfree", "clobber the memory content of freed objects",
+			"cpu.adx", "disable use of instructions from adx",
+			"cpu.aescbc", "disable use of instructions from aescbc",
+			"cpu.aesctr", "disable use of instructions from aesctr",
+			"cpu.aes", "disable use of instructions from aes",
+			"cpu.aesgcm", "disable use of instructions from aesgcm",
+			"cpu.all", "disable all optional instruction set extensions",
+			"cpu.atomics", "disable use of instructions from atomics",
+			"cpu.avx2", "disable use of instructions from avx2",
+			"cpu.avx512bitalg", "disable use of instructions from avx512bitalg",
+			"cpu.avx512bw", "disable use of instructions from avx512bw",
+			"cpu.avx512cd", "disable use of instructions from avx512cd",
+			"cpu.avx512", "disable use of instructions from avx512",
+			"cpu.avx512dq", "disable use of instructions from avx512dq",
+			"cpu.avx512f", "disable use of instructions from avx512f",
+			"cpu.avx512vbmi2", "disable use of instructions from avx512vbmi2",
+			"cpu.avx512vbmi", "disable use of instructions from avx512vbmi",
+			"cpu.avx512vl", "disable use of instructions from avx512vl",
+			"cpu.avx512vpclmulqdq", "disable use of instructions from avx512vpclmulqdq",
+			"cpu.avx", "disable use of instructions from avx",
+			"cpu.bmi1", "disable use of instructions from bmi1",
+			"cpu.bmi2", "disable use of instructions from bmi2",
+			"cpu.cpuid", "disable use of instructions from cpuid",
+			"cpu.crc32", "disable use of instructions from crc32",
+			"cpu.darn", "disable use of instructions from darn",
+			"cpu.dfp", "disable use of instructions from dfp",
+			"cpu.dit", "disable use of instructions from dit",
+			"cpu.ecdsa", "disable use of instructions from ecdsa",
+			"cpu.eddsa", "disable use of instructions from eddsa",
+			"cpu.eimm", "disable use of instructions from eimm",
+			"cpu.erms", "disable use of instructions from erms",
+			"cpu.etf3eh", "disable use of instructions from etf3eh",
+			"cpu.fastmisaligned", "disable use of instructions from fastmisaligned",
+			"cpu.fma", "disable use of instructions from fma",
+			"cpu.fsrm", "disable use of instructions from fsrm",
+			"cpu.gfni", "disable use of instructions from gfni",
+			"cpu.ghash", "disable use of instructions from ghash",
+			"cpu.idiva", "disable use of instructions from idiva",
+			"cpu.kdsa", "disable use of instructions from kdsa",
+			"cpu.lam_bh", "disable use of instructions from lam_bh",
+			"cpu.lamcas", "disable use of instructions from lamcas",
+			"cpu.lasx", "disable use of instructions from lasx",
+			"cpu.ldisp", "disable use of instructions from ldisp",
+			"cpu.lsx", "disable use of instructions from lsx",
+			"cpu.msa", "disable use of instructions from msa",
+			"cpu.osxsave", "disable use of instructions from osxsave",
+			"cpu.pclmulqdq", "disable use of instructions from pclmulqdq",
+			"cpu.pmull", "disable use of instructions from pmull",
+			"cpu.popcnt", "disable use of instructions from popcnt",
+			"cpu.rdtscp", "disable use of instructions from rdtscp",
+			"cpu.scv", "disable use of instructions from scv",
+			"cpu.sha1", "disable use of instructions from sha1",
+			"cpu.sha256", "disable use of instructions from sha256",
+			"cpu.sha2", "disable use of instructions from sha2",
+			"cpu.sha3", "disable use of instructions from sha3",
+			"cpu.sha512", "disable use of instructions from sha512",
+			"cpu.sha", "disable use of instructions from sha",
+			"cpu.sse3", "disable use of instructions from sse3",
+			"cpu.sse41", "disable use of instructions from sse41",
+			"cpu.sse42", "disable use of instructions from sse42",
+			"cpu.ssse3", "disable use of instructions from ssse3",
+			"cpu.stfle", "disable use of instructions from stfle",
+			"cpu.v7atomics", "disable use of instructions from v7atomics",
+			"cpu.v", "disable use of instructions from v",
+			"cpu.vfpv4", "disable use of instructions from vfpv4",
+			"cpu.vx", "disable use of instructions from vx",
+			"cpu.vxe", "disable use of instructions from vxe",
+			"cpu.zarch", "disable use of instructions from zarch",
+			"cpu.zbb", "disable use of instructions from zbb",
+			"decoratemappings", "annotate OS anonymous memory mappings with context",
+			"disablethp", "disable transparent huge pages for the heap",
+			"dontfreezetheworld", "disable preemptive stop of all running goroutines",
+			"efence", "allocate objects on a unique page",
+			"gccheckmark", "verify the garbage collector's concurrent mark phase",
+			"gcpacertrace", "print information about the internal state of the concurrent pacer",
+			"gcshrinkstackoff", "disables moving goroutines onto smaller stacks",
+			"gcstoptheworld", "disable concurrent garbage collection",
+			"gctrace", "emit a single line to standard error at each collection",
+			"harddecommit", "remove protections from memory returned to the OS",
+			"inittrace", "emit a single line to standard error for each package with init work",
+			"invalidptr", "crash the program if an invalid pointer value is found",
+			"madvdontneed", "use MADV_FREE instead of MADV_DONTNEED",
+			"memprofilerate", "update the value of runtime.MemProfileRate",
+			"pagetrace", "write out a trace of page events",
+			"panicnil", "disable the runtime error when calling panic with nil",
+			"profstackdepth", "set the maximum stack depth for all profilers except CPU",
+			"sbrk", "use a trivial allocator that never reclaims any memory",
+			"scavtrace", "emit a single line to standard error, roughly once per GC cycle",
+			"schedtrace", "emit a single line to standard error every X milliseconds",
+			"traceadvanceperiod", "the approximate period in nanoseconds between trace generations",
+			"tracebackancestors", "extends tracebacks with the stacks at which goroutines were created",
+			"tracecheckstackownership", "double-check stack ownership in the execution tracer",
+			"tracefpunwindoff", "force the execution tracer to use the runtime's default stack unwinder",
+		),
+
+		// https://pkg.go.dev/net
+		carapace.ActionValuesDescribed(
+			"multipathtcp", "direct the Dial methods to use MPTCP",
+			"netdns", "force specific netdns resovler",
+		),
+		// https://pkg.go.dev/net/http
+		carapace.ActionValuesDescribed(
+			"http2client", "disable HTTP/2 client support",
+			"http2debug", "enable verbose HTTP/2 debug logs",
+			"http2server", "disable HTTP/2 server support",
+		),
+	).ToA().Tag("debug keys")
+}
+
+// ActionGodebugValues completes godebug values
+func ActionGodebugValues(key string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		_bool := carapace.ActionValuesDescribed("0", "disabled", "1", "enabled").StyleF(style.ForKeyword)
+		_onOff := carapace.ActionValuesDescribed("off", "disabled", "on", "enabled").StyleF(style.ForKeyword) // TODO verify
+		return map[string]carapace.Action{
+			// https://pkg.go.dev/runtime#hdr-Environment_Variables
+			"clobberfree":              _bool,
+			"asyncpreemptoff":          _bool,
+			"cgocheck":                 _bool,
+			"checkfinalizers":          _bool,
+			"cpu.adx":                  _onOff,
+			"cpu.aescbc":               _onOff,
+			"cpu.aesctr":               _onOff,
+			"cpu.aesgcm":               _onOff,
+			"cpu.aes":                  _onOff,
+			"cpu.all":                  _onOff,
+			"cpu.atomics":              _onOff,
+			"cpu.avx2":                 _onOff,
+			"cpu.avx512bitalg":         _onOff,
+			"cpu.avx512bw":             _onOff,
+			"cpu.avx512cd":             _onOff,
+			"cpu.avx512dq":             _onOff,
+			"cpu.avx512f":              _onOff,
+			"cpu.avx512":               _onOff,
+			"cpu.avx512vbmi2":          _onOff,
+			"cpu.avx512vbmi":           _onOff,
+			"cpu.avx512vl":             _onOff,
+			"cpu.avx512vpclmulqdq":     _onOff,
+			"cpu.avx":                  _onOff,
+			"cpu.bmi1":                 _onOff,
+			"cpu.bmi2":                 _onOff,
+			"cpu.cpuid":                _onOff,
+			"cpu.crc32":                _onOff,
+			"cpu.darn":                 _onOff,
+			"cpu.dfp":                  _onOff,
+			"cpu.dit":                  _onOff,
+			"cpu.ecdsa":                _onOff,
+			"cpu.eddsa":                _onOff,
+			"cpu.eimm":                 _onOff,
+			"cpu.erms":                 _onOff,
+			"cpu.etf3eh":               _onOff,
+			"cpu.fastmisaligned":       _onOff,
+			"cpu.fma":                  _onOff,
+			"cpu.fsrm":                 _onOff,
+			"cpu.gfni":                 _onOff,
+			"cpu.ghash":                _onOff,
+			"cpu.idiva":                _onOff,
+			"cpu.kdsa":                 _onOff,
+			"cpu.lam_bh":               _onOff,
+			"cpu.lamcas":               _onOff,
+			"cpu.lasx":                 _onOff,
+			"cpu.ldisp":                _onOff,
+			"cpu.lsx":                  _onOff,
+			"cpu.msa":                  _onOff,
+			"cpu.osxsave":              _onOff,
+			"cpu.pclmulqdq":            _onOff,
+			"cpu.pmull":                _onOff,
+			"cpu.popcnt":               _onOff,
+			"cpu.rdtscp":               _onOff,
+			"cpu.scv":                  _onOff,
+			"cpu.sha1":                 _onOff,
+			"cpu.sha256":               _onOff,
+			"cpu.sha2":                 _onOff,
+			"cpu.sha3":                 _onOff,
+			"cpu.sha512":               _onOff,
+			"cpu.sha":                  _onOff,
+			"cpu.sse3":                 _onOff,
+			"cpu.sse41":                _onOff,
+			"cpu.sse42":                _onOff,
+			"cpu.ssse3":                _onOff,
+			"cpu.stfle":                _onOff,
+			"cpu.v7atomics":            _onOff,
+			"cpu.vfpv4":                _onOff,
+			"cpu.v":                    _onOff,
+			"cpu.vxe":                  _onOff,
+			"cpu.vx":                   _onOff,
+			"cpu.zarch":                _onOff,
+			"cpu.zbb":                  _onOff,
+			"decoratemappings":         _bool,
+			"disablethp":               _bool,
+			"dontfreezetheworld":       _bool,
+			"efence":                   _bool,
+			"gccheckmark":              _bool,
+			"gcpacertrace":             _bool,
+			"gcshrinkstackoff":         _bool,
+			"gcstoptheworld":           _bool,
+			"gctrace":                  _bool,
+			"harddecommit":             _bool,
+			"inittrace":                _bool,
+			"invalidptr":               _bool,
+			"madvdontneed":             _bool,
+			"memprofilerate":           carapace.ActionValues(),
+			"pagetrace":                carapace.ActionFiles(),
+			"panicnil":                 _bool,
+			"profstackdepth":           carapace.ActionValues(),
+			"sbrk":                     _bool,
+			"scavtrace":                _bool,
+			"schedtrace":               carapace.ActionValues(),
+			"traceadvanceperiod":       carapace.ActionValues(),
+			"tracebackancestors":       carapace.ActionValues(),
+			"tracecheckstackownership": _bool,
+			"tracefpunwindoff":         _bool,
+
+			// https://pkg.go.dev/net
+			"multipathtcp": _bool,
+			"netdns": carapace.ActionValuesDescribed(
+				"1", "print debugging information",
+				"go", "force pure Go resolver",
+				"go+1", "force pure Go resolver with debugging information",
+				"cgo", "force native resolver",
+				"cgo+1", "force native resolver with debugging information",
+			),
+
+			// https://pkg.go.dev/net/http
+			"http2client": _bool,
+			"http2debug": carapace.Batch(
+				_bool,
+				carapace.ActionStyledValuesDescribed("2", "even more verbose", style.Carapace.KeywordPositive),
+			).ToA(),
+			"http2server": _bool,
+		}[key]
+	})
+}

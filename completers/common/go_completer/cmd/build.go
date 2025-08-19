@@ -74,11 +74,11 @@ func addBuildFlags(cmd *cobra.Command) {
 		"ldflags":   bridge.ActionCarapaceBin("go", "tool", "link").Split(),
 		"mod":       carapace.ActionValues("readonly", "vendor", "mod"),
 		"modfile":   carapace.ActionFiles(".mod"),
-		"n":         carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8"),
 		"overlay":   carapace.ActionFiles(".json"),
 		"pgo":       carapace.ActionFiles(".pgo"),
 		"pkgdir":    carapace.ActionDirectories(),
 		"tags":      golang.ActionBuildTags().UniqueList(","),
+		"toolexec":  bridge.ActionCarapaceBin().Split(),
 	})
 
 	carapace.Gen(cmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
