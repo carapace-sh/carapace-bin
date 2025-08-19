@@ -32,8 +32,8 @@ func AddBuildFlags(cmd *cobra.Command) {
 		"format":            carapace.ActionValues("pdf", "png", "svg", "html").StyleF(style.ForKeyword),
 		"root":              carapace.ActionDirectories(),
 		"font-path":         carapace.ActionDirectories().List(string(os.PathListSeparator)),
-		"features":          carapace.ActionValues("html").StyleF(style.ForKeyword),
-		"diagnostic-format": carapace.ActionValues("human", "short").StyleF(style.ForKeyword),
+		"features":          carapace.ActionValues("html").StyleF(style.ForExtension),
+		"diagnostic-format": carapace.ActionValues("human", "short"),
 	})
 
 	AddPackageFlags(cmd)
@@ -49,7 +49,7 @@ func AddPdfFlags(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		// TODO: pages
-		"pdf-standard": carapace.ActionValues("1.7", "a-2b", "a-3b").StyleF(style.ForKeyword),
+		"pdf-standard": carapace.ActionValues("1.7", "a-2b", "a-3b"),
 		"make-deps":    carapace.ActionFiles(),
 	})
 
