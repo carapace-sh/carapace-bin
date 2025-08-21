@@ -15,6 +15,7 @@ var run_cancelCmd = &cobra.Command{
 func init() {
 	carapace.Gen(run_cancelCmd).Standalone()
 
+	run_cancelCmd.Flags().Bool("force", false, "Force cancel a workflow run")
 	runCmd.AddCommand(run_cancelCmd)
 
 	carapace.Gen(run_cancelCmd).PositionalCompletion(

@@ -17,13 +17,16 @@ var release_verifyCmd = &cobra.Command{
 func init() {
 	carapace.Gen(release_verifyCmd).Standalone()
 
+	release_verifyCmd.Flags().String("custom-trusted-root", "", "Path to a trusted_root.jsonl file; likely for offline verification.")
 	release_verifyCmd.Flags().String("format", "", "Output format: {json}")
 	release_verifyCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	release_verifyCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
+	release_verifyCmd.Flag("custom-trusted-root").Hidden = true
 	releaseCmd.AddCommand(release_verifyCmd)
 
 	carapace.Gen(release_verifyCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("json"),
+		"custom-trusted-root": carapace.ActionFiles(),
+		"format":              carapace.ActionValues("json"),
 	})
 
 	carapace.Gen(release_verifyCmd).PositionalCompletion(

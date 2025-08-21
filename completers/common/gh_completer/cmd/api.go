@@ -26,7 +26,7 @@ func init() {
 	apiCmd.Flags().StringP("jq", "q", "", "Query to select values from the response using jq syntax")
 	apiCmd.Flags().StringP("method", "X", "", "The HTTP method for the request")
 	apiCmd.Flags().Bool("paginate", false, "Make additional HTTP requests to fetch all pages of results")
-	apiCmd.Flags().StringSliceP("preview", "p", nil, "GitHub API preview `names` to request (without the \"-preview\" suffix)")
+	apiCmd.Flags().StringSliceP("preview", "p", nil, "Opt into GitHub API previews (names should omit '-preview')")
 	apiCmd.Flags().StringSliceP("raw-field", "f", nil, "Add a string parameter in `key=value` format")
 	apiCmd.Flags().Bool("silent", false, "Do not print the response body")
 	apiCmd.Flags().Bool("slurp", false, "Use with \"--paginate\" to return an array of all pages of either JSON arrays or objects")
