@@ -118,10 +118,11 @@ func init() {
 					carapace.ActionFiles(),
 					carapace.ActionValues("off").StyleF(style.ForKeyword),
 				).ToA(),
-				"GOFLAGS":    bridge.ActionCarapaceBin("go").Split(), // not entirely correct as it includes the subcommand but still helpful as that can be removed afterwards
-				"GOMODCACHE": carapace.ActionDirectories(),
-				"GOOS":       golang.ActionOperatingSystems(),
-				"GOTMPDIR":   carapace.ActionDirectories(),
+				"GOEXPERIMENT": golang.ActionExperiments().UniqueList(","),
+				"GOFLAGS":      bridge.ActionCarapaceBin("go").Split(), // not entirely correct as it includes the subcommand but still helpful as that can be removed afterwards
+				"GOMODCACHE":   carapace.ActionDirectories(),
+				"GOOS":         golang.ActionOperatingSystems(),
+				"GOTMPDIR":     carapace.ActionDirectories(),
 				"GOTOOLCHAIN": carapace.ActionMultiPartsN("+", 2, func(c carapace.Context) carapace.Action {
 					switch len(c.Parts) {
 					case 0:
