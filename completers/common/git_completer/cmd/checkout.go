@@ -46,8 +46,10 @@ func init() {
 	checkoutCmd.Flags().BoolP("quiet", "q", false, "suppress progress reporting")
 	checkoutCmd.Flags().String("recurse-submodules", "", "control recursive updating of submodules")
 	checkoutCmd.Flags().BoolP("theirs", "3", false, "checkout their version for unmerged files")
-	checkoutCmd.Flags().BoolP("track", "t", false, "set upstream info for new branch")
+	checkoutCmd.Flags().StringP("track", "t", "", "set upstream info for new branch")
 	rootCmd.AddCommand(checkoutCmd)
+
+	checkoutCmd.Flag("track").NoOptDefVal = " "
 
 	carapace.Gen(checkoutCmd).FlagCompletion(carapace.ActionMap{
 		"B":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
@@ -55,6 +57,7 @@ func init() {
 		"conflict":           carapace.ActionValues("merge", "diff3"),
 		"orphan":             git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
 		"pathspec-from-file": carapace.ActionFiles(),
+		"track":              carapace.ActionValues("direct", "inherit"),
 	})
 
 	carapace.Gen(checkoutCmd).PositionalCompletion(
