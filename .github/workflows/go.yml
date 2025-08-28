@@ -61,7 +61,7 @@ jobs:
 
   doc:
     runs-on: ubuntu-latest
-    container: ghcr.io/carapace-sh/carapace
+    container: ghcr.io/carapace-sh/mdbook
     needs: build
     steps:
       - uses: actions/checkout@v5
