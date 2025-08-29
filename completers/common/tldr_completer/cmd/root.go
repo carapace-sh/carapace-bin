@@ -28,7 +28,7 @@ func init() {
 	rootCmd.Flags().StringP("platform", "p", "", "Override the operating system")
 	rootCmd.Flags().BoolP("render", "r", false, "Render local markdown files")
 	rootCmd.Flags().StringP("source", "s", "", "Override the default page source")
-	rootCmd.Flags().BoolP("update_cache", "u", false, "Update the local cache of pages and exit")
+	rootCmd.Flags().BoolP("update", "u", false, "Update the local cache of pages and exit")
 	rootCmd.Flags().BoolP("version", "v", false, "show program's version number and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
