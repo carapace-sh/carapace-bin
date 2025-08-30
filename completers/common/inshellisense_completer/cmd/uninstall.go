@@ -7,7 +7,7 @@ import (
 
 var uninstallCmd = &cobra.Command{
 	Use:   "uninstall",
-	Short: "removes all bindings and configuration for inshellisense",
+	Short: "removes all configuration for inshellisense",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
