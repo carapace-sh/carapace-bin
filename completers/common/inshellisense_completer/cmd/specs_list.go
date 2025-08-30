@@ -19,6 +19,6 @@ func init() {
 	specsCmd.AddCommand(specs_listCmd)
 
 	carapace.Gen(specs_listCmd).FlagCompletion(carapace.ActionMap{
-		"shell": carapace.ActionValues("bash", "pwsh", "zsh", "fish", "xonsh", "nu"),
+		"shell": carapace.ActionValues("bash", "zsh"),
 	})
 }
