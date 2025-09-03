@@ -24,7 +24,7 @@ func init() {
 	rootCmd.Flags().BoolS("1", "1", false, "Limit to one result")
 	rootCmd.Flags().BoolP("absolute-path", "a", false, "Show absolute instead of relative paths")
 	rootCmd.Flags().String("and", "", "Add additional required search patterns")
-	rootCmd.Flags().String("base-directory", "", "Change theb base directory")
+	rootCmd.Flags().String("base-directory", "", "Change the base directory")
 	rootCmd.Flags().String("batch-size", "", "Maximum number of arguments for batch commands")
 	rootCmd.Flags().BoolP("case-sensitive", "s", false, "Case-sensitive search (default: smart case)")
 	rootCmd.Flags().String("changed-after", "", "alias for --changed-within")
