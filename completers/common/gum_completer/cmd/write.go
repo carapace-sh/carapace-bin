@@ -126,6 +126,7 @@ func init() {
 	writeCmd.Flags().Bool("line-number.underline", false, "Underline text")
 	writeCmd.Flags().String("line-number.width", "", "Text width")
 	writeCmd.Flags().String("max-lines", "", "Maximum number of lines (0 for no limit)")
+	writeCmd.Flags().String("padding", "", "Padding")
 	writeCmd.Flags().String("placeholder", "", "Placeholder value")
 	writeCmd.Flags().String("placeholder.align", "", "Text Alignment")
 	writeCmd.Flags().String("placeholder.background", "", "Background Color")
