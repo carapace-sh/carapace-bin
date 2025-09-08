@@ -11,6 +11,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"unicode"
 
 	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/carapace-sh/carapace/pkg/util"
@@ -116,6 +117,9 @@ func executeCompleter(completer string) {
 func varName(name string) string {
 	if name == "go" {
 		return "_go"
+	}
+	if unicode.IsDigit([]rune(name)[0]) {
+		name = "_" + name
 	}
 	return strings.NewReplacer(
 		"-", "_",
