@@ -11,6 +11,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"unicode"
 
 	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/carapace-sh/carapace/pkg/util"
@@ -75,9 +76,9 @@ func executeCompleter(completer string) {
 
 	os.Mkdir(root+"/cmd/carapace/cmd/completers", 0755)
 	os.WriteFile(root+"/cmd/carapace/cmd/completers.go", []byte("//go:build !release\n\n"+content), 0644)
-	os.WriteFile(root+"/cmd/carapace/cmd/completers/name.go", []byte(fmt.Sprintf("package completers\n\nfunc init() {\n	names = []string{\n%v\n\t}\n}\n", strings.Join(formattedNames, "\n"))), 0644)
-	os.WriteFile(root+"/cmd/carapace/cmd/completers/description.go", []byte(fmt.Sprintf("package completers\n\nfunc init() {\n	descriptions = map[string]string{\n%v\n\t}\n}\n", strings.Join(formattedDescriptions, "\n"))), 0644)
-	os.WriteFile(root+"/cmd/carapace/cmd/completers_release.go", []byte("//go:build release\n\n"+strings.Replace(content, "/completers/", "/completers_release/", -1)), 0644)
+	os.WriteFile(root+"/cmd/carapace/cmd/completers/name.go", fmt.Appendf(nil, "package completers\n\nfunc init() {\n	names = []string{\n%v\n\t}\n}\n", strings.Join(formattedNames, "\n")), 0644)
+	os.WriteFile(root+"/cmd/carapace/cmd/completers/description.go", fmt.Appendf(nil, "package completers\n\nfunc init() {\n	descriptions = map[string]string{\n%v\n\t}\n}\n", strings.Join(formattedDescriptions, "\n")), 0644)
+	os.WriteFile(root+"/cmd/carapace/cmd/completers_release.go", []byte("//go:build release\n\n"+strings.ReplaceAll(content, "/completers/", "/completers_release/")), 0644)
 	os.RemoveAll(root + "/completers_release")
 	execlog.Command("cp", "-r", root+"/completers", root+"/completers_release").Run()
 
@@ -116,6 +117,9 @@ func executeCompleter(completer string) {
 func varName(name string) string {
 	if name == "go" {
 		return "_go"
+	}
+	if unicode.IsDigit([]rune(name)[0]) {
+		name = "_" + name
 	}
 	return strings.NewReplacer(
 		"-", "_",
@@ -230,8 +234,8 @@ func macros() {
 			}
 			defer file.Close()
 
-			pkg := strings.Replace(filepath.ToSlash(filepath.Dir(strings.TrimPrefix(path, root+"/pkg/actions/"))), "/", ".", -1)
-			_import := fmt.Sprintf(`	%v "github.com/carapace-sh/carapace-bin/pkg/actions/%v"`, strings.Replace(pkg, ".", "_", -1), strings.Replace(pkg, ".", "/", -1))
+			pkg := strings.ReplaceAll(filepath.ToSlash(filepath.Dir(strings.TrimPrefix(path, root+"/pkg/actions/"))), "/", ".")
+			_import := fmt.Sprintf(`	%v "github.com/carapace-sh/carapace-bin/pkg/actions/%v"`, strings.ReplaceAll(pkg, ".", "_"), strings.ReplaceAll(pkg, ".", "/"))
 
 			scanner := bufio.NewScanner(file)
 			for scanner.Scan() {
@@ -239,7 +243,7 @@ func macros() {
 					if r.MatchString(t) {
 						matches := r.FindStringSubmatch(t)
 
-						_func := fmt.Sprintf("%v.Action%v", strings.Replace(pkg, ".", "_", -1), matches[1])
+						_func := fmt.Sprintf("%v.Action%v", strings.ReplaceAll(pkg, ".", "_"), matches[1])
 
 						disableflagParsing := ""
 						if pkg == "bridge" {
@@ -258,8 +262,8 @@ func macros() {
 						}
 						imports[_import] = true
 					}
-				} else if strings.HasPrefix(t, "// Action") {
-					if splitted := strings.SplitN(strings.TrimPrefix(t, "// Action"), " ", 2); len(splitted) > 1 {
+				} else if after, ok := strings.CutPrefix(t, "// Action"); ok {
+					if splitted := strings.SplitN(after, " ", 2); len(splitted) > 1 {
 						descriptions[pkg+"."+splitted[0]] = splitted[1]
 					}
 				}
@@ -342,8 +346,8 @@ func conditions() {
 							macros = append(macros, fmt.Sprintf(`"%v": condition.MacroI(%v).WithDescription(%#v),`, matches[1], _func, descriptions[matches[1]]))
 						}
 					}
-				} else if strings.HasPrefix(t, "// Condition") {
-					if splitted := strings.SplitN(strings.TrimPrefix(t, "// Condition"), " ", 2); len(splitted) > 1 {
+				} else if after, ok := strings.CutPrefix(t, "// Condition"); ok {
+					if splitted := strings.SplitN(after, " ", 2); len(splitted) > 1 {
 						descriptions[splitted[0]] = splitted[1]
 					}
 				}
