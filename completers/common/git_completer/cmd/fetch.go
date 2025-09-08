@@ -98,22 +98,17 @@ func init() {
 
 			// if we have no remote (<repository> or <group>) yet, complete that
 			if len(c.Args) == 0 {
-				return git.ActionRemotes().FilterArgs()
+				return git.ActionRemotes()
 			}
 
 			remote := c.Args[0]
+			return carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+				if len(c.Parts) == 0 {
+					return git.ActionRemoteBranchNames(remote)
+				}
 
-			return carapace.ActionValues("<src>:<dst>").
-				MultiPartsP(":", "<.*>", func(placeholder string, _ map[string]string) carapace.Action {
-					switch placeholder {
-					case "<src>":
-						return git.ActionRemoteBranchNames(remote)
-					case "<dst>":
-						return git.ActionLocalBranches()
-					default:
-						return carapace.ActionValues()
-					}
-				})
+				return git.ActionLocalBranches()
+			})
 		}),
 	)
 }
