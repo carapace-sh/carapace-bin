@@ -72,10 +72,43 @@ func init() {
 
 	carapace.Gen(fetchCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			// from `man git-fetch`:
+			// 1. git fetch [<options>] [<repository> [<refspec>...]]
+			// 2. git fetch [<options>] <group>
+			// 3. git fetch --multiple [<options>] [(<repository> | <group>)...]
+			// 4. git fetch --all [<options>]
+
+			// 4. git fetch --all [<options>]
+			// no positional completion
 			if fetchCmd.Flag("all").Changed {
 				return carapace.ActionValues()
 			}
-			return git.ActionRemotes().FilterArgs()
+
+			// 3. git fetch --multiple [<options>] [(<repository> | <group>)...]
+			// <repository> and <group> completion
+			if fetchCmd.Flag("multiple").Changed {
+				return git.ActionRemotes().FilterArgs()
+			}
+
+			// 1. git fetch [<options>] [<repository> [<refspec>...]]
+			// <repository> and <refspec> completion
+			//
+			// 2. git fetch [<options>] <group>
+			// <group> completion
+
+			// if we have no remote (<repository> or <group>) yet, complete that
+			if len(c.Args) == 0 {
+				return git.ActionRemotes()
+			}
+
+			remote := c.Args[0]
+			return carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+				if len(c.Parts) == 0 {
+					return git.ActionRemoteBranchNames(remote)
+				}
+
+				return git.ActionLocalBranches()
+			})
 		}),
 	)
 }
