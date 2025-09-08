@@ -18,6 +18,7 @@ func init() {
 	confirmCmd.Flags().String("affirmative", "", "The title of the affirmative action")
 	confirmCmd.Flags().Bool("default", false, "Default confirmation action")
 	confirmCmd.Flags().String("negative", "", "The title of the negative action")
+	confirmCmd.Flags().String("padding", "", "Padding")
 	confirmCmd.Flags().String("prompt.align", "", "Text Alignment")
 	confirmCmd.Flags().String("prompt.background", "", "Background Color")
 	confirmCmd.Flags().Bool("prompt.bold", false, "Bold text")

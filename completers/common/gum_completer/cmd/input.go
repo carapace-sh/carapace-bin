@@ -49,6 +49,7 @@ func init() {
 	inputCmd.Flags().Bool("header.strikethrough", false, "Strikethrough text")
 	inputCmd.Flags().Bool("header.underline", false, "Underline text")
 	inputCmd.Flags().String("header.width", "", "Text width")
+	inputCmd.Flags().String("padding", "", "Padding")
 	inputCmd.Flags().Bool("password", false, "Mask input characters")
 	inputCmd.Flags().String("placeholder", "", "Placeholder value")
 	inputCmd.Flags().String("placeholder.align", "", "Text Alignment")
