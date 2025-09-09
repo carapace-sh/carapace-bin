@@ -16,6 +16,7 @@ var auth_refreshCmd = &cobra.Command{
 func init() {
 	carapace.Gen(auth_refreshCmd).Standalone()
 
+	auth_refreshCmd.Flags().BoolP("clipboard", "c", false, "Copy one-time OAuth device code to clipboard")
 	auth_refreshCmd.Flags().StringP("hostname", "h", "", "The GitHub host to use for authentication")
 	auth_refreshCmd.Flags().Bool("insecure-storage", false, "Save authentication credentials in plain text instead of credential store")
 	auth_refreshCmd.Flags().StringSliceP("remove-scopes", "r", nil, "Authentication scopes to remove from gh")
