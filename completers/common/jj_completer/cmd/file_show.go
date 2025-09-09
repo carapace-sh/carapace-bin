@@ -17,6 +17,7 @@ func init() {
 
 	file_showCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	file_showCmd.Flags().StringP("revision", "r", "", "The revision to get the file contents from")
+	file_showCmd.Flags().StringP("template", "T", "", "Render each file metadata using the given template")
 	fileCmd.AddCommand(file_showCmd)
 
 	carapace.Gen(file_showCmd).FlagCompletion(carapace.ActionMap{

@@ -19,6 +19,7 @@ func init() {
 	git_fetchCmd.Flags().StringSliceP("branch", "b", nil, "Fetch only some of the branches")
 	git_fetchCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	git_fetchCmd.Flags().StringSlice("remote", []string{"origin"}, "The remote to fetch from (only named remotes are supported, can be repeated)")
+	git_fetchCmd.Flags().Bool("tracked", false, "Fetch only tracked bookmarks")
 	gitCmd.AddCommand(git_fetchCmd)
 
 	carapace.Gen(git_fetchCmd).FlagCompletion(carapace.ActionMap{

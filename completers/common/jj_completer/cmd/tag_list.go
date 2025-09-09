@@ -7,9 +7,10 @@ import (
 )
 
 var tag_listCmd = &cobra.Command{
-	Use:   "list [OPTIONS] [NAMES]...",
-	Short: "List tags",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list [OPTIONS] [NAMES]...",
+	Short:   "List tags",
+	Aliases: []string{"l"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

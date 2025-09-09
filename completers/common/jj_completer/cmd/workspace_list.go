@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(workspace_listCmd).Standalone()
 
 	workspace_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	workspace_listCmd.Flags().StringP("template", "T", "", "Render each workspace using the given template")
 	workspaceCmd.AddCommand(workspace_listCmd)
 }

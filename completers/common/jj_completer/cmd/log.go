@@ -9,7 +9,7 @@ import (
 
 var logCmd = &cobra.Command{
 	Use:   "log [OPTIONS] [PATHS]...",
-	Short: "Show commit history",
+	Short: "Show revision history",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
