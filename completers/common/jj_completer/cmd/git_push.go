@@ -20,7 +20,7 @@ func init() {
 	git_pushCmd.Flags().BoolP("allow-new", "N", false, "Allow pushing new bookmarks")
 	git_pushCmd.Flags().Bool("allow-private", false, "Allow pushing commits that are private")
 	git_pushCmd.Flags().StringSliceP("bookmark", "b", nil, "Push only this bookmark, or bookmarks matching a pattern (can be repeated)")
-	git_pushCmd.Flags().StringSliceP("change", "c", nil, "Push this commit by creating a bookmark based on its change ID (can be repeated)")
+	git_pushCmd.Flags().StringSliceP("change", "c", nil, "Push this commit by creating a bookmark (can be repeated)")
 	git_pushCmd.Flags().Bool("deleted", false, "Push all deleted bookmarks")
 	git_pushCmd.Flags().Bool("dry-run", false, "Only display what will change on the remote")
 	git_pushCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")

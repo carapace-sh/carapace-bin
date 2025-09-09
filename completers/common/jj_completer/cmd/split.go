@@ -15,7 +15,7 @@ var splitCmd = &cobra.Command{
 func init() {
 	carapace.Gen(splitCmd).Standalone()
 
-	splitCmd.Flags().StringSliceP("destination", "d", nil, "The revision(s) to rebase onto (can be repeated to create a merge commit)")
+	splitCmd.Flags().StringSliceP("destination", "d", nil, "The revision(s) to base the new revision onto (can be repeated to create a merge commit)")
 	splitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	splitCmd.Flags().StringSliceP("insert-after", "A", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
 	splitCmd.Flags().StringSliceP("insert-before", "B", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
@@ -27,7 +27,8 @@ func init() {
 	rootCmd.AddCommand(splitCmd)
 
 	carapace.Gen(splitCmd).FlagCompletion(carapace.ActionMap{
-		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
+		"destination": jj.ActionRevs(jj.RevOption{}.Default()),
+		"revision":    jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(splitCmd).PositionalAnyCompletion(

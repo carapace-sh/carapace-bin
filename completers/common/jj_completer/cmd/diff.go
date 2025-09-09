@@ -27,6 +27,7 @@ func init() {
 	diffCmd.Flags().StringSliceP("revisions", "r", nil, "Show changes in these revisions")
 	diffCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
 	diffCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or deleted")
+	diffCmd.Flags().StringP("template", "T", "", "Render each file diff entry using the given template")
 	diffCmd.Flags().StringP("to", "t", "", "Show changes to this revision")
 	diffCmd.Flags().String("tool", "", "Generate diff by external command")
 	diffCmd.Flags().Bool("types", false, "For each path, show only its type before and after")

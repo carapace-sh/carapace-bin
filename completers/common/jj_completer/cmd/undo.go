@@ -8,7 +8,7 @@ import (
 
 var undoCmd = &cobra.Command{
 	Use:                "undo",
-	Short:              "Undo an operation (shortcut for `jj op undo`)",
+	Short:              "Undo the last operation",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
 }
@@ -16,6 +16,7 @@ var undoCmd = &cobra.Command{
 func init() {
 	carapace.Gen(undoCmd).Standalone()
 
+	undoCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(undoCmd)
 
 	carapace.Gen(undoCmd).PositionalAnyCompletion(
