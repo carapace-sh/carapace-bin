@@ -4,8 +4,8 @@ import (
 	"os"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/python_completer/cmd/module"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/python"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -96,14 +96,7 @@ func init() {
 
 	carapace.Gen(rootCmd).DashAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			switch rootCmd.Flag("m").Value.String() {
-			case "http.server":
-				return module.ActionInvokeHttpServer()
-			case "venv":
-				return module.ActionInvokeVenv()
-			default:
-				return carapace.ActionValues()
-			}
+			return bridge.ActionCarapaceBin("python." + rootCmd.Flag("m").Value.String())
 		}),
 	)
 }
