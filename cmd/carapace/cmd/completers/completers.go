@@ -35,7 +35,7 @@ func Names() []string {
 	}
 
 	if _, ok := excludes["*"]; !ok {
-		for _, name := range names {
+		for _, name := range append(names, "python/http.server") { // TODO extensions
 			if _, ok := excludes[name]; !ok {
 				unique[name] = true
 			}
