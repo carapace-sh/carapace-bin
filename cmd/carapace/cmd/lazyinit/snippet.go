@@ -2,7 +2,6 @@ package lazyinit
 
 import (
 	"sort"
-	"strings"
 
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/carapace-sh/carapace-bridge/pkg/bridges"
@@ -58,9 +57,7 @@ func Snippet(shell string) string {
 	}
 
 	for _, name := range completers.Names() {
-		if !strings.Contains(name, ".") { // dot is reserved for subcommands/extensions/modules
-			uniqueNames[name] = true
-		}
+		uniqueNames[name] = true
 	}
 
 	completerNames := make([]string, 0)

@@ -96,7 +96,7 @@ func init() {
 
 	carapace.Gen(rootCmd).DashAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin("python." + rootCmd.Flag("m").Value.String())
+			return bridge.ActionCarapaceBin("python$" + rootCmd.Flag("m").Value.String())
 		}),
 	)
 }
