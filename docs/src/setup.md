@@ -27,7 +27,7 @@ load(io.popen('carapace _carapace cmd-clink'):read("*a"))()
 ## Elvish
 
 ```sh
-# ~/.config/elvish/rc.elv
+# ${UserConfigDir}/elvish/rc.elv
 set-env CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 eval (carapace _carapace|slurp)
 ```
@@ -37,30 +37,23 @@ eval (carapace _carapace|slurp)
 ## Fish
 
 ```sh
-# ~/.config/fish/config.fish
+# ${UserConfigDir}/fish/config.fish
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 carapace _carapace | source
 ```
 
 ![](./setup-fish.png)
 
-> With [4.0b1](https://github.com/fish-shell/fish-shell/releases/tag/4.0b1) onwards the following workaround is not needed anymore:
-> ```sh
-> mkdir -p ~/.config/fish/completions
-> carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
-> ```
-> see [fish-shell/fish#6716](https://github.com/fish-shell/fish-shell/issues/6716)
-
 ## Nushell
 
 ```sh
-## ~/.config/nushell/env.nu
+## ${UserConfigDir}/nushell/env.nu
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+mkdir $"($nu.cache-dir)"
+carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
 
-#~/.config/nushell/config.nu
-source ~/.cache/carapace/init.nu
+# ${UserConfigDir}/nushell/config.nu
+source $"($nu.cache-dir)/carapace.nu"
 ```
 
 ![](./setup-nushell.png)
@@ -68,7 +61,7 @@ source ~/.cache/carapace/init.nu
 ## Oil
 
 ```sh
-# ~/.config/oil/oshrc
+# ${UserConfigDir}/oil/oshrc
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)
 ```
@@ -78,7 +71,7 @@ source <(carapace _carapace)
 ## Powershell
 
 ```sh
-# ~/.config/powershell/Microsoft.PowerShell_profile.ps1
+# ${UserConfigDir}/powershell/Microsoft.PowerShell_profile.ps1
 $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
@@ -99,7 +92,7 @@ eval `carapace _carapace`
 
 ## Xonsh
 ```sh
-# ~/.config/xonsh/rc.xsh
+# ${UserConfigDir}/xonsh/rc.xsh
 $CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 $COMPLETIONS_CONFIRM=True
 exec($(carapace _carapace))
@@ -110,7 +103,7 @@ exec($(carapace _carapace))
 ## Zsh
 
 ```sh
-# ~/.zshrc
+# ${UserConfigDir}/zsh/.zshrc
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
