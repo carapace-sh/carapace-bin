@@ -46,7 +46,7 @@ archives:
 brews:
   -
     name: carapace
-    description: "multi-shell multi-command argument completer"
+    description: "A multi-shell completion binary"
     homepage: "https://github.com/carapace-sh/carapace-bin"
     license: "MIT"
     repository:
@@ -57,7 +57,7 @@ brews:
 
 scoops:
   -
-    description: "multi-shell multi-command argument completer"
+    description: "A multi-shell completion binary"
     homepage: "https://github.com/carapace-sh/carapace-bin"
     license: "MIT"
     repository:
@@ -68,7 +68,7 @@ scoops:
 
 aurs:
   -
-    description: "multi-shell multi-command argument completer"
+    description: "A multi-shell completion binary"
     homepage: "https://github.com/carapace-sh/carapace-bin"
     license: "MIT"
     maintainers:
@@ -82,7 +82,7 @@ aurs:
 
 nfpms:
   -
-    description: "multi-shell multi-command argument completer"
+    description: "A multi-shell completion binary"
     homepage: "https://github.com/carapace-sh/carapace-bin"
     license: "MIT"
     maintainer: rsteube <rsteube@users.noreply.github.com>
