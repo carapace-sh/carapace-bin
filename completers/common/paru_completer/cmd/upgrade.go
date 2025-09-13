@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(upgradeCmd).Standalone()
 
 	upgradeCmd.Flags().BoolP("install", "i", false, "Install package as well as building")
-	common.AddNewFlags(databaseCmd)
+	common.AddNewFlags(upgradeCmd)
 
 	carapace.Gen(upgradeCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),
