@@ -40,6 +40,7 @@ func init() {
 	)
 
 	embed.SubcommandsAsFlags(rootCmd,
+		buildCmd,
 		databaseCmd,
 		deptestCmd,
 		filesCmd,

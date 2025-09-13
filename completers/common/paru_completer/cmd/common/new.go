@@ -119,25 +119,25 @@ func AddNewFlags(cmd *cobra.Command) {
 			carapace.ActionFiles(),
 		).ToA(),
 		"fmflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin(cmd.Flag("fm").Value.String())
+			return bridge.ActionCarapaceBin(cmd.Flag("fm").Value.String()).Split()
 		}),
 		"git": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 		"gitflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin("git")
+			return bridge.ActionCarapaceBin("git").Split()
 		}),
 		"gpg": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 		"gpgflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin("gpg")
+			return bridge.ActionCarapaceBin("gpg").Split()
 		}),
 		"makepkg": carapace.ActionFiles(),
 		"mflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin("makepgk")
+			return bridge.ActionCarapaceBin("makepgk").Split()
 		}),
 		"mode": carapace.ActionValues("aur", "repo", "pkgbuilds"),
 		"pacman": carapace.Batch(
@@ -155,7 +155,7 @@ func AddNewFlags(cmd *cobra.Command) {
 			carapace.ActionFiles(),
 		).ToA(),
 		"sudoflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin("sudoflags")
+			return bridge.ActionCarapaceBin("sudo").Split()
 		}),
 	})
 }
