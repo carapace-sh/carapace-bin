@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/paru_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -36,6 +37,7 @@ func init() {
 	databaseCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
 	databaseCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
 	databaseCmd.Flags().BoolP("verbose", "v", false, "be verbose")
+	common.AddNewFlags(databaseCmd)
 
 	carapace.Gen(databaseCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
