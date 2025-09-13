@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/paru_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -43,6 +44,7 @@ func init() {
 	removeCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
 	removeCmd.Flags().BoolP("unneeded", "u", false, "remove unneeded packages")
 	removeCmd.Flags().BoolP("verbose", "v", false, "be verbose")
+	common.AddNewFlags(removeCmd)
 
 	carapace.Gen(removeCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
