@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/paru_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -47,6 +48,7 @@ func init() {
 	queryCmd.Flags().CountP("unrequired", "t", "list packages not (optionally) required by any package")
 	queryCmd.Flags().BoolP("upgrades", "u", false, "list outdated packages [filter]")
 	queryCmd.Flags().BoolP("verbose", "v", false, "be verbose")
+	common.AddNewFlags(queryCmd)
 
 	carapace.Gen(queryCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
