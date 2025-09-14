@@ -1,6 +1,9 @@
 package cmd
 
 import (
+	"os"
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
 	"github.com/spf13/cobra"
@@ -14,6 +17,24 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() error {
+	for i, arg := range os.Args {
+		if !strings.HasPrefix(arg, "-") || len(arg) < 2 {
+			continue // skip non-flags
+		}
+		if arg == "--" {
+			break // no need for patching at dash positions
+		}
+		switch arg[1] {
+		case 'X', 'r', 's', 't', 'w', 'x':
+			switch i {
+			case len(os.Args) - 1:
+				os.Args[i] = "--" // fake dash completion
+				os.Args = append(os.Args, arg)
+			default:
+				os.Args[i] = "a" + arg // patch with the implicit (a)ll to avoid parsing issues
+			}
+		}
+	}
 	return rootCmd.Execute()
 }
 
@@ -44,13 +65,16 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("reference").Changed {
 				return carapace.ActionFiles()
-			} else {
-				return fs.ActionFileModes()
 			}
+			return fs.ActionFileModes()
 		}),
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),
+	)
+
+	carapace.Gen(rootCmd).DashAnyCompletion(
+		carapace.ActionPositional(rootCmd),
 	)
 }
