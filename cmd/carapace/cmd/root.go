@@ -81,7 +81,7 @@ var rootCmd = &cobra.Command{
 		case "-h", "--help":
 			cmd.Help()
 		case "-v", "--version":
-			println("carapace-bin " + cmd.Version)
+			fmt.Println("carapace-bin " + cmd.Version)
 		case "--list":
 			listCmd.SetArgs(args[1:])
 			listCmd.Execute()
