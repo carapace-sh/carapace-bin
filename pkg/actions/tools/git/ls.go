@@ -101,5 +101,5 @@ func ActionRefFiles(ref string) carapace.Action {
 				return filesA.Merge(directoriesA).Prefix(prefix).ToA().NoSpace().StyleF(style.ForPathExt)
 			})
 		})
-	}).Tag("ref files").UidF(Uid("ref-file", "ref", ref))
+	}).Tag("ref files").UidF(Uid("ref-file", "ref", ref)).QueryF(Uid("ref-file", "ref", ref))
 }

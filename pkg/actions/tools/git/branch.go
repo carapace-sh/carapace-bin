@@ -24,7 +24,7 @@ func ActionLocalBranches() carapace.Action {
 	return carapace.ActionExecCommand("git", "branch", "--format", "%(refname:short)\n%(subject)")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		return carapace.ActionValuesDescribed(lines[:len(lines)-1]...).Style(styles.Git.Branch)
-	}).Tag("local branches").UidF(Uid("local-branch"))
+	}).Tag("local branches").UidF(Uid("local-branch")).QueryF(Uid("local-branch"))
 }
 
 // ActionRemoteBranches completes remote branches
@@ -47,7 +47,7 @@ func ActionRemoteBranches(remote string) carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
-	}).Tag("remote branches").UidF(Uid("remote-branch"))
+	}).Tag("remote branches").UidF(Uid("remote-branch")).QueryF(Uid("remote-branch"))
 }
 
 // ActionRemoteBranchNames is like ActionRemoteBranches but skips the remote prefix

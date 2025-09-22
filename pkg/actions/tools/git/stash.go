@@ -23,5 +23,5 @@ func ActionStashes() carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Stash)
 		})
-	}).Tag("stashes").UidF(Uid("stash"))
+	}).Tag("stashes").UidF(Uid("stash")).QueryF(Uid("stash"))
 }
