@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"slices"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -30,9 +31,9 @@ func pathSnippet(shell string) (snippet string) {
 	case "nushell":
 		fixedBinDir := strings.ReplaceAll(binDir, `\`, `\\`)
 		if runtime.GOOS == "windows" {
-			snippet = fmt.Sprintf(`$env.Path = ($env.Path | split row (char esep) | prepend "%v")`, fixedBinDir)
+			snippet = fmt.Sprintf(`$env.Path = ($env.Path | split row (char esep) | filter { $in != "%v" } | prepend "%v")`, fixedBinDir, fixedBinDir)
 		} else {
-			snippet = fmt.Sprintf(`$env.PATH = ($env.PATH | split row (char esep) | prepend "%v")`, fixedBinDir)
+			snippet = fmt.Sprintf(`$env.PATH = ($env.PATH | split row (char esep) | filter { $in != "%v" } | prepend "%v")`, fixedBinDir, fixedBinDir)
 		}
 
 	case "powershell":
@@ -45,13 +46,10 @@ func pathSnippet(shell string) (snippet string) {
 		snippet = fmt.Sprintf("# error: unknown shell: %#v", shell)
 	}
 
-	for _, path := range strings.Split(os.Getenv("PATH"), string(os.PathListSeparator)) {
-		if path == binDir {
-			carapace.LOG.Printf("PATH already contains %#v\n", binDir)
-			if shell != "nushell" {
-				snippet = "# " + snippet
-			}
-			break
+	if slices.Contains(strings.Split(os.Getenv("PATH"), string(os.PathListSeparator)), binDir) {
+		carapace.LOG.Printf("PATH already contains %#v\n", binDir)
+		if shell != "nushell" {
+			snippet = "# " + snippet
 		}
 	}
 	return
