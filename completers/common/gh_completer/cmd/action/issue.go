@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/ghrepo"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -46,8 +47,26 @@ func (i *IssueOpts) states() string {
 	return fmt.Sprintf("[%v]", strings.Join(states, ","))
 }
 
+func (i IssueOpts) stateFilter() string {
+	// TODO yuck, just for query
+	switch {
+	case i.Open && i.Closed:
+		return ""
+	case i.Open:
+		return "open"
+	case i.Closed:
+		return "closed"
+	default:
+		return "" // this doesn't really make any sense
+	}
+}
+
 func ActionIssues(cmd *cobra.Command, opts IssueOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		repo, err := repoOverride(cmd, c)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
 		var queryResult issueQuery
 		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ issues(first: 100, states: %v, orderBy: {direction: DESC, field: UPDATED_AT}) { nodes { number, title, state } } }`, opts.states()), &queryResult, func() carapace.Action {
 			issues := queryResult.Data.Repository.Issues.Nodes
@@ -67,7 +86,11 @@ func ActionIssues(cmd *cobra.Command, opts IssueOpts) carapace.Action {
 				vals = append(vals, strconv.Itoa(issue.Number), issue.Title, s)
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
-		})
+		}).Uid("gh", "issue", "repo", ghrepo.FullName(repo)).
+			Query("gh", "issue", "",
+				"repo", ghrepo.FullName(repo),
+				"state", opts.stateFilter(),
+			)
 	})
 }
 
