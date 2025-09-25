@@ -52,6 +52,6 @@ func init() {
 	})
 
 	carapace.Gen(issue_editCmd).PositionalAnyCompletion(
-		action.ActionIssues(issue_editCmd, action.IssueOpts{Open: true}),
+		action.ActionIssues(issue_editCmd, action.IssueOpts{Open: true, Closed: true}),
 	)
 }

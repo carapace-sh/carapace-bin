@@ -19,6 +19,6 @@ func init() {
 	issueCmd.AddCommand(issue_pinCmd)
 
 	carapace.Gen(issue_pinCmd).PositionalCompletion(
-		action.ActionIssues(issue_pinCmd, action.IssueOpts{Open: true}),
+		action.ActionIssues(issue_pinCmd, action.IssueOpts{Open: true, Closed: true}),
 	)
 }
