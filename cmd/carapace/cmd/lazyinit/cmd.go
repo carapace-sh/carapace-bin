@@ -6,38 +6,49 @@ import (
 )
 
 func CmdClink(completers []string) string {
-	// TODO pathSnippet
-	snippet := `local function carapace_completion(command)
-  return function(word, word_index, line_state, match_builder)
-    local compline = string.sub(line_state:getline(), 1, line_state:getcursor())
-    local prog = "env CARAPACE_COMPLINE=" .. string.format("%%q", compline) .. " carapace " .. command .. " cmd-clink \"\""
+	snippet := `
+local function carapace_completion(command)
+    return function(word, word_index, line_state, match_builder)
+        match_builder:setnosort()
+        match_builder:setvolatile()
+        os.setenv('CARAPACE_COMPLINE', line_state:getline():sub(1, line_state:getcursor()))
 
-    local output = io.popen(prog):read("*a")
-    for line in string.gmatch(output, '[^\r\n]+') do
-      local matches = {}
-      for m in string.gmatch(line, '[^\t]+') do
-        table.insert(matches, m)
-      end
-      match_builder:addmatch({
-        match = matches[1],
-        display = matches[2],
-        description = matches[3],
-        type = "word",
-        appendchar = matches[4],
-        suppressappend = false
-      })
+        local file, pclose = io.popenyield(string.format('carapace %s cmd-clink ""', command))
+
+        if not file then
+            return false
+        end
+
+        for line in file:lines() do
+            local matches = string.explode(line, '\t')
+
+            if matches[1] then
+                match_builder:addmatch({
+                    match       = matches[1],
+                    display     = matches[2],
+                    description = matches[3],
+                    type        = 'word',
+                    appendchar  = matches[4] or ''
+                })
+            end
+        end
+
+        if pclose then
+            pclose()
+        else
+            file:close()
+        end
+
+        return not match_builder:isempty()
     end
-    return true
-  end
 end
 
-%v
+%s
 `
 	argmatchers := make([]string, 0, len(completers))
 	for _, completer := range completers {
 		argmatchers = append(argmatchers,
-			fmt.Sprintf(`clink.argmatcher("%v"):addarg({nowordbreakchars="'&backprime;+;,", carapace_completion("%v")}):loop(1)`, completer, completer),
-			fmt.Sprintf(`clink.argmatcher("%v.exe"):addarg({nowordbreakchars="'&backprime;+;,", carapace_completion("%v")}):loop(1)`, completer, completer),
+			fmt.Sprintf(`clink.argmatcher(50, '%[1]s', '%[1]s.exe'):addarg({nowordbreakchars="'`+"`"+`=+;,", carapace_completion('%[1]s')}):loop(1)`, completer),
 		)
 	}
 	return fmt.Sprintf(snippet, strings.Join(argmatchers, "\n"))
