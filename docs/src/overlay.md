@@ -8,7 +8,7 @@ These are merged with the existing completion and provide a workaround for issue
 ## Flag
 
 ```yaml
-# ~/.config/carapace/overlays/doctl.yaml
+# ${UserConfigDir}/carapace/overlays/doctl.yaml
 name: doctl
 persistentflags:
   --output=: Desired output format [text|json]
@@ -36,7 +36,7 @@ commands:
 ## Command
 
 ```yaml
-# ~/.config/carapace/overlays/doctl.yaml
+# ${UserConfigDir}/carapace/overlays/doctl.yaml
 name: doctl
 commands:
   - name: auth

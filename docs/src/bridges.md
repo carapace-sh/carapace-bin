@@ -1,6 +1,6 @@
 # Bridges
 
-With `~/.config/carapace/bridges.yaml` generic bridges can be configured for commands.
+With `${UserConfigDir}/carapace/bridges.yaml` generic bridges can be configured for commands.
 
 ```yaml
 gh: cobra
