@@ -13,7 +13,7 @@ local function carapace_completion(command)
         match_builder:setvolatile()
         os.setenv('CARAPACE_COMPLINE', line_state:getline():sub(1, line_state:getcursor()))
 
-        local file, pclose = io.popenyield(string.format('carapace %s cmd-clink ""', command))
+        local file, pclose = io.popenyield(string.format('carapace %%s cmd-clink ""', command))
 
         if not file then
             return false
