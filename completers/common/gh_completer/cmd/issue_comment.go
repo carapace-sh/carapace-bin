@@ -32,6 +32,6 @@ func init() {
 	})
 
 	carapace.Gen(issue_commentCmd).PositionalCompletion(
-		action.ActionIssues(issue_commentCmd, action.IssueOpts{Open: true}),
+		action.ActionIssues(issue_commentCmd, action.IssueOpts{Open: true, Closed: true}),
 	)
 }
