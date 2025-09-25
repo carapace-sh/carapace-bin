@@ -3,6 +3,8 @@
 > This registers all the available [completers](./completers.md).
 > It is also possible to load a single one by replacing `_carapace` with the completer name (e.g. `carapace chmod`).
 
+### Note: Windows paths may vary due to various environments
+
 ## Bash
 
 ```sh
@@ -54,12 +56,14 @@ carapace _carapace | source
 ## Nushell
 
 ```sh
-## ~/.config/nushell/env.nu
+# (Unix) ~/.config/nushell/env.nu
+# (Windows) ~/AppData/Roaming/nushell/env.nu
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 mkdir ~/.cache/carapace
 carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
 
-#~/.config/nushell/config.nu
+# (Unix) ~/.config/nushell/config.nu
+# (Windows) ~/AppData/Roaming/nushell/config.nu
 source ~/.cache/carapace/init.nu
 ```
 
@@ -78,7 +82,8 @@ source <(carapace _carapace)
 ## Powershell
 
 ```sh
-# ~/.config/powershell/Microsoft.PowerShell_profile.ps1
+# (Unix) ~/.config/powershell/Microsoft.PowerShell_profile.ps1
+# (Windows) ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1
 $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
