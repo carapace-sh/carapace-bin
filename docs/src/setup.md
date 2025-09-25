@@ -3,7 +3,7 @@
 > This registers all the available [completers](./completers.md).
 > It is also possible to load a single one by replacing `_carapace` with the completer name (e.g. `carapace chmod`).
 
-### Note: Windows paths may vary due to various environments
+> **Note: Windows paths may vary due to various environments**
 
 ## Bash
 
