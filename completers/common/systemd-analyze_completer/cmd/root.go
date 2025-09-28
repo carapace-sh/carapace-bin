@@ -22,7 +22,10 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.PersistentFlags().String("base-time", "", "Calculate calendar times relative to specified time")
+	rootCmd.PersistentFlags().String("debugger", "", "Use the given debugger")
+	rootCmd.PersistentFlags().StringP("debugger-arguments", "A", "", "Pass the given arguments to the debugger")
 	rootCmd.PersistentFlags().Bool("detailed", false, "Add more details to SVG plot, e.g. show activation timestamps")
+	rootCmd.PersistentFlags().String("drm-device", "", "Use this DRM device sysfs path to get EDID")
 	rootCmd.PersistentFlags().String("from-pattern", "", "Show only origins in the graph")
 	rootCmd.PersistentFlags().String("fuzz", "", "Also print services which finished SECONDS earlier than the latest in the branch")
 	rootCmd.PersistentFlags().String("generators", "", "Do [not] run unit generators (requires privileges)")
@@ -61,6 +64,7 @@ func init() {
 	rootCmd.Flag("man").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"drm-device":       carapace.ActionDirectories(),
 		"generators":       carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
 		"image":            carapace.ActionFiles(),
 		"json":             carapace.ActionValues("pretty", "short", "off"),
