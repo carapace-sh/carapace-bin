@@ -21,7 +21,7 @@ func ActionHosts() carapace.Action {
 		batch := carapace.Batch()
 		if file, err := c.Abs("~/.ssh/known_hosts"); err == nil {
 			if content, err := os.ReadFile(file); err == nil {
-				r := regexp.MustCompile(`^(?P<host>[^ ,#]+)`)
+				r := regexp.MustCompile(`^(?P<host>[^ ,#|]+)`)
 				rIPv4 := regexp.MustCompile(`^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$`)
 				rIPv6 := regexp.MustCompile(`^([A-Fa-f0-9]{0,4}:){5,7}[A-Fa-f0-9]{0,4}$`) // TODO likely wrong
 				for _, entry := range strings.Split(string(content), "\n") {
