@@ -28,15 +28,18 @@ func init() {
 	evologCmd.Flags().Bool("no-graph", false, "Don't show the graph, show a flat list of revisions")
 	evologCmd.Flags().BoolP("patch", "p", false, "Show patch compared to the previous version of this change")
 	evologCmd.Flags().Bool("reversed", false, "Show revisions in the opposite order (older revisions first)")
+	evologCmd.Flags().StringSlice("revision", nil, "Follow changes from these revisions")
 	evologCmd.Flags().StringSliceP("revisions", "r", nil, "Follow changes from these revisions")
 	evologCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
 	evologCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or deleted")
 	evologCmd.Flags().StringP("template", "T", "", "Render each revision using the given template")
 	evologCmd.Flags().String("tool", "", "Generate diff by external command")
 	evologCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
+	evologCmd.Flag("revision").Hidden = true
 	rootCmd.AddCommand(evologCmd)
 
 	carapace.Gen(evologCmd).FlagCompletion(carapace.ActionMap{
+		"revision":  jj.ActionRevs(jj.RevOption{}.Default()),
 		"revisions": jj.ActionRevs(jj.RevOption{}.Default()),
 		"tool":      bridge.ActionCarapaceBin().Split(),
 	})

@@ -16,6 +16,7 @@ var bookmark_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(bookmark_listCmd).Standalone()
 
+	bookmark_listCmd.Flags().Bool("all", false, "Show all tracking and non-tracking remote bookmarks including the ones whose targets are synchronized with the local bookmarks")
 	bookmark_listCmd.Flags().BoolP("all-remotes", "a", false, "Show all tracking and non-tracking remote bookmarks including the ones whose targets are synchronized with the local bookmarks")
 	bookmark_listCmd.Flags().BoolP("conflicted", "c", false, "Show conflicted bookmarks only")
 	bookmark_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
@@ -24,6 +25,7 @@ func init() {
 	bookmark_listCmd.Flags().StringSlice("sort", nil, "Sort bookmarks based on the given key (or multiple keys)")
 	bookmark_listCmd.Flags().StringP("template", "T", "", "Render each bookmark using the given template")
 	bookmark_listCmd.Flags().BoolP("tracked", "t", false, "Show remote tracked bookmarks only. Omits local Git-tracking bookmarks by default")
+	bookmark_listCmd.Flag("all").Hidden = true
 	bookmarkCmd.AddCommand(bookmark_listCmd)
 
 	bookmark_listCmd.MarkFlagsMutuallyExclusive("all-remotes", "conflicted")

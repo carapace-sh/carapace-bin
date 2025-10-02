@@ -1,0 +1,19 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var bisectCmd = &cobra.Command{
+	Use:   "bisect",
+	Short: "Find a bad revision by bisection",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(bisectCmd).Standalone()
+
+	bisectCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	rootCmd.AddCommand(bisectCmd)
+}

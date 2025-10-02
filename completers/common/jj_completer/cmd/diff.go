@@ -24,6 +24,7 @@ func init() {
 	diffCmd.Flags().BoolP("ignore-all-space", "w", false, "Ignore whitespace when comparing lines")
 	diffCmd.Flags().BoolP("ignore-space-change", "b", false, "Ignore changes in amount of whitespace when comparing lines")
 	diffCmd.Flags().Bool("name-only", false, "For each path, show only its path")
+	diffCmd.Flags().StringSlice("revision", nil, "Show changes in these revisions")
 	diffCmd.Flags().StringSliceP("revisions", "r", nil, "Show changes in these revisions")
 	diffCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
 	diffCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or deleted")
@@ -31,12 +32,14 @@ func init() {
 	diffCmd.Flags().StringP("to", "t", "", "Show changes to this revision")
 	diffCmd.Flags().String("tool", "", "Generate diff by external command")
 	diffCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
+	diffCmd.Flag("revision").Hidden = true
 	rootCmd.AddCommand(diffCmd)
 
 	diffCmd.MarkFlagsMutuallyExclusive("name-only", "summary")
 
 	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
 		"from":      jj.ActionRevs(jj.RevOption{}.Default()),
+		"revision":  jj.ActionRevs(jj.RevOption{}.Default()),
 		"revisions": jj.ActionRevs(jj.RevOption{}.Default()),
 		"to":        jj.ActionRevs(jj.RevOption{}.Default()),
 		"tool":      bridge.ActionCarapaceBin().Split(),

@@ -15,6 +15,8 @@ var newCmd = &cobra.Command{
 func init() {
 	carapace.Gen(newCmd).Standalone()
 
+	newCmd.Flags().StringSlice("after", nil, "Insert the new change after the given commit(s)")
+	newCmd.Flags().StringSlice("before", nil, "Insert the new change before the given commit(s)")
 	newCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	newCmd.Flags().StringSliceP("insert-after", "A", nil, "Insert the new change after the given commit(s)")
 	newCmd.Flags().StringSliceP("insert-before", "B", nil, "Insert the new change before the given commit(s)")
@@ -23,6 +25,8 @@ func init() {
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(newCmd).FlagCompletion(carapace.ActionMap{
+		"after":         jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),
+		"before":        jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),
 		"insert-after":  jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),
 		"insert-before": jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),
 	})
