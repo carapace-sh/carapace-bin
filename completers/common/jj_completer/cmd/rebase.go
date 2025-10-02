@@ -15,8 +15,8 @@ var rebaseCmd = &cobra.Command{
 func init() {
 	carapace.Gen(rebaseCmd).Standalone()
 
-	rebaseCmd.Flags().StringArray("after", nil, "Alias for --insert-after")
-	rebaseCmd.Flags().StringArray("before", nil, "Alias for --insert-before")
+	rebaseCmd.Flags().StringSlice("after", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
+	rebaseCmd.Flags().StringSlice("before", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
 	rebaseCmd.Flags().StringSliceP("branch", "b", nil, "Rebase the whole branch relative to destination's ancestors (can be repeated)")
 	rebaseCmd.Flags().StringSliceP("destination", "d", nil, "The revision(s) to rebase onto (can be repeated to create a merge commit)")
 	rebaseCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")

@@ -19,10 +19,12 @@ func init() {
 	bookmark_setCmd.Flags().BoolP("allow-backwards", "B", false, "Allow moving the bookmark backwards or sideways")
 	bookmark_setCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	bookmark_setCmd.Flags().StringP("revision", "r", "", "The bookmark's target revision")
+	bookmark_setCmd.Flags().String("to", "", "The bookmark's target revision")
 	bookmarkCmd.AddCommand(bookmark_setCmd)
 
 	carapace.Gen(bookmark_setCmd).FlagCompletion(carapace.ActionMap{
 		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
+		"to":       jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(bookmark_setCmd).PositionalAnyCompletion(

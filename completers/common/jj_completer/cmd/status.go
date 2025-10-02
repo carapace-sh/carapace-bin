@@ -6,10 +6,9 @@ import (
 )
 
 var statusCmd = &cobra.Command{
-	Use:     "status",
-	Short:   "Show high-level repo status",
-	Aliases: []string{"st"},
-	Run:     func(cmd *cobra.Command, args []string) {},
+	Use:   "status",
+	Short: "Show high-level repo status [default alias: st]",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -15,9 +15,9 @@ var duplicateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(duplicateCmd).Standalone()
 
-	duplicateCmd.Flags().StringArray("after", nil, "Alias for --insert-after")
-	duplicateCmd.Flags().StringArray("before", nil, "Alias for --insert-before")
-	duplicateCmd.Flags().StringSliceP("destination", "d", []string{"@"}, "The revision(s) to duplicate onto (can be repeated to create a merge commit)")
+	duplicateCmd.Flags().StringSlice("after", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
+	duplicateCmd.Flags().StringSlice("before", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
+	duplicateCmd.Flags().StringSliceP("destination", "d", nil, "The revision(s) to duplicate onto (can be repeated to create a merge commit)")
 	duplicateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	duplicateCmd.Flags().StringSliceP("insert-after", "A", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
 	duplicateCmd.Flags().StringSliceP("insert-before", "B", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")

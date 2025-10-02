@@ -18,10 +18,12 @@ func init() {
 
 	bookmark_createCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	bookmark_createCmd.Flags().StringP("revision", "r", "", "The bookmark's target revision")
+	bookmark_createCmd.Flags().String("to", "", "The bookmark's target revision")
 	bookmarkCmd.AddCommand(bookmark_createCmd)
 
 	carapace.Gen(bookmark_createCmd).FlagCompletion(carapace.ActionMap{
 		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
+		"to":       jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(bookmark_createCmd).PositionalAnyCompletion(
