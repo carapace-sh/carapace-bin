@@ -31,9 +31,9 @@ func pathSnippet(shell string) (snippet string) {
 	case "nushell":
 		fixedBinDir := strings.ReplaceAll(binDir, `\`, `\\`)
 		if runtime.GOOS == "windows" {
-			snippet = fmt.Sprintf(`$env.Path = ($env.Path | split row (char esep) | filter { $in != "%v" } | prepend "%v")`, fixedBinDir, fixedBinDir)
+			snippet = fmt.Sprintf(`$env.Path = ($env.Path | split row (char esep) | where { $in != "%v" } | prepend "%v")`, fixedBinDir, fixedBinDir)
 		} else {
-			snippet = fmt.Sprintf(`$env.PATH = ($env.PATH | split row (char esep) | filter { $in != "%v" } | prepend "%v")`, fixedBinDir, fixedBinDir)
+			snippet = fmt.Sprintf(`$env.PATH = ($env.PATH | split row (char esep) | where { $in != "%v" } | prepend "%v")`, fixedBinDir, fixedBinDir)
 		}
 
 	case "powershell":
