@@ -8,9 +8,8 @@ import (
 
 var release_verifyCmd = &cobra.Command{
 	Use:     "verify [<tag>]",
-	Short:   "Verify the attestation for a GitHub Release.",
+	Short:   "Verify the attestation for a release",
 	GroupID: "Targeted commands",
-	Hidden:  true,
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

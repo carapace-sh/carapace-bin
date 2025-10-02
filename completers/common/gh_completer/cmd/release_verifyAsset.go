@@ -8,9 +8,8 @@ import (
 
 var release_verifyAssetCmd = &cobra.Command{
 	Use:     "verify-asset [<tag>] <file-path>",
-	Short:   "Verify that a given asset originated from a specific GitHub Release.",
+	Short:   "Verify that a given asset originated from a release",
 	GroupID: "Targeted commands",
-	Hidden:  true,
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
