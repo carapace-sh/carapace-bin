@@ -10,6 +10,7 @@ var pr_checkoutCmd = &cobra.Command{
 	Use:     "checkout [<number> | <url> | <branch>]",
 	Short:   "Check out a pull request in git",
 	GroupID: "Targeted commands",
+	Aliases: []string{"co"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
