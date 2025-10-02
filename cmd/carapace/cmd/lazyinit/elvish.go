@@ -25,7 +25,7 @@ put %v | each {|c|
 
 	var quotedCompleters []string
 	for _, c := range completers {
-	    quotedCompleters = append(quotedCompleters, fmt.Sprintf("%q", c))
+		quotedCompleters = append(quotedCompleters, fmt.Sprintf("%q", c))
 	}
 
 	return fmt.Sprintf(snippet, pathSnippet("elvish"), strings.Join(quotedCompleters, " "), windowsSnippet)
