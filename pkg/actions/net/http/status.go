@@ -23,6 +23,7 @@ func ActionStatusCodes() carapace.Action {
 		"204", "No Content",
 		"205", "Reset Content",
 		"206", "Partial Content",
+		"207", "Multi-Status",
 		"208", "Already Reported",
 		"226", "IM Used",
 		"300", "Multiple Choice",
@@ -84,5 +85,5 @@ func ActionStatusCodes() carapace.Action {
 		default:
 			return ""
 		}
-	})
+	}).Uid("http", "status")
 }

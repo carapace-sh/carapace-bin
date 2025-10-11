@@ -12,14 +12,12 @@ import (
 //	Accept:application/json
 //	Accept-Encoding:exi,br
 func ActionRequestHeaders() carapace.Action {
-	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+	return carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
 			return ActionRequestHeaderNames().Invoke(c).Suffix(":").ToA()
-		case 1:
-			return ActionRequestHeaderValues(c.Parts[0])
 		default:
-			return carapace.ActionValues()
+			return ActionRequestHeaderValues(c.Parts[0])
 		}
 	})
 }
@@ -30,7 +28,7 @@ func ActionRequestHeaders() carapace.Action {
 //	Accept-Datetime (Acceptable version in time.)
 func ActionRequestHeaderNames() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"A-IM", "Acceptable instance-manipulations for the request.[10]",
+		"A-IM", "Acceptable instance-manipulations for the request.",
 		"Accept", "Media type(s) that is/are acceptable for the response. See Content negotiation.",
 		"Accept-Charset", "Character sets that are acceptable.",
 		"Accept-Datetime", "Acceptable version in time.",
@@ -40,7 +38,7 @@ func ActionRequestHeaderNames() carapace.Action {
 		"Access-Control-Request-Headers", "Initiates a request for cross-origin resource sharing with Origin.",
 		"Authorization", "Authentication credentials for HTTP authentication.",
 		"Cache-Control", "Used to specify directives that must be obeyed by all caching mechanisms along the request-response chain.",
-		"Connection", "Control options for the current connection and list of hop-by-hop request fields.[12] Must not be used with HTTP/2.[13]",
+		"Connection", "Control options for the current connection and list of hop-by-hop request fields. Must not be used with HTTP/2.",
 		"Content-Encoding", "The type of encoding used on the data. See HTTP compression.",
 		"Content-Length", "The length of the request body in octets (8-bit bytes).",
 		"Content-MD5", "A Base64-encoded binary MD5 sum of the content of the request body.",
@@ -48,7 +46,7 @@ func ActionRequestHeaderNames() carapace.Action {
 		"Cookie", "An HTTP cookie previously sent by the server with Set-Cookie (below).",
 		"Date", "The date and time at which the message was originated (in \"HTTP-date\" format as defined by RFC 7231 Date/Time Formats).",
 		"Expect", "Indicates that particular server behaviors are required by the client.",
-		"Forwarded", "Disclose original information of a client connecting to a web server through an HTTP proxy.[15]",
+		"Forwarded", "Disclose original information of a client connecting to a web server through an HTTP proxy.",
 		"From", "The email address of the user making the request.",
 		"Host", "The domain name of the server (for virtual hosting), and the TCP port number on which the server is listening.",
 		"HTTP2-Settings", "A request that upgrades from HTTP/1.1 to HTTP/2 MUST include exactly one HTTP2-Setting header field.",
@@ -68,10 +66,10 @@ func ActionRequestHeaderNames() carapace.Action {
 		"Trailer", "The Trailer general field value indicates that the given set of header fields is present in the trailer of a message",
 		"Transfer-Encoding", "The form of encoding used to safely transfer the entity to the user.",
 		"User-Agent", "The user agent string of the user agent.",
-		"Upgrade", "Ask the server to upgrade to another protocol. Must not be used in HTTP/2.[13]",
+		"Upgrade", "Ask the server to upgrade to another protocol. Must not be used in HTTP/2.",
 		"Via", "Informs the server of proxies through which the request was sent.",
 		"Warning", "A general warning about possible problems with the entity body.",
-	).Tag("request headers")
+	).Tag("request headers").Uid("http", "header")
 }
 
 // ActionRequestHeaderValues completes values for given request header
@@ -88,12 +86,18 @@ func ActionRequestHeaderValues(header string) carapace.Action {
 			return ActionContentEncodingTokens().UniqueList(",")
 		case "Accept-Language":
 			return os.ActionLanguages().UniqueList(",")
+		case "Access-Control-Request-Method":
+			return ActionRequestMethods()
+		case "Access-Control-Request-Headers":
+			return ActionRequestHeaderNames().UniqueList(",")
 		case "Cache-Control":
 			return ActionCacheControlRequestDirectives().UniqueList(",")
 		case "Content-Encoding":
 			return ActionContentEncodingTokens().UniqueList(",")
 		case "Content-Type":
 			return ActionMediaTypes().MultiParts("/").UniqueList(",")
+		case "Expect":
+			return carapace.ActionValues("100-continue")
 		case "Transfer-Encoding":
 			return ActionTransferEncodingTokens()
 		case "User-Agent":
