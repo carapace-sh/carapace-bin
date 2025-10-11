@@ -22,5 +22,5 @@ func ActionRequestMethods() carapace.Action {
 			"PUT", "Replace all current representations of the target resource", styles.CarapaceBin.HttpMethodPUT,
 			"TRACE", "Perform a message loop-back test along the path to the target resource", styles.CarapaceBin.HttpMethodTRACE,
 		)
-	}).Tag("request methods")
+	}).Tag("request methods").Uid("http", "method")
 }
