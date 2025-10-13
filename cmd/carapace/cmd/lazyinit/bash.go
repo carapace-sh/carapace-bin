@@ -5,13 +5,7 @@ import (
 	"strings"
 )
 
-func Bash(completers []string) string {
-	for i, completer := range completers {
-		completers[i] = fmt.Sprintf("%q", completer)
-	}
-	return fmt.Sprintf(`%v%v
-
-_carapace_completer() {
+const bashCompleter = `_carapace_completer() {
   export COMP_LINE
   export COMP_POINT
   export COMP_TYPE
@@ -35,19 +29,15 @@ _carapace_completer() {
   local IFS=$'\n'
   [[ "${COMPREPLY[*]}" == "" ]] && COMPREPLY=() # fix for mapfile creating a non-empty array from empty command output
 }
-
-complete -o noquote -F _carapace_completer %v
-`, pathSnippet("bash"), envSnippet("bash"), strings.Join(completers, " "))
-}
-
-func BashBle(completers []string) string {
-	snippet := `%v
-
-_carapace_lazy() {
-  source <(carapace $1 bash-ble)
-   $"_$1_completion_ble"
-}
-complete -F _carapace_lazy %v
 `
-	return fmt.Sprintf(snippet, pathSnippet("bash-ble"), strings.Join(completers, " "))
+
+func Bash(completers []string) string {
+	for i, completer := range completers {
+		completers[i] = fmt.Sprintf("%q", completer)
+	}
+	return fmt.Sprintf(`%v%v
+
+%v
+complete -o noquote -F _carapace_completer %v
+`, pathSnippet("bash"), envSnippet("bash"), bashCompleter, strings.Join(completers, " "))
 }
