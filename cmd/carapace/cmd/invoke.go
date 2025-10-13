@@ -15,6 +15,7 @@ import (
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace-bridge/pkg/bridges"
 	"github.com/carapace-sh/carapace/pkg/uid"
+	"github.com/carapace-sh/carapace/third_party/golang.org/x/sys/execabs"
 	"github.com/spf13/cobra"
 )
 
@@ -29,6 +30,13 @@ var invokeCmd = &cobra.Command{
 	Short: "",
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		if completer := args[0]; strings.Contains(completer, "/") {
+			// patch to base if resolves to path executable (#2971)
+			base := filepath.Base(completer)
+			if abs, err := execabs.LookPath(base); err == nil && args[0] == abs {
+				args[0] = base
+			}
+		}
 		// TODO newInvoke(cmd, args)
 		oldInvoke(cmd, args)
 	},
