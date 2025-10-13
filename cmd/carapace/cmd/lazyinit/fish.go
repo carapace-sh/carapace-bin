@@ -20,7 +20,7 @@ function _carapace_quote_suffix
   end
 end
 
-function _carapace_callback
+function _carapace_completer
   commandline -cp | sed "s/\$/"(_carapace_quote_suffix)"/" | sed "s/ \$/ ''/" | xargs carapace $argv[1] fish
 end
 
@@ -30,7 +30,7 @@ end
 	for _, completer := range completers {
 		complete = append(complete,
 			fmt.Sprintf(`complete -e '%v'`, completer),
-			fmt.Sprintf(`complete -c '%v' -f -a '(_carapace_callback %v)'`, completer, completer),
+			fmt.Sprintf(`complete -c '%v' -f -a '(_carapace_completer %v)'`, completer, completer),
 		)
 	}
 	return fmt.Sprintf(snippet, pathSnippet("fish"), envSnippet("fish"), strings.Join(complete, "\n"))
