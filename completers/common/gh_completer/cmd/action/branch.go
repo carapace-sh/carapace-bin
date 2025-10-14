@@ -35,7 +35,7 @@ func ActionBranches(cmd *cobra.Command) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
 		})
-	})
+	}).Tag("branches")
 }
 
 type commitRef struct {
@@ -81,5 +81,5 @@ func ActionBranchCommits(cmd *cobra.Command, branch string) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
 		})
-	})
+	}).Tag("branch commits")
 }

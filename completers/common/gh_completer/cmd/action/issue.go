@@ -91,7 +91,7 @@ func ActionIssues(cmd *cobra.Command, opts IssueOpts) carapace.Action {
 				"repo", ghrepo.FullName(repo),
 				"state", opts.stateFilter(),
 			)
-	})
+	}).Tag("issues")
 }
 
 type pinnedIssueQuery struct {

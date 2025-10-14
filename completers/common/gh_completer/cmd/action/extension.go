@@ -62,7 +62,7 @@ func ActionExtensions() carapace.Action {
 			return carapace.ActionMessage(err.Error())
 		}
 		return carapace.ActionValues(extensions...)
-	})
+	}).Tag("extensions")
 }
 
 func ActionTopExtensions() carapace.Action {

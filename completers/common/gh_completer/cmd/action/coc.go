@@ -20,5 +20,5 @@ func ActionCocs(cmd *cobra.Command) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
+	}).Tag("code of conducts")
 }

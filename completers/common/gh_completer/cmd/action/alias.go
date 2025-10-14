@@ -2,6 +2,7 @@ package action
 
 import (
 	"errors"
+	"maps"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/config"
@@ -15,9 +16,7 @@ func Aliases() (map[string]string, error) {
 			return nil, errors.New("failed to load AliasCfg:" + err.Error())
 		} else {
 			aliases := make(map[string]string)
-			for key, value := range aliasCfg.All() {
-				aliases[key] = value
-			}
+			maps.Copy(aliases, aliasCfg.All())
 			return aliases, nil
 		}
 	}
@@ -34,5 +33,5 @@ func ActionAliases() carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(values...)
 		}
-	})
+	}).Tag("aliases")
 }

@@ -38,7 +38,7 @@ func ActionWorkflowArtifactNames(cmd *cobra.Command, runId string) carapace.Acti
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
+	}).Tag("artifact names")
 }
 
 func ActionWorkflowArtifactIds(cmd *cobra.Command, runId string) carapace.Action {
@@ -61,5 +61,5 @@ func ActionWorkflowArtifactIds(cmd *cobra.Command, runId string) carapace.Action
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
+	}).Tag("artifact ids")
 }

@@ -48,5 +48,5 @@ func ActionContents(opts ContentOpts) carapace.Action {
 			}
 			return carapace.ActionStyledValues(vals...).NoSpace('/')
 		})
-	})
+	}).Tag("contents")
 }

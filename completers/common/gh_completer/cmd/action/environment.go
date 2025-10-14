@@ -35,5 +35,5 @@ func ActionEnvironments(cmd *cobra.Command) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
+	}).Tag("environments")
 }

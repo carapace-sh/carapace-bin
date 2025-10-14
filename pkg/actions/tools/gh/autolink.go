@@ -46,6 +46,5 @@ func ActionAutolinks(opts RepoOpts) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
-
+	}).Tag("auto links")
 }

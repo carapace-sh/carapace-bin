@@ -90,5 +90,5 @@ func ActionStatusCodes() carapace.Action {
 		default:
 			return ""
 		}
-	}).Uid("http", "status")
+	}).Tag("status codes").Uid("http", "status")
 }
