@@ -81,7 +81,7 @@ func ActionPullRequests(cmd *cobra.Command, opts PullRequestOpts) carapace.Actio
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
-	})
+	}).Tag("pull requests")
 }
 
 func ActionPullRequestFields() carapace.Action {

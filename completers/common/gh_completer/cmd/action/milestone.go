@@ -32,5 +32,5 @@ func ActionMilestones(cmd *cobra.Command) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
-	})
+	}).Tag("milestones")
 }

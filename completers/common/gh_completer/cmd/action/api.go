@@ -34,7 +34,7 @@ func ActionApiPreviews() carapace.Action {
 		"switcheroo", "Enable and disable Pages",
 		"x-ray", "Anonymous Git access to repositories",
 		"zzzax", "Require signed commits",
-	)
+	).Tag("api previews")
 }
 
 func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
@@ -123,5 +123,6 @@ func fakeRepoFlag(cmd *cobra.Command, owner, repo string) {
 }
 
 func ActionPackageTypes() carapace.Action {
-	return carapace.ActionValues("npm", "maven", "rubygems", "nuget", "docker", "container")
+	return carapace.ActionValues("npm", "maven", "rubygems", "nuget", "docker", "container").
+		Tag("package types")
 }

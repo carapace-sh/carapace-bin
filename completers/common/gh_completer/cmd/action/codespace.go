@@ -29,7 +29,7 @@ func ActionCodespaces() carapace.Action {
 			vals = append(vals, c.Name, fmt.Sprintf("%v - %v - %v", c.Owner, c.Repository, c.State))
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	})
+	}).Tag("codespaces")
 }
 
 func ActionCodespacePath(codespace string, expand bool) carapace.Action {
@@ -43,7 +43,7 @@ func ActionCodespacePath(codespace string, expand bool) carapace.Action {
 			// security risk (see https://lwn.net/Articles/835962/), we
 			// disable them by shell-escaping the argument unless the user
 			// provided the -e flag.
-			path = `'` + strings.Replace(path, `'`, `'\''`, -1) + `'`
+			path = `'` + strings.ReplaceAll(path, `'`, `'\''`) + `'`
 		}
 
 		args := []string{"codespace", "ssh", "--codespace", codespace, "--", "ls", "-1", "-p", path}
