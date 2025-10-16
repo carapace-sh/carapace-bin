@@ -18,7 +18,10 @@ require (
 
 require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
+	github.com/kevinburke/ssh_config v1.4.0
 	github.com/stretchr/testify v1.8.1 // indirect
 )
 
 replace github.com/spf13/pflag => github.com/carapace-sh/carapace-pflag v1.0.0
+
+replace github.com/kevinburke/ssh_config => github.com/carapace-sh/ssh_config v1.4.1-0.20251016142129-177d27a2d08a

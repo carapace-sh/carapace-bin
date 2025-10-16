@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/internal/actions/net/ssh"
 	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
@@ -39,9 +38,8 @@ func ActionHosts() carapace.Action {
 				batch = append(batch, carapace.ActionMessage(err.Error()))
 			}
 		}
-		batch = append(batch, ssh.ActionHosts().Style(style.Yellow).Suppress(`open .*/.ssh/config: no such file or directory`))
 		return batch.ToA()
-	}).Tag("hosts")
+	}).Tag("known hosts")
 }
 
 type IncludedDevices struct {
@@ -179,7 +177,7 @@ func ActionBssids() carapace.Action {
 
 			vals := make([]string, 0)
 			for _, line := range lines[:len(lines)-1] {
-				mac := strings.Replace(line[:22], `\:`, `:`, -1)
+				mac := strings.ReplaceAll(line[:22], `\:`, `:`)
 				splitted := strings.Split(line[23:], ":")
 				if name := splitted[0]; name != "" {
 					vals = append(vals, mac, splitted[0], styleForBars(splitted[1]))
@@ -201,7 +199,7 @@ func ActionSsids() carapace.Action {
 
 			vals := make([]string, 0)
 			for _, line := range lines[:len(lines)-1] {
-				mac := strings.Replace(line[:22], `\:`, `:`, -1)
+				mac := strings.ReplaceAll(line[:22], `\:`, `:`)
 				splitted := strings.Split(line[23:], ":")
 				if name := splitted[0]; name != "" {
 					vals = append(vals, splitted[0], mac, styleForBars(splitted[1]))
