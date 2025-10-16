@@ -74,7 +74,11 @@ func init() {
 		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return net.ActionHosts().Invoke(c).Merge(carapace.ActionFiles().Invoke(c)).ToA().NoSpace()
+				return carapace.Batch(
+					net.ActionHosts(),
+					ssh.ActionHosts(rootCmd.Flag("F").Value.String()).Style("yellow"),
+					carapace.ActionFiles(),
+				).ToA().NoSpace()
 			default:
 				return carapace.ActionValues()
 			}

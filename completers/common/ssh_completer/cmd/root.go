@@ -104,12 +104,16 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			action := carapace.Batch(
+				net.ActionHosts(),
+				ssh.ActionHosts(rootCmd.Flag("F").Value.String()).Style("yellow"),
+			).ToA()
+
 			if strings.Contains(c.Value, "@") {
 				prefix := strings.SplitN(c.Value, "@", 2)[0]
-				return net.ActionHosts().Invoke(c).Prefix(prefix + "@").ToA()
-			} else {
-				return net.ActionHosts()
+				action = action.Prefix(prefix + "@")
 			}
+			return action
 		}),
 	)
 }
