@@ -14,11 +14,11 @@ const bashCompleter = `_carapace_completer() {
   local command="${COMP_WORDS[0]}" nospace data compline="${COMP_LINE:0:${COMP_POINT}}"
 
   if echo ${compline}"''" | xargs echo 2>/dev/null > /dev/null; then
-  	data=$(echo ${compline}"''" | xargs carapace "${command}" bash)
-  elif echo ${compline} | sed "s/\$/'/" | xargs echo 2>/dev/null > /dev/null; then
-  	data=$(echo ${compline} | sed "s/\$/'/" | xargs carapace "${command}" bash)
+  	data=$(echo ${compline}"''" | SHELL_BUILTINS="$(compgen -b)" SHELL_FUNCTIONS="$(compgen -A function)" xargs carapace "${command}" bash)
+  elif echo ${compline} | sed "s/\$/'/" |  xargs echo 2>/dev/null > /dev/null; then
+  	data=$(echo ${compline} | sed "s/\$/'/" | SHELL_BUILTINS="$(compgen -b)" SHELL_FUNCTIONS="$(compgen -A function)" xargs carapace "${command}" bash)
   else
-  	data=$(echo ${compline} | sed 's/$/"/' | xargs carapace "${command}" bash)
+  	data=$(echo ${compline} | sed 's/$/"/' | SHELL_BUILTINS="$(compgen -b)" SHELL_FUNCTIONS="$(compgen -A function)" xargs carapace "${command}" bash)
   fi
 
   IFS=$'\001' read -r -d '' nospace data <<<"${data}"

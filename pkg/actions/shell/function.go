@@ -1,0 +1,40 @@
+package shell
+
+import (
+	"os"
+	"slices"
+	"strings"
+
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
+)
+
+// ActionBuiltins completes builtins
+//
+//	bash: export SHELL_BUILTINS="$(compgen -b)"
+func ActionBuiltins() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		action := carapace.ActionValues(strings.Fields(os.Getenv("SHELL_BUILTINS"))...)
+		switch os.Getenv("SHELL") {
+		case "bash":
+			action = action.Filter(".", ":", "[")
+		}
+		return action
+	}).Tag("shell functions")
+}
+
+// ActionFunctions completes functions
+func ActionFunctions(hidden bool) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		vals := strings.Fields(os.Getenv("SHELL_FUNCTIONS"))
+		if !hidden && !strings.HasPrefix(c.Value, "_") {
+			vals = slices.DeleteFunc(vals, func(s string) bool { return strings.HasPrefix(s, "_") })
+		}
+		return carapace.ActionValues(vals...).StyleF(func(s string, sc style.Context) string {
+			if strings.HasPrefix(s, "_") {
+				return style.Dim
+			}
+			return style.Default
+		})
+	}).Tag("shell functions")
+}
