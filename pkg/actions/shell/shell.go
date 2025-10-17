@@ -18,9 +18,11 @@ func ActionBuiltins() carapace.Action {
 		switch os.Getenv("SHELL") {
 		case "bash":
 			action = action.Filter(".", ":", "[")
+		case "zsh":
+			action = action.Filter("-", ".", ":", "[")
 		}
 		return action
-	}).Tag("shell functions")
+	}).Tag("shell builtins")
 }
 
 // ActionFunctions completes functions
