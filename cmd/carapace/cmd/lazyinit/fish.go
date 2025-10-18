@@ -21,8 +21,9 @@ function _carapace_quote_suffix
 end
 
 function _carapace_completer
-  set --local --export SHELL_BUILTINS (builtin --names)
-  set --local --export SHELL_FUNCTIONS (functions --all)
+  set --local --export CARAPACE_SHELL fish
+  set --local --export CARAPACE_SHELL_BUILTINS (builtin --names)
+  set --local --export CARAPACE_SHELL_FUNCTIONS (functions --all)
   commandline -cp | sed "s/\$/"(_carapace_quote_suffix)"/" | sed "s/ \$/ ''/" | xargs carapace $argv[1] fish
 end
 

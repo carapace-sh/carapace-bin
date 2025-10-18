@@ -14,10 +14,12 @@ import (
 //	bash: export SHELL_BUILTINS="$(compgen -b)"
 func ActionBuiltins() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		action := carapace.ActionValues(strings.Fields(os.Getenv("SHELL_BUILTINS"))...)
-		switch os.Getenv("SHELL") {
+		action := carapace.ActionValues(strings.Fields(os.Getenv("CARAPACE_SHELL_BUILTINS"))...)
+		switch os.Getenv("CARAPACE_SHELL") {
 		case "bash":
 			action = action.Filter(".", ":", "[")
+		case "fish":
+			action = action.Filter("-", ".", ":", "[", "_")
 		case "zsh":
 			action = action.Filter("-", ".", ":", "[")
 		}
@@ -28,7 +30,7 @@ func ActionBuiltins() carapace.Action {
 // ActionFunctions completes functions
 func ActionFunctions(hidden bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		vals := strings.Fields(os.Getenv("SHELL_FUNCTIONS"))
+		vals := strings.Fields(os.Getenv("CARAPACE_SHELL_FUNCTIONS"))
 		if !hidden && !strings.HasPrefix(c.Value, "_") {
 			vals = slices.DeleteFunc(vals, func(s string) bool { return strings.HasPrefix(s, "_") })
 		}

@@ -18,11 +18,11 @@ function _carapace_completer {
 
   # shellcheck disable=SC2086,SC2154,SC2155
   if echo ${words}"''" | xargs echo 2>/dev/null > /dev/null; then
-    local lines="$(echo ${words}"''" | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})" SHELL_FUNCTIONS="$(print -l ${(ok)functions})" xargs carapace "$command" zsh )"
+    local lines="$(echo ${words}"''" | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" CARAPACE_SHELL=zsh CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})" CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})" xargs carapace "$command" zsh )"
   elif echo ${words} | sed "s/\$/'/" | xargs echo 2>/dev/null > /dev/null; then
-    local lines="$(echo ${words} | sed "s/\$/'/" | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})" SHELL_FUNCTIONS="$(print -l ${(ok)functions})" xargs carapace "$command" zsh)"
+    local lines="$(echo ${words} | sed "s/\$/'/" | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" CARAPACE_SHELL=zsh CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})" CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})" xargs carapace "$command" zsh)"
   else
-    local lines="$(echo ${words} | sed 's/$/"/' | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})" SHELL_FUNCTIONS="$(print -l ${(ok)functions})" xargs carapace "$command" zsh)"
+    local lines="$(echo ${words} | sed 's/$/"/' | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" CARAPACE_SHELL=zsh CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})" CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})" xargs carapace "$command" zsh)"
   fi
 
   local zstyle message data
