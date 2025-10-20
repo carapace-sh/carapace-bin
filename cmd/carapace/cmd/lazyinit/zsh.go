@@ -13,16 +13,17 @@ func Zsh(completers []string) string {
 
 function _carapace_completer {
   local command="$words[1]"
-  local words=${words[@]:0:$CURRENT}
+  local compline=${words[@]:0:$CURRENT}
   local IFS=$'\n'
+  local lines
 
   # shellcheck disable=SC2086,SC2154,SC2155
-  if echo ${words}"''" | xargs echo 2>/dev/null > /dev/null; then
-    local lines="$(echo ${words}"''" | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" xargs carapace "$command" zsh )"
-  elif echo ${words} | sed "s/\$/'/" | xargs echo 2>/dev/null > /dev/null; then
-    local lines="$(echo ${words} | sed "s/\$/'/" | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" xargs carapace "$command" zsh)"
-  else
-    local lines="$(echo ${words} | sed 's/$/"/' | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" xargs carapace "$command" zsh)"
+  lines="$(echo "${compline}''" | CARAPACE_COMPLINE="${compline}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" xargs carapace "${command}" zsh 2>/dev/null)"
+  if [ $? -eq 1 ]; then
+    lines="$(echo "${compline}'" | CARAPACE_COMPLINE="${compline}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" xargs carapace "${command}" zsh 2>/dev/null)"
+    if [ $? -eq 1 ]; then
+      lines="$(echo "${compline}\"" | CARAPACE_COMPLINE="${compline}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" xargs carapace "${command}" zsh 2>/dev/null)"
+    fi
   fi
 
   local zstyle message data

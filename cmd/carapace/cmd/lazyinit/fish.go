@@ -8,20 +8,15 @@ import (
 func Fish(completers []string) string {
 	snippet := `%v%v
 
-function _carapace_quote_suffix
-  if not commandline -cp | xargs echo 2>/dev/null >/dev/null
-    if commandline -cp | sed 's/$/"/'| xargs echo 2>/dev/null >/dev/null
-      echo '"'
-    else if commandline -cp | sed "s/\$/'/"| xargs echo 2>/dev/null >/dev/null
-      echo "'"
-    end
-  else
-    echo ""
-  end
-end
-
 function _carapace_completer
-  commandline -cp | sed "s/\$/"(_carapace_quote_suffix)"/" | sed "s/ \$/ ''/" | xargs carapace $argv[1] fish
+  IFS='' set data (echo (commandline -cp)'' | sed "s/ \$/ ''/" | xargs carapace $argv[1] fish 2>/dev/null)
+  if [ $status -eq 1 ]
+    IFS='' set data (echo (commandline -cp)"'" | sed "s/ \$/ ''/" | xargs carapace $argv[1] fish 2>/dev/null)
+    if [ $status -eq 1 ]
+      IFS='' set data (echo (commandline -cp)'"' | sed "s/ \$/ ''/" | xargs carapace $argv[1] fish 2>/dev/null)
+    end
+  end
+  echo $data
 end
 
 %v
