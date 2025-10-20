@@ -9,6 +9,7 @@ func Fish(completers []string) string {
 	snippet := `%v%v
 
 function _carapace_completer
+  set --local data
   IFS='' set data (echo (commandline -cp)'' | sed "s/ \$/ ''/" | xargs carapace $argv[1] fish 2>/dev/null)
   if [ $status -eq 1 ]
     IFS='' set data (echo (commandline -cp)"'" | sed "s/ \$/ ''/" | xargs carapace $argv[1] fish 2>/dev/null)
