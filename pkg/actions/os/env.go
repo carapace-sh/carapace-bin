@@ -24,6 +24,11 @@ func ActionEnvironmentVariables() carapace.Action {
 		for key, value := range m {
 			vals = append(vals, key, value)
 		}
-		return carapace.ActionValuesDescribed(vals...)
+		return carapace.ActionValuesDescribed(vals...).Filter(
+			"CARAPACE_COMPLINE",
+			"CARAPACE_SHELL",
+			"CARAPACE_SHELL_BUILTINS",
+			"CARAPACE_SHELL_FUNCTIONS",
+		)
 	}).Tag("environment variables")
 }

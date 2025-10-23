@@ -13,11 +13,11 @@ const bashCompleter = `_carapace_completer() {
 
   local command="${COMP_WORDS[0]}" nospace data compline="${COMP_LINE:0:${COMP_POINT}}"
 
-  data=$(echo "${compline}''" | xargs carapace "${command}" bash 2>/dev/null)
+  data=$(echo "${compline}''" | CARAPACE_SHELL=bash CARAPACE_SHELL_BUILTINS="$(compgen -b)" CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)" xargs carapace "${command}" bash 2>/dev/null)
   if [ $? -eq 1 ]; then
-    data=$(echo "${compline}'" | xargs carapace "${command}" bash 2>/dev/null)
+    data=$(echo "${compline}'" | CARAPACE_SHELL=bash CARAPACE_SHELL_BUILTINS="$(compgen -b)" CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)" xargs carapace "${command}" bash 2>/dev/null)
     if [ $? -eq 1 ]; then
-    	data=$(echo "${compline}\"" | xargs carapace "${command}" bash 2>/dev/null)
+    	data=$(echo "${compline}\"" | CARAPACE_SHELL=bash CARAPACE_SHELL_BUILTINS="$(compgen -b)" CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)" xargs carapace "${command}" bash 2>/dev/null)
     fi
   fi
 

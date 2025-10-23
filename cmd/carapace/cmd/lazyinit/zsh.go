@@ -18,11 +18,11 @@ function _carapace_completer {
   local lines
 
   # shellcheck disable=SC2086,SC2154,SC2155
-  lines="$(echo "${compline}''" | CARAPACE_COMPLINE="${compline}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" xargs carapace "${command}" zsh 2>/dev/null)"
+  lines="$(echo "${compline}''" | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" CARAPACE_SHELL=zsh CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})" CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})" xargs carapace "${command}" zsh 2>/dev/null)"
   if [ $? -eq 1 ]; then
-    lines="$(echo "${compline}'" | CARAPACE_COMPLINE="${compline}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" xargs carapace "${command}" zsh 2>/dev/null)"
+    lines="$(echo "${compline}'" | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" CARAPACE_SHELL=zsh CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})" CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})" xargs carapace "${command}" zsh 2>/dev/null)"
     if [ $? -eq 1 ]; then
-      lines="$(echo "${compline}\"" | CARAPACE_COMPLINE="${compline}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" xargs carapace "${command}" zsh 2>/dev/null)"
+      lines="$(echo "${compline}\"" | CARAPACE_COMPLINE="${words}" CARAPACE_ZSH_HASH_DIRS="$(hash -d)" CARAPACE_SHELL=zsh CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})" CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})" xargs carapace "${command}" zsh 2>/dev/null)"
     fi
   fi
 
