@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
@@ -41,4 +42,22 @@ func ActionFunctions(hidden bool) carapace.Action {
 			return style.Default
 		})
 	}).Tag("shell functions")
+}
+
+// ActionExecutables completes builtins, functions, and commands
+func ActionExecutables() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		switch len(c.Args) {
+		case 0:
+			return carapace.Batch(
+				// TODO which order?
+				ActionBuiltins(),
+				ActionFunctions(false),
+				carapace.ActionExecutables(),
+				carapace.ActionFiles(),
+			).ToA()
+		default:
+			return bridge.ActionCarapaceBin()
+		}
+	})
 }
