@@ -11,13 +11,17 @@ const bashCompleter = `_carapace_completer() {
   export COMP_TYPE
   export COMP_WORDBREAKS
 
+  declare -x CARAPACE_SHELL=bash
+  declare -x CARAPACE_SHELL_BUILTINS="$(compgen -b)"
+  declare -x CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)"
+
   local command="${COMP_WORDS[0]}" nospace data compline="${COMP_LINE:0:${COMP_POINT}}"
 
-  data=$(echo "${compline}''" | CARAPACE_SHELL=bash CARAPACE_SHELL_BUILTINS="$(compgen -b)" CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)" xargs carapace "${command}" bash 2>/dev/null)
+  data=$(echo "${compline}''" | xargs carapace "${command}" bash 2>/dev/null)
   if [ $? -eq 1 ]; then
-    data=$(echo "${compline}'" | CARAPACE_SHELL=bash CARAPACE_SHELL_BUILTINS="$(compgen -b)" CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)" xargs carapace "${command}" bash 2>/dev/null)
+    data=$(echo "${compline}'" | xargs carapace "${command}" bash 2>/dev/null)
     if [ $? -eq 1 ]; then
-    	data=$(echo "${compline}\"" | CARAPACE_SHELL=bash CARAPACE_SHELL_BUILTINS="$(compgen -b)" CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)" xargs carapace "${command}" bash 2>/dev/null)
+    	data=$(echo "${compline}\"" | xargs carapace "${command}" bash 2>/dev/null)
     fi
   fi
 
