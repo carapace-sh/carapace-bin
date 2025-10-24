@@ -122,6 +122,7 @@ func init() {
 				"GOFLAGS":      bridge.ActionCarapaceBin("go").Split(), // not entirely correct as it includes the subcommand but still helpful as that can be removed afterwards
 				"GOMODCACHE":   carapace.ActionDirectories(),
 				"GOOS":         golang.ActionOperatingSystems(),
+				"GOSUMDB":      carapace.ActionValues("off").Style(style.Carapace.KeywordNegative),
 				"GOTMPDIR":     carapace.ActionDirectories(),
 				"GOTOOLCHAIN": carapace.ActionMultiPartsN("+", 2, func(c carapace.Context) carapace.Action {
 					switch len(c.Parts) {
