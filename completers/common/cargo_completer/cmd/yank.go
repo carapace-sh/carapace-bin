@@ -19,6 +19,10 @@ func init() {
 	yankCmd.Flags().String("registry", "", "Registry to yank from")
 	yankCmd.Flags().String("token", "", "API token to use when authenticating")
 	yankCmd.Flags().Bool("undo", false, "Undo a yank, putting a version back into the index")
+	yankCmd.Flags().String("vers", "", "The version to yank or un-yank")
 	yankCmd.Flags().String("version", "", "The version to yank or un-yank")
+	yankCmd.Flag("vers").Hidden = true
 	rootCmd.AddCommand(yankCmd)
+
+	// TODO flag completion
 }

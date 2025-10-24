@@ -18,7 +18,7 @@ func init() {
 	rustcCmd.Flags().Bool("all-features", false, "Activate all available features")
 	rustcCmd.Flags().Bool("all-targets", false, "Build all targets")
 	rustcCmd.Flags().StringSlice("bench", nil, "Build only the specified bench target")
-	rustcCmd.Flags().Bool("benches", false, "Build all bench targets")
+	rustcCmd.Flags().Bool("benches", false, "Build all targets that have `bench = true` set")
 	rustcCmd.Flags().StringSlice("bin", nil, "Build only the specified binary")
 	rustcCmd.Flags().Bool("bins", false, "Build all binaries")
 	rustcCmd.Flags().StringSlice("crate-type", nil, "Comma separated list of types of crates for the compiler to emit")
@@ -31,6 +31,7 @@ func init() {
 	rustcCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	rustcCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	rustcCmd.Flags().Bool("lib", false, "Build only this package's library")
+	rustcCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	rustcCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	rustcCmd.Flags().StringSlice("message-format", nil, "Error format")
 	rustcCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -41,7 +42,7 @@ func init() {
 	rustcCmd.Flags().StringSlice("target", nil, "Target triple which compiles will be for")
 	rustcCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	rustcCmd.Flags().StringSlice("test", nil, "Build only the specified test target")
-	rustcCmd.Flags().Bool("tests", false, "Build all test targets")
+	rustcCmd.Flags().Bool("tests", false, "Build all targets that have `test = true` set")
 	rustcCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
 	rustcCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
 	rustcCmd.Flag("timings").NoOptDefVal = " "
@@ -54,6 +55,7 @@ func init() {
 		"crate-type":     carapace.ActionValues("bin", "lib", "rlib", "dylib", "cdylib", "staticlib", "and proc-macr").UniqueList(","),
 		"example":        action.ActionTargets(rustcCmd, action.TargetOpts{Example: true}),
 		"features":       action.ActionFeatures(rustcCmd).UniqueList(","),
+		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(rustcCmd, false),

@@ -21,6 +21,7 @@ func init() {
 	installCmd.Flags().Bool("bins", false, "Install all binaries")
 	installCmd.Flags().String("branch", "", "Branch to use when installing from git")
 	installCmd.Flags().Bool("debug", false, "Build in debug mode (with the 'dev' profile) instead of release mode")
+	installCmd.Flags().BoolP("dry-run", "n", false, "Perform all checks without installing (unstable)")
 	installCmd.Flags().StringSlice("example", nil, "Install only the specified example")
 	installCmd.Flags().Bool("examples", false, "Install all examples")
 	installCmd.Flags().StringSliceP("features", "F", nil, "Space or comma separated list of features to activate")
@@ -32,6 +33,7 @@ func init() {
 	installCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	installCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	installCmd.Flags().Bool("list", false, "List all installed packages and their versions")
+	installCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	installCmd.Flags().StringSlice("message-format", nil, "Error format")
 	installCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	installCmd.Flags().Bool("no-track", false, "Do not save tracking information")
@@ -44,8 +46,10 @@ func init() {
 	installCmd.Flags().StringSlice("target", nil, "Build for the target triple")
 	installCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	installCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
+	installCmd.Flags().String("vers", "", "Specify a version to install")
 	installCmd.Flags().String("version", "", "Specify a version to install")
 	installCmd.Flag("timings").NoOptDefVal = " "
+	installCmd.Flag("vers").Hidden = true
 	rootCmd.AddCommand(installCmd)
 
 	// TODO missing flag completion
@@ -53,6 +57,7 @@ func init() {
 		"bin":            action.ActionTargets(installCmd, action.TargetOpts{Bin: true}),
 		"example":        action.ActionTargets(installCmd, action.TargetOpts{Example: true}),
 		"features":       action.ActionFeatures(installCmd).UniqueList(","),
+		"lockfile-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"path":           carapace.ActionFiles(),
 		"profile":        action.ActionProfiles(installCmd),

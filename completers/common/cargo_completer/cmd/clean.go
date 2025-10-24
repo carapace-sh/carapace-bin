@@ -19,6 +19,7 @@ func init() {
 	cleanCmd.Flags().Bool("doc", false, "Whether or not to clean just the documentation directory")
 	cleanCmd.Flags().BoolP("dry-run", "n", false, "Display what would be deleted without deleting anything")
 	cleanCmd.Flags().BoolP("help", "h", false, "Print help")
+	cleanCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	cleanCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	cleanCmd.Flags().StringSliceP("package", "p", nil, "Package to clean artifacts for")
 	cleanCmd.Flags().String("profile", "", "Clean artifacts of the specified profile")
@@ -28,6 +29,7 @@ func init() {
 	rootCmd.AddCommand(cleanCmd)
 
 	carapace.Gen(cleanCmd).FlagCompletion(carapace.ActionMap{
+		"lockfile-path": carapace.ActionFiles(),
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(cleanCmd, true),
 		"profile":       action.ActionProfiles(cleanCmd),

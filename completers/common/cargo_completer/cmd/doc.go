@@ -30,6 +30,7 @@ func init() {
 	docCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	docCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	docCmd.Flags().Bool("lib", false, "Document only this package's library")
+	docCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	docCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	docCmd.Flags().StringSlice("message-format", nil, "Error format")
 	docCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -50,6 +51,7 @@ func init() {
 		"bin":            action.ActionTargets(docCmd, action.TargetOpts{Bin: true}),
 		"exclude":        action.ActionWorkspaceMembers(docCmd),
 		"features":       action.ActionFeatures(docCmd).UniqueList(","),
+		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(docCmd, true),

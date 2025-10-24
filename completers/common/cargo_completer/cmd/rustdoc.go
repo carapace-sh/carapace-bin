@@ -18,7 +18,7 @@ func init() {
 	rustdocCmd.Flags().Bool("all-features", false, "Activate all available features")
 	rustdocCmd.Flags().Bool("all-targets", false, "Build all targets")
 	rustdocCmd.Flags().StringSlice("bench", nil, "Build only the specified bench target")
-	rustdocCmd.Flags().Bool("benches", false, "Build all bench targets")
+	rustdocCmd.Flags().Bool("benches", false, "Build all targets that have `bench = true` set")
 	rustdocCmd.Flags().StringSlice("bin", nil, "Build only the specified binary")
 	rustdocCmd.Flags().Bool("bins", false, "Build all binaries")
 	rustdocCmd.Flags().StringSlice("example", nil, "Build only the specified example")
@@ -29,6 +29,7 @@ func init() {
 	rustdocCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	rustdocCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	rustdocCmd.Flags().Bool("lib", false, "Build only this package's library")
+	rustdocCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	rustdocCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	rustdocCmd.Flags().StringSlice("message-format", nil, "Error format")
 	rustdocCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -40,7 +41,7 @@ func init() {
 	rustdocCmd.Flags().StringSlice("target", nil, "Build for the target triple")
 	rustdocCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	rustdocCmd.Flags().StringSlice("test", nil, "Build only the specified test target")
-	rustdocCmd.Flags().Bool("tests", false, "Build all test targets")
+	rustdocCmd.Flags().Bool("tests", false, "Build all targets that have `test = true` set")
 	rustdocCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
 	rustdocCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
 	rustdocCmd.Flag("timings").NoOptDefVal = " "
@@ -52,6 +53,7 @@ func init() {
 		"bin":            action.ActionTargets(rustdocCmd, action.TargetOpts{Bin: true}),
 		"example":        action.ActionTargets(rustdocCmd, action.TargetOpts{Example: true}),
 		"features":       action.ActionFeatures(rustdocCmd).UniqueList(","),
+		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"output-format":  carapace.ActionValues("html", "json"),

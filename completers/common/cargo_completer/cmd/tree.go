@@ -18,6 +18,7 @@ func init() {
 	treeCmd.Flags().Bool("all-features", false, "Activate all available features")
 	treeCmd.Flags().String("charset", "", "Character set to use in output")
 	treeCmd.Flags().String("depth", "", "Maximum display depth of the dependency tree")
+	treeCmd.Flags().Bool("duplicate", false, "Show only dependencies which come in multiple versions (implies -i)")
 	treeCmd.Flags().BoolP("duplicates", "d", false, "Show only dependencies which come in multiple versions (implies -i)")
 	treeCmd.Flags().StringSliceP("edges", "e", nil, "The kinds of dependencies to display (features, normal, build, dev, all, no-normal, no-build, no-dev, no-proc-macro)")
 	treeCmd.Flags().StringSlice("exclude", nil, "Exclude specific workspace members")
@@ -25,6 +26,7 @@ func init() {
 	treeCmd.Flags().StringP("format", "f", "", "Format string used for printing dependencies")
 	treeCmd.Flags().BoolP("help", "h", false, "Print help")
 	treeCmd.Flags().StringSliceP("invert", "i", nil, "Invert the tree direction and focus on the given package")
+	treeCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	treeCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	treeCmd.Flags().Bool("no-dedupe", false, "Do not de-duplicate (repeats all shared dependencies)")
 	treeCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -33,6 +35,7 @@ func init() {
 	treeCmd.Flags().StringSlice("prune", nil, "Prune the given package from the display of the dependency tree")
 	treeCmd.Flags().StringSlice("target", nil, "Filter dependencies matching the given target-triple (default host platform). Pass `all` to include all targets.")
 	treeCmd.Flags().Bool("workspace", false, "Display the tree for all packages in the workspace")
+	treeCmd.Flag("duplicate").Hidden = true
 	rootCmd.AddCommand(treeCmd)
 
 	// TODO flag completion
@@ -42,6 +45,7 @@ func init() {
 		"exclude":       action.ActionWorkspaceMembers(treeCmd).UniqueList(","),
 		"features":      action.ActionFeatures(treeCmd).UniqueList(","),
 		"invert":        action.ActionDependencies(treeCmd, false),
+		"lockfile-path": carapace.ActionFiles(),
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(treeCmd, false),
 		"prune":         action.ActionDependencies(treeCmd, false),

@@ -20,6 +20,7 @@ func init() {
 	metadataCmd.Flags().StringSlice("filter-platform", nil, "Only include resolve dependencies matching the given target-triple")
 	metadataCmd.Flags().String("format-version", "", "Format version")
 	metadataCmd.Flags().BoolP("help", "h", false, "Print help")
+	metadataCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	metadataCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	metadataCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	metadataCmd.Flags().Bool("no-deps", false, "Output information only about the workspace members and don't fetch dependencies")
@@ -28,6 +29,7 @@ func init() {
 	carapace.Gen(metadataCmd).FlagCompletion(carapace.ActionMap{
 		"features":       action.ActionFeatures(metadataCmd).UniqueList(","),
 		"format-version": carapace.ActionValues("1"),
+		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 	})
 }

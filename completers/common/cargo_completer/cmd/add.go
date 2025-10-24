@@ -21,6 +21,7 @@ var addCmd = &cobra.Command{
 func init() {
 	carapace.Gen(addCmd).Standalone()
 
+	addCmd.Flags().String("base", "", "The path base to use when adding from a local crate (unstable).")
 	addCmd.Flags().String("branch", "", "Git branch to download the crate from")
 	addCmd.Flags().Bool("build", false, "Add as build dependency")
 	addCmd.Flags().Bool("default-features", false, "Re-enable the default features")
@@ -30,6 +31,7 @@ func init() {
 	addCmd.Flags().String("git", "", "Git repository location")
 	addCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	addCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
+	addCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	addCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	addCmd.Flags().Bool("no-default-features", false, "Disable the default features")
 	addCmd.Flags().Bool("no-optional", false, "Mark the dependency as required")
@@ -63,6 +65,7 @@ func init() {
 		"git": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionRepositorySearch(git.SearchOpts{}.Default())
 		}),
+		"lockfile-path": carapace.ActionFiles(),
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(addCmd, true),
 		"path":          carapace.ActionDirectories(),
