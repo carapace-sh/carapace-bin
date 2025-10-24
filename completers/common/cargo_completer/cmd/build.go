@@ -21,7 +21,7 @@ func init() {
 	buildCmd.Flags().Bool("all-targets", false, "Build all targets")
 	buildCmd.Flags().String("artifact-dir", "", "Copy final artifacts to this directory (unstable)")
 	buildCmd.Flags().StringSlice("bench", nil, "Build only the specified bench target")
-	buildCmd.Flags().Bool("benches", false, "Build all bench targets")
+	buildCmd.Flags().Bool("benches", false, "Build all targets that have `bench = true` set")
 	buildCmd.Flags().StringSlice("bin", nil, "Build only the specified binary")
 	buildCmd.Flags().Bool("bins", false, "Build all binaries")
 	buildCmd.Flags().Bool("build-plan", false, "Output the build plan in JSON (unstable)")
@@ -35,6 +35,7 @@ func init() {
 	buildCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	buildCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	buildCmd.Flags().Bool("lib", false, "Build only this package's library")
+	buildCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	buildCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	buildCmd.Flags().StringSlice("message-format", nil, "Error format")
 	buildCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -44,7 +45,7 @@ func init() {
 	buildCmd.Flags().StringSlice("target", nil, "Build for the target triple")
 	buildCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	buildCmd.Flags().StringSlice("test", nil, "Build only the specified test target")
-	buildCmd.Flags().Bool("tests", false, "Build all test targets")
+	buildCmd.Flags().Bool("tests", false, "Build all targets that have `test = true` set")
 	buildCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
 	buildCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
 	buildCmd.Flags().Bool("workspace", false, "Build all packages in the workspace")
@@ -58,6 +59,7 @@ func init() {
 		"example":        action.ActionTargets(buildCmd, action.TargetOpts{Example: true}),
 		"exclude":        action.ActionWorkspaceMembers(buildCmd),
 		"features":       action.ActionFeatures(buildCmd).UniqueList(","),
+		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(buildCmd, true),

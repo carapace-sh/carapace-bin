@@ -20,7 +20,7 @@ func init() {
 	testCmd.Flags().Bool("all-features", false, "Activate all available features")
 	testCmd.Flags().Bool("all-targets", false, "Test all targets (does not include doctests)")
 	testCmd.Flags().StringSlice("bench", nil, "Test only the specified bench target")
-	testCmd.Flags().Bool("benches", false, "Test all bench targets")
+	testCmd.Flags().Bool("benches", false, "Test all targets that have `bench = true` set")
 	testCmd.Flags().StringSlice("bin", nil, "Test only the specified binary")
 	testCmd.Flags().Bool("bins", false, "Test all binaries")
 	testCmd.Flags().Bool("doc", false, "Test only this library's documentation")
@@ -33,6 +33,7 @@ func init() {
 	testCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
 	testCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	testCmd.Flags().Bool("lib", false, "Test only this package's library")
+	testCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	testCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	testCmd.Flags().StringSlice("message-format", nil, "Error format")
 	testCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -45,7 +46,7 @@ func init() {
 	testCmd.Flags().StringSlice("target", nil, "Build for the target triple")
 	testCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	testCmd.Flags().StringSlice("test", nil, "Test only the specified test target")
-	testCmd.Flags().Bool("tests", false, "Test all test targets")
+	testCmd.Flags().Bool("tests", false, "Test all targets that have `test = true` set")
 	testCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
 	testCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
 	testCmd.Flags().Bool("workspace", false, "Test all packages in the workspace")
@@ -58,6 +59,7 @@ func init() {
 		"example":        action.ActionTargets(testCmd, action.TargetOpts{Example: true}),
 		"exclude":        action.ActionWorkspaceMembers(testCmd),
 		"features":       action.ActionFeatures(testCmd).UniqueList(","),
+		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(testCmd, true),

@@ -18,16 +18,21 @@ func init() {
 	packageCmd.Flags().Bool("all-features", false, "Activate all available features")
 	packageCmd.Flags().Bool("allow-dirty", false, "Allow dirty working directories to be packaged")
 	packageCmd.Flags().StringSlice("exclude", nil, "Don't assemble specified packages")
+	packageCmd.Flags().Bool("exclude-lockfile", false, "Don't include the lock file when packaging")
 	packageCmd.Flags().StringSliceP("features", "F", nil, "Space or comma separated list of features to activate")
 	packageCmd.Flags().BoolP("help", "h", false, "Print help")
+	packageCmd.Flags().String("index", "", "Registry index URL to prepare the package for")
 	packageCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	packageCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	packageCmd.Flags().BoolP("list", "l", false, "Print files included in a package without making one")
+	packageCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	packageCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	packageCmd.Flags().String("message-format", "", "Output representation (unstable)")
 	packageCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	packageCmd.Flags().Bool("no-metadata", false, "Ignore warnings about a lack of human-usable metadata")
 	packageCmd.Flags().Bool("no-verify", false, "Don't verify the contents by building them")
 	packageCmd.Flags().StringSliceP("package", "p", nil, "Package(s) to assemble")
+	packageCmd.Flags().String("registry", "", "Registry to prepare the package for")
 	packageCmd.Flags().StringSlice("target", nil, "Build for the target triple")
 	packageCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	packageCmd.Flags().Bool("workspace", false, "Assemble all packages in the workspace")
@@ -36,6 +41,7 @@ func init() {
 	carapace.Gen(packageCmd).FlagCompletion(carapace.ActionMap{
 		"exclude":       action.ActionDependencies(packageCmd, false),
 		"features":      action.ActionFeatures(packageCmd).UniqueList(","),
+		"lockfile-path": carapace.ActionFiles(),
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(packageCmd, false),
 		"target-dir":    carapace.ActionDirectories(),

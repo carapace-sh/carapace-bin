@@ -16,7 +16,7 @@ func init() {
 
 	locateProjectCmd.Flags().BoolP("help", "h", false, "Print help")
 	locateProjectCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
-	locateProjectCmd.Flags().String("message-format", "", "Output representation [possible values: json, plain]")
+	locateProjectCmd.Flags().String("message-format", "", "Output representation")
 	locateProjectCmd.Flags().Bool("workspace", false, "Locate Cargo.toml of the workspace root")
 	rootCmd.AddCommand(locateProjectCmd)
 

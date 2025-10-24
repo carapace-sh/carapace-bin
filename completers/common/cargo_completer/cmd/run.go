@@ -24,6 +24,7 @@ func init() {
 	runCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
 	runCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	runCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
+	runCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	runCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	runCmd.Flags().StringSlice("message-format", nil, "Error format")
 	runCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -41,6 +42,7 @@ func init() {
 		"bin":            action.ActionTargets(runCmd, action.TargetOpts{Bin: true}),
 		"example":        action.ActionTargets(runCmd, action.TargetOpts{Example: true}),
 		"features":       action.ActionFeatures(runCmd).UniqueList(","),
+		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(runCmd, true),
