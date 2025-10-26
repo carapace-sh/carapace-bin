@@ -8,7 +8,7 @@ import (
 
 var fmtCmd = &cobra.Command{
 	Use:   "fmt",
-	Short: "Format Go source files",
+	Short: "Format Go source files.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

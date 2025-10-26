@@ -7,7 +7,7 @@ import (
 
 var customCmd = &cobra.Command{
 	Use:   "custom",
-	Short: "Build a version of golangci-lint with custom linters",
+	Short: "Build a version of golangci-lint with custom linters.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

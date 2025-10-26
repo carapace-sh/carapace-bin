@@ -7,7 +7,7 @@ import (
 
 var configCmd = &cobra.Command{
 	Use:   "config",
-	Short: "Config file information",
+	Short: "Configuration file information and verification.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
