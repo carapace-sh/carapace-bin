@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(addCmd).Standalone()
 
 	addCmd.Flags().BoolP("help", "h", false, "Print help")
+	addCmd.Flags().StringP("score", "s", "", "The rank to increment the entry if it exists or initialize it with if it doesn't")
 	addCmd.Flags().BoolP("version", "V", false, "Print version")
 	rootCmd.AddCommand(addCmd)
 

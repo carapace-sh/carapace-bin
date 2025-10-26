@@ -17,8 +17,10 @@ func init() {
 	initCmd.Flags().String("cmd", "", "Changes the prefix of the `z` and `zi` commands")
 	initCmd.Flags().BoolP("help", "h", false, "Print help")
 	initCmd.Flags().String("hook", "", "Changes how often zoxide increments a directory's score")
+	initCmd.Flags().Bool("no-aliases", false, "Prevents zoxide from defining the `z` and `zi` commands")
 	initCmd.Flags().Bool("no-cmd", false, "Prevents zoxide from defining the `z` and `zi` commands")
 	initCmd.Flags().BoolP("version", "V", false, "Print version")
+	initCmd.Flag("no-aliases").Hidden = true
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
