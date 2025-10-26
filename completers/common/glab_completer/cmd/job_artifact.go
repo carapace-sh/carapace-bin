@@ -15,6 +15,7 @@ var job_artifactCmd = &cobra.Command{
 func init() {
 	carapace.Gen(job_artifactCmd).Standalone()
 
+	job_artifactCmd.Flags().BoolP("list-paths", "l", false, "Print the paths of downloaded artifacts.")
 	job_artifactCmd.Flags().StringP("path", "p", "", "Path to download the artifact files.")
 	jobCmd.AddCommand(job_artifactCmd)
 

@@ -7,7 +7,7 @@ import (
 
 var stack_moveCmd = &cobra.Command{
 	Use:   "move",
-	Short: "Moves to any selected entry in the stack. (EXPERIMENTAL.)",
+	Short: "Moves to any selected entry in the stack. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

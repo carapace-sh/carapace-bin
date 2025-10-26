@@ -18,6 +18,7 @@ func init() {
 
 	variable_setCmd.Flags().StringP("description", "d", "", "Set description of a variable.")
 	variable_setCmd.Flags().StringP("group", "g", "", "Set variable for a group.")
+	variable_setCmd.Flags().Bool("hidden", false, "Whether the variable is hidden.")
 	variable_setCmd.Flags().BoolP("masked", "m", false, "Whether the variable is masked.")
 	variable_setCmd.Flags().BoolP("protected", "p", false, "Whether the variable is protected.")
 	variable_setCmd.Flags().BoolP("raw", "r", false, "Whether the variable is treated as a raw string.")

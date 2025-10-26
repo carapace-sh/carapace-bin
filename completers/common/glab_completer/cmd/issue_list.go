@@ -33,12 +33,14 @@ func init() {
 	issue_listCmd.Flags().String("not-author", "", "Filter issue by not being by author(s) <username>.")
 	issue_listCmd.Flags().StringSlice("not-label", nil, "Filter issue by lack of label <name>.")
 	issue_listCmd.Flags().BoolP("opened", "o", false, "Get only open issues.")
+	issue_listCmd.Flags().String("order", "", "Order issue by <field>. Order options: created_at, updated_at, priority, due_date, relative_position, label_priority, milestone_due, popularity, weight.")
 	issue_listCmd.Flags().StringP("output", "O", "", "Options: 'text' or 'json'.")
 	issue_listCmd.Flags().StringP("output-format", "F", "", "Options: 'details', 'ids', 'urls'.")
 	issue_listCmd.Flags().StringP("page", "p", "", "Page number.")
 	issue_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	issue_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
 	issue_listCmd.Flags().String("search", "", "Search <string> in the fields defined by '--in'.")
+	issue_listCmd.Flags().String("sort", "", "Return issue sorted in asc or desc order.")
 	issue_listCmd.Flag("mine").Hidden = true
 	issue_listCmd.Flag("opened").Hidden = true
 	issueCmd.AddCommand(issue_listCmd)
@@ -55,6 +57,8 @@ func init() {
 		"not-assignee":  action.ActionProjectMembers(issue_listCmd).UniqueList(","),
 		"not-author":    action.ActionUsers(issue_listCmd).UniqueList(","),
 		"not-label":     action.ActionLabels(issue_listCmd).UniqueList(","),
+		"order":         carapace.ActionValues("created_at", "updated_at", "priority", "due_date", "relative_position", "label_priority", "milestone_due", "popularity", "weight"),
 		"output-format": carapace.ActionValues("details", "ids", "urls"),
+		"sort":          carapace.ActionValues("asc", "desc"),
 	})
 }

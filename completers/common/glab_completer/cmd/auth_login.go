@@ -18,7 +18,7 @@ func init() {
 	auth_loginCmd.Flags().StringP("api-host", "a", "", "API host url.")
 	auth_loginCmd.Flags().StringP("api-protocol", "p", "", "API protocol: https, http")
 	auth_loginCmd.Flags().StringP("git-protocol", "g", "", "Git protocol: ssh, https, http")
-	auth_loginCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitLab instance to authenticate with.")
+	auth_loginCmd.Flags().String("hostname", "", "The hostname of the GitLab instance to authenticate with.")
 	auth_loginCmd.Flags().StringP("job-token", "j", "", "CI job token.")
 	auth_loginCmd.Flags().Bool("stdin", false, "Read token from standard input.")
 	auth_loginCmd.Flags().StringP("token", "t", "", "Your GitLab access token.")

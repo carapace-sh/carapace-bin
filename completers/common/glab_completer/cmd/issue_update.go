@@ -18,6 +18,7 @@ func init() {
 	issue_updateCmd.Flags().StringSliceP("assignee", "a", nil, "Assign users by username. Prefix with '!' or '-' to remove from existing assignees, or '+' to add new. Otherwise, replace existing assignees with these users.")
 	issue_updateCmd.Flags().BoolP("confidential", "c", false, "Make issue confidential")
 	issue_updateCmd.Flags().StringP("description", "d", "", "Issue description. Set to \"-\" to open an editor.")
+	issue_updateCmd.Flags().String("due-date", "", "A date in 'YYYY-MM-DD' format.")
 	issue_updateCmd.Flags().StringSliceP("label", "l", nil, "Add labels.")
 	issue_updateCmd.Flags().Bool("lock-discussion", false, "Lock discussion on issue.")
 	issue_updateCmd.Flags().StringP("milestone", "m", "", "Title of the milestone to assign Set to \"\" or 0 to unassign.")

@@ -29,7 +29,7 @@ func init() {
 	mr_createCmd.Flags().StringP("milestone", "m", "", "The global ID or title of a milestone to assign.")
 	mr_createCmd.Flags().Bool("no-editor", false, "Don't open editor to enter a description. If true, uses prompt. Defaults to false.")
 	mr_createCmd.Flags().Bool("push", false, "Push committed changes after creating merge request. Make sure you have committed changes.")
-	mr_createCmd.Flags().Bool("recover", false, "Save the options to a file if the merge request creation fails. If the file exists, the options are loaded from the recovery file. (EXPERIMENTAL.)")
+	mr_createCmd.Flags().Bool("recover", false, "Save the options to a file if the merge request creation fails. If the file exists, the options are loaded from the recovery file. (EXPERIMENTAL)")
 	mr_createCmd.Flags().StringP("related-issue", "i", "", "Create a merge request for an issue. If --title is not provided, uses the issue title.")
 	mr_createCmd.Flags().Bool("remove-source-branch", false, "Remove source branch on merge.")
 	mr_createCmd.Flags().StringSlice("reviewer", nil, "Request review from users by their `usernames`.")

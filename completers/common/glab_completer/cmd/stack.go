@@ -7,7 +7,7 @@ import (
 
 var stackCmd = &cobra.Command{
 	Use:     "stack <command> [flags]",
-	Short:   "Create, manage, and work with stacked diffs. (EXPERIMENTAL.)",
+	Short:   "Create, manage, and work with stacked diffs. (EXPERIMENTAL)",
 	Aliases: []string{"stacks"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

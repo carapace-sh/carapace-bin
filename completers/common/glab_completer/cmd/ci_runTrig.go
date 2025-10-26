@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(ci_runTrigCmd).Standalone()
 
 	ci_runTrigCmd.Flags().StringP("branch", "b", "", "Create pipeline on branch or reference <string>.")
+	ci_runTrigCmd.Flags().StringSliceP("input", "i", nil, "Pass inputs to pipeline in format '<key>:<value>'. Cannot be used for merge request pipelines. See documentation for examples.")
 	ci_runTrigCmd.Flags().StringP("token", "t", "", "Pipeline trigger token. Can be omitted only if the `CI_JOB_TOKEN` environment variable is set.")
 	ci_runTrigCmd.Flags().StringSlice("variables", nil, "Pass variables to pipeline in the format <key>:<value>.")
 	ciCmd.AddCommand(ci_runTrigCmd)

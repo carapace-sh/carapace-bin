@@ -18,6 +18,8 @@ func init() {
 	mr_updateCmd.Flags().StringSliceP("assignee", "a", nil, "Assign users via username. Prefix with '!' or '-' to remove from existing assignees, '+' to add. Otherwise, replace existing assignees with given users.")
 	mr_updateCmd.Flags().StringP("description", "d", "", "Merge request description. Set to \"-\" to open an editor.")
 	mr_updateCmd.Flags().Bool("draft", false, "Mark merge request as a draft.")
+	mr_updateCmd.Flags().BoolP("fill", "f", false, "Do not prompt for title or body, and just use commit info.")
+	mr_updateCmd.Flags().Bool("fill-commit-body", false, "Fill body with each commit body when multiple commits. Can only be used with --fill.")
 	mr_updateCmd.Flags().StringSliceP("label", "l", nil, "Add labels.")
 	mr_updateCmd.Flags().Bool("lock-discussion", false, "Lock discussion on merge request.")
 	mr_updateCmd.Flags().StringP("milestone", "m", "", "Title of the milestone to assign. Set to \"\" or 0 to unassign.")
@@ -31,6 +33,7 @@ func init() {
 	mr_updateCmd.Flags().StringSliceP("unlabel", "u", nil, "Remove labels.")
 	mr_updateCmd.Flags().Bool("unlock-discussion", false, "Unlock discussion on merge request.")
 	mr_updateCmd.Flags().Bool("wip", false, "Mark merge request as a work in progress. Alternative to --draft.")
+	mr_updateCmd.Flags().BoolP("yes", "y", false, "Skip confirmation prompt.")
 	mrCmd.AddCommand(mr_updateCmd)
 
 	carapace.Gen(mr_updateCmd).FlagCompletion(carapace.ActionMap{
