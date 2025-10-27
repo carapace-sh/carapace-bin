@@ -7,13 +7,14 @@ import (
 )
 
 var config_unsetCmd = &cobra.Command{
-	Use:   "unset",
+	Use:   "unset PROPERTY_NAME",
 	Short: "unsets an individual value in a minikube config file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(config_unsetCmd).Standalone()
+
 	configCmd.AddCommand(config_unsetCmd)
 
 	carapace.Gen(config_unsetCmd).PositionalCompletion(

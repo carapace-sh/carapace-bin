@@ -7,14 +7,20 @@ import (
 )
 
 var addons_imagesCmd = &cobra.Command{
-	Use:   "images",
+	Use:   "images ADDON_NAME",
 	Short: "List image names the addon w/ADDON_NAME used. For a list of available addons use: minikube addons list",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(addons_imagesCmd).Standalone()
+
+	addons_imagesCmd.Flags().StringP("output", "o", "", "minikube addons images ADDON_NAME --output OUTPUT. table, json")
 	addonsCmd.AddCommand(addons_imagesCmd)
+
+	carapace.Gen(addons_imagesCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("table", "json"),
+	})
 
 	carapace.Gen(addons_imagesCmd).PositionalCompletion(
 		action.ActionAddons(),

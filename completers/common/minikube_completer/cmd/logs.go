@@ -15,9 +15,12 @@ var logsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(logsCmd).Standalone()
+
+	logsCmd.Flags().Bool("audit", false, "Show only the audit logs")
 	logsCmd.Flags().String("file", "", "If present, writes to the provided file instead of stdout.")
 	logsCmd.Flags().BoolP("follow", "f", false, "Show only the most recent journal entries, and continuously print new entries as they are appended to the journal.")
-	logsCmd.Flags().IntP("length", "n", 60, "Number of lines back to go within the log")
+	logsCmd.Flags().Bool("last-start-only", false, "Show only the last start logs.")
+	logsCmd.Flags().StringP("length", "n", "", "Number of lines back to go within the log")
 	logsCmd.Flags().String("node", "", "The node to get logs from. Defaults to the primary control plane.")
 	logsCmd.Flags().Bool("problems", false, "Show only log entries which point to known problems")
 	rootCmd.AddCommand(logsCmd)

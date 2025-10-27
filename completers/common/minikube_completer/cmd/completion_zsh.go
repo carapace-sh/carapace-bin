@@ -13,5 +13,6 @@ var completion_zshCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(completion_zshCmd).Standalone()
+
 	completionCmd.AddCommand(completion_zshCmd)
 }

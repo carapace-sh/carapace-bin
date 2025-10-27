@@ -13,7 +13,9 @@ var addons_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(addons_listCmd).Standalone()
-	addons_listCmd.Flags().StringP("output", "o", "list", "minikube addons list --output OUTPUT. json, list")
+
+	addons_listCmd.Flags().BoolP("docs", "d", false, "If true, print web links to addons' documentation if using --output=list (default).")
+	addons_listCmd.Flags().StringP("output", "o", "", "minikube addons list --output OUTPUT. json, list")
 	addonsCmd.AddCommand(addons_listCmd)
 
 	carapace.Gen(addons_listCmd).FlagCompletion(carapace.ActionMap{

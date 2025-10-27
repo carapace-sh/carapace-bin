@@ -13,5 +13,6 @@ var completion_fishCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(completion_fishCmd).Standalone()
+
 	completionCmd.AddCommand(completion_fishCmd)
 }

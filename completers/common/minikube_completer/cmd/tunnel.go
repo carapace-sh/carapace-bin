@@ -14,6 +14,8 @@ var tunnelCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(tunnelCmd).Standalone()
-	tunnelCmd.Flags().BoolP("cleanup", "c", true, "call with cleanup=true to remove old tunnels")
+
+	tunnelCmd.Flags().String("bind-address", "", "set tunnel bind address, empty or '*' indicates the tunnel should be available for all interfaces")
+	tunnelCmd.Flags().BoolP("cleanup", "c", false, "call with cleanup=true to remove old tunnels")
 	rootCmd.AddCommand(tunnelCmd)
 }

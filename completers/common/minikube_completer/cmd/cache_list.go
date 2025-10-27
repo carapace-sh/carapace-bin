@@ -13,6 +13,7 @@ var cache_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(cache_listCmd).Standalone()
-	cache_listCmd.Flags().String("format", "{{.CacheImage}}", "Go template format string for the cache list output.")
+
+	cache_listCmd.Flags().String("format", "", "Go template format string for the cache list output.  The format for Go templates can be found here: https://pkg.go.dev/text/template")
 	cacheCmd.AddCommand(cache_listCmd)
 }

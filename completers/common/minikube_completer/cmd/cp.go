@@ -10,7 +10,7 @@ import (
 )
 
 var cpCmd = &cobra.Command{
-	Use:     "cp",
+	Use:     "cp <source node name>:<source file path> <target node name>:<target file absolute path>",
 	Short:   "Copy the specified file into minikube",
 	GroupID: "advanced",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -18,6 +18,7 @@ var cpCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(cpCmd).Standalone()
+
 	rootCmd.AddCommand(cpCmd)
 
 	carapace.Gen(cpCmd).PositionalCompletion(

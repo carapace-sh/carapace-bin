@@ -13,5 +13,6 @@ var node_deleteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(node_deleteCmd).Standalone()
+
 	nodeCmd.AddCommand(node_deleteCmd)
 }

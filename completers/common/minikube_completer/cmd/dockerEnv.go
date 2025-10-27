@@ -14,7 +14,9 @@ var dockerEnvCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(dockerEnvCmd).Standalone()
+
 	dockerEnvCmd.Flags().Bool("no-proxy", false, "Add machine IP to NO_PROXY environment variable")
+	dockerEnvCmd.Flags().StringP("output", "o", "", "One of 'text', 'yaml' or 'json'.")
 	dockerEnvCmd.Flags().String("shell", "", "Force environment to be configured for a specified shell: [fish, cmd, powershell, tcsh, bash, zsh], default is auto-detect")
 	dockerEnvCmd.Flags().Bool("ssh-add", false, "Add SSH identity key to SSH authentication agent")
 	dockerEnvCmd.Flags().Bool("ssh-host", false, "Use SSH connection instead of HTTPS (port 2376)")
@@ -22,6 +24,7 @@ func init() {
 	rootCmd.AddCommand(dockerEnvCmd)
 
 	carapace.Gen(dockerEnvCmd).FlagCompletion(carapace.ActionMap{
-		"shell": carapace.ActionValues("fish", "cmd", "powershell", "tcsh", "bash", "zsh", "auto-detect"),
+		"output": carapace.ActionValues("text", "yaml", "json"),
+		"shell":  carapace.ActionValues("fish", "cmd", "powershell", "tcsh", "bash", "zsh", "auto-detect"),
 	})
 }

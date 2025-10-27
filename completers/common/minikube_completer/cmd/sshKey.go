@@ -15,6 +15,7 @@ var sshKeyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sshKeyCmd).Standalone()
+
 	sshKeyCmd.Flags().StringP("node", "n", "", "The node to get ssh-key path. Defaults to the primary control plane.")
 	rootCmd.AddCommand(sshKeyCmd)
 

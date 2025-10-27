@@ -15,9 +15,10 @@ var unpauseCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(unpauseCmd).Standalone()
+
 	unpauseCmd.Flags().BoolP("all-namespaces", "A", false, "If set, unpause all namespaces")
-	unpauseCmd.Flags().StringSliceP("namespaces", "n", []string{"kube-system", "kubernetes-dashboard", "storage-gluster", "istio-operator"}, "namespaces to unpause")
-	unpauseCmd.Flags().StringP("output", "o", "text", "Format to print stdout in. Options include: [text,json]")
+	unpauseCmd.Flags().StringSliceP("namespaces", "n", nil, "namespaces to unpause")
+	unpauseCmd.Flags().StringP("output", "o", "", "Format to print stdout in. Options include: [text,json]")
 	rootCmd.AddCommand(unpauseCmd)
 
 	carapace.Gen(unpauseCmd).FlagCompletion(carapace.ActionMap{

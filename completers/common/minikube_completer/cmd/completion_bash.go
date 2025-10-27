@@ -13,5 +13,6 @@ var completion_bashCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(completion_bashCmd).Standalone()
+
 	completionCmd.AddCommand(completion_bashCmd)
 }

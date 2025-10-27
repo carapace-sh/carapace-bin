@@ -14,6 +14,7 @@ var podmanEnvCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(podmanEnvCmd).Standalone()
+
 	podmanEnvCmd.Flags().String("shell", "", "Force environment to be configured for a specified shell: [fish, cmd, powershell, tcsh, bash, zsh], default is auto-detect")
 	podmanEnvCmd.Flags().BoolP("unset", "u", false, "Unset variables instead of setting them")
 	rootCmd.AddCommand(podmanEnvCmd)

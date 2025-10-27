@@ -15,6 +15,7 @@ var sshHostCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sshHostCmd).Standalone()
+
 	sshHostCmd.Flags().Bool("append-known", false, "Add host key to SSH known_hosts file")
 	sshHostCmd.Flags().StringP("node", "n", "", "The node to ssh into. Defaults to the primary control plane.")
 	rootCmd.AddCommand(sshHostCmd)

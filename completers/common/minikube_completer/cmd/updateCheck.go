@@ -14,5 +14,6 @@ var updateCheckCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(updateCheckCmd).Standalone()
+
 	rootCmd.AddCommand(updateCheckCmd)
 }

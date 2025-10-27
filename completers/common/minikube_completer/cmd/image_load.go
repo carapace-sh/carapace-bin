@@ -8,15 +8,16 @@ import (
 )
 
 var image_loadCmd = &cobra.Command{
-	Use:   "load",
-	Short: "Load a image into minikube",
+	Use:   "load IMAGE | ARCHIVE | -",
+	Short: "Load an image into minikube",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(image_loadCmd).Standalone()
+
 	image_loadCmd.Flags().Bool("daemon", false, "Cache image from docker daemon")
-	image_loadCmd.Flags().Bool("overwrite", true, "Overwrite image even if same image:tag name exists")
+	image_loadCmd.Flags().Bool("overwrite", false, "Overwrite image even if same image:tag name exists")
 	image_loadCmd.Flags().Bool("pull", false, "Pull the remote image (no caching)")
 	image_loadCmd.Flags().Bool("remote", false, "Cache image from remote registry")
 	imageCmd.AddCommand(image_loadCmd)

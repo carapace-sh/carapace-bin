@@ -6,7 +6,7 @@ import (
 )
 
 var addonsCmd = &cobra.Command{
-	Use:     "addons",
+	Use:     "addons  SUBCOMMAND [flags]",
 	Short:   "Enable or disable a minikube addon",
 	GroupID: "configuration",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -14,5 +14,6 @@ var addonsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(addonsCmd).Standalone()
+
 	rootCmd.AddCommand(addonsCmd)
 }
