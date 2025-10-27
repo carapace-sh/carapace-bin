@@ -22,7 +22,7 @@ func init() {
 	service_logsCmd.Flags().Bool("no-trunc", false, "Do not truncate output")
 	service_logsCmd.Flags().Bool("raw", false, "Do not neatly format logs")
 	service_logsCmd.Flags().String("since", "", "Show logs since timestamp (e.g. \"2013-01-02T13:23:37Z\") or relative (e.g. \"42m\" for 42 minutes)")
-	service_logsCmd.Flags().StringP("tail", "n", "all", "Number of lines to show from the end of the logs")
+	service_logsCmd.Flags().StringP("tail", "n", "", "Number of lines to show from the end of the logs")
 	service_logsCmd.Flags().BoolP("timestamps", "t", false, "Show timestamps")
 	serviceCmd.AddCommand(service_logsCmd)
 

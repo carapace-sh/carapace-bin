@@ -15,6 +15,6 @@ var versionCmd = &cobra.Command{
 func init() {
 	carapace.Gen(versionCmd).Standalone()
 
-	versionCmd.Flags().StringP("format", "f", "", "Format the output using the given Go template")
+	versionCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
 	rootCmd.AddCommand(versionCmd)
 }

@@ -15,8 +15,8 @@ var loginCmd = &cobra.Command{
 func init() {
 	carapace.Gen(loginCmd).Standalone()
 
-	loginCmd.Flags().StringP("password", "p", "", "Password")
-	loginCmd.Flags().Bool("password-stdin", false, "Take the password from stdin")
+	loginCmd.Flags().StringP("password", "p", "", "Password or Personal Access Token (PAT)")
+	loginCmd.Flags().Bool("password-stdin", false, "Take the Password or Personal Access Token (PAT) from stdin")
 	loginCmd.Flags().StringP("username", "u", "", "Username")
 	rootCmd.AddCommand(loginCmd)
 }

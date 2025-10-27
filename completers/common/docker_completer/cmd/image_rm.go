@@ -18,6 +18,7 @@ func init() {
 
 	image_rmCmd.Flags().BoolP("force", "f", false, "Force removal of the image")
 	image_rmCmd.Flags().Bool("no-prune", false, "Do not delete untagged parents")
+	image_rmCmd.Flags().StringSlice("platform", nil, "Remove only the given platform variant. Formatted as \"os[/arch[/variant]]\" (e.g., \"linux/amd64\")")
 	imageCmd.AddCommand(image_rmCmd)
 
 	carapace.Gen(image_rmCmd).PositionalAnyCompletion(docker.ActionRepositoryTags())

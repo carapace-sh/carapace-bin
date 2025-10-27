@@ -17,7 +17,9 @@ func init() {
 	carapace.Gen(container_restartCmd).Standalone()
 
 	container_restartCmd.Flags().StringP("signal", "s", "", "Signal to send to the container")
-	container_restartCmd.Flags().IntP("time", "t", 0, "Seconds to wait before killing the container")
+	container_restartCmd.Flags().String("time", "", "Seconds to wait before killing the container (deprecated: use --timeout)")
+	container_restartCmd.Flags().StringP("timeout", "t", "", "Seconds to wait before killing the container")
+	container_restartCmd.Flag("time").Hidden = true
 	containerCmd.AddCommand(container_restartCmd)
 
 	carapace.Gen(container_restartCmd).FlagCompletion(carapace.ActionMap{

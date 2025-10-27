@@ -19,7 +19,7 @@ func init() {
 	container_lsCmd.Flags().BoolP("all", "a", false, "Show all containers (default shows just running)")
 	container_lsCmd.Flags().StringP("filter", "f", "", "Filter output based on conditions provided")
 	container_lsCmd.Flags().String("format", "", "Format output using a custom template:")
-	container_lsCmd.Flags().IntP("last", "n", 0, "Show n last created containers (includes all states)")
+	container_lsCmd.Flags().StringP("last", "n", "", "Show n last created containers (includes all states)")
 	container_lsCmd.Flags().BoolP("latest", "l", false, "Show the latest created container (includes all states)")
 	container_lsCmd.Flags().Bool("no-trunc", false, "Don't truncate output")
 	container_lsCmd.Flags().BoolP("quiet", "q", false, "Only display container IDs")

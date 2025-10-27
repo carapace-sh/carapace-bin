@@ -18,7 +18,7 @@ func init() {
 	psCmd.Flags().BoolP("all", "a", false, "Show all containers (default shows just running)")
 	psCmd.Flags().StringP("filter", "f", "", "Filter output based on conditions provided")
 	psCmd.Flags().String("format", "", "Format output using a custom template:")
-	psCmd.Flags().IntP("last", "n", 0, "Show n last created containers (includes all states)")
+	psCmd.Flags().StringP("last", "n", "", "Show n last created containers (includes all states)")
 	psCmd.Flags().BoolP("latest", "l", false, "Show the latest created container (includes all states)")
 	psCmd.Flags().Bool("no-trunc", false, "Don't truncate output")
 	psCmd.Flags().BoolP("quiet", "q", false, "Only display container IDs")

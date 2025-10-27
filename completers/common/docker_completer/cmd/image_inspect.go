@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(image_inspectCmd).Standalone()
 
 	image_inspectCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
+	image_inspectCmd.Flags().String("platform", "", "Inspect a specific platform of the multi-platform image.")
 	imageCmd.AddCommand(image_inspectCmd)
 
 	carapace.Gen(image_inspectCmd).PositionalAnyCompletion(docker.ActionRepositoryTags())

@@ -17,7 +17,8 @@ func init() {
 	carapace.Gen(pushCmd).Standalone()
 
 	pushCmd.Flags().BoolP("all-tags", "a", false, "Push all tags of an image to the repository")
-	pushCmd.Flags().Bool("disable-content-trust", true, "Skip image signing")
+	pushCmd.Flags().Bool("disable-content-trust", false, "Skip image signing")
+	pushCmd.Flags().String("platform", "", "Push a platform-specific manifest as a single-platform image to the registry.")
 	pushCmd.Flags().BoolP("quiet", "q", false, "Suppress verbose output")
 	rootCmd.AddCommand(pushCmd)
 

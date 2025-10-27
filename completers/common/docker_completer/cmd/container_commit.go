@@ -18,7 +18,7 @@ func init() {
 	container_commitCmd.Flags().StringP("author", "a", "", "Author (e.g., \"John Hannibal Smith <hannibal@a-team.com>\")")
 	container_commitCmd.Flags().StringP("change", "c", "", "Apply Dockerfile instruction to the created image")
 	container_commitCmd.Flags().StringP("message", "m", "", "Commit message")
-	container_commitCmd.Flags().BoolP("pause", "p", true, "Pause container during commit")
+	container_commitCmd.Flags().BoolP("pause", "p", false, "Pause container during commit")
 	containerCmd.AddCommand(container_commitCmd)
 
 	carapace.Gen(container_commitCmd).FlagCompletion(carapace.ActionMap{

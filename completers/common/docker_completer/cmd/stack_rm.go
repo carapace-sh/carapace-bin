@@ -16,6 +16,7 @@ var stack_rmCmd = &cobra.Command{
 func init() {
 	carapace.Gen(stack_rmCmd).Standalone()
 
+	stack_rmCmd.Flags().BoolP("detach", "d", false, "Do not wait for stack removal")
 	stackCmd.AddCommand(stack_rmCmd)
 
 	carapace.Gen(stack_rmCmd).PositionalAnyCompletion(

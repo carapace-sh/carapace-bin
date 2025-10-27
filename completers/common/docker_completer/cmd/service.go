@@ -7,7 +7,7 @@ import (
 
 var serviceCmd = &cobra.Command{
 	Use:     "service",
-	Short:   "Manage services",
+	Short:   "Manage Swarm services",
 	GroupID: "swarm",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

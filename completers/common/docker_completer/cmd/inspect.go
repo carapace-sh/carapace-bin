@@ -17,11 +17,13 @@ var inspectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(inspectCmd).Standalone()
+
 	inspectCmd.Flags().StringP("format", "f", "", "Format output using a custom template:")
 	inspectCmd.Flags().BoolP("size", "s", false, "Display total file sizes if the type is container")
-	inspectCmd.Flags().String("type", "", "Return JSON for specified type")
+	inspectCmd.Flags().String("type", "", "Only inspect objects of the given type")
 	rootCmd.AddCommand(inspectCmd)
 
+	// TODO type completion
 	carapace.Gen(inspectCmd).PositionalAnyCompletion(
 		carapace.Batch(
 			docker.ActionContainers(),

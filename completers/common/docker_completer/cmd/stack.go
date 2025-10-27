@@ -15,5 +15,11 @@ var stackCmd = &cobra.Command{
 func init() {
 	carapace.Gen(stackCmd).Standalone()
 
+	stackCmd.PersistentFlags().String("orchestrator", "", "Orchestrator to use (swarm|all)")
+	stackCmd.Flag("orchestrator").Hidden = true
 	rootCmd.AddCommand(stackCmd)
+
+	carapace.Gen(stackCmd).FlagCompletion(carapace.ActionMap{
+		"orchestrator": carapace.ActionValues("swarm", "all"),
+	})
 }

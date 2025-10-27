@@ -15,7 +15,7 @@ var plugin_upgradeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(plugin_upgradeCmd).Standalone()
 
-	plugin_upgradeCmd.Flags().Bool("disable-content-trust", true, "Skip image verification")
+	plugin_upgradeCmd.Flags().Bool("disable-content-trust", false, "Skip image verification")
 	plugin_upgradeCmd.Flags().Bool("grant-all-permissions", false, "Grant all permissions necessary to run the plugin")
 	plugin_upgradeCmd.Flags().Bool("skip-remote-check", false, "Do not check if specified remote plugin matches existing plugin image")
 	pluginCmd.AddCommand(plugin_upgradeCmd)

@@ -38,7 +38,7 @@ func init() {
 	rootCmd.Flags().StringP("context", "c", "", "Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with \"docker context use\")")
 	rootCmd.Flags().BoolP("debug", "D", false, "Enable debug mode")
 	rootCmd.PersistentFlags().BoolP("help", "h", false, "Print usage")
-	rootCmd.Flags().StringP("host", "H", "", "Daemon socket(s) to connect to")
+	rootCmd.Flags().StringP("host", "H", "", "Daemon socket to connect to")
 	rootCmd.Flags().StringP("log-level", "l", "info", "Set the logging level (\"debug\", \"info\", \"warn\", \"error\", \"fatal\")")
 	rootCmd.Flags().Bool("tls", false, "Use TLS; implied by --tlsverify")
 	rootCmd.Flags().String("tlscacert", "~/.docker/ca.pem", "Trust certs signed only by this CA")
@@ -46,6 +46,7 @@ func init() {
 	rootCmd.Flags().String("tlskey", "~/.docker/key.pem", "Path to TLS key file")
 	rootCmd.Flags().Bool("tlsverify", false, "Use TLS and verify the remote")
 	rootCmd.Flags().BoolP("version", "v", false, "Print version information and quit")
+	rootCmd.Flag("help").Hidden = true
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":    carapace.ActionFiles(),
