@@ -19,6 +19,7 @@ func init() {
 	repo_searchCmd.Flags().StringP("page", "p", "", "Page number.")
 	repo_searchCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	repo_searchCmd.Flags().StringP("search", "s", "", "A string contained in the project name.")
+	repo_searchCmd.MarkFlagRequired("search")
 	repoCmd.AddCommand(repo_searchCmd)
 
 	carapace.Gen(repo_searchCmd).FlagCompletion(carapace.ActionMap{

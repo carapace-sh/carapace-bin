@@ -7,7 +7,7 @@ import (
 
 var stack_createCmd = &cobra.Command{
 	Use:     "create",
-	Short:   "Create a new stacked diff. (EXPERIMENTAL.)",
+	Short:   "Create a new stacked diff. (EXPERIMENTAL)",
 	Aliases: []string{"new"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

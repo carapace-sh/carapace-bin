@@ -7,7 +7,7 @@ import (
 
 var stack_lastCmd = &cobra.Command{
 	Use:   "last",
-	Short: "Moves to the last diff in the stack. (EXPERIMENTAL.)",
+	Short: "Moves to the last diff in the stack. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

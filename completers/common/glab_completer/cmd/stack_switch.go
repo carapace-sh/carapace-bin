@@ -7,7 +7,7 @@ import (
 
 var stack_switchCmd = &cobra.Command{
 	Use:   "switch <stack-name>",
-	Short: "Switch between stacks. (EXPERIMENTAL.)",
+	Short: "Switch between stacks. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -18,7 +18,7 @@ func init() {
 
 	apiCmd.Flags().StringSliceP("field", "F", nil, "Add a parameter of inferred type. Changes the default HTTP method to \"POST\".")
 	apiCmd.Flags().StringSliceP("header", "H", nil, "Add an additional HTTP request header.")
-	apiCmd.Flags().String("hostname", "", "The GitLab hostname for the request. Defaults to \"gitlab.com\", or the authenticated host in the current Git directory.")
+	apiCmd.Flags().String("hostname", "", "The GitLab hostname for the request. Defaults to 'gitlab.com', or the authenticated host in the current Git directory.")
 	apiCmd.Flags().BoolP("include", "i", false, "Include HTTP response headers in the output.")
 	apiCmd.Flags().String("input", "", "The file to use as the body for the HTTP request.")
 	apiCmd.Flags().StringP("method", "X", "", "The HTTP method for the request.")

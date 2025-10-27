@@ -27,7 +27,7 @@ func init() {
 	issue_createCmd.Flags().String("linked-mr", "", "The IID of a merge request in which to resolve all issues.")
 	issue_createCmd.Flags().StringP("milestone", "m", "", "The global ID or title of a milestone to assign.")
 	issue_createCmd.Flags().Bool("no-editor", false, "Don't open editor to enter a description. If set to true, uses prompt. (default false)")
-	issue_createCmd.Flags().Bool("recover", false, "Save the options to a file if the issue fails to be created. If the file exists, the options will be loaded from the recovery file. (EXPERIMENTAL.)")
+	issue_createCmd.Flags().Bool("recover", false, "Save the options to a file if the issue fails to be created. If the file exists, the options will be loaded from the recovery file. (EXPERIMENTAL)")
 	issue_createCmd.Flags().StringP("time-estimate", "e", "", "Set time estimate for the issue.")
 	issue_createCmd.Flags().StringP("time-spent", "s", "", "Set time spent for the issue.")
 	issue_createCmd.Flags().StringP("title", "t", "", "Issue title.")

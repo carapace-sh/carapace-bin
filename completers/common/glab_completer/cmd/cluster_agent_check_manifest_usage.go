@@ -7,7 +7,7 @@ import (
 
 var cluster_agent_check_manifest_usageCmd = &cobra.Command{
 	Use:   "check_manifest_usage [flags]",
-	Short: "Check agent configuration files for built-in GitOps manifests usage. (EXPERIMENTAL.)",
+	Short: "Check agent configuration files for built-in GitOps manifests usage. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

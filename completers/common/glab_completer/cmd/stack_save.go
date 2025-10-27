@@ -7,7 +7,7 @@ import (
 
 var stack_saveCmd = &cobra.Command{
 	Use:   "save",
-	Short: "Save your progress within a stacked diff. (EXPERIMENTAL.)",
+	Short: "Save your progress within a stacked diff. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

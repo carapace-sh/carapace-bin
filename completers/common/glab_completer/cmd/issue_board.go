@@ -8,14 +8,14 @@ import (
 
 var issue_boardCmd = &cobra.Command{
 	Use:   "board [command] [flags]",
-	Short: "Work with GitLab Issue Boards in the given project.",
+	Short: "Work with GitLab issue boards in the given project.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_boardCmd).Standalone()
 
-	issue_boardCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the OWNER/REPO format or the project ID. Supports group namespaces")
+	issue_boardCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the OWNER/REPO format or the project ID. Supports group namespaces.")
 	issueCmd.AddCommand(issue_boardCmd)
 
 	carapace.Gen(issue_boardCmd).FlagCompletion(carapace.ActionMap{

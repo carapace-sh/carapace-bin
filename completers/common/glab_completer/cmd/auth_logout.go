@@ -15,7 +15,8 @@ var auth_logoutCmd = &cobra.Command{
 func init() {
 	carapace.Gen(auth_logoutCmd).Standalone()
 
-	auth_logoutCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitLab instance.")
+	auth_logoutCmd.Flags().String("hostname", "", "The hostname of the GitLab instance.")
+	auth_logoutCmd.MarkFlagRequired("hostname")
 	authCmd.AddCommand(auth_logoutCmd)
 
 	carapace.Gen(auth_logoutCmd).FlagCompletion(carapace.ActionMap{

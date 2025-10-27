@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(variable_listCmd).Standalone()
 
 	variable_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repository argument is set.")
+	variable_listCmd.Flags().BoolP("instance", "i", false, "Display instance variables.")
 	variable_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	variable_listCmd.Flags().StringP("page", "p", "", "Page number.")
 	variable_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")

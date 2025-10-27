@@ -7,7 +7,7 @@ import (
 
 var stack_reorderCmd = &cobra.Command{
 	Use:   "reorder",
-	Short: "Reorder a stack of merge requests. (EXPERIMENTAL.)",
+	Short: "Reorder a stack of merge requests. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -23,7 +23,7 @@ func init() {
 	token_createCmd.Flags().StringP("group", "g", "", "Create a group access token. Ignored if a user or repository argument is set.")
 	token_createCmd.Flags().StringP("output", "F", "", "Format output as 'text' for the token value, 'json' for the actual API token structure.")
 	token_createCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
-	token_createCmd.Flags().StringSliceP("scope", "S", nil, "Scopes for the token. For a list, see https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#personal-access-token-scopes.")
+	token_createCmd.Flags().StringSliceP("scope", "S", nil, "Scopes for the token. For a list, see https://docs.gitlab.com/user/profile/personal_access_tokens/#personal-access-token-scopes.")
 	token_createCmd.Flags().StringP("user", "U", "", "Create a personal access token. For the current user, use @me.")
 	tokenCmd.AddCommand(token_createCmd)
 

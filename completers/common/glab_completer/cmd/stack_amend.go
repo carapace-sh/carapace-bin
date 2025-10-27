@@ -7,7 +7,7 @@ import (
 
 var stack_amendCmd = &cobra.Command{
 	Use:   "amend",
-	Short: "Save more changes to a stacked diff. (EXPERIMENTAL.)",
+	Short: "Save more changes to a stacked diff. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

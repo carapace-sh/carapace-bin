@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(config_setCmd).Standalone()
 
 	config_setCmd.Flags().BoolP("global", "g", false, "Write to global '~/.config/glab-cli/config.yml' file rather than the repository's '.git/glab-cli/config.yml' file.")
-	config_setCmd.Flags().StringP("host", "h", "", "Set per-host setting.")
+	config_setCmd.Flags().String("host", "", "Set per-host setting.")
 	configCmd.AddCommand(config_setCmd)
 
 	carapace.Gen(config_setCmd).FlagCompletion(carapace.ActionMap{

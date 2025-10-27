@@ -7,7 +7,7 @@ import (
 
 var stack_listCmd = &cobra.Command{
 	Use:     "list",
-	Short:   "Lists all entries in the stack. (EXPERIMENTAL.)",
+	Short:   "Lists all entries in the stack. (EXPERIMENTAL)",
 	Aliases: []string{"ls"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

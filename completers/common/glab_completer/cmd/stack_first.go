@@ -7,7 +7,7 @@ import (
 
 var stack_firstCmd = &cobra.Command{
 	Use:   "first",
-	Short: "Moves to the first diff in the stack. (EXPERIMENTAL.)",
+	Short: "Moves to the first diff in the stack. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

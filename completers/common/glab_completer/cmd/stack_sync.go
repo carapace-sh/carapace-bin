@@ -7,7 +7,7 @@ import (
 
 var stack_syncCmd = &cobra.Command{
 	Use:   "sync",
-	Short: "Sync and submit progress on a stacked diff. (EXPERIMENTAL.)",
+	Short: "Sync and submit progress on a stacked diff. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
