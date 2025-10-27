@@ -7,13 +7,15 @@ import (
 )
 
 var image_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove one or more images",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm IMAGE [IMAGE...]",
+	Short:   "Remove one or more images",
+	Aliases: []string{"remove", "unload"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(image_rmCmd).Standalone()
+
 	imageCmd.AddCommand(image_rmCmd)
 
 	carapace.Gen(image_rmCmd).PositionalCompletion(

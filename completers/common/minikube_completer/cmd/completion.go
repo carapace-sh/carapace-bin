@@ -6,12 +6,13 @@ import (
 )
 
 var completionCmd = &cobra.Command{
-	Use:   "completion",
+	Use:   "completion SHELL",
 	Short: "Generate command completion for a shell",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(completionCmd).Standalone()
+
 	rootCmd.AddCommand(completionCmd)
 }

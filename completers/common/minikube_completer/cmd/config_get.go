@@ -7,13 +7,14 @@ import (
 )
 
 var config_getCmd = &cobra.Command{
-	Use:   "get",
+	Use:   "get PROPERTY_NAME",
 	Short: "Gets the value of PROPERTY_NAME from the minikube config file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(config_getCmd).Standalone()
+
 	configCmd.AddCommand(config_getCmd)
 
 	carapace.Gen(config_getCmd).PositionalCompletion(

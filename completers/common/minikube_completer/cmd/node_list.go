@@ -13,5 +13,6 @@ var node_listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(node_listCmd).Standalone()
+
 	nodeCmd.AddCommand(node_listCmd)
 }

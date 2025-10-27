@@ -6,7 +6,7 @@ import (
 )
 
 var imageCmd = &cobra.Command{
-	Use:     "image",
+	Use:     "image COMMAND",
 	Short:   "Manage images",
 	GroupID: "images",
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -14,5 +14,6 @@ var imageCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(imageCmd).Standalone()
+
 	rootCmd.AddCommand(imageCmd)
 }

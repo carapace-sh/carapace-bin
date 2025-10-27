@@ -13,6 +13,7 @@ var node_startCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(node_startCmd).Standalone()
+
 	node_startCmd.Flags().Bool("delete-on-failure", false, "If set, delete the current cluster if start fails and try again. Defaults to false.")
 	nodeCmd.AddCommand(node_startCmd)
 }

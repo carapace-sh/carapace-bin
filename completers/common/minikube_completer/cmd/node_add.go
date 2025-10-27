@@ -13,8 +13,9 @@ var node_addCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(node_addCmd).Standalone()
-	node_addCmd.Flags().Bool("control-plane", false, "If true, the node added will also be a control plane in addition to a worker.")
+
+	node_addCmd.Flags().Bool("control-plane", false, "If set, added node will become a control-plane. Defaults to false. Currently only supported for existing HA (multi-control plane) clusters.")
 	node_addCmd.Flags().Bool("delete-on-failure", false, "If set, delete the current cluster if start fails and try again. Defaults to false.")
-	node_addCmd.Flags().Bool("worker", true, "If true, the added node will be marked for work. Defaults to true.")
+	node_addCmd.Flags().Bool("worker", false, "If set, added node will be available as worker. Defaults to true.")
 	nodeCmd.AddCommand(node_addCmd)
 }

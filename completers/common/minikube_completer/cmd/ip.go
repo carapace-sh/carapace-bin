@@ -14,6 +14,7 @@ var ipCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(ipCmd).Standalone()
+
 	ipCmd.Flags().StringP("node", "n", "", "The node to get IP. Defaults to the primary control plane.")
 	rootCmd.AddCommand(ipCmd)
 

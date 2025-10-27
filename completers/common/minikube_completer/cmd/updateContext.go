@@ -14,5 +14,6 @@ var updateContextCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(updateContextCmd).Standalone()
+
 	rootCmd.AddCommand(updateContextCmd)
 }

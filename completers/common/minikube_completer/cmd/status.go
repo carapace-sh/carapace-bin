@@ -15,28 +15,13 @@ var statusCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(statusCmd).Standalone()
-	statusCmd.Flags().StringP("format", "f", `{{.Name}}
-type: Control Plane
-host: {{.Host}}
-kubelet: {{.Kubelet}}
-apiserver: {{.APIServer}}
-kubeconfig: {{.Kubeconfig}}
-{{- if .TimeToStop }}
-timeToStop: {{.TimeToStop}}
-{{- end }}
-{{- if .DockerEnv }}
-docker-env: {{.DockerEnv}}
-{{- end }}
-{{- if .PodManEnv }}
-podman-env: {{.PodManEnv}}
-{{- end }}
 
-`, "Go template format string for the status output.")
-	statusCmd.Flags().StringP("layout", "l", "nodes", "output layout (EXPERIMENTAL, JSON only): 'nodes' or 'cluster'")
+	statusCmd.Flags().StringP("format", "f", "", "Go template format string for the status output.  The format for Go templates can be found here: https://pkg.go.dev/text/template")
+	statusCmd.Flags().StringP("layout", "l", "", "output layout (EXPERIMENTAL, JSON only): 'nodes' or 'cluster'")
 	statusCmd.Flags().StringP("node", "n", "", "The node to check status for. Defaults to control plane. Leave blank with default format for status on all nodes.")
-	statusCmd.Flags().StringP("output", "o", "text", "minikube status --output OUTPUT. json, text")
-	statusCmd.Flags().StringP("watch", "w", "1s", "Continuously listing/getting the status with optional interval duration.")
-	statusCmd.Flag("watch").NoOptDefVal = "1s"
+	statusCmd.Flags().StringP("output", "o", "", "minikube status --output OUTPUT. json, text")
+	statusCmd.Flags().StringP("watch", "w", "", "Continuously listing/getting the status with optional interval duration.")
+	statusCmd.Flag("watch").NoOptDefVal = " "
 	rootCmd.AddCommand(statusCmd)
 
 	carapace.Gen(statusCmd).FlagCompletion(carapace.ActionMap{

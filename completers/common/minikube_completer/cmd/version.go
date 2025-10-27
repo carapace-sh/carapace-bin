@@ -14,6 +14,8 @@ var versionCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(versionCmd).Standalone()
+
+	versionCmd.Flags().Bool("components", false, "list versions of all components included with minikube. (the cluster must be running)")
 	versionCmd.Flags().StringP("output", "o", "", "One of 'yaml' or 'json'.")
 	versionCmd.Flags().Bool("short", false, "Print just the version number.")
 	rootCmd.AddCommand(versionCmd)

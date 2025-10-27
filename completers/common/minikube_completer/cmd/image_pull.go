@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var cacheCmd = &cobra.Command{
-	Use:   "cache",
-	Short: "Manage cache for images",
+var image_pullCmd = &cobra.Command{
+	Use:   "pull",
+	Short: "Pull images",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(cacheCmd).Standalone()
+	carapace.Gen(image_pullCmd).Standalone()
 
-	rootCmd.AddCommand(cacheCmd)
+	imageCmd.AddCommand(image_pullCmd)
 }
