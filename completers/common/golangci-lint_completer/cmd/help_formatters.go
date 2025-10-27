@@ -7,7 +7,7 @@ import (
 
 var help_formattersCmd = &cobra.Command{
 	Use:   "formatters",
-	Short: "Help about formatters",
+	Short: "Display help for formatters.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

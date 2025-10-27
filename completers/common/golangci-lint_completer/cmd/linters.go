@@ -8,7 +8,7 @@ import (
 
 var lintersCmd = &cobra.Command{
 	Use:   "linters",
-	Short: "List current linters configuration",
+	Short: "List current linters configuration.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

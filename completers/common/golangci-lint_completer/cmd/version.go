@@ -7,7 +7,7 @@ import (
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Version",
+	Short: "Display the golangci-lint version.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

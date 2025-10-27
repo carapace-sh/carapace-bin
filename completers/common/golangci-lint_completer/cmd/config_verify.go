@@ -7,7 +7,7 @@ import (
 
 var config_verifyCmd = &cobra.Command{
 	Use:   "verify",
-	Short: "Verify configuration against JSON schema",
+	Short: "Verify configuration against JSON schema.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

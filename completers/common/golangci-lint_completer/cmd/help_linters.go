@@ -7,7 +7,7 @@ import (
 
 var help_lintersCmd = &cobra.Command{
 	Use:   "linters",
-	Short: "Help about linters",
+	Short: "Display help for linters.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

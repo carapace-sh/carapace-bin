@@ -7,7 +7,7 @@ import (
 
 var config_pathCmd = &cobra.Command{
 	Use:   "path",
-	Short: "Print used config path",
+	Short: "Print used configuration path.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

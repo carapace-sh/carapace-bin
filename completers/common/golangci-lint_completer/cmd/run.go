@@ -10,7 +10,7 @@ import (
 
 var runCmd = &cobra.Command{
 	Use:   "run",
-	Short: "Run the linters",
+	Short: "Lint the code.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -67,6 +67,7 @@ func init() {
 	runCmd.Flags().Bool("uniq-by-line", false, "Make issues output unique by line")
 	runCmd.Flags().Bool("whole-files", false, "Show issues in any part of update files (requires new-from-rev or new-from-patch)")
 	runCmd.Flag("internal-cmd-test").Hidden = true
+	runCmd.Flag("print-resources-usage").Hidden = true
 	runCmd.Flag("skip-dirs").Hidden = true
 	runCmd.Flag("skip-files").Hidden = true
 	rootCmd.AddCommand(runCmd)
