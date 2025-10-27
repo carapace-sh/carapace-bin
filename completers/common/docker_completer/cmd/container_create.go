@@ -5,6 +5,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -18,21 +19,22 @@ func init() {
 	carapace.Gen(container_createCmd).Standalone()
 
 	container_createCmd.Flags().String("add-host", "", "Add a custom host-to-IP mapping (host:ip)")
+	container_createCmd.Flags().String("annotation", "", "Add an annotation to the container (passed through to the OCI runtime)")
 	container_createCmd.Flags().StringP("attach", "a", "", "Attach to STDIN, STDOUT or STDERR")
-	container_createCmd.Flags().Uint16("blkio-weight", 0, "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)")
+	container_createCmd.Flags().String("blkio-weight", "", "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)")
 	container_createCmd.Flags().String("blkio-weight-device", "", "Block IO weight (relative device weight)")
 	container_createCmd.Flags().String("cap-add", "", "Add Linux capabilities")
 	container_createCmd.Flags().String("cap-drop", "", "Drop Linux capabilities")
 	container_createCmd.Flags().String("cgroup-parent", "", "Optional parent cgroup for the container")
 	container_createCmd.Flags().String("cgroupns", "", "Cgroup namespace to use (host|private)")
 	container_createCmd.Flags().String("cidfile", "", "Write the container ID to the file")
-	container_createCmd.Flags().Int64("cpu-count", 0, "CPU count (Windows only)")
-	container_createCmd.Flags().Int64("cpu-percent", 0, "CPU percent (Windows only)")
-	container_createCmd.Flags().Int64("cpu-period", 0, "Limit CPU CFS (Completely Fair Scheduler) period")
-	container_createCmd.Flags().Int64("cpu-quota", 0, "Limit CPU CFS (Completely Fair Scheduler) quota")
-	container_createCmd.Flags().Int64("cpu-rt-period", 0, "Limit CPU real-time period in microseconds")
-	container_createCmd.Flags().Int64("cpu-rt-runtime", 0, "Limit CPU real-time runtime in microseconds")
-	container_createCmd.Flags().Int64P("cpu-shares", "c", 0, "CPU shares (relative weight)")
+	container_createCmd.Flags().String("cpu-count", "", "CPU count (Windows only)")
+	container_createCmd.Flags().String("cpu-percent", "", "CPU percent (Windows only)")
+	container_createCmd.Flags().String("cpu-period", "", "Limit CPU CFS (Completely Fair Scheduler) period")
+	container_createCmd.Flags().String("cpu-quota", "", "Limit CPU CFS (Completely Fair Scheduler) quota")
+	container_createCmd.Flags().String("cpu-rt-period", "", "Limit CPU real-time period in microseconds")
+	container_createCmd.Flags().String("cpu-rt-runtime", "", "Limit CPU real-time runtime in microseconds")
+	container_createCmd.Flags().StringP("cpu-shares", "c", "", "CPU shares (relative weight)")
 	container_createCmd.Flags().String("cpus", "", "Number of CPUs")
 	container_createCmd.Flags().String("cpuset-cpus", "", "CPUs in which to allow execution (0-3, 0,1)")
 	container_createCmd.Flags().String("cpuset-mems", "", "MEMs in which to allow execution (0-3, 0,1)")
@@ -42,7 +44,7 @@ func init() {
 	container_createCmd.Flags().String("device-read-iops", "", "Limit read rate (IO per second) from a device")
 	container_createCmd.Flags().String("device-write-bps", "", "Limit write rate (bytes per second) to a device")
 	container_createCmd.Flags().String("device-write-iops", "", "Limit write rate (IO per second) to a device")
-	container_createCmd.Flags().Bool("disable-content-trust", true, "Skip image verification")
+	container_createCmd.Flags().Bool("disable-content-trust", false, "Skip image verification")
 	container_createCmd.Flags().String("dns", "", "Set custom DNS servers")
 	container_createCmd.Flags().String("dns-opt", "", "Set DNS options")
 	container_createCmd.Flags().String("dns-option", "", "Set DNS options")
@@ -55,16 +57,17 @@ func init() {
 	container_createCmd.Flags().String("gpus", "", "GPU devices to add to the container ('all' to pass all GPUs)")
 	container_createCmd.Flags().String("group-add", "", "Add additional groups to join")
 	container_createCmd.Flags().String("health-cmd", "", "Command to run to check health")
-	container_createCmd.Flags().Duration("health-interval", 0, "Time between running the check (ms|s|m|h) (default 0s)")
-	container_createCmd.Flags().Int("health-retries", 0, "Consecutive failures needed to report unhealthy")
-	container_createCmd.Flags().Duration("health-start-period", 0, "Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)")
-	container_createCmd.Flags().Duration("health-timeout", 0, "Maximum time to allow one check to run (ms|s|m|h) (default 0s)")
+	container_createCmd.Flags().String("health-interval", "", "Time between running the check (ms|s|m|h) (default 0s)")
+	container_createCmd.Flags().String("health-retries", "", "Consecutive failures needed to report unhealthy")
+	container_createCmd.Flags().String("health-start-interval", "", "Time between running the check during the start period (ms|s|m|h) (default 0s)")
+	container_createCmd.Flags().String("health-start-period", "", "Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)")
+	container_createCmd.Flags().String("health-timeout", "", "Maximum time to allow one check to run (ms|s|m|h) (default 0s)")
 	container_createCmd.Flags().Bool("help", false, "Print usage")
 	container_createCmd.Flags().StringP("hostname", "h", "", "Container host name")
 	container_createCmd.Flags().Bool("init", false, "Run an init inside the container that forwards signals and reaps processes")
 	container_createCmd.Flags().BoolP("interactive", "i", false, "Keep STDIN open even if not attached")
 	container_createCmd.Flags().String("io-maxbandwidth", "", "Maximum IO bandwidth limit for the system drive (Windows only)")
-	container_createCmd.Flags().Uint64("io-maxiops", 0, "Maximum IOps limit for the system drive (Windows only)")
+	container_createCmd.Flags().String("io-maxiops", "", "Maximum IOps limit for the system drive (Windows only)")
 	container_createCmd.Flags().String("ip", "", "IPv4 address (e.g., 172.30.100.104)")
 	container_createCmd.Flags().String("ip6", "", "IPv6 address (e.g., 2001:db8::33)")
 	container_createCmd.Flags().String("ipc", "", "IPC mode to use")
@@ -80,7 +83,7 @@ func init() {
 	container_createCmd.Flags().StringP("memory", "m", "", "Memory limit")
 	container_createCmd.Flags().String("memory-reservation", "", "Memory soft limit")
 	container_createCmd.Flags().String("memory-swap", "", "Swap limit equal to memory plus swap: '-1' to enable unlimited swap")
-	container_createCmd.Flags().Int64("memory-swappiness", 0, "Tune container memory swappiness (0 to 100)")
+	container_createCmd.Flags().String("memory-swappiness", "", "Tune container memory swappiness (0 to 100)")
 	container_createCmd.Flags().String("mount", "", "Attach a filesystem mount to the container")
 	container_createCmd.Flags().String("name", "", "Assign a name to the container")
 	container_createCmd.Flags().String("net", "", "Connect a container to a network")
@@ -89,28 +92,29 @@ func init() {
 	container_createCmd.Flags().String("network-alias", "", "Add network-scoped alias for the container")
 	container_createCmd.Flags().Bool("no-healthcheck", false, "Disable any container-specified HEALTHCHECK")
 	container_createCmd.Flags().Bool("oom-kill-disable", false, "Disable OOM Killer")
-	container_createCmd.Flags().Int("oom-score-adj", 0, "Tune host's OOM preferences (-1000 to 1000)")
+	container_createCmd.Flags().String("oom-score-adj", "", "Tune host's OOM preferences (-1000 to 1000)")
 	container_createCmd.Flags().String("pid", "", "PID namespace to use")
-	container_createCmd.Flags().Int64("pids-limit", 0, "Tune container pids limit (set -1 for unlimited)")
+	container_createCmd.Flags().String("pids-limit", "", "Tune container pids limit (set -1 for unlimited)")
 	container_createCmd.Flags().String("platform", "", "Set platform if server is multi-platform capable")
 	container_createCmd.Flags().Bool("privileged", false, "Give extended privileges to this container")
 	container_createCmd.Flags().StringP("publish", "p", "", "Publish a container's port(s) to the host")
 	container_createCmd.Flags().BoolP("publish-all", "P", false, "Publish all exposed ports to random ports")
-	container_createCmd.Flags().String("pull", "missing", "Pull image before creating (\"always\", \"|missing\", \"never\")")
+	container_createCmd.Flags().String("pull", "", "Pull image before creating (\"always\", \"|missing\", \"never\")")
 	container_createCmd.Flags().BoolP("quiet", "q", false, "Suppress the pull output")
 	container_createCmd.Flags().Bool("read-only", false, "Mount the container's root filesystem as read only")
-	container_createCmd.Flags().String("restart", "no", "Restart policy to apply when a container exits")
-	container_createCmd.Flags().Bool("rm", false, "Automatically remove the container when it exits")
+	container_createCmd.Flags().String("restart", "", "Restart policy to apply when a container exits")
+	container_createCmd.Flags().Bool("rm", false, "Automatically remove the container and its associated anonymous volumes when it exits")
 	container_createCmd.Flags().String("runtime", "", "Runtime to use for this container")
 	container_createCmd.Flags().String("security-opt", "", "Security Options")
 	container_createCmd.Flags().String("shm-size", "", "Size of /dev/shm")
 	container_createCmd.Flags().String("stop-signal", "", "Signal to stop the container")
-	container_createCmd.Flags().Int("stop-timeout", 0, "Timeout (in seconds) to stop a container")
+	container_createCmd.Flags().String("stop-timeout", "", "Timeout (in seconds) to stop a container")
 	container_createCmd.Flags().String("storage-opt", "", "Storage driver options for the container")
 	container_createCmd.Flags().String("sysctl", "", "Sysctl options")
 	container_createCmd.Flags().String("tmpfs", "", "Mount a tmpfs directory")
 	container_createCmd.Flags().BoolP("tty", "t", false, "Allocate a pseudo-TTY")
 	container_createCmd.Flags().String("ulimit", "", "Ulimit options")
+	container_createCmd.Flags().Bool("use-api-socket", false, "Bind mount Docker API socket and required auth")
 	container_createCmd.Flags().StringP("user", "u", "", "Username or UID (format: <name|uid>[:<group|gid>])")
 	container_createCmd.Flags().String("userns", "", "User namespace to use")
 	container_createCmd.Flags().String("uts", "", "UTS namespace to use")
@@ -118,6 +122,9 @@ func init() {
 	container_createCmd.Flags().String("volume-driver", "", "Optional volume driver for the container")
 	container_createCmd.Flags().String("volumes-from", "", "Mount volumes from the specified container(s)")
 	container_createCmd.Flags().StringP("workdir", "w", "", "Working directory inside the container")
+	container_createCmd.Flag("dns-opt").Hidden = true
+	container_createCmd.Flag("net").Hidden = true
+	container_createCmd.Flag("net-alias").Hidden = true
 	containerCmd.AddCommand(container_createCmd)
 
 	carapace.Gen(container_createCmd).FlagCompletion(carapace.ActionMap{
@@ -135,6 +142,7 @@ func init() {
 		"log-driver":   docker.ActionLogDrivers(),
 		"network":      carapace.ActionValues("bridge", "container", "host", "none"),
 		"pid":          carapace.ActionValues("container", "host"),
+		"pull":         carapace.ActionValues("always", "missing", "never").StyleF(style.ForKeyword),
 		"user":         os.ActionUsers(),
 	})
 

@@ -9,7 +9,7 @@ import (
 var container_rmCmd = &cobra.Command{
 	Use:     "rm [OPTIONS] CONTAINER [CONTAINER...]",
 	Short:   "Remove one or more containers",
-	Aliases: []string{"remove"},
+	Aliases: []string{"rm", "remove"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

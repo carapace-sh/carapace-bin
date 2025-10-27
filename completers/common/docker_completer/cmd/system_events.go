@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(system_eventsCmd).Standalone()
 
 	system_eventsCmd.Flags().StringP("filter", "f", "", "Filter output based on conditions provided")
-	system_eventsCmd.Flags().String("format", "", "Format the output using the given Go template")
+	system_eventsCmd.Flags().String("format", "", "Format output using a custom template:")
 	system_eventsCmd.Flags().String("since", "", "Show all events created since timestamp")
 	system_eventsCmd.Flags().String("until", "", "Stream events until this timestamp")
 	systemCmd.AddCommand(system_eventsCmd)

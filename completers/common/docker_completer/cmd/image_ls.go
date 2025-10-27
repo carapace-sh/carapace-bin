@@ -22,6 +22,7 @@ func init() {
 	image_lsCmd.Flags().String("format", "", "Format output using a custom template:")
 	image_lsCmd.Flags().Bool("no-trunc", false, "Don't truncate output")
 	image_lsCmd.Flags().BoolP("quiet", "q", false, "Only show image IDs")
+	image_lsCmd.Flags().Bool("tree", false, "List multi-platform images as a tree (EXPERIMENTAL)")
 	imageCmd.AddCommand(image_lsCmd)
 
 	carapace.Gen(image_lsCmd).FlagCompletion(carapace.ActionMap{

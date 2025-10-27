@@ -15,7 +15,7 @@ var volume_updateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(volume_updateCmd).Standalone()
 
-	volume_updateCmd.Flags().String("availability", "active", "Cluster Volume availability (\"active\", \"pause\", \"drain\")")
+	volume_updateCmd.Flags().String("availability", "", "Cluster Volume availability (\"active\", \"pause\", \"drain\")")
 	volumeCmd.AddCommand(volume_updateCmd)
 
 	carapace.Gen(volume_updateCmd).FlagCompletion(carapace.ActionMap{
