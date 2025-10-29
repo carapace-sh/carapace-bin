@@ -14,9 +14,6 @@ var show_homeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(show_homeCmd).Standalone()
 
-	show_homeCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	show_homeCmd.Flags().BoolP("quiet", "q", false, "Disable progress output")
-	show_homeCmd.Flags().BoolP("verbose", "v", false, "Enable verbose output")
-	show_homeCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	show_homeCmd.Flags().BoolP("help", "h", false, "Print help")
 	showCmd.AddCommand(show_homeCmd)
 }

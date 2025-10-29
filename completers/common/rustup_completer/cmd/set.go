@@ -14,6 +14,6 @@ var setCmd = &cobra.Command{
 func init() {
 	carapace.Gen(setCmd).Standalone()
 
-	setCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	setCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(setCmd)
 }

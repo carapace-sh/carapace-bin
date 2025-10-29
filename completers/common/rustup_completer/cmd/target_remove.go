@@ -7,16 +7,17 @@ import (
 )
 
 var target_removeCmd = &cobra.Command{
-	Use:   "remove",
-	Short: "Remove a target from a Rust toolchain",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "remove",
+	Short:   "Remove a target from a Rust toolchain",
+	Aliases: []string{"uninstall", "rm", "delete", "del"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(target_removeCmd).Standalone()
 
-	target_removeCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	target_removeCmd.Flags().String("toolchain", "", "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see")
+	target_removeCmd.Flags().BoolP("help", "h", false, "Print help")
+	target_removeCmd.Flags().String("toolchain", "", "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see `rustup help toolchain`")
 	targetCmd.AddCommand(target_removeCmd)
 
 	carapace.Gen(target_removeCmd).FlagCompletion(carapace.ActionMap{

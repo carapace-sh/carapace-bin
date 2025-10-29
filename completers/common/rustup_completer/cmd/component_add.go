@@ -15,9 +15,9 @@ var component_addCmd = &cobra.Command{
 func init() {
 	carapace.Gen(component_addCmd).Standalone()
 
-	component_addCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	component_addCmd.Flags().BoolP("help", "h", false, "Print help")
 	component_addCmd.Flags().String("target", "", "")
-	component_addCmd.Flags().String("toolchain", "", "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see")
+	component_addCmd.Flags().String("toolchain", "", "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see `rustup help toolchain`")
 	componentCmd.AddCommand(component_addCmd)
 
 	carapace.Gen(component_addCmd).FlagCompletion(carapace.ActionMap{

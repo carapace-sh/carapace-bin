@@ -15,9 +15,10 @@ var target_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(target_listCmd).Standalone()
 
-	target_listCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	target_listCmd.Flags().BoolP("help", "h", false, "Print help")
 	target_listCmd.Flags().Bool("installed", false, "List only installed targets")
-	target_listCmd.Flags().String("toolchain", "", "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see")
+	target_listCmd.Flags().BoolP("quiet", "q", false, "Force the output to be a single column")
+	target_listCmd.Flags().String("toolchain", "", "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see `rustup help toolchain`")
 	targetCmd.AddCommand(target_listCmd)
 
 	carapace.Gen(target_listCmd).FlagCompletion(carapace.ActionMap{

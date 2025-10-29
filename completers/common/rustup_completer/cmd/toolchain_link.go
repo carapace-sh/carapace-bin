@@ -14,7 +14,7 @@ var toolchain_linkCmd = &cobra.Command{
 func init() {
 	carapace.Gen(toolchain_linkCmd).Standalone()
 
-	toolchain_linkCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	toolchain_linkCmd.Flags().BoolP("help", "h", false, "Print help")
 	toolchainCmd.AddCommand(toolchain_linkCmd)
 
 	carapace.Gen(toolchain_linkCmd).PositionalCompletion(

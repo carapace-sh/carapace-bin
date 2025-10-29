@@ -14,6 +14,6 @@ var override_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(override_listCmd).Standalone()
 
-	override_listCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	override_listCmd.Flags().BoolP("help", "h", false, "Print help")
 	overrideCmd.AddCommand(override_listCmd)
 }

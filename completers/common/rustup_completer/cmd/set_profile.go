@@ -7,15 +7,14 @@ import (
 
 var set_profileCmd = &cobra.Command{
 	Use:   "profile",
-	Short: "The default components installed",
+	Short: "The default components installed with a toolchain",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(set_profileCmd).Standalone()
 
-	set_profileCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	set_profileCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	set_profileCmd.Flags().BoolP("help", "h", false, "Print help")
 	setCmd.AddCommand(set_profileCmd)
 
 	carapace.Gen(set_profileCmd).PositionalCompletion(

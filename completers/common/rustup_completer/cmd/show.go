@@ -14,6 +14,7 @@ var showCmd = &cobra.Command{
 func init() {
 	carapace.Gen(showCmd).Standalone()
 
-	showCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	showCmd.Flags().BoolP("help", "h", false, "Print help")
+	showCmd.Flags().BoolP("verbose", "v", false, "Enable verbose output with rustc information for all installed toolchains")
 	rootCmd.AddCommand(showCmd)
 }

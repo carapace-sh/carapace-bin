@@ -15,7 +15,8 @@ var defaultCmd = &cobra.Command{
 func init() {
 	carapace.Gen(defaultCmd).Standalone()
 
-	defaultCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	defaultCmd.Flags().Bool("force-non-host", false, "Install toolchains that require an emulator. See https://github.com/rust-lang/rustup/wiki/Non-host-toolchains")
+	defaultCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(defaultCmd)
 
 	carapace.Gen(defaultCmd).PositionalCompletion(
