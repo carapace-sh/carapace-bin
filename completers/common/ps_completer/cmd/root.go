@@ -10,6 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "ps",
 	Short: "report a snapshot of the current processes",
+	Long:  "https://www.man7.org/linux/man-pages/man1/ps.1.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
