@@ -7,13 +7,13 @@ import (
 
 var checkCmd = &cobra.Command{
 	Use:   "check",
-	Short: "Check for updates to Rust toolchains",
+	Short: "Check for updates to Rust toolchains and rustup",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(checkCmd).Standalone()
 
-	checkCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	checkCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(checkCmd)
 }

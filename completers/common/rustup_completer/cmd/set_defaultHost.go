@@ -14,7 +14,6 @@ var set_defaultHostCmd = &cobra.Command{
 func init() {
 	carapace.Gen(set_defaultHostCmd).Standalone()
 
-	set_defaultHostCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	set_defaultHostCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	set_defaultHostCmd.Flags().BoolP("help", "h", false, "Print help")
 	setCmd.AddCommand(set_defaultHostCmd)
 }

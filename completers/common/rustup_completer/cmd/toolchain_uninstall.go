@@ -7,15 +7,16 @@ import (
 )
 
 var toolchain_uninstallCmd = &cobra.Command{
-	Use:   "uninstall",
-	Short: "Uninstall a toolchain",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "uninstall",
+	Short:   "Uninstall the given toolchains",
+	Aliases: []string{"remove", "rm", "delete", "del"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(toolchain_uninstallCmd).Standalone()
 
-	toolchain_uninstallCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	toolchain_uninstallCmd.Flags().BoolP("help", "h", false, "Print help")
 	toolchainCmd.AddCommand(toolchain_uninstallCmd)
 
 	carapace.Gen(toolchain_uninstallCmd).PositionalAnyCompletion(

@@ -7,16 +7,17 @@ import (
 )
 
 var target_addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "Add a target to a Rust toolchain",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "add",
+	Short:   "Add a target to a Rust toolchain",
+	Aliases: []string{"install"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(target_addCmd).Standalone()
 
-	target_addCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	target_addCmd.Flags().String("toolchain", "", "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see")
+	target_addCmd.Flags().BoolP("help", "h", false, "Print help")
+	target_addCmd.Flags().String("toolchain", "", "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see `rustup help toolchain`")
 	targetCmd.AddCommand(target_addCmd)
 
 	carapace.Gen(target_addCmd).FlagCompletion(carapace.ActionMap{

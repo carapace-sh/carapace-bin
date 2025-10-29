@@ -7,15 +7,16 @@ import (
 )
 
 var override_setCmd = &cobra.Command{
-	Use:   "set",
-	Short: "Set the override toolchain for a directory",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "set",
+	Short:   "Set the override toolchain for a directory",
+	Aliases: []string{"add"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(override_setCmd).Standalone()
 
-	override_setCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	override_setCmd.Flags().BoolP("help", "h", false, "Print help")
 	override_setCmd.Flags().String("path", "", "Path to the directory")
 	overrideCmd.AddCommand(override_setCmd)
 

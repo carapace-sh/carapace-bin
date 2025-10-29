@@ -15,7 +15,7 @@ var runCmd = &cobra.Command{
 func init() {
 	carapace.Gen(runCmd).Standalone()
 
-	runCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	runCmd.Flags().BoolP("help", "h", false, "Print help")
 	runCmd.Flags().Bool("install", false, "Install the requested toolchain if needed")
 	rootCmd.AddCommand(runCmd)
 

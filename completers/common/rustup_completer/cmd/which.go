@@ -15,8 +15,8 @@ var whichCmd = &cobra.Command{
 func init() {
 	carapace.Gen(whichCmd).Standalone()
 
-	whichCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	whichCmd.Flags().String("toolchain", "", "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see")
+	whichCmd.Flags().BoolP("help", "h", false, "Print help")
+	whichCmd.Flags().String("toolchain", "", "Toolchain name, such as 'stable', 'nightly', '1.8.0', or a custom toolchain name. For more information see `rustup help toolchain`")
 	rootCmd.AddCommand(whichCmd)
 
 	carapace.Gen(whichCmd).FlagCompletion(carapace.ActionMap{
