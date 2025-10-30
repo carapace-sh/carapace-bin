@@ -77,7 +77,7 @@ func init() {
 		"o":       carapace.ActionFiles(),
 		"out-dir": carapace.ActionDirectories(),
 		"print":   carapace.ActionValues("crate-name", "file-names", "sysroot", "target-libdir", "cfg", "target-list", "target-cpus", "target-features", "relocation-models", "code-models", "tls-models", "target-spec-json", "native-static-libs"),
-		"target":  carapace.ActionValues(), // TODO
+		"target":  rust.ActionTargets(),
 		"warn":    carapace.ActionValues(), // TODO
 	})
 
