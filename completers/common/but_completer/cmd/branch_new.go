@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
 	"github.com/spf13/cobra"
 )
 
 var branch_newCmd = &cobra.Command{
-	Use:   "new",
+	Use:   "new [BRANCH_NAME]",
 	Short: "Creates a new branch in the workspace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -19,6 +20,10 @@ func init() {
 	branchCmd.AddCommand(branch_newCmd)
 
 	carapace.Gen(branch_newCmd).FlagCompletion(carapace.ActionMap{
-		"anchor": carapace.ActionValues(), // TODO git.ActionRefs(git.RefOption{}.Default())?
+		"anchor": but.ActionLocalBranches(),
 	})
+
+	carapace.Gen(branch_newCmd).PositionalCompletion(
+		but.ActionLocalBranches(),
+	)
 }
