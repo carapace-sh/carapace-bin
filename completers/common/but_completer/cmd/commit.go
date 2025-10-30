@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
 	"github.com/spf13/cobra"
 )
 
 var commitCmd = &cobra.Command{
-	Use:   "commit",
+	Use:   "commit [BRANCH]",
 	Short: "Commit changes to a stack",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -19,4 +20,8 @@ func init() {
 	commitCmd.Flags().StringP("message", "m", "", "Commit message")
 	commitCmd.Flags().BoolP("only", "o", false, "Only commit assigned files, not unassigned files")
 	rootCmd.AddCommand(commitCmd)
+
+	carapace.Gen(commitCmd).PositionalCompletion(
+		but.ActionLocalBranches(),
+	)
 }
