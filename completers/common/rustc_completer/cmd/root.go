@@ -64,6 +64,7 @@ func init() {
 		"deny":       carapace.ActionValues(), // TODO
 		"edition":    carapace.ActionValues("2015", "2018", "2021"),
 		"emit":       carapace.ActionValues("asm", "llvm-bc", "llvm-ir", "obj", "metadata", "link", "dep-info", "mir").UniqueList(","),
+		"explain":    rust.ActionErrorCodes(),
 		"forbid":     carapace.ActionValues(), // TODO
 		"force-warn": carapace.ActionValues(), // TODO
 		"l": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {

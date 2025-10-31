@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/cargo_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/rust"
 	"github.com/spf13/cobra"
 )
 
@@ -64,6 +65,7 @@ func init() {
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(buildCmd, true),
 		"profile":        action.ActionProfiles(buildCmd),
+		"target":         rust.ActionTargets(),
 		"target-dir":     carapace.ActionDirectories(),
 		"test":           action.ActionTargets(buildCmd, action.TargetOpts{Test: true}),
 	})
