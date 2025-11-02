@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	markCmd.Flags().BoolP("delete", "d", false, "Deletes a mark")
 	markCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(markCmd)
+
+	carapace.Gen(markCmd).PositionalCompletion(
+		but.ActionLocalBranches(),
+	)
 }
