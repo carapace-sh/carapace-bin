@@ -7,9 +7,10 @@ import (
 )
 
 var markCmd = &cobra.Command{
-	Use:   "mark",
-	Short: "Creates or removes a rule for auto-assigning or auto-comitting",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "mark",
+	Short:   "Creates or removes a rule for auto-assigning or auto-comitting",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "branching and committing",
 }
 
 func init() {

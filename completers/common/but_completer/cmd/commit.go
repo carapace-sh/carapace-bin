@@ -7,9 +7,10 @@ import (
 )
 
 var commitCmd = &cobra.Command{
-	Use:   "commit [BRANCH]",
-	Short: "Commit changes to a stack",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "commit [BRANCH]",
+	Short:   "Commit changes to a stack",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "branching and committing",
 }
 
 func init() {

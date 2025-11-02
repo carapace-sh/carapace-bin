@@ -6,9 +6,10 @@ import (
 )
 
 var baseCmd = &cobra.Command{
-	Use:   "base",
-	Short: "Commands for managing the base",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "base",
+	Short:   "Commands for managing the base",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "branching and committing",
 }
 
 func init() {

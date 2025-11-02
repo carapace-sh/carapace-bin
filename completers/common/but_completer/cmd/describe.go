@@ -11,6 +11,7 @@ var describeCmd = &cobra.Command{
 	Short:   "Edit the commit message of the specified commit",
 	Aliases: []string{"desc"},
 	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "editing commits",
 }
 
 func init() {

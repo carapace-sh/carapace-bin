@@ -7,9 +7,10 @@ import (
 )
 
 var restoreCmd = &cobra.Command{
-	Use:   "restore",
-	Short: "Restore to a specific oplog snapshot",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "restore",
+	Short:   "Restore to a specific oplog snapshot",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "operation history",
 }
 
 func init() {

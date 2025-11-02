@@ -10,6 +10,7 @@ var statusCmd = &cobra.Command{
 	Short:   "Overview of the uncommitted changes in the repository",
 	Aliases: []string{"st"},
 	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "inspection",
 }
 
 func init() {
