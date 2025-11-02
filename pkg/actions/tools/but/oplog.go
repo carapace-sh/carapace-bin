@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
@@ -86,5 +87,5 @@ func ActionOplogEntries() carapace.Action {
 			vals = append(vals, e.ID[:12], fmt.Sprintf("%v %v", t.Format(time.DateTime), e.Details.Title), e.style())
 		}
 		return carapace.ActionStyledValuesDescribed(vals...)
-	})
+	}).Tag("oplog entries").UidF(git.Uid("ref")) // TODO temporary using ref uid (needs own)
 }
