@@ -6,9 +6,10 @@ import (
 )
 
 var oplogCmd = &cobra.Command{
-	Use:   "oplog",
-	Short: "Show operation history (last 20 entries)",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "oplog",
+	Short:   "Show operation history (last 20 entries)",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "operation history",
 }
 
 func init() {

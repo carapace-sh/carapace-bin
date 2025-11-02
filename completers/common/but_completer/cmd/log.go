@@ -6,9 +6,10 @@ import (
 )
 
 var logCmd = &cobra.Command{
-	Use:   "log",
-	Short: "Show commits on active branches in your workspace",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "log",
+	Short:   "Show commits on active branches in your workspace",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "inspection",
 }
 
 func init() {

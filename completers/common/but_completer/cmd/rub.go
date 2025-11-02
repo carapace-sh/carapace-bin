@@ -7,9 +7,10 @@ import (
 )
 
 var rubCmd = &cobra.Command{
-	Use:   "rub",
-	Short: "Combines two entities together to perform an operation",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rub",
+	Short:   "Combines two entities together to perform an operation",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "editing commits",
 }
 
 func init() {

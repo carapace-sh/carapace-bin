@@ -21,6 +21,13 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "branching and committing"},
+		&cobra.Group{ID: "editing commits"},
+		&cobra.Group{ID: "inspection"},
+		&cobra.Group{ID: "operation history"},
+	)
+
 	rootCmd.Flags().StringP("current-dir", "C", "", "Run as if gitbutler-cli was started in PATH instead of the current working directory")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.Flags().BoolP("json", "j", false, "Whether to use JSON output format")

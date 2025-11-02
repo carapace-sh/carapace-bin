@@ -6,9 +6,10 @@ import (
 )
 
 var unmarkCmd = &cobra.Command{
-	Use:   "unmark",
-	Short: "Removes all marks from the workspace",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "unmark",
+	Short:   "Removes all marks from the workspace",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "branching and committing",
 }
 
 func init() {

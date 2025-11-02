@@ -7,9 +7,10 @@ import (
 )
 
 var pushCmd = &cobra.Command{
-	Use:   "push BRANCH_ID",
-	Short: "Push a branch/stack to remote",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "push BRANCH_ID",
+	Short:   "Push a branch/stack to remote",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "branching and committing",
 }
 
 func init() {

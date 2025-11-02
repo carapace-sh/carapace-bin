@@ -6,9 +6,10 @@ import (
 )
 
 var snapshotCmd = &cobra.Command{
-	Use:   "snapshot",
-	Short: "Create an on-demand snapshot with optional message",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "snapshot",
+	Short:   "Create an on-demand snapshot with optional message",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "operation history",
 }
 
 func init() {

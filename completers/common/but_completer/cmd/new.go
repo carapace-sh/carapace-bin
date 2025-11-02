@@ -7,9 +7,10 @@ import (
 )
 
 var newCmd = &cobra.Command{
-	Use:   "new TARGET",
-	Short: "Insert a blank commit before the specified commit, or at the top of a stack",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "new TARGET",
+	Short:   "Insert a blank commit before the specified commit, or at the top of a stack",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "branching and committing",
 }
 
 func init() {
