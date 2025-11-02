@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,9 @@ func init() {
 
 	rubCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(rubCmd)
+
+	carapace.Gen(rubCmd).PositionalCompletion(
+		but.ActionLocalBranches(),
+		but.ActionLocalBranches().FilterArgs(),
+	)
 }
