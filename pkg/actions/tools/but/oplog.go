@@ -83,7 +83,7 @@ func ActionOplogEntries() carapace.Action {
 		vals := make([]string, 0)
 		for _, e := range entries {
 			t := time.Unix(int64(e.CreatedAt), 0).UTC() // TODO UTC intentional?
-			vals = append(vals, e.ID[:12], fmt.Sprintf("%v %v", t.Format(time.DateTime), e.Details.Operation), e.style())
+			vals = append(vals, e.ID[:12], fmt.Sprintf("%v %v", t.Format(time.DateTime), e.Details.Title), e.style())
 		}
 		return carapace.ActionStyledValuesDescribed(vals...)
 	})
