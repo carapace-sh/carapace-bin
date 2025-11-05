@@ -18,7 +18,7 @@ func init() {
 	carapace.Gen(apiCmd).Standalone()
 
 	apiCmd.Flags().String("cache", "", "Cache the response, e.g. \"3600s\", \"60m\", \"1h\"")
-	apiCmd.Flags().StringSliceP("field", "F", nil, "Add a typed parameter in `key=value` format")
+	apiCmd.Flags().StringSliceP("field", "F", nil, "Add a typed parameter in `key=value` format (use \"@<path>\" or \"@-\" to read value from file or stdin)")
 	apiCmd.Flags().StringSliceP("header", "H", nil, "Add a HTTP request header in `key:value` format")
 	apiCmd.Flags().String("hostname", "", "The GitHub hostname for the request (default \"github.com\")")
 	apiCmd.Flags().BoolP("include", "i", false, "Include HTTP response status line and headers in the output")
@@ -35,6 +35,12 @@ func init() {
 	rootCmd.AddCommand(apiCmd)
 
 	carapace.Gen(apiCmd).FlagCompletion(carapace.ActionMap{
+		"field": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			if len(c.Parts) == 0 {
+				return carapace.ActionValues()
+			}
+			return carapace.ActionFiles().Prefix("@")
+		}),
 		"header":   http.ActionRequestHeaders(),
 		"hostname": action.ActionConfigHosts(),
 		"input":    carapace.ActionFiles(),
