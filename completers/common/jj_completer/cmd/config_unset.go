@@ -19,6 +19,7 @@ func init() {
 	config_unsetCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	config_unsetCmd.Flags().Bool("repo", false, "Target the repo-level config")
 	config_unsetCmd.Flags().Bool("user", false, "Target the user-level config")
+	config_unsetCmd.Flags().Bool("workspace", false, "Target the workspace-level config")
 	configCmd.AddCommand(config_unsetCmd)
 
 	carapace.Gen(config_unsetCmd).PositionalCompletion(

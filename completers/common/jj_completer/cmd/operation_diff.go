@@ -24,7 +24,7 @@ func init() {
 	operation_diffCmd.Flags().Bool("ignore-all-space", false, "Ignore whitespace when comparing lines")
 	operation_diffCmd.Flags().Bool("ignore-space-change", false, "Ignore changes in amount of whitespace when comparing lines")
 	operation_diffCmd.Flags().Bool("name-only", false, "For each path, show only its path")
-	operation_diffCmd.Flags().Bool("no-graph", false, "Don't show the graph, show a flat list of modified changes")
+	operation_diffCmd.Flags().BoolP("no-graph", "G", false, "Don't show the graph, show a flat list of modified changes")
 	operation_diffCmd.Flags().String("op", "", "Show repository changes in this operation, compared to its parent")
 	operation_diffCmd.Flags().String("operation", "", "Show repository changes in this operation, compared to its parent")
 	operation_diffCmd.Flags().BoolP("patch", "p", false, "Show patch of modifications to changes")
