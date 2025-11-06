@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/spf13/cobra"
@@ -38,7 +39,7 @@ func init() {
 	rootCmd.MarkFlagsMutuallyExclusive("quiet", "verbose")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"at-operation": carapace.ActionValues(), // TODO
+		"at-operation": jj.ActionOperations(100),
 		"color":        carapace.ActionValues("always", "never", "auto").StyleF(style.ForKeyword),
 		"config-file":  carapace.ActionFiles(),
 		"repository":   carapace.ActionDirectories(),
