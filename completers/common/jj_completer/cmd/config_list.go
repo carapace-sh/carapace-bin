@@ -22,6 +22,7 @@ func init() {
 	config_listCmd.Flags().Bool("repo", false, "Target the repo-level config")
 	config_listCmd.Flags().StringP("template", "T", "", "Render each variable using the given template")
 	config_listCmd.Flags().Bool("user", false, "Target the user-level config")
+	config_listCmd.Flags().Bool("workspace", false, "Target the workspace-level config")
 	configCmd.AddCommand(config_listCmd)
 
 	carapace.Gen(config_listCmd).PositionalCompletion(

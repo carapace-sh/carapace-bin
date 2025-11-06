@@ -25,7 +25,7 @@ func init() {
 	evologCmd.Flags().Bool("ignore-space-change", false, "Ignore changes in amount of whitespace when comparing lines")
 	evologCmd.Flags().StringP("limit", "n", "", "Limit number of revisions to show")
 	evologCmd.Flags().Bool("name-only", false, "For each path, show only its path")
-	evologCmd.Flags().Bool("no-graph", false, "Don't show the graph, show a flat list of revisions")
+	evologCmd.Flags().BoolP("no-graph", "G", false, "Don't show the graph, show a flat list of revisions")
 	evologCmd.Flags().BoolP("patch", "p", false, "Show patch compared to the previous version of this change")
 	evologCmd.Flags().Bool("reversed", false, "Show revisions in the opposite order (older revisions first)")
 	evologCmd.Flags().StringSlice("revision", nil, "Follow changes from these revisions")

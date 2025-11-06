@@ -22,7 +22,7 @@ func init() {
 	operation_logCmd.Flags().Bool("ignore-space-change", false, "Ignore changes in amount of whitespace when comparing lines")
 	operation_logCmd.Flags().StringP("limit", "n", "", "Limit number of operations to show")
 	operation_logCmd.Flags().Bool("name-only", false, "For each path, show only its path")
-	operation_logCmd.Flags().Bool("no-graph", false, "Don't show the graph, show a flat list of operations")
+	operation_logCmd.Flags().BoolP("no-graph", "G", false, "Don't show the graph, show a flat list of operations")
 	operation_logCmd.Flags().BoolP("op-diff", "d", false, "Show changes to the repository at each operation")
 	operation_logCmd.Flags().BoolP("patch", "p", false, "Show patch of modifications to changes (implies --op-diff)")
 	operation_logCmd.Flags().Bool("reversed", false, "Show operations in the opposite order (older operations first)")
