@@ -16,6 +16,7 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -26,6 +27,7 @@ func init() {
 	rootCmd.Flags().Bool("hide-main", false, "Hide main package")
 	rootCmd.Flags().Bool("hide-sections", false, "Hide sections")
 	rootCmd.Flags().Bool("hide-std", false, "Hide standard library")
+	rootCmd.Flags().Bool("imports", false, "Try analyze package imports from source")
 	rootCmd.Flags().String("indent", "", "Indentation for json output")
 	rootCmd.Flags().String("listen", "", "listen address")
 	rootCmd.Flags().String("margin-box", "", "Margin between boxes")
@@ -36,7 +38,7 @@ func init() {
 	rootCmd.Flags().StringP("output", "o", "", "Write to file")
 	rootCmd.Flags().String("padding-box", "", "Padding between box border and content")
 	rootCmd.Flags().String("padding-root", "", "Padding around root content")
-	rootCmd.Flags().Bool("tui", false, "use terminal interface to explore the details")
+	rootCmd.Flags().Bool("tui", false, "Use terminal interface to explore the details")
 	rootCmd.Flags().Bool("update-cache", false, "Update the cache file for the web UI")
 	rootCmd.Flags().Bool("verbose", false, "Verbose output")
 	rootCmd.Flags().Bool("version", false, "Show version")
