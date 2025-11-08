@@ -20,7 +20,7 @@ func init() {
 	branchCmd.AddCommand(branch_newCmd)
 
 	carapace.Gen(branch_newCmd).FlagCompletion(carapace.ActionMap{
-		"anchor": but.ActionLocalBranches(),
+		"anchor": but.ActionTargets(),
 	})
 
 	carapace.Gen(branch_newCmd).PositionalCompletion(

@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(newCmd).PositionalCompletion(
-		but.ActionLocalBranches(), // TODO commit id
+		but.ActionTargets(),
 	)
 }

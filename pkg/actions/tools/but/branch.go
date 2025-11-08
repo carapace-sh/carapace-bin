@@ -9,8 +9,8 @@ import (
 
 // ActionLocalBranches completes local branches
 //
-//	mybranch
-//	another
+//	branch (branch description)
+//	another (another description)
 func ActionLocalBranches() carapace.Action {
 	return carapace.ActionExecCommand("but", "branch", "list", "--local")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
