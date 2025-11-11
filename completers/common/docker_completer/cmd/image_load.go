@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(image_loadCmd).Standalone()
 
 	image_loadCmd.Flags().StringP("input", "i", "", "Read from tar archive file, instead of STDIN")
-	image_loadCmd.Flags().String("platform", "", "Load only the given platform variant. Formatted as \"os[/arch[/variant]]\" (e.g., \"linux/amd64\")")
+	image_loadCmd.Flags().StringSlice("platform", nil, "Load only the given platform(s). Formatted as a comma-separated list of \"os[/arch[/variant]]\" (e.g., \"linux/amd64,linux/arm64/v8\").")
 	image_loadCmd.Flags().BoolP("quiet", "q", false, "Suppress the load output")
 	imageCmd.AddCommand(image_loadCmd)
 

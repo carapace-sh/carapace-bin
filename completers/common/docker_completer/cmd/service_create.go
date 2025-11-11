@@ -50,6 +50,8 @@ func init() {
 	service_createCmd.Flags().String("log-driver", "", "Logging driver for service")
 	service_createCmd.Flags().String("log-opt", "", "Logging driver options")
 	service_createCmd.Flags().String("max-concurrent", "", "Number of job tasks to run concurrently (default equal to --replicas)")
+	service_createCmd.Flags().String("memory-swap", "", "Swap Bytes (-1 for unlimited)")
+	service_createCmd.Flags().String("memory-swappiness", "", "Tune memory swappiness (0-100), -1 to reset to default")
 	service_createCmd.Flags().String("mode", "", "Service mode (\"replicated\", \"global\", \"replicated-job\", \"global-job\")")
 	service_createCmd.Flags().String("mount", "", "Attach a filesystem mount to the service")
 	service_createCmd.Flags().String("name", "", "Service name")

@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(image_saveCmd).Standalone()
 
 	image_saveCmd.Flags().StringP("output", "o", "", "Write to a file, instead of STDOUT")
-	image_saveCmd.Flags().String("platform", "", "Save only the given platform variant. Formatted as \"os[/arch[/variant]]\" (e.g., \"linux/amd64\")")
+	image_saveCmd.Flags().StringSlice("platform", nil, "Save only the given platform(s). Formatted as a comma-separated list of \"os[/arch[/variant]]\" (e.g., \"linux/amd64,linux/arm64/v8\")")
 	imageCmd.AddCommand(image_saveCmd)
 
 	carapace.Gen(image_saveCmd).FlagCompletion(carapace.ActionMap{

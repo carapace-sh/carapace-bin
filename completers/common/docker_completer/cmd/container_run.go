@@ -45,7 +45,7 @@ func init() {
 	container_runCmd.Flags().String("device-read-iops", "", "Limit read rate (IO per second) from a device")
 	container_runCmd.Flags().String("device-write-bps", "", "Limit write rate (bytes per second) to a device")
 	container_runCmd.Flags().String("device-write-iops", "", "Limit write rate (IO per second) to a device")
-	container_runCmd.Flags().Bool("disable-content-trust", false, "Skip image verification")
+	container_runCmd.Flags().Bool("disable-content-trust", false, "Skip image verification (deprecated)")
 	container_runCmd.Flags().String("dns", "", "Set custom DNS servers")
 	container_runCmd.Flags().String("dns-opt", "", "Set DNS options")
 	container_runCmd.Flags().String("dns-option", "", "Set DNS options")
@@ -73,7 +73,7 @@ func init() {
 	container_runCmd.Flags().String("ip6", "", "IPv6 address (e.g., 2001:db8::33)")
 	container_runCmd.Flags().String("ipc", "", "IPC mode to use")
 	container_runCmd.Flags().String("isolation", "", "Container isolation technology")
-	container_runCmd.Flags().String("kernel-memory", "", "Kernel memory limit")
+	container_runCmd.Flags().String("kernel-memory", "", "Kernel memory limit (deprecated)")
 	container_runCmd.Flags().StringP("label", "l", "", "Set meta data on a container")
 	container_runCmd.Flags().String("label-file", "", "Read in a line delimited file of labels")
 	container_runCmd.Flags().String("link", "", "Add link to another container")
@@ -124,7 +124,9 @@ func init() {
 	container_runCmd.Flags().String("volume-driver", "", "Optional volume driver for the container")
 	container_runCmd.Flags().String("volumes-from", "", "Mount volumes from the specified container(s)")
 	container_runCmd.Flags().StringP("workdir", "w", "", "Working directory inside the container")
+	container_runCmd.Flag("disable-content-trust").Hidden = true
 	container_runCmd.Flag("dns-opt").Hidden = true
+	container_runCmd.Flag("kernel-memory").Hidden = true
 	container_runCmd.Flag("net").Hidden = true
 	container_runCmd.Flag("net-alias").Hidden = true
 	containerCmd.AddCommand(container_runCmd)
