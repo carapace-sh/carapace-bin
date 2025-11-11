@@ -17,8 +17,9 @@ func init() {
 
 	plugin_installCmd.Flags().String("alias", "", "Local name for plugin")
 	plugin_installCmd.Flags().Bool("disable", false, "Do not enable the plugin on install")
-	plugin_installCmd.Flags().Bool("disable-content-trust", false, "Skip image verification")
+	plugin_installCmd.Flags().Bool("disable-content-trust", false, "Skip image verification (deprecated)")
 	plugin_installCmd.Flags().Bool("grant-all-permissions", false, "Grant all permissions necessary to run the plugin")
+	plugin_installCmd.Flag("disable-content-trust").Hidden = true
 	pluginCmd.AddCommand(plugin_installCmd)
 
 	carapace.Gen(plugin_installCmd).PositionalCompletion(

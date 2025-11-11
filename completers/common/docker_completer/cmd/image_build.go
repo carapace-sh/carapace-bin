@@ -24,7 +24,7 @@ func init() {
 	image_buildCmd.Flags().StringP("cpu-shares", "c", "", "CPU shares (relative weight)")
 	image_buildCmd.Flags().String("cpuset-cpus", "", "CPUs in which to allow execution (0-3, 0,1)")
 	image_buildCmd.Flags().String("cpuset-mems", "", "MEMs in which to allow execution (0-3, 0,1)")
-	image_buildCmd.Flags().Bool("disable-content-trust", false, "Skip image verification")
+	image_buildCmd.Flags().Bool("disable-content-trust", false, "Skip image verification (deprecated)")
 	image_buildCmd.Flags().StringP("file", "f", "", "Name of the Dockerfile (Default is \"PATH/Dockerfile\")")
 	image_buildCmd.Flags().Bool("force-rm", false, "Always remove intermediate containers")
 	image_buildCmd.Flags().String("iidfile", "", "Write the image ID to the file")
@@ -44,6 +44,7 @@ func init() {
 	image_buildCmd.Flags().StringP("tag", "t", "", "Name and optionally a tag in the \"name:tag\" format")
 	image_buildCmd.Flags().String("target", "", "Set the target build stage to build.")
 	image_buildCmd.Flags().String("ulimit", "", "Ulimit options")
+	image_buildCmd.Flag("disable-content-trust").Hidden = true
 	imageCmd.AddCommand(image_buildCmd)
 
 	carapace.Gen(image_buildCmd).FlagCompletion(carapace.ActionMap{

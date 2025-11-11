@@ -44,7 +44,7 @@ func init() {
 	container_createCmd.Flags().String("device-read-iops", "", "Limit read rate (IO per second) from a device")
 	container_createCmd.Flags().String("device-write-bps", "", "Limit write rate (bytes per second) to a device")
 	container_createCmd.Flags().String("device-write-iops", "", "Limit write rate (IO per second) to a device")
-	container_createCmd.Flags().Bool("disable-content-trust", false, "Skip image verification")
+	container_createCmd.Flags().Bool("disable-content-trust", false, "Skip image verification (deprecated)")
 	container_createCmd.Flags().String("dns", "", "Set custom DNS servers")
 	container_createCmd.Flags().String("dns-opt", "", "Set DNS options")
 	container_createCmd.Flags().String("dns-option", "", "Set DNS options")
@@ -72,7 +72,7 @@ func init() {
 	container_createCmd.Flags().String("ip6", "", "IPv6 address (e.g., 2001:db8::33)")
 	container_createCmd.Flags().String("ipc", "", "IPC mode to use")
 	container_createCmd.Flags().String("isolation", "", "Container isolation technology")
-	container_createCmd.Flags().String("kernel-memory", "", "Kernel memory limit")
+	container_createCmd.Flags().String("kernel-memory", "", "Kernel memory limit (deprecated)")
 	container_createCmd.Flags().StringP("label", "l", "", "Set meta data on a container")
 	container_createCmd.Flags().String("label-file", "", "Read in a line delimited file of labels")
 	container_createCmd.Flags().String("link", "", "Add link to another container")
@@ -122,7 +122,9 @@ func init() {
 	container_createCmd.Flags().String("volume-driver", "", "Optional volume driver for the container")
 	container_createCmd.Flags().String("volumes-from", "", "Mount volumes from the specified container(s)")
 	container_createCmd.Flags().StringP("workdir", "w", "", "Working directory inside the container")
+	container_createCmd.Flag("disable-content-trust").Hidden = true
 	container_createCmd.Flag("dns-opt").Hidden = true
+	container_createCmd.Flag("kernel-memory").Hidden = true
 	container_createCmd.Flag("net").Hidden = true
 	container_createCmd.Flag("net-alias").Hidden = true
 	containerCmd.AddCommand(container_createCmd)

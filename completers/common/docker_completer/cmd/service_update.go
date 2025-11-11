@@ -62,6 +62,8 @@ func init() {
 	service_updateCmd.Flags().String("log-driver", "", "Logging driver for service")
 	service_updateCmd.Flags().String("log-opt", "", "Logging driver options")
 	service_updateCmd.Flags().String("max-concurrent", "", "Number of job tasks to run concurrently (default equal to --replicas)")
+	service_updateCmd.Flags().String("memory-swap", "", "Swap Bytes (-1 for unlimited)")
+	service_updateCmd.Flags().String("memory-swappiness", "", "Tune memory swappiness (0-100), -1 to reset to default")
 	service_updateCmd.Flags().String("mount-add", "", "Add or update a mount on a service")
 	service_updateCmd.Flags().String("mount-rm", "", "Remove a mount by its target path")
 	service_updateCmd.Flags().String("network-add", "", "Add a network")
