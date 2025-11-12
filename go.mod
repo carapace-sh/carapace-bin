@@ -1,6 +1,6 @@
 module github.com/carapace-sh/carapace-bin
 
-go 1.23.1
+go 1.24.0
 
 require (
 	github.com/carapace-sh/carapace v1.10.2
@@ -11,7 +11,7 @@ require (
 	github.com/pelletier/go-toml v1.9.5
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.9
-	golang.org/x/mod v0.27.0
+	golang.org/x/mod v0.30.0
 	gopkg.in/ini.v1 v1.67.0
 	gopkg.in/yaml.v3 v3.0.1
 )
