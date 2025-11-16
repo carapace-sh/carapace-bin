@@ -1,9 +1,11 @@
 package cmd
 
 import (
+	"os/exec"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -25,6 +27,10 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if _, err := exec.LookPath("carapace-aws"); err == nil {
+				return bridge.ActionCarapace("carapace-aws")
+			}
+
 			if c.Value == "-" {
 				c.Value += "-" // no shorthand flags so expand to longhand first (which is needed for the completer)
 			}
