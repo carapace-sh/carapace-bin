@@ -79,6 +79,8 @@ aurs:
       - carapace
     conflicts:
       - carapace
+    optdepends:
+      - "carapace-aws: for enriched aws completion"
 
 nfpms:
   -
