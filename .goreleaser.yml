@@ -80,7 +80,7 @@ aurs:
     conflicts:
       - carapace
     optdepends:
-      - "carapace-aws: for enriched aws completion"
+      - "carapace-aws-bin: for enriched aws completion"
 
 nfpms:
   -
