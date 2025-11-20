@@ -188,7 +188,7 @@ func actionRefDiffs(cached bool, refs ...string) carapace.Action {
 				var action carapace.Action
 				switch {
 				case strings.HasPrefix(relativePath, "../"):
-					action = carapace.ActionStyledValuesDescribed(relativePath, splitted[0])
+					action = carapace.ActionValuesDescribed(relativePath, splitted[0])
 				case strings.HasPrefix(c.Value, "."):
 					action = carapace.ActionValuesDescribed("./"+relativePath, splitted[0])
 				default:
