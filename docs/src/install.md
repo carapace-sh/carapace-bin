@@ -43,6 +43,12 @@ brew tap rsteube/homebrew-tap
 brew install rsteube/tap/carapace
 ```
 
+## Mise [mise](https://github.com/jdx/mise)
+
+```sh
+mise use -g carapace@latest
+```
+
 ## Nix
 
 Install from [nixpkgs](https://search.nixos.org/packages?show=carapace)
