@@ -1,7 +1,7 @@
 github.com/carapace-sh/carapace v1.10.2 h1:2E4i2ZCjjROSinQrS+AIWTYk0YAaolDJppULLZmXmj8=
 github.com/carapace-sh/carapace v1.10.2/go.mod h1:gdyqmVIQJFlcHn4D7BkgyjRU5LlluDXBaiRSdV6GY88=
-github.com/carapace-sh/carapace-bridge v1.4.8 h1:RdEJ8pt8oNpCczZQ94U5npJ0ThY5G0XG5AKDYvCUZII=
-github.com/carapace-sh/carapace-bridge v1.4.8/go.mod h1:5pjJSa9xLmJafNACZSoAMs3uGD4KVbXMqzYIk/r8CkA=
+github.com/carapace-sh/carapace-bridge v1.4.9 h1:f9P1dLcapT7mdBoHMu+SGQrrYiJ7PYkhiz8ZMleote8=
+github.com/carapace-sh/carapace-bridge v1.4.9/go.mod h1:MUOnmTjYoALyl5kDYPrStnA4oDnTcrYc2SL359T4CEY=
 github.com/carapace-sh/carapace-pflag v1.0.0 h1:uJMhl+vwEM/Eb0UdxZUuv4jo4rUAyPijkRGP5gfCuCE=
 github.com/carapace-sh/carapace-pflag v1.0.0/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
 github.com/carapace-sh/carapace-selfupdate v0.0.10 h1:ZvutqGwVvSj6TmI/tLcort63JD6PaOG0ia6squwbTuo=
