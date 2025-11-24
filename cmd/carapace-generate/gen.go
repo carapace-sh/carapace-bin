@@ -184,6 +184,7 @@ func macros() {
 	macros := []string{
 		`"bridge.Argcomplete":         spec.MacroV(bridge.ActionArgcomplete),`,
 		`"bridge.ArgcompleteV1":       spec.MacroV(bridge.ActionArgcompleteV1), //lint:ignore SA1019 gcloud uses an old argcomplete version`,
+		`"bridge.Aws":                 spec.MacroV(bridge.ActionAws),`,
 		`"bridge.Bash":                spec.MacroV(bridge.ActionBash),`,
 		`"bridge.Carapace":            spec.MacroV(bridge.ActionCarapace),`,
 		`"bridge.CarapaceBin":         spec.MacroV(bridge.ActionCarapaceBin),`,
@@ -205,6 +206,7 @@ func macros() {
 	descriptions := map[string]string{
 		"bridge.Argcomplete":   "bridges https://github.com/kislyuk/argcomplete",
 		"bridge.ArgcompleteV1": "bridges https://github.com/kislyuk/argcomplete (v1)",
+		"bridge.Aws":           "bridges https://github.com/aws/aws-cli",
 		"bridge.Bash":          "bridges https://www.gnu.org/software/bash/",
 		"bridge.Carapace":      "bridges https://github.com/carapace-sh/carapace",
 		"bridge.CarapaceBin":   "bridges https://github.com/carapace-sh/carapace-bin",
