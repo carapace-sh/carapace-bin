@@ -8,6 +8,7 @@ import (
 var bookmarkCmd = &cobra.Command{
 	Use:   "bookmark",
 	Short: "Manage bookmarks [default alias: b]",
+	Aliases: []string{"b"},
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -9,6 +9,7 @@ import (
 var commitCmd = &cobra.Command{
 	Use:   "commit",
 	Short: "Update the description and create a new change on top [default alias: ci]",
+	Aliases: []string{"ci"},
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,6 +8,7 @@ import (
 var statusCmd = &cobra.Command{
 	Use:   "status",
 	Short: "Show high-level repo status [default alias: st]",
+	Aliases: []string{"st"},
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
