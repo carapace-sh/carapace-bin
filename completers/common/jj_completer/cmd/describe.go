@@ -7,10 +7,9 @@ import (
 )
 
 var describeCmd = &cobra.Command{
-	Use:     "describe [OPTIONS] [REVISION]",
-	Short:   "Update the change description or other metadata",
-	Aliases: []string{"desc"},
-	Run:     func(cmd *cobra.Command, args []string) {},
+	Use:   "describe [OPTIONS] [REVISION]",
+	Short: "Update the change description or other metadata",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

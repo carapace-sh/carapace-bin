@@ -1,10 +1,16 @@
 package cmd
 
 import (
+	"encoding/json"
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/carapace-sh/carapace/pkg/traverse"
+	"github.com/carapace-sh/carapace/third_party/golang.org/x/sys/execabs"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -47,5 +53,41 @@ func init() {
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
 		return action.ChdirF(traverse.Flag(rootCmd.Flag("repository")))
+	})
+
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		output, err := execabs.Command("jj", "config", "get", "aliases").Output()
+		if err != nil {
+			carapace.LOG.Println(err.Error())
+			return
+		}
+		s := string(output)
+		s = strings.TrimLeft(s, "{ ")
+		s = strings.TrimRight(s, " }\n")
+		for _, alias := range strings.Split(s, ", ") {
+			if name, value, ok := strings.Cut(alias, " = "); ok {
+				var args []string
+				if err := json.Unmarshal([]byte(value), &args); err != nil {
+					carapace.LOG.Println(err.Error())
+					continue
+				}
+
+				aliasCmd := &cobra.Command{
+					Use:                name,
+					Short:              shlex.Join(args),
+					GroupID:            "alias",
+					DisableFlagParsing: true,
+					Run:                func(cmd *cobra.Command, args []string) {},
+				}
+				cmd.Root().AddCommand(aliasCmd)
+
+				carapace.Gen(aliasCmd).PositionalAnyCompletion(
+					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+						c.Args = append(args, c.Args...)
+						return bridge.ActionCarapaceBin("jj").Invoke(c).ToA()
+					}),
+				)
+			}
+		}
 	})
 }
