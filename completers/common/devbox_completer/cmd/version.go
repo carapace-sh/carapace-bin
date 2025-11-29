@@ -13,6 +13,7 @@ var versionCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(versionCmd).Standalone()
-	versionCmd.Flags().BoolP("verbose", "v", false, "Verbose: displays additional version information")
+
+	versionCmd.Flags().BoolP("verbose", "v", false, "displays additional version information")
 	rootCmd.AddCommand(versionCmd)
 }

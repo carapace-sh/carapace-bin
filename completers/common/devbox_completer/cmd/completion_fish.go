@@ -13,6 +13,7 @@ var completion_fishCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(completion_fishCmd).Standalone()
+
 	completion_fishCmd.Flags().Bool("no-descriptions", false, "disable completion descriptions")
 	completionCmd.AddCommand(completion_fishCmd)
 }

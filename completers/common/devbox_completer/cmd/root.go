@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "devbox",
-	Short: "Instant, easy, predictable shells and containers",
+	Short: "Instant, easy, predictable development environments",
 	Long:  "https://www.jetpack.io/devbox/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -18,6 +18,11 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+
 	rootCmd.PersistentFlags().Bool("debug", false, "Show full stack traces on errors")
-	rootCmd.Flags().BoolP("help", "h", false, "help for devbox")
+	rootCmd.PersistentFlags().BoolP("quiet", "q", false, "suppresses logs")
+	rootCmd.PersistentFlags().String("trace", "", "write a trace to a file")
+	rootCmd.Flag("debug").Hidden = true
+	rootCmd.Flag("trace").NoOptDefVal = " "
+	rootCmd.Flag("trace").Hidden = true
 }

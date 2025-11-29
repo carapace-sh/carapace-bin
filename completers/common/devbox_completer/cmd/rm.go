@@ -8,16 +8,19 @@ import (
 )
 
 var rmCmd = &cobra.Command{
-	Use:   "rm",
+	Use:   "rm <pkg>...",
 	Short: "Remove a package from your devbox",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(rmCmd).Standalone()
+
 	rmCmd.Flags().StringP("config", "c", "", "path to directory containing a devbox.json config file")
+	rmCmd.Flags().String("environment", "", "environment to use, when supported (e.g.secrets support dev, prod, preview.)")
 	rootCmd.AddCommand(rmCmd)
 
+	// TODO environment
 	carapace.Gen(rmCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionDirectories(),
 	})

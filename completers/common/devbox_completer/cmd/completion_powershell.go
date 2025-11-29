@@ -13,6 +13,7 @@ var completion_powershellCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(completion_powershellCmd).Standalone()
+
 	completion_powershellCmd.Flags().Bool("no-descriptions", false, "disable completion descriptions")
 	completionCmd.AddCommand(completion_powershellCmd)
 }
