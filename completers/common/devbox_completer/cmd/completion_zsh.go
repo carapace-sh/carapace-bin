@@ -13,6 +13,7 @@ var completion_zshCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(completion_zshCmd).Standalone()
+
 	completion_zshCmd.Flags().Bool("no-descriptions", false, "disable completion descriptions")
 	completionCmd.AddCommand(completion_zshCmd)
 }

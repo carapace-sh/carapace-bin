@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var helpCmd = &cobra.Command{
-	Use:   "help [command]",
-	Short: "Help about any command",
+var auth_loginCmd = &cobra.Command{
+	Use:   "login",
+	Short: "Login to devbox",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(helpCmd).Standalone()
+	carapace.Gen(auth_loginCmd).Standalone()
 
-	rootCmd.AddCommand(helpCmd)
+	authCmd.AddCommand(auth_loginCmd)
 }
