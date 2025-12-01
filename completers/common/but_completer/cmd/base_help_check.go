@@ -7,7 +7,7 @@ import (
 
 var base_help_checkCmd = &cobra.Command{
 	Use:   "check",
-	Short: "Fetches remotes from the remote and checks the mergeability of the branches in the workspace",
+	Short: "Fetches from the remote and checks the mergeability of the branches in the workspace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

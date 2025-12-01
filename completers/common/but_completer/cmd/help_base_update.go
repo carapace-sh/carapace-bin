@@ -7,7 +7,7 @@ import (
 
 var help_base_updateCmd = &cobra.Command{
 	Use:   "update",
-	Short: "Updates the workspace (with all applied branches) to include the latest changes from the base branch",
+	Short: "Updates all applied branches to be up to date with the target branch",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

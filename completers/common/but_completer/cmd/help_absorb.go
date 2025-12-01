@@ -7,7 +7,7 @@ import (
 
 var help_absorbCmd = &cobra.Command{
 	Use:   "absorb",
-	Short: "",
+	Short: "Amends changes into the appropriate commits where they belong",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

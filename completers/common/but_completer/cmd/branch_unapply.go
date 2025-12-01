@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(branch_unapplyCmd).Standalone()
 
 	branch_unapplyCmd.Flags().BoolP("force", "f", false, "Force unapply without confirmation")
-	branch_unapplyCmd.Flags().BoolP("help", "h", false, "Print help")
+	branch_unapplyCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	branchCmd.AddCommand(branch_unapplyCmd)
 
 	carapace.Gen(branch_unapplyCmd).PositionalCompletion(

@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(restoreCmd).Standalone()
 
 	restoreCmd.Flags().BoolP("force", "f", false, "Skip confirmation prompt")
-	restoreCmd.Flags().BoolP("help", "h", false, "Print help")
+	restoreCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(restoreCmd)
 
 	carapace.Gen(restoreCmd).PositionalCompletion(

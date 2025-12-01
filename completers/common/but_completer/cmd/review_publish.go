@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(review_publishCmd).Standalone()
 
 	review_publishCmd.Flags().StringP("branch", "b", "", "Publish reviews only for the specified branch")
-	review_publishCmd.Flags().BoolP("default", "t", false, "Whether to use just the branch name as the review title, without opening an editor")
+	review_publishCmd.Flags().BoolP("default", "t", false, "Use the default content for the review title and description, skipping any prompts. If the review contains only a single commit, the commit message will be used for the review title and description")
 	review_publishCmd.Flags().BoolP("help", "h", false, "Print help")
 	review_publishCmd.Flags().BoolP("run-hooks", "r", false, "Run pre-push hooks (defaults to true)")
 	review_publishCmd.Flags().BoolP("skip-force-push-protection", "s", false, "Skip force push protection checks")

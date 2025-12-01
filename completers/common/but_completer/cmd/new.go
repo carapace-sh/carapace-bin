@@ -16,7 +16,7 @@ var newCmd = &cobra.Command{
 func init() {
 	carapace.Gen(newCmd).Standalone()
 
-	newCmd.Flags().BoolP("help", "h", false, "Print help")
+	newCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(newCmd).PositionalCompletion(

@@ -7,7 +7,7 @@ import (
 
 var help_reviewCmd = &cobra.Command{
 	Use:   "review",
-	Short: "Command for creating and publishing code reviews to a forge",
+	Short: "Commands for creating and publishing code reviews to a forge",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

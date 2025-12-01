@@ -7,7 +7,7 @@ import (
 
 var help_markCmd = &cobra.Command{
 	Use:   "mark",
-	Short: "Creates or removes a rule for auto-assigning or auto-comitting",
+	Short: "Mark a commit or branch for auto-assign or auto-commit",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

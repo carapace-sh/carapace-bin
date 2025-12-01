@@ -8,7 +8,7 @@ import (
 
 var pushCmd = &cobra.Command{
 	Use:     "push BRANCH_ID",
-	Short:   "Push a branch/stack to remote",
+	Short:   "Push changes in a branch to remote",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "branching and committing",
 }
@@ -16,7 +16,7 @@ var pushCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pushCmd).Standalone()
 
-	pushCmd.Flags().BoolP("help", "h", false, "Print help")
+	pushCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	pushCmd.Flags().BoolP("run-hooks", "r", false, "Run pre-push hooks")
 	pushCmd.Flags().BoolP("skip-force-push-protection", "s", false, "Skip force push protection checks")
 	pushCmd.Flags().BoolP("with-force", "f", false, "Force push even if it's not fast-forward")

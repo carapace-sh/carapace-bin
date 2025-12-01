@@ -7,13 +7,13 @@ import (
 
 var reviewCmd = &cobra.Command{
 	Use:   "review",
-	Short: "Command for creating and publishing code reviews to a forge",
+	Short: "Commands for creating and publishing code reviews to a forge",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(reviewCmd).Standalone()
 
-	reviewCmd.Flags().BoolP("help", "h", false, "Print help")
+	reviewCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(reviewCmd)
 }

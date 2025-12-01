@@ -1,24 +1,45 @@
 package but
 
 import (
-	"strings"
+	"encoding/json"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 )
+
+type branchList struct {
+	AppliedStacks []struct {
+		ID    string `json:"id"`
+		Heads []struct {
+			Name         string `json:"name"`
+			Reviews      []any  `json:"reviews"`
+			LastCommitAt int64  `json:"lastCommitAt"`
+			CommitsAhead any    `json:"commitsAhead"`
+			LastAuthor   struct {
+				Name  string `json:"name"`
+				Email string `json:"email"`
+			} `json:"lastAuthor"`
+			MergesCleanly bool `json:"mergesCleanly"`
+		} `json:"heads"`
+	} `json:"appliedStacks"`
+	Branches []any `json:"branches"` // TODO what are these?
+}
 
 // ActionLocalBranches completes local branches
 //
 //	branch (branch description)
 //	another (another description)
 func ActionLocalBranches() carapace.Action {
-	return carapace.ActionExecCommand("but", "branch", "list", "--local")(func(output []byte) carapace.Action {
-		lines := strings.Split(string(output), "\n")
-		branches := make([]string, 0)
+	return carapace.ActionExecCommand("but", "branch", "list", "--local", "--json")(func(output []byte) carapace.Action {
+		var list branchList
+		if err := json.Unmarshal(output, &list); err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
 
-		for _, line := range lines { // TODO branch list has no json output yet
-			if fields := strings.Fields(line); len(fields) == 2 {
-				branches = append(branches, fields[1])
+		branches := make([]string, 0)
+		for _, appliedStack := range list.AppliedStacks {
+			for _, head := range appliedStack.Heads { // TODO all heads correct?
+				branches = append(branches, head.Name)
 			}
 		}
 		// but branches are git branches and lack context, so just use those from git

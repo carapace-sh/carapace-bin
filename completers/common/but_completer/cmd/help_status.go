@@ -7,7 +7,7 @@ import (
 
 var help_statusCmd = &cobra.Command{
 	Use:   "status",
-	Short: "Overview of the uncommitted changes in the repository",
+	Short: "Overview of the project workspace state",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

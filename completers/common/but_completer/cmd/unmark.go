@@ -7,7 +7,7 @@ import (
 
 var unmarkCmd = &cobra.Command{
 	Use:     "unmark",
-	Short:   "Removes all marks from the workspace",
+	Short:   "Removes any marks from the workspace",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "branching and committing",
 }
@@ -15,6 +15,6 @@ var unmarkCmd = &cobra.Command{
 func init() {
 	carapace.Gen(unmarkCmd).Standalone()
 
-	unmarkCmd.Flags().BoolP("help", "h", false, "Print help")
+	unmarkCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(unmarkCmd)
 }

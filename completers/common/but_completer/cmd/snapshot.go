@@ -15,7 +15,7 @@ var snapshotCmd = &cobra.Command{
 func init() {
 	carapace.Gen(snapshotCmd).Standalone()
 
-	snapshotCmd.Flags().BoolP("help", "h", false, "Print help")
+	snapshotCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	snapshotCmd.Flags().StringP("message", "m", "", "Message to include with the snapshot")
 	rootCmd.AddCommand(snapshotCmd)
 }
