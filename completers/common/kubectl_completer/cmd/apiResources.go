@@ -20,14 +20,15 @@ func init() {
 	apiResourcesCmd.Flags().StringSlice("categories", nil, "Limit to resources that belong to the specified categories.")
 	apiResourcesCmd.Flags().Bool("namespaced", false, "If false, non-namespaced resources will be returned, otherwise returning namespaced resources by default.")
 	apiResourcesCmd.Flags().Bool("no-headers", false, "When using the default or custom-column output format, don't print headers (default print headers).")
-	apiResourcesCmd.Flags().StringP("output", "o", "", "Output format. One of: (wide, name).")
+	apiResourcesCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, wide).")
+	apiResourcesCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	apiResourcesCmd.Flags().String("sort-by", "", "If non-empty, sort list of resources using specified field. The field can be either 'name' or 'kind'.")
 	apiResourcesCmd.Flags().StringSlice("verbs", nil, "Limit to resources that support the specified verbs.")
 	rootCmd.AddCommand(apiResourcesCmd)
 
 	carapace.Gen(apiResourcesCmd).FlagCompletion(carapace.ActionMap{
 		"api-group": kubectl.ActionApiGroups(),
-		"output":    carapace.ActionValues("wide", "name"),
+		"output":    carapace.ActionValues("json", "yaml", "name", "wide"),
 		"sort-by":   carapace.ActionValues("name", "kind"),
 		"verbs":     kubectl.ActionResourceVerbs(),
 	})
