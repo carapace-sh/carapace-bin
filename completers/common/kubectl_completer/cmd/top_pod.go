@@ -21,6 +21,7 @@ func init() {
 	top_podCmd.Flags().String("field-selector", "", "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.")
 	top_podCmd.Flags().Bool("no-headers", false, "If present, print output without headers.")
 	top_podCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.")
+	top_podCmd.Flags().Bool("show-swap", false, "Print pod resources related to swap memory.")
 	top_podCmd.Flags().String("sort-by", "", "If non-empty, sort pods list using specified field. The field can be either 'cpu' or 'memory'.")
 	top_podCmd.Flags().Bool("sum", false, "Print the sum of the resource usage")
 	top_podCmd.Flags().Bool("use-protocol-buffers", false, "Enables using protocol-buffers to access Metrics API.")

@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(explainCmd).Standalone()
 
 	explainCmd.Flags().String("api-version", "", "Get different explanations for particular API version (API group/version)")
-	explainCmd.Flags().String("output", "", "Format in which to render the schema (plaintext, plaintext-openapiv2)")
+	explainCmd.Flags().StringP("output", "o", "", "Format in which to render the schema (plaintext, plaintext-openapiv2)")
 	explainCmd.Flags().Bool("recursive", false, "Print the fields of fields (Currently only 1 level deep)")
 	rootCmd.AddCommand(explainCmd)
 
