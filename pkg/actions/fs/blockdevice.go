@@ -1,7 +1,6 @@
 package fs
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"github.com/carapace-sh/carapace"
@@ -18,18 +17,6 @@ type blockdevice struct {
 	Size         string
 	Type         string
 	Uuid         string
-}
-
-func actionBlockdevices(f func(blockdevices []blockdevice) carapace.Action) carapace.Action {
-	return carapace.ActionExecCommand("lsblk", "--json", "-o", "KNAME,LABEL,PARTLABEL,PARTUUID,PATH,SIZE,PARTTYPENAME,TYPE,UUID")(func(output []byte) carapace.Action {
-		var b struct {
-			Blockdevices []blockdevice
-		}
-		if err := json.Unmarshal(output, &b); err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-		return f(b.Blockdevices)
-	})
 }
 
 // ActionBlockDevices completes block devices
