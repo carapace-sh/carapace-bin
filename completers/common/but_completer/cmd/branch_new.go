@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(branch_newCmd).Standalone()
 
 	branch_newCmd.Flags().StringP("anchor", "a", "", "Anchor point - either a commit ID or branch name to create the new branch from")
-	branch_newCmd.Flags().BoolP("help", "h", false, "Print help")
+	branch_newCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	branchCmd.AddCommand(branch_newCmd)
 
 	carapace.Gen(branch_newCmd).FlagCompletion(carapace.ActionMap{

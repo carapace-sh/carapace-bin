@@ -15,6 +15,6 @@ var branchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(branchCmd).Standalone()
 
-	branchCmd.Flags().BoolP("help", "h", false, "Print help")
+	branchCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(branchCmd)
 }

@@ -15,6 +15,6 @@ var undoCmd = &cobra.Command{
 func init() {
 	carapace.Gen(undoCmd).Standalone()
 
-	undoCmd.Flags().BoolP("help", "h", false, "Print help")
+	undoCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(undoCmd)
 }

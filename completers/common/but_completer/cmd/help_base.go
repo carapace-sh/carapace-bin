@@ -7,7 +7,7 @@ import (
 
 var help_baseCmd = &cobra.Command{
 	Use:   "base",
-	Short: "Commands for managing the base",
+	Short: "Commands for managing the base target branch",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

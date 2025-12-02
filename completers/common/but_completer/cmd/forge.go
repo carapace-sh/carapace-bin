@@ -14,6 +14,6 @@ var forgeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(forgeCmd).Standalone()
 
-	forgeCmd.Flags().BoolP("help", "h", false, "Print help")
+	forgeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(forgeCmd)
 }

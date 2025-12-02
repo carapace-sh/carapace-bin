@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(branch_deleteCmd).Standalone()
 
 	branch_deleteCmd.Flags().BoolP("force", "f", false, "Force deletion without confirmation")
-	branch_deleteCmd.Flags().BoolP("help", "h", false, "Print help")
+	branch_deleteCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	branchCmd.AddCommand(branch_deleteCmd)
 
 	carapace.Gen(branch_deleteCmd).PositionalCompletion(

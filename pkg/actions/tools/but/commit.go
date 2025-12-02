@@ -2,24 +2,37 @@ package but
 
 import (
 	"encoding/json"
+	"time"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
 )
 
-type logEntry struct {
-	BranchDetails []struct {
-		Commits []struct {
-			ID           string `json:"id"`
-			Message      string `json:"message"`
-			HasConflicts bool   `json:"hasConflicts"`
-			State        struct {
-				Type string `json:"type"`
-			} `json:"state"`
-			CreatedAt int64 `json:"createdAt"`
-		} `json:"commits"`
-	} `json:"branchDetails"`
+type butCommit struct {
+	CliID       string    `json:"cliId"`
+	CommitID    string    `json:"commitId"`
+	CreatedAt   time.Time `json:"createdAt"`
+	Message     string    `json:"message"`
+	AuthorName  string    `json:"authorName"`
+	AuthorEmail string    `json:"authorEmail"`
+	Conflicted  bool      `json:"conflicted"`
+	ReviewID    any       `json:"reviewId"`
+	Changes     any       `json:"changes"`
+}
+
+type butStatus struct {
+	Stacks []struct {
+		Branches []struct {
+			Commits []butCommit `json:"commits"`
+		} `json:"branches"`
+	} `json:"stacks"`
+	MergeBase     butCommit `json:"mergeBase"`
+	UpstreamState struct {
+		Behind       int       `json:"behind"`
+		LatestCommit butCommit `json:"latestCommit"`
+		LastFetched  any       `json:"lastFetched"`
+	} `json:"upstreamState"`
 }
 
 // ActionCommits completes commits
@@ -27,17 +40,17 @@ type logEntry struct {
 //	36ae34b (some commit)
 //	e1b2490 (another commit)
 func ActionCommits() carapace.Action {
-	return carapace.ActionExecCommand("but", "--json", "log")(func(output []byte) carapace.Action {
-		var entries []logEntry
-		if err := json.Unmarshal(output, &entries); err != nil {
+	return carapace.ActionExecCommand("but", "status", "--json")(func(output []byte) carapace.Action {
+		var status butStatus
+		if err := json.Unmarshal(output, &status); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 
 		vals := make([]string, 0)
-		for _, entry := range entries {
-			for _, branch := range entry.BranchDetails {
+		for _, stack := range status.Stacks {
+			for _, branch := range stack.Branches {
 				for _, commit := range branch.Commits {
-					vals = append(vals, commit.ID[:7], commit.Message, styles.Git.Commit)
+					vals = append(vals, commit.CommitID[:7], commit.Message, styles.Git.Commit)
 				}
 			}
 		}

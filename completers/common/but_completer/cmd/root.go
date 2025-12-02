@@ -29,12 +29,19 @@ func init() {
 	)
 
 	rootCmd.Flags().StringP("current-dir", "C", "", "Run as if gitbutler-cli was started in PATH instead of the current working directory")
-	rootCmd.Flags().BoolP("help", "h", false, "Print help")
+	rootCmd.Flags().StringP("format", "f", "", "Explicitly control how output should be formatted")
+	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.PersistentFlags().BoolP("json", "j", false, "Whether to use JSON output format")
+	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"current-dir": carapace.ActionDirectories(),
+		"format":      carapace.ActionValues("human", "shell", "json", "none"),
 	})
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, _ *pflag.Flag, action carapace.Action) carapace.Action {
 		return action.ChdirF(traverse.Flag(cmd.Flag("current-dir")))

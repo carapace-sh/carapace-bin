@@ -7,7 +7,7 @@ import (
 
 var help_unmarkCmd = &cobra.Command{
 	Use:   "unmark",
-	Short: "Removes all marks from the workspace",
+	Short: "Removes any marks from the workspace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
