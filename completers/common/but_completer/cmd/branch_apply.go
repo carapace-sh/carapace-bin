@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +19,9 @@ func init() {
 	branchCmd.AddCommand(branch_applyCmd)
 
 	carapace.Gen(branch_applyCmd).PositionalCompletion(
-		but.ActionLocalBranches(),
+		carapace.Batch(
+			git.ActionLocalBranches(),
+			git.ActionRemoteBranches(""),
+		).ToA(),
 	)
 }
