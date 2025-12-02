@@ -6,9 +6,10 @@ import (
 )
 
 var reviewCmd = &cobra.Command{
-	Use:   "review",
-	Short: "Commands for creating and publishing code reviews to a forge",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "review",
+	Short:   "Commands for creating and publishing code reviews to a forge",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "server interactions",
 }
 
 func init() {
