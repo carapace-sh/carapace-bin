@@ -6,9 +6,10 @@ import (
 )
 
 var forgeCmd = &cobra.Command{
-	Use:   "forge",
-	Short: "Commands for interacting with forges like GitHub, GitLab (coming soon), etc",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "forge",
+	Short:   "Commands for interacting with forges like GitHub, GitLab (coming soon), etc",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "server interactions",
 }
 
 func init() {
