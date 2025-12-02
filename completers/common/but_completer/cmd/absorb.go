@@ -21,7 +21,7 @@ func init() {
 	carapace.Gen(absorbCmd).PositionalCompletion(
 		carapace.Batch(
 			but.ActionLocalBranches(),
-			// TODO change ids
+			but.ActionCliIds(but.CliIdsOpts{}.Default()), // TODO which change ids?
 		).ToA(),
 	)
 }
