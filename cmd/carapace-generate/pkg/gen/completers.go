@@ -3,6 +3,7 @@ package gen
 import (
 	"fmt"
 	"maps"
+	"net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -14,6 +15,7 @@ type Completer struct {
 	Description string
 	Group       string
 	Package     string
+	Variant     url.URL // TODO unique identifier (repo/website?)
 }
 
 func Completers(dir, goos string) (map[string]Completer, error) {
@@ -34,6 +36,7 @@ func Completers(dir, goos string) (map[string]Completer, error) {
 		}
 		maps.Copy(completers, groupCompleters)
 	}
+	// TODO map value should be a list of completers (variants)
 	return completers, nil
 }
 
