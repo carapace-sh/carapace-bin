@@ -11,6 +11,12 @@ import (
 	"strings"
 )
 
+type Completers map[string]Completer
+
+func (c Completers) Format() string {
+	return ""
+}
+
 type Completer struct {
 	Name        string
 	Description string
@@ -19,7 +25,7 @@ type Completer struct {
 	// Variant     url.URL // TODO unique identifier (repo/website?)
 }
 
-func Completers(dir, goos string) (map[string]Completer, error) {
+func ReadCompleters(dir, goos string) (Completers, error) {
 	// TODO shell specific completers
 	// TODO distro specific completers (arch,ubuntu,...)
 	// TODO variants (tldr like tealdear)

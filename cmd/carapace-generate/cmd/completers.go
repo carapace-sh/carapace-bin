@@ -14,9 +14,14 @@ var completersCmd = &cobra.Command{
 	Short: "",
 	Args:  cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		completers, err := gen.Completers(args[0], args[1])
+		completers, err := gen.ReadCompleters(args[0], args[1])
 		if err != nil {
 			return err
+		}
+
+		if cmd.Flag("code").Changed {
+			fmt.Println(completers.Format())
+			return nil
 		}
 
 		m, err := json.Marshal(completers)
@@ -32,6 +37,7 @@ var completersCmd = &cobra.Command{
 func init() {
 	carapace.Gen(completersCmd).Standalone()
 
+	rootCmd.Flags().Bool("code", false, "output go code")
 	rootCmd.AddCommand(completersCmd)
 
 	carapace.Gen(completersCmd).PositionalCompletion(
