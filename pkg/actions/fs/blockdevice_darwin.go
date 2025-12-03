@@ -5,6 +5,39 @@ import (
 	"github.com/micromdm/plist"
 )
 
+type darwinDeviceList struct {
+	Internal []darwinDevice
+	External []darwinDevice
+}
+
+func (l darwinDeviceList) ToBlockdevices() []blockdevice {
+	blockdevices := make([]blockdevice, 0)
+
+	for _, device := range append(l.Internal, l.External...) {
+		blockdevices = append(blockdevices, blockdevice{
+			Name:  device.DeviceIdentifier,
+			Label: device.MediaName,
+			// TODO Size         string
+			Type: "disk", // TODO
+			// Uuid         string
+		})
+
+		for _, partition := range device.Partitions {
+
+			blockdevices = append(blockdevices, blockdevice{
+				Name:          partition.DeviceIdentifier,
+				Label:         partition.VolumeName,
+				PartitionType: partition.PartitionType,
+				Path:          partition.MountPoint,
+				// TODO Size         string
+				Type: "part", // TODO
+				// Uuid         string
+			})
+		}
+	}
+	return blockdevices
+}
+
 type darwinDevice struct {
 	DeviceIdentifier string            `plist:"DeviceIdentifier"`
 	DeviceNode       string            `plist:"DeviceNode"`
@@ -23,29 +56,12 @@ type darwinPartition struct {
 	VolumeName       string `plist:"VolumeName"`
 }
 
-func (d darwinPartition) ToBlockdevice() blockdevice {
-	return blockdevice{
-		Name:          d.DeviceIdentifier,
-		Label:         d.VolumeName,
-		PartitionType: d.PartitionType,
-		Path:          d.MountPoint,
-		// TODO Size         string
-		Type: "part", // TODO
-		// Uuid         string
-	}
-}
-
 func actionBlockdevices(f func(blockdevices []blockdevice) carapace.Action) carapace.Action {
 	return carapace.ActionExecCommand("diskutil", "list", "-plist")(func(output []byte) carapace.Action {
-		var deviceList struct {
-			Internal []darwinDevice
-			External []darwinDevice
-		}
-
+		var deviceList darwinDeviceList
 		if err := plist.Unmarshal(output, &deviceList); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
-
-		return carapace.ActionValues("TODO")
+		return f(deviceList.ToBlockdevices())
 	})
 }
