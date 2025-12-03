@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Internal</key>
+    <array>
+        <dict>
+            <key>DeviceIdentifier</key>
+            <string>disk0</string>
+            <key>DeviceNode</key>
+            <string>/dev/disk0</string>
+            <key>DeviceSize</key>
+            <integer>500107862016</integer>
+            <key>MediaName</key>
+            <string>APPLE SSD SM0512G</string>
+            <key>MediaType</key>
+            <string>Generic</string>
+            <key>Partitions</key>
+            <array>
+                <dict>
+                    <key>DeviceIdentifier</key>
+                    <string>disk0s1</string>
+                    <key>DeviceNode</key>
+                    <string>/dev/disk0s1</string>
+                    <key>DeviceSize</key>
+                    <integer>2097152</integer>
+                    <key>MountPoint</key>
+                    <string>/</string>
+                    <key>PartitionType</key>
+                    <string>Apple_HFS</string>
+                    <key>VolumeName</key>
+                    <string>Macintosh HD</string>
+                </dict>
+                <dict>
+                    <key>DeviceIdentifier</key>
+                    <string>disk0s2</string>
+                    <key>DeviceNode</key>
+                    <string>/dev/disk0s2</string>
+                    <key>DeviceSize</key>
+                    <integer>104857600</integer>
+                    <key>MountPoint</key>
+                    <string>/private/var/vm</string>
+                    <key>PartitionType</key>
+                    <string>Apple_HFS</string>
+                    <key>VolumeName</key>
+                    <string>VM</string>
+                </dict>
+            </array>
+        </dict>
+    </array>
+    <key>External</key>
+    <array>
+        <dict>
+            <key>DeviceIdentifier</key>
+            <string>disk1</string>
+            <key>DeviceNode</key>
+            <string>/dev/disk1</string>
+            <key>DeviceSize</key>
+            <integer>1000204886016</integer>
+            <key>MediaName</key>
+            <string>USB Drive</string>
+            <key>MediaType</key>
+            <string>Generic</string>
+            <key>Partitions</key>
+            <array>
+                <dict>
+                    <key>DeviceIdentifier</key>
+                    <string>disk1s1</string>
+                    <key>DeviceNode</key>
+                    <string>/dev/disk1s1</string>
+                    <key>DeviceSize</key>
+                    <integer>1000204886016</integer>
+                    <key>MountPoint</key>
+                    <string>/Volumes/USB Drive</string>
+                    <key>PartitionType</key>
+                    <string>Apple_HFS</string>
+                    <key>VolumeName</key>
+                    <string>USB Drive</string>
+                </dict>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>
