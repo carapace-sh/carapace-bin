@@ -1,5 +1,6 @@
 #!/bin/sh
+set -e
 
-scriptdir=$(dirname $(readlink -f $0))
+amount=$(carapace --list | jq '[ .[][] | select(.group != "bridge" and .group != "user" and .group != "system") ] | length')
 
-curl "https://img.shields.io/badge/completers-$(ls $scriptdir/../completers/* | wc -l)-orange"
+curl "https://img.shields.io/badge/completers-${amount}-orange"

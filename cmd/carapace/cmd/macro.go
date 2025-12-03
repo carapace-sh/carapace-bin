@@ -57,7 +57,7 @@ func init() {
 					return carapace.ActionValuesDescribed(vals...).Invoke(carapace.Context{}).ToMultiPartsA(".")
 				})
 			default:
-				if m, ok := actions.MacroMap[c.Parts[0]]; ok {
+				if m, ok := actions.Macros[c.Parts[0]]; ok {
 					return carapace.ActionValues(m.Signature() + ")")
 				}
 				return carapace.ActionValues(")")
@@ -75,7 +75,7 @@ func init() {
 func printMacros() {
 	maxlen := 0
 	names := make([]string, 0)
-	for name := range actions.MacroMap {
+	for name := range actions.Macros {
 		names = append(names, name)
 		if len := len(name); len > maxlen {
 			maxlen = len
@@ -84,12 +84,17 @@ func printMacros() {
 
 	sort.Strings(names)
 	for _, name := range names {
-		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, actions.MacroDescriptions[name])
+		description := ""
+		if m, ok := actions.Macros[name]; ok {
+			description = m.Description
+		}
+		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", name, description)
 	}
 }
 
 func printMacro(name string) {
-	if m, ok := actions.MacroMap[name]; ok {
+	// TODO implement this in spec.Macro
+	if m, ok := actions.Macros[name]; ok {
 		path := strings.Replace(name, ".", "/", -1)
 		signature := ""
 		if s := m.Signature(); s != "" {
@@ -99,6 +104,6 @@ func printMacro(name string) {
 		fmt.Printf(`signature:   $carapace.%v%v
 description: %v
 reference:   https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/%v#Action%v
-`, name, signature, actions.MacroDescriptions[name], filepath.Dir(path), filepath.Base(path))
+`, name, signature, m.Description, filepath.Dir(path), filepath.Base(path))
 	}
 }

@@ -62,17 +62,13 @@ type fnmVersion struct {
 	aliases []string
 }
 
-var (
-	// line format: https://github.com/Schniz/fnm/blob/master/src/commands/ls_local.rs#L38
-	versionRe = regexp.MustCompile(`\*\s(?P<version>[^\s]+)\s?(?P<aliases>.*)`)
-)
-
 func withLocalFnmVersions(callback func([]fnmVersion) carapace.Action) carapace.Action {
 	return carapace.ActionExecCommand("fnm", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
+		// line format: https://github.com/Schniz/fnm/blob/master/src/commands/ls_local.rs#L38
+		versionRe := regexp.MustCompile(`\*\s(?P<version>[^\s]+)\s?(?P<aliases>.*)`)
 
 		var versions []fnmVersion
-
 		for _, line := range lines {
 			matches := versionRe.FindStringSubmatch(line)
 

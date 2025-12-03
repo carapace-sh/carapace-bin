@@ -2,7 +2,7 @@ package env
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
+	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/env"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
@@ -60,7 +60,7 @@ func init() {
 				"CARAPACE_EXCLUDES": carapace.Batch(
 					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 						c.Setenv(env.CARAPACE_EXCLUDES, "")
-						return action.ActionCompleters(action.CompleterOpts{Internal: true}).Invoke(c).ToA()
+						return carapacebin.ActionCompleters().Invoke(c).ToA()
 					}),
 					carapace.ActionValuesDescribed("*", "exclude all"),
 				).ToA().UniqueList(","),

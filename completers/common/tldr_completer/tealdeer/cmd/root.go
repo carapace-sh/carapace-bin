@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/tealdeer_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/completers/common/tldr_completer/tealdeer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
@@ -10,7 +10,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "tealdeer",
+	Use:   "tldr",
 	Short: "A fast TLDR client",
 	Long:  "https://github.com/dbrgn/tealdeer",
 	Run:   func(cmd *cobra.Command, args []string) {},
