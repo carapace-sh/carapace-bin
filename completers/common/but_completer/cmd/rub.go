@@ -20,7 +20,13 @@ func init() {
 	rootCmd.AddCommand(rubCmd)
 
 	carapace.Gen(rubCmd).PositionalCompletion(
-		but.ActionLocalBranches(),
-		but.ActionLocalBranches().FilterArgs(),
+		carapace.Batch(
+			but.ActionCliIds(but.CliIdsOpts{}.Default()),
+			but.ActionLocalBranches(),
+		).ToA(),
+		carapace.Batch(
+			but.ActionCliIds(but.CliIdsOpts{Branches: true, Stacks: true}),
+			but.ActionLocalBranches(),
+		).ToA().FilterArgs(),
 	)
 }
