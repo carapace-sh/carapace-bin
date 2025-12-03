@@ -10,7 +10,7 @@ import (
 
 // ActionSigningKeys completes signing keys based on the user's configuration
 func ActionSigningKeys() carapace.Action {
-	return carapace.ActionExecCommand("jj", "config", "get", "signing.backend")(func(output []byte) carapace.Action {
+	return actionExecJJ("config", "get", "signing.backend")(func(output []byte) carapace.Action {
 		backend := strings.TrimSpace(string(output))
 
 		if backend == "ssh" {

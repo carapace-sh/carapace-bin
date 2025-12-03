@@ -14,7 +14,7 @@ import (
 //	master (qvlkomxp 9a2e553b (empty) Merge pull request #939 from rsteube/docker-update-...)
 //	mdbook-linkcheck (numonpmw ad5c8efd mdbook: enable web-links)
 func ActionLocalBookmarks() carapace.Action {
-	return carapace.ActionExecCommand("jj", "bookmark", "list")(func(output []byte) carapace.Action {
+	return actionExecJJ("bookmark", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		rLocal := regexp.MustCompile(`^(?P<bookmark>[^@: ]+): (?P<changeid>[^ ]+) (?P<commitid>[^ ]+) (?P<description>.*)$`)
 
@@ -33,7 +33,7 @@ func ActionLocalBookmarks() carapace.Action {
 //	master@git (qvlkomxp 9a2e553b (empty) Merge pull request #939 from rsteube/docker-update-...)
 //	master@origin (qvlkomxp 9a2e553b (empty) Merge pull request #939 from rsteube/docker-update-...)
 func ActionRemoteBookmarks(remote string) carapace.Action {
-	return carapace.ActionExecCommand("jj", "bookmark", "list", "--all")(func(output []byte) carapace.Action {
+	return actionExecJJ("bookmark", "list", "--all")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		rLocal := regexp.MustCompile(`^(?P<bookmark>[^@: ]+): (?P<changeid>[^ ]+) (?P<commitid>[^ ]+) (?P<description>.*)$`)
 		rRemote := regexp.MustCompile(`^(?P<bookmark>[^@: ]+)@(?P<remote>[^: ]+): (?P<changeid>[^ ]+) (?P<commitid>[^ ]+) (?P<description>.*)$`)

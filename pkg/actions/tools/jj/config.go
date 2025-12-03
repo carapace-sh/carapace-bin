@@ -25,7 +25,7 @@ func actionConfigs(includeDefaults bool) carapace.Action {
 		if includeDefaults {
 			args = append(args, "--include-defaults")
 		}
-		return carapace.ActionExecCommand("jj", args...)(func(output []byte) carapace.Action {
+		return actionExecJJ(args...)(func(output []byte) carapace.Action {
 			var config map[string]any
 			if err := toml.Unmarshal(output, &config); err != nil {
 				return carapace.ActionMessage(err.Error())

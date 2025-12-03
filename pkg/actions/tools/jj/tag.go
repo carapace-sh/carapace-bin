@@ -12,7 +12,7 @@ import (
 //	v0.0.4 (added prefix to functions)
 //	v0.0.5 (fish: fix test)
 func ActionTags() carapace.Action {
-	return carapace.ActionExecCommand("jj", "log", "--no-graph", "--revisions", "tags()", "--template", `tags ++ "\t" ++ description.first_line() ++ "\n"`)(func(output []byte) carapace.Action {
+	return actionExecJJ("log", "--no-graph", "--revisions", "tags()", "--template", `tags ++ "\t" ++ description.first_line() ++ "\n"`)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
 		vals := make([]string, 0)

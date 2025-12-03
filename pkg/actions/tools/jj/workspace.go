@@ -11,7 +11,7 @@ import (
 //	default (qzzmpvmx 2ceef6bf (no description set)
 //	another (oxtpukyp 00a745c4 (empty) (no description set))
 func ActionWorkspaces() carapace.Action {
-	return carapace.ActionExecCommand("jj", "workspace", "list")(func(output []byte) carapace.Action {
+	return actionExecJJ("workspace", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
 		vals := make([]string, 0)
