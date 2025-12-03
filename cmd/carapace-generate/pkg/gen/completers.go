@@ -18,6 +18,8 @@ type Completer struct {
 
 func Completers(dir, goos string) (map[string]Completer, error) {
 	// TODO shell specific completers
+	// TODO distro specific completers (arch,ubuntu,...)
+	// TODO variants (tldr like tealdear)
 	groups := map[string][]string{
 		"linux":   {"common", "unix", "linux"},
 		"darwin":  {"common", "unix", "darwin"},
