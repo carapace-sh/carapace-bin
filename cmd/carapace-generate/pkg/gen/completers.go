@@ -1,10 +1,11 @@
 package gen
 
 import (
+	"encoding/json"
 	"fmt"
 	"maps"
-	"net/url"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -15,7 +16,7 @@ type Completer struct {
 	Description string
 	Group       string
 	Package     string
-	Variant     url.URL // TODO unique identifier (repo/website?)
+	// Variant     url.URL // TODO unique identifier (repo/website?)
 }
 
 func Completers(dir, goos string) (map[string]Completer, error) {
@@ -41,8 +42,12 @@ func Completers(dir, goos string) (map[string]Completer, error) {
 }
 
 func readCompleters(dir, group string) (map[string]Completer, error) {
-	completers := make(map[string]Completer)
+	prefix, err := packagePrefix(dir)
+	if err != nil {
+		return nil, err
+	}
 
+	completers := make(map[string]Completer)
 	if files, err := os.ReadDir(filepath.Join(dir, group)); err == nil {
 		for _, file := range files {
 			if file.IsDir() && strings.HasSuffix(file.Name(), "_completer") {
@@ -55,6 +60,7 @@ func readCompleters(dir, group string) (map[string]Completer, error) {
 					Name:        name,
 					Description: description,
 					Group:       group,
+					Package:     filepath.Join(prefix, group, file.Name(), "cmd"),
 					// TODO package
 				}
 			}
@@ -76,4 +82,26 @@ func readDescription(root, goos, completer string) (string, error) {
 		}
 	}
 	return "", nil // TODO error?
+}
+
+func packagePrefix(dir string) (string, error) {
+	content, err := exec.Command("go", "mod", "edit", "-json").Output()
+	if err != nil {
+		return "", err
+	}
+
+	var gomod struct {
+		Module struct {
+			Path string
+		}
+	}
+	if err := json.Unmarshal(content, &gomod); err != nil {
+		return "", err
+	}
+
+	dir = filepath.Dir(dir)
+	if dir == "." {
+		dir = ""
+	}
+	return gomod.Module.Path + "/" + filepath.ToSlash(dir), nil
 }
