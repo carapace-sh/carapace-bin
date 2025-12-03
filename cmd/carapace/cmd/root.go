@@ -1,7 +1,5 @@
 package cmd
 
-//go:generate go run ../../carapace-generate/gen.go
-
 import (
 	"fmt"
 	"os"
@@ -60,6 +58,9 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
 		switch args[0] {
+		case "--choice":
+			choiceCmd.SetArgs(args[1:])
+			choiceCmd.Execute()
 		case "--clear-cache":
 			clearCacheCmd.SetArgs(args[1:])
 			clearCacheCmd.Execute()
@@ -189,6 +190,7 @@ func Execute(version string) error {
 }
 
 func init() {
+	rootCmd.Flags().Bool("choice", false, "list or edit choices")
 	rootCmd.Flags().Bool("clear-cache", false, "clear caches")
 	rootCmd.Flags().Bool("codegen", false, "generate code for spec file")
 	rootCmd.Flags().Bool("condition", false, "list or execute condition")
@@ -205,6 +207,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
 
 	rootCmd.MarkFlagsMutuallyExclusive(
+		"choice",
 		"clear-cache",
 		"codegen",
 		"condition",
@@ -228,7 +231,7 @@ func init() {
 				cmd.Flags().AddFlagSet(rootCmd.Flags())
 				return carapace.ActionExecute(cmd)
 			}
-			return action.ActionCompleters(action.CompleterOpts{}.Default())
+			return action.ActionCompleters()
 		}),
 	)
 
@@ -238,6 +241,8 @@ func init() {
 				return carapace.ActionExecute(invokeCmd)
 			}
 			switch c.Args[0] {
+			case "--choice":
+				return carapace.ActionExecute(choiceCmd).Shift(1)
 			case "--clear-cache":
 				return carapace.ActionExecute(clearCacheCmd).Shift(1)
 			case "--codegen":
@@ -272,8 +277,8 @@ func init() {
 		}),
 	)
 
-	for m, f := range actions.MacroMap {
-		spec.AddMacro(m, f)
+	for m, f := range actions.Macros {
+		spec.AddMacro(m, f) // TODO just provide a reference for lookup to skip adding them all the time
 	}
 	spec.Register(rootCmd)
 }

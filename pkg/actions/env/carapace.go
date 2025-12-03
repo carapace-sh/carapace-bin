@@ -60,7 +60,7 @@ func init() {
 				"CARAPACE_EXCLUDES": carapace.Batch(
 					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 						c.Setenv(env.CARAPACE_EXCLUDES, "")
-						return action.ActionCompleters(action.CompleterOpts{Internal: true}).Invoke(c).ToA()
+						return action.ActionCompleters().Invoke(c).ToA()
 					}),
 					carapace.ActionValuesDescribed("*", "exclude all"),
 				).ToA().UniqueList(","),

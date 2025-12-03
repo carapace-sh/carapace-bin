@@ -2,70 +2,123 @@ package action
 
 import (
 	"encoding/json"
+	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/completer"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
-type CompleterOpts struct {
-	Internal bool
-	Spec     bool
-	Bridge   bool
+func ActionCompleters() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if strings.Count(c.Value, "@") > 1 || strings.Count(c.Value, "/") > 1 {
+			return carapace.ActionValues()
+		}
+
+		switch {
+		case strings.Contains(c.Value, "@"):
+			nameVariant, _, _ := strings.Cut(c.Value, "@")
+			name, variant, _ := strings.Cut(nameVariant, "/")
+			return actionCompleterGroups(name, variant).Prefix(nameVariant + "@")
+
+		case strings.Contains(c.Value, "/"):
+			nameVariant, _, _ := strings.Cut(c.Value, "@")
+			name, _, _ := strings.Cut(nameVariant, "/")
+			return actionCompleterVariants(name).Prefix(name + "/")
+
+		default:
+			return actionCompleterNames()
+		}
+	})
 }
 
-func (o CompleterOpts) Default() CompleterOpts {
-	return CompleterOpts{
-		Internal: true,
-		Spec:     true,
-		Bridge:   true,
+func actionCompleters(f func(m completer.CompleterMap) carapace.Action) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("carapace", "--list")(func(output []byte) carapace.Action {
+			var m completer.CompleterMap
+			if err := json.Unmarshal(output, &m); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+			return f(m)
+		})
+	})
+}
+
+func actionCompleterNames() carapace.Action {
+	return actionCompleters(func(m completer.CompleterMap) carapace.Action {
+		batch := carapace.Batch()
+		for name, variants := range m {
+			v := variants[0]
+			batch = append(batch, carapace.ActionStyledValuesDescribed(name, v.Description, completerStyle(v)).Tag(completerTag(v)))
+		}
+		return batch.ToA()
+	})
+}
+
+func actionCompleterVariants(filterName string) carapace.Action {
+	return actionCompleters(func(m completer.CompleterMap) carapace.Action {
+		// TODO slow
+		batch := carapace.Batch()
+		for name, variants := range m {
+			if filterName != "" && filterName != name {
+				continue
+			}
+			for _, v := range variants {
+				if v.Variant != "" {
+					switch filterName {
+					case "":
+						batch = append(batch, carapace.ActionValues(v.Variant).Tag(completerTag(v)))
+					default:
+						batch = append(batch, carapace.ActionStyledValuesDescribed(v.Variant, v.Description, completerStyle(v)).Tag(completerTag(v)))
+					}
+				}
+			}
+		}
+		return batch.ToA().Unique()
+	})
+}
+
+func actionCompleterGroups(filterName, filterVariant string) carapace.Action {
+	return actionCompleters(func(m completer.CompleterMap) carapace.Action {
+		// TODO slow
+		batch := carapace.Batch()
+		for name, variants := range m {
+			if filterName != "" && filterName != name {
+				continue
+			}
+			for _, v := range variants {
+				if filterVariant == "" || filterVariant == v.Variant {
+					switch {
+					case filterName == "" || filterVariant == "":
+						batch = append(batch, carapace.ActionValues(v.Group).Tag(completerTag(v)))
+					default:
+						batch = append(batch, carapace.ActionStyledValuesDescribed(v.Group, v.Description, completerStyle(v)).Tag(completerTag(v)))
+					}
+				}
+			}
+		}
+		return batch.ToA().Unique()
+	})
+}
+
+func completerStyle(c completer.Completer) string {
+	switch {
+	case c.Spec != "":
+		return style.Blue
+	case c.Group == "bridge": // TODO detect bridges correctly (config/env)
+		return style.Dim
+	default:
+		return style.Default
 	}
 }
 
-func ActionCompleters(opts CompleterOpts) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("carapace", "--list", "--all", "--format", "json")(func(output []byte) carapace.Action {
-			var completers map[string]struct {
-				Name        string
-				Description string
-				Spec        string
-				Overlay     string
-				Bridge      string
-			}
-			if err := json.Unmarshal(output, &completers); err != nil {
-				return carapace.ActionMessage(err.Error())
-			}
-
-			batch := carapace.Batch() // TODO value map by tag should be better here
-			for _, completer := range completers {
-				var s, t string
-				switch {
-				case completer.Spec != "":
-					if !opts.Spec {
-						continue
-					}
-					s = style.Blue
-					t = "user completers"
-				case completer.Bridge != "":
-					if !opts.Bridge {
-						continue
-					}
-					s = style.Dim
-					t = "bridged completers"
-				default:
-					if !opts.Internal {
-						continue
-					}
-					s = style.Default
-					t = "internal completers"
-				}
-
-				if completer.Overlay != "" {
-					s = style.Of(s, style.Underlined)
-				}
-
-				batch = append(batch, carapace.ActionStyledValuesDescribed(completer.Name, completer.Description, s).Tag(t))
-			}
-			return batch.ToA()
-		})
-	})
+func completerTag(c completer.Completer) string {
+	switch {
+	case c.Spec != "":
+		return "user completers"
+	case c.Group == "bridge": // TODO detect bridges correctly (config/env)
+		return "bridged completers"
+	default:
+		return "internal completers"
+	}
 }

@@ -5,11 +5,14 @@ import (
 
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/carapace-sh/carapace-bridge/pkg/bridges"
+	"github.com/carapace-sh/carapace-bridge/pkg/choice"
 	envbridges "github.com/carapace-sh/carapace-bridge/pkg/env"
 )
 
 func Snippet(shell string) string {
-	uniqueNames := make(map[string]bool)
+	uniqueNames := map[string]bool{
+		"carapace": true,
+	}
 
 	for _, b := range envbridges.Bridges() {
 		if b == shell {
@@ -50,13 +53,21 @@ func Snippet(shell string) string {
 		}
 	}
 
-	for name, s := range bridges.Config() {
-		if s != shell { // don't bridge native completions
-			uniqueNames[name] = true
+	if choices, err := choice.List(false); err == nil {
+		for _, choice := range choices {
+			// TODO filter by variant?? would need to read contents for that
+			//  if s != shell { // don't bridge native completions
+			uniqueNames[choice.Name] = true
+
 		}
 	}
 
-	for _, name := range completers.Names() {
+	m, err := completers.Completers("", false)
+	if err != nil {
+		panic(err.Error()) // TODO handle  errror
+	}
+	// for _, name := range completers.Names() {
+	for name := range m { // TODO already includes bridges and such
 		uniqueNames[name] = true
 	}
 

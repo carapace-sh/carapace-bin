@@ -5,177 +5,155 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"path/filepath"
-	"slices"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
-	"github.com/carapace-sh/carapace-bridge/pkg/bridges"
 	"github.com/carapace-sh/carapace/pkg/uid"
-	"github.com/carapace-sh/carapace/third_party/golang.org/x/sys/execabs"
 	"github.com/spf13/cobra"
 )
-
-// TODO
-// func hasUserSpec(s string) bool {
-// 	_, err := completers.SpecPath(s)
-// 	return err != nil
-// }
 
 var invokeCmd = &cobra.Command{
 	Use:   "invoke",
 	Short: "",
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		if completer := args[0]; strings.Contains(completer, "/") {
-			// patch to base if resolves to path executable (#2971)
-			base := filepath.Base(completer)
-			if abs, err := execabs.LookPath(base); err == nil && args[0] == abs {
-				args[0] = base
-			}
-		}
-		// TODO newInvoke(cmd, args)
-		oldInvoke(cmd, args)
+		// if completer := args[0]; strings.Contains(completer, "/") { // TODO this isn't correct any more in regards to variants
+		// 	// patch to base if resolves to path executable (#2971)
+		// 	base := filepath.Base(completer)
+		// 	if abs, err := execabs.LookPath(base); err == nil && args[0] == abs {
+		// 		args[0] = base
+		// 	}
+		// }
+		// invoke(cmd, args)
+		fmt.Print(invokeCompleter(args[0]))
 	},
 }
 
-// func newInvoke(cmd *cobra.Command, args []string) {
-// 	command, _bridge, explicit := strings.Cut(args[0], "/")
-// 	args = args[1:]
-
-// 	batch := carapace.Batch()
-// 	switch {
-// 	case explicit:
-// 		switch _bridge {
-// 		// TODO use given bridge
+// func invoke(cmd *cobra.Command, args []string) {
+// 	if overlayPath, err := overlayPath(args[0]); err == nil && len(args) > 2 { // and arg[1] is a known shell
+// 		cmd := &cobra.Command{
+// 			DisableFlagParsing: true,
+// 			CompletionOptions: cobra.CompletionOptions{
+// 				DisableDefaultCmd: true,
+// 			},
 // 		}
-// 	case hasUserSpec(command): // user spec
-// 		if path, err := completers.SpecPath(command); err == nil { // TODO optimistic double check
-// 			batch = append(batch, spec.ActionSpec(path))
-// 		}
-// 	case false: // TODO system spec (not yet supported)
-// 	case slices.Contains(completers.Names(), command): // internal completer
-// 		batch = append(batch, carapace.ActionImport([]byte(invokeCompleter(command))))
-// 	case false: // TODO bridge current shell (if bridge exists)
-// 	default: // implicit bridge
-// 		batch = append(batch, bridge.ActionBridges(command))
-// 	}
 
-// 	if path, err := overlayPath(command); err == nil {
-// 		batch = carapace.Batch(
+// 		// TODO yuck
+// 		command := args[0]
+// 		shell := args[1]
+// 		args[0] = "_carapace"
+// 		args[1] = "export"
+// 		os.Args[1] = "_carapace"
+// 		os.Args[2] = "export"
+// 		os.Setenv("CARAPACE_LENIENT", "1")
+
+// 		carapace.Gen(cmd).PositionalAnyCompletion(
 // 			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-// 				c.Setenv("CARAPACE_LENIENT", "1")
-// 				return append(batch, overlayCompletion(path, args...)).Invoke(c).Merge().ToA()
+// 				batch := carapace.Batch()
+// 				specPath, err := completers.SpecPath(command)
+// 				if err != nil {
+// 					batch = append(batch, carapace.ActionImport([]byte(invokeCompleter(command))))
+// 				} else {
+// 					out, err := specCompletion(specPath, args[1:]...)
+// 					if err != nil {
+// 						return carapace.ActionMessage(err.Error())
+// 					}
+
+// 					batch = append(batch, carapace.ActionImport([]byte(out)))
+// 				}
+
+// 				batch = append(batch, overlayCompletion(overlayPath, args[1:]...))
+// 				return batch.ToA()
 // 			}),
-// 			// TODO
-// 			// append(batch, overlayCompletion(path, args...)).ToA().
-// 			// 	Setenv("CARAPACE_LENIENT", "1"),
 // 		)
-// 	}
 
-// 	_cmd := &cobra.Command{
-// 		DisableFlagParsing: true,
-// 	}
-// 	_cmd.SetOut(cmd.OutOrStdout())
-// 	_cmd.SetErr(cmd.OutOrStderr())
-// 	_cmd.SetArgs(append([]string{"_carapace", "export"}, args...))
-// 	carapace.Gen(_cmd).Standalone()
+// 		cmd.SetArgs(append([]string{"_carapace", shell}, args[2:]...))
+// 		cmd.Execute()
+// 	} else {
+// 		if specPath, err := completers.SpecPath(args[0]); err == nil {
+// 			out, err := specCompletion(specPath, args[1:]...)
+// 			if err != nil {
+// 				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+// 				return
+// 			}
 
-// 	carapace.Gen(_cmd).PositionalAnyCompletion(
-// 		batch.ToA(),
-// 	)
-// 	_cmd.Execute() // TODO error handling?
+// 			// TODO revert the patching from specCompletion to use the integrated version for overlay to work (should move this somewhere else - best in specCompletion)
+// 			// TODO only patch completion script
+// 			// TODO this isn't correct anymore
+// 			out = strings.ReplaceAll(out, fmt.Sprintf("--spec '%v'", specPath), args[0])
+// 			out = func() string {
+// 				var (
+// 					s, old, new string = out, fmt.Sprintf("'--spec', '%v'", specPath), fmt.Sprintf("'%v'", args[0])
+// 					n           int    = -1
+// 				)
+// 				if old == new || n == 0 {
+// 					return s
+// 				}
+// 				if m := strings.Count(s, old); m == 0 {
+// 					return s
+// 				} else if n < 0 || m < n {
+// 					n = m
+// 				}
+// 				var b strings. // Apply replacements to buffer.
+// 						Builder
+// 				b.Grow(len(s) + n*(len(new)-len(old)))
+// 				start := 0
+// 				if len(old) > 0 {
+// 					for range n {
+// 						j := start + strings.Index(s[start:], old)
+// 						b.WriteString(s[start:j])
+// 						b.WriteString(new)
+// 						start = j + len(old)
+// 					}
+// 				} else {
+// 					b.WriteString(new)
+// 					for range n - 1 {
+// 						_, wid := utf8.DecodeRuneInString(s[start:])
+// 						j := start + wid
+// 						b.WriteString(s[start:j])
+// 						b.WriteString(new)
+// 						start = j
+// 					}
+// 				}
+// 				b.WriteString(s[start:])
+// 				return b.String()
+// 			}() // xonsh callback
+// 			fmt.Fprint(cmd.OutOrStdout(), out)
+// 		} else if _, err := completers.Lookup(args[0]); err == nil {
+// 			fmt.Print(invokeCompleter(args[0]))
+// 		} else {
+// 			if _, ok := bridges.Bridges()[args[0]]; ok {
+// 				_bridgeCmd := &cobra.Command{
+// 					Use:                args[0],
+// 					DisableFlagParsing: true,
+// 				}
+
+// 				carapace.Gen(_bridgeCmd).PositionalAnyCompletion(
+// 					bridge.ActionBridges(args[0]),
+// 				)
+// 				carapace.Gen(_bridgeCmd).Standalone()
+
+// 				out, err := cmdCompletion(_bridgeCmd, args[1:]...)
+// 				if err != nil {
+// 					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
+// 					return
+// 				}
+// 				fmt.Fprint(cmd.OutOrStdout(), out)
+// 			}
+// 			return
+// 		}
+// 	}
 // }
-
-func oldInvoke(cmd *cobra.Command, args []string) {
-	if overlayPath, err := overlayPath(args[0]); err == nil && len(args) > 2 { // and arg[1] is a known shell
-		cmd := &cobra.Command{
-			DisableFlagParsing: true,
-			CompletionOptions: cobra.CompletionOptions{
-				DisableDefaultCmd: true,
-			},
-		}
-
-		// TODO yuck
-		command := args[0]
-		shell := args[1]
-		args[0] = "_carapace"
-		args[1] = "export"
-		os.Args[1] = "_carapace"
-		os.Args[2] = "export"
-		os.Setenv("CARAPACE_LENIENT", "1")
-
-		carapace.Gen(cmd).PositionalAnyCompletion(
-			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				batch := carapace.Batch()
-				specPath, err := completers.SpecPath(command)
-				if err != nil {
-					batch = append(batch, carapace.ActionImport([]byte(invokeCompleter(command))))
-				} else {
-					out, err := specCompletion(specPath, args[1:]...)
-					if err != nil {
-						return carapace.ActionMessage(err.Error())
-					}
-
-					batch = append(batch, carapace.ActionImport([]byte(out)))
-				}
-
-				batch = append(batch, overlayCompletion(overlayPath, args[1:]...))
-				return batch.ToA()
-			}),
-		)
-
-		cmd.SetArgs(append([]string{"_carapace", shell}, args[2:]...))
-		cmd.Execute()
-	} else {
-		if specPath, err := completers.SpecPath(args[0]); err == nil {
-			out, err := specCompletion(specPath, args[1:]...)
-			if err != nil {
-				fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-				return
-			}
-
-			// TODO revert the patching from specCompletion to use the integrated version for overlay to work (should move this somewhere else - best in specCompletion)
-			// TODO only patch completion script
-			// TODO this isn't correct anymore
-			out = strings.Replace(out, fmt.Sprintf("--spec '%v'", specPath), args[0], -1)
-			out = strings.Replace(out, fmt.Sprintf("'--spec', '%v'", specPath), fmt.Sprintf("'%v'", args[0]), -1) // xonsh callback
-			fmt.Fprint(cmd.OutOrStdout(), out)
-		} else if slices.Contains(completers.Names(), args[0]) {
-			fmt.Print(invokeCompleter(args[0]))
-		} else {
-			if _, ok := bridges.Bridges()[args[0]]; ok {
-				_bridgeCmd := &cobra.Command{
-					Use:                args[0],
-					DisableFlagParsing: true,
-				}
-
-				carapace.Gen(_bridgeCmd).PositionalAnyCompletion(
-					bridge.ActionBridges(args[0]),
-				)
-				carapace.Gen(_bridgeCmd).Standalone()
-
-				out, err := cmdCompletion(_bridgeCmd, args[1:]...)
-				if err != nil {
-					fmt.Fprintln(cmd.ErrOrStderr(), err.Error())
-					return
-				}
-				fmt.Fprint(cmd.OutOrStdout(), out)
-			}
-			return
-		}
-	}
-}
 
 func init() {
 	carapace.Gen(invokeCmd).Standalone()
 	invokeCmd.Flags().SetInterspersed(false)
 
 	carapace.Gen(invokeCmd).PositionalCompletion(
-		action.ActionCompleters(action.CompleterOpts{}.Default()),
+		action.ActionCompleters(),
 		bridge.ActionCarapaceBin("_carapace", "export", "", "_carapace").Shift(1).
 			Filter("macro", "style"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
@@ -193,7 +171,10 @@ func init() {
 				"tcsh",
 				"xonsh",
 				"zsh":
-				return carapace.ActionValues(c.Args[0])
+				command := c.Args[0]
+				command = strings.Split(command, "@")[0] // strip group
+				command = strings.Split(command, "/")[0] // strip variant
+				return carapace.ActionValues(command)
 			default:
 				return carapace.ActionValues()
 			}
@@ -216,7 +197,15 @@ func init() {
 				"tcsh",
 				"xonsh",
 				"zsh":
-				return bridge.ActionCarapaceBin(c.Args[0]).Shift(3)
+				args := []string{c.Args[0], "export"}
+				args = append(args, c.Args[2:]...)
+				args = append(args, c.Value)
+				return carapace.ActionExecCommand("carapace", args...)(func(output []byte) carapace.Action {
+					if string(output) == "" {
+						return carapace.ActionValues()
+					}
+					return carapace.ActionImport(output)
+				})
 			default:
 				return carapace.ActionValues()
 			}
@@ -224,7 +213,7 @@ func init() {
 	)
 }
 
-func invokeCompleter(completer string) string {
+func invokeCompleter(nameVariant string) string {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
@@ -238,49 +227,56 @@ func invokeCompleter(completer string) string {
 	}()
 
 	os.Args[1] = "_carapace"
-	executeCompleter(completer)
+	if completer, err := completers.Lookup(nameVariant); err == nil { // TODO handle error
+		switch completer.Execute {
+		case nil:
+			// TODO bridges have no Execute set yet (panic)
+			carapace.LOG.Printf("Completer.Execute of %q is nil", nameVariant)
+		default:
+			completer.Execute() // TODO Execute should handle the stdout wrapping
+		}
+	}
 
 	w.Close()
 	out := <-outC
 	os.Stdout = old
 
 	executable := uid.Executable()
-	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executable), fmt.Sprintf("%v %v", executable, completer), -1)      // general callback
-	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executable), fmt.Sprintf("'%v', '%v'", executable, completer), -1) // xonsh callback
+	patched := strings.ReplaceAll(string(out), fmt.Sprintf("%v _carapace", executable), fmt.Sprintf("%v %v", executable, nameVariant))      // general callback
+	patched = strings.ReplaceAll(patched, fmt.Sprintf("'%v', '_carapace'", executable), fmt.Sprintf("'%v', '%v'", executable, nameVariant)) // xonsh callback
 	return patched
 }
 
 // TODO use specCompletion and extract common code with invokeCompleter
+// func cmdCompletion(cmd *cobra.Command, args ...string) (string, error) {
+// 	old := os.Stdout
+// 	r, w, _ := os.Pipe()
+// 	os.Stdout = w
 
-func cmdCompletion(cmd *cobra.Command, args ...string) (string, error) {
-	old := os.Stdout
-	r, w, _ := os.Pipe()
-	os.Stdout = w
+// 	outC := make(chan string)
+// 	// copy the output in a separate goroutine so printing can't block indefinitely
+// 	go func() {
+// 		var buf bytes.Buffer
+// 		io.Copy(&buf, r)
+// 		outC <- buf.String()
+// 	}()
 
-	outC := make(chan string)
-	// copy the output in a separate goroutine so printing can't block indefinitely
-	go func() {
-		var buf bytes.Buffer
-		io.Copy(&buf, r)
-		outC <- buf.String()
-	}()
+// 	a := []string{"_carapace"}
+// 	a = append(a, args...)
+// 	cmd.SetArgs(a)
+// 	cmd.Execute()
 
-	a := []string{"_carapace"}
-	a = append(a, args...)
-	cmd.SetArgs(a)
-	cmd.Execute()
+// 	w.Close()
+// 	out := <-outC
+// 	os.Stdout = old
 
-	w.Close()
-	out := <-outC
-	os.Stdout = old
+// 	executable, err := os.Executable()
+// 	if err != nil {
+// 		return "", err
+// 	}
 
-	executable, err := os.Executable()
-	if err != nil {
-		return "", err
-	}
-
-	executableName := filepath.Base(executable)
-	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v %v", executableName, cmd.Name()), -1)      // general callback
-	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '%v'", executableName, cmd.Name()), -1) // xonsh callback
-	return patched, nil
-}
+// 	executableName := filepath.Base(executable)
+// 	patched := strings.ReplaceAll(string(out), fmt.Sprintf("%v _carapace", executableName), fmt.Sprintf("%v %v", executableName, cmd.Name()))      // general callback
+// 	patched = strings.ReplaceAll(patched, fmt.Sprintf("'%v', '_carapace'", executableName), fmt.Sprintf("'%v', '%v'", executableName, cmd.Name())) // xonsh callback
+// 	return patched, nil
+// }
