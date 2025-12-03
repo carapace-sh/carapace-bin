@@ -14,6 +14,16 @@ type butChange struct {
 	ChangeType string `json:"changeType"`
 }
 
+func (c butChange) Description() string {
+	m := map[string]string{
+		"added":    "A",
+		"removed":  "D",
+		"modified": "M",
+		"renamed":  "R",
+	}
+	return m[c.ChangeType] + " " + c.FilePath
+}
+
 type butCommit struct {
 	CliID       string    `json:"cliId"`
 	CommitID    string    `json:"commitId"`

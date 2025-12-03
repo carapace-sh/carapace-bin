@@ -34,7 +34,7 @@ func ActionCliIds(opts CliIdsOpts) carapace.Action {
 
 		if opts.Changes {
 			for _, unassigned := range status.UnassignedChanges {
-				batch = append(batch, carapace.ActionStyledValuesDescribed(unassigned.CliID, unassigned.FilePath, styleForChangeType(unassigned.ChangeType)).UidF(
+				batch = append(batch, carapace.ActionStyledValuesDescribed(unassigned.CliID, unassigned.Description(), styleForChangeType(unassigned.ChangeType)).UidF(
 					func(s string, uc uid.Context) (*url.URL, error) {
 						return git.Uid("change")(unassigned.FilePath, uc)
 					}))
@@ -44,7 +44,7 @@ func ActionCliIds(opts CliIdsOpts) carapace.Action {
 		for _, stack := range status.Stacks {
 			if opts.Changes {
 				for _, assigned := range stack.AssignedChanges {
-					batch = append(batch, carapace.ActionStyledValuesDescribed(assigned.CliID, assigned.FilePath, styleForChangeType(assigned.ChangeType)).UidF(
+					batch = append(batch, carapace.ActionStyledValuesDescribed(assigned.CliID, assigned.Description(), styleForChangeType(assigned.ChangeType)).UidF(
 						func(s string, uc uid.Context) (*url.URL, error) {
 							return git.Uid("change")(assigned.FilePath, uc)
 						}))
