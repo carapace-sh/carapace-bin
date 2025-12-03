@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -72,9 +71,10 @@ func init() {
 						DisableFlagParsing: true,
 					}
 
-					if d := completers.Description("docker-" + name); d != "" {
-						pluginCmd.Short = d
-					}
+					// TODO re-enable descriptions without import cycle
+					// if d := completers.Description("docker-" + name); d != "" {
+					// 	pluginCmd.Short = d
+					// }
 
 					carapace.Gen(pluginCmd).PositionalAnyCompletion(
 						bridge.ActionCarapaceBin("docker-" + name),

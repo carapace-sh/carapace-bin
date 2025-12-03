@@ -18,13 +18,26 @@ var listCmd = &cobra.Command{
 	Use:   "--list",
 	Short: "list completers",
 	Args:  cobra.ArbitraryArgs,
-	Run: func(cmd *cobra.Command, args []string) {
-		switch cmd.Flag("format").Value.String() {
-		case "json":
-			printCompletersJson(cmd.Flag("all").Changed, args...)
-		default:
-			printCompleters(cmd.Flag("all").Changed)
+	RunE: func(cmd *cobra.Command, args []string) error {
+		c, err := completers.Completers()
+		if err != nil {
+			return err
 		}
+		c.SortVariants() // TODO implicitly do this in marshal?
+		m, err := json.Marshal(c)
+		if err != nil {
+			return err
+		}
+		fmt.Println(string(m))
+
+		// TODO handle flags
+		// switch cmd.Flag("format").Value.String() {
+		// case "json":
+		// 	printCompletersJson(cmd.Flag("all").Changed, args...)
+		// default:
+		// 	printCompleters(cmd.Flag("all").Changed)
+		// }
+		return nil
 	},
 }
 

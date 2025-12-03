@@ -224,7 +224,7 @@ func init() {
 	)
 }
 
-func invokeCompleter(completer string) string {
+func invokeCompleter(nameVariant string) string {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
@@ -238,15 +238,18 @@ func invokeCompleter(completer string) string {
 	}()
 
 	os.Args[1] = "_carapace"
-	executeCompleter(completer)
+	completer, err := completers.Lookup(nameVariant)
+	if err == nil { // TODO handle error
+		completer.Execute() // TODO Execute should handle the stdout wrapping
+	}
 
 	w.Close()
 	out := <-outC
 	os.Stdout = old
 
 	executable := uid.Executable()
-	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executable), fmt.Sprintf("%v %v", executable, completer), -1)      // general callback
-	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executable), fmt.Sprintf("'%v', '%v'", executable, completer), -1) // xonsh callback
+	patched := strings.Replace(string(out), fmt.Sprintf("%v _carapace", executable), fmt.Sprintf("%v %v", executable, nameVariant), -1)      // general callback
+	patched = strings.Replace(patched, fmt.Sprintf("'%v', '_carapace'", executable), fmt.Sprintf("'%v', '%v'", executable, nameVariant), -1) // xonsh callback
 	return patched
 }
 

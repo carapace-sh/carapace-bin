@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	shlex "github.com/carapace-sh/carapace-shlex"
@@ -60,8 +59,8 @@ func init() {
 		if extensions, err := action.Extensions(); err == nil {
 			for _, extension := range extensions {
 				extensionCmd := &cobra.Command{
-					Use:                extension,
-					Short:              completers.Description("gh-" + extension),
+					Use: extension,
+					// Short:              completers.Description("gh-" + extension), // TODO re-enable descriptions without import cycle
 					Run:                func(cmd *cobra.Command, args []string) {},
 					GroupID:            "extension",
 					DisableFlagParsing: true,
