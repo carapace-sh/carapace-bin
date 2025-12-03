@@ -16,7 +16,7 @@ func ActionRevFiles(rev string) carapace.Action {
 		if rev == "" {
 			rev = "@"
 		}
-		return carapace.ActionExecCommand("jj", "file", "list", "--revision", rev)(func(output []byte) carapace.Action {
+		return actionExecJJ("file", "list", "--revision", rev)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			return carapace.ActionValues(lines[:len(lines)-1]...).MultiParts("/").StyleF(style.ForPathExt)
 		})

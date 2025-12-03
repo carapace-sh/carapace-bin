@@ -30,7 +30,7 @@ func ActionRevDiffs(revisions ...string) carapace.Action {
 			return carapace.ActionMessage("invalid amount of args [ActionRevChanges]")
 		}
 
-		return carapace.ActionExecCommand("jj", "--color", "never", "diff", "--summary", "--from", from, "--to", to)(func(output []byte) carapace.Action {
+		return actionExecJJ("diff", "--summary", "--from", from, "--to", to)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
 			vals := make([]string, 0)
@@ -55,7 +55,7 @@ func ActionRevChanges(revisions ...string) carapace.Action {
 		for _, revision := range revisions {
 			args = append(args, "--revisions", revision)
 		}
-		return carapace.ActionExecCommand("jj", args...)(func(output []byte) carapace.Action {
+		return actionExecJJ(args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
 			vals := make([]string, 0)

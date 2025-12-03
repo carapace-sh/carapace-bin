@@ -8,7 +8,7 @@ import (
 
 // ActionConflicts completes conflicts
 func ActionConflicts(revision string) carapace.Action {
-	return carapace.ActionExecCommand("jj", "resolve", "--list", "--revision", revision)(func(output []byte) carapace.Action {
+	return actionExecJJ("resolve", "--list", "--revision", revision)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
 		vals := make([]string, 0)

@@ -14,7 +14,7 @@ import (
 //	@  (HEAD)
 //	@- (commit message)
 func ActionHeadCommits(limit int) carapace.Action {
-	return carapace.ActionExecCommand("jj", "log", "--no-graph", "--template", `description.first_line() ++ "\n"`, "--revisions", "::@", "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
+	return actionExecJJ("log", "--no-graph", "--template", `description.first_line() ++ "\n"`, "--revisions", "::@", "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
 		vals := make([]string, 0)
@@ -30,7 +30,7 @@ func ActionHeadCommits(limit int) carapace.Action {
 //	04 (build(deps): bump github.com/creack/pty from 1.1.18 to 1.1.20 (#8265))
 //	03 (fix(release create): Handle latest flag value when updating the rel...)
 func ActionPrevCommits(limit int) carapace.Action {
-	return carapace.ActionExecCommand("jj", "log", "--no-graph", "--template", `commit_id.short() ++ "\t" ++ description.first_line() ++ "\n"`, "--revisions", "::@", "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
+	return actionExecJJ("log", "--no-graph", "--template", `commit_id.short() ++ "\t" ++ description.first_line() ++ "\n"`, "--revisions", "::@", "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		format := "%0" + strconv.Itoa(len(strconv.Itoa(limit-1))) + "d"
 
@@ -44,7 +44,7 @@ func ActionPrevCommits(limit int) carapace.Action {
 }
 
 func ActionNextCommits(limit int) carapace.Action {
-	return carapace.ActionExecCommand("jj", "log", "--no-graph", "--template", `commit_id.short() ++ "\t" ++ description.first_line() ++ "\n"`, "--revisions", "@-::", "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
+	return actionExecJJ("log", "--no-graph", "--template", `commit_id.short() ++ "\t" ++ description.first_line() ++ "\n"`, "--revisions", "@-::", "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		format := "%0" + strconv.Itoa(len(strconv.Itoa(limit-1))) + "d"
 
@@ -62,7 +62,7 @@ func ActionNextCommits(limit int) carapace.Action {
 //	3b61f0a729f7 (compat: added cobra bridge)
 //	3c2e7535ce2f (elivsh: testing tag support)
 func ActionRecentCommits(limit int) carapace.Action {
-	return carapace.ActionExecCommand("jj", "log", "--no-graph", "--template", `commit_id.short() ++ "\n" ++ description.first_line() ++ "\n"`, "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
+	return actionExecJJ("log", "--no-graph", "--template", `commit_id.short() ++ "\n" ++ description.first_line() ++ "\n"`, "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		return carapace.ActionValuesDescribed(lines[:len(lines)-1]...).Style(styles.Git.Commit)
 	}).Tag("recent commits")
