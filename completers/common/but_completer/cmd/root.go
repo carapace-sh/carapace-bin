@@ -51,7 +51,10 @@ func init() {
 			if util.HasPathPrefix(c.Args[0]) {
 				return carapace.ActionValues()
 			}
-			return but.ActionCliIds(but.CliIdsOpts{Branches: true, Stacks: true})
+			return carapace.Batch(
+				but.ActionCliIds(but.CliIdsOpts{Branches: true, Stacks: true}),
+				but.ActionLocalBranches(),
+			).ToA().FilterArgs()
 		}),
 	)
 
