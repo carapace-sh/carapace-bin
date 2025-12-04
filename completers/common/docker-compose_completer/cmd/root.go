@@ -28,6 +28,7 @@ func init() {
 	rootCmd.PersistentFlags().Bool("dry-run", false, "Execute command in dry run mode")
 	rootCmd.Flags().StringSlice("env-file", nil, "Specify an alternate environment file")
 	rootCmd.Flags().StringSliceP("file", "f", nil, "Compose configuration files")
+	rootCmd.Flags().StringSlice("insecure-registry", nil, "Use insecure registry to pull Compose OCI artifacts. Doesn't apply to images")
 	rootCmd.Flags().Bool("no-ansi", false, "Do not print ANSI control characters (DEPRECATED)")
 	rootCmd.Flags().String("parallel", "", "Control max parallelism, -1 for unlimited")
 	rootCmd.Flags().StringSlice("profile", nil, "Specify a profile to enable")
@@ -37,6 +38,7 @@ func init() {
 	rootCmd.Flags().Bool("verbose", false, "Show more output")
 	rootCmd.Flags().BoolP("version", "v", false, "Show the Docker Compose version information")
 	rootCmd.Flags().String("workdir", "", "DEPRECATED! USE --project-directory INSTEAD.")
+	rootCmd.Flag("insecure-registry").Hidden = true
 	rootCmd.Flag("no-ansi").Hidden = true
 	rootCmd.Flag("verbose").Hidden = true
 	rootCmd.Flag("version").Hidden = true
