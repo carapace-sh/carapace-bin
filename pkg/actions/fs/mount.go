@@ -22,7 +22,7 @@ func ActionMounts() carapace.Action {
 		vals := make([]string, 0)
 		for _, line := range lines {
 			if fields := strings.Fields(line); len(fields) > 1 {
-				vals = append(vals, strings.Replace(fields[1], `\040`, " ", -1), fields[0])
+				vals = append(vals, strings.ReplaceAll(fields[1], `\040`, " "), fields[0])
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
