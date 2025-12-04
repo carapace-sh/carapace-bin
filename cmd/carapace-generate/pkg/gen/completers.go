@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-type Completers map[string]Completer
+type Completers map[string]map[string]Completer
 
 func (c Completers) Format() string {
 	return ""
@@ -22,7 +22,7 @@ type Completer struct {
 	Description string
 	Group       string
 	Package     string
-	// Variant     url.URL // TODO unique identifier (repo/website?)
+	Variant     string
 }
 
 func ReadCompleters(dir, goos string) (Completers, error) {
@@ -35,7 +35,7 @@ func ReadCompleters(dir, goos string) (Completers, error) {
 		"windows": {"common", "windows"},
 	}
 
-	completers := make(map[string]Completer)
+	completers := make(map[string]map[string]Completer)
 	for _, group := range groups[goos] {
 		groupCompleters, err := readCompleters(dir, group)
 		if err != nil {
@@ -47,27 +47,31 @@ func ReadCompleters(dir, goos string) (Completers, error) {
 	return completers, nil
 }
 
-func readCompleters(dir, group string) (map[string]Completer, error) {
+func readCompleters(dir, group string) (map[string]map[string]Completer, error) {
 	prefix, err := packagePrefix(dir)
 	if err != nil {
 		return nil, err
 	}
 
-	completers := make(map[string]Completer)
+	completers := make(map[string]map[string]Completer)
 	if files, err := os.ReadDir(filepath.Join(dir, group)); err == nil {
 		for _, file := range files {
 			if file.IsDir() && strings.HasSuffix(file.Name(), "_completer") {
 				name := strings.TrimSuffix(file.Name(), "_completer")
+				name, variant, _ := strings.Cut(name, ".")
 				description, err := readDescription(dir, group, file.Name())
 				if err != nil {
 					return nil, err
 				}
-				completers[name] = Completer{
+				if completers[name] == nil {
+					completers[name] = map[string]Completer{}
+				}
+				completers[name][variant] = Completer{
 					Name:        name,
 					Description: description,
 					Group:       group,
 					Package:     filepath.Join(prefix, group, file.Name(), "cmd"),
-					// TODO package
+					Variant:     variant,
 				}
 			}
 		}

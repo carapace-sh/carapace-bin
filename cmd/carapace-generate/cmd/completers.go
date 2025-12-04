@@ -37,7 +37,7 @@ var completersCmd = &cobra.Command{
 func init() {
 	carapace.Gen(completersCmd).Standalone()
 
-	rootCmd.Flags().Bool("code", false, "output go code")
+	completersCmd.Flags().Bool("code", false, "output go code")
 	rootCmd.AddCommand(completersCmd)
 
 	carapace.Gen(completersCmd).PositionalCompletion(
