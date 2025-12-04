@@ -28,7 +28,7 @@ func init() {
 	runCmd.Flags().StringSliceP("enable", "E", nil, "Enable specific linter")
 	runCmd.Flags().StringSlice("enable-only", nil, "Override linters configuration section to only run the specific linter(s)")
 	runCmd.Flags().Bool("fast-only", false, "Filter enabled linters to run only fast linters")
-	runCmd.Flags().Bool("fix", false, "Fix found issues (if it's supported by the linter)")
+	runCmd.Flags().Bool("fix", false, "Apply the fixes detected by the linters and formatters (if it's supported by the linter)")
 	runCmd.Flags().Bool("internal-cmd-test", false, "Option is used only for testing golangci-lint command, don't use it")
 	runCmd.Flags().String("issues-exit-code", "", "Exit code when issues were found")
 	runCmd.Flags().String("max-issues-per-linter", "", "Maximum issues count per one linter. Set to 0 to disable")
