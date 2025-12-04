@@ -20,7 +20,7 @@ func init() {
 	execCmd.Flags().StringSliceP("env", "e", nil, "Set environment variables")
 	execCmd.Flags().String("index", "", "Index of the container if service has multiple replicas")
 	execCmd.Flags().BoolP("interactive", "i", false, "Keep STDIN open even if not attached")
-	execCmd.Flags().BoolP("no-TTY", "T", false, "Disable pseudo-TTY allocation. By default `docker compose exec` allocates a TTY.")
+	execCmd.Flags().BoolP("no-tty", "T", false, "Disable pseudo-TTY allocation. By default 'docker compose exec' allocates a TTY.")
 	execCmd.Flags().Bool("privileged", false, "Give extended privileges to the process")
 	execCmd.Flags().BoolP("tty", "t", false, "Allocate a pseudo-TTY")
 	execCmd.Flags().StringP("user", "u", "", "Run the command as this user")

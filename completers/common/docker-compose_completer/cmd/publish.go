@@ -14,9 +14,12 @@ var publishCmd = &cobra.Command{
 func init() {
 	carapace.Gen(publishCmd).Standalone()
 
+	publishCmd.Flags().Bool("app", false, "Published compose application (includes referenced images)")
+	publishCmd.Flags().Bool("insecure-registry", false, "Use insecure registry")
 	publishCmd.Flags().String("oci-version", "", "OCI image/artifact specification version (automatically determined by default)")
 	publishCmd.Flags().Bool("resolve-image-digests", false, "Pin image tags to digests")
 	publishCmd.Flags().Bool("with-env", false, "Include environment variables in the published OCI artifact")
 	publishCmd.Flags().BoolP("yes", "y", false, "Assume \"yes\" as answer to all prompts")
+	publishCmd.Flag("insecure-registry").Hidden = true
 	rootCmd.AddCommand(publishCmd)
 }

@@ -15,6 +15,8 @@ var startCmd = &cobra.Command{
 func init() {
 	carapace.Gen(startCmd).Standalone()
 
+	startCmd.Flags().Bool("wait", false, "Wait for services to be running|healthy. Implies detached mode.")
+	startCmd.Flags().String("wait-timeout", "", "Maximum duration in seconds to wait for the project to be running|healthy")
 	rootCmd.AddCommand(startCmd)
 
 	carapace.Gen(startCmd).PositionalAnyCompletion(
