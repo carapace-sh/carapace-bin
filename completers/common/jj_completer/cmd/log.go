@@ -18,6 +18,7 @@ func init() {
 
 	logCmd.Flags().Bool("color-words", false, "Show a word-level diff with changes indicated only by color")
 	logCmd.Flags().String("context", "", "Number of lines of context to show")
+	logCmd.Flags().Bool("count", false, "Print the number of commits instead of showing them")
 	logCmd.Flags().Bool("git", false, "Show a Git-format diff")
 	logCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	logCmd.Flags().Bool("ignore-all-space", false, "Ignore whitespace when comparing lines")

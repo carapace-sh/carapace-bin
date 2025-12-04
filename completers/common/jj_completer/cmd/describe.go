@@ -8,14 +8,14 @@ import (
 
 var describeCmd = &cobra.Command{
 	Use:   "describe [OPTIONS] [REVISION]",
-	Short: "Update the change description or other metadata",
+	Short: "Update the change description or other metadata [default alias: desc]",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(describeCmd).Standalone()
 
-	describeCmd.Flags().Bool("edit", false, "Open an editor")
+	describeCmd.Flags().Bool("editor", false, "Open an editor to edit the change description")
 	describeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	describeCmd.Flags().StringSliceP("message", "m", nil, "The change description to use (don't open editor)")
 	describeCmd.Flags().Bool("stdin", false, "Read the change description from stdin")

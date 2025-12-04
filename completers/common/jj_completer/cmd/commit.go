@@ -15,6 +15,7 @@ var commitCmd = &cobra.Command{
 func init() {
 	carapace.Gen(commitCmd).Standalone()
 
+	commitCmd.Flags().Bool("editor", false, "Open an editor to edit the change description")
 	commitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	commitCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which changes to include in the first commit")
 	commitCmd.Flags().StringSliceP("message", "m", nil, "The change description to use (don't open editor)")
