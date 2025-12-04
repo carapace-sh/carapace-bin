@@ -15,8 +15,8 @@ func init() {
 	carapace.Gen(cleanCmd).Standalone()
 
 	cleanCmd.Flags().StringP("dest-dir", "d", "", "Output directory for the book")
-	cleanCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	cleanCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	cleanCmd.Flags().BoolP("help", "h", false, "Print help")
+	cleanCmd.Flags().BoolP("version", "V", false, "Print version")
 	rootCmd.AddCommand(cleanCmd)
 
 	carapace.Gen(cleanCmd).FlagCompletion(carapace.ActionMap{

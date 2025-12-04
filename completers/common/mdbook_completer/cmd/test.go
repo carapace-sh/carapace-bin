@@ -14,15 +14,14 @@ var testCmd = &cobra.Command{
 func init() {
 	carapace.Gen(testCmd).Standalone()
 
-	testCmd.Flags().StringP("dest-dir", "d", "", "Output directory for the book")
-	testCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	testCmd.Flags().StringP("library-path", "L", "", "A comma-separated list of directories to add to ")
-	testCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	testCmd.Flags().StringP("chapter", "c", "", "")
+	testCmd.Flags().BoolP("help", "h", false, "Print help")
+	testCmd.Flags().StringSliceP("library-path", "L", nil, "A comma-separated list of directories to add to the crate search path when building tests")
+	testCmd.Flags().BoolP("version", "V", false, "Print version")
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		"dest-dir":     carapace.ActionDirectories(),
-		"library-path": carapace.ActionDirectories(),
+		"library-path": carapace.ActionDirectories().List(","),
 	})
 
 	carapace.Gen(testCmd).PositionalCompletion(

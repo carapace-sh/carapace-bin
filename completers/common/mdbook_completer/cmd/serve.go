@@ -16,11 +16,12 @@ func init() {
 	carapace.Gen(serveCmd).Standalone()
 
 	serveCmd.Flags().StringP("dest-dir", "d", "", "Output directory for the book")
-	serveCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	serveCmd.Flags().StringP("hostname", "n", "", "Hostname to listen on for HTTP connections [default: localhost]")
-	serveCmd.Flags().BoolP("open", "o", false, "Opens the book server in a web browser")
-	serveCmd.Flags().StringP("port", "p", "", "Port to use for HTTP connections [default: 3000]")
-	serveCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	serveCmd.Flags().BoolP("help", "h", false, "Print help")
+	serveCmd.Flags().StringP("hostname", "n", "", "Hostname to listen on for HTTP connections")
+	serveCmd.Flags().BoolP("open", "o", false, "Opens the compiled book in a web browser")
+	serveCmd.Flags().StringP("port", "p", "", "Port to use for HTTP connections")
+	serveCmd.Flags().BoolP("version", "V", false, "Print version")
+	serveCmd.Flags().String("watcher", "", "The filesystem watching technique")
 	rootCmd.AddCommand(serveCmd)
 
 	carapace.Gen(serveCmd).FlagCompletion(carapace.ActionMap{
