@@ -41,7 +41,7 @@ func ReadCompleters(dir, goos string) (Completers, error) {
 		if err != nil {
 			return nil, err
 		}
-		maps.Copy(completers, groupCompleters)
+		maps.Copy(completers, groupCompleters) // TODO variants might get lost here, need to be handled explicitly
 	}
 	// TODO map value should be a list of completers (variants)
 	return completers, nil
