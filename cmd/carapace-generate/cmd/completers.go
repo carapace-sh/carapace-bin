@@ -20,7 +20,7 @@ var completersCmd = &cobra.Command{
 		}
 
 		if cmd.Flag("code").Changed {
-			fmt.Println(completers.Format())
+			fmt.Println(completers.Format("cmd"))
 			return nil
 		}
 

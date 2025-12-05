@@ -8,14 +8,58 @@ import (
 	"os/exec"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 	"unicode"
+
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/traverse"
 )
 
 type Completers map[string]map[string]Completer
 
-func (c Completers) Format() string {
-	return ""
+func (c Completers) Format(pkg string) string {
+	return fmt.Sprintf(`package %s
+
+import (
+%s)
+
+%s`, pkg, c.FormatImports(), c.FormateExecute())
+}
+
+func (c Completers) FormatImports() string {
+	s := make([]string, 0)
+	for _, group := range c {
+		for _, completer := range group {
+			s = append(s, completer.FormatImport())
+		}
+	}
+	sort.Strings(s)
+	return strings.Join(s, "\n")
+}
+
+func (c Completers) FormateExecute() string {
+	s := make([]string, 0)
+	for _, variants := range c {
+		switch len(variants) {
+		case 0:
+		case 1:
+			for _, completer := range variants {
+				s = append(s, fmt.Sprintf("\t\tcase %q:\n\t\t\t%s.Execute()", completer.Name, completer.Variable()))
+			}
+		default:
+			s = append(s, "# TODO switch on variants \n")
+			// for _, completer := range variants {
+			// 	s = append(s, fmt.Sprintf("\t\tcase %q:\n\t\t\t%s.Execute()", completer.Name, completer.Variable()))
+			// }
+		}
+	}
+	sort.Strings(s)
+
+	return fmt.Sprintf(`func executeCompleter(completer, variant string) {
+	switch completer {
+%v	}
+`, strings.Join(s, "\n"))
 }
 
 type Completer struct {
@@ -28,13 +72,13 @@ type Completer struct {
 
 func (c Completer) Variable() string {
 	if c.Variant == "" {
-		return varName(strings.Join([]string{c.Name, c.Group}, "__"))
+		return varName(strings.Join([]string{c.Group, c.Name}, "__"))
 	}
-	return varName(strings.Join([]string{c.Name, c.Group, c.Variant}, "__"))
+	return varName(strings.Join([]string{c.Group, c.Name, c.Variant}, "__"))
 }
 
 func (c Completer) FormatImport() string {
-	return fmt.Sprintf(`%s %q`, c.Variable(), c.Package)
+	return fmt.Sprintf("\t%s %q", c.Variable(), c.Package)
 }
 
 func ReadCompleters(dir, goos string) (Completers, error) {
@@ -121,7 +165,21 @@ func packagePrefix(dir string) (string, error) {
 		return "", err
 	}
 
-	dir = filepath.Dir(dir)
+	c := carapace.NewContext()
+	c.Dir, err = c.Abs(dir)
+	if err != nil {
+		return "", err
+	}
+
+	rootDir, err := traverse.Parent("go.mod")(c)
+	if err != nil {
+		return "", err
+	}
+
+	dir, err = filepath.Rel(rootDir, c.Dir)
+	if err != nil {
+		return "", err
+	}
 	if dir == "." {
 		dir = ""
 	}
