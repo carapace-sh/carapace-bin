@@ -123,20 +123,39 @@ func readCompleters(dir, group string) (map[string]map[string]Completer, error) 
 		for _, file := range files {
 			if file.IsDir() && strings.HasSuffix(file.Name(), "_completer") {
 				name := strings.TrimSuffix(file.Name(), "_completer")
-				name, variant, _ := strings.Cut(name, ".")
-				description, err := readDescription(dir, group, file.Name())
-				if err != nil {
-					return nil, err
-				}
 				if completers[name] == nil {
 					completers[name] = map[string]Completer{}
 				}
-				completers[name][variant] = Completer{
-					Name:        name,
-					Description: description,
-					Group:       group,
-					Package:     filepath.Join(prefix, group, file.Name(), "cmd"),
-					Variant:     variant,
+
+				if _, err := os.Stat(filepath.Join(dir, group, file.Name(), "cmd/root.go")); err == nil {
+					description, err := readDescription(dir, group, file.Name())
+					if err != nil {
+						return nil, err
+					}
+					completers[name][""] = Completer{
+						Name:        name,
+						Description: description,
+						Group:       group,
+						Package:     filepath.Join(prefix, group, file.Name(), "cmd"),
+					}
+				}
+
+				if variants, err := os.ReadDir(filepath.Join(dir, group, file.Name())); err == nil {
+					for _, variant := range variants {
+						if _, err := os.Stat(filepath.Join(dir, group, file.Name(), variant.Name(), "cmd/root.go")); err == nil {
+							description, err := readDescription(dir, group, file.Name()+"/"+variant.Name()) // TODO just pass the root.go
+							if err != nil {
+								return nil, err
+							}
+							completers[name][variant.Name()] = Completer{
+								Name:        name,
+								Description: description,
+								Group:       group,
+								Package:     filepath.Join(prefix, group, file.Name(), variant.Name(), "cmd"),
+								Variant:     variant.Name(),
+							}
+						}
+					}
 				}
 			}
 		}
