@@ -39,27 +39,36 @@ func (c Completers) FormatImports() string {
 }
 
 func (c Completers) FormateExecute() string {
-	s := make([]string, 0)
-	for _, variants := range c {
+	cases := make([]string, 0)
+	for name, variants := range c {
 		switch len(variants) {
 		case 0:
 		case 1:
 			for _, completer := range variants {
-				s = append(s, fmt.Sprintf("\t\tcase %q:\n\t\t\t%s.Execute()", completer.Name, completer.Variable()))
+				cases = append(cases, fmt.Sprintf("\t\tcase %q:\n\t\t\t%s.Execute()", name, completer.Variable()))
 			}
 		default:
-			s = append(s, "# TODO switch on variants \n")
-			// for _, completer := range variants {
-			// 	s = append(s, fmt.Sprintf("\t\tcase %q:\n\t\t\t%s.Execute()", completer.Name, completer.Variable()))
-			// }
+			s := make([]string, 0)
+			s = append(s, fmt.Sprintf("\t\tcase %q:\n\t\t\tswitch variant {", name))
+			for variant, completer := range variants {
+				switch variant {
+				case "":
+					s = append(s, fmt.Sprintf("\t\t\tdefault:\n\t\t\t\t%s.Execute()", completer.Variable()))
+				default:
+					s = append(s, fmt.Sprintf("\t\t\tcase %q:\n\t\t\t\t%s.Execute()", variant, completer.Variable()))
+				}
+			}
+			s = append(s, "\t\t\t}")
+			cases = append(cases, strings.Join(s, "\n"))
 		}
 	}
-	sort.Strings(s)
+	sort.Strings(cases)
 
 	return fmt.Sprintf(`func executeCompleter(completer, variant string) {
 	switch completer {
-%v	}
-`, strings.Join(s, "\n"))
+%s
+	}
+}`, strings.Join(cases, "\n"))
 }
 
 type Completer struct {
