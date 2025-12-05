@@ -10,7 +10,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "tealdeer",
+	Use:   "tldr",
 	Short: "A fast TLDR client",
 	Long:  "https://github.com/dbrgn/tealdeer",
 	Run:   func(cmd *cobra.Command, args []string) {},
