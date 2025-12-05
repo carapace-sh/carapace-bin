@@ -16,7 +16,7 @@ import (
 	"github.com/carapace-sh/carapace/pkg/traverse"
 )
 
-type Completers map[string]map[string]Completer
+type Completers map[string][]Completer
 
 func (c Completers) Format(pkg string) string {
 	return fmt.Sprintf(`package %s
@@ -50,12 +50,12 @@ func (c Completers) FormateExecute() string {
 		default:
 			s := make([]string, 0)
 			s = append(s, fmt.Sprintf("\t\tcase %q:\n\t\t\tswitch variant {", name))
-			for variant, completer := range variants {
-				switch variant {
+			for _, completer := range variants {
+				switch completer.Variant { // TODO incorrect since it's a slice now (TODO how to handle multiple completer with empty variant)
 				case "":
 					s = append(s, fmt.Sprintf("\t\t\tdefault:\n\t\t\t\t%s.Execute()", completer.Variable()))
 				default:
-					s = append(s, fmt.Sprintf("\t\t\tcase %q:\n\t\t\t\t%s.Execute()", variant, completer.Variable()))
+					s = append(s, fmt.Sprintf("\t\t\tcase %q:\n\t\t\t\t%s.Execute()", completer.Variant, completer.Variable()))
 				}
 			}
 			s = append(s, "\t\t\t}")
@@ -72,11 +72,12 @@ func (c Completers) FormateExecute() string {
 }
 
 type Completer struct {
-	Name        string
-	Description string
-	Group       string
-	Package     string
-	Variant     string
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Group       string `json:"group"`
+	Package     string `json:"package,omitempty"`
+	Spec        string `json:"spec,omitempty"`
+	Variant     string `json:"variant,omitempty"`
 }
 
 func (c Completer) Variable() string {
@@ -100,7 +101,7 @@ func ReadCompleters(dir, goos string) (Completers, error) {
 		"windows": {"common", "windows"},
 	}
 
-	completers := make(map[string]map[string]Completer)
+	completers := make(map[string][]Completer)
 	for _, group := range groups[goos] {
 		groupCompleters, err := readCompleters(dir, group)
 		if err != nil {
@@ -112,32 +113,28 @@ func ReadCompleters(dir, goos string) (Completers, error) {
 	return completers, nil
 }
 
-func readCompleters(dir, group string) (map[string]map[string]Completer, error) {
+func readCompleters(dir, group string) (map[string][]Completer, error) {
 	prefix, err := packagePrefix(dir)
 	if err != nil {
 		return nil, err
 	}
 
-	completers := make(map[string]map[string]Completer)
+	completers := make(map[string][]Completer)
 	if files, err := os.ReadDir(filepath.Join(dir, group)); err == nil {
 		for _, file := range files {
 			if file.IsDir() && strings.HasSuffix(file.Name(), "_completer") {
 				name := strings.TrimSuffix(file.Name(), "_completer")
-				if completers[name] == nil {
-					completers[name] = map[string]Completer{}
-				}
-
 				if _, err := os.Stat(filepath.Join(dir, group, file.Name(), "cmd/root.go")); err == nil {
 					description, err := readDescription(dir, group, file.Name())
 					if err != nil {
 						return nil, err
 					}
-					completers[name][""] = Completer{
+					completers[name] = append(completers[name], Completer{
 						Name:        name,
 						Description: description,
 						Group:       group,
 						Package:     filepath.Join(prefix, group, file.Name(), "cmd"),
-					}
+					})
 				}
 
 				if variants, err := os.ReadDir(filepath.Join(dir, group, file.Name())); err == nil {
@@ -147,13 +144,13 @@ func readCompleters(dir, group string) (map[string]map[string]Completer, error) 
 							if err != nil {
 								return nil, err
 							}
-							completers[name][variant.Name()] = Completer{
+							completers[name] = append(completers[name], Completer{
 								Name:        name,
 								Description: description,
 								Group:       group,
 								Package:     filepath.Join(prefix, group, file.Name(), variant.Name(), "cmd"),
 								Variant:     variant.Name(),
-							}
+							})
 						}
 					}
 				}
