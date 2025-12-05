@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"unicode"
 )
 
 type Completers map[string]map[string]Completer
@@ -23,6 +24,17 @@ type Completer struct {
 	Group       string
 	Package     string
 	Variant     string
+}
+
+func (c Completer) Variable() string {
+	if c.Variant == "" {
+		return varName(strings.Join([]string{c.Name, c.Group}, "__"))
+	}
+	return varName(strings.Join([]string{c.Name, c.Group, c.Variant}, "__"))
+}
+
+func (c Completer) FormatImport() string {
+	return fmt.Sprintf(`%s %q`, c.Variable(), c.Package)
 }
 
 func ReadCompleters(dir, goos string) (Completers, error) {
@@ -114,4 +126,17 @@ func packagePrefix(dir string) (string, error) {
 		dir = ""
 	}
 	return gomod.Module.Path + "/" + filepath.ToSlash(dir), nil
+}
+
+func varName(name string) string {
+	if name == "go" {
+		return "_go"
+	}
+	if unicode.IsDigit([]rune(name)[0]) {
+		name = "_" + name
+	}
+	return strings.NewReplacer(
+		"-", "_",
+		".", "_",
+	).Replace(name)
 }
