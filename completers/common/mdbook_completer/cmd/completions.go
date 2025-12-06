@@ -14,8 +14,8 @@ var completionsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(completionsCmd).Standalone()
 
-	completionsCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	completionsCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	completionsCmd.Flags().BoolP("help", "h", false, "Print help")
+	completionsCmd.Flags().BoolP("version", "V", false, "Print version")
 	rootCmd.AddCommand(completionsCmd)
 
 	carapace.Gen(completionsCmd).PositionalCompletion(

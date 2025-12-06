@@ -15,11 +15,11 @@ func init() {
 	carapace.Gen(initCmd).Standalone()
 
 	initCmd.Flags().Bool("force", false, "Skips confirmation prompts")
-	initCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	initCmd.Flags().BoolP("help", "h", false, "Print help")
 	initCmd.Flags().String("ignore", "", "Creates a VCS ignore file (i.e. .gitignore)")
 	initCmd.Flags().Bool("theme", false, "Copies the default theme into your source folder")
 	initCmd.Flags().String("title", "", "Sets the book title")
-	initCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	initCmd.Flags().BoolP("version", "V", false, "Print version")
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{

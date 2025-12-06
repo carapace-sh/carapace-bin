@@ -15,9 +15,10 @@ func init() {
 	carapace.Gen(watchCmd).Standalone()
 
 	watchCmd.Flags().StringP("dest-dir", "d", "", "Output directory for the book")
-	watchCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	watchCmd.Flags().BoolP("open", "o", false, "Open the compiled book in a web browser")
-	watchCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	watchCmd.Flags().BoolP("help", "h", false, "Print help")
+	watchCmd.Flags().BoolP("open", "o", false, "Opens the compiled book in a web browser")
+	watchCmd.Flags().BoolP("version", "V", false, "Print version")
+	watchCmd.Flags().String("watcher", "", "The filesystem watching technique")
 	rootCmd.AddCommand(watchCmd)
 
 	carapace.Gen(watchCmd).FlagCompletion(carapace.ActionMap{
