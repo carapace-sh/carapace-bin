@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"os/exec"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
@@ -23,14 +25,10 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			// TODO patch user@instance and --flag=optarg as in gcloud completion script
-
-			if c.Value == "-" {
-				c.Value = "--" // seems shorthand flags aren't completed anyway so expand to longhand first
+			if _, err := exec.LookPath("carapace-gcloud"); err == nil {
+				return bridge.ActionCarapace("carapace-gcloud")
 			}
-			c.Setenv("CLOUDSDK_COMPONENT_MANAGER_DISABLE_UPDATE_CHECK", "1")
-			//lint:ignore SA1019 gcloud uses an old argcomplete version
-			return bridge.ActionArgcompleteV1("gcloud").Invoke(c).ToA()
+			return bridge.ActionGcloud("gcloud")
 		}),
 	)
 }
