@@ -43,7 +43,7 @@ archives:
       - termux
     name_template: 'carapace-bin_{{ .Version }}_termux_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
 
-brews:
+homebrew_casks:
   -
     name: carapace
     description: "A multi-shell completion binary"
