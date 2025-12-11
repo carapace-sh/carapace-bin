@@ -13,6 +13,8 @@ var config_migrateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_migrateCmd).Standalone()
+
+	config_migrateCmd.Flags().Bool("allow-experimental-api", false, "Allow migration to experimental, unreleased APIs.")
 	config_migrateCmd.Flags().String("new-config", "", "Path to the resulting equivalent kubeadm config file using the new API version. Optional, if not specified output will be sent to STDOUT.")
 	config_migrateCmd.Flags().String("old-config", "", "Path to the kubeadm config file that is using an old API version and should be converted. This flag is mandatory.")
 	configCmd.AddCommand(config_migrateCmd)
