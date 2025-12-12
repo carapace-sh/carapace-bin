@@ -6,9 +6,10 @@ import (
 )
 
 var certsCmd = &cobra.Command{
-	Use:   "certs",
-	Short: "Commands related to handling kubernetes certificates",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "certs",
+	Short:   "Commands related to handling Kubernetes certificates",
+	Aliases: []string{"certificates"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
