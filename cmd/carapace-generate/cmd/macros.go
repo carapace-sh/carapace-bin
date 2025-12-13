@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/exec"
 
 	"github.com/carapace-sh/carapace"
 	spec "github.com/carapace-sh/carapace-spec"
@@ -36,7 +37,10 @@ var macrosCmd = &cobra.Command{
 		}
 
 		if f := cmd.Flag("output"); f.Changed {
-			return os.WriteFile(f.Value.String(), []byte(s), 0644)
+			if err := os.WriteFile(f.Value.String(), []byte(s), 0644); err != nil {
+				return err
+			}
+			return exec.Command("go", "fmt", f.Value.String()).Run()
 		}
 		fmt.Println(s)
 		return nil

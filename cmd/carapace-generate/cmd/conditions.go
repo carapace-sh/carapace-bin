@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -25,7 +26,10 @@ var conditionsCmd = &cobra.Command{
 		}
 
 		if f := cmd.Flag("output"); f.Changed {
-			return os.WriteFile(f.Value.String(), []byte(s), 0644)
+			if err := os.WriteFile(f.Value.String(), []byte(s), 0644); err != nil {
+				return err
+			}
+			return exec.Command("go", "fmt", f.Value.String()).Run()
 		}
 		fmt.Println(s)
 		return nil

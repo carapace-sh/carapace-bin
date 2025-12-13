@@ -3,6 +3,8 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"os/exec"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace-generate/pkg/completer"
@@ -19,18 +21,28 @@ var completersCmd = &cobra.Command{
 			return err
 		}
 
-		if cmd.Flag("code").Changed {
-			fmt.Println(completers.Format("completers", cmd.Flag("tag").Value.String())) // TODO pass package by flag
-			return nil
+		var s string
+		switch {
+		case cmd.Flag("code").Changed:
+			s = completers.Format("completers", cmd.Flag("tag").Value.String()) // TODO pass package by flag
+
+		default:
+			completers.SortVariants()
+			m, err := json.Marshal(completers)
+			if err != nil {
+				return err
+			}
+			s = string(m)
+
 		}
 
-		completers.SortVariants()
-		m, err := json.Marshal(completers)
-		if err != nil {
-			return err
+		if f := cmd.Flag("output"); f.Changed {
+			if err := os.WriteFile(f.Value.String(), []byte(s), 0644); err != nil {
+				return err
+			}
+			return exec.Command("go", "fmt", f.Value.String()).Run()
 		}
-
-		fmt.Println(string(m))
+		fmt.Println(s)
 		return nil
 	},
 }
@@ -40,6 +52,7 @@ func init() {
 
 	completersCmd.Flags().Bool("code", false, "output go code")
 	completersCmd.Flags().String("tag", "", "build tag for code output")
+	completersCmd.Flags().String("output", "", "file to write to")
 	rootCmd.AddCommand(completersCmd)
 
 	carapace.Gen(completersCmd).PositionalCompletion(
