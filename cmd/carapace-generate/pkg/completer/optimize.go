@@ -33,6 +33,10 @@ func Optimize(dir string) error {
 		filepath.ToSlash(filepath.Join(filepath.Dir(prefix), filepath.Base(target))), // TODO not always correct
 	)
 	return filepath.Walk(source, func(path string, info fs.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
 		if info.IsDir() {
 			return nil
 		}

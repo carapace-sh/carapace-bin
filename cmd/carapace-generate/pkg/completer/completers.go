@@ -9,7 +9,6 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
-	"unicode"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/completer"
@@ -160,17 +159,4 @@ func packagePrefix(dir string) (string, error) {
 		dir = ""
 	}
 	return gomod.Module.Path + "/" + filepath.ToSlash(dir), nil
-}
-
-func varName(name string) string {
-	if name == "go" {
-		return "_go"
-	}
-	if unicode.IsDigit([]rune(name)[0]) {
-		name = "_" + name
-	}
-	return strings.NewReplacer(
-		"-", "_",
-		".", "_",
-	).Replace(name)
 }
