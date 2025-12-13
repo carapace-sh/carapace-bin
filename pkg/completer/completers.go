@@ -10,8 +10,7 @@ import (
 
 type CompleterMap map[string]Completers
 
-// TODO Get or call it Lookup?
-func (c CompleterMap) Get(nameVariant string) (*Completer, bool) {
+func (c CompleterMap) Get(nameVariant string) (*Completer, bool) { // TODO Get or call it Lookup?
 	name, variant, _ := strings.Cut(nameVariant, "/")
 	if variants, ok := c[name]; ok {
 		return variants.Get(variant)

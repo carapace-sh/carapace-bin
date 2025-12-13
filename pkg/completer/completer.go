@@ -64,8 +64,7 @@ func varName(name string) string {
 
 type Completers []Completer
 
-// TODO Get or call it Lookup?
-func (c Completers) Get(variant string) (*Completer, bool) {
+func (c Completers) Get(variant string) (*Completer, bool) { // TODO Get or call it Lookup?
 	sort.Sort(c) // TODO this modifies c
 	for _, completer := range c {
 		if variant == "" || completer.Variant == variant {
