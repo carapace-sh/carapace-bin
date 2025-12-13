@@ -8,15 +8,41 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/carapace-sh/carapace-bin/pkg/completer"
 	"github.com/carapace-sh/carapace-bin/pkg/env"
 	"github.com/carapace-sh/carapace/pkg/xdg"
 	"gopkg.in/yaml.v3"
 )
 
-var (
-	descriptions = make(map[string]string)
-	names        = make([]string, 0)
-)
+func Completers() (completer.CompleterMap, error) {
+	specs, err := SpecsNew()
+	if err != nil {
+		return nil, err
+	}
+	completers.Merge(specs) // TODO modifies completers
+	return completers, nil
+
+}
+
+func SpecsNew() (completer.CompleterMap, error) { // TODO rename (remove old spec function)
+	dir, err := xdg.UserConfigDir()
+	if err != nil {
+		return nil, err
+	}
+	// TODO system specs
+	return completer.ReadSpecs(filepath.Join(dir, "carapace", "specs"), "user")
+}
+
+func Lookup(nameVariant string) (*completer.Completer, error) {
+	m, err := Completers() // TODO lookup needs to use a quick version (skip parsing of specs for descriptions)
+	if err != nil {
+		return nil, err
+	}
+	if c, ok := m.Get(nameVariant); ok {
+		return c, nil
+	}
+	return nil, fmt.Errorf("unknonw completer/variant: %#v", nameVariant)
+}
 
 func Names() []string {
 	excludes := make(map[string]bool)
@@ -35,7 +61,7 @@ func Names() []string {
 	}
 
 	if _, ok := excludes["*"]; !ok {
-		for _, name := range names {
+		for name := range completers {
 			if _, ok := excludes[name]; !ok {
 				unique[name] = true
 			}
@@ -115,7 +141,10 @@ func Description(name string) string {
 	if d, err := specDescription(name); err == nil {
 		return d
 	}
-	return descriptions[name]
+	if completer, ok := completers.Get(name); ok {
+		return completer.Description
+	}
+	return ""
 }
 
 func specDescription(name string) (string, error) {

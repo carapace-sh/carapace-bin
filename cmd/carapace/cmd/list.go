@@ -3,13 +3,10 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"strconv"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
-	"github.com/carapace-sh/carapace-bridge/pkg/bridges"
-	"github.com/carapace-sh/carapace-bridge/pkg/env"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -18,13 +15,26 @@ var listCmd = &cobra.Command{
 	Use:   "--list",
 	Short: "list completers",
 	Args:  cobra.ArbitraryArgs,
-	Run: func(cmd *cobra.Command, args []string) {
-		switch cmd.Flag("format").Value.String() {
-		case "json":
-			printCompletersJson(cmd.Flag("all").Changed, args...)
-		default:
-			printCompleters(cmd.Flag("all").Changed)
+	RunE: func(cmd *cobra.Command, args []string) error {
+		c, err := completers.Completers()
+		if err != nil {
+			return err
 		}
+		c.SortVariants() // TODO implicitly do this in marshal?
+		m, err := json.Marshal(c)
+		if err != nil {
+			return err
+		}
+		fmt.Println(string(m))
+
+		// TODO handle flags
+		// switch cmd.Flag("format").Value.String() {
+		// case "json":
+		// 	printCompletersJson(cmd.Flag("all").Changed, args...)
+		// default:
+		// 	printCompleters(cmd.Flag("all").Changed)
+		// }
+		return nil
 	},
 }
 
@@ -54,144 +64,108 @@ func init() {
 	)
 
 }
-func printCompleters(all bool) {
-	_m := mapCompleters(all)
 
-	maxlen := 0
-	for name := range _m {
-		if len := len(name); len > maxlen {
-			maxlen = len
-		}
-	}
+// TODO re-enable/adopt what's still relevant
+// func mapCompleters(all bool) map[string]_completer {
+// 	// TODO move to completers package
 
-	for _, c := range _m {
-		fmt.Printf("%-"+strconv.Itoa(maxlen)+"v %v\n", c.Name, c.Description)
-	}
-}
+// 	_completers := make(map[string]_completer, 0)
+// 	for _, name := range completers.Names() {
+// 		specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+// 		overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+// 		_completers[name] = _completer{
+// 			Name:        name,
+// 			Description: completers.Description(name),
+// 			Spec:        specPath,
+// 			Overlay:     overlayPath,
+// 		}
+// 	}
 
-func printCompletersJson(all bool, names ...string) {
-	completers := mapCompleters(all)
-	if len(names) > 0 {
-		filtered := make(map[string]_completer)
-		for _, name := range names {
-			filtered[name] = completers[name]
-		}
-		completers = filtered
-	}
+// 	if all {
+// 		for name, bridge := range bridges.Config() {
+// 			if _, ok := _completers[name]; ok {
+// 				continue
+// 			}
+// 			specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+// 			overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+// 			_completers[name] = _completer{
+// 				Name:        name,
+// 				Description: completers.Description(name), // TODO
+// 				Spec:        specPath,
+// 				Overlay:     overlayPath,
+// 				Bridge:      bridge,
+// 			}
+// 		}
 
-	if m, err := json.Marshal(completers); err == nil { // TODO handle error (log?)
-		fmt.Println(string(m))
-	}
-}
+// 		for _, b := range env.Bridges() {
+// 			switch b {
+// 			case "bash":
+// 				for _, name := range bridges.Bash() {
+// 					if _, ok := _completers[name]; ok {
+// 						continue
+// 					}
 
-type _completer struct {
-	Name        string
-	Description string
-	Spec        string `json:",omitempty"`
-	Overlay     string `json:",omitempty"`
-	Bridge      string `json:",omitempty"`
-}
+// 					specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+// 					overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+// 					_completers[name] = _completer{
+// 						Name:        name,
+// 						Description: completers.Description(name), // TODO
+// 						Spec:        specPath,
+// 						Overlay:     overlayPath,
+// 						Bridge:      "bash",
+// 					}
+// 				}
+// 			case "fish":
+// 				for _, name := range bridges.Fish() {
+// 					if _, ok := _completers[name]; ok {
+// 						continue
+// 					}
 
-func mapCompleters(all bool) map[string]_completer {
-	// TODO move to completers package
+// 					specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+// 					overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+// 					_completers[name] = _completer{
+// 						Name:        name,
+// 						Description: completers.Description(name), // TODO
+// 						Spec:        specPath,
+// 						Overlay:     overlayPath,
+// 						Bridge:      "fish",
+// 					}
+// 				}
+// 			case "inshellisense":
+// 				for _, name := range bridges.Inshellisense() {
+// 					if _, ok := _completers[name]; ok {
+// 						continue
+// 					}
 
-	_completers := make(map[string]_completer, 0)
-	for _, name := range completers.Names() {
-		specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-		overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-		_completers[name] = _completer{
-			Name:        name,
-			Description: completers.Description(name),
-			Spec:        specPath,
-			Overlay:     overlayPath,
-		}
-	}
+// 					specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+// 					overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+// 					_completers[name] = _completer{
+// 						Name:        name,
+// 						Description: completers.Description(name), // TODO
+// 						Spec:        specPath,
+// 						Overlay:     overlayPath,
+// 						Bridge:      "inshellisense",
+// 					}
+// 				}
+// 			case "zsh":
+// 				for _, name := range bridges.Zsh() {
+// 					if _, ok := _completers[name]; ok {
+// 						continue
+// 					}
 
-	if all {
-		for name, bridge := range bridges.Config() {
-			if _, ok := _completers[name]; ok {
-				continue
-			}
-			specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-			overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-			_completers[name] = _completer{
-				Name:        name,
-				Description: completers.Description(name), // TODO
-				Spec:        specPath,
-				Overlay:     overlayPath,
-				Bridge:      bridge,
-			}
-		}
+// 					specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
+// 					overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
+// 					_completers[name] = _completer{
+// 						Name:        name,
+// 						Description: completers.Description(name), // TODO
+// 						Spec:        specPath,
+// 						Overlay:     overlayPath,
+// 						Bridge:      "zsh",
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
 
-		for _, b := range env.Bridges() {
-			switch b {
-			case "bash":
-				for _, name := range bridges.Bash() {
-					if _, ok := _completers[name]; ok {
-						continue
-					}
-
-					specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-					overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-					_completers[name] = _completer{
-						Name:        name,
-						Description: completers.Description(name), // TODO
-						Spec:        specPath,
-						Overlay:     overlayPath,
-						Bridge:      "bash",
-					}
-				}
-			case "fish":
-				for _, name := range bridges.Fish() {
-					if _, ok := _completers[name]; ok {
-						continue
-					}
-
-					specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-					overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-					_completers[name] = _completer{
-						Name:        name,
-						Description: completers.Description(name), // TODO
-						Spec:        specPath,
-						Overlay:     overlayPath,
-						Bridge:      "fish",
-					}
-				}
-			case "inshellisense":
-				for _, name := range bridges.Inshellisense() {
-					if _, ok := _completers[name]; ok {
-						continue
-					}
-
-					specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-					overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-					_completers[name] = _completer{
-						Name:        name,
-						Description: completers.Description(name), // TODO
-						Spec:        specPath,
-						Overlay:     overlayPath,
-						Bridge:      "inshellisense",
-					}
-				}
-			case "zsh":
-				for _, name := range bridges.Zsh() {
-					if _, ok := _completers[name]; ok {
-						continue
-					}
-
-					specPath, _ := completers.SpecPath(name)       // TODO handle error (log?)
-					overlayPath, _ := completers.OverlayPath(name) // TODO handle error (log?)
-					_completers[name] = _completer{
-						Name:        name,
-						Description: completers.Description(name), // TODO
-						Spec:        specPath,
-						Overlay:     overlayPath,
-						Bridge:      "zsh",
-					}
-				}
-			}
-		}
-	}
-
-	return _completers
-}
+// 	return _completers
+// }

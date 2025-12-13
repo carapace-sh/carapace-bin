@@ -1,7 +1,5 @@
 package cmd
 
-//go:generate go run ../../carapace-generate/gen.go
-
 import (
 	"fmt"
 	"os"
@@ -272,8 +270,8 @@ func init() {
 		}),
 	)
 
-	for m, f := range actions.MacroMap {
-		spec.AddMacro(m, f)
+	for m, f := range actions.Macros {
+		spec.AddMacro(m, f) // TODO just provide a reference for lookup to skip adding them all the time
 	}
 	spec.Register(rootCmd)
 }
