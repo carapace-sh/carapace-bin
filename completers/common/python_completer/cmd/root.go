@@ -21,6 +21,7 @@ func Execute(opts ...func(cmd *cobra.Command)) error {
 	for _, opt := range opts {
 		opt(rootCmd)
 	}
+	// TODO ensure patching still works
 	moduleFlagIndex := -1
 	for index, arg := range os.Args {
 		if arg == "-m" {

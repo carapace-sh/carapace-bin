@@ -20,6 +20,7 @@ func Execute(opts ...func(cmd *cobra.Command)) error {
 	for _, opt := range opts {
 		opt(rootCmd)
 	}
+	// TODO ensure patching still works
 	for i, arg := range os.Args {
 		if !strings.HasPrefix(arg, "-") || len(arg) < 2 {
 			continue // skip non-flags

@@ -19,6 +19,7 @@ func Execute(opts ...func(cmd *cobra.Command)) error {
 	for _, opt := range opts {
 		opt(rootCmd)
 	}
+	// TODO ensure patching still works
 	for _, arg := range os.Args {
 		if strings.HasPrefix(arg, "-J") {
 			name := strings.TrimPrefix(arg, "-")
