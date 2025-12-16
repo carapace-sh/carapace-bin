@@ -15,7 +15,10 @@ var rootCmd = &cobra.Command{
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
-func Execute() error {
+func Execute(opts ...func(cmd *cobra.Command)) error {
+	for _, opt := range opts {
+		opt(rootCmd)
+	}
 	for _, arg := range os.Args {
 		if strings.HasPrefix(arg, "-J") {
 			name := strings.TrimPrefix(arg, "-")

@@ -14,7 +14,10 @@ var rootCmd = &cobra.Command{
 	DisableFlagParsing: true,
 }
 
-func Execute() error {
+func Execute(opts ...func(cmd *cobra.Command)) error {
+	for _, opt := range opts {
+		opt(rootCmd)
+	}
 	return rootCmd.Execute()
 }
 func init() {

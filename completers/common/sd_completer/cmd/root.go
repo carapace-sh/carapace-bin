@@ -12,7 +12,10 @@ var rootCmd = &cobra.Command{
 	Run:   func(*cobra.Command, []string) {},
 }
 
-func Execute() error {
+func Execute(opts ...func(cmd *cobra.Command)) error {
+	for _, opt := range opts {
+		opt(rootCmd)
+	}
 	return rootCmd.Execute()
 }
 

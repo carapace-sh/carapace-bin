@@ -11,7 +11,10 @@ var rootCmd = &cobra.Command{
 	Long:  "https://launchpad.net/ufw",
 }
 
-func Execute() error {
+func Execute(opts ...func(cmd *cobra.Command)) error {
+	for _, opt := range opts {
+		opt(rootCmd)
+	}
 	return rootCmd.Execute()
 }
 

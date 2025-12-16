@@ -44,7 +44,10 @@ var groups = []*cobra.Group{
 	{ID: "low-level helper", Title: "Low-level Helper Commands"},
 }
 
-func Execute() error {
+func Execute(opts ...func(cmd *cobra.Command)) error {
+	for _, opt := range opts {
+		opt(rootCmd)
+	}
 	return rootCmd.Execute()
 }
 
