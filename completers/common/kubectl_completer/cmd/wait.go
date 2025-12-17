@@ -7,8 +7,8 @@ import (
 )
 
 var waitCmd = &cobra.Command{
-	Use:     "wait ([-f FILENAME] | resource.group/resource.name | resource.group [(-l label | --all)]) [--for=delete|--for condition=available|--for=jsonpath='{}'=value]",
-	Short:   "Experimental: Wait for a specific condition on one or many resources",
+	Use:     "wait ([-f FILENAME] | resource.group/resource.name | resource.group [(-l label | --all)]) [--for=create|--for=delete|--for condition=available|--for=jsonpath='{}'[=value]]",
+	Short:   "Wait for a specific condition on one or many resources",
 	GroupID: "advanced",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -23,7 +23,7 @@ func init() {
 	waitCmd.Flags().StringSliceP("filename", "f", nil, "identifying the resource.")
 	waitCmd.Flags().String("for", "", "The condition to wait on: [create|delete|condition=condition-name[=condition-value]|jsonpath='{JSONPath expression}'=[JSONPath value]]. The default condition-value is true. Condition values are compared after Unicode simple case folding, which is a more general form of case-insensitivity.")
 	waitCmd.Flags().Bool("local", false, "If true, annotation will NOT contact api-server but run locally.")
-	waitCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
+	waitCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	waitCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")
 	waitCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)")
 	waitCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")

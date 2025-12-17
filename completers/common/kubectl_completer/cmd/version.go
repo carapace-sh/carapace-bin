@@ -16,6 +16,7 @@ func init() {
 
 	versionCmd.Flags().Bool("client", false, "If true, shows client version only (no server required).")
 	versionCmd.Flags().StringP("output", "o", "", "One of 'yaml' or 'json'.")
+	rootCmd.AddCommand(versionCmd)
 
 	carapace.Gen(versionCmd).FlagCompletion(carapace.ActionMap{
 		"output": carapace.ActionValues("yaml", "json"),

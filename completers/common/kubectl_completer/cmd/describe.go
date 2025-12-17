@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(describeCmd).Standalone()
 
 	describeCmd.Flags().BoolP("all-namespaces", "A", false, "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.")
-	describeCmd.Flags().String("chunk-size", "", "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.")
+	describeCmd.Flags().String("chunk-size", "", "Return large lists in chunks rather than all at once. Pass 0 to disable.")
 	describeCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files containing the resource to describe")
 	describeCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	describeCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")

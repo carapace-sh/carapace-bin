@@ -19,7 +19,19 @@ func ActionDryRunModes() carapace.Action {
 //	json
 //	yaml
 func ActionOutputFormats() carapace.Action {
-	return carapace.ActionValues("json", "yaml", "name", "go-template", "go-template-file", "template", "templatefile", "jsonpath", "jsonpath-as-json", "jsonpath-file")
+	return carapace.ActionValues(
+		"json",
+		"yaml",
+		"kyaml",
+		"name",
+		"go-template",
+		"go-template-file",
+		"template",
+		"templatefile",
+		"jsonpath",
+		"jsonpath-as-json",
+		"jsonpath-file",
+	)
 }
 
 // ActionResourceVerbs completes resource verbs

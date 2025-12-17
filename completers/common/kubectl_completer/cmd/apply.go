@@ -27,7 +27,7 @@ func init() {
 	applyCmd.Flags().String("grace-period", "", "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion).")
 	applyCmd.Flags().StringP("kustomize", "k", "", "Process a kustomization directory. This flag can't be used together with -f or -R.")
 	applyCmd.Flags().Bool("openapi-patch", false, "If true, use openapi to calculate diff when the openapi presents and the resource can be found in the openapi spec. Otherwise, fall back to use baked-in types.")
-	applyCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
+	applyCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	applyCmd.Flags().Bool("overwrite", false, "Automatically resolve conflicts between the modified and live configuration by using values from the modified configuration")
 	applyCmd.Flags().Bool("prune", false, "Automatically delete resource objects, that do not appear in the configs and are created by either apply or create --save-config. Should be used with either -l or --all.")
 	applyCmd.Flags().StringSlice("prune-allowlist", nil, "Overwrite the default allowlist with <group/version/kind> for --prune")

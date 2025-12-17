@@ -21,7 +21,7 @@ func init() {
 	create_priorityclassCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_priorityclassCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
 	create_priorityclassCmd.Flags().Bool("global-default", false, "global-default specifies whether this PriorityClass should be considered as the default priority.")
-	create_priorityclassCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
+	create_priorityclassCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	create_priorityclassCmd.Flags().String("preemption-policy", "", "preemption-policy is the policy for preempting pods with lower priority.")
 	create_priorityclassCmd.Flags().Bool("save-config", false, "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.")
 	create_priorityclassCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")

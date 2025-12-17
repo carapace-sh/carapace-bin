@@ -20,7 +20,7 @@ func init() {
 	create_cronjobCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_cronjobCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
 	create_cronjobCmd.Flags().String("image", "", "Image name to run.")
-	create_cronjobCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
+	create_cronjobCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	create_cronjobCmd.Flags().String("restart", "", "job's restart policy. supported values: OnFailure, Never")
 	create_cronjobCmd.Flags().Bool("save-config", false, "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.")
 	create_cronjobCmd.Flags().String("schedule", "", "A schedule in the Cron format the job should be run with.")

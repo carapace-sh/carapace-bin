@@ -21,7 +21,7 @@ func init() {
 	create_poddisruptionbudgetCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
 	create_poddisruptionbudgetCmd.Flags().String("max-unavailable", "", "The maximum number or percentage of unavailable pods this budget requires.")
 	create_poddisruptionbudgetCmd.Flags().String("min-available", "", "The minimum number or percentage of available pods this budget requires.")
-	create_poddisruptionbudgetCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
+	create_poddisruptionbudgetCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	create_poddisruptionbudgetCmd.Flags().Bool("save-config", false, "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.")
 	create_poddisruptionbudgetCmd.Flags().String("selector", "", "A label selector to use for this budget. Only equality-based selector requirements are supported.")
 	create_poddisruptionbudgetCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")

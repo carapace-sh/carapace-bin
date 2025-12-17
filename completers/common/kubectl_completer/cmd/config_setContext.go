@@ -17,7 +17,7 @@ func init() {
 
 	config_setContextCmd.Flags().String("cluster", "", "cluster for the context entry in kubeconfig")
 	config_setContextCmd.Flags().Bool("current", false, "Modify the current context")
-	config_setContextCmd.Flags().String("namespace", "", "namespace for the context entry in kubeconfig")
+	config_setContextCmd.Flags().StringP("namespace", "n", "", "namespace for the context entry in kubeconfig")
 	config_setContextCmd.Flags().String("user", "", "user for the context entry in kubeconfig")
 	configCmd.AddCommand(config_setContextCmd)
 
