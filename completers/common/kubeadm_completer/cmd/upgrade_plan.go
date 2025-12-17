@@ -23,7 +23,7 @@ func init() {
 	upgrade_planCmd.Flags().Bool("etcd-upgrade", false, "Perform the upgrade of etcd.")
 	upgrade_planCmd.Flags().StringSlice("ignore-preflight-errors", nil, "A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.")
 	upgrade_planCmd.Flags().String("kubeconfig", "", "The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.")
-	upgrade_planCmd.Flags().StringP("output", "o", "", "Output format. One of: text|json|yaml|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file.")
+	upgrade_planCmd.Flags().StringP("output", "o", "", "Output format. One of: text|json|yaml|kyaml|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file.")
 	upgrade_planCmd.Flags().Bool("print-config", false, "Specifies whether the configuration file that will be used in the upgrade should be printed or not.")
 	upgrade_planCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	upgradeCmd.AddCommand(upgrade_planCmd)

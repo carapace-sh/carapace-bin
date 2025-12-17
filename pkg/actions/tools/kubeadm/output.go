@@ -8,15 +8,16 @@ import "github.com/carapace-sh/carapace"
 //	json
 func ActionOutputFormats() carapace.Action {
 	return carapace.ActionValues(
+		"ext",
 		"go-template",
 		"go-template-file",
 		"json",
 		"jsonpath",
 		"jsonpath-as-json",
 		"jsonpath-file",
+		"kyaml",
 		"template",
 		"templatefile",
-		"text",
 		"yaml",
 	).Tag("output formats")
 }

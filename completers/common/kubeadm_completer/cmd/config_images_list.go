@@ -20,7 +20,7 @@ func init() {
 	config_images_listCmd.PersistentFlags().String("feature-gates", "", "A set of key=value pairs that describe feature gates for various features. Options are:")
 	config_images_listCmd.PersistentFlags().String("image-repository", "", "Choose a container registry to pull control plane images from")
 	config_images_listCmd.PersistentFlags().String("kubernetes-version", "", "Choose a specific Kubernetes version for the control plane.")
-	config_images_listCmd.Flags().StringP("output", "o", "", "Output format. One of: text|json|yaml|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file.")
+	config_images_listCmd.Flags().StringP("output", "o", "", "Output format. One of: text|json|yaml|kyaml|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file.")
 	config_images_listCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	config_imagesCmd.AddCommand(config_images_listCmd)
 
