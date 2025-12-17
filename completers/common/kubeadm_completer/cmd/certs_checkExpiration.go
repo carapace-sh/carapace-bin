@@ -19,7 +19,7 @@ func init() {
 	certs_checkExpirationCmd.Flags().String("cert-dir", "", "The path where to save the certificates")
 	certs_checkExpirationCmd.Flags().String("config", "", "Path to a kubeadm configuration file.")
 	certs_checkExpirationCmd.Flags().String("kubeconfig", "", "The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.")
-	certs_checkExpirationCmd.Flags().StringP("output", "o", "", "Output format. One of: text|json|yaml|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file.")
+	certs_checkExpirationCmd.Flags().StringP("output", "o", "", "Output format. One of: text|json|yaml|kyaml|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file.")
 	certs_checkExpirationCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	certsCmd.AddCommand(certs_checkExpirationCmd)
 

@@ -7,7 +7,7 @@ import (
 
 var join_phase_etcdJoinCmd = &cobra.Command{
 	Use:   "etcd-join",
-	Short: "[EXPERIMENTAL] Join etcd for control plane nodes (only used when feature gate ControlPlaneKubeletLocalMode is enabled)",
+	Short: "Join etcd for control plane nodes",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
