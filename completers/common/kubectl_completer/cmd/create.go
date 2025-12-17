@@ -22,7 +22,7 @@ func init() {
 	createCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
 	createCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files to use to create the resource")
 	createCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
-	createCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
+	createCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	createCmd.Flags().String("raw", "", "Raw URI to POST to the server.  Uses the transport specified by the kubeconfig file.")
 	createCmd.Flags().Bool("record", false, "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.")
 	createCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")

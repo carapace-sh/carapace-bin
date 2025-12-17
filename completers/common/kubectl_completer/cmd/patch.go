@@ -22,7 +22,7 @@ func init() {
 	patchCmd.Flags().StringSliceP("filename", "f", nil, "Filename, directory, or URL to files identifying the resource to update")
 	patchCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	patchCmd.Flags().Bool("local", false, "If true, patch will operate on the content of the file, not the server-side resource.")
-	patchCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
+	patchCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	patchCmd.Flags().StringP("patch", "p", "", "The patch to be applied to the resource JSON file.")
 	patchCmd.Flags().String("patch-file", "", "A file containing a patch to be applied to the resource.")
 	patchCmd.Flags().Bool("record", false, "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.")

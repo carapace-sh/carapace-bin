@@ -20,7 +20,7 @@ func init() {
 	create_clusterroleCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_clusterroleCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
 	create_clusterroleCmd.Flags().StringSlice("non-resource-url", nil, "A partial url that user should have access to.")
-	create_clusterroleCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
+	create_clusterroleCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	create_clusterroleCmd.Flags().StringSlice("resource", nil, "Resource that the rule applies to")
 	create_clusterroleCmd.Flags().StringSlice("resource-name", nil, "Resource in the white list that the rule applies to, repeat this flag for multiple items")
 	create_clusterroleCmd.Flags().Bool("save-config", false, "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.")

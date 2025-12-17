@@ -16,7 +16,7 @@ var drainCmd = &cobra.Command{
 func init() {
 	carapace.Gen(drainCmd).Standalone()
 
-	drainCmd.Flags().String("chunk-size", "", "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.")
+	drainCmd.Flags().String("chunk-size", "", "Return large lists in chunks rather than all at once. Pass 0 to disable.")
 	drainCmd.Flags().Bool("delete-emptydir-data", false, "Continue even if there are pods using emptyDir (local data that will be deleted when the node is drained).")
 	drainCmd.Flags().Bool("disable-eviction", false, "Force drain to use delete, even if eviction is supported. This will bypass checking PodDisruptionBudgets, use with caution.")
 	drainCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")

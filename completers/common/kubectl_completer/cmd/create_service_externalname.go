@@ -19,7 +19,7 @@ func init() {
 	create_service_externalnameCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	create_service_externalnameCmd.Flags().String("external-name", "", "External name of service")
 	create_service_externalnameCmd.Flags().String("field-manager", "", "Name of the manager used to track field ownership.")
-	create_service_externalnameCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
+	create_service_externalnameCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	create_service_externalnameCmd.Flags().Bool("save-config", false, "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.")
 	create_service_externalnameCmd.Flags().Bool("show-managed-fields", false, "If true, keep the managedFields when printing objects in JSON or YAML format.")
 	create_service_externalnameCmd.Flags().StringSlice("tcp", nil, "Port pairs can be specified as '<port>:<targetPort>'.")

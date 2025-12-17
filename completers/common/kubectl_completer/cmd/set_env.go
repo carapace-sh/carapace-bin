@@ -28,7 +28,7 @@ func init() {
 	set_envCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	set_envCmd.Flags().Bool("list", false, "If true, display the environment and any changes in the standard format. this flag will removed when we have kubectl view env.")
 	set_envCmd.Flags().Bool("local", false, "If true, set env will NOT contact api-server but run locally.")
-	set_envCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
+	set_envCmd.Flags().StringP("output", "o", "", "Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).")
 	set_envCmd.Flags().Bool("overwrite", false, "If true, allow environment to be overwritten, otherwise reject updates that overwrite existing environment.")
 	set_envCmd.Flags().String("prefix", "", "Prefix to append to variable names")
 	set_envCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")
