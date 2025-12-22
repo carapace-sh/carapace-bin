@@ -8,6 +8,25 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
+// ActionPackageSearch completes installed packages
+func ActionPackages() carapace.Action {
+	re := regexp.MustCompile(`\S+\s(\S+)-\S+\s+(.*)`)
+
+	return carapace.ActionExecCommand("xbps-query", "-l")(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+		vals := make([]string, 0)
+
+		for _, line := range lines {
+			match := re.FindStringSubmatch(line)
+
+			if len(match) > 1 {
+				vals = append(vals, match[1], match[2])
+			}
+		}
+		return carapace.ActionValuesDescribed(vals...)
+	})
+}
+
 // ActionPackageSearch completes installable packages
 func ActionPackageSearch() carapace.Action {
 	re := regexp.MustCompile(`\[.\] (\S+)-\S+\s+(.*)`)
