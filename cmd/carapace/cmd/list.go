@@ -39,31 +39,6 @@ var listCmd = &cobra.Command{
 			},
 		}
 
-		if len(args) > 0 {
-			// TODO should matchall be a `*` since the default completers have an empty string as variant?
-			// TODO `skhd@darwin` should be possible so its better to implicitly add a `default` variant to all (or use that term to filter)
-			nameVariant, group, _ := strings.Cut(args[0], "@")
-			name, variant, _ := strings.Cut(nameVariant, "/")
-
-			filtered := make(completer.CompleterMap)
-			for cName, cVariants := range c {
-				if name != "" && name != cName {
-					continue
-				}
-
-				for _, cVariant := range cVariants {
-					if variant != "" && variant != cVariant.Variant {
-						continue
-					}
-					if group != "" && group != cVariant.Group {
-						continue
-					}
-					filtered[cName] = append(filtered[cName], cVariant)
-				}
-			}
-			c = filtered
-		}
-
 		if cmd.Flag("names").Changed {
 			for _, name := range slices.Sorted(maps.Keys(c)) {
 				fmt.Println(name)
