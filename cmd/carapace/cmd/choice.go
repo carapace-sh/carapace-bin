@@ -5,6 +5,7 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
+	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/choice"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -122,8 +123,8 @@ func init() {
 						}
 					})
 				default:
-					// TODO complete groups matching name/variant
-					return carapace.ActionValues()
+					// TODO needs to support unknown bridges
+					return carapacebin.ActionCompleterGroups(c.Parts[0])
 				}
 			})
 		}),
