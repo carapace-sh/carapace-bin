@@ -71,17 +71,9 @@ func init() {
 					return carapace.ActionMultiPartsN("/", 2, func(c carapace.Context) carapace.Action {
 						switch len(c.Parts) {
 						case 0:
-							m, err := completers.Completers("", false)
-							if err != nil {
-								return carapace.ActionMessage(err.Error())
-							}
-							vals := make([]string, 0)
-							for name := range m {
-								vals = append(vals, name)
-							}
 							return carapace.Batch(
 								carapace.ActionExecutables().Style(style.Dim),
-								carapace.ActionValues(vals...),
+								carapacebin.ActionCompleterNames(),
 							).ToA().Suffix("/")
 						default:
 							m, err := completers.Completers(c.Parts[0], true)
