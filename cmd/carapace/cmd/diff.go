@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
+	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	shlex "github.com/carapace-sh/carapace-shlex"
 	"github.com/spf13/cobra"
@@ -33,8 +33,8 @@ func init() {
 	diffCmd.Flags().SetInterspersed(false)
 
 	carapace.Gen(diffCmd).PositionalCompletion(
-		action.ActionCompleters(),
-		action.ActionCompleters(),
+		carapacebin.ActionCompleters(),
+		carapacebin.ActionCompleters(),
 	)
 
 	carapace.Gen(diffCmd).PositionalAnyCompletion(

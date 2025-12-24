@@ -6,10 +6,10 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/lazyinit"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/shim"
 	"github.com/carapace-sh/carapace-bin/pkg/actions"
+	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	spec "github.com/carapace-sh/carapace-spec"
 	"github.com/carapace-sh/carapace/pkg/ps"
 	"github.com/carapace-sh/carapace/pkg/xdg"
@@ -231,7 +231,7 @@ func init() {
 				cmd.Flags().AddFlagSet(rootCmd.Flags())
 				return carapace.ActionExecute(cmd)
 			}
-			return action.ActionCompleters()
+			return carapacebin.ActionCompleters()
 		}),
 	)
 

@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
+	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/uid"
 	"github.com/spf13/cobra"
@@ -153,7 +153,7 @@ func init() {
 	invokeCmd.Flags().SetInterspersed(false)
 
 	carapace.Gen(invokeCmd).PositionalCompletion(
-		action.ActionCompleters(),
+		carapacebin.ActionCompleters(),
 		bridge.ActionCarapaceBin("_carapace", "export", "", "_carapace").Shift(1).
 			Filter("macro", "style"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {

@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
+	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/completer"
 	"github.com/spf13/cobra"
 )
@@ -86,6 +86,6 @@ func init() {
 	listCmd.Flags().Bool("names", false, "only list names")
 
 	carapace.Gen(listCmd).PositionalCompletion(
-		action.ActionCompleters().NoSpace(),
+		carapacebin.ActionCompleters().NoSpace(),
 	)
 }

@@ -18,23 +18,22 @@ func ActionCompleters() carapace.Action {
 		switch {
 		case strings.Contains(c.Value, "@"):
 			nameVariant, _, _ := strings.Cut(c.Value, "@")
-			name, variant, _ := strings.Cut(nameVariant, "/")
-			return actionCompleterGroups(name, variant).Prefix(nameVariant + "@")
+			return ActionCompleterGroups(nameVariant).Prefix(nameVariant + "@")
 
 		case strings.Contains(c.Value, "/"):
 			nameVariant, _, _ := strings.Cut(c.Value, "@")
 			name, _, _ := strings.Cut(nameVariant, "/")
-			return actionCompleterVariants(name).Prefix(name + "/")
+			return ActionCompleterVariants(name).Prefix(name + "/").NoSpace()
 
 		default:
-			return actionCompleterNames()
+			return ActionCompleterNames().NoSpace()
 		}
 	})
 }
 
-func actionCompleters(f func(m completer.CompleterMap) carapace.Action) carapace.Action {
+func actionCompleters(filter string, f func(m completer.CompleterMap) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("carapace", "--list")(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("carapace", "--list", filter)(func(output []byte) carapace.Action {
 			var m completer.CompleterMap
 			if err := json.Unmarshal(output, &m); err != nil {
 				return carapace.ActionMessage(err.Error())
@@ -44,8 +43,8 @@ func actionCompleters(f func(m completer.CompleterMap) carapace.Action) carapace
 	})
 }
 
-func actionCompleterNames() carapace.Action {
-	return actionCompleters(func(m completer.CompleterMap) carapace.Action {
+func ActionCompleterNames() carapace.Action {
+	return actionCompleters("", func(m completer.CompleterMap) carapace.Action {
 		batch := carapace.Batch()
 		for name, variants := range m {
 			v := variants[0]
@@ -55,17 +54,24 @@ func actionCompleterNames() carapace.Action {
 	})
 }
 
-func actionCompleterVariants(filterName string) carapace.Action {
-	return actionCompleters(func(m completer.CompleterMap) carapace.Action {
-		// TODO slow
-		batch := carapace.Batch()
-		for name, variants := range m {
-			if filterName != "" && filterName != name {
-				continue
-			}
-			for _, v := range variants {
-				if v.Variant != "" {
-					switch filterName {
+func ActionCompleterVariants(name string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if name == "" {
+			return carapace.ActionValues()
+		}
+
+		return actionCompleters(name, func(m completer.CompleterMap) carapace.Action {
+			// TODO slow
+			batch := carapace.Batch()
+			for moep, variants := range m {
+				if name != "" && name != moep {
+					continue
+				}
+				for _, v := range variants {
+					if v.Variant == "" {
+						v.Variant = "default" // pseudo-variant TODO add/document as keyword
+					}
+					switch name {
 					case "":
 						batch = append(batch, carapace.ActionValues(v.Variant).Tag(completerTag(v)))
 					default:
@@ -73,28 +79,18 @@ func actionCompleterVariants(filterName string) carapace.Action {
 					}
 				}
 			}
-		}
-		return batch.ToA().Unique()
+			return batch.ToA().Unique()
+		})
 	})
 }
 
-func actionCompleterGroups(filterName, filterVariant string) carapace.Action {
-	return actionCompleters(func(m completer.CompleterMap) carapace.Action {
+func ActionCompleterGroups(nameVariant string) carapace.Action {
+	return actionCompleters(nameVariant, func(m completer.CompleterMap) carapace.Action {
 		// TODO slow
 		batch := carapace.Batch()
-		for name, variants := range m {
-			if filterName != "" && filterName != name {
-				continue
-			}
+		for _, variants := range m {
 			for _, v := range variants {
-				if filterVariant == "" || filterVariant == v.Variant {
-					switch {
-					case filterName == "" || filterVariant == "":
-						batch = append(batch, carapace.ActionValues(v.Group).Tag(completerTag(v)))
-					default:
-						batch = append(batch, carapace.ActionStyledValuesDescribed(v.Group, v.Description, completerStyle(v)).Tag(completerTag(v)))
-					}
-				}
+				batch = append(batch, carapace.ActionStyledValuesDescribed(v.Group, v.Description, completerStyle(v)).Tag(completerTag(v)))
 			}
 		}
 		return batch.ToA().Unique()
