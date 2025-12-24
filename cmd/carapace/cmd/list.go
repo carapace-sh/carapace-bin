@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"maps"
 	"slices"
-	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"

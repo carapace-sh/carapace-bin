@@ -64,13 +64,10 @@ func ActionVariants(name string) carapace.Action {
 		return actionCompleters(name, func(m completer.CompleterMap) carapace.Action {
 			// TODO slow
 			batch := carapace.Batch()
-			for moep, variants := range m {
-				if name != "" && name != moep {
-					continue
-				}
+			for _, variants := range m {
 				for _, v := range variants {
 					if v.Variant == "" {
-						v.Variant = "default" // pseudo-variant TODO add/document as keyword
+						continue
 					}
 					switch name {
 					case "":
