@@ -76,16 +76,6 @@ func init() {
 								carapacebin.ActionCompleterNames(),
 							).ToA().Suffix("/")
 						default:
-							m, err := completers.Completers(c.Parts[0], true)
-							if err != nil {
-								return carapace.ActionMessage(err.Error())
-							}
-							vals := make([]string, 0)
-							if variants, ok := m[c.Parts[0]]; ok {
-								for _, v := range variants {
-									vals = append(vals, fmt.Sprintf("%s@%s", v.Variant, v.Group), v.Description)
-								}
-							}
 							// TODO highlight by group
 							return carapace.Batch(
 								carapace.ActionValuesDescribed(
@@ -110,7 +100,7 @@ func init() {
 									"yargs@bridge", "",
 									"zsh@bridge", "",
 								).Style(style.Dim),
-								carapace.ActionValuesDescribed(vals...),
+								carapacebin.ActionCompleterVariants(c.Parts[0]),
 							).ToA()
 						}
 					})
