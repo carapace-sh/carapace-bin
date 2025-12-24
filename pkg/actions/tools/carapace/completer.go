@@ -89,11 +89,14 @@ func ActionGroups(nameVariant string) carapace.Action {
 	return actionCompleters(nameVariant, func(m completer.CompleterMap) carapace.Action {
 		// TODO slow
 		batch := carapace.Batch()
+
+		_, variant, _ := strings.Cut(nameVariant, "/")
+		if _, ok := bridge.Get(variant); ok {
+			batch = append(batch, carapace.ActionValues("bridge")) // potentially unknown bridge (e.g. `cobra`)
+		}
+
 		for _, variants := range m {
 			for _, v := range variants {
-				if _, ok := bridge.Get(v.Variant); ok {
-					batch = append(batch, carapace.ActionValues("bridge"))
-				}
 				batch = append(batch, carapace.ActionStyledValuesDescribed(v.Group, v.Description, completerStyle(v)).Tag(completerTag(v)))
 			}
 		}
