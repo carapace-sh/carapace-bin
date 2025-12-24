@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/choice"
 	"github.com/carapace-sh/carapace/pkg/style"
@@ -73,40 +72,41 @@ func init() {
 						case 0:
 							return carapace.Batch(
 								carapace.ActionExecutables().Style(style.Dim),
-								carapacebin.ActionCompleterNames(),
-							).ToA().Suffix("/")
+								carapacebin.ActionNames(),
+							).ToA().NoSpace()
 						default:
 							// TODO highlight by group
 							return carapace.Batch(
+								// TODO provide action in carapace-bridge
 								carapace.ActionValuesDescribed(
-									"argcomplete@bridge", "",
-									// "argcomplete@v1@bridge", "",
-									"aws@bridge", "",
-									"bash@bridge", "",
-									"carapace@bridge", "",
-									"carapace-bin@bridge", "",
-									"clap@bridge", "",
-									"click@bridge", "",
-									"cobra@bridge", "",
-									"complete@bridge", "",
-									"fish@bridge", "",
-									"gcloud@bridge", "",
-									"inshellisense@bridge", "",
-									"kingpin@bridge", "",
-									"kitten@bridge", "",
-									"powershell@bridge", "",
-									"urfavecli@bridge", "",
-									// "urfavecli@v1@bridge", "",
-									"yargs@bridge", "",
-									"zsh@bridge", "",
+									"argcomplete", "",
+									// "argcomplete@v1", "",
+									"aws", "",
+									"bash", "",
+									"carapace", "",
+									"carapace-bin", "",
+									"clap", "",
+									"click", "",
+									"cobra", "",
+									"complete", "",
+									"fish", "",
+									"gcloud", "",
+									"inshellisense", "",
+									"kingpin", "",
+									"kitten", "",
+									"powershell", "",
+									"urfavecli", "",
+									// "urfavecli@v1", "",
+									"yargs", "",
+									"zsh", "",
 								).Style(style.Dim),
-								carapacebin.ActionCompleterVariants(c.Parts[0]),
-							).ToA()
+								carapacebin.ActionVariants(c.Parts[0]),
+							).ToA().NoSpace()
 						}
 					})
 				default:
 					// TODO needs to support unknown bridges
-					return carapacebin.ActionCompleterGroups(c.Parts[0])
+					return carapacebin.ActionGroups(c.Parts[0])
 				}
 			})
 		}),

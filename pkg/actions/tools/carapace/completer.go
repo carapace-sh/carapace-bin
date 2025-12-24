@@ -6,6 +6,7 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/completer"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
@@ -18,15 +19,15 @@ func ActionCompleters() carapace.Action {
 		switch {
 		case strings.Contains(c.Value, "@"):
 			nameVariant, _, _ := strings.Cut(c.Value, "@")
-			return ActionCompleterGroups(nameVariant).Prefix(nameVariant + "@")
+			return ActionGroups(nameVariant).Prefix(nameVariant + "@")
 
 		case strings.Contains(c.Value, "/"):
 			nameVariant, _, _ := strings.Cut(c.Value, "@")
 			name, _, _ := strings.Cut(nameVariant, "/")
-			return ActionCompleterVariants(name).Prefix(name + "/").NoSpace()
+			return ActionVariants(name).Prefix(name + "/").NoSpace()
 
 		default:
-			return ActionCompleterNames().NoSpace()
+			return ActionNames().NoSpace()
 		}
 	})
 }
@@ -43,7 +44,7 @@ func actionCompleters(filter string, f func(m completer.CompleterMap) carapace.A
 	})
 }
 
-func ActionCompleterNames() carapace.Action {
+func ActionNames() carapace.Action {
 	return actionCompleters("", func(m completer.CompleterMap) carapace.Action {
 		batch := carapace.Batch()
 		for name, variants := range m {
@@ -54,7 +55,7 @@ func ActionCompleterNames() carapace.Action {
 	})
 }
 
-func ActionCompleterVariants(name string) carapace.Action {
+func ActionVariants(name string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if name == "" {
 			return carapace.ActionValues()
@@ -79,17 +80,20 @@ func ActionCompleterVariants(name string) carapace.Action {
 					}
 				}
 			}
-			return batch.ToA().Unique()
+			return batch.ToA()
 		})
 	})
 }
 
-func ActionCompleterGroups(nameVariant string) carapace.Action {
+func ActionGroups(nameVariant string) carapace.Action {
 	return actionCompleters(nameVariant, func(m completer.CompleterMap) carapace.Action {
 		// TODO slow
 		batch := carapace.Batch()
 		for _, variants := range m {
 			for _, v := range variants {
+				if _, ok := bridge.Get(v.Variant); ok {
+					batch = append(batch, carapace.ActionValues("bridge"))
+				}
 				batch = append(batch, carapace.ActionStyledValuesDescribed(v.Group, v.Description, completerStyle(v)).Tag(completerTag(v)))
 			}
 		}
