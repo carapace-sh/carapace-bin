@@ -21,9 +21,20 @@ func (c CompleterMap) Lookup(nameVariantGroup string) (*Completer, bool) {
 }
 
 func (c CompleterMap) Filter(filter choice.Choice) CompleterMap {
-	// TODO quick return if no filtering necessary
+	if filter.Name == "" && filter.Variant == "" && filter.Group == "" {
+		return c
+	}
+
+	toFilter := c
+	if filter.Name != "" {
+		toFilter = make(CompleterMap)
+		if v, ok := c[filter.Name]; ok {
+			toFilter[filter.Name] = v
+		}
+	}
+
 	m := make(CompleterMap)
-	for name, variants := range c {
+	for name, variants := range toFilter {
 		if filter.Name != "" && name != filter.Name {
 			continue
 		}

@@ -19,7 +19,6 @@ import (
 
 // TODO rename parse - init? if false returned completers cannot be executed
 func Completers(filter choice.Choice, parse bool) (completer.CompleterMap, error) {
-	// TODO apply filter!!
 	// TODO slow when just used for lookup
 	m := completers.Filter(filter)
 
