@@ -39,6 +39,7 @@ var listCmd = &cobra.Command{
 			},
 		}
 		c = c.Filter(filter) // TODO this is bullshit, the pseudo carapace completer needs to be added before filtering
+		c.SortVariants()     // TODO remove
 
 		if cmd.Flag("names").Changed {
 			for _, name := range slices.Sorted(maps.Keys(c)) {
