@@ -35,7 +35,7 @@ var choiceCmd = &cobra.Command{
 			}
 		default:
 			for _, arg := range args {
-				if err := choice.Set(choice.Parse(arg)); err != nil {
+				if err := choice.Set(choice.Parse(arg)); err != nil { // TODO support variant to be empty (if group is set)
 					return err
 				}
 			}
