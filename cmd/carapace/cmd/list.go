@@ -22,6 +22,8 @@ var listCmd = &cobra.Command{
 		UnknownFlags: true, // TODO remove - just to keep compability with tabdance until things are merged
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
+		// TODO `--names` should be below 10ms - sth. slowed it down
+		//
 		filter := choice.Choice{}
 		if len(args) > 0 {
 			filter = choice.Parse(args[0])
