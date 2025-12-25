@@ -100,10 +100,14 @@ outer:
 		switch c.Group {
 		case "bridge":
 			for index, v := range m[c.Name] {
-				if v.Variant == c.Variant && v.Group == c.Group {
+				if (c.Variant == "" || v.Variant == c.Variant) && v.Group == c.Group {
 					m[c.Name][index].Choice = c.Format()
 					continue outer // bridge is already known
 				}
+			}
+
+			if c.Variant == "" {
+				continue
 			}
 
 			// TODO should be prepended
