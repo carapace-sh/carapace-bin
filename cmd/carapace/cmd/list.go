@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"maps"
 	"slices"
+	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
@@ -22,6 +23,15 @@ var listCmd = &cobra.Command{
 		UnknownFlags: true, // TODO remove - just to keep compability with tabdance until things are merged
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if cmd.Flag("names").Changed {
+			names, err := completers.Names()
+			if err != nil {
+				return err
+			}
+			fmt.Println(strings.Join(names, "\n"))
+			return nil
+		}
+
 		// TODO `--names` should be below 10ms - sth. slowed it down
 		//
 		filter := choice.Choice{}
