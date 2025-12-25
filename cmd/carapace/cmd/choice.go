@@ -99,7 +99,7 @@ func init() {
 									// "urfavecli@v1", "",
 									"yargs", "",
 									"zsh", "",
-								).Style(style.Dim),
+								).Style(style.Magenta),
 								carapacebin.ActionVariants(c.Parts[0]),
 							).ToA().NoSpace()
 						}
