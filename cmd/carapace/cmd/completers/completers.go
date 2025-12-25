@@ -95,18 +95,18 @@ func AddChoices(m completer.CompleterMap, filter choice.Choice, parse bool) erro
 	}
 
 	// TODO sanity checks for name/variant
-outer:
 	for _, c := range choices {
 		switch c.Group {
 		case "bridge":
+			matched := false
 			for index, v := range m[c.Name] {
 				if (c.Variant == "" || v.Variant == c.Variant) && v.Group == c.Group {
 					m[c.Name][index].Choice = c.Format()
-					continue outer // bridge is already known
+					matched = true
 				}
 			}
 
-			if c.Variant == "" {
+			if matched || c.Variant == "" {
 				continue
 			}
 
