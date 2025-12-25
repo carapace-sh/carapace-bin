@@ -10,6 +10,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/completer"
+	"github.com/carapace-sh/carapace-bridge/pkg/choice"
 	"github.com/spf13/cobra"
 )
 
@@ -21,9 +22,9 @@ var listCmd = &cobra.Command{
 		UnknownFlags: true, // TODO remove - just to keep compability with tabdance until things are merged
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
-		filter := ""
+		filter := choice.Choice{}
 		if len(args) > 0 {
-			filter = args[0]
+			filter = choice.Parse(args[0])
 		}
 		c, err := completers.Completers(filter, !cmd.Flag("names").Changed)
 		if err != nil {
@@ -37,6 +38,7 @@ var listCmd = &cobra.Command{
 				Group: "common",
 			},
 		}
+		c = c.Filter(filter) // TODO this is bullshit, the pseudo carapace completer needs to be added before filtering
 
 		if cmd.Flag("names").Changed {
 			for _, name := range slices.Sorted(maps.Keys(c)) {

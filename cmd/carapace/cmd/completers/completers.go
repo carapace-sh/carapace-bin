@@ -18,43 +18,40 @@ import (
 )
 
 // TODO rename parse - init? if false returned completers cannot be executed
-func Completers(filter string, parse bool) (completer.CompleterMap, error) {
+func Completers(filter choice.Choice, parse bool) (completer.CompleterMap, error) {
+	// TODO apply filter!!
 	// TODO slow when just used for lookup
-	_, _, group := completer.Split(filter) // TODO use choice struct?
+	m := completers.Filter(filter)
 
-	// TODO add choices and sort accordingly
-
-	switch group {
+	switch filter.Group {
 	case "", "user", "system":
-		if err := AddSpecs(completers, parse); err != nil {
+		if err := AddSpecs(m, parse); err != nil {
 			return nil, err
 		}
 	}
 
-	switch group {
+	switch filter.Group {
 	case "", "bridge":
-		if err := AddBridges(completers, parse); err != nil {
+		if err := AddBridges(m, parse); err != nil {
 			return nil, err
 		}
 	}
 
-	if err := AddChoices(completers, filter, parse); err != nil {
+	if err := AddChoices(m, filter, parse); err != nil {
 		return nil, err
 	}
 
-	if err := AddOverlays(completers); err != nil {
+	if err := AddOverlays(m); err != nil {
 		return nil, err
 	}
-	return completers, nil
+	return m.Filter(filter), nil
 
 }
 
-func AddChoices(m completer.CompleterMap, filter string, parse bool) error {
-	// TODO
-	name, _, group := completer.Split(filter) // TODO use choice struct?
+func AddChoices(m completer.CompleterMap, filter choice.Choice, parse bool) error {
 	if !parse {
 		// add potentially unknown bridges (eg: `gh/cobra@bridge`)
-		if group != "bridge" {
+		if filter.Group != "bridge" {
 			return nil // anything other than custom bridges should already exist
 		}
 
@@ -63,7 +60,7 @@ func AddChoices(m completer.CompleterMap, filter string, parse bool) error {
 			return err
 		}
 		for _, choice := range choices {
-			if name == "" || choice.Name == name {
+			if filter.Name == "" || choice.Name == filter.Name {
 				if _, ok := m[choice.Name]; !ok {
 					// TODO
 					m[choice.Name] = completer.Completers{
@@ -79,8 +76,8 @@ func AddChoices(m completer.CompleterMap, filter string, parse bool) error {
 
 	var choices []*choice.Choice
 	switch {
-	case name != "":
-		c, err := choice.Get(name)
+	case filter.Name != "":
+		c, err := choice.Get(filter.Name)
 		switch {
 		case os.IsNotExist(err):
 			return nil
@@ -249,8 +246,9 @@ func AddSpecs(m completer.CompleterMap, parse bool) error {
 	return nil
 }
 
+// TODO choice as parameter?
 func Lookup(nameVariantGroup string) (*completer.Completer, error) {
-	m, err := Completers(nameVariantGroup, true) // TODO lookup needs to use a quick version (skip parsing of specs for descriptions)
+	m, err := Completers(choice.Parse(nameVariantGroup), true) // TODO lookup needs to use a quick version (skip parsing of specs for descriptions)
 	if err != nil {
 		return nil, err
 	}

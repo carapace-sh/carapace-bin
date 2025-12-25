@@ -6,6 +6,8 @@ import (
 	"slices"
 	"sort"
 	"strings"
+
+	"github.com/carapace-sh/carapace-bridge/pkg/choice"
 )
 
 type CompleterMap map[string]Completers
@@ -16,6 +18,26 @@ func (c CompleterMap) Lookup(nameVariantGroup string) (*Completer, bool) {
 		return variants.Lookup(variant, group)
 	}
 	return nil, false
+}
+
+func (c CompleterMap) Filter(filter choice.Choice) CompleterMap {
+	// TODO quick return if no filtering necessary
+	m := make(CompleterMap)
+	for name, variants := range c {
+		if filter.Name != "" && name != filter.Name {
+			continue
+		}
+		for _, variant := range variants {
+			switch {
+			case filter.Variant != "" && filter.Variant != variant.Variant:
+				continue
+			case filter.Group != "" && filter.Group != variant.Group:
+				continue
+			}
+			m[name] = append(m[name], variant)
+		}
+	}
+	return m
 }
 
 func (c CompleterMap) Format(pkg, tag string) string {

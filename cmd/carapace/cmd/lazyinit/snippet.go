@@ -62,7 +62,7 @@ func Snippet(shell string) string {
 		}
 	}
 
-	m, err := completers.Completers("", false)
+	m, err := completers.Completers(choice.Choice{}, false)
 	if err != nil {
 		panic(err.Error()) // TODO handle  errror
 	}
