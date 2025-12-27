@@ -27,17 +27,22 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().SetInterspersed(false)
 
+	rootCmd.Flags().String("area", "", "Home area to log into")
 	rootCmd.Flags().String("background", "", "Set ANSI color for background")
 	rootCmd.Flags().StringP("chdir", "D", "", "Set working directory")
 	rootCmd.Flags().String("description", "", "Description for unit")
+	rootCmd.Flags().Bool("empower", false, "Give privileges to selected or current user")
 	rootCmd.Flags().StringP("group", "g", "", "Run as system group")
 	rootCmd.Flags().BoolP("help", "h", false, "Show this help")
+	rootCmd.Flags().BoolS("i", "i", false, "Shortcut for --via-shell --chdir='~'")
+	rootCmd.Flags().Bool("lightweight", false, "Control whether to register a session with service manager or without")
 	rootCmd.Flags().String("machine", "", "Operate on local container")
 	rootCmd.Flags().String("nice", "", "Nice level")
 	rootCmd.Flags().Bool("no-ask-password", false, "Do not prompt for password")
 	rootCmd.Flags().Bool("pipe", false, "Request direct pipe for stdio")
 	rootCmd.Flags().StringArray("property", nil, "Set service or scope unit property")
 	rootCmd.Flags().Bool("pty", false, "Request allocation of a pseudo TTY for stdio")
+	rootCmd.Flags().Bool("pty-late", false, "Just like --pty, but leave TTY access to agents until unit is started up")
 	rootCmd.Flags().StringArray("setenv", nil, "Set environment variable")
 	rootCmd.Flags().String("shell-prompt-prefix", "", "Set $SHELL_PROMPT_PREFIX")
 	rootCmd.Flags().String("slice", "", "Run in the specified slice")
@@ -45,6 +50,7 @@ func init() {
 	rootCmd.Flags().String("unit", "", "Run under the specified unit name")
 	rootCmd.Flags().StringP("user", "u", "", "Run as system user")
 	rootCmd.Flags().BoolP("version", "V", false, "Show package version")
+	rootCmd.Flags().Bool("via-shell", false, "Invoke command via target user's login shell")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"background": color.ActionAnsiBackgroundColors(false),
