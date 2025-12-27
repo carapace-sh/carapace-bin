@@ -92,13 +92,25 @@ func ActionGroups(nameVariant string) carapace.Action {
 			batch = append(batch, carapace.ActionValues("bridge")) // potentially unknown bridge (e.g. `cobra`)
 		}
 
+		descriptions := map[string]string{
+			"bridge":  "bridged completions",
+			"common":  "common completers",
+			"darwin":  "macos completers",
+			"linux":   "linux completers",
+			"unix":    "unix-like completers",
+			"user":    "user specs",
+			"system":  "system specs",
+			"windows": "windows completers",
+		}
+
 		for _, variants := range m {
 			for _, v := range variants {
-				batch = append(batch, carapace.ActionStyledValuesDescribed(v.Group, v.Description, completerStyle(v)).Tag(completerTag(v)))
+				// TODO skip when group already exists
+				batch = append(batch, carapace.ActionValuesDescribed(v.Group, descriptions[v.Group]))
 			}
 		}
 		return batch.ToA().Unique()
-	})
+	}).Tag("groups")
 }
 
 func completerStyle(c completer.Completer) string {
