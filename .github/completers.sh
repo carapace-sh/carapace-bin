@@ -1,17 +1,7 @@
 #!/bin/bash
-
-scriptdir=$(dirname $(readlink -f $0))
+set -e
 
 echo "# Completers"
 echo
 
-for file in $(ls -1 $scriptdir/../completers/*/*/cmd/root.go); do
-  use=$(grep --max-count=1 "	Use:" $file | sed 's/[^"]\+"\(.*\)",/\1/' | awk '{print $1}')
-  short=$(grep --max-count=1 "	Short:" $file | sed 's/[^"]\+"\(.*\)",/\1/')
-  long=$(grep --max-count=1 "	Long:" $file | sed 's/[^"]\+"\(.*\)",/\1/')
-
-  echo "- [$use]($long) $short"
-done
-
-
-
+carapace --list | jq --raw-output  '.[][] | select(.group != "bridge" and .group != "user" and .group != "system") | "- [\(.name)\(if .variant then "/\(.variant)" else "" end)\(if .group != "common" then "@\(.group)" else "" end)](\(.url))"'

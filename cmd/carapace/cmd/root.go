@@ -1,17 +1,15 @@
 package cmd
 
-//go:generate go run ../../carapace-generate/gen.go
-
 import (
 	"fmt"
 	"os"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/action"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/lazyinit"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/shim"
 	"github.com/carapace-sh/carapace-bin/pkg/actions"
+	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	spec "github.com/carapace-sh/carapace-spec"
 	"github.com/carapace-sh/carapace/pkg/ps"
 	"github.com/carapace-sh/carapace/pkg/xdg"
@@ -20,7 +18,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "carapace [flags] [COMPLETER] [bash|elvish|fish|nushell|oil|powershell|tcsh|xonsh|zsh]",
-	Short: "multi-shell multi-command argument completer",
+	Short: "A multi-shell completion binary",
 	Example: fmt.Sprintf(`  All completers and specs:
     bash:       source <(carapace _carapace bash)
     elvish:     eval (carapace _carapace elvish | slurp)
@@ -60,6 +58,9 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// since flag parsing is disabled do this manually
 		switch args[0] {
+		case "--choice":
+			choiceCmd.SetArgs(args[1:])
+			choiceCmd.Execute()
 		case "--clear-cache":
 			clearCacheCmd.SetArgs(args[1:])
 			clearCacheCmd.Execute()
@@ -120,30 +121,6 @@ func createOverlayDir() error {
 	return os.MkdirAll(fmt.Sprintf("%v/carapace/overlays", configDir), os.ModePerm)
 }
 
-func overlayPath(command string) (string, error) {
-	configDir, err := xdg.UserConfigDir()
-	if err != nil {
-		return "", err
-	}
-
-	overlayPath := fmt.Sprintf("%v/carapace/overlays/%v.yaml", configDir, command)
-	if _, err = os.Stat(overlayPath); err != nil {
-		return "", err
-	}
-	return overlayPath, nil
-}
-
-func overlayCompletion(overlayPath string, args ...string) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args[0] = "export" // TODO length check
-		out, err := specCompletion(overlayPath, args...)
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-		return carapace.ActionImport([]byte(out))
-	})
-}
-
 func Execute(version string) error {
 	rootCmd.Version = version
 
@@ -189,6 +166,7 @@ func Execute(version string) error {
 }
 
 func init() {
+	rootCmd.Flags().Bool("choice", false, "list or edit choices")
 	rootCmd.Flags().Bool("clear-cache", false, "clear caches")
 	rootCmd.Flags().Bool("codegen", false, "generate code for spec file")
 	rootCmd.Flags().Bool("condition", false, "list or execute condition")
@@ -205,6 +183,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
 
 	rootCmd.MarkFlagsMutuallyExclusive(
+		"choice",
 		"clear-cache",
 		"codegen",
 		"condition",
@@ -228,7 +207,7 @@ func init() {
 				cmd.Flags().AddFlagSet(rootCmd.Flags())
 				return carapace.ActionExecute(cmd)
 			}
-			return action.ActionCompleters(action.CompleterOpts{}.Default())
+			return carapacebin.ActionCompleters()
 		}),
 	)
 
@@ -238,6 +217,8 @@ func init() {
 				return carapace.ActionExecute(invokeCmd)
 			}
 			switch c.Args[0] {
+			case "--choice":
+				return carapace.ActionExecute(choiceCmd).Shift(1)
 			case "--clear-cache":
 				return carapace.ActionExecute(clearCacheCmd).Shift(1)
 			case "--codegen":
@@ -272,8 +253,8 @@ func init() {
 		}),
 	)
 
-	for m, f := range actions.MacroMap {
-		spec.AddMacro(m, f)
+	for m, f := range actions.Macros {
+		spec.AddMacro(m, f) // TODO just provide a reference for lookup to skip adding them all the time
 	}
 	spec.Register(rootCmd)
 }

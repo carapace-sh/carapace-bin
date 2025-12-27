@@ -12,7 +12,7 @@ func Zsh(completers []string) string {
 	return fmt.Sprintf(`%v%v
 
 function _carapace_completer {
-  local command="$words[1]"
+  local command="$(basename $words[1])"
   local compline=${words[@]:0:$CURRENT}
   local IFS=$'\n'
   local lines
