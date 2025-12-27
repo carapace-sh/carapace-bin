@@ -9,7 +9,7 @@ require (
 	github.com/carapace-sh/carapace-shlex v1.1.1
 	github.com/carapace-sh/carapace-spec v1.4.3-0.20251213172755-0b34a65b7f91
 	github.com/pelletier/go-toml v1.9.5
-	github.com/spf13/cobra v1.9.1
+	github.com/spf13/cobra v1.10.2
 	github.com/spf13/pflag v1.0.9
 	golang.org/x/mod v0.27.0
 	gopkg.in/ini.v1 v1.67.0
