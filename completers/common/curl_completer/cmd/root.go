@@ -125,6 +125,7 @@ func init() {
 	rootCmd.Flags().String("keepalive-time", "", "Interval time for keepalive probes")
 	rootCmd.Flags().String("key", "", "Private key filename")
 	rootCmd.Flags().String("key-type", "", "Private key file type (DER/PEM/ENG)")
+	rootCmd.Flags().String("knownhosts", "", "Specify knownhosts path")
 	rootCmd.Flags().String("krb", "", "Enable Kerberos with security <level>")
 	rootCmd.Flags().String("libcurl", "", "Generate libcurl code for this command line")
 	rootCmd.Flags().String("limit-rate", "", "Limit transfer speed to RATE")
@@ -352,6 +353,7 @@ func init() {
 		"ip-tos":          carapace.ActionValues("CS0", "CS1", "CS2", "CS3", "CS4", "CS5", "CS6", "CS7", "AF11", "AF12", "AF13", "AF21", "AF22", "AF23", "AF31", "AF32", "AF33", "AF41", "AF42", "AF43", "EF", "VOICE-ADMIT", "ECT1", "ECT0", "CE", "LE", "LOWCOST", "LOWDELAY", "THROUGHPUT", "RELIABILITY", "MINCOST"),
 		"key":             carapace.ActionFiles(),
 		"key-type":        carapace.ActionValues("DER", "PEM", "ENG"),
+		"knownhosts":      carapace.ActionFiles(),
 		"krb":             carapace.ActionValues("clear", "safe", "confidential", "private"),
 		"output":          carapace.ActionFiles(),
 		"output-dir":      carapace.ActionDirectories(),
