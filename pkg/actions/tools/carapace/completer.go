@@ -95,6 +95,7 @@ func ActionGroups(nameVariant string) carapace.Action {
 		descriptions := map[string]string{
 			"android": "termux completers",
 			"bridge":  "bridged completions",
+			"bsd":     "bsd-like completers",
 			"common":  "common completers",
 			"darwin":  "macos completers",
 			"linux":   "linux completers",

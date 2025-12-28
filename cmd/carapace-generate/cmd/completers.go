@@ -21,6 +21,7 @@ var completersCmd = &cobra.Command{
 			return err
 		}
 
+		// TODO completers should be sorted for target GOOS
 		var s string
 		switch {
 		case cmd.Flag("code").Changed:

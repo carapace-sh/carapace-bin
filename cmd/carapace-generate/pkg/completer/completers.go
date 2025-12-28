@@ -18,11 +18,15 @@ func ReadCompleters(dir, goos string) (completer.CompleterMap, error) {
 	// TODO shell specific completers
 	// TODO distro specific completers (arch,ubuntu,...)
 	groups := map[string][]string{
-		"android":   {"common", "unix", "linux", "android"},
-		"linux":     {"common", "unix", "linux"},
-		"darwin":    {"common", "unix", "darwin"},
-		"windows":   {"common", "windows"},
-		"force_all": {"common", "unix", "linux", "darwin", "android", "windows"},
+		"android": {"common", "unix", "linux", "android"},
+		"darwin":  {"common", "unix", "bsd", "darwin"},
+		"freebsd": {"common", "unix", "bsd", "freebsd"},
+		"linux":   {"common", "unix", "linux"},
+		"netbsd":  {"common", "unix", "bsd", "netbsd"},
+		"openbsd": {"common", "unix", "bsd", "openbsd"},
+		"windows": {"common", "windows"},
+
+		"force_all": {"common", "unix", "linux", "bsd", "darwin", "android", "windows", "freebsd", "netbsd", "openbsd"},
 	}
 
 	completers := make(completer.CompleterMap)

@@ -4,14 +4,20 @@ cmd/carapace/carapace.exe
 cmd/carapace/cmd/completers/description.go
 
 cmd/carapace/cmd/completers/completers_all.go
-cmd/carapace/cmd/completers/completers_darwin.go
-cmd/carapace/cmd/completers/completers_linux.go
-cmd/carapace/cmd/completers/completers_release_all.go
-cmd/carapace/cmd/completers/completers_release_darwin.go
-cmd/carapace/cmd/completers/completers_release_linux.go
-cmd/carapace/cmd/completers/completers_release_termux.go
-cmd/carapace/cmd/completers/completers_release_windows.go
 cmd/carapace/cmd/completers/completers_termux.go
+cmd/carapace/cmd/completers/completers_darwin.go
+cmd/carapace/cmd/completers/completers_freebsd.go
+cmd/carapace/cmd/completers/completers_linux.go
+cmd/carapace/cmd/completers/completers_netbsd.go
+cmd/carapace/cmd/completers/completers_openbsd.go
+cmd/carapace/cmd/completers/completers_release_all.go
+cmd/carapace/cmd/completers/completers_release_termux.go
+cmd/carapace/cmd/completers/completers_release_darwin.go
+cmd/carapace/cmd/completers/completers_release_freebsd.go
+cmd/carapace/cmd/completers/completers_release_linux.go
+cmd/carapace/cmd/completers/completers_release_netbsd.go
+cmd/carapace/cmd/completers/completers_release_openbsd.go
+cmd/carapace/cmd/completers/completers_release_windows.go
 cmd/carapace/cmd/completers/completers_windows.go
 
 cmd/carapace/cmd/completers/name.go
