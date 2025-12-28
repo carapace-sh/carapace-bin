@@ -7,7 +7,7 @@ require (
 	github.com/carapace-sh/carapace-bridge v1.4.12-0.20251227001747-5537b050e32c
 	github.com/carapace-sh/carapace-selfupdate v0.0.10
 	github.com/carapace-sh/carapace-shlex v1.1.1
-	github.com/carapace-sh/carapace-spec v1.4.3-0.20251213172755-0b34a65b7f91
+	github.com/carapace-sh/carapace-spec v1.5.0
 	github.com/pelletier/go-toml v1.9.5
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/pflag v1.0.9
