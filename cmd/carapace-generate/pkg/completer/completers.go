@@ -19,10 +19,11 @@ func ReadCompleters(dir, goos string) (completer.CompleterMap, error) {
 	// TODO distro specific completers (arch,ubuntu,...)
 	// TODO variants (tldr like tealdear)
 	groups := map[string][]string{
+		"android":   {"common", "unix", "linux", "android"},
 		"linux":     {"common", "unix", "linux"},
 		"darwin":    {"common", "unix", "darwin"},
 		"windows":   {"common", "windows"},
-		"force_all": {"common", "unix", "linux", "darwin", "windows"},
+		"force_all": {"common", "unix", "linux", "darwin", "android", "windows"},
 	}
 
 	completers := make(completer.CompleterMap)
