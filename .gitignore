@@ -3,10 +3,12 @@ cmd/carapace/carapace
 cmd/carapace/carapace.exe
 cmd/carapace/cmd/completers/description.go
 
+cmd/carapace/cmd/completers/completers_android.go
 cmd/carapace/cmd/completers/completers_darwin.go
 cmd/carapace/cmd/completers/completers_linux.go
 cmd/carapace/cmd/completers/completers_windows.go
 cmd/carapace/cmd/completers/completers_all.go
+cmd/carapace/cmd/completers/completers_release_android.go
 cmd/carapace/cmd/completers/completers_release_darwin.go
 cmd/carapace/cmd/completers/completers_release_linux.go
 cmd/carapace/cmd/completers/completers_release_windows.go

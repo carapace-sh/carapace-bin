@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/pkg_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/completers/android/pkg_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 

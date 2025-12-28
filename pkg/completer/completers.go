@@ -33,18 +33,19 @@ func (c Completers) Less(i, j int) bool { // TODO this needs testing (and likely
 
 	groupPriority := map[string]int{
 		// user specs
-		"user": -7,
+		"user": -8,
 		// system specs
-		"system": -6,
+		"system": -7,
 		// TODO shells? more specific stuff
-		// runtime.GOOS: -5 (see below)
-		"linux":   -4,
+		// runtime.GOOS: -6 (see below)
+		"linux":   -5,
 		"darwin":  -3,
 		"windows": -2,
+		"android": -1,
 		// TODO support pseudo os 'termux'?
 		"bridge": 1, // lower priority than anything internal
 	}
-	groupPriority[runtime.GOOS] = -5 // ensure runime.GOOS has highest priority betwees gooses
+	groupPriority[runtime.GOOS] = -6 // ensure runime.GOOS has highest priority betwees gooses
 
 	if diff := groupPriority[c[i].Group] - groupPriority[c[j].Group]; diff != 0 {
 		return diff < 0 // TODO verify
