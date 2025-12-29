@@ -28,7 +28,7 @@ func init() {
 	rootCmd.Flags().Bool("long-options", false, "display longform options over shortform")
 	rootCmd.Flags().BoolP("markdown", "m", false, "just print the plain page file")
 	rootCmd.Flags().StringP("platform", "p", "", "override the operating system")
-	rootCmd.Flags().Bool("print-completion", false, "print shell completion script")
+	rootCmd.Flags().String("print-completion", "", "print shell completion script")
 	rootCmd.Flags().BoolP("render", "r", false, "render local markdown files")
 	rootCmd.Flags().String("search", "", "search for a specific command from a query")
 	rootCmd.Flags().Bool("short-options", false, "display shortform options over longform")
@@ -40,8 +40,9 @@ func init() {
 	rootCmd.MarkFlagsMutuallyExclusive("update", "update_cache")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"language": os.ActionLanguages(),
-		"platform": carapace.ActionValues("android", "freebsd", "linux", "netbsd", "openbsd", "osx", "sunos", "windows", "common"),
+		"language":         os.ActionLanguages(),
+		"platform":         carapace.ActionValues("android", "freebsd", "linux", "netbsd", "openbsd", "osx", "sunos", "windows", "common"),
+		"print-completion": carapace.ActionValues("bash", "zsh", "tcsh"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
