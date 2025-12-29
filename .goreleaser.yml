@@ -29,6 +29,7 @@ builds:
     binary: carapace
     tags:
       - release
+      - android
     tool: go-termux
 archives:
   - id: default

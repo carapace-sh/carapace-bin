@@ -4,6 +4,15 @@ services:
     command: sh -c 'cp -r /carapace-bin /build &&  cd /build/cmd/carapace/ && go generate ./... && go build . && chown 1000:1000 carapace && mv carapace /carapace-bin/cmd/carapace/'
     volumes:
       - '..:/carapace-bin/'
+
+  release:
+    build:
+      context: carapace
+    image: ghcr.io/carapace-sh/carapace-bin:carapace
+    hostname: carapace-bin:carapace
+    command: sh -c 'cp -r /carapace-bin /build && cd /build/ && goreleaser release --snapshot --clean --skip publish --parallelism 1'
+    volumes:
+      - '..:/carapace-bin:ro'
       
   bash:
     image: ghcr.io/carapace-sh/base
