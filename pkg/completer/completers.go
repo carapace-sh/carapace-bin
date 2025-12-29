@@ -1,6 +1,7 @@
 package completer
 
 import (
+	"maps"
 	"os"
 	"runtime"
 	"slices"
@@ -22,6 +23,7 @@ func (c Completers) Lookup(variant, group string) (*Completer, bool) {
 
 func (c Completers) Len() int { return len(c) }
 func (c Completers) Less(i, j int) bool { // TODO this needs testing (and likely some fixes)
+	// TODO needs tests and is likely wrong
 	if b := strings.Compare(c[i].Name, c[j].Name) != 0; b {
 		return b
 	}
@@ -31,21 +33,52 @@ func (c Completers) Less(i, j int) bool { // TODO this needs testing (and likely
 		return a > b
 	}
 
+	// TODO shells? more specific stuff
 	groupPriority := map[string]int{
-		// user specs
-		"user": -8,
-		// system specs
-		"system": -7,
-		// TODO shells? more specific stuff
-		// runtime.GOOS: -6 (see below)
-		"linux":   -5,
-		"darwin":  -3,
-		"windows": -2,
-		"android": -1,
+		"user":   -21, // user specs
+		"system": -20, // system specs
+
+		// runtime.GOOS: -15 (see below)
+
+		"linux": -10,
+		"unix":  -9,
+
+		"darwin":  -8,
+		"freebsd": -7,
+		"netbsd":  -6,
+		"openbsd": -5,
+		"bsd":     -4,
+
+		"windows": -3,
+		"android": -2,
+		"common":  -1,
 		// TODO support pseudo os 'termux'?
 		"bridge": 1, // lower priority than anything internal
 	}
-	groupPriority[runtime.GOOS] = -6 // ensure runime.GOOS has highest priority betwees gooses
+
+	// TODO urks - this is getting a bit out of hand. use copy map? needs to still support `force_all` build tag
+	switch goos := runtime.GOOS; goos {
+	case "android":
+		maps.Copy(groupPriority, map[string]int{
+			goos:    -15,
+			"linux": -14,
+			"unix":  -13,
+		})
+	case "darwin":
+		maps.Copy(groupPriority, map[string]int{
+			goos:   -15,
+			"bsd":  -14,
+			"unix": -13,
+		})
+	case "freebsd", "netbsd", "openbsd":
+		maps.Copy(groupPriority, map[string]int{
+			goos:   -15,
+			"bsd":  -14,
+			"unix": -13,
+		})
+	default:
+		groupPriority[goos] = -15 // ensure runime.GOOS has highest priority betwees gooses
+	}
 
 	if diff := groupPriority[c[i].Group] - groupPriority[c[j].Group]; diff != 0 {
 		return diff < 0 // TODO verify
