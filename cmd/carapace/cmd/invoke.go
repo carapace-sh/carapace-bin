@@ -205,9 +205,10 @@ func init() {
 	)
 }
 
-func invokeCompleter(nameVariant string) string {
+func wrap(f func()) string { // TODO get rid of this
 	old := os.Stdout
 	r, w, _ := os.Pipe()
+	// TODO defer w.Close() ?
 	os.Stdout = w
 
 	outC := make(chan string)
@@ -218,20 +219,28 @@ func invokeCompleter(nameVariant string) string {
 		outC <- buf.String()
 	}()
 
-	os.Args[1] = "_carapace"
-	if completer, err := completers.Lookup(nameVariant); err == nil { // TODO handle error
-		switch completer.Execute {
-		case nil:
-			// TODO bridges have no Execute set yet (panic)
-			carapace.LOG.Printf("Completer.Execute of %q is nil", nameVariant)
-		default:
-			completer.Execute() // TODO Execute should handle the stdout wrapping
-		}
-	}
+	f() // execute and grab output
 
 	w.Close()
 	out := <-outC
 	os.Stdout = old
+	return out
+}
+
+func invokeCompleter(nameVariant string) string {
+	var out string
+	if completer, err := completers.Lookup(nameVariant); err == nil { // TODO handle error
+		switch completer.Execute {
+		case nil:
+			carapace.LOG.Printf("Completer.Execute of %q is nil", nameVariant)
+		default:
+			out = wrap(func() {
+				os.Args[1] = "_carapace"
+				// TODO merge with overlay
+				completer.Execute() // TODO Execute should handle the stdout wrapping
+			})
+		}
+	}
 
 	executable := uid.Executable()
 	patched := strings.ReplaceAll(string(out), fmt.Sprintf("%v _carapace", executable), fmt.Sprintf("%v %v", executable, nameVariant))      // general callback
