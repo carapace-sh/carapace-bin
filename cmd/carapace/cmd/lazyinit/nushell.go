@@ -31,6 +31,7 @@ let carapace_completer = {|spans|
 
   carapace $spans.0 nushell ...$spans
   | from json
+  | if ($in | default [] | any {|| $in.display | str starts-with "ERR"}) { null } else { $in }
 }
 
 mut current = (($env | default {} config).config | default {} completions)
