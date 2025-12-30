@@ -1728,16 +1728,18 @@ func init() {
 }
 
 func ActionFlagCompletion(flag string) carapace.Action {
-	return carapace.ActionExecCommand("mpv", fmt.Sprintf("--%v=help", flag))(func(output []byte) carapace.Action {
-		lines := strings.Split(string(output), "\n")
-		r := regexp.MustCompile(`^\s+(\w\S+)$`)
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("mpv", fmt.Sprintf("--%v=help", flag))(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+			r := regexp.MustCompile(`^\s+(\w\S+)$`)
 
-		vals := []string{"help"}
-		for _, line := range lines {
-			if m := r.FindStringSubmatch(line); m != nil {
-				vals = append(vals, m[1])
+			vals := []string{"help"}
+			for _, line := range lines {
+				if m := r.FindStringSubmatch(line); m != nil {
+					vals = append(vals, m[1])
+				}
 			}
-		}
-		return carapace.ActionValues(vals...).StyleF(style.ForKeyword)
+			return carapace.ActionValues(vals...).StyleF(style.ForKeyword)
+		})
 	})
 }
