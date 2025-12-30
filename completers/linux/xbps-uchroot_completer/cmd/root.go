@@ -20,10 +20,10 @@ func init() {
 
 	rootCmd.Flags().StringP("bind-ro", "B", "", "Bind mounts <src> into <dir>/<dest> (read-only)")
 	rootCmd.Flags().StringP("bind-rw", "b", "", "Bind mounts <src> into <dir>/<dest> (read-write)")
+	rootCmd.Flags().BoolP("help", "h", false, "Show usage")
+	rootCmd.Flags().StringP("options", "o", "", "Options to be passed to the tmpfs mount (for use with -t)")
 	rootCmd.Flags().BoolP("overlayfs", "O", false, "Creates a tempdir and mounts <dir> read-only via overlayfs")
 	rootCmd.Flags().BoolP("tmpfs", "t", false, "Creates a tempdir and mounts <dir> on tmpfs (for use with -O)")
-	rootCmd.Flags().StringP("options", "o", "", "Options to be passed to the tmpfs mount (for use with -t)")
-	rootCmd.Flags().BoolP("help", "h", false, "Show usage")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Show XBPS version")
 
 	carapace.Gen(rootCmd).PositionalCompletion(carapace.ActionDirectories())

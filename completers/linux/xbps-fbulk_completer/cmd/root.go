@@ -19,12 +19,12 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolP("help", "h", false, "Show usage")
 	rootCmd.Flags().IntP("jobs", "j", 0, "Number of parallel builds")
 	rootCmd.Flags().StringP("logdir", "l", "", "Path to store logs")
 	rootCmd.Flags().BoolP("system", "s", false, "System rebuild mode")
 	rootCmd.Flags().BoolP("verbose", "V", false, "Enable verbose mode")
 	rootCmd.Flags().BoolP("version", "v", false, "Show XBPS version")
-	rootCmd.Flags().BoolP("help", "h", false, "Show usage")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"logdir": carapace.ActionDirectories(),
