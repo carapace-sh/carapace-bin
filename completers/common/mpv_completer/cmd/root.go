@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
+	"regexp"
+	"strings"
 
 	"github.com/carapace-sh/carapace"
 	osAction "github.com/carapace-sh/carapace-bin/pkg/actions/os"
@@ -154,6 +157,7 @@ func init() {
 	rootCmd.Flags().String("audio-resample-phase-shift", "", "Log2 of the number of polyphase entries")
 	rootCmd.Flags().String("audio-reversal-buffer", "", "For backward decoding")
 	rootCmd.Flags().String("audio-samplerate", "", "Select the output sample rate to be used ")
+	rootCmd.Flags().String("audio-set-media-role", "", "If enabled, mpv will set the appropriate media role on supported audio servers to indicate whether mpv is playing a video or an audio-only file")
 	rootCmd.Flags().String("audio-spdif", "", "List of codecs for which compressed audio passthrough should be used")
 	rootCmd.Flags().String("audio-stream-silence", "", "Cash-grab consumer audio hardware (such as A/V receivers) often ignore initial audio sent over HDMI")
 	rootCmd.Flags().String("audio-swresample-o", "", "Set AVOptions on the SwrContext or AVAudioResampleContext")
@@ -171,9 +175,15 @@ func init() {
 	rootCmd.Flags().String("autofit-smaller", "", "This option behaves exactly like --autofit, except that it sets the minimum size of the window")
 	rootCmd.Flags().String("autoload-files", "", "Automatically load/select external files")
 	rootCmd.Flags().String("autosync", "", "Gradually adjusts the A/V sync based on audio delay measurements")
+	rootCmd.Flags().String("backdrop-type", "", "Controls the backdrop/border style")
 	rootCmd.Flags().String("background", "", "If the frame has an alpha component, decide what kind of background, if any, to blend it with")
+	rootCmd.Flags().String("background-blur-radius", "", "The blur radius (in pixels) to use for --border-background=blur")
 	rootCmd.Flags().String("background-color", "", "Color used to draw parts of the mpv window not covered by video")
+	rootCmd.Flags().String("background-tile-color-0", "", "Colors used to draw parts of the mpv window not covered by video in --background=tiles mode")
+	rootCmd.Flags().String("background-tile-color-1", "", "Colors used to draw parts of the mpv window not covered by video in --background=tiles mode")
+	rootCmd.Flags().String("background-tile-size", "", "Tile size used to draw parts of the mpv window not covered by video in --background=tiles mode")
 	rootCmd.Flags().String("blend-subtitles", "", "Blend subtitles directly onto upscaled video frames, before interpolation and/or color management")
+	rootCmd.Flags().String("bluray-angle", "", "Some Blu-ray discs contain scenes that can be viewed from multiple angles. This option tells mpv which angle to use")
 	rootCmd.Flags().String("bluray-device", "", "Specify the Blu-ray disc location")
 	rootCmd.Flags().String("border", "", "Play video with window border and decorations")
 	rootCmd.Flags().String("border-background", "", "Same as --background but only applies to the black bar/border area of the window")
@@ -205,6 +215,7 @@ func init() {
 	rootCmd.Flags().String("clipboard-backends-set", "", "")
 	rootCmd.Flags().String("clipboard-backends-toggle", "", "")
 	rootCmd.Flags().String("clipboard-monitor", "", "Enable clipboard monitoring so that the clipboard property can be observed for content changes")
+	rootCmd.Flags().String("clipboard-xwayland", "", "Enable X11 clipboard backend in suspected Wayland environments")
 	rootCmd.Flags().String("config", "", "")
 	rootCmd.Flags().String("config-dir", "", "Force a different configuration directory")
 	rootCmd.Flags().String("container-fps-override", "", "Override video framerate")
@@ -249,6 +260,17 @@ func init() {
 	rootCmd.Flags().String("cuda-decode-device", "", "Choose the GPU device used for decoding when using the cuda or nvdec hwdecs with the OpenGL GPU backend, and with the cuda-copy or nvdec-copy hwdecs in all cases")
 	rootCmd.Flags().String("cursor-autohide", "", "Make mouse cursor automatically hide after given number of milliseconds")
 	rootCmd.Flags().String("cursor-autohide-fs-only", "", "If this option is given, the cursor is always visible in windowed mode")
+	rootCmd.Flags().String("d3d11-adapter", "", "Select a specific D3D11 adapter to utilize for D3D11 rendering")
+	rootCmd.Flags().String("d3d11-composition-size", "", "Set size of the output for d3d11 composition mode")
+	rootCmd.Flags().String("d3d11-exclusive-fs", "", "Switches the D3D11 swap chain fullscreen state to 'fullscreen' when fullscreen video is requested")
+	rootCmd.Flags().String("d3d11-feature-level", "", "Select a specific feature level when using the D3D11 GPU backend")
+	rootCmd.Flags().String("d3d11-flip", "", "Enable flip-model presentation, which avoids unnecessarily copying the backbuffer by sharing surfaces with the DWM")
+	rootCmd.Flags().String("d3d11-output-csp", "", "Select a specific D3D11 output color space to utilize for D3D11 rendering")
+	rootCmd.Flags().String("d3d11-output-format", "", "Select a specific D3D11 output format to utilize for D3D11 rendering")
+	rootCmd.Flags().String("d3d11-output-mode", "", "Use a specific output mode for creating the D3D11 swapchain")
+	rootCmd.Flags().String("d3d11-sync-interval", "", "Schedule each frame to be presented for this number of VBlank intervals")
+	rootCmd.Flags().String("d3d11-warp", "", "Use WARP (Windows Advanced Rasterization Platform) with the D3D11 GPU backend")
+	rootCmd.Flags().String("d3d11va-zero-copy", "", "By default, when using hardware decoding with --gpu-api=d3d11, the video image will be copied (GPU-to-GPU) from the decoder surface to a shader resource. Set this option to avoid that copy by sampling directly from the decoder image")
 	rootCmd.Flags().String("deband", "", "Enable the debanding algorithm")
 	rootCmd.Flags().String("deband-grain", "", "Add some extra noise to the image")
 	rootCmd.Flags().String("deband-iterations", "", "The number of debanding steps to perform per sample")
@@ -439,6 +461,7 @@ func init() {
 	rootCmd.Flags().String("hdr-contrast-smoothness", "", "Enables the HDR contrast recovery algorithm, which is to designed to enhance contrast of HDR video after tone mapping")
 	rootCmd.Flags().String("hdr-peak-decay-rate", "", "The decay rate used for the HDR peak detection algorithm")
 	rootCmd.Flags().String("hdr-peak-percentile", "", "Which percentile of the input image brightness histogram to consider as the true peak of the scene")
+	rootCmd.Flags().String("hdr-reference-white", "", "Specifies the assumed peak brightness of the mastering display for SDR content, in cd/m² (nits)")
 	rootCmd.Flags().String("hdr-scene-threshold-high", "", "The upper thresholds (in dB) for a brightness difference to be considered a scene change")
 	rootCmd.Flags().String("hdr-scene-threshold-low", "", "The lower thresholds (in dB) for a brightness difference to be considered a scene change")
 	rootCmd.Flags().String("help", "", "Show short summary of options")
@@ -470,6 +493,7 @@ func init() {
 	rootCmd.Flags().String("hwdec-remove", "", "")
 	rootCmd.Flags().String("hwdec-set", "", "")
 	rootCmd.Flags().String("hwdec-software-fallback", "", "Fallback to software decoding if the hardware-accelerated decoder fails")
+	rootCmd.Flags().String("hwdec-threads", "", "Number of threads used for hardware decoding")
 	rootCmd.Flags().String("hwdec-toggle", "", "")
 	rootCmd.Flags().String("icc-3dlut-size", "", "Size of the 3D LUT generated from the ICC profile in each dimension")
 	rootCmd.Flags().String("icc-cache", "", "Store and load 3DLUTs created from the ICC profile on disk in the cache directory")
@@ -493,6 +517,7 @@ func init() {
 	rootCmd.Flags().String("image-exts-toggle", "", "")
 	rootCmd.Flags().String("image-lut", "", "Specifies a custom LUT file (in Adobe .cube format) to apply to the colors during image decoding")
 	rootCmd.Flags().String("image-lut-type", "", "Controls the interpretation of color values fed to and from the LUT specified as --image-lut")
+	rootCmd.Flags().String("image-subs-hdr-peak", "", "Controls the image subtitle diffuse white level in cd/m² (nits) for HDR output")
 	rootCmd.Flags().String("image-subs-video-resolution", "", "Override the image subtitle resolution with the video resolution")
 	rootCmd.Flags().String("include", "", "Specify configuration file to be parsed after the default ones")
 	rootCmd.Flags().String("index", "", "Controls how to seek in files")
@@ -525,6 +550,7 @@ func init() {
 	rootCmd.Flags().String("input-media-keys", "", "On systems where mpv can choose between receiving media keys or letting the system handle them - this option controls whether mpv should receive them")
 	rootCmd.Flags().String("input-preprocess-wheel", "", "Preprocess WHEEL_* events so that while scrolling on the horizontal or vertical direction, the events aren't generated for another direction even when the two directions are scrolled together")
 	rootCmd.Flags().String("input-right-alt-gr", "", "(macOS and Windows only) Use the right Alt key as Alt Gr to produce special characters")
+	rootCmd.Flags().String("input-tablet-emulate-mouse", "", "Emulate mouse move and button presses for tablet events")
 	rootCmd.Flags().String("input-terminal", "", "--input-terminal=no prevents the player from reading key events from standard input")
 	rootCmd.Flags().String("input-test", "", "Input test mode")
 	rootCmd.Flags().String("input-touch-emulate-mouse", "", "When multi-touch support is enabled (either required by the platform, or enabled by --native-touch), emulate mouse move and button presses for the touch events")
@@ -560,6 +586,7 @@ func init() {
 	rootCmd.Flags().String("load-auto-profiles", "", "Enable the builtin script that does auto profiles")
 	rootCmd.Flags().String("load-commands", "", "Enable the built-in script to enter commands in the console")
 	rootCmd.Flags().String("load-console", "", "Enable the built-in script to handle textual input")
+	rootCmd.Flags().String("load-context-menu", "", "Enable the builtin script that implements a context menu")
 	rootCmd.Flags().String("load-positioning", "", "Enable the builtin script that provides various keybindings to pan videos and images")
 	rootCmd.Flags().String("load-scripts", "", "If set to no, don't auto-load scripts from the scripts configuration subdirectory")
 	rootCmd.Flags().String("load-select", "", "Enable the builtin script that lets you select from lists of items")
@@ -617,6 +644,7 @@ func init() {
 	rootCmd.Flags().String("openal-num-samples", "", "Specify the number of complete samples to use for each buffer")
 	rootCmd.Flags().String("opengl-check-pattern-a", "", "")
 	rootCmd.Flags().String("opengl-check-pattern-b", "", "")
+	rootCmd.Flags().String("opengl-dwmflush", "", "Calls DwmFlush after swapping buffers on Windows")
 	rootCmd.Flags().String("opengl-early-flush", "", "Call glFlush() after rendering a frame and before attempting to display it")
 	rootCmd.Flags().String("opengl-es", "", "Controls which type of OpenGL context will be accepted")
 	rootCmd.Flags().String("opengl-glfinish", "", "Call glFinish() before swapping buffers")
@@ -650,6 +678,7 @@ func init() {
 	rootCmd.Flags().String("osd-bar-marker-style", "", "Set the OSD bar marker style")
 	rootCmd.Flags().String("osd-bar-outline-size", "", "Size of the outline of the OSD bar in scaled pixels")
 	rootCmd.Flags().String("osd-bar-w", "", "Width of the OSD bar, in percentage of the screen width")
+	rootCmd.Flags().String("osd-bitmap-max-size", "", "Set the maximum bitmap cache size in libass cache for the OSD")
 	rootCmd.Flags().String("osd-blur", "", "Gaussian blur factor applied to the OSD font border")
 	rootCmd.Flags().String("osd-bold", "", "Format text on bold")
 	rootCmd.Flags().String("osd-border-color", "", "alias for --osd-outline-color")
@@ -662,6 +691,7 @@ func init() {
 	rootCmd.Flags().String("osd-font-size", "", "Specify the OSD font size")
 	rootCmd.Flags().String("osd-fonts-dir", "", "See --sub-fonts-dir for details")
 	rootCmd.Flags().String("osd-fractions", "", "Show OSD times with fractions of seconds")
+	rootCmd.Flags().String("osd-glyph-limit", "", "Set the maximum number of cached glyphs in libass cache for the OSD")
 	rootCmd.Flags().String("osd-italic", "", "Format text on italic")
 	rootCmd.Flags().String("osd-justify", "", "")
 	rootCmd.Flags().String("osd-level", "", "Specifies which mode the OSD should start in")
@@ -676,12 +706,14 @@ func init() {
 	rootCmd.Flags().String("osd-playing-msg", "", "Show a message on OSD when playback starts")
 	rootCmd.Flags().String("osd-playing-msg-duration", "", "Set the duration of osd-playing-msg in ms")
 	rootCmd.Flags().String("osd-playlist-entry", "", "Whether to display the media title, filename, or both")
+	rootCmd.Flags().String("osd-prune-delay", "", "Set the delay for automatic pruning of events from memory in libass")
 	rootCmd.Flags().String("osd-scale", "", "OSD font size multiplier, multiplied with --osd-font-size value")
 	rootCmd.Flags().String("osd-scale-by-window", "", "Whether to scale the OSD with the window size")
 	rootCmd.Flags().String("osd-selected-color", "", "The color of the selected item in lists")
 	rootCmd.Flags().String("osd-selected-outline-color", "", "The outline color of the selected item in lists")
 	rootCmd.Flags().String("osd-shadow-color", "", "alias for --osd-back-color")
 	rootCmd.Flags().String("osd-shadow-offset", "", "Displacement of the OSD shadow in scaled pixels")
+	rootCmd.Flags().String("osd-shaper", "", "Horizontal OSD/sub font spacing in scaled pixels (see --sub-font-size for details)")
 	rootCmd.Flags().String("osd-spacing", "", "Horizontal OSD/sub font spacing in scaled pixels")
 	rootCmd.Flags().String("osd-status-msg", "", "Show a custom string during playback instead of the standard status text")
 	rootCmd.Flags().String("oset-metadata", "", "Specifies metadata to include in the output file")
@@ -719,6 +751,7 @@ func init() {
 	rootCmd.Flags().String("playlist-exts-toggle", "", "")
 	rootCmd.Flags().String("playlist-start", "", "Set which file on the internal playlist to start playback with")
 	rootCmd.Flags().String("prefetch-playlist", "", "Prefetch next playlist entry while playback of the current entry is ending")
+	rootCmd.Flags().String("priority", "", "Set process priority for mpv according to the predefined priorities available under Windows")
 	rootCmd.Flags().String("profile", "", "Use the given profile(s)")
 	rootCmd.Flags().String("profile-add", "", "")
 	rootCmd.Flags().String("profile-append", "", "")
@@ -737,6 +770,8 @@ func init() {
 	rootCmd.Flags().String("really-quiet", "", "Display even less output and status messages than with --quiet")
 	rootCmd.Flags().String("rebase-start-time", "", "Whether to move the file start time to 00:00:00")
 	rootCmd.Flags().String("referrer", "", "Specify a referrer path or URL for HTTP requests")
+	rootCmd.Flags().String("register", "", "Registers mpv as a media player on Windows")
+	rootCmd.Flags().String("register-rpath", "", "When registering with --register, this option allows you to specify the path(s) to prepend so that mpv can find the necessary DLLs")
 	rootCmd.Flags().String("replaygain", "", "Adjust volume gain according to replaygain values stored in the file metadata")
 	rootCmd.Flags().String("replaygain-clip", "", "Allow the volume gain to clip")
 	rootCmd.Flags().String("replaygain-fallback", "", "Gain in dB to apply if the file has no replay gain tags")
@@ -813,6 +848,7 @@ func init() {
 	rootCmd.Flags().String("scripts-remove", "", "")
 	rootCmd.Flags().String("scripts-set", "", "")
 	rootCmd.Flags().String("scripts-toggle", "", "")
+	rootCmd.Flags().String("sdr-adjust-gamma", "", "This option controls whether SDR content should have its gamma adjusted")
 	rootCmd.Flags().String("secondary-sid", "", "Select a secondary subtitle stream")
 	rootCmd.Flags().String("secondary-sub-ass-override", "", "Control whether user secondary substyle overrides should be applied")
 	rootCmd.Flags().String("secondary-sub-delay", "", "Delays secondary subtitles by <sec> seconds")
@@ -887,6 +923,7 @@ func init() {
 	rootCmd.Flags().String("sub-auto-exts-set", "", "")
 	rootCmd.Flags().String("sub-auto-exts-toggle", "", "")
 	rootCmd.Flags().String("sub-back-color", "", "Color used for sub text background")
+	rootCmd.Flags().String("sub-bitmap-max-size", "", "Set the maximum bitmap cache size in libass cache for the subtitle track")
 	rootCmd.Flags().String("sub-blur", "", "Gaussian blur factor applied to the sub font border")
 	rootCmd.Flags().String("sub-bold", "", "Format text on bold")
 	rootCmd.Flags().String("sub-border-color", "", "alias for --sub-outline-color")
@@ -940,8 +977,18 @@ func init() {
 	rootCmd.Flags().String("sub-filter-regex-warn", "", "Log dropped lines with warning log level, instead of verbose")
 	rootCmd.Flags().String("sub-filter-sdh", "", "Applies filter removing subtitle additions for the deaf or hard-of-hearing")
 	rootCmd.Flags().String("sub-filter-sdh-enclosures", "", "Specify a string of characters that --sub-filter-sdh will use to potentially remove text")
+	rootCmd.Flags().String("sub-filter-sdh-enclosures-add", "", "")
+	rootCmd.Flags().String("sub-filter-sdh-enclosures-append", "", "")
+	rootCmd.Flags().String("sub-filter-sdh-enclosures-clr", "", "")
+	rootCmd.Flags().String("sub-filter-sdh-enclosures-del", "", "")
+	rootCmd.Flags().String("sub-filter-sdh-enclosures-pre", "", "")
+	rootCmd.Flags().String("sub-filter-sdh-enclosures-remove", "", "")
+	rootCmd.Flags().String("sub-filter-sdh-enclosures-set", "", "")
+	rootCmd.Flags().String("sub-filter-sdh-enclosures-toggle", "", "")
 	rootCmd.Flags().String("sub-filter-sdh-harder", "", "Do harder SDH filtering")
 	rootCmd.Flags().String("sub-fix-timing", "", "Adjust subtitle timing is to remove minor gaps or overlaps between subtitles")
+	rootCmd.Flags().String("sub-fix-timing-keep", "", "Set the minimum duration in milliseconds for subtitle events to be considered for timing fixes")
+	rootCmd.Flags().String("sub-fix-timing-threshold", "", "Set the threshold in milliseconds for fixing subtitle timing")
 	rootCmd.Flags().String("sub-font", "", "Specify font to use for subtitles that do not themselves specify a particular font")
 	rootCmd.Flags().String("sub-font-provider", "", "Which libass font provider backend to use")
 	rootCmd.Flags().String("sub-font-size", "", "Specify the sub font size")
@@ -949,7 +996,9 @@ func init() {
 	rootCmd.Flags().String("sub-forced-events-only", "", "Enabling this displays only forced events within subtitle streams")
 	rootCmd.Flags().String("sub-fps", "", "Specify the framerate of the subtitle file")
 	rootCmd.Flags().String("sub-gauss", "", "Apply Gaussian blur to image subtitles")
+	rootCmd.Flags().String("sub-glyph-limit", "", "Set the maximum number of cached glyphs in libass cache for the subtitle track")
 	rootCmd.Flags().String("sub-gray", "", "Convert image subtitles to grayscale")
+	rootCmd.Flags().String("sub-hdr-peak", "", "Controls the text subtitle and OSD diffuse white level in cd/m² (nits) for HDR output")
 	rootCmd.Flags().String("sub-hinting", "", "Set font hinting type")
 	rootCmd.Flags().String("sub-italic", "", "Format text on italic")
 	rootCmd.Flags().String("sub-justify", "", "Control how multi line subs are justified irrespective of where they are aligned")
@@ -996,6 +1045,8 @@ func init() {
 	rootCmd.Flags().String("sws-ls", "", "Software scaler sharpen filter")
 	rootCmd.Flags().String("sws-scaler", "", "Specify the software scaler algorithm to be used with --vf=scale")
 	rootCmd.Flags().String("target-colorspace-hint", "", "Automatically configure the output colorspace of the display to pass through the input values of the stream (e.g. for HDR passthrough), if possible")
+	rootCmd.Flags().String("target-colorspace-hint-mode", "", "Select which metadata to use for the --target-colorspace-hint")
+	rootCmd.Flags().String("target-colorspace-hint-strict", "", "When enabled (default), the configured swapchain colorspace (with the hint) will be respected")
 	rootCmd.Flags().String("target-contrast", "", "Specifies the measured contrast of the output display")
 	rootCmd.Flags().String("target-gamut", "", "Constrains the gamut of the display")
 	rootCmd.Flags().String("target-lut", "", "Specifies a custom LUT file (in Adobe .cube format) to apply to the colors before display on-screen")
@@ -1024,6 +1075,7 @@ func init() {
 	rootCmd.Flags().String("tone-mapping-param", "", "Set tone mapping parameters")
 	rootCmd.Flags().String("tone-mapping-visualize", "", "Display a (PQ-PQ) graph of the active tone-mapping LUT")
 	rootCmd.Flags().String("track-auto-selection", "", "Enable the default track auto-selection")
+	rootCmd.Flags().String("treat-srgb-as-power22", "", "When enabled, sRGB is (de)linearized using a pure power 2.2 curve instead of the standard sRGB piecewise transfer function")
 	rootCmd.Flags().String("tscale", "", "The filter used for interpolating the temporal axis")
 	rootCmd.Flags().String("tscale-antiring", "", "Set the antiringing strength")
 	rootCmd.Flags().String("tscale-blur", "", "Kernel scaling factor")
@@ -1035,6 +1087,7 @@ func init() {
 	rootCmd.Flags().String("tscale-window", "", "Choose a custom windowing function for the kernel")
 	rootCmd.Flags().String("tscale-wparam", "", "Configure the parameter for the window function given by --scale-window etc")
 	rootCmd.Flags().String("tscale-wtaper", "", "Kernel/window taper factor")
+	rootCmd.Flags().String("unregister", "", "Unregisters mpv as a media player on Windows, undoing all changes made by the --register option")
 	rootCmd.Flags().String("untimed", "", "Do not sleep when outputting video frames")
 	rootCmd.Flags().String("use-embedded-icc-profile", "", "Load the embedded ICC profile contained in media files such as PNG images")
 	rootCmd.Flags().String("use-filedir-conf", "", "Look for a file-specific configuration file in the same directory as the file that is being played")
@@ -1128,6 +1181,11 @@ func init() {
 	rootCmd.Flags().String("vo-add", "", "")
 	rootCmd.Flags().String("vo-append", "", "")
 	rootCmd.Flags().String("vo-clr", "", "")
+	rootCmd.Flags().String("vo-direct3d-disable-texture-align", "", "Normally texture sizes are always aligned to 16. With this option enabled, the video texture will always have exactly the same size as the video itself")
+	rootCmd.Flags().String("vo-direct3d-exact-backbuffer", "", "Always resize the backbuffer to window size")
+	rootCmd.Flags().String("vo-direct3d-force-power-of-2", "", "Always force textures to power of 2, even if the device reports non-power-of-2 texture sizes as supported")
+	rootCmd.Flags().String("vo-direct3d-swap-discard", "", "Use D3DSWAPEFFECT_DISCARD, which might be faster")
+	rootCmd.Flags().String("vo-direct3d-texture-memory", "", "Only affects operation with shaders/texturing enabled, and (E)OSD")
 	rootCmd.Flags().String("vo-help", "", "")
 	rootCmd.Flags().String("vo-image-avif-encoder", "", "")
 	rootCmd.Flags().String("vo-image-avif-opts", "", "")
@@ -1152,6 +1210,7 @@ func init() {
 	rootCmd.Flags().String("vo-image-webp-lossless", "", "Enable writing lossless WebP files")
 	rootCmd.Flags().String("vo-image-webp-quality", "", "WebP quality")
 	rootCmd.Flags().String("vo-kitty-alt-screen", "", "Whether or not to use the alternate screen buffer and return the terminal to its previous state on exit")
+	rootCmd.Flags().String("vo-kitty-auto-multiplexer-passthrough", "", "Automatically detect terminal multiplexer to passthrough escape sequences")
 	rootCmd.Flags().String("vo-kitty-cols", "", "Specify the terminal size in character cells, otherwise (0) read it from the terminal, or fall back to 80x25")
 	rootCmd.Flags().String("vo-kitty-config-clear", "", "Whether or not to clear the terminal whenever the output is reconfigured")
 	rootCmd.Flags().String("vo-kitty-height", "", "Specify the available size in pixels, otherwise (0) read it from the terminal, or fall back to 320x240")
@@ -1160,6 +1219,7 @@ func init() {
 	rootCmd.Flags().String("vo-kitty-top", "", "Specify the position in character cells where the image starts")
 	rootCmd.Flags().String("vo-kitty-use-shm", "", "Use shared memory objects to transfer image data to the terminal")
 	rootCmd.Flags().String("vo-kitty-width", "", "Specify the available size in pixels, otherwise (0) read it from the terminal, or fall back to 320x240")
+	rootCmd.Flags().String("vo-mmcss-profile", "", "Set the MMCSS profile for the video renderer thread")
 	rootCmd.Flags().String("vo-null-fps", "", "Simulate display FPS")
 	rootCmd.Flags().String("vo-pre", "", "")
 	rootCmd.Flags().String("vo-remove", "", "")
@@ -1212,6 +1272,7 @@ func init() {
 	rootCmd.Flags().String("vulkan-display-plane", "", "The index of the plane, on the selected Vulkan device, to present on when using the displayvk GPU context")
 	rootCmd.Flags().String("vulkan-queue-count", "", "Controls the number of VkQueues used for rendering")
 	rootCmd.Flags().String("vulkan-swap-mode", "", "Controls the presentation mode of the vulkan swapchain")
+	rootCmd.Flags().String("wasapi-exclusive-buffer", "", "Set buffer duration in exclusive mode")
 	rootCmd.Flags().String("watch-history-path", "", "The path in which to store the watch history")
 	rootCmd.Flags().String("watch-later-dir", "", "The directory in which to store the \"watch later\" temporary files")
 	rootCmd.Flags().String("watch-later-directory", "", "alias for --watch-later-dir")
@@ -1232,6 +1293,8 @@ func init() {
 	rootCmd.Flags().String("wayland-internal-vsync", "", "Controls whether to use mpv's internal vsync for Wayland-base video outputs")
 	rootCmd.Flags().String("wayland-present", "", "Enable the use of wayland's presentation time protocol for more accurate frame presentation if it is supported by the compositor")
 	rootCmd.Flags().String("wid", "", "This tells mpv to attach to an existing window")
+	rootCmd.Flags().String("window-affinity", "", "Controls the window affinity behavior of mpv")
+	rootCmd.Flags().String("window-corners", "", "Set the preference for window corner rounding")
 	rootCmd.Flags().String("window-dragging", "", "Move the window when clicking on it and moving the mouse pointer")
 	rootCmd.Flags().String("window-maximized", "", "Whether the video window is maximized or not")
 	rootCmd.Flags().String("window-minimized", "", "Whether the video window is minimized or not")
@@ -1276,355 +1339,405 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"ab-loop-count":                        carapace.ActionValues("inf", "help"),
-		"access-references":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ad":                                   mpv.ActionAudioDecoders().UniqueList(","),
-		"ad-lavc-downmix":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ad-queue-enable":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"af":                                   mpv.ActionAudioFilters().List(","),
-		"aid":                                  carapace.ActionValues("no", "auto", "help").StyleF(style.ForKeyword),
-		"alang":                                osAction.ActionLanguages().List(","),
-		"allow-delayed-peak-detect":            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"alsa-ignore-chmap":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"alsa-non-interleaved":                 carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"alsa-resample":                        carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ao":                                   mpv.ActionAudioOutputs().UniqueList(","),
-		"ao-null-broken-delay":                 carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ao-null-broken-eof":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ao-null-channel-layouts":              mpv.ActionAudioChannels().List(","),
-		"ao-null-format":                       carapace.ActionValues("u8", "s16", "s32", "s64", "float", "double", "u8p", "s16p", "s32p", "s64p", "floatp", "doublep", "spdif-aac", "spdif-ac3", "spdif-dts", "spdif-dtshd", "spdif-eac3", "spdif-mp3", "spdif-truehd", "help"),
-		"ao-null-untimed":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ao-pcm-append":                        carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ao-pcm-file":                          carapace.ActionFiles(),
-		"ao-pcm-waveheader":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"archive-exts":                         carapace.ActionValues("zip", "rar", "7z", "cbz", "cbr", "tar", "gz", "xz", "bz2", "ar").UniqueList(","),
-		"audio":                                carapace.ActionValues("no", "auto", "help").StyleF(style.ForKeyword),
-		"audio-backward-overlap":               carapace.ActionValues("auto", "help"),
-		"audio-channels":                       mpv.ActionAudioChannels().List(","),
-		"audio-demuxer":                        mpv.ActionDemuxers(),
-		"audio-display":                        carapace.ActionValues("no", "embedded-first", "external-first", "help").StyleF(style.ForKeyword),
-		"audio-exclusive":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"audio-fallback-to-null":               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"audio-file-auto":                      carapace.ActionValues("no", "exact", "fuzzy", "all", "help").StyleF(style.ForKeyword),
-		"audio-file-paths":                     carapace.ActionFiles().List(string(os.PathListSeparator)),
-		"audio-files":                          carapace.ActionFiles().List(string(os.PathListSeparator)),
-		"audio-normalize-downmix":              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"audio-pitch-correction":               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"audio-resample-linear":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"audio-stream-silence":                 carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"auto-window-resize":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"autoload-files":                       carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"autosync":                             carapace.ActionValues("no", "help").StyleF(style.ForKeyword),
-		"blend-subtitles":                      carapace.ActionValues("no", "yes", "video", "help").StyleF(style.ForKeyword),
-		"bluray-device":                        carapace.ActionFiles(),
-		"border":                               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"cache":                                carapace.ActionValues("no", "auto", "yes", "help").StyleF(style.ForKeyword),
-		"cache-on-disk":                        carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"cache-pause":                          carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"cache-pause-initial":                  carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"cdda-cdtext":                          carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"cdda-skip":                            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"chapters-file":                        carapace.ActionFiles(),
-		"config":                               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"config-dir":                           carapace.ActionFiles(),
-		"cookies":                              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"cookies-file":                         carapace.ActionFiles(),
-		"correct-downscaling":                  carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"correct-pts":                          carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"cover-art-auto":                       carapace.ActionValues("no", "exact", "fuzzy", "all", "help").StyleF(style.ForKeyword),
-		"cover-art-files":                      carapace.ActionFiles().List(string(os.PathListSeparator)),
-		"cuda-decode-device":                   carapace.ActionValues("auto", "help"),
-		"cursor-autohide":                      carapace.ActionValues("no", "always", "help").StyleF(style.ForKeyword),
-		"cursor-autohide-fs-only":              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"deband":                               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"demuxer-cache-wait":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"demuxer-donate-buffer":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"demuxer-lavf-allow-mimetype":          carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"demuxer-lavf-hacks":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"demuxer-lavf-linearize-timestamps":    carapace.ActionValues("no", "auto", "yes", "help").StyleF(style.ForKeyword),
-		"demuxer-lavf-probe-info":              carapace.ActionValues("no", "yes", "auto", "nostreams", "help").StyleF(style.ForKeyword),
-		"demuxer-lavf-propagate-opts":          carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"demuxer-mkv-probe-start-time":         carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"demuxer-mkv-probe-video-duration":     carapace.ActionValues("no", "yes", "full", "help").StyleF(style.ForKeyword),
-		"demuxer-mkv-subtitle-preroll":         carapace.ActionValues("no", "yes", "index", "help").StyleF(style.ForKeyword),
-		"demuxer-rawaudio-format":              carapace.ActionValues("u8", "s8", "u16le", "u16be", "s16le", "s16be", "u24le", "u24be", "s24le", "s24be", "u32le", "u32be", "s32le", "s32be", "floatle", "floatbe", "doublele", "doublebe", "u16", "s16", "u24", "s24", "u32", "s32", "float", "double", "help"),
-		"demuxer-seekable-cache":               carapace.ActionValues("auto", "no", "yes", "help").StyleF(style.ForKeyword),
-		"demuxer-thread":                       carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"dither":                               carapace.ActionValues("fruit", "ordered", "error-diffusion", "no", "help").StyleF(style.ForKeyword),
-		"dither-depth":                         carapace.ActionValues("no", "auto", "help").StyleF(style.ForKeyword),
-		"drm-device":                           carapace.ActionFiles(),
-		"drm-draw-plane":                       carapace.ActionValues("primary", "overlay", "help"),
-		"drm-drmprime-video-plane":             carapace.ActionValues("primary", "overlay", "help"),
-		"drm-format":                           carapace.ActionValues("xrgb8888", "xrgb2101010", "xbgr8888", "xbgr2101010", "yuyv", "help"),
-		"dump-stats":                           carapace.ActionFiles(),
-		"dvbin-file":                           carapace.ActionFiles(),
-		"dvbin-full-transponder":               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"dvd-device":                           carapace.ActionFiles(),
-		"edition":                              carapace.ActionValues("auto", "help"),
-		"egl-output-format":                    carapace.ActionValues("auto", "rgb8", "rgba8", "rgb10", "rgb10_a2", "rgb16", "rgba16", "rgb16f", "rgba16f", "rgb32f", "rgba32f", "help"),
-		"embeddedfonts":                        carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"error-diffusion":                      carapace.ActionValues("simple", "false-fs", "sierra-lite", "floyd-steinberg", "atkinson", "jarvis-judice-ninke", "stucki", "burkes", "sierra-3", "sierra-2", "help"),
-		"external-files":                       carapace.ActionFiles().List(string(os.PathListSeparator)),
-		"focus-on":                             carapace.ActionValues("all", "never", "open", "help"),
-		"force-rgba-osd-rendering":             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"force-seekable":                       carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"force-window":                         carapace.ActionValues("no", "yes", "immediate", "help").StyleF(style.ForKeyword),
-		"force-window-position":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"framedrop":                            carapace.ActionValues("no", "vo", "decoder", "decoder+vo", "help").StyleF(style.ForKeyword),
-		"frames":                               carapace.ActionValues("all", "help"),
-		"fs-screen":                            carapace.ActionValues("all", "current", "help"),
-		"fullscreen":                           carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"gamut-mapping-mode":                   carapace.ActionValues("auto", "clip", "perceptual", "relative", "saturation", "absolute", "desaturate", "darken", "warn", "linear", "help"),
-		"gapless-audio":                        carapace.ActionValues("no", "yes", "weak", "help").StyleF(style.ForKeyword),
-		"glsl-shaders":                         carapace.ActionFiles().List(string(os.PathListSeparator)),
-		"gpu-api":                              carapace.ActionValues("auto", "opengl", "vulkan", "d3d11", "help").UniqueList(","),
-		"gpu-context":                          mpv.ActionGPUContexts().UniqueList(","),
-		"gpu-debug":                            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"gpu-dumb-mode":                        carapace.ActionValues("auto", "yes", "no", "help").StyleF(style.ForKeyword),
-		"gpu-shader-cache-dir":                 carapace.ActionFiles(),
-		"gpu-sw":                               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"hdr-compute-peak":                     carapace.ActionValues("auto", "yes", "no", "help").StyleF(style.ForKeyword),
-		"hidpi-window-scale":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"hls-bitrate":                          carapace.ActionValues("no", "min", "max", "help").StyleF(style.ForKeyword),
-		"hr-seek":                              carapace.ActionValues("no", "absolute", "yes", "always", "default", "help").StyleF(style.ForKeyword),
-		"hr-seek-framedrop":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"hwdec":                                mpv.ActionHardwareDecodingAPIs(),
-		"hwdec-software-fallback":              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"icc-cache-dir":                        carapace.ActionFiles(),
-		"icc-force-contrast":                   carapace.ActionValues("no", "inf", "help").StyleF(style.ForKeyword),
-		"icc-profile":                          carapace.ActionFiles(),
-		"icc-profile-auto":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"idle":                                 carapace.ActionValues("no", "once", "yes", "help").StyleF(style.ForKeyword),
-		"ignore-path-in-watch-later-config":    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"image-lut":                            carapace.ActionFiles(),
-		"image-lut-type":                       carapace.ActionValues("auto", "native", "normalized", "conversion", "help"),
-		"image-subs-video-resolution":          carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"include":                              carapace.ActionFiles(),
-		"index":                                carapace.ActionValues("default", "recreate", "help"),
-		"initial-audio-sync":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"input-builtin-bindings":               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"input-conf":                           carapace.ActionFiles(),
-		"input-cursor":                         carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"input-default-bindings":               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"input-ipc-server":                     carapace.ActionFiles(),
-		"input-media-keys":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"input-right-alt-gr":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"input-terminal":                       carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"input-test":                           carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"input-vo-keyboard":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"interpolation":                        carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"jack-autostart":                       carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"jack-connect":                         carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"jack-std-channel-layout":              carapace.ActionValues("waveext", "any", "help"),
-		"keep-open":                            carapace.ActionValues("no", "yes", "always", "help").StyleF(style.ForKeyword),
-		"keep-open-pause":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"keepaspect":                           carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"keepaspect-window":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"linear-downscaling":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"linear-upscaling":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"list-properties":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"load-auto-profiles":                   carapace.ActionValues("no", "yes", "auto", "help").StyleF(style.ForKeyword),
-		"load-scripts":                         carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"load-stats-overlay":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"load-unsafe-playlists":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"log-file":                             carapace.ActionFiles(),
-		"loop-file":                            carapace.ActionValues("no", "inf", "yes", "help").StyleF(style.ForKeyword),
-		"loop-playlist":                        carapace.ActionValues("no", "inf", "yes", "force", "help").StyleF(style.ForKeyword),
-		"lut":                                  carapace.ActionFiles(),
-		"lut-type":                             carapace.ActionValues("auto", "native", "normalized", "conversion", "help"),
-		"merge-files":                          carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"msg-color":                            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"msg-module":                           carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"msg-time":                             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"mute":                                 carapace.ActionValues("no", "auto", "yes", "help").StyleF(style.ForKeyword),
-		"native-fs":                            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"native-keyrepeat":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"o":                                    carapace.ActionFiles(),
-		"oac":                                  mpv.ActionAudioCodecs(),
-		"oacopts":                              mpv.ActionAudioCodecOptions(),
-		"ocopy-metadata":                       carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"of":                                   mpv.ActionFormats(),
-		"ofopts":                               mpv.ActionFormatOptions(),
-		"on-all-workspaces":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ontop":                                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ontop-level":                          carapace.ActionValues("window", "system", "desktop", "help"),
-		"opengl-early-flush":                   carapace.ActionValues("no", "yes", "auto", "help").StyleF(style.ForKeyword),
-		"opengl-es":                            carapace.ActionValues("auto", "yes", "no", "help").StyleF(style.ForKeyword),
-		"opengl-glfinish":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"opengl-pbo":                           carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"opengl-rectangle-textures":            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"opengl-waitvsync":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"orawts":                               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ordered-chapters":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ordered-chapters-files":               carapace.ActionFiles(),
-		"osc":                                  carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"osd-align-x":                          carapace.ActionValues("left", "center", "right", "help"),
-		"osd-align-y":                          carapace.ActionValues("top", "center", "bottom", "help"),
-		"osd-bar":                              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"osd-bold":                             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"osd-font-provider":                    carapace.ActionValues("auto", "none", "fontconfig", "help"),
-		"osd-fractions":                        carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"osd-italic":                           carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"osd-justify":                          carapace.ActionValues("auto", "left", "center", "right", "help"),
-		"osd-level":                            carapace.ActionValues("0", "1", "2", "3", "help"),
-		"osd-on-seek":                          carapace.ActionValues("no", "bar", "msg", "msg-bar", "help").StyleF(style.ForKeyword),
-		"osd-scale-by-window":                  carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"ovc":                                  mpv.ActionVideoCodecs(),
-		"ovcopts":                              mpv.ActionVideoCodecOptions(),
-		"pause":                                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"play-direction":                       carapace.ActionValues("forward", "backward", "help"),
-		"player-operation-mode":                carapace.ActionValues("cplayer", "pseudo-gui", "help"),
-		"playlist":                             carapace.ActionFiles(),
-		"playlist-start":                       carapace.ActionValues("auto", "no", "help").StyleF(style.ForKeyword),
-		"prefetch-playlist":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"profile":                              mpv.ActionProfiles().UniqueList(","),
-		"pulse-allow-suspended":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"pulse-buffer":                         carapace.ActionValues("native", "help"),
-		"pulse-latency-hacks":                  carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"quiet":                                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"rar-list-all-volumes":                 carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"really-quiet":                         carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"rebase-start-time":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"replaygain":                           carapace.ActionValues("no", "track", "album", "help").StyleF(style.ForKeyword),
-		"replaygain-clip":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"resume-playback":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"resume-playback-check-mtime":          carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"rtsp-transport":                       carapace.ActionValues("lavf", "udp", "tcp", "http", "udp_multicast", "help"),
-		"save-position-on-quit":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"scale-window":                         carapace.ActionValues("bartlett", "cosine", "hanning", "tukey", "hamming", "quadric", "welch", "kaiser", "blackman", "sphinx", "jinc", "help"),
-		"scaler-resizes-only":                  carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"screen":                               carapace.ActionValues("default", "help"),
-		"screenshot-directory":                 carapace.ActionFiles(),
-		"screenshot-format":                    carapace.ActionValues("jpg", "jpeg", "png", "webp", "jxl", "avif", "help"),
-		"screenshot-high-bit-depth":            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"screenshot-jpeg-source-chroma":        carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"screenshot-sw":                        carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"screenshot-tag-colorspace":            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"screenshot-webp-lossless":             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"scripts":                              carapace.ActionFiles().List(string(os.PathListSeparator)),
-		"secondary-sid":                        carapace.ActionValues("no", "auto", "help").StyleF(style.ForKeyword),
-		"secondary-sub-visibility":             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"shuffle":                              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sid":                                  carapace.ActionValues("no", "auto", "help").StyleF(style.ForKeyword),
-		"sigmoid-upscaling":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"snap-window":                          carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"spirv-compiler":                       carapace.ActionValues("auto", "shaderc", "help"),
-		"stop-playback-on-init-failure":        carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"stop-screensaver":                     carapace.ActionValues("always", "no", "yes", "help").StyleF(style.ForKeyword),
-		"stream-dump":                          carapace.ActionFiles(),
-		"stretch-dvd-subs":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"stretch-image-subs-to-screen":         carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-align-x":                          carapace.ActionValues("left", "center", "right", "help"),
-		"sub-align-y":                          carapace.ActionValues("top", "center", "bottom", "help"),
-		"sub-ass":                              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-ass-force-margins":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-ass-justify":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-ass-override":                     carapace.ActionValues("no", "yes", "force", "scale", "strip", "help").StyleF(style.ForKeyword),
-		"sub-ass-scale-with-window":            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-ass-styles":                       carapace.ActionFiles(),
-		"sub-ass-vsfilter-color-compat":        carapace.ActionValues("no", "basic", "full", "force-601", "help").StyleF(style.ForKeyword),
-		"sub-auto":                             carapace.ActionValues("no", "exact", "fuzzy", "all", "help").StyleF(style.ForKeyword),
-		"sub-bold":                             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-clear-on-seek":                    carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-create-cc-track":                  carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-file-paths":                       carapace.ActionFiles().List(string(os.PathListSeparator)),
-		"sub-files":                            carapace.ActionFiles().List(string(os.PathListSeparator)),
-		"sub-filter-regex-enable":              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-filter-regex-plain":               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-filter-regex-warn":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-filter-sdh":                       carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-filter-sdh-harder":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-fix-timing":                       carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-font-provider":                    carapace.ActionValues("auto", "none", "fontconfig", "help"),
-		"sub-gray":                             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-hinting":                          carapace.ActionValues("none", "light", "normal", "native", "help"),
-		"sub-italic":                           carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-justify":                          carapace.ActionValues("auto", "left", "center", "right", "help"),
-		"sub-past-video-end":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-scale-by-window":                  carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-scale-with-window":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-shaper":                           carapace.ActionValues("simple", "complex", "help"),
-		"sub-use-margins":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sub-visibility":                       carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"subs-with-matching-audio":             carapace.ActionValues("forced", "no", "yes", "help").StyleF(style.ForKeyword),
-		"sws-allow-zimg":                       carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sws-bitexact":                         carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sws-fast":                             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"sws-scaler":                           carapace.ActionValues("fast-bilinear", "bilinear", "bicubic", "x", "point", "area", "bicublin", "gauss", "sinc", "lanczos", "spline", "help"),
-		"target-peak":                          carapace.ActionValues("auto", "help"),
-		"target-prim":                          carapace.ActionValues("auto", "bt.601-525", "bt.601-625", "bt.709", "bt.2020", "bt.470m", "apple", "adobe", "prophoto", "cie1931", "dci-p3", "display-p3", "v-gamut", "s-gamut", "ebu3213", "film-c", "aces-ap0", "aces-ap1", "help"),
-		"target-trc":                           carapace.ActionValues("auto", "bt.1886", "srgb", "linear", "gamma1.8", "gamma2.0", "gamma2.2", "gamma2.4", "gamma2.6", "gamma2.8", "prophoto", "pq", "hlg", "v-log", "s-log1", "s-log2", "st428", "help"),
-		"taskbar-progress":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"temporal-dither":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"term-osd":                             carapace.ActionValues("force", "auto", "no", "help").StyleF(style.ForKeyword),
-		"term-osd-bar":                         carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"terminal":                             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"tls-ca-file":                          carapace.ActionFiles(),
-		"tls-cert-file":                        carapace.ActionFiles(),
-		"tls-key-file":                         carapace.ActionFiles(),
-		"tls-verify":                           carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"tone-mapping":                         carapace.ActionValues("auto", "clip", "mobius", "reinhard", "hable", "gamma", "linear", "spline", "bt.2390", "bt.2446a", "st2094-40", "st2094-10", "help"),
-		"track-auto-selection":                 carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"untimed":                              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"use-embedded-icc-profile":             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"use-filedir-conf":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vd":                                   mpv.ActionVideoDecoders().UniqueList(","),
-		"vd-lavc-assume-old-x264":              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vd-lavc-bitexact":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vd-lavc-check-hw-profile":             carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vd-lavc-dr":                           carapace.ActionValues("auto", "no", "yes", "help").StyleF(style.ForKeyword),
-		"vd-lavc-fast":                         carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vd-lavc-framedrop":                    carapace.ActionValues("none", "default", "nonref", "bidir", "nonkey", "all", "help"),
-		"vd-lavc-show-all":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vd-lavc-skipframe":                    carapace.ActionValues("none", "default", "nonref", "bidir", "nonkey", "all", "help"),
-		"vd-lavc-skipidct":                     carapace.ActionValues("none", "default", "nonref", "bidir", "nonkey", "all", "help"),
-		"vd-lavc-skiploopfilter":               carapace.ActionValues("none", "default", "nonref", "bidir", "nonkey", "all", "help"),
-		"vd-queue-enable":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vf":                                   mpv.ActionVideoFilters().List(","),
-		"vid":                                  carapace.ActionValues("no", "auto", "help").StyleF(style.ForKeyword),
-		"video-aspect-method":                  carapace.ActionValues("bitstream", "container", "help"),
-		"video-backward-overlap":               carapace.ActionValues("auto", "help"),
-		"video-latency-hacks":                  carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"video-osd":                            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"video-output-levels":                  carapace.ActionValues("auto", "limited", "full", "help"),
-		"video-rotate":                         carapace.ActionValues("no", "help").StyleF(style.ForKeyword),
-		"video-sync":                           carapace.ActionValues("audio", "display-resample", "display-resample-vdrop", "display-resample-desync", "display-tempo", "display-adrop", "display-vdrop", "display-desync", "desync", "help"),
-		"video-unscaled":                       carapace.ActionValues("no", "yes", "downscale-big", "help").StyleF(style.ForKeyword),
-		"vo":                                   mpv.ActionVideoOutputs(),
-		"vo-image-format":                      carapace.ActionValues("jpg", "jpeg", "png", "webp", "jxl", "avif", "help"),
-		"vo-image-high-bit-depth":              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vo-image-jpeg-source-chroma":          carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vo-image-outdir":                      carapace.ActionFiles(),
-		"vo-image-tag-colorspace":              carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vo-image-webp-lossless":               carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vo-tct-256":                           carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vo-tct-algo":                          carapace.ActionValues("plain", "half-blocks", "help"),
-		"vo-vaapi-scaled-osd":                  carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vo-vaapi-scaling":                     carapace.ActionValues("default", "fast", "hq", "nla", "help"),
-		"vo-vdpau-chroma-deint":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vo-vdpau-composite-detect":            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vo-vdpau-force-yuv":                   carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vo-vdpau-pullup":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vulkan-async-compute":                 carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vulkan-async-transfer":                carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"vulkan-swap-mode":                     carapace.ActionValues("auto", "fifo", "fifo-relaxed", "mailbox", "immediate", "help"),
-		"watch-later-directory":                carapace.ActionFiles(),
-		"wayland-internal-vsync":               carapace.ActionValues("auto", "no", "yes", "help").StyleF(style.ForKeyword),
-		"window-dragging":                      carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"window-maximized":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"window-minimized":                     carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"write-filename-in-watch-later-config": carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"x11-bypass-compositor":                carapace.ActionValues("no", "yes", "fs-only", "never", "help").StyleF(style.ForKeyword),
-		"x11-netwm":                            carapace.ActionValues("auto", "no", "yes", "help").StyleF(style.ForKeyword),
-		"xv-ck":                                carapace.ActionValues("use", "set", "cur", "help"),
-		"xv-ck-method":                         carapace.ActionValues("none", "bg", "man", "auto", "help"),
-		"ytdl":                                 carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"zimg-dither":                          carapace.ActionValues("no", "ordered", "random", "error-diffusion", "help").StyleF(style.ForKeyword),
-		"zimg-fast":                            carapace.ActionValues("no", "yes", "help").StyleF(style.ForKeyword),
-		"zimg-scaler":                          carapace.ActionValues("point", "bilinear", "bicubic", "spline16", "spline36", "lanczos", "help"),
-		"zimg-scaler-chroma":                   carapace.ActionValues("point", "bilinear", "bicubic", "spline16", "spline36", "lanczos", "help"),
-		"zimg-threads":                         carapace.ActionValues("auto", "help"),
+		"ab-loop-count":                         ActionFlagCompletion("ab-loop-count"),
+		"access-references":                     ActionFlagCompletion("access-references"),
+		"ad":                                    mpv.ActionAudioDecoders().UniqueList(","),
+		"ad-lavc-downmix":                       ActionFlagCompletion("ad-lavc-downmix"),
+		"ad-queue-enable":                       ActionFlagCompletion("ad-queue-enable"),
+		"af":                                    mpv.ActionAudioFilters().List(","),
+		"aid":                                   ActionFlagCompletion("aid"),
+		"alang":                                 osAction.ActionLanguages().List(","),
+		"allow-delayed-peak-detect":             ActionFlagCompletion("allow-delayed-peak-detect"),
+		"alsa-ignore-chmap":                     ActionFlagCompletion("alsa-ignore-chmap"),
+		"alsa-non-interleaved":                  ActionFlagCompletion("alsa-non-interleaved"),
+		"alsa-resample":                         ActionFlagCompletion("alsa-resample"),
+		"ao":                                    mpv.ActionAudioOutputs().UniqueList(","),
+		"ao-null-broken-delay":                  ActionFlagCompletion("ao-null-broken-delay"),
+		"ao-null-broken-eof":                    ActionFlagCompletion("ao-null-broken-eof"),
+		"ao-null-channel-layouts":               mpv.ActionAudioChannels().List(","),
+		"ao-null-format":                        carapace.ActionValues("u8", "s16", "s32", "s64", "float", "double", "u8p", "s16p", "s32p", "s64p", "floatp", "doublep", "spdif-aac", "spdif-ac3", "spdif-dts", "spdif-dtshd", "spdif-eac3", "spdif-mp3", "spdif-truehd", "help"),
+		"ao-null-untimed":                       ActionFlagCompletion("ao-null-untimed"),
+		"ao-pcm-append":                         ActionFlagCompletion("ao-pcm-append"),
+		"ao-pcm-file":                           carapace.ActionFiles(),
+		"ao-pcm-waveheader":                     ActionFlagCompletion("ao-pcm-waveheader"),
+		"archive-exts":                          carapace.ActionValues("zip", "rar", "7z", "cbz", "cbr", "tar", "gz", "xz", "bz2", "ar").UniqueList(","),
+		"audio":                                 ActionFlagCompletion("audio"),
+		"audio-backward-overlap":                ActionFlagCompletion("audio-backward-overlap"),
+		"audio-channels":                        mpv.ActionAudioChannels().List(","),
+		"audio-demuxer":                         mpv.ActionDemuxers(),
+		"audio-display":                         ActionFlagCompletion("audio-display"),
+		"audio-exclusive":                       ActionFlagCompletion("audio-exclusive"),
+		"audio-fallback-to-null":                ActionFlagCompletion("audio-fallback-to-null"),
+		"audio-file-auto":                       ActionFlagCompletion("audio-file-auto"),
+		"audio-file-paths":                      carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"audio-files":                           carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"audio-normalize-downmix":               ActionFlagCompletion("audio-normalize-downmix"),
+		"audio-pitch-correction":                ActionFlagCompletion("audio-pitch-correction"),
+		"audio-resample-linear":                 ActionFlagCompletion("audio-resample-linear"),
+		"audio-set-media-role":                  ActionFlagCompletion("audio-set-media-role"),
+		"audio-stream-silence":                  ActionFlagCompletion("audio-stream-silence"),
+		"auto-window-resize":                    ActionFlagCompletion("auto-window-resize"),
+		"autoload-files":                        ActionFlagCompletion("autoload-files"),
+		"autosync":                              ActionFlagCompletion("autosync"),
+		"backdrop-type":                         ActionFlagCompletion("backdrop-type"),
+		"blend-subtitles":                       ActionFlagCompletion("blend-subtitles"),
+		"bluray-device":                         carapace.ActionFiles(),
+		"border":                                ActionFlagCompletion("border"),
+		"cache":                                 ActionFlagCompletion("cache"),
+		"cache-on-disk":                         ActionFlagCompletion("cache-on-disk"),
+		"cache-pause":                           ActionFlagCompletion("cache-pause"),
+		"cache-pause-initial":                   ActionFlagCompletion("cache-pause-initial"),
+		"cdda-cdtext":                           ActionFlagCompletion("cdda-cdtext"),
+		"cdda-skip":                             ActionFlagCompletion("cdda-skip"),
+		"chapters-file":                         carapace.ActionFiles(),
+		"clipboard-xwayland":                    ActionFlagCompletion("clipboard-xwayland"),
+		"config":                                ActionFlagCompletion("config"),
+		"config-dir":                            carapace.ActionFiles(),
+		"cookies":                               ActionFlagCompletion("cookies"),
+		"cookies-file":                          carapace.ActionFiles(),
+		"correct-downscaling":                   ActionFlagCompletion("correct-downscaling"),
+		"correct-pts":                           ActionFlagCompletion("correct-pts"),
+		"cover-art-auto":                        ActionFlagCompletion("cover-art-auto"),
+		"cover-art-files":                       carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"cuda-decode-device":                    ActionFlagCompletion("cuda-decode-device"),
+		"cursor-autohide":                       ActionFlagCompletion("cursor-autohide"),
+		"cursor-autohide-fs-only":               ActionFlagCompletion("cursor-autohide-fs-only"),
+		"d3d11-exclusive-fs":                    ActionFlagCompletion("d3d11-exclusive-fs"),
+		"d3d11-feature-level":                   carapace.ActionValues("12_1", "12_0", "11_1", "11_0", "10_1", "10_0", "9_3", "9_2", "9_1"),
+		"d3d11-flip":                            ActionFlagCompletion("d3d11-flip"),
+		"d3d11-output-csp":                      ActionFlagCompletion("d3d11-output-csp"),
+		"d3d11-output-format":                   ActionFlagCompletion("d3d11-output-format"),
+		"d3d11-output-mode":                     ActionFlagCompletion("d3d11-output-mode"),
+		"d3d11-warp":                            ActionFlagCompletion("d3d11-warp"),
+		"d3d11va-zero-copy":                     ActionFlagCompletion("d3d11va-zero-copy"),
+		"deband":                                ActionFlagCompletion("deband"),
+		"demuxer-cache-wait":                    ActionFlagCompletion("demuxer-cache-wait"),
+		"demuxer-donate-buffer":                 ActionFlagCompletion("demuxer-donate-buffer"),
+		"demuxer-lavf-allow-mimetype":           ActionFlagCompletion("demuxer-lavf-allow-mimetype"),
+		"demuxer-lavf-hacks":                    ActionFlagCompletion("demuxer-lavf-hacks"),
+		"demuxer-lavf-linearize-timestamps":     ActionFlagCompletion("demuxer-lavf-linearize-timestamps"),
+		"demuxer-lavf-probe-info":               ActionFlagCompletion("demuxer-lavf-probe-info"),
+		"demuxer-lavf-propagate-opts":           ActionFlagCompletion("demuxer-lavf-propagate-opts"),
+		"demuxer-mkv-probe-start-time":          ActionFlagCompletion("demuxer-mkv-probe-start-time"),
+		"demuxer-mkv-probe-video-duration":      ActionFlagCompletion("demuxer-mkv-probe-video-duration"),
+		"demuxer-mkv-subtitle-preroll":          ActionFlagCompletion("demuxer-mkv-subtitle-preroll"),
+		"demuxer-rawaudio-format":               ActionFlagCompletion("demuxer-rawaudio-format"),
+		"demuxer-seekable-cache":                ActionFlagCompletion("demuxer-seekable-cache"),
+		"demuxer-thread":                        ActionFlagCompletion("demuxer-thread"),
+		"dither":                                ActionFlagCompletion("dither"),
+		"dither-depth":                          ActionFlagCompletion("dither-depth"),
+		"drm-device":                            carapace.ActionFiles(),
+		"drm-draw-plane":                        ActionFlagCompletion("drm-draw-plane"),
+		"drm-drmprime-video-plane":              ActionFlagCompletion("drm-drmprime-video-plane"),
+		"drm-format":                            ActionFlagCompletion("drm-format"),
+		"dump-stats":                            carapace.ActionFiles(),
+		"dvbin-file":                            carapace.ActionFiles(),
+		"dvbin-full-transponder":                ActionFlagCompletion("dvbin-full-transponder"),
+		"dvd-device":                            carapace.ActionFiles(),
+		"edition":                               ActionFlagCompletion("edition"),
+		"egl-output-format":                     ActionFlagCompletion("egl-output-format"),
+		"embeddedfonts":                         ActionFlagCompletion("embeddedfonts"),
+		"error-diffusion":                       ActionFlagCompletion("error-diffusion"),
+		"external-files":                        carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"focus-on":                              ActionFlagCompletion("focus-on"),
+		"force-rgba-osd-rendering":              ActionFlagCompletion("force-rgba-osd-rendering"),
+		"force-seekable":                        ActionFlagCompletion("force-seekable"),
+		"force-window":                          ActionFlagCompletion("force-window"),
+		"force-window-position":                 ActionFlagCompletion("force-window-position"),
+		"framedrop":                             ActionFlagCompletion("framedrop"),
+		"frames":                                ActionFlagCompletion("frames"),
+		"fs-screen":                             ActionFlagCompletion("fs-screen"),
+		"fullscreen":                            ActionFlagCompletion("fullscreen"),
+		"gamut-mapping-mode":                    ActionFlagCompletion("gamut-mapping-mode"),
+		"gapless-audio":                         ActionFlagCompletion("gapless-audio"),
+		"glsl-shaders":                          carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"gpu-api":                               carapace.ActionValues("auto", "opengl", "vulkan", "d3d11", "help").UniqueList(","),
+		"gpu-context":                           mpv.ActionGPUContexts().UniqueList(","),
+		"gpu-debug":                             ActionFlagCompletion("gpu-debug"),
+		"gpu-dumb-mode":                         ActionFlagCompletion("gpu-dumb-mode"),
+		"gpu-shader-cache-dir":                  carapace.ActionFiles(),
+		"gpu-sw":                                ActionFlagCompletion("gpu-sw"),
+		"hdr-compute-peak":                      ActionFlagCompletion("hdr-compute-peak"),
+		"hdr-reference-white":                   ActionFlagCompletion("hdr-reference-white"),
+		"hidpi-window-scale":                    ActionFlagCompletion("hidpi-window-scale"),
+		"hls-bitrate":                           ActionFlagCompletion("hls-bitrate"),
+		"hr-seek":                               ActionFlagCompletion("hr-seek"),
+		"hr-seek-framedrop":                     ActionFlagCompletion("hr-seek-framedrop"),
+		"hwdec":                                 mpv.ActionHardwareDecodingAPIs(),
+		"hwdec-software-fallback":               ActionFlagCompletion("hwdec-software-fallback"),
+		"icc-cache-dir":                         carapace.ActionFiles(),
+		"icc-force-contrast":                    ActionFlagCompletion("icc-force-contrast"),
+		"icc-profile":                           carapace.ActionFiles(),
+		"icc-profile-auto":                      ActionFlagCompletion("icc-profile-auto"),
+		"idle":                                  ActionFlagCompletion("idle"),
+		"ignore-path-in-watch-later-config":     ActionFlagCompletion("ignore-path-in-watch-later-config"),
+		"image-lut":                             carapace.ActionFiles(),
+		"image-lut-type":                        ActionFlagCompletion("image-lut-type"),
+		"image-subs-hdr-peak":                   ActionFlagCompletion("image-subs-hdr-peak"),
+		"image-subs-video-resolution":           ActionFlagCompletion("image-subs-video-resolution"),
+		"include":                               carapace.ActionFiles(),
+		"index":                                 ActionFlagCompletion("index"),
+		"initial-audio-sync":                    ActionFlagCompletion("initial-audio-sync"),
+		"input-builtin-bindings":                ActionFlagCompletion("input-builtin-bindings"),
+		"input-conf":                            carapace.ActionFiles(),
+		"input-cursor":                          ActionFlagCompletion("input-cursor"),
+		"input-default-bindings":                ActionFlagCompletion("input-default-bindings"),
+		"input-ipc-server":                      carapace.ActionFiles(),
+		"input-media-keys":                      ActionFlagCompletion("input-media-keys"),
+		"input-right-alt-gr":                    ActionFlagCompletion("input-right-alt-gr"),
+		"input-tablet-emulate-mouse":            ActionFlagCompletion("input-tablet-emulate-mouse"),
+		"input-terminal":                        ActionFlagCompletion("input-terminal"),
+		"input-test":                            ActionFlagCompletion("input-test"),
+		"input-vo-keyboard":                     ActionFlagCompletion("input-vo-keyboard"),
+		"interpolation":                         ActionFlagCompletion("interpolation"),
+		"jack-autostart":                        ActionFlagCompletion("jack-autostart"),
+		"jack-connect":                          ActionFlagCompletion("jack-connect"),
+		"jack-std-channel-layout":               ActionFlagCompletion("jack-std-channel-layout"),
+		"keep-open":                             ActionFlagCompletion("keep-open"),
+		"keep-open-pause":                       ActionFlagCompletion("keep-open-pause"),
+		"keepaspect":                            ActionFlagCompletion("keepaspect"),
+		"keepaspect-window":                     ActionFlagCompletion("keepaspect-window"),
+		"linear-downscaling":                    ActionFlagCompletion("linear-downscaling"),
+		"linear-upscaling":                      ActionFlagCompletion("linear-upscaling"),
+		"list-properties":                       ActionFlagCompletion("list-properties"),
+		"load-auto-profiles":                    ActionFlagCompletion("load-auto-profiles"),
+		"load-context-menu":                     ActionFlagCompletion("load-context-menu"),
+		"load-scripts":                          ActionFlagCompletion("load-scripts"),
+		"load-stats-overlay":                    ActionFlagCompletion("load-stats-overlay"),
+		"load-unsafe-playlists":                 ActionFlagCompletion("load-unsafe-playlists"),
+		"log-file":                              carapace.ActionFiles(),
+		"loop-file":                             ActionFlagCompletion("loop-file"),
+		"loop-playlist":                         ActionFlagCompletion("loop-playlist"),
+		"lut":                                   carapace.ActionFiles(),
+		"lut-type":                              ActionFlagCompletion("lut-type"),
+		"merge-files":                           ActionFlagCompletion("merge-files"),
+		"msg-color":                             ActionFlagCompletion("msg-color"),
+		"msg-module":                            ActionFlagCompletion("msg-module"),
+		"msg-time":                              ActionFlagCompletion("msg-time"),
+		"mute":                                  ActionFlagCompletion("mute"),
+		"native-fs":                             ActionFlagCompletion("native-fs"),
+		"native-keyrepeat":                      ActionFlagCompletion("native-keyrepeat"),
+		"o":                                     carapace.ActionFiles(),
+		"oac":                                   mpv.ActionAudioCodecs(),
+		"oacopts":                               mpv.ActionAudioCodecOptions(),
+		"ocopy-metadata":                        ActionFlagCompletion("ocopy-metadata"),
+		"of":                                    mpv.ActionFormats(),
+		"ofopts":                                mpv.ActionFormatOptions(),
+		"on-all-workspaces":                     ActionFlagCompletion("on-all-workspaces"),
+		"ontop":                                 ActionFlagCompletion("ontop"),
+		"ontop-level":                           ActionFlagCompletion("ontop-level"),
+		"opengl-dwmflush":                       ActionFlagCompletion("opengl-dwmflush"),
+		"opengl-early-flush":                    ActionFlagCompletion("opengl-early-flush"),
+		"opengl-es":                             ActionFlagCompletion("opengl-es"),
+		"opengl-glfinish":                       ActionFlagCompletion("opengl-glfinish"),
+		"opengl-pbo":                            ActionFlagCompletion("opengl-pbo"),
+		"opengl-rectangle-textures":             ActionFlagCompletion("opengl-rectangle-textures"),
+		"opengl-waitvsync":                      ActionFlagCompletion("opengl-waitvsync"),
+		"orawts":                                ActionFlagCompletion("orawts"),
+		"ordered-chapters":                      ActionFlagCompletion("ordered-chapters"),
+		"ordered-chapters-files":                carapace.ActionFiles(),
+		"osc":                                   ActionFlagCompletion("osc"),
+		"osd-align-x":                           ActionFlagCompletion("osd-align-x"),
+		"osd-align-y":                           ActionFlagCompletion("osd-align-y"),
+		"osd-bar":                               ActionFlagCompletion("osd-bar"),
+		"osd-bold":                              ActionFlagCompletion("osd-bold"),
+		"osd-font-provider":                     ActionFlagCompletion("osd-font-provider"),
+		"osd-fractions":                         ActionFlagCompletion("osd-fractions"),
+		"osd-italic":                            ActionFlagCompletion("osd-italic"),
+		"osd-justify":                           ActionFlagCompletion("osd-justify"),
+		"osd-level":                             carapace.ActionValues("0", "1", "2", "3", "help"),
+		"osd-on-seek":                           ActionFlagCompletion("osd-on-seek"),
+		"osd-scale-by-window":                   ActionFlagCompletion("osd-scale-by-window"),
+		"osd-shaper":                            ActionFlagCompletion("osd-shaper"),
+		"ovc":                                   mpv.ActionVideoCodecs(),
+		"ovcopts":                               mpv.ActionVideoCodecOptions(),
+		"pause":                                 ActionFlagCompletion("pause"),
+		"play-direction":                        carapace.ActionValues("forward", "+", "backward", "-", "help"),
+		"player-operation-mode":                 ActionFlagCompletion("player-operation-mode"),
+		"playlist":                              carapace.ActionFiles(),
+		"playlist-start":                        ActionFlagCompletion("playlist-start"),
+		"prefetch-playlist":                     ActionFlagCompletion("prefetch-playlist"),
+		"priority":                              ActionFlagCompletion("priority"),
+		"profile":                               mpv.ActionProfiles().UniqueList(","),
+		"pulse-allow-suspended":                 ActionFlagCompletion("pulse-allow-suspended"),
+		"pulse-buffer":                          ActionFlagCompletion("pulse-buffer"),
+		"pulse-latency-hacks":                   ActionFlagCompletion("pulse-latency-hacks"),
+		"quiet":                                 ActionFlagCompletion("quiet"),
+		"rar-list-all-volumes":                  ActionFlagCompletion("rar-list-all-volumes"),
+		"really-quiet":                          ActionFlagCompletion("really-quiet"),
+		"rebase-start-time":                     ActionFlagCompletion("rebase-start-time"),
+		"register":                              ActionFlagCompletion("register"),
+		"register-rpath":                        carapace.ActionDirectories().List(";"),
+		"replaygain":                            ActionFlagCompletion("replaygain"),
+		"replaygain-clip":                       ActionFlagCompletion("replaygain-clip"),
+		"resume-playback":                       ActionFlagCompletion("resume-playback"),
+		"resume-playback-check-mtime":           ActionFlagCompletion("resume-playback-check-mtime"),
+		"rtsp-transport":                        ActionFlagCompletion("rtsp-transport"),
+		"save-position-on-quit":                 ActionFlagCompletion("save-position-on-quit"),
+		"scale-window":                          ActionFlagCompletion("scale-window"),
+		"scaler-resizes-only":                   ActionFlagCompletion("scaler-resizes-only"),
+		"screen":                                ActionFlagCompletion("screen"),
+		"screenshot-directory":                  carapace.ActionFiles(),
+		"screenshot-format":                     ActionFlagCompletion("screenshot-format"),
+		"screenshot-high-bit-depth":             ActionFlagCompletion("screenshot-high-bit-depth"),
+		"screenshot-jpeg-source-chroma":         ActionFlagCompletion("screenshot-jpeg-source-chroma"),
+		"screenshot-sw":                         ActionFlagCompletion("screenshot-sw"),
+		"screenshot-tag-colorspace":             ActionFlagCompletion("screenshot-tag-colorspace"),
+		"screenshot-webp-lossless":              ActionFlagCompletion("screenshot-webp-lossless"),
+		"scripts":                               carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"sdr-adjust-gamma":                      ActionFlagCompletion("sdr-adjust-gamma"),
+		"secondary-sid":                         ActionFlagCompletion("secondary-sid"),
+		"secondary-sub-visibility":              ActionFlagCompletion("secondary-sub-visibility"),
+		"shuffle":                               ActionFlagCompletion("shuffle"),
+		"sid":                                   ActionFlagCompletion("sid"),
+		"sigmoid-upscaling":                     ActionFlagCompletion("sigmoid-upscaling"),
+		"snap-window":                           ActionFlagCompletion("snap-window"),
+		"spirv-compiler":                        ActionFlagCompletion("spirv-compiler"),
+		"stop-playback-on-init-failure":         ActionFlagCompletion("stop-playback-on-init-failure"),
+		"stop-screensaver":                      ActionFlagCompletion("stop-screensaver"),
+		"stream-dump":                           carapace.ActionFiles(),
+		"stretch-dvd-subs":                      ActionFlagCompletion("stretch-dvd-subs"),
+		"stretch-image-subs-to-screen":          ActionFlagCompletion("stretch-image-subs-to-screen"),
+		"sub-align-x":                           ActionFlagCompletion("sub-align-x"),
+		"sub-align-y":                           ActionFlagCompletion("sub-align-y"),
+		"sub-ass":                               ActionFlagCompletion("sub-ass"),
+		"sub-ass-force-margins":                 ActionFlagCompletion("sub-ass-force-margins"),
+		"sub-ass-justify":                       ActionFlagCompletion("sub-ass-justify"),
+		"sub-ass-override":                      ActionFlagCompletion("sub-ass-override"),
+		"sub-ass-scale-with-window":             ActionFlagCompletion("sub-ass-scale-with-window"),
+		"sub-ass-styles":                        carapace.ActionFiles(),
+		"sub-ass-vsfilter-color-compat":         ActionFlagCompletion("sub-ass-vsfilter-color-compat"),
+		"sub-auto":                              ActionFlagCompletion("sub-auto"),
+		"sub-bold":                              ActionFlagCompletion("sub-bold"),
+		"sub-clear-on-seek":                     ActionFlagCompletion("sub-clear-on-seek"),
+		"sub-create-cc-track":                   ActionFlagCompletion("sub-create-cc-track"),
+		"sub-file-paths":                        carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"sub-files":                             carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"sub-filter-regex-enable":               ActionFlagCompletion("sub-filter-regex-enable"),
+		"sub-filter-regex-plain":                ActionFlagCompletion("sub-filter-regex-plain"),
+		"sub-filter-regex-warn":                 ActionFlagCompletion("sub-filter-regex-warn"),
+		"sub-filter-sdh":                        ActionFlagCompletion("sub-filter-sdh"),
+		"sub-filter-sdh-harder":                 ActionFlagCompletion("sub-filter-sdh-harder"),
+		"sub-fix-timing":                        ActionFlagCompletion("sub-fix-timing"),
+		"sub-font-provider":                     ActionFlagCompletion("sub-font-provider"),
+		"sub-gray":                              ActionFlagCompletion("sub-gray"),
+		"sub-hdr-peak":                          ActionFlagCompletion("sub-hdr-peak"),
+		"sub-hinting":                           ActionFlagCompletion("sub-hinting"),
+		"sub-italic":                            ActionFlagCompletion("sub-italic"),
+		"sub-justify":                           ActionFlagCompletion("sub-justify"),
+		"sub-past-video-end":                    ActionFlagCompletion("sub-past-video-end"),
+		"sub-scale-by-window":                   ActionFlagCompletion("sub-scale-by-window"),
+		"sub-scale-with-window":                 ActionFlagCompletion("sub-scale-with-window"),
+		"sub-shaper":                            ActionFlagCompletion("sub-shaper"),
+		"sub-use-margins":                       ActionFlagCompletion("sub-use-margins"),
+		"sub-visibility":                        ActionFlagCompletion("sub-visibility"),
+		"subs-with-matching-audio":              ActionFlagCompletion("subs-with-matching-audio"),
+		"sws-allow-zimg":                        ActionFlagCompletion("sws-allow-zimg"),
+		"sws-bitexact":                          ActionFlagCompletion("sws-bitexact"),
+		"sws-fast":                              ActionFlagCompletion("sws-fast"),
+		"sws-scaler":                            ActionFlagCompletion("sws-scaler"),
+		"target-colorspace-hint-mode":           ActionFlagCompletion("target-colorspace-hint-mode"),
+		"target-colorspace-hint-strict":         ActionFlagCompletion("target-colorspace-hint-strict"),
+		"target-peak":                           ActionFlagCompletion("target-peak"),
+		"target-prim":                           ActionFlagCompletion("target-prim"),
+		"target-trc":                            ActionFlagCompletion("target-trc"),
+		"taskbar-progress":                      ActionFlagCompletion("taskbar-progress"),
+		"temporal-dither":                       ActionFlagCompletion("temporal-dither"),
+		"term-osd":                              ActionFlagCompletion("term-osd"),
+		"term-osd-bar":                          ActionFlagCompletion("term-osd-bar"),
+		"terminal":                              ActionFlagCompletion("terminal"),
+		"tls-ca-file":                           carapace.ActionFiles(),
+		"tls-cert-file":                         carapace.ActionFiles(),
+		"tls-key-file":                          carapace.ActionFiles(),
+		"tls-verify":                            ActionFlagCompletion("tls-verify"),
+		"tone-mapping":                          ActionFlagCompletion("tone-mapping"),
+		"track-auto-selection":                  ActionFlagCompletion("track-auto-selection"),
+		"treat-srgb-as-power22":                 ActionFlagCompletion("treat-srgb-as-power22"),
+		"unregister":                            ActionFlagCompletion("unregister"),
+		"untimed":                               ActionFlagCompletion("untimed"),
+		"use-embedded-icc-profile":              ActionFlagCompletion("use-embedded-icc-profile"),
+		"use-filedir-conf":                      ActionFlagCompletion("use-filedir-conf"),
+		"vd":                                    mpv.ActionVideoDecoders().UniqueList(","),
+		"vd-lavc-assume-old-x264":               ActionFlagCompletion("vd-lavc-assume-old-x264"),
+		"vd-lavc-bitexact":                      ActionFlagCompletion("vd-lavc-bitexact"),
+		"vd-lavc-check-hw-profile":              ActionFlagCompletion("vd-lavc-check-hw-profile"),
+		"vd-lavc-dr":                            ActionFlagCompletion("vd-lavc-dr"),
+		"vd-lavc-fast":                          ActionFlagCompletion("vd-lavc-fast"),
+		"vd-lavc-framedrop":                     ActionFlagCompletion("vd-lavc-framedrop"),
+		"vd-lavc-show-all":                      ActionFlagCompletion("vd-lavc-show-all"),
+		"vd-lavc-skipframe":                     ActionFlagCompletion("vd-lavc-skipframe"),
+		"vd-lavc-skipidct":                      ActionFlagCompletion("vd-lavc-skipidct"),
+		"vd-lavc-skiploopfilter":                ActionFlagCompletion("vd-lavc-skiploopfilter"),
+		"vd-queue-enable":                       ActionFlagCompletion("vd-queue-enable"),
+		"vf":                                    mpv.ActionVideoFilters().List(","),
+		"vid":                                   ActionFlagCompletion("vid"),
+		"video-aspect-method":                   ActionFlagCompletion("video-aspect-method"),
+		"video-backward-overlap":                ActionFlagCompletion("video-backward-overlap"),
+		"video-latency-hacks":                   ActionFlagCompletion("video-latency-hacks"),
+		"video-osd":                             ActionFlagCompletion("video-osd"),
+		"video-output-levels":                   ActionFlagCompletion("video-output-levels"),
+		"video-rotate":                          ActionFlagCompletion("video-rotate"),
+		"video-sync":                            ActionFlagCompletion("video-sync"),
+		"video-unscaled":                        ActionFlagCompletion("video-unscaled"),
+		"vo":                                    mpv.ActionVideoOutputs(),
+		"vo-direct3d-disable-texture-align":     ActionFlagCompletion("vo-direct3d-disable-texture-align"),
+		"vo-direct3d-exact-backbuffer":          ActionFlagCompletion("vo-direct3d-exact-backbuffer"),
+		"vo-direct3d-force-power-of-2":          ActionFlagCompletion("vo-direct3d-force-power-of-2"),
+		"vo-direct3d-swap-discard":              ActionFlagCompletion("vo-direct3d-swap-discard"),
+		"vo-direct3d-texture-memory":            ActionFlagCompletion("vo-direct3d-texture-memory"),
+		"vo-image-format":                       ActionFlagCompletion("vo-image-format"),
+		"vo-image-high-bit-depth":               ActionFlagCompletion("vo-image-high-bit-depth"),
+		"vo-image-jpeg-source-chroma":           ActionFlagCompletion("vo-image-jpeg-source-chroma"),
+		"vo-image-outdir":                       carapace.ActionFiles(),
+		"vo-image-tag-colorspace":               ActionFlagCompletion("vo-image-tag-colorspace"),
+		"vo-image-webp-lossless":                ActionFlagCompletion("vo-image-webp-lossless"),
+		"vo-kitty-auto-multiplexer-passthrough": ActionFlagCompletion("vo-kitty-auto-multiplexer-passthrough"),
+		"vo-tct-256":                            ActionFlagCompletion("vo-tct-256"),
+		"vo-tct-algo":                           ActionFlagCompletion("vo-tct-algo"),
+		"vo-vaapi-scaled-osd":                   ActionFlagCompletion("vo-vaapi-scaled-osd"),
+		"vo-vaapi-scaling":                      ActionFlagCompletion("vo-vaapi-scaling"),
+		"vo-vdpau-chroma-deint":                 ActionFlagCompletion("vo-vdpau-chroma-deint"),
+		"vo-vdpau-composite-detect":             ActionFlagCompletion("vo-vdpau-composite-detect"),
+		"vo-vdpau-force-yuv":                    ActionFlagCompletion("vo-vdpau-force-yuv"),
+		"vo-vdpau-pullup":                       ActionFlagCompletion("vo-vdpau-pullup"),
+		"vulkan-async-compute":                  ActionFlagCompletion("vulkan-async-compute"),
+		"vulkan-async-transfer":                 ActionFlagCompletion("vulkan-async-transfer"),
+		"vulkan-swap-mode":                      ActionFlagCompletion("vulkan-swap-mode"),
+		"wasapi-exclusive-buffer":               ActionFlagCompletion("wasapi-exclusive-buffer"),
+		"watch-later-directory":                 carapace.ActionFiles(),
+		"wayland-internal-vsync":                ActionFlagCompletion("wayland-internal-vsync"),
+		"window-affinity":                       ActionFlagCompletion("window-affinity"),
+		"window-corners":                        ActionFlagCompletion("window-corners"),
+		"window-dragging":                       ActionFlagCompletion("window-dragging"),
+		"window-maximized":                      ActionFlagCompletion("window-maximized"),
+		"window-minimized":                      ActionFlagCompletion("window-minimized"),
+		"write-filename-in-watch-later-config":  ActionFlagCompletion("write-filename-in-watch-later-config"),
+		"x11-bypass-compositor":                 ActionFlagCompletion("x11-bypass-compositor"),
+		"x11-netwm":                             ActionFlagCompletion("x11-netwm"),
+		"xv-ck":                                 ActionFlagCompletion("xv-ck"),
+		"xv-ck-method":                          ActionFlagCompletion("xv-ck-method"),
+		"ytdl":                                  ActionFlagCompletion("ytdl"),
+		"zimg-dither":                           ActionFlagCompletion("zimg-dither"),
+		"zimg-fast":                             ActionFlagCompletion("zimg-fast"),
+		"zimg-scaler":                           ActionFlagCompletion("zimg-scaler"),
+		"zimg-scaler-chroma":                    ActionFlagCompletion("zimg-scaler-chroma"),
+		"zimg-threads":                          ActionFlagCompletion("zimg-threads"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
+}
+
+func ActionFlagCompletion(flag string) carapace.Action {
+	return carapace.ActionExecCommand("mpv", fmt.Sprintf("--%v=help", flag))(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+		r := regexp.MustCompile(`^\s+(\w\S+)$`)
+
+		vals := []string{"help"}
+		for _, line := range lines {
+			if m := r.FindStringSubmatch(line); m != nil {
+				vals = append(vals, m[1])
+			}
+		}
+		return carapace.ActionValues(vals...).StyleF(style.ForKeyword)
+	})
 }
