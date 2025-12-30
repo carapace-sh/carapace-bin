@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-create [OPTIONS] -A <arch> -n <pkgver> -s \"<desc>\" destdir",
 	Short: "XBPS utility to create binary packages",
+	Long:  "https://man.voidlinux.org/xbps-create",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

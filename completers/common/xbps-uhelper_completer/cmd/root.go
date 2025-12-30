@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-uhelper [OPTIONS] [MODE] [ARGUMENTS]",
 	Short: "XBPS helper utilities",
+	Long:  "https://man.voidlinux.org/xbps-uhelper",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

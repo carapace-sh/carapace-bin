@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-dgraph [OPTIONS] [MODE] <pkgname>",
 	Short: "XBPS utility to generate package dot graphs",
+	Long:  "https://man.voidlinux.org/xbps-dgraph",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

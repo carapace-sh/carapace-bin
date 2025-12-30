@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-query [OPTIONS] MODE [ARGUMENTS]",
 	Short: "XBPS utility to query for package and repository information",
+	Long:  "https://man.voidlinux.org/xbps-query",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

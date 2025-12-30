@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-alternatives [OPTIONS] [MODE]",
 	Short: "XBPS utility to handle alternatives",
+	Long:  "https://man.voidlinux.org/xbps-alternatives",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

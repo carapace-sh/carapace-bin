@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-rindex [OPTIONS] MODE ARGUMENTS",
 	Short: "XBPS utility to manage local binary package repositories",
+	Long:  "https://man.voidlinux.org/xbps-remove",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

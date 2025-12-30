@@ -6,16 +6,16 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var realversionCommand = &cobra.Command{
+var realVersionCommand = &cobra.Command{
 	Use:   "real-version <pkgname...>",
 	Short: "Prints version of installed real packages",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(realversionCommand).Standalone()
+	carapace.Gen(realVersionCommand).Standalone()
 
-	rootCmd.AddCommand(realversionCommand)
+	rootCmd.AddCommand(realVersionCommand)
 
-	carapace.Gen(realversionCommand).PositionalCompletion(xbps.ActionPackages())
+	carapace.Gen(realVersionCommand).PositionalCompletion(xbps.ActionPackages())
 }

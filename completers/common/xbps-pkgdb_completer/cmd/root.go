@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-pkgdb [OPTIONS] [PKGNAME...]",
 	Short: "XBPS utility to report/fix issues and modify the package database (pkgdb)",
+	Long:  "https://man.voidlinux.org/xbps-pkgdb",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

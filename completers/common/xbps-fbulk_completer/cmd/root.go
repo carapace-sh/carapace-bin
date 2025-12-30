@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-fbulk [OPTIONS] /path/to/void-packages [pkg pkg+N]",
 	Short: "XBPS utility to perform a fast bulk build of void-packages",
+	Long:  "https://man.voidlinux.org/xbps-fbulk",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

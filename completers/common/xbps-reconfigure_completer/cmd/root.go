@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-reconfigure [OPTIONS] [PKGNAME...]",
 	Short: "XBPS utility to configure installed packages",
+	Long:  "https://man.voidlinux.org/xbps-reconfigure",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

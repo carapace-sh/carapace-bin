@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-uunshare [OPTIONS] [--] <dir> <cmd> [<cmdargs>]",
 	Short: "XBPS utility to chroot and bind mount with Linux user namespaces",
+	Long:  "https://man.voidlinux.org/xbps-uunshare",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

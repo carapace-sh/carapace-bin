@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-digest [options] [file] [file+N]",
 	Short: "XBPS utility to generate message digests",
+	Long:  "https://man.voidlinux.org/xbps-digest",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -10,12 +10,11 @@ import (
 
 // ActionPackageSearch completes installed packages
 func ActionPackages() carapace.Action {
-	re := regexp.MustCompile(`\S+\s(\S+)-\S+\s+(.*)`)
-
 	return carapace.ActionExecCommand("xbps-query", "-l")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		vals := make([]string, 0)
 
+		re := regexp.MustCompile(`\S+\s(\S+)-\S+\s+(.*)`)
 		for _, line := range lines {
 			match := re.FindStringSubmatch(line)
 
@@ -29,13 +28,12 @@ func ActionPackages() carapace.Action {
 
 // ActionPackageSearch completes installable packages
 func ActionPackageSearch() carapace.Action {
-	re := regexp.MustCompile(`\[.\] (\S+)-\S+\s+(.*)`)
-
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("xbps-query", "-Rs", "--regex", "^"+c.Value)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 			vals := make([]string, 0)
 
+			re := regexp.MustCompile(`\[.\] (\S+)-\S+\s+(.*)`)
 			for _, line := range lines {
 				match := re.FindStringSubmatch(line)
 

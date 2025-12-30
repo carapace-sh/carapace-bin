@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-checkvers [OPTIONS] [FILES...]",
 	Short: "XBPS utility to check for outdated packages",
+	Long:  "https://man.voidlinux.org/xbps-checkvers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

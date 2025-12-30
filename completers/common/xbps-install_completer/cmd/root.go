@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-install [OPTIONS] [PKGNAME...]",
 	Short: "XBPS utility to (re)install and update packages",
+	Long:  "https://man.voidlinux.org/xbps-install",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

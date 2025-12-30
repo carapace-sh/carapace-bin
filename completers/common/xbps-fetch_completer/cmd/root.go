@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "xbps-fetch [options] <url> <url+N>",
 	Short: "XBPS utility to fetch files from URLs",
+	Long:  "https://man.voidlinux.org/xbps-fetch",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
