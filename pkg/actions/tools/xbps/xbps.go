@@ -8,7 +8,10 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
-// ActionPackageSearch completes installed packages
+// ActionPackages completes installed packages
+//
+//	expat (XML parser library written in C)
+//	gawk (GNU awk utility)
 func ActionPackages() carapace.Action {
 	return carapace.ActionExecCommand("xbps-query", "-l")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -27,6 +30,9 @@ func ActionPackages() carapace.Action {
 }
 
 // ActionPackageSearch completes installable packages
+//
+//	3mux (Terminal multiplexer inspired by i3)
+//	3proxy (3proxy tiny proxy server)
 func ActionPackageSearch() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("xbps-query", "-Rs", "--regex", "^"+c.Value)(func(output []byte) carapace.Action {
