@@ -28,6 +28,6 @@ func ActionXtermColorNames() carapace.Action {
 			"Fuchsia", style.XTerm256Color(13),
 			"Aqua", style.XTerm256Color(14),
 			"White", style.XTerm256Color(15),
-		)
+		).Tag("xterm colors")
 	})
 }
