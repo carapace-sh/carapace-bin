@@ -1,3 +1,5 @@
+> deprecated - will be replaced by [choices](./choices.md)
+
 # Bridges
 
 With `${UserConfigDir}/carapace/bridges.yaml` generic bridges can be configured for commands.

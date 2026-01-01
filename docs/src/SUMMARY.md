@@ -8,6 +8,7 @@
     - [UserConfigDir](./setup/userConfigDir.md)
   - [Groups](./groups.md)
   - [Variants](./variants.md)
+  - [Choices](./choices.md)
   - [Completers](./completers.md)
   - [Style](./style.md)
   - [Bridges](./bridges.md)
