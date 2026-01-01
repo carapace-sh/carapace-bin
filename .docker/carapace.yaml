@@ -13,7 +13,15 @@ services:
     command: sh -c 'cp -r /carapace-bin /build && cd /build/ && goreleaser release --snapshot --clean --skip publish --parallelism 1'
     volumes:
       - '..:/carapace-bin:ro'
-      
+
+  docs:
+    image: ghcr.io/carapace-sh/mdbook:latest
+    command: mdbook serve --hostname 0.0.0.0 --dest-dir /tmp/book /docs
+    volumes:
+      - '../docs:/docs:ro'
+    ports:
+      - 3000:3000
+
   bash:
     image: ghcr.io/carapace-sh/base
     volumes:
