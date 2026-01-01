@@ -7,6 +7,7 @@
     - [Environment](./setup/environment.md)
     - [UserConfigDir](./setup/userConfigDir.md)
   - [Groups](./groups.md)
+  - [Variants](./variants.md)
   - [Completers](./completers.md)
   - [Style](./style.md)
   - [Bridges](./bridges.md)
