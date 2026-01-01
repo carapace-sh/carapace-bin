@@ -63,7 +63,7 @@ func init() {
 				for _, choice := range list {
 					vals = append(vals, choice.Name, choice.Format())
 				}
-				return carapace.ActionValuesDescribed(vals...)
+				return carapace.ActionValuesDescribed(vals...).FilterArgs()
 			}
 
 			return carapace.ActionMultiPartsN("@", 2, func(c carapace.Context) carapace.Action {
