@@ -12,7 +12,7 @@ import (
 )
 
 var completersCmd = &cobra.Command{
-	Use:   "completers DIR [GOOS]",
+	Use:   "completers DIR target",
 	Short: "",
 	Args:  cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -58,6 +58,6 @@ func init() {
 
 	carapace.Gen(completersCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
-		carapace.ActionValues("linux", "darwin", "windows", "force_all"), // TODO others, termux as well?
+		carapace.ActionValues("android", "linux", "darwin", "windows", "force_all"), // TODO others, termux as well?
 	)
 }
