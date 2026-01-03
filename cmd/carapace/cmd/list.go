@@ -38,7 +38,7 @@ var listCmd = &cobra.Command{
 		}
 
 		c.SortVariants()
-		m, err := json.Marshal(c)
+		m, err := json.MarshalIndent(c, "", "  ")
 		if err != nil {
 			return err
 		}
