@@ -31,9 +31,11 @@ func ReadSpecs(dir, group string, parse bool) (CompleterMap, error) {
 	}
 
 	for _, entry := range entries {
-		var _spec struct {
+		_spec := struct {
 			Name        string
 			Description string
+		}{
+			Name: strings.TrimSuffix(entry.Name(), ".yaml"), // TODO reuse completer struct?
 		}
 
 		switch {
