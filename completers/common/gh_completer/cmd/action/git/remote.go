@@ -1,7 +1,6 @@
 package git
 
 import (
-	"fmt"
 	"net/url"
 	"regexp"
 	"strings"
@@ -13,15 +12,6 @@ var remoteRE = regexp.MustCompile(`(.+)\s+(.+)\s+\((push|fetch)\)`)
 
 // RemoteSet is a slice of git remotes
 type RemoteSet []*Remote
-
-func NewRemote(name string, u string) *Remote {
-	pu, _ := url.Parse(u)
-	return &Remote{
-		Name:     name,
-		FetchURL: pu,
-		PushURL:  pu,
-	}
-}
 
 // Remote is a parsed git remote
 type Remote struct {
@@ -105,45 +95,4 @@ func parseRemotes(gitRemotes []string) (remotes RemoteSet) {
 		}
 	}
 	return
-}
-
-// AddRemote adds a new git remote and auto-fetches objects from it
-func AddRemote(name, u string) (*Remote, error) {
-	addCmd, err := GitCommand("remote", "add", "-f", name, u)
-	if err != nil {
-		return nil, err
-	}
-	err = run.PrepareCmd(addCmd).Run()
-	if err != nil {
-		return nil, err
-	}
-
-	var urlParsed *url.URL
-	if strings.HasPrefix(u, "https") {
-		urlParsed, err = url.Parse(u)
-		if err != nil {
-			return nil, err
-		}
-
-	} else {
-		urlParsed, err = ParseURL(u)
-		if err != nil {
-			return nil, err
-		}
-
-	}
-
-	return &Remote{
-		Name:     name,
-		FetchURL: urlParsed,
-		PushURL:  urlParsed,
-	}, nil
-}
-
-func SetRemoteResolution(name, resolution string) error {
-	addCmd, err := GitCommand("config", "--add", fmt.Sprintf("remote.%s.gh-resolved", name), resolution)
-	if err != nil {
-		return err
-	}
-	return run.PrepareCmd(addCmd).Run()
 }
