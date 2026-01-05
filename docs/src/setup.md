@@ -106,6 +106,7 @@ exec($(carapace _carapace))
 
 ```sh
 # ${UserConfigDir}/zsh/.zshrc
+autoload -U compinit && compinit
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
