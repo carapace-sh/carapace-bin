@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +22,6 @@ func init() {
 	rootCmd.AddCommand(listFontsCmd)
 
 	carapace.Gen(listFontsCmd).FlagCompletion(carapace.ActionMap{
-		"family": os.ActionFontFamilies(),
+		"family": ghostty.ActionFontFamilies(),
 	})
 }
