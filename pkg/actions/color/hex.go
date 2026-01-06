@@ -269,6 +269,6 @@ func ActionHexColors() carapace.Action {
 			"#dadada", "Grey85", style.XTerm256Color(253),
 			"#e4e4e4", "Grey89", style.XTerm256Color(254),
 			"#eeeeee", "Grey93", style.XTerm256Color(255),
-		)
+		).Tag("hex colors")
 	})
 }

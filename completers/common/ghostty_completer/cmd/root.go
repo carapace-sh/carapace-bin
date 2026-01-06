@@ -7,6 +7,7 @@ import (
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -21,19 +22,24 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 
-	rootCmd.Flags().StringS("e", "e", "", "run command")
+	rootCmd.Flags().BoolS("e", "e", false, "run command") // if set positional arguments accept a command
 	rootCmd.Flags().Bool("help", false, "show help")
 	rootCmd.Flags().Bool("version", false, "show version")
 	addConfigs(rootCmd)
 
-	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"e": bridge.ActionCarapaceBin().Split(),
-	})
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if rootCmd.Flag("e").Changed {
+				return bridge.ActionCarapaceBin()
+			}
+			return carapace.ActionValues()
+		}),
+	)
 }
 
 func addConfigs(cmd *cobra.Command) {
-	cmd.Flags().Bool("_xdg-terminal-exec", false, "Set to true if Ghostty was executed as xdg-terminal-exec on Linux")
 	cmd.Flags().String("abnormal-command-exit-runtime", "", "The number of milliseconds of runtime below which we consider a process exit to be abnormal")
 	cmd.Flags().String("adjust-box-thickness", "", "Thickness in pixels of box drawing characters")
 	cmd.Flags().String("adjust-cell-height", "", "Height of the cell")
@@ -41,31 +47,45 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().String("adjust-cursor-height", "", "Height in pixels of the cursor")
 	cmd.Flags().String("adjust-cursor-thickness", "", "Thickness in pixels of the bar cursor and outlined rect cursor")
 	cmd.Flags().String("adjust-font-baseline", "", "Distance in pixels from the bottom of the cell to the text baseline")
+	cmd.Flags().String("adjust-icon-height", "", "Height in pixels or percentage adjustment of maximum height for nerd font icons")
 	cmd.Flags().String("adjust-overline-position", "", "Distance in pixels from the top of the cell to the top of the overline")
 	cmd.Flags().String("adjust-overline-thickness", "", "Thickness in pixels of the overline")
 	cmd.Flags().String("adjust-strikethrough-position", "", "Distance in pixels from the top of the cell to the top of the strikethrough")
 	cmd.Flags().String("adjust-strikethrough-thickness", "", "Thickness in pixels of the strikethrough")
 	cmd.Flags().String("adjust-underline-position", "", "Distance in pixels from the top of the cell to the top of the underline")
 	cmd.Flags().String("adjust-underline-thickness", "", "Thickness in pixels of the underline")
-	cmd.Flags().String("adw-toolbar-style", "", "Determines the appearance of the top and bottom bars when using the Adwaita tab bar")
+	cmd.Flags().String("alpha-blending", "", "What color space to use when performing alpha blending")
+	cmd.Flags().String("app-notifications", "", "Control the in-app notifications that Ghostty shows")
+	cmd.Flags().String("async-backend", "", "Configures the low-level API to use for async IO, eventing, etc.")
 	cmd.Flags().String("auto-update", "", "Control the auto-update functionality of Ghostty")
 	cmd.Flags().String("auto-update-channel", "", "The release channel to use for auto-updates")
-	cmd.Flags().String("background-blur-radius", "", "A positive value enables blurring of the background when background-opacity is less than 1")
+	cmd.Flags().String("background", "", "Background color for the window")
+	cmd.Flags().String("background-blur", "", "Whether to blur the background when `background-opacity` is less than 1")
+	cmd.Flags().String("background-image", "", "Background image for the terminal")
+	cmd.Flags().String("background-image-fit", "", "Background image fit")
+	cmd.Flags().String("background-image-opacity", "", "Background image opacity")
+	cmd.Flags().String("background-image-position", "", "Background image position")
+	cmd.Flags().Bool("background-image-repeat", false, "Whether to repeat the background image or not")
 	cmd.Flags().String("background-opacity", "", "The opacity level (opposite of transparency) of the background")
-	cmd.Flags().Bool("bold-is-bright", false, "If `true`, the bold text will use the bright color palette")
+	cmd.Flags().Bool("background-opacity-cells", false, "Applies background opacity to cells with an explicit background color set")
+	cmd.Flags().String("bell-audio-path", "", "If `audio` is an enabled bell feature, this is a path to an audio file")
+	cmd.Flags().String("bell-audio-volume", "", "If `audio` is an enabled bell feature, this is the volume to play the audio file at")
+	cmd.Flags().String("bell-features", "", "Bell features to enable if bell support is available in your runtime")
+	cmd.Flags().String("bold-color", "", "Modifies the color used for bold text in the terminal")
+	cmd.Flags().String("class", "", "The setting that will change the application class value")
 	cmd.Flags().String("click-repeat-interval", "", "The time in milliseconds between clicks to consider a click a repeat")
 	cmd.Flags().Bool("clipboard-paste-bracketed-safe", false, "If true, bracketed pastes will be considered safe")
 	cmd.Flags().Bool("clipboard-paste-protection", false, "Require confirmation before pasting text that appears unsafe")
 	cmd.Flags().String("clipboard-read", "", "Whether to allow programs running in the terminal to read from the system clipboard")
 	cmd.Flags().Bool("clipboard-trim-trailing-spaces", false, "Trims trailing whitespace on data that is copied to the clipboard")
 	cmd.Flags().String("clipboard-write", "", "Whether to allow programs running in the terminal to write to the system clipboard")
+	cmd.Flags().String("command", "", "The command to run, usually a shell")
 	cmd.Flags().Bool("config-default-files", false, "When this is true, the default configuration file paths will be loaded")
 	cmd.Flags().StringArray("config-file", nil, "Additional configuration files to read")
 	cmd.Flags().Bool("confirm-close-surface", false, "Confirms that a surface should be closed before closing it")
 	cmd.Flags().String("copy-on-select", "", "Whether to automatically copy selected text to the clipboard")
 	cmd.Flags().Bool("cursor-click-to-move", false, "Enables the ability to move the cursor at prompts")
 	cmd.Flags().String("cursor-color", "", "The color of the cursor")
-	cmd.Flags().Bool("cursor-invert-fg-bg", false, "Swap the foreground and background colors of the cell under the cursor")
 	cmd.Flags().String("cursor-opacity", "", "The opacity level (opposite of transparency) of the cursor")
 	cmd.Flags().String("cursor-style", "", "The style of the cursor")
 	cmd.Flags().Bool("cursor-style-blink", false, "Sets the default blinking state of the cursor")
@@ -98,6 +118,7 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().String("gtk-single-instance", "", "Run in single-instance mode")
 	cmd.Flags().String("gtk-tabs-location", "", "Determines the side of the screen that the GTK tab bar will stick to")
 	cmd.Flags().Bool("gtk-titlebar", false, "Display the full GTK titlebar")
+	cmd.Flags().Bool("gtk-toolbar-style", false, "Determines the appearance of the top and bottom bars tab bar")
 	cmd.Flags().Bool("gtk-wide-tabs", false, "Use \"wide\" GTK tabs")
 	cmd.Flags().String("image-storage-limit", "", "The total amount of bytes that can be used for image data")
 	cmd.Flags().String("initial-command", "", "This is the same as \"command\", but only applies to the first terminal surface created")
@@ -135,7 +156,6 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().String("scrollback-limit", "", "The size of the scrollback buffer in bytes")
 	cmd.Flags().String("selection-background", "", "The background color for selection")
 	cmd.Flags().String("selection-foreground", "", "The foreground color for selection")
-	cmd.Flags().Bool("selection-invert-fg-bg", false, "Swap the foreground and background colors of cells for selection")
 	cmd.Flags().String("shell-integration", "", "Whether to enable shell integration auto-injection or not")
 	cmd.Flags().String("shell-integration-features", "", "Shell integration features to enable")
 	cmd.Flags().String("unfocused-split-fill", "", "The color to dim the unfocused split")
@@ -161,13 +181,40 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().String("working-directory", "", "The directory to change to after starting the command")
 	cmd.Flags().String("x11-instance-name", "", "This controls the instance name field of the `WM_CLASS` X11 property")
 
+	cmd.Flags().VisitAll(func(f *pflag.Flag) {
+		if f.Value.Type() != "bool" {
+			f.NoOptDefVal = " " // flag arguments need to be passed in attached mode
+		}
+	})
+
 	// TODO use font-families from `+list-fonts`?
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"adw-toolbar-style":       ghostty.ActionAdwToolbarStyles(),
-		"auto-update":             ghostty.ActionAutoUpdateModes(),
-		"auto-update-channel":     ghostty.ActionReleaseChannels(),
+		"alpha-blending":      ghostty.ActionAlphaBlendings(),
+		"app-notifications":   ghostty.ActionNotifications().UniqueList(","),
+		"async-backend":       ghostty.ActionAsyncBackends(),
+		"auto-update":         ghostty.ActionAutoUpdateModes(),
+		"auto-update-channel": ghostty.ActionReleaseChannels(),
+		"background": carapace.Batch(
+			color.ActionHexColors(),
+			color.ActionXtermColorNames(),
+		).ToA(),
+		"background-blur": carapace.ActionValuesDescribed(
+			"false", "equivalent to a blur intensity of 0",
+			"true", "equivalent to the default blur intensity of 20",
+		).StyleF(style.ForKeyword),
+		"background-image":          carapace.ActionFiles(),
+		"background-image-fit":      ghostty.ActionBackgroundImageFits(),
+		"background-image-position": ghostty.ActionBackgroundImagePositions(),
+		"bell-audio-path":           carapace.ActionFiles(),
+		"bell-features":             ghostty.ActionBellFeatures().UniqueList(","),
+		"bold-color": carapace.Batch(
+			color.ActionHexColors(),
+			color.ActionXtermColorNames(),
+			carapace.ActionValues("bright"),
+		).ToA(),
 		"clipboard-read":          carapace.ActionValues("ask", "allow", "deny").StyleF(style.ForKeyword),
 		"clipboard-write":         carapace.ActionValues("ask", "allow", "deny").StyleF(style.ForKeyword),
+		"command":                 bridge.ActionCarapaceBin().SplitP(),
 		"config-file":             carapace.ActionFiles(),
 		"copy-on-select":          ghostty.ActionCopyOnSelectModes(),
 		"cursor-color":            color.ActionHexColors(),
@@ -201,6 +248,7 @@ func addConfigs(cmd *cobra.Command) {
 		"grapheme-width-method":      ghostty.ActionGraphemeWidthMethods(),
 		"gtk-single-instance":        carapace.ActionValues("true", "false", "detect").StyleF(style.ForKeyword),
 		"gtk-tabs-location":          carapace.ActionValues("top", "bottom", "left", "right", "hidden"),
+		"gtk-toolbar-style":          ghostty.ActionGtkToolbarStyles(),
 		"initial-command":            bridge.ActionCarapaceBin().Split(),
 		"linux-cgroup": carapace.ActionValuesDescribed(
 			"never", "Never use cgroups",
