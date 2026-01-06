@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/color"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
@@ -181,13 +180,13 @@ func addConfigs(cmd *cobra.Command) {
 			case 0:
 				return carapace.ActionValues() // TODO codepoint
 			default:
-				return os.ActionFontFamilies()
+				return ghostty.ActionFontFamilies()
 			}
 		}),
-		"font-family":                os.ActionFontFamilies(),
-		"font-family-bold":           os.ActionFontFamilies(),
-		"font-family-bold-italic":    os.ActionFontFamilies(),
-		"font-family-italic":         os.ActionFontFamilies(),
+		"font-family":                ghostty.ActionFontFamilies(),
+		"font-family-bold":           ghostty.ActionFontFamilies(),
+		"font-family-bold-italic":    ghostty.ActionFontFamilies(),
+		"font-family-italic":         ghostty.ActionFontFamilies(),
 		"font-feature":               carapace.ActionValues(), // TODO font-features
 		"font-style":                 carapace.ActionValues(), // TODO font style
 		"font-style-bold":            carapace.ActionValues(), // TODO font style
@@ -232,7 +231,7 @@ func addConfigs(cmd *cobra.Command) {
 		"window-padding-color":        ghostty.ActionWindowPaddingColors(),
 		"window-save-state":           ghostty.ActionWindowSaveStates(),
 		"window-theme":                ghostty.ActionWindowThemes(),
-		"window-title-font-family":    os.ActionFontFamilies(),
+		"window-title-font-family":    ghostty.ActionFontFamilies(),
 		"working-directory":           carapace.ActionDirectories(),
 	})
 }
