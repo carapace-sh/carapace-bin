@@ -23,8 +23,6 @@ func init() {
 	duplicateCmd.Flags().StringSliceP("insert-after", "A", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
 	duplicateCmd.Flags().StringSliceP("insert-before", "B", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
 	duplicateCmd.Flags().StringSliceP("onto", "o", nil, "The revision(s) to duplicate onto (can be repeated to create a merge commit)")
-	duplicateCmd.Flag("d").Hidden = true
-	duplicateCmd.Flag("destination").Hidden = true
 	rootCmd.AddCommand(duplicateCmd)
 
 	duplicateCmd.MarkFlagsMutuallyExclusive(

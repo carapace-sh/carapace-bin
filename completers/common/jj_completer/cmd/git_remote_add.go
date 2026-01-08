@@ -19,6 +19,7 @@ func init() {
 
 	git_remote_addCmd.Flags().String("fetch-tags", "", "Configure when to fetch tags")
 	git_remote_addCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	git_remote_addCmd.Flags().String("push-url", "", "The URL used for push")
 	git_remoteCmd.AddCommand(git_remote_addCmd)
 
 	carapace.Gen(git_remote_addCmd).FlagCompletion(carapace.ActionMap{

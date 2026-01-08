@@ -28,7 +28,6 @@ func init() {
 	rebaseCmd.Flags().StringSliceP("revisions", "r", nil, "Rebase the given revisions, rebasing descendants onto this revision's parent(s)")
 	rebaseCmd.Flags().Bool("skip-emptied", false, "If true, when rebasing would produce an empty commit, the commit is abandoned. It will not be abandoned if it was already empty before the rebase. Will never skip merge commits with multiple non-empty parents")
 	rebaseCmd.Flags().StringSliceP("source", "s", nil, "Rebase specified revision(s) together with their trees of descendants (can be repeated)")
-	rebaseCmd.Flag("d").Hidden = true
 	rebaseCmd.Flag("destination").Hidden = true
 	rootCmd.AddCommand(rebaseCmd)
 

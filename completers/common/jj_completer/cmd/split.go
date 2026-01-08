@@ -17,25 +17,25 @@ func init() {
 
 	splitCmd.Flags().StringSlice("after", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
 	splitCmd.Flags().StringSlice("before", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
-	splitCmd.Flags().StringSliceS("d", "d", nil, "The revision(s) to base the new revision onto (can be repeated to create a merge commit)")
-	splitCmd.Flags().StringSlice("destination", nil, "The revision(s) to base the new revision onto (can be repeated to create a merge commit)")
+	splitCmd.Flags().StringSliceS("d", "d", nil, "The revision(s) to rebase the selected changes onto (can be repeated to create a merge commit)")
+	splitCmd.Flags().StringSlice("destination", nil, "The revision(s) to rebase the selected changes onto (can be repeated to create a merge commit)")
 	splitCmd.Flags().Bool("editor", false, "Open an editor to edit the change description")
 	splitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	splitCmd.Flags().StringSliceP("insert-after", "A", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
 	splitCmd.Flags().StringSliceP("insert-before", "B", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
 	splitCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to split")
 	splitCmd.Flags().StringSliceP("message", "m", nil, "The change description to use (don't open editor)")
-	splitCmd.Flags().StringSliceP("onto", "o", nil, "The revision(s) to base the new revision onto (can be repeated to create a merge commit)")
+	splitCmd.Flags().StringSliceP("onto", "o", nil, "The revision(s) to rebase the selected changes onto (can be repeated to create a merge commit)")
 	splitCmd.Flags().BoolP("parallel", "p", false, "Split the revision into two parallel revisions instead of a parent and child")
 	splitCmd.Flags().StringP("revision", "r", "", "The revision to split")
 	splitCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
-	splitCmd.Flag("d").Hidden = true
-	splitCmd.Flag("destination").Hidden = true
 	rootCmd.AddCommand(splitCmd)
 
 	// TODO complete more flags
 	carapace.Gen(splitCmd).FlagCompletion(carapace.ActionMap{
+		"d":           jj.ActionRevs(jj.RevOption{}.Default()),
 		"destination": jj.ActionRevs(jj.RevOption{}.Default()),
+		"onto":        jj.ActionRevs(jj.RevOption{}.Default()),
 		"revision":    jj.ActionRevs(jj.RevOption{}.Default()),
 	})
 
