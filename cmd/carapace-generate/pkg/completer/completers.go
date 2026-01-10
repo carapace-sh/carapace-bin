@@ -70,7 +70,7 @@ func readCompleters(dir string) (completer.CompleterMap, error) {
 					Name:        name,
 					Description: description,
 					Group:       group,
-					Package:     filepath.Join(prefix, group, d.Name(), "cmd"),
+					Package:     filepath.ToSlash(filepath.Join(prefix, group, d.Name(), "cmd")),
 					Url:         url,
 				})
 
@@ -94,7 +94,7 @@ func readCompleters(dir string) (completer.CompleterMap, error) {
 							Name:        name,
 							Description: description,
 							Group:       group,
-							Package:     filepath.Join(prefix, group, d.Name(), variant.Name(), "cmd"),
+							Package:     filepath.ToSlash(filepath.Join(prefix, group, d.Name(), variant.Name(), "cmd")),
 							Url:         url,
 							Variant:     variant.Name(),
 						})
