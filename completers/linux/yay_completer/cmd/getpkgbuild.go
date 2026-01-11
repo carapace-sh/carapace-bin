@@ -16,8 +16,8 @@ var getpkgbuildCmd = &cobra.Command{
 func init() {
 	carapace.Gen(getpkgbuildCmd).Standalone()
 
-	getpkgbuildCmd.Flags().BoolP("-f", "--force", false, "Force download for existing ABS packages")
-	getpkgbuildCmd.Flags().BoolP("-p", "--print", false, "Print pkgbuild of packages")
+	getpkgbuildCmd.Flags().BoolP("force", "f", false, "Force download for existing ABS packages")
+	getpkgbuildCmd.Flags().BoolP("print", "p", false, "Print pkgbuild of packages")
 
 	carapace.Gen(getpkgbuildCmd).PositionalAnyCompletion(
 		yay.ActionPackageSearch().FilterArgs(),

@@ -15,9 +15,9 @@ var showCmd = &cobra.Command{
 func init() {
 	carapace.Gen(showCmd).Standalone()
 
-	showCmd.Flags().BoolP("-c", "--complete", false, "Used for completions")
-	showCmd.Flags().BoolP("-d", "--defaultconfig", false, "Print default yay configuration")
-	showCmd.Flags().BoolP("-g", "--currentconfig", false, "Print current yay configuration")
-	showCmd.Flags().BoolP("-s", "--stats", false, "Display system package statistics")
-	showCmd.Flags().BoolP("-w", "--news", false, "Print arch news")
+	showCmd.Flags().BoolP("complete", "c", false, "Used for completions")
+	showCmd.Flags().BoolP("currentconfig", "g", false, "Print current yay configuration")
+	showCmd.Flags().BoolP("defaultconfig", "d", false, "Print default yay configuration")
+	showCmd.Flags().BoolP("news", "w", false, "Print arch news")
+	showCmd.Flags().BoolP("stats", "s", false, "Display system package statistics")
 }
