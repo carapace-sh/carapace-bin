@@ -16,6 +16,7 @@ func init() {
 	cleanCmd.Flags().SetInterspersed(false)
 
 	cleanCmd.Flags().BoolS("cache", "cache", false, "remove the entire go build cache")
+	cleanCmd.Flags().BoolS("fuzzcache", "fuzzcache", false, "remove files stored in the Go build cache for fuzz testing")
 	cleanCmd.Flags().BoolS("i", "i", false, "remove the corresponding installed archive or binary")
 	cleanCmd.Flags().BoolS("modcache", "modcache", false, "remove the entire module download cache")
 	cleanCmd.Flags().BoolS("r", "r", false, "apply recursively to all the dependencies")
