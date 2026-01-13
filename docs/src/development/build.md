@@ -16,6 +16,11 @@ go install
 
 ![](./build-development.cast)
 
+> Build with the `force_all` [tag] to include all [groups](../groups.md).
+> ```sh
+> go install -tags force_all
+> ```
+
 ## Release
 
 A build with the `release` [tag] uses `completers_release` which optimizes startup times.
