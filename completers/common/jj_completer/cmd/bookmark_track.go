@@ -17,7 +17,12 @@ func init() {
 	carapace.Gen(bookmark_trackCmd).Standalone()
 
 	bookmark_trackCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	bookmark_trackCmd.Flags().StringSlice("remote", nil, "Remote names to track")
 	bookmarkCmd.AddCommand(bookmark_trackCmd)
+
+	carapace.Gen(bookmark_trackCmd).FlagCompletion(carapace.ActionMap{
+		"remote": jj.ActionRemotes(),
+	})
 
 	carapace.Gen(bookmark_trackCmd).PositionalAnyCompletion(
 		jj.ActionRemoteBookmarks("").FilterArgs(),

@@ -17,7 +17,7 @@ func init() {
 
 	commitCmd.Flags().Bool("editor", false, "Open an editor to edit the change description")
 	commitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	commitCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which changes to include in the first commit")
+	commitCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which changes to include in the current commit")
 	commitCmd.Flags().StringSliceP("message", "m", nil, "The change description to use (don't open editor)")
 	commitCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
 	rootCmd.AddCommand(commitCmd)

@@ -16,7 +16,9 @@ var git_remote_setUrlCmd = &cobra.Command{
 func init() {
 	carapace.Gen(git_remote_setUrlCmd).Standalone()
 
+	git_remote_setUrlCmd.Flags().String("fetch", "", "The URL or path to fetch from")
 	git_remote_setUrlCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	git_remote_setUrlCmd.Flags().String("push", "", "The URL or path to push to")
 	git_remoteCmd.AddCommand(git_remote_setUrlCmd)
 
 	carapace.Gen(git_remote_setUrlCmd).PositionalCompletion(
