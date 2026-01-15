@@ -24,6 +24,7 @@ var browseCmd = &cobra.Command{
 func init() {
 	carapace.Gen(browseCmd).Standalone()
 
+	browseCmd.Flags().BoolP("actions", "a", false, "Open repository actions")
 	browseCmd.Flags().StringP("branch", "b", "", "Select another branch by passing in the branch name")
 	browseCmd.Flags().StringP("commit", "c", "", "Select another commit by passing in the commit SHA, default is the last commit")
 	browseCmd.Flags().BoolP("no-browser", "n", false, "Print destination URL instead of opening the browser")
