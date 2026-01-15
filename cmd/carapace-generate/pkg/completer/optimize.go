@@ -1,7 +1,6 @@
 package completer
 
 import (
-	"errors"
 	"fmt"
 	"io/fs"
 	"os"
@@ -14,10 +13,10 @@ func Optimize(dir string) error {
 	if err != nil {
 		return err
 	}
-	target := source + "_release"
 
-	if _, err := os.Stat(target); err == nil || !os.IsNotExist(err) {
-		return errors.New("target directory exists")
+	target := source + "_release"
+	if err := os.RemoveAll(target); err != nil { // TODO dangerous, but limited to `_release suffix`
+		return err
 	}
 
 	if err := os.Mkdir(target, os.ModePerm); err != nil {
@@ -49,7 +48,7 @@ func Optimize(dir string) error {
 
 		if filepath.Ext(path) == ".go" {
 			patched := importReplacer.Replace(string(content)) // TODO potential issues when prefix is used otherwise than import
-			if strings.HasSuffix(filepath.Dir(path), "/cmd") {
+			if strings.HasSuffix(filepath.ToSlash(filepath.Dir(path)), "/cmd") {
 				switch filepath.Base(path) {
 				case "root.go":
 					// TODO assumes all go files are subcommands and have an init function
