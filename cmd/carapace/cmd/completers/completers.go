@@ -191,7 +191,7 @@ func AddOverlays(m completer.CompleterMap) error {
 			continue
 		}
 		name := strings.TrimSuffix(entry.Name(), ".yaml")
-		path := filepath.Join(dir, entry.Name())
+		path := filepath.Join(dir, "carapace", "overlays", entry.Name())
 		if variants, ok := m[name]; ok {
 			for index := range variants {
 				variants[index].Overlay = path
