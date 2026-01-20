@@ -1,0 +1,28 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
+	"github.com/spf13/cobra"
+)
+
+var pr_newCmd = &cobra.Command{
+	Use:   "new",
+	Short: "Create a new pull request for a branch. If no branch is specified, you will be prompted to select one. If there is only one branch without a PR, you will be asked to confirm",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(pr_newCmd).Standalone()
+
+	pr_newCmd.Flags().BoolP("default", "t", false, "Use the default content for the PR title and description, skipping any prompts. If the branch contains only a single commit, the commit message will be used")
+	pr_newCmd.Flags().BoolP("help", "h", false, "Print help")
+	pr_newCmd.Flags().BoolP("run-hooks", "r", false, "Run pre-push hooks (defaults to true)")
+	pr_newCmd.Flags().BoolP("skip-force-push-protection", "s", false, "Skip force push protection checks")
+	pr_newCmd.Flags().BoolP("with-force", "f", false, "Force push even if it's not fast-forward (defaults to true)")
+	prCmd.AddCommand(pr_newCmd)
+
+	carapace.Gen(pr_newCmd).PositionalCompletion(
+		but.ActionLocalBranches(),
+	)
+}

@@ -1,8 +1,12 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/carapace-sh/carapace/pkg/util"
 	"github.com/spf13/cobra"
@@ -29,6 +33,7 @@ func init() {
 		&cobra.Group{ID: "server interactions"},
 		&cobra.Group{ID: "editing commits"},
 		&cobra.Group{ID: "operation history"},
+		&cobra.Group{ID: "alias"},
 	)
 
 	rootCmd.Flags().StringP("current-dir", "C", "", "Run as if gitbutler-cli was started in PATH instead of the current working directory")
@@ -60,5 +65,36 @@ func init() {
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, _ *pflag.Flag, action carapace.Action) carapace.Action {
 		return action.ChdirF(traverse.Flag(cmd.Flag("current-dir")))
+	})
+
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		if aliases, err := but.Aliases(); err == nil {
+			m := aliases.Default
+			for _, alias := range aliases.User {
+				m[alias.Name] = alias.Value
+			}
+			for key, value := range m {
+				aliasCmd := &cobra.Command{
+					Use:                key,
+					Short:              strings.TrimSpace(value),
+					GroupID:            "alias",
+					DisableFlagParsing: true,
+					Run:                func(cmd *cobra.Command, args []string) {},
+				}
+				cmd.Root().AddCommand(aliasCmd)
+
+				carapace.Gen(aliasCmd).PositionalAnyCompletion(
+					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+						splitted, err := shlex.Split(aliasCmd.Short)
+						if err != nil {
+							return carapace.ActionMessage(err.Error())
+						}
+						c.Args = append(splitted.Strings(), c.Args...)
+						return bridge.ActionCarapaceBin("but").Invoke(c).ToA()
+					}),
+				)
+			}
+		}
+
 	})
 }
