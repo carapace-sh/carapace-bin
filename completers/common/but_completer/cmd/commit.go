@@ -17,10 +17,15 @@ func init() {
 	carapace.Gen(commitCmd).Standalone()
 
 	commitCmd.Flags().BoolP("create", "c", false, "Whether to create a new branch for this commit. If the branch name given matches an existing branch, that branch will be used instead. If no branch name is given, a new branch with a generated name will be created")
+	commitCmd.Flags().StringP("file", "f", "", "Read commit message from file")
 	commitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	commitCmd.Flags().StringP("message", "m", "", "Commit message")
-	commitCmd.Flags().BoolP("only", "o", false, "Only commit assigned files, not unassigned files")
+	commitCmd.Flags().BoolP("only", "o", false, "Only commit staged files, not unstaged files")
 	rootCmd.AddCommand(commitCmd)
+
+	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
+		"file": carapace.ActionFiles(),
+	})
 
 	carapace.Gen(commitCmd).PositionalCompletion(
 		but.ActionLocalBranches(),
