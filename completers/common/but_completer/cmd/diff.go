@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +20,10 @@ func init() {
 	rootCmd.AddCommand(diffCmd)
 
 	carapace.Gen(diffCmd).PositionalCompletion(
-		but.ActionCliIds(but.CliIdsOpts{}.Default()),
+		carapace.Batch(
+			git.ActionChanges(git.ChangeOpts{}.Default()),
+			but.ActionTargets(),
+			but.ActionCliIds(but.CliIdsOpts{}.Default()),
+		).ToA(),
 	)
 }
