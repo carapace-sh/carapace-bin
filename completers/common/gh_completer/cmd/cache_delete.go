@@ -15,7 +15,7 @@ var cache_deleteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(cache_deleteCmd).Standalone()
 
-	cache_deleteCmd.Flags().BoolP("all", "a", false, "Delete all caches")
+	cache_deleteCmd.Flags().BoolP("all", "a", false, "Delete all caches, can be used with --ref to delete all caches for a specific ref")
 	cache_deleteCmd.Flags().StringP("ref", "r", "", "Delete by cache key and ref, formatted as refs/heads/<branch name> or refs/pull/<number>/merge")
 	cache_deleteCmd.Flags().Bool("succeed-on-no-caches", false, "Return exit code 0 if no caches found. Must be used in conjunction with `--all`")
 	cacheCmd.AddCommand(cache_deleteCmd)
