@@ -1,5 +1,3 @@
-> unreleased
-
 # Groups
 
 Completers are organized into **groups**.

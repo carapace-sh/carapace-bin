@@ -2,7 +2,7 @@
 
 ## CARAPACE_BRIDGES
 
-Which implicit bridges to enable.
+Which implicit [bridges](https://github.com/carapace-sh/carapace-bridge) to enable.
 
 - [bash](https://www.gnu.org/software/bash/)
 - [fish](https://fishshell.com/)
@@ -10,6 +10,9 @@ Which implicit bridges to enable.
 - [zsh](https://www.zsh.org/)
 
 ![](./bridges.cast)
+
+> The list of completers is cached to not impact shell startup time.
+> Clear the cache with `carapace --clear-cache` if your system changes.
 
 ## CARAPACE_COVERDIR
 
