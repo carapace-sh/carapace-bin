@@ -26,7 +26,9 @@ func ActionCompleters(unknownBridges bool) carapace.Action {
 			name, _, _ := strings.Cut(nameVariant, "/")
 
 			return carapace.Batch(
-				bridge.ActionBridges(name).Filter("carapace-bin").Unless(!unknownBridges),
+				bridge.ActionBridges(name).
+					Filter("carapace-bin", "macro").
+					Unless(!unknownBridges),
 				ActionVariants(name).Style(style.Carapace.KeywordPositive),
 			).ToA().Unique().Prefix(name + "/").NoSpace()
 
