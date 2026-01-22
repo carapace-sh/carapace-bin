@@ -80,7 +80,7 @@ func init() {
 							// TODO highlight by group
 							return carapace.Batch(
 								carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-									filter := []string{"macro"}
+									filter := []string{"macro", "carapace-bin"}
 									if m, err := completers.Completers(choices.Parse(c.Parts[0]), true); err == nil {
 										if variants, ok := m[c.Parts[0]]; ok {
 											for _, v := range variants {
