@@ -27,7 +27,6 @@ func init() {
 	diffTreeCmd.Flags().Bool("no-commit-id", false, "suppress commit ID output")
 	diffTreeCmd.Flags().Bool("no-notes", false, "do not show notes")
 	diffTreeCmd.Flags().Bool("no-relative", false, "do not show relative pathnames")
-	diffTreeCmd.Flags().Bool("no-textconv", false, "do not allow external text conversion filters")
 	diffTreeCmd.Flags().String("notes", "", "show the notes that annotate the commit")
 	diffTreeCmd.Flags().Bool("quiet", false, "disable all output of the program")
 	diffTreeCmd.Flags().BoolS("r", "r", false, "recurse into sub-trees")

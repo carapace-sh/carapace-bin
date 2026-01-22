@@ -23,7 +23,6 @@ func init() {
 	diffIndexCmd.Flags().BoolS("m", "m", false, "make git diff-index say that all non-checked-out files are up to date")
 	diffIndexCmd.Flags().Bool("merge-base", false, "use the merge base between <tree-ish> and HEAD")
 	diffIndexCmd.Flags().Bool("no-relative", false, "do not make the output relative")
-	diffIndexCmd.Flags().Bool("no-textconv", false, "do not external text conversion filters to be run")
 	diffIndexCmd.Flags().Bool("quiet", false, "disable all output of the program")
 	diffIndexCmd.Flags().String("rotate-to", "", "move files before the named <file> to the end")
 	diffIndexCmd.Flags().String("skip-to", "", "discard the files before the named <file> from the output ")

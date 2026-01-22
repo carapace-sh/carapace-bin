@@ -20,8 +20,21 @@ var diffCmd = &cobra.Command{
 func init() {
 	carapace.Gen(diffCmd).Standalone()
 
+	// TODO move into common flag groups
+	diffCmd.Flags().StringS("G", "G", "", "Look for differences whose patch text contains added/removed lines that match <regex>")
+	diffCmd.Flags().String("follow", "", "Continue listing the history of a file beyond renames")
+	diffCmd.Flags().StringArrayP("ignore-matching-lines", "I", nil, "Ignore changes whose all lines match <regex>")
+	diffCmd.Flags().Bool("quiet", false, "Disable all output of the program")
+	diffCmd.Flags().String("rotate-to", "", "Move the files before the named <file> to the end")
+	diffCmd.Flags().String("skip-to", "", "Discard the files before the named <file> from the output")
+	diffCmd.Flags().Bool("staged", false, "Show diff between index and named commit")
 	common.AddDiffFlags(diffCmd)
 	rootCmd.AddCommand(diffCmd)
+
+	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
+		"follow":  carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
+		"skip-to": carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
+	})
 
 	carapace.Gen(diffCmd).PositionalAnyCompletion(
 		actionDiffArgs(diffCmd),

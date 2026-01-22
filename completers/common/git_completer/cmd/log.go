@@ -45,7 +45,6 @@ func init() {
 	logCmd.Flags().Bool("no-mailmap", false, "Do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses.")
 	logCmd.Flags().Bool("no-notes", false, "Do not show notes.")
 	logCmd.Flags().Bool("no-relative", false, "When run from a subdirectory of the project, it can be told to exclude changes outside the directory and show pathnames relative to it with this option.")
-	logCmd.Flags().Bool("no-textconv", false, "Disallow external text conversion filters to be run when comparing binary files.")
 	logCmd.Flags().Bool("no-use-mailmap", false, "Do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses.")
 	logCmd.Flags().String("notes", "", "Show the notes that annotate the commit")
 	logCmd.Flags().Bool("reverse", false, "Output the commits chosen to be shown (see Commit Limiting section above) in reverse order. Cannot be combined with --walk-reflogs.")
