@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	shlex "github.com/carapace-sh/carapace-shlex"
@@ -55,6 +56,7 @@ func init() {
 	rootCmd.Flags().StringS("C", "C", "", "run as if git was started in given path")
 	rootCmd.Flags().Bool("bare", false, "use $PWD as repository")
 	rootCmd.Flags().StringS("c", "c", "", "pass configuration parameter to command")
+	rootCmd.Flags().StringArray("config-env", nil, "give configuration variable <name> a value")
 	rootCmd.Flags().String("exec-path", "", "path containing core git-programs")
 	rootCmd.Flags().String("git-dir", "", "path to repository")
 	rootCmd.Flags().Bool("help", false, "display help message")
@@ -80,6 +82,14 @@ func init() {
 				return git.ActionConfigs().NoSpace()
 			default:
 				return carapace.ActionValues()
+			}
+		}),
+		"config-env": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return git.ActionVariables().Suffix("=")
+			default:
+				return os.ActionEnvironmentVariables()
 			}
 		}),
 		"exec-path": carapace.ActionDirectories(),
