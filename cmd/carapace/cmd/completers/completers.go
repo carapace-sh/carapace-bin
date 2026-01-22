@@ -272,14 +272,26 @@ func AddSpecs(m completer.CompleterMap, parse bool) error {
 }
 
 func Lookup(nameVariantGroup string) (*completer.Completer, error) { // TODO choice as parameter?
-	m, err := Completers(choices.Parse(nameVariantGroup), true) // TODO lookup needs to use a quick version (skip parsing of specs for descriptions)
+	parsed := choices.Parse(nameVariantGroup)
+	m, err := Completers(parsed, true) // TODO lookup needs to use a quick version (skip parsing of specs for descriptions)
 	if err != nil {
 		return nil, err
 	}
 	if c, ok := m.Lookup(nameVariantGroup); ok {
 		return c, nil
 	}
-	return nil, fmt.Errorf("unknonw completer/variant: %#v", nameVariantGroup)
+	switch parsed.Group {
+	case "", "bridge": // support unknown bridges in lookup
+		if action, ok := bridge.Get(parsed.Variant); ok {
+			return &completer.Completer{
+				Name:    parsed.Name,
+				Group:   "bridge",
+				Variant: parsed.Variant,
+				Execute: complete(parsed.Name, action(parsed.Name)),
+			}, nil
+		}
+	}
+	return nil, fmt.Errorf("unknown completer/variant: %#v", nameVariantGroup)
 }
 
 func Description(name string) string {

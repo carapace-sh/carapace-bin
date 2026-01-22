@@ -30,7 +30,7 @@ func init() {
 	invokeCmd.Flags().SetInterspersed(false)
 
 	carapace.Gen(invokeCmd).PositionalCompletion(
-		carapacebin.ActionCompleters(),
+		carapacebin.ActionCompleters(true),
 		bridge.ActionCarapaceBin("_carapace", "export", "", "_carapace").Shift(1).
 			Filter("macro", "style"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {

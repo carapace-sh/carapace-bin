@@ -207,7 +207,7 @@ func init() {
 				cmd.Flags().AddFlagSet(rootCmd.Flags())
 				return carapace.ActionExecute(cmd)
 			}
-			return carapacebin.ActionCompleters()
+			return carapacebin.ActionCompleters(true)
 		}),
 	)
 

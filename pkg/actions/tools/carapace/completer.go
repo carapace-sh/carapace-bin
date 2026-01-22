@@ -10,7 +10,7 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
-func ActionCompleters() carapace.Action {
+func ActionCompleters(unknownBridges bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if strings.Count(c.Value, "@") > 1 || strings.Count(c.Value, "/") > 1 {
 			return carapace.ActionValues()
@@ -24,7 +24,11 @@ func ActionCompleters() carapace.Action {
 		case strings.Contains(c.Value, "/"):
 			nameVariant, _, _ := strings.Cut(c.Value, "@")
 			name, _, _ := strings.Cut(nameVariant, "/")
-			return ActionVariants(name).Prefix(name + "/").NoSpace()
+
+			return carapace.Batch(
+				bridge.ActionBridges(name).Unless(!unknownBridges),
+				ActionVariants(name).Style(style.Carapace.KeywordPositive),
+			).ToA().Unique().Prefix(name + "/").NoSpace()
 
 		default:
 			return ActionNames().NoSpace()

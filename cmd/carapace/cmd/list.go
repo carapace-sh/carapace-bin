@@ -52,6 +52,6 @@ func init() {
 	listCmd.Flags().Bool("names", false, "only list names")
 
 	carapace.Gen(listCmd).PositionalCompletion(
-		carapacebin.ActionCompleters().NoSpace(),
+		carapacebin.ActionCompleters(false).NoSpace(),
 	)
 }
