@@ -42,9 +42,9 @@ $_carapace_completer = {
 
     $completions = @(
       if (!$wordToComplete) {
-        carapace $elems[0] powershell $($elems| ForEach-Object {$_}) '' | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
+        carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) '' | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
       } else {
-        carapace $elems[0] powershell $($elems| ForEach-Object {$_}) | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
+        carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
       }
     )
 
