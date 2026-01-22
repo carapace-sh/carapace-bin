@@ -1,5 +1,3 @@
-> unreleased
-
 # Variants
 
 [Groups](./groups.md) can contain multiple completers for the same command.

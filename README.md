@@ -1,5 +1,3 @@
-> Completer restructuring underway: https://github.com/carapace-sh/carapace-bin/issues/3118 . Consider master/nightly unstable for a while.
-
 # carapace-bin
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/carapace-sh/carapace-bin/pkg/actions)](https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions)
