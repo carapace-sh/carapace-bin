@@ -33,8 +33,8 @@ func init() {
 	diffCmd.Flags().SetInterspersed(false)
 
 	carapace.Gen(diffCmd).PositionalCompletion(
-		carapacebin.ActionCompleters(),
-		carapacebin.ActionCompleters(),
+		carapacebin.ActionCompleters(true),
+		carapacebin.ActionCompleters(true),
 	)
 
 	carapace.Gen(diffCmd).PositionalAnyCompletion(
