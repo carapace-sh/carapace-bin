@@ -19,4 +19,4 @@ enable = true
 
 [output.linkcheck]
 follow-web-links = true
-exclude = [ 'archlinux\.org', 'github\.com']
+exclude = [ 'archlinux\.org', 'fury\.site', 'github\.com']
