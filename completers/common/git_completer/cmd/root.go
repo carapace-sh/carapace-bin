@@ -54,28 +54,36 @@ func init() {
 
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().StringS("C", "C", "", "run as if git was started in given path")
+	rootCmd.Flags().String("attr-source", "", "Read gitattributes from <tree-ish> instead of the worktree")
 	rootCmd.Flags().Bool("bare", false, "use $PWD as repository")
 	rootCmd.Flags().StringS("c", "c", "", "pass configuration parameter to command")
 	rootCmd.Flags().StringArray("config-env", nil, "give configuration variable <name> a value")
 	rootCmd.Flags().String("exec-path", "", "path containing core git-programs")
 	rootCmd.Flags().String("git-dir", "", "path to repository")
-	rootCmd.Flags().Bool("help", false, "display help message")
+	rootCmd.Flags().Bool("glob-pathspecs", false, "Add \"glob\" magic to all pathspec")
+	rootCmd.Flags().BoolP("help", "h", false, "display help message")
 	rootCmd.Flags().Bool("html-path", false, "display path to HTML documentation and exit")
+	rootCmd.Flags().Bool("icase-pathspecs", false, "Add \"icase\" magic to all pathspec")
 	rootCmd.Flags().Bool("info-path", false, "print the path where the info files are installed and exit")
 	rootCmd.Flags().String("list-cmds", "", "list commands")
 	rootCmd.Flags().Bool("literal-pathspecs", false, "treat pathspecs literally, rather than as glob patterns")
 	rootCmd.Flags().Bool("man-path", false, "print the manpath for the man pages for this version of Git and exit")
 	rootCmd.Flags().String("namespace", "", "set the Git namespace")
+	rootCmd.Flags().Bool("no-advise", false, "Disable all advice hints from being printed")
+	rootCmd.Flags().Bool("no-lazy-fetch", false, "Do not fetch missing objects from the promisor remote on demand")
+	rootCmd.Flags().Bool("no-optional-locks", false, "Do not perform optional operations that require locks")
 	rootCmd.Flags().BoolP("no-pager", "P", false, "don't pipe git output into a pager")
 	rootCmd.Flags().Bool("no-replace-objects", false, "do not use replacement refs to replace git objects")
+	rootCmd.Flags().Bool("noglob-pathspecs", false, "Add \"literal\" magic to all pathspec")
 	rootCmd.Flags().BoolP("paginate", "p", false, "pipe output into a pager")
-	rootCmd.Flags().Bool("version", false, "display version information")
+	rootCmd.Flags().BoolP("version", "v", false, "display version information")
 	rootCmd.Flags().String("work-tree", "", "path to working tree")
 
 	rootCmd.Flag("list-cmds").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"C": carapace.ActionDirectories(),
+		"C":           carapace.ActionDirectories(),
+		"attr-source": git.ActionRefs(git.RefOption{}.Default()),
 		"c": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
