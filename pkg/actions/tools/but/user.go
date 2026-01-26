@@ -12,7 +12,7 @@ import (
 //	userA (OAuth)
 //	userB (OAuth)
 func ActionUsers() carapace.Action {
-	return carapace.ActionExecCommand("but", "forge", "list-users")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("but", "config", "forge", "list-users")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		r := regexp.MustCompile(`^- (?P<type>[^:]+): (?P<user>.*)$`)
 

@@ -15,6 +15,7 @@ var absorbCmd = &cobra.Command{
 func init() {
 	carapace.Gen(absorbCmd).Standalone()
 
+	absorbCmd.Flags().Bool("dry-run", false, "Show the absorption plan without making any changes")
 	absorbCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(absorbCmd)
 

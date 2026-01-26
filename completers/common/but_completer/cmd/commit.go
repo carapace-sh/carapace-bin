@@ -20,7 +20,10 @@ func init() {
 	commitCmd.Flags().StringP("file", "f", "", "Read commit message from file")
 	commitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	commitCmd.Flags().StringP("message", "m", "", "Commit message")
+	commitCmd.Flags().BoolP("no-hooks", "n", false, "Bypass pre-commit hooks")
+	commitCmd.Flags().Bool("no-verify", false, "Bypass pre-commit hooks")
 	commitCmd.Flags().BoolP("only", "o", false, "Only commit staged files, not unstaged files")
+	commitCmd.Flag("no-verify").Hidden = true
 	rootCmd.AddCommand(commitCmd)
 
 	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
