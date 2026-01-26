@@ -20,7 +20,7 @@ func init() {
 	treeCmd.Flags().String("depth", "", "Maximum display depth of the dependency tree")
 	treeCmd.Flags().Bool("duplicate", false, "Show only dependencies which come in multiple versions (implies -i)")
 	treeCmd.Flags().BoolP("duplicates", "d", false, "Show only dependencies which come in multiple versions (implies -i)")
-	treeCmd.Flags().StringSliceP("edges", "e", nil, "The kinds of dependencies to display (features, normal, build, dev, all, no-normal, no-build, no-dev, no-proc-macro)")
+	treeCmd.Flags().StringSliceP("edges", "e", nil, "The kinds of dependencies to display")
 	treeCmd.Flags().StringSlice("exclude", nil, "Exclude specific workspace members")
 	treeCmd.Flags().StringSliceP("features", "F", nil, "Space or comma separated list of features to activate")
 	treeCmd.Flags().StringP("format", "f", "", "Format string used for printing dependencies")
@@ -40,8 +40,19 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(treeCmd).FlagCompletion(carapace.ActionMap{
-		"charset":       carapace.ActionValues("utf8", "ascii"),
-		"edges":         carapace.ActionValues("features", "normal", "build", "dev", "all", "no-normal", "no-build", "no-dev", "no-proc-macro").UniqueList(","),
+		"charset": carapace.ActionValues("utf8", "ascii"),
+		"edges": carapace.ActionValues(
+			"all",
+			"normal",
+			"build",
+			"dev",
+			"features",
+			"public",
+			"no-normal",
+			"no-build",
+			"no-dev",
+			"no-proc-macro",
+		).UniqueList(","),
 		"exclude":       action.ActionWorkspaceMembers(treeCmd).UniqueList(","),
 		"features":      action.ActionFeatures(treeCmd).UniqueList(","),
 		"invert":        action.ActionDependencies(treeCmd, false),

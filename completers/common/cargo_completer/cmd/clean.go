@@ -26,6 +26,7 @@ func init() {
 	cleanCmd.Flags().BoolP("release", "r", false, "Whether or not to clean release artifacts")
 	cleanCmd.Flags().StringSlice("target", nil, "Target triple to clean output for")
 	cleanCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
+	cleanCmd.Flags().Bool("workspace", false, "Clean artifacts of the workspace members")
 	rootCmd.AddCommand(cleanCmd)
 
 	carapace.Gen(cleanCmd).FlagCompletion(carapace.ActionMap{
