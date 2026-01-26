@@ -25,7 +25,6 @@ func init() {
 	buildCmd.Flags().Bool("benches", false, "Build all targets that have `bench = true` set")
 	buildCmd.Flags().StringSlice("bin", nil, "Build only the specified binary")
 	buildCmd.Flags().Bool("bins", false, "Build all binaries")
-	buildCmd.Flags().Bool("build-plan", false, "Output the build plan in JSON (unstable)")
 	buildCmd.Flags().StringSlice("example", nil, "Build only the specified example")
 	buildCmd.Flags().Bool("examples", false, "Build all examples")
 	buildCmd.Flags().StringSlice("exclude", nil, "Exclude packages from the build")
