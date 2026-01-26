@@ -98,7 +98,7 @@ func addRootFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolP("purge", "P", false, "Remove an installed Package including conffiles")
 	cmd.Flags().BoolP("record-avail", "A", false, "Update which packages are available with information from the package")
 	cmd.Flags().BoolP("remove", "r", false, "Remove an installed package")
-	cmd.Flags().Bool("remove-architeture", false, "Remove <arch> from the list of architectures")
+	cmd.Flags().Bool("remove-architecture", false, "Remove <arch> from the list of architectures")
 	cmd.Flags().BoolP("search", "S", false, "Find package(s) owning file(s)")
 	cmd.Flags().Bool("set-selections", false, "Set package selections from stdin")
 	cmd.Flags().BoolP("status", "s", false, "Display package status details")
