@@ -15,6 +15,7 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -34,6 +35,7 @@ func init() {
 	rootCmd.Flags().Bool("list-sigs", false, "List keys and their signatures")
 	rootCmd.Flags().Bool("lsign-key", false, "Locally sign the specified keyid")
 	rootCmd.Flags().Bool("populate", false, "Reload the default keys from the (given) keyrings in '/usr/share/pacman/keyrings'")
+	rootCmd.Flags().String("populate-from", "", "Set an alternate directory for --populate (instead of '/usr/share/pacman/keyrings')")
 	rootCmd.Flags().BoolP("recv-keys", "r", false, "Fetch the specified keyids")
 	rootCmd.Flags().Bool("refresh-keys", false, "Update specified or all keys from a keyserver")
 	rootCmd.Flags().BoolP("updatedb", "u", false, "Update the trustdb of pacman")
@@ -42,8 +44,9 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show program version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"config":    carapace.ActionFiles(),
-		"gpgdir":    carapace.ActionDirectories(),
-		"keyserver": carapace.ActionValues(), // TODO
+		"config":        carapace.ActionFiles(),
+		"gpgdir":        carapace.ActionDirectories(),
+		"keyserver":     carapace.ActionValues(), // TODO
+		"populate-from": carapace.ActionDirectories(),
 	})
 }

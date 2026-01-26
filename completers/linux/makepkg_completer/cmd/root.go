@@ -15,6 +15,7 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -22,11 +23,14 @@ func init() {
 	rootCmd.Flags().Bool("asdeps", false, "Install packages as non-explicitly installed")
 	rootCmd.Flags().Bool("check", false, "Run the check() function in the PKGBUILD")
 	rootCmd.Flags().BoolP("clean", "c", false, "Clean up work files after build")
+	rootCmd.Flags().BoolP("cleanbuild", "C", false, "Remove $srcdir/ dir before building the package")
 	rootCmd.Flags().String("config", "", "Use an alternate config file (instead of '/etc/makepkg.conf')")
+	rootCmd.Flags().StringP("dir", "D", "", "Change to directory <dir> before processing PKGBUILD")
 	rootCmd.Flags().BoolP("force", "f", false, "Overwrite existing package")
 	rootCmd.Flags().BoolP("geninteg", "g", false, "Generate integrity checks for source files")
 	rootCmd.Flags().BoolP("help", "h", false, "Show this help message and exit")
 	rootCmd.Flags().Bool("holdver", false, "Do not update VCS sources")
+	rootCmd.Flags().BoolP("ignorearch", "A", false, "Ignore incomplete arch field in PKGBUILD")
 	rootCmd.Flags().BoolP("install", "i", false, "Install package after successful build")
 	rootCmd.Flags().String("key", "", "Specify a key to use for gpg signing instead of the default")
 	rootCmd.Flags().BoolP("log", "L", false, "Log package build process")
@@ -57,6 +61,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
+		"dir":    carapace.ActionDirectories(),
 		"p":      carapace.ActionFiles(),
 	})
 }

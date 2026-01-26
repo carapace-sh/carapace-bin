@@ -16,6 +16,7 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -23,11 +24,15 @@ func init() {
 	rootCmd.Flags().BoolP("help", "h", false, "display this help information")
 	rootCmd.Flags().StringP("repo", "r", "", "query options for a specific repo")
 	rootCmd.Flags().BoolP("repo-list", "l", false, "list configured repositories")
+	rootCmd.Flags().StringP("rootdir", "R", "", "set an alternate installation root")
+	rootCmd.Flags().StringP("sysroot", "S", "", "set an alternate system root")
 	rootCmd.Flags().BoolP("verbose", "v", false, "always show directive names")
 	rootCmd.Flags().BoolP("version", "V", false, "display version information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"config": carapace.ActionFiles(),
-		"repo":   pacman.ActionRepositories(),
+		"config":  carapace.ActionFiles(),
+		"repo":    pacman.ActionRepositories(),
+		"rootdir": carapace.ActionDirectories(),
+		"sysroot": carapace.ActionDirectories(),
 	})
 }
