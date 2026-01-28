@@ -32,7 +32,6 @@ func init() {
 	s_timeCmd.Flags().BoolS("no-CApath", "no-CApath", false, "Do not load certificates from the default certificates directory")
 	s_timeCmd.Flags().BoolS("no-CAstore", "no-CAstore", false, "Do not load certificates from the default certificates store URI")
 	s_timeCmd.Flags().BoolS("reuse", "reuse", false, "Just time connection reuse")
-	s_timeCmd.Flags().BoolS("ssl3", "ssl3", false, "Just use SSLv3")
 	s_timeCmd.Flags().StringS("time", "time", "", "Seconds to collect data, default 30")
 	s_timeCmd.Flags().BoolS("tls1", "tls1", false, "Just use TLSv1.0")
 	s_timeCmd.Flags().BoolS("tls1_1", "tls1_1", false, "Just use TLSv1.1")

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +18,6 @@ func init() {
 	srpCmd.Flags().BoolS("add", "add", false, "Add a user and SRP verifier")
 	srpCmd.Flags().StringS("config", "config", "", "A config file")
 	srpCmd.Flags().BoolS("delete", "delete", false, "Delete user from verifier file")
-	srpCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	srpCmd.Flags().StringS("gn", "gn", "", "Set g and N values to be used for new verifier")
 	srpCmd.Flags().BoolS("list", "list", false, "List users")
 	srpCmd.Flags().BoolS("modify", "modify", false, "Modify the SRP verifier of an existing user")
@@ -33,7 +31,6 @@ func init() {
 
 	carapace.Gen(srpCmd).FlagCompletion(carapace.ActionMap{
 		"config":   carapace.ActionFiles(),
-		"engine":   action.ActionEngines(),
 		"srpvfile": carapace.ActionFiles(),
 	})
 }

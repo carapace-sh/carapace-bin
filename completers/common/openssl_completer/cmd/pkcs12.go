@@ -28,7 +28,6 @@ func init() {
 	pkcs12Cmd.Flags().BoolS("chain", "chain", false, "Build and add certificate chain for EE cert, which is the 1st cert from -in matching the private key (if given)")
 	pkcs12Cmd.Flags().BoolS("clcerts", "clcerts", false, "Only output client certificates")
 	pkcs12Cmd.Flags().BoolS("descert", "descert", false, "Encrypt output with 3DES (default PBES2 with PBKDF2 and AES-256 CBC)")
-	pkcs12Cmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	pkcs12Cmd.Flags().BoolS("export", "export", false, "Create PKCS12 file")
 	pkcs12Cmd.Flags().StringS("in", "in", "", "Input file")
 	pkcs12Cmd.Flags().BoolS("info", "info", false, "Print info about PKCS#12 structure")

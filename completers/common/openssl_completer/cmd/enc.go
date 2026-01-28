@@ -28,12 +28,11 @@ func init() {
 	encCmd.Flags().BoolS("d", "d", false, "Decrypt")
 	encCmd.Flags().BoolS("debug", "debug", false, "Print debug info")
 	encCmd.Flags().BoolS("e", "e", false, "Encrypt")
-	encCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	encCmd.Flags().StringS("in", "in", "", "Input file")
 	encCmd.Flags().StringS("iter", "iter", "", "Specify the iteration count and force the use of PBKDF2 Default: 10000")
 	encCmd.Flags().StringS("iv", "iv", "", "IV in hex")
-	encCmd.Flags().StringS("k", "k", "", "Passphrase")
-	encCmd.Flags().StringS("kfile", "kfile", "", "Read passphrase from file")
+	encCmd.Flags().StringS("k", "k", "", "Passphrase (Deprecated)")
+	encCmd.Flags().StringS("kfile", "kfile", "", "Read passphrase from file (Deprecated)")
 	encCmd.Flags().BoolS("list", "list", false, "List ciphers")
 	encCmd.Flags().StringS("md", "md", "", "Use specified digest to create a key from the passphrase")
 	encCmd.Flags().BoolS("none", "none", false, "Don't encrypt")
@@ -47,6 +46,8 @@ func init() {
 	encCmd.Flags().StringS("saltlen", "saltlen", "", "Specify the PBKDF2 salt length (in bytes) Default: 16")
 	encCmd.Flags().StringS("skeymgmt", "skeymgmt", "", "Symmetric key management name for opaque symmetric key handling")
 	encCmd.Flags().StringSliceS("skeyopt", "skeyopt", nil, "Key options as opt:value for opaque symmetric key handling")
+	encCmd.Flags().StringS("skeyuri", "skeyuri", "", "Symmetric key object URI")
+	encCmd.Flags().StringS("storepass", "storepass", "", "Store pass phrase source when skeyuri is used (optional)")
 	encCmd.Flags().BoolS("v", "v", false, "Verbose output")
 	encCmd.Flags().BoolS("z", "z", false, "Compress or decompress encrypted data using zlib")
 	common.AddProviderFlags(encCmd)
@@ -54,10 +55,9 @@ func init() {
 	rootCmd.AddCommand(encCmd)
 
 	carapace.Gen(encCmd).FlagCompletion(carapace.ActionMap{
-		"engine": action.ActionEngines(),
-		"in":     carapace.ActionFiles(),
-		"kfile":  carapace.ActionFiles(),
-		"md":     action.ActionDigestAlgorithms(encCmd),
-		"out":    carapace.ActionFiles(),
+		"in":    carapace.ActionFiles(),
+		"kfile": carapace.ActionFiles(),
+		"md":    action.ActionDigestAlgorithms(encCmd),
+		"out":   carapace.ActionFiles(),
 	})
 }

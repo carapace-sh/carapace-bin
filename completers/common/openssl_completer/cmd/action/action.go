@@ -8,25 +8,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// ActionEngines completes OpenSSL engines
-//
-//	dynamic (Dynamic engine loading support)
-//	rdrand (Intel RDRAND engine)
-func ActionEngines() carapace.Action {
-	return carapace.ActionExecCommand("openssl", "engine")(func(output []byte) carapace.Action {
-		re := regexp.MustCompile(`\(([^)]+)\)\s+(.+)`)
-		lines := strings.Split(string(output), "\n")
-
-		var values []string
-		for _, line := range lines {
-			if match := re.FindStringSubmatch(line); match != nil {
-				values = append(values, match[1], match[2])
-			}
-		}
-		return carapace.ActionValuesDescribed(values...)
-	})
-}
-
 // ActionDigestAlgorithms completes message digest algorithms
 //
 //	BLAKE2b512

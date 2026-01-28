@@ -19,7 +19,7 @@ func init() {
 	x509Cmd.Flags().BoolS("CAcreateserial", "CAcreateserial", false, "Create CA serial number file if it does not exist")
 	x509Cmd.Flags().StringS("CAform", "CAform", "", "CA cert format (PEM/DER/P12); has no effect")
 	x509Cmd.Flags().StringS("CAkey", "CAkey", "", "The corresponding CA key; default is -CA arg")
-	x509Cmd.Flags().StringS("CAkeyform", "CAkeyform", "", "CA key format (ENGINE, other values ignored)")
+	x509Cmd.Flags().StringS("CAkeyform", "CAkeyform", "", "CA key format (DER/PEM)")
 	x509Cmd.Flags().StringS("CAserial", "CAserial", "", "File that keeps track of CA-generated serial number")
 	x509Cmd.Flags().StringS("addreject", "addreject", "", "Reject certificate for a given purpose")
 	x509Cmd.Flags().StringS("addtrust", "addtrust", "", "Trust certificate for a given purpose")
@@ -39,7 +39,6 @@ func init() {
 	x509Cmd.Flags().StringS("days", "days", "", "Number of days until newly generated certificate expires - default 30")
 	x509Cmd.Flags().BoolS("email", "email", false, "Print email address(es)")
 	x509Cmd.Flags().BoolS("enddate", "enddate", false, "Print the notAfter field")
-	x509Cmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	x509Cmd.Flags().StringS("ext", "ext", "", "Restrict which X.509 extensions to print and/or copy")
 	x509Cmd.Flags().StringS("extensions", "extensions", "", "Section of extfile to use - default: unnamed section")
 	x509Cmd.Flags().StringS("extfile", "extfile", "", "Config file with X509V3 extensions to add")
@@ -52,7 +51,7 @@ func init() {
 	x509Cmd.Flags().BoolS("issuer_hash", "issuer_hash", false, "Print issuer hash value")
 	x509Cmd.Flags().BoolS("issuer_hash_old", "issuer_hash_old", false, "Print old-style (MD5) issuer hash value")
 	x509Cmd.Flags().StringS("key", "key", "", "Key for signing, and to include unless using -force_pubkey")
-	x509Cmd.Flags().StringS("keyform", "keyform", "", "Key input format (ENGINE, other values ignored)")
+	x509Cmd.Flags().StringS("keyform", "keyform", "", "Key input format (DER/PEM)")
 	x509Cmd.Flags().BoolS("modulus", "modulus", false, "Print the RSA key modulus")
 	x509Cmd.Flags().BoolS("multi", "multi", false, "Process multiple certificates")
 	x509Cmd.Flags().StringSliceS("nameopt", "nameopt", nil, "Certificate subject/issuer name printing options")
@@ -93,14 +92,14 @@ func init() {
 		"CA":           carapace.ActionFiles(),
 		"CAform":       carapace.ActionValues("DER", "PEM", "P12"),
 		"CAkey":        carapace.ActionFiles(),
-		"CAkeyform":    carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"CAkeyform":    carapace.ActionValues("DER", "PEM", "P12"),
 		"CAserial":     carapace.ActionFiles(),
 		"extfile":      carapace.ActionFiles(),
 		"force_pubkey": carapace.ActionFiles(),
 		"in":           carapace.ActionFiles(),
 		"inform":       carapace.ActionValues("DER", "PEM"),
 		"key":          carapace.ActionFiles(),
-		"keyform":      carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"keyform":      carapace.ActionValues("DER", "PEM", "P12"),
 		"out":          carapace.ActionFiles(),
 		"outform":      carapace.ActionValues("DER", "PEM"),
 		"signkey":      carapace.ActionFiles(),

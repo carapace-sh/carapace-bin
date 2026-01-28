@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -17,7 +16,6 @@ var pkcs8Cmd = &cobra.Command{
 func init() {
 	carapace.Gen(pkcs8Cmd).Standalone()
 
-	pkcs8Cmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	pkcs8Cmd.Flags().StringS("in", "in", "", "Input file")
 	pkcs8Cmd.Flags().StringS("inform", "inform", "", "Input format (DER or PEM)")
 	pkcs8Cmd.Flags().StringS("iter", "iter", "", "Specify the iteration count")
@@ -42,7 +40,6 @@ func init() {
 	rootCmd.AddCommand(pkcs8Cmd)
 
 	carapace.Gen(pkcs8Cmd).FlagCompletion(carapace.ActionMap{
-		"engine":  action.ActionEngines(),
 		"in":      carapace.ActionFiles(),
 		"inform":  carapace.ActionValues("DER", "PEM"),
 		"out":     carapace.ActionFiles(),

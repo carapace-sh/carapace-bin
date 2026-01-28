@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -50,7 +49,7 @@ func init() {
 	s_serverCmd.Flags().BoolS("debug", "debug", false, "Print more output")
 	s_serverCmd.Flags().StringS("dhparam", "dhparam", "", "DH parameters file to use")
 	s_serverCmd.Flags().StringS("dkey", "dkey", "", "Second private key file to use (usually for DSA)")
-	s_serverCmd.Flags().StringS("dkeyform", "dkeyform", "", "Second key file format (ENGINE, other values ignored)")
+	s_serverCmd.Flags().StringS("dkeyform", "dkeyform", "", "Second key file format (DER/PEM)")
 	s_serverCmd.Flags().StringS("dpass", "dpass", "", "Second private key and cert file pass phrase source")
 	s_serverCmd.Flags().BoolS("dtls", "dtls", false, "Use any DTLS version")
 	s_serverCmd.Flags().BoolS("dtls1", "dtls1", false, "Just talk DTLSv1")
@@ -58,7 +57,6 @@ func init() {
 	s_serverCmd.Flags().BoolS("early_data", "early_data", false, "Attempt to read early data")
 	s_serverCmd.Flags().BoolS("enable_client_rpk", "enable_client_rpk", false, "Enable raw public keys (RFC7250) from the client")
 	s_serverCmd.Flags().BoolS("enable_server_rpk", "enable_server_rpk", false, "Enable raw public keys (RFC7250) from the server")
-	s_serverCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	s_serverCmd.Flags().BoolS("ext_cache", "ext_cache", false, "Disable internal cache, set up and use external cache")
 	s_serverCmd.Flags().BoolS("http_server_binmode", "http_server_binmode", false, "opening files in binary mode when acting as http server (-WWW and -HTTP)")
 	s_serverCmd.Flags().StringS("id_prefix", "id_prefix", "", "Generate SSL/TLS session IDs prefixed by arg")
@@ -66,7 +64,7 @@ func init() {
 	s_serverCmd.Flags().BoolS("ignore_unexpected_eof", "ignore_unexpected_eof", false, "Do not treat lack of close_notify from a peer as an error")
 	s_serverCmd.Flags().StringS("key", "key", "", "Private key file to use; default is -cert file or elseserver.pem")
 	s_serverCmd.Flags().StringS("key2", "key2", "", "-Private Key file to use for servername if not in -cert2")
-	s_serverCmd.Flags().StringS("keyform", "keyform", "", "Key format (ENGINE, other values ignored)")
+	s_serverCmd.Flags().StringS("keyform", "keyform", "", "Key format (DER/PEM)")
 	s_serverCmd.Flags().StringS("keylogfile", "keylogfile", "", "Write TLS secrets to file")
 	s_serverCmd.Flags().StringS("keymatexport", "keymatexport", "", "Export keying material using label")
 	s_serverCmd.Flags().StringS("keymatexportlen", "keymatexportlen", "", "Export len bytes of keying material; default 20")
@@ -117,7 +115,6 @@ func init() {
 	s_serverCmd.Flags().StringS("split_send_frag", "split_send_frag", "", "Size used to split data for encrypt pipelines")
 	s_serverCmd.Flags().StringS("srpuserseed", "srpuserseed", "", "(deprecated) A seed string for a default user salt")
 	s_serverCmd.Flags().StringS("srpvfile", "srpvfile", "", "(deprecated) The verifier file for SRP")
-	s_serverCmd.Flags().BoolS("ssl3", "ssl3", false, "Just talk SSLv3")
 	s_serverCmd.Flags().StringS("ssl_config", "ssl_config", "", "Configure SSL_CTX using the given configuration value")
 	s_serverCmd.Flags().BoolS("state", "state", false, "Print the SSL states")
 	s_serverCmd.Flags().BoolS("stateless", "stateless", false, "Require TLSv1.3 cookies")
@@ -170,11 +167,10 @@ func init() {
 		"dcert_chain":  carapace.ActionFiles(),
 		"dcertform":    carapace.ActionValues("DER", "PEM", "P12"),
 		"dkey":         carapace.ActionFiles(),
-		"dkeyform":     carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
-		"engine":       action.ActionEngines(),
+		"dkeyform":     carapace.ActionValues("DER", "PEM", "P12"),
 		"key":          carapace.ActionFiles(),
 		"key2":         carapace.ActionFiles(),
-		"keyform":      carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"keyform":      carapace.ActionValues("DER", "PEM", "P12"),
 		"keylogfile":   carapace.ActionFiles(),
 		"msgfile":      carapace.ActionFiles(),
 		"psk_session":  carapace.ActionFiles(),

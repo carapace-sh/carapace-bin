@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -19,9 +18,8 @@ func init() {
 
 	ecCmd.Flags().BoolS("check", "check", false, "check key consistency")
 	ecCmd.Flags().StringS("conv_form", "conv_form", "", "Specifies the point conversion form")
-	ecCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	ecCmd.Flags().StringS("in", "in", "", "Input file")
-	ecCmd.Flags().StringS("inform", "inform", "", "Input format (DER/PEM/P12/ENGINE)")
+	ecCmd.Flags().StringS("inform", "inform", "", "Input format (DER/PEM/P12)")
 	ecCmd.Flags().BoolS("no_public", "no_public", false, "exclude public key from private key")
 	ecCmd.Flags().BoolS("noout", "noout", false, "Don't print key out")
 	ecCmd.Flags().StringS("out", "out", "", "Output file")
@@ -38,9 +36,8 @@ func init() {
 
 	carapace.Gen(ecCmd).FlagCompletion(carapace.ActionMap{
 		"conv_form": carapace.ActionValues("compressed", "hybrid", "uncompressed"),
-		"engine":    action.ActionEngines(),
 		"in":        carapace.ActionFiles(),
-		"inform":    carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"inform":    carapace.ActionValues("DER", "PEM", "P12"),
 		"out":       carapace.ActionFiles(),
 		"outform":   carapace.ActionValues("DER", "PEM"),
 		"param_enc": carapace.ActionValues("explicit", "named_curve"),

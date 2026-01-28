@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -52,13 +51,12 @@ func init() {
 	s_clientCmd.Flags().BoolS("enable_client_rpk", "enable_client_rpk", false, "Enable raw public keys (RFC7250) from the client")
 	s_clientCmd.Flags().BoolS("enable_pha", "enable_pha", false, "Enable post-handshake-authentication")
 	s_clientCmd.Flags().BoolS("enable_server_rpk", "enable_server_rpk", false, "Enable raw public keys (RFC7250) from the server")
-	s_clientCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	s_clientCmd.Flags().BoolS("fallback_scsv", "fallback_scsv", false, "Send the fallback SCSV")
 	s_clientCmd.Flags().StringS("host", "host", "", "Use -connect instead")
 	s_clientCmd.Flags().BoolS("ign_eof", "ign_eof", false, "Ignore input eof (default when -quiet)")
 	s_clientCmd.Flags().BoolS("ignore_unexpected_eof", "ignore_unexpected_eof", false, "Do not treat lack of close_notify from a peer as an error")
 	s_clientCmd.Flags().StringS("key", "key", "", "Private key file to use; default: -cert file")
-	s_clientCmd.Flags().StringS("keyform", "keyform", "", "Key format (ENGINE, other values ignored)")
+	s_clientCmd.Flags().StringS("keyform", "keyform", "", "Key format (DER/PEM)")
 	s_clientCmd.Flags().StringS("keylogfile", "keylogfile", "", "Write TLS secrets to file")
 	s_clientCmd.Flags().StringS("keymatexport", "keymatexport", "", "Export keying material using label")
 	s_clientCmd.Flags().StringS("keymatexportlen", "keymatexportlen", "", "Export len bytes of keying material; default 20")
@@ -113,8 +111,6 @@ func init() {
 	s_clientCmd.Flags().StringS("srp_strength", "srp_strength", "", "(deprecated) Minimal length in bits for N")
 	s_clientCmd.Flags().StringS("srppass", "srppass", "", "(deprecated) Password for 'user'")
 	s_clientCmd.Flags().StringS("srpuser", "srpuser", "", "(deprecated) SRP authentication for 'user'")
-	s_clientCmd.Flags().BoolS("ssl3", "ssl3", false, "Just use SSLv2")
-	s_clientCmd.Flags().StringS("ssl_client_engine", "ssl_client_engine", "", "Specify engine to be used for client certificate operations")
 	s_clientCmd.Flags().StringS("ssl_config", "ssl_config", "", "Use specified section for SSL_CTX configuration")
 	s_clientCmd.Flags().StringS("starttls", "starttls", "", "Use the appropriate STARTTLS command before starting TLS")
 	s_clientCmd.Flags().BoolS("state", "state", false, "Print the ssl states")
@@ -145,25 +141,24 @@ func init() {
 	rootCmd.AddCommand(s_clientCmd)
 
 	carapace.Gen(s_clientCmd).FlagCompletion(carapace.ActionMap{
-		"CAfile":            carapace.ActionFiles(),
-		"CApath":            carapace.ActionDirectories(),
-		"CRL":               carapace.ActionFiles(),
-		"CRLform":           carapace.ActionValues("DER", "PEM"),
-		"cert":              carapace.ActionFiles(),
-		"certform":          carapace.ActionValues("DER", "PEM", "P12"),
-		"chainCAfile":       carapace.ActionFiles(),
-		"chainCApath":       carapace.ActionDirectories(),
-		"early_data":        carapace.ActionFiles(),
-		"key":               carapace.ActionFiles(),
-		"keyform":           carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
-		"keylogfile":        carapace.ActionFiles(),
-		"msgfile":           carapace.ActionFiles(),
-		"psk_session":       carapace.ActionFiles(),
-		"requestCAfile":     carapace.ActionFiles(),
-		"sess_in":           carapace.ActionFiles(),
-		"sess_out":          carapace.ActionFiles(),
-		"ssl_client_engine": action.ActionEngines(),
-		"verifyCAfile":      carapace.ActionFiles(),
-		"verifyCApath":      carapace.ActionDirectories(),
+		"CAfile":        carapace.ActionFiles(),
+		"CApath":        carapace.ActionDirectories(),
+		"CRL":           carapace.ActionFiles(),
+		"CRLform":       carapace.ActionValues("DER", "PEM"),
+		"cert":          carapace.ActionFiles(),
+		"certform":      carapace.ActionValues("DER", "PEM", "P12"),
+		"chainCAfile":   carapace.ActionFiles(),
+		"chainCApath":   carapace.ActionDirectories(),
+		"early_data":    carapace.ActionFiles(),
+		"key":           carapace.ActionFiles(),
+		"keyform":       carapace.ActionValues("DER", "PEM", "P12"),
+		"keylogfile":    carapace.ActionFiles(),
+		"msgfile":       carapace.ActionFiles(),
+		"psk_session":   carapace.ActionFiles(),
+		"requestCAfile": carapace.ActionFiles(),
+		"sess_in":       carapace.ActionFiles(),
+		"sess_out":      carapace.ActionFiles(),
+		"verifyCAfile":  carapace.ActionFiles(),
+		"verifyCApath":  carapace.ActionDirectories(),
 	})
 }

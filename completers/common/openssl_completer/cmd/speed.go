@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -24,7 +23,6 @@ func init() {
 	speedCmd.Flags().StringS("config", "config", "", "Load a configuration file (this may load modules)")
 	speedCmd.Flags().BoolS("decrypt", "decrypt", false, "Time decryption instead of encryption (only EVP)")
 	speedCmd.Flags().BoolS("elapsed", "elapsed", false, "Use wall-clock time instead of CPU user time as divisor")
-	speedCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	speedCmd.Flags().StringS("evp", "evp", "", "Use EVP-named cipher or digest")
 	speedCmd.Flags().StringS("hmac", "hmac", "", "HMAC using EVP-named digest")
 	speedCmd.Flags().BoolS("kem-algorithms", "kem-algorithms", false, "Benchmark KEM algorithms")
@@ -43,6 +41,5 @@ func init() {
 
 	carapace.Gen(speedCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
-		"engine": action.ActionEngines(),
 	})
 }

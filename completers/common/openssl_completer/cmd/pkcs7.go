@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -17,7 +16,6 @@ var pkcs7Cmd = &cobra.Command{
 func init() {
 	carapace.Gen(pkcs7Cmd).Standalone()
 
-	pkcs7Cmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	pkcs7Cmd.Flags().StringS("in", "in", "", "Input file")
 	pkcs7Cmd.Flags().StringS("inform", "inform", "", "Input format - DER or PEM")
 	pkcs7Cmd.Flags().BoolS("noout", "noout", false, "Don't output encoded data")
@@ -31,7 +29,6 @@ func init() {
 	rootCmd.AddCommand(pkcs7Cmd)
 
 	carapace.Gen(pkcs7Cmd).FlagCompletion(carapace.ActionMap{
-		"engine":  action.ActionEngines(),
 		"in":      carapace.ActionFiles(),
 		"inform":  carapace.ActionValues("DER", "PEM"),
 		"out":     carapace.ActionFiles(),

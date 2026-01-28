@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -21,12 +20,12 @@ func init() {
 	dgstCmd.Flags().BoolS("c", "c", false, "Print the digest with separating colons")
 	dgstCmd.Flags().BoolS("d", "d", false, "Print debug info")
 	dgstCmd.Flags().BoolS("debug", "debug", false, "Print debug info")
-	dgstCmd.Flags().StringS("engine", "engine", "", "Use engine e, possibly a hardware device")
-	dgstCmd.Flags().BoolS("engine_impl", "engine_impl", false, "Also use engine given by -engine for digest operations")
 	dgstCmd.Flags().BoolS("fips-fingerprint", "fips-fingerprint", false, "Compute HMAC with the key used in OpenSSL-FIPS fingerprint")
 	dgstCmd.Flags().BoolS("hex", "hex", false, "Print as hex dump")
 	dgstCmd.Flags().StringS("hmac", "hmac", "", "Create hashed MAC with key")
-	dgstCmd.Flags().StringS("keyform", "keyform", "", "Key file format (ENGINE, other values ignored)")
+	dgstCmd.Flags().StringS("hmac-env", "hmac-env", "", "Create hashed MAC with key from environment variable")
+	dgstCmd.Flags().BoolS("hmac-stdin", "hmac-stdin", false, "Create hashed MAC with key from stdin")
+	dgstCmd.Flags().StringS("keyform", "keyform", "", "Key file format (DER/PEM)")
 	dgstCmd.Flags().BoolS("list", "list", false, "List digests")
 	dgstCmd.Flags().StringS("mac", "mac", "", "Create MAC (not necessarily HMAC)")
 	dgstCmd.Flags().StringSliceS("macopt", "macopt", nil, "MAC algorithm parameters in n:v form or key")
@@ -44,8 +43,7 @@ func init() {
 	rootCmd.AddCommand(dgstCmd)
 
 	carapace.Gen(dgstCmd).FlagCompletion(carapace.ActionMap{
-		"engine":    action.ActionEngines(),
-		"keyform":   carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"keyform":   carapace.ActionValues("DER", "PEM", "P12"),
 		"out":       carapace.ActionFiles(),
 		"prverify":  carapace.ActionFiles(),
 		"sign":      carapace.ActionFiles(),

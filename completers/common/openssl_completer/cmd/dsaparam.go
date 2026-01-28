@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -17,7 +16,6 @@ var dsaparamCmd = &cobra.Command{
 func init() {
 	carapace.Gen(dsaparamCmd).Standalone()
 
-	dsaparamCmd.Flags().StringS("engine", "engine", "", "Use engine e, possibly a hardware device")
 	dsaparamCmd.Flags().BoolS("genkey", "genkey", false, "Generate a DSA key")
 	dsaparamCmd.Flags().StringS("in", "in", "", "Input file")
 	dsaparamCmd.Flags().StringS("inform", "inform", "", "Input format - DER or PEM")
@@ -32,7 +30,6 @@ func init() {
 	rootCmd.AddCommand(dsaparamCmd)
 
 	carapace.Gen(dsaparamCmd).FlagCompletion(carapace.ActionMap{
-		"engine":  action.ActionEngines(),
 		"in":      carapace.ActionFiles(),
 		"inform":  carapace.ActionValues("DER", "PEM"),
 		"out":     carapace.ActionFiles(),
