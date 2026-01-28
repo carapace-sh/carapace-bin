@@ -25,13 +25,11 @@ func init() {
 	reqCmd.Flags().StringS("config", "config", "", "Request template file")
 	reqCmd.Flags().StringS("copy_extensions", "copy_extensions", "", "copy extensions from request when using -x509")
 	reqCmd.Flags().StringS("days", "days", "", "Number of days certificate is valid for")
-	reqCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	reqCmd.Flags().StringS("extensions", "extensions", "", "Cert or request extension section (override value in config file)")
 	reqCmd.Flags().StringS("in", "in", "", "X.509 request input file (default stdin)")
 	reqCmd.Flags().StringS("inform", "inform", "", "CSR input format to use (PEM or DER; by default try PEM first)")
 	reqCmd.Flags().StringS("key", "key", "", "Key for signing, and to include unless -in given")
-	reqCmd.Flags().StringS("keyform", "keyform", "", "Key file format (ENGINE, other values ignored)")
-	reqCmd.Flags().StringS("keygen_engine", "keygen_engine", "", "Specify engine to be used for key generation operations")
+	reqCmd.Flags().StringS("keyform", "keyform", "", "Key file format (DER/PEM)")
 	reqCmd.Flags().StringS("keyout", "keyout", "", "File to write private key to")
 	reqCmd.Flags().BoolS("modulus", "modulus", false, "RSA modulus")
 	reqCmd.Flags().BoolS("multivalue-rdn", "multivalue-rdn", false, "Deprecated; multi-valued RDNs support is always on.")
@@ -77,11 +75,10 @@ func init() {
 		"CAkey":   carapace.ActionFiles(),
 		"cipher":  action.ActionCipherAlgorithms(reqCmd),
 		"config":  carapace.ActionFiles(),
-		"engine":  action.ActionEngines(),
 		"in":      carapace.ActionFiles(),
 		"inform":  carapace.ActionValues("DER", "PEM"),
 		"key":     carapace.ActionFiles(),
-		"keyform": carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"keyform": carapace.ActionValues("DER", "PEM", "P12"),
 		"out":     carapace.ActionFiles(),
 		"outform": carapace.ActionValues("DER", "PEM"),
 	})

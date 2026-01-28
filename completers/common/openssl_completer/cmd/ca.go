@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -35,7 +34,6 @@ func init() {
 	caCmd.Flags().StringSliceS("dateopt", "dateopt", nil, "Datetime format used for printing. (rfc_822/iso_8601). Default is rfc_822.")
 	caCmd.Flags().StringS("days", "days", "", "Number of days from today to certify the cert for")
 	caCmd.Flags().StringS("enddate", "enddate", "", "[CC]YYMMDDHHMMSSZ value for notAfter certificate field, overrides -days")
-	caCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	caCmd.Flags().StringS("extensions", "extensions", "", "Extension section (override value in config file)")
 	caCmd.Flags().StringS("extfile", "extfile", "", "Configuration file with X509v3 extensions to add")
 	caCmd.Flags().BoolS("gencrl", "gencrl", false, "Generate a new CRL")
@@ -44,7 +42,7 @@ func init() {
 	caCmd.Flags().StringS("inform", "inform", "", "CSR input format to use (PEM or DER; by default try PEM first)")
 	caCmd.Flags().StringS("key", "key", "", "Key to decrypt the private key or cert files if encrypted. Better use -passin")
 	caCmd.Flags().StringS("keyfile", "keyfile", "", "The CA private key")
-	caCmd.Flags().StringS("keyform", "keyform", "", "Private key file format (ENGINE, other values ignored)")
+	caCmd.Flags().StringS("keyform", "keyform", "", "Private key file format (DER/PEM)")
 	caCmd.Flags().StringS("md", "md", "", "Digest to use, such as sha256")
 	caCmd.Flags().BoolS("msie_hack", "msie_hack", false, "msie modifications to handle all Universal Strings")
 	caCmd.Flags().BoolS("multivalue-rdn", "multivalue-rdn", false, "Deprecated; multi-valued RDNs support is always on.")
@@ -86,12 +84,11 @@ func init() {
 		"cert":     carapace.ActionFiles(),
 		"certform": carapace.ActionValues("DER", "PEM", "P12"),
 		"config":   carapace.ActionFiles(),
-		"engine":   action.ActionEngines(),
 		"extfile":  carapace.ActionFiles(),
 		"in":       carapace.ActionFiles(),
 		"inform":   carapace.ActionValues("DER", "PEM"),
 		"keyfile":  carapace.ActionFiles(),
-		"keyform":  carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"keyform":  carapace.ActionValues("DER", "PEM", "P12"),
 		"out":      carapace.ActionFiles(),
 		"outdir":   carapace.ActionDirectories(),
 		"revoke":   carapace.ActionFiles(),

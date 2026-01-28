@@ -2,14 +2,13 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
 var cmpCmd = &cobra.Command{
 	Use:     "cmp",
-	Short:   "Certificate Management Protocol (CMP, RFC 4210) application",
+	Short:   "Certificate Management Protocol (CMP, RFCs 9810 and 9811) application",
 	GroupID: "standard",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -36,8 +35,7 @@ func init() {
 	cmpCmd.Flags().StringS("csr", "csr", "", "PKCS#10 CSR file in PEM or DER format to convert or to use in p10cr")
 	cmpCmd.Flags().StringS("days", "days", "", "Requested validity time of the new certificate in number of days")
 	cmpCmd.Flags().StringS("digest", "digest", "", "Digest to use in message protection and POPO signatures. Default \"sha256\"")
-	cmpCmd.Flags().BoolS("disable_confirm", "disable_confirm", false, "Do not confirm newly enrolled certificate w/o requesting implicit confirmation. WARNING: This leads to behavior violating RFC 4210")
-	cmpCmd.Flags().StringS("engine", "engine", "", "Use crypto engine with given identifier, possibly a hardware device. Engines may also be defined in OpenSSL config file engine section.")
+	cmpCmd.Flags().BoolS("disable_confirm", "disable_confirm", false, "Do not confirm newly enrolled certificate w/o requesting implicit confirmation. WARNING: This leads to behavior violating RFC 9810")
 	cmpCmd.Flags().StringS("expect_sender", "expect_sender", "", "DN of expected sender of responses. Defaults to subject of -srvcert, if any")
 	cmpCmd.Flags().StringS("extracerts", "extracerts", "", "Certificates to append in extraCerts field of outgoing messages. This can be used as the default CMP signer cert chain to include")
 	cmpCmd.Flags().StringS("extracertsout", "extracertsout", "", "File to save extra certificates received in the extraCerts field")
@@ -51,7 +49,7 @@ func init() {
 	cmpCmd.Flags().StringS("issuer", "issuer", "", "DN of the issuer to place in the certificate template of ir/cr/kur/rr; also used as recipient if neither -recipient nor -srvcert are given")
 	cmpCmd.Flags().StringS("keep_alive", "keep_alive", "", "Persistent HTTP connections. 0: no, 1 (the default): request, 2: require")
 	cmpCmd.Flags().StringS("key", "key", "", "CMP signer private key, not used when -secret given")
-	cmpCmd.Flags().StringS("keyform", "keyform", "", "Format of the key input (ENGINE, other values ignored)")
+	cmpCmd.Flags().StringS("keyform", "keyform", "", "Format of the key input (DER/PEM/P12)")
 	cmpCmd.Flags().StringS("keypass", "keypass", "", "Client private key (and cert and old cert) pass phrase source")
 	cmpCmd.Flags().StringS("keyspec", "keyspec", "", "Optional file to save Key specification received in genp of type certReqTemplate")
 	cmpCmd.Flags().StringS("mac", "mac", "", "MAC algorithm to use in PBM-based message protection. Default \"hmac-sha1\"")
@@ -107,7 +105,7 @@ func init() {
 	cmpCmd.Flags().StringS("secret", "secret", "", "Prefer PBM (over signatures) for protecting msgs with given password source")
 	cmpCmd.Flags().StringS("section", "section", "", "Section(s) in config file to get options from. \"\" = 'default'. Default 'cmp'")
 	cmpCmd.Flags().BoolS("send_error", "send_error", false, "Force server to reply with error message")
-	cmpCmd.Flags().BoolS("send_unprot_err", "send_unprot_err", false, "In case of negative responses, server shall send unprotected error messages, certificate responses (ip/cp/kup), and revocation responses (rp). WARNING: This setting leads to behavior violating RFC 4210")
+	cmpCmd.Flags().BoolS("send_unprot_err", "send_unprot_err", false, "In case of negative responses, server shall send unprotected error messages, certificate responses (ip/cp/kup), and revocation responses (rp). WARNING: This setting leads to behavior violating RFC 9810")
 	cmpCmd.Flags().BoolS("send_unprotected", "send_unprotected", false, "Send response messages without CMP-level protection")
 	cmpCmd.Flags().StringS("serial", "serial", "", "Serial number of certificate to be revoked in revocation request (rr)")
 	cmpCmd.Flags().StringS("server", "server", "", "[http[s]://]address[:port][/path] of CMP server. Default port 80 or 443. address may be a DNS name or an IP address; path can be overridden by -path")
@@ -122,6 +120,7 @@ func init() {
 	cmpCmd.Flags().StringS("srvcertout", "srvcertout", "", "File to save the server cert used and validated for CMP response protection")
 	cmpCmd.Flags().StringS("statusstring", "statusstring", "", "Status string to be included in server response")
 	cmpCmd.Flags().StringS("subject", "subject", "", "Distinguished Name (DN) of subject to use in the requested cert template For kur, default is subject of -csr arg or reference cert (see -oldcert) this default is used for ir and cr only if no Subject Alt Names are set")
+	cmpCmd.Flags().BoolS("ta_in_ip_extracerts", "ta_in_ip_extracerts", false, "Permit using self-issued certificates from the extraCerts in an IP message as trust anchors under conditions defined by 3GPP TS 33.310 WARNING: This setting leads to behavior allowing violation of RFC 9810")
 	cmpCmd.Flags().StringS("template", "template", "", "File to save certTemplate received in genp of type certReqTemplate")
 	cmpCmd.Flags().StringS("tls_cert", "tls_cert", "", "Client's TLS certificate. May include chain to be provided to TLS server")
 	cmpCmd.Flags().StringS("tls_extra", "tls_extra", "", "Extra certificates to provide to TLS server during TLS handshake")
@@ -132,7 +131,7 @@ func init() {
 	cmpCmd.Flags().BoolS("tls_used", "tls_used", false, "Enable using TLS (also when other TLS options are not set)")
 	cmpCmd.Flags().StringS("total_timeout", "total_timeout", "", "Overall time an enrollment incl. polling may take. Default 0 = infinite")
 	cmpCmd.Flags().StringS("trusted", "trusted", "", "Certificates to use as trust anchors when verifying signed CMP responses unless -srvcert is given")
-	cmpCmd.Flags().BoolS("unprotected_errors", "unprotected_errors", false, "Accept missing or invalid protection of regular error messages and negative certificate responses (ip/cp/kup), revocation responses (rp), and PKIConf WARNING: This setting leads to behavior allowing violation of RFC 4210")
+	cmpCmd.Flags().BoolS("unprotected_errors", "unprotected_errors", false, "Accept missing or invalid protection of regular error messages and negative certificate responses (ip/cp/kup), revocation responses (rp), and PKIConf WARNING: This setting leads to behavior allowing violation of RFC 9810")
 	cmpCmd.Flags().BoolS("unprotected_requests", "unprotected_requests", false, "Send request messages without CMP-level protection")
 	cmpCmd.Flags().StringS("untrusted", "untrusted", "", "Intermediate CA certs for chain construction for CMP/TLS/enrolled certs")
 	cmpCmd.Flags().BoolS("use_mock_srv", "use_mock_srv", false, "Use internal mock server at API level, bypassing socket-based HTTP")
@@ -161,11 +160,10 @@ func init() {
 		"crlform":        carapace.ActionValues("DER", "PEM"),
 		"crlout":         carapace.ActionFiles(),
 		"csr":            carapace.ActionFiles(),
-		"engine":         action.ActionEngines(),
 		"extracerts":     carapace.ActionFiles(),
 		"extracertsout":  carapace.ActionFiles(),
 		"key":            carapace.ActionFiles(),
-		"keyform":        carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"keyform":        carapace.ActionValues("DER", "PEM", "P12"),
 		"keyspec":        carapace.ActionFiles(),
 		"newkey":         carapace.ActionFiles(),
 		"newkeyout":      carapace.ActionFiles(),

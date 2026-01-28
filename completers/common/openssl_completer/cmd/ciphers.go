@@ -22,7 +22,6 @@ func init() {
 	ciphersCmd.Flags().BoolS("psk", "psk", false, "Include ciphersuites requiring PSK")
 	ciphersCmd.Flags().BoolS("s", "s", false, "Only supported ciphers")
 	ciphersCmd.Flags().BoolS("srp", "srp", false, "(deprecated) Include ciphersuites requiring SRP")
-	ciphersCmd.Flags().BoolS("ssl3", "ssl3", false, "Ciphers compatible with SSL3")
 	ciphersCmd.Flags().BoolS("stdname", "stdname", false, "Show standard cipher names")
 	ciphersCmd.Flags().BoolS("tls1", "tls1", false, "Ciphers compatible with TLS1")
 	ciphersCmd.Flags().BoolS("tls1_1", "tls1_1", false, "Ciphers compatible with TLS1.1")

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,7 +23,6 @@ func init() {
 	tsCmd.Flags().StringS("config", "config", "", "Configuration file")
 	tsCmd.Flags().StringS("data", "data", "", "File to hash")
 	tsCmd.Flags().StringS("digest", "digest", "", "Digest (as a hex string)")
-	tsCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	tsCmd.Flags().StringS("in", "in", "", "Input file")
 	tsCmd.Flags().StringS("inkey", "inkey", "", "File with private key for reply")
 	tsCmd.Flags().BoolS("no_nonce", "no_nonce", false, "Do not include a nonce")
@@ -49,7 +47,6 @@ func init() {
 		"chain":     carapace.ActionFiles(),
 		"config":    carapace.ActionFiles(),
 		"data":      carapace.ActionFiles(),
-		"engine":    action.ActionEngines(),
 		"in":        carapace.ActionFiles(),
 		"inkey":     carapace.ActionFiles(),
 		"out":       carapace.ActionFiles(),

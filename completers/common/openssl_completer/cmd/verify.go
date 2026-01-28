@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -22,7 +21,6 @@ func init() {
 	verifyCmd.Flags().StringS("CAstore", "CAstore", "", "URI to a store of trusted certificates")
 	verifyCmd.Flags().StringS("CRLfile", "CRLfile", "", "File containing one or more CRL's (in PEM format) to load")
 	verifyCmd.Flags().BoolS("crl_download", "crl_download", false, "Try downloading CRL information for certificates via their CDP entries")
-	verifyCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	verifyCmd.Flags().StringSliceS("nameopt", "nameopt", nil, "Certificate subject/issuer name printing options")
 	verifyCmd.Flags().BoolS("no-CAfile", "no-CAfile", false, "Do not load the default trusted certificates file")
 	verifyCmd.Flags().BoolS("no-CApath", "no-CApath", false, "Do not load trusted certificates from the default directory")
@@ -40,7 +38,6 @@ func init() {
 		"CAfile":    carapace.ActionFiles(),
 		"CApath":    carapace.ActionDirectories(),
 		"CRLfile":   carapace.ActionFiles(),
-		"engine":    action.ActionEngines(),
 		"trusted":   carapace.ActionFiles(),
 		"untrusted": carapace.ActionFiles(),
 	})

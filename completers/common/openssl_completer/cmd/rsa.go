@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -20,9 +19,8 @@ func init() {
 	rsaCmd.Flags().BoolS("RSAPublicKey_in", "RSAPublicKey_in", false, "Input is an RSAPublicKey")
 	rsaCmd.Flags().BoolS("RSAPublicKey_out", "RSAPublicKey_out", false, "Output is an RSAPublicKey")
 	rsaCmd.Flags().BoolS("check", "check", false, "Verify key consistency")
-	rsaCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	rsaCmd.Flags().StringS("in", "in", "", "Input file")
-	rsaCmd.Flags().StringS("inform", "inform", "", "Input format (DER/PEM/P12/ENGINE)")
+	rsaCmd.Flags().StringS("inform", "inform", "", "Input format (DER/PEM/P12)")
 	rsaCmd.Flags().BoolS("modulus", "modulus", false, "Print the RSA key modulus")
 	rsaCmd.Flags().BoolS("noout", "noout", false, "Don't print key out")
 	rsaCmd.Flags().StringS("out", "out", "", "Output file")
@@ -40,9 +38,8 @@ func init() {
 	rootCmd.AddCommand(rsaCmd)
 
 	carapace.Gen(rsaCmd).FlagCompletion(carapace.ActionMap{
-		"engine":  action.ActionEngines(),
 		"in":      carapace.ActionFiles(),
-		"inform":  carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"inform":  carapace.ActionValues("DER", "PEM", "P12"),
 		"out":     carapace.ActionFiles(),
 		"outform": carapace.ActionValues("DER", "PEM"),
 	})

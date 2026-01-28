@@ -28,7 +28,6 @@ func init() {
 	listCmd.Flags().BoolS("digest-commands", "digest-commands", false, "List of message digest commands (deprecated)")
 	listCmd.Flags().BoolS("disabled", "disabled", false, "List of disabled features")
 	listCmd.Flags().BoolS("encoders", "encoders", false, "List of encoding methods")
-	listCmd.Flags().BoolS("engines", "engines", false, "List of loaded engines")
 	listCmd.Flags().BoolS("kdf-algorithms", "kdf-algorithms", false, "List of key derivation and pseudo random function algorithms")
 	listCmd.Flags().BoolS("kem-algorithms", "kem-algorithms", false, "List of key encapsulation mechanism algorithms")
 	listCmd.Flags().BoolS("key-exchange-algorithms", "key-exchange-algorithms", false, "List of key exchange algorithms")

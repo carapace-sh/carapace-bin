@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -46,14 +45,13 @@ func init() {
 	cmsCmd.Flags().BoolS("digest_verify", "digest_verify", false, "Verify a CMS \"DigestedData\" object and output it")
 	cmsCmd.Flags().StringS("econtent_type", "econtent_type", "", "OID for external content")
 	cmsCmd.Flags().BoolS("encrypt", "encrypt", false, "Encrypt message")
-	cmsCmd.Flags().StringS("engine", "engine", "", "Use engine e, possibly a hardware device")
 	cmsCmd.Flags().StringS("from", "from", "", "From address")
 	cmsCmd.Flags().StringS("in", "in", "", "Input file")
 	cmsCmd.Flags().BoolS("indef", "indef", false, "Same as -stream")
 	cmsCmd.Flags().StringS("inform", "inform", "", "Input format SMIME (default), PEM or DER")
 	cmsCmd.Flags().StringS("inkey", "inkey", "", "Input private key (if not signer or recipient)")
 	cmsCmd.Flags().StringS("kekcipher", "kekcipher", "", "The key encryption algorithm to use")
-	cmsCmd.Flags().StringS("keyform", "keyform", "", "Input private key format (ENGINE, other values ignored)")
+	cmsCmd.Flags().StringS("keyform", "keyform", "", "Input private key format (DER/PEM)")
 	cmsCmd.Flags().BoolS("keyid", "keyid", false, "Use subject key identifier")
 	cmsCmd.Flags().StringSliceS("keyopt", "keyopt", nil, "Set public key parameters as n:v pairs")
 	cmsCmd.Flags().StringS("md", "md", "", "Digest algorithm to use")
@@ -116,11 +114,10 @@ func init() {
 		"certsout":       carapace.ActionFiles(),
 		"config":         carapace.ActionFiles(),
 		"content":        carapace.ActionFiles(),
-		"engine":         action.ActionEngines(),
 		"in":             carapace.ActionFiles(),
 		"inform":         carapace.ActionValues("DER", "PEM", "SMIME"),
 		"inkey":          carapace.ActionFiles(),
-		"keyform":        carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"keyform":        carapace.ActionValues("DER", "PEM", "P12"),
 		"originator":     carapace.ActionFiles(),
 		"out":            carapace.ActionFiles(),
 		"outform":        carapace.ActionValues("DER", "PEM", "SMIME"),

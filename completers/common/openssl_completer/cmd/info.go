@@ -19,7 +19,6 @@ func init() {
 	infoCmd.Flags().BoolS("cpusettings", "cpusettings", false, "CPU settings info")
 	infoCmd.Flags().BoolS("dirnamesep", "dirnamesep", false, "Directory-filename separator")
 	infoCmd.Flags().BoolS("dsoext", "dsoext", false, "Configured extension for modules")
-	infoCmd.Flags().BoolS("enginesdir", "enginesdir", false, "Default engine module directory")
 	infoCmd.Flags().BoolS("listsep", "listsep", false, "List separator character")
 	infoCmd.Flags().BoolS("modulesdir", "modulesdir", false, "Default module directory (other than engine modules)")
 	infoCmd.Flags().BoolS("seeds", "seeds", false, "Seed sources")

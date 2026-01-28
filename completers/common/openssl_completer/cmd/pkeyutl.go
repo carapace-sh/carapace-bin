@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -26,18 +25,16 @@ func init() {
 	pkeyutlCmd.Flags().StringS("digest", "digest", "", "The digest algorithm to use for signing/verifying raw input data. Implies -rawin")
 	pkeyutlCmd.Flags().BoolS("encap", "encap", false, "Encapsulate shared secret")
 	pkeyutlCmd.Flags().BoolS("encrypt", "encrypt", false, "Encrypt input data with public key")
-	pkeyutlCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
-	pkeyutlCmd.Flags().BoolS("engine_impl", "engine_impl", false, "Also use engine given by -engine for crypto operations")
 	pkeyutlCmd.Flags().BoolS("hexdump", "hexdump", false, "Hex dump output")
 	pkeyutlCmd.Flags().StringS("in", "in", "", "Input file - default stdin")
 	pkeyutlCmd.Flags().StringS("inkey", "inkey", "", "Input key, by default private key")
 	pkeyutlCmd.Flags().StringS("kdf", "kdf", "", "Use KDF algorithm")
 	pkeyutlCmd.Flags().StringS("kdflen", "kdflen", "", "KDF algorithm output length")
 	pkeyutlCmd.Flags().StringS("kemop", "kemop", "", "KEM operation specific to the key algorithm")
-	pkeyutlCmd.Flags().StringS("keyform", "keyform", "", "Private key format (ENGINE, other values ignored)")
+	pkeyutlCmd.Flags().StringS("keyform", "keyform", "", "Private key format (DER/PEM)")
 	pkeyutlCmd.Flags().StringS("out", "out", "", "Output file - default stdout")
 	pkeyutlCmd.Flags().StringS("passin", "passin", "", "Input file pass phrase source")
-	pkeyutlCmd.Flags().StringS("peerform", "peerform", "", "Peer key format (DER/PEM/P12/ENGINE)")
+	pkeyutlCmd.Flags().StringS("peerform", "peerform", "", "Peer key format (DER/PEM/P12)")
 	pkeyutlCmd.Flags().StringS("peerkey", "peerkey", "", "Peer key file used in key derivation")
 	pkeyutlCmd.Flags().StringSliceS("pkeyopt", "pkeyopt", nil, "Public key options as opt:value")
 	pkeyutlCmd.Flags().StringS("pkeyopt_passin", "pkeyopt_passin", "", "Public key option that is read as a passphrase argument opt:passphrase")
@@ -55,13 +52,12 @@ func init() {
 
 	carapace.Gen(pkeyutlCmd).FlagCompletion(carapace.ActionMap{
 		"config":   carapace.ActionFiles(),
-		"engine":   action.ActionEngines(),
 		"in":       carapace.ActionFiles(),
 		"inkey":    carapace.ActionFiles(),
 		"kdf":      carapace.ActionValues("HKDF", "TLS1-PRF"),
-		"keyform":  carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"keyform":  carapace.ActionValues("DER", "PEM", "P12"),
 		"out":      carapace.ActionFiles(),
-		"peerform": carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"peerform": carapace.ActionValues("DER", "PEM", "P12"),
 		"peerkey":  carapace.ActionFiles(),
 		"secret":   carapace.ActionFiles(),
 		"sigfile":  carapace.ActionFiles(),

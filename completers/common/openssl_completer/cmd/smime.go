@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -27,13 +26,12 @@ func init() {
 	smimeCmd.Flags().BoolS("crlfeol", "crlfeol", false, "Use CRLF as EOL termination instead of LF only")
 	smimeCmd.Flags().BoolS("decrypt", "decrypt", false, "Decrypt encrypted message")
 	smimeCmd.Flags().BoolS("encrypt", "encrypt", false, "Encrypt message")
-	smimeCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
 	smimeCmd.Flags().StringS("from", "from", "", "From address")
 	smimeCmd.Flags().StringS("in", "in", "", "Input file")
 	smimeCmd.Flags().BoolS("indef", "indef", false, "Same as -stream")
 	smimeCmd.Flags().StringS("inform", "inform", "", "Input format SMIME (default), PEM or DER")
 	smimeCmd.Flags().StringS("inkey", "inkey", "", "Input private key (if not signer or recipient)")
-	smimeCmd.Flags().StringS("keyform", "keyform", "", "Input private key format (ENGINE, other values ignored)")
+	smimeCmd.Flags().StringS("keyform", "keyform", "", "Input private key format (DER/PEM)")
 	smimeCmd.Flags().StringS("md", "md", "", "Digest algorithm to use when signing or resigning")
 	smimeCmd.Flags().BoolS("no-CAfile", "no-CAfile", false, "Do not load the default certificates file")
 	smimeCmd.Flags().BoolS("no-CApath", "no-CApath", false, "Do not load certificates from the default certificates directory")
@@ -71,11 +69,10 @@ func init() {
 		"certfile": carapace.ActionFiles(),
 		"config":   carapace.ActionFiles(),
 		"content":  carapace.ActionFiles(),
-		"engine":   action.ActionEngines(),
 		"in":       carapace.ActionFiles(),
 		"inform":   carapace.ActionValues("DER", "PEM", "SMIME"),
 		"inkey":    carapace.ActionFiles(),
-		"keyform":  carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"keyform":  carapace.ActionValues("DER", "PEM", "P12"),
 		"out":      carapace.ActionFiles(),
 		"outform":  carapace.ActionValues("DER", "PEM", "SMIME"),
 		"recip":    carapace.ActionFiles(),

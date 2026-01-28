@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -19,7 +18,7 @@ func init() {
 
 	genpkeyCmd.Flags().StringS("algorithm", "algorithm", "", "The public key algorithm")
 	genpkeyCmd.Flags().StringS("config", "config", "", "Load a configuration file (this may load modules)")
-	genpkeyCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
+	genpkeyCmd.Flags().StringSliceS("encopt", "encopt", nil, "Private key encoder parameter")
 	genpkeyCmd.Flags().BoolS("genparam", "genparam", false, "Generate parameters, not key")
 	genpkeyCmd.Flags().StringS("out", "out", "", "Output (private key) file")
 	genpkeyCmd.Flags().StringS("outform", "outform", "", "output format (DER or PEM)")
@@ -38,7 +37,6 @@ func init() {
 
 	carapace.Gen(genpkeyCmd).FlagCompletion(carapace.ActionMap{
 		"config":    carapace.ActionFiles(),
-		"engine":    action.ActionEngines(),
 		"out":       carapace.ActionFiles(),
 		"outform":   carapace.ActionValues("DER", "PEM"),
 		"outpubkey": carapace.ActionFiles(),

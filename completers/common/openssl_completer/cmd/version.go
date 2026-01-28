@@ -19,7 +19,6 @@ func init() {
 	versionCmd.Flags().BoolS("b", "b", false, "Show build date")
 	versionCmd.Flags().BoolS("c", "c", false, "Show CPU settings info")
 	versionCmd.Flags().BoolS("d", "d", false, "Show configuration directory")
-	versionCmd.Flags().BoolS("e", "e", false, "Show engines directory")
 	versionCmd.Flags().BoolS("f", "f", false, "Show compiler flags used")
 	versionCmd.Flags().BoolS("m", "m", false, "Show modules directory")
 	versionCmd.Flags().BoolS("o", "o", false, "Show some internal datatype options")

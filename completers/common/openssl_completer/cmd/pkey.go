@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/openssl_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -20,9 +19,9 @@ func init() {
 	pkeyCmd.Flags().BoolS("check", "check", false, "Check key consistency")
 	pkeyCmd.Flags().StringS("ec_conv_form", "ec_conv_form", "", "Specifies the EC point conversion form in the encoding")
 	pkeyCmd.Flags().StringS("ec_param_enc", "ec_param_enc", "", "Specifies the way the EC parameters are encoded")
-	pkeyCmd.Flags().StringS("engine", "engine", "", "Use engine, possibly a hardware device")
+	pkeyCmd.Flags().StringSliceS("encopt", "encopt", nil, "Private key encoder parameter")
 	pkeyCmd.Flags().StringS("in", "in", "", "Input key")
-	pkeyCmd.Flags().StringS("inform", "inform", "", "Key input format (ENGINE, other values ignored)")
+	pkeyCmd.Flags().StringS("inform", "inform", "", "Key input format (DER/PEM)")
 	pkeyCmd.Flags().BoolS("noout", "noout", false, "Do not output the key in encoded form")
 	pkeyCmd.Flags().StringS("out", "out", "", "Output file for encoded and/or text output")
 	pkeyCmd.Flags().StringS("outform", "outform", "", "Output encoding format (DER or PEM)")
@@ -40,9 +39,8 @@ func init() {
 	carapace.Gen(pkeyCmd).FlagCompletion(carapace.ActionMap{
 		"ec_conv_form": carapace.ActionValues("compressed", "hybrid", "uncompressed"),
 		"ec_param_enc": carapace.ActionValues("named_curve", "explicit"),
-		"engine":       action.ActionEngines(),
 		"in":           carapace.ActionFiles(),
-		"inform":       carapace.ActionValues("ENGINE", "DER", "PEM", "P12"),
+		"inform":       carapace.ActionValues("DER", "PEM", "P12"),
 		"out":          carapace.ActionFiles(),
 		"outform":      carapace.ActionValues("DER", "PEM"),
 	})
