@@ -9,6 +9,10 @@ import (
 	"github.com/pelletier/go-toml"
 )
 
+// ActionConfigs completes configs
+//
+//	ui.color (never)
+//	ui.editor (hx)
 func ActionConfigs(includeDefaults bool) carapace.Action {
 	if !includeDefaults {
 		return actionConfigs(false)

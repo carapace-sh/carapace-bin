@@ -12,6 +12,7 @@ type RevOption struct {
 	Commits         int
 	HeadCommits     int
 	Tags            bool
+	ChangeIds       bool
 }
 
 func (o RevOption) Default() RevOption {
@@ -20,6 +21,7 @@ func (o RevOption) Default() RevOption {
 	o.Commits = 100
 	o.HeadCommits = 20
 	o.Tags = true
+	o.ChangeIds = true
 	return o
 
 }
@@ -47,6 +49,10 @@ func ActionRevs(revOption RevOption) carapace.Action {
 
 		if revOption.Tags {
 			batch = append(batch, ActionTags())
+		}
+
+		if revOption.ChangeIds {
+			batch = append(batch, ActionChangeIds())
 		}
 
 		return batch.ToA()
