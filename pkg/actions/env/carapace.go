@@ -14,10 +14,11 @@ func init() {
 		return variables{
 			Variables: map[string]string{
 				// carapace
-				"CARAPACE_COVERDIR":      "coverage directory for sandbox tests",
+				"CARAPACE_COLOR":         "enable color",
 				"CARAPACE_COMPLINE":      "current command line",
-				"CARAPACE_ENV":           "register get-env, set-env and unset-env",
+				"CARAPACE_COVERDIR":      "coverage directory for sandbox tests",
 				"CARAPACE_EDITOR":        "editor to use",
+				"CARAPACE_ENV":           "register get-env, set-env and unset-env",
 				"CARAPACE_HIDDEN":        "show hidden commands/flags",
 				"CARAPACE_LENIENT":       "allow unknown flags",
 				"CARAPACE_LOG":           "enable logging",
@@ -34,10 +35,11 @@ func init() {
 			},
 			VariableCompletion: map[string]carapace.Action{
 				// carapace
-				"CARAPACE_COVERDIR": carapace.ActionDirectories(),
+				"CARAPACE_COLOR":    _bool,
 				"CARAPACE_COMPLINE": bridge.ActionCarapaceBin().Split(),
-				"CARAPACE_ENV":      _bool,
+				"CARAPACE_COVERDIR": carapace.ActionDirectories(),
 				"CARAPACE_EDITOR":   bridge.ActionCarapaceBin().Split(),
+				"CARAPACE_ENV":      _bool,
 				"CARAPACE_HIDDEN": carapace.ActionStyledValuesDescribed(
 					"0", "disabled", style.Carapace.KeywordNegative,
 					"1", "enabled", style.Carapace.KeywordPositive,
