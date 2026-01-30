@@ -5,6 +5,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/completers/common/minikube_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -70,7 +71,7 @@ func init() {
 	startCmd.Flags().Bool("interactive", false, "Allow user prompts for more information")
 	startCmd.Flags().StringSlice("iso-url", nil, "Locations to fetch the minikube ISO from.")
 	startCmd.Flags().Bool("keep-context", false, "This will keep the existing kubectl context and will create a minikube context.")
-	startCmd.Flags().String("kubernetes-version", "", "The Kubernetes version that the minikube VM will use (ex: v1.2.3, 'stable' for v1.34.0, 'latest' for v1.34.0). Defaults to 'stable'.")
+	startCmd.Flags().String("kubernetes-version", "", "The Kubernetes version that the minikube VM will use (ex: v1.2.3, 'stable' for v1.35.0, 'latest' for v1.35.0). Defaults to 'stable'.")
 	startCmd.Flags().Bool("kvm-gpu", false, "Enable experimental NVIDIA GPU support in minikube")
 	startCmd.Flags().Bool("kvm-hidden", false, "Hide the hypervisor signature from the guest in minikube (kvm2 driver only)")
 	startCmd.Flags().String("kvm-network", "", "The KVM default network name. (kvm2 driver only)")
@@ -101,8 +102,10 @@ func init() {
 	startCmd.Flags().StringP("output", "o", "", "Format to print stdout in. Options include: [text,json]")
 	startCmd.Flags().StringSlice("ports", nil, "List of ports that should be exposed (docker and podman driver only)")
 	startCmd.Flags().Bool("preload", false, "If set, download tarball of preloaded images if available to improve start time. Defaults to true.")
+	startCmd.Flags().String("preload-source", "", "Which source to download the preload from (valid options: gcs, github, auto). Defaults to auto (try both).")
 	startCmd.Flags().String("qemu-firmware-path", "", "Path to the qemu firmware file. Defaults: For Linux, the default firmware location. For macOS, the brew installation location. For Windows, C:\\Program Files\\qemu\\share")
 	startCmd.Flags().StringSlice("registry-mirror", nil, "Registry mirrors to pass to the Docker daemon")
+	startCmd.Flags().Bool("rosetta", false, "Enable Rosetta to support apps built for Intel processor on a Mac with Apple silicon (vfkit driver only)")
 	startCmd.Flags().String("service-cluster-ip-range", "", "The CIDR to be used for service cluster IPs.")
 	startCmd.Flags().String("socket-vmnet-client-path", "", "Path to the socket vmnet client binary (QEMU driver only)")
 	startCmd.Flags().String("socket-vmnet-path", "", "Path to socket vmnet binary (QEMU driver only)")
@@ -149,10 +152,11 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"nat-nic-type": carapace.ActionValues("Am79C970A", "Am79C973", "82540EM", "82543GC", "82545EM", "virtio"),
-		"output":       carapace.ActionValues("text", "json"),
-		"ssh-key":      carapace.ActionFiles(),
-		"ssh-user":     os.ActionUsers(),
+		"nat-nic-type":   carapace.ActionValues("Am79C970A", "Am79C973", "82540EM", "82543GC", "82545EM", "virtio"),
+		"output":         carapace.ActionValues("text", "json"),
+		"preload-source": carapace.ActionValues("gcs", "github", "auto").StyleF(style.ForKeyword),
+		"ssh-key":        carapace.ActionFiles(),
+		"ssh-user":       os.ActionUsers(),
 		"wait": carapace.ActionValues(
 			"apiserver",
 			"system_pods",

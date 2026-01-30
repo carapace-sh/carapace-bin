@@ -14,6 +14,7 @@ var config_setCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(config_setCmd).Standalone()
+
 	configCmd.AddCommand(config_setCmd)
 
 	carapace.Gen(config_setCmd).PositionalCompletion(
