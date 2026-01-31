@@ -21,7 +21,7 @@ func ActionHeadCommits(limit int) carapace.Action {
 		for index, line := range lines[:len(lines)-1] {
 			vals = append(vals, "@"+strings.Repeat("-", index), line)
 		}
-		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.HeadCommit)
+		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Head)
 	}).Tag("head commits")
 }
 
@@ -39,7 +39,7 @@ func ActionPrevCommits(limit int) carapace.Action {
 			splitted := strings.SplitN(line, "\t", 2)
 			vals = append(vals, fmt.Sprintf(format, index), splitted[1])
 		}
-		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.HeadCommit)
+		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Head)
 	}).Tag("previous commits")
 }
 
@@ -54,7 +54,7 @@ func ActionNextCommits(limit int) carapace.Action {
 			splitted := strings.SplitN(line, "\t", 2)
 			vals = append(vals, fmt.Sprintf(format, len(lines)-3-index), splitted[1])
 		}
-		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.HeadCommit)
+		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Head)
 	}).Tag("previous commits")
 }
 
