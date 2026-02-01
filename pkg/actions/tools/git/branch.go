@@ -23,6 +23,9 @@ func ActionCurrentBranch() carapace.Action {
 func ActionLocalBranches() carapace.Action {
 	return carapace.ActionExecCommand("git", "branch", "--format", "%(refname:short)\n%(subject)")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
+		if strings.HasPrefix(lines[0], "(") {
+			lines = lines[2:] // skip detached HEAD
+		}
 		return carapace.ActionValuesDescribed(lines[:len(lines)-1]...).Style(styles.Git.Branch)
 	}).Tag("local branches").UidF(Uid("local-branch")).QueryF(Uid("local-branch"))
 }
