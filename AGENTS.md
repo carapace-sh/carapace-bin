@@ -117,7 +117,7 @@ See the `carapace-env` skill for details on built-in Go definitions (`pkg/action
 
 ### Completers Are Synthetic Cobra Commands
 
-Each completer under `completers/` is a standalone Go binary that constructs a **synthetic cobra command tree** mimicking the target CLI's interface — not the actual tool's code. They use `carapace.Gen(rootCmd).Standalone()` to prevent cobra's default help/completion from interfering.
+Each completer under `completers/` is a standalone Go binary that constructs a **synthetic cobra command tree** mimicking the target CLI's interface — not the actual tool's code. They use `carapace.Gen(rootCmd).Standalone()` to prevent cobra's default help/completion from interfering. The `Long` field of the root command holds the URL to the project website or manpage (e.g. `"https://linux.die.net/man/8/umount"` or `"https://github.com/sharkdp/bat"`).
 
 ```
 completers/common/bat_completer/
