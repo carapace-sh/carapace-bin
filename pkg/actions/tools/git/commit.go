@@ -24,7 +24,7 @@ func ActionRefCommits(ref string) carapace.Action {
 			for index, line := range lines[:len(lines)-1] {
 				vals = append(vals, fmt.Sprintf("%0"+strconv.Itoa(len(strconv.Itoa(limit-1)))+"d", index), strings.TrimSpace(line[10:]))
 			}
-			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Commit)
+			return carapace.ActionValuesDescribed(vals...).Prefix(ref + "~").Style(styles.Git.Commit)
 		})
 	}).Tag("ref commits")
 }
@@ -41,7 +41,7 @@ func ActionRefParents(ref string) carapace.Action {
 			for index, field := range strings.Fields(string(output)) {
 				vals = append(vals, strconv.Itoa(index+1), field)
 			}
-			return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Commit)
+			return carapace.ActionValuesDescribed(vals...).Prefix(ref + "^").Style(styles.Git.Commit)
 		})
 	}).Tag("parent commits")
 }

@@ -76,7 +76,7 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			index := max(strings.LastIndex(c.Value, "~"), strings.LastIndex(c.Value, "^"), strings.LastIndex(c.Value, "@"))
 			switch c.Value[index] {
 			case '^':
-				return ActionRefParents(c.Value[:index]).Prefix(c.Value[:index+1])
+				return ActionRefParents(c.Value[:index])
 			case '@':
 				return carapace.Batch(
 					time.ActionDateTime(time.DateTimeOpts{}),
@@ -95,7 +95,7 @@ func ActionRefs(refOption RefOption) carapace.Action {
 				).ToA().Prefix(c.Value[:index+1] + "{")
 
 			default: // '~'
-				return ActionRefCommits(c.Value[:index]).Prefix(c.Value[:index+1])
+				return ActionRefCommits(c.Value[:index])
 			}
 		}).UidF(Uid("ref"))
 	})
