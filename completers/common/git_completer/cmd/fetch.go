@@ -25,7 +25,7 @@ func init() {
 	fetchCmd.Flags().String("deepen", "", "deepen history of shallow clone")
 	fetchCmd.Flags().String("depth", "", "deepen history of shallow clone")
 	fetchCmd.Flags().Bool("dry-run", false, "dry run")
-	fetchCmd.Flags().String("filter", "", "object filtering")
+	fetchCmd.Flags().StringArray("filter", nil, "object filtering")
 	fetchCmd.Flags().BoolP("force", "f", false, "force overwrite of local reference")
 	fetchCmd.Flags().BoolP("ipv4", "4", false, "use IPv4 addresses only")
 	fetchCmd.Flags().BoolP("ipv6", "6", false, "use IPv6 addresses only")
@@ -66,6 +66,7 @@ func init() {
 	rootCmd.AddCommand(fetchCmd)
 
 	carapace.Gen(fetchCmd).FlagCompletion(carapace.ActionMap{
+		"filter":                     git.ActionObjectFilters(),
 		"recurse-submodules":         carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
 		"recurse-submodules-default": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
 	})

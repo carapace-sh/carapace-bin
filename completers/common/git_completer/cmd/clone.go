@@ -21,7 +21,7 @@ func init() {
 	cloneCmd.Flags().StringP("config", "c", "", "set config inside the new repository")
 	cloneCmd.Flags().String("depth", "", "create a shallow clone of that depth")
 	cloneCmd.Flags().Bool("dissociate", false, "use --reference only while cloning")
-	cloneCmd.Flags().String("filter", "", "object filtering")
+	cloneCmd.Flags().StringArray("filter", nil, "object filtering")
 	cloneCmd.Flags().BoolP("ipv4", "4", false, "use IPv4 addresses only")
 	cloneCmd.Flags().BoolP("ipv6", "6", false, "use IPv6 addresses only")
 	cloneCmd.Flags().StringP("jobs", "j", "", "number of submodules cloned in parallel")
@@ -61,6 +61,7 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
+		"filter":           git.ActionObjectFilters(),
 		"separate-git-dir": carapace.ActionFiles(),
 		"template":         carapace.ActionDirectories(),
 	})
