@@ -8,7 +8,7 @@ import (
 
 var oplog_listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "List operation history",
+	Short: "List operation history.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var update_suppressCmd = &cobra.Command{
 	Use:   "suppress",
-	Short: "Suppress update notifications for a specified duration, defaulting to 1 day",
+	Short: "Suppress update notifications temporarily",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

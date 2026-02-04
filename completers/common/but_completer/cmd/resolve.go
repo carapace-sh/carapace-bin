@@ -7,7 +7,7 @@ import (
 
 var resolveCmd = &cobra.Command{
 	Use:   "resolve",
-	Short: "Resolve conflicts in a commit",
+	Short: "Resolve conflicts in a commit.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

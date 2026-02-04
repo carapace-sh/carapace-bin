@@ -8,7 +8,7 @@ import (
 
 var mergeCmd = &cobra.Command{
 	Use:   "merge",
-	Short: "Merge a branch into your local target branch",
+	Short: "Merge a branch into your local target branch.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

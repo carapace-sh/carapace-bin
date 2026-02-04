@@ -7,7 +7,7 @@ import (
 )
 
 var branch_newCmd = &cobra.Command{
-	Use:   "new [BRANCH_NAME]",
+	Use:   "new",
 	Short: "Creates a new branch in the workspace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

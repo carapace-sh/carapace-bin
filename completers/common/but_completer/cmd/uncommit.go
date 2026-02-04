@@ -8,7 +8,7 @@ import (
 
 var uncommitCmd = &cobra.Command{
 	Use:   "uncommit",
-	Short: "Uncommit changes from a commit or file-in-commit to the unstaged area",
+	Short: "Uncommit changes from a commit or file-in-commit to the unstaged area.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
