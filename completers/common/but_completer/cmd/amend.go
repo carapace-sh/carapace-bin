@@ -7,7 +7,7 @@ import (
 
 var amendCmd = &cobra.Command{
 	Use:   "amend",
-	Short: "Amend a file change into a specific commit and rebases any dependent commits",
+	Short: "Amend a file change into a specific commit and rebases any dependent commits.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

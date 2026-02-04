@@ -8,7 +8,7 @@ import (
 
 var rewordCmd = &cobra.Command{
 	Use:   "reword",
-	Short: "Edit the commit message of the specified commit",
+	Short: "Edit the commit message of the specified commit.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
