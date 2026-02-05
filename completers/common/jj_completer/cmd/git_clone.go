@@ -8,7 +8,7 @@ import (
 )
 
 var git_cloneCmd = &cobra.Command{
-	Use:   "clone [OPTIONS] <SOURCE> [DESTINATION]",
+	Use:   "clone",
 	Short: "Create a new repo backed by a clone of a Git repo",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -16,8 +16,8 @@ var git_cloneCmd = &cobra.Command{
 func init() {
 	carapace.Gen(git_cloneCmd).Standalone()
 
-	git_cloneCmd.Flags().StringSlice("bookmark", nil, "Name of the branch to fetch and use as the parent of the working-copy change")
-	git_cloneCmd.Flags().StringSliceP("branch", "b", nil, "Name of the branch to fetch and use as the parent of the working-copy change")
+	git_cloneCmd.Flags().StringSlice("bookmark", nil, "Name of the branch to fetch and use as the parent of the working-copy change (can be repeated)")
+	git_cloneCmd.Flags().StringSliceP("branch", "b", nil, "Name of the branch to fetch and use as the parent of the working-copy change (can be repeated)")
 	git_cloneCmd.Flags().Bool("colocate", false, "Colocate the Jujutsu repo with the git repo")
 	git_cloneCmd.Flags().String("depth", "", "Create a shallow clone of the given depth")
 	git_cloneCmd.Flags().String("fetch-tags", "", "Configure when to fetch tags")
