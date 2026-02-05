@@ -6,19 +6,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var branch_applyCmd = &cobra.Command{
+var applyCmd = &cobra.Command{
 	Use:   "apply",
-	Short: "Apply a branch to the workspace",
+	Short: "Apply a branch to the workspace.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(branch_applyCmd).Standalone()
+	carapace.Gen(applyCmd).Standalone()
 
-	branch_applyCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	branchCmd.AddCommand(branch_applyCmd)
+	applyCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	rootCmd.AddCommand(applyCmd)
 
-	carapace.Gen(branch_applyCmd).PositionalCompletion(
+	carapace.Gen(applyCmd).PositionalCompletion(
 		carapace.Batch(
 			git.ActionLocalBranches(),
 			git.ActionRemoteBranches(""),

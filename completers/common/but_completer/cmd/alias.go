@@ -7,7 +7,7 @@ import (
 
 var aliasCmd = &cobra.Command{
 	Use:   "alias",
-	Short: "Manage command aliases",
+	Short: "Manage command aliases.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

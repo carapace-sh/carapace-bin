@@ -9,7 +9,7 @@ import (
 
 var diffCmd = &cobra.Command{
 	Use:   "diff",
-	Short: "Displays the diff of changes in the repo",
+	Short: "Displays the diff of changes in the repo.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
