@@ -16,10 +16,10 @@ func init() {
 	carapace.Gen(git_fetchCmd).Standalone()
 
 	git_fetchCmd.Flags().Bool("all-remotes", false, "Fetch from all remotes")
-	git_fetchCmd.Flags().StringSlice("bookmark", nil, "Fetch only some of the branches")
-	git_fetchCmd.Flags().StringSliceP("branch", "b", nil, "Fetch only some of the branches")
+	git_fetchCmd.Flags().StringSlice("bookmark", nil, "Name of the branch to fetch (can be repeated)")
+	git_fetchCmd.Flags().StringSliceP("branch", "b", nil, "Name of the branch to fetch (can be repeated)")
 	git_fetchCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	git_fetchCmd.Flags().StringSlice("remote", []string{"origin"}, "The remote to fetch from (only named remotes are supported, can be repeated)")
+	git_fetchCmd.Flags().StringSlice("remote", nil, "The remote to fetch from (only named remotes are supported, can be repeated)")
 	git_fetchCmd.Flags().Bool("tracked", false, "Fetch only tracked bookmarks")
 	git_fetchCmd.Flag("bookmark").Hidden = true
 	gitCmd.AddCommand(git_fetchCmd)

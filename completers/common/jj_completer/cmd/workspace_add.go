@@ -7,7 +7,7 @@ import (
 )
 
 var workspace_addCmd = &cobra.Command{
-	Use:   "add [OPTIONS] <DESTINATION>",
+	Use:   "add",
 	Short: "Add a workspace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(workspace_addCmd).Standalone()
 
 	workspace_addCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	workspace_addCmd.Flags().StringSliceP("message", "m", nil, "The change description to use")
 	workspace_addCmd.Flags().String("name", "", "A name for the workspace")
 	workspace_addCmd.Flags().StringSliceP("revision", "r", nil, "A list of parent revisions for the working-copy commit of the newly created workspace. You may specify nothing, or any number of parents")
 	workspace_addCmd.Flags().String("sparse-patterns", "", "How to handle sparse patterns when creating a new workspace")

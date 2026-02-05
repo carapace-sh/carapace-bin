@@ -7,8 +7,8 @@ import (
 )
 
 var bookmark_setCmd = &cobra.Command{
-	Use:     "set [OPTIONS] <NAMES>...",
-	Short:   "Create or update a bookmark to point to a certain commit",
+	Use:     "set",
+	Short:   "Create a new bookmark, or update an existing one by name",
 	Aliases: []string{"s"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
