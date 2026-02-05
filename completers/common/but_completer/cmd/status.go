@@ -7,7 +7,7 @@ import (
 
 var statusCmd = &cobra.Command{
 	Use:     "status",
-	Short:   "Overview of the project workspace state",
+	Short:   "Overview of the project workspace state.",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "inspection",
 }

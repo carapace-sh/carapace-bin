@@ -7,7 +7,7 @@ import (
 
 var configCmd = &cobra.Command{
 	Use:   "config",
-	Short: "View and manage GitButler configuration",
+	Short: "View and manage GitButler configuration.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

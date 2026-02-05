@@ -7,7 +7,7 @@ import (
 
 var teardownCmd = &cobra.Command{
 	Use:   "teardown",
-	Short: "Exit GitButler mode and return to normal Git workflow",
+	Short: "Exit GitButler mode and return to normal Git workflow.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

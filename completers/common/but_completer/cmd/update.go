@@ -7,7 +7,7 @@ import (
 
 var updateCmd = &cobra.Command{
 	Use:   "update",
-	Short: "Manage GitButler CLI and app updates",
+	Short: "Manage GitButler CLI and app updates.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

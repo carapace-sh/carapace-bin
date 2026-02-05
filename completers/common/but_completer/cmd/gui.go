@@ -7,7 +7,7 @@ import (
 
 var guiCmd = &cobra.Command{
 	Use:     "gui",
-	Short:   "Open the GitButler GUI for the current project",
+	Short:   "Open the GitButler GUI for the current project.",
 	Aliases: []string{"."},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

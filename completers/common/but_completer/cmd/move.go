@@ -8,7 +8,7 @@ import (
 
 var moveCmd = &cobra.Command{
 	Use:   "move",
-	Short: "Move a commit to a different location in the stack",
+	Short: "Move a commit to a different location in the stack.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
