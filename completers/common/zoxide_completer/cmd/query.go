@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(queryCmd).Standalone()
 
 	queryCmd.Flags().BoolP("all", "a", false, "Show unavailable directories")
+	queryCmd.Flags().String("base-dir", "", "Only search within this directory")
 	queryCmd.Flags().String("exclude", "", "Exclude the current directory")
 	queryCmd.Flags().BoolP("help", "h", false, "Print help")
 	queryCmd.Flags().BoolP("interactive", "i", false, "Use interactive selection")
@@ -24,6 +25,7 @@ func init() {
 	rootCmd.AddCommand(queryCmd)
 
 	carapace.Gen(queryCmd).FlagCompletion(carapace.ActionMap{
-		"exclude": carapace.ActionDirectories(),
+		"base-dir": carapace.ActionDirectories(),
+		"exclude":  carapace.ActionDirectories(),
 	})
 }
