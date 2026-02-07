@@ -23,7 +23,7 @@ func init() {
 		carapace.Batch(
 			git.ActionChanges(git.ChangeOpts{}.Default()),
 			but.ActionCliIds(but.CliIdsOpts{Changes: true}),
-		).ToA(),
+		).ToA().UniqueList(","),
 		carapace.Batch(
 			but.ActionLocalBranches(),
 			but.ActionCliIds(but.CliIdsOpts{Branches: true}),

@@ -25,15 +25,15 @@ func (c butChange) Description() string {
 }
 
 type butCommit struct {
-	CliID       string    `json:"cliId"`
-	CommitID    string    `json:"commitId"`
-	CreatedAt   time.Time `json:"createdAt"`
-	Message     string    `json:"message"`
-	AuthorName  string    `json:"authorName"`
-	AuthorEmail string    `json:"authorEmail"`
-	Conflicted  bool      `json:"conflicted"`
-	ReviewID    any       `json:"reviewId"`
-	Changes     any       `json:"changes"`
+	CliID       string      `json:"cliId"`
+	CommitID    string      `json:"commitId"`
+	CreatedAt   time.Time   `json:"createdAt"`
+	Message     string      `json:"message"`
+	AuthorName  string      `json:"authorName"`
+	AuthorEmail string      `json:"authorEmail"`
+	Conflicted  bool        `json:"conflicted"`
+	ReviewID    any         `json:"reviewId"`
+	Changes     []butChange `json:"changes"`
 }
 
 type butBranch struct {
@@ -62,13 +62,19 @@ type butStatus struct {
 	} `json:"upstreamState"`
 }
 
-func actionStatus(f func(status butStatus) carapace.Action) carapace.Action {
-	return carapace.ActionExecCommand("but", "status", "--json")(func(output []byte) carapace.Action {
-		var status butStatus
-		if err := json.Unmarshal(output, &status); err != nil {
-			return carapace.ActionMessage(err.Error())
+func actionStatus(includeCommitted bool, f func(status butStatus) carapace.Action) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		args := []string{"status", "--json"}
+		if includeCommitted {
+			args = append(args, "-f")
 		}
-		return f(status)
+		return carapace.ActionExecCommand("but", args...)(func(output []byte) carapace.Action {
+			var status butStatus
+			if err := json.Unmarshal(output, &status); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+			return f(status)
+		})
 	})
 }
 

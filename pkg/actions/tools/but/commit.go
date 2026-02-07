@@ -11,7 +11,7 @@ import (
 //	36ae34b (some commit)
 //	e1b2490 (another commit)
 func ActionCommits() carapace.Action {
-	return actionStatus(func(status butStatus) carapace.Action {
+	return actionStatus(false, func(status butStatus) carapace.Action {
 		vals := make([]string, 0)
 		for _, stack := range status.Stacks {
 			for _, branch := range stack.Branches {
