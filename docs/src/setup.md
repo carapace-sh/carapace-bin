@@ -52,10 +52,10 @@ carapace _carapace | source
 ## ${UserConfigDir}/nushell/env.nu
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 mkdir $"($nu.cache-dir)"
-carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
+carapace _carapace nushell | save --force ([$nu.cache-dir "carapace.nu"] | path join)
 
 # ${UserConfigDir}/nushell/config.nu
-source $"($nu.cache-dir)/carapace.nu"
+source ([$nu.cache-dir "carapace.nu"] | path join)
 ```
 
 ![](./setup-nushell.png)
