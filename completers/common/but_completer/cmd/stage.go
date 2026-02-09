@@ -16,8 +16,13 @@ var stageCmd = &cobra.Command{
 func init() {
 	carapace.Gen(stageCmd).Standalone()
 
+	stageCmd.Flags().StringP("branch", "b", "", "Branch to stage to (for interactive mode)")
 	stageCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(stageCmd)
+
+	carapace.Gen(stageCmd).FlagCompletion(carapace.ActionMap{
+		"branch": but.ActionLocalBranches(),
+	})
 
 	carapace.Gen(stageCmd).PositionalCompletion(
 		carapace.Batch(

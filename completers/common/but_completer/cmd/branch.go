@@ -7,7 +7,7 @@ import (
 
 var branchCmd = &cobra.Command{
 	Use:     "branch",
-	Short:   "Commands for managing branches",
+	Short:   "Commands for managing branches.",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "branching and committing",
 }

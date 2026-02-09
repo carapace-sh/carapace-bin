@@ -17,7 +17,7 @@ func init() {
 
 	pr_newCmd.Flags().BoolP("default", "t", false, "Use the default content for the PR title and description, skipping any prompts. If the branch contains only a single commit, the commit message will be used")
 	pr_newCmd.Flags().StringP("file", "F", "", "Read PR title and description from file. The first line is the title, the rest is the description")
-	pr_newCmd.Flags().BoolP("help", "h", false, "Print help")
+	pr_newCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	pr_newCmd.Flags().StringP("message", "m", "", "PR title and description. The first line is the title, the rest is the description")
 	pr_newCmd.Flags().BoolP("run-hooks", "r", false, "Run pre-push hooks (defaults to true)")
 	pr_newCmd.Flags().BoolP("skip-force-push-protection", "s", false, "Skip force push protection checks")

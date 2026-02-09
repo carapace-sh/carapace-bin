@@ -14,6 +14,6 @@ var alias_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(alias_listCmd).Standalone()
 
-	alias_listCmd.Flags().BoolP("help", "h", false, "Print help")
+	alias_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	aliasCmd.AddCommand(alias_listCmd)
 }

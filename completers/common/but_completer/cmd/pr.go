@@ -8,7 +8,7 @@ import (
 var prCmd = &cobra.Command{
 	Use:     "pr",
 	Short:   "Commands for creating and managing pull requests on a forge",
-	Aliases: []string{"review"},
+	Aliases: []string{"review", "mr"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

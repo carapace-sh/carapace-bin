@@ -14,6 +14,6 @@ var resolve_statusCmd = &cobra.Command{
 func init() {
 	carapace.Gen(resolve_statusCmd).Standalone()
 
-	resolve_statusCmd.Flags().BoolP("help", "h", false, "Print help")
+	resolve_statusCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	resolveCmd.AddCommand(resolve_statusCmd)
 }

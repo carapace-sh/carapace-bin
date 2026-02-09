@@ -40,6 +40,7 @@ func init() {
 	rootCmd.Flags().StringP("format", "f", "", "Explicitly control how output should be formatted")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.PersistentFlags().BoolP("json", "j", false, "Whether to use JSON output format")
+	rootCmd.PersistentFlags().Bool("status-after", false, "After a mutation command completes, also output workspace status")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
