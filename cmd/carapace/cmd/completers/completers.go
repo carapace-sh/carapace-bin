@@ -64,15 +64,8 @@ func AddCarapace(m completer.CompleterMap) {
 	})
 }
 
-func RemoveExcludes(m completer.CompleterMap) {
+func RemoveExcludes[T any](m map[string]T) {
 	for _, e := range env.Excludes() {
-		if e == "*" {
-			// TODO wildcard doesn't make much sense anymore as this does not only affect internal completers
-			// TODO there's choices now which supersedes this
-			// TODO excludes pretty much should now just prevent a command to be registered by carapace in general
-			clear(m)
-			return
-		}
 		delete(m, e)
 	}
 

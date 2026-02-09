@@ -59,13 +59,10 @@ func init() {
 				"CARAPACE_TOOLTIP":    _bool,
 				"CARAPACE_UNFILTERED": _bool,
 				// carapace-bin
-				"CARAPACE_EXCLUDES": carapace.Batch(
-					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						c.Setenv(env.CARAPACE_EXCLUDES, "")
-						return carapacebin.ActionCompleters(false).Invoke(c).ToA() // TODO prevent/handle variants,groups?
-					}),
-					carapace.ActionValuesDescribed("*", "exclude all"),
-				).ToA().UniqueList(","),
+				"CARAPACE_EXCLUDES": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					c.Setenv(env.CARAPACE_EXCLUDES, "")
+					return carapacebin.ActionCompleters(false).Invoke(c).ToA() // TODO prevent/handle variants,groups?
+				}).UniqueList(","),
 				"CARAPACE_BRIDGES": carapace.ActionStyledValues(
 					"bash", "#d35673",
 					"fish", "#7ea8fc",

@@ -35,7 +35,7 @@ Whether to register `get-env`, `set-env` and `unset-env` functions.
 
 ## CARAPACE_EXCLUDES
 
-Which internal completers to exclude.
+Which completers to exclude.
 
 ![](./excludes.cast)
           

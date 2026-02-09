@@ -66,10 +66,12 @@ func Snippet(shell string) string {
 	if err != nil {
 		panic(err.Error()) // TODO handle  errror
 	}
+
 	// for _, name := range completers.Names() {
 	for name := range m { // TODO already includes bridges and such
 		uniqueNames[name] = true
 	}
+	completers.RemoveExcludes(uniqueNames)
 
 	completerNames := make([]string, 0)
 	for name := range uniqueNames {
