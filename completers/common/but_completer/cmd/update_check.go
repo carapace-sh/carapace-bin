@@ -14,6 +14,6 @@ var update_checkCmd = &cobra.Command{
 func init() {
 	carapace.Gen(update_checkCmd).Standalone()
 
-	update_checkCmd.Flags().BoolP("help", "h", false, "Print help")
+	update_checkCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	updateCmd.AddCommand(update_checkCmd)
 }

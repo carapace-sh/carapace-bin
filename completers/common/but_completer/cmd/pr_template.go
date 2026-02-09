@@ -15,7 +15,7 @@ var pr_templateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pr_templateCmd).Standalone()
 
-	pr_templateCmd.Flags().BoolP("help", "h", false, "Print help")
+	pr_templateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	prCmd.AddCommand(pr_templateCmd)
 
 	carapace.Gen(pr_templateCmd).PositionalCompletion(
