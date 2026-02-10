@@ -11,7 +11,7 @@ require (
 	github.com/pelletier/go-toml v1.9.5
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/pflag v1.0.10
-	golang.org/x/mod v0.32.0
+	golang.org/x/mod v0.33.0
 	gopkg.in/ini.v1 v1.67.1
 	gopkg.in/yaml.v3 v3.0.1
 )
