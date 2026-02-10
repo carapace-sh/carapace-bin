@@ -201,8 +201,11 @@ func AddBridges(m completer.CompleterMap, parse bool) error {
 		}
 		return Description(name)
 	}
-
 	// TODO description is unclear for bridges and should probably be omitted
+
+	for name, b := range knownbridges() {
+		m[name] = append(m[name], *b)
+	}
 
 	for _, b := range bridge_env.Bridges() {
 		switch b {
