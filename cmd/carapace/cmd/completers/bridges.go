@@ -14,6 +14,7 @@ func knownbridges() map[string]*completer.Completer {
 		"apptainer": {
 			Description: "Application container and unprivileged sandbox platform for Linux",
 			Url:         "https://apptainer.org/",
+			Variant:     "cobra",
 		},
 		"chezmoi": {
 			Description: "Manage your dotfiles across multiple diverse machines, securely",
