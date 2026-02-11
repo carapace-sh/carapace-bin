@@ -22,6 +22,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		bridge.ActionCobra("lefthook"),
+		bridge.ActionUrfavecli("lefthook"),
 	)
 }
