@@ -46,6 +46,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://linuxcontainers.org/incus",
 			Variant:     "cobra",
 		},
+		"kcl": {
+			Description: "The KCL Command Line Interface",
+			Url:         "https://github.com/kcl-lang/cli",
+			Variant:     "cobra",
+		},
 		"lefthook": {
 			Description: "Git hooks manager",
 			Url:         "https://lefthook.dev/",
