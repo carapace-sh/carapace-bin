@@ -16,6 +16,16 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://apptainer.org/",
 			Variant:     "cobra",
 		},
+		"az": {
+			Description: "Azure Command-Line Interface",
+			Url:         "https://docs.microsoft.com/en-us/cli/azure/",
+			Variant:     "argcomplete",
+		},
+		"boundary": {
+			Description: "Boundary enables identity-based access management for dynamic infrastructure",
+			Url:         "https://www.boundaryproject.io/downloads",
+			Variant:     "complete",
+		},
 		"chezmoi": {
 			Description: "Manage your dotfiles across multiple diverse machines, securely",
 			Url:         "https://chezmoi.io/",
@@ -36,6 +46,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://devpod.sh/",
 			Variant:     "cobra",
 		},
+		"doctl": {
+			Description: "doctl is a command line interface (CLI) for the DigitalOcean API",
+			Url:         "https://docs.digitalocean.com/reference/doctl/",
+			Variant:     "cobra",
+		},
 		"flyctl": {
 			Description: "Command line tools for fly.io services",
 			Url:         "https://fly.io/",
@@ -51,6 +66,16 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://github.com/kcl-lang/cli",
 			Variant:     "cobra",
 		},
+		"kitten": {
+			Description: "Fast, statically compiled implementations of various kittens",
+			Url:         "https://sw.kovidgoyal.net/kitty/",
+			Variant:     "kitten",
+		},
+		"kitty": {
+			Description: "The fast, feature rich terminal emulator",
+			Url:         "https://sw.kovidgoyal.net/kitty/",
+			Variant:     "kitten",
+		},
 		"lefthook": {
 			Description: "Git hooks manager",
 			Url:         "https://lefthook.dev/",
@@ -65,6 +90,11 @@ func knownbridges() map[string]*completer.Completer {
 			Description: "Nerdctl is a command line interface for containerd",
 			Url:         "https://github.com/containerd/nerdctl",
 			Variant:     "cobra",
+		},
+		"nomad": {
+			Description: "Nomad is an easy-to-use, flexible, and performant workload orchestrator",
+			Url:         "https://www.nomadproject.io/",
+			Variant:     "complete",
 		},
 		"op": {
 			Description: "1Password CLI",
@@ -82,10 +112,25 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://podman.io/",
 			Variant:     "cobra",
 		},
+		"ramalama": {
+			Description: "tool for working with LLM models",
+			Url:         "https://ramalama.ai/",
+			Variant:     "argcomplete",
+		},
 		"rclone": {
 			Description: "Rsync for cloud storage",
 			Url:         "https://rclone.org/",
 			Variant:     "cobra",
+		},
+		"toolbox": {
+			Description: "Tool for interactive command line environments on Linux",
+			Url:         "https://containertoolbx.org/",
+			Variant:     "cobra",
+		},
+		"vault": {
+			Description: "A tool for secrets management",
+			Url:         "https://www.vaultproject.io/",
+			Variant:     "vault",
 		},
 	}
 
