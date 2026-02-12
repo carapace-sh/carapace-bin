@@ -122,6 +122,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://rclone.org/",
 			Variant:     "cobra",
 		},
+		"talosctl": {
+			Description: "A CLI for out-of-band management of Kubernetes nodes created by Talos",
+			Url:         "https://docs.siderolabs.com/talos/latest/reference/cli",
+			Variant:     "cobra",
+		},
 		"toolbox": {
 			Description: "Tool for interactive command line environments on Linux",
 			Url:         "https://containertoolbx.org/",
