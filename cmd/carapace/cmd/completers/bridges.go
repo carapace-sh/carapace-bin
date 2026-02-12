@@ -135,7 +135,7 @@ func knownbridges() map[string]*completer.Completer {
 		"vault": {
 			Description: "A tool for secrets management",
 			Url:         "https://www.vaultproject.io/",
-			Variant:     "vault",
+			Variant:     "complete",
 		},
 	}
 
