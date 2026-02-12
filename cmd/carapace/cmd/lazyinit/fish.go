@@ -28,8 +28,8 @@ end
 	complete := make([]string, 0, len(completers)*2)
 	for _, completer := range completers {
 		complete = append(complete,
-			fmt.Sprintf(`complete -e '%v'`, completer),
-			fmt.Sprintf(`complete -c '%v' -f -a '(_carapace_completer %v)'`, completer, completer),
+			fmt.Sprintf(`complete -e %q`, completer),
+			fmt.Sprintf(`complete -c %q -f -a '(_carapace_completer %q)'`, completer, completer),
 		)
 	}
 	return fmt.Sprintf(snippet, pathSnippet("fish"), envSnippet("fish"), strings.Join(complete, "\n"))
