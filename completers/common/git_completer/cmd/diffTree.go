@@ -20,8 +20,6 @@ func init() {
 	diffTreeCmd.Flags().StringS("G", "G", "", "look for differences whose patch text contains added/removed lines that match <regex>")
 	diffTreeCmd.Flags().Bool("always", false, "show the commit itself and the commit log message even if the diff itself is empty")
 	diffTreeCmd.Flags().Bool("combined-all-paths", false, "let combined diffs list the name of the file from all parents")
-	diffTreeCmd.Flags().Bool("default-prefix", false, "use the default source and destination prefixes")
-	diffTreeCmd.Flags().StringP("ignore-matching-lines", "I", "", "ignore changes whose all lines match <regex>")
 	diffTreeCmd.Flags().BoolS("m", "m", false, "show differences for merge commits")
 	diffTreeCmd.Flags().Bool("merge-base", false, "use the merge base between the two <tree-ish>s as the \"before\" side")
 	diffTreeCmd.Flags().Bool("no-commit-id", false, "suppress commit ID output")

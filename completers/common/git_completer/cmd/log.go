@@ -36,7 +36,6 @@ func init() {
 	logCmd.Flags().Bool("full-diff", false, "With this, the full diff is shown for commits that touch the specified paths")
 	logCmd.Flags().Bool("full-history", false, "Same as the default mode, but does not prune some history.")
 	logCmd.Flags().BoolP("help", "h", false, "Show help.")
-	logCmd.Flags().StringP("ignore-matching-lines", "I", "", "Ignore changes whose all lines match <regex>.")
 	logCmd.Flags().Bool("log-size", false, "Include a line “log size <number>” in the output for each commit.")
 	logCmd.Flags().Bool("mailmap", false, "Use mailmap file to map author and committer names and email addresses to canonical real names and email addresses.")
 	logCmd.Flags().Bool("no-decorate", false, "Print out the ref names of any commits that are shown.")
