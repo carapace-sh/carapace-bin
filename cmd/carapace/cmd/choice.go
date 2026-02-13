@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
@@ -64,6 +65,10 @@ func init() {
 					vals = append(vals, choice.Name, choice.Format())
 				}
 				return carapace.ActionValuesDescribed(vals...).FilterArgs()
+			}
+
+			if strings.HasPrefix(c.Value, "/") || strings.HasPrefix(c.Value, "@") {
+				return carapace.ActionValues()
 			}
 
 			return carapace.ActionMultiPartsN("@", 2, func(c carapace.Context) carapace.Action {

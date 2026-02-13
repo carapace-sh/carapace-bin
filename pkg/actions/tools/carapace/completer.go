@@ -62,29 +62,23 @@ func ActionNames() carapace.Action {
 }
 
 func ActionVariants(name string) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if name == "" {
-			return carapace.ActionValues()
-		}
-
-		return actionCompleters(name, func(m completer.CompleterMap) carapace.Action {
-			// TODO slow
-			batch := carapace.Batch()
-			for _, variants := range m {
-				for _, v := range variants {
-					if v.Variant == "" {
-						continue
-					}
-					switch name {
-					case "":
-						batch = append(batch, carapace.ActionValues(v.Variant).Tag(completerTag(v)))
-					default:
-						batch = append(batch, carapace.ActionStyledValuesDescribed(v.Variant, v.Description, completerStyle(v)).Tag(completerTag(v)))
-					}
+	return actionCompleters(name, func(m completer.CompleterMap) carapace.Action {
+		// TODO slow
+		batch := carapace.Batch()
+		for _, variants := range m {
+			for _, v := range variants {
+				if v.Variant == "" {
+					continue
+				}
+				switch name {
+				case "":
+					batch = append(batch, carapace.ActionValues(v.Variant).Tag(completerTag(v)))
+				default:
+					batch = append(batch, carapace.ActionStyledValuesDescribed(v.Variant, v.Description, completerStyle(v)).Tag(completerTag(v)))
 				}
 			}
-			return batch.ToA()
-		})
+		}
+		return batch.ToA()
 	})
 }
 
