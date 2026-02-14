@@ -85,7 +85,9 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("raw", false, "Generate the diff in raw format")
 	cmd.Flags().String("relative", "", "exclude changes outside the directory")
 	cmd.Flags().Bool("rename-empty", false, "Whether to use empty blobs as rename source")
+	cmd.Flags().String("rotate-to", "", "Move the files before the named <file> to the end")
 	cmd.Flags().Bool("shortstat", false, "Output only the last line of the --stat format")
+	cmd.Flags().String("skip-to", "", "Discard the files before the named <file> from the output")
 	cmd.Flags().String("src-prefix", "", "Show the given source prefix instead of \"a/\"")
 	cmd.Flags().String("stat", "", "Generate a diffstat")
 	cmd.Flags().String("stat-count", "", "Generate diffstat with limited lines")
@@ -126,6 +128,8 @@ func AddDiffFlags(cmd *cobra.Command) {
 		"follow":             carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
 		"ignore-submodules":  carapace.ActionValues("none", "untracked", "dirty", "all"),
 		"output":             carapace.ActionFiles(),
+		"rotate-to":          carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
+		"skip-to":            carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
 		"submodule":          carapace.ActionValues("short", "long", "log"),
 		"word-diff":          git.ActionWordDiffModes(),
 		"ws-error-highlight": git.ActionWsErrorHighlightModes().UniqueList(","),
