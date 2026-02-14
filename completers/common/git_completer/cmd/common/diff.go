@@ -37,6 +37,7 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("find-copies-harder", false, "inspect unmodified files as candidates for the source of copy")
 	cmd.Flags().String("find-object", "", "Look for differences that change the number of occurrences of the specified object")
 	cmd.Flags().StringP("find-renames", "M", "", "Detect renames")
+	cmd.Flags().String("follow", "", "Continue listing the history of a file beyond renames")
 	cmd.Flags().Bool("full-index", false, "show the full pre- and post-image blob object names")
 	cmd.Flags().BoolP("function-context", "W", false, "Show whole surrounding functions of changes")
 	cmd.Flags().Bool("histogram", false, "Generate a diff using the \"histogram diff\" algorithm")
@@ -61,6 +62,7 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("no-color-moved", false, "Turn off move detection")
 	cmd.Flags().Bool("no-color-moved-ws", false, "Do not ignore whitespace when performing move detection")
 	cmd.Flags().Bool("no-ext-diff", false, "Disallow external diff drivers")
+	cmd.Flags().Bool("no-follow", false, "Do not continue listing the history of a file beyond renames.")
 	cmd.Flags().Bool("no-indent-heuristic", false, "Disable the indent heuristic")
 	cmd.Flags().Bool("no-index", false, "Compare paths on the file system")
 	cmd.Flags().BoolP("no-patch", "s", false, "Suppress diff output")
@@ -107,11 +109,21 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flag("color-moved-ws").NoOptDefVal = " "
 	cmd.Flag("word-diff").NoOptDefVal = "plain"
 
+	cmd.MarkFlagsMutuallyExclusive("abbrev", "no-abbrev")
+	cmd.MarkFlagsMutuallyExclusive("color", "no-color")
+	cmd.MarkFlagsMutuallyExclusive("color-moved", "no-color-moved")
+	cmd.MarkFlagsMutuallyExclusive("color-moved-ws", "no-color-moved-ws")
+	cmd.MarkFlagsMutuallyExclusive("ext-diff", "no-ext-diff")
+	cmd.MarkFlagsMutuallyExclusive("follow", "no-follow")
+	cmd.MarkFlagsMutuallyExclusive("indent-heuristic", "no-indent-heuristic")
+	cmd.MarkFlagsMutuallyExclusive("patch", "no-patch")
+
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"color":              git.ActionColorModes(),
 		"color-moved":        git.ActionColorMovedModes(),
 		"color-moved-ws":     git.ActionColorMovedWsModes(),
 		"diff-algorithm":     git.ActionDiffAlgorithms(),
+		"follow":             carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
 		"ignore-submodules":  carapace.ActionValues("none", "untracked", "dirty", "all"),
 		"output":             carapace.ActionFiles(),
 		"submodule":          carapace.ActionValues("short", "long", "log"),

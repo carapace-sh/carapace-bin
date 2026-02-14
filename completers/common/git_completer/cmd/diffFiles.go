@@ -20,7 +20,6 @@ func init() {
 	diffFilesCmd.Flags().StringS("G", "G", "", "Look for differences whose patch text contains added/removed lines that match <regex>")
 	diffFilesCmd.Flags().Bool("default", false, "Use argument as default revision")
 	diffFilesCmd.Flags().Bool("early-output", false, "undocumented")
-	diffFilesCmd.Flags().Bool("follow", false, "Continue listing the history of a file beyond renames")
 	diffFilesCmd.Flags().Bool("full-diff", false, "Show full commit diffs")
 	diffFilesCmd.Flags().Bool("log-size", false, "Print log message size in bytes before the message")
 	diffFilesCmd.Flags().Bool("mailmap", false, "Use mailmap file to map author and committer name")
