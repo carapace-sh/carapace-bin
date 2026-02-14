@@ -25,8 +25,6 @@ func init() {
 	diffFilesCmd.Flags().Bool("mailmap", false, "Use mailmap file to map author and committer name")
 	diffFilesCmd.Flags().Bool("no-relative", false, "Do not show relative pathnames")
 	diffFilesCmd.Flags().BoolS("q", "q", false, "Remain silent even for nonexistent files")
-	diffFilesCmd.Flags().String("rotate-to", "", "Move the files before the named <file> to the end")
-	diffFilesCmd.Flags().String("skip-to", "", "Discard the files before the named <file> from the output")
 	diffFilesCmd.Flags().Bool("use-mailmap", false, "Use mailmap file to map author and committer name")
 	common.AddDiffFlags(diffFilesCmd)
 	common.AddPrettyFlags(diffFilesCmd)
