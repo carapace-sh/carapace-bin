@@ -18,8 +18,12 @@ func init() {
 	skill_installCmd.Flags().BoolP("detect", "d", false, "Automatically detect where to install by finding existing installation")
 	skill_installCmd.Flags().BoolP("global", "g", false, "Install the skill globally instead of in the current repository")
 	skill_installCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	skill_installCmd.Flags().StringP("path", "p", "", "Custom path where to install the skill (relative to repository root or absolute)")
+	skill_installCmd.Flags().StringP("path", "p", "", "Custom path where to install the skill (relative to repository root or absolute). Outside a repository, relative paths require --global")
 	skillCmd.AddCommand(skill_installCmd)
+
+	carapace.Gen(skill_installCmd).FlagCompletion(carapace.ActionMap{
+		"path": carapace.ActionDirectories(),
+	})
 
 	carapace.Gen(skill_installCmd).PositionalCompletion(
 		carapace.ActionFiles().ChdirF(traverse.GitWorkTree),
