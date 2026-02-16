@@ -24,8 +24,8 @@ func init() {
 }
 
 // ✅ @:Control kitty remotely
-// update-self:Update this kitten binary
-// edit-in-kitty:Edit a file in a kitty overlay window
+// ✅ update-self:Update this kitten binary
+// ✅ edit-in-kitty:Edit a file in a kitty overlay window
 // clipboard:Copy/paste with the system clipboard, even over SSH
 // icat:Display images in the terminal
 // ssh:Truly convenient SSH
