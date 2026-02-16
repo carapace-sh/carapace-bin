@@ -36,6 +36,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://crc.dev/",
 			Variant:     "cobra",
 		},
+		"cue": {
+			Description: "CUE makes it easy to validate data",
+			Url:         "https://github.com/cue-lang/cue",
+			Variant:     "cobra",
+		},
 		"devcontainer": {
 			Description: "Use a Docker container as a development environment",
 			Url:         "https://containers.dev/",
