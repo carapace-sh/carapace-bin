@@ -14,6 +14,6 @@ var shellCmd = &cobra.Command{
 func init() {
 	carapace.Gen(shellCmd).Standalone()
 
-	shellCmd.Flags().Bool("c", false, "run command")
+	shellCmd.Flags().BoolS("c", "c", false, "run command")
 	rootCmd.AddCommand(shellCmd)
 }
