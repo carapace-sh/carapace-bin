@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/bazel"
 	"github.com/spf13/cobra"
 )
 
@@ -195,4 +196,8 @@ func init() {
 	buildCmd.Flags().Bool("verbose_failures", false, "If a command fails, print out the full command line.")
 	buildCmd.Flags().String("version_window_for_dirty_node_gc", "", "Nodes that have been dirty for more than this many versions will be deleted from the graph upon the next update. Values must be non-negative long integers, or -1 indicating the maximum possible window.")
 	rootCmd.AddCommand(buildCmd)
+
+	carapace.Gen(buildCmd).PositionalCompletion(
+		bazel.ActionTargets(),
+	)
 }
