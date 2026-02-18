@@ -19,7 +19,7 @@ func init() {
 	pr_editCmd.Flags().StringSlice("add-assignee", nil, "Add assigned users by their `login`. Use \"@me\" to assign yourself, or \"@copilot\" to assign Copilot.")
 	pr_editCmd.Flags().StringSlice("add-label", nil, "Add labels by `name`")
 	pr_editCmd.Flags().StringSlice("add-project", nil, "Add the pull request to projects by `title`")
-	pr_editCmd.Flags().StringSlice("add-reviewer", nil, "Add reviewers by their `login`.")
+	pr_editCmd.Flags().StringSlice("add-reviewer", nil, "Add reviewers by their `login`. Use \"@copilot\" to request review from Copilot.")
 	pr_editCmd.Flags().StringP("base", "B", "", "Change the base `branch` for this pull request")
 	pr_editCmd.Flags().StringP("body", "b", "", "Set the new body.")
 	pr_editCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
@@ -28,7 +28,7 @@ func init() {
 	pr_editCmd.Flags().StringSlice("remove-label", nil, "Remove labels by `name`")
 	pr_editCmd.Flags().Bool("remove-milestone", false, "Remove the milestone association from the pull request")
 	pr_editCmd.Flags().StringSlice("remove-project", nil, "Remove the pull request from projects by `title`")
-	pr_editCmd.Flags().StringSlice("remove-reviewer", nil, "Remove reviewers by their `login`.")
+	pr_editCmd.Flags().StringSlice("remove-reviewer", nil, "Remove reviewers by their `login`. Use \"@copilot\" to remove review request from Copilot.")
 	pr_editCmd.Flags().StringP("title", "t", "", "Set the new title.")
 	prCmd.AddCommand(pr_editCmd)
 
