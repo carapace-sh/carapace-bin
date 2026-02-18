@@ -16,7 +16,7 @@ var release_uploadCmd = &cobra.Command{
 func init() {
 	carapace.Gen(release_uploadCmd).Standalone()
 
-	release_uploadCmd.Flags().Bool("clobber", false, "Overwrite existing assets of the same name")
+	release_uploadCmd.Flags().Bool("clobber", false, "Delete and re-upload existing assets of the same name")
 	releaseCmd.AddCommand(release_uploadCmd)
 
 	carapace.Gen(release_uploadCmd).PositionalCompletion(
