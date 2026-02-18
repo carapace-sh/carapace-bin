@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "idea",
 	Short: "IntelliJ IDEA CLI",
+	Long:  "https://www.jetbrains.com/idea/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
