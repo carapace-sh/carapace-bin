@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/carapace-sh/carapace v1.11.1
-	github.com/carapace-sh/carapace-bridge v1.5.2
+	github.com/carapace-sh/carapace-bridge v1.5.3
 	github.com/carapace-sh/carapace-selfupdate v0.0.10
 	github.com/carapace-sh/carapace-shlex v1.1.1
 	github.com/carapace-sh/carapace-spec v1.5.0
