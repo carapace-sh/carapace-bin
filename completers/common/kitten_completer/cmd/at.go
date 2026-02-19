@@ -9,7 +9,6 @@ import (
 var atCmd = &cobra.Command{
 	Use:   "@",
 	Short: "Control kitty remotely",
-	Long:  "Control kitty by sending it commands. Set the allow_remote_control option in kitty.conf for this to work. When run without any sub-commands this will start an interactive shell to control kitty.",
 }
 
 // TODO: subcommands

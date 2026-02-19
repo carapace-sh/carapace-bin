@@ -8,7 +8,6 @@ import (
 var updateSelfCmd = &cobra.Command{
 	Use:   "update-self",
 	Short: "Update this kitten binary",
-	Long:  "Update this kitten binary in place to the latest available version.",
 }
 
 func init() {

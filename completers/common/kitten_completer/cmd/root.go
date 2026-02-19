@@ -29,7 +29,7 @@ func init() {
 // ✅ clipboard:Copy/paste with the system clipboard, even over SSH
 // ✅ icat:Display images in the terminal
 // ✅ ssh:Truly convenient SSH
-// transfer:Transfer files easily over the TTY device
+// ✅ transfer:Transfer files easily over the TTY device
 // panel:Use a command line program to draw a GPU accelerated panel on your desktop
 // quick-access-terminal:A quick access terminal window that you can bring up instantly with a keypress or a command.
 // unicode-input:Browse and select unicode characters by name

@@ -8,7 +8,6 @@ import (
 var editInKittyCmd = &cobra.Command{
 	Use:   "edit-in-kitty",
 	Short: "Edit a file in a kitty overlay window",
-	Long:  "Edit the specified file in a kitty overlay window. Works over SSH as well. For usage instructions see: https://sw.kovidgoyal.net/kitty/shell-integration/#edit-file",
 }
 
 func init() {

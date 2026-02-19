@@ -8,7 +8,6 @@ import (
 var clipboardCmd = &cobra.Command{
 	Use:   "clipboard",
 	Short: "Copy/paste with the system clipboard, even over SSH",
-	Long:  "This kitten operates most simply in filter mode. To set the clipboard text, pipe in the new text on STDIN. Use the --get-clipboard option to instead output the current clipboard text content to STDOUT. Note that copying from the clipboard will cause a permission popup, see clipboard_control for details. For more control, specify filename arguments. Then, different MIME types can be copied to/from the clipboard. Some examples:",
 }
 
 func init() {
