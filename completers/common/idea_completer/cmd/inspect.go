@@ -15,9 +15,13 @@ func init() {
 	carapace.Gen(inspectCmd).Standalone()
 
 	inspectCmd.Flags().BoolS("changes", "changes", false, "Run inspections only on local uncommitted changes")
-	inspectCmd.Flags().BoolS("d", "d", false, "Specify the full path to the subdirectory if you don't want to inspect the whole project")
-	inspectCmd.Flags().StringS("format", "format", "", "Specify the format of the output file with inspection results")
-	inspectCmd.Flags().BoolS("v", "v", false, "Set the verbosity level of the output")
+	inspectCmd.Flags().StringS("d", "d", "", "Specify the full path to the subdirectory if you don't want to inspect the whole project")
+	inspectCmd.Flags().StringS("format", "format", "xml", "Specify the format of the output file with inspection results")
+	inspectCmd.Flags().BoolS("v0", "v0", true, "Set the verbosity level of the output")
+	inspectCmd.Flags().BoolS("v1", "v1", false, "Set the verbosity level of the output")
+	inspectCmd.Flags().BoolS("v2", "v2", false, "Set the verbosity level of the output")
+
+	inspectCmd.MarkFlagsMutuallyExclusive("v0", "v1", "v2")
 
 	rootCmd.AddCommand(inspectCmd)
 
@@ -27,6 +31,7 @@ func init() {
 			"json", "",
 			"plain", "",
 		),
+		"d": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(inspectCmd).PositionalCompletion(
