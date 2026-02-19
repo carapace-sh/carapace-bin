@@ -27,8 +27,8 @@ func init() {
 // ✅ update-self:Update this kitten binary
 // ✅ edit-in-kitty:Edit a file in a kitty overlay window
 // ✅ clipboard:Copy/paste with the system clipboard, even over SSH
-// icat:Display images in the terminal
-// ssh:Truly convenient SSH
+// ✅ icat:Display images in the terminal
+// ✅ ssh:Truly convenient SSH
 // transfer:Transfer files easily over the TTY device
 // panel:Use a command line program to draw a GPU accelerated panel on your desktop
 // quick-access-terminal:A quick access terminal window that you can bring up instantly with a keypress or a command.
