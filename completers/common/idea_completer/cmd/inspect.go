@@ -26,12 +26,12 @@ func init() {
 	rootCmd.AddCommand(inspectCmd)
 
 	carapace.Gen(inspectCmd).FlagCompletion(carapace.ActionMap{
+		"d": carapace.ActionDirectories(),
 		"format": carapace.ActionValuesDescribed(
 			"xml", "default",
 			"json", "",
 			"plain", "",
 		),
-		"d": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(inspectCmd).PositionalCompletion(
