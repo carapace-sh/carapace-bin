@@ -27,4 +27,8 @@ func init() {
 	carapace.Gen(formatCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),
 	)
+
+	carapace.Gen(formatCmd).FlagCompletion(carapace.ActionMap{
+		"settings": carapace.ActionFiles(".xml"),
+	})
 }
