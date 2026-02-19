@@ -29,4 +29,9 @@ func init() {
 		"confirm-paths":   carapace.ActionValues("yes", "no"),
 		"transmit-deltas": carapace.ActionValues("yes", "no"),
 	})
+
+	carapace.Gen(transferCmd).PositionalAnyCompletion(carapace.Batch(
+		carapace.ActionFiles(),
+		carapace.ActionDirectories(),
+	).ToA())
 }
