@@ -21,7 +21,6 @@ func init() {
 
 	rootCmd.Flags().Bool("wait", false, "Wait for the files to be closed before returning to the command prompt")
 
-	// TODO this should only complete one file
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.Batch(
 		carapace.ActionFiles(),
 		ActionJetbrainsPseudoFlags(),
