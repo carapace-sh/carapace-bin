@@ -38,7 +38,7 @@ func init() {
 // ✅ mouse-demo:Demo the mouse handling kitty implements for terminal programs
 // ✅ hyperlinked-grep:Add hyperlinks to the output of ripgrep
 // ✅ ask:Ask the user for input
-// hints:Select text from screen with keyboard
+// ✅ hints:Select text from screen with keyboard
 // diff:Pretty, side-by-side diffing of files and images
 // notify:Send notifications to the user
 // themes:Manage kitty color schemes easily
