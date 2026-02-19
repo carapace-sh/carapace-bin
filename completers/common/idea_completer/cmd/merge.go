@@ -20,5 +20,6 @@ func init() {
 		carapace.ActionFiles(),
 		carapace.ActionFiles(),
 		carapace.ActionFiles(),
+		carapace.ActionFiles(),
 	)
 }
