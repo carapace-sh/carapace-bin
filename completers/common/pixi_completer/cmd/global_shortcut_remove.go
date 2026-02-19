@@ -1,0 +1,33 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var global_shortcut_removeCmd = &cobra.Command{
+	Use:   "remove",
+	Short: "Remove shortcuts from your machine",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(global_shortcut_removeCmd).Standalone()
+
+	global_shortcut_removeCmd.Flags().String("auth-file", "", "Path to the file containing the authentication token")
+	global_shortcut_removeCmd.Flags().String("concurrent-downloads", "", "Max concurrent network requests")
+	global_shortcut_removeCmd.Flags().String("concurrent-solves", "", "Max concurrent solves")
+	global_shortcut_removeCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
+	global_shortcut_removeCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring for PyPI")
+	global_shortcut_removeCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts")
+	global_shortcut_removeCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
+	global_shortcut_removeCmd.Flags().String("tls-root-certs", "", "Which TLS root certificates to use")
+	global_shortcut_removeCmd.Flags().Bool("use-environment-activation-cache", false, "Use environment activation cache")
+	global_shortcutCmd.AddCommand(global_shortcut_removeCmd)
+
+	carapace.Gen(global_shortcut_removeCmd).FlagCompletion(carapace.ActionMap{
+		"auth-file":             carapace.ActionFiles(),
+		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
+	})
+}
