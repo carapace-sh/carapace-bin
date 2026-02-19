@@ -37,7 +37,7 @@ func init() {
 // ⏳ desktop-ui:Implement various desktop components for use with lightweight compositors/window managers on Linux
 // ✅ mouse-demo:Demo the mouse handling kitty implements for terminal programs
 // ✅ hyperlinked-grep:Add hyperlinks to the output of ripgrep
-// ask:Ask the user for input
+// ✅ ask:Ask the user for input
 // hints:Select text from screen with keyboard
 // diff:Pretty, side-by-side diffing of files and images
 // notify:Send notifications to the user
