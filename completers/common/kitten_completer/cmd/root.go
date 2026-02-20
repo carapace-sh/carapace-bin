@@ -40,7 +40,7 @@ func init() {
 // ✅ ask:Ask the user for input
 // ✅ hints:Select text from screen with keyboard
 // ✅ diff:Pretty, side-by-side diffing of files and images
-// notify:Send notifications to the user
+// ✅ notify:Send notifications to the user
 // themes:Manage kitty color schemes easily
 // run-shell:Run the user's shell with shell integration enabled
 // choose-fonts:Choose the fonts used in kitty
