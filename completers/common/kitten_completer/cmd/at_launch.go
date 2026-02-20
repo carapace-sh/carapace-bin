@@ -14,7 +14,6 @@ func init() {
 	launchCmd.AddCommand(atCmd)
 	carapace.Gen(launchCmd).Standalone()
 
-	launchCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	launchCmd.Flags().String("add-to-session", "", "Add the newly created window/tab to the specified session")
 	launchCmd.Flags().Bool("allow-remote-control", false, "Programs running in this window can control kitty")
 	launchCmd.Flags().String("bias", "0", "The bias used to alter the size of the window")
@@ -25,6 +24,7 @@ func init() {
 	launchCmd.Flags().String("cwd", "", "The working directory for the newly launched child")
 	launchCmd.Flags().Bool("dont-take-focus", false, "Keep the focus on the currently active window instead of switching to the newly opened window")
 	launchCmd.Flags().String("env", "", "Environment variables to set in the child process")
+	launchCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	launchCmd.Flags().Bool("hold", false, "Keep the window open even after the command being executed exits")
 	launchCmd.Flags().Bool("hold-after-ssh", false, "Run a local shell after disconnecting from the remote host")
 	launchCmd.Flags().String("location", "default", "Where to place the newly created window")

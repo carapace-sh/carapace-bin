@@ -15,8 +15,8 @@ func init() {
 	carapace.Gen(unicodeInputCmd).Standalone()
 
 	unicodeInputCmd.Flags().String("emoji-variation", "", "Whether to use the textual or the graphical form for emoji. By default the default form specified in the Unicode standard for the symbol is used.")
-	unicodeInputCmd.Flags().String("tab", "", "The initial tab to display. Defaults to using the tab from the previous kitten invocation.")
 	unicodeInputCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	unicodeInputCmd.Flags().String("tab", "", "The initial tab to display. Defaults to using the tab from the previous kitten invocation.")
 
 	carapace.Gen(unicodeInputCmd).FlagCompletion(carapace.ActionMap{
 		"emoji-variation": carapace.ActionValues("none", "graphic", "text"),

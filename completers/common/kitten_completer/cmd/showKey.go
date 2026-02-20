@@ -14,8 +14,8 @@ func init() {
 	rootCmd.AddCommand(showKeyCmd)
 	carapace.Gen(showKeyCmd).Standalone()
 
-	showKeyCmd.Flags().StringP("key-mode", "m", "", "The keyboard mode to use when showing keys. normal mode is with DECCKM reset and application mode is with DECCKM set. kitty is the full kitty extended keyboard protocol.")
 	showKeyCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	showKeyCmd.Flags().StringP("key-mode", "m", "", "The keyboard mode to use when showing keys. normal mode is with DECCKM reset and application mode is with DECCKM set. kitty is the full kitty extended keyboard protocol.")
 
 	carapace.Gen(showKeyCmd).FlagCompletion(carapace.ActionMap{
 		"key-mode": carapace.ActionValues("normal", "application", "kitty", "unchanged"),

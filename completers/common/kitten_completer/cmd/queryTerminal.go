@@ -14,8 +14,8 @@ func init() {
 	rootCmd.AddCommand(queryTerminalCmd)
 	carapace.Gen(queryTerminalCmd).Standalone()
 
-	queryTerminalCmd.Flags().Float64("wait-for", 0, "The amount of time (in seconds) to wait for a response from the terminal, after querying it.")
 	queryTerminalCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	queryTerminalCmd.Flags().Float64("wait-for", 0, "The amount of time (in seconds) to wait for a response from the terminal, after querying it.")
 
 	carapace.Gen(queryTerminalCmd).PositionalAnyCompletion(carapace.ActionValuesDescribed(
 		"name", "Terminal name (e.g. xterm-kitty)",

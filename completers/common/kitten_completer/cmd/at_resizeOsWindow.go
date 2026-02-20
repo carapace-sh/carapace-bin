@@ -14,9 +14,9 @@ func init() {
 	resizeOsWindowCmd.AddCommand(atCmd)
 	carapace.Gen(resizeOsWindowCmd).Standalone()
 
-	resizeOsWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	resizeOsWindowCmd.Flags().String("action", "resize", "The action to perform")
 	resizeOsWindowCmd.Flags().String("height", "0", "Change the height of the window")
+	resizeOsWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	resizeOsWindowCmd.Flags().Bool("incremental", false, "Treat the specified sizes as increments on the existing window size")
 	resizeOsWindowCmd.Flags().StringP("match", "m", "", "The window to match")
 	resizeOsWindowCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")

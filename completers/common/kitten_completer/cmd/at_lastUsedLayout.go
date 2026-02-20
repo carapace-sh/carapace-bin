@@ -14,8 +14,8 @@ func init() {
 	lastUsedLayoutCmd.AddCommand(atCmd)
 	carapace.Gen(lastUsedLayoutCmd).Standalone()
 
-	lastUsedLayoutCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	lastUsedLayoutCmd.Flags().BoolP("all", "a", false, "Change the layout in all tabs")
+	lastUsedLayoutCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	lastUsedLayoutCmd.Flags().StringP("match", "m", "", "The tab to match")
 	lastUsedLayoutCmd.Flags().Bool("no-response", false, "Don't wait for a response from kitty")
 

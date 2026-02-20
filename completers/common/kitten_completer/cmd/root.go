@@ -19,8 +19,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().Bool("version", false, "The current kitten version")
 	rootCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	rootCmd.Flags().Bool("version", false, "The current kitten version")
 }
 
 // ⏳ @:Control kitty remotely

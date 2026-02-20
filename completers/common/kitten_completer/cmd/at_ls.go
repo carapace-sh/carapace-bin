@@ -14,8 +14,8 @@ func init() {
 	lsCmd.AddCommand(atCmd)
 	carapace.Gen(lsCmd).Standalone()
 
-	lsCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	lsCmd.Flags().Bool("all-env-vars", false, "Show all environment variables in output, not just differing ones")
+	lsCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	lsCmd.Flags().StringP("match", "m", "", "The window to match")
 	lsCmd.Flags().StringP("match-tab", "t", "", "The tab to match")
 	lsCmd.Flags().String("output-format", "json", "Output in JSON or kitty session format")
