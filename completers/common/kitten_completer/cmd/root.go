@@ -45,4 +45,4 @@ func init() {
 // ✅ run-shell:Run the user's shell with shell integration enabled
 // ✅ choose-fonts:Choose the fonts used in kitty
 // ✅ choose-files:Choose files, fast
-// query-terminal:Query the terminal for various capabilities
+// ✅ query-terminal:Query the terminal for various capabilities
