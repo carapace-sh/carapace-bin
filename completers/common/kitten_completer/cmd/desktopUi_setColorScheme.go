@@ -22,11 +22,3 @@ func init() {
 		carapace.ActionValues("light", "dark", "no-preference", "toggle"),
 	)
 }
-
-// Usage: kitten desktop-ui set-color-scheme light|dark|no-preference|toggle
-//
-// Change the color scheme
-//
-// Options:
-//   --help, -h [=no]
-//     Show help for this command

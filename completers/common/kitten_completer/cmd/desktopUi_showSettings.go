@@ -21,22 +21,3 @@ func init() {
 
 	carapace.Gen(showSettingsCmd).FlagCompletion(carapace.ActionMap{})
 }
-
-// Usage: kitten desktop-ui show-settings
-//
-// Print the current values of the desktop settings
-//
-// Options:
-//   --as-json [=no]
-//     Show the settings as JSON for machine consumption
-//
-//   --in-namespace
-//     Show only settings in the specified names. Can be specified multiple times.
-//     When unspecified all namespaces are returned.
-//
-//   --allow-other-backends [=no]
-//     Normally, after printing the settings, if the settings did not come from the
-//     desktop-ui kitten the command prints an error and exits. This prevents that.
-//
-//   --help, -h [=no]
-//     Show help for this command

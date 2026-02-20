@@ -22,11 +22,3 @@ func init() {
 		carapace.ActionValues("high", "normal"),
 	)
 }
-
-// Usage: kitten desktop-ui set-contrast high|normal
-//
-// Change the contrast. Can be high or normal.
-//
-// Options:
-//   --help, -h [=no]
-//     Show help for this command

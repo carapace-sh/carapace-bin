@@ -20,20 +20,3 @@ func init() {
 
 	carapace.Gen(setSettingCmd).FlagCompletion(carapace.ActionMap{})
 }
-
-// Usage: kitten desktop-ui set-setting key [value]
-//
-// Set an arbitrary setting. If you want to set the color-scheme use the dedicated
-// command for it. Use this command with care as it does no validation for the type
-// of value.
-//
-// Options:
-//   --namespace, -n [=org.freedesktop.appearance]
-//     The namespace in which to change the setting.
-//
-//   --data-type
-//     The DBUS data type signature of the value. The default is to guess from the
-//     textual representation, see the glib docs for details.
-//
-//   --help, -h [=no]
-//     Show help for this command

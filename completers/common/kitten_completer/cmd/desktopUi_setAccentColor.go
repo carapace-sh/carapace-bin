@@ -18,11 +18,3 @@ func init() {
 
 	carapace.Gen(setAccentColorCmd).FlagCompletion(carapace.ActionMap{})
 }
-
-// Usage: kitten desktop-ui set-accent-color color_as_hex_or_name
-//
-// Change the accent color
-//
-// Options:
-//   --help, -h [=no]
-//     Show help for this command
