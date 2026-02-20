@@ -41,7 +41,7 @@ func init() {
 // ✅ hints:Select text from screen with keyboard
 // ✅ diff:Pretty, side-by-side diffing of files and images
 // ✅ notify:Send notifications to the user
-// themes:Manage kitty color schemes easily
+// ✅ themes:Manage kitty color schemes easily
 // run-shell:Run the user's shell with shell integration enabled
 // choose-fonts:Choose the fonts used in kitty
 // choose-files:Choose files, fast
