@@ -15,6 +15,8 @@ func init() {
 	carapace.Gen(scrollWindowCmd).Standalone()
 
 	scrollWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	scrollWindowCmd.Flags().StringP("match", "m", "", "The window to match")
+	scrollWindowCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
 
 	carapace.Gen(scrollWindowCmd).FlagCompletion(carapace.ActionMap{})
 }

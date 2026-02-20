@@ -15,6 +15,8 @@ func init() {
 	carapace.Gen(setTabColorCmd).Standalone()
 
 	setTabColorCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	setTabColorCmd.Flags().StringP("match", "m", "", "The tab to match")
+	setTabColorCmd.Flags().Bool("self", false, "Close the tab this command is run in, rather than the active tab")
 
 	carapace.Gen(setTabColorCmd).FlagCompletion(carapace.ActionMap{})
 }

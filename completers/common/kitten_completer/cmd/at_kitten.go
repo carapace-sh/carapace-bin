@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(kittenCmd).Standalone()
 
 	kittenCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	kittenCmd.Flags().StringP("match", "m", "", "The window to match")
 
 	carapace.Gen(kittenCmd).FlagCompletion(carapace.ActionMap{})
 }

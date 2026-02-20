@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(setUserVarsCmd).Standalone()
 
 	setUserVarsCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	setUserVarsCmd.Flags().StringP("match", "m", "", "The window to match")
 
 	carapace.Gen(setUserVarsCmd).FlagCompletion(carapace.ActionMap{})
 }

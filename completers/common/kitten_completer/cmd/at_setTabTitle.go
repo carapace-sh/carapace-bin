@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(setTabTitleCmd).Standalone()
 
 	setTabTitleCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	setTabTitleCmd.Flags().StringP("match", "m", "", "The tab to match")
 
 	carapace.Gen(setTabTitleCmd).FlagCompletion(carapace.ActionMap{})
 }

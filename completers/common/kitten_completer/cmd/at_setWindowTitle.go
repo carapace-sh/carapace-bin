@@ -15,6 +15,8 @@ func init() {
 	carapace.Gen(setWindowTitleCmd).Standalone()
 
 	setWindowTitleCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	setWindowTitleCmd.Flags().StringP("match", "m", "", "The window to match")
+	setWindowTitleCmd.Flags().Bool("temporary", false, "By default, the title will be permanently changed and programs running in the window will not be able to change it again")
 
 	carapace.Gen(setWindowTitleCmd).FlagCompletion(carapace.ActionMap{})
 }

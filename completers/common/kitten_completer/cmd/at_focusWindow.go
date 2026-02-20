@@ -15,6 +15,8 @@ func init() {
 	carapace.Gen(focusWindowCmd).Standalone()
 
 	focusWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	focusWindowCmd.Flags().StringP("match", "m", "", "The window to match")
+	focusWindowCmd.Flags().Bool("no-response", false, "Don't wait for a response from kitty")
 
 	carapace.Gen(focusWindowCmd).FlagCompletion(carapace.ActionMap{})
 }

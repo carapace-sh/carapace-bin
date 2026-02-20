@@ -15,6 +15,10 @@ func init() {
 	carapace.Gen(sendKeyCmd).Standalone()
 
 	sendKeyCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	sendKeyCmd.Flags().Bool("all", false, "Match all windows")
+	sendKeyCmd.Flags().Bool("exclude-active", false, "Do not send text to the active window, even if it is one of the matched windows")
+	sendKeyCmd.Flags().StringP("match", "m", "", "The window to match")
+	sendKeyCmd.Flags().StringP("match-tab", "t", "", "The tab to match")
 
 	carapace.Gen(sendKeyCmd).FlagCompletion(carapace.ActionMap{})
 }

@@ -15,6 +15,8 @@ func init() {
 	carapace.Gen(removeMarkerCmd).Standalone()
 
 	removeMarkerCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	removeMarkerCmd.Flags().StringP("match", "m", "", "The window to match")
+	removeMarkerCmd.Flags().Bool("self", false, "Apply marker to the window this command is run in, rather than the active window")
 
 	carapace.Gen(removeMarkerCmd).FlagCompletion(carapace.ActionMap{})
 }

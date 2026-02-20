@@ -15,6 +15,9 @@ func init() {
 	carapace.Gen(loadConfigCmd).Standalone()
 
 	loadConfigCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	loadConfigCmd.Flags().Bool("ignore-overrides", false, "Have previous config overrides ignored")
+	loadConfigCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
+	loadConfigCmd.Flags().StringP("override", "o", "", "Override individual configuration options")
 
 	carapace.Gen(loadConfigCmd).FlagCompletion(carapace.ActionMap{})
 }

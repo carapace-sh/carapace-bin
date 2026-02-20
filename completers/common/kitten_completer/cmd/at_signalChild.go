@@ -15,6 +15,8 @@ func init() {
 	carapace.Gen(signalChildCmd).Standalone()
 
 	signalChildCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	signalChildCmd.Flags().StringP("match", "m", "", "The window to match")
+	signalChildCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
 
 	carapace.Gen(signalChildCmd).FlagCompletion(carapace.ActionMap{})
 }

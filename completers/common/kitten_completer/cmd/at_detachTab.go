@@ -15,6 +15,9 @@ func init() {
 	carapace.Gen(detachTabCmd).Standalone()
 
 	detachTabCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	detachTabCmd.Flags().StringP("match", "m", "", "The tab to match")
+	detachTabCmd.Flags().Bool("self", false, "Detach the tab this command is run in, rather than the active tab")
+	detachTabCmd.Flags().StringP("target-tab", "t", "", "The tab to match")
 
 	carapace.Gen(detachTabCmd).FlagCompletion(carapace.ActionMap{})
 }

@@ -15,6 +15,8 @@ func init() {
 	carapace.Gen(createMarkerCmd).Standalone()
 
 	createMarkerCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	createMarkerCmd.Flags().StringP("match", "m", "", "The window to match")
+	createMarkerCmd.Flags().Bool("self", false, "Apply marker to the window this command is run in, rather than the active window")
 
 	carapace.Gen(createMarkerCmd).FlagCompletion(carapace.ActionMap{})
 }
