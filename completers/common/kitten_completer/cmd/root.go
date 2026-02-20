@@ -23,7 +23,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "The current kitten version")
 }
 
-// ⏳ @:Control kitty remotely
+// ✅ @:Control kitty remotely
 // ✅ update-self:Update this kitten binary
 // ✅ edit-in-kitty:Edit a file in a kitty overlay window
 // ✅ clipboard:Copy/paste with the system clipboard, even over SSH
