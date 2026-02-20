@@ -19,8 +19,8 @@ func init() {
 	chooseFontsCmd.Flags().String("reload-in", "", "By default, this kitten will signal only the parent kitty instance it is running in to reload its config, after making changes. Use this option to instead either not reload the config at all or in all running kitty instances.")
 
 	carapace.Gen(chooseFontsCmd).FlagCompletion(carapace.ActionMap{
-		"reload-in":        carapace.ActionValues("parent", "all", "none"),
 		"config-file-name": carapace.ActionFiles("~/.config/kitty"),
+		"reload-in":        carapace.ActionValues("parent", "all", "none"),
 	})
 
 	carapace.Gen(chooseFontsCmd).PositionalAnyCompletion(carapace.ActionFiles())

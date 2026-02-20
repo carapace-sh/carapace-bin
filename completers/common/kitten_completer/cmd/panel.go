@@ -45,8 +45,8 @@ func init() {
 
 	carapace.Gen(panelCmd).FlagCompletion(carapace.ActionMap{
 		"edge":         carapace.ActionValues("top", "background", "bottom", "center", "center-sized", "left", "none", "right"),
-		"layer":        carapace.ActionValues("bottom", "background", "overlay", "top"),
 		"focus-policy": carapace.ActionValues("not-allowed", "exclusive", "on-demand"),
+		"layer":        carapace.ActionValues("bottom", "background", "overlay", "top"),
 		"listen-on":    carapace.ActionValues("unix:", "tcp:").NoSpace(':'),
 	})
 

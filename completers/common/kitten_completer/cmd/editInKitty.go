@@ -40,9 +40,13 @@ func init() {
 	editInKittyCmd.Flags().String("window-title", "", "The title to set for the new window. By default, title is controlled by the child process. The special value current will copy the title from the --source-window.")
 
 	carapace.Gen(editInKittyCmd).FlagCompletion(carapace.ActionMap{
-		"title":        carapace.ActionValues("current"),
-		"window-title": carapace.ActionValues("current"),
+		"color":           carapace.ActionFiles("conf"),
+		"cwd":             carapace.ActionValues("current", "last-reported", "oldest", "root"),
+		"location":        carapace.ActionValues("default", "after", "before", "first", "hsplit", "last", "neighbor", "split", "vsplit"),
+		"logo":            carapace.ActionFiles("png").Chdir("~/.config/kitty"),
+		"os-window-state": carapace.ActionValues("normal", "fullscreen", "maximized", "minimized"),
 		"tab-title":    carapace.ActionValues("current"),
+		"title":        carapace.ActionValues("current"),
 		"type": carapace.ActionValuesDescribed(
 			"window", "A new kitty window in the current tab",
 			"tab", "A new tab in the current OS window. Not available when the The launch command command is used in startup sessions.",
@@ -54,11 +58,7 @@ func init() {
 			"primary", "These two are meant to work with --stdin-source to copy data to the system clipboard or primary selection.",
 			"os-panel", "Similar to os-window, except that it creates the new OS Window as a desktop panel. Only works on platforms that support this, such as Wayand compositors that support the layer shell protocol. Use the --os-panel option to configure the panel.",
 		),
-		"cwd":             carapace.ActionValues("current", "last-reported", "oldest", "root"),
-		"location":        carapace.ActionValues("default", "after", "before", "first", "hsplit", "last", "neighbor", "split", "vsplit"),
-		"os-window-state": carapace.ActionValues("normal", "fullscreen", "maximized", "minimized"),
-		"logo":            carapace.ActionFiles("png").Chdir("~/.config/kitty"),
-		"color":           carapace.ActionFiles("conf"),
+		"window-title": carapace.ActionValues("current"),
 	})
 
 	carapace.Gen(editInKittyCmd).PositionalCompletion(carapace.ActionFiles())

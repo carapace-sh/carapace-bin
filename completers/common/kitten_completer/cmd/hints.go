@@ -36,9 +36,9 @@ func init() {
 	hintsCmd.Flags().String("word-characters", "", "Characters to consider as part of a word. In addition, all characters marked as alphanumeric in the Unicode database will be considered as word characters. Defaults to the select_by_word_characters option from kitty.conf.")
 
 	carapace.Gen(hintsCmd).FlagCompletion(carapace.ActionMap{
-		"program":        carapace.ActionValues("-", "@", "*", "default", "launch"),
-		"type":           carapace.ActionValues("url", "hash", "hyperlink", "ip", "line", "linenum", "path", "regex", "word"),
-		"linenum-action": carapace.ActionValues("self", "background", "os_window", "remote-control", "tab", "window"),
+		"add-trailing-space":   carapace.ActionValues("auto", "always", "never"),
+		"customize-processing": carapace.ActionFiles().Chdir("~/.config/kitty"),
+		"linenum-action":       carapace.ActionValues("self", "background", "os_window", "remote-control", "tab", "window"),
 		"multiple-joiner": carapace.ActionValuesDescribed(
 			"space", "a space character",
 			"newline", "a newline",
@@ -46,7 +46,7 @@ func init() {
 			"json", "a JSON serialized list",
 			"auto", "an automatic choice, based on the type of text being selected",
 		),
-		"add-trailing-space":   carapace.ActionValues("auto", "always", "never"),
-		"customize-processing": carapace.ActionFiles().Chdir("~/.config/kitty"),
+		"program": carapace.ActionValues("-", "@", "*", "default", "launch"),
+		"type":    carapace.ActionValues("url", "hash", "hyperlink", "ip", "line", "linenum", "path", "regex", "word"),
 	})
 }

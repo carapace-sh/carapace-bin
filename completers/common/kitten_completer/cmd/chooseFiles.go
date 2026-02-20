@@ -29,11 +29,11 @@ func init() {
 	chooseFilesCmd.Flags().String("write-pid-to", "", "Path to a file to which to write the process ID (PID) of this process to.")
 
 	carapace.Gen(chooseFilesCmd).FlagCompletion(carapace.ActionMap{
-		"mode":                     carapace.ActionValues("file", "dir", "dirs", "files", "save-dir", "save-file", "save-files"),
-		"suggested-save-file-path": carapace.ActionFiles(),
 		"config":                   carapace.ActionFiles("~/.config/kitty"),
-		"write-output-to":          carapace.ActionFiles(),
+		"mode":                     carapace.ActionValues("file", "dir", "dirs", "files", "save-dir", "save-file", "save-files"),
 		"output-format":            carapace.ActionValues("text", "json", "shell", "shell-relative"),
+		"suggested-save-file-path": carapace.ActionFiles(),
+		"write-output-to":          carapace.ActionFiles(),
 		"write-pid-to":             carapace.ActionFiles(),
 	})
 

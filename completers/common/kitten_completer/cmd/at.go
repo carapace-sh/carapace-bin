@@ -25,12 +25,12 @@ func init() {
 	atCmd.MarkFlagsMutuallyExclusive("password-file", "password-env")
 
 	carapace.Gen(atCmd).FlagCompletion(carapace.ActionMap{
+		"password-env": os.ActionEnvironmentVariables(),
 		"password-file": carapace.Batch(
 			carapace.ActionFiles(),
 			carapace.ActionValuesDescribed("-", "Read from STDIN"),
 			carapace.ActionValuesDescribed("fd:", "Read from a file descriptor").NoSpace(':'),
 		).ToA(),
-		"password-env": os.ActionEnvironmentVariables(),
 		"use-password": carapace.ActionValues("if-available", "always", "never"),
 	})
 }
