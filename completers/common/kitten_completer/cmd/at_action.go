@@ -15,6 +15,9 @@ func init() {
 	carapace.Gen(actionCmd).Standalone()
 
 	actionCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	actionCmd.Flags().StringP("match", "m", "", "The window to match")
+	actionCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
+	actionCmd.Flags().Bool("self", false, "Run the action on the window this command is run in instead of the active window")
 
 	carapace.Gen(actionCmd).FlagCompletion(carapace.ActionMap{})
 
@@ -162,4 +165,3 @@ func init() {
 		),
 	)
 }
-
