@@ -45,8 +45,8 @@ func init() {
 		"location":        carapace.ActionValues("default", "after", "before", "first", "hsplit", "last", "neighbor", "split", "vsplit"),
 		"logo":            carapace.ActionFiles("png").Chdir("~/.config/kitty"),
 		"os-window-state": carapace.ActionValues("normal", "fullscreen", "maximized", "minimized"),
-		"tab-title":    carapace.ActionValues("current"),
-		"title":        carapace.ActionValues("current"),
+		"tab-title":       carapace.ActionValues("current"),
+		"title":           carapace.ActionValues("current"),
 		"type": carapace.ActionValuesDescribed(
 			"window", "A new kitty window in the current tab",
 			"tab", "A new tab in the current OS window. Not available when the The launch command command is used in startup sessions.",

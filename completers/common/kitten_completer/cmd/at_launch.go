@@ -56,11 +56,11 @@ func init() {
 	launchCmd.Flags().StringP("watcher", "w", "", "Path to a Python file for event callbacks")
 
 	carapace.Gen(launchCmd).FlagCompletion(carapace.ActionMap{
-		"location":       carapace.ActionValues("default", "after", "before", "first", "hsplit", "last", "neighbor", "split", "vsplit"),
-		"logo":           carapace.ActionFiles(".png"),
+		"location":        carapace.ActionValues("default", "after", "before", "first", "hsplit", "last", "neighbor", "split", "vsplit"),
+		"logo":            carapace.ActionFiles(".png"),
 		"os-window-state": carapace.ActionValues("normal", "fullscreen", "maximized", "minimized"),
-		"stdin-source":   carapace.ActionValues("none", "@alternate", "@alternate_scrollback", "@first_cmd_output_on_screen", "@last_cmd_output", "@last_visited_cmd_output", "@screen", "@screen_scrollback", "@selection"),
-		"type":           carapace.ActionValues("window", "background", "clipboard", "os-panel", "os-window", "overlay", "overlay-main", "primary", "tab"),
-		"watcher":        carapace.ActionFiles(".py"),
+		"stdin-source":    carapace.ActionValues("none", "@alternate", "@alternate_scrollback", "@first_cmd_output_on_screen", "@last_cmd_output", "@last_visited_cmd_output", "@screen", "@screen_scrollback", "@selection"),
+		"type":            carapace.ActionValues("window", "background", "clipboard", "os-panel", "os-window", "overlay", "overlay-main", "primary", "tab"),
+		"watcher":         carapace.ActionFiles(".py"),
 	})
 }
