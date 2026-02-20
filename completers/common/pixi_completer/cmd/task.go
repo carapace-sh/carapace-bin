@@ -14,5 +14,10 @@ var taskCmd = &cobra.Command{
 func init() {
 	carapace.Gen(taskCmd).Standalone()
 
+	taskCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	rootCmd.AddCommand(taskCmd)
+
+	carapace.Gen(taskCmd).FlagCompletion(carapace.ActionMap{
+		"manifest-path": carapace.ActionFiles(),
+	})
 }

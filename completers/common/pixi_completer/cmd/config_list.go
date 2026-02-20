@@ -18,7 +18,7 @@ func init() {
 	config_listCmd.Flags().BoolP("global", "g", false, "Operation on global configuration")
 	config_listCmd.Flags().Bool("json", false, "Output in JSON format")
 	config_listCmd.Flags().BoolP("local", "l", false, "Operation on project-local configuration")
-	config_listCmd.Flags().StringP("manifest-path", "m", "", "The path to pixi.toml, pyproject.toml, or the workspace directory")
+	config_listCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	config_listCmd.Flags().BoolP("system", "s", false, "Operation on system configuration")
 	configCmd.AddCommand(config_listCmd)
 

@@ -25,6 +25,7 @@ func init() {
 	shellCmd.Flags().Bool("force-activate", false, "Do not use the environment activation cache. (default: true except in experimental mode)")
 	shellCmd.Flags().Bool("frozen", false, "Install the environment as defined in the lockfile, doesn't update lockfile if it isn't up-to-date with the manifest file")
 	shellCmd.Flags().Bool("locked", false, "Check if lockfile is up-to-date before installing the environment, aborts when lockfile isn't up-to-date with the manifest file")
+	shellCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	shellCmd.Flags().Bool("no-completions", false, "Do not source the autocompletion scripts from the environment")
 	shellCmd.Flags().Bool("no-install", false, "Don't modify the environment, only modify the lock-file")
 	shellCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
@@ -39,6 +40,7 @@ func init() {
 		"auth-file":             carapace.ActionFiles(),
 		"change-ps1":            carapace.ActionValues("true", "false"),
 		"environment":           pixi.ActionEnvironments(),
+		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
 	})

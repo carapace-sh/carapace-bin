@@ -24,6 +24,7 @@ func init() {
 	removeCmd.Flags().Bool("frozen", false, "Install the environment as defined in the lockfile, doesn't update lockfile if it isn't up-to-date with the manifest file")
 	removeCmd.Flags().StringP("git", "g", "", "The git url to use when adding a git dependency")
 	removeCmd.Flags().Bool("locked", false, "Check if lockfile is up-to-date before installing the environment, aborts when lockfile isn't up-to-date with the manifest file")
+	removeCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	removeCmd.Flags().Bool("no-install", false, "Don't modify the environment, only modify the lock-file")
 	removeCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	removeCmd.Flags().StringSliceP("platform", "p", nil, "The platform for which the dependency should be modified")
@@ -41,6 +42,7 @@ func init() {
 	carapace.Gen(removeCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
 		"feature":               pixi.ActionFeatures(),
+		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
