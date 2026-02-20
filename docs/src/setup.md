@@ -80,6 +80,14 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
 ```
 
+> **Note:** The `Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete` line is **required**.
+> The default `Complete` function (used by PSReadLine's `Emacs` edit mode) will display raw ANSI escape codes
+> (e.g. `^[[21;22;23;24;25;29m^[[39;49m`) in the prompt instead of styled completions.
+>
+> If you use `Set-PSReadLineOption -EditMode Emacs`, make sure it is placed **before** the
+> `Set-PSReadlineKeyHandler` line above, as it resets key bindings and would override the `Tab` binding
+> back to `Complete`.
+
 ![](./setup-powershell.png)
 
 ## Tcsh
