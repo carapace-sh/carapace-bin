@@ -44,5 +44,5 @@ func init() {
 // ✅ themes:Manage kitty color schemes easily
 // ✅ run-shell:Run the user's shell with shell integration enabled
 // ✅ choose-fonts:Choose the fonts used in kitty
-// choose-files:Choose files, fast
+// ✅ choose-files:Choose files, fast
 // query-terminal:Query the terminal for various capabilities
