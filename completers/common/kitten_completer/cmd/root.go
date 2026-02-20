@@ -42,7 +42,7 @@ func init() {
 // ✅ diff:Pretty, side-by-side diffing of files and images
 // ✅ notify:Send notifications to the user
 // ✅ themes:Manage kitty color schemes easily
-// run-shell:Run the user's shell with shell integration enabled
+// ✅ run-shell:Run the user's shell with shell integration enabled
 // choose-fonts:Choose the fonts used in kitty
 // choose-files:Choose files, fast
 // query-terminal:Query the terminal for various capabilities
