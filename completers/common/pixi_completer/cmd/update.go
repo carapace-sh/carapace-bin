@@ -21,6 +21,7 @@ func init() {
 	updateCmd.Flags().BoolP("dry-run", "n", false, "Don't actually write the lockfile or update any environment")
 	updateCmd.Flags().StringSliceP("environment", "e", nil, "The environments to update. If none is specified, all environments are updated")
 	updateCmd.Flags().Bool("json", false, "Output the changes in JSON format")
+	updateCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	updateCmd.Flags().Bool("no-install", false, "Don't install the (solve) environments needed for pypi-dependencies solving")
 	updateCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	updateCmd.Flags().StringSliceP("platform", "p", nil, "The platforms to update. If none is specified, all platforms are updated")
@@ -34,6 +35,7 @@ func init() {
 	carapace.Gen(updateCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
 		"environment":           pixi.ActionEnvironments(),
+		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),

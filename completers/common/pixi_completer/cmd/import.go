@@ -21,6 +21,7 @@ func init() {
 	importCmd.Flags().StringP("environment", "e", "", "A name for the created environment")
 	importCmd.Flags().StringP("feature", "f", "", "A name for the created feature")
 	importCmd.Flags().String("format", "", "Which format to interpret the file as")
+	importCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	importCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	importCmd.Flags().StringSliceP("platform", "p", nil, "The platforms for the imported environment")
 	importCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
@@ -35,6 +36,7 @@ func init() {
 		"environment":           pixi.ActionEnvironments(),
 		"feature":               pixi.ActionFeatures(),
 		"format":                carapace.ActionValues("conda-env", "pypi-txt"),
+		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),

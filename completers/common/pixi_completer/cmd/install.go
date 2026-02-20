@@ -23,6 +23,7 @@ func init() {
 	installCmd.Flags().StringSliceP("environment", "e", nil, "The environment to install")
 	installCmd.Flags().Bool("frozen", false, "Install the environment as defined in the lockfile, doesn't update lockfile if it isn't up-to-date with the manifest file")
 	installCmd.Flags().Bool("locked", false, "Check if lockfile is up-to-date before installing the environment, aborts when lockfile isn't up-to-date with the manifest file")
+	installCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	installCmd.Flags().StringSlice("only", nil, "Install and build only these package(s) and their dependencies. Can be passed multiple times")
 	installCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	installCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
@@ -37,6 +38,7 @@ func init() {
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
 		"environment":           pixi.ActionEnvironments(),
+		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
 	})

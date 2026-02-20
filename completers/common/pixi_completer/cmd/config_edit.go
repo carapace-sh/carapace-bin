@@ -17,6 +17,11 @@ func init() {
 
 	config_editCmd.Flags().BoolP("global", "g", false, "Operation on global configuration")
 	config_editCmd.Flags().BoolP("local", "l", false, "Operation on project-local configuration")
+	config_editCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	config_editCmd.Flags().BoolP("system", "s", false, "Operation on system configuration")
 	configCmd.AddCommand(config_editCmd)
+
+	carapace.Gen(config_editCmd).FlagCompletion(carapace.ActionMap{
+		"manifest-path": carapace.ActionFiles(),
+	})
 }

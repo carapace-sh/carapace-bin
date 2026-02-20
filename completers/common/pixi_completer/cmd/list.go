@@ -23,6 +23,7 @@ func init() {
 	listCmd.Flags().Bool("json", false, "Whether to output in json format")
 	listCmd.Flags().Bool("json-pretty", false, "Whether to output in json format")
 	listCmd.Flags().Bool("locked", false, "Check if lockfile is up-to-date before installing the environment, aborts when lockfile isn't up-to-date with the manifest file")
+	listCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	listCmd.Flags().Bool("no-install", false, "Don't modify the environment, only modify the lock-file")
 	listCmd.Flags().String("platform", "", "The platform to list packages for. Defaults to the current platform")
 	listCmd.Flags().String("sort-by", "", "Sorting strategy")
@@ -30,8 +31,9 @@ func init() {
 	rootCmd.AddCommand(listCmd)
 
 	carapace.Gen(listCmd).FlagCompletion(carapace.ActionMap{
-		"environment": pixi.ActionEnvironments(),
-		"platform":    pixi.ActionPlatforms(),
-		"sort-by":     carapace.ActionValues("size", "name", "kind"),
+		"environment":   pixi.ActionEnvironments(),
+		"manifest-path": carapace.ActionFiles(),
+		"platform":      pixi.ActionPlatforms(),
+		"sort-by":       carapace.ActionValues("size", "name", "kind"),
 	})
 }
