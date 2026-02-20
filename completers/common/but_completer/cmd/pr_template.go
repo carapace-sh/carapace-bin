@@ -8,7 +8,7 @@ import (
 
 var pr_templateCmd = &cobra.Command{
 	Use:   "template",
-	Short: "Configure the template to use for PR descriptions. This will list all available templates found in the repository and allow you to select one",
+	Short: "Configure the template to use for review descriptions. This will list all available templates found in the repository and allow you to select one",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
