@@ -14,6 +14,7 @@ var resolve_cancelCmd = &cobra.Command{
 func init() {
 	carapace.Gen(resolve_cancelCmd).Standalone()
 
+	resolve_cancelCmd.Flags().BoolP("force", "f", false, "Forcibly remove any changes made")
 	resolve_cancelCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	resolveCmd.AddCommand(resolve_cancelCmd)
 }
