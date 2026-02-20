@@ -7,17 +7,17 @@ import (
 
 var upload_artifactoryCmd = &cobra.Command{
 	Use:   "artifactory",
-	Short: "Upload to an Artifactory channel",
+	Short: "Options for uploading to a Artifactory channel. Authentication is used from the keychain / auth-file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(upload_artifactoryCmd).Standalone()
 
-	upload_artifactoryCmd.Flags().StringP("channel", "c", "", "The channel to upload the package to")
-	upload_artifactoryCmd.Flags().String("password", "", "The password for authentication")
-	upload_artifactoryCmd.Flags().StringP("token", "t", "", "The token for authentication")
-	upload_artifactoryCmd.Flags().StringP("url", "u", "", "The URL to the Artifactory server")
-	upload_artifactoryCmd.Flags().String("username", "", "The username for authentication")
+	upload_artifactoryCmd.Flags().StringP("channel", "c", "", "The URL to your channel")
+	upload_artifactoryCmd.Flags().StringP("token", "t", "", "Your Artifactory token")
+	upload_artifactoryCmd.Flags().StringP("url", "u", "", "The URL to your Artifactory server")
+	upload_artifactoryCmd.MarkFlagRequired("channel")
+	upload_artifactoryCmd.MarkFlagRequired("url")
 	uploadCmd.AddCommand(upload_artifactoryCmd)
 }

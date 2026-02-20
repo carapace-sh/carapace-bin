@@ -7,23 +7,21 @@ import (
 )
 
 var task_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List all tasks in the workspace",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List all tasks in the workspace",
+	Aliases: []string{"ls", "l"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(task_listCmd).Standalone()
 
-	task_listCmd.Flags().StringP("environment", "e", "", "The environment to list tasks for")
-	task_listCmd.Flags().Bool("json", false, "Output in JSON format")
-	task_listCmd.Flags().Bool("machine-readable", false, "Output in machine-readable format")
-	task_listCmd.Flags().StringP("manifest-path", "m", "", "The path to pixi.toml, pyproject.toml, or the workspace directory")
-	task_listCmd.Flags().BoolP("summary", "s", false, "Display a summary of the tasks")
+	task_listCmd.Flags().StringP("environment", "e", "", "The environment the list should be generated for. If not specified, the default environment is used")
+	task_listCmd.Flags().Bool("json", false, "List as json instead of a tree If not specified, the default environment is used")
+	task_listCmd.Flags().BoolP("summary", "s", false, "Tasks available for this machine per environment")
 	taskCmd.AddCommand(task_listCmd)
 
 	carapace.Gen(task_listCmd).FlagCompletion(carapace.ActionMap{
-		"environment":   pixi.ActionEnvironments(),
-		"manifest-path": carapace.ActionFiles(),
+		"environment": pixi.ActionEnvironments(),
 	})
 }

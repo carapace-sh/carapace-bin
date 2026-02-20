@@ -14,13 +14,8 @@ var lockCmd = &cobra.Command{
 func init() {
 	carapace.Gen(lockCmd).Standalone()
 
-	lockCmd.Flags().Bool("check", false, "Check if the lockfile is up-to-date")
-	lockCmd.Flags().Bool("json", false, "Whether to show the output as JSON or not")
-	lockCmd.Flags().StringP("manifest-path", "m", "", "The path to pixi.toml, pyproject.toml, or the workspace directory")
+	lockCmd.Flags().Bool("check", false, "Check if any changes have been made to the lock file. If yes, exit with a non-zero code")
+	lockCmd.Flags().Bool("json", false, "Output the changes in JSON format")
 	lockCmd.Flags().Bool("no-install", false, "Don't modify the environment, only modify the lock-file")
 	rootCmd.AddCommand(lockCmd)
-
-	carapace.Gen(lockCmd).FlagCompletion(carapace.ActionMap{
-		"manifest-path": carapace.ActionFiles(),
-	})
 }

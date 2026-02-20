@@ -6,9 +6,10 @@ import (
 )
 
 var global_exposeCmd = &cobra.Command{
-	Use:   "expose",
-	Short: "Interact with the exposure of binaries in the global environment",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "expose",
+	Short:   "Interact with the exposure of binaries in the global environment",
+	Aliases: []string{"e"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

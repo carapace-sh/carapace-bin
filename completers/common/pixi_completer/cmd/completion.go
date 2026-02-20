@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(completionCmd).Standalone()
 
 	completionCmd.Flags().StringP("shell", "s", "", "The shell to generate a completion script for")
+	completionCmd.MarkFlagRequired("shell")
 	rootCmd.AddCommand(completionCmd)
 
 	carapace.Gen(completionCmd).FlagCompletion(carapace.ActionMap{

@@ -15,15 +15,13 @@ var workspace_export_condaEnvironmentCmd = &cobra.Command{
 func init() {
 	carapace.Gen(workspace_export_condaEnvironmentCmd).Standalone()
 
-	workspace_export_condaEnvironmentCmd.Flags().StringP("environment", "e", "", "The environment to export")
-	workspace_export_condaEnvironmentCmd.Flags().StringP("manifest-path", "m", "", "The path to pixi.toml, pyproject.toml, or the workspace directory")
-	workspace_export_condaEnvironmentCmd.Flags().StringP("name", "n", "", "The name of the conda environment")
-	workspace_export_condaEnvironmentCmd.Flags().StringP("platform", "p", "", "The platform to export")
+	workspace_export_condaEnvironmentCmd.Flags().StringP("environment", "e", "", "The environment to render the environment file for. Defaults to the default environment")
+	workspace_export_condaEnvironmentCmd.Flags().StringP("name", "n", "", "The name to use for the rendered conda environment. Defaults to the environment name")
+	workspace_export_condaEnvironmentCmd.Flags().StringP("platform", "p", "", "The platform to render the environment file for. Defaults to the current platform")
 	workspace_exportCmd.AddCommand(workspace_export_condaEnvironmentCmd)
 
 	carapace.Gen(workspace_export_condaEnvironmentCmd).FlagCompletion(carapace.ActionMap{
-		"environment":   pixi.ActionEnvironments(),
-		"manifest-path": carapace.ActionFiles(),
-		"platform":      pixi.ActionPlatforms(),
+		"environment": pixi.ActionEnvironments(),
+		"platform":    pixi.ActionPlatforms(),
 	})
 }

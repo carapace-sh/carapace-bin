@@ -7,21 +7,20 @@ import (
 )
 
 var workspace_systemRequirements_addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "Adds a system requirement to the manifest file",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "add",
+	Short:   "Adds an environment to the manifest file",
+	Aliases: []string{"a"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(workspace_systemRequirements_addCmd).Standalone()
 
-	workspace_systemRequirements_addCmd.Flags().String("family", "", "The family of the system requirement")
-	workspace_systemRequirements_addCmd.Flags().StringP("feature", "f", "", "The feature for which the dependency should be modified")
-	workspace_systemRequirements_addCmd.Flags().StringP("manifest-path", "m", "", "The path to pixi.toml, pyproject.toml, or the workspace directory")
+	workspace_systemRequirements_addCmd.Flags().String("family", "", "The Libc family, this can only be specified for requirement `other-libc`")
+	workspace_systemRequirements_addCmd.Flags().StringP("feature", "f", "", "The name of the feature to modify")
 	workspace_systemRequirementsCmd.AddCommand(workspace_systemRequirements_addCmd)
 
 	carapace.Gen(workspace_systemRequirements_addCmd).FlagCompletion(carapace.ActionMap{
-		"feature":       pixi.ActionFeatures(),
-		"manifest-path": carapace.ActionFiles(),
+		"feature": pixi.ActionFeatures(),
 	})
 }

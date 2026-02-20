@@ -14,10 +14,5 @@ var workspace_requiresPixi_getCmd = &cobra.Command{
 func init() {
 	carapace.Gen(workspace_requiresPixi_getCmd).Standalone()
 
-	workspace_requiresPixi_getCmd.Flags().StringP("manifest-path", "m", "", "The path to pixi.toml, pyproject.toml, or the workspace directory")
 	workspace_requiresPixiCmd.AddCommand(workspace_requiresPixi_getCmd)
-
-	carapace.Gen(workspace_requiresPixi_getCmd).FlagCompletion(carapace.ActionMap{
-		"manifest-path": carapace.ActionFiles(),
-	})
 }

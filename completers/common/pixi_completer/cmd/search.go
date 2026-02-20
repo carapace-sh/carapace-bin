@@ -15,14 +15,12 @@ var searchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(searchCmd).Standalone()
 
-	searchCmd.Flags().StringP("channel", "c", "", "The channel to search in")
+	searchCmd.Flags().StringSliceP("channel", "c", nil, "The channels to consider as a name or a url. Multiple channels can be specified by using this field multiple times")
 	searchCmd.Flags().StringP("limit", "l", "", "Limit the number of search results")
-	searchCmd.Flags().StringP("manifest-path", "m", "", "The path to pixi.toml, pyproject.toml, or the workspace directory")
-	searchCmd.Flags().StringP("platform", "p", "", "The platform to search for")
+	searchCmd.Flags().StringP("platform", "p", "", "The platform to search for, defaults to current platform")
 	rootCmd.AddCommand(searchCmd)
 
 	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{
-		"manifest-path": carapace.ActionFiles(),
-		"platform":      pixi.ActionPlatforms(),
+		"platform": pixi.ActionPlatforms(),
 	})
 }

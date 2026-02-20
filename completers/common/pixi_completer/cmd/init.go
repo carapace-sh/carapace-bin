@@ -15,13 +15,12 @@ var initCmd = &cobra.Command{
 func init() {
 	carapace.Gen(initCmd).Standalone()
 
-	initCmd.Flags().StringP("channel", "c", "", "The channels to use")
-	initCmd.Flags().String("conda-pypi-map", "", "The conda-pypi mapping to use")
-	initCmd.Flags().String("format", "", "The format of the workspace to create")
-	initCmd.Flags().StringP("import", "i", "", "The path to an existing conda environment file")
-	initCmd.Flags().StringP("platform", "p", "", "The platforms to use")
-	initCmd.Flags().Bool("pyproject-toml", false, "Create a pyproject.toml manifest")
-	initCmd.Flags().StringP("scm", "s", "", "The SCM to use")
+	initCmd.Flags().StringSliceP("channel", "c", nil, "Channel to use in the workspace")
+	initCmd.Flags().StringSlice("conda-pypi-map", nil, "Set a mapping between conda channels and pypi channels")
+	initCmd.Flags().String("format", "", "The manifest format to create")
+	initCmd.Flags().StringP("import", "i", "", "Environment.yml file to bootstrap the workspace")
+	initCmd.Flags().StringSliceP("platform", "p", nil, "Platforms that the workspace supports")
+	initCmd.Flags().StringP("scm", "s", "", "Source Control Management used for this workspace")
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{

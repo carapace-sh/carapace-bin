@@ -18,11 +18,9 @@ func init() {
 	cleanCmd.Flags().Bool("activation-cache", false, "Only remove the activation cache")
 	cleanCmd.Flags().Bool("build", false, "Only remove the pixi-build cache")
 	cleanCmd.Flags().StringP("environment", "e", "", "The environment directory to remove")
-	cleanCmd.Flags().StringP("manifest-path", "m", "", "The path to pixi.toml, pyproject.toml, or the workspace directory")
 	rootCmd.AddCommand(cleanCmd)
 
 	carapace.Gen(cleanCmd).FlagCompletion(carapace.ActionMap{
-		"environment":   pixi.ActionEnvironments(),
-		"manifest-path": carapace.ActionFiles(),
+		"environment": pixi.ActionEnvironments(),
 	})
 }

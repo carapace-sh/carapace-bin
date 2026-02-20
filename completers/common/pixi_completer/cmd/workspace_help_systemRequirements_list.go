@@ -1,0 +1,18 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var workspace_help_systemRequirements_listCmd = &cobra.Command{
+	Use:   "list",
+	Short: "List the environments in the manifest file",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(workspace_help_systemRequirements_listCmd).Standalone()
+
+	workspace_help_systemRequirementsCmd.AddCommand(workspace_help_systemRequirements_listCmd)
+}

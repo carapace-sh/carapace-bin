@@ -14,12 +14,7 @@ var infoCmd = &cobra.Command{
 func init() {
 	carapace.Gen(infoCmd).Standalone()
 
-	infoCmd.Flags().Bool("extended", false, "Show extended information")
+	infoCmd.Flags().Bool("extended", false, "Show cache and environment size")
 	infoCmd.Flags().Bool("json", false, "Whether to show the output as JSON or not")
-	infoCmd.Flags().StringP("manifest-path", "m", "", "The path to pixi.toml, pyproject.toml, or the workspace directory")
 	rootCmd.AddCommand(infoCmd)
-
-	carapace.Gen(infoCmd).FlagCompletion(carapace.ActionMap{
-		"manifest-path": carapace.ActionFiles(),
-	})
 }

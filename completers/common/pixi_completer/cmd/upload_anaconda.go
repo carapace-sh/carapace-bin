@@ -7,17 +7,18 @@ import (
 
 var upload_anacondaCmd = &cobra.Command{
 	Use:   "anaconda",
-	Short: "Upload to an Anaconda.org server",
+	Short: "Options for uploading to a Anaconda.org server",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(upload_anacondaCmd).Standalone()
 
-	upload_anacondaCmd.Flags().StringP("api-key", "a", "", "The Anaconda API key")
-	upload_anacondaCmd.Flags().StringP("channel", "c", "", "The channel to upload the package to")
-	upload_anacondaCmd.Flags().BoolP("force", "f", false, "Force upload even if the package already exists")
-	upload_anacondaCmd.Flags().StringP("owner", "o", "", "The owner of the package")
+	upload_anacondaCmd.Flags().StringP("api-key", "a", "", "The Anaconda API key, if none is provided, the token is read from the keychain / auth-file")
+	upload_anacondaCmd.Flags().StringSliceP("channel", "c", nil, "The channel / label to upload the package to (e.g. main / rc)")
+	upload_anacondaCmd.Flags().BoolP("force", "f", false, "Replace files on conflict")
+	upload_anacondaCmd.Flags().StringP("owner", "o", "", "The owner of the distribution (e.g. conda-forge or your username)")
 	upload_anacondaCmd.Flags().StringP("url", "u", "", "The URL to the Anaconda server")
+	upload_anacondaCmd.MarkFlagRequired("owner")
 	uploadCmd.AddCommand(upload_anacondaCmd)
 }

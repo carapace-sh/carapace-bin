@@ -6,9 +6,10 @@ import (
 )
 
 var globalCmd = &cobra.Command{
-	Use:   "global",
-	Short: "Subcommand for global package management actions",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "global",
+	Short:   "Subcommand for global package management actions",
+	Aliases: []string{"g"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

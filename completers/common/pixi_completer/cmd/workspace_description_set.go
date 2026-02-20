@@ -14,10 +14,5 @@ var workspace_description_setCmd = &cobra.Command{
 func init() {
 	carapace.Gen(workspace_description_setCmd).Standalone()
 
-	workspace_description_setCmd.Flags().StringP("manifest-path", "m", "", "The path to pixi.toml, pyproject.toml, or the workspace directory")
 	workspace_descriptionCmd.AddCommand(workspace_description_setCmd)
-
-	carapace.Gen(workspace_description_setCmd).FlagCompletion(carapace.ActionMap{
-		"manifest-path": carapace.ActionFiles(),
-	})
 }

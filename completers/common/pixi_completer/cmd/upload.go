@@ -14,11 +14,6 @@ var uploadCmd = &cobra.Command{
 func init() {
 	carapace.Gen(uploadCmd).Standalone()
 
-	uploadCmd.Flags().String("allow-insecure-host", "", "Hosts that are allowed to use insecure connections")
-	uploadCmd.Flags().String("auth-file", "", "Path to the file containing the authentication token")
+	uploadCmd.Flags().StringSlice("allow-insecure-host", nil, "List of hosts for which SSL certificate verification should be skipped")
 	rootCmd.AddCommand(uploadCmd)
-
-	carapace.Gen(uploadCmd).FlagCompletion(carapace.ActionMap{
-		"auth-file": carapace.ActionFiles(),
-	})
 }

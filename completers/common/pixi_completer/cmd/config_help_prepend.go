@@ -1,0 +1,18 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var config_help_prependCmd = &cobra.Command{
+	Use:   "prepend",
+	Short: "Prepend a value to a list configuration key",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(config_help_prependCmd).Standalone()
+
+	config_helpCmd.AddCommand(config_help_prependCmd)
+}
