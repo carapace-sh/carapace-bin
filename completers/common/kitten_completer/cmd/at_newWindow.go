@@ -1,4 +1,4 @@
-package at
+package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
