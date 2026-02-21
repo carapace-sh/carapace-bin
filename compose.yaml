@@ -10,6 +10,7 @@ include:
   - .docker/gcloud.yaml
   - .docker/nix.yaml
   - .docker/redhat.yaml
+  - .docker/solus.yaml
   - .docker/ubuntu.yaml
   - .docker/xbps.yaml
   # issues
