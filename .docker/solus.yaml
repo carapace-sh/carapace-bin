@@ -1,0 +1,8 @@
+services:
+  solus:
+    build:
+      context: solus
+    image: ghcr.io/carapace-sh/carapace-bin:solus
+    hostname: carapace-bin:solus
+    volumes:
+      - '..:/carapace-bin:ro'
