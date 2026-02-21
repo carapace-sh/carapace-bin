@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -29,5 +30,16 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color": carapace.ActionValues("always", "never", "auto"),
+	})
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
+		// TODO handle PIXI_PROJECT_ROOT
+		if f := cmd.Flag("manifest-path"); f != nil && f.Changed {
+			return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+				c.Setenv("PIXI_PROJECT_MANIFEST", f.Value.String())
+				return action.Invoke(c).ToA()
+			})
+		}
+		return action
 	})
 }
