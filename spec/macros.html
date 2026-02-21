@@ -1,0 +1,981 @@
+<!DOCTYPE HTML>
+<html lang="en" class="latte sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Macros - carapace-bin</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="A multi-shell completion binary.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../asciinema/asciinema-player.css">
+        <link rel="stylesheet" href=".././theme/catppuccin.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "latte";
+            const default_dark_theme = "mocha";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('latte')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+            html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">carapace-bin</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/carapace-sh/carapace-bin" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/carapace-sh/carapace-bin/edit/master/docs/src/spec/macros.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="macros"><a class="header" href="#macros">Macros</a></h1>
+<p>On top of the base <a href="https://carapace-sh.github.io/carapace-spec/carapace-spec/macros.html">Macros</a> defined in <a href="https://carapace-sh.github.io/carapace-spec">carapace-spec</a>,
+carapace-bin also provides the following macros:</p>
+<ul>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionArgcomplete">bridge.Argcomplete</a> ActionArgcomplete bridges <a href="https://github.com/kislyuk/argcomplete">https://github.com/kislyuk/argcomplete</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionArgcompleteV1">bridge.ArgcompleteV1</a> Deprecated: Old version which uses fd 8/9 (not available on powershell/windows).</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionAws">bridge.Aws</a> ActionAws bridges <a href="https://github.com/aws/aws-cli">https://github.com/aws/aws-cli</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionBash">bridge.Bash</a> ActionBash bridges completions registered in bash</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionBridge">bridge.Bridge</a> ActionBridge bridges completions defined by choices and CARAPACE_BRIDGE</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionBridges">bridge.Bridges</a> ActionBridges completes available bridges.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionCarapace">bridge.Carapace</a> ActionCarapace bridges <a href="https://github.com/carapace-sh/carapace">https://github.com/carapace-sh/carapace</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionCarapaceBin">bridge.CarapaceBin</a> ActionCarapaceBin bridges completions registered in carapace-bin</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionClap">bridge.Clap</a> ActionClap bridges <a href="https://github.com/clap-rs/clap">https://github.com/clap-rs/clap</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionClick">bridge.Click</a> ActionClick bridges <a href="https://github.com/pallets/click">https://github.com/pallets/click</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionCobra">bridge.Cobra</a> ActionCobra bridges <a href="https://github.com/spf13/cobra">https://github.com/spf13/cobra</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionComplete">bridge.Complete</a> ActionComplete bridges <a href="https://github.com/posener/complete">https://github.com/posener/complete</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionFish">bridge.Fish</a> ActionFish bridges completions registered in fish</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionGcloud">bridge.Gcloud</a> ActionGcloud bridges <a href="https://docs.cloud.google.com/sdk/gcloud">https://docs.cloud.google.com/sdk/gcloud</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionInshellisense">bridge.Inshellisense</a> ActionInshellisense bridges <a href="https://github.com/microsoft/inshellisense">https://github.com/microsoft/inshellisense</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionJJ">bridge.JJ</a> ActionJJ bridges <a href="https://www.jj-vcs.dev">https://www.jj-vcs.dev</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionKingpin">bridge.Kingpin</a> ActionKingpin bridges <a href="https://github.com/alecthomas/kingpin">https://github.com/alecthomas/kingpin</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionKitten">bridge.Kitten</a> ActionKitten bridges <a href="https://github.com/kovidgoyal/kitty">https://github.com/kovidgoyal/kitty</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionMacro">bridge.Macro</a> ActionCarapace bridges macros exposed with <a href="https://github.com/carapace-sh/carapace-bin">https://github.com/carapace-sh/carapace-bin</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionPowershell">bridge.Powershell</a> ActionPowershell bridges completions registered in powershell</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionUrfavecli">bridge.Urfavecli</a> ActionUrfavecli bridges <a href="https://github.com/urfave/cli">https://github.com/urfave/cli</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionUrfavecliV1">bridge.UrfavecliV1</a> ActionUrfavecliV1 bridges <a href="https://github.com/urfave/cli">https://github.com/urfave/cli</a> (v1-v2)</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionYargs">bridge.Yargs</a> ActionYargs bridges <a href="https://github.com/yargs/yargs">https://github.com/yargs/yargs</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge/#ActionZsh">bridge.Zsh</a> ActionZsh bridges completions registered in zsh</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/choice/#ActionChoices">choice.Choices</a> ActionChoices completes choices</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/color/#Action256Colors">color.256Colors</a> Action256Colors completes 256 colors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/color/#ActionAnsiBackgroundColors">color.AnsiBackgroundColors</a> ActionAnsiBackgroundColors completes ansi background colors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/color/#ActionAnsiForegroundColors">color.AnsiForegroundColors</a> ActionAnsiForegroundColors completes ansi foreground colors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/color/#ActionHexColors">color.HexColors</a> ActionHexColors completes hex color codes source: <a href="https://www.ditig.com/256-colors-cheat-sheet">https://www.ditig.com/256-colors-cheat-sheet</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/color/#ActionXtermColorNames">color.XtermColorNames</a> ActionXtermColorNames completes xterm color names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/env/#ActionNameValues">env.NameValues</a> ActionNameValues completes environment variable names and values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/env/#ActionNames">env.Names</a> ActionNames completes known environment variables</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/env/#ActionValues">env.Values</a> ActionValues completes values for given environment variable</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionArFileContents">fs.ArFileContents</a> ActionArFileContents completes contents of given ar file</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionBlockDevices">fs.BlockDevices</a> ActionBlockDevices completes block devices</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionFileModes">fs.FileModes</a> ActionFileModes completes numeric or symbolic file modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionFileModesNumeric">fs.FileModesNumeric</a> ActionFileModesNumeric completes numeric file modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionFileModesSymbolic">fs.FileModesSymbolic</a> ActionFileModesSymbolic completes symbolic file modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionFilenameExtensions">fs.FilenameExtensions</a> ActionFilenameExtensions completes filename extensions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionFilesystemTypes">fs.FilesystemTypes</a> ActionFilesystemTypes completes file system types</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionJarFileClasses">fs.JarFileClasses</a> ActionJarFileClasses completes classes within a jar file</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionLabels">fs.Labels</a> ActionLabels completes disk labels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionMounts">fs.Mounts</a> ActionMounts completes file system mounts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionPartitionLabels">fs.PartitionLabels</a> ActionPartitionLabels completes partition labels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionPartitionUuids">fs.PartitionUuids</a> ActionPartitionUuids completes partition uuids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionSubDirectories">fs.SubDirectories</a> ActionSubDirectories completes subdirectories of a given path</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionTarFileContents">fs.TarFileContents</a> ActionTarFileContents completes contents of given tar file</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionUuids">fs.Uuids</a> ActionUuids completes disk uuids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/fs/#ActionZipFileContents">fs.ZipFileContents</a> ActionZipFileContents completes contents of given zip file</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionBaudRates">net.BaudRates</a> ActionBaudRates completes baud rates</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionBssids">net.Bssids</a> ActionBssids completes BSSID's of local wifi networks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionConnections">net.Connections</a> ActionConnections completes stored network connections</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionDevices">net.Devices</a> ActionDevices completes network devices</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionHosts">net.Hosts</a> ActionHosts completes known hosts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionIpv4Addresses">net.Ipv4Addresses</a> ActionIpv4Addresses completes ipv4 addresses</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionKnownPorts">net.KnownPorts</a> ActionKnownPorts completes commonly used ports (opiniated)</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionPorts">net.Ports</a> ActionPorts completes known and used ports.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionProtocols">net.Protocols</a> ActionProtocols completes protocols</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionSsids">net.Ssids</a> ActionSsids completes SSID's of local wifi networks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionSubnets">net.Subnets</a> ActionSubnets completes subnets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/#ActionUsedPorts">net.UsedPorts</a> ActionUsedPorts completes ports currently in use</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionCacheControlRequestDirectives">net.http.CacheControlRequestDirectives</a> ActionCacheControlRequestDirectives completes Cache-Control directives for a request</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionContentEncodingTokens">net.http.ContentEncodingTokens</a> ActionContentEncodingTokens completes content encoding tokens</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionMediaTypes">net.http.MediaTypes</a> ActionMediaTypes completes media types</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionOpenApiPaths">net.http.OpenApiPaths</a> ActionOpenApiPaths completes api paths</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionRequestHeaderNames">net.http.RequestHeaderNames</a> ActionRequestHeaderNames completes http request header names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionRequestHeaderValues">net.http.RequestHeaderValues</a> ActionRequestHeaderValues completes values for given request header</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionRequestHeaders">net.http.RequestHeaders</a> ActionRequestHeaders completes http request headers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionRequestMethods">net.http.RequestMethods</a> ActionRequestMethods completes request methods</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionStatusCodes">net.http.StatusCodes</a> ActionStatusCodes completes http status codes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionTags">net.http.Tags</a> ActionTags completes html tags</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionTransferEncodingTokens">net.http.TransferEncodingTokens</a> ActionTransferEncodingTokens completes transfer encoding tokens</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionUrls">net.http.Urls</a> ActionUrls completes known hosts and ports as urls</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/http/#ActionUserAgents">net.http.UserAgents</a> ActionUserAgents completes common user agents</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh/#ActionCiphers">net.ssh.Ciphers</a> ActionCiphers completes ciphers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh/#ActionHostKeyAlgorithms">net.ssh.HostKeyAlgorithms</a> ActionHostKeyAlgorithms completes host key algorithms</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh/#ActionHosts">net.ssh.Hosts</a> ActionHosts completes ssh hosts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh/#ActionOptions">net.ssh.Options</a> ActionOptions completes options and their values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh/#ActionPrivateKeys">net.ssh.PrivateKeys</a> ActionPrivateKeys completes private keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh/#ActionPublicKeys">net.ssh.PublicKeys</a> ActionPublicKeys completes public keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh/#ActionSigningKeys">net.ssh.SigningKeys</a> ActionSigningKeys completes the contents of public keys for which a private key exists</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/number/#ActionRange">number.Range</a> ActionRange completes a number range formatted with given (optional) format specifier</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/number/#ActionSemanticVersions">number.SemanticVersions</a> ActionSemanticVersions completes the next semantic version based on the given existing versions.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionCgroups">os.Cgroups</a> ActionCgroups completes cgroup names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionDisplays">os.Displays</a> ActionDisplays completes x displays</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionEnvironmentVariables">os.EnvironmentVariables</a> ActionEnvironmentVariables completes environment values see also env.ActionNameValues</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionFontFamilies">os.FontFamilies</a> ActionFontFamilies completes font family names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionGpgKeyIds">os.GpgKeyIds</a> ActionGpgKeyIds completes GPG key ids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionGroupMembers">os.GroupMembers</a> ActionGroupMembers completes system group members</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionGroups">os.Groups</a> ActionGroups completes system group names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionKernelModules">os.KernelModules</a> ActionKernelModules completes kernel modules</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionKernelModulesLoaded">os.KernelModulesLoaded</a> ActionKernelModulesLoaded completes currently loaded kernel modules</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionKernelReleases">os.KernelReleases</a> ActionKernelReleases completes kernel releases</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionLanguages">os.Languages</a> ActionLanguages completes languages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionLocales">os.Locales</a> ActionLocales completes locales</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionMouseButtons">os.MouseButtons</a> ActionMouseButtons completes mouse button ids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionScreens">os.Screens</a> ActionScreens completes sreens</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionSessionIds">os.SessionIds</a> ActionSessionIds completes session ids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionShells">os.Shells</a> ActionShells completes available terminal shells</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionSoundCards">os.SoundCards</a> ActionSoundCards completes sound cards</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionTerminals">os.Terminals</a> ActionTerminals completes terminals</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionUserGroup">os.UserGroup</a> ActionUserGroup completes system user:group separately</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/#ActionUsers">os.Users</a> ActionUsers completes system user names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/usb/#ActionDeviceNumbers">os.usb.DeviceNumbers</a> ActionDeviceNumbers completes usb devices</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/os/usb/#ActionProductNumbers">os.usb.ProductNumbers</a> ActionProductNumbers completes usb products</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/ps/#ActionFormatSpecifiers">ps.FormatSpecifiers</a> ActionFormatSpecifiers completes format specifiers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/ps/#ActionKillSignals">ps.KillSignals</a> ActionKillSignals completes linux kill signals</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/ps/#ActionProcessExecutables">ps.ProcessExecutables</a> ActionProcessExecutables completes executable names of current processes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/ps/#ActionProcessIds">ps.ProcessIds</a> ActionProcessIds completes proces IDs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/ps/#ActionProcessStates">ps.ProcessStates</a> ActionProcessStates completes linux process states</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/shell/#ActionBuiltins">shell.Builtins</a> ActionBuiltins completes shell builtins</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/shell/#ActionExecutables">shell.Executables</a> ActionExecutables completes builtins, functions, and commands</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/shell/#ActionFunctions">shell.Functions</a> ActionFunctions completes shell functions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/text/#ActionEncodings">text.Encodings</a> ActionEncodings completes encodings</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/time/#ActionDate">time.Date</a> ActionDate completes <code>yyyy-MM-dd</code> dates separately</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/time/#ActionDateTime">time.DateTime</a> ActionDateTime completes <code>yyyy-MM-dd hh:mm:ss</code> datetime</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/time/#ActionDays">time.Days</a> ActionDays completes <code>dd</code> days for a month</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/time/#ActionMonths">time.Months</a> ActionMonths completes <code>MM</code> months</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/time/#ActionTime">time.Time</a> ActionTime completes <code>hh:mm</code> time</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/time/#ActionTimeS">time.TimeS</a> ActionTimeS completes <code>hh:mm:ss</code> time</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/adb/#ActionDevices">tools.adb.Devices</a> ActionDevices completes adb device serial numbers Device states from <a href="https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/adb.cpp">https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/adb.cpp</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/adb/#ActionFiles">tools.adb.Files</a> ActionFiles completes device files</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/adb/#ActionPackages">tools.adb.Packages</a> ActionPackages completes installed packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/adb/#ActionUsers">tools.adb.Users</a> ActionUsers completes device user ids 0 (Owner) 1 (another)</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/apk/#ActionPackageSearch">tools.apk.PackageSearch</a> ActionPackageSearch completes installable packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/apk/#ActionPackages">tools.apk.Packages</a> ActionPackages completes packages TODO is this actually any different from ActionPackageSearch apart from the <code>[installed]</code> suffix in the output?</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/apt/#ActionPackageSearch">tools.apt.PackageSearch</a> ActionPackageSearch completes installable packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/apt/#ActionPackages">tools.apt.Packages</a> ActionPackages completes installed packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ar/#ActionTargets">tools.ar.Targets</a> ActionTargets completes targets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/asdf/#ActionPlugins">tools.asdf.Plugins</a> ActionPlugins completes plugins</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/atuin/#ActionAliases">tools.atuin.Aliases</a> ActionAliases completes aliases</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/atuin/#ActionKeys">tools.atuin.Keys</a> ActionKeys completes keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/atuin/#ActionNamespaces">tools.atuin.Namespaces</a> ActionNamespaces completes namespaces</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/atuin/#ActionScripts">tools.atuin.Scripts</a> ActionScripts completes scripts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/atuin/#ActionTags">tools.atuin.Tags</a> ActionTags completes tags</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/atuin/#ActionVariables">tools.atuin.Variables</a> ActionVariables completes variables</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/aws/#ActionOutputFormats">tools.aws.OutputFormats</a> ActionOutputFormats completes output formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/aws/#ActionProfiles">tools.aws.Profiles</a> ActionProfiles completes configuration profile names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/aws/#ActionRegions">tools.aws.Regions</a> ActionRegions completes region names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/bat/#ActionLanguages">tools.bat.Languages</a> ActionLanguages completes languages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/bat/#ActionStyles">tools.bat.Styles</a> ActionStyles completes styles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/bat/#ActionThemes">tools.bat.Themes</a> ActionThemes completes themes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/bazel/#ActionTargets">tools.bazel.Targets</a> ActionTargets completes targets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/benthos/#ActionBoblangFunctions">tools.benthos.BoblangFunctions</a> ActionBoblangFunctions completes boblang functions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/benthos/#ActionBoblangMethods">tools.benthos.BoblangMethods</a> ActionBoblangMethods completes boblang methods</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/benthos/#ActionBuffers">tools.benthos.Buffers</a> ActionBuffers completes buffers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/benthos/#ActionCaches">tools.benthos.Caches</a> ActionCaches completes caches</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/benthos/#ActionInputs">tools.benthos.Inputs</a> ActionInputs completes inputs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/benthos/#ActionMetrics">tools.benthos.Metrics</a> ActionMetrics completes metrics</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/benthos/#ActionOutputs">tools.benthos.Outputs</a> ActionOutputs completes outputs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/benthos/#ActionProcessors">tools.benthos.Processors</a> ActionProcessors completes processors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/benthos/#ActionRateLimits">tools.benthos.RateLimits</a> ActionRateLimits completes rate limits</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/benthos/#ActionTracers">tools.benthos.Tracers</a> ActionTracers completes tracers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/bloop/#ActionProjects">tools.bloop.Projects</a> ActionProjects completes projects</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/bloop/#ActionProtocols">tools.bloop.Protocols</a> ActionProtocols completes protocols</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/bloop/#ActionReporters">tools.bloop.Reporters</a> ActionReporters completes reporters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/bluetoothctl/#ActionAgentCapabilities">tools.bluetoothctl.AgentCapabilities</a> ActionAgentCapabilities completes agent capabilities</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/bluetoothctl/#ActionControllers">tools.bluetoothctl.Controllers</a> ActionControllers completes controllers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/bluetoothctl/#ActionDevices">tools.bluetoothctl.Devices</a> ActionDevices completes devices</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew/#ActionAllCasks">tools.brew.AllCasks</a> ActionAllCasks completes all casks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew/#ActionAllFormulae">tools.brew.AllFormulae</a> ActionAllFormulae completes all formulae</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionAliases">tools.but.Aliases</a> ActionAliases completes aliases</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionCliIds">tools.but.CliIds</a> ActionCliIds completes cli ids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionCommits">tools.but.Commits</a> ActionCommits completes commits</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionConfigNames">tools.but.ConfigNames</a> ActionConfigNames completes config names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionConfigValues">tools.but.ConfigValues</a> ActionConfigValues completes config values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionLocalBranches">tools.but.LocalBranches</a> ActionLocalBranches completes local branches</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionOplogEntries">tools.but.OplogEntries</a> ActionOplogEntries completes oplog entries</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionTargets">tools.but.Targets</a> ActionTargets completes targets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionUIConfigNames">tools.but.UIConfigNames</a> ActionUIConfigNames completes UI config names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionUIConfigValues">tools.but.UIConfigValues</a> ActionUIConfigValues completes config values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/but/#ActionUsers">tools.but.Users</a> ActionUsers completes users</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace/#ActionCompleters">tools.carapace.Completers</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace/#ActionGroups">tools.carapace.Groups</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace/#ActionNames">tools.carapace.Names</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace/#ActionVariants">tools.carapace.Variants</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo/#ActionDependencies">tools.cargo.Dependencies</a> ActionDependencies completes dependencies</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo/#ActionFeatures">tools.cargo.Features</a> ActionFeatures completes features</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo/#ActionNightlyFlags">tools.cargo.NightlyFlags</a> ActionNightlyFlags completes nightly flags</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo/clippy/#ActionCategories">tools.cargo.clippy.Categories</a> ActionCategories completes categories</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo/clippy/#ActionLints">tools.cargo.clippy.Lints</a> ActionLints completes lints</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/charm/#ActionDatabases">tools.charm.Databases</a> ActionDatabases completes databases</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/charm/#ActionFiles">tools.charm.Files</a> ActionFiles completes charm cloud files</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/chdman/#ActionCodecs">tools.chdman.Codecs</a> ActionCodecs completes codecs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/chdman/#ActionTemplates">tools.chdman.Templates</a> ActionTemplates completes templates</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/chroma/#ActionFormatters">tools.chroma.Formatters</a> ActionFormatters completes formatters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/chroma/#ActionLexers">tools.chroma.Lexers</a> ActionLexers completes lexers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/chroma/#ActionStyles">tools.chroma.Styles</a> ActionStyles completes styles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/conda/#ActionEnvironmentVariables">tools.conda.EnvironmentVariables</a> ActionEnvironmentVariables completes environment variables.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/conda/#ActionEnvironments">tools.conda.Environments</a> ActionEnvironments completes environments</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/d2/#ActionLayouts">tools.d2.Layouts</a> ActionLayouts completes layouts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/d2/#ActionThemes">tools.d2.Themes</a> ActionThemes completes themes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/dagger/#ActionFunctions">tools.dagger.Functions</a> ActionFunctions completes functions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/dagger/#ActionLicenses">tools.dagger.Licenses</a> ActionLicenses completes licenses</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/dagger/#ActionMods">tools.dagger.Mods</a> ActionMods copletes local files and remote repositories</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/dagger/#ActionSdks">tools.dagger.Sdks</a> ActionSdks completes skds</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/dbt/#ActionProfiles">tools.dbt.Profiles</a> ActionProfiles completes profiles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/dbt/#ActionResources">tools.dbt.Resources</a> ActionResources completes resources</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/delta/#ActionSyntaxThemes">tools.delta.SyntaxThemes</a> ActionSyntaxThemes completes syntax themes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/devbox/#ActionInstalledPackages">tools.devbox.InstalledPackages</a> ActionInstalledPackages completes installed packaages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/direnv/#ActionAuths">tools.direnv.Auths</a> ActionAuths completes authorizations</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionConfigs">tools.docker.Configs</a> ActionConfigs completes config names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionContainerIds">tools.docker.ContainerIds</a> ActionContainerIds completes container names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionContainerPath">tools.docker.ContainerPath</a> ActionContainerPath completes container names and their file system separately</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionContainerPorts">tools.docker.ContainerPorts</a> ActionContainerPorts completes ports of a container</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionContainers">tools.docker.Containers</a> ActionContainers completes container names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionContexts">tools.docker.Contexts</a> ActionContexts completes context names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionDetachKeys">tools.docker.DetachKeys</a> ActionDetachKeys completes detach keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionLogDrivers">tools.docker.LogDrivers</a> ActionLogDrivers completes log drivers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionNetworks">tools.docker.Networks</a> ActionNetworks completes network names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionNodes">tools.docker.Nodes</a> ActionNodes completes node ids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionPlugins">tools.docker.Plugins</a> ActionPlugins completes plugins</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionPorts">tools.docker.Ports</a> ActionPorts completes port(range)s and protocols</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionRepositories">tools.docker.Repositories</a> ActionRepositories completes repository names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionRepositoryTags">tools.docker.RepositoryTags</a> ActionRepositoryTags completes repository names and tags separately</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionSecrets">tools.docker.Secrets</a> ActionSecrets completes secrets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionServices">tools.docker.Services</a> ActionServices completes services</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionStacks">tools.docker.Stacks</a> ActionStacks completes stacks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/#ActionVolumes">tools.docker.Volumes</a> ActionVolumes completes volume names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/compose/#ActionContainers">tools.docker.compose.Containers</a> ActionContainers completes containers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/compose/#ActionFiles">tools.docker.compose.Files</a> ActionFiles completes files within a service container</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/compose/#ActionServices">tools.docker.compose.Services</a> ActionServices completes services</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/compose/#ActionUsers">tools.docker.compose.Users</a> ActionUsers completes users within a service container</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/compose/#ActionVolumes">tools.docker.compose.Volumes</a> ActionVolumes completes volumes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/doing/#ActionWorkItemTypes">tools.doing.WorkItemTypes</a> ActionWorkItemTypes completes work item types</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/fastfetch/#ActionColors">tools.fastfetch.Colors</a> ActionColors completes colors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/fastfetch/#ActionLogos">tools.fastfetch.Logos</a> ActionLogos completes logos</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/fastfetch/#ActionModules">tools.fastfetch.Modules</a> ActionModules completes modules</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/fastfetch/#ActionPresets">tools.fastfetch.Presets</a> ActionPresets completes presets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionBitstreamFilters">tools.ffmpeg.BitstreamFilters</a> ActionBitstreamFilters completes bitstream filters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionCodecs">tools.ffmpeg.Codecs</a> ActionCodecs completes codecs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionDecodableCodecs">tools.ffmpeg.DecodableCodecs</a> ActionDecodableCodecs completes codecs with decoding support</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionDecoders">tools.ffmpeg.Decoders</a> ActionDecoders completes decoders</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionDemuxers">tools.ffmpeg.Demuxers</a> ActionDemuxers completes demuxers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionDevices">tools.ffmpeg.Devices</a> ActionDevices completes devices</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionEncodableCodecs">tools.ffmpeg.EncodableCodecs</a> ActionEncodableCodecs completes codecs with encoding support</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionEncoders">tools.ffmpeg.Encoders</a> ActionEncoders completes encoders</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionFilters">tools.ffmpeg.Filters</a> ActionFilters completes filters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionFormats">tools.ffmpeg.Formats</a> ActionFormats completes formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionHardwareAccelerations">tools.ffmpeg.HardwareAccelerations</a> ActionHardwareAccelerations completes hardware accellerations</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionHelpTopics">tools.ffmpeg.HelpTopics</a> ActionHelpTopics completes help topics</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionLogLevels">tools.ffmpeg.LogLevels</a> ActionLogLevels completes log levels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionMuxers">tools.ffmpeg.Muxers</a> ActionMuxers completes muxers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ffmpeg/#ActionProtocols">tools.ffmpeg.Protocols</a> ActionProtocols completes protocols</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/fish/#ActionDebugCategories">tools.fish.DebugCategories</a> ActionDebugCategories completes debug categories</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionApplicationColumns">tools.flatpak.ApplicationColumns</a> ActionApplicationColumns completes application columns</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionApplicationSearch">tools.flatpak.ApplicationSearch</a> ActionApplicationSearch completes installable applications</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionApplications">tools.flatpak.Applications</a> ActionApplications completes applications</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionArches">tools.flatpak.Arches</a> ActionArches completes architectures</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionDocumentColums">tools.flatpak.DocumentColums</a> ActionDocumentColums completes document columns</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionEllipsizations">tools.flatpak.Ellipsizations</a> ActionEllipsizations completes elipsizations</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionHistoryColums">tools.flatpak.HistoryColums</a> ActionHistoryColums completes history columns</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionProcessColums">tools.flatpak.ProcessColums</a> ActionProcessColums completes process columns</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionRemoteColumns">tools.flatpak.RemoteColumns</a> ActionRemoteColumns completes remote columns</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionRemoteContentColumns">tools.flatpak.RemoteContentColumns</a> ActionRemoteContentColumns completes remote content columns</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionRemotes">tools.flatpak.Remotes</a> ActionRemotes completes remotes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/flatpak/#ActionSearchColumns">tools.flatpak.SearchColumns</a> ActionSearchColumns completes search columns</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/fury/#ActionPackageVersions">tools.fury.PackageVersions</a> ActionPackageVersions completes package versions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/fury/#ActionPackages">tools.fury.Packages</a> ActionPackages completes packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionAuthScopes">tools.gh.AuthScopes</a> ActionAuthScopes completes authentication scopes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionAutolinkFields">tools.gh.AutolinkFields</a> ActionAutolinkFields completes autolink fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionAutolinks">tools.gh.Autolinks</a> ActionAutolinks completes autolinks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionCacheFields">tools.gh.CacheFields</a> ActionCacheFields completes label fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionCacheRefs">tools.gh.CacheRefs</a> ActionCacheRefs completes cache refs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionCaches">tools.gh.Caches</a> ActionCaches completes caches</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionCodespaceViewFields">tools.gh.CodespaceViewFields</a> ActionCodespaceViewFields completes codespace fields for view</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionCommitFields">tools.gh.CommitFields</a> ActionCommitFields completes commit fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionConfigHosts">tools.gh.ConfigHosts</a> ActionConfigHosts completes configured hosts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionConfigUsers">tools.gh.ConfigUsers</a> ActionConfigUsers completes configured users</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionContents">tools.gh.Contents</a> ActionContents completes contents</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionCurrentAuthScopes">tools.gh.CurrentAuthScopes</a> ActionCurrentAuthScopes completes current authentication scopes for given hostname</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionDateFields">tools.gh.DateFields</a> ActionDateFields completes date fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionDeployKeyFields">tools.gh.DeployKeyFields</a> ActionDeployKeyFields completes deploy key fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionEmojis">tools.gh.Emojis</a> ActionEmojis completes emoji names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionEnvironmentVariables">tools.gh.EnvironmentVariables</a> ActionEnvironmentVariables completes environment variables</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionGpgKeys">tools.gh.GpgKeys</a> ActionGpgKeys completes gpg keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionHostOwnerRepositories">tools.gh.HostOwnerRepositories</a> ActionHostOwnerRepositories completes [host/]owner/repository</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionIssueTemplates">tools.gh.IssueTemplates</a> ActionIssueTemplates completes issue templates</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionLabelFields">tools.gh.LabelFields</a> ActionLabelFields completes label fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionLabels">tools.gh.Labels</a> ActionLabels completes labels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionLanguages">tools.gh.Languages</a> ActionLanguages completes repository languages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionLicenses">tools.gh.Licenses</a> ActionLicenses completes licenses</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionOrganisationVariables">tools.gh.OrganisationVariables</a> ActionOrganisationVariables completes organisation variables</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionOrganizationEmails">tools.gh.OrganizationEmails</a> ActionOrganizationEmails completes email for given organization</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionOrganizations">tools.gh.Organizations</a> ActionOrganizations completes organizations</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionOwnerRepositories">tools.gh.OwnerRepositories</a> ActionOwnerRepositories completes owner/repository</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionOwners">tools.gh.Owners</a> ActionOwners completes users and organizations</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionPinnedIssues">tools.gh.PinnedIssues</a> ActionPinnedIssues completes pinned issues</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionProjectItems">tools.gh.ProjectItems</a> ActionProjectItems completes project items</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionProjects">tools.gh.Projects</a> ActionProjects completes projects</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionPullRequestTemplates">tools.gh.PullRequestTemplates</a> ActionPullRequestTemplates completes pull request templates</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionReleaseFields">tools.gh.ReleaseFields</a> ActionReleaseFields completes release fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionRepositories">tools.gh.Repositories</a> ActionRepositories completes repositories</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionRepositoryVariables">tools.gh.RepositoryVariables</a> ActionRepositoryVariables completes repository variables</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionRulesets">tools.gh.Rulesets</a> ActionRulesets completes rulesets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionSecretFields">tools.gh.SecretFields</a> ActionSecretFields completes secret fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionSshKeys">tools.gh.SshKeys</a> ActionSshKeys completes ssh keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionTeams">tools.gh.Teams</a> ActionTeams completes teams</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionUserEmails">tools.gh.UserEmails</a> ActionUserEmails completes email for given user</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionUsers">tools.gh.Users</a> ActionUsers completes users</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionVariableFields">tools.gh.VariableFields</a> ActionVariableFields completes variable fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionWorkflowEvents">tools.gh.WorkflowEvents</a> ActionWorkflowEvents completes events triggering a workflow</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/#ActionWorkflowFields">tools.gh.WorkflowFields</a> ActionWorkflowFields completes workflow fields.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionAlphaBlendings">tools.ghostty.AlphaBlendings</a> ActionAlphaBlendings completes alpha blendings</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionAsyncBackends">tools.ghostty.AsyncBackends</a> ActionAsyncBackends completes async backends</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionAutoUpdateModes">tools.ghostty.AutoUpdateModes</a> ActionAutoUpdateModes completes auto update modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionBackgroundImageFits">tools.ghostty.BackgroundImageFits</a> ActionBackgroundImageFits completes background image fits</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionBackgroundImagePositions">tools.ghostty.BackgroundImagePositions</a> ActionBackgroundImagePositions completes background image positions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionBellFeatures">tools.ghostty.BellFeatures</a> ActionBellFeatures completes bell features</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionCopyOnSelectModes">tools.ghostty.CopyOnSelectModes</a> ActionCopyOnSelectModes completes copy-on-select modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionCursorStyles">tools.ghostty.CursorStyles</a> ActionCursorStyles completes cursor styles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionFontFamilies">tools.ghostty.FontFamilies</a> ActionFontFamilies completes font families</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionFontSyntheticStyles">tools.ghostty.FontSyntheticStyles</a> ActionFontSyntheticStyles completes font synthetic styles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionFreetypeLoadFlags">tools.ghostty.FreetypeLoadFlags</a> ActionFreetypeLoadFlags completes freetype load flags</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionGraphemeWidthMethods">tools.ghostty.GraphemeWidthMethods</a> ActionGraphemeWidthMethods completes grapheme width methods</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionGtkToolbarStyles">tools.ghostty.GtkToolbarStyles</a> ActionGtkToolbarStyles completes adw toolbar styles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionMacFullscreenModes">tools.ghostty.MacFullscreenModes</a> ActionMacFullscreenModes completes mac fullscreen modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionMacIconFrames">tools.ghostty.MacIconFrames</a> ActionMacIconFrames completes mac icon frames</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionMacIcons">tools.ghostty.MacIcons</a> ActionMacIcons completes mac icons</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionMacTitlebarStyles">tools.ghostty.MacTitlebarStyles</a> ActionMacTitlebarStyles completes mac titlebar styles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionMouseShiftCaptureModes">tools.ghostty.MouseShiftCaptureModes</a> ActionMouseShiftCaptureModes completes mouse shift capture modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionNotifications">tools.ghostty.Notifications</a> ActionNotifications completes app notifications</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionOscColorReportFormats">tools.ghostty.OscColorReportFormats</a> ActionOscColorReportFormats completes osc color report formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionQuickTerminalPositions">tools.ghostty.QuickTerminalPositions</a> ActionQuickTerminalPositions completes quick terminal positions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionQuickTerminalScreens">tools.ghostty.QuickTerminalScreens</a> ActionQuickTerminalScreens completes quick terminal screens</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionReleaseChannels">tools.ghostty.ReleaseChannels</a> ActionReleaseChannels completes release channels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionResizeOverlayModes">tools.ghostty.ResizeOverlayModes</a> ActionResizeOverlayModes completes resize overlay modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionResizeOverlayPositions">tools.ghostty.ResizeOverlayPositions</a> ActionResizeOverlayPositions completes resize overlay positions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionShaderAnimationModes">tools.ghostty.ShaderAnimationModes</a> ActionShaderAnimationModes completes shader animation modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionShellIntegrationFeatures">tools.ghostty.ShellIntegrationFeatures</a> ActionShellIntegrationFeatures completes shell integration features</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionShellIntegrationModes">tools.ghostty.ShellIntegrationModes</a> ActionShellIntegrationModes completes shell integration modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionThemes">tools.ghostty.Themes</a> ActionThemes completes themes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionWindowNewTabPositions">tools.ghostty.WindowNewTabPositions</a> ActionWindowNewTabPositions completes window tab positions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionWindowPaddingColors">tools.ghostty.WindowPaddingColors</a> ActionWindowPaddingColors completes window padding colors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionWindowSaveStates">tools.ghostty.WindowSaveStates</a> ActionWindowSaveStates completes window save states</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ghostty/#ActionWindowThemes">tools.ghostty.WindowThemes</a> ActionWindowThemes completes window themes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionAliases">tools.git.Aliases</a> ActionAliases completes aliases</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionAuthors">tools.git.Authors</a> ActionAuthors completes authors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionBundleHeads">tools.git.BundleHeads</a> ActionBundleHeads completes refs in a bundle</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionCachedDiffs">tools.git.CachedDiffs</a> ActionCachedDiffs completes changes between stage and given ref</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionChanges">tools.git.Changes</a> ActionChanges completes (un)staged changes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionCleanupModes">tools.git.CleanupModes</a> ActionCleanupModes completes cleanup modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionColorConfigs">tools.git.ColorConfigs</a> ActionColorConfigs completes color configs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionColorModes">tools.git.ColorModes</a> ActionColorModes completes color modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionColorMovedModes">tools.git.ColorMovedModes</a> ActionColorMovedModes completes color moved modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionColorMovedWsModes">tools.git.ColorMovedWsModes</a> ActionColorMovedWsModes completed color moved whitespace modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionColors">tools.git.Colors</a> ActionColors completes colors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionColumnLayoutModes">tools.git.ColumnLayoutModes</a> ActionColumnLayoutModes completions column layout modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionCommitters">tools.git.Committers</a> ActionCommitters completes committers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionConfigTypeOptions">tools.git.ConfigTypeOptions</a> ActionConfigTypeOptions completes options for a config type</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionConfigTypes">tools.git.ConfigTypes</a> ActionConfigTypes completes config types</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionConfigValues">tools.git.ConfigValues</a> ActionConfigValues completes config values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionConfigs">tools.git.Configs</a> ActionConfigs completes configs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionCurrentBranch">tools.git.CurrentBranch</a> ActionCurrentBranch completes the current branch</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionDeveloperInterfaces">tools.git.DeveloperInterfaces</a> ActionDeveloperInterfaces completes developer interfaces</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionDiffAlgorithms">tools.git.DiffAlgorithms</a> ActionDiffAlgorithms completes diff algorithms</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionDiffFilters">tools.git.DiffFilters</a> ActionDiffFilters completes diff filters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionDiffTools">tools.git.DiffTools</a> ActionDiffTools completes diff tools</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionDirstats">tools.git.Dirstats</a> ActionDirstats completes dirstats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionFieldNames">tools.git.FieldNames</a> ActionFieldNames completes field names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionHeads">tools.git.Heads</a> ActionHeads completes heads</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionHooks">tools.git.Hooks</a> ActionHooks completes hooks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionLocalBranches">tools.git.LocalBranches</a> ActionLocalBranches completes local branches</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionLsRemoteRefs">tools.git.LsRemoteRefs</a> ActionLsRemoteRefs completes branches and tags for a remote url</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionMaintenanceTasks">tools.git.MaintenanceTasks</a> ActionMaintenanceTasks completes maintenance tasks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionMergeStrategies">tools.git.MergeStrategies</a> ActionMergeStrategies completes merge strategies</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionMergeStrategyOptions">tools.git.MergeStrategyOptions</a> ActionMergeStrategyOptions completes merge strategy options</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionNotes">tools.git.Notes</a> ActionNotes completes notes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionNotesMergeStrategies">tools.git.NotesMergeStrategies</a> ActionNotesMergeStrategies completes notes merge strategies</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionObjectFilters">tools.git.ObjectFilters</a> ActionObjectFilters completes object filters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRecentCommits">tools.git.RecentCommits</a> ActionRecentCommits completes recent commits</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRefChanges">tools.git.RefChanges</a> ActionRefChanges completes changes made in given ref</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRefCommits">tools.git.RefCommits</a> ActionRefCommits completes commits reachable by given ref</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRefDiffs">tools.git.RefDiffs</a> ActionRefDiffs completes changes beetween refs Accepts up to two refs 0: compare current workspace to HEAD 1: compare current workspace to given ref 2: compare first ref to second ref</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRefFiles">tools.git.RefFiles</a> ActionRefFiles completes files of given ref</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRefParents">tools.git.RefParents</a> ActionRefParents completes parents of given ref</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRefRanges">tools.git.RefRanges</a> ActionRefRanges completes refs as range</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionReflogs">tools.git.Reflogs</a> ActionReflogs completes reflogs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRefs">tools.git.Refs</a> ActionRefs completes refs (commits, branches, tags)</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRemoteBranchNames">tools.git.RemoteBranchNames</a> ActionRemoteBranchNames is like ActionRemoteBranches but skips the remote prefix</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRemoteBranches">tools.git.RemoteBranches</a> ActionRemoteBranches completes remote branches</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRemoteUrls">tools.git.RemoteUrls</a> ActionRemoteUrls completes remote urls</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRemotes">tools.git.Remotes</a> ActionRemotes completes remote names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionRepositorySearch">tools.git.RepositorySearch</a> ActionRepositorySearch completes repositories from github.com and gitlab.com</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionStashes">tools.git.Stashes</a> ActionStashes completes stash names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionSubmoduleBranches">tools.git.SubmoduleBranches</a> ActionSubmoduleBranches completes brances and tags of submodules (filtered by name) TODO verify and add example</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionSubmoduleNames">tools.git.SubmoduleNames</a> ActionSubmoduleNames completes submodule names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionSubmodulePaths">tools.git.SubmodulePaths</a> ActionSubmodulePaths completes submodules (relative path)</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionTags">tools.git.Tags</a> ActionTags completes tags</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionTextAttributes">tools.git.TextAttributes</a> ActionTextAttributes completes text attributes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionUnmergedFiles">tools.git.UnmergedFiles</a> ActionUnmergedFiles completes unmerged files</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionVariables">tools.git.Variables</a> ActionVariables completes variables</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionWhitespaceModes">tools.git.WhitespaceModes</a> ActionWhitespaceModes completes whitespace modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionWhitespaceProblems">tools.git.WhitespaceProblems</a> ActionWhitespaceProblems completes whitespace problems</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionWordDiffModes">tools.git.WordDiffModes</a> ActionWordDiffModes completes word diff modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionWorktrees">tools.git.Worktrees</a> ActionWorktrees completes worktrees</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/git/#ActionWsErrorHighlightModes">tools.git.WsErrorHighlightModes</a> ActionWsErrorHighlightModes completes whitespace error highlight modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/glow/#ActionStyles">tools.glow.Styles</a> ActionStyles completes styles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionAnalyzers">tools.golang.Analyzers</a> ActionAnalyzers completes analyzers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionArchitectures">tools.golang.Architectures</a> ActionArchitectures completes known architectures</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionBuildTags">tools.golang.BuildTags</a> ActionBuildTags completes build tags</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionBuildmodes">tools.golang.Buildmodes</a> ActionBuildmodes completes build modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionEnvironmentVariables">tools.golang.EnvironmentVariables</a> ActionEnvironmentVariables completes go environment variables.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionExperiments">tools.golang.Experiments</a> ActionExperiments completes toolchain experiments</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionFuncs">tools.golang.Funcs</a> ActionFuncs completes go funcs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionGodebugKeyValues">tools.golang.GodebugKeyValues</a> ActionGodebugKeyValues completes godebug keys and values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionGodebugKeys">tools.golang.GodebugKeys</a> ActionGodebugKeys completes godebug keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionGodebugValues">tools.golang.GodebugValues</a> ActionGodebugValues completes godebug values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionMethodOrFields">tools.golang.MethodOrFields</a> ActionMethodOrFields completes methods and fields of given symbol</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionModGodebugs">tools.golang.ModGodebugs</a> ActionModGodebugs completes godebug instructions TODO needs <a href="https://github.com/golang/go/issues/75105">https://github.com/golang/go/issues/75105</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionModIgnores">tools.golang.ModIgnores</a> ActionModIgnores completes ignore instructions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionModRetracts">tools.golang.ModRetracts</a> ActionModRetracts completes retract instructions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionModTools">tools.golang.ModTools</a> ActionModTools completes tool instructions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionModVersions">tools.golang.ModVersions</a> ActionModVersions completes tags of module repositiory</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionModuleDownloadModes">tools.golang.ModuleDownloadModes</a> ActionModuleDownloadModes completes module download modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionModuleSearch">tools.golang.ModuleSearch</a> ActionModuleSearch completes git repos in module format</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionModules">tools.golang.Modules</a> ActionModules completes modules</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionOperatingSystems">tools.golang.OperatingSystems</a> ActionOperatingSystems completes known operating systems</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionPackages">tools.golang.Packages</a> ActionPackages completes packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionRewrites">tools.golang.Rewrites</a> ActionRewrites completes rewrites</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionSymbolTypes">tools.golang.SymbolTypes</a> ActionSymbolTypes completes symbol types</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionSymbols">tools.golang.Symbols</a> ActionSymbols completes symbols of given package</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionTests">tools.golang.Tests</a> ActionTests completes tests</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionTools">tools.golang.Tools</a> ActionTools completes tools</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionUnixOperatingSystems">tools.golang.UnixOperatingSystems</a> ActionUnixOperatingSystems completes known operating systems matched by the "unix" build tag</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionVersions">tools.golang.Versions</a> ActionVersions completes go versions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionWorkModules">tools.golang.WorkModules</a> ActionWorkModules completes workspace modules</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionWorkReplacements">tools.golang.WorkReplacements</a> ActionWorkReplacements completes workspace replacements github.com/carapace-sh/carapace-spec (github.com/carapace-sh/carapace-spec@v0.3.0 github.com/spf13/pflag (../carapace-pflag/)</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang/#ActionWorkUses">tools.golang.WorkUses</a> ActionWorkUses completes workspace uses</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golangcilint/#ActionFormatters">tools.golangcilint.Formatters</a> ActionFormatters completes formatters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/golangcilint/#ActionLinters">tools.golangcilint.Linters</a> ActionLinters completes linters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/goreleaser/#ActionBuilds">tools.goreleaser.Builds</a> ActionBuilds completes build ids.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/goreleaser/#ActionLanguages">tools.goreleaser.Languages</a> ActionLanguages completes languages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/goreleaser/#ActionReleaseSteps">tools.goreleaser.ReleaseSteps</a> ActionReleaseSteps completes release steps.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum/#ActionAlignments">tools.gum.Alignments</a> ActionAlignments completes ActionAlignments</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum/#ActionBorders">tools.gum.Borders</a> ActionBorders completes borders</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum/#ActionColors">tools.gum.Colors</a> ActionColors completes colors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/gum/#ActionCursorModes">tools.gum.CursorModes</a> ActionCursorModes completes cursor modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/helix/#ActionLanguages">tools.helix.Languages</a> ActionLanguages completes languages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/helm/#ActionChartVersions">tools.helm.ChartVersions</a> ActionChartVersions completes chart versions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/helm/#ActionCharts">tools.helm.Charts</a> ActionCharts complets charts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/helm/#ActionPlugins">tools.helm.Plugins</a> ActionPlugins completes plugins</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/helm/#ActionReleases">tools.helm.Releases</a> ActionReleases completes releases</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/helm/#ActionRepositories">tools.helm.Repositories</a> ActionRepositories completes repositories</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/helm/#ActionRepositoryCharts">tools.helm.RepositoryCharts</a> ActionRepositoryCharts completes repository charts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/helm/#ActionRevisions">tools.helm.Revisions</a> ActionRevisions completes revisions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jaeger/#ActionSamplingTypes">tools.jaeger.SamplingTypes</a> ActionSamplingTypes completes sampling types</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionChangeIds">tools.jj.ChangeIds</a> ActionChangeIds completes change ids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionConfigs">tools.jj.Configs</a> ActionConfigs completes configs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionConflicts">tools.jj.Conflicts</a> ActionConflicts completes conflicts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionHeadCommits">tools.jj.HeadCommits</a> ActionHeadCommits completes head commits</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionLocalBookmarks">tools.jj.LocalBookmarks</a> ActionLocalBookmarks completes local bookmarks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionNextCommits">tools.jj.NextCommits</a> ActionNextCommits completes next commits</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionOperations">tools.jj.Operations</a> ActionOperations completes operations</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionPrevCommits">tools.jj.PrevCommits</a> ActionPrevCommits completes head commits</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionRecentCommits">tools.jj.RecentCommits</a> ActionRecentCommits completes recent commits</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionRemoteBookmarks">tools.jj.RemoteBookmarks</a> ActionRemoteBookmarks completes remote bookmarks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionRemotes">tools.jj.Remotes</a> ActionRemotes completes remotes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionRevChanges">tools.jj.RevChanges</a> ActionRevChanges completes changes made in given revisions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionRevDiffs">tools.jj.RevDiffs</a> ActionRevDiffs completes changes between revisions Accepts up to two revisions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionRevFiles">tools.jj.RevFiles</a> ActionRevFiles completes files of given revision</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionRevSetFunctions">tools.jj.RevSetFunctions</a> ActionRevSetFunctions completes refset functions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionRevSets">tools.jj.RevSets</a> ActionRevSets completes revision sets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionRevs">tools.jj.Revs</a> ActionRevs completes refs (commits, bookmarks, tags)</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionSigningKeys">tools.jj.SigningKeys</a> ActionSigningKeys completes signing keys based on the user's configuration</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionTags">tools.jj.Tags</a> ActionTags completes tags</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj/#ActionWorkspaces">tools.jj.Workspaces</a> ActionWorkspaces completes workspaces</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl/#ActionAddressJournalFields">tools.journalctl.AddressJournalFields</a> ActionAddressJournalFields completes address journal fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl/#ActionJournalFieldValues">tools.journalctl.JournalFieldValues</a> ActionJournalFieldValues completes journal field values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl/#ActionJournalFields">tools.journalctl.JournalFields</a> ActionJournalFields completes journal fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl/#ActionKernelJournalFields">tools.journalctl.KernelJournalFields</a> ActionKernelJournalFields completes kernel journal fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl/#ActionObjectJournalFields">tools.journalctl.ObjectJournalFields</a> ActionObjectJournalFields completes object journal fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl/#ActionOutputs">tools.journalctl.Outputs</a> ActionOutputs completes output modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl/#ActionTransports">tools.journalctl.Transports</a> ActionTransports completes transports</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl/#ActionTrustedJournalFields">tools.journalctl.TrustedJournalFields</a> ActionTrustedJournalFields completes trusted journal fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl/#ActionUserJournalFields">tools.journalctl.UserJournalFields</a> ActionUserJournalFields completes user journal fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/just/#ActionRecipes">tools.just.Recipes</a> ActionRecipes completes recipes default build (build project)</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/just/#ActionVariables">tools.just.Variables</a> ActionVariables completes variables variablea variableb</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kak/#ActionSessions">tools.kak.Sessions</a> ActionSessions completes kak sessions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubeadm/#ActionFeatureGates">tools.kubeadm.FeatureGates</a> ActionFeatureGates completes feature gates</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubeadm/#ActionOutputFormats">tools.kubeadm.OutputFormats</a> ActionOutputFormats completes output formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionAnnotations">tools.kubectl.Annotations</a> ActionAnnotations completes annotations</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionApiGroups">tools.kubectl.ApiGroups</a> ActionApiGroups completes api groups</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionApiResourceResources">tools.kubectl.ApiResourceResources</a> ActionApiResourceResources completes api resources and resources separately</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionApiResources">tools.kubectl.ApiResources</a> ActionApiResources completes api resources</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionClusters">tools.kubectl.Clusters</a> ActionClusters completes clusters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionContainers">tools.kubectl.Containers</a> ActionContainers completes containers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionContexts">tools.kubectl.Contexts</a> ActionContexts completes contexts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionDryRunModes">tools.kubectl.DryRunModes</a> ActionDryRunModes completes dry run modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionLabels">tools.kubectl.Labels</a> ActionLabels completes labels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionNamespaceServiceAccounts">tools.kubectl.NamespaceServiceAccounts</a> ActionNamespaceServiceAccounts completes namespaces and serviceaccounts separately</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionOutputFormats">tools.kubectl.OutputFormats</a> ActionOutputFormats completes output formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionResourceVerbs">tools.kubectl.ResourceVerbs</a> ActionResourceVerbs completes resource verbs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionResources">tools.kubectl.Resources</a> ActionResources completes resources TODO example</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/kubectl/#ActionValidationModes">tools.kubectl.ValidationModes</a> ActionValidationModes completes validation modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/make/#ActionTargets">tools.make.Targets</a> ActionTargets completes targets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/man/#ActionPages">tools.man.Pages</a> ActionPages completes man pages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/man/#ActionSections">tools.man.Sections</a> ActionSections completes sections of given manpage (or all if empty).</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mitmproxy/#ActionAppendableFiles">tools.mitmproxy.AppendableFiles</a> ActionAppendableFiles completes files with optional <code>+</code> prefix</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mitmproxy/#ActionConsoleLayouts">tools.mitmproxy.ConsoleLayouts</a> ActionConsoleLayouts completes console layouts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mitmproxy/#ActionFlowFilters">tools.mitmproxy.FlowFilters</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mitmproxy/#ActionModes">tools.mitmproxy.Modes</a> ActionModes completes modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mitmproxy/#ActionModifyBodyPattern">tools.mitmproxy.ModifyBodyPattern</a> ActionModifyBodyPattern completes body modification patterns</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mitmproxy/#ActionModifyHeaderPattern">tools.mitmproxy.ModifyHeaderPattern</a> ActionModifyHeaderPattern completes header modification patterns</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mitmproxy/#ActionOptionNames">tools.mitmproxy.OptionNames</a> ActionOptionNames completion option names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mitmproxy/#ActionOptionValues">tools.mitmproxy.OptionValues</a> ActionOptionValues completes option validate_inbound_headers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mix/#ActionMixTasks">tools.mix.MixTasks</a> ActionMixTasks completes mix tasks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/molecule/#ActionDrivers">tools.molecule.Drivers</a> ActionDrivers completes molecule drivers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/molecule/#ActionScenarios">tools.molecule.Scenarios</a> ActionScenarios completes molecule scenarios</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mount/#ActionMountOptions">tools.mount.MountOptions</a> ActionMountOptions completes mount options</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mount/#ActionSources">tools.mount.Sources</a> ActionSources completes sources</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionAudioChannels">tools.mpv.AudioChannels</a> ActionAudioChannels completes audio channels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionAudioCodecOptions">tools.mpv.AudioCodecOptions</a> ActionAudioCodecOptions completes audio codec options for libavcodec</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionAudioCodecs">tools.mpv.AudioCodecs</a> ActionAudioCodecs completes audio codecs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionAudioDecoders">tools.mpv.AudioDecoders</a> ActionAudioDecoders completes audio decoders</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionAudioFilters">tools.mpv.AudioFilters</a> ActionAudioFilters completes audio filters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionAudioOutputs">tools.mpv.AudioOutputs</a> ActionAudioOutputs completes audio outputs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionDemuxers">tools.mpv.Demuxers</a> ActionDemuxers completes demuxers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionFormatOptions">tools.mpv.FormatOptions</a> ActionFormatOptions completes format options for libavformat</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionFormats">tools.mpv.Formats</a> ActionFormats completes output formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionGPUContexts">tools.mpv.GPUContexts</a> ActionGPUContexts completes GPU contexts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionHardwareDecodingAPIs">tools.mpv.HardwareDecodingAPIs</a> ActionHardwareDecodingAPIs completes hardware decoding apis</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionProfiles">tools.mpv.Profiles</a> ActionProfiles completes profiles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionVideoCodecOptions">tools.mpv.VideoCodecOptions</a> ActionVideoCodecOptions completes video codec options for libavcodec</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionVideoCodecs">tools.mpv.VideoCodecs</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionVideoDecoders">tools.mpv.VideoDecoders</a> ActionVideoDecoders completes video decoders</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionVideoFilters">tools.mpv.VideoFilters</a> ActionVideoFilters completes video filters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mpv/#ActionVideoOutputs">tools.mpv.VideoOutputs</a> ActionVideoOutputs completes video outputs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mvn/#ActionGoalsAndPhases">tools.mvn.GoalsAndPhases</a> ActionGoalsAndPhases completes goals and phases</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mvn/#ActionProfiles">tools.mvn.Profiles</a> ActionProfiles completes profiles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/mvn/#ActionProjects">tools.mvn.Projects</a> ActionProjects completes projects</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/newrelic/#ActionAccountIds">tools.newrelic.AccountIds</a> ActionAccountIds completes account ids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/newrelic/#ActionApplicationGuids">tools.newrelic.ApplicationGuids</a> ActionApplicationGuids completes application guids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/newrelic/#ActionApplicationIds">tools.newrelic.ApplicationIds</a> ActionApplicationIds completes application ids</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/newrelic/#ActionDiagnosticSuites">tools.newrelic.DiagnosticSuites</a> ActionDiagnosticSuites completes diagnostic suites</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/newrelic/#ActionProfiles">tools.newrelic.Profiles</a> ActionProfiles completes profiles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/newrelic/#ActionTraceObservers">tools.newrelic.TraceObservers</a> ActionTraceObservers completes trace observers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionAttributes">tools.nix.Attributes</a> ActionAttributes completes attributes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionChannelPackages">tools.nix.ChannelPackages</a> ActionChannelPackages completes local channels and their packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionConfigKeys">tools.nix.ConfigKeys</a> ActionConfigKeys completes config keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionConfigValues">tools.nix.ConfigValues</a> ActionConfigValues completes config values for given key</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionDevShells">tools.nix.DevShells</a> ActionDevShells completes development shells from given flake</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionFlakeAttributes">tools.nix.FlakeAttributes</a> ActionFlakeAttributes completes attributes on a flake Completions are only supplied for local flakes or flakes in the registry.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionFlakeRefs">tools.nix.FlakeRefs</a> ActionFlakeRefs completes a full flake reference It will only complete attributes for local flakes or flakes in the flake registry.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionFlakes">tools.nix.Flakes</a> ActionFlakes completes flakes currently available</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionInstallables">tools.nix.Installables</a> ActionInstallables completes nix packages and flakes An installable nix derivation can either be a nix package (legacyPackages) or a nixosModules output of a flake. There is no completion support implemented for flake outputs due to the processing time required, so ActionInstallables completes packages from the global/system/user channels available and flake names from the global/system/user registry</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionLocalChannels">tools.nix.LocalChannels</a> ActionLocalChannels completes local channels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionNarFileContents">tools.nix.NarFileContents</a> ActionNarFileContents completes contents of given nar file</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionPackages">tools.nix.Packages</a> ActionPackages completes packages for given channel</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionPaths">tools.nix.Paths</a> ActionPaths completes paths A path can be one of: - a local file path (default.nix) - an http/https URL (<a href="https://releases.nixos.org/../nixexprs.tar.xz">https://releases.nixos.org/../nixexprs.tar.xz</a> - a channel: specifier (channel:nixos-22.05) - a local channel (<nixpkgs>)</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionRemoteChannels">tools.nix.RemoteChannels</a> ActionRemoteChannels completes remote channels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix/#ActionTemplates">tools.nix.Templates</a> ActionTemplates completes the templates outputs of the system template flake</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionDependencies">tools.npm.Dependencies</a> ActionDependencies completes dependencies and their version</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionDependencyNames">tools.npm.DependencyNames</a> ActionDependencyNames completes dependencies</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionGlobalConfigKeys">tools.npm.GlobalConfigKeys</a> ActionGlobalConfigKeys completes global config keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionLocalConfigKeys">tools.npm.LocalConfigKeys</a> ActionLocalConfigKeys completes local config keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionModules">tools.npm.Modules</a> ActionModules completes modules</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionOwners">tools.npm.Owners</a> ActionOwners completes owners</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionPackageNames">tools.npm.PackageNames</a> ActionPackageNames completes package names for given registry</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionPackageSearch">tools.npm.PackageSearch</a> ActionPackageSearch completes packages@version for given registry</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionPackageTags">tools.npm.PackageTags</a> ActionPackageTags completes tags for given package</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionPackageVersions">tools.npm.PackageVersions</a> ActionPackageVersions completes versions for given package</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionScripts">tools.npm.Scripts</a> ActionScripts completes scripts</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm/#ActionWorkspaces">tools.npm.Workspaces</a> ActionWorkspaces completes workspaces</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ollama/#ActionModels">tools.ollama.Models</a> ActionModels completes models</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman/#ActionCountries">tools.pacman.Countries</a> ActionCountries completes mirror countries</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman/#ActionPackageFiles">tools.pacman.PackageFiles</a> ActionPackageFiles completes package files</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman/#ActionPackageGroups">tools.pacman.PackageGroups</a> ActionPackageGroups completes package group names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman/#ActionPackageSearch">tools.pacman.PackageSearch</a> ActionPackageSearch completes installable packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman/#ActionPackages">tools.pacman.Packages</a> ActionPackages completes installed packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman/#ActionRepositories">tools.pacman.Repositories</a> ActionRepositories completes package repositories</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pamac/#ActionInstalledPackages">tools.pamac.InstalledPackages</a> ActionInstalledPackages completes installed packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pamac/#ActionPackageGroups">tools.pamac.PackageGroups</a> ActionPackageGroups completes package groups</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pamac/#ActionPackageSearch">tools.pamac.PackageSearch</a> ActionPackageSearch completes installable packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pandoc/#ActionExtensions">tools.pandoc.Extensions</a> ActionExtensions completes extensions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pandoc/#ActionFormats">tools.pandoc.Formats</a> ActionFormats completes formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pandoc/#ActionHighlightStyles">tools.pandoc.HighlightStyles</a> ActionHighlightStyles completes highlight styles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pandoc/#ActionInputFormats">tools.pandoc.InputFormats</a> ActionInputFormats completes input formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pandoc/#ActionOutputFormats">tools.pandoc.OutputFormats</a> ActionOutputFormats completes output formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/paru/#ActionPackageSearch">tools.paru.PackageSearch</a> ActionPackageSearch completes installable packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pass/#ActionDirectories">tools.pass.Directories</a> ActionDirectories completes password directories</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pass/#ActionPasswords">tools.pass.Passwords</a> ActionPasswords completes password names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pip/#ActionConfigValues">tools.pip.ConfigValues</a> ActionConfigValues completes config values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pip/#ActionInstalledPackages">tools.pip.InstalledPackages</a> ActionInstalledPackages completes installed packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pip/#ActionPackageSearch">tools.pip.PackageSearch</a> ActionPackageSearch completes remote packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi/#ActionEnvironments">tools.pixi.Environments</a> ActionEnvironments completes environment names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi/#ActionFeatures">tools.pixi.Features</a> ActionFeatures completes feature names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi/#ActionGlobalEnvironments">tools.pixi.GlobalEnvironments</a> ActionGlobalEnvironments completes global environment names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi/#ActionKnownPlatforms">tools.pixi.KnownPlatforms</a> ActionKnownPlatforms completes known platform names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi/#ActionPackageSearch">tools.pixi.PackageSearch</a> ActionPackageSearch completes conda package names from the registry</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi/#ActionPackages">tools.pixi.Packages</a> ActionPackages completes installed package names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi/#ActionPlatforms">tools.pixi.Platforms</a> ActionPlatforms completes platform names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi/#ActionTasks">tools.pixi.Tasks</a> ActionTasks completes task names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pnpm/#ActionDependencies">tools.pnpm.Dependencies</a> ActionDependencies ocmpletes dependencies with their version</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pnpm/#ActionDependencyNames">tools.pnpm.DependencyNames</a> ActionDependencyNames completes dependency names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pnpm/#ActionFilter">tools.pnpm.Filter</a> ActionFilter completes filter</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pnpm/#ActionLoglevel">tools.pnpm.Loglevel</a> ActionLoglevel completes log levels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pub/#ActionDependencies">tools.pub.Dependencies</a> ActionDependencies completes pubspec dependencies</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pub/#ActionHostedExecutables">tools.pub.HostedExecutables</a> ActionHostedExecutables completes executables from pub_cache</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pub/#ActionPackageSearch">tools.pub.PackageSearch</a> ActionPackageSearch completes packages from pub.dev</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/pub/#ActionPackageVersions">tools.pub.PackageVersions</a> ActionPackageVersions completes versions of a package</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/python/#ActionModules">tools.python.Modules</a> ActionModules completes modules</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/python/#ActionWarningControls">tools.python.WarningControls</a> ActionWarningControls completes warning controls</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/python/#ActionWarnings">tools.python.Warnings</a> ActionWarnings completes warnings</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/rsync/#ActionDebugFlags">tools.rsync.DebugFlags</a> ActionDebugFlags completes debug flags</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/rsync/#ActionFormats">tools.rsync.Formats</a> ActionFormats completes formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/rust/#ActionCodegenOptionNames">tools.rust.CodegenOptionNames</a> ActionCodegenOptionNames completes codegen option names</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/rust/#ActionCodegenOptionValues">tools.rust.CodegenOptionValues</a> ActionCodegenOptionValues completion codegen option value</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/rust/#ActionCodegenOptions">tools.rust.CodegenOptions</a> ActionCodegenOptions completes codegen names and values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/rust/#ActionCrateTypes">tools.rust.CrateTypes</a> ActionCrateTypes completes crate types</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/rust/#ActionErrorCodes">tools.rust.ErrorCodes</a> ActionErrorCodes completes error codes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/rust/#ActionLintLevels">tools.rust.LintLevels</a> ActionLintLevels completes lint levels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/rust/#ActionTargets">tools.rust.Targets</a> ActionTargets completes targets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/rustdoc/#ActionLints">tools.rustdoc.Lints</a> ActionLints completes lints</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/saw/#ActionGroups">tools.saw.Groups</a> ActionGroups completes log groups.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/saw/#ActionStreams">tools.saw.Streams</a> ActionStreams completes log streams.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/supervisor/#ActionGroups">tools.supervisor.Groups</a> ActionGroups completes groups</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/supervisor/#ActionProcesses">tools.supervisor.Processes</a> ActionProcesses completes processes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/supervisor/#ActionSignals">tools.supervisor.Signals</a> ActionSignals completes signals</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/sway/#ActionOutputs">tools.sway.Outputs</a> ActionOutputs completes outputs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/syft/#ActionOutputFormats">tools.syft.OutputFormats</a> ActionOutputFormats completes output formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/syft/#ActionSources">tools.syft.Sources</a> ActionSources completes sources</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl/#ActionEnvironmentVariables">tools.systemctl.EnvironmentVariables</a> ActionEnvironmentVariables completes environment variables</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl/#ActionLogLevels">tools.systemctl.LogLevels</a> ActionLogLevels completes log levels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl/#ActionProperties">tools.systemctl.Properties</a> ActionProperties completes properties for given unit</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl/#ActionServices">tools.systemctl.Services</a> ActionServices completes services</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl/#ActionStates">tools.systemctl.States</a> ActionStates completes states</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl/#ActionTargets">tools.systemctl.Targets</a> ActionTargets completes targets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl/#ActionUnitFiles">tools.systemctl.UnitFiles</a> ActionUnitFiles completes unit files</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl/#ActionUnitTypes">tools.systemctl.UnitTypes</a> ActionUnitTypes completes unit types</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl/#ActionUnits">tools.systemctl.Units</a> ActionUnits completes units</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/task/#ActionTasks">tools.task.Tasks</a> ActionTasks completes tasks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionIssueFields">tools.tea.IssueFields</a> ActionIssueFields completes issue fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionIssues">tools.tea.Issues</a> ActionIssues completes issues</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionLabels">tools.tea.Labels</a> ActionLabels completes labels</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionLogins">tools.tea.Logins</a> ActionLogins completes logins</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionMilestoneFields">tools.tea.MilestoneFields</a> ActionMilestoneFields completes milestone fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionNotificationFields">tools.tea.NotificationFields</a> ActionNotificationFields completes notification fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionNotificationStates">tools.tea.NotificationStates</a> ActionNotificationStates complets notification states</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionNotificationTypes">tools.tea.NotificationTypes</a> ActionNotificationTypes completes notification types</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionOutputFormats">tools.tea.OutputFormats</a> ActionOutputFormats completes output formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionPullrequestFields">tools.tea.PullrequestFields</a> ActionPullrequestFields completes pullrequest fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionPullrequests">tools.tea.Pullrequests</a> ActionPullrequests completes pull requests</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionRepositoryFields">tools.tea.RepositoryFields</a> ActionRepositoryFields completes repository fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionTimeFields">tools.tea.TimeFields</a> ActionTimeFields completes time fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tea/#ActionUserFields">tools.tea.UserFields</a> ActionUserFields completes user fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/terraform/#ActionResources">tools.terraform.Resources</a> ActionResources completes resources</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/terraform/#ActionWorkspaces">tools.terraform.Workspaces</a> ActionWorkspaces completes workspaces</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/terramate/#ActionCloudStatus">tools.terramate.CloudStatus</a> ActionCloudStatus completes cloud status</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/terramate/#ActionSafeguards">tools.terramate.Safeguards</a> ActionSafeguards completes safeguards</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/terramate/#ActionStacks">tools.terramate.Stacks</a> ActionStacks completes stacks.</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tinygo/#ActionTargets">tools.tinygo.Targets</a> ActionTargets completes targets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tmux/#ActionClientFlags">tools.tmux.ClientFlags</a> ActionClientFlags completes client flags</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tmux/#ActionFeatures">tools.tmux.Features</a> ActionFeatures completes features</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tmux/#ActionPanes">tools.tmux.Panes</a> ActionPanes completes panes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tmux/#ActionSessions">tools.tmux.Sessions</a> ActionSessions completes sessions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tmux/#ActionWindows">tools.tmux.Windows</a> ActionWindows completes windows</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tofu/#ActionResources">tools.tofu.Resources</a> ActionResources completes resources</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tofu/#ActionWorkspaces">tools.tofu.Workspaces</a> ActionWorkspaces completes workspaces</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tox/#ActionEnvironments">tools.tox.Environments</a> ActionEnvironments completes tox environments</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/transmission/#ActionFilters">tools.transmission.Filters</a> ActionFilters completes filters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/transmission/#ActionIds">tools.transmission.Ids</a> ActionIds completes torrent IDs, accounting for previously applied filters</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/transmission/#ActionTOS">tools.transmission.TOS</a> ActionTOS Completes a name for ToS values</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh/#ActionClusters">tools.tsh.Clusters</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh/#ActionFormats">tools.tsh.Formats</a> ActionFormats completes formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh/#ActionKubeClusters">tools.tsh.KubeClusters</a></li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tshark/#ActionFileTypes">tools.tshark.FileTypes</a> ActionFileTypes completes file types</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tshark/#ActionInterfaces">tools.tshark.Interfaces</a> ActionInterfaces completes interfaces</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tshark/#ActionLinkTypes">tools.tshark.LinkTypes</a> ActionLinkTypes completes link types for given interface</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tshark/#ActionProtocols">tools.tshark.Protocols</a> ActionProtocols completes protocols</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tshark/#ActionReadFormats">tools.tshark.ReadFormats</a> ActionReadFormats completes read file formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tshark/#ActionSelectors">tools.tshark.Selectors</a> ActionSelectors completes selectors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/tshark/#ActionStatistics">tools.tshark.Statistics</a> ActionStatistics completes statistics</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/turbo/#ActionPipelineTasks">tools.turbo.PipelineTasks</a> ActionPipelineTasks completes pipeline tasks</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/upower/#ActionDevices">tools.upower.Devices</a> ActionDevices completes devices</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vagrant/#ActionBoxes">tools.vagrant.Boxes</a> ActionBoxes completes boxes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vagrant/#ActionCloudBoxProviders">tools.vagrant.CloudBoxProviders</a> ActionCloudBoxProviders completes cloud box providers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vagrant/#ActionCloudBoxSearch">tools.vagrant.CloudBoxSearch</a> ActionCloudBoxSearch completes cloud boxes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vagrant/#ActionGlobalMachines">tools.vagrant.GlobalMachines</a> ActionGlobalMachines completes global machines</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vagrant/#ActionLocalMachines">tools.vagrant.LocalMachines</a> ActionLocalMachines complets local machines</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vagrant/#ActionMachines">tools.vagrant.Machines</a> ActionMachines completes machines</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vagrant/#ActionPlugins">tools.vagrant.Plugins</a> ActionPlugins completes plugins</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vagrant/#ActionProviders">tools.vagrant.Providers</a> ActionProviders completes providers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vagrant/#ActionProvisioners">tools.vagrant.Provisioners</a> ActionProvisioners completes provisioners</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vagrant/#ActionSnapshots">tools.vagrant.Snapshots</a> ActionSnapshots completes snapshots</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/virtualbox/#ActionMachines">tools.virtualbox.Machines</a> ActionMachines completes virtualbox machines</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/vivid/#ActionThemes">tools.vivid.Themes</a> ActionThemes completes themes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/wezterm/#ActionPaneDirections">tools.wezterm.PaneDirections</a> ActionPaneDirections completes pane directions</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/wezterm/#ActionPanes">tools.wezterm.Panes</a> ActionPanes completes panes 0 (zsh) 1 (fish)</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/wezterm/#ActionTabs">tools.wezterm.Tabs</a> ActionTabs completes tabs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/wezterm/#ActionWindows">tools.wezterm.Windows</a> ActionWindows completes windows</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/winetricks/#ActionPrefixes">tools.winetricks.Prefixes</a> ActionPrefixes completes prefixes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/winetricks/#ActionVerbs">tools.winetricks.Verbs</a> ActionVerbs completes verbs</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/winget/#ActionAuthenticationModes">tools.winget.AuthenticationModes</a> ActionAuthenticationModes completes authentication modes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/winget/#ActionScopes">tools.winget.Scopes</a> ActionScopes completes scopes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/xbps/#ActionPackageSearch">tools.xbps.PackageSearch</a> ActionPackageSearch completes installable packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/xbps/#ActionPackages">tools.xbps.Packages</a> ActionPackages completes installed packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/xclip/#ActionTargets">tools.xclip.Targets</a> ActionTargets completes selection targets</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/xdotool/#ActionDesktops">tools.xdotool.Desktops</a> ActionDesktops completes desktops</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/xdotool/#ActionKeys">tools.xdotool.Keys</a> ActionKeys completes keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/xdotool/#ActionProperties">tools.xdotool.Properties</a> ActionProperties completes properties</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/xdotool/#ActionWindows">tools.xdotool.Windows</a> ActionWindows completes windows</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/yarn/#ActionBins">tools.yarn.Bins</a> ActionBins completes bins</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/yarn/#ActionConfigKeys">tools.yarn.ConfigKeys</a> ActionConfigKeys completes configuration keys</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/yarn/#ActionConfigValues">tools.yarn.ConfigValues</a> ActionConfigValues completes configuration options for given key</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/yarn/#ActionDependencies">tools.yarn.Dependencies</a> ActionDependencies completes dependencies</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/yarn/#ActionErrorCodes">tools.yarn.ErrorCodes</a> ActionErrorCodes completes error codes</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/yarn/#ActionPlugins">tools.yarn.Plugins</a> ActionPlugins completes plugins</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/yarn/#ActionWorkspaces">tools.yarn.Workspaces</a> ActionWorkspaces completes workspaces</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/yay/#ActionPackageSearch">tools.yay.PackageSearch</a> ActionPackageSearch completes installable packages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/youtubedl/#ActionFormats">tools.youtubedl.Formats</a> ActionFormats completes formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/youtubedl/#ActionSubLangs">tools.youtubedl.SubLangs</a> ActionSubLangs completes subtitle languages</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionBrowsers">tools.ytdlp.Browsers</a> ActionBrowsers completes browsers</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionChapterFields">tools.ytdlp.ChapterFields</a> ActionChapterFields completes chapter fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionEpisodeFields">tools.ytdlp.EpisodeFields</a> ActionEpisodeFields completes episode fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionExtractors">tools.ytdlp.Extractors</a> ActionExtractors completes extractors</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionFields">tools.ytdlp.Fields</a> ActionFields completes fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionFormats">tools.ytdlp.Formats</a> ActionFormats completes formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionNumericMetaFields">tools.ytdlp.NumericMetaFields</a> ActionNumericMetaFields completes numeric meta fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionOutputFormats">tools.ytdlp.OutputFormats</a> ActionOutputFormats completes output formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionPrintFields">tools.ytdlp.PrintFields</a> ActionPrintFields completes print fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionProtocols">tools.ytdlp.Protocols</a> ActionProtocols completes protocols</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionSectionFields">tools.ytdlp.SectionFields</a> ActionSectionFields completes section fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionSponsorblockCategories">tools.ytdlp.SponsorblockCategories</a> ActionSponsorblockCategories completes sponsorblock categories</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionSponsorblockFields">tools.ytdlp.SponsorblockFields</a> ActionSponsorblockFields completes sponsorblock fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionStringMetaFields">tools.ytdlp.StringMetaFields</a> ActionStringMetaFields completes string meta fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionSubtitleFormats">tools.ytdlp.SubtitleFormats</a> ActionSubtitleFormats completes subtitle formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionSubtitles">tools.ytdlp.Subtitles</a> ActionSubtitles completes subtitles</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionThumbnailFormats">tools.ytdlp.ThumbnailFormats</a> ActionThumbnailFormats completes thumbnail formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionTrackFields">tools.ytdlp.TrackFields</a> ActionTrackFields completes track fields</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/ytdlp/#ActionVideoFormats">tools.ytdlp.VideoFormats</a> ActionVideoFormats completes video formats</li>
+<li><a href="https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/tools/zoxide/#ActionDirectories">tools.zoxide.Directories</a> ActionDirectories completes zoxide directories</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../spec/examples.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../overlay.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../spec/examples.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../overlay.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../asciinema/asciinema-player.min.js"></script>
+        <script src="../asciinema/load.js"></script>
+
+
+
+    </div>
+    </body>
+</html>
