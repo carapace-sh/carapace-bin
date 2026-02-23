@@ -25,7 +25,7 @@ func init() {
 	installCmd.Flags().Bool("ignore-file-conflicts", false, "Ignore file conflicts")
 	installCmd.Flags().Bool("ignore-package-conflicts", false, "Ignore package conflicts")
 	installCmd.Flags().StringP("component", "c", "", "Install component's packages")
-	installCmd.Flags().StringP("repository", "r", "", "Name of the to be searched repository")
+	installCmd.Flags().String("repository", "", "Name of the to be searched repository")
 	installCmd.Flags().Bool("fetch-only", false, "Fetch upgrades but do not install")
 	installCmd.Flags().String("exclude", "", "Packages to exclude from install")
 	installCmd.Flags().String("exclude-from", "", "File containing packages to exclude")
