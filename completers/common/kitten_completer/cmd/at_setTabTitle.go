@@ -11,7 +11,7 @@ var setTabTitleCmd = &cobra.Command{
 }
 
 func init() {
-	setTabTitleCmd.AddCommand(atCmd)
+	atCmd.AddCommand(setTabTitleCmd)
 	carapace.Gen(setTabTitleCmd).Standalone()
 
 	setTabTitleCmd.Flags().BoolP("help", "h", false, "Show help for this command")

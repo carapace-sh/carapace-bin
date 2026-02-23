@@ -11,7 +11,7 @@ var setTabColorCmd = &cobra.Command{
 }
 
 func init() {
-	setTabColorCmd.AddCommand(atCmd)
+	atCmd.AddCommand(setTabColorCmd)
 	carapace.Gen(setTabColorCmd).Standalone()
 
 	setTabColorCmd.Flags().BoolP("help", "h", false, "Show help for this command")

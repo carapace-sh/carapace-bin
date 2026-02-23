@@ -11,7 +11,7 @@ var enablePortalCmd = &cobra.Command{
 }
 
 func init() {
-	enablePortalCmd.AddCommand(desktopUiCmd)
+	desktopUiCmd.AddCommand(enablePortalCmd)
 	carapace.Gen(enablePortalCmd).Standalone()
 
 	enablePortalCmd.Flags().BoolP("help", "h", false, "Show help for this command")

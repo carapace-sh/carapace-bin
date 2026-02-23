@@ -11,7 +11,7 @@ var resizeWindowCmd = &cobra.Command{
 }
 
 func init() {
-	resizeWindowCmd.AddCommand(atCmd)
+	atCmd.AddCommand(resizeWindowCmd)
 	carapace.Gen(resizeWindowCmd).Standalone()
 
 	resizeWindowCmd.Flags().StringP("axis", "a", "horizontal", "The axis along which to resize")

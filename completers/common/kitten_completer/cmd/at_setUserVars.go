@@ -11,7 +11,7 @@ var setUserVarsCmd = &cobra.Command{
 }
 
 func init() {
-	setUserVarsCmd.AddCommand(atCmd)
+	atCmd.AddCommand(setUserVarsCmd)
 	carapace.Gen(setUserVarsCmd).Standalone()
 
 	setUserVarsCmd.Flags().BoolP("help", "h", false, "Show help for this command")

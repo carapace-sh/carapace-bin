@@ -11,7 +11,7 @@ var selectWindowCmd = &cobra.Command{
 }
 
 func init() {
-	selectWindowCmd.AddCommand(atCmd)
+	atCmd.AddCommand(selectWindowCmd)
 	carapace.Gen(selectWindowCmd).Standalone()
 
 	selectWindowCmd.Flags().Bool("exclude-active", false, "Exclude the currently active window from the list of windows to pick")

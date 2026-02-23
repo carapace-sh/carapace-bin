@@ -11,7 +11,7 @@ var focusTabCmd = &cobra.Command{
 }
 
 func init() {
-	focusTabCmd.AddCommand(atCmd)
+	atCmd.AddCommand(focusTabCmd)
 	carapace.Gen(focusTabCmd).Standalone()
 
 	focusTabCmd.Flags().BoolP("help", "h", false, "Show help for this command")

@@ -11,7 +11,7 @@ var removeMarkerCmd = &cobra.Command{
 }
 
 func init() {
-	removeMarkerCmd.AddCommand(atCmd)
+	atCmd.AddCommand(removeMarkerCmd)
 	carapace.Gen(removeMarkerCmd).Standalone()
 
 	removeMarkerCmd.Flags().BoolP("help", "h", false, "Show help for this command")

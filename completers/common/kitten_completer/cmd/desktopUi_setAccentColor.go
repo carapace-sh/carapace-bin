@@ -11,7 +11,7 @@ var setAccentColorCmd = &cobra.Command{
 }
 
 func init() {
-	setAccentColorCmd.AddCommand(desktopUiCmd)
+	desktopUiCmd.AddCommand(setAccentColorCmd)
 	carapace.Gen(setAccentColorCmd).Standalone()
 
 	setAccentColorCmd.Flags().BoolP("help", "h", false, "Show help for this command")

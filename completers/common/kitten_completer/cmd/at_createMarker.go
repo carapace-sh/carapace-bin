@@ -11,7 +11,7 @@ var createMarkerCmd = &cobra.Command{
 }
 
 func init() {
-	createMarkerCmd.AddCommand(atCmd)
+	atCmd.AddCommand(createMarkerCmd)
 	carapace.Gen(createMarkerCmd).Standalone()
 
 	createMarkerCmd.Flags().BoolP("help", "h", false, "Show help for this command")

@@ -11,7 +11,7 @@ var setColorSchemeCmd = &cobra.Command{
 }
 
 func init() {
-	setColorSchemeCmd.AddCommand(desktopUiCmd)
+	desktopUiCmd.AddCommand(setColorSchemeCmd)
 	carapace.Gen(setColorSchemeCmd).Standalone()
 
 	setColorSchemeCmd.Flags().BoolP("help", "h", false, "Show help for this command")

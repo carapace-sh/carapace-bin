@@ -11,7 +11,7 @@ var setSpacingCmd = &cobra.Command{
 }
 
 func init() {
-	setSpacingCmd.AddCommand(atCmd)
+	atCmd.AddCommand(setSpacingCmd)
 	carapace.Gen(setSpacingCmd).Standalone()
 
 	setSpacingCmd.Flags().BoolP("all", "a", false, "By default, settings are only changed for the currently active window")

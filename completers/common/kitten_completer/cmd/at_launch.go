@@ -11,7 +11,7 @@ var launchCmd = &cobra.Command{
 }
 
 func init() {
-	launchCmd.AddCommand(atCmd)
+	atCmd.AddCommand(launchCmd)
 	carapace.Gen(launchCmd).Standalone()
 
 	launchCmd.Flags().String("add-to-session", "", "Add the newly created window/tab to the specified session")

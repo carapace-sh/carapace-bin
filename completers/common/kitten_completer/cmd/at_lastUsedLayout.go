@@ -11,7 +11,7 @@ var lastUsedLayoutCmd = &cobra.Command{
 }
 
 func init() {
-	lastUsedLayoutCmd.AddCommand(atCmd)
+	atCmd.AddCommand(lastUsedLayoutCmd)
 	carapace.Gen(lastUsedLayoutCmd).Standalone()
 
 	lastUsedLayoutCmd.Flags().BoolP("all", "a", false, "Change the layout in all tabs")

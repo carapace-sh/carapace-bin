@@ -12,7 +12,7 @@ var actionCmd = &cobra.Command{
 }
 
 func init() {
-	actionCmd.AddCommand(atCmd)
+	atCmd.AddCommand(actionCmd)
 	carapace.Gen(actionCmd).Standalone()
 
 	actionCmd.Flags().BoolP("help", "h", false, "Show help for this command")

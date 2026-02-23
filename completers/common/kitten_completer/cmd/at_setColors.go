@@ -11,7 +11,7 @@ var setColorsCmd = &cobra.Command{
 }
 
 func init() {
-	setColorsCmd.AddCommand(atCmd)
+	atCmd.AddCommand(setColorsCmd)
 	carapace.Gen(setColorsCmd).Standalone()
 
 	setColorsCmd.Flags().BoolP("all", "a", false, "By default, colors are only changed for the currently active window")

@@ -11,7 +11,7 @@ var detachWindowCmd = &cobra.Command{
 }
 
 func init() {
-	detachWindowCmd.AddCommand(atCmd)
+	atCmd.AddCommand(detachWindowCmd)
 	carapace.Gen(detachWindowCmd).Standalone()
 
 	detachWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")

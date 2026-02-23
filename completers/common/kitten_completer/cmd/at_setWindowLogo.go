@@ -11,7 +11,7 @@ var setWindowLogoCmd = &cobra.Command{
 }
 
 func init() {
-	setWindowLogoCmd.AddCommand(atCmd)
+	atCmd.AddCommand(setWindowLogoCmd)
 	carapace.Gen(setWindowLogoCmd).Standalone()
 
 	setWindowLogoCmd.Flags().String("alpha", "-1", "The amount the window logo should be faded into the background")

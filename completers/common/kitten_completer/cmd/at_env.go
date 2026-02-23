@@ -11,7 +11,7 @@ var envCmd = &cobra.Command{
 }
 
 func init() {
-	envCmd.AddCommand(atCmd)
+	atCmd.AddCommand(envCmd)
 	carapace.Gen(envCmd).Standalone()
 
 	envCmd.Flags().BoolP("help", "h", false, "Show help for this command")

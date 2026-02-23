@@ -11,7 +11,7 @@ var resizeOsWindowCmd = &cobra.Command{
 }
 
 func init() {
-	resizeOsWindowCmd.AddCommand(atCmd)
+	atCmd.AddCommand(resizeOsWindowCmd)
 	carapace.Gen(resizeOsWindowCmd).Standalone()
 
 	resizeOsWindowCmd.Flags().String("action", "resize", "The action to perform")

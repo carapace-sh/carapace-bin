@@ -11,7 +11,7 @@ var setEnabledLayoutsCmd = &cobra.Command{
 }
 
 func init() {
-	setEnabledLayoutsCmd.AddCommand(atCmd)
+	atCmd.AddCommand(setEnabledLayoutsCmd)
 	carapace.Gen(setEnabledLayoutsCmd).Standalone()
 
 	setEnabledLayoutsCmd.Flags().Bool("configured", false, "Change the default enabled layout value so that the new value takes effect for all newly created tabs as well")

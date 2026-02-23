@@ -11,7 +11,7 @@ var showSettingsCmd = &cobra.Command{
 }
 
 func init() {
-	showSettingsCmd.AddCommand(desktopUiCmd)
+	desktopUiCmd.AddCommand(showSettingsCmd)
 	carapace.Gen(showSettingsCmd).Standalone()
 
 	showSettingsCmd.Flags().Bool("allow-other-backends", false, "Normally, after printing the settings, if the settings did not come from the desktop-ui kitten the command prints an error and exits. This prevents that.")

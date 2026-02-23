@@ -11,7 +11,7 @@ var setBackgroundOpacityCmd = &cobra.Command{
 }
 
 func init() {
-	setBackgroundOpacityCmd.AddCommand(atCmd)
+	atCmd.AddCommand(setBackgroundOpacityCmd)
 	carapace.Gen(setBackgroundOpacityCmd).Standalone()
 
 	setBackgroundOpacityCmd.Flags().BoolP("all", "a", false, "By default, background opacity are only changed for the currently active OS window")

@@ -11,7 +11,7 @@ var runServerCmd = &cobra.Command{
 }
 
 func init() {
-	runServerCmd.AddCommand(desktopUiCmd)
+	desktopUiCmd.AddCommand(runServerCmd)
 	carapace.Gen(runServerCmd).Standalone()
 
 	runServerCmd.Flags().StringP("config", "c", "", "Specify a path to the configuration file(s) to use")

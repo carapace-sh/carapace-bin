@@ -11,7 +11,7 @@ var runCmd = &cobra.Command{
 }
 
 func init() {
-	runCmd.AddCommand(atCmd)
+	atCmd.AddCommand(runCmd)
 	carapace.Gen(runCmd).Standalone()
 
 	runCmd.Flags().Bool("allow-remote-control", false, "The executed program will have privileges to run remote control commands in kitty")

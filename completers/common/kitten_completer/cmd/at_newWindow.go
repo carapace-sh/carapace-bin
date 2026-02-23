@@ -11,7 +11,7 @@ var newWindowCmd = &cobra.Command{
 }
 
 func init() {
-	newWindowCmd.AddCommand(atCmd)
+	atCmd.AddCommand(newWindowCmd)
 	carapace.Gen(newWindowCmd).Standalone()
 
 	newWindowCmd.Flags().String("cwd", "", "The initial working directory for the new window")

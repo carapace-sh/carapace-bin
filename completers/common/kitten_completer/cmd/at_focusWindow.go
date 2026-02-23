@@ -11,7 +11,7 @@ var focusWindowCmd = &cobra.Command{
 }
 
 func init() {
-	focusWindowCmd.AddCommand(atCmd)
+	atCmd.AddCommand(focusWindowCmd)
 	carapace.Gen(focusWindowCmd).Standalone()
 
 	focusWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")

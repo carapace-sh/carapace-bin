@@ -11,7 +11,7 @@ var getTextCmd = &cobra.Command{
 }
 
 func init() {
-	getTextCmd.AddCommand(atCmd)
+	atCmd.AddCommand(getTextCmd)
 	carapace.Gen(getTextCmd).Standalone()
 
 	getTextCmd.Flags().Bool("add-cursor", false, "Add ANSI escape codes specifying the cursor position and style to the end of the text")

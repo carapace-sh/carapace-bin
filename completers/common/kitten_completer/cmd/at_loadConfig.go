@@ -11,7 +11,7 @@ var loadConfigCmd = &cobra.Command{
 }
 
 func init() {
-	loadConfigCmd.AddCommand(atCmd)
+	atCmd.AddCommand(loadConfigCmd)
 	carapace.Gen(loadConfigCmd).Standalone()
 
 	loadConfigCmd.Flags().BoolP("help", "h", false, "Show help for this command")

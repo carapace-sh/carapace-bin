@@ -11,7 +11,7 @@ var lsCmd = &cobra.Command{
 }
 
 func init() {
-	lsCmd.AddCommand(atCmd)
+	atCmd.AddCommand(lsCmd)
 	carapace.Gen(lsCmd).Standalone()
 
 	lsCmd.Flags().Bool("all-env-vars", false, "Show all environment variables in output, not just differing ones")

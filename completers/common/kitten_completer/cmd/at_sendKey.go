@@ -11,7 +11,7 @@ var sendKeyCmd = &cobra.Command{
 }
 
 func init() {
-	sendKeyCmd.AddCommand(atCmd)
+	atCmd.AddCommand(sendKeyCmd)
 	carapace.Gen(sendKeyCmd).Standalone()
 
 	sendKeyCmd.Flags().Bool("all", false, "Match all windows")

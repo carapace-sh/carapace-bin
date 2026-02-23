@@ -11,7 +11,7 @@ var disableLigaturesCmd = &cobra.Command{
 }
 
 func init() {
-	disableLigaturesCmd.AddCommand(atCmd)
+	atCmd.AddCommand(disableLigaturesCmd)
 	carapace.Gen(disableLigaturesCmd).Standalone()
 
 	disableLigaturesCmd.Flags().BoolP("all", "a", false, "By default, ligatures are only affected in the active window")

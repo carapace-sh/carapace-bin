@@ -11,7 +11,7 @@ var setContrastCmd = &cobra.Command{
 }
 
 func init() {
-	setContrastCmd.AddCommand(desktopUiCmd)
+	desktopUiCmd.AddCommand(setContrastCmd)
 	carapace.Gen(setContrastCmd).Standalone()
 
 	setContrastCmd.Flags().BoolP("help", "h", false, "Show help for this command")

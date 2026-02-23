@@ -11,7 +11,7 @@ var signalChildCmd = &cobra.Command{
 }
 
 func init() {
-	signalChildCmd.AddCommand(atCmd)
+	atCmd.AddCommand(signalChildCmd)
 	carapace.Gen(signalChildCmd).Standalone()
 
 	signalChildCmd.Flags().BoolP("help", "h", false, "Show help for this command")

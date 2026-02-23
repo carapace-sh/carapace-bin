@@ -11,7 +11,7 @@ var getColorsCmd = &cobra.Command{
 }
 
 func init() {
-	getColorsCmd.AddCommand(atCmd)
+	atCmd.AddCommand(getColorsCmd)
 	carapace.Gen(getColorsCmd).Standalone()
 
 	getColorsCmd.Flags().BoolP("configured", "c", false, "Instead of outputting the colors for the specified window, output the currently configured colors")

@@ -11,7 +11,7 @@ var setBackgroundImageCmd = &cobra.Command{
 }
 
 func init() {
-	setBackgroundImageCmd.AddCommand(atCmd)
+	atCmd.AddCommand(setBackgroundImageCmd)
 	carapace.Gen(setBackgroundImageCmd).Standalone()
 
 	setBackgroundImageCmd.Flags().BoolP("all", "a", false, "By default, background image is only changed for the currently active OS window")

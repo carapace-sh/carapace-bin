@@ -11,7 +11,7 @@ var setSettingCmd = &cobra.Command{
 }
 
 func init() {
-	setSettingCmd.AddCommand(desktopUiCmd)
+	desktopUiCmd.AddCommand(setSettingCmd)
 	carapace.Gen(setSettingCmd).Standalone()
 
 	setSettingCmd.Flags().String("data-type", "", "The DBUS data type signature of the value")

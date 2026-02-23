@@ -11,7 +11,7 @@ var gotoLayoutCmd = &cobra.Command{
 }
 
 func init() {
-	gotoLayoutCmd.AddCommand(atCmd)
+	atCmd.AddCommand(gotoLayoutCmd)
 	carapace.Gen(gotoLayoutCmd).Standalone()
 
 	gotoLayoutCmd.Flags().BoolP("help", "h", false, "Show help for this command")

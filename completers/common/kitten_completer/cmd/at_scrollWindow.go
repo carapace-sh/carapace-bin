@@ -11,7 +11,7 @@ var scrollWindowCmd = &cobra.Command{
 }
 
 func init() {
-	scrollWindowCmd.AddCommand(atCmd)
+	atCmd.AddCommand(scrollWindowCmd)
 	carapace.Gen(scrollWindowCmd).Standalone()
 
 	scrollWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")

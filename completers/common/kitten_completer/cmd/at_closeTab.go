@@ -11,7 +11,7 @@ var closeTabCmd = &cobra.Command{
 }
 
 func init() {
-	closeTabCmd.AddCommand(atCmd)
+	atCmd.AddCommand(closeTabCmd)
 	carapace.Gen(closeTabCmd).Standalone()
 
 	closeTabCmd.Flags().BoolP("help", "h", false, "Show help for this command")

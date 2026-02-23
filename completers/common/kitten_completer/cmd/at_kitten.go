@@ -11,7 +11,7 @@ var kittenCmd = &cobra.Command{
 }
 
 func init() {
-	kittenCmd.AddCommand(atCmd)
+	atCmd.AddCommand(kittenCmd)
 	carapace.Gen(kittenCmd).Standalone()
 
 	kittenCmd.Flags().BoolP("help", "h", false, "Show help for this command")

@@ -11,7 +11,7 @@ var setWindowTitleCmd = &cobra.Command{
 }
 
 func init() {
-	setWindowTitleCmd.AddCommand(atCmd)
+	atCmd.AddCommand(setWindowTitleCmd)
 	carapace.Gen(setWindowTitleCmd).Standalone()
 
 	setWindowTitleCmd.Flags().BoolP("help", "h", false, "Show help for this command")
