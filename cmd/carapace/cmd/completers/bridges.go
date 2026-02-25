@@ -31,6 +31,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://chezmoi.io/",
 			Variant:     "cobra",
 		},
+		"cosign": {
+			Description: "Code signing and transparency for containers and binaries",
+			Url:         "https://github.com/sigstore/cosign",
+			Variant:     "cobra",
+		},
 		"crc": {
 			Description: "Local OpenShift 4.x cluster",
 			Url:         "https://crc.dev/",
