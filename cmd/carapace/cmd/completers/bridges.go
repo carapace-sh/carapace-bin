@@ -106,6 +106,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://www.nomadproject.io/",
 			Variant:     "complete",
 		},
+		"oh-my-posh": {
+			Description: "A cross platform tool to render your prompt",
+			Url:         "https://ohmyposh.dev/",
+			Variant:     "cobra",
+		},
 		"op": {
 			Description: "1Password CLI",
 			Url:         "https://developer.1password.com/docs/cli",
