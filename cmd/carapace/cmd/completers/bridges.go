@@ -66,6 +66,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://fly.io/",
 			Variant:     "cobra",
 		},
+		"gitleaks": {
+			Description: "Gitleaks scans code, past or present, for secrets",
+			Url:         "https://gitleaks.io/",
+			Variant:     "cobra",
+		},
 		"incus": {
 			Description: "Powerful system container and virtual machine manager",
 			Url:         "https://linuxcontainers.org/incus",
