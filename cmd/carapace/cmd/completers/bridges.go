@@ -61,6 +61,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://docs.digitalocean.com/reference/doctl/",
 			Variant:     "cobra",
 		},
+		"exercism": {
+			Description: "A command-line interface for Exercism",
+			Url:         "https://exercism.org/",
+			Variant:     "cobra",
+		},
 		"flyctl": {
 			Description: "Command line tools for fly.io services",
 			Url:         "https://fly.io/",
