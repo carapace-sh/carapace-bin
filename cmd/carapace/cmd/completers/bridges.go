@@ -26,6 +26,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://www.boundaryproject.io/downloads",
 			Variant:     "complete",
 		},
+		"cdebug": {
+			Description: "A Swiss army knife of container debugging",
+			Url:         "https://github.com/iximiuz/cdebug",
+			Variant:     "cobra",
+		},
 		"chezmoi": {
 			Description: "Manage your dotfiles across multiple diverse machines, securely",
 			Url:         "https://chezmoi.io/",
