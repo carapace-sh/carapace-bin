@@ -132,6 +132,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://rclone.org/",
 			Variant:     "cobra",
 		},
+		"slsa-verifier": {
+			Description: "Verify provenance from SLSA compliant builders",
+			Url:         "https://github.com/slsa-framework/slsa-verifier",
+			Variant:     "cobra",
+		},
 		"talosctl": {
 			Description: "A CLI for out-of-band management of Kubernetes nodes created by Talos",
 			Url:         "https://docs.siderolabs.com/talos/latest/reference/cli",
