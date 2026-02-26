@@ -267,6 +267,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://podman.io/",
 			Variant:     "cobra",
 		},
+		"pscale": {
+			Description: "A CLI for communicating with PlanetScale's API",
+			Url:         "https://planetscale.com/docs/cli",
+			Variant:     "cobra",
+		},
 		"ramalama": {
 			Description: "tool for working with LLM models",
 			Url:         "https://ramalama.ai/",
