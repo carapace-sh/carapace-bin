@@ -5,17 +5,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var setFontSizeCmd = &cobra.Command{
+var at_setFontSizeCmd = &cobra.Command{
 	Use:   "set-font-size",
 	Short: "Set the font size in the active top-level OS window",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(setFontSizeCmd)
-	carapace.Gen(setFontSizeCmd).Standalone()
+	carapace.Gen(at_setFontSizeCmd).Standalone()
 
-	setFontSizeCmd.Flags().BoolP("all", "a", false, "By default, the font size is only changed in the active OS window, this option will cause it to be changed in all OS windows")
-	setFontSizeCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_setFontSizeCmd.Flags().BoolP("all", "a", false, "By default, the font size is only changed in the active OS window, this option will cause it to be changed in all OS windows")
+	at_setFontSizeCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	atCmd.AddCommand(at_setFontSizeCmd)
 
-	carapace.Gen(setFontSizeCmd).FlagCompletion(carapace.ActionMap{})
 }

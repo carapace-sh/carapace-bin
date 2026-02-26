@@ -5,18 +5,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var focusWindowCmd = &cobra.Command{
+var at_focusWindowCmd = &cobra.Command{
 	Use:   "focus-window",
 	Short: "Focus the specified window",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(focusWindowCmd)
-	carapace.Gen(focusWindowCmd).Standalone()
+	carapace.Gen(at_focusWindowCmd).Standalone()
 
-	focusWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	focusWindowCmd.Flags().StringP("match", "m", "", "The window to match")
-	focusWindowCmd.Flags().Bool("no-response", false, "Don't wait for a response from kitty")
+	at_focusWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_focusWindowCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_focusWindowCmd.Flags().Bool("no-response", false, "Don't wait for a response from kitty")
+	atCmd.AddCommand(at_focusWindowCmd)
 
-	carapace.Gen(focusWindowCmd).FlagCompletion(carapace.ActionMap{})
 }

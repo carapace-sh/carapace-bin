@@ -5,17 +5,16 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var gotoLayoutCmd = &cobra.Command{
+var at_gotoLayoutCmd = &cobra.Command{
 	Use:   "goto-layout",
 	Short: "Set the window layout",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(gotoLayoutCmd)
-	carapace.Gen(gotoLayoutCmd).Standalone()
+	carapace.Gen(at_gotoLayoutCmd).Standalone()
 
-	gotoLayoutCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	gotoLayoutCmd.Flags().StringP("match", "m", "", "The tab to match")
-
-	carapace.Gen(gotoLayoutCmd).FlagCompletion(carapace.ActionMap{})
+	at_gotoLayoutCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_gotoLayoutCmd.Flags().StringP("match", "m", "", "The tab to match")
+	atCmd.AddCommand(at_gotoLayoutCmd)
 }

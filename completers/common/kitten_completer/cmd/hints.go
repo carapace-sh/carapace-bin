@@ -8,10 +8,10 @@ import (
 var hintsCmd = &cobra.Command{
 	Use:   "hints",
 	Short: "Select text from the screen using the keyboard",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(hintsCmd)
 	carapace.Gen(hintsCmd).Standalone()
 
 	hintsCmd.Flags().String("add-trailing-space", "", "Add trailing space after matched text. Defaults to auto, which adds the space when used together with --multiple.")
@@ -34,6 +34,7 @@ func init() {
 	hintsCmd.Flags().String("url-prefixes", "", "Comma separated list of recognized URL prefixes. Defaults to the list of prefixes defined by the url_prefixes option in kitty.conf.")
 	hintsCmd.Flags().String("window-title", "", "The title for the hints window, default title is based on the type of text being hinted.")
 	hintsCmd.Flags().String("word-characters", "", "Characters to consider as part of a word. In addition, all characters marked as alphanumeric in the Unicode database will be considered as word characters. Defaults to the select_by_word_characters option from kitty.conf.")
+	rootCmd.AddCommand(hintsCmd)
 
 	carapace.Gen(hintsCmd).FlagCompletion(carapace.ActionMap{
 		"add-trailing-space":   carapace.ActionValues("auto", "always", "never"),

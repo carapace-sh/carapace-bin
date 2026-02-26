@@ -5,18 +5,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var scrollWindowCmd = &cobra.Command{
+var at_scrollWindowCmd = &cobra.Command{
 	Use:   "scroll-window",
 	Short: "Scroll the specified windows",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(scrollWindowCmd)
-	carapace.Gen(scrollWindowCmd).Standalone()
+	carapace.Gen(at_scrollWindowCmd).Standalone()
 
-	scrollWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	scrollWindowCmd.Flags().StringP("match", "m", "", "The window to match")
-	scrollWindowCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
+	at_scrollWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_scrollWindowCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_scrollWindowCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
+	atCmd.AddCommand(at_scrollWindowCmd)
 
-	carapace.Gen(scrollWindowCmd).FlagCompletion(carapace.ActionMap{})
 }

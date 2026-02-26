@@ -8,10 +8,10 @@ import (
 var clipboardCmd = &cobra.Command{
 	Use:   "clipboard",
 	Short: "Copy/paste with the system clipboard, even over SSH",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(clipboardCmd)
 	carapace.Gen(clipboardCmd).Standalone()
 
 	clipboardCmd.Flags().StringArrayP("alias", "a", nil, "Specify aliases for MIME types. Aliased MIME types are considered equivalent. When copying to clipboard both the original and alias are made available on the clipboard. When copying from clipboard if the original is not found, the alias is used, as a fallback. Can be specified multiple times to create multiple aliases. For example: --alias text/plain=text/x-rst makes text/plain an alias of text/rst. Aliases are not used in filter mode. An alias for text/plain is automatically created if text/plain is not present in the input data, but some other text/* MIME is present.")
@@ -22,6 +22,7 @@ func init() {
 	clipboardCmd.Flags().String("password", "", "A password to use when accessing the clipboard. If the user chooses to accept the password future invocations of the kitten will not have a permission prompt in this tty session. Does not work in filter mode. Must be of the form: text:actual-password or fd:integer (a file descriptor number to read the password from) or file:path-to-file (a file from which to read the password). Note that you must also specify a human friendly name using the --human-name flag.")
 	clipboardCmd.Flags().BoolP("use-primary", "p", false, "Use the primary selection rather than the clipboard on systems that support it, such as Linux.")
 	clipboardCmd.Flags().Bool("wait-for-completion", false, "Wait till the copy to clipboard is complete before exiting. Useful if running the kitten in a dedicated, ephemeral window. Only needed in filter mode.")
+	rootCmd.AddCommand(clipboardCmd)
 
 	carapace.Gen(clipboardCmd).FlagCompletion(carapace.ActionMap{
 		"password": carapace.ActionValues("text:", "fd:", "file:<file>").MultiPartsP(":", "<.*>", func(placeholder string, matches map[string]string) carapace.Action {

@@ -8,10 +8,10 @@ import (
 var askCmd = &cobra.Command{
 	Use:   "ask",
 	Short: "Ask the user for input",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(askCmd)
 	carapace.Gen(askCmd).Standalone()
 
 	askCmd.Flags().StringP("choice", "c", "", "A choice for the choices type. Can be specified multiple times. Every choice has the syntax: ``letter[;color]:text``, where text is the choice text and letter is the selection key. letter is a single letter belonging to text. This letter is highlighted within the choice text. There can be an optional color specification after the letter to indicate what color it should be. For example: y:Yes and n;red:No")
@@ -25,6 +25,7 @@ func init() {
 	askCmd.Flags().StringP("type", "t", "", "Type of input. Defaults to asking for a line of text.")
 	askCmd.Flags().String("unhide-key", "", "The key to be pressed to unhide hidden text")
 	askCmd.Flags().String("window-title", "", "The title for the window in which the question is displayed. Only implemented for yesno and choices types.")
+	rootCmd.AddCommand(askCmd)
 
 	carapace.Gen(askCmd).FlagCompletion(carapace.ActionMap{
 		"type": carapace.ActionValues("line", "choices", "file", "password", "yesno"),

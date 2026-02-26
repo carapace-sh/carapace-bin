@@ -5,18 +5,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var focusTabCmd = &cobra.Command{
+var at_focusTabCmd = &cobra.Command{
 	Use:   "focus-tab",
 	Short: "Focus the specified tab",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(focusTabCmd)
-	carapace.Gen(focusTabCmd).Standalone()
+	carapace.Gen(at_focusTabCmd).Standalone()
 
-	focusTabCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	focusTabCmd.Flags().StringP("match", "m", "", "The tab to match")
-	focusTabCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
+	at_focusTabCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_focusTabCmd.Flags().StringP("match", "m", "", "The tab to match")
+	at_focusTabCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
+	atCmd.AddCommand(at_focusTabCmd)
 
-	carapace.Gen(focusTabCmd).FlagCompletion(carapace.ActionMap{})
 }

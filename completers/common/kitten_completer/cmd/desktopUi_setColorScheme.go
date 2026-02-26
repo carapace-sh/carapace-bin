@@ -5,20 +5,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var setColorSchemeCmd = &cobra.Command{
+var desktopUi_setColorSchemeCmd = &cobra.Command{
 	Use:   "set-color-scheme",
 	Short: "Change the color scheme",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	desktopUiCmd.AddCommand(setColorSchemeCmd)
-	carapace.Gen(setColorSchemeCmd).Standalone()
+	carapace.Gen(desktopUi_setColorSchemeCmd).Standalone()
 
-	setColorSchemeCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	desktopUi_setColorSchemeCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	desktopUiCmd.AddCommand(desktopUi_setColorSchemeCmd)
 
-	carapace.Gen(setColorSchemeCmd).FlagCompletion(carapace.ActionMap{})
-
-	carapace.Gen(setColorSchemeCmd).PositionalCompletion(
+	carapace.Gen(desktopUi_setColorSchemeCmd).PositionalCompletion(
 		carapace.ActionValues("light", "dark", "no-preference", "toggle"),
 	)
 }

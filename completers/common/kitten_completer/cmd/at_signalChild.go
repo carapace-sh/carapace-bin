@@ -5,18 +5,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var signalChildCmd = &cobra.Command{
+var at_signalChildCmd = &cobra.Command{
 	Use:   "signal-child",
 	Short: "Send a signal to the foreground process in the specified windows",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(signalChildCmd)
-	carapace.Gen(signalChildCmd).Standalone()
+	carapace.Gen(at_signalChildCmd).Standalone()
 
-	signalChildCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	signalChildCmd.Flags().StringP("match", "m", "", "The window to match")
-	signalChildCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
+	at_signalChildCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_signalChildCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_signalChildCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
+	atCmd.AddCommand(at_signalChildCmd)
 
-	carapace.Gen(signalChildCmd).FlagCompletion(carapace.ActionMap{})
 }

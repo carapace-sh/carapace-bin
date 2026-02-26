@@ -8,10 +8,10 @@ import (
 var icatCmd = &cobra.Command{
 	Use:   "icat",
 	Short: "Display images in the terminal",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(icatCmd)
 	carapace.Gen(icatCmd).Standalone()
 
 	icatCmd.Flags().String("align", "", "Horizontal alignment for the displayed image.")
@@ -37,6 +37,7 @@ func init() {
 	icatCmd.Flags().Bool("unicode-placeholder", false, "Use the Unicode placeholder method to display the images. Useful to display images from within full screen terminal programs that do not understand the kitty graphics protocol such as multiplexers or editors. See graphics_unicode_placeholders for details. Note that when using this method, images placed (with --place) that do not fit on the screen, will get wrapped at the screen edge instead of getting truncated. This wrapping is per line and therefore the image will look like it is interleaved with blank lines.")
 	icatCmd.Flags().String("use-window-size", "", "Instead of querying the terminal for the window size, use the specified size, which must be of the format: width_in_cells,height_in_cells,width_in_pixels,height_in_pixels")
 	icatCmd.Flags().Float64P("z-index", "z", 0, "Z-index of the image. When negative, text will be displayed on top of the image. Use a double minus for values under the threshold for drawing images under cell background colors. For example, --1 evaluates as -1,073,741,825.")
+	rootCmd.AddCommand(icatCmd)
 
 	carapace.Gen(icatCmd).FlagCompletion(carapace.ActionMap{
 		"align":         carapace.ActionValues("center", "left", "right"),

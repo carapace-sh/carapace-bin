@@ -9,11 +9,13 @@ import (
 var hyperlinkedGrepCmd = &cobra.Command{
 	Use:   "hyperlinked-grep",
 	Short: "Add hyperlinks to the output of ripgrep",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(hyperlinkedGrepCmd)
 	carapace.Gen(hyperlinkedGrepCmd).Standalone()
+
+	rootCmd.AddCommand(hyperlinkedGrepCmd)
 
 	carapace.Gen(hyperlinkedGrepCmd).PositionalAnyCompletion(
 		bridge.ActionCarapace("ssh"),

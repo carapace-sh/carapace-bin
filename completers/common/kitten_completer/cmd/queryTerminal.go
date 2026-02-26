@@ -8,14 +8,15 @@ import (
 var queryTerminalCmd = &cobra.Command{
 	Use:   "query-terminal",
 	Short: "Query the terminal for various capabilities",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(queryTerminalCmd)
 	carapace.Gen(queryTerminalCmd).Standalone()
 
 	queryTerminalCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	queryTerminalCmd.Flags().Float64("wait-for", 0, "The amount of time (in seconds) to wait for a response from the terminal, after querying it.")
+	rootCmd.AddCommand(queryTerminalCmd)
 
 	carapace.Gen(queryTerminalCmd).PositionalAnyCompletion(carapace.ActionValuesDescribed(
 		"name", "Terminal name (e.g. xterm-kitty)",

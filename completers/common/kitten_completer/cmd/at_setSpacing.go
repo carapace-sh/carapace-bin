@@ -5,20 +5,20 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var setSpacingCmd = &cobra.Command{
+var at_setSpacingCmd = &cobra.Command{
 	Use:   "set-spacing",
 	Short: "Set window paddings and margins",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(setSpacingCmd)
-	carapace.Gen(setSpacingCmd).Standalone()
+	carapace.Gen(at_setSpacingCmd).Standalone()
 
-	setSpacingCmd.Flags().BoolP("all", "a", false, "By default, settings are only changed for the currently active window")
-	setSpacingCmd.Flags().BoolP("configured", "c", false, "Also change the configured paddings and margins")
-	setSpacingCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	setSpacingCmd.Flags().StringP("match", "m", "", "The window to match")
-	setSpacingCmd.Flags().StringP("match-tab", "t", "", "The tab to match")
+	at_setSpacingCmd.Flags().BoolP("all", "a", false, "By default, settings are only changed for the currently active window")
+	at_setSpacingCmd.Flags().BoolP("configured", "c", false, "Also change the configured paddings and margins")
+	at_setSpacingCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_setSpacingCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_setSpacingCmd.Flags().StringP("match-tab", "t", "", "The tab to match")
+	atCmd.AddCommand(at_setSpacingCmd)
 
-	carapace.Gen(setSpacingCmd).FlagCompletion(carapace.ActionMap{})
 }

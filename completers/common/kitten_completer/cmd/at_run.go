@@ -5,19 +5,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var runCmd = &cobra.Command{
+var at_runCmd = &cobra.Command{
 	Use:   "run",
 	Short: "Run a program on the computer in which kitty is running and get the output",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(runCmd)
-	carapace.Gen(runCmd).Standalone()
+	carapace.Gen(at_runCmd).Standalone()
 
-	runCmd.Flags().Bool("allow-remote-control", false, "The executed program will have privileges to run remote control commands in kitty")
-	runCmd.Flags().String("env", "", "Environment variables to set in the child process")
-	runCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	runCmd.Flags().String("remote-control-password", "", "Restrict the actions remote control is allowed to take")
+	at_runCmd.Flags().Bool("allow-remote-control", false, "The executed program will have privileges to run remote control commands in kitty")
+	at_runCmd.Flags().String("env", "", "Environment variables to set in the child process")
+	at_runCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_runCmd.Flags().String("remote-control-password", "", "Restrict the actions remote control is allowed to take")
+	atCmd.AddCommand(at_runCmd)
 
-	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{})
 }

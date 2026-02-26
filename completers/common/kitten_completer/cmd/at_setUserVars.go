@@ -5,17 +5,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var setUserVarsCmd = &cobra.Command{
+var at_setUserVarsCmd = &cobra.Command{
 	Use:   "set-user-vars",
 	Short: "Set user variables on a window",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(setUserVarsCmd)
-	carapace.Gen(setUserVarsCmd).Standalone()
+	carapace.Gen(at_setUserVarsCmd).Standalone()
 
-	setUserVarsCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	setUserVarsCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_setUserVarsCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_setUserVarsCmd.Flags().StringP("match", "m", "", "The window to match")
+	atCmd.AddCommand(at_setUserVarsCmd)
 
-	carapace.Gen(setUserVarsCmd).FlagCompletion(carapace.ActionMap{})
 }

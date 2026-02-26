@@ -5,17 +5,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var kittenCmd = &cobra.Command{
+var at_kittenCmd = &cobra.Command{
 	Use:   "kitten",
 	Short: "Run a kitten",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(kittenCmd)
-	carapace.Gen(kittenCmd).Standalone()
+	carapace.Gen(at_kittenCmd).Standalone()
 
-	kittenCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	kittenCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_kittenCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_kittenCmd.Flags().StringP("match", "m", "", "The window to match")
+	atCmd.AddCommand(at_kittenCmd)
 
-	carapace.Gen(kittenCmd).FlagCompletion(carapace.ActionMap{})
 }

@@ -5,19 +5,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var disableLigaturesCmd = &cobra.Command{
+var at_disableLigaturesCmd = &cobra.Command{
 	Use:   "disable-ligatures",
 	Short: "Control ligature rendering",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(disableLigaturesCmd)
-	carapace.Gen(disableLigaturesCmd).Standalone()
+	carapace.Gen(at_disableLigaturesCmd).Standalone()
 
-	disableLigaturesCmd.Flags().BoolP("all", "a", false, "By default, ligatures are only affected in the active window")
-	disableLigaturesCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	disableLigaturesCmd.Flags().StringP("match", "m", "", "The window to match")
-	disableLigaturesCmd.Flags().StringP("match-tab", "t", "", "The tab to match")
+	at_disableLigaturesCmd.Flags().BoolP("all", "a", false, "By default, ligatures are only affected in the active window")
+	at_disableLigaturesCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_disableLigaturesCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_disableLigaturesCmd.Flags().StringP("match-tab", "t", "", "The tab to match")
+	atCmd.AddCommand(at_disableLigaturesCmd)
 
-	carapace.Gen(disableLigaturesCmd).FlagCompletion(carapace.ActionMap{})
 }

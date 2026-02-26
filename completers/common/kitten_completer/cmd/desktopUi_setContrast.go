@@ -5,20 +5,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var setContrastCmd = &cobra.Command{
+var desktopUi_setContrastCmd = &cobra.Command{
 	Use:   "set-contrast",
 	Short: "Change the contrast",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	desktopUiCmd.AddCommand(setContrastCmd)
-	carapace.Gen(setContrastCmd).Standalone()
+	carapace.Gen(desktopUi_setContrastCmd).Standalone()
 
-	setContrastCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	desktopUi_setContrastCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	desktopUiCmd.AddCommand(desktopUi_setContrastCmd)
 
-	carapace.Gen(setContrastCmd).FlagCompletion(carapace.ActionMap{})
-
-	carapace.Gen(setContrastCmd).PositionalCompletion(
+	carapace.Gen(desktopUi_setContrastCmd).PositionalCompletion(
 		carapace.ActionValues("high", "normal"),
 	)
 }

@@ -5,16 +5,16 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var envCmd = &cobra.Command{
+var at_envCmd = &cobra.Command{
 	Use:   "env",
 	Short: "Change environment variables seen by future children",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(envCmd)
-	carapace.Gen(envCmd).Standalone()
+	carapace.Gen(at_envCmd).Standalone()
 
-	envCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_envCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	atCmd.AddCommand(at_envCmd)
 
-	carapace.Gen(envCmd).FlagCompletion(carapace.ActionMap{})
 }

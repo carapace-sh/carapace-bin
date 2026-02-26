@@ -5,20 +5,20 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var resizeWindowCmd = &cobra.Command{
+var at_resizeWindowCmd = &cobra.Command{
 	Use:   "resize-window",
 	Short: "Resize the specified windows",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(resizeWindowCmd)
-	carapace.Gen(resizeWindowCmd).Standalone()
+	carapace.Gen(at_resizeWindowCmd).Standalone()
 
-	resizeWindowCmd.Flags().StringP("axis", "a", "horizontal", "The axis along which to resize")
-	resizeWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	resizeWindowCmd.Flags().StringP("increment", "i", "2", "The number of cells to change the size by")
-	resizeWindowCmd.Flags().StringP("match", "m", "", "The window to match")
-	resizeWindowCmd.Flags().Bool("self", false, "Resize the window this command is run in, rather than the active window")
+	at_resizeWindowCmd.Flags().StringP("axis", "a", "horizontal", "The axis along which to resize")
+	at_resizeWindowCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_resizeWindowCmd.Flags().StringP("increment", "i", "2", "The number of cells to change the size by")
+	at_resizeWindowCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_resizeWindowCmd.Flags().Bool("self", false, "Resize the window this command is run in, rather than the active window")
+	atCmd.AddCommand(at_resizeWindowCmd)
 
-	carapace.Gen(resizeWindowCmd).FlagCompletion(carapace.ActionMap{})
 }

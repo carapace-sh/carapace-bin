@@ -8,10 +8,10 @@ import (
 var chooseFilesCmd = &cobra.Command{
 	Use:   "choose-files",
 	Short: "Choose files, fast",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(chooseFilesCmd)
 	carapace.Gen(chooseFilesCmd).Standalone()
 
 	chooseFilesCmd.Flags().Bool("clear-cache", false, "Clear the caches used by this kitten.")
@@ -27,6 +27,7 @@ func init() {
 	chooseFilesCmd.Flags().String("title", "", "Window title to use for this chooser")
 	chooseFilesCmd.Flags().String("write-output-to", "", "Path to a file to which the output is written in addition to STDOUT.")
 	chooseFilesCmd.Flags().String("write-pid-to", "", "Path to a file to which to write the process ID (PID) of this process to.")
+	rootCmd.AddCommand(chooseFilesCmd)
 
 	carapace.Gen(chooseFilesCmd).FlagCompletion(carapace.ActionMap{
 		"config":                   carapace.ActionFiles("~/.config/kitty"),

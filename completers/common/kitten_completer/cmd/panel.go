@@ -8,10 +8,10 @@ import (
 var panelCmd = &cobra.Command{
 	Use:   "panel",
 	Short: "Use a command line program to draw a GPU accelerated panel on your desktop",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(panelCmd)
 	carapace.Gen(panelCmd).Standalone()
 
 	panelCmd.Flags().Float64("columns", 0, "The number of columns shown in the panel. Ignored for background, centered, and horizontal panels. If it has the suffix px then it sets the width of the panel in pixels instead of columns.")
@@ -42,6 +42,7 @@ func init() {
 	panelCmd.Flags().Bool("start-as-hidden", false, "Start in hidden mode, useful with --toggle-visibility.")
 	panelCmd.Flags().Bool("toggle-visibility", false, "When set and using --single-instance will toggle the visibility of the existing panel rather than creating a new one.")
 	panelCmd.Flags().Bool("wait-for-single-instance-window-close", false, "Normally, when using --single-instance, kitty will open a new window in an existing instance and quit immediately. With this option, it will not quit till the newly opened window is closed. Note that if no previous instance is found, then kitty will wait anyway, regardless of this option.")
+	rootCmd.AddCommand(panelCmd)
 
 	carapace.Gen(panelCmd).FlagCompletion(carapace.ActionMap{
 		"edge":         carapace.ActionValues("top", "background", "bottom", "center", "center-sized", "left", "none", "right"),

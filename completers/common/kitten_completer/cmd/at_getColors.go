@@ -5,18 +5,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var getColorsCmd = &cobra.Command{
+var at_getColorsCmd = &cobra.Command{
 	Use:   "get-colors",
 	Short: "Get terminal colors",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(getColorsCmd)
-	carapace.Gen(getColorsCmd).Standalone()
+	carapace.Gen(at_getColorsCmd).Standalone()
 
-	getColorsCmd.Flags().BoolP("configured", "c", false, "Instead of outputting the colors for the specified window, output the currently configured colors")
-	getColorsCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	getColorsCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_getColorsCmd.Flags().BoolP("configured", "c", false, "Instead of outputting the colors for the specified window, output the currently configured colors")
+	at_getColorsCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_getColorsCmd.Flags().StringP("match", "m", "", "The window to match")
+	atCmd.AddCommand(at_getColorsCmd)
 
-	carapace.Gen(getColorsCmd).FlagCompletion(carapace.ActionMap{})
 }

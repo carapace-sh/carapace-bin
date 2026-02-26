@@ -5,18 +5,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var removeMarkerCmd = &cobra.Command{
+var at_removeMarkerCmd = &cobra.Command{
 	Use:   "remove-marker",
 	Short: "Remove the currently set marker, if any.",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(removeMarkerCmd)
-	carapace.Gen(removeMarkerCmd).Standalone()
+	carapace.Gen(at_removeMarkerCmd).Standalone()
 
-	removeMarkerCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	removeMarkerCmd.Flags().StringP("match", "m", "", "The window to match")
-	removeMarkerCmd.Flags().Bool("self", false, "Apply marker to the window this command is run in, rather than the active window")
+	at_removeMarkerCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_removeMarkerCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_removeMarkerCmd.Flags().Bool("self", false, "Apply marker to the window this command is run in, rather than the active window")
+	atCmd.AddCommand(at_removeMarkerCmd)
 
-	carapace.Gen(removeMarkerCmd).FlagCompletion(carapace.ActionMap{})
 }

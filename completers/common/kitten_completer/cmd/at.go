@@ -9,10 +9,10 @@ import (
 var atCmd = &cobra.Command{
 	Use:   "@",
 	Short: "Control kitty remotely",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(atCmd)
 	carapace.Gen(atCmd).Standalone()
 
 	atCmd.Flags().BoolP("help", "h", false, "Show help for this command")
@@ -21,6 +21,7 @@ func init() {
 	atCmd.Flags().String("password-file", "", "A password to use when contacting kitty. This will cause kitty to ask the user for permission to perform the specified action, unless the password has been accepted before or is pre-configured in kitty.conf. To use a blank password specify --use-password as always.")
 	atCmd.Flags().String("to", "", "An address for the kitty instance to control. Corresponds to the address given to the kitty instance via the --listen-on option or the listen_on setting in kitty.conf. If not specified, the environment variable KITTY_LISTEN_ON is checked. If that is also not found, messages are sent to the controlling terminal for this process, i.e. they will only work if this process is run within a kitty window.")
 	atCmd.Flags().String("use-password", "", "If no password is available, kitty will usually just send the remote control command without a password. This option can be used to force it to always or never use the supplied password. If set to always and no password is provided, the blank password is used.")
+	rootCmd.AddCommand(atCmd)
 
 	atCmd.MarkFlagsMutuallyExclusive("password-file", "password-env")
 

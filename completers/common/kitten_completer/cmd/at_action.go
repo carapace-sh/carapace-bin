@@ -6,23 +6,22 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var actionCmd = &cobra.Command{
+var at_actionCmd = &cobra.Command{
 	Use:   "action",
 	Short: "Run the specified mappable action",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(actionCmd)
-	carapace.Gen(actionCmd).Standalone()
+	carapace.Gen(at_actionCmd).Standalone()
 
-	actionCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	actionCmd.Flags().StringP("match", "m", "", "The window to match")
-	actionCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
-	actionCmd.Flags().Bool("self", false, "Run the action on the window this command is run in instead of the active window")
+	at_actionCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_actionCmd.Flags().StringP("match", "m", "", "The window to match")
+	at_actionCmd.Flags().Bool("no-response", false, "Don't wait for a response indicating the success of the action")
+	at_actionCmd.Flags().Bool("self", false, "Run the action on the window this command is run in instead of the active window")
+	atCmd.AddCommand(at_actionCmd)
 
-	carapace.Gen(actionCmd).FlagCompletion(carapace.ActionMap{})
-
-	carapace.Gen(actionCmd).PositionalAnyCompletion(
+	carapace.Gen(at_actionCmd).PositionalAnyCompletion(
 		kitty.ActionActions(),
 	)
 }

@@ -5,19 +5,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var lastUsedLayoutCmd = &cobra.Command{
+var at_lastUsedLayoutCmd = &cobra.Command{
 	Use:   "last-used-layout",
 	Short: "Switch to the last used layout",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	atCmd.AddCommand(lastUsedLayoutCmd)
-	carapace.Gen(lastUsedLayoutCmd).Standalone()
+	carapace.Gen(at_lastUsedLayoutCmd).Standalone()
 
-	lastUsedLayoutCmd.Flags().BoolP("all", "a", false, "Change the layout in all tabs")
-	lastUsedLayoutCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	lastUsedLayoutCmd.Flags().StringP("match", "m", "", "The tab to match")
-	lastUsedLayoutCmd.Flags().Bool("no-response", false, "Don't wait for a response from kitty")
+	at_lastUsedLayoutCmd.Flags().BoolP("all", "a", false, "Change the layout in all tabs")
+	at_lastUsedLayoutCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	at_lastUsedLayoutCmd.Flags().StringP("match", "m", "", "The tab to match")
+	at_lastUsedLayoutCmd.Flags().Bool("no-response", false, "Don't wait for a response from kitty")
+	atCmd.AddCommand(at_lastUsedLayoutCmd)
 
-	carapace.Gen(lastUsedLayoutCmd).FlagCompletion(carapace.ActionMap{})
 }

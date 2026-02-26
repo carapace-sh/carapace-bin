@@ -8,10 +8,10 @@ import (
 var editInKittyCmd = &cobra.Command{
 	Use:   "edit-in-kitty",
 	Short: "Edit a file in a kitty overlay window",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(editInKittyCmd)
 	carapace.Gen(editInKittyCmd).Standalone()
 
 	editInKittyCmd.Flags().String("color", "", "Change colors in the newly launched window. You can either specify a path to a .conf file with the same syntax as kitty.conf to read the colors from, or specify them individually, for example:: --color background=white --color foreground=red")
@@ -38,6 +38,7 @@ func init() {
 	editInKittyCmd.Flags().String("type", "", "Where to launch the child process:")
 	editInKittyCmd.Flags().StringArray("var", nil, "User variables to set in the created window. Can be specified multiple times to set different user variables. Syntax: name=value. Using name= will set to empty string.")
 	editInKittyCmd.Flags().String("window-title", "", "The title to set for the new window. By default, title is controlled by the child process. The special value current will copy the title from the --source-window.")
+	rootCmd.AddCommand(editInKittyCmd)
 
 	carapace.Gen(editInKittyCmd).FlagCompletion(carapace.ActionMap{
 		"color":           carapace.ActionFiles("conf"),

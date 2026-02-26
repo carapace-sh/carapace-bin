@@ -8,10 +8,10 @@ import (
 var quickAccessTerminalCmd = &cobra.Command{
 	Use:   "quick-access-terminal",
 	Short: "A quick access terminal window that you can bring up instantly with a keypress or a command.",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(quickAccessTerminalCmd)
 	carapace.Gen(quickAccessTerminalCmd).Standalone()
 
 	quickAccessTerminalCmd.Flags().StringArrayP("config", "c", nil, "Specify a path to the configuration file(s) to use. All configuration files are merged onto the builtin quick-access-terminal.conf, overriding the builtin values. This option can be specified multiple times to read multiple configuration files in sequence, which are merged. Use the special value NONE to not load any config file.")
@@ -22,6 +22,7 @@ func init() {
 	quickAccessTerminalCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	quickAccessTerminalCmd.Flags().String("instance-group", "", "The unique name of this quick access terminal Use a different name if you want multiple such terminals.")
 	quickAccessTerminalCmd.Flags().StringArrayP("override", "o", nil, "Override individual configuration options, can be specified multiple times. Syntax: name=value. For example: -o lines=12")
+	rootCmd.AddCommand(quickAccessTerminalCmd)
 
 	carapace.Gen(quickAccessTerminalCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.Batch(carapace.ActionFiles(), carapace.ActionValues("NONE", "-", "/dev/stdin")).ToA(),

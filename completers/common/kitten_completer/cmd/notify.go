@@ -8,10 +8,10 @@ import (
 var notifyCmd = &cobra.Command{
 	Use:   "notify",
 	Short: "Send notifications to the user",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(notifyCmd)
 	carapace.Gen(notifyCmd).Standalone()
 
 	notifyCmd.Flags().StringP("app-name", "a", "", "The application name for the notification.")
@@ -29,6 +29,7 @@ func init() {
 	notifyCmd.Flags().StringP("urgency", "u", "", "The urgency of the notification.")
 	notifyCmd.Flags().BoolP("wait-for-completion", "w", false, "Wait until the notification is closed. If the user activates the notification, \"0\" is printed to STDOUT before quitting. If a button on the notification is pressed the number corresponding to the button is printed to STDOUT. Press the Esc or Ctrl+C keys to close the notification manually.")
 	notifyCmd.Flags().Bool("wait-till-closed", false, "Wait until the notification is closed. If the user activates the notification, \"0\" is printed to STDOUT before quitting. If a button on the notification is pressed the number corresponding to the button is printed to STDOUT. Press the Esc or Ctrl+C keys to close the notification manually.")
+	rootCmd.AddCommand(notifyCmd)
 
 	carapace.Gen(notifyCmd).FlagCompletion(carapace.ActionMap{
 		"icon":       carapace.ActionValues("error", "file-manager", "help", "info", "question", "system-monitor", "text-editor", "warn", "warning"),

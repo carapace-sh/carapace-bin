@@ -5,20 +5,21 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var runServerCmd = &cobra.Command{
+var desktopUi_runServerCmd = &cobra.Command{
 	Use:   "run-server",
 	Short: "Start the various servers used to integrate with the Linux desktop",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	desktopUiCmd.AddCommand(runServerCmd)
-	carapace.Gen(runServerCmd).Standalone()
+	carapace.Gen(desktopUi_runServerCmd).Standalone()
 
-	runServerCmd.Flags().StringP("config", "c", "", "Specify a path to the configuration file(s) to use")
-	runServerCmd.Flags().BoolP("help", "h", false, "Show help for this command")
-	runServerCmd.Flags().StringP("override", "o", "", "Override individual configuration options, can be specified multiple times")
+	desktopUi_runServerCmd.Flags().StringP("config", "c", "", "Specify a path to the configuration file(s) to use")
+	desktopUi_runServerCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	desktopUi_runServerCmd.Flags().StringP("override", "o", "", "Override individual configuration options, can be specified multiple times")
+	desktopUiCmd.AddCommand(desktopUi_runServerCmd)
 
-	carapace.Gen(runServerCmd).FlagCompletion(carapace.ActionMap{
+	carapace.Gen(desktopUi_runServerCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
 	})
 }

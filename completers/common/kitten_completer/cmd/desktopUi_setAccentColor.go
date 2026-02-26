@@ -5,16 +5,16 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var setAccentColorCmd = &cobra.Command{
+var desktopUi_setAccentColorCmd = &cobra.Command{
 	Use:   "set-accent-color",
 	Short: "Change the accent color",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	desktopUiCmd.AddCommand(setAccentColorCmd)
-	carapace.Gen(setAccentColorCmd).Standalone()
+	carapace.Gen(desktopUi_setAccentColorCmd).Standalone()
 
-	setAccentColorCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	desktopUi_setAccentColorCmd.Flags().BoolP("help", "h", false, "Show help for this command")
+	desktopUiCmd.AddCommand(desktopUi_setAccentColorCmd)
 
-	carapace.Gen(setAccentColorCmd).FlagCompletion(carapace.ActionMap{})
 }

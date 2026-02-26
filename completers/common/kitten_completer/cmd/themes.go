@@ -8,10 +8,10 @@ import (
 var themesCmd = &cobra.Command{
 	Use:   "themes",
 	Short: "Manage kitty color schemes easily",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	rootCmd.AddCommand(themesCmd)
 	carapace.Gen(themesCmd).Standalone()
 
 	themesCmd.Flags().Float64("cache-age", 0, "Check for new themes only after the specified number of days. A value of zero will always check for new themes. A negative value will never check for new themes, instead raising an error if a local copy of the themes is not available.")
@@ -19,6 +19,7 @@ func init() {
 	themesCmd.Flags().Bool("dump-theme", false, "When running non-interactively, dump the specified theme to STDOUT instead of changing kitty.conf.")
 	themesCmd.Flags().BoolP("help", "h", false, "Show help for this command")
 	themesCmd.Flags().String("reload-in", "", "By default, this kitten will signal only the parent kitty instance it is running in to reload its config, after making changes. Use this option to instead either not reload the config at all or in all running kitty instances.")
+	rootCmd.AddCommand(themesCmd)
 
 	carapace.Gen(themesCmd).FlagCompletion(carapace.ActionMap{
 		"config-file-name": carapace.ActionFiles("~/.config/kitty"),
