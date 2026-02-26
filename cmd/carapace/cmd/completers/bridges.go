@@ -161,6 +161,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://hatch.pypa.io/latest/",
 			Variant:     "click",
 		},
+		"helmfile": {
+			Description: "Declaratively deploy Kubernetes Helm Charts",
+			Url:         "https://github.com/helmfile/helmfile",
+			Variant:     "cobra",
+		},
 		"incus": {
 			Description: "Powerful system container and virtual machine manager",
 			Url:         "https://linuxcontainers.org/incus",
