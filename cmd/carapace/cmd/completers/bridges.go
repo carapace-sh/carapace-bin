@@ -156,6 +156,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://github.com/sigstore/gitsign",
 			Variant:     "cobra",
 		},
+		"gomplate": {
+			Description: "Process text files with Go templates",
+			Url:         "https://gomplate.ca/",
+			Variant:     "cobra",
+		},
 		"hatch": {
 			Description: "Modern, extensible Python project management",
 			Url:         "https://hatch.pypa.io/latest/",
