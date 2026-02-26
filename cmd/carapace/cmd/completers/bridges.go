@@ -206,6 +206,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://linuxcontainers.org/incus",
 			Variant:     "cobra",
 		},
+		"k3sup": {
+			Description: "Bootstrap K3s over SSH in < 60s",
+			Url:         "https://github.com/alexellis/k3sup",
+			Variant:     "cobra",
+		},
 		"k6": {
 			Description: "A modern load testing tool, using Go and JavaScript",
 			Url:         "https://k6.io",
