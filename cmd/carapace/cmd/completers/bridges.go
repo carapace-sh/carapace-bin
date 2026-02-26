@@ -116,6 +116,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://chezmoi.io/",
 			Variant:     "cobra",
 		},
+		"colima": {
+			Description: "Container runtimes on macOS (and Linux) with minimal setup",
+			Url:         "https://colima.run/",
+			Variant:     "cobra",
+		},
 		"cosign": {
 			Description: "Code signing and transparency for containers and binaries",
 			Url:         "https://github.com/sigstore/cosign",
