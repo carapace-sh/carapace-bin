@@ -206,6 +206,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://linuxcontainers.org/incus",
 			Variant:     "cobra",
 		},
+		"iredis": {
+			Description: "A Terminal Client for Redis with AutoCompletion and Syntax Highlighting",
+			Url:         "https://iredis.xbin.io/",
+			Variant:     "click",
+		},
 		"k3sup": {
 			Description: "Bootstrap K3s over SSH in < 60s",
 			Url:         "https://github.com/alexellis/k3sup",
