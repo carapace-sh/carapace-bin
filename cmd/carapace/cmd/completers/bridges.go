@@ -202,6 +202,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://www.vaultproject.io/",
 			Variant:     "complete",
 		},
+		"ykman": {
+			Description: "Configure your YubiKey via the command line",
+			Url:         "https://developers.yubico.com/yubikey-manager/",
+			Variant:     "click",
+		},
 	}
 
 	for name, c := range m {
