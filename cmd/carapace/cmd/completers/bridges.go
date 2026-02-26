@@ -302,6 +302,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://pgcli.com/",
 			Variant:     "click",
 		},
+		"pipenv": {
+			Description: "Python Development Workflow for Humans",
+			Url:         "https://pipenv.pypa.io/",
+			Variant:     "click",
+		},
 		"pipx": {
 			Description: "Install and execute apps from Python packages",
 			Url:         "https://pipx.pypa.io/",
