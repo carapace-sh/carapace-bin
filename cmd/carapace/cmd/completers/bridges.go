@@ -11,6 +11,51 @@ func knownbridges() map[string]*completer.Completer {
 	// TODO what about different variants of a command
 	// TODO limit to target os
 	m := map[string]*completer.Completer{
+		"ansible": {
+			Description: "Define and run a single task ‘playbook’ against a set of hosts",
+			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible.html",
+			Variant:     "argcomplete",
+		},
+		"ansible-config": {
+			Description: "View ansible configuration",
+			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-config.html",
+			Variant:     "argcomplete",
+		},
+		"ansible-console": {
+			Description: "REPL console for executing Ansible tasks",
+			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-console.html",
+			Variant:     "argcomplete",
+		},
+		"ansible-doc": {
+			Description: "Ansible plugin documentation tool",
+			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-doc.html",
+			Variant:     "argcomplete",
+		},
+		"ansible-galaxy": {
+			Description: "Perform various Role and Collection related operations",
+			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-galaxy.html",
+			Variant:     "argcomplete",
+		},
+		"ansible-inventory": {
+			Description: "Show Ansible inventory information",
+			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-inventory.html",
+			Variant:     "argcomplete",
+		},
+		"ansible-playbook": {
+			Description: "Runs Ansible playbooks, executing the defined tasks on the targeted hosts",
+			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-playbook.html",
+			Variant:     "argcomplete",
+		},
+		"ansible-pull": {
+			Description: "Pulls playbooks from a VCS repo and executes them on target host",
+			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-pull.html",
+			Variant:     "argcomplete",
+		},
+		"ansible-vault": {
+			Description: "encryption/decryption utility for Ansible data files",
+			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-vault.html",
+			Variant:     "argcomplete",
+		},
 		"apptainer": {
 			Description: "Application container and unprivileged sandbox platform for Linux",
 			Url:         "https://apptainer.org/",
