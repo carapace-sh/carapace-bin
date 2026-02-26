@@ -202,6 +202,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://www.vaultproject.io/",
 			Variant:     "complete",
 		},
+		"vunnel": {
+			Description: "Tool for collecting vulnerability data from various sources",
+			Url:         "https://github.com/anchore/vunnel",
+			Variant:     "click",
+		},
 		"ykman": {
 			Description: "Configure your YubiKey via the command line",
 			Url:         "https://developers.yubico.com/yubikey-manager/",
