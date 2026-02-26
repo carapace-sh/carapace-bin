@@ -166,6 +166,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://linuxcontainers.org/incus",
 			Variant:     "cobra",
 		},
+		"k6": {
+			Description: "A modern load testing tool, using Go and JavaScript",
+			Url:         "https://k6.io",
+			Variant:     "cobra",
+		},
 		"k9s": {
 			Description: "K9s is a CLI to view and manage your Kubernetes clusters",
 			Url:         "https://k9scli.io/",
