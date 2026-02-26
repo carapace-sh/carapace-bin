@@ -11,6 +11,11 @@ func knownbridges() map[string]*completer.Completer {
 	// TODO what about different variants of a command
 	// TODO limit to target os
 	m := map[string]*completer.Completer{
+		"act": {
+			Description: "Run GitHub actions locally",
+			Url:         "https://github.com/nektos/act",
+			Variant:     "cobra",
+		},
 		"ansible": {
 			Description: "Define and run a single task ‘playbook’ against a set of hosts",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible.html",
