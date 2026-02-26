@@ -211,6 +211,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://litecli.com/",
 			Variant:     "click",
 		},
+		"mycli": {
+			Description: "A MySQL terminal client with auto-completion and syntax highlighting",
+			Url:         "https://www.mycli.net/",
+			Variant:     "click",
+		},
 		"nerdctl": {
 			Description: "Nerdctl is a command line interface for containerd",
 			Url:         "https://github.com/containerd/nerdctl",
