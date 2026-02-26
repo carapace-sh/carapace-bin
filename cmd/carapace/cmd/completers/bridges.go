@@ -36,6 +36,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://github.com/iximiuz/cdebug",
 			Variant:     "cobra",
 		},
+		"cekit": {
+			Description: "Container Evolution Kit",
+			Url:         "https://cekit.io/",
+			Variant:     "click",
+		},
 		"chezmoi": {
 			Description: "Manage your dotfiles across multiple diverse machines, securely",
 			Url:         "https://chezmoi.io/",
