@@ -206,6 +206,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://lima-vm.io/",
 			Variant:     "cobra",
 		},
+		"litecli": {
+			Description: "CLI for SQLite Databases with auto-completion and syntax highlighting",
+			Url:         "https://litecli.com/",
+			Variant:     "click",
+		},
 		"nerdctl": {
 			Description: "Nerdctl is a command line interface for containerd",
 			Url:         "https://github.com/containerd/nerdctl",
