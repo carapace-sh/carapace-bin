@@ -26,6 +26,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-console.html",
 			Variant:     "argcomplete",
 		},
+		"ansible-creator": {
+			Description: "The fastest way to generate all your ansible content",
+			Url:         "https://docs.ansible.com/projects/creator/",
+			Variant:     "argcomplete",
+		},
 		"ansible-doc": {
 			Description: "Ansible plugin documentation tool",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-doc.html",
