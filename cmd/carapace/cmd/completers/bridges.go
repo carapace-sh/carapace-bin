@@ -16,6 +16,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://apptainer.org/",
 			Variant:     "cobra",
 		},
+		"aqua": {
+			Description: "Declarative CLI Version manager",
+			Url:         "https://aquaproj.github.io/",
+			Variant:     "urfavecli",
+		},
 		"az": {
 			Description: "Azure Command-Line Interface",
 			Url:         "https://docs.microsoft.com/en-us/cli/azure/",
