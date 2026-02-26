@@ -347,6 +347,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://docs.siderolabs.com/talos/latest/reference/cli",
 			Variant:     "cobra",
 		},
+		"trivy": {
+			Description: "Scanner for vulnerabilities in container images, file systems, and Git repos",
+			Url:         "https://trivy.dev/",
+			Variant:     "cobra",
+		},
 		"toolbox": {
 			Description: "Tool for interactive command line environments on Linux",
 			Url:         "https://containertoolbx.org/",
