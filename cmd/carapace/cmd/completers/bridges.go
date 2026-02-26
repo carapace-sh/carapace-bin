@@ -247,6 +247,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://orbstack.dev/",
 			Variant:     "cobra",
 		},
+		"pgcli": {
+			Description: "Postgres CLI with autocompletion and syntax highlighting",
+			Url:         "https://pgcli.com/",
+			Variant:     "click",
+		},
 		"podman": {
 			Description: "Simple management tool for pods, containers and images",
 			Url:         "https://podman.io/",
