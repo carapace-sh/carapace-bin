@@ -181,6 +181,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://sw.kovidgoyal.net/kitty/",
 			Variant:     "kitten",
 		},
+		"kubebuilder": {
+			Description: "CLI tool for building Kubernetes extensions and tools",
+			Url:         "https://github.com/kubernetes-sigs/kubebuilder",
+			Variant:     "cobra",
+		},
 		"kustomize": {
 			Description: "Manages declarative configuration of Kubernetes",
 			Url:         "https://github.com/kubernetes-sigs/kustomize",
