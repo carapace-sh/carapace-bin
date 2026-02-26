@@ -91,6 +91,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://gitleaks.io/",
 			Variant:     "cobra",
 		},
+		"gitlint": {
+			Description: "Linting for your git commit messages",
+			Url:         "https://jorisroovers.com/gitlint/latest/",
+			Variant:     "click",
+		},
 		"gitsign": {
 			Description: "Keyless Git signing using Sigstore",
 			Url:         "https://github.com/sigstore/gitsign",
