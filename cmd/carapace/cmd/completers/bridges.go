@@ -66,6 +66,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-vault.html",
 			Variant:     "argcomplete",
 		},
+		"apko": {
+			Description: "Build OCI images from APK packages directly without Dockerfile",
+			Url:         "https://github.com/chainguard-dev/apko",
+			Variant:     "cobra",
+		},
 		"apptainer": {
 			Description: "Application container and unprivileged sandbox platform for Linux",
 			Url:         "https://apptainer.org/",
