@@ -211,6 +211,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://www.nomadproject.io/",
 			Variant:     "complete",
 		},
+		"nox": {
+			Description: "Flexible test automation for Python",
+			Url:         "https://nox.thea.codes/",
+			Variant:     "argcomplete",
+		},
 		"oh-my-posh": {
 			Description: "A cross platform tool to render your prompt",
 			Url:         "https://ohmyposh.dev/",
