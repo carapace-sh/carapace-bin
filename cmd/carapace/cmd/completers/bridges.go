@@ -81,6 +81,16 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://aquaproj.github.io/",
 			Variant:     "urfavecli",
 		},
+		"argo": {
+			Description: "Workflow Engine for Kubernetes",
+			Url:         "https://argoproj.github.io/",
+			Variant:     "cobra",
+		},
+		"argocd": {
+			Description: "Declarative Continuous Deployment for Kubernetes",
+			Url:         "https://argoproj.github.io/cd/",
+			Variant:     "cobra",
+		},
 		"az": {
 			Description: "Azure Command-Line Interface",
 			Url:         "https://docs.microsoft.com/en-us/cli/azure/",
