@@ -156,6 +156,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://github.com/sigstore/gitsign",
 			Variant:     "cobra",
 		},
+		"hatch": {
+			Description: "Modern, extensible Python project management",
+			Url:         "https://hatch.pypa.io/latest/",
+			Variant:     "click",
+		},
 		"incus": {
 			Description: "Powerful system container and virtual machine manager",
 			Url:         "https://linuxcontainers.org/incus",
