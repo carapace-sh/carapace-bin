@@ -267,6 +267,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://rclone.org/",
 			Variant:     "cobra",
 		},
+		"reuse": {
+			Description: "reuse is a tool for compliance with the REUSE recommendations",
+			Url:         "https://reuse.software",
+			Variant:     "click",
+		},
 		"slsa-verifier": {
 			Description: "Verify provenance from SLSA compliant builders",
 			Url:         "https://github.com/slsa-framework/slsa-verifier",
