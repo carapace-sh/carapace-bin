@@ -26,6 +26,7 @@ func init() {
 	rebaseCmd.Flags().Bool("keep-divergent", false, "Keep divergent commits while rebasing")
 	rebaseCmd.Flags().StringSliceP("onto", "o", nil, "The revision(s) to rebase onto (can be repeated to create a merge commit)")
 	rebaseCmd.Flags().StringSliceP("revisions", "r", nil, "Rebase the given revisions, rebasing descendants onto this revision's parent(s)")
+	rebaseCmd.Flags().Bool("simplify-parents", false, "Simplify parents of rebased commits, like `jj simplify-parents`, while rebasing them. Any parents that are ancestors of other parents will be removed")
 	rebaseCmd.Flags().Bool("skip-emptied", false, "If true, when rebasing would produce an empty commit, the commit is abandoned. It will not be abandoned if it was already empty before the rebase. Will never skip merge commits with multiple non-empty parents")
 	rebaseCmd.Flags().StringSliceP("source", "s", nil, "Rebase specified revision(s) together with their trees of descendants (can be repeated)")
 	rebaseCmd.Flag("destination").Hidden = true
