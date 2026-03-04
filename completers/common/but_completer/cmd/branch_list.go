@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(branch_listCmd).Standalone()
 
 	branch_listCmd.Flags().BoolP("all", "a", false, "Show all branches (not just active + 20 most recent)")
+	branch_listCmd.Flags().Bool("empty", false, "Include branches with no commits on them (hidden by default)")
 	branch_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	branch_listCmd.Flags().BoolP("local", "l", false, "Show only local branches")
 	branch_listCmd.Flags().Bool("no-ahead", false, "Don't calculate and show number of commits ahead of base (faster)")
