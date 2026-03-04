@@ -17,7 +17,7 @@ func ActionUsers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		users := []string{}
 		if content, err := os.ReadFile("/etc/passwd"); err == nil {
-			for _, entry := range strings.Split(string(content), "\n") {
+			for entry := range strings.SplitSeq(string(content), "\n") {
 				splitted := strings.Split(entry, ":")
 				if len(splitted) > 6 {
 					user := splitted[0]
@@ -47,7 +47,7 @@ func ActionUsers() carapace.Action {
 			}
 		}
 		return carapace.ActionStyledValuesDescribed(users...)
-	}).Tag("users")
+	}).Tag("users").Uid("os", "user")
 }
 
 // ActionUserGroup completes system user:group separately

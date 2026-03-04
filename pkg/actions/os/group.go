@@ -17,7 +17,7 @@ func ActionGroups() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		groups := []string{}
 		if content, err := os.ReadFile("/etc/group"); err == nil {
-			for _, entry := range strings.Split(string(content), "\n") {
+			for entry := range strings.SplitSeq(string(content), "\n") {
 				splitted := strings.Split(entry, ":")
 				if len(splitted) > 2 {
 					group := splitted[0]
@@ -37,7 +37,7 @@ func ActionGroups() carapace.Action {
 			}
 		}
 		return carapace.ActionStyledValuesDescribed(groups...)
-	}).Tag("groups")
+	}).Tag("groups").Uid("os", "group")
 }
 
 // ActionGroupMembers completes system group members
@@ -48,7 +48,7 @@ func ActionGroupMembers(group string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := []string{}
 		if content, err := os.ReadFile("/etc/group"); err == nil {
-			for _, entry := range strings.Split(string(content), "\n") {
+			for entry := range strings.SplitSeq(string(content), "\n") {
 				splitted := strings.Split(entry, ":")
 				if len(splitted) > 3 &&
 					splitted[0] == group {
