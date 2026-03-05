@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(bookmark_renameCmd).Standalone()
 
 	bookmark_renameCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	bookmark_renameCmd.Flags().Bool("overwrite-existing", false, "Allow renaming even if the new bookmark name already exists")
 	bookmarkCmd.AddCommand(bookmark_renameCmd)
 
 	carapace.Gen(bookmark_renameCmd).PositionalCompletion(
