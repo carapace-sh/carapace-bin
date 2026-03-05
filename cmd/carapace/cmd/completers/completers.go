@@ -79,7 +79,7 @@ func RemoveExcludes[T any](m map[string]T) {
 func AddChoices(m completer.CompleterMap, filter choices.Choice, parse bool) error {
 	if !parse {
 		// add potentially unknown bridges (eg: `gh/cobra@bridge`)
-		if filter.Group != "bridge" {
+		if filter.Group != "" && filter.Group != "bridge" {
 			return nil // anything other than custom bridges should already exist
 		}
 
