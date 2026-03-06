@@ -47,10 +47,9 @@ func init() {
 	testCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	testCmd.Flags().StringSlice("test", nil, "Test only the specified test target")
 	testCmd.Flags().Bool("tests", false, "Test all targets that have `test = true` set")
-	testCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
+	testCmd.Flags().Bool("timings", false, "Output a build timing report at the end of the build")
 	testCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
 	testCmd.Flags().Bool("workspace", false, "Test all packages in the workspace")
-	testCmd.Flag("timings").NoOptDefVal = " "
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{

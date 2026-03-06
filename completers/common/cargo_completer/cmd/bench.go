@@ -43,10 +43,9 @@ func init() {
 	benchCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	benchCmd.Flags().StringSlice("test", nil, "Benchmark only the specified test target")
 	benchCmd.Flags().Bool("tests", false, "Benchmark all targets that have `test = true` set")
-	benchCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
+	benchCmd.Flags().Bool("timings", false, "Output a build timing report at the end of the build")
 	benchCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
 	benchCmd.Flags().Bool("workspace", false, "Benchmark all packages in the workspace")
-	benchCmd.Flag("timings").NoOptDefVal = " "
 	rootCmd.AddCommand(benchCmd)
 
 	carapace.Gen(benchCmd).FlagCompletion(carapace.ActionMap{

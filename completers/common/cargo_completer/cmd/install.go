@@ -45,10 +45,9 @@ func init() {
 	installCmd.Flags().String("tag", "", "Tag to use when installing from git")
 	installCmd.Flags().StringSlice("target", nil, "Build for the target triple")
 	installCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
-	installCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
+	installCmd.Flags().Bool("timings", false, "Output a build timing report at the end of the build")
 	installCmd.Flags().String("vers", "", "Specify a version to install")
 	installCmd.Flags().String("version", "", "Specify a version to install")
-	installCmd.Flag("timings").NoOptDefVal = " "
 	installCmd.Flag("vers").Hidden = true
 	rootCmd.AddCommand(installCmd)
 

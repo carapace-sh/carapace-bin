@@ -33,7 +33,6 @@ func init() {
 	publishCmd.Flags().String("registry", "", "Registry to upload the package to")
 	publishCmd.Flags().StringSlice("target", nil, "Build for the target triple")
 	publishCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
-	publishCmd.Flags().String("token", "", "Token to use when uploading")
 	publishCmd.Flags().Bool("workspace", false, "Publish all packages in the workspace")
 	rootCmd.AddCommand(publishCmd)
 

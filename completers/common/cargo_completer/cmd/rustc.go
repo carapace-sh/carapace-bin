@@ -43,9 +43,8 @@ func init() {
 	rustcCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	rustcCmd.Flags().StringSlice("test", nil, "Build only the specified test target")
 	rustcCmd.Flags().Bool("tests", false, "Build all targets that have `test = true` set")
-	rustcCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
+	rustcCmd.Flags().Bool("timings", false, "Output a build timing report at the end of the build")
 	rustcCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
-	rustcCmd.Flag("timings").NoOptDefVal = " "
 	rootCmd.AddCommand(rustcCmd)
 
 	// TODO flags
