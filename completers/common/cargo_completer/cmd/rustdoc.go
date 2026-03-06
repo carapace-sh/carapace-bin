@@ -42,9 +42,8 @@ func init() {
 	rustdocCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	rustdocCmd.Flags().StringSlice("test", nil, "Build only the specified test target")
 	rustdocCmd.Flags().Bool("tests", false, "Build all targets that have `test = true` set")
-	rustdocCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
+	rustdocCmd.Flags().Bool("timings", false, "Output a build timing report at the end of the build")
 	rustdocCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
-	rustdocCmd.Flag("timings").NoOptDefVal = " "
 	rootCmd.AddCommand(rustdocCmd)
 
 	// TODO flag completion

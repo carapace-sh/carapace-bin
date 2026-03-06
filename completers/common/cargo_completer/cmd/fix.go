@@ -49,9 +49,8 @@ func init() {
 	fixCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
 	fixCmd.Flags().StringSlice("test", nil, "Fix only the specified test target")
 	fixCmd.Flags().Bool("tests", false, "Fix all targets that have `test = true` set")
-	fixCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
+	fixCmd.Flags().Bool("timings", false, "Output a build timing report at the end of the build")
 	fixCmd.Flags().Bool("workspace", false, "Fix all packages in the workspace")
-	fixCmd.Flag("timings").NoOptDefVal = " "
 	rootCmd.AddCommand(fixCmd)
 
 	carapace.Gen(fixCmd).FlagCompletion(carapace.ActionMap{

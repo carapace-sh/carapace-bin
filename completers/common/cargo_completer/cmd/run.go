@@ -33,9 +33,8 @@ func init() {
 	runCmd.Flags().BoolP("release", "r", false, "Build artifacts in release mode, with optimizations")
 	runCmd.Flags().StringSlice("target", nil, "Build for the target triple")
 	runCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
-	runCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
+	runCmd.Flags().Bool("timings", false, "Output a build timing report at the end of the build")
 	runCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
-	runCmd.Flag("timings").NoOptDefVal = " "
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{

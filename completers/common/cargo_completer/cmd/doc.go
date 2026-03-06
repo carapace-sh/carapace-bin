@@ -41,10 +41,9 @@ func init() {
 	docCmd.Flags().BoolP("release", "r", false, "Build artifacts in release mode, with optimizations")
 	docCmd.Flags().StringSlice("target", nil, "Build for the target triple")
 	docCmd.Flags().String("target-dir", "", "Directory for all generated artifacts")
-	docCmd.Flags().String("timings", "", "Timing output formats (unstable) (comma separated): html, json")
+	docCmd.Flags().Bool("timings", false, "Output a build timing report at the end of the build")
 	docCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
 	docCmd.Flags().Bool("workspace", false, "Document all packages in the workspace")
-	docCmd.Flag("timings").NoOptDefVal = " "
 	rootCmd.AddCommand(docCmd)
 
 	carapace.Gen(docCmd).FlagCompletion(carapace.ActionMap{
