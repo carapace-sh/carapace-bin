@@ -19,6 +19,7 @@ func init() {
 	generate_direnvCmd.PersistentFlags().StringP("env", "e", "", "environment variables to set in the devbox environment")
 	generate_direnvCmd.PersistentFlags().String("env-file", "", "path to a file containing environment variables to set in the devbox environment")
 	generate_direnvCmd.Flags().String("environment", "", "environment to use, when supported (e.g.secrets support dev, prod, preview.)")
+	generate_direnvCmd.Flags().String("envrc-dir", "", "path to directory where the .envrc file should be generated.")
 	generate_direnvCmd.Flags().BoolP("force", "f", false, "force overwrite existing files")
 	generate_direnvCmd.Flags().BoolP("print-envrc", "p", false, "output contents of devbox configuration to use in .envrc")
 	generate_direnvCmd.Flag("print-envrc").Hidden = true
@@ -26,8 +27,9 @@ func init() {
 
 	// TODO environment
 	carapace.Gen(generate_direnvCmd).FlagCompletion(carapace.ActionMap{
-		"config":   carapace.ActionDirectories(),
-		"env":      env.ActionNameValues(false),
-		"env-file": carapace.ActionFiles(),
+		"config":    carapace.ActionDirectories(),
+		"env":       env.ActionNameValues(false),
+		"env-file":  carapace.ActionFiles(),
+		"envrc-dir": carapace.ActionDirectories(),
 	})
 }

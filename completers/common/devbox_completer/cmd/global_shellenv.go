@@ -19,6 +19,7 @@ func init() {
 	global_shellenvCmd.PersistentFlags().StringP("env", "e", "", "environment variables to set in the devbox environment")
 	global_shellenvCmd.PersistentFlags().String("env-file", "", "path to a file containing environment variables to set in the devbox environment")
 	global_shellenvCmd.Flags().String("environment", "", "environment to use, when supported (e.g.secrets support dev, prod, preview.)")
+	global_shellenvCmd.Flags().String("format", "", "Output format for shell environment (nushell)")
 	global_shellenvCmd.Flags().Bool("init-hook", false, "runs init hook after exporting shell environment")
 	global_shellenvCmd.Flags().Bool("install", false, "install packages before exporting shell environment")
 	global_shellenvCmd.Flags().Bool("no-refresh-alias", false, "by default, devbox will add refresh alias to the environmentUse this flag to disable this behavior.")
@@ -37,6 +38,7 @@ func init() {
 		"config":   carapace.ActionDirectories(),
 		"env":      env.ActionNameValues(false),
 		"env-file": carapace.ActionFiles(),
+		"format":   carapace.ActionValues("nushell"),
 	})
 
 }
