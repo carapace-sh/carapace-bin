@@ -8,7 +8,7 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
-func graphQlAction(opts RepoOpts, query string, v interface{}, transform func() carapace.Action) carapace.Action {
+func graphQlAction(opts RepoOpts, query string, v any, transform func() carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return actionHostConfig(func(config hostConfig) carapace.Action {
 			params := make([]string, 0)
@@ -29,6 +29,13 @@ func graphQlAction(opts RepoOpts, query string, v interface{}, transform func() 
 					return carapace.ActionMessage("unknown host")
 				}
 				opts.Owner = conf.User
+			}
+
+			if opts.Owner == "" {
+				opts.Owner = "{owner}"
+			}
+			if opts.Name == "" {
+				opts.Name = "{repo}"
 			}
 
 			args := []string{"api", "graphql",
