@@ -19,7 +19,7 @@ func ReadSpecs(dir, group string, parse bool) (CompleterMap, error) {
 		return nil, err
 	}
 
-	r := regexp.MustCompile(`[^.]+\.yaml`)
+	r := regexp.MustCompile(`^[^.]+\.yaml$`)
 
 	m := make(CompleterMap)
 	entries, err := os.ReadDir(dir)
