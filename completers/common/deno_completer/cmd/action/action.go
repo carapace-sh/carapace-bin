@@ -1,13 +1,13 @@
 package action
 
 import (
-	"encoding/json"
 	"os"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/carapace-sh/carapace/pkg/util"
+	"github.com/carapace-sh/carapace/third_party/github.com/adhocore/jsonc"
 )
 
 func ActionHostPort() carapace.Action {
@@ -29,8 +29,8 @@ func ActionLintRules() carapace.Action {
 		vals := make([]string, 0)
 
 		for _, line := range lines {
-			if strings.HasPrefix(line, " - ") {
-				vals = append(vals, strings.TrimPrefix(line, " - "))
+			if after, ok := strings.CutPrefix(line, " - "); ok {
+				vals = append(vals, after)
 			}
 		}
 		return carapace.ActionValues(vals...)
@@ -51,14 +51,13 @@ func ActionTasks(path string) carapace.Action {
 				}
 			}
 		}
-
 		content, err := os.ReadFile(path)
 		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 
 		var _config config
-		if err := json.Unmarshal(content, &_config); err != nil {
+		if err := jsonc.Unmarshal(content, &_config); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 
