@@ -1,0 +1,8 @@
+services:
+ fedora:
+    build:
+      context: fedora
+    image: ghcr.io/carapace-sh/carapace-bin:fedora
+    hostname: carapace-bin:fedora
+    volumes:
+      - '..:/carapace-bin:ro'
