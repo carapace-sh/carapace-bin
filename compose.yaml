@@ -6,6 +6,7 @@ include:
   - .docker/bloop.yaml
   - .docker/brew.yaml
   - .docker/cmd-clink.yaml
+  - .docker/fedora.yaml
   - .docker/fzf-tab.yaml
   - .docker/gcloud.yaml
   - .docker/nix.yaml
