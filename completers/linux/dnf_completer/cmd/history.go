@@ -58,9 +58,9 @@ func init() {
 	historyCmd.AddCommand(historyStoreCmd)
 
 	for _, subcmd := range []*cobra.Command{historyListCmd, historyInfoCmd} {
-		subcmd.Flags().Bool("reverse", false, "reverse the order of transactions")
 		subcmd.Flags().String("contains-pkgs", "", "show only transactions containing packages")
 		subcmd.Flags().Bool("json", false, "request JSON output format")
+		subcmd.Flags().Bool("reverse", false, "reverse the order of transactions")
 	}
 
 	for _, subcmd := range []*cobra.Command{historyUndoCmd, historyRollbackCmd, historyRedoCmd} {

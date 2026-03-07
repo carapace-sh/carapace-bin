@@ -52,23 +52,23 @@ func init() {
 
 	for _, subcmd := range []*cobra.Command{groupListCmd, groupInfoCmd} {
 		subcmd.Flags().Bool("available", false, "show only available groups")
-		subcmd.Flags().Bool("installed", false, "show only installed groups")
-		subcmd.Flags().Bool("hidden", false, "show also hidden groups")
 		subcmd.Flags().String("contains-pkgs", "", "show only groups containing packages")
+		subcmd.Flags().Bool("hidden", false, "show also hidden groups")
+		subcmd.Flags().Bool("installed", false, "show only installed groups")
 	}
 
 	for _, subcmd := range []*cobra.Command{groupInstallCmd, groupRemoveCmd, groupUpgradeCmd} {
-		subcmd.Flags().Bool("with-optional", false, "include optional packages")
 		subcmd.Flags().Bool("no-packages", false, "operate on groups without manipulating packages")
+		subcmd.Flags().Bool("with-optional", false, "include optional packages")
 	}
 
 	for _, subcmd := range []*cobra.Command{groupInstallCmd, groupUpgradeCmd} {
+		subcmd.Flags().Bool("allow-downgrade", false, "enable downgrade of dependencies")
 		subcmd.Flags().Bool("allowerasing", false, "allow removing of installed packages")
+		subcmd.Flags().Bool("downloadonly", false, "download packages without executing transaction")
+		subcmd.Flags().Bool("no-allow-downgrade", false, "disable downgrade of dependencies")
 		subcmd.Flags().Bool("skip-broken", false, "resolve dependency problems")
 		subcmd.Flags().Bool("skip-unavailable", false, "allow skipping packages")
-		subcmd.Flags().Bool("allow-downgrade", false, "enable downgrade of dependencies")
-		subcmd.Flags().Bool("no-allow-downgrade", false, "disable downgrade of dependencies")
-		subcmd.Flags().Bool("downloadonly", false, "download packages without executing transaction")
 	}
 
 	rootCmd.AddCommand(groupCmd)

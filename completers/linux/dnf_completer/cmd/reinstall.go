@@ -16,12 +16,12 @@ var reinstallCmd = &cobra.Command{
 func init() {
 	carapace.Gen(reinstallCmd).Standalone()
 
+	reinstallCmd.Flags().Bool("allow-downgrade", false, "enable downgrade of dependencies")
 	reinstallCmd.Flags().Bool("allowerasing", false, "allow removing of installed packages")
+	reinstallCmd.Flags().Bool("downloadonly", false, "download packages without executing transaction")
+	reinstallCmd.Flags().Bool("no-allow-downgrade", false, "disable downgrade of dependencies")
 	reinstallCmd.Flags().Bool("skip-broken", false, "resolve dependency problems by removing problematic packages")
 	reinstallCmd.Flags().Bool("skip-unavailable", false, "allow skipping packages")
-	reinstallCmd.Flags().Bool("allow-downgrade", false, "enable downgrade of dependencies")
-	reinstallCmd.Flags().Bool("no-allow-downgrade", false, "disable downgrade of dependencies")
-	reinstallCmd.Flags().Bool("downloadonly", false, "download packages without executing transaction")
 
 	rootCmd.AddCommand(reinstallCmd)
 

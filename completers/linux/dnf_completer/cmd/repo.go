@@ -31,8 +31,8 @@ func init() {
 
 	for _, subcmd := range []*cobra.Command{repoListCmd, repoInfoCmd} {
 		subcmd.Flags().Bool("all", false, "show information about all known repositories")
-		subcmd.Flags().Bool("enabled", false, "show information about enabled repositories")
 		subcmd.Flags().Bool("disabled", false, "show information about disabled repositories")
+		subcmd.Flags().Bool("enabled", false, "show information about enabled repositories")
 		subcmd.Flags().Bool("json", false, "show information in JSON format")
 	}
 

@@ -15,8 +15,8 @@ func init() {
 	carapace.Gen(checkUpgradeCmd).Standalone()
 
 	checkUpgradeCmd.Flags().Bool("changelogs", false, "print the package changelogs")
-	checkUpgradeCmd.Flags().Bool("minimal", false, "reports the lowest versions of packages that fix advisories")
 	checkUpgradeCmd.Flags().Bool("json", false, "request JSON output format")
+	checkUpgradeCmd.Flags().Bool("minimal", false, "reports the lowest versions of packages that fix advisories")
 
 	rootCmd.AddCommand(checkUpgradeCmd)
 }

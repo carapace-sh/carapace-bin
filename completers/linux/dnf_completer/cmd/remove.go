@@ -16,9 +16,9 @@ var removeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(removeCmd).Standalone()
 
+	removeCmd.Flags().String("limit", "", "override installonly_limit when using --oldinstallonly")
 	removeCmd.Flags().Bool("no-autoremove", false, "disable removal of dependencies")
 	removeCmd.Flags().Bool("oldinstallonly", false, "remove old installonly packages")
-	removeCmd.Flags().String("limit", "", "override installonly_limit when using --oldinstallonly")
 
 	rootCmd.AddCommand(removeCmd)
 

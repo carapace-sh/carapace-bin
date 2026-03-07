@@ -16,12 +16,12 @@ var downgradeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(downgradeCmd).Standalone()
 
+	downgradeCmd.Flags().Bool("allow-downgrade", false, "enable downgrade of dependencies")
 	downgradeCmd.Flags().Bool("allowerasing", false, "allow removing of installed packages")
+	downgradeCmd.Flags().Bool("downloadonly", false, "download packages without executing transaction")
+	downgradeCmd.Flags().Bool("no-allow-downgrade", false, "disable downgrade of dependencies")
 	downgradeCmd.Flags().Bool("skip-broken", false, "resolve dependency problems")
 	downgradeCmd.Flags().Bool("skip-unavailable", false, "allow skipping packages")
-	downgradeCmd.Flags().Bool("allow-downgrade", false, "enable downgrade of dependencies")
-	downgradeCmd.Flags().Bool("no-allow-downgrade", false, "disable downgrade of dependencies")
-	downgradeCmd.Flags().Bool("downloadonly", false, "download packages without executing transaction")
 
 	rootCmd.AddCommand(downgradeCmd)
 

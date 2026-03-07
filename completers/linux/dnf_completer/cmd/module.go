@@ -51,8 +51,8 @@ func init() {
 	moduleCmd.AddCommand(moduleResetCmd)
 
 	for _, subcmd := range []*cobra.Command{moduleListCmd, moduleInfoCmd} {
-		subcmd.Flags().Bool("enabled", false, "show only enabled modules")
 		subcmd.Flags().Bool("disabled", false, "show only disabled modules")
+		subcmd.Flags().Bool("enabled", false, "show only enabled modules")
 	}
 
 	for _, subcmd := range []*cobra.Command{moduleEnableCmd, moduleDisableCmd, moduleResetCmd} {

@@ -43,13 +43,13 @@ func init() {
 	systemUpgradeCmd.AddCommand(systemUpgradeLogCmd)
 	systemUpgradeCmd.AddCommand(systemUpgradeRebootCmd)
 
-	systemUpgradeDownloadCmd.Flags().String("releasever", "", "required: the version to upgrade to")
-	systemUpgradeDownloadCmd.Flags().Bool("no-downgrade", false, "do not install older packages")
 	systemUpgradeDownloadCmd.Flags().Bool("allowerasing", false, "allow removing of installed packages")
+	systemUpgradeDownloadCmd.Flags().Bool("no-downgrade", false, "do not install older packages")
+	systemUpgradeDownloadCmd.Flags().String("releasever", "", "required: the version to upgrade to")
 
 	systemUpgradeRebootCmd.Flags().Int("number", 0, "boot number")
-	systemUpgradeRebootCmd.Flags().Bool("poweroff", false, "power off after transaction instead of rebooting")
 	systemUpgradeLogCmd.Flags().Int("number", 0, "boot number")
+	systemUpgradeRebootCmd.Flags().Bool("poweroff", false, "power off after transaction instead of rebooting")
 
 	rootCmd.AddCommand(systemUpgradeCmd)
 }

@@ -17,8 +17,8 @@ func init() {
 
 	searchCmd.Flags().Bool("all", false, "search in description and URL fields")
 	searchCmd.Flags().Bool("name", false, "limit search to name field")
-	searchCmd.Flags().Bool("summary", false, "limit search to summary field")
 	searchCmd.Flags().Bool("showduplicates", false, "show all versions of packages")
+	searchCmd.Flags().Bool("summary", false, "limit search to summary field")
 
 	rootCmd.AddCommand(searchCmd)
 

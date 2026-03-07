@@ -17,9 +17,9 @@ func init() {
 	carapace.Gen(distroSyncCmd).Standalone()
 
 	distroSyncCmd.Flags().Bool("allowerasing", false, "allow removing of installed packages")
+	distroSyncCmd.Flags().Bool("downloadonly", false, "download packages without executing RPM transaction")
 	distroSyncCmd.Flags().Bool("skip-broken", false, "resolve dependency problems by removing problematic packages")
 	distroSyncCmd.Flags().Bool("skip-unavailable", false, "allow skipping packages that are not possible to synchronize")
-	distroSyncCmd.Flags().Bool("downloadonly", false, "download packages without executing RPM transaction")
 
 	rootCmd.AddCommand(distroSyncCmd)
 

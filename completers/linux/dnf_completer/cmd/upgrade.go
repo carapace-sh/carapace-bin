@@ -16,13 +16,13 @@ var upgradeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(upgradeCmd).Standalone()
 
-	upgradeCmd.Flags().Bool("minimal", false, "upgrade packages to lowest versions fixing advisories")
-	upgradeCmd.Flags().Bool("allowerasing", false, "allow removing of installed packages")
-	upgradeCmd.Flags().Bool("skip-unavailable", false, "allow skipping packages")
 	upgradeCmd.Flags().Bool("allow-downgrade", false, "enable downgrade of dependencies")
-	upgradeCmd.Flags().Bool("no-allow-downgrade", false, "disable downgrade of dependencies")
+	upgradeCmd.Flags().Bool("allowerasing", false, "allow removing of installed packages")
 	upgradeCmd.Flags().String("destdir", "", "set directory for downloading packages")
 	upgradeCmd.Flags().Bool("downloadonly", false, "download packages without executing transaction")
+	upgradeCmd.Flags().Bool("minimal", false, "upgrade packages to lowest versions fixing advisories")
+	upgradeCmd.Flags().Bool("no-allow-downgrade", false, "disable downgrade of dependencies")
+	upgradeCmd.Flags().Bool("skip-unavailable", false, "allow skipping packages")
 
 	rootCmd.AddCommand(upgradeCmd)
 
