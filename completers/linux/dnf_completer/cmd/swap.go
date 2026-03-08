@@ -19,7 +19,8 @@ func init() {
 
 	rootCmd.AddCommand(swapCmd)
 
-	carapace.Gen(swapCmd).PositionalAnyCompletion(
+	carapace.Gen(swapCmd).PositionalCompletion(
+		action.ActionInstalledPackages(swapCmd),
 		action.ActionPackageSearch(swapCmd),
 	)
 }
