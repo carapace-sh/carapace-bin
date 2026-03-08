@@ -23,6 +23,6 @@ func init() {
 	rootCmd.AddCommand(removeCmd)
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(
-		action.ActionPackageSearch(removeCmd),
+		action.ActionInstalledPackages(removeCmd),
 	)
 }

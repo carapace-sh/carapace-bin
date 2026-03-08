@@ -26,6 +26,6 @@ func init() {
 	rootCmd.AddCommand(downgradeCmd)
 
 	carapace.Gen(downgradeCmd).PositionalAnyCompletion(
-		action.ActionPackageSearch(downgradeCmd),
+		action.ActionInstalledPackages(downgradeCmd),
 	)
 }

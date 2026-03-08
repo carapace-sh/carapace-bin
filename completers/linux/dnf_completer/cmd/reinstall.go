@@ -26,6 +26,6 @@ func init() {
 	rootCmd.AddCommand(reinstallCmd)
 
 	carapace.Gen(reinstallCmd).PositionalAnyCompletion(
-		action.ActionPackageSearch(reinstallCmd),
+		action.ActionInstalledPackages(reinstallCmd),
 	)
 }

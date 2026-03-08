@@ -34,3 +34,28 @@ func ActionPackageSearch(cmd *cobra.Command) carapace.Action {
 		})
 	})
 }
+
+func ActionInstalledPackages(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		// TODO mostly duplicates ActionPackageSearch
+		args := []string{"--quiet", "--cacheonly"}
+		for _, name := range []string{"repo", "setopt", "installroot"} {
+			if f := cmd.Root().Flag(name); f.Changed {
+				args = append(args, "--"+f.Name, f.Value.String())
+			}
+		}
+		args = append(args, "list", "--installed", c.Value+"*")
+
+		return carapace.ActionExecCommand("dnf", args...)(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+			vals := make([]string, 0)
+
+			for _, line := range lines {
+				if fields := strings.Fields(line); len(fields) == 3 {
+					vals = append(vals, fields[0], fields[2])
+				}
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
+	})
+}
