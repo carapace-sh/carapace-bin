@@ -14,8 +14,8 @@ var history_rollbackCmd = &cobra.Command{
 func init() {
 	carapace.Gen(history_rollbackCmd).Standalone()
 
-	history_rollbackCmd.Flags().Bool("skip-unavailable", false, "allow skipping packages")
 	history_rollbackCmd.Flags().Bool("ignore-extras", false, "don't consider extra packages as errors")
 	history_rollbackCmd.Flags().Bool("ignore-installed", false, "don't consider mismatches as errors")
+	history_rollbackCmd.Flags().Bool("skip-unavailable", false, "allow skipping packages")
 	historyCmd.AddCommand(history_rollbackCmd)
 }
