@@ -20,4 +20,8 @@ func init() {
 	dotfiles_alias_listCmd.Flags().String("sort-by", "", "Sort results by field")
 	dotfiles_alias_listCmd.Flags().StringP("value", "v", "", "Filter aliases by value (substring match)")
 	dotfiles_aliasCmd.AddCommand(dotfiles_alias_listCmd)
+
+	carapace.Gen(dotfiles_alias_listCmd).FlagCompletion(carapace.ActionMap{
+		"sort-by": carapace.ActionValues("name", "value"),
+	})
 }
