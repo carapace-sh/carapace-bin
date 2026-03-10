@@ -45,6 +45,9 @@ func init() {
 	})
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(
-		pnpm.ActionDependencies(),
+		carapace.Batch(
+			pnpm.ActionDependencies(),
+			pnpm.ActionWorkspaceDependencies(),
+		).ToA(),
 	)
 }

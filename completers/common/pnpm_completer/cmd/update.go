@@ -50,6 +50,9 @@ func init() {
 	})
 
 	carapace.Gen(updateCmd).PositionalAnyCompletion(
-		pnpm.ActionDependencyNames(),
+		carapace.Batch(
+			pnpm.ActionDependencyNames(),
+			pnpm.ActionWorkspaceDependencies(),
+		).ToA(),
 	)
 }

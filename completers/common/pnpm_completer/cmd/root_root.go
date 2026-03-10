@@ -5,15 +5,16 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var root_rootCmd = &cobra.Command{
+var rootRootCmd = &cobra.Command{
 	Use:   "root",
-	Short: "Print the effective `node_modules` directory",
+	Short: "Print the effective modules directory",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(root_rootCmd).Standalone()
+	carapace.Gen(rootRootCmd).Standalone()
 
-	root_rootCmd.Flags().BoolP("global", "g", false, "Print the global `node_modules` directory")
-	rootCmd.AddCommand(root_rootCmd)
+	rootRootCmd.Flags().BoolP("help", "h", false, "Output usage information")
+
+	rootCmd.AddCommand(rootRootCmd)
 }

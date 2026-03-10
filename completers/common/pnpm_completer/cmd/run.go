@@ -46,5 +46,10 @@ func init() {
 		"loglevel":    pnpm.ActionLoglevel(),
 	})
 
-	// TODO complete scripts
+	carapace.Gen(runCmd).PositionalCompletion(
+		carapace.Batch(
+			pnpm.ActionScripts(),
+			pnpm.ActionWorkspaceScripts(),
+		).ToA(),
+	)
 }
