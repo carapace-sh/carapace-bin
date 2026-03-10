@@ -17,12 +17,14 @@ func init() {
 	carapace.Gen(issue_closeCmd).Standalone()
 
 	issue_closeCmd.Flags().StringP("comment", "c", "", "Leave a closing comment")
-	issue_closeCmd.Flags().StringP("reason", "r", "", "Reason for closing: {completed|not planned}")
+	issue_closeCmd.Flags().String("duplicate-of", "", "Mark as duplicate of another issue by number or URL")
+	issue_closeCmd.Flags().StringP("reason", "r", "", "Reason for closing: {completed|not planned|duplicate}")
 	issueCmd.AddCommand(issue_closeCmd)
 
 	carapace.Gen(issue_closeCmd).FlagCompletion(carapace.ActionMap{
-		"comment": action.ActionBody(issue_closeCmd),
-		"reason":  carapace.ActionValues("completed", "not planned"),
+		"comment":      action.ActionBody(issue_closeCmd),
+		"duplicate-of": action.ActionIssues(issue_closeCmd, action.IssueOpts{Closed: true, Open: true}),
+		"reason":       carapace.ActionValues("completed", "not planned", "duplicate"),
 	})
 
 	carapace.Gen(issue_closeCmd).PositionalCompletion(

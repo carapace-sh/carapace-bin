@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -48,7 +49,10 @@ func init() {
 		"label":     action.ActionLabels(pr_createCmd).UniqueList(","),
 		"milestone": action.ActionMilestones(pr_createCmd),
 		"project":   action.ActionProjects(pr_createCmd, action.ProjectOpts{Open: true}),
-		"reviewer":  action.ActionAssignableUsers(pr_createCmd).UniqueList(","),
-		"template":  action.ActionPullRequestTemplates(pr_createCmd),
+		"reviewer": carapace.Batch(
+			carapace.ActionValues("@copilot").Style(style.Yellow),
+			action.ActionAssignableUsers(pr_createCmd).UniqueList(","),
+		).ToA(),
+		"template": action.ActionPullRequestTemplates(pr_createCmd),
 	})
 }
