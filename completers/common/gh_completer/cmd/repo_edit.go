@@ -36,6 +36,7 @@ func init() {
 	repo_editCmd.Flags().Bool("enable-wiki", false, "Enable wiki in the repository")
 	repo_editCmd.Flags().StringP("homepage", "h", "", "Repository home page `URL`")
 	repo_editCmd.Flags().StringSlice("remove-topic", nil, "Remove repository topic")
+	repo_editCmd.Flags().String("squash-merge-commit-message", "", "The default value for a squash merge commit message: {default|pr-title|pr-title-commits|pr-title-description}")
 	repo_editCmd.Flags().Bool("template", false, "Make the repository available as a template repository")
 	repo_editCmd.Flags().String("visibility", "", "Change the visibility of the repository to {public,private,internal}")
 	repoCmd.AddCommand(repo_editCmd)
@@ -56,7 +57,8 @@ func init() {
 			}
 			return action.ActionRepoTopics(repo_editCmd).UniqueList(",")
 		}),
-		"visibility": carapace.ActionValues("public", "private", "internal"),
+		"squash-merge-commit-message": carapace.ActionValues("default", "pr-title", "pr-title-commits", "pr-title-description"),
+		"visibility":                  carapace.ActionValues("public", "private", "internal"),
 	})
 
 	carapace.Gen(repo_editCmd).PositionalCompletion(
