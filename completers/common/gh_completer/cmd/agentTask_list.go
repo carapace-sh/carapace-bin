@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	agentTask_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	agentTask_listCmd.Flags().BoolP("web", "w", false, "Open agent tasks in the browser")
 	agentTaskCmd.AddCommand(agentTask_listCmd)
+
+	carapace.Gen(agentTask_listCmd).FlagCompletion(carapace.ActionMap{
+		"json": gh.ActionSessionFields().UniqueList(","),
+	})
 }

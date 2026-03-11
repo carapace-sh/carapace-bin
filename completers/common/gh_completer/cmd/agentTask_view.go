@@ -25,6 +25,7 @@ func init() {
 	agentTaskCmd.AddCommand(agentTask_viewCmd)
 
 	carapace.Gen(agentTask_viewCmd).FlagCompletion(carapace.ActionMap{
+		"json": gh.ActionSessionFields().UniqueList(","),
 		"repo": gh.ActionOwnerRepositories(gh.HostOpts{}),
 	})
 
