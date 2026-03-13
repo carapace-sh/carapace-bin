@@ -28,14 +28,14 @@ func init() {
 		&cobra.Group{ID: "other", Title: "Other Commands"},
 	)
 
-	rootCmd.Flags().BoolP("help", "h", false, "show help")
-	rootCmd.Flags().BoolP("recursive", "r", false, "Run the command for each project in the workspace")
-	rootCmd.Flags().BoolP("version", "v", false, "show version")
+	rootCmd.Flags().Bool("color", false, "Controls colors in the output")
 	rootCmd.Flags().String("filter", "", "set filter")
 	rootCmd.Flags().String("filter-prod", "", "Restricts the scope to package names matching the given pattern")
+	rootCmd.Flags().BoolP("help", "h", false, "show help")
 	rootCmd.Flags().String("loglevel", "", "What level of logs to report")
-	rootCmd.Flags().Bool("color", false, "Controls colors in the output")
 	rootCmd.Flags().Bool("no-color", false, "Controls colors in the output")
+	rootCmd.Flags().BoolP("recursive", "r", false, "Run the command for each project in the workspace")
+	rootCmd.Flags().BoolP("version", "v", false, "show version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"filter":      pnpm.ActionFilter(),
