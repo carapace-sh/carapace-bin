@@ -44,8 +44,11 @@ func ActionCliIds(opts CliIdsOpts) carapace.Action {
 			}
 
 			if opts.Stacks {
-				batch = append(batch, carapace.ActionValuesDescribed("zz", "unstaged area")) // TODO when to add this - is stacks as condition correct?
-				// TODO add uid
+				// TODO when to add this - is stacks as condition correct?
+				batch = append(batch, carapace.ActionValuesDescribed("zz", "unstaged area").UidF(
+					func(s string, uc uid.Context) (*url.URL, error) {
+						return git.Uid("status")("", uc)
+					}))
 			}
 
 			for _, stack := range status.Stacks {
