@@ -38,9 +38,9 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "show version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"filter":      pnpm.ActionFilter(),
-		"filter-prod": pnpm.ActionFilter(),
-		"loglevel":    pnpm.ActionLoglevel(),
+		"filter":      pnpm.ActionFilters(),
+		"filter-prod": pnpm.ActionFilters(),
+		"loglevel":    pnpm.ActionLoglevels(),
 	})
 }
 

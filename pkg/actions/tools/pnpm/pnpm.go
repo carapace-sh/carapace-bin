@@ -7,8 +7,8 @@ import (
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 )
 
-// ActionFilter completes filter
-func ActionFilter() carapace.Action {
+// ActionFilters completes filters
+func ActionFilters() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if index := strings.LastIndexAny(c.Value, "[]"); index != -1 && []rune(c.Value)[index] == '[' {
 			return git.ActionRefs(git.RefOption{}.Default()).Invoke(c).Prefix(c.Value[:index+1]).Suffix("]").ToA().NoSpace()
@@ -19,7 +19,7 @@ func ActionFilter() carapace.Action {
 			return carapace.ActionDirectories().Invoke(c).Prefix(prefix).ToA().NoSpace()
 		}
 		return carapace.Batch(
-			ActionWorkspaceFilter(),
+			ActionWorkspaceFilters(),
 			ActionWorkspacePackages().NoSpace(),
 		).ToA()
 	})

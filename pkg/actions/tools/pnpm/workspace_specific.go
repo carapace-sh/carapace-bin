@@ -63,8 +63,8 @@ func ActionWorkspaceScripts() carapace.Action {
 	})
 }
 
-// ActionWorkspaceFilter completes common workspace filter patterns
-func ActionWorkspaceFilter() carapace.Action {
+// ActionWorkspaceFilters completes common workspace filter patterns
+func ActionWorkspaceFilters() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"...", "Include all dependents (recursive)",
 		"...^", "Include direct dependents only",

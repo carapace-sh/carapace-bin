@@ -39,9 +39,9 @@ func init() {
 
 	carapace.Gen(removeCmd).FlagCompletion(carapace.ActionMap{
 		"dir":         carapace.ActionDirectories(),
-		"filter":      pnpm.ActionFilter(),
-		"filter-prod": pnpm.ActionFilter(),
-		"loglevel":    pnpm.ActionLoglevel(),
+		"filter":      pnpm.ActionFilters(),
+		"filter-prod": pnpm.ActionFilters(),
+		"loglevel":    pnpm.ActionLoglevels(),
 	})
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(

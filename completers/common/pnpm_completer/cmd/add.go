@@ -56,8 +56,8 @@ func init() {
 
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"dir":               carapace.ActionDirectories(),
-		"filter":            pnpm.ActionFilter(),
-		"loglevel":          pnpm.ActionLoglevel(),
+		"filter":            pnpm.ActionFilters(),
+		"loglevel":          pnpm.ActionLoglevels(),
 		"store-dir":         carapace.ActionDirectories(),
 		"virtual-store-dir": carapace.ActionDirectories(),
 	})

@@ -24,8 +24,8 @@ func init() {
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		"filter":      pnpm.ActionFilter(),
-		"filter-prod": pnpm.ActionFilter(),
+		"filter":      pnpm.ActionFilters(),
+		"filter-prod": pnpm.ActionFilters(),
 	})
 
 	// TODO positional completion
