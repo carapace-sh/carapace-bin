@@ -9,10 +9,6 @@ import (
 	"github.com/carapace-sh/carapace/pkg/util"
 )
 
-type pnpmWorkspace struct {
-	Packages []string `json:"packages"`
-}
-
 // ActionWorkspaces completes workspaces
 func ActionWorkspaces() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
