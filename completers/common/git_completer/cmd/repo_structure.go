@@ -15,6 +15,9 @@ func init() {
 	carapace.Gen(repo_structureCmd).Standalone()
 
 	repo_structureCmd.Flags().String("format", "", "output format")
+	repo_structureCmd.Flags().Bool("no-progress", false, "do not show progress")
+	repo_structureCmd.Flags().Bool("progress", false, "show progress")
+	repo_structureCmd.Flags().BoolS("z", "z", false, "synonym for --format=nul")
 	repoCmd.AddCommand(repo_structureCmd)
 
 	carapace.Gen(repo_structureCmd).FlagCompletion(carapace.ActionMap{

@@ -14,8 +14,10 @@ var repo_infoCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_infoCmd).Standalone()
 
+	repo_infoCmd.Flags().Bool("all", false, "print all keys/values")
 	repo_infoCmd.Flags().String("format", "", "output format")
-	repo_infoCmd.Flags().BoolS("z", "z", false, "alias for --format=nul")
+	repo_infoCmd.Flags().Bool("no-all", false, "do not  print all keys/values")
+	repo_infoCmd.Flags().BoolS("z", "z", false, "synonym for --format=nul")
 	repoCmd.AddCommand(repo_infoCmd)
 
 	repo_infoCmd.MarkFlagsMutuallyExclusive("format", "z")
