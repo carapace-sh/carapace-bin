@@ -71,10 +71,10 @@ func init() {
 
 	carapace.Gen(installTestCmd).FlagCompletion(carapace.ActionMap{
 		"dir":          carapace.ActionDirectories(),
-		"filter":       pnpm.ActionFilter(),
-		"filter-prod":  pnpm.ActionFilter(),
+		"filter":       pnpm.ActionFilters(),
+		"filter-prod":  pnpm.ActionFilters(),
 		"lockfile-dir": carapace.ActionDirectories(),
-		"loglevel":     pnpm.ActionLoglevel(),
+		"loglevel":     pnpm.ActionLoglevels(),
 		"modules-dir":  carapace.ActionDirectories(),
 		"package-import-method": carapace.ActionValuesDescribed(
 			"auto", "Clones/hardlinks or copies packages",

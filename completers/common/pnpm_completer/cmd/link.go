@@ -30,7 +30,7 @@ func init() {
 
 	carapace.Gen(linkCmd).FlagCompletion(carapace.ActionMap{
 		"dir":      carapace.ActionDirectories(),
-		"loglevel": pnpm.ActionLoglevel(),
+		"loglevel": pnpm.ActionLoglevels(),
 	})
 
 	carapace.Gen(linkCmd).PositionalCompletion(

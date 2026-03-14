@@ -31,6 +31,6 @@ func init() {
 
 	carapace.Gen(pruneCmd).FlagCompletion(carapace.ActionMap{
 		"dir":      carapace.ActionDirectories(),
-		"loglevel": pnpm.ActionLoglevel(),
+		"loglevel": pnpm.ActionLoglevels(),
 	})
 }

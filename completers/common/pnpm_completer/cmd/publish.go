@@ -35,8 +35,8 @@ func init() {
 
 	carapace.Gen(publishCmd).FlagCompletion(carapace.ActionMap{
 		"access":      carapace.ActionValues("public", "restricted").StyleF(style.ForKeyword),
-		"filter":      pnpm.ActionFilter(),
-		"filter-prod": pnpm.ActionFilter(),
+		"filter":      pnpm.ActionFilters(),
+		"filter-prod": pnpm.ActionFilters(),
 	})
 
 	carapace.Gen(publishCmd).PositionalCompletion(
