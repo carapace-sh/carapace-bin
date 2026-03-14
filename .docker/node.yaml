@@ -1,0 +1,8 @@
+services:
+ node:
+    build:
+      context: node
+    image: ghcr.io/carapace-sh/carapace-bin:node
+    hostname: carapace-bin:node
+    volumes:
+      - '..:/carapace-bin:ro'
