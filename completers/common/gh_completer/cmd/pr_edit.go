@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -36,11 +37,14 @@ func init() {
 		"add-assignee": action.ActionAssignableUsers(pr_editCmd).UniqueList(","),
 		"add-label":    action.ActionLabels(pr_editCmd).UniqueList(","),
 		"add-project":  action.ActionProjects(pr_editCmd, action.ProjectOpts{Open: true}),
-		"add-reviewer": action.ActionAssignableUsers(pr_editCmd).UniqueList(","),
-		"base":         action.ActionBranches(pr_editCmd),
-		"body":         action.ActionBody(pr_editCmd),
-		"body-file":    carapace.ActionFiles(),
-		"milestone":    action.ActionMilestones(pr_editCmd),
+		"add-reviewer": carapace.Batch(
+			carapace.ActionValues("@copilot").Style(style.Yellow),
+			action.ActionAssignableUsers(pr_editCmd).UniqueList(","),
+		).ToA(),
+		"base":      action.ActionBranches(pr_editCmd),
+		"body":      action.ActionBody(pr_editCmd),
+		"body-file": carapace.ActionFiles(),
+		"milestone": action.ActionMilestones(pr_editCmd),
 		"remove-assignee": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				return action.ActionPullRequestAssignees(pr_editCmd, c.Args[0])

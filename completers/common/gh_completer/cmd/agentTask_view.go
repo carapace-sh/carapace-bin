@@ -16,12 +16,16 @@ func init() {
 	carapace.Gen(agentTask_viewCmd).Standalone()
 
 	agentTask_viewCmd.Flags().Bool("follow", false, "Follow agent session logs")
+	agentTask_viewCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
+	agentTask_viewCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	agentTask_viewCmd.Flags().Bool("log", false, "Show agent session logs")
 	agentTask_viewCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository using the `[HOST/]OWNER/REPO` format")
+	agentTask_viewCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	agentTask_viewCmd.Flags().BoolP("web", "w", false, "Open agent task in the browser")
 	agentTaskCmd.AddCommand(agentTask_viewCmd)
 
 	carapace.Gen(agentTask_viewCmd).FlagCompletion(carapace.ActionMap{
+		"json": gh.ActionSessionFields().UniqueList(","),
 		"repo": gh.ActionOwnerRepositories(gh.HostOpts{}),
 	})
 
