@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/unix/date_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/spf13/cobra"
 )
@@ -37,4 +38,8 @@ func init() {
 		"file":      carapace.ActionFiles(),
 		"reference": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		action.ActionDateFormatSpecifiers().Prefix("+"),
+	)
 }

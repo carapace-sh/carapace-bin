@@ -19,6 +19,7 @@ var repo_cloneCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_cloneCmd).Standalone()
 
+	repo_cloneCmd.Flags().Bool("no-upstream", false, "Do not add an upstream remote when cloning a fork")
 	repo_cloneCmd.Flags().StringP("upstream-remote-name", "u", "", "Upstream remote name when cloning a fork")
 	repoCmd.AddCommand(repo_cloneCmd)
 

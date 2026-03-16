@@ -43,6 +43,11 @@ func ActionCliIds(opts CliIdsOpts) carapace.Action {
 				}
 			}
 
+			if opts.Stacks {
+				batch = append(batch, carapace.ActionValuesDescribed("zz", "unstaged area")) // TODO when to add this - is stacks as condition correct?
+				// TODO add uid
+			}
+
 			for _, stack := range status.Stacks {
 				if opts.Changes {
 					for _, assigned := range stack.AssignedChanges {
