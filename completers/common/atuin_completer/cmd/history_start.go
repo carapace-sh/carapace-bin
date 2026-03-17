@@ -14,6 +14,8 @@ var history_startCmd = &cobra.Command{
 func init() {
 	carapace.Gen(history_startCmd).Standalone()
 
+	history_startCmd.Flags().String("author", "", "Author of this command, eg `ellie`, `claude`, or `copilot`")
 	history_startCmd.Flags().BoolP("help", "h", false, "Print help")
+	history_startCmd.Flags().String("intent", "", "Optional intent/rationale for running this command")
 	historyCmd.AddCommand(history_startCmd)
 }
