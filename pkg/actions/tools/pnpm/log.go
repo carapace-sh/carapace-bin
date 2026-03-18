@@ -12,3 +12,8 @@ import (
 func ActionLoglevels() carapace.Action {
 	return carapace.ActionValues("debug", "info", "warn", "error").StyleF(style.ForLogLevel)
 }
+
+// ActionLoglevel completes log levels
+func ActionLoglevel() carapace.Action {
+	return ActionLoglevels()
+}

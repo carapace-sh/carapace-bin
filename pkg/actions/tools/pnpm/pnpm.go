@@ -5,6 +5,7 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm"
 )
 
 // ActionFilters completes filters
@@ -107,4 +108,37 @@ func ActionStoreStatus() carapace.Action {
 		}
 		return carapace.ActionValues(vals...)
 	})
+}
+
+// ActionFilter completes filter
+func ActionFilter() carapace.Action {
+	return ActionFilters()
+}
+
+// ActionStoreAdd completes packages for adding to the store
+func ActionStoreAdd() carapace.Action {
+	return npm.ActionPackageSearch("")
+}
+
+// ActionStorePackages completes packages in the store
+func ActionStorePackages() carapace.Action {
+	return carapace.ActionExecCommand("pnpm", "list", "--parseable", "--depth", "0")(func(output []byte) carapace.Action {
+		lines := strings.Split(strings.TrimSpace(string(output)), "\n")
+		vals := make([]string, 0)
+		for _, line := range lines {
+			if line != "" {
+				if idx := strings.LastIndex(line, "/"); idx != -1 {
+					vals = append(vals, line[idx+1:])
+				} else {
+					vals = append(vals, line)
+				}
+			}
+		}
+		return carapace.ActionValues(vals...).Tag("store packages")
+	})
+}
+
+// ActionStorePrune completes store prune options
+func ActionStorePrune() carapace.Action {
+	return carapace.ActionValues()
 }
