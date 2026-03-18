@@ -23,19 +23,20 @@ func init() {
 
 	rootCmd.PersistentFlags().String("build-host", "localhost", "Specify host to perform the rebuild with")
 	rootCmd.PersistentFlags().StringArray("builders", nil, "Specify ad-hoc remote builders")
-	rootCmd.PersistentFlags().String("commit-lockfile-summary", "", "Set the commit-lockfile-summary setting")
 	rootCmd.PersistentFlags().Bool("fallback", false, "Enable the fallback setting")
-	rootCmd.PersistentFlags().Bool("fast", false, "Do not rebuild the 'nixUnstable' nixpkgs attribute before rebuilding")
+	rootCmd.PersistentFlags().Bool("no-reexec", false, "Do not rebuild the 'nixUnstable' nixpkgs attribute before rebuilding")
+	rootCmd.PersistentFlags().Bool("no-build-nix", false, "Do not rebuild the 'nixUnstable' nixpkgs attribute before rebuilding")
 	rootCmd.PersistentFlags().String("flake", "", "Build the NixOS system from specified flake")
+	rootCmd.PersistentFlags().String("no-flake", "", "Do not imply --flake if /etc/nixos/flake.nix exists")
 	rootCmd.PersistentFlags().Bool("help", false, "Show usage information")
 	rootCmd.PersistentFlags().Bool("install-bootloader", false, "Causes the bootloader to be (re)installed")
 	rootCmd.PersistentFlags().Bool("keep-failed", false, "Enable the keep-failed setting")
 	rootCmd.PersistentFlags().Bool("keep-going", false, "Enable the keep-going setting")
 	rootCmd.PersistentFlags().String("log-format", "", "Set the format of log output")
 	rootCmd.PersistentFlags().String("max-jobs", "", "Set the max-jobs setting")
-	rootCmd.PersistentFlags().Bool("no-build-nix", false, "Do not rebuild the 'nixUnstable' nixpkgs attribute before rebuilding")
-	rootCmd.PersistentFlags().BoolP("no-build-output", "-Q", false, "Do not output on stdout or stderr")
+	rootCmd.PersistentFlags().BoolP("no-build-output", "Q", false, "Do not output on stdout or stderr")
 	rootCmd.PersistentFlags().Bool("offline", false, "Disable substituters and consider all previously downloaded files up-to-date")
+	rootCmd.PersistentFlags().Bool("no-net", false, "Disable substituters and consider all previously downloaded files up-to-date")
 	rootCmd.PersistentFlags().StringSlice("option", nil, "Set the Nix configuration setting name to value")
 	rootCmd.PersistentFlags().BoolP("print-build-logs", "L", false, "Print full build logs on standard error")
 	rootCmd.PersistentFlags().StringP("profile-name", "p", "", "Specify Nix profile to place the new configuration in")
@@ -47,11 +48,16 @@ func init() {
 	rootCmd.PersistentFlags().String("target-host", "localhost", "Specify host to apply rebuilt configuration to")
 	rootCmd.PersistentFlags().Bool("upgrade", false, "Update the root user's channel named 'nixos' before rebuilding")
 	rootCmd.PersistentFlags().Bool("upgrade-all", false, "Update all of the root user's channels before rebuilding")
-	rootCmd.PersistentFlags().Bool("use-remote-sudo", false, "Prefix activation commands on the target host with `sudo`")
+	rootCmd.PersistentFlags().Bool("sudo", false, "Prefix activation commands with `sudo`")
+	rootCmd.PersistentFlags().BoolP("ask-sudo-password", "S", false, "Ask for sudo password on the target host")
 	rootCmd.PersistentFlags().Bool("use-substitutes", false, "Use substitue caches when running `nix-copy-closure`")
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Increase the logging verbosity level")
+	rootCmd.PersistentFlags().Bool("diff", false, "Show diff between current and new system closures")
+	rootCmd.PersistentFlags().Bool("accept-flake-config", false, "Accept flake nixConfig")
+	rootCmd.PersistentFlags().Bool("impure", false, "Use impure nix evaluation")
 
-	rootCmd.MarkFlagsMutuallyExclusive("fast", "no-build-nix") // aliases
+	rootCmd.MarkFlagsMutuallyExclusive("no-reexec", "no-build-nix") // aliases
+	rootCmd.MarkFlagsMutuallyExclusive("offline", "no-net") // aliases
 	rootCmd.MarkFlagsMutuallyExclusive("no-build-output", "verbose", "quiet")
 
 	rootCmd.Flag("option").Nargs = 2
