@@ -55,7 +55,10 @@ func init() {
 				default:
 					switch c.Parts[0] {
 					case "pr":
-						return gh.ActionPullRequests(gh.PullRequestOpts{}.Default())
+						return gh.ActionPullRequests(gh.PullRequestOpts{
+							Owner: "{owner}",
+							Name:  "{repo}",
+						}.Default())
 					// TODO case "mr":
 					default:
 						return carapace.ActionValues()

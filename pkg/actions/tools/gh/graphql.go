@@ -31,13 +31,6 @@ func graphQlAction(opts RepoOpts, query string, v any, transform func() carapace
 				opts.Owner = conf.User
 			}
 
-			if opts.Owner == "" {
-				opts.Owner = "{owner}"
-			}
-			if opts.Name == "" {
-				opts.Name = "{repo}"
-			}
-
 			args := []string{"api", "graphql",
 				"--header", "Accept: application/vnd.github.merge-info-preview+json",
 				"-F", "owner=" + opts.Owner,
