@@ -65,8 +65,9 @@ func init() {
 		s := string(output)
 		s = strings.TrimLeft(s, "{ ")
 		s = strings.TrimRight(s, " }\n")
-		for _, alias := range strings.Split(s, ", ") {
+		for _, alias := range strings.SplitAfter(s, "],") {
 			if name, value, ok := strings.Cut(alias, " = "); ok {
+				value = strings.TrimRight(value, ",")
 				var args []string
 				if err := json.Unmarshal([]byte(value), &args); err != nil {
 					carapace.LOG.Println(err.Error())
@@ -74,7 +75,7 @@ func init() {
 				}
 
 				aliasCmd := &cobra.Command{
-					Use:                name,
+					Use:                strings.TrimSpace(name),
 					Short:              shlex.Join(args),
 					GroupID:            "alias",
 					DisableFlagParsing: true,
