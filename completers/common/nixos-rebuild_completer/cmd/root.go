@@ -57,7 +57,7 @@ func init() {
 	rootCmd.PersistentFlags().Bool("impure", false, "Use impure nix evaluation")
 
 	rootCmd.MarkFlagsMutuallyExclusive("no-reexec", "no-build-nix") // aliases
-	rootCmd.MarkFlagsMutuallyExclusive("offline", "no-net") // aliases
+	rootCmd.MarkFlagsMutuallyExclusive("offline", "no-net")         // aliases
 	rootCmd.MarkFlagsMutuallyExclusive("no-build-output", "verbose", "quiet")
 
 	rootCmd.Flag("option").Nargs = 2
