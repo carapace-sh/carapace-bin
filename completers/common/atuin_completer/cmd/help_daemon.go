@@ -7,7 +7,7 @@ import (
 
 var help_daemonCmd = &cobra.Command{
 	Use:   "daemon",
-	Short: "*Experimental* Start the background daemon",
+	Short: "*Experimental* Manage the background daemon",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
