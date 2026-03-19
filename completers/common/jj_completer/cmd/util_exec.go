@@ -14,6 +14,7 @@ var util_execCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(util_execCmd).Standalone()
+	util_execCmd.Flags().SetInterspersed(false)
 
 	util_execCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	utilCmd.AddCommand(util_execCmd)
@@ -27,5 +28,9 @@ func init() {
 
 	carapace.Gen(util_execCmd).PositionalAnyCompletion(
 		bridge.ActionCarapaceBin(),
+	)
+
+	carapace.Gen(util_execCmd).DashAnyCompletion(
+		carapace.ActionPositional(util_execCmd),
 	)
 }
