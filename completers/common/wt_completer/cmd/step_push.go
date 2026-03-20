@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(step_pushCmd).Standalone()
 
 	step_pushCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	step_pushCmd.Flags().Bool("no-ff", false, "Create a merge commit (no fast-forward)")
 	stepCmd.AddCommand(step_pushCmd)
 
 	carapace.Gen(step_pushCmd).PositionalCompletion(
