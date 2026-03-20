@@ -32,8 +32,7 @@ func ActionPackageNames(registry string) carapace.Action {
 			args = append(args, "--registry", registry)
 		}
 
-		// pnpm uses npm search under the hood, but we can also try pnpm-specific search
-		return carapace.ActionExecCommand("pnpm", args...)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
 			vals := make([]string, 0)
@@ -61,8 +60,7 @@ func ActionPackageVersions(opts PackageOpts) carapace.Action {
 			args = append(args, "--registry", opts.Registry)
 		}
 
-		// pnpm uses npm view under the hood
-		return carapace.ActionExecCommand("pnpm", args...)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {
 			var versions []string
 			if err := json.Unmarshal(output, &versions); err != nil {
 				return carapace.ActionMessage(err.Error())
@@ -80,8 +78,7 @@ func ActionPackageTags(opts PackageOpts) carapace.Action {
 			args = append(args, "--registry", opts.Registry)
 		}
 
-		// pnpm uses npm view under the hood
-		return carapace.ActionExecCommand("pnpm", args...)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {
 			var tags map[string]string
 			if err := json.Unmarshal(output, &tags); err != nil {
 				return carapace.ActionMessage(err.Error())

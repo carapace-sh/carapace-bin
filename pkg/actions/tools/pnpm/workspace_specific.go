@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/util"
+	"gopkg.in/yaml.v3"
 )
 
 // ActionWorkspaceScripts completes scripts available across all workspace packages
@@ -24,36 +24,31 @@ func ActionWorkspaceScripts() carapace.Action {
 		}
 
 		workspaceDir := filepath.Dir(workspaceFile)
-		lines := strings.Split(string(content), "\n")
+
+		var ws workspaceYaml
+		if err := yaml.Unmarshal(content, &ws); err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
 
 		vals := make([]string, 0)
 		seen := make(map[string]bool)
-		inPackages := false
 
-		for _, line := range lines {
-			trimmed := strings.TrimSpace(line)
-			if trimmed == "packages:" {
-				inPackages = true
+		for _, pattern := range ws.Packages {
+			matches, err := filepath.Glob(filepath.Join(workspaceDir, pattern))
+			if err != nil {
 				continue
 			}
-			if inPackages && strings.HasPrefix(trimmed, "-") {
-				pattern := strings.Trim(strings.TrimPrefix(trimmed, "-"), "\"' \t")
-				matches, err := filepath.Glob(filepath.Join(workspaceDir, pattern))
+			for _, match := range matches {
+				data, err := os.ReadFile(filepath.Join(match, "package.json"))
 				if err != nil {
 					continue
 				}
-				for _, match := range matches {
-					data, err := os.ReadFile(filepath.Join(match, "package.json"))
-					if err != nil {
-						continue
-					}
-					var pj packageJson
-					if json.Unmarshal(data, &pj) == nil {
-						for name := range pj.Scripts {
-							if !seen[name] {
-								seen[name] = true
-								vals = append(vals, name)
-							}
+				var pj packageJson
+				if json.Unmarshal(data, &pj) == nil {
+					for name := range pj.Scripts {
+						if !seen[name] {
+							seen[name] = true
+							vals = append(vals, name)
 						}
 					}
 				}

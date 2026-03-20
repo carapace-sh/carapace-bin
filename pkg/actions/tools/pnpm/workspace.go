@@ -3,11 +3,15 @@ package pnpm
 import (
 	"encoding/json"
 	"os"
-	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/util"
+	"gopkg.in/yaml.v3"
 )
+
+type workspaceYaml struct {
+	Packages []string `yaml:"packages"`
+}
 
 // ActionWorkspaces completes workspaces
 func ActionWorkspaces() carapace.Action {
@@ -20,24 +24,12 @@ func ActionWorkspaces() carapace.Action {
 					return carapace.ActionMessage(err.Error())
 				}
 
-				// Parse YAML-like structure for packages
-				lines := strings.Split(string(content), "\n")
-				vals := make([]string, 0)
-				inPackages := false
-
-				for _, line := range lines {
-					line = strings.TrimSpace(line)
-					if line == "packages:" {
-						inPackages = true
-						continue
-					}
-					if inPackages && strings.HasPrefix(line, "-") {
-						packagePath := strings.TrimSpace(strings.TrimPrefix(line, "-"))
-						vals = append(vals, packagePath)
-					}
+				var ws workspaceYaml
+				if err := yaml.Unmarshal(content, &ws); err != nil {
+					return carapace.ActionMessage(err.Error())
 				}
 
-				return carapace.ActionValues(vals...)
+				return carapace.ActionValues(ws.Packages...)
 			})
 		}
 
@@ -71,7 +63,7 @@ func ActionWorkspacePackages() carapace.Action {
 
 			vals := make([]string, 0, len(packages)*2)
 			for _, pkg := range packages {
-				if pkg.Name != "" && !pkg.Private {
+				if pkg.Name != "" {
 					desc := pkg.Version
 					if desc == "" {
 						desc = pkg.Path

@@ -7,9 +7,10 @@ import (
 )
 
 var startCmd = &cobra.Command{
-	Use:   "start",
-	Short: "Runs an arbitrary command specified in the package's start property of its scripts object",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "start",
+	Short:   "Runs an arbitrary command specified in the package's start property of its scripts object",
+	GroupID: "run",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -35,7 +36,6 @@ func init() {
 	startCmd.Flags().String("test-pattern", "", "Defines files related to tests.")
 	startCmd.Flags().Bool("use-stderr", false, "Divert all output to stderr")
 	startCmd.Flags().Bool("workspace-root", false, "Run the command on the root workspace project")
-	addWorkspaceFlags(startCmd)
 	rootCmd.AddCommand(startCmd)
 
 	carapace.Gen(startCmd).FlagCompletion(carapace.ActionMap{
