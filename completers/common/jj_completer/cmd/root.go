@@ -1,9 +1,6 @@
 package cmd
 
 import (
-	"encoding/json"
-	"strings"
-
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
@@ -11,6 +8,7 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/carapace-sh/carapace/third_party/golang.org/x/sys/execabs"
+	"github.com/pelletier/go-toml"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -62,34 +60,31 @@ func init() {
 			carapace.LOG.Println(err.Error())
 			return
 		}
-		s := string(output)
-		s = strings.TrimLeft(s, "{ ")
-		s = strings.TrimRight(s, " }\n")
-		for _, alias := range strings.SplitAfter(s, "],") {
-			if name, value, ok := strings.Cut(alias, " = "); ok {
-				value = strings.TrimRight(value, ",")
-				var args []string
-				if err := json.Unmarshal([]byte(value), &args); err != nil {
-					carapace.LOG.Println(err.Error())
-					continue
-				}
 
-				aliasCmd := &cobra.Command{
-					Use:                strings.TrimSpace(name),
-					Short:              shlex.Join(args),
-					GroupID:            "alias",
-					DisableFlagParsing: true,
-					Run:                func(cmd *cobra.Command, args []string) {},
-				}
-				cmd.Root().AddCommand(aliasCmd)
+		var config struct {
+			Aliases map[string][]string
+		}
+		if err = toml.Unmarshal(append([]byte("aliases = "), output...), &config); err != nil {
+			carapace.LOG.Println(err.Error())
+			return
+		}
 
-				carapace.Gen(aliasCmd).PositionalAnyCompletion(
-					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						c.Args = append(args, c.Args...)
-						return bridge.ActionCarapaceBin("jj").Invoke(c).ToA()
-					}),
-				)
+		for name, alias := range config.Aliases {
+			aliasCmd := &cobra.Command{
+				Use:                name,
+				Short:              shlex.Join(alias),
+				GroupID:            "alias",
+				DisableFlagParsing: true,
+				Run:                func(cmd *cobra.Command, args []string) {},
 			}
+			cmd.Root().AddCommand(aliasCmd)
+
+			carapace.Gen(aliasCmd).PositionalAnyCompletion(
+				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					c.Args = append(alias, c.Args...)
+					return bridge.ActionCarapaceBin("jj").Invoke(c).ToA()
+				}),
+			)
 		}
 	})
 }
