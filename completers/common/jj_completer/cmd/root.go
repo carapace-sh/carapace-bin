@@ -55,7 +55,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
-		output, err := execabs.Command("jj", "config", "get", "aliases").Output()
+		output, err := execabs.Command("jj", "config", "list", "--include-defaults", "aliases").Output()
 		if err != nil {
 			carapace.LOG.Println(err.Error())
 			return
@@ -64,7 +64,7 @@ func init() {
 		var config struct {
 			Aliases map[string][]string
 		}
-		if err = toml.Unmarshal(append([]byte("aliases = "), output...), &config); err != nil {
+		if err = toml.Unmarshal(output, &config); err != nil {
 			carapace.LOG.Println(err.Error())
 			return
 		}
