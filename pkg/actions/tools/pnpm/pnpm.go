@@ -5,7 +5,6 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm"
 )
 
 // ActionFilters completes filters
@@ -108,16 +107,6 @@ func ActionStoreStatus() carapace.Action {
 		}
 		return carapace.ActionValues(vals...)
 	})
-}
-
-// ActionFilter completes filter
-func ActionFilter() carapace.Action {
-	return ActionFilters()
-}
-
-// ActionStoreAdd completes packages for adding to the store
-func ActionStoreAdd() carapace.Action {
-	return npm.ActionPackageSearch("")
 }
 
 // ActionStorePackages completes packages in the store
