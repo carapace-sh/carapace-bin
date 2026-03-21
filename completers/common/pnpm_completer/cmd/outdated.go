@@ -24,15 +24,16 @@ func init() {
 	outdatedCmd.Flags().StringP("dir", "C", "", "Change to directory <dir>")
 	outdatedCmd.Flags().String("filter", "", "set filter")
 	outdatedCmd.Flags().String("filter-prod", "", "Restricts the scope to package names matching the given pattern")
-	outdatedCmd.Flags().Bool("global-dir", false, "Specify a custom directory to store global packages")
+	outdatedCmd.Flags().String("format", "", "Output format (table, list, json)")
+	outdatedCmd.Flags().BoolP("global", "g", false, "List outdated globally installed packages")
 	outdatedCmd.Flags().BoolP("help", "h", false, "Output usage information")
 	outdatedCmd.Flags().String("loglevel", "", "What level of logs to report")
-	outdatedCmd.Flags().Bool("long", false, "By default, details about the outdated packages")
+	outdatedCmd.Flags().Bool("long", false, "Show more details about the outdated packages")
 	outdatedCmd.Flags().Bool("no-color", false, "Controls colors in the output")
 	outdatedCmd.Flags().Bool("no-optional", false, "Don't check \"optionalDependencies\"")
-	outdatedCmd.Flags().Bool("no-table", false, "Prints the outdated packages in a list")
 	outdatedCmd.Flags().BoolP("prod", "P", false, "Check only \"dependencies\" and \"optionalDependencies\"")
 	outdatedCmd.Flags().BoolP("recursive", "r", false, "Check for outdated dependencies in every package found in subdirectories")
+	outdatedCmd.Flags().String("sort-by", "", "Sort outdated packages list")
 	outdatedCmd.Flags().Bool("stream", false, "Stream output from child processes immediately")
 	outdatedCmd.Flags().String("test-pattern", "", "Defines files related to tests")
 	outdatedCmd.Flags().Bool("use-stderr", false, "Divert all output to stderr")
@@ -41,9 +42,10 @@ func init() {
 
 	carapace.Gen(outdatedCmd).FlagCompletion(carapace.ActionMap{
 		"dir":         carapace.ActionDirectories(),
-		"filter":      pnpm.ActionFilter(),
-		"filter-prod": pnpm.ActionFilter(),
-		"loglevel":    pnpm.ActionLoglevel(),
+		"filter":      pnpm.ActionFilters(),
+		"filter-prod": pnpm.ActionFilters(),
+		"format":      carapace.ActionValues("table", "list", "json"),
+		"loglevel":    pnpm.ActionLoglevels(),
 	})
 
 	carapace.Gen(outdatedCmd).PositionalAnyCompletion(

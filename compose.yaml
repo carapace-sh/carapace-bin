@@ -10,6 +10,7 @@ include:
   - .docker/fzf-tab.yaml
   - .docker/gcloud.yaml
   - .docker/nix.yaml
+  - .docker/node.yaml
   - .docker/redhat.yaml
   - .docker/solus.yaml
   - .docker/ubuntu.yaml

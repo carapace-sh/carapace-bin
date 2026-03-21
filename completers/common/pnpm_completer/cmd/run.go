@@ -41,10 +41,15 @@ func init() {
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"dir":         carapace.ActionDirectories(),
-		"filter":      pnpm.ActionFilter(),
-		"filter-prod": pnpm.ActionFilter(),
-		"loglevel":    pnpm.ActionLoglevel(),
+		"filter":      pnpm.ActionFilters(),
+		"filter-prod": pnpm.ActionFilters(),
+		"loglevel":    pnpm.ActionLoglevels(),
 	})
 
-	// TODO complete scripts
+	carapace.Gen(runCmd).PositionalCompletion(
+		carapace.Batch(
+			pnpm.ActionScripts(),
+			pnpm.ActionWorkspaceScripts(),
+		).ToA(),
+	)
 }

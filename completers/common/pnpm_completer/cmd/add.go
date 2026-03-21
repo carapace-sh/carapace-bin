@@ -22,22 +22,29 @@ func init() {
 	carapace.Gen(addCmd).Standalone()
 
 	addCmd.Flags().Bool("aggregate-output", false, "Aggregate output from child processes that are run in parallel")
+	addCmd.Flags().String("allow-build", "", "List of package names that are allowed to run postinstall scripts")
 	addCmd.Flags().String("changed-files-ignore-pattern", "", "Defines files to ignore when filtering for changed projects since the specified commit/branch")
 	addCmd.Flags().Bool("color", false, "Controls colors in the output")
+	addCmd.Flags().Bool("config", false, "Save to configDependencies")
+	addCmd.Flags().String("cpu", "", "Override CPU architecture for optional native dependencies")
 	addCmd.Flags().StringP("dir", "C", "", "Change to directory <dir>")
 	addCmd.Flags().String("filter", "", "set filter")
 	addCmd.Flags().String("filter-prod", "", "Restricts the scope to package names matching the given pattern")
 	addCmd.Flags().BoolP("global", "g", false, "Install as a global package")
-	addCmd.Flags().Bool("global-dir", false, "Specify a custom directory to store global packages")
 	addCmd.Flags().BoolP("help", "h", false, "Output usage information")
 	addCmd.Flags().Bool("ignore-scripts", false, "Don't run lifecycle scripts")
+	addCmd.Flags().Bool("ignore-workspace-root-check", false, "Permit adding dependencies to the workspace root")
+	addCmd.Flags().String("libc", "", "Override libc for optional native dependencies")
 	addCmd.Flags().String("loglevel", "", "What level of logs to report")
 	addCmd.Flags().Bool("no-color", false, "Controls colors in the output")
 	addCmd.Flags().Bool("no-save-exact", false, "Do not install exact version")
 	addCmd.Flags().Bool("no-save-workspace-protocol", false, "Do not save packages from the workspace with a \"workspace:\" protocol")
 	addCmd.Flags().Bool("offline", false, "Trigger an error if any required dependencies are not available")
+	addCmd.Flags().String("os", "", "Override OS for optional native dependencies")
 	addCmd.Flags().Bool("prefer-offline", false, "Skip staleness checks for cached data")
 	addCmd.Flags().BoolP("recursive", "r", false, "Run installation recursively in every package found in subdirectories")
+	addCmd.Flags().Bool("save-catalog", false, "Save to the default catalog")
+	addCmd.Flags().String("save-catalog-name", "", "Save to a named catalog")
 	addCmd.Flags().BoolP("save-dev", "D", false, "Save package to your `devDependencies`")
 	addCmd.Flags().BoolP("save-exact", "E", false, "Install exact version")
 	addCmd.Flags().BoolP("save-optional", "O", false, "Save package to your `optionalDependencies`")
@@ -56,8 +63,8 @@ func init() {
 
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"dir":               carapace.ActionDirectories(),
-		"filter":            pnpm.ActionFilter(),
-		"loglevel":          pnpm.ActionLoglevel(),
+		"filter":            pnpm.ActionFilters(),
+		"loglevel":          pnpm.ActionLoglevels(),
 		"store-dir":         carapace.ActionDirectories(),
 		"virtual-store-dir": carapace.ActionDirectories(),
 	})

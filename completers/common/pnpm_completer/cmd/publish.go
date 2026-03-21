@@ -25,8 +25,9 @@ func init() {
 	publishCmd.Flags().Bool("ignore-scripts", false, "Ignores any publish related lifecycle scripts")
 	publishCmd.Flags().Bool("json", false, "Show information in JSON format")
 	publishCmd.Flags().Bool("no-git-checks", false, "Don't check if current branch is your publish branch, clean, and up to date")
-	publishCmd.Flags().Bool("otp", false, "When publishing packages that require two-factor authentication")
-	publishCmd.Flags().Bool("publish-branch", false, "Sets branch name to publish")
+	publishCmd.Flags().String("otp", "", "One-time password for two-factor authentication")
+	publishCmd.Flags().Bool("provenance", false, "Publicly link the package to where it was built and published")
+	publishCmd.Flags().String("publish-branch", "", "Sets branch name to publish")
 	publishCmd.Flags().BoolP("recursive", "r", false, "Publish all packages from the workspace")
 	publishCmd.Flags().Bool("report-summary", false, "Save the list of the newly published")
 	publishCmd.Flags().String("tag", "", "Registers the published package with the given tag")
@@ -35,8 +36,8 @@ func init() {
 
 	carapace.Gen(publishCmd).FlagCompletion(carapace.ActionMap{
 		"access":      carapace.ActionValues("public", "restricted").StyleF(style.ForKeyword),
-		"filter":      pnpm.ActionFilter(),
-		"filter-prod": pnpm.ActionFilter(),
+		"filter":      pnpm.ActionFilters(),
+		"filter-prod": pnpm.ActionFilters(),
 	})
 
 	carapace.Gen(publishCmd).PositionalCompletion(
