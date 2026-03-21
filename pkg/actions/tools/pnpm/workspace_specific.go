@@ -58,11 +58,6 @@ func ActionWorkspaceScripts() carapace.Action {
 	})
 }
 
-// ActionWorkspaceFilter completes common workspace filter patterns
-func ActionWorkspaceFilter() carapace.Action {
-	return ActionWorkspaceFilters()
-}
-
 // ActionWorkspaceFilters completes common workspace filter patterns
 func ActionWorkspaceFilters() carapace.Action {
 	return carapace.ActionValuesDescribed(
