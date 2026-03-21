@@ -18,6 +18,7 @@ func init() {
 
 	mergeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	mergeCmd.Flags().Bool("no-commit", false, "Skip commit and squash")
+	mergeCmd.Flags().Bool("no-ff", false, "Create a merge commit (no fast-forward)")
 	mergeCmd.Flags().Bool("no-rebase", false, "Skip rebase (fail if not already rebased)")
 	mergeCmd.Flags().Bool("no-remove", false, "Keep worktree after merge")
 	mergeCmd.Flags().Bool("no-squash", false, "Skip commit squashing")
