@@ -33,4 +33,14 @@ func init() {
 	rootCmd.PersistentFlags().StringS("threads", "threads", "", "use N threads (default: 0 = all cores)")
 	rootCmd.PersistentFlags().StringSliceS("to", "to", nil, "rename files... to P... or all to P/all")
 	rootCmd.PersistentFlags().StringS("until", "until", "", "roll back archive to N'th update (-N from end) or set date N")
+
+	rootCmd.Flag("not").Nargs = -1
+	rootCmd.Flag("only").Nargs = -1
+	rootCmd.Flag("to").Nargs = -1
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"not":  carapace.ActionFiles(),
+		"only": carapace.ActionFiles(),
+		"to":   carapace.ActionFiles(),
+	})
 }
