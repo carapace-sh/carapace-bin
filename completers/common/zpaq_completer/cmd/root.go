@@ -7,7 +7,8 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "zpaq",
-	Short: "",
+	Short: "Incremental Journaling Backup Utility and Archiver",
+	Long:  "https://mattmahoney.net/dc/zpaq.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,8 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "xxhsum",
-	Short: "",
+	Short: "Create or verify checksums using fast non-cryptographic algorithm xxHash",
+	Long:  "https://github.com/Cyan4973/xxHash",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

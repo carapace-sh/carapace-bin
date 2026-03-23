@@ -7,7 +7,8 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "gocryptfs",
-	Short: "",
+	Short: "Encrypted overlay filesystem written in Go",
+	Long:  "https://github.com/rfjakob/gocryptfs",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
