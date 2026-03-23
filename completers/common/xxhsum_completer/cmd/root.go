@@ -39,4 +39,8 @@ func init() {
 	rootCmd.Flags().Bool("tag", false, "produce BSD-style checksum lines")
 	rootCmd.Flags().BoolP("version", "V", false, "display version information")
 	rootCmd.Flags().Bool("warn", false, "warn about improperly formatted lines in [files]")
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles().FilterArgs(),
+	)
 }
