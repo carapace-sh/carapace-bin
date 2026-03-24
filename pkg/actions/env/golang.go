@@ -2,6 +2,7 @@ package env
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
 	"github.com/carapace-sh/carapace-bin/pkg/conditions"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
@@ -122,6 +123,7 @@ func init() {
 				"GOFLAGS":      bridge.ActionCarapaceBin("go").Split(), // not entirely correct as it includes the subcommand but still helpful as that can be removed afterwards
 				"GOMODCACHE":   carapace.ActionDirectories(),
 				"GOOS":         golang.ActionOperatingSystems(),
+				"GOPRIVATE":    git.ActionRepositorySearch(git.SearchOpts{Prefix: false, Github: true, Gitlab: true}).List(","),
 				"GOSUMDB":      carapace.ActionValues("off").Style(style.Carapace.KeywordNegative),
 				"GOTMPDIR":     carapace.ActionDirectories(),
 				"GOTOOLCHAIN": carapace.ActionMultiPartsN("+", 2, func(c carapace.Context) carapace.Action {
