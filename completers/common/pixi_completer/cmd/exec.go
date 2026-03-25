@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -15,6 +16,7 @@ var execCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(execCmd).Standalone()
+	execCmd.Flags().SetInterspersed(false)
 
 	execCmd.Flags().String("auth-file", "", "Path to the file containing the authentication token")
 	execCmd.Flags().StringSliceP("channel", "c", nil, "The channels to consider as a name or a url. Multiple channels can be specified by using this field multiple times")
@@ -41,4 +43,8 @@ func init() {
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
 	})
+
+	carapace.Gen(execCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin(),
+	)
 }
