@@ -8,8 +8,8 @@ github.com/carapace-sh/carapace-selfupdate v0.0.10 h1:ZvutqGwVvSj6TmI/tLcort63JD
 github.com/carapace-sh/carapace-selfupdate v0.0.10/go.mod h1:4RavsY8l/RFtA9UXluUnEM5DF7zUkknMeRe/VN8QCGY=
 github.com/carapace-sh/carapace-shlex v1.1.1 h1:ccmNeetAYZOk4IcV36youFDsXusT9uCNW2Njkw+QS+Q=
 github.com/carapace-sh/carapace-shlex v1.1.1/go.mod h1:lJ4ZsdxytE0wHJ8Ta9S7Qq0XpjgjU0mdfCqiI2FHx7M=
-github.com/carapace-sh/carapace-spec v1.5.0 h1:Td9TZatrvOty3zgl2QllA1kuT7SRBLuGiwEZ5PF8Gko=
-github.com/carapace-sh/carapace-spec v1.5.0/go.mod h1:d/iboTE/FdcxfObs2tpTu7PPqKk+r6YNvvdgeXIC5lk=
+github.com/carapace-sh/carapace-spec v1.5.1 h1:vksUWmpAvv9Kgkfd5IO106HLWM2sHsLUAiMAuGf44sE=
+github.com/carapace-sh/carapace-spec v1.5.1/go.mod h1:tuyJA7EffxdF12zjxxsh9mQCwtDS/sj5YghSBARxbOM=
 github.com/carapace-sh/ssh_config v1.4.1-0.20260319075335-4f04016b8b4b h1:f4NGFmIRWxmaQIVX8vt2pEJdFLjz3qwoQWqMxhKjlBI=
 github.com/carapace-sh/ssh_config v1.4.1-0.20260319075335-4f04016b8b4b/go.mod h1:q2RIzfka+BXARoNexmF9gkxEX7DmvbW9P4hIVx2Kg4M=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
