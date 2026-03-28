@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/lazyinit"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/shim"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/snippet"
 	"github.com/carapace-sh/carapace-bin/pkg/actions"
 	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	spec "github.com/carapace-sh/carapace-spec"
@@ -153,7 +153,7 @@ func Execute(version string) error {
 				"tcsh",
 				"xonsh",
 				"zsh":
-				fmt.Println(lazyinit.Snippet(shell)) // TODO maybe just return an error for unknown shell
+				fmt.Println(snippet.Snippet(shell)) // TODO maybe just return an error for unknown shell
 			default:
 				// TODO
 				// println("could not determine shell")
