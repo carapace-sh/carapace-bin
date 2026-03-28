@@ -1,4 +1,4 @@
-package lazyinit
+package snippet
 
 import (
 	"fmt"
