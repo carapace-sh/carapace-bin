@@ -41,5 +41,7 @@ func init() {
 		// "installation": carapace.ActionValues(),
 	})
 
-	// TODO positional
+	carapace.Gen(uninstallCmd).PositionalAnyCompletion(
+		flatpak.ActionApplications().FilterArgs(),
+	)
 }
