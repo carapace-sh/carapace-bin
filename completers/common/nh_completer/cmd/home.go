@@ -1,0 +1,29 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var homeCmd = &cobra.Command{
+	Use:   "home",
+	Short: "Home-manager functionality",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(homeCmd).Standalone()
+
+	rootCmd.AddCommand(homeCmd)
+}
+
+func addHomeRebuildFlags(cmd *cobra.Command) {
+	addCommonRebuildFlags(cmd)
+	addUpdateFlags(cmd)
+	cmd.Flags().StringP("configuration", "c", "", "Name of the flake homeConfigurations attribute")
+	cmd.Flags().StringP("specialisation", "s", "", "Explicitly select some specialisation")
+	cmd.Flags().BoolP("no-specialisation", "S", false, "Ignore specialisations")
+	cmd.Flags().StringP("backup-extension", "b", "", "Move existing files by backing up with this file extension")
+	cmd.Flags().Bool("show-activation-logs", false, "Show activation logs")
+	cmd.Flags().String("build-host", "", "Build the configuration on a different host over SSH")
+}
