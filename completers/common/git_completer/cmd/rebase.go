@@ -70,16 +70,19 @@ func init() {
 		"whitespace": git.ActionWhitespaceModes(),
 	})
 
+	rebaseRefAction := carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if !rebaseCmd.Flag("continue").Changed &&
+			!rebaseCmd.Flag("abort").Changed &&
+			!rebaseCmd.Flag("skip").Changed &&
+			!rebaseCmd.Flag("edit-todo").Changed {
+			return git.ActionRefs(git.RefOption{}.Default())
+		} else {
+			return carapace.ActionValues()
+		}
+	})
+
 	carapace.Gen(rebaseCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if !rebaseCmd.Flag("continue").Changed &&
-				!rebaseCmd.Flag("abort").Changed &&
-				!rebaseCmd.Flag("skip").Changed &&
-				!rebaseCmd.Flag("edit-todo").Changed {
-				return git.ActionRefs(git.RefOption{}.Default())
-			} else {
-				return carapace.ActionValues()
-			}
-		}),
+		rebaseRefAction,
+		rebaseRefAction,
 	)
 }
