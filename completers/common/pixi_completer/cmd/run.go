@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -15,6 +16,7 @@ var runCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(runCmd).Standalone()
+	runCmd.Flags().SetInterspersed(false)
 
 	runCmd.Flags().Bool("as-is", false, "Shorthand for the combination of --no-install and --frozen")
 	runCmd.Flags().String("auth-file", "", "Path to the file containing the authentication token")
@@ -52,5 +54,9 @@ func init() {
 
 	carapace.Gen(runCmd).PositionalCompletion(
 		pixi.ActionTasks(),
+	)
+
+	carapace.Gen(runCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin(),
 	)
 }
