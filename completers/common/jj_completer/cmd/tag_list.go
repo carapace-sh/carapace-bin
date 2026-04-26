@@ -20,13 +20,17 @@ func init() {
 	tag_listCmd.Flags().BoolP("all-remotes", "a", false, "Show all tracked and untracked remote tags including the ones whose targets are synchronized with the local tags")
 	tag_listCmd.Flags().BoolP("conflicted", "c", false, "Show conflicted tags only")
 	tag_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	tag_listCmd.Flags().StringSliceP("revisions", "r", nil, "Show tags whose local targets are in the given revisions")
+	tag_listCmd.Flags().StringSliceP("revision", "r", nil, "Show tags whose local targets are in the given revisions")
+	tag_listCmd.Flags().StringSlice("revisions", nil, "Show tags whose local targets are in the given revisions")
 	tag_listCmd.Flags().StringSlice("sort", nil, "Sort tags based on the given key (or multiple keys)")
 	tag_listCmd.Flags().StringP("template", "T", "", "Render each tag using the given template")
 	tag_listCmd.Flag("all").Hidden = true
+	tag_listCmd.Flag("revisions").Hidden = true
 	tagCmd.AddCommand(tag_listCmd)
 
 	carapace.Gen(tag_listCmd).FlagCompletion(carapace.ActionMap{
+		"revision":  jj.ActionRevs(jj.RevOption{}.Default()),
+		"revisions": jj.ActionRevs(jj.RevOption{}.Default()),
 		"sort": carapace.ActionValues(
 			"name",
 			"name-",

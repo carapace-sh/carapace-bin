@@ -21,17 +21,20 @@ func init() {
 	bookmark_listCmd.Flags().BoolP("conflicted", "c", false, "Show conflicted bookmarks only")
 	bookmark_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	bookmark_listCmd.Flags().StringSlice("remote", nil, "Show all tracked and untracked remote bookmarks belonging to this remote")
-	bookmark_listCmd.Flags().StringSliceP("revisions", "r", nil, "Show bookmarks whose local targets are in the given revisions")
+	bookmark_listCmd.Flags().StringSliceP("revision", "r", nil, "Show bookmarks whose local targets are in the given revisions")
+	bookmark_listCmd.Flags().StringSlice("revisions", nil, "Show bookmarks whose local targets are in the given revisions")
 	bookmark_listCmd.Flags().StringSlice("sort", nil, "Sort bookmarks based on the given key (or multiple keys)")
 	bookmark_listCmd.Flags().StringP("template", "T", "", "Render each bookmark using the given template")
 	bookmark_listCmd.Flags().BoolP("tracked", "t", false, "Show tracked remote bookmarks only")
 	bookmark_listCmd.Flag("all").Hidden = true
+	bookmark_listCmd.Flag("revisions").Hidden = true
 	bookmarkCmd.AddCommand(bookmark_listCmd)
 
 	bookmark_listCmd.MarkFlagsMutuallyExclusive("all-remotes", "conflicted")
 
 	carapace.Gen(bookmark_listCmd).FlagCompletion(carapace.ActionMap{
 		"remote":    jj.ActionRemotes(),
+		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()).UniqueList(","),
 		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()).UniqueList(","),
 		"sort": carapace.ActionValues(
 			"name",

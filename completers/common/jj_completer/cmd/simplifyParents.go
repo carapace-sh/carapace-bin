@@ -16,8 +16,10 @@ func init() {
 	carapace.Gen(simplifyParentsCmd).Standalone()
 
 	simplifyParentsCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	simplifyParentsCmd.Flags().StringSliceP("revisions", "r", nil, "Simplify specified revision(s) (can be repeated)")
+	simplifyParentsCmd.Flags().StringSliceP("revision", "r", nil, "Simplify specified revision(s) (can be repeated)")
+	simplifyParentsCmd.Flags().StringSlice("revisions", nil, "Simplify specified revision(s) (can be repeated)")
 	simplifyParentsCmd.Flags().StringSliceP("source", "s", nil, "Simplify specified revision(s) together with their trees of descendants (can be repeated)")
+	simplifyParentsCmd.Flag("revisions").Hidden = true
 	rootCmd.AddCommand(simplifyParentsCmd)
 
 	carapace.Gen(simplifyParentsCmd).FlagCompletion(carapace.ActionMap{

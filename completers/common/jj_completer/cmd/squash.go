@@ -33,8 +33,6 @@ func init() {
 	squashCmd.Flags().String("to", "@", "Revision to squash into (default: @)")
 	squashCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
 	squashCmd.Flags().BoolP("use-destination-message", "u", false, "Use the description of the destination revision and discard the description(s) of the source revision(s)")
-	squashCmd.Flag("d").Hidden = true
-	squashCmd.Flag("destination").Hidden = true
 	rootCmd.AddCommand(squashCmd)
 
 	carapace.Gen(squashCmd).FlagCompletion(carapace.ActionMap{
