@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
@@ -70,27 +72,34 @@ func init() {
 
 	carapace.Gen(pushCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if pushCmd.Flag("set-upstream").Changed && len(c.Args) == 1 && c.Value == "" {
-				// if set-upstream is set the desired remote branch is likely named the same as the current
-				return git.ActionCurrentBranch()
-			}
+			a := carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+				if pushCmd.Flag("set-upstream").Changed && len(c.Args) == 1 && c.Value == "" {
+					// if set-upstream is set the desired remote branch is likely named the same as the current
+					return git.ActionCurrentBranch()
+				}
 
-			if pushCmd.Flag("delete").Changed {
-				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[0], Branches: true, Tags: true})
-			}
-
-			return carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
-				switch len(c.Parts) {
-				case 0:
-					return git.ActionRefs(git.RefOption{
-						LocalBranches: true,
-						Heads:         true,
-						Tags:          true,
-					}).NoSpace()
-				default:
+				if pushCmd.Flag("delete").Changed {
 					return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[0], Branches: true, Tags: true})
 				}
+
+				return carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+					switch len(c.Parts) {
+					case 0:
+						return git.ActionRefs(git.RefOption{
+							LocalBranches: true,
+							Heads:         true,
+							Tags:          true,
+						}).NoSpace()
+					default:
+						return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[0], Branches: true, Tags: true})
+					}
+				})
 			})
+
+			if strings.HasPrefix(c.Value, "+") {
+				return a.Prefix("+") // force
+			}
+			return a
 		}),
 	)
 }
