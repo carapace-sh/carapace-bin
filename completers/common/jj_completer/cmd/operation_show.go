@@ -25,6 +25,7 @@ func init() {
 	operation_showCmd.Flags().BoolP("no-graph", "G", false, "Don't show the graph, show a flat list of modified changes")
 	operation_showCmd.Flags().Bool("no-op-diff", false, "Do not show operation diff")
 	operation_showCmd.Flags().BoolP("patch", "p", false, "Show patch of modifications to changes")
+	operation_showCmd.Flags().String("show-changes-in", "", "Show only changed revisions matching the given revset expression")
 	operation_showCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
 	operation_showCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or deleted")
 	operation_showCmd.Flags().StringP("template", "T", "", "Render the operation using the given template")

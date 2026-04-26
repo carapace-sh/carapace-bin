@@ -27,9 +27,11 @@ func init() {
 	git_pushCmd.Flags().StringSlice("named", nil, "Specify a new bookmark name and a revision to push under that name, e.g. '--named myfeature=@'")
 	git_pushCmd.Flags().StringSliceP("option", "o", nil, "Git push options")
 	git_pushCmd.Flags().String("remote", "", "The remote to push to (only named remotes are supported)")
-	git_pushCmd.Flags().StringSliceP("revisions", "r", nil, "Push bookmarks pointing to these commits (can be repeated)")
+	git_pushCmd.Flags().StringSliceP("revision", "r", nil, "Push bookmarks pointing to these commits (can be repeated)")
+	git_pushCmd.Flags().StringSlice("revisions", nil, "Push bookmarks pointing to these commits (can be repeated)")
 	git_pushCmd.Flags().Bool("tracked", false, "Push all tracked bookmarks")
 	git_pushCmd.Flag("branch").Hidden = true
+	git_pushCmd.Flag("revisions").Hidden = true
 	gitCmd.AddCommand(git_pushCmd)
 
 	carapace.Gen(git_pushCmd).FlagCompletion(carapace.ActionMap{
@@ -37,6 +39,7 @@ func init() {
 		"branch":    jj.ActionLocalBookmarks(),
 		"change":    carapace.ActionValues(), // TODO
 		"remote":    jj.ActionRemotes(),
+		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()),
 		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
 	})
 }

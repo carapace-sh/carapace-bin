@@ -26,6 +26,7 @@ func init() {
 	operation_logCmd.Flags().BoolP("op-diff", "d", false, "Show changes to the repository at each operation")
 	operation_logCmd.Flags().BoolP("patch", "p", false, "Show patch of modifications to changes (implies --op-diff)")
 	operation_logCmd.Flags().Bool("reversed", false, "Show operations in the opposite order (older operations first)")
+	operation_logCmd.Flags().String("show-changes-in", "", "Show only changed revisions matching the given revset expression")
 	operation_logCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
 	operation_logCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or deleted")
 	operation_logCmd.Flags().StringP("template", "T", "", "Render each operation using the given template")

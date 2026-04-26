@@ -22,7 +22,10 @@ func init() {
 	revertCmd.Flags().StringSliceP("insert-after", "A", nil, "The revision(s) to insert the reverse changes after (can be repeated to create a merge commit)")
 	revertCmd.Flags().StringSliceP("insert-before", "B", nil, "The revision(s) to insert the reverse changes before (can be repeated to create a merge commit)")
 	revertCmd.Flags().StringSliceP("onto", "o", nil, "The revision(s) to apply the reverse changes on top of")
-	revertCmd.Flags().StringSliceP("revisions", "r", nil, "The revision(s) to apply the reverse of")
+	revertCmd.Flags().StringSliceP("revision", "r", nil, "The revision(s) to apply the reverse of")
+	revertCmd.Flags().StringSlice("revisions", nil, "The revision(s) to apply the reverse of")
+	revertCmd.MarkFlagRequired("revision")
+	revertCmd.Flag("revisions").Hidden = true
 	revertCmd.MarkFlagRequired("revisions")
 	rootCmd.AddCommand(revertCmd)
 

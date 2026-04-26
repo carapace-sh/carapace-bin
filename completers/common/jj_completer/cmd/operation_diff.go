@@ -28,6 +28,7 @@ func init() {
 	operation_diffCmd.Flags().String("op", "", "Show repository changes in this operation, compared to its parent")
 	operation_diffCmd.Flags().String("operation", "", "Show repository changes in this operation, compared to its parent")
 	operation_diffCmd.Flags().BoolP("patch", "p", false, "Show patch of modifications to changes")
+	operation_diffCmd.Flags().String("show-changes-in", "", "Show only changed revisions matching the given revset expression")
 	operation_diffCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
 	operation_diffCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or deleted")
 	operation_diffCmd.Flags().StringP("to", "t", "", "Show repository changes to this operation")

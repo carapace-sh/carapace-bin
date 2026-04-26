@@ -17,11 +17,14 @@ func init() {
 
 	signCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	signCmd.Flags().String("key", "", "The key used for signing")
-	signCmd.Flags().StringSliceP("revisions", "r", []string{"@"}, "What revision(s) to sign")
+	signCmd.Flags().StringSliceP("revision", "r", []string{"@"}, "What revision(s) to sign")
+	signCmd.Flags().StringSlice("revisions", []string{"@"}, "What revision(s) to sign")
+	signCmd.Flag("revisions").Hidden = true
 	rootCmd.AddCommand(signCmd)
 
 	carapace.Gen(signCmd).FlagCompletion(carapace.ActionMap{
 		"key":       jj.ActionSigningKeys(),
+		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()),
 		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
 	})
 }
