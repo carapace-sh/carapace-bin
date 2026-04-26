@@ -50,6 +50,8 @@ func init() {
 
 	pushCmd.Flag("force-with-lease").NoOptDefVal = " "
 
+	pushCmd.MarkFlagsMutuallyExclusive("set-upstream", "delete")
+
 	carapace.Gen(pushCmd).FlagCompletion(carapace.ActionMap{
 		"force-with-lease": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
@@ -64,10 +66,17 @@ func init() {
 
 	carapace.Gen(pushCmd).PositionalCompletion(
 		git.ActionRemotes(),
+	)
+
+	carapace.Gen(pushCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if pushCmd.Flag("set-upstream").Changed && c.Value == "" {
+			if pushCmd.Flag("set-upstream").Changed && len(c.Args) == 1 && c.Value == "" {
 				// if set-upstream is set the desired remote branch is likely named the same as the current
 				return git.ActionCurrentBranch()
+			}
+
+			if pushCmd.Flag("delete").Changed {
+				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[0], Branches: true, Tags: true})
 			}
 
 			return carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
@@ -79,7 +88,7 @@ func init() {
 						Tags:          true,
 					}).NoSpace()
 				default:
-					return git.ActionRemoteBranchNames(c.Args[0])
+					return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[0], Branches: true, Tags: true})
 				}
 			})
 		}),
