@@ -45,6 +45,7 @@ func init() {
 	carapace.Gen(global_installCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
 		"environment":           pixi.ActionGlobalEnvironments(),
+		"path":                  carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
 	})
