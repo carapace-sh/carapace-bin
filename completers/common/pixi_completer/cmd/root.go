@@ -46,18 +46,18 @@ func init() {
 						continue
 					}
 
-					pluginCmd := &cobra.Command{
+					extensionCmd := &cobra.Command{
 						Use:                matches[1],
 						Short:              matches[2],
 						Run:                func(cmd *cobra.Command, args []string) {},
 						DisableFlagParsing: true,
 					}
 
-					carapace.Gen(pluginCmd).PositionalAnyCompletion(
+					carapace.Gen(extensionCmd).PositionalAnyCompletion(
 						bridge.ActionCarapaceBin("pixi-" + matches[1]),
 					)
 
-					rootCmd.AddCommand(pluginCmd)
+					rootCmd.AddCommand(extensionCmd)
 				}
 			}
 		}
