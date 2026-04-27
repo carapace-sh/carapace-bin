@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(branch_moveCmd).Standalone()
 
 	branch_moveCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	branch_moveCmd.Flags().Bool("unstack", false, "Tear a branch out of a stack, effectively unstacking it")
 	branchCmd.AddCommand(branch_moveCmd)
 
 	carapace.Gen(branch_moveCmd).PositionalCompletion(
