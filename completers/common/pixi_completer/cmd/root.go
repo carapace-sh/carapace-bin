@@ -1,7 +1,11 @@
 package cmd
 
 import (
+	"regexp"
+	"strings"
+
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -30,6 +34,33 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color": carapace.ActionValues("always", "never", "auto"),
+	})
+
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		if output, err := (carapace.Context{}).Command("pixi", "--list").Output(); err == nil {
+			re := regexp.MustCompile(`^    (?P<command>[^ ]+) +\((?P<description>via pixi-[^)]+)\)$`)
+			for _, line := range strings.Split(string(output), "\n") {
+				line = strings.TrimSuffix(line, "\r")
+				if matches := re.FindStringSubmatch(line); matches != nil {
+					if _, _, err := rootCmd.Find([]string{matches[1]}); err == nil {
+						continue
+					}
+
+					pluginCmd := &cobra.Command{
+						Use:                matches[1],
+						Short:              matches[2],
+						Run:                func(cmd *cobra.Command, args []string) {},
+						DisableFlagParsing: true,
+					}
+
+					carapace.Gen(pluginCmd).PositionalAnyCompletion(
+						bridge.ActionCarapaceBin("pixi-" + matches[1]),
+					)
+
+					rootCmd.AddCommand(pluginCmd)
+				}
+			}
+		}
 	})
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
