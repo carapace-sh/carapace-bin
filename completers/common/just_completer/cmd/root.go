@@ -147,7 +147,7 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return just.ActionRecipes(rootCmd.Flag("justfile").Value.String()).FilterArgs()
+			return just.ActionRecipesWithArgs(rootCmd.Flag("justfile").Value.String())
 		}),
 	)
 
