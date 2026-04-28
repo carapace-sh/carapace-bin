@@ -1,11 +1,11 @@
-package cmd
+package common
 
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
 
-func addCommonRebuildFlags(cmd *cobra.Command) {
+func AddCommonRebuildFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolP("dry", "n", false, "Only print actions, without performing them")
 	cmd.Flags().BoolP("ask", "a", false, "Ask for confirmation")
 	cmd.Flags().Bool("no-nom", false, "Don't use nix-output-monitor for the build process")
@@ -17,10 +17,10 @@ func addCommonRebuildFlags(cmd *cobra.Command) {
 		"out-link": carapace.ActionFiles(),
 	})
 
-	addNixBuildPassthroughFlags(cmd)
+	AddNixBuildPassthroughFlags(cmd)
 }
 
-func addNixBuildPassthroughFlags(cmd *cobra.Command) {
+func AddNixBuildPassthroughFlags(cmd *cobra.Command) {
 	cmd.Flags().StringP("max-jobs", "j", "", "Number of concurrent jobs Nix should run")
 	cmd.Flags().String("cores", "", "Number of cores Nix should utilize")
 	cmd.Flags().String("log-format", "", "Logging format used by Nix")
@@ -48,15 +48,15 @@ func addNixBuildPassthroughFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("json", false, "Output results in JSON format")
 }
 
-func addUpdateFlags(cmd *cobra.Command) {
+func AddUpdateFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolP("update", "u", false, "Update all flake inputs")
 	cmd.Flags().StringArrayP("update-input", "U", nil, "Update the specified flake input(s)")
 	cmd.MarkFlagsMutuallyExclusive("update", "update-input")
 }
 
-func addOsRebuildFlags(cmd *cobra.Command) {
-	addCommonRebuildFlags(cmd)
-	addUpdateFlags(cmd)
+func AddOsRebuildFlags(cmd *cobra.Command) {
+	AddCommonRebuildFlags(cmd)
+	AddUpdateFlags(cmd)
 	cmd.Flags().StringP("hostname", "H", "", "Select this hostname from nixosConfigurations")
 	cmd.Flags().StringP("specialisation", "s", "", "Explicitly select some specialisation")
 	cmd.Flags().BoolP("no-specialisation", "S", false, "Ignore specialisations")

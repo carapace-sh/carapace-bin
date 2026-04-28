@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nh_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -18,8 +19,8 @@ func init() {
 }
 
 func addHomeRebuildFlags(cmd *cobra.Command) {
-	addCommonRebuildFlags(cmd)
-	addUpdateFlags(cmd)
+	common.AddCommonRebuildFlags(cmd)
+	common.AddUpdateFlags(cmd)
 	cmd.Flags().StringP("configuration", "c", "", "Name of the flake homeConfigurations attribute")
 	cmd.Flags().StringP("specialisation", "s", "", "Explicitly select some specialisation")
 	cmd.Flags().BoolP("no-specialisation", "S", false, "Ignore specialisations")

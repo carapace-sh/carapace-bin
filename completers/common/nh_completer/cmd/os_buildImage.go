@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nh_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +15,7 @@ var os_buildImageCmd = &cobra.Command{
 func init() {
 	carapace.Gen(os_buildImageCmd).Standalone()
 
-	addOsRebuildFlags(os_buildImageCmd)
+	common.AddOsRebuildFlags(os_buildImageCmd)
 	os_buildImageCmd.Flags().String("image-variant", "", "Image variant")
 
 	osCmd.AddCommand(os_buildImageCmd)

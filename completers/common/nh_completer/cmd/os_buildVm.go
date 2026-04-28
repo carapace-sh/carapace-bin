@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nh_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +15,7 @@ var os_buildVmCmd = &cobra.Command{
 func init() {
 	carapace.Gen(os_buildVmCmd).Standalone()
 
-	addOsRebuildFlags(os_buildVmCmd)
+	common.AddOsRebuildFlags(os_buildVmCmd)
 	os_buildVmCmd.Flags().BoolP("with-bootloader", "B", false, "Build with bootloader")
 	os_buildVmCmd.Flags().BoolP("run", "r", false, "Run the VM immediately after building")
 

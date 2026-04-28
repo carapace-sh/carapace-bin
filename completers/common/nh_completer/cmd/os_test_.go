@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nh_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +15,7 @@ var os_testCmd = &cobra.Command{
 func init() {
 	carapace.Gen(os_testCmd).Standalone()
 
-	addOsRebuildFlags(os_testCmd)
+	common.AddOsRebuildFlags(os_testCmd)
 	os_testCmd.Flags().Bool("show-activation-logs", false, "Show activation logs")
 
 	osCmd.AddCommand(os_testCmd)

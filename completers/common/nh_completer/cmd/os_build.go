@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nh_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +15,7 @@ var os_buildCmd = &cobra.Command{
 func init() {
 	carapace.Gen(os_buildCmd).Standalone()
 
-	addOsRebuildFlags(os_buildCmd)
+	common.AddOsRebuildFlags(os_buildCmd)
 
 	osCmd.AddCommand(os_buildCmd)
 }
