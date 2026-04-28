@@ -15,6 +15,7 @@ var uncommitCmd = &cobra.Command{
 func init() {
 	carapace.Gen(uncommitCmd).Standalone()
 
+	uncommitCmd.Flags().BoolP("discard", "d", false, "Discard the selected committed changes instead of moving them to unassigned")
 	uncommitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(uncommitCmd)
 

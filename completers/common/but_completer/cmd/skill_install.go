@@ -19,7 +19,6 @@ func init() {
 	skill_installCmd.Flags().BoolP("global", "g", false, "Install the skill globally instead of in the current repository")
 	skill_installCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	skill_installCmd.Flags().StringP("path", "p", "", "Custom path where to install the skill (relative to repository root or absolute). Outside a repository, relative paths require --global")
-	skill_installCmd.Flags().Bool("with-link", false, "Install the optional skill variant that includes but link coordination workflow instructions")
 	skillCmd.AddCommand(skill_installCmd)
 
 	carapace.Gen(skill_installCmd).FlagCompletion(carapace.ActionMap{
