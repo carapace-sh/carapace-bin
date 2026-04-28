@@ -18,6 +18,7 @@ var skill_previewCmd = &cobra.Command{
 func init() {
 	carapace.Gen(skill_previewCmd).Standalone()
 
+	skill_previewCmd.Flags().Bool("allow-hidden-dirs", false, "Include skills in hidden directories (e.g. .claude/skills/, .agents/skills/)")
 	skillCmd.AddCommand(skill_previewCmd)
 
 	carapace.Gen(skill_previewCmd).PositionalCompletion(
