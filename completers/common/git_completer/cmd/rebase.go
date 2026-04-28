@@ -70,9 +70,10 @@ func init() {
 		"whitespace": git.ActionWhitespaceModes(),
 	})
 
-	carapace.Gen(rebaseCmd).PositionalCompletion(
+	carapace.Gen(rebaseCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if !rebaseCmd.Flag("continue").Changed &&
+			if len(c.Args) < 2 &&
+				!rebaseCmd.Flag("continue").Changed &&
 				!rebaseCmd.Flag("abort").Changed &&
 				!rebaseCmd.Flag("skip").Changed &&
 				!rebaseCmd.Flag("edit-todo").Changed {
