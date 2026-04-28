@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/go_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
@@ -19,7 +20,7 @@ func init() {
 	installCmd.Flags().BoolS("i", "i", false, "install the packages that are dependencies of the target")
 	installCmd.Flags().BoolS("json", "json", false, "Emit build output in JSON suitable for automated processing")
 	installCmd.Flags().StringS("o", "o", "", "set output file or directory")
-	addBuildFlags(installCmd)
+	common.AddBuildFlags(installCmd)
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{

@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/go_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -18,7 +19,7 @@ func init() {
 	runCmd.Flags().SetInterspersed(false)
 
 	runCmd.Flags().StringS("exec", "exec", "", "invoke the binary using xprog")
-	addBuildFlags(runCmd)
+	common.AddBuildFlags(runCmd)
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).PositionalCompletion(

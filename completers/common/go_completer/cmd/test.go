@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/go_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -84,7 +85,7 @@ func init() {
 	testCmd.Flags().StringS("timeout", "timeout", "", "If a test binary runs longer than duration d, panic")
 	testCmd.Flags().StringS("trace", "trace", "", "Write an execution trace to the specified file before exiting")
 	testCmd.Flags().StringS("vet", "vet", "", "Configure the invocation of \"go vet\" during \"go test\" to use the comma-separated list of vet checks")
-	addBuildFlags(testCmd)
+	common.AddBuildFlags(testCmd)
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
