@@ -124,7 +124,10 @@ func ActionFlakeRefs() carapace.Action {
 	return carapace.ActionMultiPartsN("#", 2, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
-			return ActionFlakes().Suffix("#")
+			return carapace.Batch(
+				carapace.ActionValues(".").Style(style.Blue),
+				ActionFlakes(),
+			).ToA().Suffix("#")
 		default:
 			return ActionFlakeAttributes(c.Parts[0])
 		}
