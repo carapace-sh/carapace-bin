@@ -25,7 +25,7 @@ func actionConfigKeys(global bool) carapace.Action {
 		}
 
 		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {
-			var config map[string]interface{}
+			var config map[string]any
 			if err := json.Unmarshal(output, &config); err != nil {
 				return carapace.ActionMessage(err.Error())
 			}

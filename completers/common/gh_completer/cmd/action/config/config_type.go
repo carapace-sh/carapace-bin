@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"slices"
 
 	"gopkg.in/yaml.v3"
 )
@@ -88,10 +89,8 @@ func ValidateValue(key, value string) error {
 		return nil
 	}
 
-	for _, v := range validValues {
-		if v == value {
-			return nil
-		}
+	if slices.Contains(validValues, value) {
+		return nil
 	}
 
 	return &InvalidValueError{ValidValues: validValues}

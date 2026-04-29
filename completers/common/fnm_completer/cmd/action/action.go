@@ -80,7 +80,7 @@ func withLocalFnmVersions(callback func([]fnmVersion) carapace.Action) carapace.
 				version: matches[1],
 			}
 
-			for _, alias := range strings.Split(matches[2], ", ") {
+			for alias := range strings.SplitSeq(matches[2], ", ") {
 				value := strings.TrimSpace(alias)
 				if value != "" {
 					version.aliases = append(version.aliases, value)

@@ -12,7 +12,7 @@ func ActionColumns() carapace.Action {
 		re := regexp.MustCompile(`^\s*(\S+)\s+<[^>]+>\s+(.*)$`)
 		var values []string
 
-		for _, line := range strings.Split(string(output), "\n") {
+		for line := range strings.SplitSeq(string(output), "\n") {
 			if matches := re.FindStringSubmatch(line); len(matches) == 3 {
 				name, description := matches[1], matches[2]
 				values = append(values, name, description)

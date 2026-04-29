@@ -26,7 +26,7 @@ func ActionDevices() carapace.Action {
 			"detached":     true,
 		}
 
-		for _, line := range strings.Split(string(output), "\n") {
+		for line := range strings.SplitSeq(string(output), "\n") {
 			fields := strings.Fields(line)
 			if len(fields) < 2 || !validStates[fields[1]] {
 				continue

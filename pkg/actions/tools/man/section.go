@@ -32,8 +32,8 @@ func ActionSections(manpage string) carapace.Action {
 
 			r := regexp.MustCompile(`^` + regexp.QuoteMeta(manpage) + ` \((?P<section>[^]]+)\).*$`)
 			sections := make([]string, 0)
-			lines := strings.Split(string(output), "\n")
-			for _, line := range lines {
+			lines := strings.SplitSeq(string(output), "\n")
+			for line := range lines {
 				if matches := r.FindStringSubmatch(line); matches != nil {
 					sections = append(sections, matches[1][:1]) // only use first character
 				}

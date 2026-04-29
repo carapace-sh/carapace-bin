@@ -46,7 +46,7 @@ func ActionPackageSearch() carapace.Action {
 			re := regexp.MustCompile(`class="package-snippet__(name|description)">(?P<val>.*)<`)
 
 			vals := make([]string, 0)
-			for _, line := range strings.Split(string(output), "\n") {
+			for line := range strings.SplitSeq(string(output), "\n") {
 				if re.MatchString(line) {
 					vals = append(vals, re.FindStringSubmatch(line)[2])
 				}

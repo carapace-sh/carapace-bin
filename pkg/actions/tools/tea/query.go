@@ -26,7 +26,7 @@ func fixYamlOutput(b []byte) []byte {
 	return []byte(strings.Join(lines, "\n"))
 }
 
-func actionYamlQuery(opts RepoOpts, result interface{}, args ...string) func(f func() carapace.Action) carapace.Action {
+func actionYamlQuery(opts RepoOpts, result any, args ...string) func(f func() carapace.Action) carapace.Action {
 	return func(f func() carapace.Action) carapace.Action {
 		args = append(args, "--output", "yaml", "--limit", "100")
 		if opts.Login != "" {

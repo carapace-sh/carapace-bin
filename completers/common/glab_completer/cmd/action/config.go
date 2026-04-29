@@ -18,7 +18,7 @@ func ActionConfigHosts() carapace.Action {
 }
 
 type glabConfig struct {
-	Hosts map[string]interface{}
+	Hosts map[string]any
 }
 
 func hosts() ([]string, error) {

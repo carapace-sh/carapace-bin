@@ -23,7 +23,7 @@ func ActionHosts() carapace.Action {
 				r := regexp.MustCompile(`^(?P<host>[^ ,#|]+)`)
 				rIPv4 := regexp.MustCompile(`^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$`)
 				rIPv6 := regexp.MustCompile(`^([A-Fa-f0-9]{0,4}:){5,7}[A-Fa-f0-9]{0,4}$`) // TODO likely wrong
-				for _, entry := range strings.Split(string(content), "\n") {
+				for entry := range strings.SplitSeq(string(content), "\n") {
 					if r.MatchString(entry) {
 						if host := r.FindStringSubmatch(entry)[0]; rIPv4.MatchString(host) {
 							batch = append(batch, carapace.ActionStyledValues(host, style.Default).Tag("ipv4 addresses"))
@@ -135,7 +135,7 @@ func ActionDevices(includedDevices IncludedDevices) carapace.Action {
 			return carapace.ActionExecCommand("ifconfig")(func(output []byte) carapace.Action {
 				interfaces := []string{}
 				r := regexp.MustCompile("^[0-9a-zA-Z]")
-				for _, line := range strings.Split(string(output), "\n") {
+				for line := range strings.SplitSeq(string(output), "\n") {
 					if matches := r.MatchString(line); matches {
 						interfaces = append(interfaces, strings.Split(line, ":")[0])
 					}

@@ -39,7 +39,7 @@ func init() {
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
 		if output, err := (carapace.Context{}).Command("pixi", "--list").Output(); err == nil {
 			re := regexp.MustCompile(`^    (?P<command>[^ ]+) +\((?P<description>via pixi-[^)]+)\)$`)
-			for _, line := range strings.Split(string(output), "\n") {
+			for line := range strings.SplitSeq(string(output), "\n") {
 				line = strings.TrimSuffix(line, "\r")
 				if matches := re.FindStringSubmatch(line); matches != nil {
 					if _, _, err := rootCmd.Find([]string{matches[1]}); err == nil {

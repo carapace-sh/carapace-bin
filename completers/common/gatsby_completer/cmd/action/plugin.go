@@ -12,8 +12,8 @@ func ActionPlugins() carapace.Action {
 
 		vals := make([]string, 0)
 		for _, line := range lines {
-			if strings.HasPrefix(line, "- ") {
-				vals = append(vals, strings.TrimPrefix(line, "- "))
+			if after, ok := strings.CutPrefix(line, "- "); ok {
+				vals = append(vals, after)
 			}
 		}
 		return carapace.ActionValues(vals...)

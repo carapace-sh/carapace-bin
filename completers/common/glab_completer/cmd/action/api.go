@@ -10,7 +10,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func actionApi(cmd *cobra.Command, query string, v interface{}, transform func() carapace.Action) carapace.Action {
+func actionApi(cmd *cobra.Command, query string, v any, transform func() carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if flag := cmd.Flag("repo"); flag != nil && flag.Changed {
 			project := strings.Join(strings.Split(flag.Value.String(), "/")[1:], "/")
@@ -32,7 +32,7 @@ func actionApi(cmd *cobra.Command, query string, v interface{}, transform func()
 	})
 }
 
-func actionGraphql(cmd *cobra.Command, query string, v interface{}, transform func() carapace.Action) carapace.Action {
+func actionGraphql(cmd *cobra.Command, query string, v any, transform func() carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"api", "graphql"}
 		if flag := cmd.Flag("repo"); flag != nil && flag.Changed {

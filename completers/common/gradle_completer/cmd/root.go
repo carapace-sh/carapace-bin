@@ -144,7 +144,7 @@ func parseTasks(c carapace.Context) (map[string][]string, error) {
 	taskGroups := patternTaskGroups.FindAllStringSubmatch(string(output), -1)
 	for _, taskGroup := range taskGroups {
 		result[taskGroup[1]] = make([]string, 0)
-		for _, line := range strings.Split(taskGroup[2], "\n") {
+		for line := range strings.SplitSeq(taskGroup[2], "\n") {
 			if patternTask.MatchString(line) {
 				task := patternTask.FindStringSubmatch(line)
 				result[taskGroup[1]] = append(result[taskGroup[1]], task[1], task[3])

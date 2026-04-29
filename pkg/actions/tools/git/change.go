@@ -44,7 +44,7 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 				}
 
 				untracked := make([]string, 0)
-				for _, line := range strings.Split(string(output), "\n") {
+				for line := range strings.SplitSeq(string(output), "\n") {
 					switch {
 					case len(line) < 4:
 						// skip
