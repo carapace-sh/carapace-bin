@@ -33,7 +33,6 @@ func init() {
 	testCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
 	testCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	testCmd.Flags().Bool("lib", false, "Test only this package's library")
-	testCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	testCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	testCmd.Flags().StringSlice("message-format", nil, "Error format")
 	testCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -58,7 +57,6 @@ func init() {
 		"example":        action.ActionTargets(testCmd, action.TargetOpts{Example: true}),
 		"exclude":        action.ActionWorkspaceMembers(testCmd),
 		"features":       action.ActionFeatures(testCmd).UniqueList(","),
-		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(testCmd, true),

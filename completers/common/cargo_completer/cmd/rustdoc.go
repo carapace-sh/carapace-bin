@@ -29,7 +29,6 @@ func init() {
 	rustdocCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	rustdocCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	rustdocCmd.Flags().Bool("lib", false, "Build only this package's library")
-	rustdocCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	rustdocCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	rustdocCmd.Flags().StringSlice("message-format", nil, "Error format")
 	rustdocCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -52,7 +51,6 @@ func init() {
 		"bin":            action.ActionTargets(rustdocCmd, action.TargetOpts{Bin: true}),
 		"example":        action.ActionTargets(rustdocCmd, action.TargetOpts{Example: true}),
 		"features":       action.ActionFeatures(rustdocCmd).UniqueList(","),
-		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"output-format":  carapace.ActionValues("html", "json"),
