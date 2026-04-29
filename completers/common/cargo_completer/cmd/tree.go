@@ -26,7 +26,6 @@ func init() {
 	treeCmd.Flags().StringP("format", "f", "", "Format string used for printing dependencies")
 	treeCmd.Flags().BoolP("help", "h", false, "Print help")
 	treeCmd.Flags().StringSliceP("invert", "i", nil, "Invert the tree direction and focus on the given package")
-	treeCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	treeCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	treeCmd.Flags().Bool("no-dedupe", false, "Do not de-duplicate (repeats all shared dependencies)")
 	treeCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -56,7 +55,6 @@ func init() {
 		"exclude":       action.ActionWorkspaceMembers(treeCmd).UniqueList(","),
 		"features":      action.ActionFeatures(treeCmd).UniqueList(","),
 		"invert":        action.ActionDependencies(treeCmd, false),
-		"lockfile-path": carapace.ActionFiles(),
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(treeCmd, false),
 		"prune":         action.ActionDependencies(treeCmd, false),

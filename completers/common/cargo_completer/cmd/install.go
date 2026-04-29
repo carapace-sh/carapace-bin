@@ -33,7 +33,6 @@ func init() {
 	installCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	installCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	installCmd.Flags().Bool("list", false, "List all installed packages and their versions")
-	installCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	installCmd.Flags().StringSlice("message-format", nil, "Error format")
 	installCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	installCmd.Flags().Bool("no-track", false, "Do not save tracking information")
@@ -56,7 +55,6 @@ func init() {
 		"bin":            action.ActionTargets(installCmd, action.TargetOpts{Bin: true}),
 		"example":        action.ActionTargets(installCmd, action.TargetOpts{Example: true}),
 		"features":       action.ActionFeatures(installCmd).UniqueList(","),
-		"lockfile-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"path":           carapace.ActionFiles(),
 		"profile":        action.ActionProfiles(installCmd),

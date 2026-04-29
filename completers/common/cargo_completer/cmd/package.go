@@ -25,7 +25,6 @@ func init() {
 	packageCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	packageCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	packageCmd.Flags().BoolP("list", "l", false, "Print files included in a package without making one")
-	packageCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	packageCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	packageCmd.Flags().String("message-format", "", "Output representation (unstable)")
 	packageCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -41,7 +40,6 @@ func init() {
 	carapace.Gen(packageCmd).FlagCompletion(carapace.ActionMap{
 		"exclude":       action.ActionDependencies(packageCmd, false),
 		"features":      action.ActionFeatures(packageCmd).UniqueList(","),
-		"lockfile-path": carapace.ActionFiles(),
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(packageCmd, false),
 		"target-dir":    carapace.ActionDirectories(),

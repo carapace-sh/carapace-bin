@@ -20,7 +20,6 @@ func init() {
 	updateCmd.Flags().BoolP("dry-run", "n", false, "Don't actually write the lockfile")
 	updateCmd.Flags().BoolP("help", "h", false, "Print help")
 	updateCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
-	updateCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	updateCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	updateCmd.Flags().String("precise", "", "Update [SPEC] to exactly PRECISE")
 	updateCmd.Flags().Bool("recursive", false, "Force updating all dependencies of [SPEC]... as well")
@@ -29,7 +28,6 @@ func init() {
 	rootCmd.AddCommand(updateCmd)
 
 	carapace.Gen(updateCmd).FlagCompletion(carapace.ActionMap{
-		"lockfile-path": carapace.ActionFiles(),
 		"manifest-path": carapace.ActionFiles(),
 	})
 }

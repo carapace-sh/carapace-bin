@@ -33,7 +33,6 @@ func init() {
 	checkCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	checkCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	checkCmd.Flags().Bool("lib", false, "Check only this package's library")
-	checkCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	checkCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	checkCmd.Flags().StringSlice("message-format", nil, "Error format")
 	checkCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -55,7 +54,6 @@ func init() {
 		"example":        action.ActionTargets(checkCmd, action.TargetOpts{Example: true}),
 		"exclude":        action.ActionWorkspaceMembers(checkCmd),
 		"features":       action.ActionFeatures(checkCmd).UniqueList(","),
-		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(buildCmd, true),

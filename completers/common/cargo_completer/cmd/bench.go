@@ -31,7 +31,6 @@ func init() {
 	benchCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
 	benchCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	benchCmd.Flags().Bool("lib", false, "Benchmark only this package's library")
-	benchCmd.Flags().String("lockfile-path", "", "Path to Cargo.lock (unstable)")
 	benchCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	benchCmd.Flags().StringSlice("message-format", nil, "Error format")
 	benchCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
@@ -54,7 +53,6 @@ func init() {
 		"example":        action.ActionTargets(benchCmd, action.TargetOpts{Example: true}),
 		"exclude":        action.ActionWorkspaceMembers(benchCmd),
 		"features":       action.ActionFeatures(benchCmd).UniqueList(","),
-		"lockfile-path":  carapace.ActionFiles(),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(benchCmd, true),
