@@ -13,7 +13,7 @@ import (
 func ActionModules() carapace.Action {
 	return carapace.ActionExecCommand("fastfetch", "--list-modules", "autocompletion")(func(output []byte) carapace.Action {
 		var texts []string
-		for _, line := range strings.Split(strings.TrimRight(string(output), "\n"), "\n") {
+		for line := range strings.SplitSeq(strings.TrimRight(string(output), "\n"), "\n") {
 			name, desc, _ := strings.Cut(line, ":")
 			texts = append(texts, name, desc)
 		}

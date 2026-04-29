@@ -248,7 +248,7 @@ func ActionInstalledPackages(root string) carapace.Action {
 			re := regexp.MustCompile(`(?P<package>^[^ ]+) (?P<version>[^:]+):$`)
 			vals := make([]string, 0)
 
-			for _, line := range strings.Split(string(output), "\n") {
+			for line := range strings.SplitSeq(string(output), "\n") {
 				if re.MatchString(line) {
 					matches := re.FindStringSubmatch(line)
 					vals = append(vals, matches[1], matches[2])

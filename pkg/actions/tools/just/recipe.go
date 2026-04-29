@@ -12,7 +12,7 @@ type attributes []any
 func (a attributes) Description() string {
 	for _, attr := range a {
 		switch attr := attr.(type) {
-		case map[string]interface{}:
+		case map[string]any:
 			if doc, ok := attr["doc"]; ok {
 				if doc == nil {
 					return ""

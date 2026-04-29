@@ -61,8 +61,8 @@ func ActionLocalClasses() carapace.Action {
 
 		vals := make([]string, 0)
 		for _, entry := range entries {
-			if strings.HasSuffix(entry.Name(), ".class") {
-				vals = append(vals, strings.TrimSuffix(entry.Name(), ".class"))
+			if before, ok := strings.CutSuffix(entry.Name(), ".class"); ok {
+				vals = append(vals, before)
 			}
 		}
 		return carapace.ActionValues(vals...)

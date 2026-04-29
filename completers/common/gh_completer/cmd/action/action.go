@@ -31,7 +31,7 @@ func ActionConfigHosts() carapace.Action {
 	}).Tag("config hosts")
 }
 
-func ApiV3Action(cmd *cobra.Command, query string, v interface{}, transform func() carapace.Action) carapace.Action {
+func ApiV3Action(cmd *cobra.Command, query string, v any, transform func() carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if repo, err := repoOverride(cmd, c); err != nil {
 			return carapace.ActionMessage(err.Error())
@@ -54,7 +54,7 @@ func ApiV3Action(cmd *cobra.Command, query string, v interface{}, transform func
 	})
 }
 
-func GraphQlAction(cmd *cobra.Command, query string, v interface{}, transform func() carapace.Action) carapace.Action {
+func GraphQlAction(cmd *cobra.Command, query string, v any, transform func() carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		params := make([]string, 0)
 		if strings.Contains(query, "$owner") {

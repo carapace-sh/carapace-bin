@@ -22,7 +22,7 @@ func ActionToolchains() carapace.Action {
 			vals := make([]string, 0)
 
 			re := regexp.MustCompile(`^(?P<toolchain>[^ ]+)( \((?P<info>.*)\))?$`)
-			for _, line := range strings.Split(string(output), "\n") {
+			for line := range strings.SplitSeq(string(output), "\n") {
 				if re.MatchString(line) {
 					matches := re.FindStringSubmatch(line)
 					vals = append(vals, matches[1], matches[3])
@@ -44,7 +44,7 @@ func ActionTargets(installedOnly bool) carapace.Action {
 			vals := make([]string, 0)
 
 			re := regexp.MustCompile(`^(?P<target>[^ ]+)( \((?P<info>.*)\))?$`)
-			for _, line := range strings.Split(string(output), "\n") {
+			for line := range strings.SplitSeq(string(output), "\n") {
 				if re.MatchString(line) {
 					matches := re.FindStringSubmatch(line)
 					vals = append(vals, matches[1], matches[3])
@@ -66,7 +66,7 @@ func ActionComponents(installedOnly bool) carapace.Action {
 			vals := make([]string, 0)
 
 			re := regexp.MustCompile(`^(?P<target>[^ ]+)( \((?P<info>.*)\))?$`)
-			for _, line := range strings.Split(string(output), "\n") {
+			for line := range strings.SplitSeq(string(output), "\n") {
 				if re.MatchString(line) {
 					matches := re.FindStringSubmatch(line)
 					vals = append(vals, matches[1], matches[3])
@@ -102,7 +102,7 @@ func ActionOverrides() carapace.Action {
 			vals := make([]string, 0)
 
 			re := regexp.MustCompile(`^(?P<path>.*)\t(?P<toolchain>[^ ]+)$`)
-			for _, line := range strings.Split(string(output), "\n") {
+			for line := range strings.SplitSeq(string(output), "\n") {
 				if re.MatchString(line) {
 					matches := re.FindStringSubmatch(line)
 					vals = append(vals, matches[1], matches[2])

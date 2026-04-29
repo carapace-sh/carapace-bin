@@ -66,8 +66,8 @@ func ActionCurrentAuthScopes(hostname string) carapace.Action {
 
 			scopes := []string{}
 			for _, line := range lines {
-				if strings.HasPrefix(line, "X-Oauth-Scopes: ") {
-					scopes = strings.Split(strings.TrimPrefix(line, "X-Oauth-Scopes: "), ", ")
+				if after, ok := strings.CutPrefix(line, "X-Oauth-Scopes: "); ok {
+					scopes = strings.Split(after, ", ")
 					break
 				}
 			}

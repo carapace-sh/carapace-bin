@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"slices"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -274,13 +275,7 @@ func actionFlags() carapace.Action {
 func actionFlagArguments(flag string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		splitted := strings.Split(strings.TrimLeft(flag, "-"), ":")
-		beforeInput := true
-		for _, arg := range c.Args {
-			if arg == "-i" {
-				beforeInput = false
-				break
-			}
-		}
+		beforeInput := !slices.Contains(c.Args, "-i")
 
 		switch splitted[0] {
 		case "ab":

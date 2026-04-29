@@ -33,7 +33,7 @@ func ActionUsers(opts ContainerUserOpts) carapace.Action {
 
 		return actionContainerExecCommand(opts.Files, opts.Service, opts.Index, "cat", "/etc/passwd")(func(output []byte) carapace.Action {
 			users := []string{}
-			for _, entry := range strings.Split(string(output), "\n") {
+			for entry := range strings.SplitSeq(string(output), "\n") {
 				splitted := strings.Split(entry, ":")
 				if len(splitted) > 2 {
 					user := splitted[0]

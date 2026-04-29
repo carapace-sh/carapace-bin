@@ -19,8 +19,8 @@ func ActionDateFields() carapace.Action {
 			operators := []string{">=", ">", "<=", "<"}
 			prefix := ""
 			for _, operator := range operators {
-				if strings.HasPrefix(c.Value, operator) {
-					c.Value = strings.TrimPrefix(c.Value, operator)
+				if after, ok := strings.CutPrefix(c.Value, operator); ok {
+					c.Value = after
 					prefix = operator
 					break
 				}

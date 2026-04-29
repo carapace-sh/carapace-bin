@@ -24,7 +24,7 @@ func ActionProvisioners() carapace.Action {
 
 		r := regexp.MustCompile(`^ *[^ ]+\.vm\.provision +"(?P<provisioner>[^"]+)".*`)
 		vals := make([]string, 0)
-		for _, line := range strings.Split(string(content), "\n") {
+		for line := range strings.SplitSeq(string(content), "\n") {
 			if r.MatchString(line) {
 				matches := r.FindStringSubmatch(line)
 				vals = append(vals, matches[1])

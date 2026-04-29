@@ -10,7 +10,7 @@ import (
 )
 
 type turbo struct {
-	Pipeline map[string]interface{}
+	Pipeline map[string]any
 }
 
 // ActionPipelineTasks completes pipeline tasks

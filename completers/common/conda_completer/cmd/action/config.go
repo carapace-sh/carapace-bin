@@ -9,7 +9,7 @@ import (
 
 func ActionConfigKeys() carapace.Action {
 	return carapace.ActionExecCommand("conda", "config", "--show")(func(output []byte) carapace.Action {
-		var config map[string]interface{}
+		var config map[string]any
 		if err := yaml.Unmarshal(output, &config); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}

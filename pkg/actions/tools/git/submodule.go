@@ -2,6 +2,7 @@ package git
 
 import (
 	"regexp"
+	"slices"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -73,12 +74,7 @@ func ActionSubmoduleBranches(filter ...string) carapace.Action {
 }
 
 func contains(slice []string, s string) bool {
-	for _, e := range slice {
-		if e == s {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(slice, s)
 }
 
 // ActionSubmodulePaths completes submodules (relative path)

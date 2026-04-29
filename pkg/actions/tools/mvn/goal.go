@@ -1,6 +1,7 @@
 package mvn
 
 import (
+	"maps"
 	"os"
 	"path/filepath"
 	"strings"
@@ -21,15 +22,11 @@ func ActionGoalsAndPhases(file string) carapace.Action {
 			goals := make(map[string]string)
 			for _, projectPlugin := range loadedProject.Plugins {
 				if loadedPlugin := loadPlugin(projectPlugin.Location(repositoryLocation())); loadedPlugin != nil {
-					for key, value := range loadedPlugin.FormattedGoals() {
-						goals[key] = value
-					}
+					maps.Copy(goals, loadedPlugin.FormattedGoals())
 				}
 			}
 
-			for key, value := range defaultGoalsAndPhases() {
-				goals[key] = value
-			}
+			maps.Copy(goals, defaultGoalsAndPhases())
 
 			vals := make([]string, 0)
 			for key, value := range goals {
@@ -87,9 +84,7 @@ func defaultGoalsAndPhases() (goals map[string]string) {
 		}
 		if !info.IsDir() && strings.HasSuffix(info.Name(), ".jar") {
 			if loadedPlugin := loadPlugin(path); loadedPlugin != nil {
-				for key, value := range loadedPlugin.FormattedGoals() {
-					goals[key] = value
-				}
+				maps.Copy(goals, loadedPlugin.FormattedGoals())
 			}
 		}
 		return nil

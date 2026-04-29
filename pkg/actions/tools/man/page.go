@@ -17,7 +17,7 @@ func ActionPages() carapace.Action {
 			r := regexp.MustCompile(`^(?P<name>.*?) ?\(\d+\).* +- (?P<description>.*)$`)
 
 			vals := make([]string, 0)
-			for _, line := range strings.Split(string(output), "\n") {
+			for line := range strings.SplitSeq(string(output), "\n") {
 				if r.MatchString(line) {
 					matches := r.FindStringSubmatch(line)
 					vals = append(vals, matches[1], matches[2])

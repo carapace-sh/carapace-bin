@@ -18,7 +18,7 @@ func ActionTags() carapace.Action {
 		vals := make([]string, 0)
 		for _, line := range lines[:len(lines)-1] {
 			splitted := strings.SplitN(line, "\t", 2)
-			for _, tag := range strings.Split(splitted[0], " ") {
+			for tag := range strings.SplitSeq(splitted[0], " ") {
 				vals = append(vals, tag, splitted[1])
 			}
 		}

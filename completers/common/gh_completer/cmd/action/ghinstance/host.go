@@ -27,7 +27,7 @@ func NormalizeHostname(h string) string {
 	return hostname
 }
 
-func HostnameValidator(v interface{}) error {
+func HostnameValidator(v any) error {
 	hostname, valid := v.(string)
 	if !valid {
 		return errors.New("hostname is not a string")

@@ -13,7 +13,7 @@ import (
 
 type version string
 
-func (v *version) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (v *version) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	_ = unmarshal(&s) // ignore struct
 	*v = version(s)
@@ -21,9 +21,9 @@ func (v *version) UnmarshalYAML(unmarshal func(interface{}) error) error {
 }
 
 type pubspec struct {
-	Dependencies    map[string]version     `yaml:"dependencies"`
-	DevDependencies map[string]version     `yaml:"dev_dependencies"`
-	Executables     map[string]interface{} `yaml:"executables"`
+	Dependencies    map[string]version `yaml:"dependencies"`
+	DevDependencies map[string]version `yaml:"dev_dependencies"`
+	Executables     map[string]any     `yaml:"executables"`
 }
 
 func loadPubspec(c carapace.Context) (*pubspec, error) {

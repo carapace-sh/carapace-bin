@@ -11,7 +11,7 @@ import (
 type config struct {
 	Projects map[string]struct {
 		Architect map[string]struct {
-			Configurations map[string]interface{}
+			Configurations map[string]any
 		}
 	}
 }

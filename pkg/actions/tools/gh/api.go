@@ -6,7 +6,7 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
-func apiV3Action(opts RepoOpts, query string, v interface{}, transform func() carapace.Action) carapace.Action {
+func apiV3Action(opts RepoOpts, query string, v any, transform func() carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{
 			"api",

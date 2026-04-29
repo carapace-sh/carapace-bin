@@ -252,8 +252,8 @@ func ActionOptionValues(option string) carapace.Action {
 
 func actionOptionFiles() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if strings.HasPrefix(c.Value, "@") {
-			c.Value = strings.TrimPrefix(c.Value, "@")
+		if after, ok := strings.CutPrefix(c.Value, "@"); ok {
+			c.Value = after
 			return carapace.ActionFiles().Invoke(c).Prefix("@").ToA()
 		}
 		return carapace.ActionValues()

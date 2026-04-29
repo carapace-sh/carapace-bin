@@ -70,7 +70,7 @@ func init() {
 		c.Setenv("RUSTUP_DIST_SERVER", "localhost") // prevent implicit toolchain synching by the rustup wrapper [#1328]
 		if output, err := c.Command("cargo", "--list").Output(); err == nil {
 			re := regexp.MustCompile(`^    (?P<command>[^ ]+)( +(?P<description>.*))?$`)
-			for _, line := range strings.Split(string(output), "\n") {
+			for line := range strings.SplitSeq(string(output), "\n") {
 				if matches := re.FindStringSubmatch(line); matches != nil {
 					pluginCmd := &cobra.Command{
 						Use:                matches[1],

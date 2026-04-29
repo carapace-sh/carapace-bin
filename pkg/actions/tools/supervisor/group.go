@@ -28,8 +28,8 @@ func ActionGroups(path string) carapace.Action {
 		vals := make([]string, 0)
 		for _, section := range cfg.Sections() {
 			carapace.LOG.Println(section.Name())
-			if strings.HasPrefix(section.Name(), "program:") {
-				vals = append(vals, strings.TrimPrefix(section.Name(), "program:"), section.KeysHash()["command"])
+			if after, ok := strings.CutPrefix(section.Name(), "program:"); ok {
+				vals = append(vals, after, section.KeysHash()["command"])
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)

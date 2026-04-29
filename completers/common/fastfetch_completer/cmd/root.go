@@ -30,7 +30,7 @@ type FlagData struct {
 	Arg    *struct {
 		Type     string
 		Optional bool
-		Default  interface{}
+		Default  any
 		Enum     map[string]string
 	}
 }
@@ -78,7 +78,7 @@ func init() {
 									options = append(options, flag.Long)
 								}
 							}
-							for _, line := range strings.Split(strings.TrimRight(string(output), "\n"), "\n") {
+							for line := range strings.SplitSeq(strings.TrimRight(string(output), "\n"), "\n") {
 								x, _, _ := strings.Cut(line, ":")
 								options = append(options, x)
 							}

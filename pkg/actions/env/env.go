@@ -34,7 +34,7 @@ type variables struct {
 	// PlaceholderCompletion map[string]carapace.Action // TODO
 }
 
-func (v *variables) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (v *variables) UnmarshalYAML(unmarshal func(any) error) error {
 	var env struct {
 		Condition  []string
 		Variables  map[string]string
