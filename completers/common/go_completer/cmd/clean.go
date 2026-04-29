@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/go_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -21,6 +22,6 @@ func init() {
 	cleanCmd.Flags().BoolS("modcache", "modcache", false, "remove the entire module download cache")
 	cleanCmd.Flags().BoolS("r", "r", false, "apply recursively to all the dependencies")
 	cleanCmd.Flags().BoolS("testcache", "testcache", false, "expire all test results in the go build cache")
-	addBuildFlags(cleanCmd)
+	common.AddBuildFlags(cleanCmd)
 	rootCmd.AddCommand(cleanCmd)
 }

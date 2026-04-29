@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/go_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -22,7 +23,7 @@ func init() {
 	getCmd.Flags().BoolS("t", "t", false, "consider modules needed to build tests")
 	getCmd.Flags().StringS("tool", "tool", "", "add tool line to for each listed package")
 	getCmd.Flags().BoolS("u", "u", false, "update modules providing dependencies")
-	addBuildFlags(getCmd)
+	common.AddBuildFlags(getCmd)
 	rootCmd.AddCommand(getCmd)
 
 	carapace.Gen(getCmd).FlagCompletion(carapace.ActionMap{
