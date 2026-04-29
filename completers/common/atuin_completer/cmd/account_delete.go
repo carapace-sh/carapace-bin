@@ -15,5 +15,7 @@ func init() {
 	carapace.Gen(account_deleteCmd).Standalone()
 
 	account_deleteCmd.Flags().BoolP("help", "h", false, "Print help")
+	account_deleteCmd.Flags().StringP("password", "p", "", "")
+	account_deleteCmd.Flags().StringP("totp-code", "t", "", "The two-factor authentication code for your account, if any")
 	accountCmd.AddCommand(account_deleteCmd)
 }

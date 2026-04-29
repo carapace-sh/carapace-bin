@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(searchCmd).Standalone()
 
 	searchCmd.Flags().String("after", "", "Only include results after this date")
+	searchCmd.Flags().StringSlice("author", nil, "Filter by author. Supports $all-user (non-agents), $all-agent, or literal names. Can be specified multiple times")
 	searchCmd.Flags().StringP("before", "b", "", "Only include results added before this date")
 	searchCmd.Flags().Bool("cmd-only", false, "Show only the text of the command")
 	searchCmd.Flags().StringP("cwd", "c", "", "Filter search result by directory")
@@ -42,7 +43,12 @@ func init() {
 	rootCmd.AddCommand(searchCmd)
 
 	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{
-		"after":       time.ActionDate(),
+		"after": time.ActionDate(),
+		"author": carapace.ActionValuesDescribed(
+			"$all-user", "non-agents",
+			"$all-agent", "agents",
+			// TODO existing users
+		),
 		"before":      time.ActionDate(),
 		"cwd":         carapace.ActionDirectories(),
 		"exclude-cwd": carapace.ActionDirectories(),
