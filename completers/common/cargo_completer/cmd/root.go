@@ -8,6 +8,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -81,7 +82,16 @@ func init() {
 					}
 
 					carapace.Gen(pluginCmd).PositionalAnyCompletion(
-						bridge.ActionCarapaceBin("cargo-" + matches[1]),
+						carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+							if alias, ok := strings.CutPrefix(matches[3], "alias: "); ok {
+								tokens, err := shlex.Split(alias)
+								if err != nil {
+									return carapace.ActionMessage(err.Error())
+								}
+								return bridge.ActionCarapaceBin(append([]string{"cargo"}, tokens.Words().Strings()...)...)
+							}
+							return bridge.ActionCarapaceBin("cargo-" + matches[1])
+						}),
 					)
 
 					rootCmd.AddCommand(pluginCmd)
