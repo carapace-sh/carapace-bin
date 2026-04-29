@@ -17,5 +17,6 @@ func init() {
 	account_changePasswordCmd.Flags().StringP("current-password", "c", "", "")
 	account_changePasswordCmd.Flags().BoolP("help", "h", false, "Print help")
 	account_changePasswordCmd.Flags().StringP("new-password", "n", "", "")
+	account_changePasswordCmd.Flags().StringP("totp-code", "t", "", "The two-factor authentication code for your account, if any")
 	accountCmd.AddCommand(account_changePasswordCmd)
 }

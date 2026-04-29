@@ -17,6 +17,7 @@ func init() {
 	loginCmd.Flags().BoolP("help", "h", false, "Print help")
 	loginCmd.Flags().StringP("key", "k", "", "The encryption key for your account")
 	loginCmd.Flags().StringP("password", "p", "", "")
+	loginCmd.Flags().StringP("totp-code", "t", "", "The two-factor authentication code for your account, if any")
 	loginCmd.Flags().StringP("username", "u", "", "")
 	rootCmd.AddCommand(loginCmd)
 }
