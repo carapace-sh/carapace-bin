@@ -19,52 +19,52 @@ func knownbridges() map[string]*completer.Completer {
 		"ansible": {
 			Description: "Define and run a single task ‘playbook’ against a set of hosts",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible.html",
-			Variant:     "argcomplete",
+			Variant:     "argcomplete", // requires the `argcomplete` optional dependency
 		},
 		"ansible-config": {
 			Description: "View ansible configuration",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-config.html",
-			Variant:     "argcomplete",
+			Variant:     "argcomplete", // requires the `argcomplete` optional dependency
 		},
 		"ansible-console": {
 			Description: "REPL console for executing Ansible tasks",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-console.html",
-			Variant:     "argcomplete",
+			Variant:     "argcomplete", // requires the `argcomplete` optional dependency
 		},
 		"ansible-creator": {
 			Description: "The fastest way to generate all your ansible content",
 			Url:         "https://docs.ansible.com/projects/creator/",
-			Variant:     "argcomplete",
+			Variant:     "argcomplete", // requires the `argcomplete` optional dependency
 		},
 		"ansible-doc": {
 			Description: "Ansible plugin documentation tool",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-doc.html",
-			Variant:     "argcomplete",
+			Variant:     "argcomplete", // requires the `argcomplete` optional dependency
 		},
 		"ansible-galaxy": {
 			Description: "Perform various Role and Collection related operations",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-galaxy.html",
-			Variant:     "argcomplete",
+			Variant:     "argcomplete", // requires the `argcomplete` optional dependency
 		},
 		"ansible-inventory": {
 			Description: "Show Ansible inventory information",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-inventory.html",
-			Variant:     "argcomplete",
+			Variant:     "argcomplete", // requires the `argcomplete` optional dependency
 		},
 		"ansible-playbook": {
 			Description: "Runs Ansible playbooks, executing the defined tasks on the targeted hosts",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-playbook.html",
-			Variant:     "argcomplete",
+			Variant:     "argcomplete", // requires the `argcomplete` optional dependency
 		},
 		"ansible-pull": {
 			Description: "Pulls playbooks from a VCS repo and executes them on target host",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-pull.html",
-			Variant:     "argcomplete",
+			Variant:     "argcomplete", // requires the `argcomplete` optional dependency
 		},
 		"ansible-vault": {
 			Description: "encryption/decryption utility for Ansible data files",
 			Url:         "https://docs.ansible.com/projects/ansible/latest/cli/ansible-vault.html",
-			Variant:     "argcomplete",
+			Variant:     "argcomplete", // requires the `argcomplete` optional dependency
 		},
 		"apko": {
 			Description: "Build OCI images from APK packages directly without Dockerfile",
