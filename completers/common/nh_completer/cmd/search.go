@@ -14,10 +14,10 @@ var searchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(searchCmd).Standalone()
 
-	searchCmd.Flags().StringP("limit", "l", "30", "Number of search results to display")
 	searchCmd.Flags().StringP("channel", "c", "nixos-unstable", "Name of the channel to query")
-	searchCmd.Flags().BoolP("platforms", "P", false, "Show supported platforms for each package")
 	searchCmd.Flags().BoolP("json", "j", false, "Output results as JSON")
+	searchCmd.Flags().StringP("limit", "l", "30", "Number of search results to display")
+	searchCmd.Flags().BoolP("platforms", "P", false, "Show supported platforms for each package")
 
 	rootCmd.AddCommand(searchCmd)
 }

@@ -16,8 +16,8 @@ func init() {
 	carapace.Gen(os_buildVmCmd).Standalone()
 
 	common.AddOsRebuildFlags(os_buildVmCmd)
-	os_buildVmCmd.Flags().BoolP("with-bootloader", "B", false, "Build with bootloader")
 	os_buildVmCmd.Flags().BoolP("run", "r", false, "Run the VM immediately after building")
+	os_buildVmCmd.Flags().BoolP("with-bootloader", "B", false, "Build with bootloader")
 
 	osCmd.AddCommand(os_buildVmCmd)
 }

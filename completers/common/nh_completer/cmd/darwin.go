@@ -21,8 +21,8 @@ func init() {
 func addDarwinRebuildFlags(cmd *cobra.Command) {
 	common.AddCommonRebuildFlags(cmd)
 	common.AddUpdateFlags(cmd)
-	cmd.Flags().StringP("hostname", "H", "", "Select this hostname from darwinConfigurations")
-	cmd.Flags().BoolP("bypass-root-check", "R", false, "Don't panic if calling nh as root")
-	cmd.Flags().Bool("show-activation-logs", false, "Show activation logs")
 	cmd.Flags().String("build-host", "", "Build the configuration on a different host over SSH")
+	cmd.Flags().BoolP("bypass-root-check", "R", false, "Don't panic if calling nh as root")
+	cmd.Flags().StringP("hostname", "H", "", "Select this hostname from darwinConfigurations")
+	cmd.Flags().Bool("show-activation-logs", false, "Show activation logs")
 }
