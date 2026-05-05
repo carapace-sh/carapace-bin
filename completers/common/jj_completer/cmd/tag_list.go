@@ -29,8 +29,8 @@ func init() {
 	tagCmd.AddCommand(tag_listCmd)
 
 	carapace.Gen(tag_listCmd).FlagCompletion(carapace.ActionMap{
-		"revision":  jj.ActionRevs(jj.RevOption{}.Default()),
-		"revisions": jj.ActionRevs(jj.RevOption{}.Default()),
+		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
 		"sort": carapace.ActionValues(
 			"name",
 			"name-",

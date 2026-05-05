@@ -32,8 +32,8 @@ func init() {
 	rootCmd.AddCommand(interdiffCmd)
 
 	carapace.Gen(interdiffCmd).FlagCompletion(carapace.ActionMap{
-		"from": jj.ActionRevs(jj.RevOption{}.Default()),
-		"to":   jj.ActionRevs(jj.RevOption{}.Default()),
+		"from": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"to":   jj.ActionRevSets(jj.RevOption{}.Default()),
 		"tool": bridge.ActionCarapaceBin().Split(),
 	})
 

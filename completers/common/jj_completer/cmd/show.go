@@ -38,6 +38,6 @@ func init() {
 	})
 
 	carapace.Gen(showCmd).PositionalCompletion(
-		jj.ActionRevs(jj.RevOption{}.Default()),
+		jj.ActionRevSets(jj.RevOption{}.Default()),
 	)
 }

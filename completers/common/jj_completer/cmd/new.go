@@ -25,12 +25,12 @@ func init() {
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(newCmd).FlagCompletion(carapace.ActionMap{
-		"after":         jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),
-		"before":        jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),
-		"insert-after":  jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),
-		"insert-before": jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),
+		"after":         jj.ActionRevSets(jj.RevOption{}.Default()).FilterArgs(),
+		"before":        jj.ActionRevSets(jj.RevOption{}.Default()).FilterArgs(),
+		"insert-after":  jj.ActionRevSets(jj.RevOption{}.Default()).FilterArgs(),
+		"insert-before": jj.ActionRevSets(jj.RevOption{}.Default()).FilterArgs(),
 	})
 	carapace.Gen(newCmd).PositionalAnyCompletion(
-		jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),
+		jj.ActionRevSets(jj.RevOption{}.Default()).FilterArgs(),
 	)
 }

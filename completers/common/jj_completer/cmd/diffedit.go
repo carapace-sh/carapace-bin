@@ -24,8 +24,8 @@ func init() {
 	rootCmd.AddCommand(diffeditCmd)
 
 	carapace.Gen(diffeditCmd).FlagCompletion(carapace.ActionMap{
-		"from":     jj.ActionRevs(jj.RevOption{}.Default()),
-		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
-		"to":       jj.ActionRevs(jj.RevOption{}.Default()),
+		"from":     jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"to":       jj.ActionRevSets(jj.RevOption{}.Default()),
 	})
 }

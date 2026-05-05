@@ -22,8 +22,8 @@ func init() {
 	bookmarkCmd.AddCommand(bookmark_createCmd)
 
 	carapace.Gen(bookmark_createCmd).FlagCompletion(carapace.ActionMap{
-		"revision": jj.ActionRevs(jj.RevOption{}.Default()),
-		"to":       jj.ActionRevs(jj.RevOption{}.Default()),
+		"revision": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"to":       jj.ActionRevSets(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(bookmark_createCmd).PositionalAnyCompletion(

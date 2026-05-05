@@ -39,8 +39,8 @@ func init() {
 	rootCmd.AddCommand(evologCmd)
 
 	carapace.Gen(evologCmd).FlagCompletion(carapace.ActionMap{
-		"revision":  jj.ActionRevs(jj.RevOption{}.Default()),
-		"revisions": jj.ActionRevs(jj.RevOption{}.Default()),
+		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
 		"tool":      bridge.ActionCarapaceBin().Split(),
 	})
 }

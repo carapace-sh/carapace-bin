@@ -4,6 +4,8 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
+	"github.com/pelletier/go-toml"
 )
 
 type RevOption struct {
@@ -26,7 +28,7 @@ func (o RevOption) Default() RevOption {
 
 }
 
-// ActionRevs completes refs (commits, bookmarks, tags)
+// ActionRevs completes revs (commits, bookmarks, tags)
 func ActionRevs(revOption RevOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		batch := carapace.Batch()
@@ -59,7 +61,7 @@ func ActionRevs(revOption RevOption) carapace.Action {
 	})
 }
 
-// ActionRevSets completes revision sets
+// ActionRevSets completes revsets
 func ActionRevSets(opts RevOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO very basic at the moment
@@ -69,12 +71,13 @@ func ActionRevSets(opts RevOption) carapace.Action {
 		c.Value = strings.TrimPrefix(c.Value, prefix)
 		return carapace.Batch(
 			ActionRevs(opts),
-			ActionRevSetFunctions().Suffix("("),
+			ActionRevSetFunctions().Suffix("("), // TODO add parameter handling (consistent with revsetaliases)
+			ActionRevSetAliases().Style(style.Dim),
 		).ToA().Invoke(c).Prefix(prefix).ToA().NoSpace()
 	})
 }
 
-// ActionRevSetFunctions completes refset functions
+// ActionRevSetFunctions completes revset functions
 //
 //	parents (Same as x-)
 //	children (Same as x+)
@@ -118,4 +121,31 @@ func ActionRevSetFunctions() carapace.Action {
 		"at_operation", "Query revisions based on historical state",
 		"fork_point", "Obtain the fork point of multiple commits",
 	).Tag("revset functions")
+}
+
+// ActionRevSetAliases completes revset aliases
+//
+//	HEAD (@-)
+//	trunk() (main@origin)
+func ActionRevSetAliases() carapace.Action {
+	return carapace.ActionExecCommand("jj", "config", "list", "revset-aliases")(func(output []byte) carapace.Action {
+		var aliases struct {
+			RevsetAliases map[string]string `toml:"revset-aliases"`
+		}
+		if err := toml.Unmarshal(output, &aliases); err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		vals := make([]string, 0, len(aliases.RevsetAliases))
+		for name, alias := range aliases.RevsetAliases {
+			// TODO name can contain parameters which need to be handled (conditionally? see ActionRevSets)
+			// 'HEAD' = '@-'
+			// 'user()' = 'user("me@example.org")'
+			// 'user(x)' = 'author(x) | committer(x)'
+			// 'grep:x' = 'description(regex:x)'
+
+			vals = append(vals, name, alias)
+		}
+		return carapace.ActionValuesDescribed(vals...)
+	}).Tag("revset aliases")
 }
