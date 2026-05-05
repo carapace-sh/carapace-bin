@@ -24,6 +24,21 @@ func actionExecJJ(arg ...string) func(f func(output []byte) carapace.Action) car
 	}
 }
 
+func actionExecJJE(arg ...string) func(f func(output []byte, err error) carapace.Action) carapace.Action {
+	return func(f func(output []byte, err error) carapace.Action) carapace.Action {
+		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			args := []string{"--color", "never"}
+			if repository, ok := c.LookupEnv("JJ_REPOSITORY"); ok {
+				args = append(args, "--repository", repository)
+			}
+			args = append(args, arg...)
+			return carapace.ActionExecCommandE("jj", args...)(func(output []byte, err error) carapace.Action {
+				return f(output, err)
+			})
+		})
+	}
+}
+
 func Uid(host string, opts ...string) func(s string, uc uid.Context) (*url.URL, error) {
 	return func(s string, uc uid.Context) (*url.URL, error) {
 		if length := len(opts); length%2 != 0 {

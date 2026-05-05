@@ -1,6 +1,9 @@
 package jj
 
 import (
+	"errors"
+	"fmt"
+	"os/exec"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -21,7 +24,7 @@ func (o RevOption) Default() RevOption {
 	o.LocalBookmarks = true
 	o.RemoteBookmarks = true
 	o.Commits = 100
-	o.HeadCommits = 20
+	o.HeadCommits = 1
 	o.Tags = true
 	o.ChangeIds = true
 	return o
@@ -65,7 +68,7 @@ func ActionRevs(revOption RevOption) carapace.Action {
 func ActionRevSets(opts RevOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO very basic at the moment
-		index := strings.LastIndexAny(c.Value, " .:())|+&")
+		index := strings.LastIndexAny(c.Value, " .:())|&")
 		prefix := c.Value[:index+1]
 
 		c.Value = strings.TrimPrefix(c.Value, prefix)
@@ -73,6 +76,18 @@ func ActionRevSets(opts RevOption) carapace.Action {
 			ActionRevs(opts),
 			ActionRevSetFunctions().Suffix("("), // TODO add parameter handling (consistent with revsetaliases)
 			ActionRevSetAliases().Style(style.Dim),
+			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+				c.Value = strings.TrimSuffix(c.Value, "-")
+				return ActionAncestors(strings.TrimSuffix(c.Value, "-")).
+					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
+					Invoke(c).ToA()
+			}).Unless(!strings.HasSuffix(c.Value, "-")),
+			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+				c.Value = strings.TrimSuffix(c.Value, "+")
+				return ActionDescendants(strings.TrimSuffix(c.Value, "+")).
+					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
+					Invoke(c).ToA()
+			}).Unless(!strings.HasSuffix(c.Value, "+")),
 		).ToA().Invoke(c).Prefix(prefix).ToA().NoSpace()
 	})
 }
@@ -148,4 +163,64 @@ func ActionRevSetAliases() carapace.Action {
 		}
 		return carapace.ActionValuesDescribed(vals...)
 	}).Tag("revset aliases")
+}
+
+// ActionAncestors completes ancestors
+//
+//	\- (message)
+//	-- (message)
+func ActionAncestors(revset string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if c.Value == "" {
+			c.Value = "@"
+		}
+		return actionExecJJ("log", "--no-graph", "--template", `description.first_line() ++ "\n"`, "--revisions", fmt.Sprintf("first_ancestors(%v)", c.Value), "--limit", "20")(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+
+			vals := make([]string, 0)
+			for index, line := range lines[:len(lines)-1] {
+				if index == 0 {
+					continue
+				}
+				vals = append(vals, strings.Repeat("-", index), line)
+			}
+			return carapace.ActionValuesDescribed(vals...).Prefix(c.Value)
+		})
+	}).Tag("ancestors").UidF(Uid("revset"))
+}
+
+// ActionDescendants completes descendants
+//
+//	\+ (message)
+//	++ (message)
+func ActionDescendants(revset string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if c.Value == "" {
+			c.Value = "@"
+		}
+
+		batch := carapace.Batch()
+		for i := range 20 {
+			batch = append(batch, actionExecJJE("show", "--template", `description.first_line()`, c.Value+strings.Repeat("+", i+1))(func(output []byte, err error) carapace.Action {
+				if err != nil {
+					if exitErr, ok := err.(*exec.ExitError); ok {
+						switch {
+						case strings.Contains(string(exitErr.Stderr), "resolved to more than one revision"):
+							return carapace.ActionValuesDescribed(strings.Repeat("+", i+1), "resolves to more than one revision").Prefix(c.Value).Style(style.Carapace.KeywordAmbiguous)
+						case strings.Contains(string(exitErr.Stderr), "didn't resolve to any revisions"):
+							return carapace.ActionValues()
+						default:
+							if firstLine := strings.SplitN(string(exitErr.Stderr), "\n", 2)[0]; strings.TrimSpace(firstLine) != "" {
+								err = errors.New(firstLine)
+							}
+						}
+					}
+					return carapace.ActionMessage(err.Error())
+				}
+				lines := strings.Split(string(output), "\n")
+				return carapace.ActionValuesDescribed(strings.Repeat("+", i+1), lines[0]).Prefix(c.Value)
+			}).Invoke(c).ToA())
+		}
+		return batch.ToA()
+	}).Tag("descendants").UidF(Uid("revset"))
 }
