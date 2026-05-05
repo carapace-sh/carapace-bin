@@ -33,10 +33,10 @@ func init() {
 
 	// TODO complete more flags
 	carapace.Gen(splitCmd).FlagCompletion(carapace.ActionMap{
-		"d":           jj.ActionRevs(jj.RevOption{}.Default()),
-		"destination": jj.ActionRevs(jj.RevOption{}.Default()),
-		"onto":        jj.ActionRevs(jj.RevOption{}.Default()),
-		"revision":    jj.ActionRevs(jj.RevOption{}.Default()),
+		"d":           jj.ActionRevSets(jj.RevOption{}.Default()),
+		"destination": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"onto":        jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision":    jj.ActionRevSets(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(splitCmd).PositionalAnyCompletion(

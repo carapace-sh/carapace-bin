@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(editCmd)
 
 	carapace.Gen(editCmd).PositionalCompletion(
-		jj.ActionRevs(jj.RevOption{}.Default()),
+		jj.ActionRevSets(jj.RevOption{}.Default()),
 	)
 }

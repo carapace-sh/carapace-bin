@@ -38,10 +38,11 @@ func init() {
 
 	operation_diffCmd.MarkFlagsMutuallyExclusive("from", "to")
 
+	// TODO from/to completion might be wrong
 	carapace.Gen(operation_diffCmd).FlagCompletion(carapace.ActionMap{
-		"from":      jj.ActionRevs(jj.RevOption{}.Default()),
+		"from":      jj.ActionRevSets(jj.RevOption{}.Default()),
 		"operation": jj.ActionOperations(100),
-		"to":        jj.ActionRevs(jj.RevOption{}.Default()),
+		"to":        jj.ActionRevSets(jj.RevOption{}.Default()),
 		"tool":      bridge.ActionCarapaceBin().Split(),
 	})
 }

@@ -34,13 +34,13 @@ func init() {
 	)
 
 	carapace.Gen(duplicateCmd).FlagCompletion(carapace.ActionMap{
-		"destination":   jj.ActionRevs(jj.RevOption{}.Default()),
-		"insert-after":  jj.ActionRevs(jj.RevOption{}.Default()),
-		"insert-before": jj.ActionRevs(jj.RevOption{}.Default()),
-		"onto":          jj.ActionRevs(jj.RevOption{}.Default()),
+		"destination":   jj.ActionRevSets(jj.RevOption{}.Default()),
+		"insert-after":  jj.ActionRevSets(jj.RevOption{}.Default()),
+		"insert-before": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"onto":          jj.ActionRevSets(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(duplicateCmd).PositionalAnyCompletion(
-		jj.ActionRevs(jj.RevOption{}.Default()).FilterArgs(),
+		jj.ActionRevSets(jj.RevOption{}.Default()).FilterArgs(),
 	)
 }

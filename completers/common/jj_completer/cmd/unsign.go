@@ -22,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(unsignCmd)
 
 	carapace.Gen(unsignCmd).FlagCompletion(carapace.ActionMap{
-		"revision":  jj.ActionRevs(jj.RevOption{}.Default()),
+		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()),
 		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
 	})
 }

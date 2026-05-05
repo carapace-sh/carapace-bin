@@ -36,15 +36,15 @@ func init() {
 	rootCmd.AddCommand(squashCmd)
 
 	carapace.Gen(squashCmd).FlagCompletion(carapace.ActionMap{
-		"after":         jj.ActionRevs(jj.RevOption{}.Default()),
-		"before":        jj.ActionRevs(jj.RevOption{}.Default()),
-		"from":          jj.ActionRevs(jj.RevOption{}.Default()),
-		"insert-after":  jj.ActionRevs(jj.RevOption{}.Default()),
-		"insert-before": jj.ActionRevs(jj.RevOption{}.Default()),
-		"into":          jj.ActionRevs(jj.RevOption{}.Default()),
-		"onto":          jj.ActionRevs(jj.RevOption{}.Default()),
-		"revision":      jj.ActionRevs(jj.RevOption{}.Default()),
-		"to":            jj.ActionRevs(jj.RevOption{}.Default()),
+		"after":         jj.ActionRevSets(jj.RevOption{}.Default()),
+		"before":        jj.ActionRevSets(jj.RevOption{}.Default()),
+		"from":          jj.ActionRevSets(jj.RevOption{}.Default()),
+		"insert-after":  jj.ActionRevSets(jj.RevOption{}.Default()),
+		"insert-before": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"into":          jj.ActionRevSets(jj.RevOption{}.Default()),
+		"onto":          jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision":      jj.ActionRevSets(jj.RevOption{}.Default()),
+		"to":            jj.ActionRevSets(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(squashCmd).PositionalAnyCompletion(

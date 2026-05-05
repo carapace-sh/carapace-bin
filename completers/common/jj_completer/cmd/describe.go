@@ -22,6 +22,6 @@ func init() {
 	rootCmd.AddCommand(describeCmd)
 
 	carapace.Gen(describeCmd).PositionalCompletion(
-		jj.ActionRevs(jj.RevOption{}.Default()),
+		jj.ActionRevSets(jj.RevOption{}.Default()),
 	)
 }
