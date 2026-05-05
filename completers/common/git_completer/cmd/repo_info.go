@@ -16,7 +16,9 @@ func init() {
 
 	repo_infoCmd.Flags().Bool("all", false, "print all keys/values")
 	repo_infoCmd.Flags().String("format", "", "output format")
+	repo_infoCmd.Flags().Bool("keys", false, "show keys")
 	repo_infoCmd.Flags().Bool("no-all", false, "do not  print all keys/values")
+	repo_infoCmd.Flags().Bool("no-keys", false, "do not show keys")
 	repo_infoCmd.Flags().BoolS("z", "z", false, "synonym for --format=nul")
 	repoCmd.AddCommand(repo_infoCmd)
 
