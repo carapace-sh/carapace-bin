@@ -1,12 +1,13 @@
 package cmd
 
 import (
+	"path/filepath"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	shlex "github.com/carapace-sh/carapace-shlex"
 	"github.com/carapace-sh/carapace/pkg/style"
-	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/carapace-sh/carapace/third_party/golang.org/x/sys/execabs"
 	"github.com/pelletier/go-toml"
 	"github.com/spf13/cobra"
@@ -52,7 +53,16 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
-		return action.ChdirF(traverse.Flag(rootCmd.Flag("repository")))
+		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if f := rootCmd.Flag("repository"); f.Changed {
+				repository, err := filepath.Abs(f.Value.String())
+				if err != nil {
+					return carapace.ActionMessage(err.Error())
+				}
+				c.Setenv("JJ_REPOSITORY", repository) // TODO pseudo environment variable (jj doesn't have one for this)
+			}
+			return action.Invoke(c).ToA()
+		})
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
