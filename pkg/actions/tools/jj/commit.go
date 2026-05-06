@@ -22,7 +22,7 @@ func ActionHeadCommits(limit int) carapace.Action {
 			vals = append(vals, "@"+strings.Repeat("-", index), line)
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Head)
-	}).Tag("head commits")
+	}).Tag("head commits").UidF(Uid("commit"))
 }
 
 // ActionPrevCommits completes head commits
@@ -40,7 +40,7 @@ func ActionPrevCommits(limit int) carapace.Action {
 			vals = append(vals, fmt.Sprintf(format, index), splitted[1])
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Head)
-	}).Tag("previous commits")
+	}).Tag("previous commits").UidF(Uid("commit"))
 }
 
 // ActionNextCommits completes next commits
@@ -55,7 +55,7 @@ func ActionNextCommits(limit int) carapace.Action {
 			vals = append(vals, fmt.Sprintf(format, len(lines)-3-index), splitted[1])
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Head)
-	}).Tag("previous commits")
+	}).Tag("previous commits").UidF(Uid("commit"))
 }
 
 // ActionRecentCommits completes recent commits
@@ -66,5 +66,5 @@ func ActionRecentCommits(limit int) carapace.Action {
 	return actionExecJJ("log", "--no-graph", "--template", `commit_id.short() ++ "\n" ++ description.first_line() ++ "\n"`, "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		return carapace.ActionValuesDescribed(lines[:len(lines)-1]...).Style(styles.Git.Commit)
-	}).Tag("recent commits")
+	}).Tag("recent commits").UidF(Uid("commit"))
 }

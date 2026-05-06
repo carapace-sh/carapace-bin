@@ -128,7 +128,7 @@ func ActionRevSetFunctions() carapace.Action {
 //	HEAD (@-)
 //	trunk() (main@origin)
 func ActionRevSetAliases() carapace.Action {
-	return carapace.ActionExecCommand("jj", "config", "list", "revset-aliases")(func(output []byte) carapace.Action {
+	return actionExecJJ("config", "list", "revset-aliases")(func(output []byte) carapace.Action {
 		var aliases struct {
 			RevsetAliases map[string]string `toml:"revset-aliases"`
 		}

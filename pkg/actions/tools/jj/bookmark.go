@@ -25,7 +25,7 @@ func ActionLocalBookmarks() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
-	}).Tag("local bookmarks")
+	}).Tag("local bookmarks").UidF(Uid("bookmark"))
 }
 
 // ActionRemoteBookmarks completes remote bookmarks
@@ -56,5 +56,5 @@ func ActionRemoteBookmarks(remote string) carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
-	}).Tag("remote bookmarks")
+	}).Tag("remote bookmarks").UidF(Uid("remote-bookmark"))
 }

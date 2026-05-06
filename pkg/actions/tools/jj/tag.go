@@ -23,5 +23,5 @@ func ActionTags() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Tag)
-	}).Tag("tags")
+	}).Tag("tags").UidF(Uid("change"))
 }
