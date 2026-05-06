@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"path/filepath"
-
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
@@ -55,7 +53,7 @@ func init() {
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
 		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if f := rootCmd.Flag("repository"); f.Changed {
-				repository, err := filepath.Abs(f.Value.String())
+				repository, err := c.Abs(f.Value.String())
 				if err != nil {
 					return carapace.ActionMessage(err.Error())
 				}
