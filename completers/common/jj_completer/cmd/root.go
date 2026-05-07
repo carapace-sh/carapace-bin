@@ -35,6 +35,7 @@ func init() {
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.PersistentFlags().Bool("ignore-immutable", false, "Allow rewriting immutable commits")
 	rootCmd.PersistentFlags().Bool("ignore-working-copy", false, "Don't snapshot the working copy, and don't update it")
+	rootCmd.PersistentFlags().Bool("no-integrate-operation", false, "Run the command as usual but don't integrate any operations")
 	rootCmd.PersistentFlags().Bool("no-pager", false, "Disable the pager")
 	rootCmd.PersistentFlags().Bool("quiet", false, "Silence non-primary command output")
 	rootCmd.PersistentFlags().StringP("repository", "R", "", "Path to repository to operate on")

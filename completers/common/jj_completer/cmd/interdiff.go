@@ -8,8 +8,8 @@ import (
 )
 
 var interdiffCmd = &cobra.Command{
-	Use:   "interdiff [OPTIONS] <--from <FROM>|--to <TO>> [PATHS]..",
-	Short: "Compare the changes of two commits",
+	Use:   "interdiff",
+	Short: "Show differences between the diffs of two revisions",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
