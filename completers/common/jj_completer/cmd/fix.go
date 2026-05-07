@@ -15,6 +15,7 @@ var fixCmd = &cobra.Command{
 func init() {
 	carapace.Gen(fixCmd).Standalone()
 
+	fixCmd.Flags().BoolP("all-lines", "a", false, "Format all lines instead of only modified lines")
 	fixCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	fixCmd.Flags().Bool("include-unchanged-files", false, "Fix unchanged files in addition to changed ones. If no paths are specified, all files in the repo will be fixed")
 	fixCmd.Flags().StringSliceP("source", "s", nil, "Fix files in the specified revision(s) and their descendants. If no revisions are specified, this defaults to the `revsets.fix` setting, or `reachable(@, mutable())` if it is not set")
