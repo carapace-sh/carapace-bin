@@ -18,7 +18,8 @@ func init() {
 
 	pushCmd.Flags().BoolP("dry-run", "d", false, "Show what would be pushed without actually pushing")
 	pushCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	pushCmd.Flags().BoolP("run-hooks", "r", false, "Run pre-push hooks")
+	pushCmd.Flags().Bool("no-hooks", false, "Bypass pre-push hooks")
+	pushCmd.Flags().Bool("no-verify", false, "Bypass pre-push hooks")
 	pushCmd.Flags().BoolP("skip-force-push-protection", "s", false, "Skip force push protection checks")
 	pushCmd.Flags().BoolP("with-force", "f", false, "Force push even if it's not fast-forward")
 	rootCmd.AddCommand(pushCmd)

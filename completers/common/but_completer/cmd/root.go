@@ -36,7 +36,7 @@ func init() {
 		&cobra.Group{ID: "alias"},
 	)
 
-	rootCmd.Flags().StringP("current-dir", "C", "", "Run as if gitbutler-cli was started in PATH instead of the current working directory")
+	rootCmd.Flags().StringP("current-dir", "C", "", "Run as if but was started in PATH instead of the current working directory")
 	rootCmd.Flags().StringP("format", "f", "", "Explicitly control how output should be formatted")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.PersistentFlags().BoolP("json", "j", false, "Whether to use JSON output format")
