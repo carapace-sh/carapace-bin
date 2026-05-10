@@ -16,6 +16,9 @@ func actionExecJJ(arg ...string) func(f func(output []byte) carapace.Action) car
 			if repository, ok := c.LookupEnv("JJ_REPOSITORY"); ok {
 				args = append(args, "--repository", repository)
 			}
+			if repository, ok := c.LookupEnv("JJ_OPERATION"); ok {
+				args = append(args, "--at-operation", repository)
+			}
 			args = append(args, arg...)
 			return carapace.ActionExecCommand("jj", args...)(func(output []byte) carapace.Action {
 				return f(output)
@@ -60,6 +63,9 @@ func Uid(host string, opts ...string) func(s string, uc uid.Context) (*url.URL, 
 			Path:   s,
 		}
 		values := uid.Query()
+		if operation, ok := uc.LookupEnv("JJ_OPERATION"); ok {
+			values.Add("JJ_OPERATION", operation)
+		}
 		values.Add("JJ_REPOSITORY", repository)
 		for i := 0; i < len(opts); i += 2 {
 			if opts[i+1] != "" { // implicitly skip empty values

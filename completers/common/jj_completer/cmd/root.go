@@ -42,9 +42,11 @@ func init() {
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Enable verbose logging")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 
+	rootCmd.MarkFlagsMutuallyExclusive("at-op", "at-operation")
 	rootCmd.MarkFlagsMutuallyExclusive("quiet", "verbose")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"at-op":        jj.ActionOperations(100),
 		"at-operation": jj.ActionOperations(100),
 		"color":        carapace.ActionValues("always", "never", "debug", "auto").StyleF(style.ForKeyword),
 		"config-file":  carapace.ActionFiles(),
@@ -53,6 +55,12 @@ func init() {
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {
 		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if f := rootCmd.Flag("at-op"); f.Changed {
+				c.Setenv("JJ_OPERATION", f.Value.String()) // TODO pseudo environment variable (jj doesn't have one for this)
+			}
+			if f := rootCmd.Flag("at-operation"); f.Changed {
+				c.Setenv("JJ_OPERATION", f.Value.String()) // TODO pseudo environment variable (jj doesn't have one for this)
+			}
 			if f := rootCmd.Flag("repository"); f.Changed {
 				repository, err := c.Abs(f.Value.String())
 				if err != nil {
