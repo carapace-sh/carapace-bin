@@ -120,7 +120,7 @@ func ActionRevSetFunctions() carapace.Action {
 		"coalesce", "Get first non-none revset from a list of revsets",
 		"at_operation", "Query revisions based on historical state",
 		"fork_point", "Obtain the fork point of multiple commits",
-	).Tag("revset functions")
+	).Tag("revset functions").Uid("jj", "revset-function")
 }
 
 // ActionRevSetAliases completes revset aliases
