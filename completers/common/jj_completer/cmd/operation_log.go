@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -33,4 +35,9 @@ func init() {
 	operation_logCmd.Flags().String("tool", "", "Generate diff by external command")
 	operation_logCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	operationCmd.AddCommand(operation_logCmd)
+
+	carapace.Gen(operation_logCmd).FlagCompletion(carapace.ActionMap{
+		"show-changes-in": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"tool":            bridge.ActionCarapaceBin().Split(),
+	})
 }
