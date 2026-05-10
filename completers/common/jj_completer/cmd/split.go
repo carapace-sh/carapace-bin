@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -31,12 +32,16 @@ func init() {
 	splitCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
 	rootCmd.AddCommand(splitCmd)
 
-	// TODO complete more flags
 	carapace.Gen(splitCmd).FlagCompletion(carapace.ActionMap{
-		"d":           jj.ActionRevSets(jj.RevOption{}.Default()),
-		"destination": jj.ActionRevSets(jj.RevOption{}.Default()),
-		"onto":        jj.ActionRevSets(jj.RevOption{}.Default()),
-		"revision":    jj.ActionRevSets(jj.RevOption{}.Default()),
+		"after":         jj.ActionRevSets(jj.RevOption{}.Default()),
+		"before":        jj.ActionRevSets(jj.RevOption{}.Default()),
+		"d":             jj.ActionRevSets(jj.RevOption{}.Default()),
+		"destination":   jj.ActionRevSets(jj.RevOption{}.Default()),
+		"insert-after":  jj.ActionRevSets(jj.RevOption{}.Default()),
+		"insert-before": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"onto":          jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision":      jj.ActionRevSets(jj.RevOption{}.Default()),
+		"tool":          bridge.ActionCarapaceBin().Split(),
 	})
 
 	carapace.Gen(splitCmd).PositionalAnyCompletion(
