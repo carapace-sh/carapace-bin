@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -22,5 +23,7 @@ func init() {
 		"what": carapace.ActionValues("repo", "remote-tracking"),
 	})
 
-	// TODO operation completion
+	carapace.Gen(operation_revertCmd).PositionalCompletion(
+		jj.ActionOperations(100),
+	)
 }

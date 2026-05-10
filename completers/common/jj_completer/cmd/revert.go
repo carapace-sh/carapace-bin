@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -29,5 +30,15 @@ func init() {
 	revertCmd.MarkFlagRequired("revisions")
 	rootCmd.AddCommand(revertCmd)
 
-	// TODO completion
+	carapace.Gen(revertCmd).FlagCompletion(carapace.ActionMap{
+		"after":         jj.ActionRevSets(jj.RevOption{}.Default()),
+		"before":        jj.ActionRevSets(jj.RevOption{}.Default()),
+		"d":             jj.ActionRevSets(jj.RevOption{}.Default()),
+		"destination":   jj.ActionRevSets(jj.RevOption{}.Default()),
+		"insert-after":  jj.ActionRevSets(jj.RevOption{}.Default()),
+		"insert-before": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"onto":          jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision":      jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revisions":     jj.ActionRevSets(jj.RevOption{}.Default()),
+	})
 }
