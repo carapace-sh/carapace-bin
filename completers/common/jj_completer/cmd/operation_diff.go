@@ -40,9 +40,10 @@ func init() {
 
 	// TODO from/to completion might be wrong
 	carapace.Gen(operation_diffCmd).FlagCompletion(carapace.ActionMap{
-		"from":      jj.ActionRevSets(jj.RevOption{}.Default()),
-		"operation": jj.ActionOperations(100),
-		"to":        jj.ActionRevSets(jj.RevOption{}.Default()),
-		"tool":      bridge.ActionCarapaceBin().Split(),
+		"from":            jj.ActionRevSets(jj.RevOption{}.Default()),
+		"operation":       jj.ActionOperations(100),
+		"show-changes-in": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"to":              jj.ActionRevSets(jj.RevOption{}.Default()),
+		"tool":            bridge.ActionCarapaceBin().Split(),
 	})
 }

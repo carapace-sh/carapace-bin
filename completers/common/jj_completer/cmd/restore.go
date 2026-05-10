@@ -29,9 +29,10 @@ func init() {
 	rootCmd.AddCommand(restoreCmd)
 
 	carapace.Gen(restoreCmd).FlagCompletion(carapace.ActionMap{
-		"from": jj.ActionRevSets(jj.RevOption{}.Default()),
-		"into": jj.ActionRevSets(jj.RevOption{}.Default()),
-		"to":   jj.ActionRevSets(jj.RevOption{}.Default()),
+		"changes-in": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"from":       jj.ActionRevSets(jj.RevOption{}.Default()),
+		"into":       jj.ActionRevSets(jj.RevOption{}.Default()),
+		"to":         jj.ActionRevSets(jj.RevOption{}.Default()),
 		"tool": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
