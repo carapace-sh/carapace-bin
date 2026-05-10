@@ -162,7 +162,7 @@ func ActionRevSetAliases() carapace.Action {
 			vals = append(vals, name, alias)
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	}).Tag("revset aliases")
+	}).Tag("revset aliases").UidF(Uid("revset")) // TODO revset-alias (parameter will be an issue)
 }
 
 // ActionAncestors completes ancestors
