@@ -1,10 +1,12 @@
 package git
 
 import (
+	"net/url"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace/pkg/uid"
 )
 
 // ActionCurrentBranch completes the current branch
@@ -58,7 +60,7 @@ func ActionRemoteBranches(remote string) carapace.Action {
 //	master (last commit msg)
 //	another (last commit msg)
 func ActionRemoteBranchNames(remote string) carapace.Action {
-	return carapace.ActionExecCommand("git", "branch", "--remote", "--format", "%(refname:short)\n%(subject)")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("git", "branch", "--remotes", "--format", "%(refname:short)\t%(subject)")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
 		prefix := ""
@@ -66,14 +68,17 @@ func ActionRemoteBranchNames(remote string) carapace.Action {
 			prefix = remote + "/"
 		}
 
-		vals := make([]string, 0)
-		for index, line := range lines[:len(lines)-1] {
-			if index%2 == 0 && strings.HasPrefix(line, prefix) {
-				if _, branch, ok := strings.Cut(line, "/"); ok {
-					vals = append(vals, branch, lines[index+1])
+		batch := carapace.Batch()
+		for _, line := range lines[:len(lines)-1] {
+			if strings.HasPrefix(line, prefix) {
+				ref, subject, _ := strings.Cut(line, "\t")
+				if _, branch, ok := strings.Cut(ref, "/"); ok {
+					batch = append(batch, carapace.ActionValuesDescribed(branch, subject).UidF(func(s string, uc uid.Context) (*url.URL, error) {
+						return Uid("remote-branch")(ref, uc)
+					}))
 				}
 			}
 		}
-		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
+		return batch.ToA().Style(styles.Git.Branch)
 	}).Tag("remote branch names")
 }
