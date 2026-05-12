@@ -35,15 +35,15 @@ func init() {
 	rootCmd.AddCommand(rebaseCmd)
 
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
-		"after":         jj.ActionRevSets(jj.RevOption{}.Default()),
-		"before":        jj.ActionRevSets(jj.RevOption{}.Default()),
-		"branch":        jj.ActionRevSets(jj.RevOption{LocalBookmarks: true, RemoteBookmarks: true, Tags: true}),
-		"destination":   jj.ActionRevSets(jj.RevOption{}.Default()),
-		"insert-after":  jj.ActionRevSets(jj.RevOption{}.Default()),
-		"insert-before": jj.ActionRevSets(jj.RevOption{}.Default()),
-		"onto":          jj.ActionRevSets(jj.RevOption{}.Default()),
-		"revision":      jj.ActionRevSets(jj.RevOption{}.Default()),
-		"revisions":     jj.ActionRevSets(jj.RevOption{}.Default()),
-		"source":        jj.ActionRevSets(jj.RevOption{}.Default()),
+		"after":         jj.ActionRevsets(jj.RevOption{}.Default()),
+		"before":        jj.ActionRevsets(jj.RevOption{}.Default()),
+		"branch":        jj.ActionRevsets(jj.RevOption{LocalBookmarks: true, RemoteBookmarks: true, Tags: true}),
+		"destination":   jj.ActionRevsets(jj.RevOption{}.Default()),
+		"insert-after":  jj.ActionRevsets(jj.RevOption{}.Default()),
+		"insert-before": jj.ActionRevsets(jj.RevOption{}.Default()),
+		"onto":          jj.ActionRevsets(jj.RevOption{}.Default()),
+		"revision":      jj.ActionRevsets(jj.RevOption{}.Default()),
+		"revisions":     jj.ActionRevsets(jj.RevOption{}.Default()),
+		"source":        jj.ActionRevsets(jj.RevOption{}.Default()),
 	})
 }

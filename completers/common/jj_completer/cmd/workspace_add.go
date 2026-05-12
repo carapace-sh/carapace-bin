@@ -26,8 +26,8 @@ func init() {
 
 	carapace.Gen(workspace_addCmd).FlagCompletion(carapace.ActionMap{
 		"name":      jj.ActionWorkspaces(),
-		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()),
-		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()),
+		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()),
 		"sparse-patterns": carapace.ActionValuesDescribed(
 			"copy", "Copy all sparse patterns from the current workspace",
 			"full", "Include all files in the new workspace",

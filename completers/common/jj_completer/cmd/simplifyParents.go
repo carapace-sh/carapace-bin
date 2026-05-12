@@ -23,7 +23,7 @@ func init() {
 	rootCmd.AddCommand(simplifyParentsCmd)
 
 	carapace.Gen(simplifyParentsCmd).FlagCompletion(carapace.ActionMap{
-		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()).FilterArgs(),
-		"source":    jj.ActionRevSets(jj.RevOption{}.Default()).FilterArgs(),
+		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
+		"source":    jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
 	})
 }

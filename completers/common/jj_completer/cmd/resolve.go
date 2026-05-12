@@ -23,7 +23,7 @@ func init() {
 	rootCmd.AddCommand(resolveCmd)
 
 	carapace.Gen(resolveCmd).FlagCompletion(carapace.ActionMap{
-		"revision": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision": jj.ActionRevsets(jj.RevOption{}.Default()),
 		"tool":     bridge.ActionCarapaceBin().Split(),
 	})
 

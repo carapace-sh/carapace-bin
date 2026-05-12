@@ -37,7 +37,7 @@ func init() {
 	operationCmd.AddCommand(operation_logCmd)
 
 	carapace.Gen(operation_logCmd).FlagCompletion(carapace.ActionMap{
-		"show-changes-in": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"show-changes-in": jj.ActionRevsets(jj.RevOption{}.Default()),
 		"tool":            bridge.ActionCarapaceBin().Split(),
 	})
 }

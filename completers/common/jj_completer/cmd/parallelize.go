@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(parallelizeCmd)
 
 	carapace.Gen(parallelizeCmd).PositionalAnyCompletion(
-		jj.ActionRevSets(jj.RevOption{}.Default()),
+		jj.ActionRevsets(jj.RevOption{}.Default()),
 	)
 }

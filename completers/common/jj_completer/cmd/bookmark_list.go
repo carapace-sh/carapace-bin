@@ -34,8 +34,8 @@ func init() {
 
 	carapace.Gen(bookmark_listCmd).FlagCompletion(carapace.ActionMap{
 		"remote":    jj.ActionRemotes(),
-		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()).UniqueList(","),
-		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()).UniqueList(","),
+		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()).UniqueList(","),
+		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()).UniqueList(","),
 		"sort": carapace.ActionValues(
 			"name",
 			"name-",

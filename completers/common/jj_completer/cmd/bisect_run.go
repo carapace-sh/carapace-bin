@@ -24,7 +24,7 @@ func init() {
 	bisectCmd.AddCommand(bisect_runCmd)
 
 	carapace.Gen(bisect_runCmd).FlagCompletion(carapace.ActionMap{
-		"range": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"range": jj.ActionRevsets(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(bisect_runCmd).PositionalAnyCompletion(
