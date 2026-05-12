@@ -65,7 +65,10 @@ func init() {
 			if strings.HasPrefix(c.Value, ".") {
 				return git.ActionRefDiffs()
 			}
-			return git.ActionRefs(git.RefOption{}.Default())
+			return carapace.Batch(
+				git.ActionRefs(git.RefOption{}.Default()),
+				git.ActionRefDiffs(),
+			).ToA()
 		}),
 	)
 
