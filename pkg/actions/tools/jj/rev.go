@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os/exec"
+	"strconv"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -136,6 +137,41 @@ func ActionRevSetFunctions() carapace.Action {
 		"at_operation", "Query revisions based on historical state",
 		"fork_point", "Obtain the fork point of multiple commits",
 	).Tag("revset functions").Uid("jj", "revset-function")
+}
+
+// ActionRevsetOperators completes revset operators
+//
+//	\- (x-`: Parents of x, can be empty)
+//	+ (x+`: Children of x, can be empty)
+func ActionRevsetOperators(attached bool) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		batch := carapace.Batch()
+
+		switch {
+		case attached:
+			batch = append(batch, carapace.ActionValuesDescribed(
+				"-", "`x-`: Parents of x, can be empty",
+				"+", "`x+`: Children of x, can be empty",
+				":", "`p:x`: String/date pattern or pattern alias named p",
+				"::", "`x::`: Descendants of x, including the commits in x itself",
+				"..", "`x..`: Revisions that are not ancestors of x",
+			))
+		default:
+			batch = append(batch, carapace.ActionValuesDescribed(
+				"::", "`::x`: Ancestors of x, including the commits in x itself",
+				"..", "`..x`: Ancestors of x, including the commits in x itself",
+				"~", "`~x`: Revisions that are not in x",
+			))
+		}
+
+		batch = append(batch, carapace.ActionValuesDescribed(
+			"&", "`x & y`: Revisions that are in both x and y",
+			"~", "`x ~ y`: Revisions that are in x but not in y",
+			"|", "`x | y`: Revisions that are in either x or y (or both)",
+		))
+
+		return batch.ToA().Uid("jj", "revset-operator", "attached", strconv.FormatBool(attached))
+	}).Tag("revset operators")
 }
 
 // ActionRevSetAliases completes revset aliases
