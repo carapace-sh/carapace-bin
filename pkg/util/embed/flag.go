@@ -32,16 +32,8 @@ func subcommandsAsFlags(cmd *cobra.Command, shorthandOnly bool, subcommands ...*
 			}
 		}
 
-		switch {
-		case strings.HasPrefix(args[0], "--"):
-			flags.Parse(args[:1])
-		case strings.HasPrefix(args[0], "-") && len(args[0]) > 1:
-			switch {
-			case nonposix:
-				flags.Parse([]string{args[0]})
-			default:
-				flags.Parse([]string{args[0][:2]})
-			}
+		if arg, ok := findSubcommandFlagArg(args, cmd.Flags(), flags, nonposix); ok {
+			flags.Parse([]string{arg})
 		}
 
 		var subcommand *cobra.Command
@@ -64,6 +56,45 @@ func subcommandsAsFlags(cmd *cobra.Command, shorthandOnly bool, subcommands ...*
 			cmd.Flags().AddFlagSet(flags)
 		}
 	})
+}
+
+func findSubcommandFlagArg(args []string, rootFlags, subcommandFlags *pflag.FlagSet, nonposix bool) (string, bool) {
+	for index := 0; index < len(args); index++ {
+		arg := args[index]
+
+		switch {
+		case strings.HasPrefix(arg, "--"):
+			name := strings.TrimPrefix(arg, "--")
+			if before, _, ok := strings.Cut(name, "="); ok {
+				name = before
+			}
+
+			if subcommandFlags.Lookup(name) != nil {
+				return "--" + name, true
+			}
+			if flag := rootFlags.Lookup(name); flag != nil && !strings.Contains(arg, "=") && flag.Value.Type() != "bool" {
+				index++
+			}
+
+		case strings.HasPrefix(arg, "-") && len(arg) > 1:
+			shorthand := arg[1:]
+			if !nonposix {
+				shorthand = arg[1:2]
+			}
+
+			if subcommandFlags.ShorthandLookup(shorthand) != nil {
+				return "-" + shorthand, true
+			}
+			if flag := rootFlags.ShorthandLookup(arg[1:2]); flag != nil && len(arg) == 2 && flag.Value.Type() != "bool" {
+				index++
+			}
+
+		default:
+			return "", false
+		}
+	}
+
+	return "", false
 }
 
 // SubcommandsAsFlags embeds subcommands as flags (e.g. `pacman -Syu` where `S` is actually a subcommand).
