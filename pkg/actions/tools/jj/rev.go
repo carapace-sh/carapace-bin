@@ -65,8 +65,8 @@ func ActionRevs(revOption RevOption) carapace.Action {
 	})
 }
 
-// ActionRevSets completes revsets
-func ActionRevSets(opts RevOption) carapace.Action {
+// ActionRevsets completes revsets
+func ActionRevsets(opts RevOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO very basic at the moment
 		index := strings.LastIndexAny(c.Value, " .:())|&")
@@ -75,8 +75,8 @@ func ActionRevSets(opts RevOption) carapace.Action {
 		c.Value = strings.TrimPrefix(c.Value, prefix)
 		return carapace.Batch(
 			ActionRevs(opts),
-			ActionRevSetFunctions().Suffix("("), // TODO add parameter handling (consistent with revsetaliases)
-			ActionRevSetAliases().Style(style.Dim),
+			ActionRevsetFunctions().Suffix("("), // TODO add parameter handling (consistent with revsetaliases)
+			ActionRevsetAliases().Style(style.Dim),
 			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 				c.Value = strings.TrimSuffix(c.Value, "-")
 				return ActionAncestors(strings.TrimSuffix(c.Value, "-")).
@@ -93,11 +93,11 @@ func ActionRevSets(opts RevOption) carapace.Action {
 	})
 }
 
-// ActionRevSetFunctions completes revset functions
+// ActionRevsetFunctions completes revset functions
 //
 //	parents (Same as x-)
 //	children (Same as x+)
-func ActionRevSetFunctions() carapace.Action {
+func ActionRevsetFunctions() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"parents", "Same as x-",
 		"children", "Same as x+",
@@ -174,11 +174,11 @@ func ActionRevsetOperators(attached bool) carapace.Action {
 	}).Tag("revset operators")
 }
 
-// ActionRevSetAliases completes revset aliases
+// ActionRevsetAliases completes revset aliases
 //
 //	HEAD (@-)
 //	trunk() (main@origin)
-func ActionRevSetAliases() carapace.Action {
+func ActionRevsetAliases() carapace.Action {
 	return actionExecJJ("config", "list", "revset-aliases")(func(output []byte) carapace.Action {
 		var aliases struct {
 			RevsetAliases map[string]string `toml:"revset-aliases"`

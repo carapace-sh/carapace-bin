@@ -24,9 +24,9 @@ func init() {
 	absorbCmd.MarkFlagsMutuallyExclusive("into", "to")
 
 	carapace.Gen(absorbCmd).FlagCompletion(carapace.ActionMap{
-		"from": jj.ActionRevSets(jj.RevOption{}.Default()),
-		"into": jj.ActionRevSets(jj.RevOption{}.Default()),
-		"to":   jj.ActionRevSets(jj.RevOption{}.Default()),
+		"from": jj.ActionRevsets(jj.RevOption{}.Default()),
+		"into": jj.ActionRevsets(jj.RevOption{}.Default()),
+		"to":   jj.ActionRevsets(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(absorbCmd).PositionalAnyCompletion(

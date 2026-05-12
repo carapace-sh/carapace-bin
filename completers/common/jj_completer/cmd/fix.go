@@ -22,6 +22,6 @@ func init() {
 	rootCmd.AddCommand(fixCmd)
 
 	carapace.Gen(fixCmd).FlagCompletion(carapace.ActionMap{
-		"source": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"source": jj.ActionRevsets(jj.RevOption{}.Default()),
 	})
 }

@@ -23,7 +23,7 @@ func init() {
 	tagCmd.AddCommand(tag_setCmd)
 
 	carapace.Gen(tag_setCmd).FlagCompletion(carapace.ActionMap{
-		"revision": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision": jj.ActionRevsets(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(tag_setCmd).PositionalAnyCompletion(

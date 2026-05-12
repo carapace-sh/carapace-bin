@@ -24,7 +24,7 @@ func init() {
 
 	carapace.Gen(signCmd).FlagCompletion(carapace.ActionMap{
 		"key":       jj.ActionSigningKeys(),
-		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()),
-		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()),
+		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()),
 	})
 }

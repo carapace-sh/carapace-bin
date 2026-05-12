@@ -21,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(abandonCmd)
 
 	carapace.Gen(abandonCmd).PositionalAnyCompletion(
-		jj.ActionRevSets(jj.RevOption{}.Default()).FilterArgs(),
+		jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
 	)
 }

@@ -21,7 +21,7 @@ func init() {
 	fileCmd.AddCommand(file_listCmd)
 
 	carapace.Gen(file_listCmd).FlagCompletion(carapace.ActionMap{
-		"revision": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision": jj.ActionRevsets(jj.RevOption{}.Default()),
 	})
 
 	carapace.Gen(file_listCmd).PositionalAnyCompletion(

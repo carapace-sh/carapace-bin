@@ -26,6 +26,6 @@ func init() {
 	rootCmd.AddCommand(metaeditCmd)
 
 	carapace.Gen(metaeditCmd).PositionalAnyCompletion(
-		jj.ActionRevSets(jj.RevOption{}.Default()),
+		jj.ActionRevsets(jj.RevOption{}.Default()),
 	)
 }

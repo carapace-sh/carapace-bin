@@ -38,10 +38,10 @@ func init() {
 	diffCmd.MarkFlagsMutuallyExclusive("name-only", "summary")
 
 	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
-		"from":      jj.ActionRevSets(jj.RevOption{}.Default()),
-		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()),
-		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
-		"to":        jj.ActionRevSets(jj.RevOption{}.Default()),
+		"from":      jj.ActionRevsets(jj.RevOption{}.Default()),
+		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()),
+		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()),
+		"to":        jj.ActionRevsets(jj.RevOption{}.Default()),
 		"tool":      bridge.ActionCarapaceBin().Split(),
 	})
 

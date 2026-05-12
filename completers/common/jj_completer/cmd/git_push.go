@@ -39,7 +39,7 @@ func init() {
 		"branch":    jj.ActionLocalBookmarks(),
 		"change":    carapace.ActionValues(), // TODO
 		"remote":    jj.ActionRemotes(),
-		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()),
-		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()),
+		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()),
+		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()),
 	})
 }

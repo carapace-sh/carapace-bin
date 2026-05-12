@@ -47,7 +47,7 @@ func init() {
 
 	// TODO complete gerrit flags
 	carapace.Gen(gerrit_uploadCmd).FlagCompletion(carapace.ActionMap{
-		"revision":  jj.ActionRevSets(jj.RevOption{}.Default()).UniqueList(","),
-		"revisions": jj.ActionRevSets(jj.RevOption{}.Default()).UniqueList(","),
+		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()).UniqueList(","),
+		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()).UniqueList(","),
 	})
 }
