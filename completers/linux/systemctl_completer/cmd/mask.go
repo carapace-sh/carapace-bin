@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(maskCmd)
 
 	carapace.Gen(maskCmd).PositionalAnyCompletion(
-		action.ActionUnits(maskCmd).FilterArgs(),
+		action.ActionUnitFiles(maskCmd).FilterArgs(),
 	)
 }

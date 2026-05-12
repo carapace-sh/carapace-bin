@@ -37,6 +37,21 @@ func ActionUnits(cmd *cobra.Command) carapace.Action {
 	})
 }
 
+func ActionUnitFiles(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		opts := systemctl.UnitFileOpts{}.Default()
+		opts.User = userFlag(cmd)
+		return systemctl.ActionUnitFiles(opts)
+	})
+}
+
+func ActionUnitsAndFiles(cmd *cobra.Command) carapace.Action {
+	return carapace.Batch(
+		ActionUnits(cmd),
+		ActionUnitFiles(cmd),
+	).ToA()
+}
+
 func ActionEnvironmentVariables(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return systemctl.ActionEnvironmentVariables(userFlag(cmd))

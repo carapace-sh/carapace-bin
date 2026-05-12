@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(isEnabledCmd)
 
 	carapace.Gen(isEnabledCmd).PositionalAnyCompletion(
-		action.ActionUnits(isEnabledCmd).FilterArgs(),
+		action.ActionUnitFiles(isEnabledCmd).FilterArgs(),
 	)
 }
