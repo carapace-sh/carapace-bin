@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/linux/paru_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/paru"
 	"github.com/carapace-sh/carapace-bin/pkg/util/embed"
 	"github.com/spf13/cobra"
@@ -9,10 +10,11 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "paru",
-	Short: "Feature packed AUR helper",
-	Long:  "https://github.com/Morganamilo/paru",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:                "paru",
+	Short:              "Feature packed AUR helper",
+	Long:               "https://github.com/Morganamilo/paru",
+	FParseErrWhitelist: cobra.FParseErrWhitelist{UnknownFlags: true},
+	Run:                func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
@@ -26,6 +28,7 @@ func init() {
 	rootCmd.Flags().Bool("gendb", false, "Generates development package DB used for updating")
 	rootCmd.Flags().BoolP("help", "h", false, "show help")
 	rootCmd.Flags().BoolP("version", "V", false, "show version")
+	common.AddNewFlags(rootCmd)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
