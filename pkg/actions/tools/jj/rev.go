@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	jjlex "github.com/carapace-sh/carapace-jjlex"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/pelletier/go-toml"
 )
@@ -66,30 +67,52 @@ func ActionRevs(revOption RevOption) carapace.Action {
 }
 
 // ActionRevsets completes revsets
-func ActionRevsets(opts RevOption) carapace.Action {
+func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		// TODO very basic at the moment
-		index := strings.LastIndexAny(c.Value, " .:())|&")
-		prefix := c.Value[:index+1]
+		batch := carapace.Batch()
 
-		c.Value = strings.TrimPrefix(c.Value, prefix)
-		return carapace.Batch(
-			ActionRevs(opts),
-			ActionRevsetFunctions().Suffix("("), // TODO add parameter handling (consistent with revsetaliases)
-			ActionRevsetAliases().Style(style.Dim),
-			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				c.Value = strings.TrimSuffix(c.Value, "-")
-				return ActionAncestors(strings.TrimSuffix(c.Value, "-")).
-					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
-					Invoke(c).ToA()
-			}).Unless(!strings.HasSuffix(c.Value, "-")),
-			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				c.Value = strings.TrimSuffix(c.Value, "+")
-				return ActionDescendants(strings.TrimSuffix(c.Value, "+")).
-					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
-					Invoke(c).ToA()
-			}).Unless(!strings.HasSuffix(c.Value, "+")),
-		).ToA().Invoke(c).Prefix(prefix).ToA().NoSpace()
+		ctx := jjlex.Split(c.Value)
+		switch ctx.Type {
+		case jjlex.CompletionTypeOperator:
+			attached := strings.HasSuffix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix), " ")
+			batch = append(batch, ActionRevsetOperators(attached))
+		case jjlex.CompletionTypeFunctionArg:
+			// TODO complete corresponding type (e.g. lexer should return revision)
+			batch = append(batch,
+				ActionRevs(RevOption{}.Default()),
+				ActionRevsetFunctions().Suffix("("),
+			)
+		case jjlex.CompletionTypeRevision:
+			fullPrefix := strings.TrimSuffix(ctx.FullInput, ctx.Prefix)
+			attached := strings.HasSuffix(fullPrefix, " ")
+			batch = append(batch,
+				ActionRevs(RevOption{}.Default()),
+				ActionRevsetFunctions().Suffix("("),
+				ActionRevsetAliases().Style(style.Dim),
+			)
+			switch {
+			case strings.HasSuffix(fullPrefix, ".."), strings.HasSuffix(fullPrefix, "::"):
+				batch = append(batch, ActionRevsetOperators(attached).Filter("..", "::").Prefix(ctx.Prefix)) // `revA....revB` is not allowed
+			default:
+				batch = append(batch,
+					ActionRevsetOperators(attached).Prefix(ctx.Prefix),
+					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+						c.Value = strings.TrimSuffix(c.Value, "-")
+						return ActionAncestors(strings.TrimSuffix(c.Value, "-")).
+							Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
+							Invoke(c).ToA()
+					}).Unless(!strings.HasSuffix(c.Value, "-")),
+					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+						c.Value = strings.TrimSuffix(c.Value, "+")
+						return ActionDescendants(strings.TrimSuffix(c.Value, "+")).
+							Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
+							Invoke(c).ToA()
+					}).Unless(!strings.HasSuffix(c.Value, "+")),
+				)
+			}
+		}
+		c.Value = ctx.Prefix
+		return batch.ToA().Invoke(c).ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix)).NoSpace()
 	})
 }
 

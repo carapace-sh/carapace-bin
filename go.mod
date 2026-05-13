@@ -1,10 +1,11 @@
 module github.com/carapace-sh/carapace-bin
 
-go 1.25.0
+go 1.26.2
 
 require (
 	github.com/carapace-sh/carapace v1.11.4
 	github.com/carapace-sh/carapace-bridge v1.5.3
+	github.com/carapace-sh/carapace-jjlex v0.0.0-20260513181528-5f28a9759df7
 	github.com/carapace-sh/carapace-selfupdate v0.0.10
 	github.com/carapace-sh/carapace-shlex v1.1.1
 	github.com/carapace-sh/carapace-spec v1.5.1
