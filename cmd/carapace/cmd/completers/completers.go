@@ -264,6 +264,28 @@ func AddSpecs(m completer.CompleterMap, parse bool) error {
 		return err
 	}
 	m.Merge(specs)
+
+	for _, specPath := range filepath.SplitList(os.Getenv("CARAPACE_SPEC_PATH")) {
+		if specPath == "" {
+			continue
+		}
+
+		info, err := os.Stat(specPath)
+		switch {
+		case os.IsNotExist(err):
+			continue
+		case err != nil:
+			return err
+		case info.IsDir():
+			specs, err = completer.ReadSpecs(specPath, "user", parse)
+		default:
+			specs, err = completer.ReadSpec(specPath, "user", parse)
+		}
+		if err != nil {
+			return err
+		}
+		m.Merge(specs)
+	}
 	return nil
 }
 
@@ -306,14 +328,35 @@ func specDescription(name string) (string, error) {
 		return "", err
 	}
 
-	content, err := os.ReadFile(fmt.Sprintf("%v/carapace/specs/%v.yaml", confDir, name))
+	paths := []string{filepath.Join(confDir, "carapace", "specs", name+".yaml")}
+	for _, specPath := range filepath.SplitList(os.Getenv("CARAPACE_SPEC_PATH")) {
+		if specPath == "" {
+			continue
+		}
+		if info, err := os.Stat(specPath); err == nil && info.IsDir() {
+			paths = append(paths, filepath.Join(specPath, name+".yaml"))
+		} else {
+			paths = append(paths, specPath)
+		}
+	}
+
+	var content []byte
+	for _, path := range paths {
+		content, err = os.ReadFile(path)
+		if err == nil {
+			break
+		}
+		if !os.IsNotExist(err) {
+			return "", err
+		}
+	}
 	if err != nil {
 		return "", err
 	}
+
 	var s struct {
 		Description string
 	}
-
 	err = yaml.Unmarshal(content, &s)
 	if err != nil {
 		return "", err

@@ -121,6 +121,60 @@ func ReadSpecs(dir, group string, parse bool) (CompleterMap, error) {
 	return m, nil
 }
 
+func ReadSpec(path, group string, parse bool) (CompleterMap, error) {
+	var err error
+	if path, err = filepath.Abs(path); err != nil {
+		return nil, err
+	}
+
+	m := make(CompleterMap)
+	if filepath.Ext(path) != ".yaml" {
+		return m, nil
+	}
+
+	_spec := struct {
+		Name        string
+		Description string
+	}{
+		Name: strings.TrimSuffix(filepath.Base(path), ".yaml"),
+	}
+
+	if !parse {
+		m[_spec.Name] = append(m[_spec.Name], Completer{
+			Name:    _spec.Name,
+			Group:   group,
+			Spec:    path,
+			Execute: complete(_spec.Name, spec.ActionSpec(path)),
+		})
+		return m, nil
+	}
+
+	content, err := os.ReadFile(path)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return m, nil
+		}
+		return nil, err
+	}
+
+	if err := yaml.Unmarshal(content, &_spec); err != nil {
+		return nil, err
+	}
+
+	if filepath.Base(path) != _spec.Name+".yaml" {
+		return nil, fmt.Errorf("spec filename %#v does not match name %#v", filepath.Base(path), _spec.Name)
+	}
+
+	m[_spec.Name] = append(m[_spec.Name], Completer{
+		Name:        _spec.Name,
+		Description: _spec.Description,
+		Group:       group,
+		Spec:        path,
+		Execute:     complete(_spec.Name, spec.ActionSpec(path)),
+	})
+	return m, nil
+}
+
 // TODO duplicated from cmd/carapace/cmd/completer/
 func complete(name string, action carapace.Action) func() error {
 	return func() error {

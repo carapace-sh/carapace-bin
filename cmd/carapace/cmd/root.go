@@ -52,6 +52,7 @@ var rootCmd = &cobra.Command{
   Some completions are cached at [%v/carapace].
   Config is written to [%v/carapace].
   Specs are loaded from [%v/carapace/specs].
+  Additional specs can be loaded from CARAPACE_SPEC_PATH.
   `, suppressErr(xdg.UserCacheDir), suppressErr(xdg.UserConfigDir), suppressErr(xdg.UserConfigDir)),
 	Args:               cobra.MinimumNArgs(1),
 	DisableFlagParsing: true,
