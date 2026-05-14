@@ -5,7 +5,7 @@ go 1.26.2
 require (
 	github.com/carapace-sh/carapace v1.11.4
 	github.com/carapace-sh/carapace-bridge v1.5.3
-	github.com/carapace-sh/carapace-jjlex v0.0.0-20260513181528-5f28a9759df7
+	github.com/carapace-sh/carapace-jjlex v0.0.1
 	github.com/carapace-sh/carapace-selfupdate v0.0.10
 	github.com/carapace-sh/carapace-shlex v1.1.1
 	github.com/carapace-sh/carapace-spec v1.5.1
@@ -25,5 +25,3 @@ require (
 replace github.com/spf13/pflag => github.com/carapace-sh/carapace-pflag v1.1.0
 
 replace github.com/kevinburke/ssh_config => github.com/carapace-sh/ssh_config v1.4.1-0.20260319075335-4f04016b8b4b
-
-replace github.com/carapace-sh/carapace-jjlex => ../carapace-jjlex/

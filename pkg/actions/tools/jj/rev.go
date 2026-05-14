@@ -67,7 +67,7 @@ func ActionRevs(revOption RevOption) carapace.Action {
 }
 
 // ActionRevsets completes revsets
-func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
+func ActionRevsets(opts RevOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		batch := carapace.Batch()       // default prefix
 		revsetBatch := carapace.Batch() // attachedRevset prefix
@@ -89,7 +89,7 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 			fullPrefix := strings.TrimSuffix(ctx.FullInput, ctx.Prefix)
 			attached := strings.HasSuffix(fullPrefix, " ")
 			batch = append(batch,
-				ActionRevs(RevOption{}.Default()),
+				ActionRevs(opts),
 				ActionRevsetFunctions().Suffix("("),
 				ActionRevsetAliases().Style(style.Dim),
 			)
