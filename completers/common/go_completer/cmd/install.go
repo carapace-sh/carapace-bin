@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/go_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
+	"github.com/carapace-sh/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -28,6 +29,11 @@ func init() {
 	})
 
 	carapace.Gen(installCmd).PositionalCompletion(
-		golang.ActionModuleSearch(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if util.HasPathPrefix(c.Value) {
+				return carapace.ActionDirectories()
+			}
+			return golang.ActionModuleSearch()
+		}),
 	)
 }

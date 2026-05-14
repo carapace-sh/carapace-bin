@@ -1,10 +1,9 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/go_completer/cmd/common"
+	"github.com/carapace-sh/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -24,7 +23,7 @@ func init() {
 
 	carapace.Gen(runCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if strings.HasPrefix(c.Value, ".") {
+			if util.HasPathPrefix(c.Value) {
 				return carapace.ActionDirectories()
 			}
 			return carapace.ActionValues()
