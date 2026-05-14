@@ -104,18 +104,12 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 			default:
 				batch = append(batch,
 					ActionRevsetOperators(attached).Prefix(ctx.Prefix),
-					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						c.Value = strings.TrimSuffix(ctx.AttachedRevset, "-")
-						return ActionAncestors(strings.TrimSuffix(ctx.AttachedRevset, "-")).
-							Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
-							Invoke(c).ToA()
-					}).Unless(!strings.HasSuffix(c.Value, "-")),
-					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						c.Value = strings.TrimSuffix(ctx.AttachedRevset, "+")
-						return ActionDescendants(strings.TrimSuffix(ctx.AttachedRevset, "+")).
-							Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
-							Invoke(c).ToA()
-					}).Unless(!strings.HasSuffix(c.Value, "+")),
+					ActionAncestors(ctx.AttachedRevset).
+						Suppress("doesn't exist").                // revset might be an incomplete bookmark or similar that contains `-`
+						Unless(!strings.HasSuffix(c.Value, "-")), // TODO
+					ActionDescendants(ctx.AttachedRevset).
+						Suppress("doesn't exist").                // revset might be an incomplete bookmark or similar that contains `+`
+						Unless(!strings.HasSuffix(c.Value, "+")), // TODO
 				)
 			}
 		}
@@ -268,13 +262,13 @@ func ActionDescendants(revset string) carapace.Action {
 		}
 		batch := carapace.Batch()
 		for i := range 20 {
-			// TODO some are currently skiped on `parent(something)+<TAB>` (first ~two, especially when no plus suffix)
-			batch = append(batch, actionExecJJE("show", "--template", `description.first_line()`, revset+strings.Repeat("+", i))(func(output []byte, err error) carapace.Action {
+			// TODO missing the first descendant
+			batch = append(batch, actionExecJJE("show", "--template", `description.first_line()`, revset+strings.Repeat("+", i+1))(func(output []byte, err error) carapace.Action {
 				if err != nil {
 					if exitErr, ok := err.(*exec.ExitError); ok {
 						switch {
 						case strings.Contains(string(exitErr.Stderr), "resolved to more than one revision"):
-							return carapace.ActionValuesDescribed(strings.Repeat("+", i), "resolves to more than one revision").Prefix(c.Value).Style(style.Carapace.KeywordAmbiguous)
+							return carapace.ActionValuesDescribed(strings.Repeat("+", i+1), "resolves to more than one revision").Prefix(c.Value).Style(style.Carapace.KeywordAmbiguous)
 						case strings.Contains(string(exitErr.Stderr), "didn't resolve to any revisions"):
 							return carapace.ActionValues()
 						default:
@@ -286,7 +280,7 @@ func ActionDescendants(revset string) carapace.Action {
 					return carapace.ActionMessage(err.Error())
 				}
 				lines := strings.Split(string(output), "\n")
-				return carapace.ActionValuesDescribed(strings.Repeat("+", i), lines[0]).Prefix(revset)
+				return carapace.ActionValuesDescribed(strings.Repeat("+", i+1), lines[0]).Prefix(revset)
 			}).Invoke(c).ToA())
 		}
 		return batch.ToA()
