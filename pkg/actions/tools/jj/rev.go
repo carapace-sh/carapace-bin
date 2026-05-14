@@ -105,13 +105,12 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 				batch = append(batch, ActionRevsetOperators(attached).Filter("..", "::").Prefix(ctx.Prefix)) // `revA....revB` is not allowed
 			default:
 				batch = append(batch,
-					ActionRevsetOperators(attached).Prefix(ctx.Prefix),
 					ActionAncestors(ctx.AttachedRevset).
-						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
-						Unless(ctx.AttachedRevset == "" || !strings.HasSuffix(c.Value, "-")),
+						Suppress("doesn't exist").                                                                                  // revset might be an incomplete bookmark or similar that contains `-`
+						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(c.Value, "-") && !strings.HasSuffix(c.Value, "+"))), // TODO including both for elvish
 					ActionDescendants(ctx.AttachedRevset).
-						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
-						Unless(ctx.AttachedRevset == "" || !strings.HasSuffix(c.Value, "+")),
+						Suppress("doesn't exist").                                                                                  // revset might be an incomplete bookmark or similar that contains `+`
+						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(c.Value, "+") && !strings.HasSuffix(c.Value, "-"))), // TODO  including both for elvish
 				)
 			}
 		}
