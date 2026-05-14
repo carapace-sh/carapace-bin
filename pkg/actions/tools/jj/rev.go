@@ -108,12 +108,10 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 					ActionRevsetOperators(attached).Prefix(ctx.Prefix),
 					ActionAncestors(ctx.AttachedRevset).
 						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
-						Unless(ctx.AttachedRevset == ""),
-					// Unless(!strings.HasSuffix(c.Value, "-")), // TODO
+						Unless(ctx.AttachedRevset == "" || !strings.HasSuffix(c.Value, "-")),
 					ActionDescendants(ctx.AttachedRevset).
 						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
-						Unless(ctx.AttachedRevset == ""),
-					// Unless(!strings.HasSuffix(c.Value, "+")), // TODO
+						Unless(ctx.AttachedRevset == "" || !strings.HasSuffix(c.Value, "+")),
 				)
 			}
 		}
