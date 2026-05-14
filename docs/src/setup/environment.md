@@ -23,6 +23,12 @@ Whether to output color (default).
 ## CARAPACE_COVERDIR
 
 Coverage directory for sandbox tests (internal).
+
+## CARAPACE_DESCRIPTION_LENGTH 
+
+Maximum length of descriptions.
+
+![](./descriptionLength.cast)
       
 ## CARAPACE_ENV
 
