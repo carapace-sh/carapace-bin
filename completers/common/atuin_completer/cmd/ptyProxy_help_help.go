@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var hex_helpCmd = &cobra.Command{
+var ptyProxy_help_helpCmd = &cobra.Command{
 	Use:   "help",
 	Short: "Print this message or the help of the given subcommand(s)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(hex_helpCmd).Standalone()
+	carapace.Gen(ptyProxy_help_helpCmd).Standalone()
 
-	hexCmd.AddCommand(hex_helpCmd)
+	ptyProxy_helpCmd.AddCommand(ptyProxy_help_helpCmd)
 }
