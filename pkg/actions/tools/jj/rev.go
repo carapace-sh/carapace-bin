@@ -78,13 +78,11 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 			batch = append(batch,
 				ActionRevsetOperators(attached),
 				ActionAncestors(ctx.AttachedRevset).
-					Suppress("doesn't exist").        // revset might be an incomplete bookmark or similar that contains `-`
-					Unless(ctx.AttachedRevset == ""), // TODO
-				// Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "+")), // TODO
+					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
+					Unless(ctx.AttachedRevset == "" || !strings.HasSuffix(ctx.AttachedRevset, "-")),
 				ActionDescendants(ctx.AttachedRevset).
-					Suppress("doesn't exist").        // revset might be an incomplete bookmark or similar that contains `+`
-					Unless(ctx.AttachedRevset == ""), // TODO
-				// Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "-")), // TODO
+					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
+					Unless(ctx.AttachedRevset == "" || !strings.HasSuffix(ctx.AttachedRevset, "+")),
 			)
 		case jjlex.CompletionTypeFunctionArg:
 			// TODO complete corresponding type (e.g. lexer should return revision)
@@ -106,11 +104,11 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 			default:
 				batch = append(batch,
 					ActionAncestors(ctx.AttachedRevset).
-						Suppress("doesn't exist").                                                                                  // revset might be an incomplete bookmark or similar that contains `-`
-						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(c.Value, "-") && !strings.HasSuffix(c.Value, "+"))), // TODO including both for elvish
+						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
+						Unless(ctx.AttachedRevset == "" || !strings.HasSuffix(ctx.AttachedRevset, "-")),
 					ActionDescendants(ctx.AttachedRevset).
-						Suppress("doesn't exist").                                                                                  // revset might be an incomplete bookmark or similar that contains `+`
-						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(c.Value, "+") && !strings.HasSuffix(c.Value, "-"))), // TODO  including both for elvish
+						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
+						Unless(ctx.AttachedRevset == "" || !strings.HasSuffix(ctx.AttachedRevset, "+")),
 				)
 			}
 		}
