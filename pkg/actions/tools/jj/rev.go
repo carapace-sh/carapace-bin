@@ -78,11 +78,11 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 			batch = append(batch,
 				ActionRevsetOperators(attached),
 				ActionAncestors(ctx.AttachedRevset).
-					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
-					Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "+")),
+					Suppress("doesn't exist").                                                          // revset might be an incomplete bookmark or similar that contains `-`
+					Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "+TODO")), // TODO
 				ActionDescendants(ctx.AttachedRevset).
-					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
-					Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "-")),
+					Suppress("doesn't exist").                                                          // revset might be an incomplete bookmark or similar that contains `+`
+					Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "-TODO")), // TODO
 			)
 		case jjlex.CompletionTypeFunctionArg:
 			// TODO complete corresponding type (e.g. lexer should return revision)
