@@ -77,16 +77,12 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 			attached := strings.HasSuffix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix), " ")
 			batch = append(batch,
 				ActionRevsetOperators(attached),
-				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-					return ActionAncestors(ctx.AttachedRevset).
-						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
-						Invoke(c).ToA()
-				}).Unless(ctx.AttachedRevset == "" || ctx.AttachedRevset == "+"),
-				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-					return ActionDescendants(ctx.AttachedRevset).
-						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
-						Invoke(c).ToA()
-				}).Unless(ctx.AttachedRevset == "" || ctx.AttachedRevset == "-"),
+				ActionAncestors(ctx.AttachedRevset).
+					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
+					Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "+")),
+				ActionDescendants(ctx.AttachedRevset).
+					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
+					Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "-")),
 			)
 		case jjlex.CompletionTypeFunctionArg:
 			// TODO complete corresponding type (e.g. lexer should return revision)
@@ -124,7 +120,8 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 			}
 		}
 		c.Value = ctx.Prefix
-		return batch.ToA().Invoke(c).ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix)).NoSpace()
+		// return batch.ToA().Invoke(c).ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix)).NoSpace()
+		return batch.ToA().Invoke(c).ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.AttachedRevset)).NoSpace()
 	})
 }
 
