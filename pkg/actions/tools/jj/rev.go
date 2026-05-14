@@ -103,7 +103,7 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 			case strings.HasSuffix(fullPrefix, ".."), strings.HasSuffix(fullPrefix, "::"):
 				batch = append(batch, ActionRevsetOperators(attached).Filter("..", "::").Prefix(ctx.Prefix)) // `revA....revB` is not allowed
 			default:
-				batch = append(batch,
+				revsetBatch = append(revsetBatch,
 					ActionAncestors(ctx.AttachedRevset).
 						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
 						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "-") && !strings.HasSuffix(ctx.AttachedRevset, "+"))),
