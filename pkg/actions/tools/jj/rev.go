@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	jjlex "github.com/carapace-sh/carapace-jjlex"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/pelletier/go-toml"
 )
@@ -68,28 +69,48 @@ func ActionRevs(revOption RevOption) carapace.Action {
 // ActionRevsets completes revsets
 func ActionRevsets(opts RevOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		// TODO very basic at the moment
-		index := strings.LastIndexAny(c.Value, " .:())|&")
-		prefix := c.Value[:index+1]
+		batch := carapace.Batch()       // default prefix
+		revsetBatch := carapace.Batch() // attachedRevset prefix
 
-		c.Value = strings.TrimPrefix(c.Value, prefix)
+		ctx := jjlex.Split(c.Value)
+		switch ctx.Type {
+		case jjlex.CompletionTypeOperator:
+			attached := strings.HasSuffix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix), " ")
+			batch = append(batch, ActionRevsetOperators(attached))
+			revsetBatch = append(revsetBatch,
+				ActionAncestors(ctx.AttachedRevset).
+					Suppress("doesn't exist").                                                                                                        // revset might be an incomplete bookmark or similar that contains `-`
+					Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "-") && !strings.HasSuffix(ctx.AttachedRevset, "+"))), // TODO currently both to avoid partial insertion
+				ActionDescendants(ctx.AttachedRevset).
+					Suppress("doesn't exist").                                                                                                        // revset might be an incomplete bookmark or similar that contains `+`
+					Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "+") && !strings.HasSuffix(ctx.AttachedRevset, "-"))), // TODO currently both to avoid partial insertion
+			)
+		case jjlex.CompletionTypeRevision, jjlex.CompletionTypeFunctionArg:
+			fullPrefix := strings.TrimSuffix(ctx.FullInput, ctx.Prefix)
+			attached := strings.HasSuffix(fullPrefix, " ")
+			batch = append(batch,
+				ActionRevs(opts),
+				ActionRevsetFunctions().Suffix("("),
+				ActionRevsetAliases().Style(style.Dim),
+			)
+			switch {
+			case strings.HasSuffix(fullPrefix, ".."), strings.HasSuffix(fullPrefix, "::"):
+				batch = append(batch, ActionRevsetOperators(attached).Filter("..", "::").Prefix(ctx.Prefix)) // `revA....revB` is not allowed
+			default:
+				revsetBatch = append(revsetBatch,
+					ActionAncestors(ctx.AttachedRevset).
+						Suppress("doesn't exist").                                                                                                        // revset might be an incomplete bookmark or similar that contains `-`
+						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "-") && !strings.HasSuffix(ctx.AttachedRevset, "+"))), // TODO currently both to avoid partial insertion
+					ActionDescendants(ctx.AttachedRevset).
+						Suppress("doesn't exist").                                                                                                        // revset might be an incomplete bookmark or similar that contains `+`
+						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "+") && !strings.HasSuffix(ctx.AttachedRevset, "-"))), // TODO currently both to avoid partial insertion
+				)
+			}
+		}
 		return carapace.Batch(
-			ActionRevs(opts),
-			ActionRevsetFunctions().Suffix("("), // TODO add parameter handling (consistent with revsetaliases)
-			ActionRevsetAliases().Style(style.Dim),
-			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				c.Value = strings.TrimSuffix(c.Value, "-")
-				return ActionAncestors(strings.TrimSuffix(c.Value, "-")).
-					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
-					Invoke(c).ToA()
-			}).Unless(!strings.HasSuffix(c.Value, "-")),
-			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-				c.Value = strings.TrimSuffix(c.Value, "+")
-				return ActionDescendants(strings.TrimSuffix(c.Value, "+")).
-					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
-					Invoke(c).ToA()
-			}).Unless(!strings.HasSuffix(c.Value, "+")),
-		).ToA().Invoke(c).Prefix(prefix).ToA().NoSpace()
+			batch.ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix)),
+			revsetBatch.ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.AttachedRevset)),
+		).ToA().NoSpace()
 	})
 }
 
@@ -207,10 +228,10 @@ func ActionRevsetAliases() carapace.Action {
 //	-- (message)
 func ActionAncestors(revset string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if c.Value == "" {
-			c.Value = "@"
+		if revset == "" {
+			revset = "@"
 		}
-		return actionExecJJ("log", "--no-graph", "--template", `description.first_line() ++ "\n"`, "--revisions", fmt.Sprintf("first_ancestors(%v)", c.Value), "--limit", "20")(func(output []byte) carapace.Action {
+		return actionExecJJ("log", "--no-graph", "--template", `description.first_line() ++ "\n"`, "--revisions", fmt.Sprintf("first_ancestors(%v)", revset), "--limit", "20")(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
 
 			vals := make([]string, 0)
@@ -220,7 +241,7 @@ func ActionAncestors(revset string) carapace.Action {
 				}
 				vals = append(vals, strings.Repeat("-", index), line)
 			}
-			return carapace.ActionValuesDescribed(vals...).Prefix(c.Value)
+			return carapace.ActionValuesDescribed(vals...).Prefix(revset)
 		})
 	}).Tag("ancestors").UidF(Uid("revset"))
 }
@@ -231,13 +252,13 @@ func ActionAncestors(revset string) carapace.Action {
 //	++ (message)
 func ActionDescendants(revset string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if c.Value == "" {
-			c.Value = "@"
+		if revset == "" {
+			revset = "@"
 		}
-
 		batch := carapace.Batch()
 		for i := range 20 {
-			batch = append(batch, actionExecJJE("show", "--template", `description.first_line()`, c.Value+strings.Repeat("+", i+1))(func(output []byte, err error) carapace.Action {
+			// TODO missing the first descendant
+			batch = append(batch, actionExecJJE("show", "--template", `description.first_line()`, revset+strings.Repeat("+", i+1))(func(output []byte, err error) carapace.Action {
 				if err != nil {
 					if exitErr, ok := err.(*exec.ExitError); ok {
 						switch {
@@ -254,7 +275,7 @@ func ActionDescendants(revset string) carapace.Action {
 					return carapace.ActionMessage(err.Error())
 				}
 				lines := strings.Split(string(output), "\n")
-				return carapace.ActionValuesDescribed(strings.Repeat("+", i+1), lines[0]).Prefix(c.Value)
+				return carapace.ActionValuesDescribed(strings.Repeat("+", i+1), lines[0]).Prefix(revset)
 			}).Invoke(c).ToA())
 		}
 		return batch.ToA()
