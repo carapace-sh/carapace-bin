@@ -107,11 +107,12 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 				)
 			}
 		}
-		c.Value = ctx.Prefix
+		// c.Value = ctx.Prefix
 		return carapace.Batch(
 			batch.ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix)),
 			revsetBatch.ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.AttachedRevset)),
-		).ToA().Invoke(c).ToA().NoSpace()
+		// ).ToA().Invoke(c).ToA().NoSpace()
+		).ToA().NoSpace()
 	})
 }
 
