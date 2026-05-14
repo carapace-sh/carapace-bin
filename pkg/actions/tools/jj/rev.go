@@ -78,11 +78,13 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 			batch = append(batch,
 				ActionRevsetOperators(attached),
 				ActionAncestors(ctx.AttachedRevset).
-					Suppress("doesn't exist").                                                          // revset might be an incomplete bookmark or similar that contains `-`
-					Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "+TODO")), // TODO
+					Suppress("doesn't exist").        // revset might be an incomplete bookmark or similar that contains `-`
+					Unless(ctx.AttachedRevset == ""), // TODO
+				// Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "+")), // TODO
 				ActionDescendants(ctx.AttachedRevset).
-					Suppress("doesn't exist").                                                          // revset might be an incomplete bookmark or similar that contains `+`
-					Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "-TODO")), // TODO
+					Suppress("doesn't exist").        // revset might be an incomplete bookmark or similar that contains `+`
+					Unless(ctx.AttachedRevset == ""), // TODO
+				// Unless(ctx.AttachedRevset == "" || strings.HasSuffix(ctx.AttachedRevset, "-")), // TODO
 			)
 		case jjlex.CompletionTypeFunctionArg:
 			// TODO complete corresponding type (e.g. lexer should return revision)
@@ -105,11 +107,13 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 				batch = append(batch,
 					ActionRevsetOperators(attached).Prefix(ctx.Prefix),
 					ActionAncestors(ctx.AttachedRevset).
-						Suppress("doesn't exist").                // revset might be an incomplete bookmark or similar that contains `-`
-						Unless(!strings.HasSuffix(c.Value, "-")), // TODO
+						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
+						Unless(ctx.AttachedRevset == ""),
+					// Unless(!strings.HasSuffix(c.Value, "-")), // TODO
 					ActionDescendants(ctx.AttachedRevset).
-						Suppress("doesn't exist").                // revset might be an incomplete bookmark or similar that contains `+`
-						Unless(!strings.HasSuffix(c.Value, "+")), // TODO
+						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
+						Unless(ctx.AttachedRevset == ""),
+					// Unless(!strings.HasSuffix(c.Value, "+")), // TODO
 				)
 			}
 		}
