@@ -69,21 +69,20 @@ func ActionRevs(revOption RevOption) carapace.Action {
 // ActionRevsets completes revsets
 func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		batch := carapace.Batch()
+		batch := carapace.Batch()       // default prefix
+		revsetBatch := carapace.Batch() // attachedRevset prefix
 
 		ctx := jjlex.Split(c.Value)
 		switch ctx.Type {
 		case jjlex.CompletionTypeOperator:
 			attached := strings.HasSuffix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix), " ")
-			batch = append(batch,
-				ActionRevsetOperators(attached),
+			batch = append(batch, ActionRevsetOperators(attached))
+			revsetBatch = append(batch,
 				ActionAncestors(ctx.AttachedRevset).
 					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
-					// Unless(ctx.AttachedRevset == "" || !strings.HasSuffix(ctx.AttachedRevset, "-")),
 					Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "-") && !strings.HasSuffix(ctx.AttachedRevset, "+"))),
 				ActionDescendants(ctx.AttachedRevset).
 					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
-					// Unless(ctx.AttachedRevset == "" || !strings.HasSuffix(ctx.AttachedRevset, "+")),
 					Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "+") && !strings.HasSuffix(ctx.AttachedRevset, "-"))),
 			)
 		case jjlex.CompletionTypeFunctionArg:
@@ -115,8 +114,10 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 			}
 		}
 		c.Value = ctx.Prefix
-		// return batch.ToA().Invoke(c).ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix)).NoSpace()
-		return batch.ToA().Invoke(c).ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.AttachedRevset)).NoSpace()
+		return carapace.Batch(
+			batch.ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix)),
+			revsetBatch.ToA().Prefix(strings.TrimSuffix(ctx.FullInput, ctx.AttachedRevset)),
+		).ToA().Invoke(c).ToA().NoSpace()
 	})
 }
 
