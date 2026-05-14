@@ -77,7 +77,7 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 		case jjlex.CompletionTypeOperator:
 			attached := strings.HasSuffix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix), " ")
 			batch = append(batch, ActionRevsetOperators(attached))
-			revsetBatch = append(batch,
+			revsetBatch = append(revsetBatch,
 				ActionAncestors(ctx.AttachedRevset).
 					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
 					Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "-") && !strings.HasSuffix(ctx.AttachedRevset, "+"))),
