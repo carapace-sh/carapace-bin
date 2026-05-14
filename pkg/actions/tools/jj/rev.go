@@ -85,13 +85,7 @@ func ActionRevsets(opts RevOption) carapace.Action { // TODO remove opts
 					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
 					Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "+") && !strings.HasSuffix(ctx.AttachedRevset, "-"))),
 			)
-		case jjlex.CompletionTypeFunctionArg:
-			// TODO complete corresponding type (e.g. lexer should return revision)
-			batch = append(batch,
-				ActionRevs(RevOption{}.Default()),
-				ActionRevsetFunctions().Suffix("("),
-			)
-		case jjlex.CompletionTypeRevision:
+		case jjlex.CompletionTypeRevision, jjlex.CompletionTypeFunctionArg:
 			fullPrefix := strings.TrimSuffix(ctx.FullInput, ctx.Prefix)
 			attached := strings.HasSuffix(fullPrefix, " ")
 			batch = append(batch,
