@@ -96,7 +96,7 @@ func ActionRevsets(opts RevOption) carapace.Action {
 			attached := !strings.HasSuffix(fullPrefix, " ")
 			batch = append(batch,
 				ActionRevs(opts),
-				ActionRevsetFunctions().Suffix("("),
+				ActionRevsetFunctions(true),
 				ActionRevsetAliases().Style(style.Dim),
 			)
 			switch {
@@ -124,46 +124,58 @@ func ActionRevsets(opts RevOption) carapace.Action {
 //
 //	parents (Same as x-)
 //	children (Same as x+)
-func ActionRevsetFunctions() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"parents", "Same as x-",
-		"children", "Same as x+",
-		"ancestors", "Ancestors of x limited to the given depth",
-		"descendants", "Same as x::",
-		"connected", "Same as x::x",
-		"all", "All visible commits in the repo",
-		"none", "No commits",
-		"bookmarks", "All local bookmark targets",
-		"remote_bookmarks", "All remote bookmark targets across all remotes",
-		"tags", "All tag targets",
-		"git_refs", "All Git ref targets as of the last import",
-		"git_head", "The Git HEAD target as of the last import",
-		"visible_heads", "All visible heads (same as heads(all()))",
-		"root", "The virtual commit that is the oldest ancestor of all other commits",
-		"heads", "Commits in x that are not ancestors of other commits in x",
-		"roots", "Commits in x that are not descendants of other commits in x",
-		"latest", "Latest count commits in x, based on committer timestamp",
-		"merges", "Merge commits",
-		"description", "Commits that have a description matching the given string pattern",
-		"author", "Commits with the author's name or email matching the given string pattern",
-		"mine", "Commits where the author's email matches the email of the current user",
-		"committer", "Commits with the committer's name or email matching the given string pattern",
-		"empty", "Commits modifying no files. This also includes merges() without user modifications and root()",
-		"files", "Commits modifying paths matching the given fileset expression",
-		"conflicts", "Commits with conflicts",
-		"present", "Same as x, but evaluated to none() if any of the commits in x doesn't exist",
-		"reachable", "All commits reachable from srcs within domain",
-		"mutable", "All commits that jj does not treat as immutable (same as ~immutable())",
-		"immutable", "All commits that jj treats as immutable (same as (immutable_heads() | root()))",
-		"diff_contains", "Commits containing diffs matching the given text pattern line by line",
-		"author_date", "Commits with author dates matching the specified date pattern",
-		"committer_date", "Commits with committer dates matching the specified date pattern",
-		"tracked_remote_bookmarks", "All targets of tracked remote bookmarks",
-		"untracked_remote_bookmarks", "All targets of untracked remote bookmarks",
-		"coalesce", "Get first non-none revset from a list of revsets",
-		"at_operation", "Query revisions based on historical state",
-		"fork_point", "Obtain the fork point of multiple commits",
-	).Tag("revset functions").Uid("jj", "revset-function")
+func ActionRevsetFunctions(brackets bool) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		noArgs := carapace.ActionValuesDescribed(
+			"all", "All visible commits in the repo",
+			"conflicts", "Commits with conflicts",
+			"divergent", "Commits that are divergent",
+			"empty", "Commits modifying no files. This also includes merges() without user modifications and root()",
+			"merges", "Merge commits",
+			"mine", "Commits where the author's email matches the email of the current user",
+			"none", "No commits",
+			"remote_bookmarks", "All remote bookmark targets across all remotes",
+			"root", "The virtual commit that is the oldest ancestor of all other commits",
+			"signed", "Commits that are cryptographically signed",
+			"visible_heads", "All visible heads (same as heads(all()))",
+			"working_copies", "The working copy commits across all the workspaces",
+		).Uid("jj", "revset-function")
+		withArgs := carapace.ActionValuesDescribed(
+			"ancestors", "Ancestors of x limited to the given depth",
+			"at_operation", "Query revisions based on historical state",
+			"author", "Commits with the author's name or email matching the given string pattern",
+			"author_date", "Commits with author dates matching the specified date pattern",
+			"bookmarks", "All local bookmark targets",
+			"children", "Same as x+",
+			"coalesce", "Get first non-none revset from a list of revsets",
+			"committer", "Commits with the committer's name or email matching the given string pattern",
+			"committer_date", "Commits with committer dates matching the specified date pattern",
+			"connected", "Same as x::x",
+			"descendants", "Same as x::",
+			"description", "Commits that have a description matching the given string pattern",
+			"diff_contains", "Commits containing diffs matching the given text pattern line by line",
+			"files", "Commits modifying paths matching the given fileset expression",
+			"fork_point", "Obtain the fork point of multiple commits",
+			"git_head", "The Git HEAD target as of the last import",
+			"git_refs", "All Git ref targets as of the last import",
+			"heads", "Commits in x that are not ancestors of other commits in x",
+			"immutable", "All commits that jj treats as immutable (same as (immutable_heads() | root()))",
+			"latest", "Latest count commits in x, based on committer timestamp",
+			"mutable", "All commits that jj does not treat as immutable (same as ~immutable())",
+			"parents", "Same as x-",
+			"present", "Same as x, but evaluated to none() if any of the commits in x doesn't exist",
+			"reachable", "All commits reachable from srcs within domain",
+			"roots", "Commits in x that are not descendants of other commits in x",
+			"tags", "All tag targets",
+			"tracked_remote_bookmarks", "All targets of tracked remote bookmarks",
+			"untracked_remote_bookmarks", "All targets of untracked remote bookmarks",
+		).Uid("jj", "revset-function")
+
+		if brackets {
+			return carapace.Batch(noArgs.Suffix("()"), withArgs.Suffix("(")).ToA()
+		}
+		return carapace.Batch(noArgs, withArgs).ToA()
+	}).Tag("revset functions")
 }
 
 // ActionRevsetOperators completes revset operators
