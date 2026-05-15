@@ -93,7 +93,7 @@ func ActionRevsets(opts RevOption) carapace.Action {
 		case jjlex.CompletionTypeRevision:
 
 			fullPrefix := strings.TrimSuffix(ctx.FullInput, ctx.Prefix)
-			attached := strings.HasSuffix(fullPrefix, " ")
+			attached := !strings.HasSuffix(fullPrefix, " ")
 			batch = append(batch,
 				ActionRevs(opts),
 				ActionRevsetFunctions().Suffix("("),
