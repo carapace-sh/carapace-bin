@@ -78,12 +78,12 @@ func ActionRevsets(opts RevOption) carapace.Action {
 			attached := strings.HasSuffix(strings.TrimSuffix(ctx.FullInput, ctx.Prefix), " ")
 			batch = append(batch, ActionRevsetOperators(attached))
 			revsetBatch = append(revsetBatch,
-				ActionAncestors(ctx.AttachedRevset).
-					Suppress("doesn't exist").                                                                                                        // revset might be an incomplete bookmark or similar that contains `-`
-					Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "-") && !strings.HasSuffix(ctx.AttachedRevset, "+"))), // TODO currently both to avoid partial insertion
-				ActionDescendants(ctx.AttachedRevset).
-					Suppress("doesn't exist").                                                                                                        // revset might be an incomplete bookmark or similar that contains `+`
-					Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "+") && !strings.HasSuffix(ctx.AttachedRevset, "-"))), // TODO currently both to avoid partial insertion
+				ActionAncestors(strings.TrimSuffix(ctx.AttachedRevset, "-")).
+					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
+					Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "-"))),
+				ActionDescendants(strings.TrimSuffix(ctx.AttachedRevset, "+")).
+					Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
+					Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "+"))),
 			)
 		case jjlex.CompletionTypeRevision, jjlex.CompletionTypeFunctionArg:
 			fullPrefix := strings.TrimSuffix(ctx.FullInput, ctx.Prefix)
@@ -98,12 +98,12 @@ func ActionRevsets(opts RevOption) carapace.Action {
 				batch = append(batch, ActionRevsetOperators(attached).Filter("..", "::").Prefix(ctx.Prefix)) // `revA....revB` is not allowed
 			default:
 				revsetBatch = append(revsetBatch,
-					ActionAncestors(ctx.AttachedRevset).
-						Suppress("doesn't exist").                                                                                                        // revset might be an incomplete bookmark or similar that contains `-`
-						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "-") && !strings.HasSuffix(ctx.AttachedRevset, "+"))), // TODO currently both to avoid partial insertion
-					ActionDescendants(ctx.AttachedRevset).
-						Suppress("doesn't exist").                                                                                                        // revset might be an incomplete bookmark or similar that contains `+`
-						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "+") && !strings.HasSuffix(ctx.AttachedRevset, "-"))), // TODO currently both to avoid partial insertion
+					ActionAncestors(strings.TrimSuffix(ctx.AttachedRevset, "-")).
+						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `-`
+						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "-"))),
+					ActionDescendants(strings.TrimSuffix(ctx.AttachedRevset, "+")).
+						Suppress("doesn't exist"). // revset might be an incomplete bookmark or similar that contains `+`
+						Unless(ctx.AttachedRevset == "" || (!strings.HasSuffix(ctx.AttachedRevset, "+"))),
 				)
 			}
 		}
