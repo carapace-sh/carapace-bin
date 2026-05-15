@@ -97,7 +97,7 @@ func ActionRevsets(opts RevOption) carapace.Action {
 			batch = append(batch,
 				ActionRevs(opts),
 				ActionRevsetFunctions(true),
-				ActionRevsetAliases().Style(style.Dim),
+				ActionRevsetAliases(true).Style(style.Dim),
 			)
 			switch {
 			case strings.HasSuffix(fullPrefix, ".."), strings.HasSuffix(fullPrefix, "::"):
@@ -133,10 +133,8 @@ func ActionRevsetFunctions(brackets bool) carapace.Action {
 			"empty", "Commits modifying no files. This also includes merges() without user modifications and root()",
 			"git_head", "The Git HEAD target as of the last import",
 			"git_refs", "All Git ref targets as of the last import",
-			"immutable", "All commits that jj treats as immutable (same as (immutable_heads() | root()))",
 			"merges", "Merge commits",
 			"mine", "Commits where the author's email matches the email of the current user",
-			"mutable", "All commits that jj does not treat as immutable (same as ~immutable())",
 			"none", "No commits",
 			"remote_bookmarks", "All remote bookmark targets across all remotes",
 			"root", "The virtual commit that is the oldest ancestor of all other commits",
@@ -217,26 +215,32 @@ func ActionRevsetOperators(attached bool) carapace.Action {
 //
 //	HEAD (@-)
 //	trunk() (main@origin)
-func ActionRevsetAliases() carapace.Action {
-	return actionExecJJ("config", "list", "revset-aliases")(func(output []byte) carapace.Action {
-		var aliases struct {
-			RevsetAliases map[string]string `toml:"revset-aliases"`
+func ActionRevsetAliases(includeDefaults bool) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		args := []string{"config", "list", "revset-aliases"}
+		if includeDefaults {
+			args = append(args, "--include-defaults")
 		}
-		if err := toml.Unmarshal(output, &aliases); err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
+		return actionExecJJ(args...)(func(output []byte) carapace.Action {
+			var aliases struct {
+				RevsetAliases map[string]string `toml:"revset-aliases"`
+			}
+			if err := toml.Unmarshal(output, &aliases); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
 
-		vals := make([]string, 0, len(aliases.RevsetAliases))
-		for name, alias := range aliases.RevsetAliases {
-			// TODO name can contain parameters which need to be handled (conditionally? see ActionRevSets)
-			// 'HEAD' = '@-'
-			// 'user()' = 'user("me@example.org")'
-			// 'user(x)' = 'author(x) | committer(x)'
-			// 'grep:x' = 'description(regex:x)'
+			vals := make([]string, 0, len(aliases.RevsetAliases))
+			for name, alias := range aliases.RevsetAliases {
+				// TODO name can contain parameters which need to be handled (conditionally? see ActionRevSets)
+				// 'HEAD' = '@-'
+				// 'user()' = 'user("me@example.org")'
+				// 'user(x)' = 'author(x) | committer(x)'
+				// 'grep:x' = 'description(regex:x)'
 
-			vals = append(vals, name, alias)
-		}
-		return carapace.ActionValuesDescribed(vals...)
+				vals = append(vals, name, alias)
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
 	}).Tag("revset aliases").UidF(Uid("revset")) // TODO revset-alias (parameter will be an issue)
 }
 
