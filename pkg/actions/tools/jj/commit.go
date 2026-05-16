@@ -2,11 +2,13 @@ package jj
 
 import (
 	"fmt"
+	"net/url"
 	"strconv"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace/pkg/uid"
 )
 
 // ActionHeadCommits completes head commits
@@ -34,13 +36,19 @@ func ActionPrevCommits(limit int) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		format := "%0" + strconv.Itoa(len(strconv.Itoa(limit-1))) + "d"
 
-		vals := make([]string, 0)
+		batch := carapace.Batch()
 		for index, line := range lines[1 : len(lines)-1] {
-			splitted := strings.SplitN(line, "\t", 2)
-			vals = append(vals, fmt.Sprintf(format, index), splitted[1])
+			if commit, description, ok := strings.Cut(line, "\t"); ok {
+				batch = append(batch,
+					carapace.ActionValuesDescribed(fmt.Sprintf(format, index), description).
+						UidF(func(s string, uc uid.Context) (*url.URL, error) {
+							return Uid("commit")(commit, uc)
+						}),
+				)
+			}
 		}
-		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Head)
-	}).Tag("previous commits").UidF(Uid("commit"))
+		return batch.ToA().Style(styles.Git.Head)
+	}).Tag("previous commits")
 }
 
 // ActionNextCommits completes next commits
@@ -49,13 +57,19 @@ func ActionNextCommits(limit int) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		format := "%0" + strconv.Itoa(len(strconv.Itoa(limit-1))) + "d"
 
-		vals := make([]string, 0)
+		batch := carapace.Batch()
 		for index, line := range lines[1 : len(lines)-1] {
-			splitted := strings.SplitN(line, "\t", 2)
-			vals = append(vals, fmt.Sprintf(format, len(lines)-3-index), splitted[1])
+			if commit, description, ok := strings.Cut(line, "\t"); ok {
+				batch = append(batch,
+					carapace.ActionValuesDescribed(fmt.Sprintf(format, len(lines)-3-index), description).
+						UidF(func(s string, uc uid.Context) (*url.URL, error) {
+							return Uid("commit")(commit, uc)
+						}),
+				)
+			}
 		}
-		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Head)
-	}).Tag("previous commits").UidF(Uid("commit"))
+		return batch.ToA().Style(styles.Git.Head)
+	}).Tag("previous commits")
 }
 
 // ActionRecentCommits completes recent commits
