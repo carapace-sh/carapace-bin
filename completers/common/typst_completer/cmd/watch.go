@@ -8,9 +8,10 @@ import (
 )
 
 var watchCmd = &cobra.Command{
-	Use:   "watch",
-	Short: "Watches an input file and recompiles on changes",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "watch",
+	Short:   "Watches an input file and recompiles on changes",
+	Aliases: []string{"w"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -20,9 +21,7 @@ func init() {
 	watchCmd.Flags().Bool("no-reload", false, "Disables the injected live reload script for HTML export.")
 	watchCmd.Flags().Bool("no-serve", false, "Disables the built-in HTTP server for HTML export")
 	watchCmd.Flags().String("port", "", "The port where HTML is served.")
-
 	common.AddPdfFlags(watchCmd)
-
 	rootCmd.AddCommand(watchCmd)
 
 	carapace.Gen(watchCmd).FlagCompletion(carapace.ActionMap{

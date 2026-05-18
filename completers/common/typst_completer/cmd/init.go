@@ -16,9 +16,7 @@ func init() {
 	carapace.Gen(initCmd).Standalone()
 
 	initCmd.Flags().BoolP("help", "h", false, "Print help (see a summary with '-h')")
-
 	common.AddPackageFlags(initCmd)
-
 	rootCmd.AddCommand(initCmd)
 
 	// TODO: PositionalCompletion for templates
