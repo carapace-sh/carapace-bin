@@ -79,6 +79,9 @@ var rootCmd = &cobra.Command{
 		case "--macro":
 			macroCmd.SetArgs(args[1:])
 			macroCmd.Execute()
+		case "--mcp":
+			mcpCmd.SetArgs(args[1:])
+			mcpCmd.Execute()
 		case "-h", "--help":
 			cmd.Help()
 		case "-v", "--version":
@@ -123,6 +126,9 @@ func createOverlayDir() error {
 
 func Execute(version string) error {
 	rootCmd.Version = version
+	if version != "" {
+		mcpServerVersion = version
+	}
 
 	if len(os.Args) > 1 {
 		if os.Args[1] == "carapace" {
@@ -176,6 +182,7 @@ func init() {
 	rootCmd.Flags().BoolP("help", "h", false, "help for carapace")
 	rootCmd.Flags().Bool("list", false, "list completers")
 	rootCmd.Flags().Bool("macro", false, "list or execute macros")
+	rootCmd.Flags().Bool("mcp", false, "run MCP server")
 	rootCmd.Flags().Bool("run", false, "run spec")
 	rootCmd.Flags().Bool("selfupdate", false, "update to nightly/stable")
 	rootCmd.Flags().Bool("schema", false, "json schema for spec files")
@@ -193,6 +200,7 @@ func init() {
 		"help",
 		"list",
 		"macro",
+		"mcp",
 		"run",
 		"schema",
 		"selfupdate",
@@ -237,6 +245,8 @@ func init() {
 				return carapace.ActionExecute(listCmd).Shift(1).Usage("list")
 			case "--macro":
 				return carapace.ActionExecute(macroCmd).Shift(1)
+			case "--mcp":
+				return carapace.ActionExecute(mcpCmd).Shift(1)
 			case "--run":
 				return carapace.ActionExecute(runCmd).Shift(1)
 			case "--selfupdate":
