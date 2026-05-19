@@ -54,9 +54,7 @@ type mcpToolCallParams struct {
 }
 
 type mcpCompleteRequest struct {
-	Command string   `json:"command"`
-	Args    []string `json:"args,omitempty"`
-	Value   string   `json:"value,omitempty"`
+	Args []string `json:"args,omitempty"`
 }
 
 type mcpCompleter func(mcpCompleteRequest) (string, error)
@@ -154,23 +152,15 @@ func handleMCPRequest(request mcpRequest, complete mcpCompleter) (mcpResponse, b
 					InputSchema: map[string]any{
 						"type": "object",
 						"properties": map[string]any{
-							"command": map[string]any{
-								"type":        "string",
-								"description": "Carapace completer name, for example git or docker.",
-							},
 							"args": map[string]any{
 								"type": "array",
 								"items": map[string]any{
 									"type": "string",
 								},
-								"description": "Command-line words before the current completion value.",
-							},
-							"value": map[string]any{
-								"type":        "string",
-								"description": "Current word to complete.",
+								"description": "command line arguments",
 							},
 						},
-						"required":             []string{"command"},
+						"required":             []string{"args"},
 						"additionalProperties": false,
 					},
 				},
@@ -229,25 +219,25 @@ func mcpTextResult(text string, isError bool) map[string]any {
 }
 
 func completeWithCarapace(request mcpCompleteRequest) (string, error) {
-	command := strings.TrimSpace(request.Command)
-	if command == "" {
+	switch len(request.Args) {
+	case 0:
 		return "", errors.New("command is required")
+	case 1:
+		return "", errors.New("argument to complete is required")
 	}
+
+	command := strings.TrimSpace(request.Args[0])
 	if strings.HasPrefix(command, "-") {
 		return "", errors.New("command must be a completer name")
 	}
 
-	args := []string{command, "export"}
 	for _, arg := range request.Args {
 		if strings.ContainsRune(arg, 0) {
 			return "", errors.New("arguments must not contain NUL bytes")
 		}
-		args = append(args, arg)
 	}
-	if strings.ContainsRune(request.Value, 0) {
-		return "", errors.New("value must not contain NUL bytes")
-	}
-	args = append(args, request.Value)
+	args := []string{command, "export", command}
+	args = append(args, request.Args...)
 
 	executable, err := os.Executable()
 	if err != nil {
