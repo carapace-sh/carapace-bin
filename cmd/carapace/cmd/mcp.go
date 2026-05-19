@@ -147,12 +147,8 @@ func handleMCPRequest(request mcpRequest, complete mcpCompleter) (mcpResponse, b
 		response.Result = map[string]any{
 			"tools": []mcpTool{
 				{
-					Name: "complete",
-					Description: "Return context‑aware, dynamic completions for shell commands.\n" +
-						"Use it:\n" +
-						"• Whenever you need to discover or list the available flags/options for a command (e.g., `git show`).\n" +
-						"• Provide interactive autocompletion for user‑entered commands in the CLI, ensuring correct spelling and flag syntax.\n" +
-						"• When building scripts or tools that require prompt, reliable completion data without hard‑coding flag lists.\n",
+					Name:        "complete",
+					Description: "Return context‑aware, dynamic completions for shell commands.",
 					InputSchema: map[string]any{
 						"type": "object",
 						"properties": map[string]any{
@@ -161,7 +157,7 @@ func handleMCPRequest(request mcpRequest, complete mcpCompleter) (mcpResponse, b
 								"items": map[string]any{
 									"type": "string",
 								},
-								"description": "command line arguments. use `\"\"` as last argument to complete positionals and `-` for flags",
+								"description": "command line arguments",
 							},
 						},
 						"required":             []string{"args"},
