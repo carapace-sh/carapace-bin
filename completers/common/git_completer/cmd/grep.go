@@ -33,7 +33,7 @@ func init() {
 	grepCmd.Flags().Bool("exclude-standard", false, "ignore files specified via '.gitignore'")
 	grepCmd.Flags().Bool("ext-grep", false, "allow calling of grep(1) (ignored by this build)")
 	grepCmd.Flags().BoolP("extended-regexp", "E", false, "use extended POSIX regular expressions")
-	grepCmd.Flags().StringS("f", "f", "", "read patterns from file")
+	grepCmd.Flags().StringArrayS("f", "f", nil, "read patterns from file")
 	grepCmd.Flags().BoolP("files-with-matches", "l", false, "show only filenames instead of matching lines")
 	grepCmd.Flags().BoolP("files-without-match", "L", false, "show only the names of files without match")
 	grepCmd.Flags().BoolP("fixed-strings", "F", false, "interpret patterns as fixed strings")
