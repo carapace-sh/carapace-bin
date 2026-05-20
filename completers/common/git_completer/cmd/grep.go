@@ -76,7 +76,9 @@ func init() {
 	})
 
 	carapace.Gen(grepCmd).PositionalCompletion(
-		carapace.ActionValues(),
+		git.ActionRefs(git.RefOption{}.Default()).UnlessF(func(c carapace.Context) bool {
+			return !grepCmd.Flag("e").Changed && !grepCmd.Flag("f").Changed
+		}),
 	)
 
 	carapace.Gen(grepCmd).PositionalAnyCompletion(
