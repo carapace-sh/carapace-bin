@@ -3,7 +3,7 @@ package journalctl
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemd"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
@@ -143,9 +143,9 @@ func ActionJournalFieldValues(field string) carapace.Action {
 		// TODO add more fields and verify
 		switch field {
 		case "UNIT", "_SYSTEMD_UNIT", "COREDUMP_UNIT", "OBJECT_SYSTEMD_UNIT":
-			return systemctl.ActionUnits(systemctl.UnitOpts{User: false, Active: true, Inactive: true})
+			return systemd.ActionUnits(systemd.UnitOpts{User: false, Active: true, Inactive: true})
 		case "USER_UNIT", "_SYSTEMD_USER_UNIT", "COREDUMP_USER_UNIT", "OBJECT_SYSTEMD_USER_UNIT":
-			return systemctl.ActionUnits(systemctl.UnitOpts{User: true, Active: true, Inactive: true})
+			return systemd.ActionUnits(systemd.UnitOpts{User: true, Active: true, Inactive: true})
 		case "_PID", "SYSLOG_PID", "OBJECT_PID":
 			return ps.ActionProcessIds()
 		case "_TRANSPORT":

@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemd"
 	"github.com/spf13/cobra"
 )
 
@@ -18,13 +18,13 @@ func userFlag(cmd *cobra.Command) bool {
 
 func ActionUnits(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return systemctl.ActionUnits(systemctl.UnitOpts{User: userFlag(cmd), Active: true, Inactive: true})
+		return systemd.ActionUnits(systemd.UnitOpts{User: userFlag(cmd), Active: true, Inactive: true})
 	})
 }
 
 func ActionServices(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return systemctl.ActionServices(userFlag(cmd))
+		return systemd.ActionServices(userFlag(cmd))
 	})
 }
 

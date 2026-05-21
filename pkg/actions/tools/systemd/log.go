@@ -1,4 +1,4 @@
-package systemctl
+package systemd
 
 import (
 	"github.com/carapace-sh/carapace"

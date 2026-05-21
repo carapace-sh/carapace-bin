@@ -5,7 +5,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/completers/linux/journalctl_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemd"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -111,13 +111,13 @@ func init() {
 			time.ActionDateTime(time.DateTimeOpts{}),
 		).ToA(),
 		"unit": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return systemctl.ActionUnits(systemctl.UnitOpts{User: rootCmd.Flag("user").Changed, Active: true, Inactive: true})
+			return systemd.ActionUnits(systemd.UnitOpts{User: rootCmd.Flag("user").Changed, Active: true, Inactive: true})
 		}),
 		"until": carapace.Batch(
 			carapace.ActionValues("yesterday", "today", "tomorrow"),
 			time.ActionDateTime(time.DateTimeOpts{}),
 		).ToA(),
-		"user-unit": systemctl.ActionUnits(systemctl.UnitOpts{User: true, Active: true, Inactive: true}),
+		"user-unit": systemd.ActionUnits(systemd.UnitOpts{User: true, Active: true, Inactive: true}),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

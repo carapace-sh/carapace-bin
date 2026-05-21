@@ -1,10 +1,13 @@
-package systemctl
+package systemd
 
 import (
+	"net/url"
+	"os/user"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/style"
+	"github.com/carapace-sh/carapace/pkg/uid"
 )
 
 type UnitOpts struct {
@@ -46,8 +49,17 @@ func ActionUnits(opts UnitOpts) carapace.Action {
 				}
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
+		}).UidF(func(s string, uc uid.Context) (*url.URL, error) {
+			if !opts.User {
+				return uid.UidF("systemd", "unit")(s, uc)
+			}
+			u, err := user.Current()
+			if err != nil {
+				return nil, err
+			}
+			return uid.UidF("systemd", "unit", "user", u.Username)(s, uc)
 		})
-	})
+	}).Tag("units")
 }
 
 type UnitFileOpts struct {
@@ -187,6 +199,15 @@ func ActionUnitFiles(opts UnitFileOpts) carapace.Action {
 				}
 			}
 			return carapace.ActionStyledValues(vals...)
+		}).UidF(func(s string, uc uid.Context) (*url.URL, error) {
+			if !opts.User {
+				return uid.UidF("systemd", "unit-file")(s, uc)
+			}
+			u, err := user.Current()
+			if err != nil {
+				return nil, err
+			}
+			return uid.UidF("systemd", "unit-file", "user", u.Username)(s, uc)
 		})
-	})
+	}).Tag("unit files")
 }

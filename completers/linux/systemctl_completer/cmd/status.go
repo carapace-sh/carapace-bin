@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemd"
 	"github.com/spf13/cobra"
 )
 
@@ -20,9 +20,9 @@ func init() {
 
 	carapace.Gen(statusCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			opts := systemctl.UnitFileOpts{}.Default()
+			opts := systemd.UnitFileOpts{}.Default()
 			opts.User = statusCmd.Root().Flag("user").Changed
-			return systemctl.ActionUnitFiles(opts).FilterArgs()
+			return systemd.ActionUnitFiles(opts).FilterArgs()
 		}),
 	)
 }

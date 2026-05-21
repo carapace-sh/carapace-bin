@@ -1,4 +1,4 @@
-package systemctl
+package systemd
 
 import (
 	"strings"

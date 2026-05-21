@@ -6,7 +6,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/journalctl"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemd"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -125,14 +125,14 @@ func init() {
 		"property":    action.ActionProperties(rootCmd),
 		"root":        carapace.ActionDirectories(),
 		"signal":      ps.ActionKillSignals(),
-		"state":       systemctl.ActionStates(),
+		"state":       systemd.ActionStates(),
 		"timestamp": carapace.ActionValuesDescribed(
 			"pretty", "Day YYYY-MM-DD HH:MM:SS TZ",
 			"us", "Day YYYY-MM-DD HH:MM:SS.UUUUUU TZ",
 			"utc", "Day YYYY-MM-DD HH:MM:SS UTC",
 			"us+utc", "Day YYYY-MM-DD HH:MM:SS.UUUUUU UTC",
 		),
-		"type": systemctl.ActionUnitTypes(),
+		"type": systemd.ActionUnitTypes(),
 		"what": carapace.ActionValues("configuration", "state", "cache", "logs", "runtime"),
 	})
 }
