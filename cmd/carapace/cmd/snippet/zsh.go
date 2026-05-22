@@ -13,7 +13,7 @@ func Zsh(completers []string) string {
 
 function _carapace_completer {
   local command="$(basename $words[1])"
-  local compline=${words[@]:0:$CURRENT}
+  local -a carapace_words=("${(@Q)${words[@]:0:$CURRENT}}")
   local IFS=$'\n'
   local lines
 
@@ -23,14 +23,8 @@ function _carapace_completer {
   declare -x CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})"
   declare -x CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})"
 
-  # shellcheck disable=SC2086,SC2154,SC2155
-  lines="$(echo "${compline}''" | xargs carapace "${command}" zsh 2>/dev/null)"
-  if [ $? -eq 1 ]; then
-    lines="$(echo "${compline}'" | xargs carapace "${command}" zsh 2>/dev/null)"
-    if [ $? -eq 1 ]; then
-      lines="$(echo "${compline}\"" | xargs carapace "${command}" zsh 2>/dev/null)"
-    fi
-  fi
+  # Use zsh's parsed words so command substitutions stay single arguments.
+  lines="$(carapace "${command}" zsh "${carapace_words[@]}" 2>/dev/null)"
 
   local zstyle message data
   IFS=$'\001' read -r -d '' zstyle message data <<<"${lines}"
