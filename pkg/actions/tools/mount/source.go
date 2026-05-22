@@ -1,6 +1,8 @@
 package mount
 
 import (
+	"runtime"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
 )
@@ -8,10 +10,12 @@ import (
 // ActionSources completes sources
 func ActionSources() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.Batch(
+		actions := []carapace.Action{
 			fs.ActionBlockDevices(),
 			carapace.ActionFiles(),
-			carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		}
+		if runtime.GOOS == "linux" {
+			actions = append(actions, carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
@@ -40,7 +44,8 @@ func ActionSources() carapace.Action {
 				default:
 					return carapace.ActionValues()
 				}
-			}),
-		).ToA()
+			}))
+		}
+		return carapace.Batch(actions...).ToA()
 	}).Tag("sources")
 }
