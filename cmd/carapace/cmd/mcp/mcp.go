@@ -10,7 +10,19 @@ import (
 	"strings"
 )
 
-var mcpServerVersion = "dev"
+type MCPServer struct {
+	version string
+	stdin   io.Reader
+	stdout  io.Writer
+}
+
+func NewMCPServer(version string, stdin io.Reader, stdout io.Writer) *MCPServer {
+	return &MCPServer{
+		version: version,
+		stdin:   stdin,
+		stdout:  stdout,
+	}
+}
 
 type mcpRequest struct {
 	JSONRPC string          `json:"jsonrpc"`
@@ -46,16 +58,9 @@ type mcpCompleteRequest struct {
 	Args []string `json:"args,omitempty"`
 }
 
-type mcpCompleter func(mcpCompleteRequest) (string, error)
-
-func RunMCPServer(version string, input io.Reader, output io.Writer) error {
-	mcpServerVersion = version
-	return runMCPServer(input, output, completeWithCarapace)
-}
-
-func runMCPServer(input io.Reader, output io.Writer, complete mcpCompleter) error {
-	decoder := json.NewDecoder(input)
-	encoder := json.NewEncoder(output)
+func (s *MCPServer) Run() error {
+	decoder := json.NewDecoder(s.stdin)
+	encoder := json.NewEncoder(s.stdout)
 
 	for {
 		var message json.RawMessage
@@ -66,40 +71,46 @@ func runMCPServer(input io.Reader, output io.Writer, complete mcpCompleter) erro
 			return err
 		}
 
-		if err := writeMCPResponse(encoder, message, complete); err != nil {
+		result, err := s.processMessage(message)
+		if err != nil {
 			return err
+		}
+		if result != nil {
+			if err := encoder.Encode(result); err != nil {
+				return err
+			}
 		}
 	}
 }
 
-func writeMCPResponse(encoder *json.Encoder, message json.RawMessage, complete mcpCompleter) error {
+func (s *MCPServer) processMessage(message json.RawMessage) (any, error) {
 	switch firstNonSpace(message) {
 	case '[':
 		var requests []mcpRequest
 		if err := json.Unmarshal(message, &requests); err != nil {
-			return err
+			return nil, err
 		}
 		responses := make([]mcpResponse, 0, len(requests))
 		for _, request := range requests {
-			response, ok := handleMCPRequest(request, complete)
+			response, ok := s.handleRequest(request)
 			if ok {
 				responses = append(responses, response)
 			}
 		}
 		if len(responses) == 0 {
-			return nil
+			return nil, nil
 		}
-		return encoder.Encode(responses)
+		return responses, nil
 	default:
 		var request mcpRequest
 		if err := json.Unmarshal(message, &request); err != nil {
-			return err
+			return nil, err
 		}
-		response, ok := handleMCPRequest(request, complete)
+		response, ok := s.handleRequest(request)
 		if !ok {
-			return nil
+			return nil, nil
 		}
-		return encoder.Encode(response)
+		return response, nil
 	}
 }
 
@@ -115,7 +126,7 @@ func firstNonSpace(message []byte) byte {
 	return 0
 }
 
-func handleMCPRequest(request mcpRequest, complete mcpCompleter) (mcpResponse, bool) {
+func (s *MCPServer) handleRequest(request mcpRequest) (mcpResponse, bool) {
 	if len(request.ID) == 0 {
 		return mcpResponse{}, false
 	}
@@ -134,7 +145,7 @@ func handleMCPRequest(request mcpRequest, complete mcpCompleter) (mcpResponse, b
 			},
 			"serverInfo": map[string]any{
 				"name":    "carapace",
-				"version": mcpServerVersion,
+				"version": s.version,
 			},
 		}
 	case "tools/list":
@@ -161,7 +172,7 @@ func handleMCPRequest(request mcpRequest, complete mcpCompleter) (mcpResponse, b
 			},
 		}
 	case "tools/call":
-		result, err := handleMCPToolCall(request.Params, complete)
+		result, err := s.handleToolCall(request.Params)
 		if err != nil {
 			response.Error = &mcpError{Code: -32602, Message: err.Error()}
 			return response, true
@@ -174,7 +185,7 @@ func handleMCPRequest(request mcpRequest, complete mcpCompleter) (mcpResponse, b
 	return response, true
 }
 
-func handleMCPToolCall(params json.RawMessage, complete mcpCompleter) (map[string]any, error) {
+func (s *MCPServer) handleToolCall(params json.RawMessage) (map[string]any, error) {
 	var call mcpToolCallParams
 	if err := json.Unmarshal(params, &call); err != nil {
 		return nil, fmt.Errorf("invalid tool call parameters: %w", err)
@@ -190,7 +201,7 @@ func handleMCPToolCall(params json.RawMessage, complete mcpCompleter) (map[strin
 		}
 	}
 
-	completions, err := complete(request)
+	completions, err := s.complete(request)
 	if err != nil {
 		return mcpTextResult(err.Error(), true), nil
 	}
@@ -212,7 +223,7 @@ func mcpTextResult(text string, isError bool) map[string]any {
 	return result
 }
 
-func completeWithCarapace(request mcpCompleteRequest) (string, error) {
+func (s *MCPServer) complete(request mcpCompleteRequest) (string, error) {
 	switch len(request.Args) {
 	case 0:
 		return "", errors.New("command is required")
@@ -230,7 +241,7 @@ func completeWithCarapace(request mcpCompleteRequest) (string, error) {
 			return "", errors.New("arguments must not contain NUL bytes")
 		}
 	}
-	args := []string{command, "export", command}
+	args := []string{command, "export"}
 	args = append(args, request.Args...)
 
 	executable, err := os.Executable()
