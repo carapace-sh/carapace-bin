@@ -20,7 +20,7 @@ func init() {
 
 	carapace.Gen(enableCmd).PositionalAnyCompletion(
 		carapace.Batch(
-			action.ActionUnits(enableCmd).FilterArgs(),
+			action.ActionUnitFiles(enableCmd, false).FilterArgs(),
 			carapace.ActionFiles(),
 		).ToA(),
 	)

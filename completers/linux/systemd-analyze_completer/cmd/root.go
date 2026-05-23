@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemd"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -75,7 +75,7 @@ func init() {
 		"root":             carapace.ActionDirectories(),
 		"security-policy":  carapace.ActionFiles(),
 		"unit": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return systemctl.ActionUnits(systemctl.UnitOpts{User: rootCmd.Flag("user").Changed, Active: true, Inactive: true})
+			return systemd.ActionUnits(systemd.UnitOpts{User: rootCmd.Flag("user").Changed, Active: true, Inactive: true})
 		}),
 	})
 }

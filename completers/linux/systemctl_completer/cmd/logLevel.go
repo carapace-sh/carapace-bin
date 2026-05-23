@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemctl"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/systemd"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(logLevelCmd)
 
 	carapace.Gen(logLevelCmd).PositionalCompletion(
-		systemctl.ActionLogLevels(),
+		systemd.ActionLogLevels(),
 	)
 }
