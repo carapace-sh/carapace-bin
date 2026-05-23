@@ -13,7 +13,7 @@ var mcpCmd = &cobra.Command{
 	Short: "run MCP server",
 	Args:  cobra.NoArgs,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return mcp.RunMCPServer(os.Stdin, os.Stdout)
+		return mcp.RunMCPServer(cmd.Root().Version, os.Stdin, os.Stdout)
 	},
 }
 

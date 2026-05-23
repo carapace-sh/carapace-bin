@@ -126,9 +126,6 @@ func createOverlayDir() error {
 
 func Execute(version string) error {
 	rootCmd.Version = version
-	if version != "" {
-		mcpServerVersion = version
-	}
 
 	if len(os.Args) > 1 {
 		if os.Args[1] == "carapace" {

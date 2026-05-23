@@ -48,7 +48,12 @@ type mcpCompleteRequest struct {
 
 type mcpCompleter func(mcpCompleteRequest) (string, error)
 
-func RunMCPServer(input io.Reader, output io.Writer) error {
+func RunMCPServer(version string, input io.Reader, output io.Writer) error {
+	mcpServerVersion = version
+	return runMCPServer(input, output, completeWithCarapace)
+}
+
+func runMCPServer(input io.Reader, output io.Writer, complete mcpCompleter) error {
 	decoder := json.NewDecoder(input)
 	encoder := json.NewEncoder(output)
 
@@ -61,7 +66,7 @@ func RunMCPServer(input io.Reader, output io.Writer) error {
 			return err
 		}
 
-		if err := writeMCPResponse(encoder, message, completeWithCarapace); err != nil {
+		if err := writeMCPResponse(encoder, message, complete); err != nil {
 			return err
 		}
 	}

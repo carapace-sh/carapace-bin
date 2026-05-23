@@ -15,7 +15,7 @@ func TestMCPInitializeAndListTools(t *testing.T) {
 	}, "\n"))
 
 	var output bytes.Buffer
-	if err := RunMCPServer(input, &output, func(mcpCompleteRequest) (string, error) {
+	if err := runMCPServer(input, &output, func(mcpCompleteRequest) (string, error) {
 		t.Fatal("complete should not be called")
 		return "", nil
 	}); err != nil {
@@ -48,9 +48,9 @@ func TestMCPCompleteToolCall(t *testing.T) {
 	input := strings.NewReader(`{"jsonrpc":"2.0","id":"call-1","method":"tools/call","params":{"name":"complete","arguments":{"command":"git","args":["git"],"value":"checko"}}}`)
 
 	var output bytes.Buffer
-	if err := RunMCPServer(input, &output, func(request mcpCompleteRequest) (string, error) {
-		if !reflect.DeepEqual(request.Args, []string{"git", "checko"}) {
-			t.Fatalf("expected %#v checko, got %#v", request.Args)
+	if err := runMCPServer(input, &output, func(request mcpCompleteRequest) (string, error) {
+		if expected := []string{"git", "checko"}; !reflect.DeepEqual(expected, request.Args) {
+			t.Fatalf("expected %#v checko, got %#v", expected, request.Args)
 		}
 		return `[{"value":"checkout","description":"Switch branches or restore working tree files"}]`, nil
 	}); err != nil {
@@ -79,7 +79,7 @@ func TestMCPBatchSkipsNotifications(t *testing.T) {
 	input := strings.NewReader(`[{"jsonrpc":"2.0","method":"notifications/initialized"},{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}]`)
 
 	var output bytes.Buffer
-	if err := RunMCPServer(input, &output, func(mcpCompleteRequest) (string, error) {
+	if err := runMCPServer(input, &output, func(mcpCompleteRequest) (string, error) {
 		t.Fatal("complete should not be called")
 		return "", nil
 	}); err != nil {
