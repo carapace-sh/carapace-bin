@@ -45,7 +45,7 @@ func TestMCPInitializeAndListTools(t *testing.T) {
 }
 
 func TestMCPCompleteToolCall(t *testing.T) {
-	input := strings.NewReader(`{"jsonrpc":"2.0","id":"call-1","method":"tools/call","params":{"name":"complete","arguments":{"command":"git","args":["git"],"value":"checko"}}}`)
+	input := strings.NewReader(`{"jsonrpc":"2.0","id":"call-1","method":"tools/call","params":{"name":"complete","arguments":{"args":["git", "checko"]}}}`)
 
 	var output bytes.Buffer
 	if err := runMCPServer(input, &output, func(request mcpCompleteRequest) (string, error) {
