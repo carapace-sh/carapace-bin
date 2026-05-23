@@ -1,8 +1,9 @@
-package cmd
+package mcp
 
 import (
 	"bytes"
 	"encoding/json"
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -44,18 +45,12 @@ func TestMCPInitializeAndListTools(t *testing.T) {
 }
 
 func TestMCPCompleteToolCall(t *testing.T) {
-	input := strings.NewReader(`{"jsonrpc":"2.0","id":"call-1","method":"tools/call","params":{"name":"complete","arguments":{"command":"git","args":["git"],"value":"checko"}}}`)
+	input := strings.NewReader(`{"jsonrpc":"2.0","id":"call-1","method":"tools/call","params":{"name":"complete","arguments":{"args":["git", "checko"]}}}`)
 
 	var output bytes.Buffer
 	if err := runMCPServer(input, &output, func(request mcpCompleteRequest) (string, error) {
-		if request.Command != "git" {
-			t.Fatalf("expected command git, got %q", request.Command)
-		}
-		if len(request.Args) != 1 || request.Args[0] != "git" {
-			t.Fatalf("unexpected args: %#v", request.Args)
-		}
-		if request.Value != "checko" {
-			t.Fatalf("expected value checko, got %q", request.Value)
+		if expected := []string{"git", "checko"}; !reflect.DeepEqual(expected, request.Args) {
+			t.Fatalf("expected %#v checko, got %#v", expected, request.Args)
 		}
 		return `[{"value":"checkout","description":"Switch branches or restore working tree files"}]`, nil
 	}); err != nil {
