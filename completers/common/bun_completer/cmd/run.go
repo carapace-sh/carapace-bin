@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +18,9 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).PositionalCompletion(
-		carapace.ActionFiles(),
+		carapace.Batch(
+			npm.ActionScripts(),
+			carapace.ActionFiles(),
+		).ToA(),
 	)
 }
