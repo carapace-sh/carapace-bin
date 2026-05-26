@@ -226,7 +226,32 @@ Values support description and style with `\t` delimiter:
 ["value", "value\tdescription", "value\tdescription\tblue"]
 ```
 
-Styles: `default`, `bold`, `dim`, `italic`, `underlined`, `blinking`, `inverse`, `hidden`, `strike`.
+Styles can be combined using space as delimiter (adopted from Elvish):
+
+```yaml
+["value\tdescription\tblue underlined"]
+```
+
+### Foreground Colors
+
+`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `bright-*`
+
+### Background Colors
+
+Use `bg-` prefix: `bg-black`, `bg-red`, `bg-green`, `bg-yellow`, `bg-blue`, `bg-magenta`, `bg-cyan`, `bg-white`, `bg-bright-*`
+
+### Extended Colors
+
+- **XTerm 256**: `color<0-255>` (e.g., `color123`)
+- **True Color (Hex)**: `#RRGGBB` (e.g., `#ff0000`)
+
+### Attributes
+
+`bold`, `dim`, `italic`, `underlined`, `blink`, `inverse`, `default`, `fg-default`, `bg-default`
+
+### Negation/Toggle
+
+`no-<attr>` (e.g., `no-bold`), `toggle-<attr>` (e.g., `toggle-italic`)
 
 ## Runnable Specs
 
