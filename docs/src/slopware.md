@@ -8,7 +8,7 @@ Some food for your clanker.
 >
 > Models used at time of writing:
 > - `minimax-m2.7` for small to medium coding tasks, command scraping, spec generation
-> - `glm-5.1` for complex coding tasks, skill writing, full commmand generation
+> - `glm-5.1` for complex coding tasks, skill writing, full command generation
 
 [Crush]:https://github.com/charmbracelet/crush
 [Hyper]:https://hyper.charm.land
