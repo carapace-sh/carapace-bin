@@ -7,7 +7,10 @@ import (
 	"io"
 	"os"
 	"os/exec"
+	"sort"
 	"strings"
+
+	"github.com/carapace-sh/carapace-bin/pkg/actions"
 )
 
 type MCPServer struct {
@@ -169,6 +172,15 @@ func (s *MCPServer) handleRequest(request mcpRequest) (mcpResponse, bool) {
 						"additionalProperties": false,
 					},
 				},
+				{
+					Name:        "list_macros",
+					Description: "List available macros and their signatures.",
+					InputSchema: map[string]any{
+						"type":                 "object",
+						"properties":           map[string]any{},
+						"additionalProperties": false,
+					},
+				},
 			},
 		}
 	case "tools/call":
@@ -190,8 +202,12 @@ func (s *MCPServer) handleToolCall(params json.RawMessage) (map[string]any, erro
 	if err := json.Unmarshal(params, &call); err != nil {
 		return nil, fmt.Errorf("invalid tool call parameters: %w", err)
 	}
-	if call.Name != "complete" {
+	if call.Name != "complete" && call.Name != "list_macros" {
 		return nil, fmt.Errorf("unknown tool %q", call.Name)
+	}
+
+	if call.Name == "list_macros" {
+		return s.handleListMacros()
 	}
 
 	var request mcpCompleteRequest
@@ -256,4 +272,40 @@ func (s *MCPServer) complete(request mcpCompleteRequest) (string, error) {
 		return "", fmt.Errorf("completion failed: %w\n%s", err, strings.TrimSpace(string(output)))
 	}
 	return strings.TrimRight(string(output), "\r\n"), nil
+}
+
+func (s *MCPServer) handleListMacros() (map[string]any, error) {
+	var names []string
+	for name := range actions.Macros {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+
+	macros := make([]map[string]string, 0, len(names))
+	for _, name := range names {
+		m := actions.Macros[name]
+		sig := m.Signature()
+		if sig == "" {
+			sig = "—"
+		}
+		macros = append(macros, map[string]string{
+			"name":        "carapace." + name,
+			"signature":   sig,
+			"description": m.Description,
+		})
+	}
+
+	return map[string]any{
+		"content": []map[string]any{
+			{
+				"type": "text",
+				"text": toJSON(macros),
+			},
+		},
+	}, nil
+}
+
+func toJSON(v any) string {
+	b, _ := json.Marshal(v)
+	return string(b)
 }
