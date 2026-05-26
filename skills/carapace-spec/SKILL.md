@@ -352,9 +352,9 @@ completion:
   positionalany: ["$carapace.bridge.CarapaceBin([kubectl])"]
 ```
 
-Generic bridge: `CarapaceBin`.
-Framework bridges: `Argcomplete`, `Aws`, `Bash`, `Carapace`, `Clap`, `Click`, `Cobra`, `Complete`, `Gcloud`, `Inshellisense`, `JJ`, `Kingpin`, `Kitten`, `Urfavecli`, `UrfavecliV1`, `Yargs`.
-Shell bridges: `Bash`, `Fish`, `Powershell`, `Zsh`.
+- Generic bridge: `CarapaceBin`.
+- Framework bridges: `Argcomplete`, `Aws`, `Bash`, `Carapace`, `Clap`, `Click`, `Cobra`, `Complete`, `Gcloud`, `Inshellisense`, `JJ`, `Kingpin`, `Kitten`, `Urfavecli`, `UrfavecliV1`, `Yargs`.
+- Shell bridges: `Bash`, `Fish`, `Powershell`, `Zsh`.
 
 ## Testing
 
