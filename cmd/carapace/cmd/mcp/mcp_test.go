@@ -41,12 +41,16 @@ func TestMCPInitializeAndListTools(t *testing.T) {
 		t.Fatalf("tools/list result missing")
 	}
 	tools, ok := result["tools"].([]any)
-	if !ok || len(tools) != 1 {
-		t.Fatalf("expected one tool, got %#v", result["tools"])
+	if !ok || len(tools) != 2 {
+		t.Fatalf("expected 2 tools, got %#v", result["tools"])
 	}
 	tool, ok := tools[0].(map[string]any)
 	if !ok || tool["name"] != "complete" {
 		t.Fatalf("expected complete tool, got %#v", tools[0])
+	}
+	tool1, ok := tools[1].(map[string]any)
+	if !ok || tool1["name"] != "list_macros" {
+		t.Fatalf("expected list_macros tool, got %#v", tools[1])
 	}
 }
 
