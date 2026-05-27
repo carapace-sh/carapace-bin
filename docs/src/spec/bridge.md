@@ -4,7 +4,7 @@ Bridging completions from another engine for shells not natively supported by it
 
 > Even when the command supports your current shell it is still beneficial to bridge it as this enables [embedding](./embed.md) like `sudo [spec.name] <TAB>`.
 >
-> It also avoids the issue of [shell startup delay] when sourcing the completion in init scripts otherwise circumvented with [lazycomplete].
+> It also avoids the issue of shell startup delay when sourcing the completion in init scripts otherwise circumvented with [lazycomplete].
 >
 > However, bridging is limited to supported commands/frameworks and how well it actually works.
 
@@ -211,7 +211,6 @@ completion:
 ```
 
 [lazycomplete]:https://github.com/rsteube/lazycomplete
-[shell startup delay]:https://jzelinskie.com/posts/dont-recommend-sourcing-shell-completion/
 
 [bash]:https://www.gnu.org/software/bash/
 [`bridge.Bash`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionBash
