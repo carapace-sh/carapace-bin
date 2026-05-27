@@ -27,6 +27,7 @@
   - [Slopware](./slopware.md)
     - [Skills](./slopware/skills.md)
       - [carapace-scrape](./slopware/skills/carapace-scrape.md)
+      - [carapace-spec](./slopware/skills/carapace-spec.md)
   - [Development](./development.md)
     - [Project Layout](./development/projectLayout.md)
     - [Build](./development/build.md)
