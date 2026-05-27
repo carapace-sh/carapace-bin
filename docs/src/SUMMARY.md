@@ -25,6 +25,7 @@
   - [Variable](./variable.md)
     - [Conditions](./variable/conditions.md)
   - [Slopware](./slopware.md)
+    - [MCP](./slopware/mcp.md)
     - [Skills](./slopware/skills.md)
       - [carapace-scrape](./slopware/skills/carapace-scrape.md)
       - [carapace-spec](./slopware/skills/carapace-spec.md)
