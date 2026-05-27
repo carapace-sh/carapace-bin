@@ -25,7 +25,7 @@ User specs stored in: `${UserConfigDir}/carapace/specs/`
 
 ## Schema
 
-Add to top of spec file for IDE validation:
+Add to top of spec file for schema validation:
 
 ```yaml
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
