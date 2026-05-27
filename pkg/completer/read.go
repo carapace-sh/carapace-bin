@@ -58,6 +58,7 @@ func ReadSpecs(dir, group string, parse bool) (CompleterMap, error) {
 			if err := yaml.Unmarshal(content, &_spec); err != nil {
 				return nil, err
 			}
+			_spec.Name, _, _ = strings.Cut(_spec.Name, " ") // cut one-line usage message
 
 			if entry.Name() != _spec.Name+".yaml" {
 				return nil, fmt.Errorf("spec filename %#v does not match name %#v", entry.Name(), _spec.Name)
