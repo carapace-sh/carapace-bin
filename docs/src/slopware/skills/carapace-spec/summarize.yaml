@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: summarize
+description: Summarize the difference between two git refs
+run: "$(crush run \"Summarize the difference between git refs ${C_ARG0} and ${C_ARG1}\")"
+completion:
+  positional:
+    - ["$carapace.tools.git.Refs"]
+    - ["$carapace.tools.git.Refs"]
