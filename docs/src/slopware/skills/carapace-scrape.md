@@ -2,7 +2,7 @@
 
 The [`carapace-scrape`](https://github.com/carapace-sh/carapace-bin/blob/master/skills/carapace-scrape/SKILL.md) skill creates a [Spec](../../spec.md) by scraping the source code of a CLI tool.
 
-![](./carapace-scrape/carapace-scrape.cast)
+![](./carapace-scrape/scrape.cast)
 
 ## Instructions
 

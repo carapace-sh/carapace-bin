@@ -22,6 +22,8 @@ Then add it to your [config](https://github.com/charmbracelet/crush#lsps).
 }
 ```
 
+> Not actually recommended at this moment.
+
 [lsp]:https://github.com/carapace-sh/bash-language-server
 [Carapace]:https://carapace.sh
 [PATH]:https://en.wikipedia.org/wiki/PATH_(variable)

@@ -1,8 +1,8 @@
 # carapace-spec
 
-The [`carapace-spec`](https://github.com/carapace-sh/carapace-bin/blob/master/skills/carapace-spec/SKILL.md) skill creates/modifies [Spec](../../spec.md) files.
+The [`carapace-spec`] skill creates/modifies [Spec](../../spec.md) files.
 
-![](./carapace-spec/carapace-spec.cast)
+![](./carapace-spec/spec.cast)
 
 ## Instructions
 
@@ -18,4 +18,5 @@ The [`carapace-spec`](https://github.com/carapace-sh/carapace-bin/blob/master/sk
 {{#include ./carapace-spec/summarize.yaml}}
 ```
 
+[`carapace-spec`]:https://github.com/carapace-sh/carapace-bin/blob/master/skills/carapace-spec/SKILL.md
 [crush]:https://github.com/charmbracelet/crush
