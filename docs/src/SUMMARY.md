@@ -27,6 +27,7 @@
   - [Slopware](./slopware.md)
     - [MCP](./slopware/mcp.md)
     - [Skills](./slopware/skills.md)
+      - [carapace-action](./slopware/skills/carapace-action.md)
       - [carapace-integrate](./slopware/skills/carapace-integrate.md)
       - [carapace-scrape](./slopware/skills/carapace-scrape.md)
       - [carapace-spec](./slopware/skills/carapace-spec.md)
