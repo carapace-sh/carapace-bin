@@ -128,15 +128,14 @@ Macro names use a dotted prefix to indicate their source:
 | Prefix | Source | Example |
 |--------|--------|---------|
 | (none) | Core macros from carapace-spec | `$files`, `$directories`, `$message` |
-| `carapace.` | carapace-bin provided macros | `$carapace.tools.git.Refs` |
+| `<exe>.` | Fully qualified — the executable providing the macro | `$carapace.tools.git.Refs`, `$git.Refs`, `$kubectl.Refs` |
 | `$_.` | Self-referencing (current executable) | `$_.Refs` |
-| `$<exe>.` | Other executable's macros | `$kubectl.Refs` |
 
 ### Fully Qualified vs Short Form
 
-- `$carapace.tools.git.Refs` — fully qualified, always works
+- `$carapace.tools.git.Refs` — fully qualified via the `carapace` executable, always works
+- `$git.Refs` — fully qualified via the `git` executable (when `git` exposes this macro)
 - `$_.Refs` — short form, resolves to the current executable's own macros (avoid unless explicitly asked for)
-- `$git.Refs` — when current executable is `git`, delegates to `git _carapace macro tools.git.Refs`
 
 ### Cross-Executable Macros
 
@@ -269,11 +268,42 @@ Modifier macros are also listed by `list_macros` and follow the same type rules 
 | `$tag(name)` | MacroI | Tag values |
 | `$usage(msg)` | MacroI | Usage message |
 | `$suppress(val)` | MacroI | Suppress specific values |
-| `$shift(n)` | MacroI | Skip positional args |
+| `$shift(n)` | MacroI | Remove first `n` positional args from `Context.Args` |
+
+`$shift` reindexes which positional completion slot fires by slicing `Context.Args`. After `$shift(n)`, `Context.Args` becomes `Context.Args[n:]`, so `len(Context.Args)` decreases by `n`. Use it when bridging or recursing where the first arg(s) are routing arguments that shouldn't count as positionals:
+
+```yaml
+# Rightmost runs first: $shift(1) (outermost) fires first, shifts Args,
+# then $filterargs (innermost) runs last and sees shifted Args
+["$carapace.tools.git.Refs", "$filterargs", "$shift(1)"]
+
+# Leftmost runs first: $filterargs (outermost) fires first, captures original Args,
+# then $shift(1) (innermost) shifts — $filterargs already captured original Args
+["$carapace.tools.git.Refs", "$shift(1)", "$filterargs"]
+
+# Specific form: $shift scoped to one macro via |||
+["$carapace.tools.git.Refs ||| $shift(1)"]
+```
+
 | `$split` | MacroN | Split command string |
 | `$splitp` | MacroN | Split command string with pipes |
 | `$filterargs` | MacroN | Filter already-provided positional args |
 | `$uniquelist(delim)` | MacroI | Deduplicate delimited list |
+
+### Modifier Chaining Order
+
+The **outermost** modifier fires **first** at invocation time, then bubbles inward. Order matters when modifiers affect the same data (e.g., `$prefix`/`$suffix` change the value text that `$filter`/`$retain` match against):
+
+```yaml
+# Rightmost runs first: $prefix adds "p/" to all values, then $filter([x]) removes "p/x" from results
+["$files ||| $filter([x]) ||| $prefix(p/)"]
+
+# Leftmost runs first: $filter removes "x" first, then $prefix adds "p/" to remaining ("p/a", "p/b")
+["$files ||| $prefix(p/) ||| $filter([x])"]
+
+# Order doesn't matter when modifiers target independent fields
+["$files ||| $tag(local) ||| $style(blue)"]
+```
 
 ### Traverse Modifier Macros (Directory Paths)
 
