@@ -376,6 +376,112 @@ carapace.ActionValues("main", "develop").Suppress("main")
 ActionAncestors(ctx.AttachedRevset).Filter("..", "::")
 ```
 
+## Caching
+
+Use `.Cache(timeout, keys...)` on actions that perform expensive operations (network calls, external commands). Cache is disk-based and shared across shell sessions.
+
+### When to Add Cache Keys
+
+Cache keys are **implicit** — only add them when the action produces **different results based on arguments or context**. Actions with no parameters or always returning the same results need no keys.
+
+| Scenario | Keys needed | Example |
+|----------|-------------|---------|
+| No parameters, same results always | None | `ActionLocalBranches()` → `.Cache(24*time.Hour)` |
+| Parameter changes results | Parameter as key | `ActionIssues(repo)` → `.Cache(1*time.Hour, key.String(repo))` |
+| Opts change results | Opts cache key method | `ActionLabels(opts)` → `.Cache(24*time.Hour, opts.cacheKey())` |
+| Results depend on a file | File stats key | `ActionTarContents(file)` → `.Cache(-1, key.FileStats(file))` |
+
+### Timeout Values
+
+| Timeout | When to use |
+|--------|-------------|
+| `5 * time.Minute` | Rapidly changing data (test servers) |
+| `1 * time.Hour` | Moderately stable data (search results, extensions) |
+| `24 * time.Hour` | Rarely changing data (labels, config keys, remote plugins) |
+| `-1` | Never expire by time, only invalidate on key change (file-based sources) |
+
+### Cache Key Helpers
+
+Import `github.com/carapace-sh/carapace/pkg/cache/key`:
+
+| Key function | Description |
+|-------------|-------------|
+| `key.String(s ...string)` | Simple string-based key from one or more strings |
+| `key.FileStats(file)` | Key based on file path + size + modification time |
+| `key.FileChecksum(file)` | Key based on file content SHA1 hash |
+| `func() (string, error)` | Custom inline key function |
+
+### Cache Key Method on Opts
+
+When an Opts struct affects results, add a `cacheKey()` method returning `key.Key`:
+
+```go
+func (o RepoOpts) cacheKey() key.Key { return key.String(o.Host, o.Owner, o.Name) }
+```
+
+Use it in the `.Cache()` call:
+
+```go
+func ActionLabels(opts RepoOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		// ...
+	}).Cache(24*time.Hour, opts.cacheKey())
+}
+```
+
+For boolean Opts fields, convert them to strings in the key:
+
+```go
+func (o ResourceOpts) cacheKey() key.Key {
+	return key.String(
+		strconv.FormatBool(o.Analysis),
+		strconv.FormatBool(o.Model),
+	)
+}
+```
+
+### Examples
+
+No keys — same results regardless of context:
+
+```go
+func ActionLocalBranches() carapace.Action {
+	return carapace.ActionExecCommand("git", "branch", "--format", "...")(func(output []byte) carapace.Action {
+		// ...
+	}).Cache(24 * time.Hour)
+}
+```
+
+String parameter as key — results differ per argument:
+
+```go
+func ActionFormats(url string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("youtube-dl", "--list-formats", url)(func(output []byte) carapace.Action {
+			// ...
+		}).Cache(1*time.Hour, key.String(url))
+	})
+}
+```
+
+File stats as key — re-read when file changes:
+
+```go
+func ActionProjects(file string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("mvn", args...)(func(output []byte) carapace.Action {
+			// ...
+		}).Cache(-1, key.FileStats(file))
+	})
+}
+```
+
+Multiple keys — combine opts key with file key:
+
+```go
+}).Cache(24*time.Hour, opts.cacheKey(), key.FileStats(path))
+```
+
 ## Combining Actions
 
 ### Batch
