@@ -6,6 +6,8 @@
 crush
 ├── crush.json
 └── skills
+    ├── carapace-action
+    │   └── SKILL.md
     ├── carapace-integrate
     │   └── SKILL.md
     ├── carapace-scrape

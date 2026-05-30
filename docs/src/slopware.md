@@ -1,5 +1,3 @@
-> unreleased
-
 # Slopware
 
 Some food for your clanker.
