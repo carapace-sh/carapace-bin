@@ -2,7 +2,8 @@
 name: carapace-spec
 description: >
   Use when user needs to create a carapace user spec (YAML completion file). Covers schema,
-  flags, subcommands, macros, modifiers, parsing modes, runnable specs, and environment variables.
+  flags, subcommands, parsing modes, runnable specs, and environment variables.
+  For macro formatting and lookup, use the carapace-macro skill instead.
   Triggers on: "create completion", "carapace spec", "user spec", "completion yaml", or any request to write a spec file.
 user-invocable: true
 ---
@@ -154,16 +155,16 @@ documentation:
 
 ## Macros
 
-### Core Macros
+Macros are `$`-prefixed completion actions used in completion arrays. For full details on macro types, formatting, and how to look up available macros, see the **carapace-macro** skill.
+
+### Quick Reference
 
 ```yaml
 completion:
   positional:
-    - ["$directories"]           # complete directories
-    - ["$files([.go, .mod])"]     # filter by suffix
-    - ["$executables", "$executables([~/.local/bin])"]
-    - ["$message(error text)"]    # show error
-    - ["$spec(other.yaml)"]       # embed another spec
+    - ["$directories"]
+    - ["$files([.go, .mod])"]
+    - ["$carapace.tools.git.Refs({tags: true})"]
 ```
 
 ### Executing Commands
@@ -174,15 +175,9 @@ run: "$bash(echo -e 'one\\ntwo')"
 run: "$pwsh(echo one`ntwo)"
 ```
 
-### List Available Macros
-
-Use carapace MCP tool: `list_macros` to get all available macros with signatures.
-
-Example output includes: `choice.Choices`, `color.HexColors`, `fs.Files`, `net.hosts`, `tools.git.Refs`, `tools.docker.Containers`, and hundreds more.
-
 ## Modifiers
 
-Change completion behavior with ` ||| ` delimiter:
+Change completion behavior with ` ||| ` delimiter. For full modifier reference, see the **carapace-macro** skill.
 
 ```yaml
 # Generic: apply to all values
@@ -191,32 +186,6 @@ Change completion behavior with ` ||| ` delimiter:
 # Specific: apply to preceding value only
 ["$files ||| $chdir(/tmp)"]
 ```
-
-### Common Modifiers
-
-| Modifier | Purpose | Example |
-|----------|---------|---------|
-| `$chdir(<dir>)` | change directory | `["$files", "$chdir($gitdir)"]` |
-| `$filter([val])` | remove values | `["one two three", "$filter([two])"]` |
-| `$list(,)` | join with delimiter | `["a b c", "$list(,)"]` |
-| `$multiparts(/)` | split by delimiter | `["one/two", "$multiparts([/])"]` |
-| `$nospace(/)` | no space after char | `["dir/", "$nospace(/)"]` |
-| `$prefix(pre)` | prepend to values | `["file", "$prefix(http://)"]` |
-| `$suffix(suf)` | append to values | `["file", "$suffix(.txt)"]` |
-| `$style(name)` | apply style | `["text", "$style(underlined)"]` |
-| `$tag(name)` | tag values | `["text", "$tag(label)"]` |
-| `$usage(msg)` | usage message | `["$usage(specify path)"]` |
-
-### Traverse Modifiers (paths)
-
-- `$gitdir` - .git folder
-- `$gitworktree` - git worktree root
-- `$parent([file, dir])` - first parent containing names
-- `$tempdir` - temp directory
-- `$userhomedir` - home directory
-- `$userconfigdir` - config directory
-- `$usercachedir` - cache directory
-- `$xdgcachehome`, `$xdgconfighome` - XDG dirs
 
 ## Values Format
 
@@ -276,6 +245,8 @@ flags:
 completion:
   positionalany: ["$carapace.tools.git.LsRemoteRefs({url: '${C_ARG0}'})"]
 ```
+
+> For macro formatting details, see the **carapace-macro** skill.
 
 ### Shebang (Bash Script)
 
@@ -352,6 +323,8 @@ completion:
   positionalany: ["$carapace.bridge.CarapaceBin([kubectl])"]
 ```
 
+> For macro formatting details, see the **carapace-macro** skill.
+
 - Generic bridge: `CarapaceBin`.
 - Framework bridges: `Argcomplete`, `Aws`, `Bash`, `Carapace`, `Clap`, `Click`, `Cobra`, `Complete`, `Gcloud`, `Inshellisense`, `JJ`, `Kingpin`, `Kitten`, `Urfavecli`, `UrfavecliV1`, `Yargs`.
 - Shell bridges: `Bash`, `Fish`, `Powershell`, `Zsh`.
@@ -360,7 +333,6 @@ completion:
 
 ```bash
 carapace _carapace           # reload specs
-carapace --macro             # list all macros
-carapace --macro <name>      # show macro details
-carapace --macro <name> <TAB> # test macro
 ```
+
+> For macro lookup and formatting, see the **carapace-macro** skill.
