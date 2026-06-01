@@ -70,18 +70,20 @@ Action takes one parameter: a string, bool, or struct.
 
 | Argument type | Signature | Spec format | Go use |
 |--------------|-----------|-------------|--------|
-| `string` | `""` | `$macroname("arg")` | `spec.ActionMacro("$macroname(\"arg\")")` |
+| `string` | `""` | `$macroname(arg)` | `spec.ActionMacro("$macroname(\"arg\")")` |
 | `bool` | `false` | `$macroname(true)` | `spec.ActionMacro("$macroname(true)")` |
 | struct | `{Field: val}` | `$macroname({Field: val})` | `spec.ActionMacro("$macroname({Field: val})")` |
 
 When invoked without arguments, a struct argument's `Default()` method is called if it exists. Use this for boolean fields where zero values produce empty results.
 
+> **Note:** For single string arguments in user specs, quotes are omitted (`$macroname(arg)`) for ease of use. This keeps exec macros simple.
+
 ```yaml
-# String argument
+# String argument (quotes optional in user specs for ease of use)
 completion:
   positional:
     - ["$files([.go, .mod])"]
-    - ["$carapace.tools.git.RemoteBranches(\"origin\")"]
+    - ["$carapace.tools.git.RemoteBranches(origin)"]
 
 # Bool argument
 completion:
