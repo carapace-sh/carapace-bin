@@ -1,13 +1,3 @@
----
-name: carapace-bin
-description: >
-  Use when working on the carapace-bin project (github.com/carapace-sh/carapace-bin).
-  Covers project-specific structure, completer organization, shared actions in pkg/actions/,
-  macro registration, code generation, and testing patterns unique to carapace-bin.
-  Triggers on: "carapace-bin", "completer", "pkg/actions", "actions_generated", "MacroMap".
-user-invocable: true
----
-
 # carapace-bin
 
 A collection of shell completers powered by [carapace](https://github.com/carapace-sh/carapace).
