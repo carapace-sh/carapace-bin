@@ -40,7 +40,7 @@ type artifact struct {
 }
 
 func (a artifact) Location(repository string) string {
-	return fmt.Sprintf("%v/%v/%v/%v/%v-%v.jar", repository, strings.Replace(a.GroupId, ".", "/", -1), a.ArtifactId, a.Version, a.ArtifactId, a.Version)
+	return fmt.Sprintf("%v/%v/%v/%v/%v-%v.jar", repository, strings.ReplaceAll(a.GroupId, ".", "/"), a.ArtifactId, a.Version, a.ArtifactId, a.Version)
 }
 
 type project struct {

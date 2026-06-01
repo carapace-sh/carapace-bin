@@ -39,6 +39,11 @@ type IssueOpts struct {
 	Closed bool
 }
 
+func (o IssueOpts) Default() IssueOpts {
+	o.Open = true
+	return o
+}
+
 // ActionIssues completes issues
 func ActionIssues(opts IssueOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {

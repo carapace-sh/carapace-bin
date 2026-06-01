@@ -63,6 +63,10 @@ type IncludedDevices struct {
 	Wimax       bool
 }
 
+func (i IncludedDevices) Default() IncludedDevices {
+	return AllDevices
+}
+
 func (i IncludedDevices) Includes(deviceType string) bool {
 	include := map[string]bool{
 		"ethernet":     i.Ethernet,

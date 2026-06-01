@@ -22,7 +22,7 @@ func ActionJarFileClasses(file string) carapace.Action {
 			for _, f := range reader.File {
 				if strings.HasSuffix(f.Name, ".class") {
 					name := strings.TrimPrefix(f.Name, "BOOT-INF/classes/")
-					name = strings.Replace(name, "/", ".", -1)
+					name = strings.ReplaceAll(name, "/", ".")
 					name = strings.TrimSuffix(name, ".class")
 					vals = append(vals, name)
 				}

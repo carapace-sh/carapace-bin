@@ -79,7 +79,7 @@ type ContainerOpts struct {
 	Exited     bool
 }
 
-func (o *ContainerOpts) Default() {
+func (o ContainerOpts) Default() ContainerOpts {
 	o.Paused = true
 	o.Restarting = true
 	o.Removing = true
@@ -87,6 +87,7 @@ func (o *ContainerOpts) Default() {
 	o.Dead = true
 	o.Created = true
 	o.Exited = true
+	return o
 }
 
 func (o ContainerOpts) includeState(s string) bool {
