@@ -293,7 +293,9 @@ These are built into carapace-spec:
 | `$executables` | MacroV | Complete executables, optional directory filter |
 | `$message` | MacroI | Show an error/info message |
 | `$spec` | MacroI | Embed another spec |
-| `$sh`, `$bash`, `$zsh`, `$fish`, `$pwsh` | MacroI | Execute shell command for completions |
+| `$(...)` (bare) | MacroI | Execute shell command — `sh` on Unix, `cmd` on Windows |
+| `$sh`, `$bash`, `$zsh`, `$fish`, `$osh` | MacroI | Execute shell command (Unix-only, error on Windows) |
+| `$cmd`, `$pwsh`, `$nu`, `$elvish`, `$xonsh` | MacroI | Execute shell command (cross-platform) |
 
 ## Modifiers (Applied with `|||`)
 
@@ -431,7 +433,7 @@ Each array element is parsed with `envsubst` before execution.
 
 ### Script Mode (String with `$()`)
 
-Executes the script using sh. Flags become `C_FLAG_*` variables:
+Executes the script using `sh` on Unix and `cmd` on Windows. Explicit shell macros (e.g. `$bash(...)`, `$pwsh(...)`) override this. Flags become `C_FLAG_*` variables:
 
 ```yaml
 name: ls-remote
