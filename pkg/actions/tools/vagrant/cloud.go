@@ -19,6 +19,9 @@ type boxQuery struct {
 }
 
 // ActionCloudBoxSearch completes cloud boxes
+//
+//	ubuntu/jammy64
+//	debian/bookworm64
 func ActionCloudBoxSearch(provider string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.Batch(
@@ -70,6 +73,9 @@ type boxDetails struct {
 }
 
 // ActionCloudBoxProviders completes cloud box providers
+//
+//	virtualbox
+//	vmware
 func ActionCloudBoxProviders(name string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("curl", "https://app.vagrantup.com/api/v1/box/"+name)(func(output []byte) carapace.Action {
@@ -93,6 +99,9 @@ func ActionCloudBoxProviders(name string) carapace.Action {
 }
 
 // ActionCloudBoxVersions completes cloud box versions
+//
+//	2024.01.01
+//	2024.02.01
 func ActionCloudBoxVersions(name string, provider string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("curl", "https://app.vagrantup.com/api/v1/box/"+name)(func(output []byte) carapace.Action {

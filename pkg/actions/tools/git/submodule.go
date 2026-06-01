@@ -54,6 +54,10 @@ func ActionSubmoduleNames() carapace.Action {
 }
 
 // ActionSubmoduleBranches completes brances and tags of submodules (filtered by name)
+//
+//	main
+//	develop
+//
 // TODO verify and add example
 func ActionSubmoduleBranches(filter ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {

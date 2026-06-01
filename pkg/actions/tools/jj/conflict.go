@@ -7,6 +7,9 @@ import (
 )
 
 // ActionConflicts completes conflicts
+//
+//	fileA
+//	fileB
 func ActionConflicts(revision string) carapace.Action {
 	return actionExecJJ("resolve", "--list", "--revision", revision)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

@@ -87,6 +87,10 @@ func ActionModVersions() carapace.Action {
 }
 
 // ActionModGodebugs completes godebug instructions
+//
+//	http2client
+//	jsonv2
+//
 // TODO needs https://github.com/golang/go/issues/75105
 func ActionModGodebugs() carapace.Action {
 	return actionGoMod(func(m mod) carapace.Action {

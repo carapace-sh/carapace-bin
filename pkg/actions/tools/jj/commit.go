@@ -52,6 +52,9 @@ func ActionPrevCommits(limit int) carapace.Action {
 }
 
 // ActionNextCommits completes next commits
+//
+//	abc123
+//	def456
 func ActionNextCommits(limit int) carapace.Action {
 	return actionExecJJ("log", "--no-graph", "--template", `commit_id.short() ++ "\t" ++ description.first_line() ++ "\n"`, "--revisions", "@-::", "--limit", strconv.Itoa(limit))(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

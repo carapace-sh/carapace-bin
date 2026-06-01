@@ -8,6 +8,9 @@ import (
 )
 
 // ActionFilters completes filters
+//
+//	.
+//	...
 func ActionFilters() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if index := strings.LastIndexAny(c.Value, "[]"); index != -1 && []rune(c.Value)[index] == '[' {
@@ -26,6 +29,9 @@ func ActionFilters() carapace.Action {
 }
 
 // ActionDependencyNames completes dependency names from package.json
+//
+//	express
+//	lodash
 func ActionDependencyNames() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		pj, err := loadPackageJson(c)
@@ -59,6 +65,9 @@ func ActionDependencyNames() carapace.Action {
 }
 
 // ActionDependencies completes dependencies with their version from package.json
+//
+//	express@4.18.0
+//	lodash@4.17.21
 func ActionDependencies() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		pj, err := loadPackageJson(c)
@@ -88,6 +97,8 @@ func ActionDependencies() carapace.Action {
 }
 
 // ActionStorePath completes store paths
+//
+//	/home/user/.local/share/pnpm/store/v3
 func ActionStorePath() carapace.Action {
 	return carapace.ActionExecCommand("pnpm", "store", "path")(func(output []byte) carapace.Action {
 		path := strings.TrimSpace(string(output))
@@ -96,6 +107,9 @@ func ActionStorePath() carapace.Action {
 }
 
 // ActionStoreStatus completes store status information
+//
+//	OK packages were found in the store
+//	MISSING packages were not found in the store
 func ActionStoreStatus() carapace.Action {
 	return carapace.ActionExecCommand("pnpm", "store", "status")(func(output []byte) carapace.Action {
 		lines := strings.Split(strings.TrimSpace(string(output)), "\n")
@@ -110,6 +124,9 @@ func ActionStoreStatus() carapace.Action {
 }
 
 // ActionStorePackages completes packages in the store
+//
+//	express/4.18.0
+//	lodash/4.17.21
 func ActionStorePackages() carapace.Action {
 	return carapace.ActionExecCommand("pnpm", "list", "--parseable", "--depth", "0")(func(output []byte) carapace.Action {
 		lines := strings.Split(strings.TrimSpace(string(output)), "\n")
@@ -128,6 +145,9 @@ func ActionStorePackages() carapace.Action {
 }
 
 // ActionStorePrune completes store prune options
+//
+//	Removed 10 packages
+//	Removed 5 packages
 func ActionStorePrune() carapace.Action {
 	return carapace.ActionValues()
 }

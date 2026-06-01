@@ -45,6 +45,9 @@ func (o IssueOpts) Default() IssueOpts {
 }
 
 // ActionIssues completes issues
+//
+//	1 (Login fails)
+//	2 (Missing feature)
 func ActionIssues(opts IssueOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var issues []struct {

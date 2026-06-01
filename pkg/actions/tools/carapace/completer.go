@@ -10,6 +10,10 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
+// ActionCompleters completes completer names, variants, and groups
+//
+//	git/common
+//	docker/common
 func ActionCompleters(unknownBridges bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if strings.Count(c.Value, "@") > 1 || strings.Count(c.Value, "/") > 1 {
@@ -50,6 +54,10 @@ func actionCompleters(filter string, f func(m completer.CompleterMap) carapace.A
 	})
 }
 
+// ActionNames completes completer names
+//
+//	git
+//	docker
 func ActionNames() carapace.Action {
 	return actionCompleters("", func(m completer.CompleterMap) carapace.Action {
 		batch := carapace.Batch()
@@ -61,6 +69,10 @@ func ActionNames() carapace.Action {
 	})
 }
 
+// ActionVariants completes completer variants for given name
+//
+//	common
+//	bridge
 func ActionVariants(name string) carapace.Action {
 	return actionCompleters(name, func(m completer.CompleterMap) carapace.Action {
 		// TODO slow
@@ -82,6 +94,10 @@ func ActionVariants(name string) carapace.Action {
 	})
 }
 
+// ActionGroups completes completer groups for given name/variant
+//
+//	common
+//	linux
 func ActionGroups(nameVariant string) carapace.Action {
 	return actionCompleters(nameVariant, func(m completer.CompleterMap) carapace.Action {
 		// TODO slow

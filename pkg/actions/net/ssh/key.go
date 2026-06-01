@@ -97,6 +97,9 @@ func ActionPrivateKeys() carapace.Action {
 }
 
 // ActionSigningKeys completes the contents of public keys for which a private key exists
+//
+//	ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... (id_ed25519)
+//	ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ... (id_rsa)
 func ActionSigningKeys() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		abs, err := c.Abs("~/.ssh/")

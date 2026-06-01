@@ -7,6 +7,9 @@ import (
 )
 
 // ActionPresets completes presets
+//
+//	default
+//	flat
 func ActionPresets() carapace.Action {
 	return carapace.ActionExecCommand("fastfetch", "--list-presets", "autocompletion")(func(output []byte) carapace.Action {
 		presets := strings.Split(strings.TrimRight(string(output), "\n"), "\n")

@@ -8,6 +8,9 @@ import (
 )
 
 // ActionWorkspaces completes workspaces
+//
+//	default
+//	staging
 func ActionWorkspaces() carapace.Action {
 	return carapace.ActionExecCommand("terraform", "workspace", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

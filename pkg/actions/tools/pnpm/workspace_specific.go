@@ -11,6 +11,9 @@ import (
 )
 
 // ActionWorkspaceScripts completes scripts available across all workspace packages
+//
+//	build
+//	test
 func ActionWorkspaceScripts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		workspaceFile, err := util.FindReverse(c.Dir, "pnpm-workspace.yaml")
@@ -59,6 +62,9 @@ func ActionWorkspaceScripts() carapace.Action {
 }
 
 // ActionWorkspaceFilters completes common workspace filter patterns
+//
+//	...
+//	./packages/a
 func ActionWorkspaceFilters() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"...", "Include all dependents (recursive)",
@@ -80,6 +86,9 @@ type location struct {
 }
 
 // ActionWorkspaceDependencies completes workspace package names with their versions
+//
+//	express@4.18.0
+//	lodash@4.17.21
 func ActionWorkspaceDependencies() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("pnpm", "list", "--json", "--depth", "0")(func(output []byte) carapace.Action {

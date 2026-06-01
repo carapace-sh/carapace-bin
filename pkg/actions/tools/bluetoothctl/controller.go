@@ -7,6 +7,9 @@ import (
 )
 
 // ActionControllers completes controllers
+//
+//	hci0
+//	hci1
 func ActionControllers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("bluetoothctl", "list")(func(output []byte) carapace.Action {

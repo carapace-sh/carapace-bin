@@ -13,6 +13,10 @@ type ResourceOpts struct {
 }
 
 // ActionResources completes resources
+//
+//	pods
+//	deployments
+//
 // TODO example
 func ActionResources(opts ResourceOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {

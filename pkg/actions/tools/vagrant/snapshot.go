@@ -7,6 +7,9 @@ import (
 )
 
 // ActionSnapshots completes snapshots
+//
+//	snap1
+//	snap2
 func ActionSnapshots(machine string) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "snapshot", "list", machine)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

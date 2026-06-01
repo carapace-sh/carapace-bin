@@ -5,6 +5,9 @@ import (
 )
 
 // ActionTOS Completes a name for ToS values
+//
+//	default
+//	low
 func ActionTOS() carapace.Action {
 	return carapace.ActionValues(
 		"af11",

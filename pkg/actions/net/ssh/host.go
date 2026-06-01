@@ -8,6 +8,9 @@ import (
 )
 
 // ActionHosts completes ssh hosts
+//
+//	github.com
+//	example.com
 func ActionHosts(config string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		settings := ssh_config.DefaultUserSettings

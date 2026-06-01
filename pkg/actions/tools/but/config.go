@@ -19,6 +19,9 @@ func ActionConfigNames() carapace.Action {
 }
 
 // ActionConfigValues completes config values
+//
+//	true
+//	false
 func ActionConfigValues(name string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionMap{
@@ -38,6 +41,9 @@ func ActionUIConfigNames() carapace.Action {
 }
 
 // ActionUIConfigValues completes config values
+//
+//	true
+//	false
 func ActionUIConfigValues(name string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionMap{

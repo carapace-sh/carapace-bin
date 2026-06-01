@@ -14,6 +14,9 @@ func nodeModulesPath(c carapace.Context) (string, error) {
 }
 
 // ActionModules completes modules
+//
+//	express
+//	lodash
 func ActionModules() carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		path, err := nodeModulesPath(c)

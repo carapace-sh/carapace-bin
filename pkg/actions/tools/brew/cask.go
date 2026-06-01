@@ -7,6 +7,9 @@ import (
 )
 
 // ActionAllCasks completes all casks
+//
+//	1password
+//	firefox
 func ActionAllCasks() carapace.Action {
 	return carapace.ActionExecCommand("brew", "casks")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

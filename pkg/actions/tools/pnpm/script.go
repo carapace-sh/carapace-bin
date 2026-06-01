@@ -3,6 +3,9 @@ package pnpm
 import "github.com/carapace-sh/carapace"
 
 // ActionScripts completes scripts
+//
+//	build
+//	test
 func ActionScripts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if pj, err := loadPackageJson(c); err != nil {

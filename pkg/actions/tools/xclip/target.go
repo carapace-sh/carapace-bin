@@ -7,6 +7,9 @@ import (
 )
 
 // ActionTargets completes selection targets
+//
+//	TIMESTAMP
+//	TARGETS
 func ActionTargets() carapace.Action {
 	return carapace.ActionExecCommand("xclip", "-t", "TARGETS", "-o")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

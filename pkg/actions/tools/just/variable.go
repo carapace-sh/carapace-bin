@@ -7,6 +7,10 @@ import (
 )
 
 // ActionVariables completes variables
+//
+//	compiler
+//	flags
+//
 // variablea
 // variableb
 func ActionVariables(justfile string) carapace.Action {

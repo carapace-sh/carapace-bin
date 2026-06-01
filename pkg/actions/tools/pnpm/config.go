@@ -7,11 +7,17 @@ import (
 )
 
 // ActionLocalConfigKeys completes local config keys
+//
+//	registry
+//	prefix
 func ActionLocalConfigKeys() carapace.Action {
 	return actionConfigKeys(false)
 }
 
 // ActionGlobalConfigKeys completes global config keys
+//
+//	registry
+//	prefix
 func ActionGlobalConfigKeys() carapace.Action {
 	return actionConfigKeys(true)
 }

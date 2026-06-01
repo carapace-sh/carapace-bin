@@ -6,6 +6,9 @@ import (
 )
 
 // ActionBranches completes branches
+//
+//	main
+//	develop
 func ActionBranches() carapace.Action {
 	return carapace.Batch(
 		git.ActionLocalBranches(),

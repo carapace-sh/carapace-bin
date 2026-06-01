@@ -19,6 +19,9 @@ func (o PluginOpts) Default() PluginOpts {
 }
 
 // ActionPlugins completes plugins
+//
+//	vagrant-berkshelf (1.0.0, local)
+//	vagrant-hostmanager (1.8.9, global)
 func ActionPlugins(opts PluginOpts) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "plugin", "list", "--local")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

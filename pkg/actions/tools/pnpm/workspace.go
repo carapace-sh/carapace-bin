@@ -14,6 +14,9 @@ type workspaceYaml struct {
 }
 
 // ActionWorkspaces completes workspaces
+//
+//	packages/a
+//	packages/b
 func ActionWorkspaces() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// First try to find pnpm-workspace.yaml
@@ -43,6 +46,9 @@ func ActionWorkspaces() carapace.Action {
 }
 
 // ActionWorkspacePackages completes packages within workspaces
+//
+//	package-a@1.0.0
+//	package-b@2.0.0
 func ActionWorkspacePackages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommandE("pnpm", "ls", "-r", "--json", "--depth", "-1")(func(output []byte, err error) carapace.Action {

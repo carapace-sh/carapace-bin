@@ -15,6 +15,9 @@ type devShellsSchema struct {
 }
 
 // ActionDevShells completes development shells from given flake
+//
+//	default
+//	development
 func ActionDevShells(flake string) carapace.Action {
 	return carapace.ActionExecCommand("nix", "flake", "show", "--json", flake)(func(output []byte) carapace.Action {
 		devShells := &devShellsSchema{}

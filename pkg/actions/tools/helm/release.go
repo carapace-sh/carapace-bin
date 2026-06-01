@@ -22,6 +22,9 @@ type ReleasesOpts struct {
 }
 
 // ActionReleases completes releases
+//
+//	my-release (deployed)
+//	another (failed)
 func ActionReleases(opts ReleasesOpts) carapace.Action {
 	return carapace.ActionCallback(func(_ carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("helm", "list", "--kube-context", opts.KubeContext, "--namespace", opts.Namespace, "--output", "json")(func(output []byte) carapace.Action {

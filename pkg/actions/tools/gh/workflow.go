@@ -47,6 +47,9 @@ func ActionWorkflowEvents() carapace.Action {
 }
 
 // ActionWorkflowFields completes workflow fields.
+//
+//	name
+//	state
 func ActionWorkflowFields() carapace.Action {
 	return carapace.ActionValues(
 		"id",

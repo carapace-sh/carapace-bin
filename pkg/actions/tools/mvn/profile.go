@@ -3,6 +3,9 @@ package mvn
 import "github.com/carapace-sh/carapace"
 
 // ActionProfiles completes profiles
+//
+//	development
+//	production
 func ActionProfiles(file string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if loadedProject, err := loadProject(file); err != nil {

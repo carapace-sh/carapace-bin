@@ -3,6 +3,9 @@ package vagrant
 import "github.com/carapace-sh/carapace"
 
 // ActionProviders completes providers
+//
+//	virtualbox
+//	vmware
 func ActionProviders() carapace.Action {
 	return carapace.ActionValues(
 		"aws",

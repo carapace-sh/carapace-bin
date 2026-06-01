@@ -7,6 +7,10 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
+// ActionKubeClusters completes kubernetes clusters
+//
+//	production
+//	staging
 func ActionKubeClusters() carapace.Action {
 	return carapace.ActionExecCommand("tsh", "kube", "ls", "--format", "json")(func(output []byte) carapace.Action {
 		var clusters []struct {

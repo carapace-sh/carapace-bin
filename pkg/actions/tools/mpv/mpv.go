@@ -144,7 +144,6 @@ func ActionAudioCodecOptions() carapace.Action {
 //
 //	a64multi (Multicolor charset for Commodore 64)
 //	a64multi5 (Multicolor charset for Commodore 64, extended with 5th color (colram))
-
 func ActionVideoCodecs() carapace.Action {
 	return carapace.ActionExecCommand("mpv", "--ovc=help")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

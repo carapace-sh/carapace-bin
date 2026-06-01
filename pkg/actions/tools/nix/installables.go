@@ -8,6 +8,9 @@ import (
 
 // ActionInstallables completes nix packages and flakes
 //
+//	nixpkgs#hello
+//	nixpkgs#gcc
+//
 // An installable nix derivation can either be a nix package (legacyPackages)
 // or a nixosModules output of a flake. There is no completion support implemented
 // for flake outputs due to the processing time required, so ActionInstallables

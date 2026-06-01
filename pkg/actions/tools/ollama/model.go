@@ -8,6 +8,9 @@ import (
 )
 
 // ActionModels completes models
+//
+//	llama3
+//	mistral
 func ActionModels() carapace.Action {
 	return carapace.ActionExecCommand("ollama", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

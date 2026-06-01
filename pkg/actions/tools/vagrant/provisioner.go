@@ -10,6 +10,9 @@ import (
 )
 
 // ActionProvisioners completes provisioners
+//
+//	shell
+//	ansible
 func ActionProvisioners() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		path, err := util.FindReverse(c.Dir, "Vagrantfile")

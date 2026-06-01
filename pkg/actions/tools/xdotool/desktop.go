@@ -9,6 +9,9 @@ import (
 )
 
 // ActionDesktops completes desktops
+//
+//	0
+//	1
 func ActionDesktops() carapace.Action {
 	return carapace.ActionExecCommand("xdotool", "get_num_desktops")(func(output []byte) carapace.Action {
 		num, err := strconv.Atoi(strings.Split(string(output), "\n")[0])

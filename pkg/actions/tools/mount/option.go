@@ -6,6 +6,9 @@ import (
 )
 
 // ActionMountOptions completes mount options
+//
+//	noatime
+//	nodev
 func ActionMountOptions() carapace.Action {
 	return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {

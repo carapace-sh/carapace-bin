@@ -131,6 +131,10 @@ func ActionDiffTools() carapace.Action {
 }
 
 // ActionRefDiffs completes changes beetween refs
+//
+//	HEAD~1
+//	HEAD~3
+//
 // Accepts up to two refs
 // 0: compare current workspace to HEAD
 // 1: compare current workspace to given ref
@@ -140,6 +144,9 @@ func ActionRefDiffs(refs ...string) carapace.Action {
 }
 
 // ActionCachedDiffs completes changes between stage and given ref
+//
+//	main
+//	develop
 func ActionCachedDiffs(ref string) carapace.Action {
 	return actionRefDiffs(true, ref)
 }

@@ -3,6 +3,9 @@ package ytdlp
 import "github.com/carapace-sh/carapace"
 
 // ActionFields completes fields
+//
+//	id
+//	title
 func ActionFields() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"id", "(string): Video identifier",
@@ -65,6 +68,9 @@ func ActionFields() carapace.Action {
 }
 
 // ActionChapterFields completes chapter fields
+//
+//	title
+//	start_time
 func ActionChapterFields() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"chapter", "(string): Name or title of the chapter the video belongs to",
@@ -74,6 +80,9 @@ func ActionChapterFields() carapace.Action {
 }
 
 // ActionEpisodeFields completes episode fields
+//
+//	title
+//	id
 func ActionEpisodeFields() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"series", "(string): Title of the series or programme the video episode belongs to",
@@ -87,6 +96,9 @@ func ActionEpisodeFields() carapace.Action {
 }
 
 // ActionTrackFields completes track fields
+//
+//	title
+//	number
 func ActionTrackFields() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"track", "(string): Title of the track",
@@ -103,6 +115,9 @@ func ActionTrackFields() carapace.Action {
 }
 
 // ActionSectionFields completes section fields
+//
+//	title
+//	category
 func ActionSectionFields() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"section_title", "(string): Title of the chapter",
@@ -113,6 +128,9 @@ func ActionSectionFields() carapace.Action {
 }
 
 // ActionPrintFields completes print fields
+//
+//	id
+//	title
 func ActionPrintFields() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"urls", "(string): The URLs of all requested formats, one in each line",
@@ -125,6 +143,9 @@ func ActionPrintFields() carapace.Action {
 }
 
 // ActionSponsorblockFields completes sponsorblock fields
+//
+//	category
+//	start_time
 func ActionSponsorblockFields() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"start_time", "(numeric): Start time of the chapter in seconds",
@@ -138,6 +159,9 @@ func ActionSponsorblockFields() carapace.Action {
 }
 
 // ActionNumericMetaFields completes numeric meta fields
+//
+//	like_count
+//	view_count
 func ActionNumericMetaFields() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"filesize", "The number of bytes, if known in advance",
@@ -156,6 +180,9 @@ func ActionNumericMetaFields() carapace.Action {
 }
 
 // ActionStringMetaFields completes string meta fields
+//
+//	title
+//	uploader
 func ActionStringMetaFields() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"url", "Video URL",

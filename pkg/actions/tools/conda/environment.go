@@ -9,6 +9,9 @@ import (
 )
 
 // ActionEnvironments completes environments
+//
+//	base
+//	myenv
 func ActionEnvironments() carapace.Action {
 	return carapace.ActionExecCommand("conda", "env", "list", "--json")(func(output []byte) carapace.Action {
 		var result struct{ Envs []string }

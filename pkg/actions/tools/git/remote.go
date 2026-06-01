@@ -28,6 +28,9 @@ func ActionRemotes() carapace.Action {
 }
 
 // ActionRemoteUrls completes remote urls
+//
+//	https://github.com/user/repo.git
+//	git@github.com:user/repo.git
 func ActionRemoteUrls(remote string) carapace.Action {
 	return carapace.ActionExecCommand("git", "remote", "get-url", remote)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

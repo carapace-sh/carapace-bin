@@ -8,6 +8,9 @@ import (
 )
 
 // ActionDrivers completes molecule drivers
+//
+//	default
+//	delegated
 func ActionDrivers() carapace.Action {
 	return carapace.ActionExecCommand("molecule", "drivers", "-f", "plain")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

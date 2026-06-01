@@ -138,6 +138,9 @@ func ActionJournalFields() carapace.Action {
 }
 
 // ActionJournalFieldValues completes journal field values
+//
+//	systemd
+//	kernel
 func ActionJournalFieldValues(field string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO add more fields and verify
