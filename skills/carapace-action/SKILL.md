@@ -82,7 +82,7 @@ Public actions registered as macros so they are available in YAML user specs. Mu
 |-----------------|------------|------------|
 | `func ActionFoo()` | `spec.MacroN` | `$_.Foo` or `$exe.Foo` |
 | `func ActionFoo(opts FooOpts)` | `spec.MacroI` | `$_.Foo({Field: value})` |
-| `func ActionFoo(arg string)` | `spec.MacroI` | `$_.Foo("")` |
+| `func ActionFoo(arg string)` | `spec.MacroI` | `$_.Foo(arg)` |
 | `func ActionFoo(args ...string)` | `spec.MacroV` | `$_.Foo(["a", "b"])` |
 
 Register before `spec.Register`:
@@ -369,12 +369,53 @@ carapace.ActionValuesDescribed(vals...).UidF(func(s string, uc uid.Context) (*ur
 .QueryF(Uid("local-branches"))  // e.g. git://local-branches
 ```
 
+### Shift
+
+Removes the first `n` positional arguments from `Context.Args`, shifting the view of what the action considers "already entered". This changes `len(c.Args)`, which determines which positional completion slot fires.
+
+```go
+// Bridge to another completer: shift off the routing arg so the bridge sees the "real" positionals
+bridge.ActionCarapaceBin("tmux").Shift(1)
+
+// Recurse into a subcommand: shift off the matched subcommand name
+return ActionCommands(subCommand).Shift(1)
+```
+
+`Shift` modifies `Context.Args` in its callback. Since the **outermost** modifier fires first at invocation time, `Shift`'s position in the chain determines which `Context.Args` it sees:
+
+```go
+// Shift is innermost: FilterArgs fires first (captures original Args), then Shift shifts
+// FilterArgs filters with original Args — Shift's c.Args modification is local to a's Invoke
+a.Shift(1).FilterArgs()
+
+// Shift is outermost: Shift fires first (captures original Args), then FilterArgs filters with shifted Args
+// FilterArgs filters with shifted Args
+a.FilterArgs().Shift(1)
+```
+
+| `n` value | Behavior |
+|-----------|----------|
+| `n < 0` | Returns `ActionMessage("invalid argument [ActionShift]: %v", n)` |
+| `len(c.Args) < n` | `c.Args` becomes empty `[]string{}` |
+| otherwise | `c.Args = c.Args[n:]` — slices off the first n elements |
+
 ### Suppress / Filter
 
 ```go
 carapace.ActionValues("main", "develop").Suppress("main")
 ActionAncestors(ctx.AttachedRevset).Filter("..", "::")
 ```
+
+### Chaining Order
+
+Modifiers are composed as nested callbacks — the **outermost** modifier fires **first**, then execution bubbles inward. Order matters when modifiers affect the same data:
+
+| Chain | Effect |
+|-------|--------|
+| `a.Filter("x").Prefix("p/")` | Prefix fires first (outermost) → strips "p/" from `c.Value`, adds "p/" to results → Filter fires last (innermost) → removes "x" from original values → result: ["pa","pb"] |
+| `a.Prefix("p/").Filter("x")` | Filter fires first (outermost) → invokes Prefix → Prefix adds "p/" to rawValues → Filter runs on now-prefixed values → removes "p/x" from results → result: ["pa","pb"] |
+| `a.Filter("x").Suppress("err")` | Order doesn't matter (independent: values vs messages) |
+| `a.Tag("t").Style("s")` | Order doesn't matter (independent fields) |
 
 ## Caching
 
