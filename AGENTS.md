@@ -155,13 +155,16 @@ For bridge details, see the `carapace-integrate` skill. Available bridges are re
 
 ### Uid / QueryF
 
-Some tool packages in `pkg/actions/tools/` define a package-level `Uid()` helper when multiple actions share context (e.g. git needs `GIT_DIR` and `GIT_WORK_TREE` resolved for all its actions). This avoids repeating the same URL construction logic in each action.
+- **`UidF`** creates a dynamic identifier per completion value (e.g. `git://local-branch/main` identifies a specific branch). Use it when the display value alone is insufficient, or when you need to embed additional context as query parameters
+- **`QueryF`** identifies what kind of completion is being requested (e.g. `git://local-branches` indicates the current position seeks local git branches). This enables result updates with additional queries later
+
+Some tool packages in `pkg/actions/tools/` define a package-level `Uid()` helper that constructs URL-based identifiers. Both `UidF` and `QueryF` are often chained with the same `Uid()` helper since they share the same URL construction logic.
 
 ```go
 carapace.ActionExecCommand(...)(...).
     Tag("local branches").
-    UidF(Uid("local-branch")).    // e.g. git://local-branch/main
-    QueryF(Uid("local-branches")) // e.g. git://local-branches
+    UidF(Uid("local-branch")).    // per-value identity: git://local-branch/main
+    QueryF(Uid("local-branches")) // completion kind: git://local-branches
 ```
 
 ### Project-Specific Styles
