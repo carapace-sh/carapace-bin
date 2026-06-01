@@ -82,7 +82,7 @@ Public actions registered as macros so they are available in YAML user specs. Mu
 |-----------------|------------|------------|
 | `func ActionFoo()` | `spec.MacroN` | `$_.Foo` or `$exe.Foo` |
 | `func ActionFoo(opts FooOpts)` | `spec.MacroI` | `$_.Foo({Field: value})` |
-| `func ActionFoo(arg string)` | `spec.MacroI` | `$_.Foo("")` |
+| `func ActionFoo(arg string)` | `spec.MacroI` | `$_.Foo(arg)` |
 | `func ActionFoo(args ...string)` | `spec.MacroV` | `$_.Foo(["a", "b"])` |
 
 Register before `spec.Register`:
