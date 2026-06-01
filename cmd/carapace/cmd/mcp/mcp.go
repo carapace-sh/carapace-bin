@@ -292,6 +292,7 @@ func (s *MCPServer) handleListMacros() (map[string]any, error) {
 			"name":        "carapace." + name,
 			"signature":   sig,
 			"description": m.Description,
+			"reference":   m.Function,
 		})
 	}
 
