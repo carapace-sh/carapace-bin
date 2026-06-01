@@ -44,6 +44,11 @@ type PullrequestOpts struct {
 	Closed bool
 }
 
+func (o PullrequestOpts) Default() PullrequestOpts {
+	o.Open = true
+	return o
+}
+
 // ActionPullrequests completes pull requests
 func ActionPullrequests(opts PullrequestOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {

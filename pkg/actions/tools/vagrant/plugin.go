@@ -12,6 +12,12 @@ type PluginOpts struct {
 	Global bool
 }
 
+func (o PluginOpts) Default() PluginOpts {
+	o.Local = true
+	o.Global = true
+	return o
+}
+
 // ActionPlugins completes plugins
 func ActionPlugins(opts PluginOpts) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "plugin", "list", "--local")(func(output []byte) carapace.Action {

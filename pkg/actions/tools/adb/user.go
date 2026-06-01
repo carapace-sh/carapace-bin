@@ -17,7 +17,7 @@ func ActionUsers() carapace.Action {
 
 		vals := make([]string, 0)
 		for _, line := range lines[1:] {
-			line = strings.Replace(line, "\r", "", -1)
+			line = strings.ReplaceAll(line, "\r", "")
 			if r.MatchString(line) {
 				matches := r.FindStringSubmatch(line)
 				vals = append(vals, matches[1], matches[2])
