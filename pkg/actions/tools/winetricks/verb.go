@@ -9,6 +9,9 @@ import (
 )
 
 // ActionVerbs completes verbs
+//
+//	dotnet40 (install .NET 4.0)
+//	win7 (set Windows 7 mode)
 func ActionVerbs() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("winetricks", "list-all")(func(output []byte) carapace.Action {

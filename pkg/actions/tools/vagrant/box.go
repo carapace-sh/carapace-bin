@@ -8,6 +8,9 @@ import (
 )
 
 // ActionBoxes completes boxes
+//
+//	ubuntu/jammy64
+//	debian/bookworm64
 func ActionBoxes() carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "box", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -25,6 +28,9 @@ func ActionBoxes() carapace.Action {
 }
 
 // ActionBoxProviders completes box providers
+//
+//	virtualbox
+//	vmware
 func ActionBoxProviders(name string, version string) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "box", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -45,6 +51,9 @@ func ActionBoxProviders(name string, version string) carapace.Action {
 }
 
 // ActionBoxVersions completes box versions
+//
+//	2024.01.01
+//	2024.02.01
 func ActionBoxVersions(name string, provider string) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "box", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

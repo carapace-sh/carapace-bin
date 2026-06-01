@@ -18,6 +18,9 @@ type swayOutput struct {
 }
 
 // ActionOutputs completes outputs
+//
+//	eDP-1
+//	HDMI-A-1
 func ActionOutputs() carapace.Action {
 	return carapace.ActionExecCommand("swaymsg", "-t", "get_outputs")(func(output []byte) carapace.Action {
 		var outputs []swayOutput

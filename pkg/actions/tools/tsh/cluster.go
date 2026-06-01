@@ -7,6 +7,10 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
+// ActionClusters completes teleport clusters
+//
+//	production
+//	staging
 func ActionClusters() carapace.Action {
 	return carapace.ActionExecCommand("tsh", "clusters", "--format", "json")(func(output []byte) carapace.Action {
 		var clusters []struct {

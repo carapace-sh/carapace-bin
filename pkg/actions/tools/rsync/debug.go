@@ -3,6 +3,9 @@ package rsync
 import "github.com/carapace-sh/carapace"
 
 // ActionDebugFlags completes debug flags
+//
+//	BACKUP (Mention files backed up)
+//	COPY (Mention files copied locally on the receiving side)
 func ActionDebugFlags() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"BACKUP", "Mention files backed up",

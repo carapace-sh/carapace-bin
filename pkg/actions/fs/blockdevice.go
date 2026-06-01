@@ -46,9 +46,10 @@ func ActionBlockDevices() carapace.Action {
 	}).Tag("block devices")
 }
 
-// TODO add examples to actions
-
 // ActionLabels completes disk labels
+//
+//	ROOT (sda)
+//	BOOT (sda1)
 func ActionLabels() carapace.Action {
 	return actionBlockdevices(func(blockdevices []blockdevice) carapace.Action {
 		vals := make([]string, 0)
@@ -62,6 +63,9 @@ func ActionLabels() carapace.Action {
 }
 
 // ActionPartitionLabels completes partition labels
+//
+//	EFI System Partition (sda1)
+//	Linux filesystem (sda2)
 func ActionPartitionLabels() carapace.Action {
 	return actionBlockdevices(func(blockdevices []blockdevice) carapace.Action {
 		vals := make([]string, 0)
@@ -75,6 +79,9 @@ func ActionPartitionLabels() carapace.Action {
 }
 
 // ActionUuids completes disk uuids
+//
+//	a1b2c3d4-e5f6-7890-abcd-ef1234567890 (sda)
+//	11223344-5566-7788-99aa-bbccddeeff00 (sda1)
 func ActionUuids() carapace.Action {
 	return actionBlockdevices(func(blockdevices []blockdevice) carapace.Action {
 		vals := make([]string, 0)
@@ -88,6 +95,9 @@ func ActionUuids() carapace.Action {
 }
 
 // ActionPartitionUuids completes partition uuids
+//
+//	a1b2c3d4-e5f6-7890-abcd-ef1234567890 (sda1)
+//	11223344-5566-7788-99aa-bbccddeeff00 (sda2)
 func ActionPartitionUuids() carapace.Action {
 	return actionBlockdevices(func(blockdevices []blockdevice) carapace.Action {
 		vals := make([]string, 0)

@@ -7,6 +7,9 @@ import (
 )
 
 // ActionRemotes completes remotes
+//
+//	flathub
+//	flathub-beta
 func ActionRemotes() carapace.Action {
 	return carapace.ActionExecCommand("flatpak", "remotes", "--columns", "name,description")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

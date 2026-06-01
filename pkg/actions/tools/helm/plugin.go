@@ -7,6 +7,9 @@ import (
 )
 
 // ActionPlugins completes plugins
+//
+//	2to3
+//	secrets
 func ActionPlugins() carapace.Action {
 	return carapace.ActionExecCommand("helm", "plugin", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

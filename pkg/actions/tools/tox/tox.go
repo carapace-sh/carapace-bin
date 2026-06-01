@@ -8,6 +8,9 @@ import (
 )
 
 // ActionEnvironments completes tox environments
+//
+//	py38
+//	py39
 func ActionEnvironments() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("tox", "--listenvs-all")(func(output []byte) carapace.Action {

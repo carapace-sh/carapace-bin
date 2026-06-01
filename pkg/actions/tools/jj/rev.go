@@ -34,6 +34,9 @@ func (o RevOption) Default() RevOption {
 }
 
 // ActionRevs completes revs (commits, bookmarks, tags)
+//
+//	main
+//	abc123
 func ActionRevs(revOption RevOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		batch := carapace.Batch()
@@ -67,6 +70,9 @@ func ActionRevs(revOption RevOption) carapace.Action {
 }
 
 // ActionRevsets completes revsets
+//
+//	all()
+//	trunk()
 func ActionRevsets(opts RevOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		batch := carapace.Batch()       // default prefix

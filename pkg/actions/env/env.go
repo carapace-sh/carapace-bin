@@ -93,6 +93,9 @@ func actionKnownEnvironmentVariables() carapace.Action {
 }
 
 // ActionValues completes values for given environment variable
+//
+//	1
+//	2
 func ActionValues(s string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		dir, err := xdg.UserConfigDir()
@@ -225,6 +228,9 @@ func loadCustomVariables(file string) (*variables, error) {
 }
 
 // ActionNameValues completes environment variable names and values
+//
+//	HOME=/home/user
+//	PATH=/usr/bin:/bin
 func ActionNameValues(positional bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		keysAction := carapace.Batch(

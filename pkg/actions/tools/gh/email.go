@@ -20,6 +20,9 @@ type emailQuery struct {
 }
 
 // ActionUserEmails completes email for given user
+//
+//	user@example.com (primary)
+//	other@example.com
 func ActionUserEmails(opts OwnerOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult emailQuery
@@ -33,6 +36,9 @@ func ActionUserEmails(opts OwnerOpts) carapace.Action {
 }
 
 // ActionOrganizationEmails completes email for given organization
+//
+//	team@example.com
+//	dev@example.com
 func ActionOrganizationEmails(opts OwnerOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult emailQuery

@@ -7,6 +7,9 @@ import (
 )
 
 // ActionAllFormulae completes all formulae
+//
+//	git
+//	vim
 func ActionAllFormulae() carapace.Action {
 	return carapace.ActionExecCommand("brew", "formulae")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

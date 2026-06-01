@@ -6,6 +6,9 @@ import (
 )
 
 // ActionCodegenOptions completes codegen names and values
+//
+//	llvm
+//	arm
 func ActionCodegenOptions() carapace.Action {
 	return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -79,6 +82,9 @@ func ActionCodegenOptionNames() carapace.Action {
 }
 
 // ActionCodegenOptionValues completion codegen option value
+//
+//	aarch64
+//	x86_64
 func ActionCodegenOptionValues(s string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 

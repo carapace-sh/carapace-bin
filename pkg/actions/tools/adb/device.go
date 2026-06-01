@@ -8,6 +8,9 @@ import (
 
 // ActionDevices completes adb device serial numbers
 //
+//	emulator-5554 (device)
+//	adb-server:5555 (device)
+//
 // Device states from https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/adb.cpp
 func ActionDevices() carapace.Action {
 	return carapace.ActionExecCommand("adb", "devices", "-l")(func(output []byte) carapace.Action {

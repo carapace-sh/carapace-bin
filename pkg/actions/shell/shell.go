@@ -13,6 +13,9 @@ import (
 // TODO support more shells
 
 // ActionBuiltins completes shell builtins
+//
+//	echo
+//	cd
 func ActionBuiltins() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		action := carapace.ActionValues(strings.Fields(os.Getenv("CARAPACE_SHELL_BUILTINS"))...)
@@ -29,6 +32,9 @@ func ActionBuiltins() carapace.Action {
 }
 
 // ActionFunctions completes shell functions
+//
+//	my_func
+//	_my_private_func
 func ActionFunctions(hidden bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := strings.Fields(os.Getenv("CARAPACE_SHELL_FUNCTIONS"))
@@ -45,6 +51,9 @@ func ActionFunctions(hidden bool) carapace.Action {
 }
 
 // ActionExecutables completes builtins, functions, and commands
+//
+//	ls
+//	grep
 func ActionExecutables() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		switch len(c.Args) {

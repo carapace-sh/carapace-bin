@@ -8,7 +8,10 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
-// ActionPorts completes known and used ports.
+// ActionPorts completes known and used ports
+//
+//	22 (ssh)
+//	8080
 func ActionPorts() carapace.Action {
 	return carapace.Batch(
 		ActionKnownPorts(),

@@ -30,6 +30,9 @@ func actionComponents(f func(c components) carapace.Action) carapace.Action {
 }
 
 // ActionBoblangFunctions completes boblang functions
+//
+//	parse_json
+//	parse_parquet
 func ActionBoblangFunctions() carapace.Action {
 	return actionComponents(func(c components) carapace.Action {
 		return carapace.ActionValues(c.BloblangFunctions...)
@@ -37,6 +40,9 @@ func ActionBoblangFunctions() carapace.Action {
 }
 
 // ActionBoblangMethods completes boblang methods
+//
+//	format_json
+//	format_parquet
 func ActionBoblangMethods() carapace.Action {
 	return actionComponents(func(c components) carapace.Action {
 		return carapace.ActionValues(c.BloblangMethods...)
@@ -44,6 +50,9 @@ func ActionBoblangMethods() carapace.Action {
 }
 
 // ActionBuffers completes buffers
+//
+//	memory
+//	disk
 func ActionBuffers() carapace.Action {
 	return actionComponents(func(c components) carapace.Action {
 		return carapace.ActionValues(c.Buffers...)
@@ -51,6 +60,9 @@ func ActionBuffers() carapace.Action {
 }
 
 // ActionCaches completes caches
+//
+//	file
+//	memory
 func ActionCaches() carapace.Action {
 	return actionComponents(func(c components) carapace.Action {
 		return carapace.ActionValues(c.Caches...)
@@ -58,6 +70,9 @@ func ActionCaches() carapace.Action {
 }
 
 // ActionInputs completes inputs
+//
+//	kafka
+//	file
 func ActionInputs() carapace.Action {
 	return actionComponents(func(c components) carapace.Action {
 		return carapace.ActionValues(c.Inputs...)
@@ -65,6 +80,9 @@ func ActionInputs() carapace.Action {
 }
 
 // ActionMetrics completes metrics
+//
+//	prometheus
+//	statsd
 func ActionMetrics() carapace.Action {
 	return actionComponents(func(c components) carapace.Action {
 		return carapace.ActionValues(c.Metrics...)
@@ -72,6 +90,9 @@ func ActionMetrics() carapace.Action {
 }
 
 // ActionOutputs completes outputs
+//
+//	kafka
+//	elasticsearch
 func ActionOutputs() carapace.Action {
 	return actionComponents(func(c components) carapace.Action {
 		return carapace.ActionValues(c.Outputs...)
@@ -79,6 +100,9 @@ func ActionOutputs() carapace.Action {
 }
 
 // ActionProcessors completes processors
+//
+//	batch
+//	filter
 func ActionProcessors() carapace.Action {
 	return actionComponents(func(c components) carapace.Action {
 		return carapace.ActionValues(c.Processors...)
@@ -86,6 +110,9 @@ func ActionProcessors() carapace.Action {
 }
 
 // ActionRateLimits completes rate limits
+//
+//	local
+//	redis
 func ActionRateLimits() carapace.Action {
 	return actionComponents(func(c components) carapace.Action {
 		return carapace.ActionValues(c.RateLimits...)
@@ -93,6 +120,9 @@ func ActionRateLimits() carapace.Action {
 }
 
 // ActionTracers completes tracers
+//
+//	jaeger
+//	datadog
 func ActionTracers() carapace.Action {
 	return actionComponents(func(c components) carapace.Action {
 		return carapace.ActionValues(c.Tracers...)

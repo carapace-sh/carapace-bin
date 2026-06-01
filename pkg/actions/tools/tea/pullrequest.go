@@ -50,6 +50,9 @@ func (o PullrequestOpts) Default() PullrequestOpts {
 }
 
 // ActionPullrequests completes pull requests
+//
+//	1 (Fix login bug)
+//	2 (Add feature)
 func ActionPullrequests(opts PullrequestOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var pullrequests []struct {

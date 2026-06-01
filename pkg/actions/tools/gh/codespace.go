@@ -3,6 +3,9 @@ package gh
 import "github.com/carapace-sh/carapace"
 
 // ActionCodespaceViewFields completes codespace fields for view
+//
+//	displayName
+//	repository
 func ActionCodespaceViewFields() carapace.Action {
 	return carapace.ActionValues(
 		"name",

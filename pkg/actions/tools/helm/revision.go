@@ -13,6 +13,9 @@ type revision struct {
 }
 
 // ActionRevisions completes revisions
+//
+//	1
+//	2
 func ActionRevisions(release string) carapace.Action {
 	return carapace.ActionExecCommand("helm", "history", "--output", "json", release)(func(output []byte) carapace.Action {
 		var revisions []revision

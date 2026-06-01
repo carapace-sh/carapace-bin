@@ -7,6 +7,9 @@ import (
 )
 
 // ActionFilters completes filters
+//
+//	all
+//	downloading
 func ActionFilters() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.Batch(
@@ -40,6 +43,9 @@ func actionFilterConditions() carapace.Action {
 }
 
 // ActionIds completes torrent IDs, accounting for previously applied filters
+//
+//	1
+//	2
 func ActionIds(filters []string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.Batch(

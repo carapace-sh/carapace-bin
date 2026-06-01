@@ -65,6 +65,9 @@ type ContainerOpts struct {
 }
 
 // ActionContainers completes containers
+//
+//	my-container
+//	sidecar
 func ActionContainers(opts ContainerOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("kubectl", "--namespace", opts.Namespace, "get", "-o", "go-template={{range .spec.containers}}{{.name}}\n{{end}}", opts.Resource)(func(output []byte) carapace.Action {
@@ -80,6 +83,9 @@ type LabelOpts struct {
 }
 
 // ActionLabels completes labels
+//
+//	app=myapp
+//	version=v1
 func ActionLabels(opts LabelOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("kubectl", "--namespace", opts.Namespace, "get", "-o", "go-template={{range $key, $value := .metadata.labels}}{{$key}}\n{{$value}}\n{{end}}", opts.Resource)(func(output []byte) carapace.Action {

@@ -10,6 +10,9 @@ import (
 )
 
 // ActionMachines completes machines
+//
+//	default (running)
+//	worker (poweroff)
 func ActionMachines() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		batch := carapace.Batch(
@@ -25,6 +28,9 @@ func ActionMachines() carapace.Action {
 }
 
 // ActionLocalMachines complets local machines
+//
+//	default (running)
+//	worker (poweroff)
 func ActionLocalMachines() carapace.Action {
 	// TODO filter by status
 	return carapace.ActionExecCommand("vagrant", "status")(func(output []byte) carapace.Action {
@@ -43,6 +49,9 @@ func ActionLocalMachines() carapace.Action {
 }
 
 // ActionGlobalMachines completes global machines
+//
+//	default (running)
+//	worker (poweroff)
 func ActionGlobalMachines() carapace.Action {
 	// TODO filter by status
 	return carapace.ActionExecCommand("vagrant", "global-status")(func(output []byte) carapace.Action {

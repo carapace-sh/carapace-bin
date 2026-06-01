@@ -13,6 +13,9 @@ import (
 )
 
 // ActionConfigs completes configs
+//
+//	core.autocrlf
+//	core.editor
 func ActionConfigs() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("git", "help", "--config")(func(output []byte) carapace.Action {
@@ -49,6 +52,9 @@ func ActionConfigs() carapace.Action {
 }
 
 // ActionColors completes colors
+//
+//	red
+//	green
 func ActionColors() carapace.Action {
 	return carapace.ActionStyledValues(
 		"normal", style.Default,
@@ -64,6 +70,9 @@ func ActionColors() carapace.Action {
 }
 
 // ActionTextAttributes completes text attributes
+//
+//	bold
+//	dim
 func ActionTextAttributes() carapace.Action {
 	return carapace.ActionStyledValues(
 		"bold", style.Bold,
@@ -75,6 +84,9 @@ func ActionTextAttributes() carapace.Action {
 }
 
 // ActionColorConfigs completes color configs
+//
+//	red bold
+//	green dim
 func ActionColorConfigs() carapace.Action {
 	return carapace.ActionMultiParts(" ", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -91,6 +103,9 @@ func ActionColorConfigs() carapace.Action {
 }
 
 // ActionConfigTypes completes config types
+//
+//	bool
+//	string
 func ActionConfigTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"bool", "canonicalize values as either \"true\" or \"false\"",
@@ -103,6 +118,9 @@ func ActionConfigTypes() carapace.Action {
 }
 
 // ActionConfigTypeOptions completes options for a config type
+//
+//	true
+//	false
 func ActionConfigTypeOptions(t string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		switch t {
@@ -124,6 +142,9 @@ func ActionConfigTypeOptions(t string) carapace.Action {
 }
 
 // ActionConfigValues completes config values
+//
+//	auto
+//	true
 func ActionConfigValues(config string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		// TODO complete more configurations (see https://git-scm.com/docs/git-config)

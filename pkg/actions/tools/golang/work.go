@@ -56,8 +56,9 @@ func ActionWorkUses(path string) carapace.Action {
 }
 
 // ActionWorkReplacements completes workspace replacements
-// github.com/carapace-sh/carapace-spec (github.com/carapace-sh/carapace-spec@v0.3.0
-// github.com/spf13/pflag (../carapace-pflag/)
+//
+//	github.com/carapace-sh/carapace-spec (github.com/carapace-sh/carapace-spec@v0.3.0
+//	github.com/spf13/pflag (../carapace-pflag/)
 func ActionWorkReplacements(path string) carapace.Action {
 	return actionWork(path, func(w work) carapace.Action {
 		vals := make([]string, 0)

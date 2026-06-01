@@ -7,6 +7,9 @@ import (
 )
 
 // ActionOwners completes owners
+//
+//	user1
+//	user2
 func ActionOwners(pkg string) carapace.Action {
 	return carapace.ActionExecCommand("npm", "owner", "ls", pkg)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

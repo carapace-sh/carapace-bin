@@ -9,6 +9,9 @@ import (
 )
 
 // ActionSigningKeys completes signing keys based on the user's configuration
+//
+//	ssh-ed25519 AAAAC3...
+//	ssh-rsa AAAAB3...
 func ActionSigningKeys() carapace.Action {
 	return actionExecJJ("config", "get", "signing.backend")(func(output []byte) carapace.Action {
 		backend := strings.TrimSpace(string(output))

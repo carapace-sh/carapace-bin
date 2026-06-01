@@ -16,6 +16,9 @@ type repositoriesFile struct {
 }
 
 // ActionRepositories completes repositories
+//
+//	stable
+//	bitnami
 func ActionRepositories() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		dir, err := os.UserConfigDir()
@@ -66,6 +69,9 @@ func loadIndex(repo string) (index *index, err error) {
 }
 
 // ActionCharts complets charts
+//
+//	nginx-ingress
+//	prometheus
 func ActionCharts(repo string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		index, err := loadIndex(repo)
@@ -94,6 +100,9 @@ type ChartVersionOpts struct {
 }
 
 // ActionChartVersions completes chart versions
+//
+//	1.0.0
+//	2.0.0
 func ActionChartVersions(opts ChartVersionOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		index, err := loadIndex(opts.Repo)
@@ -114,6 +123,9 @@ func ActionChartVersions(opts ChartVersionOpts) carapace.Action {
 }
 
 // ActionRepositoryCharts completes repository charts
+//
+//	bitnami/nginx
+//	bitnami/redis
 func ActionRepositoryCharts() carapace.Action {
 	return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {

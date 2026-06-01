@@ -10,6 +10,9 @@ import (
 )
 
 // ActionFiles completes device files
+//
+//	/sdcard/Download
+//	/sdcard/Documents
 func ActionFiles() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		switch c.Value {

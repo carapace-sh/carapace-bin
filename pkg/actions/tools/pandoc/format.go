@@ -7,6 +7,9 @@ import (
 )
 
 // ActionInputFormats completes input formats
+//
+//	markdown
+//	latex
 func ActionInputFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if !strings.ContainsAny(c.Value, "+-") {
@@ -22,6 +25,9 @@ func ActionInputFormats() carapace.Action {
 }
 
 // ActionOutputFormats completes output formats
+//
+//	pdf
+//	html
 func ActionOutputFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if !strings.ContainsAny(c.Value, "+-") {
@@ -53,6 +59,9 @@ func extensionFields(s string) []string {
 }
 
 // ActionFormats completes formats
+//
+//	markdown
+//	latex
 func ActionFormats() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.Batch(
@@ -63,6 +72,9 @@ func ActionFormats() carapace.Action {
 }
 
 // ActionExtensions completes extensions
+//
+//	raw_tex
+//	pipe_tables
 func ActionExtensions(format string) carapace.Action {
 	return carapace.ActionExecCommand("pandoc", "--list-extensions", format)(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -71,6 +83,9 @@ func ActionExtensions(format string) carapace.Action {
 }
 
 // ActionHighlightStyles completes highlight styles
+//
+//	pygments
+//	tesla
 func ActionHighlightStyles() carapace.Action {
 	return carapace.ActionValues(
 		"breezeDark",

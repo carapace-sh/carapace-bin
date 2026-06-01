@@ -5,6 +5,9 @@ import (
 )
 
 // ActionWorkspaces completes workspaces
+//
+//	packages/a
+//	packages/b
 func ActionWorkspaces() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		pj, err := loadPackageJson(c)

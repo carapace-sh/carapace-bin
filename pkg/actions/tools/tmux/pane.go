@@ -7,6 +7,9 @@ import (
 )
 
 // ActionPanes completes panes
+//
+//	0
+//	1
 func ActionPanes() carapace.Action {
 	return carapace.ActionExecCommand("tmux", "list-panes")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")

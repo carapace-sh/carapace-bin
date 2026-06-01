@@ -3,6 +3,9 @@ package ghostty
 import "github.com/carapace-sh/carapace"
 
 // ActionMacIcons completes mac icons
+//
+//	official (Use the official Ghostty icon)
+//	custom-style (Use the official Ghostty icon but with custom styles)
 func ActionMacIcons() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"official", "Use the official Ghostty icon",
@@ -11,6 +14,9 @@ func ActionMacIcons() carapace.Action {
 }
 
 // ActionMacIconFrames completes mac icon frames
+//
+//	aluminum
+//	beige
 func ActionMacIconFrames() carapace.Action {
 	return carapace.ActionValues(
 		"aluminum", "A brushed aluminum frame. This is the default",
@@ -21,6 +27,9 @@ func ActionMacIconFrames() carapace.Action {
 }
 
 // ActionMacFullscreenModes completes mac fullscreen modes
+//
+//	visible-menu (Use non-native macOS fullscreen, keep the menu bar visible)
+//	true (Use non-native macOS fullscreen, hide the menu bar)
 func ActionMacFullscreenModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"visible-menu", "Use non-native macOS fullscreen, keep the menu bar visible",

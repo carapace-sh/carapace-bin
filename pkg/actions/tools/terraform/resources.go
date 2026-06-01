@@ -7,6 +7,9 @@ import (
 )
 
 // ActionResources completes resources
+//
+//	aws_instance.example
+//	aws_s3_bucket.example
 func ActionResources(state string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"state", "list"}

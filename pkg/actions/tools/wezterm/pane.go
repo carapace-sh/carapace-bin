@@ -45,6 +45,10 @@ func actionPanes(f func(panes []pane) carapace.Action) carapace.Action {
 }
 
 // ActionPanes completes panes
+//
+//	1
+//	2
+//
 // 0 (zsh)
 // 1 (fish)
 func ActionPanes() carapace.Action {

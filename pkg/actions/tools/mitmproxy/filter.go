@@ -2,6 +2,10 @@ package mitmproxy
 
 import "github.com/carapace-sh/carapace"
 
+// ActionFlowFilters completes flow filter expressions
+//
+//	~a (Match asset in response)
+//	~b (Body)
 func ActionFlowFilters() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"a", "Match asset in response: CSS, JavaScript, images, fonts",

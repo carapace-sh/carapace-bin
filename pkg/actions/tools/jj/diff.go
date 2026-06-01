@@ -49,6 +49,9 @@ func ActionRevDiffs(revisions ...string) carapace.Action {
 }
 
 // ActionRevChanges completes changes made in given revisions
+//
+//	abc123 (added)
+//	def456 (removed)
 func ActionRevChanges(revisions ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"log", "--summary", "--no-graph", "--template", ""}

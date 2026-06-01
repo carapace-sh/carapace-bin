@@ -6,6 +6,9 @@ import (
 )
 
 // ActionMods copletes local files and remote repositories
+//
+//	go
+//	python
 func ActionMods() carapace.Action {
 	return carapace.Batch(
 		carapace.ActionFiles(),

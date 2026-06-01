@@ -6,6 +6,9 @@ import (
 )
 
 // ActionGodebugKeyValues completes godebug keys and values
+//
+//	asynctimerloop=1
+//	http2client=0
 func ActionGodebugKeyValues() carapace.Action {
 	return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
@@ -138,6 +141,9 @@ func ActionGodebugKeys() carapace.Action {
 }
 
 // ActionGodebugValues completes godebug values
+//
+//	1
+//	0
 func ActionGodebugValues(key string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		_bool := carapace.ActionValuesDescribed("0", "disabled", "1", "enabled").StyleF(style.ForKeyword)

@@ -8,6 +8,9 @@ import (
 
 // ActionPaths completes paths
 //
+//	nixpkgs#hello
+//	nixpkgs#gcc
+//
 // A path can be one of:
 //   - a local file path (default.nix)
 //   - an http/https URL (https://releases.nixos.org/../nixexprs.tar.xz

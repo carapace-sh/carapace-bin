@@ -6,6 +6,9 @@ import (
 )
 
 // ActionSources completes sources
+//
+//	/dev/sda1
+//	LABEL=ROOT
 func ActionSources() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.Batch(

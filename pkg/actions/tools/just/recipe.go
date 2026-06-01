@@ -92,6 +92,10 @@ func (jf justfile) AllRecipes() []string {
 }
 
 // ActionRecipes completes recipes
+//
+//	build
+//	test
+//
 // default
 // build (build project)
 func ActionRecipes(path string) carapace.Action {
@@ -114,6 +118,9 @@ func ActionRecipes(path string) carapace.Action {
 }
 
 // ActionRecipesWithArgs completes recipes with their arguments
+//
+//	build (compile the project)
+//	test (run test suite)
 func ActionRecipesWithArgs(path string) carapace.Action {
 	return actionRecipesWithArgs(path)
 }

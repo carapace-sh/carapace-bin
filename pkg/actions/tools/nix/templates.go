@@ -8,6 +8,9 @@ import (
 )
 
 // ActionTemplates completes the templates outputs of the system template flake
+//
+//	tokio
+//	full
 func ActionTemplates() carapace.Action {
 	return carapace.ActionExecCommand("nix", "flake", "show", "--json", "templates")(func(output []byte) carapace.Action {
 		templatesSchema := struct {

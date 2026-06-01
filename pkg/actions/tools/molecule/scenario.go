@@ -9,6 +9,9 @@ import (
 )
 
 // ActionScenarios completes molecule scenarios
+//
+//	default
+//	destroy
 func ActionScenarios() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		entries, err := os.ReadDir(filepath.Join(c.Dir, "molecule"))

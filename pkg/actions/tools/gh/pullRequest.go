@@ -68,6 +68,10 @@ func (o *PullRequestOpts) states() string {
 }
 
 // ActionPullRequests completes pull requests
+//
+//	1 (Fix login bug)
+//	2 (Add feature)
+//
 // TODO quickly moved over from gh_completer - needs polishing (and removal of the old one)
 func ActionPullRequests(opts PullRequestOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {

@@ -3,6 +3,9 @@ package glow
 import "github.com/carapace-sh/carapace"
 
 // ActionStyles completes styles
+//
+//	dark
+//	light
 func ActionStyles() carapace.Action {
 	return carapace.ActionValues(
 		"ascii",
