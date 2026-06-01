@@ -186,6 +186,37 @@ Both auto-fixable with `--fix-flags-order`.
 
 `staticcheck.conf` enables all checks except ST1000, ST1003, SA1019 (deprecated func usage is common).
 
+## Subcommand init() Ordering
+
+Every subcommand file follows this exact init() order — violations cause subtle completion bugs:
+
+1. `carapace.Gen(cmd).Standalone()` — **every** command gets this, not just root
+2. Flag definitions (`.Flags().BoolP()`, etc.) — must be alphabetical within contiguous blocks
+3. `parentCmd.AddCommand(cmd)` — register with parent
+4. `carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{…})` — flag completion keys must be alphabetical
+5. `carapace.Gen(cmd).PositionalCompletion(…)` / `PositionalAnyCompletion(…)`
+
+## Completer-Specific Actions
+
+Some completers have a `cmd/action/` directory for logic that needs `*cobra.Command` access (e.g. reading `--repo` flag value at completion time). These actions always wrap their logic in `carapace.ActionCallback(func(c carapace.Context) carapace.Action{…})` so flags are resolved lazily.
+
+When a completer needs flag-aware actions, create `completers/<category>/<tool>_completer/cmd/action/action.go` with functions taking `*cobra.Command`. Do **not** put cobra-dependent logic in `pkg/actions/` — shared actions must not accept `*cobra.Command`.
+
+## ActionMultiParts Pattern
+
+Compound values (e.g. `KEY=VALUE`, `user@host`, `repo/branch`) use `carapace.ActionMultiParts(separator, callback)`. Inside the callback, switch on `len(c.Parts)` for each position. Use `.Suffix(sep)` to auto-append the separator. Nested `ActionMultiParts` handles compound formats like `KEY=VALUE,KEY2=VALUE2` (outer splits on `,`, inner on `=`).
+
+## Testing
+
+- **Sandbox integration tests**: `sandbox.Package(t, <import-path>)` + `s.Run(args).Expect(action)` — validates actual completion output
+- **No per-completer tests**: Completers don't have `_test.go` files; validation is through the sandbox framework
+- **CI runs**: `go test -v ./cmd/...` (not `./...` — there are few test files)
+
+## Two-Tier Dispatch in the Main Binary
+
+1. **os.Args level**: If `os.Args[1]` is `"carapace"` or `"_carapace"`, the binary enters the shim/snippet path (prints shell integration snippet). Otherwise falls through to cobra.
+2. **Cobra level** (`DisableFlagParsing: true`): Manually switches on `args[0]` — `--macro`, `--condition`, `--list`, `--invoke` (default), etc.
+
 ## Gotchas
 
 - **`go generate` is mandatory** after adding/modifying public actions — the generated macro map won't update otherwise
@@ -195,3 +226,7 @@ Both auto-fixable with `--fix-flags-order`.
 - **`actions_generated.go` is auto-generated** — never edit directly; add public actions with proper doc comments instead
 - **Opts `Default()` method** is called by the macro system when MacroI is invoked without arguments — missing this on boolean fields causes empty completion results
 - **Spec YAML files live in user config dirs** (`~/.config/carapace/specs/`), not in this repo — this repo contains Go completers and the skills for generating specs
+- **`Standalone()` must be called on every cobra.Command** in a completer, not just the root — skipping it on subcommands breaks their completion
+- **`carapace-generate` is invoked via `go:generate` directives** in `cmd/carapace/main.go`, not by running `carapace-generate` directly
+- **Windows shims are embedded** (`//go:embed` of `.exe` files in `cmd/carapace/cmd/shim/`) — changes to shim logic require rebuilding those binaries
+- **The `pflag` replacement** (`go.mod` has `replace github.com/spf13/pflag => github.com/carapace-sh/carapace-pflag`) adds completion-aware flag parsing — don't reference upstream pflag behavior
