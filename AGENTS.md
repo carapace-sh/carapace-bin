@@ -60,11 +60,9 @@ pkg/actions/time/    # Time formats
 - **Package name**: matches the tool (`package git`, `package helm`, `package net`)
 - **File naming**: group by entity (`branch.go`, `issue.go`, `release.go`)
 
-For action naming, Opts structs, and documentation guidelines, see the `carapace-action` skill.
-
 ### Exposed Actions (Macros)
 
-Actions in `pkg/actions/` are exposed as macros via `pkg/actions/actions_generated.go`. The macro type is determined by the function signature — see the `carapace-action` skill for the full mapping. In this project, macros use the `tools.<tool>.<Action>` naming pattern (e.g. `tools.git.Changes`, `tools.ffmpeg.Codecs`).
+Actions in `pkg/actions/` are exposed as macros via `pkg/actions/actions_generated.go`. The macro type is determined by the function signature. In this project, macros use the `tools.<tool>.<Action>` naming pattern (e.g. `tools.git.Changes`, `tools.ffmpeg.Codecs`).
 
 Registration at startup in `cmd/carapace/cmd/root.go`:
 
@@ -77,7 +75,7 @@ spec.Register(rootCmd)
 
 ### Uid / QueryF
 
-See the `carapace-action` skill for the general concepts. In this project, some tool packages define a package-level `Uid()` helper when multiple actions share common context (e.g. git needs `GIT_DIR` and `GIT_WORK_TREE` resolved for all its actions). This avoids repeating the same URL construction logic in each action.
+In this project, some tool packages define a package-level `Uid()` helper when multiple actions share common context (e.g. git needs `GIT_DIR` and `GIT_WORK_TREE` resolved for all its actions). This avoids repeating the same URL construction logic in each action.
 
 ```go
 // pkg/actions/tools/git/git.go
