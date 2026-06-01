@@ -1,6 +1,6 @@
 # carapace-bin
 
-A collection of shell completers powered by [carapace](https://github.com/carapace-sh/carapace). This is **not** the carapace library itself — it aggregates completers, exposes shared actions as macros, and provides a runtime for spec-based completions.
+A shell completion registry powered by [carapace](https://github.com/carapace-sh/carapace). This is **not** the carapace library itself — it aggregates completers from multiple sources, resolves which variant to use per command, exposes shared actions as macros, and provides a runtime for spec-based completions.
 
 For carapace library concepts (actions, macros, specs, integration, scraping), see the skills in `skills/`.
 
@@ -33,6 +33,7 @@ The `skills/` directory contains detailed guides for carapace library concepts. 
 | `carapace-action` | Creating/modifying shared actions, naming, opts, Uid/QueryF, modifiers |
 | `carapace-spec` | Writing YAML completion spec files |
 | `carapace-macro` | Macro types, formatting, signature lookup, cross-executive macros |
+| `carapace-env` | Environment variable completion (Go definitions, user YAML overrides) |
 | `carapace-scrape` | Generating specs from CLI source code (patch-and-container) |
 | `carapace-integrate` | Integrating carapace into cobra CLIs (PreRun, PreInvoke, bridge) |
 
@@ -70,11 +71,49 @@ docs/                     # mdBook documentation
 .docker/                  # Docker Compose services for distro testing
 ```
 
+## Completer Registry and Resolution
+
+The binary acts as a **central registry** — a single command may have multiple completer sources (native Go completer, bridge to another completion framework, user YAML spec, overlay). At runtime, the registry assembles all sources and resolves which variant wins. The same extensibility pattern applies to environment variable definitions.
+
+### Completer Sources (in assembly order)
+
+| Source | Location | Group |
+--------|----------|-------|
+| Native Go completers | `completers/` (built-in, per OS group) | `common`, `unix`, `linux`, etc.
+| User YAML specs | `~/.config/carapace/specs/` | `user`
+| System YAML specs | `~/.config/carapace/specs/` | `system`
+| Known bridges | `cmd/carapace/cmd/completers/bridges.go` (~80 commands) | `bridge`
+| Shell bridges (bash/fish/zsh/inshellisense) | Enabled via `CARAPACE_BRIDGES` env var | `bridge`
+| User choices | `~/.config/carapace/choices/<name>` | sets `Choice` on existing variant |
+| Overlays | `~/.config/carapace/overlays/` | modifies existing variant |
+
+### Resolution Priority
+
+`CompleterMap.Lookup()` sorts variants; the first one wins. Sort order (`Completer.Less`):
+
+1. **Choices win** — a variant with a `Choice` set (via `carapace --choice`) has highest priority
+2. **Group priority** — `user` > `system` > `runtime.GOOS` > `linux`/`unix`/`darwin`/`bsd`/`windows`/`android`/`common` > `bridge`
+3. **Within bridges** — order follows `CARAPACE_BRIDGES` env var
+
+### Choices
+
+When multiple variants exist for a command (e.g. native Go completer vs. cobra bridge for `gh`), users select a preferred variant with `carapace --choice <name>/<variant>@<group>`. Choices are persisted as single files in `~/.config/carapace/choices/<name>`. A choice sets the `Choice` field on matching variants, giving them highest sort priority.
+
+### Known Bridges
+
+`cmd/carapace/cmd/completers/bridges.go` contains a hardcoded map of ~80 commands with their known bridge variant (e.g. `chezmoi` → `cobra`, `ansible` → `argcomplete`, `hatch` → `click`). These are lower-priority defaults — a native Go completer or user choice always overrides them.
+
+### Overlays
+
+YAML files in `~/.config/carapace/overlays/` are merged on top of an existing completer at runtime, allowing users to add/override flags without replacing the entire completer.
+
+### Environment Variable Definitions
+
+See the `carapace-env` skill for details on built-in Go definitions (`pkg/actions/env/`) and user YAML overrides (`~/.config/carapace/variables/`).
+
 ## How This Project Differs from Normal Carapace Usage
 
-### It's a Collection, Not a Single App
-
-The `carapace` binary is a multiplexer — its root command uses **manual flag parsing** (`DisableFlagParsing: true`) and switches on the first argument to dispatch to subcommands, macro execution, spec loading, or completer invocation. This is fundamentally different from a typical cobra application.
+### It's a Registry, Not a Single App
 
 ### Completers Are Synthetic Cobra Commands
 
@@ -95,7 +134,7 @@ completers/common/bat_completer/
 | Package | domain name (`git`, `net`) | `action` |
 | Doc comments | Full format with examples | Typically none |
 | Cobra awareness | No `*cobra.Command` params | Often takes `*cobra.Command` |
-| Uid/QueryF | Yes (for caching) | Typically no |
+| Uid/QueryF | Yes (see `carapace-action` skill) | Typically no |
 | Exposed as macro | Yes | No |
 | Reusability | Any completer can import | Only within its own completer |
 
@@ -155,17 +194,7 @@ For bridge details, see the `carapace-integrate` skill. Available bridges are re
 
 ### Uid / QueryF
 
-- **`UidF`** creates a dynamic identifier per completion value (e.g. `git://local-branch/main` identifies a specific branch). Use it when the display value alone is insufficient, or when you need to embed additional context as query parameters
-- **`QueryF`** identifies what kind of completion is being requested (e.g. `git://local-branches` indicates the current position seeks local git branches). This enables result updates with additional queries later
-
-Some tool packages in `pkg/actions/tools/` define a package-level `Uid()` helper that constructs URL-based identifiers. Both `UidF` and `QueryF` are often chained with the same `Uid()` helper since they share the same URL construction logic.
-
-```go
-carapace.ActionExecCommand(...)(...).
-    Tag("local branches").
-    UidF(Uid("local-branch")).    // per-value identity: git://local-branch/main
-    QueryF(Uid("local-branches")) // completion kind: git://local-branches
-```
+See the `carapace-action` skill for details on `UidF` (per-value identity) and `QueryF` (completion kind for result updates). Some tool packages in `pkg/actions/tools/` define a package-level `Uid()` helper that both share for URL construction.
 
 ### Project-Specific Styles
 
@@ -233,3 +262,6 @@ Compound values (e.g. `KEY=VALUE`, `user@host`, `repo/branch`) use `carapace.Act
 - **`carapace-generate` is invoked via `go:generate` directives** in `cmd/carapace/main.go`, not by running `carapace-generate` directly
 - **Windows shims are embedded** (`//go:embed` of `.exe` files in `cmd/carapace/cmd/shim/`) — changes to shim logic require rebuilding those binaries
 - **The `pflag` replacement** (`go.mod` has `replace github.com/spf13/pflag => github.com/carapace-sh/carapace-pflag`) adds completion-aware flag parsing — don't reference upstream pflag behavior
+- **`CARAPACE_BRIDGES`** env var enables shell bridges (comma-separated, e.g. `bash,fish,zsh`) — adds all commands known to that shell as bridge variants at runtime
+- **`CARAPACE_EXCLUDES`** env var removes completers from the registry — comma-separated command names
+- **Known bridges in `bridges.go` are low-priority defaults** — they only win when no native completer or user choice exists for that command
