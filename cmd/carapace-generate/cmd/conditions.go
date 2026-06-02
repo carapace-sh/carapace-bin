@@ -3,10 +3,10 @@ package cmd
 import (
 	"bufio"
 	"fmt"
+	"go/format"
 	"io/fs"
 	"log"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -26,10 +26,14 @@ var conditionsCmd = &cobra.Command{
 		}
 
 		if f := cmd.Flag("output"); f.Changed {
-			if err := os.WriteFile(f.Value.String(), []byte(s), 0644); err != nil {
+			formatted, err := format.Source([]byte(s))
+			if err != nil {
 				return err
 			}
-			return exec.Command("go", "fmt", f.Value.String()).Run()
+			if err := os.WriteFile(f.Value.String(), formatted, 0644); err != nil {
+				return err
+			}
+			return nil
 		}
 		fmt.Println(s)
 		return nil

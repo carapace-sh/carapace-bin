@@ -3,8 +3,8 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"go/format"
 	"os"
-	"os/exec"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace-generate/pkg/completer"
@@ -38,10 +38,14 @@ var completersCmd = &cobra.Command{
 		}
 
 		if f := cmd.Flag("output"); f.Changed {
-			if err := os.WriteFile(f.Value.String(), []byte(s), 0644); err != nil {
+			formatted, err := format.Source([]byte(s))
+			if err != nil {
 				return err
 			}
-			return exec.Command("go", "fmt", f.Value.String()).Run()
+			if err := os.WriteFile(f.Value.String(), formatted, 0644); err != nil {
+				return err
+			}
+			return nil
 		}
 		fmt.Println(s)
 		return nil

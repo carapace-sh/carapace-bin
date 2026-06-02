@@ -52,17 +52,17 @@ func (c CompleterMap) Filter(filter choices.Choice) CompleterMap {
 }
 
 func (c CompleterMap) Format(pkg, tag string) string {
+	var tagLine string
 	if tag != "" {
-		tag = fmt.Sprintf("//go:build %s\n", tag)
+		tagLine = fmt.Sprintf("//go:build %s\n\n", tag)
 	}
 	return fmt.Sprintf(`%spackage %s
 
 import (
-	"github.com/carapace-sh/carapace-bin/pkg/completer"
 %s)
 
 %s
-`, tag, pkg, c.FormatImports(), c.FormatCompleters())
+`, tagLine, pkg, c.FormatImports(), c.FormatCompleters())
 }
 
 func (c CompleterMap) Merge(other CompleterMap) {
@@ -78,6 +78,7 @@ func (c CompleterMap) Merge(other CompleterMap) {
 
 func (c CompleterMap) FormatImports() string {
 	s := make([]string, 0)
+	s = append(s, fmt.Sprintf("\t%q", "github.com/carapace-sh/carapace-bin/pkg/completer"))
 	for _, group := range c {
 		for _, completer := range group {
 			s = append(s, completer.FormatImport())
