@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/python"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -108,8 +109,8 @@ func init() {
 	rootCmd.Flags().Bool("trace", false, "immediately break when running each test")
 	rootCmd.Flags().Bool("trace-config", false, "trace considerations of conftest.py files")
 	rootCmd.Flags().CountP("verbose", "v", "increase verbosity")
-	rootCmd.Flags().BoolP("version", "V", false, "display pytest version and information about plugins")
 	rootCmd.Flags().String("verbosity", "", "set verbosity")
+	rootCmd.Flags().BoolP("version", "V", false, "display pytest version and information about plugins")
 	rootCmd.Flags().Bool("xfail-tb", false, "show tracebacks for xfail")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
@@ -129,13 +130,27 @@ func init() {
 		"import-mode":             carapace.ActionValues("prepend", "append", "importlib"),
 		"junit-xml":               carapace.ActionFiles(),
 		"last-failed-no-failures": carapace.ActionValues("all", "none"),
+		"log-cli-level":           carapace.ActionValues("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL").StyleF(style.ForLogLevel),
 		"log-file":                carapace.ActionFiles(),
+		"log-file-level":          carapace.ActionValues("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL").StyleF(style.ForLogLevel),
 		"log-file-mode":           carapace.ActionValues("w", "a"),
+		"log-level":               carapace.ActionValues("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL").StyleF(style.ForLogLevel),
 		"pastebin":                carapace.ActionValues("failed", "all"),
 		"pythonwarnings":          python.ActionWarningControls(),
-		"rootdir":                 carapace.ActionDirectories(),
-		"show-capture":            carapace.ActionValues("no", "stdout", "stderr", "log", "all"),
-		"tb":                      carapace.ActionValues("auto", "long", "short", "line", "native", "no"),
+		"r": carapace.ActionStyledValuesDescribed(
+			"f", "failed", style.Carapace.KeywordNegative,
+			"E", "error", style.Carapace.KeywordNegative,
+			"s", "skipped", style.Dim,
+			"x", "xfailed", style.Carapace.KeywordNegative,
+			"X", "xpassed", style.Carapace.KeywordPositive,
+			"p", "passed", style.Carapace.KeywordPositive,
+			"P", "passed with output", style.Carapace.KeywordPositive,
+			"a", "all except passed", style.Default,
+			"A", "all", style.Default,
+		).UniqueList(""),
+		"rootdir":      carapace.ActionDirectories(),
+		"show-capture": carapace.ActionValues("no", "stdout", "stderr", "log", "all"),
+		"tb":           carapace.ActionValues("auto", "long", "short", "line", "native", "no"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
