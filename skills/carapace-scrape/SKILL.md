@@ -229,6 +229,10 @@ ${UserConfigDir}/carapace/specs/<command>.yaml
 - **Build dependencies** — the tool must be buildable (dependencies must resolve)
 - **Plugin approach** — for some tools (like oclif), a plugin must be installed first
 
+## Next Steps
+
+To convert a scraped YAML spec to a native Go completer, see the **carapace-convert** skill.
+
 ## Reference Repositories
 
 - [scrape](https://github.com/carapace-sh/scrape) — Docker-based scraping for Docker CLI, kubectl, gh, etc.

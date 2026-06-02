@@ -26,6 +26,7 @@ Simply add it to your [config].
 
 - **complete** Return context‑aware, dynamic completions for shell commands.
 - **list_macros** List available macros and their signatures.
+- **codegen** Generate Go code from a YAML spec file.
 
 [Carapace]:https://carapace.sh
 [config]:https://github.com/charmbracelet/crush#mcps

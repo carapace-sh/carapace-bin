@@ -1,12 +1,14 @@
 package mcp
 
 import (
+	"bufio"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"sort"
 	"strings"
 
@@ -55,6 +57,10 @@ type mcpTool struct {
 type mcpToolCallParams struct {
 	Name      string          `json:"name"`
 	Arguments json.RawMessage `json:"arguments,omitempty"`
+}
+
+type mcpCodegenRequest struct {
+	Path string `json:"path"`
 }
 
 type mcpCompleteRequest struct {
@@ -181,6 +187,21 @@ func (s *MCPServer) handleRequest(request mcpRequest) (mcpResponse, bool) {
 						"additionalProperties": false,
 					},
 				},
+				{
+					Name:        "codegen",
+					Description: "Generate Go code from a YAML spec file.",
+					InputSchema: map[string]any{
+						"type": "object",
+						"properties": map[string]any{
+							"path": map[string]any{
+								"type":        "string",
+								"description": "Path to the YAML spec file",
+							},
+						},
+						"required":             []string{"path"},
+						"additionalProperties": false,
+					},
+				},
 			},
 		}
 	case "tools/call":
@@ -202,12 +223,16 @@ func (s *MCPServer) handleToolCall(params json.RawMessage) (map[string]any, erro
 	if err := json.Unmarshal(params, &call); err != nil {
 		return nil, fmt.Errorf("invalid tool call parameters: %w", err)
 	}
-	if call.Name != "complete" && call.Name != "list_macros" {
+	if call.Name != "complete" && call.Name != "list_macros" && call.Name != "codegen" {
 		return nil, fmt.Errorf("unknown tool %q", call.Name)
 	}
 
 	if call.Name == "list_macros" {
 		return s.handleListMacros()
+	}
+
+	if call.Name == "codegen" {
+		return s.handleCodegen(call.Arguments)
 	}
 
 	var request mcpCompleteRequest
@@ -272,6 +297,61 @@ func (s *MCPServer) complete(request mcpCompleteRequest) (string, error) {
 		return "", fmt.Errorf("completion failed: %w\n%s", err, strings.TrimSpace(string(output)))
 	}
 	return strings.TrimRight(string(output), "\r\n"), nil
+}
+
+func (s *MCPServer) handleCodegen(args json.RawMessage) (map[string]any, error) {
+	var request mcpCodegenRequest
+	if err := json.Unmarshal(args, &request); err != nil {
+		return nil, fmt.Errorf("invalid codegen arguments: %w", err)
+	}
+	if request.Path == "" {
+		return nil, errors.New("path is required")
+	}
+
+	absPath := request.Path
+	if !filepath.IsAbs(absPath) {
+		abs, err := filepath.Abs(absPath)
+		if err != nil {
+			return mcpTextResult(err.Error(), true), nil
+		}
+		absPath = abs
+	}
+
+	executable, err := os.Executable()
+	if err != nil {
+		return mcpTextResult(err.Error(), true), nil
+	}
+
+	// Run codegen and capture the printed filenames
+	cmd := exec.Command(executable, "--codegen", absPath)
+	cmd.Env = os.Environ()
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return mcpTextResult(fmt.Sprintf("codegen failed: %v\n%s", err, output), true), nil
+	}
+
+	var filenames []string
+	scanner := bufio.NewScanner(strings.NewReader(string(output)))
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+		if strings.HasSuffix(line, ".go") {
+			filenames = append(filenames, line)
+		}
+	}
+
+	if len(filenames) == 0 {
+		return mcpTextResult("codegen completed but no files were generated", false), nil
+	}
+
+	sort.Strings(filenames)
+	return map[string]any{
+		"content": []map[string]any{
+			{
+				"type": "text",
+				"text": toJSON(filenames),
+			},
+		},
+	}, nil
 }
 
 func (s *MCPServer) handleListMacros() (map[string]any, error) {

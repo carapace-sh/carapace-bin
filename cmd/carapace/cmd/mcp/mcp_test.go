@@ -41,8 +41,8 @@ func TestMCPInitializeAndListTools(t *testing.T) {
 		t.Fatalf("tools/list result missing")
 	}
 	tools, ok := result["tools"].([]any)
-	if !ok || len(tools) != 2 {
-		t.Fatalf("expected 2 tools, got %#v", result["tools"])
+	if !ok || len(tools) != 3 {
+		t.Fatalf("expected 3 tools, got %#v", result["tools"])
 	}
 	tool, ok := tools[0].(map[string]any)
 	if !ok || tool["name"] != "complete" {
@@ -51,6 +51,10 @@ func TestMCPInitializeAndListTools(t *testing.T) {
 	tool1, ok := tools[1].(map[string]any)
 	if !ok || tool1["name"] != "list_macros" {
 		t.Fatalf("expected list_macros tool, got %#v", tools[1])
+	}
+	tool2, ok := tools[2].(map[string]any)
+	if !ok || tool2["name"] != "codegen" {
+		t.Fatalf("expected codegen tool, got %#v", tools[2])
 	}
 }
 
@@ -72,5 +76,23 @@ func TestMCPBatchSkipsNotifications(t *testing.T) {
 	}
 	if responses[0]["id"].(float64) != 1 {
 		t.Fatalf("unexpected response id: %#v", responses[0]["id"])
+	}
+}
+
+func TestMCPCodegenMissingPath(t *testing.T) {
+	input := strings.NewReader(`{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"codegen","arguments":{}}}`)
+
+	var output bytes.Buffer
+	s := NewMCPServer("", input, &output)
+	if err := s.Run(); err != nil {
+		t.Fatal(err)
+	}
+
+	var resp map[string]any
+	if err := json.Unmarshal(bytes.TrimSpace(output.Bytes()), &resp); err != nil {
+		t.Fatal(err)
+	}
+	if resp["error"] == nil {
+		t.Fatalf("expected error for missing path, got: %#v", resp)
 	}
 }
