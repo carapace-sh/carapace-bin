@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"fmt"
+	"go/format"
 	"os"
 
 	"github.com/carapace-sh/carapace"
@@ -66,7 +68,11 @@ var generateAllCmd = &cobra.Command{
 
 			filtered := filterByGoos(base, t.goos)
 			s := filtered.Format("completers", t.tag)
-			if err := os.WriteFile(t.output, []byte(s), 0644); err != nil {
+			formatted, err := format.Source([]byte(s))
+			if err != nil {
+				return fmt.Errorf("formatting %s: %w", t.output, err)
+			}
+			if err := os.WriteFile(t.output, formatted, 0644); err != nil {
 				return err
 			}
 		}

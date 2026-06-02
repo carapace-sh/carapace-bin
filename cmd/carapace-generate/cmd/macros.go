@@ -3,6 +3,7 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"go/format"
 	"os"
 
 	"github.com/carapace-sh/carapace"
@@ -36,7 +37,11 @@ var macrosCmd = &cobra.Command{
 		}
 
 		if f := cmd.Flag("output"); f.Changed {
-			if err := os.WriteFile(f.Value.String(), []byte(s), 0644); err != nil {
+			formatted, err := format.Source([]byte(s))
+			if err != nil {
+				return err
+			}
+			if err := os.WriteFile(f.Value.String(), formatted, 0644); err != nil {
 				return err
 			}
 			return nil
