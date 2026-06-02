@@ -72,7 +72,7 @@ Returns context‑aware, dynamic completions for shell commands.
 
 **How it works:**
 
-The first element in `args` is the command name (must be a known completer, not a flag). The remaining elements are the arguments to complete, including the partial word being completed. The server invokes `carapace <command> export <args...>` internally and returns the raw completion output.
+The first element in `args` is the command name (not a flag). The remaining elements are the arguments to complete, including the partial word being completed. The server invokes `carapace <command> export <args...>` internally and returns the raw completion output.
 
 **Constraints:**
 
