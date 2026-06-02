@@ -24,7 +24,7 @@ func init() {
 
 	carapace.Gen(config_ai_anthropicCmd).FlagCompletion(carapace.ActionMap{
 		"api-key-env": os.ActionEnvironmentVariables(),
-		"key-option":  carapace.ActionValues(), // TODO
+		"key-option":  carapace.ActionValues("bring-your-own", "butler-api"),
 		"model":       carapace.ActionValues(), // TODO model names
 	})
 }

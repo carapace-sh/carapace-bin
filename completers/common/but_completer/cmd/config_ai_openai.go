@@ -26,5 +26,6 @@ func init() {
 	// TODO flag completion
 	carapace.Gen(config_ai_openaiCmd).FlagCompletion(carapace.ActionMap{
 		"api-key-env": os.ActionEnvironmentVariables(),
+		"key-option":  carapace.ActionValues("bring-your-own", "butler-api"),
 	})
 }
