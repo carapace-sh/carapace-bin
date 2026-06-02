@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"os"
-	"os/exec"
 
 	"github.com/carapace-sh/carapace"
 	genCompleter "github.com/carapace-sh/carapace-bin/cmd/carapace-generate/pkg/completer"
@@ -68,9 +67,6 @@ var generateAllCmd = &cobra.Command{
 			filtered := filterByGoos(base, t.goos)
 			s := filtered.Format("completers", t.tag)
 			if err := os.WriteFile(t.output, []byte(s), 0644); err != nil {
-				return err
-			}
-			if err := exec.Command("go", "fmt", t.output).Run(); err != nil {
 				return err
 			}
 		}
