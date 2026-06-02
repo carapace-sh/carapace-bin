@@ -129,11 +129,13 @@ variables:
 completion:
   variable:
     CUSTOM_VAR:
-      - value1\tdescription1
-      - value2\tdescription2
+      - "value1\tdescription1"
+      - "value2\tdescription2"
     OTHER_VAR:
       - $carapace.tools.git.RemoteBranches
 ```
+
+> **Note:** Values containing a tab character (`\t`) for description or style must be wrapped in double quotes, otherwise YAML treats `\t` as a literal backslash followed by `t` (two characters), and the style/description will not be applied.
 
 ### Fields
 
@@ -150,11 +152,13 @@ Each entry in a variable's completion list is a spec string:
 | Format | Meaning |
 |--------|---------|
 | `value` | Static value |
-| `value\tdescription` | Value with description (tab-separated) |
-| `value\tdescription\tstyle` | Value with description and style (tab-separated) |
+| `"value\tdescription"` | Value with description (tab-separated, must be double-quoted) |
+| `"value\tdescription\tstyle"` | Value with description and style (tab-separated, must be double-quoted) |
 | `$macroname` | Macro reference (e.g. `$files`, `$directories`) |
 | `$carapace.tools.<tool>.<Action>` | Fully qualified macro |
 | `\|\|\|` suffix | Action modifiers after `\|\|\|` (e.g. `$files \|\|\| $uniquelist(,)`) |
+
+> **Important:** Values containing a tab character (`\t`) for description or style **must be wrapped in double quotes** (`"value\tdescription\tstyle"`). YAML does not interpret `\t` as a tab in unquoted strings — it remains as literal backslash-`t`, and the description/style will not be applied.
 
 ### Overriding Built-in Definitions
 
@@ -167,9 +171,11 @@ variables:
 completion:
   variable:
     HTTPS_PROXY:
-      - https://localhost:8443\tdevelopment
-      - https://proxy.company:443\tproduction
+      - "https://localhost:8443\tdevelopment\tgreen"
+      - "https://proxy.company:443\tproduction\tred"
 ```
+
+> **Note:** Values containing a tab character (`\t`) for description or style must be wrapped in double quotes, otherwise YAML treats `\t` as a literal backslash followed by `t` (two characters), and the style/description will not be applied.
 
 ### Condition Examples
 
