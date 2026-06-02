@@ -107,7 +107,8 @@ func init() {
 	rootCmd.Flags().String("tb", "", "traceback print mode (auto/long/short/line/native/no)")
 	rootCmd.Flags().Bool("trace", false, "immediately break when running each test")
 	rootCmd.Flags().Bool("trace-config", false, "trace considerations of conftest.py files")
-	rootCmd.Flags().BoolP("verbose", "V", false, "display pytest version and information about plugins")
+	rootCmd.Flags().CountP("verbose", "v", "increase verbosity")
+	rootCmd.Flags().BoolP("version", "V", false, "display pytest version and information about plugins")
 	rootCmd.Flags().String("verbosity", "", "set verbosity")
 	rootCmd.Flags().Bool("xfail-tb", false, "show tracebacks for xfail")
 
@@ -123,7 +124,7 @@ func init() {
 		"debug":                   carapace.ActionFiles(),
 		"doctest-glob":            carapace.ActionFiles(),
 		"doctest-report":          carapace.ActionValues("none", "cdiff", "ndiff", "udiff", "only_first_failure"),
-		"ignore":                  carapace.ActionFiles(),
+		"ignore":                  carapace.ActionDirectories(),
 		"ignore-glob":             carapace.ActionFiles(),
 		"import-mode":             carapace.ActionValues("prepend", "append", "importlib"),
 		"junit-xml":               carapace.ActionFiles(),
