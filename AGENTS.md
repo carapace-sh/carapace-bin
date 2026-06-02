@@ -36,6 +36,8 @@ The `skills/` directory contains detailed guides for carapace library concepts. 
 | `carapace-env` | Environment variable completion (Go definitions, user YAML overrides) |
 | `carapace-scrape` | Generating specs from CLI source code (patch-and-container) |
 | `carapace-integrate` | Integrating carapace into cobra CLIs (PreRun, PreInvoke, bridge) |
+| `carapace-setup` | Shell integration, environment variables, overlays, extensions |
+| `carapace-choice` | Choices, variants, bridges (implicit shell + explicit framework), completer resolution |
 | `carapace-mcp` | MCP server tools (complete, list_macros, codegen), client setup, protocol |
 
 ## Project Structure
