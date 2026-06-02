@@ -14,7 +14,7 @@ Macros are completion actions identified by a `$`-prefixed name, optionally taki
 
 ## Retrieving Available Macros
 
-Use the carapace MCP tool `list_macros` to get all available macros with their names, descriptions, and argument signatures.
+Use the carapace MCP tool `list_macros` to get all available macros with their names, descriptions, and argument signatures. For MCP server setup and protocol details, see the **carapace-mcp** skill.
 
 Each entry has:
 

@@ -155,7 +155,7 @@ documentation:
 
 ## Macros
 
-Macros are `$`-prefixed completion actions used in completion arrays. For full details on macro types, formatting, and how to look up available macros, see the **carapace-macro** skill.
+Macros are `$`-prefixed completion actions used in completion arrays. For full details on macro types, formatting, and how to look up available macros, see the **carapace-macro** skill. To convert a spec to a native Go completer, use the `codegen` MCP tool (see **carapace-mcp** skill).
 
 ### Quick Reference
 
