@@ -8,6 +8,8 @@ crush
 └── skills
     ├── carapace-action
     │   └── SKILL.md
+    ├── carapace-env
+    │   └── SKILL.md
     ├── carapace-integrate
     │   └── SKILL.md
     ├── carapace-scrape
