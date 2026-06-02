@@ -231,7 +231,7 @@ ${UserConfigDir}/carapace/specs/<command>.yaml
 
 ## Next Steps
 
-To convert a scraped YAML spec to a native Go completer, use the `codegen` MCP tool (see **carapace-mcp** skill).
+To convert a scraped YAML spec to a native Go completer, see the **carapace-convert** skill.
 
 ## Reference Repositories
 
