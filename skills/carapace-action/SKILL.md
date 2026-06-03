@@ -348,6 +348,21 @@ carapace.ActionValues(":").Suffix("/").NoSpace('/')
 carapace.ActionLocalChannels().Prefix("<").Suffix(">")
 ```
 
+**Apply Suffix/Prefix/NoSpace at the call site, not in the action definition.** Reusable actions should return pure value lists without formatting modifiers. The call site knows the context — what delimiter follows, whether a space is needed — so it should chain the appropriate modifiers. This keeps actions composable: the same `ActionUsers()` can be used with `.Suffix(":")` in a multi-part `user:group` context, or without suffix in a standalone context.
+
+```go
+// Good — action returns pure values, call site adds suffix
+return ActionUsers().Suffix(":")
+ActionContainers().Suffix(":")
+
+// Bad — suffix baked into definition limits reuse
+func ActionUsers() carapace.Action {
+    return carapace.ActionExecCommand(...)(...).Suffix(":") // don't do this
+}
+```
+
+The exception is actions that are inherently context-specific (e.g. inline `ActionValues` inside `ActionMultiParts` where the suffix is part of the structure itself).
+
 ### Uid
 
 Unique identifiers providing context for completion values:
@@ -367,6 +382,16 @@ carapace.ActionValuesDescribed(vals...).UidF(func(s string, uc uid.Context) (*ur
 
 // Query identifying the completion kind
 .QueryF(Uid("local-branches"))  // e.g. git://local-branches
+```
+
+**Set Uid before Suffix/Prefix/NoSpace.** The UID identifies the completion values — modifiers like `.Suffix("=")` or `.Prefix("<")` change the display/insertion format but should not affect the identity. Chaining `.Suffix()` before `.Uid()` can leak suffix characters into the UID's value context.
+
+```go
+// Good — Uid on the base action, suffix after
+carapace.ActionValuesDescribed(...).Uid("git", "object-filter").Suffix("=")
+
+// Bad — suffix before Uid leaks "=" into the UID
+carapace.ActionValuesDescribed(...).Suffix("=").Uid("git", "object-filter")
 ```
 
 ### Shift
