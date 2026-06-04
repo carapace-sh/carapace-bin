@@ -1,13 +1,3 @@
----
-name: carapace-spec
-description: >
-  Use when user needs to create a carapace user spec (YAML completion file). Covers schema,
-  flags, subcommands, parsing modes, runnable specs, and environment variables.
-  For macro formatting and lookup, use the carapace-macro skill instead.
-  Triggers on: "create completion", "carapace spec", "user spec", "completion yaml", or any request to write a spec file.
-user-invocable: true
----
-
 # Carapace User Spec Creation Guide
 
 Create shell completion specs for [carapace](https://carapace.sh) using YAML files.
@@ -155,7 +145,7 @@ documentation:
 
 ## Macros
 
-Macros are `$`-prefixed completion actions used in completion arrays. For full details on macro types, formatting, and how to look up available macros, see the **carapace-macro** skill. To convert a spec to a native Go completer, see the **carapace-convert** skill.
+Macros are `$`-prefixed completion actions used in completion arrays. For full details on macro types, formatting, and how to look up available macros, see the **references/macro.md** skill. To convert a spec to a native Go completer, see the **references/convert.md** skill.
 
 ### Quick Reference
 
@@ -177,7 +167,7 @@ run: "$pwsh(echo one`ntwo)"
 
 ## Modifiers
 
-Change completion behavior with ` ||| ` delimiter. For full modifier reference, see the **carapace-macro** skill.
+Change completion behavior with ` ||| ` delimiter. For full modifier reference, see the **references/macro.md** skill.
 
 ```yaml
 # Generic: apply to all values
@@ -246,7 +236,7 @@ completion:
   positionalany: ["$carapace.tools.git.LsRemoteRefs({url: '${C_ARG0}'})"]
 ```
 
-> For macro formatting details, see the **carapace-macro** skill.
+> For macro formatting details, see the **references/macro.md** skill.
 
 ### Shebang (Bash Script)
 
@@ -323,7 +313,7 @@ completion:
   positionalany: ["$carapace.bridge.CarapaceBin([kubectl])"]
 ```
 
-> For macro formatting details, see the **carapace-macro** skill.
+> For macro formatting details, see the **references/macro.md** skill.
 
 - Generic bridge: `CarapaceBin`.
 - Framework bridges: `Argcomplete`, `Aws`, `Bash`, `Carapace`, `Clap`, `Click`, `Cobra`, `Complete`, `Gcloud`, `Inshellisense`, `JJ`, `Kingpin`, `Kitten`, `Urfavecli`, `UrfavecliV1`, `Yargs`.
@@ -335,4 +325,4 @@ completion:
 carapace _carapace           # reload specs
 ```
 
-> For macro lookup and formatting, see the **carapace-macro** skill.
+> For macro lookup and formatting, see the **references/macro.md** skill.

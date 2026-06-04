@@ -1,14 +1,3 @@
----
-name: carapace-choice
-description: >
-  Use when user needs to understand or configure carapace completer choices, variants,
-  bridges (implicit shell bridges and explicit framework bridges), or completer resolution
-  priority. Covers CARAPACE_BRIDGES, --choice, --list, group priority, and how to select
-  a specific completer variant for a command. Triggers on: "carapace choice", "completer variant",
-  "select completer", "carapace bridge", "CARAPACE_BRIDGES", "implicit bridge", "framework bridge".
-user-invocable: true
----
-
 # Carapace Choices, Variants & Bridges
 
 How carapace resolves which completer to use when multiple sources exist for the same command.

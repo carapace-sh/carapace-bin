@@ -1,15 +1,3 @@
----
-name: carapace-mcp
-description: >
-  Use when user needs to understand, configure, or use the carapace MCP server — including
-  tool descriptions, input schemas, response formats, CLI equivalents, and MCP client setup.
-  Covers the three tools (complete, list_macros, codegen), the JSON-RPC protocol, stdio transport,
-  and how MCP tools map to carapace CLI flags. Triggers on: "carapace mcp", "MCP server",
-  "MCP tools", "carapace MCP", "complete tool", "list_macros tool", "codegen tool",
-  "configure MCP", "MCP setup".
-user-invocable: true
----
-
 # Carapace MCP Server Guide
 
 The carapace MCP server exposes shell completion capabilities to AI assistants and other MCP clients via the [Model Context Protocol](https://modelcontextprotocol.io/).

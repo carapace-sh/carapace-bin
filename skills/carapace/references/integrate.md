@@ -1,12 +1,3 @@
----
-name: carapace-integrate
-description: >
-  Use when user wants to integrate the carapace library into an existing cobra-based CLI application.
-  Covers PreRun/PreInvoke for command structure and directory changes, action composition, carapace-bridge for external completions, and carapace-spec for exposing actions.
-  Triggers on: "integrate carapace", "add completions to cobra", "carapace library integration", "cobra completion with carapace", "carapace PreRun", or similar.
-user-invocable: true
----
-
 # Integrating Carapace into Cobra-based CLI Applications
 
 This guide covers integrating [carapace](https://github.com/carapace-sh/carapace) as a library into existing applications using [cobra](https://github.com/spf13/cobra).
