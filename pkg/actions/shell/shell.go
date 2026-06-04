@@ -50,6 +50,36 @@ func ActionFunctions(hidden bool) carapace.Action {
 	}).Tag("shell functions")
 }
 
+// ActionJobSpecs completes shell job specifications
+//
+//	%1
+//	%2
+func ActionJobSpecs() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionValues(strings.Fields(os.Getenv("CARAPACE_SHELL_JOBS"))...)
+	}).Tag("job specs")
+}
+
+// ActionAliases completes shell aliases
+//
+//	ll
+//	la
+func ActionAliases() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionValues(strings.Fields(os.Getenv("CARAPACE_SHELL_ALIASES"))...)
+	}).Tag("shell aliases")
+}
+
+// ActionVariables completes shell variable names
+//
+//	PATH
+//	HOME
+func ActionVariables() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionValues(strings.Fields(os.Getenv("CARAPACE_SHELL_VARIABLES"))...)
+	}).Tag("shell variables")
+}
+
 // ActionExecutables completes builtins, functions, and commands
 //
 //	ls
