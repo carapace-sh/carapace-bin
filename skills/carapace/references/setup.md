@@ -1,14 +1,3 @@
----
-name: carapace-setup
-description: >
-  Use when user needs to set up, configure, or troubleshoot carapace shell completion —
-  including per-shell integration, environment variables, overlays, and extensions.
-  For choices/variants/bridges, use the carapace-choice skill instead.
-  Triggers on: "setup carapace", "configure carapace", "carapace setup", "shell completion setup",
-  "add completion to shell", "carapace env vars", "carapace overlay", "carapace extension".
-user-invocable: true
----
-
 # Carapace Setup & Configuration
 
 ## Install
@@ -39,7 +28,7 @@ The config directory is `${UserConfigDir}/carapace/`:
 
 > On **all** OSes, carapace respects `$XDG_CONFIG_HOME` for its config directory.
 
-The `CARAPACE_BRIDGES` line is optional — see the **carapace-choice** skill for bridge details.
+The `CARAPACE_BRIDGES` line is optional — see the **references/choice.md** skill for bridge details.
 
 ### Bash
 
@@ -142,7 +131,7 @@ Set all variables **before** sourcing the carapace init snippet.
 
 ### CARAPACE_BRIDGES
 
-Comma-separated implicit bridge sources. Enables completion for commands carapace lacks a native completer for, by delegating to the shell's own completion. Default order: `zsh,fish,bash,inshellisense`. See the **carapace-choice** skill for full bridge details.
+Comma-separated implicit bridge sources. Enables completion for commands carapace lacks a native completer for, by delegating to the shell's own completion. Default order: `zsh,fish,bash,inshellisense`. See the **references/choice.md** skill for full bridge details.
 
 ### CARAPACE_EXCLUDES
 

@@ -1,20 +1,10 @@
----
-name: carapace-macro
-description: >
-  Use when user needs to look up, format, or understand carapace macros — how to retrieve available
-  macros from the MCP tool, how macro arguments are formatted in user specs (YAML) and in Go
-  (spec.ActionMacro), and the three macro types (MacroN/MacroI/MacroV). Triggers on: "macro format",
-  "carapace macro", "list macros", "macro signature", "ActionMacro", "MacroN", "MacroI", "MacroV".
-user-invocable: true
----
-
 # Carapace Macro Format Guide
 
 Macros are completion actions identified by a `$`-prefixed name, optionally taking arguments in parentheses. They are used in user specs (YAML) and in Go code via `spec.ActionMacro`.
 
 ## Retrieving Available Macros
 
-Use the carapace MCP tool `list_macros` to get all available macros with their names, descriptions, and argument signatures. For MCP server setup and protocol details, see the **carapace-mcp** skill.
+Use the carapace MCP tool `list_macros` to get all available macros with their names, descriptions, and argument signatures. For MCP server setup and protocol details, see the **references/mcp.md** skill.
 
 Each entry has:
 

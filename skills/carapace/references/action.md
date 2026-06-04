@@ -1,12 +1,3 @@
----
-name: carapace-action
-description: >
-  Use when user needs to create, modify, combine, tag, or assign UIDs to custom carapace actions.
-  Covers action naming, suffix, batch, tag, uid, and common patterns from carapace-bin.
-  Triggers on: "create action", "custom action", "carapace action", "action modifier", "combine actions".
-user-invocable: true
----
-
 # Carapace Custom Actions Guide
 
 Create and modify shell completion actions in [carapace](https://carapace.sh) using Go.

@@ -1,12 +1,3 @@
----
-name: carapace-scrape
-description: >
-  Use when the user wants to create a carapace user spec by scraping/generating it from the source code
-  of a CLI tool. Covers supported frameworks, the patch-and-container approach, and how to run the scraper.
-  Triggers on: "scrape spec", "generate spec from source", "carapace scrape", "spec scraper", or any request to generate completions by parsing source code.
-user-invocable: true
----
-
 # Carapace Spec Scraping Guide
 
 Generate carapace user specs by injecting a spec generator into CLI tools with available source code.
@@ -231,7 +222,7 @@ ${UserConfigDir}/carapace/specs/<command>.yaml
 
 ## Next Steps
 
-To convert a scraped YAML spec to a native Go completer, see the **carapace-convert** skill.
+To convert a scraped YAML spec to a native Go completer, see the **references/convert.md** skill.
 
 ## Reference Repositories
 

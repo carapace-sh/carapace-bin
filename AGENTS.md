@@ -2,7 +2,7 @@
 
 A shell completion registry powered by [carapace](https://github.com/carapace-sh/carapace). This is **not** the carapace library itself — it aggregates completers from multiple sources, resolves which variant to use per command, exposes shared actions as macros, and provides a runtime for spec-based completions.
 
-For carapace library concepts (actions, macros, specs, integration, scraping), see the skills in `skills/`.
+For carapace library concepts (actions, macros, specs, integration, scraping), see the **carapace** skill in `skills/carapace/`.
 
 ## Commands
 
@@ -26,19 +26,20 @@ This project provides a carapace MCP server. When working here, use it:
 - **`list_macros`** / **`carapace_carapace_list_macros`** — Look up available macros, their signatures, and descriptions before referencing them in code or specs
 - **`carapace_carapace_complete`** — Test completion output for any completer
 
-The `skills/` directory contains detailed guides for carapace library concepts. **Use them** when working on the corresponding aspects:
+The `skills/carapace/` directory contains the composite carapace skill with detailed guides. **Use it** when working on the corresponding aspects. The SKILL.md entry point routes to the right sub-resource:
 
-| Skill | When to use |
-|-------|-------------|
-| `carapace-action` | Creating/modifying shared actions, naming, opts, Uid/QueryF, modifiers |
-| `carapace-spec` | Writing YAML completion spec files |
-| `carapace-macro` | Macro types, formatting, signature lookup, cross-executive macros |
-| `carapace-env` | Environment variable completion (Go definitions, user YAML overrides) |
-| `carapace-scrape` | Generating specs from CLI source code (patch-and-container) |
-| `carapace-integrate` | Integrating carapace into cobra CLIs (PreRun, PreInvoke, bridge) |
-| `carapace-setup` | Shell integration, environment variables, overlays, extensions |
-| `carapace-choice` | Choices, variants, bridges (implicit shell + explicit framework), completer resolution |
-| `carapace-mcp` | MCP server tools (complete, list_macros, codegen), client setup, protocol |
+| Sub-resource | When to use |
+|-------------|-------------|
+| `references/action.md` | Creating/modifying shared actions, naming, opts, Uid/QueryF, modifiers |
+| `references/spec.md` | Writing YAML completion spec files |
+| `references/macro.md` | Macro types, formatting, signature lookup, cross-executive macros |
+| `references/env.md` | Environment variable completion (Go definitions, user YAML overrides) |
+| `references/scrape.md` | Generating specs from CLI source code (patch-and-container) |
+| `references/integrate.md` | Integrating carapace into cobra CLIs (PreRun, PreInvoke, bridge) |
+| `references/setup.md` | Shell integration, environment variables, overlays, extensions |
+| `references/choice.md` | Choices, variants, bridges (implicit shell + explicit framework), completer resolution |
+| `references/mcp.md` | MCP server tools (complete, list_macros, codegen), client setup, protocol |
+| `references/convert.md` | Converting YAML specs to native Go completers |
 
 ## Project Structure
 
@@ -69,7 +70,10 @@ pkg/
   util/                   # Utility functions
   completer/              # Completer registry helpers
 internal/condition/       # Internal condition logic
-skills/                   # Crush skill definitions for carapace library concepts
+skills/
+  carapace/               Composite skill for carapace library concepts
+    SKILL.md                Entry point with routing table
+    references/             Sub-resources loaded on demand
 docs/                     # mdBook documentation
 .docker/                  # Docker Compose services for distro testing
 ```
@@ -112,7 +116,7 @@ YAML files in `~/.config/carapace/overlays/` are merged on top of an existing co
 
 ### Environment Variable Definitions
 
-See the `carapace-env` skill for details on built-in Go definitions (`pkg/actions/env/`) and user YAML overrides (`~/.config/carapace/variables/`).
+See `references/env.md` in the carapace skill for details on built-in Go definitions (`pkg/actions/env/`) and user YAML overrides (`~/.config/carapace/variables/`).
 
 ## How This Project Differs from Normal Carapace Usage
 
@@ -137,7 +141,7 @@ completers/common/bat_completer/
 | Package | domain name (`git`, `net`) | `action` |
 | Doc comments | Full format with examples | Typically none |
 | Cobra awareness | No `*cobra.Command` params | Often takes `*cobra.Command` |
-| Uid/QueryF | Yes (see `carapace-action` skill) | Typically no |
+| Uid/QueryF | Yes (see `references/action.md` in carapace skill) | Typically no |
 | Exposed as macro | Yes | No |
 | Reusability | Any completer can import | Only within its own completer |
 
@@ -182,7 +186,7 @@ for m, f := range actions.Macros {
 spec.Register(rootCmd)
 ```
 
-In this project, macros use the `tools.<tool>.<Action>` naming pattern (e.g. `tools.git.Changes`). For macro type mapping and registration, see the `carapace-macro` and `carapace-action` skills.
+In this project, macros use the `tools.<tool>.<Action>` naming pattern (e.g. `tools.git.Changes`). For macro type mapping and registration, see `references/macro.md` and `references/action.md` in the carapace skill.
 
 ### Bridge Actions as Completer Glue
 
@@ -193,11 +197,11 @@ bridge.ActionCarapaceBin("kubectl")  // delegate to another carapace-bin complet
 bridge.ActionCarapaceBin().Split()   // complete within a command-string flag value
 ```
 
-For bridge details, see the `carapace-integrate` skill. Available bridges are registered as macros (e.g. `bridge.CarapaceBin`, `bridge.Bash`, `bridge.Argcomplete`).
+For bridge details, see `references/integrate.md` in the carapace skill. Available bridges are registered as macros (e.g. `bridge.CarapaceBin`, `bridge.Bash`, `bridge.Argcomplete`).
 
 ### Uid / QueryF
 
-See the `carapace-action` skill for details on `UidF` (per-value identity) and `QueryF` (completion kind for result updates). Some tool packages in `pkg/actions/tools/` define a package-level `Uid()` helper that both share for URL construction.
+See `references/action.md` in the carapace skill for details on `UidF` (per-value identity) and `QueryF` (completion kind for result updates). Some tool packages in `pkg/actions/tools/` define a package-level `Uid()` helper that both share for URL construction.
 
 ### Project-Specific Styles
 

@@ -1,15 +1,3 @@
----
-name: carapace-env
-description: >
-  Use when user needs to create, modify, or understand carapace environment variable
-  completion definitions — either Go-based (pkg/actions/env) or user YAML specs
-  (~/.config/carapace/variables). Covers variable registration, conditions,
-  completion actions, and YAML override format. Triggers on: "env completion",
-  "environment variable completion", "carapace env", "env variable definition",
-  "custom env variables", "variables yaml".
-user-invocable: true
----
-
 # Carapace Environment Variable Completion Guide
 
 Define and customize environment variable name and value completions in [carapace](https://carapace.sh).

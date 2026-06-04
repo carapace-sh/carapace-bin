@@ -1,13 +1,3 @@
----
-name: carapace-convert
-description: >
-  Use when user wants to convert a carapace YAML user spec to a native Go completer for carapace-bin.
-  Covers the codegen tool, manual completion wiring, macro-to-Go mapping, and modifier translation.
-  Triggers on: "convert spec", "spec to Go", "yaml to go completer", "carapace convert", "codegen",
-  "generate Go completer", "spec to completer", "convert completion".
-user-invocable: true
----
-
 # Carapace Spec-to-Go Conversion Guide
 
 Convert a carapace YAML user spec into a native Go completer that can be built into [carapace-bin](https://github.com/carapace-sh/carapace-bin).
@@ -252,9 +242,9 @@ func init() {
 
 | Skill | When to use instead of this skill |
 |-------|----------------------------------|
-| **carapace-spec** | Writing YAML user specs — the *source* format for conversion |
-| **carapace-macro** | Looking up macro signatures and formatting macro arguments in YAML |
-| **carapace-action** | Creating/modifying Go actions that become macros in the converted completer |
-| **carapace-scrape** | Generating YAML specs from CLI source code — typically the step *before* conversion |
-| **carapace-integrate** | Integrating carapace into an existing cobra app — use when the app already exists in Go |
-| **carapace-mcp** | Using the `codegen` and `list_macros` MCP tools during conversion |
+| **references/spec.md** | Writing YAML user specs — the *source* format for conversion |
+| **references/macro.md** | Looking up macro signatures and formatting macro arguments in YAML |
+| **references/action.md** | Creating/modifying Go actions that become macros in the converted completer |
+| **references/scrape.md** | Generating YAML specs from CLI source code — typically the step *before* conversion |
+| **references/integrate.md** | Integrating carapace into an existing cobra app — use when the app already exists in Go |
+| **references/mcp.md** | Using the `codegen` and `list_macros` MCP tools during conversion |
