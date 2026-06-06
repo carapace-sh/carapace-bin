@@ -67,13 +67,6 @@ func mcpJSONResult(v any) map[string]any {
 	}
 }
 
-func readMessage(decoder *json.Decoder) (json.RawMessage, error) {
-	var message json.RawMessage
-	if err := decoder.Decode(&message); err != nil {
-		if err == io.EOF {
-			return nil, err
-		}
-		return nil, err
-	}
-	return message, nil
+func isEOF(err error) bool {
+	return err == io.EOF
 }

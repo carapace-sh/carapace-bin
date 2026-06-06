@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"strings"
 )
 
 type mcpCompleteMacroRequest struct {
@@ -34,10 +33,8 @@ func (s *MCPServer) completeMacro(request mcpCompleteMacroRequest) (string, erro
 		return "", errors.New("macro is required")
 	}
 
-	for _, arg := range request.Args {
-		if strings.ContainsRune(arg, 0) {
-			return "", errors.New("arguments must not contain NUL bytes")
-		}
+	if containsNUL(request.Args) {
+		return "", errors.New("arguments must not contain NUL bytes")
 	}
 
 	args := []string{"_carapace", "macro", request.Macro}
@@ -53,7 +50,7 @@ func (s *MCPServer) completeMacro(request mcpCompleteMacroRequest) (string, erro
 
 func (s *MCPServer) resolveMacroExecutable(executablePath string) (string, error) {
 	if executablePath == "" {
-		return selfExecutable()
+		return os.Executable()
 	}
 	return resolveExecutable(executablePath)
 }

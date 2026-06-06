@@ -45,10 +45,8 @@ func (s *MCPServer) completeCommand(request mcpCompleteRequest) (string, error) 
 		return "", errors.New("command must be a completer name")
 	}
 
-	for _, arg := range request.Args {
-		if strings.ContainsRune(arg, 0) {
-			return "", errors.New("arguments must not contain NUL bytes")
-		}
+	if containsNUL(request.Args) {
+		return "", errors.New("arguments must not contain NUL bytes")
 	}
 
 	switch {
@@ -64,79 +62,62 @@ func (s *MCPServer) completeCommand(request mcpCompleteRequest) (string, error) 
 }
 
 func (s *MCPServer) completeDefault(request mcpCompleteRequest) (string, error) {
-	args := []string{request.Args[0], "export"}
-	args = append(args, request.Args...)
-
-	executable, err := selfExecutable()
+	executable, err := os.Executable()
 	if err != nil {
 		return "", err
 	}
-
-	return runCommand(executable, args, os.Environ())
+	return runCommand(executable, exportArgs(request.Args[0], "", request.Args), os.Environ())
 }
 
 func (s *MCPServer) completeBridge(request mcpCompleteRequest) (string, error) {
-	bridgeName := request.Bridge
-	command := request.Args[0]
-
-	if name, variant, ok := strings.Cut(bridgeName, "/"); ok && name == "carapace-bin" {
-		bridgeName = variant
-	}
+	bridgeName := resolveBridgeName(request.Bridge)
 
 	if _, ok := bridge.Get(bridgeName); !ok {
 		return "", fmt.Errorf("unknown bridge: %s", bridgeName)
 	}
 
-	args := []string{command + "/" + bridgeName, "export"}
-	args = append(args, request.Args...)
-
-	executable, err := selfExecutable()
+	executable, err := os.Executable()
 	if err != nil {
 		return "", err
 	}
-
-	return runCommand(executable, args, os.Environ())
+	return runCommand(executable, exportArgs(request.Args[0], "/"+bridgeName, request.Args), os.Environ())
 }
 
 func (s *MCPServer) completeExecutable(request mcpCompleteRequest) (string, error) {
-	bridgeName := request.Bridge
-	command := request.Args[0]
-
 	resolved, err := resolveExecutable(request.Executable)
 	if err != nil {
 		return "", err
 	}
 
-	bridgeBase, bridgeVariant, hasVariant := strings.Cut(bridgeName, "/")
+	bridgeBase, bridgeVariant, hasVariant := strings.Cut(request.Bridge, "/")
 	if bridgeBase == "carapace-bin" {
-		return s.completeExecutableCarapaceBin(request, resolved, hasVariant, bridgeVariant)
+		suffix := ""
+		if hasVariant && bridgeVariant != "" {
+			suffix = "/" + bridgeVariant
+		}
+		return runCommand(resolved, exportArgs(request.Args[0], suffix, request.Args), os.Environ())
 	}
 
-	if _, ok := bridge.Get(bridgeName); !ok {
-		return "", fmt.Errorf("unknown bridge: %s", bridgeName)
+	if _, ok := bridge.Get(request.Bridge); !ok {
+		return "", fmt.Errorf("unknown bridge: %s", request.Bridge)
 	}
 
-	args := []string{command + "/" + bridgeName, "export"}
-	args = append(args, request.Args...)
-
-	carapaceExe, err := selfExecutable()
+	carapaceExe, err := os.Executable()
 	if err != nil {
 		return "", err
 	}
-
-	return runCommand(carapaceExe, args, withPathPrepended(os.Environ(), filepath.Dir(resolved)))
+	return runCommand(carapaceExe, exportArgs(request.Args[0], "/"+request.Bridge, request.Args), withPathPrepended(os.Environ(), filepath.Dir(resolved)))
 }
 
-func (s *MCPServer) completeExecutableCarapaceBin(request mcpCompleteRequest, resolved string, hasVariant bool, variant string) (string, error) {
-	command := request.Args[0]
-
-	if hasVariant && variant != "" {
-		args := []string{command + "/" + variant, "export"}
-		args = append(args, request.Args...)
-		return runCommand(resolved, args, os.Environ())
+func resolveBridgeName(bridgeName string) string {
+	if name, variant, ok := strings.Cut(bridgeName, "/"); ok && name == "carapace-bin" {
+		return variant
 	}
+	return bridgeName
+}
 
-	args := []string{command, "export"}
-	args = append(args, request.Args...)
-	return runCommand(resolved, args, os.Environ())
+func exportArgs(command string, suffix string, args []string) []string {
+	result := []string{command + suffix, "export"}
+	result = append(result, args...)
+	return result
 }

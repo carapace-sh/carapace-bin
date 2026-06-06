@@ -2,6 +2,7 @@ package mcp
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -40,28 +41,23 @@ func withPathPrepended(env []string, dir string) []string {
 	return result
 }
 
-func selfExecutable() (string, error) {
-	return os.Executable()
-}
-
 func runCommand(name string, args []string, env []string) (string, error) {
 	cmd := exec.Command(name, args...)
 	cmd.Env = env
 	output, err := cmd.CombinedOutput()
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("%w\n%s", err, strings.TrimSpace(string(output)))
 	}
 	return strings.TrimRight(string(output), "\r\n"), nil
 }
 
-func runCommandRaw(name string, args []string, env []string) (string, error) {
-	cmd := exec.Command(name, args...)
-	cmd.Env = env
-	output, err := cmd.CombinedOutput()
-	if err != nil {
-		return strings.TrimSpace(string(output)), err
+func containsNUL(args []string) bool {
+	for _, arg := range args {
+		if strings.ContainsRune(arg, 0) {
+			return true
+		}
 	}
-	return strings.TrimSpace(string(output)), nil
+	return false
 }
 
 func toJSON(v any) string {

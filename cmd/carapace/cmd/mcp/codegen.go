@@ -3,7 +3,6 @@ package mcp
 import (
 	"bufio"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -18,10 +17,10 @@ type mcpCodegenRequest struct {
 func (s *MCPServer) handleCodegen(args json.RawMessage) (map[string]any, error) {
 	var request mcpCodegenRequest
 	if err := json.Unmarshal(args, &request); err != nil {
-		return nil, fmt.Errorf("invalid codegen arguments: %w", err)
+		return mcpTextResult(fmt.Sprintf("invalid codegen arguments: %v", err), true), nil
 	}
 	if request.Path == "" {
-		return nil, errors.New("path is required")
+		return mcpTextResult("path is required", true), nil
 	}
 
 	absPath := request.Path
@@ -33,18 +32,18 @@ func (s *MCPServer) handleCodegen(args json.RawMessage) (map[string]any, error) 
 		absPath = abs
 	}
 
-	executable, err := selfExecutable()
+	executable, err := os.Executable()
 	if err != nil {
 		return mcpTextResult(err.Error(), true), nil
 	}
 
-	cmdOutput, err := runCommandRaw(executable, []string{"--codegen", absPath}, os.Environ())
+	output, err := runCommand(executable, []string{"--codegen", absPath}, os.Environ())
 	if err != nil {
-		return mcpTextResult(fmt.Sprintf("codegen failed: %v\n%s", err, cmdOutput), true), nil
+		return mcpTextResult(fmt.Sprintf("codegen failed: %v", err), true), nil
 	}
 
 	var filenames []string
-	scanner := bufio.NewScanner(strings.NewReader(cmdOutput))
+	scanner := bufio.NewScanner(strings.NewReader(output))
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
 		if strings.HasSuffix(line, ".go") {

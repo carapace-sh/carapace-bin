@@ -96,8 +96,12 @@ func TestMCPCodegenMissingPath(t *testing.T) {
 	if err := json.Unmarshal(bytes.TrimSpace(output.Bytes()), &resp); err != nil {
 		t.Fatal(err)
 	}
-	if resp["error"] == nil {
-		t.Fatalf("expected error for missing path, got: %#v", resp)
+	result, ok := resp["result"].(map[string]any)
+	if !ok {
+		t.Fatalf("expected result, got: %#v", resp)
+	}
+	if result["isError"] != true {
+		t.Fatalf("expected isError for missing path, got: %#v", result)
 	}
 }
 

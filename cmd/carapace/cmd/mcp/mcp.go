@@ -2,7 +2,6 @@ package mcp
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 )
@@ -26,9 +25,9 @@ func (s *MCPServer) Run() error {
 	encoder := json.NewEncoder(s.stdout)
 
 	for {
-		message, err := readMessage(decoder)
-		if err != nil {
-			if errors.Is(err, io.EOF) {
+		var message json.RawMessage
+		if err := decoder.Decode(&message); err != nil {
+			if isEOF(err) {
 				return nil
 			}
 			return err
@@ -101,7 +100,7 @@ func (s *MCPServer) handleRequest(request mcpRequest) (mcpResponse, bool) {
 		}
 	case "tools/list":
 		response.Result = map[string]any{
-			"tools": toolList(),
+			"tools": tools,
 		}
 	case "tools/call":
 		result, err := s.handleToolCall(request.Params)
