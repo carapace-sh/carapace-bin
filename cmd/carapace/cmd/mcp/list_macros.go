@@ -50,7 +50,7 @@ func (s *MCPServer) handleListMacros(args json.RawMessage) (map[string]any, erro
 	}
 
 	buildInfo, _ := debug.ReadBuildInfo()
-	depVersions := resolveDepVersions(buildInfo)
+	mainVersion := mainModuleVersion(buildInfo)
 
 	var names []string
 	for name := range actions.Macros {
@@ -70,24 +70,39 @@ func (s *MCPServer) handleListMacros(args json.RawMessage) (map[string]any, erro
 			Name:        "carapace." + name,
 			Signature:   sig,
 			Description: m.Description,
-			Version:     depVersions[pkgPath],
+			Version:     resolveVersion(buildInfo, mainVersion, pkgPath),
 			Reference:   m.Function,
 		})
 	}
 
 	return mcpJSONResult(macroList{
-		Version: depVersions["github.com/carapace-sh/carapace-bin"],
+		Version: mainVersion,
 		Macros:  entries,
 	}), nil
 }
 
-func resolveDepVersions(info *debug.BuildInfo) map[string]string {
-	m := make(map[string]string)
+func mainModuleVersion(info *debug.BuildInfo) string {
 	if info == nil {
-		return m
+		return "unknown"
+	}
+	v := info.Main.Version
+	if v == "" {
+		return "unknown"
+	}
+	return v
+}
+
+func resolveVersion(info *debug.BuildInfo, mainVersion, pkgPath string) string {
+	if info == nil {
+		return ""
+	}
+	if strings.HasPrefix(pkgPath, info.Main.Path+"/") {
+		return mainVersion
 	}
 	for _, dep := range info.Deps {
-		m[dep.Path] = dep.Version
+		if pkgPath == dep.Path || strings.HasPrefix(pkgPath, dep.Path+"/") {
+			return dep.Version
+		}
 	}
-	return m
+	return ""
 }
