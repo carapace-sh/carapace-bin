@@ -38,7 +38,7 @@ Any MCP client that supports stdio transport can connect. The server name is `ca
 
 The server implements JSON-RPC 2.0 with these methods:
 
-|| Method | Description |
+| Method | Description |
 |--------|-------------|
 | `initialize` | Returns server info and capabilities |
 | `tools/list` | Returns the four tool definitions |
@@ -57,7 +57,7 @@ Returns context‑aware, dynamic completions for shell commands.
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `args` | `string[]` | Yes | Command line arguments to complete |
-| `executable` | `string` | No | Path to the executable providing the completion (requires `bridge`) |
+| `executable` | `string` | No | Path to the executable providing the completion (requires `bridge`). Differs from `args[0]` (command name) — the bridge action uses this as the actual binary to invoke. |
 | `bridge` | `string` | No | Bridge providing the completion (e.g. `carapace-bin`, `cobra`, `zsh`, `fish`, `bash`, `argcomplete`, `click`) |
 
 **How it works:**
@@ -78,10 +78,10 @@ The behavior depends on which optional parameters are provided:
 
 2. **Bridge only** (no `executable`, `bridge` set): Uses the explicit bridge variant. Invokes `carapace <command>/<bridge> export <args...>`. For example, with `bridge: "zsh"`, it completes `tail` using zsh's completion system. The `carapace-bin/<bridge>` syntax is also supported to use an explicit bridge within carapace-bin (e.g. `bridge: "carapace-bin/cobra"`).
 
-3. **Executable + bridge** (`executable` and `bridge` both set): Uses the given executable for completion. **This requires user confirmation** since it executes an arbitrary binary.
+3. **Executable + bridge** (`executable` and `bridge` both set): Uses the given executable for completion. **This requires user confirmation** since it executes an arbitrary binary. The `executable` is the actual binary to invoke (may differ from `args[0]` which is the command name).
    - For `carapace-bin` bridge: Invokes `<executable> <command> export <args...>` directly (default choice).
    - For `carapace-bin/<bridge>`: Invokes `<executable> <command>/<bridge> export <args...>` (explicit bridge with custom executable).
-   - For other bridges (cobra, argcomplete, etc.): Invokes `carapace <command>/<bridge> export <args...>` with the executable's directory prepended to `PATH`, so the bridge action resolves the custom executable.
+   - For other bridges (cobra, argcomplete, carapace, click, etc.): Invokes the bridge action directly with the `executable` as the target. The bridge action knows how to invoke the executable (e.g., cobra bridge calls `<executable> __complete <args...>`, carapace bridge calls `<executable> _carapace export <args...>`, argcomplete sets env vars and calls `<executable>`).
 
 **Constraints:**
 
@@ -125,7 +125,7 @@ The behavior depends on which optional parameters are provided:
 | Bridge only | `carapace <cmd>/<bridge> export <args...>` |
 | Executable + carapace-bin | `<executable> <cmd> export <args...>` |
 | Executable + carapace-bin/bridge | `<executable> <cmd>/<bridge> export <args...>` |
-| Executable + other bridge | `PATH=<dir>:$PATH carapace <cmd>/<bridge> export <args...>` |
+| Executable + other bridge | Bridge action invoked directly with `executable` as target (e.g. cobra: `<executable> __complete <args...>`, carapace: `<executable> _carapace export <args...>`) |
 
 ### `complete_macro` — Macro Completion
 
@@ -133,7 +133,7 @@ Returns context‑aware, dynamic completions for a carapace macro.
 
 **Input Schema:**
 
-|| Parameter | Type | Required | Description |
+| Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `macro` | `string` | Yes | Macro name (e.g. `tools.git.Refs`) |
 | `args` | `string[]` | Yes | Arguments to complete |

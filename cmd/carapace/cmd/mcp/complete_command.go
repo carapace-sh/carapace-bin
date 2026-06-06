@@ -5,9 +5,9 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"path/filepath"
 	"strings"
 
+	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 )
 
@@ -98,15 +98,23 @@ func (s *MCPServer) completeExecutable(request mcpCompleteRequest) (string, erro
 		return runCommand(resolved, exportArgs(request.Args[0], suffix, request.Args), os.Environ())
 	}
 
-	if _, ok := bridge.Get(request.Bridge); !ok {
-		return "", fmt.Errorf("unknown bridge: %s", request.Bridge)
+	bridgeName := resolveBridgeName(request.Bridge)
+	actionFactory, ok := bridge.Get(bridgeName)
+	if !ok {
+		return "", fmt.Errorf("unknown bridge: %s", bridgeName)
 	}
 
-	carapaceExe, err := os.Executable()
+	command := []string{resolved}
+	command = append(command, request.Args[1:]...)
+	action := actionFactory(command...)
+
+	c := carapace.NewContext(request.Args[1:]...)
+	invoked := action.Invoke(c)
+	output, err := json.Marshal(invoked)
 	if err != nil {
 		return "", err
 	}
-	return runCommand(carapaceExe, exportArgs(request.Args[0], "/"+request.Bridge, request.Args), withPathPrepended(os.Environ(), filepath.Dir(resolved)))
+	return string(output), nil
 }
 
 func resolveBridgeName(bridgeName string) string {

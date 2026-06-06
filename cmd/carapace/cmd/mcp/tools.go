@@ -22,7 +22,7 @@ var tools = []mcpTool{
 				},
 				"executable": map[string]any{
 					"type":        "string",
-					"description": "path to the executable providing the completion (requires bridge)",
+					"description": "path to the executable providing the completion (requires bridge; differs from args[0] which is the command name)",
 				},
 				"bridge": map[string]any{
 					"type":        "string",
