@@ -24,7 +24,8 @@ No Makefile — orchestration is in `.github/workflows/go.yml`.
 This project provides a carapace MCP server. When working here, use it:
 
 - **`list_macros`** / **`carapace_carapace_list_macros`** — Look up available macros, their signatures, and descriptions before referencing them in code or specs
-- **`carapace_carapace_complete`** — Test completion output for any completer
+- **`complete_command`** / **`carapace_carapace_complete_command`** — Test completion output for any completer
+- **`complete_macro`** / **`carapace_carapace_complete_macro`** — Test macro completion output
 
 The `skills/carapace/` directory contains the composite carapace skill with detailed guides. **Use it** when working on the corresponding aspects. The SKILL.md entry point routes to the right sub-resource:
 
@@ -38,7 +39,7 @@ The `skills/carapace/` directory contains the composite carapace skill with deta
 | `references/integrate.md` | Integrating carapace into cobra CLIs (PreRun, PreInvoke, bridge) |
 | `references/setup.md` | Shell integration, environment variables, overlays, extensions |
 | `references/choice.md` | Choices, variants, bridges (implicit shell + explicit framework), completer resolution |
-| `references/mcp.md` | MCP server tools (complete, list_macros, codegen), client setup, protocol |
+| `references/mcp.md` | MCP server tools (complete_command, complete_macro, list_macros, codegen), client setup, protocol |
 | `references/man.md` | Man page documentation (carapace-man), YAML man pages, UID-to-file mapping, known concepts vs live entities |
 | `references/convert.md` | Converting YAML specs to native Go completers |
 
