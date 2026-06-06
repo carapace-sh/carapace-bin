@@ -125,10 +125,11 @@ func (s *MCPServer) handleToolCall(params json.RawMessage) (map[string]any, erro
 	switch call.Name {
 	case "complete_command":
 		return s.handleCompleteCommand(call.Arguments)
-	case "complete_macro":
-		return s.handleCompleteMacro(call.Arguments)
+	// TODO: re-enable complete_macro once macro invocation is properly implemented
+	// case "complete_macro":
+	// 	return s.handleCompleteMacro(call.Arguments)
 	case "list_macros":
-		return s.handleListMacros()
+		return s.handleListMacros(call.Arguments)
 	case "codegen":
 		return s.handleCodegen(call.Arguments)
 	default:

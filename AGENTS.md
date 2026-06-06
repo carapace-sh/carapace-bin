@@ -183,12 +183,30 @@ Unlike normal carapace usage where actions are only used within the defining bin
 
 ```go
 for m, f := range actions.Macros {
-    spec.AddMacro(m, f)
+    spec.AddMacro(m, f) // name and Macro from generated map; description/example already set
 }
 spec.Register(rootCmd)
 ```
 
 In this project, macros use the `tools.<tool>.<Action>` naming pattern (e.g. `tools.git.Changes`). For macro type mapping and registration, see `references/macro.md` and `references/action.md` in the carapace skill.
+
+### AddMacro API
+
+`spec.AddMacro` registers a macro with an explicit name. It accepts optional `opts ...string` — the first string is the description, any further strings are joined with `"\n"` as the example:
+
+```go
+spec.AddMacro("tools.git.Refs", spec.MacroI(ActionRefs), "complete refs", "carapace.ActionValues()")
+```
+
+For convenience, `spec.AddMacroI` and `spec.AddMacroV` infer the macro name from the function using reflection (strips the `.../actions/` path prefix and `Action` function prefix):
+
+```go
+// Infers name "tools.git.Refs" from the function's package path
+spec.AddMacroI(ActionRefs, "complete refs")
+spec.AddMacroV(ActionRefDiffs, "complete ref diffs")
+```
+
+Version resolution for macros uses main module version for in-project packages (prefix matching against `info.Main.Path`) and dependency version for external packages.
 
 ### Bridge Actions as Completer Glue
 
