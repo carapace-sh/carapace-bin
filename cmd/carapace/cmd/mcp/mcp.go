@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace-bin/pkg/actions"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 )
 
 type MCPServer struct {
@@ -64,7 +65,9 @@ type mcpCodegenRequest struct {
 }
 
 type mcpCompleteRequest struct {
-	Args []string `json:"args,omitempty"`
+	Args       []string `json:"args,omitempty"`
+	Executable string   `json:"executable,omitempty"`
+	Bridge     string   `json:"bridge,omitempty"`
 }
 
 func (s *MCPServer) Run() error {
@@ -161,7 +164,7 @@ func (s *MCPServer) handleRequest(request mcpRequest) (mcpResponse, bool) {
 		response.Result = map[string]any{
 			"tools": []mcpTool{
 				{
-					Name:        "complete",
+					Name:        "complete_command",
 					Description: "Return context‑aware, dynamic completions for shell commands.",
 					InputSchema: map[string]any{
 						"type": "object",
@@ -172,6 +175,14 @@ func (s *MCPServer) handleRequest(request mcpRequest) (mcpResponse, bool) {
 									"type": "string",
 								},
 								"description": "command line arguments",
+							},
+							"executable": map[string]any{
+								"type":        "string",
+								"description": "path to the executable providing the completion (requires bridge)",
+							},
+							"bridge": map[string]any{
+								"type":        "string",
+								"description": "bridge providing the completion (e.g. carapace-bin, cobra, zsh, fish, bash, argcomplete, click)",
 							},
 						},
 						"required":             []string{"args"},
@@ -223,7 +234,7 @@ func (s *MCPServer) handleToolCall(params json.RawMessage) (map[string]any, erro
 	if err := json.Unmarshal(params, &call); err != nil {
 		return nil, fmt.Errorf("invalid tool call parameters: %w", err)
 	}
-	if call.Name != "complete" && call.Name != "list_macros" && call.Name != "codegen" {
+	if call.Name != "complete_command" && call.Name != "list_macros" && call.Name != "codegen" {
 		return nil, fmt.Errorf("unknown tool %q", call.Name)
 	}
 
@@ -238,11 +249,11 @@ func (s *MCPServer) handleToolCall(params json.RawMessage) (map[string]any, erro
 	var request mcpCompleteRequest
 	if len(call.Arguments) != 0 {
 		if err := json.Unmarshal(call.Arguments, &request); err != nil {
-			return nil, fmt.Errorf("invalid complete arguments: %w", err)
+			return nil, fmt.Errorf("invalid complete_command arguments: %w", err)
 		}
 	}
 
-	completions, err := s.complete(request)
+	completions, err := s.completeCommand(request)
 	if err != nil {
 		return mcpTextResult(err.Error(), true), nil
 	}
@@ -264,7 +275,7 @@ func mcpTextResult(text string, isError bool) map[string]any {
 	return result
 }
 
-func (s *MCPServer) complete(request mcpCompleteRequest) (string, error) {
+func (s *MCPServer) completeCommand(request mcpCompleteRequest) (string, error) {
 	switch len(request.Args) {
 	case 0:
 		return "", errors.New("command is required")
@@ -282,7 +293,21 @@ func (s *MCPServer) complete(request mcpCompleteRequest) (string, error) {
 			return "", errors.New("arguments must not contain NUL bytes")
 		}
 	}
-	args := []string{command, "export"}
+
+	switch {
+	case request.Executable == "" && request.Bridge == "":
+		return s.completeDefault(request)
+	case request.Executable == "" && request.Bridge != "":
+		return s.completeBridge(request)
+	case request.Executable != "" && request.Bridge == "":
+		return "", errors.New("bridge is required when executable is set")
+	default:
+		return s.completeExecutable(request)
+	}
+}
+
+func (s *MCPServer) completeDefault(request mcpCompleteRequest) (string, error) {
+	args := []string{request.Args[0], "export"}
 	args = append(args, request.Args...)
 
 	executable, err := os.Executable()
@@ -297,6 +322,141 @@ func (s *MCPServer) complete(request mcpCompleteRequest) (string, error) {
 		return "", fmt.Errorf("completion failed: %w\n%s", err, strings.TrimSpace(string(output)))
 	}
 	return strings.TrimRight(string(output), "\r\n"), nil
+}
+
+func (s *MCPServer) completeBridge(request mcpCompleteRequest) (string, error) {
+	bridgeName := request.Bridge
+	command := request.Args[0]
+
+	// support carapace-bin/<bridge> syntax to use explicit bridge with carapace-bin
+	if name, variant, ok := strings.Cut(bridgeName, "/"); ok && name == "carapace-bin" {
+		bridgeName = variant
+	}
+
+	// verify bridge exists
+	if _, ok := bridge.Get(bridgeName); !ok {
+		return "", fmt.Errorf("unknown bridge: %s", bridgeName)
+	}
+
+	args := []string{command + "/" + bridgeName, "export"}
+	args = append(args, request.Args...)
+
+	executable, err := os.Executable()
+	if err != nil {
+		return "", err
+	}
+
+	cmd := exec.Command(executable, args...)
+	cmd.Env = os.Environ()
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return "", fmt.Errorf("completion failed: %w\n%s", err, strings.TrimSpace(string(output)))
+	}
+	return strings.TrimRight(string(output), "\r\n"), nil
+}
+
+func (s *MCPServer) completeExecutable(request mcpCompleteRequest) (string, error) {
+	executablePath := request.Executable
+	bridgeName := request.Bridge
+	command := request.Args[0]
+
+	// resolve executable path
+	resolved, err := resolveExecutable(executablePath)
+	if err != nil {
+		return "", err
+	}
+
+	// carapace-bin bridge: invoke the executable directly as a carapace binary
+	// supports carapace-bin and carapace-bin/<bridge> syntax
+	bridgeBase, bridgeVariant, hasVariant := strings.Cut(bridgeName, "/")
+	if bridgeBase == "carapace-bin" {
+		return s.completeExecutableCarapaceBin(request, resolved, hasVariant, bridgeVariant)
+	}
+
+	// verify bridge exists
+	if _, ok := bridge.Get(bridgeName); !ok {
+		return "", fmt.Errorf("unknown bridge: %s", bridgeName)
+	}
+
+	// for other bridges, invoke carapace with the bridge syntax
+	// but prepend the executable's directory to PATH so the bridge can find it
+	args := []string{command + "/" + bridgeName, "export"}
+	args = append(args, request.Args...)
+
+	carapaceExe, err := os.Executable()
+	if err != nil {
+		return "", err
+	}
+
+	cmd := exec.Command(carapaceExe, args...)
+	cmd.Env = withPathPrepended(os.Environ(), filepath.Dir(resolved))
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return "", fmt.Errorf("completion failed: %w\n%s", err, strings.TrimSpace(string(output)))
+	}
+	return strings.TrimRight(string(output), "\r\n"), nil
+}
+
+func (s *MCPServer) completeExecutableCarapaceBin(request mcpCompleteRequest, resolved string, hasVariant bool, variant string) (string, error) {
+	command := request.Args[0]
+
+	if hasVariant && variant != "" {
+		// carapace-bin/<bridge>: use the given executable but with explicit bridge
+		args := []string{command + "/" + variant, "export"}
+		args = append(args, request.Args...)
+
+		cmd := exec.Command(resolved, args...)
+		cmd.Env = os.Environ()
+		output, err := cmd.CombinedOutput()
+		if err != nil {
+			return "", fmt.Errorf("completion failed: %w\n%s", err, strings.TrimSpace(string(output)))
+		}
+		return strings.TrimRight(string(output), "\r\n"), nil
+	}
+
+	// carapace-bin without variant: use default choice
+	args := []string{command, "export"}
+	args = append(args, request.Args...)
+
+	cmd := exec.Command(resolved, args...)
+	cmd.Env = os.Environ()
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return "", fmt.Errorf("completion failed: %w\n%s", err, strings.TrimSpace(string(output)))
+	}
+	return strings.TrimRight(string(output), "\r\n"), nil
+}
+
+func resolveExecutable(path string) (string, error) {
+	if filepath.IsAbs(path) {
+		if _, err := os.Stat(path); err != nil {
+			return "", fmt.Errorf("executable not found: %s", path)
+		}
+		return path, nil
+	}
+
+	resolved, err := exec.LookPath(path)
+	if err != nil {
+		return "", fmt.Errorf("executable not found: %s", path)
+	}
+	return resolved, nil
+}
+
+func withPathPrepended(env []string, dir string) []string {
+	result := make([]string, 0, len(env))
+	found := false
+	for _, e := range env {
+		if rest, ok := strings.CutPrefix(e, "PATH="); ok {
+			result = append(result, "PATH="+dir+":"+rest)
+			found = true
+		} else {
+			result = append(result, e)
+		}
+	}
+	if !found {
+		result = append(result, "PATH="+dir)
+	}
+	return result
 }
 
 func (s *MCPServer) handleCodegen(args json.RawMessage) (map[string]any, error) {
