@@ -63,8 +63,13 @@ var tools = []mcpTool{
 		Name:        "list_macros",
 		Description: "List available macros and their signatures.",
 		InputSchema: map[string]any{
-			"type":                 "object",
-			"properties":           map[string]any{},
+			"type": "object",
+			"properties": map[string]any{
+				"executable": map[string]any{
+					"type":        "string",
+					"description": "path to the carapace executable providing the macros",
+				},
+			},
 			"additionalProperties": false,
 		},
 	},

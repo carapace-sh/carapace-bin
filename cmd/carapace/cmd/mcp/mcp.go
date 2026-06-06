@@ -128,7 +128,7 @@ func (s *MCPServer) handleToolCall(params json.RawMessage) (map[string]any, erro
 	case "complete_macro":
 		return s.handleCompleteMacro(call.Arguments)
 	case "list_macros":
-		return s.handleListMacros()
+		return s.handleListMacros(call.Arguments)
 	case "codegen":
 		return s.handleCodegen(call.Arguments)
 	default:
