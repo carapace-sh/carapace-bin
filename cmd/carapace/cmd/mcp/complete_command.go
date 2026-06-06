@@ -104,10 +104,7 @@ func (s *MCPServer) completeExecutable(request mcpCompleteRequest) (string, erro
 		return "", fmt.Errorf("unknown bridge: %s", bridgeName)
 	}
 
-	command := []string{resolved}
-	command = append(command, request.Args[1:]...)
-	action := actionFactory(command...)
-
+	action := actionFactory(resolved)
 	c := carapace.NewContext(request.Args[1:]...)
 	invoked := action.Invoke(c)
 	output, err := json.Marshal(invoked)
