@@ -41,7 +41,7 @@ The server implements JSON-RPC 2.0 with these methods:
 || Method | Description |
 |--------|-------------|
 | `initialize` | Returns server info and capabilities |
-| `tools/list` | Returns the three tool definitions |
+| `tools/list` | Returns the four tool definitions |
 | `tools/call` | Executes a tool by name |
 
 Capabilities: `{tools: {}}` — only tools are supported (no resources, no prompts).

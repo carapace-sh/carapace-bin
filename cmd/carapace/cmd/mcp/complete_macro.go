@@ -33,6 +33,10 @@ func (s *MCPServer) completeMacro(request mcpCompleteMacroRequest) (string, erro
 		return "", errors.New("macro is required")
 	}
 
+	if len(request.Args) == 0 {
+		return "", errors.New("argument to complete is required")
+	}
+
 	if containsNUL(request.Args) {
 		return "", errors.New("arguments must not contain NUL bytes")
 	}

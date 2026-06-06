@@ -234,6 +234,28 @@ func TestMCPCompleteMacroRequiresMacro(t *testing.T) {
 	}
 }
 
+func TestMCPCompleteMacroRequiresArgs(t *testing.T) {
+	input := strings.NewReader(`{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"complete_macro","arguments":{"macro":"tools.git.Refs"}}}`)
+
+	var output bytes.Buffer
+	s := NewMCPServer("", input, &output)
+	if err := s.Run(); err != nil {
+		t.Fatal(err)
+	}
+
+	var resp map[string]any
+	if err := json.Unmarshal(bytes.TrimSpace(output.Bytes()), &resp); err != nil {
+		t.Fatal(err)
+	}
+	result, ok := resp["result"].(map[string]any)
+	if !ok {
+		t.Fatalf("expected result, got: %#v", resp)
+	}
+	if result["isError"] != true {
+		t.Fatalf("expected error for missing args, got: %#v", result)
+	}
+}
+
 func TestMCPCompleteMacroExecutableNotFound(t *testing.T) {
 	input := strings.NewReader(`{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"complete_macro","arguments":{"macro":"tools.git.Refs","args":[""],"executable":"/nonexistent/path/carapace"}}}`)
 
