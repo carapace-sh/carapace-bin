@@ -39,6 +39,7 @@ The `skills/carapace/` directory contains the composite carapace skill with deta
 | `references/setup.md` | Shell integration, environment variables, overlays, extensions |
 | `references/choice.md` | Choices, variants, bridges (implicit shell + explicit framework), completer resolution |
 | `references/mcp.md` | MCP server tools (complete, list_macros, codegen), client setup, protocol |
+| `references/man.md` | Man page documentation (carapace-man), YAML man pages, UID-to-file mapping, known concepts vs live entities |
 | `references/convert.md` | Converting YAML specs to native Go completers |
 
 ## Project Structure
