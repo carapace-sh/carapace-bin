@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -34,8 +34,8 @@ func init() {
 
 	carapace.Gen(bookmark_listCmd).FlagCompletion(carapace.ActionMap{
 		"remote":    jj.ActionRemotes(),
-		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()).UniqueList(","),
-		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()).UniqueList(","),
+		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),
+		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),
 		"sort": carapace.ActionValues(
 			"name",
 			"name-",
@@ -52,6 +52,7 @@ func init() {
 			"committer-date",
 			"committer-date-",
 		).UniqueList(","),
+		"template": jj.ActionTemplates(),
 	})
 
 	carapace.Gen(bookmark_listCmd).PositionalAnyCompletion(

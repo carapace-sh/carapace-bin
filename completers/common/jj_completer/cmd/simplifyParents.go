@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +23,7 @@ func init() {
 	rootCmd.AddCommand(simplifyParentsCmd)
 
 	carapace.Gen(simplifyParentsCmd).FlagCompletion(carapace.ActionMap{
-		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
-		"source":    jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
+		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()).FilterArgs(),
+		"source":    jj.ActionRevsets(jj.RevOpts{}.Default()).FilterArgs(),
 	})
 }

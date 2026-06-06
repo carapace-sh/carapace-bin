@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -35,7 +35,8 @@ func init() {
 	operationCmd.AddCommand(operation_showCmd)
 
 	carapace.Gen(operation_showCmd).FlagCompletion(carapace.ActionMap{
-		"show-changes-in": jj.ActionRevsets(jj.RevOption{}.Default()),
+		"show-changes-in": jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"template":        jj.ActionTemplates(),
 		"tool":            bridge.ActionCarapaceBin().Split(),
 	})
 

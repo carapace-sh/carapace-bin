@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -24,7 +24,7 @@ func init() {
 	bisectCmd.AddCommand(bisect_runCmd)
 
 	carapace.Gen(bisect_runCmd).FlagCompletion(carapace.ActionMap{
-		"range": jj.ActionRevsets(jj.RevOption{}.Default()),
+		"range": jj.ActionRevsets(jj.RevOpts{}.Default()),
 	})
 
 	carapace.Gen(bisect_runCmd).PositionalAnyCompletion(

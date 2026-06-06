@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -24,8 +24,8 @@ func init() {
 	rootCmd.AddCommand(diffeditCmd)
 
 	carapace.Gen(diffeditCmd).FlagCompletion(carapace.ActionMap{
-		"from":     jj.ActionRevsets(jj.RevOption{}.Default()),
-		"revision": jj.ActionRevsets(jj.RevOption{}.Default()),
-		"to":       jj.ActionRevsets(jj.RevOption{}.Default()),
+		"from":     jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"revision": jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"to":       jj.ActionRevsets(jj.RevOpts{}.Default()),
 	})
 }

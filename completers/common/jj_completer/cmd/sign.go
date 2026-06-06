@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -24,7 +24,7 @@ func init() {
 
 	carapace.Gen(signCmd).FlagCompletion(carapace.ActionMap{
 		"key":       jj.ActionSigningKeys(),
-		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()),
-		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()),
+		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()),
 	})
 }

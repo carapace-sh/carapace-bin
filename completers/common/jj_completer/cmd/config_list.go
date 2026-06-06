@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +24,10 @@ func init() {
 	config_listCmd.Flags().Bool("user", false, "Target the user-level config")
 	config_listCmd.Flags().Bool("workspace", false, "Target the workspace-level config")
 	configCmd.AddCommand(config_listCmd)
+
+	carapace.Gen(config_listCmd).FlagCompletion(carapace.ActionMap{
+		"template": jj.ActionTemplates(),
+	})
 
 	carapace.Gen(config_listCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
