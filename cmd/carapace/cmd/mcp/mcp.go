@@ -70,6 +70,12 @@ type mcpCompleteRequest struct {
 	Bridge     string   `json:"bridge,omitempty"`
 }
 
+type mcpCompleteMacroRequest struct {
+	Macro      string   `json:"macro,omitempty"`
+	Args       []string `json:"args,omitempty"`
+	Executable string   `json:"executable,omitempty"`
+}
+
 func (s *MCPServer) Run() error {
 	decoder := json.NewDecoder(s.stdin)
 	encoder := json.NewEncoder(s.stdout)
@@ -190,6 +196,32 @@ func (s *MCPServer) handleRequest(request mcpRequest) (mcpResponse, bool) {
 					},
 				},
 				{
+					Name:        "complete_macro",
+					Description: "Return context‑aware, dynamic completions for a carapace macro.",
+					InputSchema: map[string]any{
+						"type": "object",
+						"properties": map[string]any{
+							"macro": map[string]any{
+								"type":        "string",
+								"description": "macro name (e.g. tools.git.Refs)",
+							},
+							"args": map[string]any{
+								"type": "array",
+								"items": map[string]any{
+									"type": "string",
+								},
+								"description": "arguments to complete",
+							},
+							"executable": map[string]any{
+								"type":        "string",
+								"description": "path to the carapace executable providing the macro",
+							},
+						},
+						"required":             []string{"macro", "args"},
+						"additionalProperties": false,
+					},
+				},
+				{
 					Name:        "list_macros",
 					Description: "List available macros and their signatures.",
 					InputSchema: map[string]any{
@@ -234,7 +266,7 @@ func (s *MCPServer) handleToolCall(params json.RawMessage) (map[string]any, erro
 	if err := json.Unmarshal(params, &call); err != nil {
 		return nil, fmt.Errorf("invalid tool call parameters: %w", err)
 	}
-	if call.Name != "complete_command" && call.Name != "list_macros" && call.Name != "codegen" {
+	if call.Name != "complete_command" && call.Name != "complete_macro" && call.Name != "list_macros" && call.Name != "codegen" {
 		return nil, fmt.Errorf("unknown tool %q", call.Name)
 	}
 
@@ -244,6 +276,21 @@ func (s *MCPServer) handleToolCall(params json.RawMessage) (map[string]any, erro
 
 	if call.Name == "codegen" {
 		return s.handleCodegen(call.Arguments)
+	}
+
+	if call.Name == "complete_macro" {
+		var request mcpCompleteMacroRequest
+		if len(call.Arguments) != 0 {
+			if err := json.Unmarshal(call.Arguments, &request); err != nil {
+				return nil, fmt.Errorf("invalid complete_macro arguments: %w", err)
+			}
+		}
+
+		completions, err := s.completeMacro(request)
+		if err != nil {
+			return mcpTextResult(err.Error(), true), nil
+		}
+		return mcpTextResult(completions, false), nil
 	}
 
 	var request mcpCompleteRequest
@@ -425,6 +472,45 @@ func (s *MCPServer) completeExecutableCarapaceBin(request mcpCompleteRequest, re
 		return "", fmt.Errorf("completion failed: %w\n%s", err, strings.TrimSpace(string(output)))
 	}
 	return strings.TrimRight(string(output), "\r\n"), nil
+}
+
+func (s *MCPServer) completeMacro(request mcpCompleteMacroRequest) (string, error) {
+	if request.Macro == "" {
+		return "", errors.New("macro is required")
+	}
+
+	for _, arg := range request.Args {
+		if strings.ContainsRune(arg, 0) {
+			return "", errors.New("arguments must not contain NUL bytes")
+		}
+	}
+
+	args := []string{"_carapace", "macro", request.Macro}
+	args = append(args, request.Args...)
+
+	executable, err := s.resolveMacroExecutable(request.Executable)
+	if err != nil {
+		return "", err
+	}
+
+	cmd := exec.Command(executable, args...)
+	cmd.Env = os.Environ()
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return "", fmt.Errorf("macro completion failed: %w\n%s", err, strings.TrimSpace(string(output)))
+	}
+	return strings.TrimRight(string(output), "\r\n"), nil
+}
+
+func (s *MCPServer) resolveMacroExecutable(executablePath string) (string, error) {
+	if executablePath == "" {
+		exe, err := os.Executable()
+		if err != nil {
+			return "", err
+		}
+		return exe, nil
+	}
+	return resolveExecutable(executablePath)
 }
 
 func resolveExecutable(path string) (string, error) {

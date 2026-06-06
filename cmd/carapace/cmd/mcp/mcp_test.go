@@ -41,20 +41,24 @@ func TestMCPInitializeAndListTools(t *testing.T) {
 		t.Fatalf("tools/list result missing")
 	}
 	tools, ok := result["tools"].([]any)
-	if !ok || len(tools) != 3 {
-		t.Fatalf("expected 3 tools, got %#v", result["tools"])
+	if !ok || len(tools) != 4 {
+		t.Fatalf("expected 4 tools, got %#v", result["tools"])
 	}
 	tool, ok := tools[0].(map[string]any)
 	if !ok || tool["name"] != "complete_command" {
 		t.Fatalf("expected complete_command tool, got %#v", tools[0])
 	}
 	tool1, ok := tools[1].(map[string]any)
-	if !ok || tool1["name"] != "list_macros" {
-		t.Fatalf("expected list_macros tool, got %#v", tools[1])
+	if !ok || tool1["name"] != "complete_macro" {
+		t.Fatalf("expected complete_macro tool, got %#v", tools[1])
 	}
 	tool2, ok := tools[2].(map[string]any)
-	if !ok || tool2["name"] != "codegen" {
-		t.Fatalf("expected codegen tool, got %#v", tools[2])
+	if !ok || tool2["name"] != "list_macros" {
+		t.Fatalf("expected list_macros tool, got %#v", tools[2])
+	}
+	tool3, ok := tools[3].(map[string]any)
+	if !ok || tool3["name"] != "codegen" {
+		t.Fatalf("expected codegen tool, got %#v", tools[3])
 	}
 }
 
@@ -201,5 +205,49 @@ func TestMCPWithPathPrepended(t *testing.T) {
 	}
 	if !found {
 		t.Fatal("PATH not found in result")
+	}
+}
+
+func TestMCPCompleteMacroRequiresMacro(t *testing.T) {
+	input := strings.NewReader(`{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"complete_macro","arguments":{"args":[""]}}}`)
+
+	var output bytes.Buffer
+	s := NewMCPServer("", input, &output)
+	if err := s.Run(); err != nil {
+		t.Fatal(err)
+	}
+
+	var resp map[string]any
+	if err := json.Unmarshal(bytes.TrimSpace(output.Bytes()), &resp); err != nil {
+		t.Fatal(err)
+	}
+	result, ok := resp["result"].(map[string]any)
+	if !ok {
+		t.Fatalf("expected result, got: %#v", resp)
+	}
+	if result["isError"] != true {
+		t.Fatalf("expected error for missing macro, got: %#v", result)
+	}
+}
+
+func TestMCPCompleteMacroExecutableNotFound(t *testing.T) {
+	input := strings.NewReader(`{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"complete_macro","arguments":{"macro":"tools.git.Refs","args":[""],"executable":"/nonexistent/path/carapace"}}}`)
+
+	var output bytes.Buffer
+	s := NewMCPServer("", input, &output)
+	if err := s.Run(); err != nil {
+		t.Fatal(err)
+	}
+
+	var resp map[string]any
+	if err := json.Unmarshal(bytes.TrimSpace(output.Bytes()), &resp); err != nil {
+		t.Fatal(err)
+	}
+	result, ok := resp["result"].(map[string]any)
+	if !ok {
+		t.Fatalf("expected result, got: %#v", resp)
+	}
+	if result["isError"] != true {
+		t.Fatalf("expected error for nonexistent executable, got: %#v", result)
 	}
 }
