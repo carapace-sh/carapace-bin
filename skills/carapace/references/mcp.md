@@ -170,7 +170,7 @@ Returns context‑aware, dynamic completions for a carapace macro.
 
 ### `list_macros` — Available Macros
 
-Lists all available carapace macros with their names, signatures, descriptions, and Go source references.
+Lists all available carapace macros with their names, signatures, descriptions, versions, and Go source references.
 
 **Input Schema:**
 
@@ -184,36 +184,47 @@ Lists all available carapace macros with their names, signatures, descriptions, 
 
 2. **Custom executable** (`executable` set): Resolves the executable path and invokes it with `_carapace macro` to retrieve the macro list. **This requires user confirmation** since it executes an arbitrary binary.
 
-**Response:** JSON array of macro objects as text:
+**Response:** JSON object with a `version` field (the main module version) and a `macros` array:
 
 ```json
-[
-  {
-    "name": "carapace.tools.git.Refs",
-    "signature": "{localbranches: false, remotebranches: false, tags: false}",
-    "description": "complete refs",
-    "reference": "github.com/carapace-sh/carapace-bin/pkg/actions/tools/git#ActionRefs"
-  },
-  {
-    "name": "carapace.tools.git.Tags",
-    "signature": "—",
-    "description": "complete tags",
-    "reference": "github.com/carapace-sh/carapace-bin/pkg/actions/tools/git#ActionTags"
-  }
-]
+{
+  "version": "1.2.0",
+  "macros": [
+    {
+      "name": "carapace.tools.git.Refs",
+      "signature": "{localbranches: false, remotebranches: false, tags: false}",
+      "description": "complete refs",
+      "version": "1.2.0",
+      "reference": "github.com/carapace-sh/carapace-bin/pkg/actions/tools/git#ActionRefs"
+    },
+    {
+      "name": "carapace.tools.git.Tags",
+      "signature": "—",
+      "description": "complete tags",
+      "version": "1.2.0",
+      "reference": "github.com/carapace-sh/carapace-bin/pkg/actions/tools/git#ActionTags"
+    }
+  ]
+}
 ```
+
+The `version` field on each macro indicates the version of the module providing that action — for in-project packages this is the main module version, for external dependencies it is the dependency version.
 
 When using a custom executable, the `name` field is prefixed with the executable name (e.g. `myexe.tools.git.Refs`), and the `function` field replaces `reference`:
 
 ```json
-[
-  {
-    "name": "myexe.files",
-    "signature": "[\"\"]",
-    "description": "",
-    "function": ""
-  }
-]
+{
+  "version": "unknown",
+  "macros": [
+    {
+      "name": "myexe.files",
+      "signature": "[\"\"]",
+      "description": "",
+      "version": "",
+      "function": ""
+    }
+  ]
+}
 ```
 
 **Fields:**
@@ -223,6 +234,7 @@ When using a custom executable, the `name` field is prefixed with the executable
 | `name` | Fully qualified macro name prefixed with the executable name (e.g. `carapace.tools.git.Refs` in default mode, `myexe.tools.git.Refs` with custom executable) |
 | `signature` | Argument signature — see carapace-macro skill for format details. `—` (em dash) means no arguments (MacroN) |
 | `description` | Short description of what the macro completes |
+| `version` | Version of the module providing the action (main module version for in-project packages, dependency version for external packages) |
 | `reference` | Go import path with `#FunctionName` for looking up source code (only in default mode) |
 | `function` | Function reference (only when using a custom executable) |
 

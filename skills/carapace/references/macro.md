@@ -13,6 +13,7 @@ Each entry has:
 | `name` | Fully qualified macro name (e.g. `carapace.tools.git.Refs`) |
 | `description` | What the macro completes |
 | `signature` | Argument signature string — see [Signature Format](#signature-format) below |
+| `version` | Version of the module providing the action (main module version for in-project packages, dependency version for external packages) |
 | `reference` | Go import path to the underlying action function (e.g. `github.com/carapace-sh/carapace-bin/pkg/actions/tools/git#ActionRefs`) |
 
 Use the `reference` field to locate the source code for detailed information about parameters, their effects, and default behavior.
@@ -143,8 +144,13 @@ completion:
 
 Go registration:
 ```go
-spec.AddMacro("Refs", spec.MacroI(ActionRefs))
-spec.AddMacro("Tags", spec.MacroN(ActionTags))
+spec.AddMacro("Refs", spec.MacroI(ActionRefs), "complete refs")
+spec.AddMacro("Tags", spec.MacroN(ActionTags), "complete tags")
+
+// Or use AddMacroI/AddMacroV to infer the name from the function:
+spec.AddMacroI(ActionRefs, "complete refs")
+// Note: AddMacroI is for single-arg macros, AddMacroV for variadic.
+// For no-arg macros, use spec.AddMacro with spec.MacroN explicitly.
 ```
 
 ### MacroV — Variadic Arguments
@@ -165,7 +171,10 @@ completion:
 
 Go registration:
 ```go
-spec.AddMacro("RefDiffs", spec.MacroV(ActionRefDiffs))
+spec.AddMacro("RefDiffs", spec.MacroV(ActionRefDiffs), "complete ref diffs")
+
+// Or use AddMacroV to infer the name from the function:
+spec.AddMacroV(ActionRefDiffs, "complete ref diffs")
 ```
 
 ## Macro Name Prefixes
@@ -228,25 +237,33 @@ spec.ActionMacro("$carapace.tools.git.Refs({tags: true})")
 
 ### Registering Custom Macros
 
-Register macros before `spec.Register`:
+Register macros before `spec.Register`. `spec.AddMacro` accepts optional `opts ...string` — first string is description, further strings are joined with `"\n"` as example:
 
 ```go
 // No-argument macro
 spec.AddMacro("tools.custom.Dirs", spec.MacroN(func() carapace.Action {
     return carapace.ActionDirectories()
-}))
+}), "complete directories")
 
 // Single-argument macro (struct)
 spec.AddMacro("tools.custom.Filter", spec.MacroI(func(s string) carapace.Action {
     return carapace.ActionValues().Filter(s)
-}))
+}), "filter values")
 
 // Variadic-argument macro
 spec.AddMacro("tools.custom.Multi", spec.MacroV(func(s ...string) carapace.Action {
     return carapace.ActionValues(s...)
-}))
+}), "complete multiple values")
 
 spec.Register(rootCmd)
+```
+
+For convenience, `spec.AddMacroI` and `spec.AddMacroV` infer the macro name from the function using reflection — they strip the `.../actions/` path prefix and `Action` function prefix:
+
+```go
+// Infers name "tools.custom.Filter" from the function's package path
+spec.AddMacroI(ActionFilter, "filter values")
+spec.AddMacroV(ActionMulti, "complete multiple values")
 ```
 
 ### Exposing External Actions via spec.ActionMacro
