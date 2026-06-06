@@ -127,6 +127,47 @@ The behavior depends on which optional parameters are provided:
 | Executable + carapace-bin/bridge | `<executable> <cmd>/<bridge> export <args...>` |
 | Executable + other bridge | `PATH=<dir>:$PATH carapace <cmd>/<bridge> export <args...>` |
 
+### `complete_macro` — Macro Completion
+
+Returns context‑aware, dynamic completions for a carapace macro.
+
+**Input Schema:**
+
+|| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `macro` | `string` | Yes | Macro name (e.g. `tools.git.Refs`) |
+| `args` | `string[]` | Yes | Arguments to complete |
+| `executable` | `string` | No | Path to the carapace executable providing the macro |
+
+**How it works:**
+
+1. **Default** (no `executable`): Invokes the current carapace binary with `_carapace macro <macro> <args...>`.
+
+2. **Custom executable** (`executable` set): Resolves the executable path and invokes it with the same arguments. **This requires user confirmation** since it executes an arbitrary binary.
+
+**Constraints:**
+
+- `macro` is required
+- `args` is required
+- Arguments must not contain NUL bytes (`\0`)
+
+**Response:** Plain text containing the completion output (JSON with `values` array). On error, the response has `isError: true` with the error message as text.
+
+**Examples:**
+
+```json
+// Complete git refs (default mode)
+{"macro": "tools.git.Refs", "args": [""]}
+
+// Complete git refs with opts (default mode)
+{"macro": "tools.git.Refs", "args": ["{localbranches: true, remotebranches: true, tags: true}", ""]}
+
+// Complete using a custom carapace executable (needs confirmation)
+{"macro": "tools.git.Refs", "args": [""], "executable": "/path/to/carapace"}
+```
+
+**CLI equivalent:** `carapace _carapace macro <macro> <args...>`
+
 ### `list_macros` — Available Macros
 
 Lists all available carapace macros with their names, signatures, descriptions, and Go source references.
@@ -202,6 +243,7 @@ On error (missing path, invalid spec, codegen failure), the response has `isErro
 |----------|-------------|-------|
 | `complete_command` | `carapace <cmd> export <args...>` | Default mode; bridge/executable modes use different invocations |
 | `list_macros` | `carapace --macro` | Iterates `actions.Macros` map |
+| `complete_macro` | `carapace _carapace macro <macro> <args...>` | Invokes macro completion on current or custom executable |
 | `codegen` | `carapace --codegen <path>` | Shells out to the same executable |
 
 ## Relationship to Other Skills
