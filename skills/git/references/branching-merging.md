@@ -187,7 +187,7 @@ content from merged branch
 || `=======` | Separator between sides |
 || `>>>>>>>` | End of conflict |
 
-For merge commits with 3+ parents, markers may include `|||||| <base>` (with `merge.conflictStyle = diff3`):
+For merge commits with 3+ parents, markers may include `|||||| <base>` (with `merge.conflictstyle = diff3`):
 
 ```
 <<<<<<< HEAD

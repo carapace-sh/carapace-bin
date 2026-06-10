@@ -152,9 +152,8 @@ HEAD@{5}       # 5th previous HEAD position
 
 || Config | Default | Description |
 ||--------|---------|-------------|
-|| `gc.reflogExpire` | 90 days | When to expire reflog entries for unreachable commits |
-|| `gc.reflogExpireUnreachable` | 30 days | When to expire entries for unreachable commits |
-|| `gc.reflogExpireIn` | Never | For `--expire=<date>` |
+|| `gc.reflogExpire` | 90 days | Expire reflog entries older than this |
+|| `gc.reflogExpireUnreachable` | 30 days | Expire entries older than this that are also unreachable from the current tip |
 
 ## Remote-Tracking Branches
 

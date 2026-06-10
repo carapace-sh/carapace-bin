@@ -187,7 +187,7 @@ A bare repository (`git init --bare`) has **no working tree** — the `.git/` co
 || Algorithm | Status | Hash length | Example |
 ||-----------|--------|-------------|---------|
 || **SHA-1** | Default | 40 hex chars | `da39a3ee5e6b4b0d3255bfef95601890afd80709` |
-|| **SHA-256** | Experimental | 64 hex chars | Enabled via `init.defaultHashAlgorithm` |
+|| **SHA-256** | Experimental | 64 hex chars | Enabled via `init.defaultHash` |
 
 SHA-1 collision attacks exist (SHAttered, 2017) but are not practical against Git's hash format because the collision must match the `type size\0content` prefix. SHA-256 support is being rolled out for future-proofing.
 

@@ -165,7 +165,7 @@ rm -rf .git/modules/vendor/lib        # Remove internal data
 Or with Git 2.17+:
 
 ```bash
-git rm --submodule=vendor/lib
+git rm vendor/lib                    # Handles submodule deinit internally
 ```
 
 ### Submodule Pitfalls

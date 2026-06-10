@@ -196,7 +196,7 @@ Include a config file only when certain conditions are met:
 [init]
     defaultBranch = main             # Default branch name
     templateDir = /path/to/template  # Template directory
-    defaultHashAlgorithm = sha256    # Hash algorithm (experimental)
+    defaultHash = sha256              # Hash algorithm (experimental)
 ```
 
 ### alias
@@ -241,7 +241,7 @@ Shell command aliases (prefixed with `!`):
 ```ini
 [merge]
     tool = meld                      # Default merge tool
-    conflictStyle = diff3            # Conflict marker style (merge, diff3)
+    conflictstyle = diff3           # Conflict marker style (merge, diff3)
     ff = true                        # Default fast-forward behavior
     verifySignatures = false         # Verify GPG signatures on merge
     log = true                       # Include merge summary in commit
@@ -293,7 +293,6 @@ Shell command aliases (prefixed with `!`):
 
 [commit]
     gpgSign = true                   # Sign all commits
-    gpgSign = ssh                    # Sign with SSH key
 
 [tag]
     gpgSign = true                   # Sign all tags

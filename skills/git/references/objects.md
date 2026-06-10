@@ -26,8 +26,8 @@ The SHA-1 (or SHA-256) hash of this entire byte sequence is the **object ID** (O
 A blob stores **raw file content** with no metadata:
 
 ```
-$ git hash-object -w <<< "hello"
-ce013625030ba8dba906f756967f9e9ca394464a
+$ printf 'hello' | git hash-object -w --stdin
+b6fc4c620b67d95f953a5c1c1230aaab5db5a1b0
 ```
 
 Key properties:
@@ -43,7 +43,7 @@ The empty blob has a well-known hash:
 
 ```
 SHA-1:   e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
-SHA-256: 473a0f4bc3b3949c6c3c5cb3b5445309f1e4a9e3d8f8f6a1e1c1b1a0f1e2d3c4
+SHA-256: 473a0f4c3be8a93681a267e3b1e9a7dcda1185436fe141f7749120a303721813
 ```
 
 ## Tree Objects

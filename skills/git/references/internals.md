@@ -354,7 +354,7 @@ Check if a path is ignored:
 ```bash
 git check-ignore <path>             # Exit 0 if ignored
 git check-ignore -v <path>          # Show which rule matches
-git check-ignore -a <path>          # Show all matching rules
+git check-ignore --all <path>       # Show all matching rules
 ```
 
 ### git check-mailmap

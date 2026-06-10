@@ -196,7 +196,7 @@ their version
 >>>>>>> feature
 ```
 
-Diff3 markers (with `merge.conflictStyle = diff3`):
+Diff3 markers (with `merge.conflictstyle = diff3`):
 
 ```
 <<<<<<< HEAD

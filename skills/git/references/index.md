@@ -207,10 +207,10 @@ The index format supports extensions after the entries:
 For large indices, Git can split the index into a shared base + per-session extension:
 
 ```bash
-git config core.splitIndex true
+git update-index --split-index
 ```
 
-The `link` extension in the index points to a shared base index file (`.git/sharedindex.*`). This avoids rewriting the entire index on every `git add`.
+The `link` extension in the index points to a shared base index file (`.git/sharedindex.*`). This avoids rewriting the entire index on every `git add`. Note: `core.splitIndex` is deprecated in Git 2.37+; use `git update-index --split-index` instead.
 
 ## Edge Cases and Known Issues
 

@@ -283,11 +283,11 @@ done
 
 ### post-update
 
-**When**: After a push is accepted (similar to post-receive but for each ref).
+**When**: After a push is accepted (single invocation with all updated ref names).
 
-**Input**: List of ref names as arguments.
+**Input**: List of updated ref names as arguments (no OIDs, unlike post-receive).
 
-**Purpose**: Update server info for dumb HTTP protocol.
+**Purpose**: Update server info for dumb HTTP protocol (`git update-server-info`).
 
 ### push-to-checkout
 

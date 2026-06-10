@@ -119,7 +119,7 @@ git pull --ff-only                  # Only if fast-forward
 
 ```bash
 git config pull.rebase true         # Always rebase on pull
-git config pull.rebase preserve     # Rebase with --rebase-merges
+git config pull.rebase merges      # Rebase with --rebase-merges
 git config pull.ff only             # Only fast-forward
 ```
 
