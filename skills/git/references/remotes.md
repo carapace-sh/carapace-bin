@@ -72,13 +72,13 @@ With `push.default = current`, it pushes the current branch to a same-named bran
 
 ### Push Default Modes
 
-|| Mode | Behavior |
-||------|----------|
-|| `nothing` | Do not push anything (must specify explicitly) |
-|| `current` | Push current branch to same-named remote branch |
-|| `upstream` / `tracking` | Push current branch to its upstream |
-|| `simple` | Like `upstream` but refuse if branch names differ (default since Git 2.0) |
-|| `matching` | Push all branches that have same name on remote |
+| Mode | Behavior |
+|------|----------|
+| `nothing` | Do not push anything (must specify explicitly) |
+| `current` | Push current branch to same-named remote branch |
+| `upstream` / `tracking` | Push current branch to its upstream |
+| `simple` | Like `upstream` but refuse if branch names differ (default since Git 2.0) |
+| `matching` | Push all branches that have same name on remote |
 
 ## Fetch
 
@@ -178,10 +178,10 @@ https://github.com/user/repo.git
 
 Two variants:
 
-|| Variant | Description |
-||---------|-------------|
-|| **Dumb HTTP** | Static file serving — no server-side Git. Fetches loose objects and packs directly. No push. |
-|| **Smart HTTP** | Server runs `git-http-backend`. Supports fetch and push. Negotiation over HTTP. |
+| Variant | Description |
+|---------|-------------|
+| **Dumb HTTP** | Static file serving — no server-side Git. Fetches loose objects and packs directly. No push. |
+| **Smart HTTP** | Server runs `git-http-backend`. Supports fetch and push. Negotiation over HTTP. |
 
 Smart HTTP uses `git-http-backend` as a CGI program. The client sends a `GET /info/refs?service=git-upload-pack` (fetch) or `GET /info/refs?service=git-receive-pack` (push) to start negotiation.
 

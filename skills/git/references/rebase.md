@@ -63,21 +63,21 @@ drop  0123456 Sixth commit
 
 ### Commands
 
-|| Command | Short | Action |
-||---------|-------|--------|
-|| `pick` | `p` | Use commit as-is |
-|| `reword` | `r` | Use commit but edit the message |
-|| `edit` | `e` | Use commit but stop for amending |
-|| `squash` | `s` | Meld into previous commit (combine messages) |
-|| `fixup` | `f` | Meld into previous commit (discard this message) |
-|| `fixup -C` | `F` | Meld into previous commit (use this message instead) |
-|| `fixup -c` | `C` | Like fixup -C but edit message |
-|| `drop` | `d` | Delete commit |
-|| `break` | `b` | Stop here (continue with `git rebase --continue`) |
-|| `exec` | `x` | Run shell command |
-|| `label` | `l` | Label current HEAD (for merge rebase) |
-|| `merge` | `m` | Create merge commit (for `--rebase-merges`) |
-|| `reset` | `t` | Reset to label (for `--rebase-merges`) |
+| Command | Short | Action |
+|---------|-------|--------|
+| `pick` | `p` | Use commit as-is |
+| `reword` | `r` | Use commit but edit the message |
+| `edit` | `e` | Use commit but stop for amending |
+| `squash` | `s` | Meld into previous commit (combine messages) |
+| `fixup` | `f` | Meld into previous commit (discard this message) |
+| `fixup -C` | `F` | Meld into previous commit (use this message instead) |
+| `fixup -c` | `C` | Like fixup -C but edit message |
+| `drop` | `d` | Delete commit |
+| `break` | `b` | Stop here (continue with `git rebase --continue`) |
+| `exec` | `x` | Run shell command |
+| `label` | `l` | Label current HEAD (for merge rebase) |
+| `merge` | `m` | Create merge commit (for `--rebase-merges`) |
+| `reset` | `t` | Reset to label (for `--rebase-merges`) |
 
 ### Reordering
 
@@ -173,13 +173,13 @@ Amending creates a **new commit** with a different OID. The old commit becomes u
 
 `git reset` moves the current branch to a specified commit:
 
-|| Mode | HEAD | Index | Working Tree |
-||------|------|-------|-------------|
-|| `--soft` | Moved | Unchanged | Unchanged |
-|| `--mixed` (default) | Moved | Reset to HEAD | Unchanged |
-|| `--hard` | Moved | Reset to HEAD | Reset to HEAD |
-|| `--merge` | Moved | Reset to HEAD | Reset to HEAD (only for unmerged) |
-|| `--keep` | Moved | Unchanged | Reset only if no local changes |
+| Mode | HEAD | Index | Working Tree |
+|------|------|-------|-------------|
+| `--soft` | Moved | Unchanged | Unchanged |
+| `--mixed` (default) | Moved | Reset to HEAD | Unchanged |
+| `--hard` | Moved | Reset to HEAD | Reset to HEAD |
+| `--merge` | Moved | Reset to HEAD | Reset to HEAD (only for unmerged) |
+| `--keep` | Moved | Unchanged | Reset only if no local changes |
 
 ### Reset Patterns
 
@@ -263,14 +263,14 @@ Exception: When all collaborators agree to force-push (e.g., feature branches wi
 
 ## Rebase vs Merge
 
-|| Aspect | Rebase | Merge |
-||--------|--------|-------|
-|| History | Linear (no merge commits) | Preserves branch topology |
-|| Commit OIDs | Changed (new commits) | Preserved |
-|| Conflict resolution | One commit at a time | All at once |
-|| Traceability | Loses branch context | Shows which branch was merged |
-|| Revert | Must revert individual commits | Revert the merge commit |
-|| Shared branches | Dangerous (rewrites history) | Safe (no rewriting) |
+| Aspect | Rebase | Merge |
+|--------|--------|-------|
+| History | Linear (no merge commits) | Preserves branch topology |
+| Commit OIDs | Changed (new commits) | Preserved |
+| Conflict resolution | One commit at a time | All at once |
+| Traceability | Loses branch context | Shows which branch was merged |
+| Revert | Must revert individual commits | Revert the merge commit |
+| Shared branches | Dangerous (rewrites history) | Safe (no rewriting) |
 
 ## Edge Cases and Known Issues
 

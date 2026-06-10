@@ -213,22 +213,22 @@ git for-each-ref --count=5 refs/heads/  # Limit count
 
 ### Format Fields
 
-|| Field | Description |
-||-------|-------------|
-|| `%(refname)` | Full ref name |
-|| `%(refname:short)` | Short name (e.g., `main` not `refs/heads/main`) |
-|| `%(objectname)` | Full OID |
-|| `%(objectname:short)` | Abbreviated OID |
-|| `%(objecttype)` | Object type |
-|| `%(objectsize)` | Object size |
-|| `%(authorname)` | Author name |
-|| `%(authoremail)` | Author email |
-|| `%(authordate)` | Author date |
-|| `%(committerdate)` | Committer date |
-|| `%(upstream)` | Upstream ref name |
-|| `%(upstream:short)` | Short upstream name |
-|| `%(ahead)` | Commits ahead of upstream |
-|| `%(behind)` | Commits behind upstream |
+| Field | Description |
+|-------|-------------|
+| `%(refname)` | Full ref name |
+| `%(refname:short)` | Short name (e.g., `main` not `refs/heads/main`) |
+| `%(objectname)` | Full OID |
+| `%(objectname:short)` | Abbreviated OID |
+| `%(objecttype)` | Object type |
+| `%(objectsize)` | Object size |
+| `%(authorname)` | Author name |
+| `%(authoremail)` | Author email |
+| `%(authordate)` | Author date |
+| `%(committerdate)` | Committer date |
+| `%(upstream)` | Upstream ref name |
+| `%(upstream:short)` | Short upstream name |
+| `%(ahead)` | Commits ahead of upstream |
+| `%(behind)` | Commits behind upstream |
 
 ## Revision Parsing
 
@@ -367,28 +367,28 @@ git check-mailmap <email>           # Resolve canonical name/email
 
 ## Environment Variables
 
-|| Variable | Description |
-||----------|-------------|
-|| `GIT_DIR` | Override `.git` directory path |
-|| `GIT_WORK_TREE` | Override working tree path |
-|| `GIT_INDEX_FILE` | Override index file path |
-|| `GIT_OBJECT_DIRECTORY` | Override object directory |
-|| `GIT_ALTERNATE_OBJECT_DIRECTORIES` | Additional object directories (colon-separated) |
-|| `GIT_AUTHOR_NAME/EMAIL/DATE` | Override author info |
-|| `GIT_COMMITTER_NAME/EMAIL/DATE` | Override committer info |
-|| `GIT_CONFIG` | Single config file (disables system/global) |
-|| `GIT_CONFIG_GLOBAL` | Override global config file |
-|| `GIT_CONFIG_SYSTEM` | Override system config file |
-|| `GIT_TRACE` | Trace Git commands (1=summary, 2=detailed, path=file) |
-|| `GIT_TRACE_PACKET` | Trace pack protocol |
-|| `GIT_TRACE_PERFORMANCE` | Trace performance |
-|| `GIT_TRACE_SETUP` | Trace setup |
-|| `GIT_LITERAL_PATHSPECS` | Disable glob in pathspecs |
-|| `GIT_GLOB_PATHSPECS` | Enable glob in pathspecs |
-|| `GIT_NO_REPLACE_OBJECTS` | Disable replace objects |
-|| `GIT_PREFIX` | Subdirectory prefix (set by Git, not users) |
-|| `GIT_CEILING_DIRECTORIES` | Don't look for .git above these dirs |
-|| `GIT_DISCOVERY_ACROSS_FILESYSTEM` | Allow .git discovery across mount points |
+| Variable | Description |
+|----------|-------------|
+| `GIT_DIR` | Override `.git` directory path |
+| `GIT_WORK_TREE` | Override working tree path |
+| `GIT_INDEX_FILE` | Override index file path |
+| `GIT_OBJECT_DIRECTORY` | Override object directory |
+| `GIT_ALTERNATE_OBJECT_DIRECTORIES` | Additional object directories (colon-separated) |
+| `GIT_AUTHOR_NAME/EMAIL/DATE` | Override author info |
+| `GIT_COMMITTER_NAME/EMAIL/DATE` | Override committer info |
+| `GIT_CONFIG` | Single config file (disables system/global) |
+| `GIT_CONFIG_GLOBAL` | Override global config file |
+| `GIT_CONFIG_SYSTEM` | Override system config file |
+| `GIT_TRACE` | Trace Git commands (1=summary, 2=detailed, path=file) |
+| `GIT_TRACE_PACKET` | Trace pack protocol |
+| `GIT_TRACE_PERFORMANCE` | Trace performance |
+| `GIT_TRACE_SETUP` | Trace setup |
+| `GIT_LITERAL_PATHSPECS` | Disable glob in pathspecs |
+| `GIT_GLOB_PATHSPECS` | Enable glob in pathspecs |
+| `GIT_NO_REPLACE_OBJECTS` | Disable replace objects |
+| `GIT_PREFIX` | Subdirectory prefix (set by Git, not users) |
+| `GIT_CEILING_DIRECTORIES` | Don't look for .git above these dirs |
+| `GIT_DISCOVERY_ACROSS_FILESYSTEM` | Allow .git discovery across mount points |
 
 ## Alternates
 

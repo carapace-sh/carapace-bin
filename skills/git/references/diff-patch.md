@@ -8,11 +8,11 @@ How Git computes differences, generates patches, applies them, and resolves merg
 
 Git supports multiple diff algorithms:
 
-|| Algorithm | Flag | Description |
-||-----------|------|-------------|
-|| **Myers** | Default | The original diff algorithm — minimal edit script |
-|| **Patience** | `--patience` | Matches unique lines first, then diffs between them |
-|| **Histogram** | `--histogram` | Extension of patience — handles repeated lines better |
+| Algorithm | Flag | Description |
+|-----------|------|-------------|
+| **Myers** | Default | The original diff algorithm — minimal edit script |
+| **Patience** | `--patience` | Matches unique lines first, then diffs between them |
+| **Histogram** | `--histogram` | Extension of patience — handles repeated lines better |
 
 ### Algorithm Comparison
 
@@ -28,44 +28,44 @@ git config diff.algorithm histogram   # Set default
 
 ## Diff Commands
 
-|| Command | Compares |
-||---------|---------|
-|| `git diff` | Index vs working tree |
-|| `git diff --cached` / `--staged` | HEAD vs index |
-|| `git diff HEAD` | HEAD vs working tree |
-|| `git diff <a> <b>` | Two arbitrary tree-ishes |
-|| `git diff <a>..<b>` | Same as `git diff <a> <b>` |
-|| `git diff <a>...<b>` | Changes on b since merge base of a and b |
-|| `git diff-index <tree>` | Tree vs index or working tree |
-|| `git diff-tree <a> <b>` | Two tree objects |
-|| `git diff-files` | Index vs working tree (plumbing) |
+| Command | Compares |
+|---------|---------|
+| `git diff` | Index vs working tree |
+| `git diff --cached` / `--staged` | HEAD vs index |
+| `git diff HEAD` | HEAD vs working tree |
+| `git diff <a> <b>` | Two arbitrary tree-ishes |
+| `git diff <a>..<b>` | Same as `git diff <a> <b>` |
+| `git diff <a>...<b>` | Changes on b since merge base of a and b |
+| `git diff-index <tree>` | Tree vs index or working tree |
+| `git diff-tree <a> <b>` | Two tree objects |
+| `git diff-files` | Index vs working tree (plumbing) |
 
 ### Diff Output Formats
 
-|| Format | Flag | Description |
-||--------|------|-------------|
-|| Default | (none) | Unified diff with 3 lines of context |
-|| Stat | `--stat` | File-level summary with insertions/deletions |
-|| Numstat | `--numstat` | Machine-readable: added deleted filename |
-|| Shortstat | `--shortstat` | Only the summary line |
-|| Name-only | `--name-only` | Only changed filenames |
-|| Name-status | `--name-status` | Filenames with change type (A/M/D/R/C) |
-|| Word diff | `--word-diff` | Inline word-level changes |
-|| Word diff regex | `--word-diff-regex=<re>` | Custom word boundary |
-|| Raw | `--raw` | Machine-readable raw format |
+| Format | Flag | Description |
+|--------|------|-------------|
+| Default | (none) | Unified diff with 3 lines of context |
+| Stat | `--stat` | File-level summary with insertions/deletions |
+| Numstat | `--numstat` | Machine-readable: added deleted filename |
+| Shortstat | `--shortstat` | Only the summary line |
+| Name-only | `--name-only` | Only changed filenames |
+| Name-status | `--name-status` | Filenames with change type (A/M/D/R/C) |
+| Word diff | `--word-diff` | Inline word-level changes |
+| Word diff regex | `--word-diff-regex=<re>` | Custom word boundary |
+| Raw | `--raw` | Machine-readable raw format |
 
 ### Change Type Indicators
 
-|| Letter | Meaning |
-||--------|---------|
-|| A | Added |
-|| C | Copied |
-|| D | Deleted |
-|| M | Modified |
-|| R | Renamed |
-|| T | Type change |
-|| U | Unmerged |
-|| X | Unknown |
+| Letter | Meaning |
+|--------|---------|
+| A | Added |
+| C | Copied |
+| D | Deleted |
+| M | Modified |
+| R | Renamed |
+| T | Type change |
+| U | Unmerged |
+| X | Unknown |
 
 ### Rename Detection
 
@@ -201,7 +201,7 @@ Diff3 markers (with `merge.conflictstyle = diff3`):
 ```
 <<<<<<< HEAD
 our version
-||||||| base
+|||||| base
 original version
 =======
 their version
@@ -227,14 +227,14 @@ git config merge.tool meld       # Set default tool
 
 ### Common Merge Tools
 
-|| Tool | Platform |
-||------|----------|
-|| `meld` | Linux |
-|| `kdiff3` | Cross-platform |
-|| `vimdiff` | Terminal |
-|| `opendiff` | macOS (FileMerge) |
-|| `tortoisemerge` | Windows |
-|| `vscode` | Cross-platform |
+| Tool | Platform |
+|------|----------|
+| `meld` | Linux |
+| `kdiff3` | Cross-platform |
+| `vimdiff` | Terminal |
+| `opendiff` | macOS (FileMerge) |
+| `tortoisemerge` | Windows |
+| `vscode` | Cross-platform |
 
 ### Custom Merge Drivers
 
@@ -264,11 +264,11 @@ Exit codes:
 
 ### Built-in Merge Drivers
 
-|| Driver | Behavior |
-||--------|----------|
-|| `text` | Default three-way text merge |
-|| `binary` | Keep ours, no merge attempt |
-|| `union` | Concatenate both sides (no conflict markers) |
+| Driver | Behavior |
+|--------|----------|
+| `text` | Default three-way text merge |
+| `binary` | Keep ours, no merge attempt |
+| `union` | Concatenate both sides (no conflict markers) |
 
 ## Rerere (Reuse Recorded Resolution)
 

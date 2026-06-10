@@ -10,11 +10,11 @@ Hooks are executable scripts that Git runs at specific points in its workflow. T
 
 ### Hook Locations
 
-|| Location | Description |
-||----------|-------------|
-|| `.git/hooks/` | Default hook directory |
-|| `core.hooksPath` | Global override (e.g., `~/.config/git/hooks`) |
-|| `$(git --exec-path)/hooks/` | Template hooks (copied on `git init`) |
+| Location | Description |
+|----------|-------------|
+| `.git/hooks/` | Default hook directory |
+| `core.hooksPath` | Global override (e.g., `~/.config/git/hooks`) |
+| `$(git --exec-path)/hooks/` | Template hooks (copied on `git init`) |
 
 When `core.hooksPath` is set, `.git/hooks/` is **completely ignored**.
 
@@ -82,13 +82,13 @@ Common uses:
 
 **Input**: `<file> <source> <commit>`
 
-|| Source | Description |
-||--------|-------------|
-|| `message` | `-m` or `-F` option |
-|| `template` | `template` config or `--template` |
-|| `merge` | Merge commit (`.git/MERGE_MSG`) |
-|| `squash` | Squash commit (`.git/SQUASH_MSG`) |
-|| `commit` | `--amend` or `--fixup` |
+| Source | Description |
+|--------|-------------|
+| `message` | `-m` or `-F` option |
+| `template` | `template` config or `--template` |
+| `merge` | Merge commit (`.git/MERGE_MSG`) |
+| `squash` | Squash commit (`.git/SQUASH_MSG`) |
+| `commit` | `--amend` or `--fixup` |
 
 ```bash
 #!/bin/sh
@@ -145,10 +145,10 @@ The zero OID (`000...000`) indicates a delete (local) or new ref (remote).
 
 **Input**: `<prev-head> <new-head> <flag>`
 
-|| Flag | Meaning |
-||------|---------|
-|| 1 | Branch checkout |
-|| 0 | File checkout (e.g., `git checkout -- <path>`) |
+| Flag | Meaning |
+|------|---------|
+| 1 | Branch checkout |
+| 0 | File checkout (e.g., `git checkout -- <path>`) |
 
 ```bash
 #!/bin/sh
@@ -184,10 +184,10 @@ fi
 
 **Input**: `<rewrite-type>` as argument, then `<old-oid> <new-oid> <extra-info>` on stdin.
 
-|| Rewrite type | Command |
-||-------------|---------|
-|| `rebase` | `git rebase` |
-|| `amend` | `git commit --amend` |
+| Rewrite type | Command |
+|-------------|---------|
+| `rebase` | `git rebase` |
+| `amend` | `git commit --amend` |
 
 ### pre-applypatch / applypatch-msg
 
@@ -305,11 +305,11 @@ done
 
 **Input**: `<state> <ref-count>` as arguments, then `<ref> <old-oid> <new-oid>` on stdin.
 
-|| State | Meaning |
-||-------|---------|
-|| `prepared` | Refs are about to be committed |
-|| `committed` | Refs have been committed |
-|| `aborted` | Transaction was aborted |
+| State | Meaning |
+|-------|---------|
+| `prepared` | Refs are about to be committed |
+| `committed` | Refs have been committed |
+| `aborted` | Transaction was aborted |
 
 ## Hook Environment
 
@@ -317,15 +317,15 @@ done
 
 Hooks receive these environment variables:
 
-|| Variable | Available in | Description |
-||----------|-------------|-------------|
-|| `GIT_DIR` | All hooks | Path to .git directory |
-|| `GIT_QUARANTINE_PATH` | pre-receive | Path to quarantined objects (not yet in store) |
-|| `GIT_PUSH_OPTION_COUNT` | pre-receive, update | Number of push options |
-|| `GIT_PUSH_OPTION_<n>` | pre-receive, update | Push option value |
-|| `GIT_REF_PATH` | reference-transaction | Ref being updated |
-|| `GIT_AUTHOR_NAME/EMAIL/DATE` | commit-msg, pre-commit | Commit author info |
-|| `GIT_COMMITTER_NAME/EMAIL/DATE` | commit-msg, pre-commit | Committer info |
+| Variable | Available in | Description |
+|----------|-------------|-------------|
+| `GIT_DIR` | All hooks | Path to .git directory |
+| `GIT_QUARANTINE_PATH` | pre-receive | Path to quarantined objects (not yet in store) |
+| `GIT_PUSH_OPTION_COUNT` | pre-receive, update | Number of push options |
+| `GIT_PUSH_OPTION_<n>` | pre-receive, update | Push option value |
+| `GIT_REF_PATH` | reference-transaction | Ref being updated |
+| `GIT_AUTHOR_NAME/EMAIL/DATE` | commit-msg, pre-commit | Commit author info |
+| `GIT_COMMITTER_NAME/EMAIL/DATE` | commit-msg, pre-commit | Committer info |
 
 ### Quarantine Environment
 

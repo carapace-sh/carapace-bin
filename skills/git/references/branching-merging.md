@@ -63,14 +63,14 @@ In this case, `git merge-base --all` returns both M1 and B (or A and M2, dependi
 
 Git supports several merge strategies:
 
-|| Strategy | Flag | Description |
-||----------|------|-------------|
-|| **ort** (Ostensibly Recursive's Twin) | Default | Recursive three-way merge with rename detection |
-|| **recursive** | `-s recursive` | Legacy default (pre-Git 2.34) |
-|| **resolve** | `-s resolve` | Three-way merge, single merge base only |
-|| **octopus** | `-s octopus` | For merging more than two heads (fails on conflicts) |
-|| **ours** | `-s ours` | Auto-resolve all conflicts as "our" side |
-|| **subtree** | `-s subtree` | Like `ort` but adjusts tree paths for subtree merges |
+| Strategy | Flag | Description |
+|----------|------|-------------|
+| **ort** (Ostensibly Recursive's Twin) | Default | Recursive three-way merge with rename detection |
+| **recursive** | `-s recursive` | Legacy default (pre-Git 2.34) |
+| **resolve** | `-s resolve` | Three-way merge, single merge base only |
+| **octopus** | `-s octopus` | For merging more than two heads (fails on conflicts) |
+| **ours** | `-s ours` | Auto-resolve all conflicts as "our" side |
+| **subtree** | `-s subtree` | Like `ort` but adjusts tree paths for subtree merges |
 
 ### ort Strategy
 
@@ -181,18 +181,18 @@ content from merged branch
 
 ### Conflict Markers
 
-|| Marker | Meaning |
-||--------|---------|
-|| `<<<<<<<` | Start of conflict |
-|| `=======` | Separator between sides |
-|| `>>>>>>>` | End of conflict |
+| Marker | Meaning |
+|--------|---------|
+| `<<<<<<<` | Start of conflict |
+| `=======` | Separator between sides |
+| `>>>>>>>` | End of conflict |
 
 For merge commits with 3+ parents, markers may include `|||||| <base>` (with `merge.conflictstyle = diff3`):
 
 ```
 <<<<<<< HEAD
 ours
-||||||| base
+|||||| base
 original
 =======
 theirs
@@ -221,11 +221,11 @@ The driver should write the merge result to `%A` and exit 0 for success, non-zer
 
 ### Built-in Merge Drivers
 
-|| Driver | Behavior |
-||--------|----------|
-|| `text` | Default three-way merge with conflict markers |
-|| `binary` | Keep ours version (no attempt to merge) |
-|| `union` | Auto-resolve by concatenating both sides (no conflict markers) |
+| Driver | Behavior |
+|--------|----------|
+| `text` | Default three-way merge with conflict markers |
+| `binary` | Keep ours version (no attempt to merge) |
+| `union` | Auto-resolve by concatenating both sides (no conflict markers) |
 
 ## Merge Abort and Undo
 

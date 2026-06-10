@@ -197,15 +197,15 @@ git merge -s subtree lib/main -m "Update lib subtree"
 
 ### Subtree vs Submodule
 
-|| Aspect | Submodule | Subtree |
-||--------|-----------|---------|
-|| Repository | Separate repo | Merged into parent |
-|| History | Separate | Shared with parent |
-|| Clone | Requires `--recurse-submodules` | No special flags |
-|| Update | `git submodule update` | `git merge -s subtree` |
-|| Size | Small (reference only) | Large (full history) |
-|| Bidirectional | Can push back to source | Difficult |
-|| Complexity | High (many pitfalls) | Lower |
+| Aspect | Submodule | Subtree |
+|--------|-----------|---------|
+| Repository | Separate repo | Merged into parent |
+| History | Separate | Shared with parent |
+| Clone | Requires `--recurse-submodules` | No special flags |
+| Update | `git submodule update` | `git merge -s subtree` |
+| Size | Small (reference only) | Large (full history) |
+| Bidirectional | Can push back to source | Difficult |
+| Complexity | High (many pitfalls) | Lower |
 
 ## git-subtree (Extension)
 
@@ -271,12 +271,12 @@ git clone --filter=depth:1 <url>        # Shallow + filter
 
 ### Filter Types
 
-|| Filter | What's Excluded | Use Case |
-||--------|-----------------|----------|
-|| `blob:none` | All blobs | CI builds, code review |
-|| `tree:0` | All trees and blobs | Minimal initial clone |
-|| `blob:limit=<size>` | Blobs larger than size | Mixed small/large files |
-|| `depth:1` | History beyond depth | Shallow clone |
+| Filter | What's Excluded | Use Case |
+|--------|-----------------|----------|
+| `blob:none` | All blobs | CI builds, code review |
+| `tree:0` | All trees and blobs | Minimal initial clone |
+| `blob:limit=<size>` | Blobs larger than size | Mixed small/large files |
+| `depth:1` | History beyond depth | Shallow clone |
 
 ### Promisor Remotes
 

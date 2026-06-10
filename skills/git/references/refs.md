@@ -8,16 +8,16 @@ The reference system — branches, tags, HEAD, reflogs, remote-tracking branches
 
 A reference (ref) is a named pointer to a Git object, typically a commit:
 
-|| Type | Location | Points to | Mutable |
-||------|----------|-----------|---------|
-|| **Branch** | `refs/heads/<name>` | Commit | Yes (moves on commit) |
-|| **Tag (lightweight)** | `refs/tags/<name>` | Commit | No (fixed) |
-|| **Tag (annotated)** | `refs/tags/<name>` | Tag object | No (fixed) |
-|| **Remote-tracking** | `refs/remotes/<remote>/<branch>` | Commit | Updated by fetch |
-|| **HEAD** | `.git/HEAD` | Branch or commit | Yes |
-|| **Notes** | `refs/notes/<name>` | Tree (note mapping) | Yes |
-|| **Replace** | `refs/replace/<OID>` | Commit (replacement) | Yes |
-|| **Stash** | `refs/stash` | Commit (stash entry) | Yes |
+| Type | Location | Points to | Mutable |
+|------|----------|-----------|---------|
+| **Branch** | `refs/heads/<name>` | Commit | Yes (moves on commit) |
+| **Tag (lightweight)** | `refs/tags/<name>` | Commit | No (fixed) |
+| **Tag (annotated)** | `refs/tags/<name>` | Tag object | No (fixed) |
+| **Remote-tracking** | `refs/remotes/<remote>/<branch>` | Commit | Updated by fetch |
+| **HEAD** | `.git/HEAD` | Branch or commit | Yes |
+| **Notes** | `refs/notes/<name>` | Tree (note mapping) | Yes |
+| **Replace** | `refs/replace/<OID>` | Commit (replacement) | Yes |
+| **Stash** | `refs/stash` | Commit (stash entry) | Yes |
 
 ## Branches
 
@@ -150,10 +150,10 @@ HEAD@{5}       # 5th previous HEAD position
 
 ### Reflog Expiry
 
-|| Config | Default | Description |
-||--------|---------|-------------|
-|| `gc.reflogExpire` | 90 days | Expire reflog entries older than this |
-|| `gc.reflogExpireUnreachable` | 30 days | Expire entries older than this that are also unreachable from the current tip |
+| Config | Default | Description |
+|--------|---------|-------------|
+| `gc.reflogExpire` | 90 days | Expire reflog entries older than this |
+| `gc.reflogExpireUnreachable` | 30 days | Expire entries older than this that are also unreachable from the current tip |
 
 ## Remote-Tracking Branches
 
@@ -251,50 +251,50 @@ refs/tags/*:refs/tags/*              # All tags
 
 ## Special Refs
 
-|| Ref | Purpose |
-||-----|---------|
-|| `HEAD` | Current commit/branch |
-|| `FETCH_HEAD` | Last fetched tip (`.git/FETCH_HEAD`) |
-|| `MERGE_HEAD` | Commit being merged into HEAD (`.git/MERGE_HEAD`) |
-|| `REBASE_HEAD` | Commit being rebased (during rebase) |
-|| `CHERRY_PICK_HEAD` | Commit being cherry-picked |
-|| `REVERT_HEAD` | Commit being reverted |
-|| `ORIG_HEAD` | Previous HEAD before dangerous operation (merge, rebase) |
+| Ref | Purpose |
+|-----|---------|
+| `HEAD` | Current commit/branch |
+| `FETCH_HEAD` | Last fetched tip (`.git/FETCH_HEAD`) |
+| `MERGE_HEAD` | Commit being merged into HEAD (`.git/MERGE_HEAD`) |
+| `REBASE_HEAD` | Commit being rebased (during rebase) |
+| `CHERRY_PICK_HEAD` | Commit being cherry-picked |
+| `REVERT_HEAD` | Commit being reverted |
+| `ORIG_HEAD` | Previous HEAD before dangerous operation (merge, rebase) |
 
 ## Revision Syntax
 
 Git supports many ways to refer to commits:
 
-|| Syntax | Meaning |
-||--------|---------|
-|| `abc1234` | Full or abbreviated SHA |
-|| `main` | Branch name |
-|| `v1.0` | Tag name |
-|| `main@{yesterday}` | Reflog — value of main at that time |
-|| `main@{3}` | Reflog — 3rd previous value |
-|| `main~3` | 3rd generation ancestor (first parent only) |
-|| `main^2` | 2nd parent (for merge commits) |
-|| `main^` / `main^1` | First parent |
-|| `main~` / `main~1` | First parent (same as `^`) |
-|| `main^^` / `main~2` | Grandparent (first parent of first parent) |
-|| `HEAD^..HEAD` | Range (see below) |
-|| `abc..def` | Commits reachable from def but not abc |
-|| `abc...def` | Symmetric difference (reachable from either, not both) |
-|| `abc^@` | All parents of abc |
-|| `abc^!` | abc itself, excluding all its parents |
+| Syntax | Meaning |
+|--------|---------|
+| `abc1234` | Full or abbreviated SHA |
+| `main` | Branch name |
+| `v1.0` | Tag name |
+| `main@{yesterday}` | Reflog — value of main at that time |
+| `main@{3}` | Reflog — 3rd previous value |
+| `main~3` | 3rd generation ancestor (first parent only) |
+| `main^2` | 2nd parent (for merge commits) |
+| `main^` / `main^1` | First parent |
+| `main~` / `main~1` | First parent (same as `^`) |
+| `main^^` / `main~2` | Grandparent (first parent of first parent) |
+| `HEAD^..HEAD` | Range (see below) |
+| `abc..def` | Commits reachable from def but not abc |
+| `abc...def` | Symmetric difference (reachable from either, not both) |
+| `abc^@` | All parents of abc |
+| `abc^!` | abc itself, excluding all its parents |
 
 ## Reference Update Commands
 
-|| Command | Purpose |
-||---------|---------|
-|| `git update-ref <ref> <new-oid>` | Update a ref (safe — takes lock) |
-|| `git update-ref -d <ref>` | Delete a ref |
-|| `git symbolic-ref HEAD` | Read symbolic ref |
-|| `git symbolic-ref HEAD refs/heads/main` | Set symbolic ref |
-|| `git for-each-ref` | Iterate refs (scriptable) |
-|| `git for-each-ref --format='%(refname) %(objectname)' refs/heads/` | Custom format |
-|| `git show-ref` | List all refs |
-|| `git pack-refs --all` | Pack loose refs |
+| Command | Purpose |
+|---------|---------|
+| `git update-ref <ref> <new-oid>` | Update a ref (safe — takes lock) |
+| `git update-ref -d <ref>` | Delete a ref |
+| `git symbolic-ref HEAD` | Read symbolic ref |
+| `git symbolic-ref HEAD refs/heads/main` | Set symbolic ref |
+| `git for-each-ref` | Iterate refs (scriptable) |
+| `git for-each-ref --format='%(refname) %(objectname)' refs/heads/` | Custom format |
+| `git show-ref` | List all refs |
+| `git pack-refs --all` | Pack loose refs |
 
 ## Edge Cases and Known Issues
 

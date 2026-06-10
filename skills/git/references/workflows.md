@@ -17,13 +17,13 @@ main ─────────────────────────
      ↘  ↗  feature/login ────
 ```
 
-|| Branch | Purpose | Merges into |
-||--------|---------|-------------|
-|| `main` | Production releases | — |
-|| `develop` | Integration branch | `main` (via release) |
-|| `feature/*` | New features | `develop` |
-|| `release/*` | Release preparation | `main` + `develop` |
-|| `hotfix/*` | Emergency fixes | `main` + `develop` |
+| Branch | Purpose | Merges into |
+|--------|---------|-------------|
+| `main` | Production releases | — |
+| `develop` | Integration branch | `main` (via release) |
+| `feature/*` | New features | `develop` |
+| `release/*` | Release preparation | `main` + `develop` |
+| `hotfix/*` | Emergency fixes | `main` + `develop` |
 
 ```bash
 # Start a feature
@@ -66,14 +66,14 @@ main ─────────────────────────
 
 ### Comparison
 
-|| Aspect | Git Flow | GitHub Flow | Trunk-Based |
-||--------|----------|-------------|-------------|
-|| Complexity | High | Low | Low |
-|| Release cadence | Scheduled | Continuous | Continuous |
-|| Long-lived branches | 2+ | 1 | 0 |
-|| Merge strategy | `--no-ff` | Squash or merge | Fast-forward |
-|| Release branches | Yes | No | No (feature flags) |
-|| Hotfix branches | Yes | Fix on main | Fix on main |
+| Aspect | Git Flow | GitHub Flow | Trunk-Based |
+|--------|----------|-------------|-------------|
+| Complexity | High | Low | Low |
+| Release cadence | Scheduled | Continuous | Continuous |
+| Long-lived branches | 2+ | 1 | 0 |
+| Merge strategy | `--no-ff` | Squash or merge | Fast-forward |
+| Release branches | Yes | No | No (feature flags) |
+| Hotfix branches | Yes | Fix on main | Fix on main |
 
 ## Commit Conventions
 
@@ -91,19 +91,19 @@ A structured commit message format:
 
 Types:
 
-|| Type | Description |
-||------|-------------|
-|| `feat` | New feature |
-|| `fix` | Bug fix |
-|| `docs` | Documentation |
-|| `style` | Formatting (no code change) |
-|| `refactor` | Code restructuring |
-|| `perf` | Performance improvement |
-|| `test` | Adding tests |
-|| `build` | Build system |
-|| `ci` | CI configuration |
-|| `chore` | Maintenance |
-|| `revert` | Revert a commit |
+| Type | Description |
+|------|-------------|
+| `feat` | New feature |
+| `fix` | Bug fix |
+| `docs` | Documentation |
+| `style` | Formatting (no code change) |
+| `refactor` | Code restructuring |
+| `perf` | Performance improvement |
+| `test` | Adding tests |
+| `build` | Build system |
+| `ci` | CI configuration |
+| `chore` | Maintenance |
+| `revert` | Revert a commit |
 
 Breaking changes: `feat!:` or `BREAKING CHANGE:` in footer.
 
@@ -128,16 +128,16 @@ Conventional commits enable automatic semantic versioning:
 
 ### Pattern Syntax
 
-|| Pattern | Matches |
-||---------|---------|
-|| `*.log` | All `.log` files in any directory |
-|| `build/` | `build` directory and its contents |
-|| `!important.log` | Negation — don't ignore this file |
-|| `doc/*.txt` | `.txt` files directly in `doc/` |
-|| `doc/**/*.pdf` | `.pdf` files anywhere under `doc/` |
-|| `/TODO` | Only `TODO` at the repository root |
-|| `foo/` | Directory named `foo` |
-|| `foo` | File or directory named `foo` |
+| Pattern | Matches |
+|---------|---------|
+| `*.log` | All `.log` files in any directory |
+| `build/` | `build` directory and its contents |
+| `!important.log` | Negation — don't ignore this file |
+| `doc/*.txt` | `.txt` files directly in `doc/` |
+| `doc/**/*.pdf` | `.pdf` files anywhere under `doc/` |
+| `/TODO` | Only `TODO` at the repository root |
+| `foo/` | Directory named `foo` |
+| `foo` | File or directory named `foo` |
 
 ### Pattern Rules
 
@@ -153,12 +153,12 @@ Conventional commits enable automatic semantic versioning:
 
 ### .gitignore Locations
 
-|| File | Scope | Tracked |
-||------|-------|---------|
-|| `.gitignore` (repo root) | Entire repository | Yes |
-|| `src/.gitignore` | `src/` and below | Yes |
-|| `.git/info/exclude` | Entire repository | No (local only) |
-|| `core.excludesFile` | All repos (user-level) | No |
+| File | Scope | Tracked |
+|------|-------|---------|
+| `.gitignore` (repo root) | Entire repository | Yes |
+| `src/.gitignore` | `src/` and below | Yes |
+| `.git/info/exclude` | Entire repository | No (local only) |
+| `core.excludesFile` | All repos (user-level) | No |
 
 ### Precedence
 
@@ -230,17 +230,17 @@ vendor/*.rb linguist-vendored
 
 ### Attribute Assignment
 
-|| Attribute | Values | Description |
-||-----------|--------|-------------|
-|| `text` | `auto`, `true`, `false` | Line ending normalization |
-|| `eol` | `lf`, `crlf`, `native` | Force line ending |
-|| `binary` | `true`, `false` | Treat as binary |
-|| `diff` | driver name, `false` | Diff driver |
-|| `merge` | driver name, `false`, `union` | Merge driver |
-|| `filter` | driver name | Smudge/clean filter |
-|| `export-subst` | `true` | Expand gitattributes in archive |
-|| `export-ignore` | `true` | Exclude from archive |
-|| `linguist-*` | Various | GitHub language detection |
+| Attribute | Values | Description |
+|-----------|--------|-------------|
+| `text` | `auto`, `true`, `false` | Line ending normalization |
+| `eol` | `lf`, `crlf`, `native` | Force line ending |
+| `binary` | `true`, `false` | Treat as binary |
+| `diff` | driver name, `false` | Diff driver |
+| `merge` | driver name, `false`, `union` | Merge driver |
+| `filter` | driver name | Smudge/clean filter |
+| `export-subst` | `true` | Expand gitattributes in archive |
+| `export-ignore` | `true` | Exclude from archive |
+| `linguist-*` | Various | GitHub language detection |
 
 ## Git LFS (Large File Storage)
 

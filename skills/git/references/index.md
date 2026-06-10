@@ -42,40 +42,40 @@ SHA-1 checksum (20 bytes)
 
 ### Index Versions
 
-|| Version | Changes |
-||---------|---------|
-|| 2 | Base format |
-|| 3 | Extended flags (skip-worktree, assume-unchanged, intent-to-add) |
-|| 4 | Variable-width path compression (prefix compression) |
+| Version | Changes |
+|---------|---------|
+| 2 | Base format |
+| 3 | Extended flags (skip-worktree, assume-unchanged, intent-to-add) |
+| 4 | Variable-width path compression (prefix compression) |
 
 ### Entry Structure (v2)
 
 Each entry contains:
 
-|| Field | Size | Description |
-||-------|------|-------------|
-|| ctime | 8 bytes | File change time (sec + nsec) |
-|| mtime | 8 bytes | File modification time (sec + nsec) |
-|| dev | 4 bytes | Device number |
-|| ino | 4 bytes | Inode number |
-|| mode | 4 bytes | File mode (040000, 100644, 100755, 120000, 160000) |
-|| uid | 4 bytes | User ID |
-|| gid | 4 bytes | Group ID |
-|| file size | 4 bytes | File size on disk |
-|| OID | 20 bytes | SHA-1 of the blob object |
-|| flags | 2 bytes | Name length + stage + extended flag |
-|| name | Variable | Pathname (NUL-terminated) |
+| Field | Size | Description |
+|-------|------|-------------|
+| ctime | 8 bytes | File change time (sec + nsec) |
+| mtime | 8 bytes | File modification time (sec + nsec) |
+| dev | 4 bytes | Device number |
+| ino | 4 bytes | Inode number |
+| mode | 4 bytes | File mode (040000, 100644, 100755, 120000, 160000) |
+| uid | 4 bytes | User ID |
+| gid | 4 bytes | Group ID |
+| file size | 4 bytes | File size on disk |
+| OID | 20 bytes | SHA-1 of the blob object |
+| flags | 2 bytes | Name length + stage + extended flag |
+| name | Variable | Pathname (NUL-terminated) |
 
 ### Stage Numbers
 
 The 2-bit stage field is used during merge conflicts:
 
-|| Stage | Meaning |
-||-------|---------|
-|| 0 | Normal entry (no conflict) |
-|| 1 | Base (common ancestor) |
-|| 2 | Ours (current branch) |
-|| 3 | Theirs (merged branch) |
+| Stage | Meaning |
+|-------|---------|
+| 0 | Normal entry (no conflict) |
+| 1 | Base (common ancestor) |
+| 2 | Ours (current branch) |
+| 3 | Theirs (merged branch) |
 
 Unmerged entries have stages 1–3 simultaneously for the same path. `git ls-files -u` shows unmerged entries.
 
@@ -193,14 +193,14 @@ The index still contains all entries, but entries outside the sparse-checkout co
 
 The index format supports extensions after the entries:
 
-|| Extension | Code | Purpose |
-||-----------|------|---------|
-|| Tree cache | `TREE` | Caches tree objects for faster `git status` |
-|| Resolve undo | `REUC` | Records merge conflict resolutions for `git rerere` |
-|| Link | `link` | Points to a separate index file (for split index) |
-|| Untracked cache | `UNTR` | Caches untracked file info for faster `git status` |
-|| FS Monitor | `FSMN` | Integration with fsmonitor-watchman for fast status |
-|| Sparse directories | `sdir` | Lists directories skipped by sparse-checkout |
+| Extension | Code | Purpose |
+|-----------|------|---------|
+| Tree cache | `TREE` | Caches tree objects for faster `git status` |
+| Resolve undo | `REUC` | Records merge conflict resolutions for `git rerere` |
+| Link | `link` | Points to a separate index file (for split index) |
+| Untracked cache | `UNTR` | Caches untracked file info for faster `git status` |
+| FS Monitor | `FSMN` | Integration with fsmonitor-watchman for fast status |
+| Sparse directories | `sdir` | Lists directories skipped by sparse-checkout |
 
 ## Split Index
 

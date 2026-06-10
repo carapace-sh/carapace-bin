@@ -14,12 +14,12 @@ type content-size\0content
 
 The SHA-1 (or SHA-256) hash of this entire byte sequence is the **object ID** (OID).
 
-|| Type | Purpose | Content Format |
-||------|---------|----------------|
-|| **blob** | File content | Raw file data (no metadata — no name, no permissions) |
-|| **tree** | Directory listing | List of `(mode, name, OID)` entries |
-|| **commit** | Snapshot metadata | Tree OID, parent OIDs, author, committer, message |
-|| **tag** | Annotated tag | Object OID, type, tag name, tagger, message |
+| Type | Purpose | Content Format |
+|------|---------|----------------|
+| **blob** | File content | Raw file data (no metadata — no name, no permissions) |
+| **tree** | Directory listing | List of `(mode, name, OID)` entries |
+| **commit** | Snapshot metadata | Tree OID, parent OIDs, author, committer, message |
+| **tag** | Annotated tag | Object OID, type, tag name, tagger, message |
 
 ## Blob Objects
 
@@ -66,13 +66,13 @@ mode name\0OID-as-20-bytes
 
 ### Mode Values
 
-|| Mode | Type | Description |
-||------|------|-------------|
-|| `040000` | tree | Subdirectory |
-|| `100644` | blob | Regular file (not executable) |
-|| `100755` | blob | Executable file |
-|| `120000` | blob | Symbolic link (content = link target) |
-|| `160000` | commit | Gitlink (submodule pointer) |
+| Mode | Type | Description |
+|------|------|-------------|
+| `040000` | tree | Subdirectory |
+| `100644` | blob | Regular file (not executable) |
+| `100755` | blob | Executable file |
+| `120000` | blob | Symbolic link (content = link target) |
+| `160000` | commit | Gitlink (submodule pointer) |
 
 ### Tree Sorting
 
@@ -110,13 +110,13 @@ Commit message here
 
 ### Fields
 
-|| Field | Required | Description |
-||-------|----------|-------------|
-|| `tree` | Yes | OID of the root tree for this commit |
-|| `parent` | No (1+ for merges) | OID(s) of parent commit(s) |
-|| `author` | Yes | Name, email, timestamp (who wrote the change) |
-|| `committer` | Yes | Name, email, timestamp (who created the commit object) |
-|| Message | Yes | Free-form text after a blank line |
+| Field | Required | Description |
+|-------|----------|-------------|
+| `tree` | Yes | OID of the root tree for this commit |
+| `parent` | No (1+ for merges) | OID(s) of parent commit(s) |
+| `author` | Yes | Name, email, timestamp (who wrote the change) |
+| `committer` | Yes | Name, email, timestamp (who created the commit object) |
+| Message | Yes | Free-form text after a blank line |
 
 ### Author vs Committer
 
@@ -162,14 +162,14 @@ Tag message here
 
 ### Annotated vs Lightweight
 
-|| Property | Annotated Tag | Lightweight Tag |
-||----------|--------------|-----------------|
-|| Object type | `tag` | `commit` (points directly) |
-|| Stored in | Object database | `.git/refs/tags/` |
-|| Message | Yes | No |
-|| Tagger info | Yes | No |
-|| Can be signed | Yes (GPG/SSH) | No |
-|| Can tag non-commits | Yes (any object) | No (always commit) |
+| Property | Annotated Tag | Lightweight Tag |
+|----------|--------------|-----------------|
+| Object type | `tag` | `commit` (points directly) |
+| Stored in | Object database | `.git/refs/tags/` |
+| Message | Yes | No |
+| Tagger info | Yes | No |
+| Can be signed | Yes (GPG/SSH) | No |
+| Can tag non-commits | Yes (any object) | No (always commit) |
 
 ## Object Storage
 
@@ -278,16 +278,16 @@ git gc                # Repack + prune (respects gc.pruneExpire)
 
 ## Object Inspection Commands
 
-|| Command | Purpose |
-||---------|---------|
-|| `git cat-file -t <OID>` | Show object type |
-|| `git cat-file -s <OID>` | Show object size |
-|| `git cat-file -p <OID>` | Pretty-print object content |
-|| `git cat-file blob <OID>` | Raw blob content |
-|| `git hash-object` | Compute OID of content |
-|| `git hash-object -w` | Compute OID and write to object store |
-|| `git verify-pack -v <pack>` | Inspect packfile contents |
-|| `git index-pack <file>` | Build index from packfile |
+| Command | Purpose |
+|---------|---------|
+| `git cat-file -t <OID>` | Show object type |
+| `git cat-file -s <OID>` | Show object size |
+| `git cat-file -p <OID>` | Pretty-print object content |
+| `git cat-file blob <OID>` | Raw blob content |
+| `git hash-object` | Compute OID of content |
+| `git hash-object -w` | Compute OID and write to object store |
+| `git verify-pack -v <pack>` | Inspect packfile contents |
+| `git index-pack <file>` | Build index from packfile |
 
 ## Edge Cases and Known Issues
 

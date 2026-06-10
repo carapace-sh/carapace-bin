@@ -8,14 +8,14 @@ How Git's configuration works — config levels, precedence, includes, condition
 
 Git reads configuration from multiple files, with later entries **overriding** earlier ones:
 
-|| Level | File | Scope | Priority |
-||-------|------|-------|----------|
-|| **system** | `/etc/gitconfig` | All users on the system | 1 (lowest) |
-|| **global** | `~/.gitconfig` or `$XDG_CONFIG_HOME/git/config` | Current user | 2 |
-|| **local** | `.git/config` | Current repository | 3 |
-|| **worktree** | `.git/config.worktree` | Current worktree (with `extensions.worktreeConfig`) | 4 |
-|| **command** | `-c key=value` | Single command | 5 (highest) |
-|| **env** | `GIT_CONFIG_*` | Process lifetime | 6 (highest) |
+| Level | File | Scope | Priority |
+|-------|------|-------|----------|
+| **system** | `/etc/gitconfig` | All users on the system | 1 (lowest) |
+| **global** | `~/.gitconfig` or `$XDG_CONFIG_HOME/git/config` | Current user | 2 |
+| **local** | `.git/config` | Current repository | 3 |
+| **worktree** | `.git/config.worktree` | Current worktree (with `extensions.worktreeConfig`) | 4 |
+| **command** | `-c key=value` | Single command | 5 (highest) |
+| **env** | `GIT_CONFIG_*` | Process lifetime | 6 (highest) |
 
 ### Reading Order
 
@@ -91,14 +91,14 @@ git config branch.main.remote
 
 ### Value Types
 
-|| Type | Example | Parsing |
-||------|---------|---------|
-|| Boolean true | `true`, `yes`, `on`, `1` | Case-insensitive |
-|| Boolean false | `false`, `no`, `off`, `0`, empty string | Case-insensitive |
-|| Integer | `42` | Parsed as number |
-|| Path | `~/bin/git-diff-wrapper` | `~` expanded for some keys |
-|| Color | `red bold`, `green underline` | See color format |
-|| String | Any value | Taken as-is |
+| Type | Example | Parsing |
+|------|---------|---------|
+| Boolean true | `true`, `yes`, `on`, `1` | Case-insensitive |
+| Boolean false | `false`, `no`, `off`, `0`, empty string | Case-insensitive |
+| Integer | `42` | Parsed as number |
+| Path | `~/bin/git-diff-wrapper` | `~` expanded for some keys |
+| Color | `red bold`, `green underline` | See color format |
+| String | Any value | Taken as-is |
 
 ### Multi-Valued Keys
 
@@ -144,12 +144,12 @@ Include a config file only when certain conditions are met:
 
 ### Condition Types
 
-|| Condition | Syntax | Matches |
-||-----------|--------|---------|
-|| `gitdir` | `gitdir:<pattern>` | Working directory path (glob) |
-|| `gitdir/i` | `gitdir/i:<pattern>` | Case-insensitive gitdir |
-|| `hasconfig` | `hasconfig:remote.*.url:<pattern>` | Config value matches pattern |
-|| `onbranch` | `onbranch:<pattern>` | Current branch name matches |
+| Condition | Syntax | Matches |
+|-----------|--------|---------|
+| `gitdir` | `gitdir:<pattern>` | Working directory path (glob) |
+| `gitdir/i` | `gitdir/i:<pattern>` | Case-insensitive gitdir |
+| `hasconfig` | `hasconfig:remote.*.url:<pattern>` | Config value matches pattern |
+| `onbranch` | `onbranch:<pattern>` | Current branch name matches |
 
 ## Key Sections Reference
 
@@ -302,25 +302,25 @@ Shell command aliases (prefixed with `!`):
 
 Environment variables override config values:
 
-|| Variable | Overrides | Description |
-||----------|----------|-------------|
-|| `GIT_AUTHOR_NAME` | `user.name` | Author name for commits |
-|| `GIT_AUTHOR_EMAIL` | `user.email` | Author email |
-|| `GIT_AUTHOR_DATE` | Author date | Format: `@<timestamp> <tz>` |
-|| `GIT_COMMITTER_NAME` | `user.name` | Committer name |
-|| `GIT_COMMITTER_EMAIL` | `user.email` | Committer email |
-|| `GIT_COMMITTER_DATE` | Committer date | Same format |
-|| `GIT_CONFIG` | All config files | Single config file (disables system/global) |
-|| `GIT_CONFIG_GLOBAL` | Global config | Override global config file |
-|| `GIT_CONFIG_SYSTEM` | System config | Override system config file |
-|| `GIT_EDITOR` | `core.editor` | Editor for commits |
-|| `GIT_DIFF_PATH_COUNTER` | — | Diff counter (in external diff) |
-|| `GIT_DIFF_PATH_TOTAL` | — | Total diff count |
-|| `GIT_EXTERNAL_DIFF` | `diff.external` | External diff command |
-|| `GIT_MERGE_VERBOSITY` | `merge.verbosity` | Merge verbosity |
-|| `GIT_TRACE` | — | Trace Git commands (1, 2, or path) |
-|| `GIT_TRACE_PACKET` | — | Trace pack protocol |
-|| `GIT_LITERAL_PATHSPECS` | — | Disable glob pathspecs |
+| Variable | Overrides | Description |
+|----------|----------|-------------|
+| `GIT_AUTHOR_NAME` | `user.name` | Author name for commits |
+| `GIT_AUTHOR_EMAIL` | `user.email` | Author email |
+| `GIT_AUTHOR_DATE` | Author date | Format: `@<timestamp> <tz>` |
+| `GIT_COMMITTER_NAME` | `user.name` | Committer name |
+| `GIT_COMMITTER_EMAIL` | `user.email` | Committer email |
+| `GIT_COMMITTER_DATE` | Committer date | Same format |
+| `GIT_CONFIG` | All config files | Single config file (disables system/global) |
+| `GIT_CONFIG_GLOBAL` | Global config | Override global config file |
+| `GIT_CONFIG_SYSTEM` | System config | Override system config file |
+| `GIT_EDITOR` | `core.editor` | Editor for commits |
+| `GIT_DIFF_PATH_COUNTER` | — | Diff counter (in external diff) |
+| `GIT_DIFF_PATH_TOTAL` | — | Total diff count |
+| `GIT_EXTERNAL_DIFF` | `diff.external` | External diff command |
+| `GIT_MERGE_VERBOSITY` | `merge.verbosity` | Merge verbosity |
+| `GIT_TRACE` | — | Trace Git commands (1, 2, or path) |
+| `GIT_TRACE_PACKET` | — | Trace pack protocol |
+| `GIT_LITERAL_PATHSPECS` | — | Disable glob pathspecs |
 
 ## Edge Cases and Known Issues
 

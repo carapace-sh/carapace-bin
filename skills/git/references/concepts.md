@@ -8,11 +8,11 @@ The foundational mental model for understanding Git — the three states, the co
 
 Git tracks three logical areas for every file:
 
-|| State | Location | Description |
-||-------|----------|-------------|
-|| **Committed** | `.git/objects/` | Safely stored in the local object database |
-|| **Modified** | Working tree | Changed but not yet staged |
-|| **Staged** | `.git/index` | Marked to go into the next commit |
+| State | Location | Description |
+|-------|----------|-------------|
+| **Committed** | `.git/objects/` | Safely stored in the local object database |
+| **Modified** | Working tree | Changed but not yet staged |
+| **Staged** | `.git/index` | Marked to go into the next commit |
 
 This gives rise to the three "areas" developers work with:
 
@@ -72,21 +72,21 @@ Git history is a **directed acyclic graph** of commit objects:
 
 ### Commit Graph Properties
 
-|| Property | Description |
-||----------|-------------|
-|| **Acyclic** | No commit can be its own ancestor (enforced by hash uniqueness) |
-|| **Directed** | Parent pointers are one-way (child → parent) |
-|| **Reachability** | From any ref, all ancestors are reachable; unreachable objects are garbage |
-|| **Merge commits** | Commits with ≥2 parents represent merged histories |
+| Property | Description |
+|----------|-------------|
+| **Acyclic** | No commit can be its own ancestor (enforced by hash uniqueness) |
+| **Directed** | Parent pointers are one-way (child → parent) |
+| **Reachability** | From any ref, all ancestors are reachable; unreachable objects are garbage |
+| **Merge commits** | Commits with ≥2 parents represent merged histories |
 
 ## HEAD — The Current Commit
 
 `HEAD` is a symbolic reference pointing to the current commit the working tree is based on:
 
-|| State | HEAD points to | Behavior |
-||-------|---------------|----------|
-|| **Attached** | A branch name (e.g. `refs/heads/main`) | Moving HEAD moves the branch |
-|| **Detached** | A specific commit SHA | HEAD does not move any branch |
+| State | HEAD points to | Behavior |
+|-------|---------------|----------|
+| **Attached** | A branch name (e.g. `refs/heads/main`) | Moving HEAD moves the branch |
+| **Detached** | A specific commit SHA | HEAD does not move any branch |
 
 ### Detached HEAD
 
@@ -115,10 +115,10 @@ New commits made in detached HEAD are **orphaned** when you switch away — they
 
 Git commands are divided into two categories:
 
-|| Category | Purpose | Examples |
-||----------|---------|---------|
-|| **Porcelain** | User-facing, high-level | `git add`, `git commit`, `git log`, `git merge` |
-|| **Plumbing** | Low-level, scriptable | `git hash-object`, `git cat-file`, `git update-index` |
+| Category | Purpose | Examples |
+|----------|---------|---------|
+| **Porcelain** | User-facing, high-level | `git add`, `git commit`, `git log`, `git merge` |
+| **Plumbing** | Low-level, scriptable | `git hash-object`, `git cat-file`, `git update-index` |
 
 Plumbing commands are building blocks that porcelain commands are composed from. They are stable for scripting and expose the raw object model. See [internals.md](internals.md) for the full plumbing reference.
 
@@ -184,10 +184,10 @@ A bare repository (`git init --bare`) has **no working tree** — the `.git/` co
 
 ## Hash Algorithms
 
-|| Algorithm | Status | Hash length | Example |
-||-----------|--------|-------------|---------|
-|| **SHA-1** | Default | 40 hex chars | `da39a3ee5e6b4b0d3255bfef95601890afd80709` |
-|| **SHA-256** | Experimental | 64 hex chars | Enabled via `init.defaultHash` |
+| Algorithm | Status | Hash length | Example |
+|-----------|--------|-------------|---------|
+| **SHA-1** | Default | 40 hex chars | `da39a3ee5e6b4b0d3255bfef95601890afd80709` |
+| **SHA-256** | Experimental | 64 hex chars | Enabled via `init.defaultHash` |
 
 SHA-1 collision attacks exist (SHAttered, 2017) but are not practical against Git's hash format because the collision must match the `type size\0content` prefix. SHA-256 support is being rolled out for future-proofing.
 
