@@ -1,23 +1,11 @@
 ---
 name: git
 description: >
-  Use when working with Git — the distributed version control system. Covers the object model,
-  references, the index/staging area, branching and merging, rebasing and history rewriting,
-  remotes and transfer protocols, diffs and conflict resolution, configuration, hooks,
-  worktrees and submodules, plumbing commands, packfiles, and common workflows.
-  Triggers on: "git", "git object", "git blob", "git tree", "git commit object", "git tag",
-  "git branch", "git ref", "git HEAD", "git index", "git staging area", "git staging",
-  "git merge", "git rebase", "git cherry-pick", "git remote", "git fetch", "git push",
-  "git pull", "git diff", "git conflict", "git config", "git hook", "git worktree",
-  "git submodule", "git packfile", "git plumbing", "git porcelain", "git reflog",
-  "git stash", "git bisect", "git blame", "git reset", "git checkout", "git switch",
-  "git restore", "git sparse-checkout", "git transfer protocol", "git pack protocol",
-  "git shallow clone", "git bare repo", "git detached HEAD", "git fast-forward",
-  "git merge commit", "git squash merge", "git orphan branch", "git refspec",
-  "git upstream", "git tracking branch", "git OID", "git hash", "git SHA-1",
-  "git object store", "git loose object", "git delta", "git thin pack",
-  "git alternates", "git replace", "git graft", "git notes", "git attribute",
-  "gitignore", "git LFS", "git filter-branch", "git filter-repo".
+  Use when working with Git — object model, references, index, branching, merging,
+  rebasing, remotes, diffs, config, hooks, worktrees, submodules, and plumbing commands.
+  Triggers on: "git", "git branch", "git commit", "git merge", "git rebase",
+  "git checkout", "git stash", "git reset", "git submodule", "git worktree",
+  "git blame", "git bisect", "git reflog", "git hooks", "git config".
 user-invocable: true
 ---
 
