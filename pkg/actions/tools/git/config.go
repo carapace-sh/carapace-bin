@@ -222,8 +222,8 @@ func ActionConfigValues(config string) carapace.Action {
 			"am.keepcr":                                 _bool,
 			"am.messageId":                              _bool,
 			"am.threeWay":                               _bool,
-			"apply.ignoreWhitespace":                    carapace.ActionValues("change", "no", "none", "never", "false").StyleF(style.ForKeyword),
-			"apply.whitespace":                          _bool,
+			"apply.ignoreWhitespace":                    carapace.ActionValues("all", "change", "no", "none", "never", "false", "true").StyleF(style.ForKeyword),
+			"apply.whitespace":                          carapace.ActionValues("warn", "error", "error-all", "strip", "fix").StyleF(style.ForKeyword),
 			"attr.tree":                                 carapace.ActionValues("ref"),
 			"author.email":                              ActionAuthors().NoSpace(),
 			"author.name":                               ActionAuthors(),
@@ -238,7 +238,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"branch.autoSetupMerge":                     _bool,
 			"branch.autoSetupRebase":                    _bool,
 			"branch.sort":                               ActionFieldNames(), // TODO verify
-			"bundle.version":                            carapace.ActionValues("1"),
+			"bundle.version":                            carapace.ActionValues("1", "2"),
 			"bundle.mode":                               carapace.ActionValues("all", "any").StyleF(style.ForKeyword),
 			"bundle.heuristic":                          carapace.ActionValues("creationToken"),
 			"checkout.defaultRemote":                    ActionRemotes(),
@@ -246,7 +246,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"checkout.workers":                          carapace.ActionValues().Usage("number of parallel workers"),
 			"checkout.thresholdForParallelism":          carapace.ActionValues().Usage("minimum number of files to attempt parallel checkout"),
 			"clean.requireForce":                        _bool,
-			"clone.defaultRemoteName":                   ActionRemotes(),
+			"clone.defaultRemoteName":                   carapace.ActionValues().Usage("default remote name for new clones (e.g. origin)"),
 			"clone.rejectShallow":                       _bool,
 			"clone.filterSubmodules":                    _bool,
 			"color.advice":                              ActionColorModes(),
@@ -331,7 +331,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"color.status.updated":                      ActionColors(),
 			"color.transport":                           _bool,
 			"color.transport.rejected":                  ActionColors(),
-			"color.ui":                                  _bool,
+			"color.ui":                                  ActionColorModes(),
 			"column.branch":                             carapace.ActionValues("column", "row", "plain", "dense").StyleF(style.ForKeyword),
 			"column.clean":                              ActionColumnLayoutModes().UniqueList(","),
 			"column.status":                             ActionColumnLayoutModes().UniqueList(","),
@@ -353,7 +353,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"core.abbrev":                               carapace.ActionValues("auto", "no").StyleF(style.ForKeyword),
 			"core.alternateRefsCommand":                 bridge.ActionCarapaceBin().SplitP(),
 			"core.alternateRefsPrefixes":                carapace.ActionValues().Usage("prefixes to use when listing alternate refs"),
-			"core.askPass":                              _bool,
+			"core.askPass":                              bridge.ActionCarapaceBin().Split(),
 			"core.attributesFile":                       carapace.ActionFiles(),
 			"core.autocrlf":                             _bool,
 			"core.bare":                                 _bool,
@@ -385,7 +385,7 @@ func ActionConfigValues(config string) carapace.Action {
 			),
 			"core.fsyncObjectFiles": _bool,
 			"core.gitProxy":         bridge.ActionCarapaceBin().Split(),
-			"core.hideDotFiles":     _bool,
+			"core.hideDotFiles":     carapace.ActionValues("true", "false", "dotGitOnly").StyleF(style.ForKeyword),
 			"core.hooksPath":        carapace.ActionDirectories(),
 			"core.ignoreCase":       _bool,
 			"core.ignoreStat":       _bool,
@@ -407,7 +407,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"core.quotePath":         _bool,
 			// "core.repositoryFormatVersion":
 			"core.restrictinheritedhandles": carapace.ActionValues("auto", "true", "false").StyleF(style.ForKeyword),
-			"core.safecrlf":                 _bool,
+			"core.safecrlf":                 carapace.ActionValues("true", "false", "warn").StyleF(style.ForKeyword),
 			"core.sharedRepository": carapace.Batch(
 				carapace.ActionValuesDescribed(
 					"group", "shareable between several users in a group",
@@ -585,7 +585,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"http.noEPSV":                 _bool,
 			"http.pinnedPubkey":           carapace.ActionValues().Usage("pinned public key"),
 			"http.postBuffer":             carapace.ActionValues().Usage("buffer size for smart HTTP POST"),
-			"http.proactiveAuth":          carapace.ActionValues("basic", "digest", "negotiate", "ntlm"),
+			"http.proactiveAuth":          carapace.ActionValues("basic", "digest", "negotiate", "ntlm", "none"),
 			"http.proxy":                  carapace.ActionValues().Usage("proxy to use for HTTP/HTTPS"),
 			"http.proxyAuthMethod": carapace.ActionValuesDescribed(
 				"anyauth", "Automatically pick a suitable authentication method",
@@ -664,7 +664,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"merge.conflictStyle":           carapace.ActionValues("merge", "diff3", "zdiff3"),
 			"merge.defaultToUpstream":       _bool,
 			"merge.directoryRenames":        carapace.ActionValues("conflict", "true", "false"),
-			"merge.ff":                      _bool,
+			"merge.ff":                      carapace.ActionValues("true", "false", "only").StyleF(style.ForKeyword),
 			"merge.guitool":                 ActionDiffTools(),
 			"merge.log":                     _bool,
 			"merge.renameLimit":             carapace.ActionValues().Usage("number of files to consider for rename detection"),
@@ -706,7 +706,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"protocol.version":              carapace.ActionValues("0", "1", "2"),
 			"pull.autoStash":                _bool,
 			"pull.ff":                       _bool,
-			"pull.rebase":                   _bool,
+			"pull.rebase":                   carapace.ActionValues("true", "false", "merges", "interactive").StyleF(style.ForKeyword),
 			"push.autoSetupRemote":          _bool,
 			"push.default": carapace.ActionValuesDescribed(
 				"nothing", "do not push anything",
@@ -717,7 +717,7 @@ func ActionConfigValues(config string) carapace.Action {
 				"matching", "push all branches that have a matching branch elsewhere",
 			),
 			"push.followTags":                     _bool,
-			"push.gpgSign":                        carapace.ActionValues("if-asked", "never"),
+			"push.gpgSign":                        carapace.ActionValues("if-asked", "never", "true", "false").StyleF(style.ForKeyword),
 			"push.negotiate":                      _bool,
 			"push.pushOption":                     carapace.ActionValues().Usage("push options").UniqueList("\n"),
 			"push.recurseSubmodules":              carapace.ActionValues("check", "on-demand", "only", "no"),
@@ -811,7 +811,20 @@ func ActionConfigValues(config string) carapace.Action {
 			"tag.forceSignAnnotated":              _bool,
 			"tag.gpgSign":                         _bool,
 			"tag.sort":                            ActionFieldNames(),
-			"tar.umask":                           _bool,
+			"tar.umask": carapace.Batch(
+				carapace.ActionValuesDescribed(
+					"true", "use the umask of the current process",
+					"false", "use the default permission (usually 0002)",
+					"umask", "use the umask of the current process",
+					"0", "use the default permission (usually 0002)",
+				),
+				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					if strings.HasPrefix(c.Value, "0") {
+						return fs.ActionFileModesNumeric().Prefix("0")
+					}
+					return carapace.ActionValues("0").NoSpace('0')
+				}),
+			).ToA(),
 			"trace2.configParams":                 carapace.ActionValues().Usage("config parameters to trace"),
 			"trace2.destinationDebug":             _bool,
 			"trace2.envVars":                      carapace.ActionValues().Usage("environment variables to trace"),
