@@ -7,12 +7,14 @@ import (
 	"os"
 )
 
+//lint:ignore U1000 keep for future use
 type mcpCompleteMacroRequest struct {
 	Macro      string   `json:"macro,omitempty"`
 	Args       []string `json:"args,omitempty"`
 	Executable string   `json:"executable,omitempty"`
 }
 
+//lint:ignore U1000 keep for future use
 func (s *MCPServer) handleCompleteMacro(args json.RawMessage) (map[string]any, error) {
 	var request mcpCompleteMacroRequest
 	if len(args) != 0 {
@@ -28,6 +30,7 @@ func (s *MCPServer) handleCompleteMacro(args json.RawMessage) (map[string]any, e
 	return mcpTextResult(completions, false), nil
 }
 
+//lint:ignore U1000 keep for future use
 func (s *MCPServer) completeMacro(request mcpCompleteMacroRequest) (string, error) {
 	if request.Macro == "" {
 		return "", errors.New("macro is required")
