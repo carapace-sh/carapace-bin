@@ -15,7 +15,7 @@ const bashCompleter = `_carapace_completer() {
   declare -x CARAPACE_SHELL_ALIASES="$(alias -p | sed 's/alias //;s/=.*//')"
   declare -x CARAPACE_SHELL_BUILTINS="$(compgen -b)"
   declare -x CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)"
-  declare -x CARAPACE_SHELL_JOBS="$(jobs -p 2>/dev/null | while read -r pid; do echo "%$((++n))"; done)"
+  declare -x CARAPACE_SHELL_JOBS="$(jobs 2>/dev/null | sed -n '/Running\|Stopped/s/^\[\([0-9]*\)\].*/%\1/p')"
   declare -x CARAPACE_SHELL_VARIABLES="$(compgen -v)"
 
   local command="${COMP_WORDS[0]}" nospace data compline="${COMP_LINE:0:${COMP_POINT}}"
