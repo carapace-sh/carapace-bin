@@ -20,15 +20,15 @@ func ReadCompleters(dir, goos string) (completer.CompleterMap, error) {
 	// TODO shell specific completers
 	// TODO distro specific completers (arch,ubuntu,...)
 	groups := map[string][]string{
-		"android": {"common", "unix", "linux", "android"},
-		"darwin":  {"common", "unix", "bsd", "darwin"},
-		"freebsd": {"common", "unix", "bsd", "freebsd"},
-		"linux":   {"common", "unix", "linux"},
-		"netbsd":  {"common", "unix", "bsd", "netbsd"},
-		"openbsd": {"common", "unix", "bsd", "openbsd"},
+		"android": {"common", "unix", "linux", "android", "bash"},
+		"darwin":  {"common", "unix", "bsd", "darwin", "bash"},
+		"freebsd": {"common", "unix", "bsd", "freebsd", "bash"},
+		"linux":   {"common", "unix", "linux", "bash"},
+		"netbsd":  {"common", "unix", "bsd", "netbsd", "bash"},
+		"openbsd": {"common", "unix", "bsd", "openbsd", "bash"},
 		"windows": {"common", "windows"},
 
-		"force_all": {"common", "unix", "linux", "bsd", "darwin", "android", "windows", "freebsd", "netbsd", "openbsd"},
+		"force_all": {"common", "unix", "linux", "bsd", "darwin", "android", "windows", "freebsd", "netbsd", "openbsd", "bash"},
 	}
 
 	completers, err := readCompleters(dir)

@@ -12,8 +12,11 @@ const bashCompleter = `_carapace_completer() {
   export COMP_WORDBREAKS
 
   declare -x CARAPACE_SHELL=bash
+  declare -x CARAPACE_SHELL_ALIASES="$(alias -p | sed 's/alias //;s/=.*//')"
   declare -x CARAPACE_SHELL_BUILTINS="$(compgen -b)"
   declare -x CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)"
+  declare -x CARAPACE_SHELL_JOBS="$(jobs -p 2>/dev/null | while read -r pid; do echo "%$((++n))"; done)"
+  declare -x CARAPACE_SHELL_VARIABLES="$(compgen -v)"
 
   local command="${COMP_WORDS[0]}" nospace data compline="${COMP_LINE:0:${COMP_POINT}}"
 
