@@ -20,9 +20,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().Bool("any", false, "return as soon as first completes")
 	rootCmd.Flags().BoolS("h", "h", false, "display help")
 	rootCmd.Flags().BoolS("n", "n", false, "return as soon as first completes")
-	rootCmd.Flags().Bool("any", false, "return as soon as first completes")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		shell.ActionJobSpecs(),

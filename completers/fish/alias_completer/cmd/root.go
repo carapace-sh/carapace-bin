@@ -19,9 +19,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("h", "h", false, "display help")
 	rootCmd.Flags().BoolS("s", "s", false, "save to fish configuration directory")
 	rootCmd.Flags().Bool("save", false, "save to fish configuration directory")
-	rootCmd.Flags().BoolS("h", "h", false, "display help")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionValues(),

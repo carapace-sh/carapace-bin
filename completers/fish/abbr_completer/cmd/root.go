@@ -34,8 +34,8 @@ func init() {
 	rootCmd.Flags().Bool("query", false, "query abbreviations")
 	rootCmd.Flags().String("regex", "", "match using regex")
 	rootCmd.Flags().String("rename", "", "rename an abbreviation")
-	rootCmd.Flags().String("set-cursor", "", "set cursor position marker")
 	rootCmd.Flags().BoolS("s", "s", false, "show all abbreviations")
+	rootCmd.Flags().String("set-cursor", "", "set cursor position marker")
 	rootCmd.Flags().Bool("show", false, "show all abbreviations")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

@@ -19,14 +19,14 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("P", "P", false, "PATH only")
 	rootCmd.Flags().BoolS("a", "a", false, "all definitions")
 	rootCmd.Flags().Bool("all", false, "all definitions")
 	rootCmd.Flags().String("color", "", "color output")
 	rootCmd.Flags().BoolS("f", "f", false, "no functions")
-	rootCmd.Flags().Bool("no-functions", false, "no functions")
-	rootCmd.Flags().BoolS("h", "h", false, "display help")
-	rootCmd.Flags().BoolS("P", "P", false, "PATH only")
 	rootCmd.Flags().Bool("force-path", false, "PATH only")
+	rootCmd.Flags().BoolS("h", "h", false, "display help")
+	rootCmd.Flags().Bool("no-functions", false, "no functions")
 	rootCmd.Flags().BoolS("p", "p", false, "print path")
 	rootCmd.Flags().Bool("path", false, "print path")
 	rootCmd.Flags().BoolS("q", "q", false, "suppress output")

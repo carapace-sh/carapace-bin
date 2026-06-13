@@ -19,10 +19,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("V", "V", false, "explain sequence")
 	rootCmd.Flags().BoolS("c", "c", false, "continuous mode")
 	rootCmd.Flags().Bool("continuous", false, "continuous mode")
 	rootCmd.Flags().BoolS("h", "h", false, "display help")
-	rootCmd.Flags().BoolS("V", "V", false, "explain sequence")
-	rootCmd.Flags().Bool("verbose", false, "explain sequence")
 	rootCmd.Flags().BoolS("v", "v", false, "display version")
+	rootCmd.Flags().Bool("verbose", false, "explain sequence")
 }

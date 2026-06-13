@@ -20,8 +20,8 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("S", "S", false, "symbolic mode")
-	rootCmd.Flags().Bool("symbolic", false, "symbolic mode")
+	rootCmd.Flags().Bool("as-command", false, "output reusable form")
 	rootCmd.Flags().BoolS("h", "h", false, "display help")
 	rootCmd.Flags().BoolS("p", "p", false, "output reusable form")
-	rootCmd.Flags().Bool("as-command", false, "output reusable form")
+	rootCmd.Flags().Bool("symbolic", false, "symbolic mode")
 }

@@ -20,11 +20,11 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("h", "h", false, "display help")
 	rootCmd.Flags().BoolS("n", "n", false, "list all defined builtins")
 	rootCmd.Flags().Bool("names", false, "list all defined builtins")
 	rootCmd.Flags().BoolS("q", "q", false, "query builtins")
 	rootCmd.Flags().Bool("query", false, "query builtins")
-	rootCmd.Flags().BoolS("h", "h", false, "display help")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		shell.ActionBuiltins(),
