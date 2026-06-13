@@ -23,8 +23,4 @@ func init() {
 	rootCmd.Flags().BoolS("R", "R", false, "like -e")
 	rootCmd.Flags().BoolS("n", "n", false, "do not output a trailing newline")
 	rootCmd.Flags().BoolS("z", "z", false, "push arguments onto editing buffer stack")
-
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionValues(),
-	)
 }

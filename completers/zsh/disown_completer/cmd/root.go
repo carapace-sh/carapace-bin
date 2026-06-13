@@ -20,10 +20,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("a", "a", false, "remove all jobs")
-	rootCmd.Flags().BoolS("r", "r", false, "remove all running jobs")
-
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		shell.ActionJobSpecs(),
+		shell.ActionJobSpecs().FilterArgs(),
 	)
 }

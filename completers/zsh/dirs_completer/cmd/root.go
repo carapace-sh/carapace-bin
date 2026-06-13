@@ -23,8 +23,4 @@ func init() {
 	rootCmd.Flags().BoolS("l", "l", false, "produce a longer listing")
 	rootCmd.Flags().BoolS("p", "p", false, "print one entry per line")
 	rootCmd.Flags().BoolS("v", "v", false, "print one entry per line with position index")
-
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionValues(),
-	)
 }

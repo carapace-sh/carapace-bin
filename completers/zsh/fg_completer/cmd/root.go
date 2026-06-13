@@ -21,6 +21,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		shell.ActionJobSpecs(),
+		shell.ActionJobSpecs().FilterArgs(),
 	)
 }

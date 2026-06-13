@@ -20,6 +20,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	// TODO missing flags and support for `+flag` notation
 	rootCmd.Flags().BoolS("g", "g", false, "define a global alias")
 	rootCmd.Flags().BoolS("s", "s", false, "define a suffix alias")
 

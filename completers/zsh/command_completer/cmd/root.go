@@ -19,6 +19,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 
 	rootCmd.Flags().BoolS("p", "p", false, "use a default PATH that is guaranteed to find all the standard utilities")
 

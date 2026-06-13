@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/number"
 	"github.com/spf13/cobra"
 )
 
@@ -19,11 +20,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("i", "i", false, "exit from loops running in interactive mode")
-
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues(
-			"1", "2", "3", "4", "5", "6", "7", "8", "9",
-		).Usage("loop count to exit"),
+		number.ActionRange(number.RangeOpts{Start: 1, End: 9}).
+			Usage("loop count to exit"),
 	)
 }

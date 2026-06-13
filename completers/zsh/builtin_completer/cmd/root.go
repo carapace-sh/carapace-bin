@@ -8,10 +8,11 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "builtin",
-	Short: "Execute shell builtins",
-	Long:  "https://zsh.sourceforge.io/Doc/Release/Shell-Builtin-Commands.html#index-builtin",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:                "builtin",
+	Short:              "Execute shell builtins",
+	Long:               "https://zsh.sourceforge.io/Doc/Release/Shell-Builtin-Commands.html#index-builtin",
+	Run:                func(cmd *cobra.Command, args []string) {},
+	DisableFlagParsing: true,
 }
 
 func Execute() error {

@@ -29,8 +29,4 @@ func init() {
 	rootCmd.Flags().BoolS("t", "t", false, "mark as tagged")
 	rootCmd.Flags().BoolS("u", "u", false, "uppercase conversion")
 	rootCmd.Flags().BoolS("x", "x", false, "export")
-
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionValues(),
-	)
 }

@@ -24,6 +24,6 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "refer to shell variables")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		shell.ActionVariables(),
+		shell.ActionVariables().FilterArgs(),
 	)
 }

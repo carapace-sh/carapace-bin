@@ -22,8 +22,4 @@ func init() {
 	rootCmd.Flags().BoolS("E", "E", false, "disable interpretation of backslash escapes")
 	rootCmd.Flags().BoolS("e", "e", false, "enable interpretation of backslash escapes")
 	rootCmd.Flags().BoolS("n", "n", false, "do not output a trailing newline")
-
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionValues(),
-	)
 }

@@ -19,6 +19,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 
 	rootCmd.Flags().BoolS("a", "a", false, "set the argv[0] string")
 	rootCmd.Flags().BoolS("c", "c", false, "clear the environment")

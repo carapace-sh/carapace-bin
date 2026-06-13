@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/number"
 	"github.com/spf13/cobra"
 )
 
@@ -20,8 +21,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues(
-			"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-		).Usage("exit status"),
+		number.ActionRange(number.RangeOpts{Start: 0, End: 9}).
+			Usage("exit status"),
 	)
 }

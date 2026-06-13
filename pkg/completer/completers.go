@@ -35,8 +35,22 @@ func (c Completers) Less(i, j int) bool { // TODO this needs testing (and likely
 
 	// TODO shells? more specific stuff
 	groupPriority := map[string]int{
-		"user":   -21, // user specs
-		"system": -20, // system specs
+		"user":   -41, // user specs
+		"system": -40, // system specs
+
+		// CARAPACE_SHELL: -35 (see below)
+
+		"bash":       -30,
+		"bash-ble":   -29,
+		"cmd-clink":  -28,
+		"elvish":     -27,
+		"fish":       -26,
+		"nushell":    -25,
+		"oil":        -24,
+		"powershell": -23,
+		"tcsh":       -22,
+		"xonsh":      -21,
+		"zsh":        -20,
 
 		// runtime.GOOS: -15 (see below)
 
@@ -54,6 +68,21 @@ func (c Completers) Less(i, j int) bool { // TODO this needs testing (and likely
 		"common":  -1,
 		// TODO support pseudo os 'termux'?
 		"bridge": 1, // lower priority than anything internal
+	}
+
+	switch b := os.Getenv("CARAPACE_SHELL"); b { // TODO public access of env in carapace
+	case "bash",
+		"bash-ble",
+		"cmd-clink",
+		"elvish",
+		"fish",
+		"nushell",
+		"oil",
+		"powershell",
+		"tcsh",
+		"xonsh",
+		"zsh":
+		groupPriority[b] = -35
 	}
 
 	// TODO urks - this is getting a bit out of hand. use copy map? needs to still support `force_all` build tag

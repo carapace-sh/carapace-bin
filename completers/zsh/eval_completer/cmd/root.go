@@ -7,10 +7,11 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "eval",
-	Short: "Evaluate arguments as shell commands",
-	Long:  "https://zsh.sourceforge.io/Doc/Release/Shell-Builtin-Commands.html#index-eval",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:                "eval",
+	Short:              "Evaluate arguments as shell commands",
+	Long:               "https://zsh.sourceforge.io/Doc/Release/Shell-Builtin-Commands.html#index-eval",
+	Run:                func(cmd *cobra.Command, args []string) {},
+	DisableFlagParsing: true,
 }
 
 func Execute() error {

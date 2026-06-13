@@ -25,6 +25,6 @@ func init() {
 	rootCmd.Flags().BoolS("w", "w", false, "describe how word would be interpreted")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionExecutables(),
+		carapace.ActionExecutables().FilterArgs(),
 	)
 }

@@ -18,8 +18,4 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionValues(),
-	)
 }

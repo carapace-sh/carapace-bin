@@ -20,8 +20,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("f", "f", false, "refer to shell functions")
-	rootCmd.Flags().BoolS("n", "n", false, "remove the export property from each name")
 	rootCmd.Flags().BoolS("p", "p", false, "display a list of all exported variables or functions")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

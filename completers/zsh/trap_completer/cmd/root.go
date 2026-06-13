@@ -19,6 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	// TODO fix positional completion
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValues(
 			"HUP", "INT", "QUIT", "ILL", "TRAP", "IOT", "BUS", "FPE", "KILL",

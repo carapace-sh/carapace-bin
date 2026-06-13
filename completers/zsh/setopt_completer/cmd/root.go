@@ -53,6 +53,6 @@ func init() {
 			"silent", "singlecommands", "singlelinezle", "smartcomplete", "sunkeyboardhack",
 			"transposechars", "trapsasync", "unset", "verbose", "vi", "warncreateglobal",
 			"warnnestedvar", "xtrace", "zle",
-		),
+		).FilterArgs(),
 	)
 }

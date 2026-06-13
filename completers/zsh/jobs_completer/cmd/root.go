@@ -24,6 +24,6 @@ func init() {
 	rootCmd.Flags().BoolS("p", "p", false, "list only process IDs")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		shell.ActionJobSpecs(),
+		shell.ActionJobSpecs().FilterArgs(),
 	)
 }

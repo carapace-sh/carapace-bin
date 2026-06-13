@@ -23,6 +23,6 @@ func init() {
 	rootCmd.Flags().BoolS("a", "a", false, "remove all aliases")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		shell.ActionAliases(),
+		shell.ActionAliases().FilterArgs(),
 	)
 }

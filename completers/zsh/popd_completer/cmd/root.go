@@ -22,7 +22,5 @@ func init() {
 	rootCmd.Flags().BoolS("n", "n", false, "suppress the normal change of directory")
 	rootCmd.Flags().BoolS("q", "q", false, "quiet mode")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionValues("+N", "-N").Usage("specify entry to remove"),
-	)
+	// TODO  positional completion
 }

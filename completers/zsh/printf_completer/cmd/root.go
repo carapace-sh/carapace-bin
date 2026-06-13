@@ -24,8 +24,4 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValues().Usage("format string"),
 	)
-
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionValues(),
-	)
 }

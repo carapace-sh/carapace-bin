@@ -19,12 +19,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("c", "c", false, "clear the history list")
 	rootCmd.Flags().BoolS("d", "d", false, "delete the specified history entry")
 	rootCmd.Flags().BoolS("n", "n", false, "don't include event numbers")
 	rootCmd.Flags().BoolS("p", "p", false, "perform history expansion")
 	rootCmd.Flags().BoolS("r", "r", false, "read the history file")
-	rootCmd.Flags().BoolS("w", "w", false, "write the history file")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionValues(),

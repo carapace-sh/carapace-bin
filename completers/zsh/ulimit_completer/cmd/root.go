@@ -22,8 +22,4 @@ func init() {
 	rootCmd.Flags().BoolS("H", "H", false, "hard limit")
 	rootCmd.Flags().BoolS("S", "S", false, "soft limit")
 	rootCmd.Flags().BoolS("a", "a", false, "all limits")
-
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionValues(),
-	)
 }
