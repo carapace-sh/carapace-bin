@@ -82,14 +82,14 @@ var generateAllCmd = &cobra.Command{
 
 func filterByGoos(all completer.CompleterMap, goos string) completer.CompleterMap {
 	groups := map[string][]string{
-		"android":   {"common", "unix", "linux", "android", "bash"},
-		"darwin":    {"common", "unix", "bsd", "darwin", "bash"},
-		"freebsd":   {"common", "unix", "bsd", "freebsd", "bash"},
-		"linux":     {"common", "unix", "linux", "bash"},
-		"netbsd":    {"common", "unix", "bsd", "netbsd", "bash"},
-		"openbsd":   {"common", "unix", "bsd", "openbsd", "bash"},
+		"android":   {"common", "unix", "linux", "android", "bash", "zsh"},
+		"darwin":    {"common", "unix", "bsd", "darwin", "bash", "zsh"},
+		"freebsd":   {"common", "unix", "bsd", "freebsd", "bash", "zsh"},
+		"linux":     {"common", "unix", "linux", "bash", "zsh"},
+		"netbsd":    {"common", "unix", "bsd", "netbsd", "bash", "zsh"},
+		"openbsd":   {"common", "unix", "bsd", "openbsd", "bash", "zsh"},
 		"windows":   {"common", "windows"},
-		"force_all": {"common", "unix", "linux", "bsd", "darwin", "android", "windows", "freebsd", "netbsd", "openbsd", "bash"},
+		"force_all": {"common", "unix", "linux", "bsd", "darwin", "android", "windows", "freebsd", "netbsd", "openbsd", "bash", "zsh"},
 	}
 
 	filtered := make(completer.CompleterMap)
