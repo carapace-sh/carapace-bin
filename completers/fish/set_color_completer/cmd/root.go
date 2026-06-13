@@ -21,8 +21,8 @@ func init() {
 
 	rootCmd.Flags().StringS("b", "b", "", "background color")
 	rootCmd.Flags().String("background", "", "background color")
+	rootCmd.Flags().Bool("bold", false, "bold mode")
 	rootCmd.Flags().BoolS("c", "c", false, "print named colors")
-	rootCmd.Flags().Bool("print-colors", false, "print named colors")
 	rootCmd.Flags().BoolS("d", "d", false, "dim mode")
 	rootCmd.Flags().Bool("dim", false, "dim mode")
 	rootCmd.Flags().StringS("f", "f", "", "foreground color")
@@ -30,7 +30,7 @@ func init() {
 	rootCmd.Flags().BoolS("h", "h", false, "display help")
 	rootCmd.Flags().StringS("i", "i", "", "italics")
 	rootCmd.Flags().BoolS("o", "o", false, "bold mode")
-	rootCmd.Flags().Bool("bold", false, "bold mode")
+	rootCmd.Flags().Bool("print-colors", false, "print named colors")
 	rootCmd.Flags().StringS("r", "r", "", "reverse mode")
 	rootCmd.Flags().Bool("reset", false, "reset formatting")
 	rootCmd.Flags().StringS("s", "s", "", "strikethrough")

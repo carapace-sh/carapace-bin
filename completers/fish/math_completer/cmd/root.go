@@ -23,9 +23,9 @@ func init() {
 	rootCmd.Flags().String("base", "", "numeric base")
 	rootCmd.Flags().BoolS("h", "h", false, "display help")
 	rootCmd.Flags().StringS("m", "m", "", "scale behavior")
-	rootCmd.Flags().String("scale-mode", "", "scale behavior")
 	rootCmd.Flags().StringS("s", "s", "", "decimal places")
 	rootCmd.Flags().String("scale", "", "decimal places")
+	rootCmd.Flags().String("scale-mode", "", "scale behavior")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"base":       carapace.ActionValues("hex", "octal", "16", "8"),

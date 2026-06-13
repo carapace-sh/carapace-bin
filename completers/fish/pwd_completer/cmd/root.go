@@ -20,8 +20,8 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("L", "L", false, "logical path")
-	rootCmd.Flags().Bool("logical", false, "logical path")
 	rootCmd.Flags().BoolS("P", "P", false, "physical path")
-	rootCmd.Flags().Bool("physical", false, "physical path")
 	rootCmd.Flags().BoolS("h", "h", false, "display help")
+	rootCmd.Flags().Bool("logical", false, "logical path")
+	rootCmd.Flags().Bool("physical", false, "physical path")
 }
