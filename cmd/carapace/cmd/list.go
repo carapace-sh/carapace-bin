@@ -4,12 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"maps"
+	"os"
 	"slices"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/shim"
 	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/env"
 	"github.com/carapace-sh/carapace-bridge/pkg/choices"
 	"github.com/spf13/cobra"
 )
@@ -25,6 +27,11 @@ var listCmd = &cobra.Command{
 					carapace.LOG.Println(err.Error())
 				}
 			}()
+		}
+
+		if cmd.Flag("all").Changed {
+			os.Setenv(env.CARAPACE_EXCLUDES, "")
+			os.Setenv(env.CARAPACE_BUILTINS, "bash,fish,zsh") // TODO add more later
 		}
 
 		filter := choices.Choice{}
@@ -55,10 +62,17 @@ var listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(listCmd).Standalone()
+	listCmd.Flags().Bool("all", false, "return unfiltered results")
 	listCmd.Flags().Bool("names", false, "only list names")
 	listCmd.Flags().Bool("init", false, "update shims")
 
 	carapace.Gen(listCmd).PositionalCompletion(
-		carapacebin.ActionCompleters(false).NoSpace(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if listCmd.Flag("all").Changed {
+				c.Setenv(env.CARAPACE_EXCLUDES, "")
+				c.Setenv(env.CARAPACE_BUILTINS, "bash,fish,zsh") // TODO add more later
+			}
+			return carapacebin.ActionCompleters(false).NoSpace().Invoke(c).ToA()
+		}),
 	)
 }
