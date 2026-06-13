@@ -13,11 +13,12 @@ func Zsh(completers []string) string {
 
 function _carapace_completer {
   local command="$(basename $words[1])"
-  local compline=${words[@]:0:$CURRENT}
+  local raw_compline=${words[@]:0:$CURRENT}
+  local compline=${(j: :)${(qq)${words[@]:0:$CURRENT}}}
   local IFS=$'\n'
   local lines
 
-  declare -x CARAPACE_COMPLINE="${words}"
+  declare -x CARAPACE_COMPLINE="${raw_compline}"
   declare -x CARAPACE_ZSH_HASH_DIRS="$(hash -d)"
   declare -x CARAPACE_SHELL=zsh
   declare -x CARAPACE_SHELL_ALIASES="$(alias | sed 's/alias //;s/=.*//')"
