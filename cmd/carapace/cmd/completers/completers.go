@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -45,6 +46,7 @@ func Completers(filter choices.Choice, parse bool) (completer.CompleterMap, erro
 	}
 
 	RemoveExcludes(m)
+	RemoveShellBuiltins(m)
 
 	// TODO add pseudo carapace completer here instead of cmd
 	AddCarapace(m)
@@ -62,6 +64,26 @@ func AddCarapace(m completer.CompleterMap) {
 		Url:         "https://carapace.sh",
 		Execute:     func() error { return nil }, // TODO verify - there shouldn't be any need for this
 	})
+}
+
+func RemoveShellBuiltins(m completer.CompleterMap) {
+	shellGroups := map[string]bool{
+		"bash": true,
+		"fish": true,
+		"zsh":  true,
+	}
+
+	builtins := env.Builtins()
+	for name, variants := range m {
+		filtered := slices.DeleteFunc(variants, func(c completer.Completer) bool {
+			return shellGroups[c.Group] && !slices.Contains(builtins, c.Group)
+		})
+		if len(filtered) == 0 {
+			delete(m, name)
+		} else {
+			m[name] = filtered
+		}
+	}
 }
 
 func RemoveExcludes[T any](m map[string]T) {
