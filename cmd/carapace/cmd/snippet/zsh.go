@@ -20,7 +20,7 @@ function _carapace_completer {
   declare -x CARAPACE_COMPLINE="${words}"
   declare -x CARAPACE_ZSH_HASH_DIRS="$(hash -d)"
   declare -x CARAPACE_SHELL=zsh
-  declare -x CARAPACE_SHELL_ALIASES="$(alias -p | sed 's/alias //;s/=.*//')"
+  declare -x CARAPACE_SHELL_ALIASES="$(alias | sed 's/alias //;s/=.*//')"
   declare -x CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})"
   declare -x CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})"
   declare -x CARAPACE_SHELL_JOBS="$(jobs -p 2>/dev/null | while read -r pid; do echo "%%$((++n))"; done)"
