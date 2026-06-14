@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -35,15 +35,15 @@ func init() {
 	rootCmd.AddCommand(rebaseCmd)
 
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
-		"after":         jj.ActionRevsets(jj.RevOption{}.Default()),
-		"before":        jj.ActionRevsets(jj.RevOption{}.Default()),
-		"branch":        jj.ActionRevsets(jj.RevOption{LocalBookmarks: true, RemoteBookmarks: true, Tags: true}),
-		"destination":   jj.ActionRevsets(jj.RevOption{}.Default()),
-		"insert-after":  jj.ActionRevsets(jj.RevOption{}.Default()),
-		"insert-before": jj.ActionRevsets(jj.RevOption{}.Default()),
-		"onto":          jj.ActionRevsets(jj.RevOption{}.Default()),
-		"revision":      jj.ActionRevsets(jj.RevOption{}.Default()),
-		"revisions":     jj.ActionRevsets(jj.RevOption{}.Default()),
-		"source":        jj.ActionRevsets(jj.RevOption{}.Default()),
+		"after":         jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"before":        jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"branch":        jj.ActionRevsets(jj.RevOpts{LocalBookmarks: true, RemoteBookmarks: true, Tags: true}),
+		"destination":   jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"insert-after":  jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"insert-before": jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"onto":          jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"revision":      jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"revisions":     jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"source":        jj.ActionRevsets(jj.RevOpts{}.Default()),
 	})
 }

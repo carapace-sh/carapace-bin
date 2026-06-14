@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -38,10 +38,11 @@ func init() {
 	diffCmd.MarkFlagsMutuallyExclusive("name-only", "summary")
 
 	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
-		"from":      jj.ActionRevsets(jj.RevOption{}.Default()),
-		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()),
-		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()),
-		"to":        jj.ActionRevsets(jj.RevOption{}.Default()),
+		"from":      jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"template":  jj.ActionTemplates(),
+		"to":        jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"tool":      bridge.ActionCarapaceBin().Split(),
 	})
 

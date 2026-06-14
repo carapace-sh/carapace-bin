@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -47,7 +47,7 @@ func init() {
 
 	// TODO complete gerrit flags
 	carapace.Gen(gerrit_uploadCmd).FlagCompletion(carapace.ActionMap{
-		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()).UniqueList(","),
-		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()).UniqueList(","),
+		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),
+		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),
 	})
 }

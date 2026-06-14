@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -25,12 +25,12 @@ func init() {
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(newCmd).FlagCompletion(carapace.ActionMap{
-		"after":         jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
-		"before":        jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
-		"insert-after":  jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
-		"insert-before": jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
+		"after":         jj.ActionRevsets(jj.RevOpts{}.Default()).FilterArgs(),
+		"before":        jj.ActionRevsets(jj.RevOpts{}.Default()).FilterArgs(),
+		"insert-after":  jj.ActionRevsets(jj.RevOpts{}.Default()).FilterArgs(),
+		"insert-before": jj.ActionRevsets(jj.RevOpts{}.Default()).FilterArgs(),
 	})
 	carapace.Gen(newCmd).PositionalAnyCompletion(
-		jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
+		jj.ActionRevsets(jj.RevOpts{}.Default()).FilterArgs(),
 	)
 }

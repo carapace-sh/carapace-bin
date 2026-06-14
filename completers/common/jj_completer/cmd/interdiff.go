@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -32,8 +32,8 @@ func init() {
 	rootCmd.AddCommand(interdiffCmd)
 
 	carapace.Gen(interdiffCmd).FlagCompletion(carapace.ActionMap{
-		"from": jj.ActionRevsets(jj.RevOption{}.Default()),
-		"to":   jj.ActionRevsets(jj.RevOption{}.Default()),
+		"from": jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"to":   jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"tool": bridge.ActionCarapaceBin().Split(),
 	})
 

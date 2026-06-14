@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -26,8 +26,8 @@ func init() {
 
 	carapace.Gen(workspace_addCmd).FlagCompletion(carapace.ActionMap{
 		"name":      jj.ActionWorkspaces(),
-		"revision":  jj.ActionRevsets(jj.RevOption{}.Default()),
-		"revisions": jj.ActionRevsets(jj.RevOption{}.Default()),
+		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"sparse-patterns": carapace.ActionValuesDescribed(
 			"copy", "Copy all sparse patterns from the current workspace",
 			"full", "Include all files in the new workspace",

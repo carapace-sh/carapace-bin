@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	shlex "github.com/carapace-sh/carapace-shlex"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/carapace-sh/carapace/third_party/golang.org/x/sys/execabs"

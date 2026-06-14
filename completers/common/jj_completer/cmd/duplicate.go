@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -34,13 +34,13 @@ func init() {
 	)
 
 	carapace.Gen(duplicateCmd).FlagCompletion(carapace.ActionMap{
-		"destination":   jj.ActionRevsets(jj.RevOption{}.Default()),
-		"insert-after":  jj.ActionRevsets(jj.RevOption{}.Default()),
-		"insert-before": jj.ActionRevsets(jj.RevOption{}.Default()),
-		"onto":          jj.ActionRevsets(jj.RevOption{}.Default()),
+		"destination":   jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"insert-after":  jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"insert-before": jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"onto":          jj.ActionRevsets(jj.RevOpts{}.Default()),
 	})
 
 	carapace.Gen(duplicateCmd).PositionalAnyCompletion(
-		jj.ActionRevsets(jj.RevOption{}.Default()).FilterArgs(),
+		jj.ActionRevsets(jj.RevOpts{}.Default()).FilterArgs(),
 	)
 }

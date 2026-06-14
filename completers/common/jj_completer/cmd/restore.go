@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/jj"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -29,10 +29,10 @@ func init() {
 	rootCmd.AddCommand(restoreCmd)
 
 	carapace.Gen(restoreCmd).FlagCompletion(carapace.ActionMap{
-		"changes-in": jj.ActionRevsets(jj.RevOption{}.Default()),
-		"from":       jj.ActionRevsets(jj.RevOption{}.Default()),
-		"into":       jj.ActionRevsets(jj.RevOption{}.Default()),
-		"to":         jj.ActionRevsets(jj.RevOption{}.Default()),
+		"changes-in": jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"from":       jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"into":       jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"to":         jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"tool": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
