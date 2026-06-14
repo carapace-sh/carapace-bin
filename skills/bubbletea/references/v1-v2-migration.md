@@ -43,7 +43,7 @@ func (m model) View() tea.View {
 }
 ```
 
-This enables the **declarative view** pattern — terminal state (alt screen, mouse mode, cursor, etc.) is now set on the View struct instead of through commands.
+This enables the **declarative view** pattern — terminal state (alt screen, mouse mode, cursor, etc.) is now set on the View struct instead of through commands. For the advanced Draw/View split pattern that builds on this, see [patterns.md](patterns.md#pointer-based-model-with-drawview-split).
 
 ## Key Messages
 

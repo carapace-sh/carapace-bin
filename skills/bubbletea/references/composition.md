@@ -90,6 +90,8 @@ func (m MainModel) View() tea.View {
 
 ## Focus Management
 
+For advanced focus/mode patterns (input controller with mode switching), see [patterns.md](patterns.md#input-controller-with-mode-switching).
+
 ### Focus/Blur Pattern
 
 Most bubbles components implement `Focus()` and `Blur()`:
@@ -179,6 +181,8 @@ func (m MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 ## Layout Patterns
 
+For overlay positioning with compositor layers, see [patterns.md](patterns.md#compositor-layers-for-overlays).
+
 ### Vertical Stack (Most Common)
 
 ```go
@@ -246,6 +250,8 @@ func (m Model) View() tea.View {
 ```
 
 ## Key Bindings
+
+For production key binding patterns (structured KeyMap, user-configurable rebinding, view-conditional help), see [patterns.md](patterns.md#key-binding-patterns).
 
 ### key.Binding
 
@@ -326,6 +332,8 @@ if m.KeyMap.Quit.Enabled() { ... }
 ```
 
 ### Help Integration
+
+For view-conditional help that changes based on the current view and sub-context, see [patterns.md](patterns.md#view-conditional-help).
 
 Implement `help.KeyMap` interface:
 

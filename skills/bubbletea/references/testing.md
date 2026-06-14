@@ -279,6 +279,8 @@ func (m *testModel) View() tea.View {
 
 ## Common Test Patterns Summary
 
+For advanced testing patterns (direct model testing without tea.Program, version bump contracts, render hit counting, golden files, ANSI stripping), see [patterns.md](patterns.md#testing-patterns).
+
 | Pattern | When to Use |
 |---------|-------------|
 | Direct `Update()` call | Testing state transitions |

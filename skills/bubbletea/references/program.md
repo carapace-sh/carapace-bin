@@ -308,6 +308,8 @@ go func() {
 p.Run()
 ```
 
+For production patterns bridging external events (goroutines, channels, pub/sub) into the update loop, see [patterns.md](patterns.md#external-event-bridging).
+
 ### Without Renderer (Daemon Mode)
 
 ```go
