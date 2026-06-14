@@ -20,15 +20,15 @@ func ReadCompleters(dir, goos string) (completer.CompleterMap, error) {
 	// TODO shell specific completers
 	// TODO distro specific completers (arch,ubuntu,...)
 	groups := map[string][]string{
-		"android": {"common", "unix", "linux", "android", "bash", "zsh", "fish"},
-		"darwin":  {"common", "unix", "bsd", "darwin", "bash", "zsh", "fish"},
-		"freebsd": {"common", "unix", "bsd", "freebsd", "bash", "zsh", "fish"},
-		"linux":   {"common", "unix", "linux", "bash", "zsh", "fish"},
-		"netbsd":  {"common", "unix", "bsd", "netbsd", "bash", "zsh", "fish"},
-		"openbsd": {"common", "unix", "bsd", "openbsd", "bash", "zsh", "fish"},
-		"windows": {"common", "windows"},
+		"android": {"common", "unix", "linux", "android", "bash", "zsh", "fish", "elvish"},
+		"darwin":  {"common", "unix", "bsd", "darwin", "bash", "zsh", "fish", "elvish"},
+		"freebsd": {"common", "unix", "bsd", "freebsd", "bash", "zsh", "fish", "elvish"},
+		"linux":   {"common", "unix", "linux", "bash", "zsh", "fish", "elvish"},
+		"netbsd":  {"common", "unix", "bsd", "netbsd", "bash", "zsh", "fish", "elvish"},
+		"openbsd": {"common", "unix", "bsd", "openbsd", "bash", "zsh", "fish", "elvish"},
+		"windows": {"common", "windows", "elvish"},
 
-		"force_all": {"common", "unix", "linux", "bsd", "darwin", "android", "windows", "freebsd", "netbsd", "openbsd", "bash", "zsh", "fish"},
+		"force_all": {"common", "unix", "linux", "bsd", "darwin", "android", "windows", "freebsd", "netbsd", "openbsd", "bash", "zsh", "fish", "elvish"},
 	}
 
 	completers, err := readCompleters(dir)
