@@ -1,34 +1,24 @@
 package fs
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/condition"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
-type blockdevice struct {
-	Kname        string
-	Label        string
-	Partlabel    string
-	Partuuid     string
-	Parttypename string
-	Path         string
-	Size         string
-	Type         string
-	Uuid         string
-}
-
 func actionBlockdevices(f func(blockdevices []blockdevice) carapace.Action) carapace.Action {
-	return carapace.ActionExecCommand("lsblk", "--json", "-o", "KNAME,LABEL,PARTLABEL,PARTUUID,PATH,SIZE,PARTTYPENAME,TYPE,UUID")(func(output []byte) carapace.Action {
-		var b struct {
-			Blockdevices []blockdevice
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		switch {
+		case condition.Executable("lsblk")(c): // unix
+			return actionBlockdevicesLsblk(f)
+		case condition.Executable("diskutil")(c): // darwin
+			// return actionBlockdevicesDiskutil(f)
+			return carapace.ActionValues()
+		default:
+			return carapace.ActionValues()
 		}
-		if err := json.Unmarshal(output, &b); err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-		return f(b.Blockdevices)
 	})
 }
 
