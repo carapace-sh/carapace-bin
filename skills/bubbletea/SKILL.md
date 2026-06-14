@@ -4,16 +4,12 @@ description: >
   Use when working with Bubble Tea (charmbracelet/bubbletea) — the Elm Architecture TUI
   framework for Go. Covers the Model/Update/View cycle, commands, messages, the View struct,
   renderer, input handling, program lifecycle, testing, component composition, integration
-  with the Charm ecosystem (lipgloss, bubbles, huh, glamour), and production design patterns
-  (architecture, caching, external event bridging, performance). Triggers on: "bubbletea",
-  "bubble tea", "tea.Model", "tea.Cmd", "tea.Msg", "tea.Program", "tea.View", "tea.KeyPressMsg",
-  "tea.WindowSizeMsg", "tea.MouseMsg", "tea.Batch", "tea.Sequence", "tea.Quit",
-  "Elm Architecture", "charmbracelet", "charm.land/bubbletea", "Bubble Tea v2",
-  "tea.EnterAltScreen", "tea.WithFilter", "tea.ExecProcess", "cursedRenderer",
-  "ultraviolet", "tea.NewProgram", "tea.Run", "tea.Send", "tea.Tick", "tea.Every",
-  "Draw", "ScreenBuffer", "program.Send", "render cache", "versioned cache",
-  "dialog overlay", "grace period", "best practice", "design pattern",
-  "ProgramContext", "adaptive color", "compositor", "rebind", "section interface".
+  with the Charm ecosystem (lipgloss, bubbles, huh, glamour), and production design patterns.
+  Triggers on: "bubbletea", "bubble tea", "tea.Model", "tea.Cmd", "tea.Msg", "tea.Program",
+  "tea.View", "tea.KeyPressMsg", "tea.WindowSizeMsg", "tea.MouseMsg", "tea.Batch",
+  "tea.Sequence", "tea.Quit", "Elm Architecture", "charmbracelet", "Bubble Tea v2",
+  "tea.NewProgram", "tea.Send", "tea.Tick", "tea.Every", "cursedRenderer",
+  "ultraviolet", "ScreenBuffer", "ProgramContext", "compositor".
 user-invocable: true
 ---
 
