@@ -1,25 +1,25 @@
 # Design Patterns and Best Practices
 
-Battle-tested patterns from production Bubble Tea applications (derived from real-world codebases like Charm's Crush). Covers architecture, performance, state management, external event bridging, testing, and rendering strategies.
+Battle-tested patterns from production Bubble Tea applications. Covers architecture, performance, state management, external event bridging, testing, and rendering strategies.
 
 ## Architecture Patterns
 
 ### Pointer-Based Model with Draw/View Split
 
-For complex applications, use a **pointer-based model** (`*UI` not `UI`) with a `Draw(scr uv.Screen, area uv.Rectangle)` method that renders to an `uv.ScreenBuffer`, and a `View()` that wraps the buffer into a `tea.View`. This separates layout computation from the declarative View struct.
+For complex applications, use a **pointer-based model** (`*Model` not `Model`) with a `Draw(scr uv.Screen, area uv.Rectangle)` method that renders to an `uv.ScreenBuffer`, and a `View()` that wraps the buffer into a `tea.View`. This separates layout computation from the declarative View struct.
 
 ```go
-type UI struct { /* fields */ }
+type AppModel struct { /* fields */ }
 
 // Draw renders to a screen buffer — the real rendering logic lives here.
-func (m *UI) Draw(scr uv.Screen, area uv.Rectangle) *tea.Cursor {
+func (m *AppModel) Draw(scr uv.Screen, area uv.Rectangle) *tea.Cursor {
     layout := m.generateLayout(area.Dx(), area.Dy())
     screen.Clear(scr)
 
     switch m.state {
-    case stateChat:
-        m.chat.Draw(scr, layout.main)
-        m.status.Draw(scr, layout.status)
+    case stateMain:
+        m.mainView.Draw(scr, layout.main)
+        m.statusBar.Draw(scr, layout.status)
     }
 
     if m.dialog.HasDialogs() {
@@ -29,7 +29,7 @@ func (m *UI) Draw(scr uv.Screen, area uv.Rectangle) *tea.Cursor {
 }
 
 // View creates the declarative View struct from the screen buffer.
-func (m *UI) View() tea.View {
+func (m *AppModel) View() tea.View {
     var v tea.View
     v.AltScreen = true
     v.BackgroundColor = m.styles.Background
@@ -42,67 +42,64 @@ func (m *UI) View() tea.View {
 }
 ```
 
-**Why**: The `Draw` method gives pixel-level control over screen regions (sidebar, chat, editor, status bar) using `uv.Rectangle` positioning. `View()` is a thin wrapper that sets declarative flags and serializes the buffer. This is the pattern used by Charm's own production apps.
+**Why**: The `Draw` method gives pixel-level control over screen regions (sidebar, main content, editor, status bar) using `uv.Rectangle` positioning. `View()` is a thin wrapper that sets declarative flags and serializes the buffer. This is the pattern used by Charm's own production apps.
 
-### Common Struct for Shared Dependencies
+### Shared Dependencies Struct
 
-Inject shared dependencies (styles, workspace, config) through a `Common` struct rather than passing them individually:
+Inject shared dependencies (styles, config, services) through a single struct rather than passing them individually:
 
 ```go
-type Common struct {
-    Workspace workspace.Workspace
-    Styles    *styles.Styles
-}
-
-func (c *Common) Config() *config.Config {
-    return c.Workspace.Config()
+type Shared struct {
+    Config *config.Config
+    Styles *styles.Styles
+    Store  *store.Store  // any app-specific data store
 }
 ```
 
-Every component receives `*Common` at construction:
+Every component receives `*Shared` at construction:
 
 ```go
-func NewChat(com *common.Common) *Chat { ... }
-func NewStatus(com *common.Common, km help.KeyMap) *Status { ... }
-func newHeader(com *common.Common) *header { ... }
+func NewChat(s *Shared) *Chat { ... }
+func NewStatusBar(s *Shared, km help.KeyMap) *StatusBar { ... }
+func NewSidebar(s *Shared) *Sidebar { ... }
 ```
 
-**Why**: Avoids prop drilling. When a component needs config, styles, or workspace access, it goes through `com`. Adding a new dependency only requires updating `Common`, not every constructor signature.
+**Why**: Avoids prop drilling. When a component needs config, styles, or data store access, it goes through the shared struct. Adding a new dependency only requires updating `Shared`, not every constructor signature.
 
 ### State Machine for UI Modes
 
 Use an explicit state enum to drive rendering and input handling:
 
 ```go
-type uiState uint8
+type appState uint8
 
 const (
-    uiOnboarding uiState = iota
-    uiInitialize
-    uiLanding
-    uiChat
+    stateSetup appState = iota
+    stateLoading
+    stateMain
+    stateHelp
 )
 
-type uiFocusState uint8
+type focusState uint8
 
 const (
-    uiFocusNone uiFocusState = iota
-    uiFocusEditor
-    uiFocusMain
+    focusNone focusState = iota
+    focusInput
+    focusContent
 )
 ```
 
 In `Update`, switch on state to determine which messages to process:
 
 ```go
-func (m *UI) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (m *AppModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
     switch msg := msg.(type) {
     case tea.KeyPressMsg:
         switch m.state {
-        case uiChat:
-            // handle chat keys
-        case uiLanding:
-            // handle landing keys
+        case stateMain:
+            // handle main view keys
+        case stateHelp:
+            // handle help view keys
         }
     }
 }
@@ -111,13 +108,13 @@ func (m *UI) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 In `Draw`, switch on state to determine which regions to render:
 
 ```go
-func (m *UI) Draw(scr uv.Screen, area uv.Rectangle) *tea.Cursor {
+func (m *AppModel) Draw(scr uv.Screen, area uv.Rectangle) *tea.Cursor {
     switch m.state {
-    case uiOnboarding:
-        m.drawHeader(scr, layout.header)
-    case uiChat:
-        m.chat.Draw(scr, layout.main)
-        m.status.Draw(scr, layout.status)
+    case stateSetup:
+        m.drawSetup(scr, layout.main)
+    case stateMain:
+        m.mainView.Draw(scr, layout.main)
+        m.statusBar.Draw(scr, layout.status)
     }
 }
 ```
@@ -126,48 +123,47 @@ func (m *UI) Draw(scr uv.Screen, area uv.Rectangle) *tea.Cursor {
 
 ### Feature Methods on the Main Model
 
-For features that need access to multiple sub-components (e.g., prompt history needs both the textarea and the history list), put the logic as methods on the main model in a dedicated file:
+For features that need access to multiple sub-components (e.g., command history needs both the input field and the history list), put the logic as methods on the main model in a dedicated file:
 
 ```
 model/
-  ui.go          # core Update/View/Draw
-  history.go     # prompt history navigation
-  session.go     # session loading
-  sidebar.go     # sidebar rendering
-  pills.go       # pills/todos rendering
+  app.go          # core Update/View/Draw
+  history.go      # command history navigation
+  navigation.go   # session/view loading
+  sidebar.go      # sidebar rendering
+  toolbar.go      # toolbar/todos rendering
 ```
 
 Each file defines private message types and `tea.Cmd` factories for its feature:
 
 ```go
 // history.go
-type promptHistoryLoadedMsg struct {
-    messages []string
+type historyLoadedMsg struct {
+    entries []string
 }
 
-func (m *UI) loadPromptHistory() tea.Cmd {
+func (m *AppModel) loadHistory() tea.Cmd {
     return func() tea.Msg {
         // async load
-        return promptHistoryLoadedMsg{messages: msgs}
+        return historyLoadedMsg{entries: entries}
     }
 }
 
-func (m *UI) handleHistoryUp() tea.Cmd {
-    // mutate m.promptHistory and m.textarea
+func (m *AppModel) handleHistoryUp() tea.Cmd {
+    // mutate m.history and m.textInput
 }
 ```
 
-**Why**: Keeps `ui.go` focused on the core Update/View dispatch. Feature logic is co-located but doesn't bloat the main file.
+**Why**: Keeps `app.go` focused on the core Update/View dispatch. Feature logic is co-located but doesn't bloat the main file.
 
 ## External Event Bridging
 
-### PubSub → program.Send() Bridge
+### Channel → program.Send() Bridge
 
 The only way to inject external events into Bubble Tea's single-threaded update loop is `program.Send()`. Build a bridge goroutine that reads from a channel and calls `Send()`:
 
 ```go
-func (app *App) Subscribe(program *tea.Program) {
-    events := app.broker.Subscribe(ctx)
+func bridgeEvents(ctx context.Context, events <-chan Event, program *tea.Program) {
     for {
         select {
         case <-ctx.Done():
@@ -183,22 +179,22 @@ func (app *App) Subscribe(program *tea.Program) {
 Start the bridge **before** `program.Run()`:
 
 ```go
-go ws.Subscribe(program)
+go bridgeEvents(ctx, eventCh, program)
 if _, err := program.Run(); err != nil { ... }
 ```
 
 ### Fan-In Architecture
 
-When multiple services produce events, use a central broker with fan-in goroutines:
+When multiple sources produce events, use a central channel with fan-in goroutines:
 
 ```
-Service goroutines (agent, LSP, MCP, permissions)
-    │ publish to per-service pubsub.Broker[T]
+Source goroutines (background workers, file watchers, network events)
+    │ send to per-source channels
     ▼
-setupSubscriber goroutines (fan-in)
-    │ re-publish into central Broker[tea.Msg]
+fan-in goroutines
+    │ forward into central event channel
     ▼
-Subscribe goroutine
+bridge goroutine
     │ reads <-chan and calls program.Send(msg)
     ▼
 tea.Program (Bubble Tea event loop)
@@ -206,23 +202,33 @@ tea.Program (Bubble Tea event loop)
 
 ### Lossy vs Must-Deliver Publishing
 
-For high-frequency streaming (e.g., token deltas), use **lossy** publishing that drops events when the subscriber channel is full. For terminal events (e.g., run complete), use **must-deliver** with bounded blocking:
+For high-frequency streaming (e.g., progress updates, streaming text), use **lossy** publishing that drops events when the subscriber channel is full. For terminal events (e.g., operation complete), use **must-deliver** with bounded blocking:
 
 ```go
-// Lossy: drops if channel full (streaming tokens)
-broker.Publish(pubsub.UpdatedEvent, msg)
+// Lossy: drops if channel full (high-frequency streaming)
+select {
+case events <- msg:
+default:
+    // channel full, drop event
+}
 
-// Must-deliver: blocks up to 50ms per subscriber before dropping
-broker.PublishMustDeliver(ctx, pubsub.UpdatedEvent, msg)
+// Must-deliver: blocks briefly before dropping
+ctx, cancel := context.WithTimeout(ctx, 50*time.Millisecond)
+defer cancel()
+select {
+case events <- msg:
+case <-ctx.Done():
+    // timed out, log and drop
+}
 ```
 
-**Why**: The Bubble Tea update loop is single-threaded. If it's busy rendering, the channel fills up. Lossy delivery prevents backpressure from blocking the agent; must-deliver ensures critical state transitions aren't lost.
+**Why**: The Bubble Tea update loop is single-threaded. If it's busy rendering, the channel fills up. Lossy delivery prevents backpressure from blocking background workers; must-deliver ensures critical state transitions aren't lost.
 
 ## Performance Patterns
 
 ### Versioned Render Cache (Freeze Finished Items)
 
-For lists of items where most are static (chat messages), use a version counter to avoid re-rendering unchanged items:
+For lists of items where most are static (log entries, chat messages, table rows), use a version counter to avoid re-rendering unchanged items:
 
 ```go
 type Versioned struct {
@@ -252,58 +258,58 @@ type listCacheEntry struct {
 }
 ```
 
-**Why**: In a chat UI, old messages never change. Freezing their rendered output means the list only calls `Render()` on the newest (streaming) item. This turns O(n) rendering into O(1) for stable frames.
+**Why**: In a scrollable list, old items rarely change. Freezing their rendered output means the list only calls `Render()` on the newest (still-mutating) item. This turns O(n) rendering into O(1) for stable frames.
 
 ### Per-Section Render Cache
 
-When a message has multiple independently-changing sections (thinking, content, error), cache each section separately so streaming one doesn't invalidate another:
+When a composite item has multiple independently-changing sections (header, body, footer), cache each section separately so updating one doesn't invalidate another:
 
 ```go
-type assistantSection struct {
+type sectionCache struct {
     width   int
-    srcHash uint64  // FNV-64 of source text
+    srcHash uint64  // hash of source text
     extra   uint64  // other state that affects render
     out     string
     h       int
     valid   bool
 }
 
-func (s *assistantSection) hit(width int, srcHash, extra uint64) bool {
+func (s *sectionCache) hit(width int, srcHash, extra uint64) bool {
     return s.valid && s.width == width && s.srcHash == srcHash && s.extra == extra
 }
 ```
 
-**Why**: Streaming a thinking block shouldn't force re-rendering the content block (which may involve expensive glamour/markdown processing). Per-section caches isolate invalidation.
+**Why**: Streaming one section (e.g., a progress indicator) shouldn't force re-rendering another (which may involve expensive markdown/code processing). Per-section caches isolate invalidation.
 
 ### Screen Buffer Caching (Draw Cache)
 
 When rendering to `uv.ScreenBuffer`, cache the decoded buffer to skip ANSI re-parsing on frames with identical content:
 
 ```go
-type chatDrawCache struct {
+type drawCache struct {
     rendered string
     method   ansi.Method
     buf      uv.ScreenBuffer
 }
 
-func (m *Chat) Draw(scr uv.Screen, area uv.Rectangle) {
+func (m *Component) Draw(scr uv.Screen, area uv.Rectangle) {
     rendered := m.list.Render()
     method, ok := scr.WidthMethod().(ansi.Method)
-    if m.drawCache == nil || m.drawCache.rendered != rendered || m.drawCache.method != method {
-        m.drawCache = newChatDrawCache(rendered, method)
+    if m.cache == nil || m.cache.rendered != rendered || m.cache.method != method {
+        m.cache = newDrawCache(rendered, method)
     }
-    drawCachedBuffer(scr, area, m.drawCache.buf)
+    drawCachedBuffer(scr, area, m.cache.buf)
 }
 ```
 
-**Why**: `uv.StyledString.Draw` re-parses ANSI sequences on every call. For a chat list that hasn't changed between frames, this is pure waste. Caching the decoded buffer turns the draw into an O(cells) copy.
+**Why**: `uv.StyledString.Draw` re-parses ANSI sequences on every call. For content that hasn't changed between frames, this is pure waste. Caching the decoded buffer turns the draw into an O(cells) copy.
 
 ### Message Throttling via WithFilter
 
-Use `tea.WithFilter` to throttle high-frequency events (mouse motion, streaming tokens) before they reach `Update`:
+Use `tea.WithFilter` to throttle high-frequency events (mouse motion, rapid updates) before they reach `Update`:
 
 ```go
-func MouseEventFilter(m tea.Model, msg tea.Msg) tea.Msg {
+func throttleFilter(m tea.Model, msg tea.Msg) tea.Msg {
     switch msg.(type) {
     case tea.MouseWheelMsg, tea.MouseMotionMsg:
         now := time.Now()
@@ -315,7 +321,7 @@ func MouseEventFilter(m tea.Model, msg tea.Msg) tea.Msg {
     return msg
 }
 
-p := tea.NewProgram(model, tea.WithFilter(MouseEventFilter))
+p := tea.NewProgram(model, tea.WithFilter(throttleFilter))
 ```
 
 **Why**: Mouse motion events can fire hundreds of times per second. Without throttling, the update loop spends all its time processing mouse events instead of rendering.
@@ -325,16 +331,16 @@ p := tea.NewProgram(model, tea.WithFilter(MouseEventFilter))
 Pause animations for items scrolled out of view, restart when they become visible:
 
 ```go
-type Chat struct {
+type ScrollView struct {
     pausedAnimations map[string]struct{}
 }
 
-func (c *Chat) Animate(msg anim.StepMsg) tea.Cmd {
+func (s *ScrollView) Animate(msg stepMsg) tea.Cmd {
     // Only tick animations for visible items
-    for id := range c.pausedAnimations {
-        if c.isItemVisible(id) {
-            delete(c.pausedAnimations, id)
-            return anim.New(settings).Animate()
+    for id := range s.pausedAnimations {
+        if s.isItemVisible(id) {
+            delete(s.pausedAnimations, id)
+            return tickAnimation(id)
         }
     }
 }
@@ -356,13 +362,13 @@ type Dialog interface {
 }
 
 type Overlay struct {
-    dialogs []Dialog
+    dialogs          []Dialog
     graceOpenedAt    time.Time
     graceLastInputAt time.Time
 }
 ```
 
-**Grace period**: When a dialog opens asynchronously (e.g., permission prompt from agent), absorb keystrokes for a short window to prevent in-flight keys from acting on the dialog before the user sees it:
+**Grace period**: When a dialog opens asynchronously (e.g., a confirmation prompt from a background worker), absorb keystrokes for a short window to prevent in-flight keys from acting on the dialog before the user sees it:
 
 ```go
 func (d *Overlay) Update(msg tea.Msg) tea.Msg {
@@ -374,32 +380,32 @@ func (d *Overlay) Update(msg tea.Msg) tea.Msg {
 }
 ```
 
-**Why**: Without the grace period, a user typing in the editor could accidentally accept or dismiss a permission dialog that appeared mid-keystroke.
+**Why**: Without the grace period, a user typing in the main view could accidentally accept or dismiss a dialog that appeared mid-keystroke.
 
 ### Interface-Based Item Types
 
 Define item capabilities as small, composable interfaces rather than a single monolithic type:
 
 ```go
-type MessageItem interface {
+type ListItem interface {
     list.Item
     list.RawRenderable
     Identifiable
 }
 
-type HighlightableMessageItem interface {
-    MessageItem
+type HighlightableItem interface {
+    ListItem
     list.Highlightable
 }
 
-type FocusableMessageItem interface {
-    MessageItem
+type FocusableItem interface {
+    ListItem
     list.Focusable
 }
 
 type Animatable interface {
     StartAnimation() tea.Cmd
-    Animate(msg anim.StepMsg) tea.Cmd
+    Animate(msg stepMsg) tea.Cmd
 }
 
 type Expandable interface {
@@ -407,11 +413,11 @@ type Expandable interface {
 }
 ```
 
-**Why**: Items opt into only the capabilities they need. The list can check `if animatable, ok := item.(chat.Animatable); ok` without forcing all items to implement animation. New capabilities are added as new interfaces without breaking existing types.
+**Why**: Items opt into only the capabilities they need. The list can check `if a, ok := item.(Animatable); ok` without forcing all items to implement animation. New capabilities are added as new interfaces without breaking existing types.
 
 ### Standalone Renderer Components (Builder Pattern)
 
-For rendering components that don't participate in the Update loop (diff views, formatted output), use a builder pattern with a `String()` method:
+For rendering components that don't participate in the Update loop (diff views, formatted output, static panels), use a builder pattern with a `String()` method:
 
 ```go
 dv := diffview.New().
@@ -431,22 +437,22 @@ output := dv.String()  // render to string
 Use a status bar that auto-clears messages after a TTL:
 
 ```go
-type Status struct {
-    msg      util.InfoMsg
-    help     help.Model
+type StatusBar struct {
+    msg  StatusMsg
+    help help.Model
 }
 
-func (m *UI) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-    case util.InfoMsg:
-        m.status.SetInfoMsg(msg)
+func (m *AppModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+    case StatusMsg:
+        m.statusBar.SetMessage(msg)
         ttl := msg.TTL
         if ttl <= 0 { ttl = DefaultStatusTTL }
-        cmds = append(cmds, clearInfoMsgCmd(ttl))
+        cmds = append(cmds, clearStatusMsgCmd(ttl))
 }
 
-func clearInfoMsgCmd(ttl time.Duration) tea.Cmd {
+func clearStatusMsgCmd(ttl time.Duration) tea.Cmd {
     return tea.Tick(ttl, func(t time.Time) tea.Msg {
-        return util.ClearStatusMsg{}
+        return clearStatusMsg{}
     })
 }
 ```
@@ -459,12 +465,12 @@ Distinguish single and double clicks by delaying the single-click action:
 
 ```go
 case tea.MouseReleaseMsg:
-    if m.chat.HandleMouseUp(x, y) && m.chat.HasHighlight() {
+    if m.handleMouseUp(x, y) && m.hasSelection() {
         cmds = append(cmds, tea.Tick(doubleClickThreshold, func(t time.Time) tea.Msg {
             if time.Since(m.lastClickTime) >= doubleClickThreshold {
-                return copyChatHighlightMsg{}  // single click → copy
+                return singleClickMsg{}  // single click action
             }
-            return nil  // double click occurred, skip
+            return nil  // double click occurred, skip single-click action
         }))
     }
 ```
@@ -478,24 +484,23 @@ case tea.MouseReleaseMsg:
 For complex UIs, test models directly without running a `tea.Program`:
 
 ```go
-func newTestUI() *UI {
-    com := common.DefaultCommon(nil)
-    u := &UI{
-        com:      com,
-        status:   NewStatus(com, nil),
-        chat:     NewChat(com),
-        textarea: textarea.New(),
-        state:    uiChat,
-        focus:    uiFocusEditor,
-        width:    140,
-        height:   45,
+func newTestModel() *AppModel {
+    u := &AppModel{
+        shared:    NewShared(nil),
+        statusBar: NewStatusBar(NewShared(nil), nil),
+        mainView:  NewMainView(NewShared(nil)),
+        textInput: textinput.New(),
+        state:     stateMain,
+        focus:     focusInput,
+        width:     140,
+        height:    45,
     }
     return u
 }
 
 func TestLayout(t *testing.T) {
-    u := newTestUI()
-    u.updateLayoutAndSize()
+    m := newTestModel()
+    m.updateLayoutAndSize()
     // assert on layout regions
 }
 ```
@@ -507,9 +512,9 @@ func TestLayout(t *testing.T) {
 Render to `uv.ScreenBuffer` and assert on the output:
 
 ```go
-func renderToBuffer(t *testing.T, c *Chat, w, h int) string {
+func renderToBuffer(t *testing.T, c *Component, w, h int) string {
     scr := uv.NewScreenBuffer(w, h)
-    c.Draw(scr, drawTestArea(w, h))
+    c.Draw(scr, testArea(w, h))
     return scr.Render()
 }
 ```
@@ -604,16 +609,16 @@ Group key bindings by UI region:
 
 ```go
 type KeyMap struct {
-    Editor struct {
+    Input struct {
         AddFile     key.Binding
-        SendMessage key.Binding
+        Submit      key.Binding
         Newline     key.Binding
     }
-    Chat struct {
-        NewSession key.Binding
-        Cancel     key.Binding
-        Up         key.Binding
-        Down       key.Binding
+    Content struct {
+        NewView  key.Binding
+        Cancel   key.Binding
+        Up       key.Binding
+        Down     key.Binding
     }
     // Global
     Quit     key.Binding
@@ -629,11 +634,11 @@ type KeyMap struct {
 Update help text based on state:
 
 ```go
-func (m *UI) ShortHelp() []key.Binding {
-    if m.isAgentBusy() {
-        cancelBinding := m.keyMap.Chat.Cancel
-        if m.isCanceling {
-            cancelBinding.SetHelp("esc", "press again to cancel")
+func (m *AppModel) ShortHelp() []key.Binding {
+    if m.isBusy() {
+        cancelBinding := m.keyMap.Content.Cancel
+        if m.confirmingCancel {
+            cancelBinding.SetHelp("esc", "press again to confirm")
         } else {
             cancelBinding.SetHelp("esc", "cancel")
         }
@@ -643,7 +648,7 @@ func (m *UI) ShortHelp() []key.Binding {
 }
 ```
 
-**Why**: Static help text is misleading when bindings change meaning (e.g., "esc" means "cancel" vs "press again to cancel" vs "close dialog").
+**Why**: Static help text is misleading when bindings change meaning (e.g., "esc" means "cancel" vs "press again to confirm" vs "close dialog").
 
 ### Keyboard Enhancement Adaptation
 
@@ -652,7 +657,7 @@ Adjust key bindings based on terminal capabilities:
 ```go
 case tea.KeyboardEnhancementsMsg:
     if msg.SupportsKeyDisambiguation() {
-        m.keyMap.Editor.Newline.SetHelp("shift+enter", "newline")
+        m.keyMap.Input.Newline.SetHelp("shift+enter", "newline")
     }
 ```
 
@@ -667,12 +672,13 @@ Define all styles in a single struct with sub-structs for each UI region:
 ```go
 type Styles struct {
     Header struct {
-        Charm     lipgloss.Style
-        WorkingDir lipgloss.Style
+        Title      lipgloss.Style
+        Subtitle   lipgloss.Style
     }
-    Editor struct {
-        Textarea textarea.Styles
-        PromptNormalFocused lipgloss.Style
+    Input struct {
+        Textarea          textarea.Styles
+        PromptFocused     lipgloss.Style
+        PromptBlurred     lipgloss.Style
     }
     Status struct {
         Help lipgloss.Style
@@ -682,24 +688,26 @@ type Styles struct {
 }
 ```
 
-**Why**: A single `Styles` struct makes theme switching trivial (swap the whole struct). Components access styles through `com.Styles.Header.Charm` rather than defining their own.
+**Why**: A single `Styles` struct makes theme switching trivial (swap the whole struct). Components access styles through `shared.Styles.Header.Title` rather than defining their own.
 
-### Theme Selection Based on Provider
+### Theme Selection Based on Context
 
-Choose theme dynamically based on runtime context:
+Choose theme dynamically based on runtime context (user preference, environment, feature flags):
 
 ```go
-func ThemeForProvider(providerID string) Styles {
-    switch providerID {
-    case "hyper":
-        return hyperTheme()
+func ThemeForContext(ctx AppContext) Styles {
+    switch ctx.Theme {
+    case "dark":
+        return darkTheme()
+    case "light":
+        return lightTheme()
     default:
         return defaultTheme()
     }
 }
 ```
 
-**Why**: Different providers (OpenAI, Anthropic, Hyper) may have different brand colors. Theme selection at construction time keeps the rest of the code provider-agnostic.
+**Why**: Different contexts (user preferences, environment variables, feature flags) may require different visual styles. Theme selection at construction time keeps the rest of the code context-agnostic.
 
 ### Icon Constants
 
@@ -709,9 +717,9 @@ Define UI icons as constants for consistency:
 const (
     CheckIcon       = "✓"
     SpinnerIcon     = "⋯"
-    ToolPending     = "●"
-    ToolSuccess     = "✓"
-    ToolError       = "×"
+    PendingIcon     = "●"
+    SuccessIcon     = "✓"
+    ErrorIcon       = "×"
     RadioOn         = "◉"
     RadioOff        = "○"
     BorderThin      = "│"
