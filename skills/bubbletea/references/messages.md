@@ -255,6 +255,8 @@ case tea.MouseClickMsg:
 | `MouseButton10` | Button 10 |
 | `MouseButton11` | Button 11 |
 
+For double-click detection using click timing, see [patterns.md](patterns.md#double-click-detection).
+
 ### MouseMode (on View)
 
 | Mode | Events |

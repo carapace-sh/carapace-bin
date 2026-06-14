@@ -327,3 +327,5 @@ close()/stop() → flush final frame (if graceful) → restore terminal state
 
 On graceful shutdown: renderer flushes the final frame (last view rendered).
 On kill: renderer skips the final flush.
+
+For application-level render caching patterns (versioned cache, per-section cache, screen buffer caching), see [patterns.md](patterns.md#performance-patterns).

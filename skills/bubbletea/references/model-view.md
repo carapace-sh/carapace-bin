@@ -257,6 +257,8 @@ When content changes, the renderer:
 
 ## View Composition Patterns
 
+For the Draw/View split pattern (rendering to a ScreenBuffer with pixel-level layout control), see [patterns.md](patterns.md#pointer-based-model-with-drawview-split).
+
 ### Simple View
 
 ```go
