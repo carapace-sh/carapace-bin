@@ -733,26 +733,26 @@ const (
 
 ### Adaptive Colors (Light/Dark Terminal Background)
 
-Use `compat.AdaptiveColor` to define colors that adapt to the terminal's background:
+Use `lipgloss.AdaptiveColor` to define colors that adapt to the terminal's background:
 
 ```go
 type Theme struct {
-    PrimaryText   compat.AdaptiveColor
-    FaintText     compat.AdaptiveColor
-    ErrorText     compat.AdaptiveColor
-    SelectedBg    compat.AdaptiveColor
+    PrimaryText   lipgloss.AdaptiveColor
+    FaintText     lipgloss.AdaptiveColor
+    ErrorText     lipgloss.AdaptiveColor
+    SelectedBg    lipgloss.AdaptiveColor
 }
 
 var DefaultTheme = &Theme{
-    PrimaryText: compat.AdaptiveColor{
+    PrimaryText: lipgloss.AdaptiveColor{
         Light: lipgloss.ANSIColor(0),
         Dark:  lipgloss.ANSIColor(15),
     },
-    ErrorText: compat.AdaptiveColor{
+    ErrorText: lipgloss.AdaptiveColor{
         Light: lipgloss.ANSIColor(1),
         Dark:  lipgloss.ANSIColor(9),
     },
-    SelectedBg: compat.AdaptiveColor{
+    SelectedBg: lipgloss.AdaptiveColor{
         Light: lipgloss.ANSIColor(7),
         Dark:  lipgloss.ANSIColor(236),
     },
@@ -794,7 +794,7 @@ func (m Model) View() tea.View {
     s.WriteString(m.footer.View())
 
     layers := []*lipgloss.Layer{
-        lipgloss.NewLayer(zone.Scan(s.String())),
+        lipgloss.NewLayer(zone.Scan(s.String())), // zone is from lipgloss zone package
     }
 
     // Overlay: search completions positioned relative to input
@@ -824,7 +824,7 @@ type ProgramContext struct {
     ScreenHeight         int
     MainContentWidth     int
     MainContentHeight    int
-    Config              *config.Config
+    Config              *Config
     Theme               Theme
     Styles              Styles
     View                ViewType
@@ -833,11 +833,11 @@ type ProgramContext struct {
 }
 
 type Sidebar struct {
-    ctx *context.ProgramContext
+    ctx *ProgramContext
     // ...
 }
 
-func (s *Sidebar) UpdateProgramContext(ctx *context.ProgramContext) {
+func (s *Sidebar) UpdateProgramContext(ctx *ProgramContext) {
     s.ctx = ctx
 }
 ```
@@ -892,7 +892,7 @@ func (m *Model) openBrowser() tea.Cmd {
     }
     startCmd := m.ctx.StartTask(task)
     openCmd := func() tea.Msg {
-        err := browser.Browse(url)
+        err := open.URL(url) // platform-specific URL opener
         return TaskFinishedMsg{TaskId: taskId, Err: err}
     }
     return tea.Batch(startCmd, openCmd)
@@ -932,14 +932,14 @@ For components that share common behavior but differ in specifics, use a `BaseMo
 ```go
 type BaseModel struct {
     Id                        int
-    Config                    SectionConfig
+    Config                    Config
     Ctx                       *ProgramContext
     Spinner                   spinner.Model
-    SearchBar                 search.Model
+    SearchBar                 SearchModel
     IsSearching               bool
-    Table                     table.Model
+    Table                     TableModel
     Type                      string
-    PromptConfirmationBox     prompt.Model
+    PromptConfirmationBox     ConfirmModel
     IsPromptConfirmationShown bool
 }
 
@@ -949,7 +949,7 @@ type Section interface {
     Table
     Search
     PromptConfirmation
-    GetConfig() SectionConfig
+    GetConfig() Config
     UpdateProgramContext(ctx *ProgramContext)
 }
 
@@ -986,14 +986,14 @@ type PromptConfirmation interface {
 }
 ```
 
-Concrete types (PR section, issue section, branch section) embed `BaseModel` and implement only the methods that differ:
+Concrete types embed `BaseModel` and implement only the methods that differ:
 
 ```go
 type Model struct {
-    section.BaseModel
+    BaseModel
 }
 
-func (m *Model) Update(msg tea.Msg) (section.Section, tea.Cmd) {
+func (m *Model) Update(msg tea.Msg) (Section, tea.Cmd) {
     // section-specific update logic
 }
 ```
@@ -1002,13 +1002,13 @@ func (m *Model) Update(msg tea.Msg) (section.Section, tea.Cmd) {
 
 ### Input Controller with Mode Switching
 
-For components that accept different kinds of input (comment, approve, assign, label), use a controller that switches modes:
+For components that accept different kinds of input (comment, confirm, select, edit), use a controller that switches modes:
 
 ```go
 type Controller struct {
     ctx       *ProgramContext
-    inputBox   inputbox.Model
-    fzfSelect  *fuzzyselect.Model
+    inputBox   InputModel
+    fzfSelect  *SelectModel
     mode       Mode
     prompt     string
 }
@@ -1045,15 +1045,15 @@ func (c *Controller) Exit() {
 The parent model delegates to the controller based on user action:
 
 ```go
-case key.Matches(msg, keys.PRKeys.Comment):
+case key.Matches(msg, keys.SectionKeys.Comment):
     return m, m.controller.Enter(EnterOptions{
         Mode:   ModeComment,
         Prompt: "Leave a comment…",
     })
-case key.Matches(msg, keys.PRKeys.Approve):
+case key.Matches(msg, keys.SectionKeys.Confirm):
     return m, m.controller.Enter(EnterOptions{
-        Mode:   ModeApprove,
-        Prompt: "Approve with comment…",
+        Mode:   ModeConfirm,
+        Prompt: "Confirm with comment…",
     })
 ```
 
@@ -1109,18 +1109,18 @@ Change the help display based on the current view and sub-context:
 func (k KeyMap) FullHelp() [][]key.Binding {
     var additionalKeys []key.Binding
     switch k.viewType {
-    case PRsView:
-        additionalKeys = PRFullHelp()
-    case IssuesView:
-        additionalKeys = IssueFullHelp()
-    case NotificationsView:
-        additionalKeys = NotificationFullHelp()
-        // Include PR keys when viewing a PR notification
-        switch notificationSubject {
-        case NotificationSubjectPR:
-            additionalKeys = append(additionalKeys, PRFullHelp()...)
-        case NotificationSubjectIssue:
-            additionalKeys = append(additionalKeys, IssueFullHelp()...)
+    case ListViewA:
+        additionalKeys = ViewAFullHelp()
+    case ListViewB:
+        additionalKeys = ViewBFullHelp()
+    case ListViewC:
+        additionalKeys = ViewCFullHelp()
+        // Include ViewA keys when viewing a ViewA item within ViewC
+        switch subContext {
+        case SubContextA:
+            additionalKeys = append(additionalKeys, ViewAFullHelp()...)
+        case SubContextB:
+            additionalKeys = append(additionalKeys, ViewBFullHelp()...)
         }
     }
 
@@ -1133,4 +1133,4 @@ func (k KeyMap) FullHelp() [][]key.Binding {
 }
 ```
 
-**Why**: Showing all keybindings for all views is overwhelming. View-conditional help shows only the keys relevant to the current context. Sub-context (e.g., "viewing a PR within notifications") further narrows the display.
+**Why**: Showing all keybindings for all views is overwhelming. View-conditional help shows only the keys relevant to the current context. Sub-context (e.g., "viewing a list item of type A within view C") further narrows the display.
