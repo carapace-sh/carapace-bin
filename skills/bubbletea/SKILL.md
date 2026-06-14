@@ -12,7 +12,8 @@ description: >
   "tea.EnterAltScreen", "tea.WithFilter", "tea.ExecProcess", "cursedRenderer",
   "ultraviolet", "tea.NewProgram", "tea.Run", "tea.Send", "tea.Tick", "tea.Every",
   "Draw", "ScreenBuffer", "program.Send", "render cache", "versioned cache",
-  "dialog overlay", "grace period", "best practice", "design pattern".
+  "dialog overlay", "grace period", "best practice", "design pattern",
+  "ProgramContext", "adaptive color", "compositor", "rebind", "section interface".
 user-invocable: true
 ---
 
@@ -35,7 +36,7 @@ Load the reference that matches your task. When in doubt, load multiple referenc
 | testing, WithInput, WithOutput, WithoutSignals, WithoutRenderer, WithContext, bytes.Buffer, test model, p.Send, p.Quit, p.Kill, ErrProgramKilled, ErrInterrupted, errors.Is, test pattern, unit test, integration test, context cancellation | [references/testing.md](references/testing.md) |
 | composition, component, sub-model, bubbles, textinput, textarea, viewport, spinner, list, table, help, paginator, progress, key.Binding, key.Matches, KeyMap, Focus, Blur, focus management, lipgloss, layout, JoinVertical, JoinHorizontal, glamour, huh, form, custom component, value type, reassignment pattern | [references/composition.md](references/composition.md) |
 | v1, v2, migration, upgrade, View() string, View() tea.View, KeyMsg struct, KeyPressMsg, msg.Type, msg.Code, msg.Runes, msg.Text, msg.Alt, msg.Mod, EnterAltScreen, AltScreen, EnableMouseCellMotion, MouseMode, SetWindowTitle, WindowTitle, HideCursor, ShowCursor, Cursor, p.Start, p.Run, Sequentially, Sequence, charm.land, module path, import path | [references/v1-v2-migration.md](references/v1-v2-migration.md) |
-| architecture, design pattern, best practice, Common struct, state machine, Draw/View split, ScreenBuffer, pubsub, program.Send, external events, bridge goroutine, fan-in, render cache, versioned cache, freeze, throttling, WithFilter, animation, dialog overlay, grace period, interface-based items, builder pattern, golden file, version bump contract, render hit counting, key map, dynamic help, theme, style struct, icon constants, status bar, TTL, double-click, feature methods | [references/patterns.md](references/patterns.md) |
+| architecture, design pattern, best practice, Common struct, state machine, Draw/View split, ScreenBuffer, pubsub, program.Send, external events, bridge goroutine, fan-in, render cache, versioned cache, freeze, throttling, WithFilter, animation, dialog overlay, grace period, interface-based items, builder pattern, golden file, version bump contract, render hit counting, key map, dynamic help, theme, style struct, icon constants, status bar, TTL, double-click, ProgramContext, adaptive color, compositor layers, rebind, user-configurable keys, view-conditional help, section interface, base model embedding, input controller, mode switching, task callback, explicit sync, feature methods | [references/patterns.md](references/patterns.md) |
 
 ## Quick Guide
 
@@ -68,3 +69,9 @@ Load the reference that matches your task. When in doubt, load multiple referenc
 - **How do I test complex UIs without running a tea.Program?** → [references/patterns.md](references/patterns.md)
 - **How do I manage dialogs, overlays, and focus in a multi-region UI?** → [references/patterns.md](references/patterns.md)
 - **How do I organize styles, themes, and key bindings in a large app?** → [references/patterns.md](references/patterns.md)
+- **How do I support light and dark terminal backgrounds?** → [references/patterns.md](references/patterns.md)
+- **How do I use compositor layers for overlays?** → [references/patterns.md](references/patterns.md)
+- **How do I propagate mutable context across components safely?** → [references/patterns.md](references/patterns.md)
+- **How do I let users rebind keys from a config file?** → [references/patterns.md](references/patterns.md)
+- **How do I build a section-based UI with shared base model?** → [references/patterns.md](references/patterns.md)
+- **How do I implement an input controller with mode switching?** → [references/patterns.md](references/patterns.md)

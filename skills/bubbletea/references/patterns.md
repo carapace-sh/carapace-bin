@@ -730,3 +730,407 @@ const (
 ```
 
 **Why**: Centralized icon definitions ensure visual consistency and make it easy to swap icon sets (e.g., ASCII fallbacks for limited terminals).
+
+### Adaptive Colors (Light/Dark Terminal Background)
+
+Use `compat.AdaptiveColor` to define colors that adapt to the terminal's background:
+
+```go
+type Theme struct {
+    PrimaryText   compat.AdaptiveColor
+    FaintText     compat.AdaptiveColor
+    ErrorText     compat.AdaptiveColor
+    SelectedBg    compat.AdaptiveColor
+}
+
+var DefaultTheme = &Theme{
+    PrimaryText: compat.AdaptiveColor{
+        Light: lipgloss.ANSIColor(0),
+        Dark:  lipgloss.ANSIColor(15),
+    },
+    ErrorText: compat.AdaptiveColor{
+        Light: lipgloss.ANSIColor(1),
+        Dark:  lipgloss.ANSIColor(9),
+    },
+    SelectedBg: compat.AdaptiveColor{
+        Light: lipgloss.ANSIColor(7),
+        Dark:  lipgloss.ANSIColor(236),
+    },
+}
+```
+
+Detect the background at startup with `tea.RequestBackgroundColor` and update the theme:
+
+```go
+func (m Model) Init() tea.Cmd {
+    return tea.Batch(tea.RequestBackgroundColor, m.loadConfig)
+}
+
+case tea.BackgroundColorMsg:
+    m.ctx.HasDarkBackground = msg.IsDark
+    m.ctx.Styles = InitStyles(m.ctx.Theme)
+```
+
+**Why**: Users have both light and dark terminal themes. Hard-coded dark-only colors are unreadable on light backgrounds. `AdaptiveColor` resolves to the correct value at render time based on the detected background.
+
+### Compositor Layers for Overlays
+
+Use `lipgloss.NewLayer` and `lipgloss.NewCompositor` to position overlays (completions, popups) on top of base content:
+
+```go
+func (m Model) View() tea.View {
+    var v tea.View
+    v.AltScreen = true
+
+    // Base content
+    s := strings.Builder{}
+    s.WriteString(m.tabs.View())
+    s.WriteString("\n")
+    s.WriteString(lipgloss.JoinHorizontal(lipgloss.Top,
+        m.mainSection.View(),
+        m.sidebar.View(),
+    ))
+    s.WriteString("\n")
+    s.WriteString(m.footer.View())
+
+    layers := []*lipgloss.Layer{
+        lipgloss.NewLayer(zone.Scan(s.String())),
+    }
+
+    // Overlay: search completions positioned relative to input
+    if completions := m.search.ViewCompletions(); completions != "" {
+        layers = append(layers,
+            lipgloss.NewLayer(completions).X(1).Y(searchY),
+        )
+    }
+
+    comp := lipgloss.NewCompositor(layers...)
+    v.SetContent(comp.Render())
+    return v
+}
+```
+
+**Why**: Compositor layers handle z-ordering and positioning of overlays without manual coordinate math. Each layer is positioned independently, and the compositor renders them in order. This is cleaner than trying to render overlays inline within the base content.
+
+## Context Propagation Patterns
+
+### Mutable ProgramContext with Explicit Sync
+
+Share a mutable context pointer across all components, with an explicit `UpdateProgramContext` method to push changes down:
+
+```go
+type ProgramContext struct {
+    ScreenWidth         int
+    ScreenHeight         int
+    MainContentWidth     int
+    MainContentHeight    int
+    Config              *config.Config
+    Theme               Theme
+    Styles              Styles
+    View                ViewType
+    Error               error
+    StartTask           func(task Task) tea.Cmd
+}
+
+type Sidebar struct {
+    ctx *context.ProgramContext
+    // ...
+}
+
+func (s *Sidebar) UpdateProgramContext(ctx *context.ProgramContext) {
+    s.ctx = ctx
+}
+```
+
+The main model syncs context to all children after any change:
+
+```go
+func (m *Model) syncProgramContext() {
+    for _, section := range m.sections {
+        section.UpdateProgramContext(m.ctx)
+    }
+    m.sidebar.UpdateProgramContext(m.ctx)
+    m.footer.UpdateProgramContext(m.ctx)
+    m.tabs.UpdateProgramContext(m.ctx)
+}
+```
+
+Call `syncProgramContext()` after `tea.WindowSizeMsg`, config changes, and view switches.
+
+**Why**: Components need access to shared state (dimensions, config, theme, styles) but shouldn't each hold their own copy. A mutable pointer avoids copying the entire context struct on every update. The explicit sync method ensures components always see the latest state, even when the context changes outside their own `Update` call.
+
+### Context with Callback for Task Lifecycle
+
+Include a `StartTask` callback in the context so any component can start an async task without needing a reference to the parent model:
+
+```go
+type ProgramContext struct {
+    StartTask func(task Task) tea.Cmd
+}
+
+type Task struct {
+    Id           string
+    StartText    string
+    FinishedText string
+    State        TaskState
+    Error        error
+    StartTime    time.Time
+    FinishedTime *time.Time
+}
+```
+
+Components start tasks through the context:
+
+```go
+func (m *Model) openBrowser() tea.Cmd {
+    taskId := fmt.Sprintf("open_browser_%d", time.Now().Unix())
+    task := Task{
+        Id:           taskId,
+        StartText:    "Opening in browser",
+        FinishedText: "Opened in browser",
+        State:        TaskStart,
+    }
+    startCmd := m.ctx.StartTask(task)
+    openCmd := func() tea.Msg {
+        err := browser.Browse(url)
+        return TaskFinishedMsg{TaskId: taskId, Err: err}
+    }
+    return tea.Batch(startCmd, openCmd)
+}
+```
+
+The parent model handles `TaskFinishedMsg` to update the task state and auto-clear after a delay:
+
+```go
+case TaskFinishedMsg:
+    task, ok := m.tasks[msg.TaskId]
+    if ok {
+        if msg.Err != nil {
+            task.State = TaskError
+            task.Error = msg.Err
+        } else {
+            task.State = TaskFinished
+        }
+        now := time.Now()
+        task.FinishedTime = &now
+        m.tasks[msg.TaskId] = task
+        clear := tea.Tick(2*time.Second, func(t time.Time) tea.Msg {
+            return ClearTaskMsg{TaskId: msg.TaskId}
+        })
+        cmds = append(cmds, clear)
+    }
+```
+
+**Why**: Decouples task lifecycle from component hierarchy. Any component can start a task through the context callback without knowing about the parent's task map or spinner. The parent model owns the task state and spinner, keeping the update loop centralized.
+
+## Component Architecture Patterns
+
+### Section Interface with BaseModel Embedding
+
+For components that share common behavior but differ in specifics, use a `BaseModel` struct that concrete types embed, combined with composable interfaces:
+
+```go
+type BaseModel struct {
+    Id                        int
+    Config                    SectionConfig
+    Ctx                       *ProgramContext
+    Spinner                   spinner.Model
+    SearchBar                 search.Model
+    IsSearching               bool
+    Table                     table.Model
+    Type                      string
+    PromptConfirmationBox     prompt.Model
+    IsPromptConfirmationShown bool
+}
+
+type Section interface {
+    Identifier
+    Component
+    Table
+    Search
+    PromptConfirmation
+    GetConfig() SectionConfig
+    UpdateProgramContext(ctx *ProgramContext)
+}
+
+type Identifier interface {
+    GetId() int
+    GetType() string
+}
+
+type Component interface {
+    Update(msg tea.Msg) (Section, tea.Cmd)
+    View() string
+}
+
+type Table interface {
+    NumRows() int
+    GetCurrRow() RowData
+    NextRow() int
+    PrevRow() int
+    FirstItem() int
+    LastItem() int
+    FetchNextPage() []tea.Cmd
+}
+
+type Search interface {
+    SetIsSearching(val bool) tea.Cmd
+    IsSearchFocused() bool
+    ResetFilters()
+}
+
+type PromptConfirmation interface {
+    SetIsPromptConfirmationShown(val bool) tea.Cmd
+    IsPromptConfirmationFocused() bool
+    SetPromptConfirmationAction(action string)
+}
+```
+
+Concrete types (PR section, issue section, branch section) embed `BaseModel` and implement only the methods that differ:
+
+```go
+type Model struct {
+    section.BaseModel
+}
+
+func (m *Model) Update(msg tea.Msg) (section.Section, tea.Cmd) {
+    // section-specific update logic
+}
+```
+
+**Why**: Avoids code duplication across similar components. The `BaseModel` provides search, table navigation, and confirmation prompts out of the box. Each section only implements its unique behavior. The composable interfaces let the parent model treat all sections uniformly through `Section` while still accessing type-specific methods through the narrower interfaces.
+
+### Input Controller with Mode Switching
+
+For components that accept different kinds of input (comment, approve, assign, label), use a controller that switches modes:
+
+```go
+type Controller struct {
+    ctx       *ProgramContext
+    inputBox   inputbox.Model
+    fzfSelect  *fuzzyselect.Model
+    mode       Mode
+    prompt     string
+}
+
+type Mode int
+
+const (
+    ModeNone Mode = iota
+    ModeComment
+    ModeApprove
+    ModeAssign
+    ModeLabel
+)
+
+func (c *Controller) Enter(opts EnterOptions) tea.Cmd {
+    c.inputBox.Reset()
+    c.inputBox.SetValue(opts.InitialValue)
+    c.mode = opts.Mode
+    c.inputBox.SetPrompt(opts.Prompt)
+    return tea.Sequence(
+        textarea.Blink,
+        c.inputBox.Focus(),
+        c.loadSuggestions(opts.EnterFetch),
+    )
+}
+
+func (c *Controller) Exit() {
+    c.inputBox.Blur()
+    c.mode = ModeNone
+    c.prompt = ""
+}
+```
+
+The parent model delegates to the controller based on user action:
+
+```go
+case key.Matches(msg, keys.PRKeys.Comment):
+    return m, m.controller.Enter(EnterOptions{
+        Mode:   ModeComment,
+        Prompt: "Leave a comment…",
+    })
+case key.Matches(msg, keys.PRKeys.Approve):
+    return m, m.controller.Enter(EnterOptions{
+        Mode:   ModeApprove,
+        Prompt: "Approve with comment…",
+    })
+```
+
+**Why**: A single controller replaces multiple separate input components. Mode switching keeps the UI state machine simple — only one input mode is active at a time. The controller manages focus, autocomplete, and submission uniformly across all modes.
+
+## Key Binding Patterns (Extended)
+
+### User-Configurable Key Rebinding
+
+Allow users to rebind built-in keys and add custom command keybindings from a config file:
+
+```go
+func Rebind(universal []Keybinding) error {
+    for _, kb := range universal {
+        if kb.Builtin == "" {
+            // Custom command keybinding — no built-in equivalent
+            if kb.Command != "" {
+                customBinding := key.NewBinding(
+                    key.WithKeys(kb.Key),
+                    key.WithHelp(kb.Key, kb.Name),
+                )
+                CustomBindings = append(CustomBindings, customBinding)
+            }
+            continue
+        }
+
+        // Rebind a built-in key
+        var target *key.Binding
+        switch kb.Builtin {
+        case "up":
+            target = &Keys.Up
+        case "down":
+            target = &Keys.Down
+        case "quit":
+            target = &Keys.Quit
+        default:
+            return fmt.Errorf("unknown built-in key: '%s'", kb.Builtin)
+        }
+        target.SetKeys(kb.Key)
+        target.SetHelp(kb.Key, kb.Name)
+    }
+    return nil
+}
+```
+
+**Why**: Power users expect to customize keybindings. Separating built-in rebinding from custom command bindings keeps the config schema clean. Custom keybindings appear in the help view alongside built-in ones.
+
+### View-Conditional Help
+
+Change the help display based on the current view and sub-context:
+
+```go
+func (k KeyMap) FullHelp() [][]key.Binding {
+    var additionalKeys []key.Binding
+    switch k.viewType {
+    case PRsView:
+        additionalKeys = PRFullHelp()
+    case IssuesView:
+        additionalKeys = IssueFullHelp()
+    case NotificationsView:
+        additionalKeys = NotificationFullHelp()
+        // Include PR keys when viewing a PR notification
+        switch notificationSubject {
+        case NotificationSubjectPR:
+            additionalKeys = append(additionalKeys, PRFullHelp()...)
+        case NotificationSubjectIssue:
+            additionalKeys = append(additionalKeys, IssueFullHelp()...)
+        }
+    }
+
+    return [][]key.Binding{
+        k.NavigationKeys(),
+        k.AppKeys(),
+        additionalKeys,
+        k.QuitAndHelpKeys(),
+    }
+}
+```
+
+**Why**: Showing all keybindings for all views is overwhelming. View-conditional help shows only the keys relevant to the current context. Sub-context (e.g., "viewing a PR within notifications") further narrows the display.
