@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/img2pdf_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -60,10 +61,7 @@ func init() {
 	rootCmd.Flags().String("viewer-panes", "", "instruct the PDF viewer which side panes to show")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"art-border":   actionLength(),
-		"author":       carapace.ActionValues(),
-		"bleed-border": actionLength(),
-		"border":       actionLength(),
+		"author": carapace.ActionValues(),
 		"colorspace": carapace.ActionValuesDescribed(
 			"RGB", "RGB color",
 			"L", "Grayscale",
@@ -73,7 +71,6 @@ func init() {
 		),
 		"creationdate": carapace.ActionValues(),
 		"creator":      carapace.ActionValues(),
-		"crop-border":  actionLength(),
 		"engine":       carapace.ActionValues("internal", "pikepdf", "pdfrw"),
 		"fit": carapace.ActionValuesDescribed(
 			"into", "width and height specify maximum values",
@@ -83,18 +80,17 @@ func init() {
 			"enlarge", "enlarges smaller images (otherwise behaves like into)",
 		),
 		"from-file":            carapace.ActionFiles(),
-		"imgsize":              actionPaperSize(),
+		"imgsize":              action.ActionPaperSizes(),
 		"keywords":             carapace.ActionValues(),
 		"moddate":              carapace.ActionValues(),
-		"orientation":          actionRotation(),
+		"orientation":          action.ActionRotations(),
 		"output":               carapace.ActionFiles(),
-		"pagesize":             actionPaperSize(),
+		"pagesize":             action.ActionPaperSizes(),
 		"pdfa":                 carapace.ActionFiles(),
 		"producer":             carapace.ActionValues(),
-		"rotation":             actionRotation(),
+		"rotation":             action.ActionRotations(),
 		"subject":              carapace.ActionValues(),
 		"title":                carapace.ActionValues(),
-		"trim-border":          actionLength(),
 		"viewer-initial-page":  carapace.ActionValues(),
 		"viewer-magnification": carapace.ActionValues("fit", "fith", "fitbh"),
 		"viewer-page-layout":   carapace.ActionValues("single", "onecolumn", "twocolumnright", "twocolumnleft", "twopageright", "twopageleft"),
@@ -104,42 +100,4 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),
 	)
-}
-
-// TODO: completion
-func actionLength() carapace.Action {
-	return carapace.ActionValues()
-}
-
-func actionRotation() carapace.Action {
-	return carapace.ActionValues("auto", "none", "ifvalid", "0", "90", "180", "270")
-}
-
-func actionPaperSize() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"A0", "841mmx1189mm",
-		"A1", "594mmx841mm",
-		"A2", "420mmx594mm",
-		"A3", "297mmx420mm",
-		"A4", "210mmx297mm",
-		"A5", "148mmx210mm",
-		"A6", "105mmx148mm",
-		"B0", "1000mmx1414mm",
-		"B1", "707mmx1000mm",
-		"B2", "500mmx707mm",
-		"B3", "353mmx500mm",
-		"B4", "250mmx353mm",
-		"B5", "176mmx250mm",
-		"B6", "125mmx176mm",
-		"JB0", "1030mmx1456mm",
-		"JB1", "728mmx1030mm",
-		"JB2", "515mmx728mm",
-		"JB3", "364mmx515mm",
-		"JB4", "257mmx364mm",
-		"JB5", "182mmx257mm",
-		"JB6", "128mmx182mm",
-		"Legal", "8.5inx14in",
-		"Letter", "8.5inx11in",
-		"Tabloid", "11inx17in",
-	).Usage("append ^T for landscape (case insensitive)")
 }
