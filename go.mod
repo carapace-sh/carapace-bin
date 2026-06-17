@@ -5,7 +5,7 @@ go 1.26.2
 require (
 	github.com/carapace-sh/carapace v1.11.7
 	github.com/carapace-sh/carapace-bridge v1.5.3
-	github.com/carapace-sh/carapace-jjlex v0.1.3
+	github.com/carapace-sh/carapace-jjlex v0.1.4
 	github.com/carapace-sh/carapace-selfupdate v0.0.10
 	github.com/carapace-sh/carapace-shlex v1.1.1
 	github.com/carapace-sh/carapace-spec v1.6.1
@@ -17,7 +17,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 )
 
-require github.com/pelletier/go-toml/v2 v2.3.1 // indirect
+require github.com/pelletier/go-toml/v2 v2.4.0 // indirect
 
 require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
