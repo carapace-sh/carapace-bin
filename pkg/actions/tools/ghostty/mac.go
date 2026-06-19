@@ -18,7 +18,7 @@ func ActionMacIcons() carapace.Action {
 //	aluminum
 //	beige
 func ActionMacIconFrames() carapace.Action {
-	return carapace.ActionValues(
+	return carapace.ActionValuesDescribed(
 		"aluminum", "A brushed aluminum frame. This is the default",
 		"beige", "A classic 90's computer beige frame",
 		"plastic", "A glossy, dark plastic frame",
