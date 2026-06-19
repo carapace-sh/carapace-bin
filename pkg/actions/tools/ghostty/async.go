@@ -10,7 +10,7 @@ import (
 //	epoll (Use the `epoll` API)
 //	io_uring (Use the `io_uring` API)
 func ActionAsyncBackends() carapace.Action {
-	return carapace.ActionStyledValuesDescribed(
+	return carapace.ActionValuesDescribed(
 		"auto", "Automatically choose the best backend for the platform based on available options",
 		"epoll", "Use the `epoll` API",
 		"io_uring", "Use the `io_uring` API",
