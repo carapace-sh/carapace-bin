@@ -91,7 +91,7 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().String("cursor-color", "", "The color of the cursor")
 	cmd.Flags().String("cursor-opacity", "", "The opacity level (opposite of transparency) of the cursor")
 	cmd.Flags().String("cursor-style", "", "The style of the cursor")
-	cmd.Flags().Bool("cursor-style-blink", false, "Sets the default blinking state of the cursor")
+	cmd.Flags().String("cursor-style-blink", "", "Sets the default blinking state of the cursor")
 	cmd.Flags().String("cursor-text", "", "The color of the text under the cursor")
 	cmd.Flags().StringArray("custom-shader", nil, "Custom shaders to run after the default shaders")
 	cmd.Flags().String("custom-shader-animation", "", "Controls when custom shaders are animated")
@@ -216,7 +216,7 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().Bool("vt-kam-allowed", false, "Allows the \"KAM\" mode")
 	cmd.Flags().Bool("wait-after-command", false, "Keep the terminal open after the command exits")
 	cmd.Flags().String("window-colorspace", "", "The colorspace to use for the terminal window")
-	cmd.Flags().Bool("window-decoration", false, "Enable window decorations")
+	cmd.Flags().String("window-decoration", "", "Enable window decorations")
 	cmd.Flags().String("window-height", "", "The initial window height")
 	cmd.Flags().Bool("window-inherit-font-size", false, "Inherit the font size of the previously focused window")
 	cmd.Flags().Bool("window-inherit-working-directory", false, "Inherit the working directory of the previously focused window")
@@ -283,6 +283,7 @@ func addConfigs(cmd *cobra.Command) {
 		"copy-on-select":          ghostty.ActionCopyOnSelectModes(),
 		"cursor-color":            color.ActionHexColors(),
 		"cursor-style":            ghostty.ActionCursorStyles(),
+		"cursor-style-blink":      ghostty.ActionCursorStyleBlinks(),
 		"cursor-text":             color.ActionHexColors(),
 		"custom-shader":           carapace.ActionFiles(),
 		"custom-shader-animation": ghostty.ActionShaderAnimationModes(),
@@ -393,6 +394,7 @@ func addConfigs(cmd *cobra.Command) {
 		"undo-timeout":                    carapace.ActionValues(),
 		"unfocused-split-fill":            color.ActionXtermColorNames(),
 		"window-colorspace":               ghostty.ActionWindowColorspaces(),
+		"window-decoration":               ghostty.ActionWindowDecorations(),
 		"window-new-tab-position":         ghostty.ActionWindowNewTabPositions(),
 		"window-padding-color":            ghostty.ActionWindowPaddingColors(),
 		"window-save-state":               ghostty.ActionWindowSaveStates(),

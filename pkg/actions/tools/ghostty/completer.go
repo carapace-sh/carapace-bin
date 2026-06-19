@@ -119,3 +119,16 @@ func ActionWindowColorspaces() carapace.Action {
 func ActionTerms() carapace.Action {
 	return carapace.ActionValues("xterm-ghostty", "xterm-256color", "xterm-kitty", "xterm-terminfo").Tag("term values").Uid("ghostty", "term")
 }
+
+// ActionWindowDecorations completes window decoration modes
+//
+//	none (No window decorations)
+//	auto (Automatically choose window decorations)
+func ActionWindowDecorations() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"none", "No window decorations",
+		"auto", "Automatically choose window decorations based on the platform",
+		"client", "Use client-side decorations",
+		"server", "Use server-side decorations",
+	).Tag("window decoration modes").Uid("ghostty", "window-decoration")
+}

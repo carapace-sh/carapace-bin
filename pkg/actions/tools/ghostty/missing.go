@@ -46,12 +46,16 @@ func ActionRightClickActions() carapace.Action {
 
 // ActionScrollbarModes completes scrollbar modes
 //
-//	system (Respect the system settings)
-//	never (Never show a scrollbar)
+//	true (Show the scrollbar)
+//	false (Hide the scrollbar)
 func ActionScrollbarModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"system", "Respect the system settings for when to show scrollbars",
-		"never", "Never show a scrollbar",
+		"true", "Show the scrollbar",
+		"false", "Hide the scrollbar",
+		"left", "Show the scrollbar on the left side",
+		"right", "Show the scrollbar on the right side",
+		"hidden", "Hide the scrollbar but allow toggling via keybind",
+		"visible", "Always show the scrollbar",
 	).StyleF(style.ForKeyword).Tag("scrollbar modes").Uid("ghostty", "scrollbar-mode")
 }
 

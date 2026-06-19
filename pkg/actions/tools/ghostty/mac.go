@@ -35,6 +35,7 @@ func ActionMacFullscreenModes() carapace.Action {
 		"visible-menu", "Use non-native macOS fullscreen, keep the menu bar visible",
 		"true", "Use non-native macOS fullscreen, hide the menu bar",
 		"false", "Use native macOS fullscreen",
+		"padded-notch", "Non-native fullscreen with padding for the notch area",
 	).Tag("mac fullscreen modes").Uid("ghostty", "macos-fullscreen-mode")
 }
 

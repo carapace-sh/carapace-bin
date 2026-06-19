@@ -1,0 +1,11 @@
+none: |
+  No window decorations. The window has no title bar, borders, or buttons.
+auto: |
+  Automatically choose window decorations based on the platform and display server.
+  This is the default value.
+client: |
+  Use client-side decorations. The application draws its own window decorations.
+  This is the typical mode on Wayland with GTK.
+server: |
+  Use server-side decorations. The display server or window manager provides the
+  decorations. Common on X11 and some Wayland compositors.

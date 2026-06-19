@@ -13,3 +13,5 @@ fish: |
   Force shell integration for Fish. Always injects the Fish integration script.
 zsh: |
   Force shell integration for Zsh. Always injects the Zsh integration script.
+nushell: |
+  Force shell integration for Nushell. Always injects the Nushell integration script.

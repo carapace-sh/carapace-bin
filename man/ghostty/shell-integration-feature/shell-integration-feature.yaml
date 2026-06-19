@@ -7,3 +7,12 @@ sudo: |
 title: |
   Set the window title via shell integration. The shell automatically updates the terminal
   window title to reflect the current directory or running command.
+ssh-env: |
+  Set SSH environment variables for remote hosts. Ensures that Ghostty-specific environment
+  variables are forwarded to remote hosts when connecting via SSH.
+ssh-terminfo: |
+  Copy Ghostty terminfo to remote hosts via SSH. Automatically installs the Ghostty terminfo
+  definition on remote hosts so that terminal features work correctly over SSH connections.
+path: |
+  Add Ghostty to PATH on remote hosts. Ensures that the Ghostty binary directory is included
+  in the PATH variable on remote hosts when connecting via SSH.

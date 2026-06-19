@@ -7,3 +7,6 @@
 "false": |
   Use native macOS fullscreen. The standard macOS fullscreen behavior that moves the window to its
   own Space with the standard animation and menu bar auto-hide behavior.
+padded-notch: |
+  Non-native fullscreen with padding for the notch area. On MacBook models with a notch,
+  adds padding at the top of the screen so content doesn't appear behind the notch.

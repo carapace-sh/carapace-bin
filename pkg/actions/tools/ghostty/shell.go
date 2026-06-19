@@ -14,6 +14,7 @@ func ActionShellIntegrationModes() carapace.Action {
 		"elvish", "",
 		"fish", "",
 		"zsh", "",
+		"nushell", "",
 	).Tag("shell integration modes").Uid("ghostty", "shell-integration-mode")
 }
 
@@ -26,5 +27,8 @@ func ActionShellIntegrationFeatures() carapace.Action {
 		"cursor", "Set the cursor to a blinking bar at the prompt",
 		"sudo", "Set sudo wrapper to preserve terminfo",
 		"title", "Set the window title via shell integration",
+		"ssh-env", "Set SSH environment variables for remote hosts",
+		"ssh-terminfo", "Copy Ghostty terminfo to remote hosts via SSH",
+		"path", "Add Ghostty to PATH on remote hosts",
 	).Tag("shell integration features").Uid("ghostty", "shell-integration-feature")
 }
