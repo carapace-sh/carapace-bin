@@ -19,9 +19,11 @@ func init() {
 	listFontsCmd.Flags().String("family", "", "filter results to a specific family")
 	listFontsCmd.Flags().Bool("help", false, "show help")
 	listFontsCmd.Flags().Bool("italic", false, "filter results to italic style")
+	listFontsCmd.Flags().String("style", "", "filter results based on the style string advertised by a font")
 	rootCmd.AddCommand(listFontsCmd)
 
 	carapace.Gen(listFontsCmd).FlagCompletion(carapace.ActionMap{
 		"family": ghostty.ActionFontFamilies(),
+		"style":  carapace.ActionValues("regular", "bold", "italic", "bold_italic"),
 	})
 }
