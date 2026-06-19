@@ -42,7 +42,11 @@ func ActionFontShapingBreaks() carapace.Action {
 //	true (Run in single-instance mode)
 //	false (Do not run in single-instance mode)
 func ActionGtkSingleInstances() carapace.Action {
-	return carapace.ActionValues("true", "false", "detect").StyleF(style.ForKeyword).Tag("gtk single instance modes").Uid("ghostty", "gtk-single-instance")
+	return carapace.ActionValuesDescribed(
+		"true", "Run in single-instance mode",
+		"false", "Do not run in single-instance mode",
+		"detect", "Automatically detect whether to use single-instance mode",
+	).StyleF(style.ForKeyword).Tag("gtk single instance modes").Uid("ghostty", "gtk-single-instance")
 }
 
 // ActionGtkTabsLocations completes gtk tabs locations
@@ -58,7 +62,12 @@ func ActionGtkTabsLocations() carapace.Action {
 //	false (Do not treat the Option key as Alt)
 //	true (Treat both left and right Option keys as Alt)
 func ActionMacosOptionsAsAlt() carapace.Action {
-	return carapace.ActionValues("false", "true", "left", "right").StyleF(style.ForKeyword).Tag("macos option-as-alt modes").Uid("ghostty", "macos-option-as-alt")
+	return carapace.ActionValuesDescribed(
+		"false", "Do not treat the Option key as Alt",
+		"true", "Treat both left and right Option keys as Alt",
+		"left", "Treat only the left Option key as Alt",
+		"right", "Treat only the right Option key as Alt",
+	).StyleF(style.ForKeyword).Tag("macos option-as-alt modes").Uid("ghostty", "macos-option-as-alt")
 }
 
 // ActionMacosTitlebarProxyIcons completes macos titlebar proxy icon visibility
@@ -66,7 +75,10 @@ func ActionMacosOptionsAsAlt() carapace.Action {
 //	visible (Show the proxy icon)
 //	hidden (Hide the proxy icon)
 func ActionMacosTitlebarProxyIcons() carapace.Action {
-	return carapace.ActionValues("visible", "hidden").Tag("macos titlebar proxy icon visibility").Uid("ghostty", "macos-titlebar-proxy-icon")
+	return carapace.ActionValuesDescribed(
+		"visible", "Show the proxy icon in the macOS titlebar",
+		"hidden", "Hide the proxy icon in the macOS titlebar",
+	).Tag("macos titlebar proxy icon visibility").Uid("ghostty", "macos-titlebar-proxy-icon")
 }
 
 // ActionQuickTerminalKeyboardInteractivities completes quick terminal keyboard interactivity modes

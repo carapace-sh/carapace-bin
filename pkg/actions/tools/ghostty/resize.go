@@ -19,7 +19,7 @@ func ActionResizeOverlayModes() carapace.Action {
 //	center
 //	top-left
 func ActionResizeOverlayPositions() carapace.Action {
-	return carapace.ActionValuesDescribed(
+	return carapace.ActionValues(
 		"center",
 		"top-left",
 		"top-center",
