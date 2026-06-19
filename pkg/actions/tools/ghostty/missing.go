@@ -157,11 +157,11 @@ func ActionSplitPreserveZoom() carapace.Action {
 	).Tag("split preserve zoom modes")
 }
 
-// ActionWindowSubtitle completes window subtitle modes
+// ActionWindowSubtitles completes window subtitle modes
 //
 //	false (Disable the subtitle)
 //	working-directory (Set the subtitle to the working directory)
-func ActionWindowSubtitle() carapace.Action {
+func ActionWindowSubtitles() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"false", "Disable the subtitle",
 		"working-directory", "Set the subtitle to the working directory of the surface",

@@ -416,7 +416,7 @@ func addConfigs(cmd *cobra.Command) {
 		"window-padding-color":            ghostty.ActionWindowPaddingColors(),
 		"window-save-state":               ghostty.ActionWindowSaveStates(),
 		"window-show-tab-bar":             ghostty.ActionWindowShowTabBar(),
-		"window-subtitle":                 ghostty.ActionWindowSubtitle(),
+		"window-subtitle":                 ghostty.ActionWindowSubtitles(),
 		"window-theme":                    ghostty.ActionWindowThemes(),
 		"window-title-font-family":        ghostty.ActionFontFamilies(),
 		"window-titlebar-background":      carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames()).ToA(),
