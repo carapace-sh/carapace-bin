@@ -1,0 +1,6 @@
+keystroke: |
+  Scroll the surface to the bottom when the user presses a key. Any keypress
+  scrolls the terminal view to show the latest output.
+output: |
+  Scroll the surface to the bottom if there is new data to display. The
+  terminal automatically scrolls down only when new output arrives.

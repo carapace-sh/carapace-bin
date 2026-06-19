@@ -1,0 +1,9 @@
+"true": |
+  Run in single-instance mode. Only one Ghostty process runs at a time; new
+  windows are opened via the existing process.
+"false": |
+  Do not run in single-instance mode. Each `ghostty` invocation starts a new
+  process.
+detect: |
+  Automatically detect whether to use single-instance mode. If another Ghostty
+  instance is already running, delegate to it; otherwise start a new process.

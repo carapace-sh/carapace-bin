@@ -1,0 +1,5 @@
+"false": |
+  Equivalent to a blur intensity of 0. Background blur is completely disabled.
+"true": |
+  Equivalent to the default blur intensity of 20. Enables background blur with a
+  moderate blur radius.

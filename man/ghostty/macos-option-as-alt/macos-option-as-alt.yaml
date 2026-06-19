@@ -1,0 +1,12 @@
+"false": |
+  Do not treat the Option key as Alt. The Option key performs its standard
+  macOS function (typing special characters).
+"true": |
+  Treat both left and right Option keys as Alt. The Option key sends Alt
+  key sequences instead of special characters.
+left: |
+  Treat only the left Option key as Alt. The right Option key retains its
+  standard macOS special character behavior.
+right: |
+  Treat only the right Option key as Alt. The left Option key retains its
+  standard macOS special character behavior.

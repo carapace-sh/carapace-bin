@@ -1,0 +1,3 @@
+cursor: |
+  Break runs under the cursor. Font shaping is broken at the cursor position,
+  which can prevent ligatures from spanning the cursor.
