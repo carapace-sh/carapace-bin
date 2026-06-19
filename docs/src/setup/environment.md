@@ -128,6 +128,12 @@ Whether to skip the final filtering step.
 
 Zsh hash directories (internal).
 
+## CARAPACE_ZSH_STYLE_LIMIT
+
+Maximum amount of values to be styled.
+
+![](./zshStyleLimit.cast)
+
 
 [Fish]:https://fishshell.com/
 [Zsh]:https://www.zsh.org/
