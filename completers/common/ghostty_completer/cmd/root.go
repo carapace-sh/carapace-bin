@@ -132,7 +132,7 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().Bool("gtk-titlebar", false, "Display the full GTK titlebar")
 	cmd.Flags().Bool("gtk-titlebar-hide-when-maximized", false, "Hide the titlebar when the window is maximized")
 	cmd.Flags().String("gtk-titlebar-style", "", "The style of the GTK titlebar")
-	cmd.Flags().Bool("gtk-toolbar-style", false, "Determines the appearance of the top and bottom bars tab bar")
+	cmd.Flags().String("gtk-toolbar-style", "", "Determines the appearance of the top and bottom bars tab bar")
 	cmd.Flags().Bool("gtk-wide-tabs", false, "Use \"wide\" GTK tabs")
 	cmd.Flags().String("image-storage-limit", "", "The total amount of bytes that can be used for image data")
 	cmd.Flags().String("initial-command", "", "This is the same as \"command\", but only applies to the first terminal surface created")
