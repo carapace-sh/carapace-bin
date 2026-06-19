@@ -5,11 +5,11 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
-// ActionNotifyOnCommandFinish completes notify on command finish modes
+// ActionNotifyOnCommandFinishes completes notify on command finish modes
 //
 //	never (Never send notifications)
 //	unfocused (Only send notifications if the surface is not focused)
-func ActionNotifyOnCommandFinish() carapace.Action {
+func ActionNotifyOnCommandFinishes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"never", "Never send notifications",
 		"unfocused", "Only send notifications if the surface is not focused",
@@ -55,11 +55,11 @@ func ActionScrollbarModes() carapace.Action {
 	).StyleF(style.ForKeyword).Tag("scrollbar modes")
 }
 
-// ActionWindowShowTabBar completes window show tab bar modes
+// ActionWindowShowTabBars completes window show tab bar modes
 //
 //	always (Always display the tab bar)
 //	auto (Automatically show and hide the tab bar)
-func ActionWindowShowTabBar() carapace.Action {
+func ActionWindowShowTabBars() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"always", "Always display the tab bar, even with only one tab",
 		"auto", "Automatically show and hide the tab bar",
@@ -78,11 +78,11 @@ func ActionMacosDockDropBehaviors() carapace.Action {
 	).Tag("macos dock drop behaviors")
 }
 
-// ActionMacosHidden completes macos hidden modes
+// ActionMacosHiddenModes completes macos hidden modes
 //
 //	never (The macOS app is never hidden)
 //	always (The macOS app is always hidden)
-func ActionMacosHidden() carapace.Action {
+func ActionMacosHiddenModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"never", "The macOS app is never hidden",
 		"always", "The macOS app is always hidden",
@@ -147,10 +147,10 @@ func ActionQuickTerminalSpaceBehaviors() carapace.Action {
 	).Tag("quick terminal space behaviors")
 }
 
-// ActionSplitPreserveZoom completes split preserve zoom modes
+// ActionSplitPreserveZooms completes split preserve zoom modes
 //
 //	navigation (preserve the zoomed split state when navigating)
-func ActionSplitPreserveZoom() carapace.Action {
+func ActionSplitPreserveZooms() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"navigation", "preserve the zoomed split state when navigating to another split",
 		"no-navigation", "unzoom when navigating to another split",
