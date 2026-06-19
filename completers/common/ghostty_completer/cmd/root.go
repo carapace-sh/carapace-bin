@@ -331,10 +331,7 @@ func addConfigs(cmd *cobra.Command) {
 		"input": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionValuesDescribed(
-					"raw", "Send raw text as-is",
-					"path", "Read a filepath and send the contents",
-				).Suffix(":")
+				return ghostty.ActionInputTypes().Suffix(":")
 			default:
 				switch c.Parts[0] {
 				case "path":
