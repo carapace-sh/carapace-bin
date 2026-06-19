@@ -11,11 +11,11 @@ jobs:
     container: ghcr.io/carapace-sh/go:1.26.3
     steps:
       - name: shallow clone
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         if: "!startsWith(github.ref, 'refs/tags/')"
 
       - name: deep clone
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         if: startsWith(github.ref, 'refs/tags/')
         with:
           fetch-depth: 0
@@ -64,7 +64,7 @@ jobs:
     container: ghcr.io/carapace-sh/mdbook
     needs: build
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: actions/download-artifact@v8
         with:
