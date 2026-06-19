@@ -279,8 +279,8 @@ func addConfigs(cmd *cobra.Command) {
 				return carapace.ActionValues()
 			}
 		}),
-		"clipboard-read":          carapace.ActionValues("ask", "allow", "deny").StyleF(style.ForKeyword),
-		"clipboard-write":         carapace.ActionValues("ask", "allow", "deny").StyleF(style.ForKeyword),
+		"clipboard-read":          ghostty.ActionClipboardPermissions(),
+		"clipboard-write":         ghostty.ActionClipboardPermissions(),
 		"command":                 bridge.ActionCarapaceBin().SplitP(),
 		"config-file":             carapace.ActionFiles(),
 		"copy-on-select":          ghostty.ActionCopyOnSelectModes(),
