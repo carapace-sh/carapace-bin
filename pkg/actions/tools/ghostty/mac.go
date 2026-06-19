@@ -10,7 +10,7 @@ func ActionMacIcons() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"official", "Use the official Ghostty icon",
 		"custom-style", "Use the official Ghostty icon but with custom styles",
-	).Tag("mac icons")
+	).Tag("mac icons").Uid("ghostty", "macos-icon")
 }
 
 // ActionMacIconFrames completes mac icon frames
@@ -23,7 +23,7 @@ func ActionMacIconFrames() carapace.Action {
 		"beige", "A classic 90's computer beige frame",
 		"plastic", "A glossy, dark plastic frame",
 		"chrome", "A shiny chrome frame",
-	).Tag("mac icon frames")
+	).Tag("mac icon frames").Uid("ghostty", "macos-icon-frame")
 }
 
 // ActionMacFullscreenModes completes mac fullscreen modes
@@ -35,7 +35,7 @@ func ActionMacFullscreenModes() carapace.Action {
 		"visible-menu", "Use non-native macOS fullscreen, keep the menu bar visible",
 		"true", "Use non-native macOS fullscreen, hide the menu bar",
 		"false", "Use native macOS fullscreen",
-	).Tag("mac fullscreen modes")
+	).Tag("mac fullscreen modes").Uid("ghostty", "macos-fullscreen-mode")
 }
 
 // ActionMacTitlebarStyles completes mac titlebar styles
@@ -48,5 +48,5 @@ func ActionMacTitlebarStyles() carapace.Action {
 		"transparent", "same as \"native\" but the titlebar will be transparent",
 		"tabs", "custom titlebar that integrates the tab bar into the titlebar",
 		"hidden", "hides the titlebar",
-	).Tag("mac titlebar styles")
+	).Tag("mac titlebar styles").Uid("ghostty", "macos-titlebar-style")
 }

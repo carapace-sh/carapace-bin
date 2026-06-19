@@ -15,5 +15,5 @@ func ActionAsyncBackends() carapace.Action {
 		"epoll", "Use the `epoll` API",
 		"io_uring", "Use the `io_uring` API",
 	).StyleF(style.ForKeyword).
-		Tag("async backends")
+		Tag("async backends").Uid("ghostty", "async-backend")
 }

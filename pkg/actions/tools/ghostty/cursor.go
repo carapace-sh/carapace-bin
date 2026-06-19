@@ -12,5 +12,5 @@ func ActionCursorStyles() carapace.Action {
 		"bar",
 		"underline",
 		"block_hollow",
-	).Tag("cursor styles")
+	).Tag("cursor styles").Uid("ghostty", "cursor-style")
 }

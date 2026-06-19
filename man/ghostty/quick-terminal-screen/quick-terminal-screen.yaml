@@ -1,0 +1,9 @@
+main: |
+  The screen that the operating system recommends as the main screen. Typically the primary
+  display or the display with the menu bar.
+mouse: |
+  The screen that the mouse is currently hovered over. The quick terminal appears on whichever
+  display the cursor is on.
+"macos-menu-bar": |
+  The screen that contains the macOS menu bar. On multi-display setups this is typically the
+  primary display.

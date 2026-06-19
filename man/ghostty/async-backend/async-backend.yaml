@@ -1,0 +1,9 @@
+auto: |
+  Automatically choose the best backend for the platform based on available options. On Linux, prefers
+  `io_uring` when available, falling back to `epoll` otherwise.
+epoll: |
+  Use the `epoll` API for async I/O. Available on Linux only. A mature and widely supported event
+  notification mechanism that monitors multiple file descriptors for readiness.
+"io_uring": |
+  Use the `io_uring` API for async I/O. Available on Linux only. A modern, high-performance asynchronous
+  I/O interface that can be more efficient than `epoll` for workloads with many concurrent I/O operations.

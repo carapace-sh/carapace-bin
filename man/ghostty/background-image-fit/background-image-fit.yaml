@@ -1,0 +1,13 @@
+contain: |
+  Scale to the largest size that can still be contained within the terminal bounds while preserving
+  the image's aspect ratio. The image will not be cropped, but the terminal may have unused space
+  (letterboxing).
+cover: |
+  Scale to the smallest size that can completely cover the terminal while preserving the image's
+  aspect ratio. The image may be cropped to fill the entire terminal area.
+stretch: |
+  Stretch the background image to the full size of the terminal. The image's aspect ratio is not
+  preserved, which may cause distortion.
+none: |
+  Don't scale the background image. The image is displayed at its native size, anchored according
+  to the `background-image-position` setting.

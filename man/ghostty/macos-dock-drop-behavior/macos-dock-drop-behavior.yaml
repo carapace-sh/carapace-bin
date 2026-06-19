@@ -1,0 +1,6 @@
+"new-tab": |
+  Create a new tab in the current window, or open a new window if none exist. Files dropped on the
+  dock icon are opened as a new tab in the existing Ghostty window.
+"new-window": |
+  Create a new window unconditionally. Files dropped on the dock icon always open in a new Ghostty
+  window, even if one already exists.

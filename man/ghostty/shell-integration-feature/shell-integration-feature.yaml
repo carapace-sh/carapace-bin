@@ -1,0 +1,9 @@
+cursor: |
+  Set the cursor to a blinking bar at the prompt. Shell integration changes the cursor shape
+  to a blinking bar at the command prompt and restores it when executing a command.
+sudo: |
+  Set sudo wrapper to preserve terminfo. Ensures that the `TERM` and `TERMINFO` environment
+  variables are preserved when running `sudo`, maintaining proper terminal capability support.
+title: |
+  Set the window title via shell integration. The shell automatically updates the terminal
+  window title to reflect the current directory or running command.

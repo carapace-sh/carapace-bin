@@ -1,0 +1,9 @@
+"true": |
+  Run an animation loop when custom shaders are used. Animated custom shaders update on every
+  frame, allowing smooth visual effects. The animation loop pauses when the terminal is unfocused.
+"false": |
+  Only render when the terminal is updated. Custom shaders are re-rendered only when the terminal
+  content changes, saving GPU resources. No continuous animation is performed.
+always: |
+  Run the animation loop regardless of whether the terminal is focused or not. Custom shaders
+  continue to animate even when the terminal window is in the background. Uses more GPU resources.

@@ -12,5 +12,5 @@ func ActionMouseShiftCaptureModes() carapace.Action {
 		"false", "don't capture, but allow override",
 		"always", "always capture",
 		"never", "never capture",
-	).Tag("mouse shift capture modes")
+	).Tag("mouse shift capture modes").Uid("ghostty", "mouse-shift-capture")
 }

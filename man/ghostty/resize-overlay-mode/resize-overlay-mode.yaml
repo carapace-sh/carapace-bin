@@ -1,0 +1,7 @@
+always: |
+  Always show resize overlays. The dimension indicator is shown every time the terminal is resized.
+never: |
+  Never show resize overlays. No dimension indicator is displayed during resize operations.
+"after-first": |
+  Show resize overlays after the first manual resize. The dimension indicator only appears for
+  resizes performed after the terminal surface has been initially created.

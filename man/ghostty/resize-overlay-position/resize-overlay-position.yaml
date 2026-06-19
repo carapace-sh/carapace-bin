@@ -1,0 +1,14 @@
+center: |
+  Display the resize overlay at the center of the terminal surface.
+top-left: |
+  Display the resize overlay at the top-left corner of the terminal surface.
+top-center: |
+  Display the resize overlay at the top-center of the terminal surface.
+top-right: |
+  Display the resize overlay at the top-right corner of the terminal surface.
+bottom-left: |
+  Display the resize overlay at the bottom-left corner of the terminal surface.
+bottom-center: |
+  Display the resize overlay at the bottom-center of the terminal surface.
+bottom-right: |
+  Display the resize overlay at the bottom-right corner of the terminal surface.

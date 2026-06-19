@@ -14,7 +14,7 @@ func ActionNotifyOnCommandFinishes() carapace.Action {
 		"never", "Never send notifications",
 		"unfocused", "Only send notifications if the surface is not focused",
 		"always", "Always send notifications",
-	).StyleF(style.ForKeyword).Tag("notify on command finish modes")
+	).StyleF(style.ForKeyword).Tag("notify on command finish modes").Uid("ghostty", "notify-on-command-finish")
 }
 
 // ActionNotifyOnCommandFinishActions completes notify on command finish actions
@@ -27,7 +27,7 @@ func ActionNotifyOnCommandFinishActions() carapace.Action {
 		"notify", "disabled by default",
 		"no-bell", "disabled by default",
 		"no-notify", "disabled by default",
-	).Tag("notify on command finish actions")
+	).Tag("notify on command finish actions").Uid("ghostty", "notify-on-command-finish-action")
 }
 
 // ActionRightClickActions completes right click actions
@@ -41,7 +41,7 @@ func ActionRightClickActions() carapace.Action {
 		"copy", "Copy the selected text to the clipboard",
 		"copy-or-paste", "If there is a selection copy; otherwise paste",
 		"ignore", "Do nothing, ignore the right-click",
-	).Tag("right click actions")
+	).Tag("right click actions").Uid("ghostty", "right-click-action")
 }
 
 // ActionScrollbarModes completes scrollbar modes
@@ -52,7 +52,7 @@ func ActionScrollbarModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"system", "Respect the system settings for when to show scrollbars",
 		"never", "Never show a scrollbar",
-	).StyleF(style.ForKeyword).Tag("scrollbar modes")
+	).StyleF(style.ForKeyword).Tag("scrollbar modes").Uid("ghostty", "scrollbar-mode")
 }
 
 // ActionWindowShowTabBars completes window show tab bar modes
@@ -64,7 +64,7 @@ func ActionWindowShowTabBars() carapace.Action {
 		"always", "Always display the tab bar, even with only one tab",
 		"auto", "Automatically show and hide the tab bar",
 		"never", "Never show the tab bar",
-	).StyleF(style.ForKeyword).Tag("window show tab bar modes")
+	).StyleF(style.ForKeyword).Tag("window show tab bar modes").Uid("ghostty", "window-show-tab-bar")
 }
 
 // ActionMacosDockDropBehaviors completes macos dock drop behaviors
@@ -75,7 +75,7 @@ func ActionMacosDockDropBehaviors() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"new-tab", "Create a new tab in the current window, or open a new window if none exist",
 		"new-window", "Create a new window unconditionally",
-	).Tag("macos dock drop behaviors")
+	).Tag("macos dock drop behaviors").Uid("ghostty", "macos-dock-drop-behavior")
 }
 
 // ActionMacosHiddenModes completes macos hidden modes
@@ -86,7 +86,7 @@ func ActionMacosHiddenModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"never", "The macOS app is never hidden",
 		"always", "The macOS app is always hidden",
-	).Tag("macos hidden modes")
+	).Tag("macos hidden modes").Uid("ghostty", "macos-hidden-mode")
 }
 
 // ActionMacosShortcuts completes macos shortcuts modes
@@ -98,7 +98,7 @@ func ActionMacosShortcuts() carapace.Action {
 		"ask", "Ask the user for permission",
 		"allow", "Allow Shortcuts to control Ghostty without asking",
 		"deny", "Deny Shortcuts from controlling Ghostty",
-	).StyleF(style.ForKeyword).Tag("macos shortcuts modes")
+	).StyleF(style.ForKeyword).Tag("macos shortcuts modes").Uid("ghostty", "macos-shortcut")
 }
 
 // ActionMacosWindowButtons completes macos window buttons visibility
@@ -109,7 +109,7 @@ func ActionMacosWindowButtons() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"visible", "Show the window buttons",
 		"hidden", "Hide the window buttons",
-	).Tag("macos window buttons visibility")
+	).Tag("macos window buttons visibility").Uid("ghostty", "macos-window-button")
 }
 
 // ActionGtkTitlebarStyles completes gtk titlebar styles
@@ -120,7 +120,7 @@ func ActionGtkTitlebarStyles() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"native", "traditional titlebar with a title, a few buttons and window controls",
 		"tabs", "merges the tab bar and the traditional titlebar",
-	).Tag("gtk titlebar styles")
+	).Tag("gtk titlebar styles").Uid("ghostty", "gtk-titlebar-style")
 }
 
 // ActionGtkQuickTerminalLayers completes gtk quick terminal layers
@@ -133,7 +133,7 @@ func ActionGtkQuickTerminalLayers() carapace.Action {
 		"top", "The quick terminal appears in front of normal windows but behind fullscreen overlays",
 		"bottom", "The quick terminal appears behind normal windows but in front of wallpapers",
 		"background", "The quick terminal appears behind all windows",
-	).Tag("gtk quick terminal layers")
+	).Tag("gtk quick terminal layers").Uid("ghostty", "gtk-quick-terminal-layer")
 }
 
 // ActionQuickTerminalSpaceBehaviors completes quick terminal space behaviors
@@ -144,7 +144,7 @@ func ActionQuickTerminalSpaceBehaviors() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"move", "The quick terminal will move to the current space when switching",
 		"remain", "The quick terminal will stay in the space where it was originally opened",
-	).Tag("quick terminal space behaviors")
+	).Tag("quick terminal space behaviors").Uid("ghostty", "quick-terminal-space-behavior")
 }
 
 // ActionSplitPreserveZooms completes split preserve zoom modes
@@ -154,7 +154,7 @@ func ActionSplitPreserveZooms() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"navigation", "preserve the zoomed split state when navigating to another split",
 		"no-navigation", "unzoom when navigating to another split",
-	).Tag("split preserve zoom modes")
+	).Tag("split preserve zoom modes").Uid("ghostty", "split-preserve-zoom")
 }
 
 // ActionWindowSubtitles completes window subtitle modes
@@ -165,5 +165,5 @@ func ActionWindowSubtitles() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"false", "Disable the subtitle",
 		"working-directory", "Set the subtitle to the working directory of the surface",
-	).Tag("window subtitle modes")
+	).Tag("window subtitle modes").Uid("ghostty", "window-subtitle")
 }

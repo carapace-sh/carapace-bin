@@ -1,0 +1,9 @@
+default: |
+  Use the default system behavior for window state saving. Follows the platform's standard
+  approach to saving and restoring window positions and sizes.
+never: |
+  Never save window state. Ghostty does not persist window positions, sizes, or tab layouts
+  between sessions.
+always: |
+  Always save window state. Ghostty persists all window positions, sizes, and tab layouts,
+  restoring them on the next launch.

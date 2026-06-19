@@ -1,0 +1,11 @@
+native: |
+  Perform alpha blending in the native color space for the OS. This is the default and uses the OS-preferred
+  color space (sRGB on most platforms) for compositing operations.
+linear: |
+  Perform alpha blending in linear space. Uses a linearized RGB color space for compositing, which produces
+  more physically accurate results when layering semi-transparent surfaces. Can appear darker at the edges
+  of overlapping elements compared to `native`.
+"linear-corrected": |
+  Same as `linear`, but with a correction step applied. Compensates for the perceptual difference that
+  makes linear blending appear darker, producing results closer to what users expect visually while still
+  using the more accurate linear color space internally.

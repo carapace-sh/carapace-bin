@@ -13,7 +13,7 @@ func ActionQuickTerminalPositions() carapace.Action {
 		"left", "Terminal appears at the left of the screen",
 		"right", "Terminal appears at the right of the screen",
 		"center", "Terminal appears at the center of the screen",
-	).Tag("quick terminal positions")
+	).Tag("quick terminal positions").Uid("ghostty", "quick-terminal-position")
 }
 
 // ActionQuickTerminalScreens completes quick terminal screens
@@ -25,5 +25,5 @@ func ActionQuickTerminalScreens() carapace.Action {
 		"main", "The screen that the operating system recommends as the main screen",
 		"mouse", "The screen that the mouse is currently hovered over",
 		"macos-menu-bar", "The screen that contains the macOS menu bar",
-	).Tag("quick terminal screens")
+	).Tag("quick terminal screens").Uid("ghostty", "quick-terminal-screen")
 }

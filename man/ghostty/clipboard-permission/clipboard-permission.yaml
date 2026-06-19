@@ -1,0 +1,8 @@
+ask: |
+  Ask the user for permission each time a program tries to access the clipboard. A prompt is
+  shown allowing the user to allow or deny the request.
+allow: |
+  Allow clipboard access without prompting. Programs can read from or write to the clipboard
+  freely.
+deny: |
+  Deny clipboard access. Programs cannot read from or write to the clipboard.

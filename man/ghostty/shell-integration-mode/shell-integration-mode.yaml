@@ -1,0 +1,15 @@
+none: |
+  Do not do any automatic injection. Shell integration scripts are not injected into the shell
+  session. You must manually configure your shell for integration features.
+detect: |
+  Detect the shell based on the filename. Ghostty inspects the shell binary path and automatically
+  injects the appropriate integration script for supported shells.
+bash: |
+  Force shell integration for Bash. Always injects the Bash integration script, regardless of
+  what shell is actually being used.
+elvish: |
+  Force shell integration for Elvish. Always injects the Elvish integration script.
+fish: |
+  Force shell integration for Fish. Always injects the Fish integration script.
+zsh: |
+  Force shell integration for Zsh. Always injects the Zsh integration script.

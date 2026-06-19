@@ -11,7 +11,7 @@ func ActionResizeOverlayModes() carapace.Action {
 		"always", "Always show resize overlays",
 		"never", "Never show resize overlays",
 		"after-first", "Show up if the surface is resized after creation",
-	).Tag("resize overlay modes")
+	).Tag("resize overlay modes").Uid("ghostty", "resize-overlay-mode")
 }
 
 // ActionResizeOverlayPositions completes resize overlay positions
@@ -27,5 +27,5 @@ func ActionResizeOverlayPositions() carapace.Action {
 		"bottom-left",
 		"bottom-center",
 		"bottom-right",
-	).Tag("resize overlay positions")
+	).Tag("resize overlay positions").Uid("ghostty", "resize-overlay-position")
 }

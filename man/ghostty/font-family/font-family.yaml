@@ -1,0 +1,6 @@
+family: |
+  A font family name available on the system. Font families are discovered at runtime via
+  `ghostty +list-fonts`. Each family contains one or more font styles (regular, bold, italic,
+  bold italic) that Ghostty selects automatically based on text attributes.
+
+  Use `ghostty +list-fonts` to see all available font families on your system.

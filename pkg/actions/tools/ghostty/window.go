@@ -10,7 +10,7 @@ func ActionWindowNewTabPositions() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"current", "Insert the new tab after the currently focused tab",
 		"end", "Insert the new tab at the end of the tab list",
-	).Tag("window new tab positions")
+	).Tag("window new tab positions").Uid("ghostty", "window-new-tab-position")
 }
 
 // ActionWindowPaddingColors completes window padding colors
@@ -22,7 +22,7 @@ func ActionWindowPaddingColors() carapace.Action {
 		"background", "The background color specified in `background`",
 		"extend", "Extend the background color of the nearest grid cell",
 		"extend-always", "Same as \"extend\" but always extends without applying heuristics",
-	).Tag("window padding colors")
+	).Tag("window padding colors").Uid("ghostty", "window-padding-color")
 }
 
 // ActionWindowSaveStates completes window save states
@@ -34,7 +34,7 @@ func ActionWindowSaveStates() carapace.Action {
 		"default", "will use the default system behavior",
 		"never", "will never save window state",
 		"always", "will always save window state",
-	).Tag("window save states")
+	).Tag("window save states").Uid("ghostty", "window-save-state")
 }
 
 // ActionWindowThemes completes window themes
@@ -48,5 +48,5 @@ func ActionWindowThemes() carapace.Action {
 		"light", "Use the light theme regardless of system theme",
 		"dark", "Use the dark theme regardless of system theme",
 		"ghostty", "Use the background and foreground colors specified in the Ghostty configuration",
-	).Tag("window save states")
+	).Tag("window themes").Uid("ghostty", "window-theme")
 }

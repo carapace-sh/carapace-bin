@@ -1,0 +1,9 @@
+none: |
+  OSC 4/10/11 queries receive no reply. Programs that request color information via OSC sequences
+  will not receive any response.
+"8-bit": |
+  Color components are returned unscaled. Each color component (red, green, blue) is returned
+  as a single byte value (0–255), matching the actual stored color value.
+"16-bit": |
+  Color components are returned scaled. Each color component is returned as a scaled 16-bit value
+  (0–65535), providing higher precision color information in response to OSC queries.

@@ -1,0 +1,6 @@
+legacy: |
+  Use a legacy method to determine grapheme width. Follows the traditional wcwidth-based approach that
+  may not correctly handle all Unicode grapheme clusters, particularly emoji and newer Unicode characters.
+unicode: |
+  Use the Unicode standard to determine grapheme width. Follows the Unicode grapheme cluster break rules
+  for more accurate width calculation, especially for emoji and combining characters.

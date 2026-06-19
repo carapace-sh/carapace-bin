@@ -1,0 +1,6 @@
+stable: |
+  Stable, tagged releases such as "1.0.0". These are the recommended releases for most users as they
+  have been tested and are known to be reliable.
+tip: |
+  Pre-release versions generated from each commit to the main branch. These contain the latest features
+  and fixes but may be less stable than tagged releases.

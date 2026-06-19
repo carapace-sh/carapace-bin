@@ -11,7 +11,7 @@ func ActionAutoUpdateModes() carapace.Action {
 		"off", "Disable auto-updates",
 		"check", "Check for updates",
 		"download", "Check for updates, automatically download the update",
-	).Tag("auto-update modes")
+	).Tag("auto-update modes").Uid("ghostty", "auto-update")
 }
 
 // ActionReleaseChannels completes release channels
@@ -22,5 +22,5 @@ func ActionReleaseChannels() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"stable", "Stable, tagged releases such as \"1.0.0\"",
 		"tip", "Pre-release versions generated from each commit to the main branch",
-	).Tag("release channels")
+	).Tag("release channels").Uid("ghostty", "release-channel")
 }

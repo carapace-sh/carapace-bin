@@ -1,0 +1,11 @@
+block: |
+  A solid rectangular cursor that fills the entire cell. The character under the cursor is rendered in
+  the cursor's background color (inverted colors).
+bar: |
+  A vertical bar cursor at the left edge of the cell. Only a thin vertical line is shown, leaving
+  most of the character visible.
+underline: |
+  A horizontal line at the bottom of the cell. The character remains fully visible above the underline.
+block_hollow: |
+  A rectangular outline cursor that frames the cell without filling it. The character under the cursor
+  remains visible through the outline.

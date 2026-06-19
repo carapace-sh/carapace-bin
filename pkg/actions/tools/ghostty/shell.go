@@ -14,7 +14,7 @@ func ActionShellIntegrationModes() carapace.Action {
 		"elvish", "",
 		"fish", "",
 		"zsh", "",
-	).Tag("shell integration modes")
+	).Tag("shell integration modes").Uid("ghostty", "shell-integration-mode")
 }
 
 // ActionShellIntegrationFeatures completes shell integration features
@@ -26,5 +26,5 @@ func ActionShellIntegrationFeatures() carapace.Action {
 		"cursor", "Set the cursor to a blinking bar at the prompt",
 		"sudo", "Set sudo wrapper to preserve terminfo",
 		"title", "Set the window title via shell integration",
-	).Tag("shell integration features")
+	).Tag("shell integration features").Uid("ghostty", "shell-integration-feature")
 }

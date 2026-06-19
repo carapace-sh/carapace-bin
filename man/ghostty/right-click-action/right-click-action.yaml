@@ -1,0 +1,14 @@
+context-menu: |
+  Show the context menu. A right-click opens the standard terminal context menu with options
+  like copy, paste, and select all.
+paste: |
+  Paste the contents of the clipboard. A right-click pastes whatever is currently on the
+  clipboard directly into the terminal.
+copy: |
+  Copy the selected text to the clipboard. A right-click copies any highlighted or selected
+  text to the clipboard.
+"copy-or-paste": |
+  If there is a selection, copy it; otherwise paste the clipboard contents. A smart right-click
+  that does the most likely action based on whether text is selected.
+ignore: |
+  Do nothing, ignore the right-click. The right mouse button has no effect on the terminal surface.

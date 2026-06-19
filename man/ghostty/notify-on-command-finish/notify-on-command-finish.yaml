@@ -1,0 +1,9 @@
+never: |
+  Never send notifications when commands finish. Command completion is not reported regardless
+  of the terminal's focus state.
+unfocused: |
+  Only send notifications if the surface is not focused. When the terminal tab or window is in
+  the background, command completion triggers a notification.
+always: |
+  Always send notifications when commands finish. Command completion is reported even when
+  the terminal is actively focused and visible.

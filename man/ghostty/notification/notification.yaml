@@ -1,0 +1,16 @@
+clipboard-copy: |
+  Show a notification when text is copied to the clipboard. Helps confirm that a copy operation
+  succeeded, especially when using keyboard shortcuts.
+config-reload: |
+  Show a notification when the configuration is reloaded. Confirms that configuration changes
+  have been detected and applied.
+no-clipboard-copy: |
+  Do not show a notification when text is copied to the clipboard. Suppresses the copy confirmation
+  notification.
+no-config-reload: |
+  Do not show a notification when the configuration is reloaded. Suppresses the reload confirmation
+  notification.
+"true": |
+  Enable all notifications. Both clipboard-copy and config-reload notifications are shown.
+"false": |
+  Disable all notifications. Neither clipboard-copy nor config-reload notifications are shown.

@@ -1,0 +1,8 @@
+off: |
+  Disable auto-updates. Ghostty will not check for or download any updates automatically.
+check: |
+  Check for updates. Ghostty will periodically check if a newer version is available and notify the user,
+  but will not download or install the update automatically.
+download: |
+  Check for updates, automatically download the update. Ghostty will check for newer versions and
+  automatically download the update in the background. The user is still prompted before installation.

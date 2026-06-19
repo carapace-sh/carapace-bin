@@ -1,0 +1,5 @@
+official: |
+  Use the official Ghostty icon. The default icon shipped with the application.
+custom-style: |
+  Use the official Ghostty icon but with custom styles. Colors and frame can be customized via
+  the `macos-icon-frame`, `macos-icon-ghost-color`, and `macos-icon-screen-color` settings.

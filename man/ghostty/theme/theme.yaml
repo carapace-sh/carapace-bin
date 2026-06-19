@@ -1,0 +1,5 @@
+theme: |
+  A Ghostty color theme. Themes define the 16 ANSI colors plus extended colors for the terminal.
+  Available themes are discovered at runtime via `ghostty +list-themes`.
+
+  Use `ghostty +list-themes` to see all available themes on your system.

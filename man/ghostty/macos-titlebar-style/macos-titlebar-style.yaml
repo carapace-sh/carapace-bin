@@ -1,0 +1,12 @@
+native: |
+  Native macOS titlebar with zero customization. The standard macOS window titlebar with the
+  default appearance and behavior.
+transparent: |
+  Same as "native" but the titlebar will be transparent. The terminal content extends behind
+  the titlebar area, creating a more integrated appearance.
+tabs: |
+  Custom titlebar that integrates the tab bar into the titlebar. Replaces the standard title
+  with tab labels, providing a compact, browser-like tab experience.
+hidden: |
+  Hides the titlebar. The window has no titlebar chrome, maximizing vertical space for terminal
+  content. Window controls may still be accessible via other means.

@@ -14,5 +14,5 @@ func ActionShaderAnimationModes() carapace.Action {
 		"true", "run an animation loop when custom shaders are used",
 		"false", "only render when the terminal is updated",
 		"always", "run the animation loop regardless of whether the terminal is focused or not",
-	).StyleF(style.ForKeyword).Tag("shader animation modes")
+	).StyleF(style.ForKeyword).Tag("shader animation modes").Uid("ghostty", "shader-animation-mode")
 }
