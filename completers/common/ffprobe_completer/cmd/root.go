@@ -9,9 +9,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:                "ffmpeg",
-	Short:              "Hyper fast Audio and Video encoder",
-	Long:               "https://ffmpeg.org/",
+	Use:                "ffprobe",
+	Short:              "ffprobe media prober",
+	Long:               "https://ffmpeg.org/ffprobe.html",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
 }
@@ -25,10 +25,10 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if _, err := exec.LookPath("carapace-ffmpeg"); err == nil {
-				return bridge.ActionCarapace("carapace-ffmpeg")
+			if _, err := exec.LookPath("carapace-ffprobe"); err == nil {
+				return bridge.ActionCarapace("carapace-ffprobe")
 			}
-			return bridge.ActionBridge("ffmpeg")
+			return bridge.ActionBridge("ffprobe")
 		}),
 	)
 }
