@@ -20,10 +20,10 @@ function _carapace_completer {
   declare -x CARAPACE_COMPLINE="${words}"
   declare -x CARAPACE_ZSH_HASH_DIRS="$(hash -d)"
   declare -x CARAPACE_SHELL=zsh
-  declare -x CARAPACE_SHELL_ALIASES="$(alias | sed 's/alias //;s/=.*//')"
+  declare -x CARAPACE_SHELL_ALIASES="${(k)aliases}"
   declare -x CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})"
   declare -x CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})"
-  declare -x CARAPACE_SHELL_JOBS="$(jobs 2>/dev/null | sed -n '/running\|suspended\|stopped/s/^\[\([0-9]*\)\].*/%%\1/p')"
+  declare -x CARAPACE_SHELL_JOBS="$(print -l ${${(k)jobtexts}/#/%%%%})"
   declare -x CARAPACE_SHELL_VARIABLES="$(print -l ${(ok)parameters})"
 
   # shellcheck disable=SC2086,SC2154,SC2155
@@ -41,6 +41,7 @@ function _carapace_completer {
   zstyle ":completion:${curcontext}:*" list-colors "${zstyle}"
   zstyle ":completion:${curcontext}:*" group-name ''
   [ -z "$message" ] || _message -r "${message}"
+  [[ "${noprefix}" = "true" ]] && compstate[insert]=menu
 
   local block tag displays values displaysArr valuesArr
   while IFS=$'\002' read -r -d $'\002' block; do
@@ -51,8 +52,6 @@ function _carapace_completer {
 
     [[ ${#valuesArr[@]} -gt 1 ]] && _describe -t "${tag}" "${tag}" displaysArr valuesArr -Q -S ''
   done <<<"${data}"
-
-  [[ "${noprefix}" = "true" ]] && compstate[insert]=menu
 }
 
 compdef _carapace_completer %v
