@@ -24,7 +24,7 @@ func init() {
 	rootCmd.AddCommand(newWindowCmd)
 
 	carapace.Gen(newWindowCmd).FlagCompletion(carapace.ActionMap{
-		"command":            bridge.ActionCarapaceBin().Split(),
+		"command":           bridge.ActionCarapaceBin().Split(),
 		"working-directory": carapace.ActionDirectories(),
 	})
 
