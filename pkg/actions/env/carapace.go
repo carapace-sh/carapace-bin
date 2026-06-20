@@ -30,6 +30,7 @@ func init() {
 				"CARAPACE_TOOLTIP":            "enable tooltip style",
 				"CARAPACE_UNFILTERED":         "skip the final filtering step",
 				"CARAPACE_ZSH_HASH_DIRS":      "zsh hash directories",
+				"CARAPACE_ZSH_STYLE_LIMIT":    "max values to style in zsh",
 				// carapace-bin
 				"CARAPACE_EXCLUDES": "internal completers to exclude",
 				"CARAPACE_BRIDGES":  "implicit bridges",
@@ -71,6 +72,7 @@ func init() {
 					"inshellisense", style.Default,
 					"zsh", "#efda53",
 				).UniqueList(","),
+				"CARAPACE_ZSH_STYLE_LIMIT": carapace.ActionValues(),
 			},
 		}
 	}
