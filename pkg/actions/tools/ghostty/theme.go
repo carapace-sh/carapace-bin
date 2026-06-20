@@ -19,5 +19,5 @@ func ActionThemes() carapace.Action {
 			vals = append(vals, strings.Split(line, " (")[0])
 		}
 		return carapace.ActionValues(vals...)
-	}).Tag("themes")
+	}).Tag("themes").UidF(Uid("theme"))
 }

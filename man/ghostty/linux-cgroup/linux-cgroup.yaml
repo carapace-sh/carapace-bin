@@ -1,0 +1,8 @@
+never: |
+  Never use cgroups. Terminal processes will not be placed in a dedicated cgroup.
+always: |
+  Always use cgroups. Every surface (tab, split, window) will be placed into a dedicated Linux cgroup
+  for resource isolation.
+single-instance: |
+  Enable cgroups only for Ghostty instances launched via single-instance mode. Other terminal surfaces
+  are not placed in dedicated cgroups.

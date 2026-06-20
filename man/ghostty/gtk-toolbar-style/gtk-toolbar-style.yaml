@@ -1,0 +1,9 @@
+flat: |
+  Top and bottom bars are flat with the terminal window. The toolbar has no visual separation from
+  the terminal content area, providing a seamless, minimal appearance.
+raised: |
+  Top and bottom bars cast a shadow on the terminal area. Creates a visual separation between the
+  toolbar and terminal content, making the toolbar appear elevated above the content.
+"raised-border": |
+  Similar to `raised` but the shadow is replaced with a more subtle border. Provides visual separation
+  between the toolbar and terminal area without the depth effect of a shadow.

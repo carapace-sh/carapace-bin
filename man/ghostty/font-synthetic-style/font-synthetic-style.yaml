@@ -1,0 +1,22 @@
+bold: |
+  Draw an outline around the glyph to simulate a bold weight when the font does not have a native
+  bold variant.
+bold-italic: |
+  Draw an outline and apply a slant to the glyph to simulate bold italic when the font does not have
+  a native bold italic variant.
+"false": |
+  Completely disable synthetic styles. No visual modifications will be applied to simulate missing
+  font styles.
+italic: |
+  Apply a slant to the glyph to simulate an italic style when the font does not have a native italic
+  variant.
+no-bold: |
+  Disable synthetic bold. Even if the font lacks a bold variant, no outline will be drawn.
+no-bold-italic: |
+  Disable synthetic bold italic. Even if the font lacks a bold italic variant, no modification will
+  be applied.
+no-italic: |
+  Disable synthetic italic. Even if the font lacks an italic variant, no slant will be applied.
+"true": |
+  Completely enable all synthetic styles. Both outline-based bold and slant-based italic will be
+  synthesized when native variants are missing.

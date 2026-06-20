@@ -1,0 +1,12 @@
+"true": |
+  Capture the Shift key with mouse events, but allow programs to override this behavior. The Shift
+  key is included in mouse reports by default, but terminal applications can disable this.
+"false": |
+  Don't capture the Shift key with mouse events, but allow programs to override this behavior.
+  The Shift key does not affect mouse reporting by default, but terminal applications can enable it.
+always: |
+  Always capture the Shift key with mouse events. Terminal applications cannot override this setting.
+  The Shift key is always included in mouse reports regardless of program preferences.
+never: |
+  Never capture the Shift key with mouse events. Terminal applications cannot override this setting.
+  The Shift key is never included in mouse reports regardless of program preferences.

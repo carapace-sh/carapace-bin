@@ -1,0 +1,5 @@
+never: |
+  The macOS app is never hidden. It always appears in the Dock and app switcher.
+always: |
+  The macOS app is always hidden. It does not appear in the Dock or app switcher, but can still
+  be accessed through other means (e.g. Spotlight, quick terminal).

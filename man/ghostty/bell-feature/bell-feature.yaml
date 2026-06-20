@@ -1,0 +1,15 @@
+system: |
+  Instruct the system to notify the user using built-in system functions. This typically triggers the
+  desktop environment's standard notification system (e.g. a notification banner or sound).
+audio: |
+  Play a custom sound. The audio file to play is specified via the `bell-audio-path` configuration option,
+  and the volume can be adjusted with `bell-audio-volume`.
+attention: |
+  Request the user's attention when Ghostty is unfocused. On macOS this bounces the dock icon; on Linux
+  this may flash the taskbar entry or set the window urgency hint.
+title: |
+  Prepend a bell emoji (🔔) to the title of the alerted surface. Makes it easy to see which terminal
+  surface produced a bell event when multiple surfaces are open.
+border: |
+  Display a border around the alerted surface. Provides a visual indication of which surface caused
+  the bell event.

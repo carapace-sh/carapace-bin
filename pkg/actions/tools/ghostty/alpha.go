@@ -11,5 +11,5 @@ func ActionAlphaBlendings() carapace.Action {
 		"native", "Perform alpha blending in the native color space for the OS",
 		"linear", "Perform alpha blending in linear space",
 		"linear-corrected", "Same as `linear`, but with a correction step applied",
-	)
+	).Uid("ghostty", "alpha-blending")
 }

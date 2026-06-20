@@ -1,0 +1,11 @@
+none: |
+  The quick terminal will not receive any keyboard input. It is effectively
+  display-only when not the focused window.
+on-demand: |
+  The quick terminal would only receive keyboard input when it is focused.
+  Keyboard input goes to the previously focused application when the quick
+  terminal is not focused.
+exclusive: |
+  The quick terminal will always receive keyboard input, even when another
+  window is focused. This can cause key events to be consumed by the quick
+  terminal instead of reaching other applications.

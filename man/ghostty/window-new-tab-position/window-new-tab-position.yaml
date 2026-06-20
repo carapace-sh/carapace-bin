@@ -1,0 +1,6 @@
+current: |
+  Insert the new tab after the currently focused tab. The new tab appears immediately to the
+  right of the active tab.
+end: |
+  Insert the new tab at the end of the tab list. The new tab is appended as the rightmost tab,
+  regardless of which tab is currently focused.

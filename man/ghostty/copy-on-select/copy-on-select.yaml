@@ -1,0 +1,9 @@
+"true": |
+  Prefer to copy to the selection clipboard if supported by the OS. On systems with a selection clipboard
+  (e.g. X11 primary selection), text is copied there; otherwise falls back to the standard clipboard.
+clipboard: |
+  Always copy text to the selection clipboard (standard clipboard). Ignores the OS-specific primary
+  selection mechanism if one exists.
+"false": |
+  Do not automatically copy selected text to the clipboard. Text must be explicitly copied using
+  a keyboard shortcut or context menu action.

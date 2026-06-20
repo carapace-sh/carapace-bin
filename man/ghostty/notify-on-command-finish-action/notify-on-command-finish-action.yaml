@@ -1,0 +1,9 @@
+bell: |
+  Ring the terminal bell on command completion. This action is enabled by default.
+notify: |
+  Send a desktop notification on command completion. Shows a system notification with details
+  about the completed command. This action is disabled by default.
+no-bell: |
+  Do not ring the terminal bell on command completion. Explicitly disables the bell action.
+no-notify: |
+  Do not send a desktop notification on command completion. Explicitly disables the notify action.

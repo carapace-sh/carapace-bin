@@ -15,6 +15,8 @@ func init() {
 	carapace.Gen(listKeybindsCmd).Standalone()
 
 	listKeybindsCmd.Flags().Bool("default", false, "print out all the default keybinds")
+	listKeybindsCmd.Flags().Bool("docs", false, "print out the documentation for each action")
+	listKeybindsCmd.Flags().Bool("help", false, "show help")
 	listKeybindsCmd.Flags().Bool("plain", false, "disable formatting")
 	rootCmd.AddCommand(listKeybindsCmd)
 }

@@ -16,7 +16,7 @@ func ActionBackgroundImageFits() carapace.Action {
 		"stretch", "stretch the background image to the full size of the terminal",
 		"none", "don't scale the background image",
 	).StyleF(style.ForKeyword).
-		Tag("background image fits")
+		Tag("background image fits").Uid("ghostty", "background-image-fit")
 }
 
 // ActionBackgroundImagePositions completes background image positions
@@ -34,5 +34,5 @@ func ActionBackgroundImagePositions() carapace.Action {
 		"bottom-left",
 		"bottom-center",
 		"bottom-right",
-	).Tag("background image positions")
+	).Tag("background image positions").Uid("ghostty", "background-image-position")
 }

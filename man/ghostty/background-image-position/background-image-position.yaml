@@ -1,0 +1,18 @@
+top-left: |
+  Anchor the background image at the top-left corner of the terminal.
+top-center: |
+  Anchor the background image at the top-center of the terminal.
+top-right: |
+  Anchor the background image at the top-right corner of the terminal.
+center-left: |
+  Anchor the background image at the center-left of the terminal.
+center: |
+  Anchor the background image at the center of the terminal.
+center-right: |
+  Anchor the background image at the center-right of the terminal.
+bottom-left: |
+  Anchor the background image at the bottom-left corner of the terminal.
+bottom-center: |
+  Anchor the background image at the bottom-center of the terminal.
+bottom-right: |
+  Anchor the background image at the bottom-right corner of the terminal.

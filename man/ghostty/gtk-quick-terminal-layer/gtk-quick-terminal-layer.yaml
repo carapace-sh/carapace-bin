@@ -1,0 +1,12 @@
+overlay: |
+  The quick terminal appears in front of all windows, including fullscreen applications. This is the
+  highest layer, ensuring the quick terminal is always accessible.
+top: |
+  The quick terminal appears in front of normal windows but behind fullscreen overlays. A good balance
+  between visibility and not interfering with fullscreen applications.
+bottom: |
+  The quick terminal appears behind normal windows but in front of wallpapers. Useful when you want
+  the quick terminal to be available but not intrude on your active workflow.
+background: |
+  The quick terminal appears behind all windows. The quick terminal is effectively hidden behind
+  other windows and only visible when no other windows are on screen.

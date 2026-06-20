@@ -20,7 +20,7 @@ func ActionFontSyntheticStyles() carapace.Action {
 		"no-bold-italic", "disable for bold-italic",
 		"no-italic", "disable for italic",
 		"true", "completely enable",
-	).Tag("font synthetic styles")
+	).Tag("font synthetic styles").Uid("ghostty", "font-synthetic-style")
 }
 
 // ActionFreetypeLoadFlags completes freetype load flags
@@ -37,7 +37,7 @@ func ActionFreetypeLoadFlags() carapace.Action {
 		"no-force-autohint", "Do not se the freetype auto-hinter",
 		"no-monochrome", "Do not use 1-bit monochrome rendering",
 		"no-autohint", "Do not use the freetype auto-hinter",
-	).Tag("freetype load flags")
+	).Tag("freetype load flags").Uid("ghostty", "freetype-load-flag")
 }
 
 // ActionFontFamilies completes font families
@@ -55,5 +55,5 @@ func ActionFontFamilies() carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
-	}).Tag("font families")
+	}).Tag("font families").UidF(Uid("font-family"))
 }

@@ -1,0 +1,6 @@
+navigation: |
+  Preserve the zoomed split state when navigating to another split. The current split remains
+  zoomed when you switch focus to a different split pane.
+no-navigation: |
+  Unzoom when navigating to another split. Switching to a different split automatically
+  unzooms the current split, showing all panes at equal size.

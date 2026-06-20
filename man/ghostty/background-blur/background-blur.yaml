@@ -1,0 +1,11 @@
+"false": |
+  Equivalent to a blur intensity of 0. Background blur is completely disabled.
+"true": |
+  Equivalent to the default blur intensity of 20. Enables background blur with a
+  moderate blur radius.
+macos-glass-regular: |
+  macOS standard glass blur effect. Uses the native vibrancy style for a frosted
+  glass appearance.
+macos-glass-clear: |
+  macOS clear glass blur effect. Uses a clear vibrancy style that provides a
+  lighter, more transparent blur effect.

@@ -1,0 +1,21 @@
+hinting: |
+  Enable hinting. Uses TrueType/OpenType hinting instructions embedded in the font to improve rendering
+  at small sizes by aligning glyph features to the pixel grid.
+force-autohint: |
+  Use the FreeType auto-hinter instead of the font's native hints, even when the font provides hinting
+  instructions. Ensures consistent behavior across all fonts.
+monochrome: |
+  Use 1-bit monochrome rendering. Produces sharp black-and-white glyphs with no anti-aliasing. Can
+  appear jagged but matches the classic bitmap rendering style.
+autohint: |
+  Use the FreeType auto-hinter. Applies automatically generated hints when the font lacks native hints.
+  Ignored for fonts that include their own hinting instructions.
+no-hinting: |
+  Disable hinting. Glyph outlines are rendered without any hint adjustments, preserving the exact
+  shape from the font at the cost of potential blurriness at small sizes.
+no-force-autohint: |
+  Do not force the FreeType auto-hinter. If the font provides native hints, those will be used instead.
+no-monochrome: |
+  Do not use 1-bit monochrome rendering. Anti-aliased rendering is enabled, producing smoother glyphs.
+no-autohint: |
+  Do not use the FreeType auto-hinter. Fonts without native hints will be rendered unhinted.

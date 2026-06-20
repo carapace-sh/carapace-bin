@@ -1,0 +1,12 @@
+xterm-ghostty: |
+  Ghostty's default TERM value. Provides full terminal feature support with Ghostty-specific
+  terminfo entries. Requires Ghostty's terminfo to be installed on remote systems.
+xterm-256color: |
+  A widely compatible 256-color terminal type. Works on most systems without custom terminfo
+  but may not expose all Ghostty-specific features.
+xterm-kitty: |
+  The kitty terminal's TERM value. Useful for compatibility with systems that have kitty's
+  terminfo installed but not Ghostty's.
+xterm-terminfo: |
+  A minimal fallback TERM value. Uses only basic xterm capabilities that are available
+  virtually everywhere.

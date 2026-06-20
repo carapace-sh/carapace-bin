@@ -1,0 +1,9 @@
+"true": |
+  Always confirm before closing a surface. A confirmation dialog is shown when
+  attempting to close a terminal tab or window.
+"false": |
+  Never confirm before closing a surface. The surface closes immediately without
+  any confirmation.
+always: |
+  Always confirm before closing, even when a shell is not running. Provides
+  a confirmation dialog regardless of whether a shell process is active.

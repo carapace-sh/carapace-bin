@@ -1,0 +1,5 @@
+visible: |
+  Show the window buttons (close, minimize, zoom) in the macOS titlebar.
+hidden: |
+  Hide the window buttons in the macOS titlebar. The close, minimize, and zoom buttons are
+  not displayed, providing a cleaner appearance.

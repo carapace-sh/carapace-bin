@@ -17,5 +17,5 @@ func ActionNotifications() carapace.Action {
 		"no-config-reload", "Do not show a notification when the configuration is reloaded",
 		"false", "disable all notifications",
 		"true", "will enable all notifications",
-	).StyleF(style.ForKeyword)
+	).StyleF(style.ForKeyword).Uid("ghostty", "notification")
 }

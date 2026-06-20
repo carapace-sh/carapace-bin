@@ -1,0 +1,33 @@
+official: |
+  Use the official Ghostty icon. The default icon shipped with the application.
+blueprint: |
+  Blueprint-style icon with a technical drawing aesthetic. Shows the Ghostty ghost
+  rendered as an architectural blueprint.
+chalkboard: |
+  Chalkboard-style icon with a retro classroom feel. Shows the Ghostty ghost
+  drawn on a chalkboard surface.
+microchip: |
+  Microchip-style icon with a circuit board look. Shows the Ghostty ghost
+  rendered as a silicon chip pattern.
+glass: |
+  Glass-style icon with a translucent, modern appearance. Shows the Ghostty ghost
+  with a frosted glass effect.
+holographic: |
+  Holographic-style icon with an iridescent, futuristic look. Shows the Ghostty ghost
+  with a rainbow holographic sheen.
+paper: |
+  Paper-style icon with a folded paper texture. Shows the Ghostty ghost
+  rendered on a paper surface.
+retro: |
+  Retro-style icon with a classic computer aesthetic. Shows the Ghostty ghost
+  in a vintage Macintosh style.
+xray: |
+  X-ray-style icon showing internal structure. Shows the Ghostty ghost
+  as if seen through an X-ray scan.
+custom: |
+  Use a custom icon from the path specified by macos-custom-icon. Requires
+  a valid icon file path.
+custom-style: |
+  Use the official Ghostty icon but with custom styles. Colors and frame can be
+  customized via the macos-icon-frame, macos-icon-ghost-color, and
+  macos-icon-screen-color settings.

@@ -1,0 +1,9 @@
+"true": |
+  Show link previews for matched URLs. A preview tooltip appears when hovering
+  over a URL in the terminal.
+"false": |
+  Do not show link previews for matched URLs. URLs are still underlined and
+  clickable, but no preview tooltip is displayed.
+osc8: |
+  Show link previews only for OSC 8 hyperlinks. Previews are displayed for
+  explicitly set hyperlinks but not for auto-detected URLs.

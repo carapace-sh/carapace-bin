@@ -1,0 +1,14 @@
+top: |
+  Terminal appears at the top of the screen. The quick terminal slides in from the top edge,
+  behaving similarly to a drop-down terminal.
+bottom: |
+  Terminal appears at the bottom of the screen. The quick terminal slides in from the bottom edge.
+left: |
+  Terminal appears at the left of the screen. The quick terminal opens as a vertical panel on the
+  left side.
+right: |
+  Terminal appears at the right of the screen. The quick terminal opens as a vertical panel on the
+  right side.
+center: |
+  Terminal appears at the center of the screen. The quick terminal is positioned in the middle of
+  the display.

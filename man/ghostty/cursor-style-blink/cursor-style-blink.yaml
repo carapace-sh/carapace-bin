@@ -1,0 +1,5 @@
+"true": |
+  The cursor blinks by default. The cursor will periodically switch between visible and
+  invisible states.
+"false": |
+  The cursor does not blink. The cursor remains continuously visible.

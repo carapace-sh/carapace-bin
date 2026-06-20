@@ -1,0 +1,12 @@
+auto: |
+  Determine the theme based on the configured terminal background color. Ghostty automatically
+  chooses a light or dark window chrome theme based on the luminance of the terminal background.
+system: |
+  Use the system theme. The window chrome follows the operating system's light/dark mode setting.
+light: |
+  Use the light theme regardless of system theme. The window chrome always uses a light appearance.
+dark: |
+  Use the dark theme regardless of system theme. The window chrome always uses a dark appearance.
+ghostty: |
+  Use the background and foreground colors specified in the Ghostty configuration. The window
+  chrome colors are derived from the terminal's `background` and `foreground` settings.

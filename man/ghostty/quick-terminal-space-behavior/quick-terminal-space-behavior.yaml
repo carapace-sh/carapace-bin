@@ -1,0 +1,6 @@
+move: |
+  The quick terminal will move to the current space when switching. When you change macOS Spaces,
+  the quick terminal follows you to the new Space.
+remain: |
+  The quick terminal will stay in the space where it was originally opened. Switching macOS
+  Spaces does not affect the quick terminal's location.

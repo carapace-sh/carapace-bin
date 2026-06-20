@@ -1,0 +1,6 @@
+visible: |
+  Show the proxy icon in the macOS titlebar. The proxy icon represents the
+  document or path associated with the terminal surface.
+hidden: |
+  Hide the proxy icon in the macOS titlebar. The title bar appears without
+  the document icon.

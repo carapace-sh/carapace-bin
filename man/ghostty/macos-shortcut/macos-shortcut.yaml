@@ -1,0 +1,9 @@
+ask: |
+  Ask the user for permission. When a macOS Shortcut tries to control Ghostty, the user is
+  prompted to allow or deny the access.
+allow: |
+  Allow Shortcuts to control Ghostty without asking. All macOS Shortcuts that target Ghostty
+  are executed without prompting.
+deny: |
+  Deny Shortcuts from controlling Ghostty. macOS Shortcuts that target Ghostty will be
+  rejected automatically.

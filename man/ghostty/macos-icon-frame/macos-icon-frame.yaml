@@ -1,0 +1,9 @@
+aluminum: |
+  A brushed aluminum frame. This is the default frame material, giving the icon a modern metallic
+  appearance.
+beige: |
+  A classic 90's computer beige frame. Gives the icon a retro, vintage computer look.
+plastic: |
+  A glossy, dark plastic frame. Provides a smooth, modern appearance.
+chrome: |
+  A shiny chrome frame. A highly reflective, polished metal appearance.

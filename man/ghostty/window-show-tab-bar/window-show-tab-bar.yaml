@@ -1,0 +1,9 @@
+always: |
+  Always display the tab bar, even with only one tab. The tab bar remains visible at all times,
+  providing consistent access to tab management.
+auto: |
+  Automatically show and hide the tab bar. The tab bar appears when there are two or more tabs
+  and hides when only one tab remains.
+never: |
+  Never show the tab bar. Tabs can still be created and managed via keyboard shortcuts, but no
+  visual tab bar is displayed.

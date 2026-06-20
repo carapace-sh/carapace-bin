@@ -1,0 +1,12 @@
+"visible-menu": |
+  Use non-native macOS fullscreen, keep the menu bar visible. The terminal expands to fill the screen
+  below the menu bar, providing a large workspace while maintaining access to the macOS menu bar.
+"true": |
+  Use non-native macOS fullscreen, hide the menu bar. The terminal fills the entire screen with no
+  menu bar visible, maximizing the usable terminal area.
+"false": |
+  Use native macOS fullscreen. The standard macOS fullscreen behavior that moves the window to its
+  own Space with the standard animation and menu bar auto-hide behavior.
+padded-notch: |
+  Non-native fullscreen with padding for the notch area. On MacBook models with a notch,
+  adds padding at the top of the screen so content doesn't appear behind the notch.

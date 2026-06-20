@@ -1,0 +1,6 @@
+system: |
+  Respect the system settings for when to show scrollbars. Follows the desktop
+  environment's scrollbar visibility preference.
+never: |
+  Never show a scrollbar. The scrollbar is completely hidden, though scrolling
+  via keyboard, mouse wheel, or touchpad still works.

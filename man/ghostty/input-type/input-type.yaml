@@ -1,0 +1,6 @@
+raw: |
+  Send raw text as-is. The text provided after the colon is sent directly to the terminal
+  as keyboard input without any modification or encoding.
+path: |
+  Read a filepath and send the contents. The file at the specified path is read and its contents
+  are sent as input to the terminal.

@@ -1,0 +1,7 @@
+srgb: |
+  Use the standard sRGB color space. The most common color space for general
+  use, supported by virtually all displays.
+display-p3: |
+  Use the Display P3 color space. A wide-gamut color space used by modern
+  Apple displays and some high-end monitors, supporting more vivid colors
+  than sRGB.

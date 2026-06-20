@@ -75,6 +75,7 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().String("bold-color", "", "Modifies the color used for bold text in the terminal")
 	cmd.Flags().String("class", "", "The setting that will change the application class value")
 	cmd.Flags().String("click-repeat-interval", "", "The time in milliseconds between clicks to consider a click a repeat")
+	cmd.Flags().StringArray("clipboard-codepoint-map", nil, "Map specific Unicode codepoints to replacement values when copying text to clipboard")
 	cmd.Flags().Bool("clipboard-paste-bracketed-safe", false, "If true, bracketed pastes will be considered safe")
 	cmd.Flags().Bool("clipboard-paste-protection", false, "Require confirmation before pasting text that appears unsafe")
 	cmd.Flags().String("clipboard-read", "", "Whether to allow programs running in the terminal to read from the system clipboard")
@@ -84,13 +85,13 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().StringArray("command-palette-entry", nil, "Custom entries into the command palette")
 	cmd.Flags().Bool("config-default-files", false, "When this is true, the default configuration file paths will be loaded")
 	cmd.Flags().StringArray("config-file", nil, "Additional configuration files to read")
-	cmd.Flags().Bool("confirm-close-surface", false, "Confirms that a surface should be closed before closing it")
+	cmd.Flags().String("confirm-close-surface", "", "Confirms that a surface should be closed before closing it")
 	cmd.Flags().String("copy-on-select", "", "Whether to automatically copy selected text to the clipboard")
 	cmd.Flags().Bool("cursor-click-to-move", false, "Enables the ability to move the cursor at prompts")
 	cmd.Flags().String("cursor-color", "", "The color of the cursor")
 	cmd.Flags().String("cursor-opacity", "", "The opacity level (opposite of transparency) of the cursor")
 	cmd.Flags().String("cursor-style", "", "The style of the cursor")
-	cmd.Flags().Bool("cursor-style-blink", false, "Sets the default blinking state of the cursor")
+	cmd.Flags().String("cursor-style-blink", "", "Sets the default blinking state of the cursor")
 	cmd.Flags().String("cursor-text", "", "The color of the text under the cursor")
 	cmd.Flags().StringArray("custom-shader", nil, "Custom shaders to run after the default shaders")
 	cmd.Flags().String("custom-shader-animation", "", "Controls when custom shaders are animated")
@@ -120,24 +121,36 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().StringArray("font-variation-italic", nil, "Set font variation for italic")
 	cmd.Flags().String("foreground", "", "Foreground color for the window")
 	cmd.Flags().String("freetype-load-flags", "", "FreeType load flags to enable")
-	cmd.Flags().Bool("fullscreen", false, "Start new windows in fullscreen")
+	cmd.Flags().String("fullscreen", "", "Start new windows in fullscreen")
 	cmd.Flags().String("grapheme-width-method", "", "The method to use for calculating the cell width of a grapheme cluster")
+	cmd.Flags().StringArray("gtk-custom-css", nil, "Custom CSS files to be loaded")
+	cmd.Flags().Bool("gtk-opengl-debug", false, "Enable or disable GTK's OpenGL debugging logs")
+	cmd.Flags().String("gtk-quick-terminal-layer", "", "The layer of the quick terminal window")
+	cmd.Flags().String("gtk-quick-terminal-namespace", "", "The namespace for the quick terminal window")
 	cmd.Flags().String("gtk-single-instance", "", "Run in single-instance mode")
 	cmd.Flags().String("gtk-tabs-location", "", "Determines the side of the screen that the GTK tab bar will stick to")
 	cmd.Flags().Bool("gtk-titlebar", false, "Display the full GTK titlebar")
-	cmd.Flags().Bool("gtk-toolbar-style", false, "Determines the appearance of the top and bottom bars tab bar")
+	cmd.Flags().Bool("gtk-titlebar-hide-when-maximized", false, "Hide the titlebar when the window is maximized")
+	cmd.Flags().String("gtk-titlebar-style", "", "The style of the GTK titlebar")
+	cmd.Flags().String("gtk-toolbar-style", "", "Determines the appearance of the top and bottom bars tab bar")
 	cmd.Flags().Bool("gtk-wide-tabs", false, "Use \"wide\" GTK tabs")
 	cmd.Flags().String("image-storage-limit", "", "The total amount of bytes that can be used for image data")
 	cmd.Flags().String("initial-command", "", "This is the same as \"command\", but only applies to the first terminal surface created")
 	cmd.Flags().Bool("initial-window", false, "Create an initial window when Ghostty is run")
 	cmd.Flags().String("input", "", "Data to send as input to the command on startup")
-	cmd.Flags().Bool("link-previews", false, "Show link previews for a matched URL")
+	cmd.Flags().StringArray("key-remap", nil, "Remap modifier keys within Ghostty")
+	cmd.Flags().String("language", "", "Set Ghostty's graphical user interface language")
+	cmd.Flags().String("link-previews", "", "Show link previews for a matched URL")
 	cmd.Flags().Bool("link-url", false, "Enable URL matching")
 	cmd.Flags().String("linux-cgroup", "", "Put every surface (tab, split, window) into a dedicated Linux cgroup")
 	cmd.Flags().Bool("linux-cgroup-hard-fail", false, "Let cgroup initialization failure cause exit")
 	cmd.Flags().String("linux-cgroup-memory-limit", "", "Memory limit for any individual terminal process")
 	cmd.Flags().String("linux-cgroup-processes-limit", "", "Number of processes limit for any individual terminal process")
+	cmd.Flags().Bool("macos-applescript", false, "If true, Ghostty exposes and handles the built-in AppleScript dictionary")
 	cmd.Flags().Bool("macos-auto-secure-input", false, "Automatically enable the \"Secure Input\" feature")
+	cmd.Flags().String("macos-custom-icon", "", "The absolute path to the custom icon file")
+	cmd.Flags().String("macos-dock-drop-behavior", "", "Controls the windowing behavior when dropping a file on the macOS dock icon")
+	cmd.Flags().String("macos-hidden", "", "Control whether macOS app is excluded from the dock and app switcher")
 	cmd.Flags().String("macos-icon", "", "Customize the macOS app icon")
 	cmd.Flags().String("macos-icon-frame", "", "The material to use for the frame of the macOS app icon")
 	cmd.Flags().String("macos-icon-ghost-color", "", "The color of the ghost in the macOS app icon")
@@ -145,39 +158,65 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().String("macos-non-native-fullscreen", "", "Non-native fullscreen mode")
 	cmd.Flags().String("macos-option-as-alt", "", "Treat option key as alt")
 	cmd.Flags().Bool("macos-secure-input-indication", false, "Show a graphical indication when secure input is enabled")
+	cmd.Flags().String("macos-shortcuts", "", "Whether macOS Shortcuts are allowed to control Ghostty")
 	cmd.Flags().String("macos-titlebar-proxy-icon", "", "Whether the proxy icon in the macOS titlebar is visible")
 	cmd.Flags().String("macos-titlebar-style", "", "The style of the macOS titlebar")
+	cmd.Flags().String("macos-window-buttons", "", "Whether the window buttons in the macOS titlebar are visible")
 	cmd.Flags().Bool("macos-window-shadow", false, "Whether to enable the macOS window shadow")
+	cmd.Flags().Bool("maximize", false, "Whether to start the window in a maximized state")
 	cmd.Flags().String("minimum-contrast", "", "The minimum contrast ratio between the foreground and background colors")
 	cmd.Flags().Bool("mouse-hide-while-typing", false, "Hide the mouse immediately when typing")
+	cmd.Flags().Bool("mouse-reporting", false, "Enable or disable mouse reporting")
 	cmd.Flags().String("mouse-scroll-multiplier", "", "Multiplier for scrolling distance with the mouse wheel")
 	cmd.Flags().String("mouse-shift-capture", "", "Determines whether running programs can detect the shift key pressed with a mouse click")
+	cmd.Flags().String("notify-on-command-finish", "", "Controls when command finished notifications are sent")
+	cmd.Flags().String("notify-on-command-finish-action", "", "Controls how the user is notified when command finishes")
+	cmd.Flags().String("notify-on-command-finish-after", "", "Controls how long a command must run before sending a notification")
 	cmd.Flags().String("osc-color-report-format", "", "Sets the reporting format for OSC sequences that request color information")
+	cmd.Flags().Bool("palette-generate", false, "Whether to automatically generate the extended 256 color palette from the base 16 ANSI colors")
+	cmd.Flags().Bool("palette-harmonious", false, "Invert the palette colors generated when palette-generate is enabled")
+	cmd.Flags().Bool("progress-style", false, "Allow applications to show graphical progress bars")
 	cmd.Flags().String("quick-terminal-animation-duration", "", "Duration (in seconds) of the quick terminal enter and exit animation")
 	cmd.Flags().Bool("quick-terminal-autohide", false, "Automatically hide the quick terminal when focus shifts to another window")
 	cmd.Flags().String("quick-terminal-keyboard-interactivity", "", "Determines under which circumstances that the quick terminal should receive keyboard input")
 	cmd.Flags().String("quick-terminal-position", "", "The position of the \"quick\" terminal window")
 	cmd.Flags().String("quick-terminal-screen", "", "The screen where the quick terminal should show up")
+	cmd.Flags().String("quick-terminal-space-behavior", "", "Behavior of the quick terminal when switching between macOS spaces")
 	cmd.Flags().Bool("quit-after-last-window-closed", false, "Whether or not to quit after the last surface is closed")
 	cmd.Flags().String("quit-after-last-window-closed-delay", "", "Controls how long Ghostty will stay running after the last open surface has been closed")
 	cmd.Flags().String("resize-overlay", "", "Controls when resize overlays are shown")
 	cmd.Flags().String("resize-overlay-duration", "", "Controls how long the overlay is visible on the screen before it is hidde")
 	cmd.Flags().String("resize-overlay-position", "", "Controls the position of the overlay")
+	cmd.Flags().String("right-click-action", "", "The action to take when the user right-clicks on the terminal surface")
 	cmd.Flags().String("scroll-to-bottom", "", "When to scroll the surface to the bottom")
 	cmd.Flags().String("scrollback-limit", "", "The size of the scrollback buffer in bytes")
+	cmd.Flags().String("scrollbar", "", "Control when the scrollbar is shown")
+	cmd.Flags().String("search-background", "", "The background color for search matches")
+	cmd.Flags().String("search-foreground", "", "The foreground color for search matches")
+	cmd.Flags().String("search-selected-background", "", "The background color for the currently selected search match")
+	cmd.Flags().String("search-selected-foreground", "", "The foreground color for the currently selected search match")
 	cmd.Flags().String("selection-background", "", "The background color for selection")
+	cmd.Flags().Bool("selection-clear-on-copy", false, "Whether to clear selected text after copying")
+	cmd.Flags().Bool("selection-clear-on-typing", false, "Whether to clear selected text when typing")
 	cmd.Flags().String("selection-foreground", "", "The foreground color for selection")
+	cmd.Flags().String("selection-word-chars", "", "Characters that mark word boundaries during text selection operations")
 	cmd.Flags().String("shell-integration", "", "Whether to enable shell integration auto-injection or not")
 	cmd.Flags().String("shell-integration-features", "", "Shell integration features to enable")
 	cmd.Flags().String("split-divider-color", "", "The color of the split divider")
+	cmd.Flags().Bool("split-inherit-working-directory", false, "New split panes inherit the working directory of the previously focused split")
+	cmd.Flags().String("split-preserve-zoom", "", "Control when Ghostty preserves a zoomed split")
+	cmd.Flags().Bool("tab-inherit-working-directory", false, "New tabs inherit the working directory of the previously focused tab")
+	cmd.Flags().String("term", "", "Set the TERM environment variable")
 	cmd.Flags().String("theme", "", "A theme to use")
 	cmd.Flags().String("title", "", "The title Ghostty will use for the window")
+	cmd.Flags().Bool("title-report", false, "Enable or disable title reporting (CSI 21 t)")
+	cmd.Flags().String("undo-timeout", "", "The duration that undo operations remain available")
 	cmd.Flags().String("unfocused-split-fill", "", "The color to dim the unfocused split")
 	cmd.Flags().String("unfocused-split-opacity", "", "The opacity level (opposite of transparency) of an unfocused split")
 	cmd.Flags().Bool("vt-kam-allowed", false, "Allows the \"KAM\" mode")
 	cmd.Flags().Bool("wait-after-command", false, "Keep the terminal open after the command exits")
 	cmd.Flags().String("window-colorspace", "", "The colorspace to use for the terminal window")
-	cmd.Flags().Bool("window-decoration", false, "Enable window decorations")
+	cmd.Flags().String("window-decoration", "", "Enable window decorations")
 	cmd.Flags().String("window-height", "", "The initial window height")
 	cmd.Flags().Bool("window-inherit-font-size", false, "Inherit the font size of the previously focused window")
 	cmd.Flags().Bool("window-inherit-working-directory", false, "Inherit the working directory of the previously focused window")
@@ -189,9 +228,13 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().String("window-position-x", "", "The starting window position")
 	cmd.Flags().String("window-position-y", "", "The starting window position")
 	cmd.Flags().String("window-save-state", "", "Whether to enable saving and restoring window state")
+	cmd.Flags().String("window-show-tab-bar", "", "Whether to show the tab bar")
 	cmd.Flags().Bool("window-step-resize", false, "Resize the window in discrete increments of the focused surface's cell size")
+	cmd.Flags().String("window-subtitle", "", "The text that will be displayed in the subtitle of the window")
 	cmd.Flags().String("window-theme", "", "The theme to use for the windows")
 	cmd.Flags().String("window-title-font-family", "", "The font that will be used for the application's window and tab titles")
+	cmd.Flags().String("window-titlebar-background", "", "Background color for the window titlebar")
+	cmd.Flags().String("window-titlebar-foreground", "", "Foreground color for the window titlebar")
 	cmd.Flags().Bool("window-vsync", false, "Synchronize rendering with the screen refresh rate")
 	cmd.Flags().String("window-width", "", "The initial window width")
 	cmd.Flags().String("working-directory", "", "The directory to change to after starting the command")
@@ -214,10 +257,7 @@ func addConfigs(cmd *cobra.Command) {
 			color.ActionHexColors(),
 			color.ActionXtermColorNames(),
 		).ToA(),
-		"background-blur": carapace.ActionValuesDescribed(
-			"false", "equivalent to a blur intensity of 0",
-			"true", "equivalent to the default blur intensity of 20",
-		).StyleF(style.ForKeyword),
+		"background-blur":           ghostty.ActionBackgroundBlurs(),
 		"background-image":          carapace.ActionFiles(),
 		"background-image-fit":      ghostty.ActionBackgroundImageFits(),
 		"background-image-position": ghostty.ActionBackgroundImagePositions(),
@@ -228,13 +268,23 @@ func addConfigs(cmd *cobra.Command) {
 			color.ActionXtermColorNames(),
 			carapace.ActionValues("bright"),
 		).ToA(),
-		"clipboard-read":          carapace.ActionValues("ask", "allow", "deny").StyleF(style.ForKeyword),
-		"clipboard-write":         carapace.ActionValues("ask", "allow", "deny").StyleF(style.ForKeyword),
+		"clipboard-codepoint-map": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValues() // TODO codepoint
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+		"clipboard-read":          ghostty.ActionClipboardPermissions(),
+		"clipboard-write":         ghostty.ActionClipboardPermissions(),
 		"command":                 bridge.ActionCarapaceBin().SplitP(),
 		"config-file":             carapace.ActionFiles(),
+		"confirm-close-surface":   ghostty.ActionConfirmCloseSurfaces(),
 		"copy-on-select":          ghostty.ActionCopyOnSelectModes(),
 		"cursor-color":            color.ActionHexColors(),
 		"cursor-style":            ghostty.ActionCursorStyles(),
+		"cursor-style-blink":      ghostty.ActionCursorStyleBlinks(),
 		"cursor-text":             color.ActionHexColors(),
 		"custom-shader":           carapace.ActionFiles(),
 		"custom-shader-animation": ghostty.ActionShaderAnimationModes(),
@@ -247,14 +297,12 @@ func addConfigs(cmd *cobra.Command) {
 				return ghostty.ActionFontFamilies()
 			}
 		}),
-		"font-family":             ghostty.ActionFontFamilies(),
-		"font-family-bold":        ghostty.ActionFontFamilies(),
-		"font-family-bold-italic": ghostty.ActionFontFamilies(),
-		"font-family-italic":      ghostty.ActionFontFamilies(),
-		"font-feature":            carapace.ActionValues(), // TODO font-features
-		"font-shaping-break": carapace.ActionValuesDescribed(
-			"cursor", "Break runs under the cursor",
-		),
+		"font-family":                ghostty.ActionFontFamilies(),
+		"font-family-bold":           ghostty.ActionFontFamilies(),
+		"font-family-bold-italic":    ghostty.ActionFontFamilies(),
+		"font-family-italic":         ghostty.ActionFontFamilies(),
+		"font-feature":               carapace.ActionValues(), // TODO font-features
+		"font-shaping-break":         ghostty.ActionFontShapingBreaks(),
 		"font-style":                 carapace.ActionValues(), // TODO font style
 		"font-style-bold":            carapace.ActionValues(), // TODO font style
 		"font-style-bold-italic":     carapace.ActionValues(), // TODO font style
@@ -268,19 +316,20 @@ func addConfigs(cmd *cobra.Command) {
 			color.ActionHexColors(),
 			color.ActionXtermColorNames(),
 		).ToA(),
-		"freetype-load-flags":   ghostty.ActionFreetypeLoadFlags().UniqueList(","),
-		"grapheme-width-method": ghostty.ActionGraphemeWidthMethods(),
-		"gtk-single-instance":   carapace.ActionValues("true", "false", "detect").StyleF(style.ForKeyword),
-		"gtk-tabs-location":     carapace.ActionValues("top", "bottom", "left", "right", "hidden"),
-		"gtk-toolbar-style":     ghostty.ActionGtkToolbarStyles(),
-		"initial-command":       bridge.ActionCarapaceBin().Split(),
+		"freetype-load-flags":      ghostty.ActionFreetypeLoadFlags().UniqueList(","),
+		"fullscreen":               ghostty.ActionFullscreens(),
+		"grapheme-width-method":    ghostty.ActionGraphemeWidthMethods(),
+		"gtk-custom-css":           carapace.ActionFiles(),
+		"gtk-quick-terminal-layer": ghostty.ActionGtkQuickTerminalLayers(),
+		"gtk-single-instance":      ghostty.ActionGtkSingleInstances(),
+		"gtk-tabs-location":        ghostty.ActionGtkTabsLocations(),
+		"gtk-titlebar-style":       ghostty.ActionGtkTitlebarStyles(),
+		"gtk-toolbar-style":        ghostty.ActionGtkToolbarStyles(),
+		"initial-command":          bridge.ActionCarapaceBin().Split(),
 		"input": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionValuesDescribed(
-					"raw", "Send raw text as-is",
-					"path", "Read a filepath and send the contents",
-				).Suffix(":")
+				return ghostty.ActionInputTypes().Suffix(":")
 			default:
 				switch c.Parts[0] {
 				case "path":
@@ -290,50 +339,74 @@ func addConfigs(cmd *cobra.Command) {
 				}
 			}
 		}),
-		"linux-cgroup": carapace.ActionValuesDescribed(
-			"never", "Never use cgroups",
-			"always", "Always use cgroups",
-			"single-instance", "Enable cgroups only for Ghostty instances launched",
-		).StyleF(style.ForKeyword),
-		"macos-icon":                  ghostty.ActionMacIcons(),
-		"macos-icon-frame":            ghostty.ActionMacIconFrames(),
-		"macos-icon-ghost-color":      color.ActionHexColors(),
-		"macos-icon-screen-color":     color.ActionHexColors().List(","),
-		"macos-non-native-fullscreen": ghostty.ActionMacFullscreenModes(),
-		"macos-option-as-alt":         carapace.ActionValues("false", "true", "left", "right").StyleF(style.ForKeyword),
-		"macos-titlebar-proxy-icon":   carapace.ActionValues("visible", "hidden"),
-		"macos-titlebar-style":        ghostty.ActionMacTitlebarStyles(),
-		"mouse-shift-capture":         ghostty.ActionMouseShiftCaptureModes(),
-		"osc-color-report-format":     ghostty.ActionOscColorReportFormats(),
-		"quick-terminal-keyboard-interactivity": carapace.ActionValuesDescribed(
-			"none", "The quick terminal will not receive any keyboard input",
-			"on-demand", "The quick terminal would only receive keyboard input when it is focused",
-			"exclusive", "The quick terminal will always receive keyboard input",
-		).StyleF(style.ForKeyword),
-		"quick-terminal-position": ghostty.ActionQuickTerminalPositions(),
-		"quick-terminal-screen":   ghostty.ActionQuickTerminalScreens(),
-		"resize-overlay":          ghostty.ActionResizeOverlayModes(),
-		"resize-overlay-position": ghostty.ActionResizeOverlayPositions(),
-		"scroll-to-bottom": carapace.ActionValuesDescribed(
-			"keystroke", "scroll the surface to the bottom when the user presses a key",
-			"output", "scroll the surface to the bottom if there is new data to display",
-		).UniqueList(","),
-		"selection-background":       color.ActionHexColors(),
-		"selection-foreground":       color.ActionHexColors(),
-		"shell-integration":          ghostty.ActionShellIntegrationModes(),
-		"shell-integration-features": ghostty.ActionShellIntegrationFeatures().UniqueList(","),
+		"key-remap": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValues("ctrl", "alt", "shift", "super", "cmd", "command", "left_ctrl", "right_ctrl", "left_alt", "right_alt", "left_shift", "right_shift", "left_super", "right_super").Suffix("=")
+			default:
+				return carapace.ActionValues("ctrl", "alt", "shift", "super", "cmd", "command", "left_ctrl", "right_ctrl", "left_alt", "right_alt", "left_shift", "right_shift", "left_super", "right_super")
+			}
+		}),
+		"link-previews":                         ghostty.ActionLinkPreviewses(),
+		"linux-cgroup":                          ghostty.ActionLinuxCgroups(),
+		"macos-applescript":                     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"macos-custom-icon":                     carapace.ActionFiles(),
+		"macos-dock-drop-behavior":              ghostty.ActionMacosDockDropBehaviors(),
+		"macos-hidden":                          ghostty.ActionMacosHiddenModes(),
+		"macos-icon":                            ghostty.ActionMacIcons(),
+		"macos-icon-frame":                      ghostty.ActionMacIconFrames(),
+		"macos-icon-ghost-color":                color.ActionHexColors(),
+		"macos-icon-screen-color":               color.ActionHexColors().List(","),
+		"macos-non-native-fullscreen":           ghostty.ActionMacFullscreenModes(),
+		"macos-option-as-alt":                   ghostty.ActionMacosOptionsAsAlt(),
+		"macos-shortcuts":                       ghostty.ActionMacosShortcuts(),
+		"macos-titlebar-proxy-icon":             ghostty.ActionMacosTitlebarProxyIcons(),
+		"macos-titlebar-style":                  ghostty.ActionMacTitlebarStyles(),
+		"macos-window-buttons":                  ghostty.ActionMacosWindowButtons(),
+		"mouse-shift-capture":                   ghostty.ActionMouseShiftCaptureModes(),
+		"notify-on-command-finish":              ghostty.ActionNotifyOnCommandFinishes(),
+		"notify-on-command-finish-action":       ghostty.ActionNotifyOnCommandFinishActions().UniqueList(","),
+		"osc-color-report-format":               ghostty.ActionOscColorReportFormats(),
+		"quick-terminal-keyboard-interactivity": ghostty.ActionQuickTerminalKeyboardInteractivities(),
+		"quick-terminal-position":               ghostty.ActionQuickTerminalPositions(),
+		"quick-terminal-screen":                 ghostty.ActionQuickTerminalScreens(),
+		"quick-terminal-space-behavior":         ghostty.ActionQuickTerminalSpaceBehaviors(),
+		"resize-overlay":                        ghostty.ActionResizeOverlayModes(),
+		"resize-overlay-position":               ghostty.ActionResizeOverlayPositions(),
+		"right-click-action":                    ghostty.ActionRightClickActions(),
+		"scroll-to-bottom":                      ghostty.ActionScrollToBottoms().UniqueList(","),
+		"scrollbar":                             ghostty.ActionScrollbarModes(),
+		"search-background":                     carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-foreground", "cell-background")).ToA(),
+		"search-foreground":                     carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-foreground", "cell-background")).ToA(),
+		"search-selected-background":            carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-foreground", "cell-background")).ToA(),
+		"search-selected-foreground":            carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-foreground", "cell-background")).ToA(),
+		"selection-background":                  color.ActionHexColors(),
+		"selection-foreground":                  color.ActionHexColors(),
+		"shell-integration":                     ghostty.ActionShellIntegrationModes(),
+		"shell-integration-features":            ghostty.ActionShellIntegrationFeatures().UniqueList(","),
 		"split-divider-color": carapace.Batch(
 			color.ActionHexColors(),
 			color.ActionXtermColorNames(),
 		).ToA(),
-		"theme":                    ghostty.ActionThemes(),
-		"unfocused-split-fill":     color.ActionXtermColorNames(),
-		"window-colorspace":        carapace.ActionValues("srgb", "display-p3"),
-		"window-new-tab-position":  ghostty.ActionWindowNewTabPositions(),
-		"window-padding-color":     ghostty.ActionWindowPaddingColors(),
-		"window-save-state":        ghostty.ActionWindowSaveStates(),
-		"window-theme":             ghostty.ActionWindowThemes(),
-		"window-title-font-family": ghostty.ActionFontFamilies(),
-		"working-directory":        carapace.ActionDirectories(),
+		"split-inherit-working-directory": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"split-preserve-zoom":             ghostty.ActionSplitPreserveZooms(),
+		"tab-inherit-working-directory":   carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"term":                            ghostty.ActionTerms(),
+		"theme":                           ghostty.ActionThemes(),
+		"title-report":                    carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"undo-timeout":                    carapace.ActionValues(),
+		"unfocused-split-fill":            color.ActionXtermColorNames(),
+		"window-colorspace":               ghostty.ActionWindowColorspaces(),
+		"window-decoration":               ghostty.ActionWindowDecorations(),
+		"window-new-tab-position":         ghostty.ActionWindowNewTabPositions(),
+		"window-padding-color":            ghostty.ActionWindowPaddingColors(),
+		"window-save-state":               ghostty.ActionWindowSaveStates(),
+		"window-show-tab-bar":             ghostty.ActionWindowShowTabBars(),
+		"window-subtitle":                 ghostty.ActionWindowSubtitles(),
+		"window-theme":                    ghostty.ActionWindowThemes(),
+		"window-title-font-family":        ghostty.ActionFontFamilies(),
+		"window-titlebar-background":      carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames()).ToA(),
+		"window-titlebar-foreground":      carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames()).ToA(),
+		"working-directory":               carapace.ActionDirectories(),
 	})
 }

@@ -1,0 +1,6 @@
+native: |
+  Traditional titlebar with a title, a few buttons and window controls. The standard GTK titlebar
+  appearance with no customization.
+tabs: |
+  Merges the tab bar and the traditional titlebar. The tab bar replaces the titlebar area, giving
+  a more compact and integrated appearance that saves vertical space.

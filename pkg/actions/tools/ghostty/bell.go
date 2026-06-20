@@ -13,5 +13,5 @@ func ActionBellFeatures() carapace.Action {
 		"attention", "Request the user's attention when Ghostty is unfocused",
 		"title", "Prepend a bell emoji (🔔) to the title of the alerted surface",
 		"border", "Display a border around the alerted surface",
-	).Tag("bell features")
+	).Tag("bell features").Uid("ghostty", "bell-feature")
 }

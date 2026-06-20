@@ -1,0 +1,6 @@
+"false": |
+  Disable the subtitle. The window only shows the main title, with no additional subtitle text
+  in the title bar.
+working-directory: |
+  Set the subtitle to the working directory of the surface. The window's subtitle displays the
+  current working directory of the shell running in that terminal surface.

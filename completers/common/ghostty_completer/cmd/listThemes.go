@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -14,8 +15,13 @@ var listThemesCmd = &cobra.Command{
 func init() {
 	carapace.Gen(listThemesCmd).Standalone()
 
+	listThemesCmd.Flags().String("color", "", "Specify the color scheme of the themes included in the list")
 	listThemesCmd.Flags().Bool("help", false, "show help")
 	listThemesCmd.Flags().Bool("path", false, "Show the full path to the theme")
 	listThemesCmd.Flags().Bool("plain", false, "Force a plain listing of themes")
 	rootCmd.AddCommand(listThemesCmd)
+
+	carapace.Gen(listThemesCmd).FlagCompletion(carapace.ActionMap{
+		"color": carapace.ActionValues("dark", "light", "all").StyleF(style.ForKeyword),
+	})
 }

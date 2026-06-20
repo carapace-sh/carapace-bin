@@ -11,5 +11,5 @@ func ActionGtkToolbarStyles() carapace.Action {
 		"flat", "Top and bottom bars are flat with the terminal window",
 		"raised", "Top and bottom bars cast a shadow on the terminal area",
 		"raised-border", "Similar to `raised` but the shadow is replaced with a more subtle border",
-	).Tag("gtk toolbar styles")
+	).Tag("gtk toolbar styles").Uid("ghostty", "gtk-toolbar-style")
 }

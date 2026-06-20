@@ -1,0 +1,10 @@
+background: |
+  The background color specified in `background`. The padding area uses the same color as the
+  terminal background, creating a uniform appearance.
+extend: |
+  Extend the background color of the nearest grid cell. The padding area takes on the background
+  color of the closest populated cell, creating a seamless edge where text meets padding.
+"extend-always": |
+  Same as "extend" but always extends without applying heuristics. The padding color always
+  matches the nearest cell's background, even in cases where the standard "extend" mode would
+  fall back to the configured background color.
