@@ -2,10 +2,6 @@ top: |
   Display the tab bar at the top of the terminal window.
 bottom: |
   Display the tab bar at the bottom of the terminal window.
-left: |
-  Display the tab bar on the left side of the terminal window.
-right: |
-  Display the tab bar on the right side of the terminal window.
 hidden: |
   Hide the tab bar. Tabs can still be managed via keyboard shortcuts, but no
   visual tab bar is displayed.

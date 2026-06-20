@@ -3,9 +3,3 @@
   invisible states.
 "false": |
   The cursor does not blink. The cursor remains continuously visible.
-in: |
-  The cursor blinks only when the terminal is focused (the surface has keyboard focus).
-  When unfocused, the cursor remains static.
-out: |
-  The cursor blinks only when the terminal is unfocused (the surface does not have keyboard
-  focus). When focused, the cursor remains static.

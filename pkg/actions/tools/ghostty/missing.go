@@ -46,16 +46,12 @@ func ActionRightClickActions() carapace.Action {
 
 // ActionScrollbarModes completes scrollbar modes
 //
-//	true (Show the scrollbar)
-//	false (Hide the scrollbar)
+//	system (Respect the system settings)
+//	never (Never show a scrollbar)
 func ActionScrollbarModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"true", "Show the scrollbar",
-		"false", "Hide the scrollbar",
-		"left", "Show the scrollbar on the left side",
-		"right", "Show the scrollbar on the right side",
-		"hidden", "Hide the scrollbar but allow toggling via keybind",
-		"visible", "Always show the scrollbar",
+		"system", "Respect the system settings for when to show scrollbars",
+		"never", "Never show a scrollbar",
 	).StyleF(style.ForKeyword).Tag("scrollbar modes").Uid("ghostty", "scrollbar-mode")
 }
 
@@ -170,4 +166,21 @@ func ActionWindowSubtitles() carapace.Action {
 		"false", "Disable the subtitle",
 		"working-directory", "Set the subtitle to the working directory of the surface",
 	).Tag("window subtitle modes").Uid("ghostty", "window-subtitle")
+}
+
+// ActionFullscreens completes fullscreen modes
+//
+//	false (Do not start in fullscreen)
+//	true (Start in native fullscreen)
+//	non-native (Start in non-native fullscreen)
+//	non-native-visible-menu (Start in non-native fullscreen, keep menu bar visible)
+//	non-native-padded-notch (Start in non-native fullscreen, hide menu bar but pad for notch)
+func ActionFullscreens() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"false", "Do not start in fullscreen",
+		"true", "Start in native fullscreen",
+		"non-native", "Start in non-native fullscreen",
+		"non-native-visible-menu", "Start in non-native fullscreen, keep menu bar visible",
+		"non-native-padded-notch", "Start in non-native fullscreen, hide menu bar but pad for notch",
+	).StyleF(style.ForKeyword).Tag("fullscreen modes").Uid("ghostty", "fullscreen")
 }

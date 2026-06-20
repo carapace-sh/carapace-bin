@@ -85,7 +85,7 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().StringArray("command-palette-entry", nil, "Custom entries into the command palette")
 	cmd.Flags().Bool("config-default-files", false, "When this is true, the default configuration file paths will be loaded")
 	cmd.Flags().StringArray("config-file", nil, "Additional configuration files to read")
-	cmd.Flags().Bool("confirm-close-surface", false, "Confirms that a surface should be closed before closing it")
+	cmd.Flags().String("confirm-close-surface", "", "Confirms that a surface should be closed before closing it")
 	cmd.Flags().String("copy-on-select", "", "Whether to automatically copy selected text to the clipboard")
 	cmd.Flags().Bool("cursor-click-to-move", false, "Enables the ability to move the cursor at prompts")
 	cmd.Flags().String("cursor-color", "", "The color of the cursor")
@@ -121,7 +121,7 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().StringArray("font-variation-italic", nil, "Set font variation for italic")
 	cmd.Flags().String("foreground", "", "Foreground color for the window")
 	cmd.Flags().String("freetype-load-flags", "", "FreeType load flags to enable")
-	cmd.Flags().Bool("fullscreen", false, "Start new windows in fullscreen")
+	cmd.Flags().String("fullscreen", "", "Start new windows in fullscreen")
 	cmd.Flags().String("grapheme-width-method", "", "The method to use for calculating the cell width of a grapheme cluster")
 	cmd.Flags().StringArray("gtk-custom-css", nil, "Custom CSS files to be loaded")
 	cmd.Flags().Bool("gtk-opengl-debug", false, "Enable or disable GTK's OpenGL debugging logs")
@@ -140,7 +140,7 @@ func addConfigs(cmd *cobra.Command) {
 	cmd.Flags().String("input", "", "Data to send as input to the command on startup")
 	cmd.Flags().StringArray("key-remap", nil, "Remap modifier keys within Ghostty")
 	cmd.Flags().String("language", "", "Set Ghostty's graphical user interface language")
-	cmd.Flags().Bool("link-previews", false, "Show link previews for a matched URL")
+	cmd.Flags().String("link-previews", "", "Show link previews for a matched URL")
 	cmd.Flags().Bool("link-url", false, "Enable URL matching")
 	cmd.Flags().String("linux-cgroup", "", "Put every surface (tab, split, window) into a dedicated Linux cgroup")
 	cmd.Flags().Bool("linux-cgroup-hard-fail", false, "Let cgroup initialization failure cause exit")
@@ -280,6 +280,7 @@ func addConfigs(cmd *cobra.Command) {
 		"clipboard-write":         ghostty.ActionClipboardPermissions(),
 		"command":                 bridge.ActionCarapaceBin().SplitP(),
 		"config-file":             carapace.ActionFiles(),
+		"confirm-close-surface":   ghostty.ActionConfirmCloseSurfaces(),
 		"copy-on-select":          ghostty.ActionCopyOnSelectModes(),
 		"cursor-color":            color.ActionHexColors(),
 		"cursor-style":            ghostty.ActionCursorStyles(),
@@ -316,6 +317,7 @@ func addConfigs(cmd *cobra.Command) {
 			color.ActionXtermColorNames(),
 		).ToA(),
 		"freetype-load-flags":      ghostty.ActionFreetypeLoadFlags().UniqueList(","),
+		"fullscreen":               ghostty.ActionFullscreens(),
 		"grapheme-width-method":    ghostty.ActionGraphemeWidthMethods(),
 		"gtk-custom-css":           carapace.ActionFiles(),
 		"gtk-quick-terminal-layer": ghostty.ActionGtkQuickTerminalLayers(),
@@ -345,6 +347,7 @@ func addConfigs(cmd *cobra.Command) {
 				return carapace.ActionValues("ctrl", "alt", "shift", "super", "cmd", "command", "left_ctrl", "right_ctrl", "left_alt", "right_alt", "left_shift", "right_shift", "left_super", "right_super")
 			}
 		}),
+		"link-previews":                         ghostty.ActionLinkPreviewses(),
 		"linux-cgroup":                          ghostty.ActionLinuxCgroups(),
 		"macos-applescript":                     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 		"macos-custom-icon":                     carapace.ActionFiles(),

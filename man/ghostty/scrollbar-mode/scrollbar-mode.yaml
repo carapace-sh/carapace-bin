@@ -1,13 +1,6 @@
-"true": |
-  Show the scrollbar. The scrollbar is visible on the terminal surface.
-"false": |
-  Hide the scrollbar. The scrollbar is completely hidden.
-left: |
-  Show the scrollbar on the left side of the terminal surface.
-right: |
-  Show the scrollbar on the right side of the terminal surface.
-hidden: |
-  Hide the scrollbar but allow toggling via keybind. The scrollbar can be
-  shown or hidden using a keyboard shortcut.
-visible: |
-  Always show the scrollbar. The scrollbar remains visible at all times.
+system: |
+  Respect the system settings for when to show scrollbars. Follows the desktop
+  environment's scrollbar visibility preference.
+never: |
+  Never show a scrollbar. The scrollbar is completely hidden, though scrolling
+  via keyboard, mouse wheel, or touchpad still works.

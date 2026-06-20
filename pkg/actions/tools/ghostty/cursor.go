@@ -26,7 +26,5 @@ func ActionCursorStyleBlinks() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"true", "The cursor blinks by default",
 		"false", "The cursor does not blink",
-		"in", "The cursor blinks only when the terminal is focused",
-		"out", "The cursor blinks only when the terminal is unfocused",
 	).StyleF(style.ForKeyword).Tag("cursor style blink modes").Uid("ghostty", "cursor-style-blink")
 }

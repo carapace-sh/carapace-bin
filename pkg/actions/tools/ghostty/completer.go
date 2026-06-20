@@ -25,6 +25,8 @@ func ActionBackgroundBlurs() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"false", "equivalent to a blur intensity of 0",
 		"true", "equivalent to the default blur intensity of 20",
+		"macos-glass-regular", "macOS standard glass blur effect",
+		"macos-glass-clear", "macOS clear glass blur effect",
 	).StyleF(style.ForKeyword).Tag("background blur modes").Uid("ghostty", "background-blur")
 }
 
@@ -51,10 +53,13 @@ func ActionGtkSingleInstances() carapace.Action {
 
 // ActionGtkTabsLocations completes gtk tabs locations
 //
-//	top
-//	bottom
+//	top (Tab bar at the top of the window)
+//	bottom (Tab bar at the bottom of the window)
 func ActionGtkTabsLocations() carapace.Action {
-	return carapace.ActionValues("top", "bottom", "left", "right", "hidden").Tag("gtk tabs locations").Uid("ghostty", "gtk-tabs-location")
+	return carapace.ActionValuesDescribed(
+		"top", "Tab bar at the top of the window",
+		"bottom", "Tab bar at the bottom of the window",
+	).Tag("gtk tabs locations").Uid("ghostty", "gtk-tabs-location")
 }
 
 // ActionMacosOptionsAsAlt completes macos option-as-alt modes
@@ -112,14 +117,6 @@ func ActionWindowColorspaces() carapace.Action {
 	return carapace.ActionValues("srgb", "display-p3").Tag("window colorspaces").Uid("ghostty", "window-colorspace")
 }
 
-// ActionTerms completes TERM values
-//
-//	xterm-ghostty
-//	xterm-256color
-func ActionTerms() carapace.Action {
-	return carapace.ActionValues("xterm-ghostty", "xterm-256color", "xterm-kitty", "xterm-terminfo").Tag("term values").Uid("ghostty", "term")
-}
-
 // ActionWindowDecorations completes window decoration modes
 //
 //	none (No window decorations)
@@ -131,4 +128,36 @@ func ActionWindowDecorations() carapace.Action {
 		"client", "Use client-side decorations",
 		"server", "Use server-side decorations",
 	).Tag("window decoration modes").Uid("ghostty", "window-decoration")
+}
+
+// ActionConfirmCloseSurfaces completes confirm-close-surface modes
+//
+//	true (Always confirm before closing)
+//	false (Never confirm before closing)
+func ActionConfirmCloseSurfaces() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"true", "Always confirm before closing a surface",
+		"false", "Never confirm before closing a surface",
+		"always", "Always confirm, even when no shell is running",
+	).StyleF(style.ForKeyword).Tag("confirm close surface modes").Uid("ghostty", "confirm-close-surface")
+}
+
+// ActionLinkPreviewses completes link preview modes
+//
+//	true (Show link previews for matched URLs)
+//	false (Do not show link previews)
+func ActionLinkPreviewses() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"true", "Show link previews for matched URLs",
+		"false", "Do not show link previews",
+		"osc8", "Show link previews only for OSC 8 hyperlinks",
+	).StyleF(style.ForKeyword).Tag("link preview modes").Uid("ghostty", "link-previews")
+}
+
+// ActionTerms completes TERM values
+//
+//	xterm-ghostty
+//	xterm-256color
+func ActionTerms() carapace.Action {
+	return carapace.ActionValues("xterm-ghostty", "xterm-256color", "xterm-kitty", "xterm-terminfo").Tag("term values").Uid("ghostty", "term")
 }

@@ -9,6 +9,15 @@ import "github.com/carapace-sh/carapace"
 func ActionMacIcons() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"official", "Use the official Ghostty icon",
+		"blueprint", "Blueprint-style icon with a technical drawing aesthetic",
+		"chalkboard", "Chalkboard-style icon with a retro classroom feel",
+		"microchip", "Microchip-style icon with a circuit board look",
+		"glass", "Glass-style icon with a translucent, modern appearance",
+		"holographic", "Holographic-style icon with an iridescent, futuristic look",
+		"paper", "Paper-style icon with a folded paper texture",
+		"retro", "Retro-style icon with a classic computer aesthetic",
+		"xray", "X-ray-style icon showing internal structure",
+		"custom", "Use a custom icon from macos-custom-icon path",
 		"custom-style", "Use the official Ghostty icon but with custom styles",
 	).Tag("mac icons").Uid("ghostty", "macos-icon")
 }
