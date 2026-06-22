@@ -1,0 +1,19 @@
+importmap: |
+  Use [import maps](https://github.com/rails/importmap-rails) to manage JavaScript.
+  Modules are loaded directly in the browser without a build step. The default option for new
+  Rails applications. Best suited for applications with light JavaScript needs.
+bun: |
+  Use [Bun](https://bun.sh/) as the JavaScript runtime and bundler. Bun is a fast,
+  all-in-one JavaScript runtime that can also serve as a package manager and test runner.
+webpack: |
+  Use [Webpack](https://webpack.js.org/) via the `webpacker` gem to bundle JavaScript.
+  A full-featured bundler suitable for complex JavaScript applications.
+  **Deprecated** in favor of esbuild/rollup for new applications.
+esbuild: |
+  Use [esbuild](https://esbuild.github.io/) via `jsbundling-rails` to bundle JavaScript.
+  An extremely fast bundler written in Go. A good choice for applications that need
+  a build step but want fast compilation times.
+rollup: |
+  Use [Rollup](https://rollupjs.org/) via `jsbundling-rails` to bundle JavaScript.
+  A JavaScript module bundler that produces efficient ES modules. Good for
+  library-style code and tree-shaking.

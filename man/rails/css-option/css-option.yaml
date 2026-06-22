@@ -1,0 +1,17 @@
+tailwind: |
+  Install [Tailwind CSS](https://tailwindcss.com/), a utility-first CSS framework.
+  The default CSS option for new Rails applications. Generates utility classes
+  for rapid UI development without writing custom CSS.
+bootstrap: |
+  Install [Bootstrap](https://getbootstrap.com/), a popular CSS framework with
+  pre-built components for responsive layouts, navigation, forms, and more.
+bulma: |
+  Install [Bulma](https://bulma.io/), a free, open-source CSS framework based on Flexbox.
+  Provides responsive layout and component classes without JavaScript dependencies.
+postcss: |
+  Install [PostCSS](https://postcss.org/) via `cssbundling-rails`. A tool for
+  transforming CSS with JavaScript plugins. Enables autoprefixer, nesting, and
+  other CSS transformations.
+sass: |
+  Install [Sass](https://sass-lang.com/) via `cssbundling-rails`. A CSS preprocessor
+  that adds variables, nesting, mixins, and functions to CSS. Compiles to standard CSS.

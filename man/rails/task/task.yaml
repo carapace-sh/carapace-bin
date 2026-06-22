@@ -1,0 +1,249 @@
+db/prepare: |
+  Create the database if it does not exist, or run pending migrations if it does. Commonly used
+  in CI pipelines as a one-step database setup.
+db/truncate_all: |
+  Truncate all tables in the current environment's database. Faster than `db:reset` for
+  cleaning data while preserving the schema.
+db/charset: |
+  Retrieve and display the character set (encoding) of the current environment's database.
+db/collation: |
+  Retrieve and display the collation order of the current environment's database.
+db/create: |
+  Create the database for the current Rails environment. Reads `DATABASE_URL` or the current
+  environment's config from `config/database.yml`. Append `:<name>` for multi-database setups.
+db/drop: |
+  Drop the database for the current Rails environment. **Irreversible** — all data is deleted.
+  Append `:<name>` for multi-database setups.
+db/forward: |
+  Push the schema to the next version. Append `:<name>` for multi-database setups.
+db/rollback: |
+  Rollback the last migration (or `STEP=n` migrations). Appending `:<name>` rolls back the
+  named database instead of the default.
+db/seed: |
+  Load seed data from `db/seeds.rb`. The seed file should contain idempotent data creation
+  using `create!` or `find_or_create_by!`.
+db/setup: |
+  Create the database, load the schema, and seed. A one-command alternative to running
+  `db:create`, `db:schema:load`, and `db:seed` separately. Append `:<name>` for multi-database.
+db/reset: |
+  Drop, recreate, migrate, and seed the database. Equivalent to running `db:drop`,
+  `db:setup`, and `db:migrate`. Append `:<name>` for multi-database setups.
+db/version: |
+  Display the current schema migration version number from `schema_migrations`.
+  Append `:<name>` for multi-database setups.
+db/purge: |
+  Empty the database (drop and recreate). Faster than `db:reset` when you just need a clean
+  slate without re-running migrations. Append `:<name>` for multi-database.
+db/abort_if_pending_migrations: |
+  Raise an error if there are pending (not yet run) migrations. Used in deployment scripts
+  to prevent running with an outdated schema. Append `:<name>` for multi-database.
+db/migrate/redo: |
+  Rollback the last migration and re-run it. Use `STEP=n` to rollback multiple migrations
+  before re-migrating.
+db/migrate/up: |
+  Run the `up` method of a specific migration. Requires `VERSION=x` to identify the target.
+db/migrate/down: |
+  Run the `down` method of a specific migration. Requires `VERSION=x` to identify the target.
+db/migrate/status: |
+  Display the status of all migrations (`up` or `down`). Shows migration version, name,
+  and current state.
+db/migrate/reset: |
+  Drop the database, recreate it, and re-run all migrations. Does not load seeds.
+db/schema/dump: |
+  Write the current database schema to `db/schema.rb` (or `db/structure.sql` when
+  `config.active_record.schema_format = :sql`). Overwrites any existing schema file.
+db/schema/load: |
+  Load the database schema from `db/schema.rb` (or `db/structure.sql`). Faster than running
+  all migrations from scratch. Used by `db:setup` and `db:reset`.
+db/schema/cache/clear: |
+  Clear the schema cache file (`db/schema_cache.yml`). Forces Active Record to reload
+  table and column information on the next request.
+db/schema/cache/dump: |
+  Write the current schema cache to `db/schema_cache.yml`. Speeds up boot time by
+  pre-caching table and column metadata so Active Record doesn't need to query the database.
+db/test/prepare: |
+  Load the test database schema. Creates the test database if it doesn't exist,
+  then loads `db/schema.rb`. Equivalent to `db:create` + `db:schema:load` for the test environment.
+db/test/load_schema: |
+  Recreate the test database from the schema file. Drops and recreates the test database,
+  then loads `db/schema.rb`.
+db/test/purge: |
+  Empty the test database. Drops and recreates it without loading the schema or seed data.
+db/seed/replant: |
+  Truncate all database tables and re-load seed data from `db/seeds.rb`.
+  A faster alternative to `db:reset` when the schema is already up to date.
+db/fixtures/load: |
+  Load test fixtures into the current environment's database. Reads YAML files from
+  `test/fixtures/`. Supports `FIXTURES=x,y` for specific fixtures and
+  `FIXTURES_DIR=z` for subdirectory paths.
+db/fixtures/identify: |
+  Find a fixture by its label or ID. Useful for debugging fixture data.
+assets/clean: |
+  Remove old compiled assets (default: keeps the 2 most recent copies).
+assets/clobber: |
+  Remove the entire compiled asset output path. Stronger than `clean` — deletes all
+  compiled versions, not just old ones.
+assets/environment: |
+  Load the Rails asset environment without compiling. Useful for Rake task integration
+  with the asset pipeline.
+assets/precompile: |
+  Compile all assets for production. Output goes to `public/assets/`. Compiles JS, CSS,
+  and images according to the asset pipeline manifest.
+assets/reveal/full: |
+  Print all available assets in full detail.
+test/all: |
+  Run all tests including system tests. Equivalent to running every test file in the
+  `test/` directory tree.
+test/system: |
+  Run system (browser) tests only. These are Capybara/Selenium-based tests in `test/system/`.
+test/functionals: |
+  Run functional tests (controllers, mailers). Legacy term — prefer `test:controllers` or `test:mailers`.
+test/units: |
+  Run unit tests (models, helpers). Legacy term — prefer `test:models` or `test:helpers`.
+test/generators: |
+  Run generator tests located in `test/lib/generators/`.
+test/models: |
+  Run model tests located in `test/models/`.
+test/helpers: |
+  Run helper tests located in `test/helpers/`.
+test/channels: |
+  Run Action Cable channel tests located in `test/channels/`.
+test/controllers: |
+  Run controller tests located in `test/controllers/`.
+test/mailers: |
+  Run mailer tests located in `test/mailers/`.
+test/integration: |
+  Run integration tests located in `test/integration/`.
+test/jobs: |
+  Run Active Job tests located in `test/jobs/`.
+test/mailboxes: |
+  Run Action Mailbox tests located in `test/mailboxes/`.
+test/db: |
+  Reset the test database and run the full test suite.
+  Equivalent to `db:test:prepare && rails test`.
+tmp/clear: |
+  Clear all temporary files including cache, sockets, pids, screenshots, and storage.
+tmp/create: |
+  Create the standard temporary directories: `tmp/cache`, `tmp/sockets`, `tmp/pids`.
+tmp/subdir/clear: |
+  Clear files in this tmp subdirectory.
+time/zones/all: |
+  List all time zones known to Active Support with UTC offsets and Rails identifiers.
+time/zones/local: |
+  List time zones matching the system's local UTC offset.
+time/zones/us: |
+  List US time zones only.
+log/clear: |
+  Truncate all log files in `log/` to zero bytes. Supports `LOGS=test,development` env var
+  to clear only specific log files.
+credentials/edit: |
+  Open decrypted credentials in `$VISUAL` or `$EDITOR`. Without `--environment`, edits
+  `config/credentials.yml.enc` using `config/master.key`.
+credentials/show: |
+  Display decrypted credentials to stdout. Use `--environment` to show per-environment credentials.
+credentials/diff: |
+  Enroll or disenroll in decrypted git diffs. When enrolled, `git diff` shows credential changes
+  in plaintext. Use `--enroll` or `--disenroll`.
+credentials/fetch: |
+  Fetch a specific credential value by key path. E.g. `credentials:fetch secret_key_base`.
+  Use `--environment` for per-environment credentials.
+encrypted/edit: |
+  Edit an encrypted file in `$VISUAL` or `$EDITOR`. Accepts a file path argument and
+  `--key` flag for the encryption key path (default: `config/master.key`).
+encrypted/show: |
+  Display the decrypted contents of an encrypted file. Accepts a file path argument and
+  `--key` flag for the decryption key path.
+dev/cache: |
+  Toggle development mode caching on/off. Creates or removes `tmp/caching-dev.txt`
+  to enable or disable fragment caching in the development environment.
+css/install/tailwind: |
+  Install [Tailwind CSS](https://tailwindcss.com/) via `cssbundling-rails`. A utility-first CSS framework.
+css/install/bootstrap: |
+  Install [Bootstrap](https://getbootstrap.com/) via `cssbundling-rails`. A component-based CSS framework with pre-built UI elements.
+css/install/postcss: |
+  Install [PostCSS](https://postcss.org/) via `cssbundling-rails`. A CSS transformation tool with plugins for autoprefixer, nesting, and more.
+css/install/sass: |
+  Install [Sass](https://sass-lang.com/) via `cssbundling-rails`. A CSS preprocessor with variables, nesting, and mixins.
+importmap/install: |
+  Install [importmap-rails](https://github.com/rails/importmap-rails). Sets up JavaScript module imports
+  using browser-native ES modules without a build step.
+javascript/install: |
+  Install JavaScript dependencies via `jsbundling-rails` or `bun`.
+railties/install/migrations: |
+  Copy missing migrations from Railties (engines) into the application's `db/migrate/` directory.
+secrets/edit: |
+  Edit encrypted secrets in `$VISUAL` or `$EDITOR`. Legacy secrets system (Rails < 5.2);
+  prefer `credentials:edit` for newer applications.
+secrets/setup: |
+  Set up the encrypted secrets file. Generates `config/secrets.yml.key` and
+  `config/secrets.yml.enc`. Legacy secrets system.
+secrets/show: |
+  Display decrypted secrets to stdout. Legacy secrets system; prefer `credentials:show`.
+stimulus/install/importmap: |
+  Install Stimulus using [importmap-rails](https://github.com/rails/importmap-rails). No bundler required —
+  uses browser-native ES module imports.
+stimulus/install/node: |
+  Install Stimulus using a Node.js bundler (esbuild, rollup, or webpack). Requires a `package.json`.
+turbo/install/importmap: |
+  Install Turbo using [importmap-rails](https://github.com/rails/importmap-rails). No bundler required.
+turbo/install/node: |
+  Install Turbo using a Node.js bundler. Requires `package.json` with esbuild or similar.
+turbo/install/redis: |
+  Install Turbo with Redis for Turbo Streams broadcasting. Required for real-time features
+  in multi-process deployments.
+turbo/install/bun: |
+  Install Turbo using [Bun](https://bun.sh/) as the JavaScript runtime and bundler.
+tailwindcss/build: |
+  Build Tailwind CSS output file. Compiles `app/assets/stylesheets/application.tailwind.css`
+  to the output path configured in `tailwind.config.js`.
+tailwindcss/clobber: |
+  Remove the built Tailwind CSS output file. Opposite of `build`.
+tailwindcss/install: |
+  Install Tailwind CSS with the `tailwindcss-rails` gem. Sets up `tailwind.config.js`,
+  the input CSS file, and a build task.
+tailwindcss/watch: |
+  Watch for CSS file changes and rebuild automatically. Useful during development
+  to see style changes immediately without manual rebuilds.
+yarn/install: |
+  Install JavaScript dependencies from `package.json` via [Yarn](https://yarnpkg.com/).
+zeitwerk/check: |
+  Verify the project's file structure for [Zeitwerk](https://github.com/fxn/zeitwerk) autoloading compliance.
+  Reports expected vs actual constant names and missing files.
+action_mailbox/install: |
+  Install Action Mailbox. Copies the migration file and sets up routing configuration
+  in `app/mailboxes/application_mailbox.rb`.
+action_mailbox/ingress: |
+  Relay inbound email to Action Mailbox from an MTA.
+action_mailbox/ingress/exim: |
+  Relay an inbound email from Exim to Action Mailbox. Requires `URL` and `INGRESS_PASSWORD`
+  environment variables to be set.
+action_mailbox/ingress/postfix: |
+  Relay an inbound email from Postfix to Action Mailbox. Requires `URL` and `INGRESS_PASSWORD`
+  environment variables to be set.
+action_mailbox/ingress/qmail: |
+  Relay an inbound email from Qmail to Action Mailbox. Requires `URL` and `INGRESS_PASSWORD`
+  environment variables to be set.
+action_mailbox/install/migrations: |
+  Copy the Action Mailbox migration file to `db/migrate/`.
+action_text/install/migrations: |
+  Copy the Action Text migration file to `db/migrate/`.
+active_storage/install: |
+  Install Active Storage. Copies the migration file needed for file attachment
+  support to `db/migrate/`.
+active_storage/update: |
+  Update Active Storage migrations. Copies any new or changed migrations needed
+  when upgrading Active Storage between Rails versions.
+app/template: |
+  Apply an application template. Requires the `LOCATION` environment variable set
+  to a file path or URL pointing to the template.
+app/update: |
+  Update application configuration files for the current Rails version.
+  Runs `bin/rails app:update` interactively.
+app/templates/copy: |
+  Copy all Rails template files to the application directory for customization.
+cache_digests/dependencies: |
+  Show all template dependencies for the application's views. Lists each template
+  and the partials it renders.
+cache_digests/nested_dependencies: |
+  Show nested (recursive) template dependencies. Traces the full dependency tree
+  of partials rendered by each template.

@@ -1,32 +1,18 @@
 ---
 name: rails
 description: >
-  Use when working with the Rails CLI — CLI commands, generators, database
-  tasks, test subcommands, rake tasks, flags, and argument completion for
-  building a carapace completer. Triggers on: "rails", "Ruby on Rails",
-  "bin/rails", "rails generate", "rails server", "rails console",
-  "rails new", "rails dbconsole", "rails runner", "rails test",
+  Use when working with the Rails CLI — commands, generators, database tasks,
+  test subcommands, rake tasks, flags, and argument completion. Triggers on:
+  "rails", "Ruby on Rails", "bin/rails", "rails new", "rails generate",
+  "rails server", "rails console", "rails dbconsole", "rails runner", "rails test",
   "rails routes", "rails destroy", "rails db", "rails credentials",
   "rails middleware", "rails notes", "rails dev:cache", "rails restart",
   "rails secret", "rails stats", "rails about", "rails boot",
-  "rails initializers", "rails log:clear", "rails plugin",
-  "rails time:zones", "rails tmp", "rails version", "rails query",
-  "rails devcontainer", "rails encrypted", "rails zeitwerk",
-  "rails yarn", "rails rake", "rails action_mailbox", "rails active_storage",
-  "rails action_text", "rails generator", "rails scaffold", "rails model",
-  "rails migration", "rails controller", "rails resource", "rails job",
-  "rails mailer", "rails channel", "rails mailbox", "rails task",
-  "rails system_test", "rails integration_test", "rails helper",
-  "rails jbuilder", "rails application_record", "rails benchmark",
-  "rails db:system:change", "SecretKeyGenerator",
-  "Rails::Generators::ModelGenerator", "Rails::Generators::ScaffoldGenerator",
-  "Rails::Command", "Rails::Command::ServerCommand",
-  "Rails::Command::ConsoleCommand", "Rails::Command::TestCommand",
-  "Rails::Command::RoutesCommand", "Rails::Command::DbconsoleCommand",
-  "Rails::Generators::MigrationGenerator",
-  "railties/lib/rails/commands", "railties/lib/rails/generators",
-  "railsrc", ".railsrc", "config/database.yml", "db/schema.rb",
-  "config/routes.rb", "config/credentials.yml.enc".
+  "rails initializers", "rails plugin", "rails tmp", "rails version",
+  "rails devcontainer", "rails encrypted", "rails zeitwerk", "rails yarn",
+  "rails scaffold", "rails model", "rails migration", "rails controller",
+  "rails resource", "rails job", "rails mailer", "rails channel",
+  "railsrc", ".railsrc", "config/database.yml".
 user-invocable: true
 ---
 
