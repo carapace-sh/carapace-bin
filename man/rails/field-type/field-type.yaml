@@ -1,0 +1,48 @@
+string: |
+  A variable-length string column. Maps to `VARCHAR` in most databases.
+  The default column type when no type is specified in a generator.
+text: |
+  A longer text column. Maps to `TEXT` or `CLOB` depending on the database adapter.
+  Suitable for descriptions, body content, or other long-form text without length limits.
+integer: |
+  A standard 4-byte integer column. Maps to `INT` in most databases.
+  Range: -2,147,483,648 to 2,147,483,647.
+bigint: |
+  An 8-byte integer column. Maps to `BIGINT` in most databases.
+  Used as the default primary key type in Rails 5.1+.
+  Range: -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807.
+float: |
+  A floating-point number column (4 bytes). Maps to `FLOAT` in most databases.
+  Imprecise for monetary values — use `decimal` instead.
+decimal: |
+  An arbitrary-precision decimal column. Maps to `DECIMAL` or `NUMERIC`.
+  Required for monetary values where precision matters. Use with `precision` and `scale` options.
+numeric: |
+  An alias for `decimal`. Maps to `NUMERIC` or `DECIMAL` depending on the database adapter.
+datetime: |
+  A date and time column. Maps to `DATETIME` or `TIMESTAMP` depending on the adapter.
+  Stores both date and time components, typically in UTC.
+time: |
+  A time-only column. Maps to `TIME` in most databases.
+  Stores hour, minute, and second without a date component.
+date: |
+  A date-only column. Maps to `DATE` in most databases.
+  Stores year, month, and day without a time component.
+binary: |
+  A binary data column. Maps to `BLOB` or `BYTEA` depending on the adapter.
+  Stores raw binary data such as file contents or serialized objects.
+boolean: |
+  A boolean column. Maps to `BOOLEAN`, `TINYINT(1)`, or similar depending on the adapter.
+  Stores `true`, `false`, or `NULL` values.
+references: |
+  A foreign key reference. Adds a `<name>_id` integer column and, by default,
+  an index and foreign key constraint. Equivalent to `belongs_to`.
+belongs_to: |
+  An alias for `references`. Creates a `<name>_id` column, index, and foreign key
+  constraint pointing to the associated table.
+digest: |
+  A digest column type for storing password hashes or other cryptographic digests.
+  Used with `has_secure_password`.
+token: |
+  A token column type for storing API tokens, authentication tokens, or other
+  opaque identifiers.

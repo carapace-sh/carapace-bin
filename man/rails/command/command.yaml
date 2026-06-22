@@ -1,0 +1,74 @@
+new: |
+  Create a new Rails application. Generates the full directory structure with default configuration,
+  Gemfile, routes, database config, and more. See `rails new --help` for all available options.
+generate: |
+  Run a code generator to create boilerplate code. Available generators include model, scaffold,
+  resource, controller, migration, and more. Use `rails generate` without arguments to list all.
+g: |
+  Alias for `generate`.
+destroy: |
+  Undo a previous code generation. Removes all files that the corresponding `generate` command
+  created. E.g. `destroy model Post` removes the model, migration, and test files.
+d: |
+  Alias for `destroy`.
+server: |
+  Start the Rails server (Puma by default). Listens on port 3000 in development mode.
+  Use `-p` to set port, `-b` to set binding, `-e` for environment.
+s: |
+  Alias for `server`.
+console: |
+  Start an interactive Ruby console (IRB) with the Rails environment loaded.
+  Use `-e` for environment, `-s` for sandbox mode (rolls back DB changes on exit).
+c: |
+  Alias for `console`.
+runner: |
+  Execute Ruby code in the Rails context. Accepts inline code, a file path, or `-` for stdin.
+  Example: `rails runner 'puts User.count'`.
+r: |
+  Alias for `runner`.
+dbconsole: |
+  Start an interactive database console. Automatically detects the adapter from
+  `config/database.yml` and opens the appropriate client (psql, mysql, sqlite3).
+db: |
+  Alias for `dbconsole`.
+test: |
+  Run the Minitest test suite. Accepts file paths with optional line numbers
+  (e.g. `test/models/user_test.rb:27`), and Minitest flags like `--name`, `--seed`, `--verbose`.
+t: |
+  Alias for `test`.
+routes: |
+  List all defined routes. Use `--controller` to filter by controller, `--grep` for pattern
+  matching, `--expanded` for vertical layout, `--unused` to show only unlinked routes.
+notes: |
+  Search code for annotation comments (FIXME, TODO, OPTIMIZE by default). Use `--annotations`
+  to customize which tags to search for.
+query: |
+  Start an Active Record read-only REPL. Supports `schema`, `models`, and `explain` sub-commands.
+  All queries run in a transaction that rolls back on exit.
+devcontainer: |
+  Generate a Dev Container configuration based on the current app setup.
+  Creates `.devcontainer/devcontainer.json` and supporting files.
+plugin: |
+  Create a new Rails plugin or engine. Similar flags to `rails new` for configuring
+  the plugin's database, CSS, JavaScript, etc.
+about: |
+  Show Rails and Ruby version information, plus a summary of installed gems and environment details.
+boot: |
+  Boot the Rails application and exit. Useful for verifying that the application initializes
+  without errors.
+middleware: |
+  Print the complete Rack middleware stack in the order they are invoked.
+initializers: |
+  Print all Rails initializers in the order they are executed. Useful for debugging
+  initialization issues.
+restart: |
+  Restart the Rails server by touching `tmp/restart.txt`. The server process detects
+  the file change and performs a graceful restart.
+secret: |
+  Generate a cryptographically secure random hex string. Commonly used for `secret_key_base`
+  in initial setups.
+stats: |
+  Show code statistics including lines of code, classes, methods, and test-to-code ratios
+  broken down by directory.
+version: |
+  Show the installed Rails version number.

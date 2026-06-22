@@ -1,0 +1,18 @@
+sqlite3: |
+  SQLite3 database adapter. The default for new Rails applications. File-based, requires no
+  separate database server. Suitable for development and testing. Uses the `sqlite3` gem.
+postgresql: |
+  PostgreSQL database adapter. A powerful, open-source relational database with advanced features
+  like JSONB, full-text search, and extensions. Uses the `pg` gem.
+mysql: |
+  MySQL database adapter. A popular open-source relational database. Uses the `mysql2` gem.
+oracle: |
+  Oracle Database adapter. For enterprise environments using Oracle Database. Uses the
+  `ruby-oci8` gem.
+sqlserver: |
+  Microsoft SQL Server adapter. For environments using SQL Server. Uses the `activerecord-sqlserver-adapter` gem.
+jdbc: |
+  JDBC database adapter. For JRuby deployments that connect via Java's JDBC interface.
+none: |
+  Skip database setup entirely. No Active Record configuration is generated. Useful for
+  applications that do not need a database.

@@ -1,0 +1,65 @@
+model: |
+  Generate an Active Record model with a migration file. Creates `app/models/<name>.rb`
+  and `db/migrate/<timestamp>_create_<table>.rb`.
+scaffold: |
+  Generate a full scaffold: model, controller with RESTful actions, views, and a migration.
+  Creates the complete CRUD interface including forms, partials, and route declarations.
+resource: |
+  Generate a resource: model, controller, and route — but no views. Similar to scaffold
+  but leaves view templates to be created manually. Adds `resources` declaration in
+  `config/routes.rb`.
+controller: |
+  Generate a controller with specified actions. Creates `app/controllers/<name>_controller.rb`
+  and corresponding view templates for each action.
+migration: |
+  Generate a database migration file. Creates `db/migrate/<timestamp>_<name>.rb`
+  with `change`, `up`, and `down` methods.
+job: |
+  Generate an Active Job. Creates `app/jobs/<name>_job.rb` with a `perform` method
+  ready for background processing.
+mailer: |
+  Generate an Action Mailer. Creates `app/mailers/<name>_mailer.rb` with mailer actions
+  and corresponding view templates (`text.html.erb`, `text.text.erb`).
+channel: |
+  Generate an Action Cable channel. Creates `app/channels/<name>_channel.rb`
+  with `subscribed`, `unsubscribed`, and custom action methods.
+mailbox: |
+  Generate an Action Mailbox inbox. Creates `app/mailboxes/<name>_mailbox.rb`
+  with a `process` method for handling inbound email.
+task: |
+  Generate a Rake task in `lib/tasks/<name>.rake` with an empty task definition
+  ready to be filled in.
+helper: |
+  Generate a helper module. Creates `app/helpers/<name>_helper.rb`.
+system_test: |
+  Generate a system test. Creates `test/system/<name>s_test.rb` with a
+  `driven_by` declaration and a sample test method.
+integration_test: |
+  Generate an integration test. Creates `test/integration/<name>_test.rb`
+  with a test method stub for end-to-end request testing.
+jbuilder: |
+  Generate Jbuilder views for JSON API responses. Creates `app/views/<name>/*.json.jbuilder`
+  templates for `show` and `index` actions.
+generator: |
+  Generate a custom generator. Creates `lib/generators/<name>/<name>_generator.rb`
+  inheriting from `Rails::Generators::NamedBase`.
+application_record: |
+  Generate an `ApplicationRecord` base class. Creates `app/models/application_record.rb`
+  as the abstract base class for all models.
+benchmark: |
+  Generate a benchmark template. Creates `test/benchmarks/<name>_benchmark.rb`
+  for performance testing with `Benchmark.ips`.
+scaffold_controller: |
+  Generate a scaffold controller independently of the model. Creates the controller
+  and API-style views without regenerating the model or migration.
+"active_record:migration": |
+  Generate an Active Record migration directly via the Active Record generator namespace.
+"active_record:authentication": |
+  Generate an authentication model with `has_secure_password`. Creates a model with
+  `password_digest` column and the `has_secure_password` declaration.
+"action_text:install": |
+  Install Action Text. Copies the Action Text migration and sets up the
+  `actiontext` table for rich text content.
+"action_mailbox:install": |
+  Install Action Mailbox. Copies the Action Mailbox migration and sets up the
+  `actionmailbox` table for routing inbound email.

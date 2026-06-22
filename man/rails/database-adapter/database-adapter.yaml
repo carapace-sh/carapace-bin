@@ -1,0 +1,19 @@
+mysql: |
+  Change to the MySQL adapter using the `mysql2` gem. Sets `adapter: mysql2`
+  in `config/database.yml` and adds `gem "mysql2"` to the Gemfile.
+trilogy: |
+  Change to the Trilogy MySQL adapter. [Trilogy](https://github.com/trilogysystems/trilogy)
+  is a high-performance MySQL client library for Ruby, designed as a drop-in replacement
+  for `mysql2` with improved connection handling.
+postgresql: |
+  Change to the PostgreSQL adapter using the `pg` gem. Sets `adapter: postgresql`
+  in `config/database.yml` and adds `gem "pg"` to the Gemfile.
+sqlite3: |
+  Change to the SQLite3 adapter using the `sqlite3` gem. Sets `adapter: sqlite3`
+  in `config/database.yml` and adds `gem "sqlite3"` to the Gemfile.
+mariadb-mysql: |
+  Change to MariaDB using the `mysql2` gem. MariaDB is a community-developed fork of MySQL.
+  Sets `adapter: mysql2` with MariaDB-specific configuration.
+mariadb-trilogy: |
+  Change to MariaDB using the Trilogy adapter. Combines MariaDB compatibility with
+  Trilogy's high-performance connection handling.

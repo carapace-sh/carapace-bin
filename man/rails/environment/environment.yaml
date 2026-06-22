@@ -1,0 +1,13 @@
+development: |
+  The default Rails environment for local development. The application runs with debugging tools,
+  auto-reloading, and detailed error pages enabled. Database changes are not rolled back between
+  requests.
+test: |
+  The environment used when running the test suite. The database is typically reset between test
+  runs. Debugging tools and auto-reloading are disabled for reproducibility.
+production: |
+  The environment for deployed applications. Caching is enabled, error pages are static, and
+  debugging tools are disabled. Assets are precompiled and served from disk.
+staging: |
+  A pre-production environment that mirrors production settings but may allow debugging access.
+  Used for final validation before deploying to production.

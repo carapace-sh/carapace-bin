@@ -1,0 +1,84 @@
+credentials: |
+  Encrypted credentials management.
+db: |
+  Database tasks for creating, migrating, seeding, and managing the database.
+encrypted: |
+  Generic encrypted file management.
+assets: |
+  Asset pipeline tasks.
+log: |
+  Log file management.
+tmp: |
+  Temporary file management.
+time: |
+  Time zone utilities.
+action_mailbox: |
+  Action Mailbox setup and configuration.
+action_text: |
+  Action Text (Trix editor) setup.
+active_storage: |
+  Active Storage setup and migrations.
+app: |
+  Application-level tasks.
+cache_digests: |
+  Template cache digest utilities.
+css: |
+  CSS framework installation.
+dev: |
+  Development mode tasks.
+importmap: |
+  Import map management for JavaScript.
+javascript: |
+  JavaScript dependency installation.
+railties: |
+  Railties (engine) management.
+secrets: |
+  Encrypted secrets management (legacy).
+stimulus: |
+  Stimulus JavaScript framework setup.
+tailwindcss: |
+  Tailwind CSS tasks.
+turbo: |
+  Hotwire Turbo framework setup.
+yarn: |
+  Yarn package manager tasks.
+zeitwerk: |
+  Zeitwerk autoloader utilities.
+db/migrate: |
+  Run pending database migrations.
+db/fixtures: |
+  Manage test fixtures.
+db/schema: |
+  Database schema operations.
+db/environment: |
+  Set the database environment.
+db/encryption: |
+  Active Record encryption key management.
+db/system: |
+  Change the database adapter.
+db/test: |
+  Database test tasks.
+db/schema/cache: |
+  Schema cache operations.
+assets/reveal: |
+  Print all available assets in the asset pipeline.
+tmp/cache: |
+  Temporary file cache directory.
+tmp/sockets: |
+  Socket files directory (e.g. Puma socket files).
+tmp/pids: |
+  PID files directory.
+tmp/screenshots: |
+  Capybara screenshot output directory.
+tmp/storage: |
+  Temporary Active Storage files directory.
+app/templates: |
+  Application template management.
+css/install: |
+  Install a CSS framework.
+railties/install: |
+  Install Railties (engine) components.
+stimulus/install: |
+  Install [Stimulus](https://stimulus.hotwired.dev/) JavaScript framework.
+turbo/install: |
+  Install [Hotwire Turbo](https://turbo.hotwired.dev/).
