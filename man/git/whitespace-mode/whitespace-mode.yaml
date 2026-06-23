@@ -1,0 +1,10 @@
+nowarn: |
+  Turns off the trailing whitespace warning.
+warn: |
+  Outputs warnings for a few such errors, but applies the patch as-is (default).
+fix: |
+  Outputs warnings for a few such errors, and applies the patch after fixing them. `strip` is a deprecated synonym.
+error: |
+  Outputs warnings for a few such errors, and refuses to apply the patch.
+error-all: |
+  Similar to [error](git://whitespace-mode/error) but shows all errors.

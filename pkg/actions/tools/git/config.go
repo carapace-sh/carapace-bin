@@ -68,7 +68,7 @@ func ActionDateFormats() carapace.Action {
 		"human", "shows the date in a human-readable format",
 		"unix", "shows the date as a Unix epoch timestamp (seconds since 1970)",
 		"format:", "shows the date with a custom strftime format",
-	)
+	).Uid("git", "date-format")
 }
 
 // ActionColors completes colors
@@ -86,7 +86,7 @@ func ActionColors() carapace.Action {
 		"magenta", style.Magenta,
 		"cyan", style.Cyan,
 		"white", style.White,
-	)
+	).Uid("git", "color")
 }
 
 // ActionTextAttributes completes text attributes
@@ -100,7 +100,7 @@ func ActionTextAttributes() carapace.Action {
 		"ul", style.Underlined,
 		"blink", style.Blink,
 		"reverse", style.Default,
-	)
+	).Uid("git", "text-attribute")
 }
 
 // ActionColorConfigs completes color configs
@@ -134,7 +134,7 @@ func ActionConfigTypes() carapace.Action {
 		"path", "canonicalize by adding a leading ~ to the value of $HOME",
 		"expiry-date", "canonicalize by converting from a fixed or relative date-string to a timestamp",
 		"color", "When getting a value, canonicalize by converting to an ANSI color escape sequence",
-	)
+	).Uid("git", "config-type")
 }
 
 // ActionConfigTypeOptions completes options for a config type

@@ -1,0 +1,22 @@
+A: |
+  Added
+C: |
+  Copied
+D: |
+  Deleted
+M: |
+  Modified
+R: |
+  Renamed
+T: |
+  Type changed (regular file, symlink, submodule, etc.)
+U: |
+  Unmerged
+X: |
+  Unknown
+B: |
+  Pairing Broken
+"*": |
+  All-or-none — all paths are selected if any file matches other criteria; if no file matches, nothing is selected.
+
+  Any combination of filter characters can be used. Upper-case letters can be downcased to exclude (e.g. `ad` excludes added and deleted).

@@ -1,0 +1,16 @@
+always: |
+  Always show in columns.
+never: |
+  Never show in columns.
+auto: |
+  Show in columns if the output is to the terminal.
+column: |
+  Fill columns before rows.
+row: |
+  Fill rows before columns.
+plain: |
+  Show in one column.
+dense: |
+  Make unequal size columns to utilize more space.
+nodense: |
+  Make equal size columns.

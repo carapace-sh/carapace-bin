@@ -1,0 +1,10 @@
+no: |
+  Do not ignore whitespace when performing move detection.
+ignore-space-at-eol: |
+  Ignore changes in whitespace at end of line.
+ignore-space-change: |
+  Ignore changes in amount of whitespace. Ignores whitespace at line end, considers all other sequences of one or more whitespace characters to be equivalent.
+ignore-all-space: |
+  Ignore whitespace when comparing lines. Ignores differences even if one line has whitespace where the other has none.
+allow-indentation-change: |
+  Initially ignore any whitespace in the move detection, then group moved code blocks only if the change in whitespace is the same per line. Incompatible with the other modes.

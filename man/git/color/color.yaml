@@ -1,0 +1,18 @@
+normal: |
+  Makes no change to the color. Can be used as foreground when specifying background alone.
+black: |
+  Black foreground color. Bright variant: `brightblack`.
+red: |
+  Red foreground color. Bright variant: `brightred`.
+green: |
+  Green foreground color. Bright variant: `brightgreen`.
+yellow: |
+  Yellow foreground color. Bright variant: `brightyellow`.
+blue: |
+  Blue foreground color. Bright variant: `brightblue`.
+magenta: |
+  Magenta foreground color. Bright variant: `brightmagenta`.
+cyan: |
+  Cyan foreground color. Bright variant: `brightcyan`.
+white: |
+  White foreground color. Bright variant: `brightwhite`.

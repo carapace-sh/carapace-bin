@@ -1,0 +1,8 @@
+changes: |
+  Compute dirstat numbers by counting lines removed from source or added to destination. Ignores pure code movements. Default behavior.
+lines: |
+  Compute dirstat numbers by doing regular line-based diff analysis and summing removed/added line counts. More expensive than [changes](git://dirstat/changes), but counts rearranged lines.
+files: |
+  Compute dirstat numbers by counting number of files changed. Each changed file counts equally. Cheapest computationally.
+cumulative: |
+  Count changes in a child directory for the parent directory as well. Sum of percentages may exceed 100%.

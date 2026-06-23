@@ -1,0 +1,10 @@
+strip: |
+  Strip leading and trailing empty lines, trailing whitespace, commentary and collapse consecutive empty lines.
+whitespace: |
+  Same as [strip](git://cleanup-mode/strip) except `#` commentary is not removed.
+verbatim: |
+  Do not change the message at all.
+scissors: |
+  Same as [whitespace](git://cleanup-mode/whitespace) except that everything from (and including) the line found below is truncated, if the message is to be edited. `#` can be customized with `core.commentChar`.
+default: |
+  Same as [strip](git://cleanup-mode/strip) if the message is to be edited. Otherwise [whitespace](git://cleanup-mode/whitespace).

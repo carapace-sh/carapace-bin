@@ -1,0 +1,12 @@
+context: |
+  Highlight whitespace errors in context lines.
+old: |
+  Highlight whitespace errors in old lines.
+new: |
+  Highlight whitespace errors in new lines.
+none: |
+  Resets previous values.
+default: |
+  Resets the list to [new](git://ws-error-highlight-mode/new).
+all: |
+  Shorthand for [old](git://ws-error-highlight-mode/old),[new](git://ws-error-highlight-mode/new),[context](git://ws-error-highlight-mode/context).

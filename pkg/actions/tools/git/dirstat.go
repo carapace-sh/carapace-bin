@@ -12,5 +12,5 @@ func ActionDirstats() carapace.Action {
 		"lines", "Compute the dirstat numbers by doing the regular line-based diff analysis",
 		"files", "Compute the dirstat numbers by counting the number of files changed",
 		"cumulative", "Count changes in a child directory for the parent directory as well",
-	)
+	).Uid("git", "dirstat")
 }

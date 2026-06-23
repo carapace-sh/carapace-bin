@@ -1,0 +1,14 @@
+"blob:none": |
+  Omits all blobs. The tree objects are still included to allow traversal of the tree structure without downloading the blobs.
+tree: |
+  Omits all blobs and trees whose depth from the root tree is >= `<depth>`.
+  Requires a depth value after the colon (e.g. `tree:1`).
+"blob:limit": |
+  Omits blobs of size at least `<n>` bytes or units.
+  Requires a size value after the equals sign (e.g. `blob:limit=1k`).
+object:type: |
+  Omits all objects which are not of the requested type.
+  Value should be one of: [tag](git://object-type/tag), [commit](git://object-type/commit), [tree](git://object-type/tree), [blob](git://object-type/blob).
+"sparse:oid": |
+  Omit blobs that would not be required for a sparse checkout on the given object.
+  Requires a sparse-checkout object OID after the equals sign.

@@ -1,0 +1,87 @@
+applypatch-msg: |
+  Invoked by `git-am`. Takes the name of the file holding the proposed commit log message.
+  Can be bypassed with `--no-verify`.
+pre-applypatch: |
+  Invoked by `git-am` after the patch is applied but before a commit is made.
+  Can be bypassed with `--no-verify`.
+post-applypatch: |
+  Invoked by `git-am` after the patch is applied and a commit is made.
+  Primarily for notification; cannot affect the outcome of `git-am`.
+pre-commit: |
+  Invoked by `git-commit` before obtaining the proposed commit log message.
+  Can be bypassed with `--no-verify`.
+pre-merge-commit: |
+  Invoked by `git-merge` after the merge is carried out but before creating the commit.
+  Can be bypassed with `--no-verify`.
+prepare-commit-msg: |
+  Invoked by `git-commit` right after preparing the default log message, before the editor is started.
+  Not suppressed by `--no-verify`.
+commit-msg: |
+  Invoked by `git-commit` and `git-merge`. Takes the file holding the proposed commit log message.
+  Can be bypassed with `--no-verify`.
+post-commit: |
+  Invoked by `git-commit` after a commit is made.
+  Primarily for notification; cannot affect the outcome of `git-commit`.
+pre-rebase: |
+  Called by `git-rebase` to prevent a branch from getting rebased.
+post-checkout: |
+  Invoked after `git-checkout`, `git-switch`, `git-clone`, or `git-worktree add`.
+  Takes three parameters: previous HEAD ref, new HEAD ref, and a flag (branch=1, file=0).
+post-merge: |
+  Invoked by `git-merge`. Takes a status flag specifying whether it was a squash merge.
+pre-push: |
+  Called by `git-push`. Can prevent a push from taking place.
+  Can be bypassed with `--no-verify`.
+pre-receive: |
+  Invoked by `git-receive-pack` on `git push`. Executes once for the receive operation.
+  Exit status determines success or failure of the entire push.
+update: |
+  Invoked by `git-receive-pack` on `git push`. Executes once for each ref to be updated.
+  Exit status determines success or failure of the specific ref update.
+proc-receive: |
+  Invoked by `git-receive-pack` for special ref patterns configured via `receive.procReceiveRefs`.
+post-receive: |
+  Invoked by `git-receive-pack` after all ref updates are processed.
+  Primarily for notification; cannot affect the outcome.
+post-update: |
+  Invoked by `git-receive-pack` after all refs have been updated.
+  The default hook runs `git update-server-info`.
+reference-transaction: |
+  Invoked by any Git command that performs reference updates.
+  Supports "preparing", "prepared", "committed", "aborted" states.
+preparing: |
+  State in [reference-transaction](git://hook-event/reference-transaction): invoked before queued reference updates are locked on disk.
+prepared: |
+  State in [reference-transaction](git://hook-event/reference-transaction): invoked after queued reference updates are locked on disk.
+committed: |
+  State in [reference-transaction](git://hook-event/reference-transaction): invoked after a reference transaction was committed.
+aborted: |
+  State in [reference-transaction](git://hook-event/reference-transaction): invoked after a reference transaction was aborted.
+push-to-checkout: |
+  Invoked by `git-receive-pack` when push updates the currently checked out branch and `receive.denyCurrentBranch` is set to `updateInstead`.
+pre-auto-gc: |
+  Invoked by `git gc --auto`. Exiting non-zero causes the garbage collection to abort.
+post-rewrite: |
+  Invoked by commands that rewrite commits (`git-commit --amend`, `git-rebase`).
+  Takes the name of the rewriting command and a list of rewritten commits.
+rebase: |
+  Invoked by `git-rebase` after squash operations.
+sendemail-validate: |
+  Invoked by `git-send-email`. Takes the file containing the email contents and SMTP headers.
+fsmonitor-watchman: |
+  Invoked when `core.fsmonitor` is set to `watchman`.
+  Outputs a list of files that may have changed since the requested timestamp.
+p4-changelist: |
+  Invoked by `git-p4 submit` after the changelist message has been edited by the user.
+  Can be bypassed with `--no-verify`.
+p4-prepare-changelist: |
+  Invoked by `git-p4 submit` right after preparing the default changelist message, before the editor is started.
+p4-post-changelist: |
+  Invoked by `git-p4 submit` after the submit has successfully occurred in P4.
+  Primarily for notification; cannot affect the outcome.
+p4-pre-submit: |
+  Invoked by `git-p4 submit`. Can prevent a submit from launching.
+  Can be bypassed with `--no-verify`.
+post-index-change: |
+  Invoked when the index is written in `do_write_locked_index`.
+  Takes a flag indicating whether the index was updated (1) or only the shared index was written (0).

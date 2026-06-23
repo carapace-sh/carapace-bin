@@ -1,0 +1,10 @@
+bold: |
+  Bold text attribute. Can be turned off by prefixing with `no` or `no-` (e.g. `nobold`).
+dim: |
+  Dim text attribute. Can be turned off by prefixing with `no` or `no-`.
+ul: |
+  Underlined text attribute. Can be turned off by prefixing with `no-` (e.g. `no-ul`).
+blink: |
+  Blink text attribute. Can be turned off by prefixing with `no` or `no-`.
+reverse: |
+  Reverse (swap foreground and background) text attribute. Can be turned off by prefixing with `no` or `no-`.

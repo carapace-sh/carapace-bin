@@ -1,0 +1,12 @@
+bool: |
+  Canonicalize values as either "true" or "false".
+int: |
+  Canonicalize values as simple decimal numbers.
+bool-or-int: |
+  Canonicalize according to either [bool](git://config-type/bool) or [int](git://config-type/int).
+path: |
+  Canonicalize by adding a leading `~` to the value of `$HOME`.
+expiry-date: |
+  Canonicalize by converting from a fixed or relative date-string to a timestamp.
+color: |
+  When getting a value, canonicalize by converting to an ANSI color escape sequence.

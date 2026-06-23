@@ -1,0 +1,11 @@
+manual: |
+  Checks out conflicting notes in `.git/NOTES_MERGE_WORKTREE` and instructs the user to resolve.
+  Finalize with `git notes merge --commit` or abort with `git notes merge --abort`.
+ours: |
+  Automatically resolves conflicting notes in favor of the local version (the current notes ref).
+theirs: |
+  Automatically resolves notes conflicts in favor of the remote version (the given notes ref being merged).
+union: |
+  Automatically resolves notes conflicts by concatenating the local and remote versions.
+cat_sort_uniq: |
+  Similar to [union](git://notes-merge-strategy/union), but also sorts the resulting lines and removes duplicate lines. Equivalent to applying "cat | sort | uniq" shell pipeline.

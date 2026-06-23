@@ -1,0 +1,24 @@
+default: |
+  Based on `ctime(3)` output. Shows three-letter day of the week, three-letter month, day-of-month, HH:MM:SS, 4-digit year, plus timezone info.
+  Shows the date in the original timezone.
+relative: |
+  Shows dates relative to the current time, e.g. "2 hours ago".
+local: |
+  Alias for `--date=default-local`. Shows the date in the local timezone.
+iso: |
+  ISO 8601-like format. Uses space instead of `T` delimiter, space between time and timezone, no colon in timezone offset.
+iso-strict: |
+  Strict ISO 8601 format.
+rfc: |
+  RFC 2822 format, often found in email messages.
+short: |
+  Only the date, not the time, in `YYYY-MM-DD` format.
+raw: |
+  Seconds since the epoch, followed by a space and timezone as UTC offset.
+human: |
+  Shows timezone if it doesn't match current; skips printing year for "this year" dates and whole date for recent days; omits hour/minute for older dates.
+unix: |
+  Unix epoch timestamp (seconds since 1970). Always UTC.
+"format:": |
+  Feeds the format string to system `strftime`, except `%s`, `%z`, and `%Z` which are handled internally.
+  Use `format-local:` for local time.

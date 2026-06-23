@@ -1,0 +1,68 @@
+authordate: |
+  The date component of the author header-field.
+authoremail: |
+  The email component of the author header-field.
+authorname: |
+  The name component of the author header-field.
+author: |
+  The author header-field.
+body: |
+  The body of the message.
+committerdate: |
+  The date component of the committer header-field.
+committeremail: |
+  The email component of the committer header-field.
+committername: |
+  The name component of the committer header-field.
+committer: |
+  The committer header-field.
+contents: |
+  Complete message.
+creatordate: |
+  The date component of the creator header-field (same as committerdate for commits, taggerdate for tags).
+creator: |
+  The creator header-field (same as committer for commits, tagger for tags).
+deltabase: |
+  Object name of the delta base of the object.
+HEAD: |
+  `*` if HEAD matches ref or space otherwise.
+numparent: |
+  Number of parent objects.
+objectname: |
+  Object name (SHA-1).
+objectsize: |
+  The size of the object (in bytes).
+object: |
+  The object header-field — the SHA-1 hash.
+objecttype: |
+  The type of the object (commit, tag, tree, or blob).
+parent: |
+  The parent header-field — the SHA-1 hash of each parent.
+push: |
+  Name of a local ref which represents the `@{push}` location for the displayed ref.
+refname: |
+  Name of the ref.
+subject: |
+  The subject of the message — the first line of the commit message.
+symref: |
+  The ref which the given symbolic ref refers to.
+taggerdate: |
+  The date component of the tagger header-field.
+taggeremail: |
+  The email component of the tagger header-field.
+taggername: |
+  The name component of the tagger header-field.
+tagger: |
+  The tagger header-field.
+tag: |
+  The tag header-field — the tag name.
+trailers: |
+  Structured information in commit messages (e.g. `Signed-off-by:`, `Co-authored-by:`).
+tree: |
+  The tree header-field — the SHA-1 hash of the root tree.
+type: |
+  The type header-field — the object type.
+upstream: |
+  Name of a local ref which can be considered "upstream" from the displayed ref.
+"version:refname": |
+  Sort by versions — treat refname as a version string and sort accordingly.

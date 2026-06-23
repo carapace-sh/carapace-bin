@@ -1,0 +1,44 @@
+araxis: |
+  Araxis Merge diff tool.
+bc: |
+  Beyond Compare diff tool.
+codecompare: |
+  Code Compare diff tool.
+deltawalker: |
+  DeltaWalker diff tool.
+diffmerge: |
+  DiffMerge diff tool.
+diffuse: |
+  Diffuse diff tool.
+ecmerge: |
+  ECMerge diff tool.
+emerge: |
+  Emacs emerge diff tool.
+examdiff: |
+  ExamDiff diff tool.
+guiffy: |
+  Guiffy diff tool.
+gvimdiff: |
+  GVimdiff diff tool — gvim in diff mode.
+kdiff3: |
+  KDiff3 diff tool.
+kompare: |
+  Kompare diff tool.
+meld: |
+  Meld diff tool.
+nvimdiff: |
+  Neovim diff tool — nvim in diff mode.
+opendiff: |
+  FileMerge (opendiff) diff tool — macOS FileMerge.app.
+p4merge: |
+  P4Merge diff tool.
+smerge: |
+  Sublime Merge diff tool.
+tkdiff: |
+  TkDiff diff tool.
+vimdiff: |
+  Vimdiff diff tool — vim in diff mode.
+winmerge: |
+  WinMerge diff tool.
+xxdiff: |
+  xxdiff diff tool.

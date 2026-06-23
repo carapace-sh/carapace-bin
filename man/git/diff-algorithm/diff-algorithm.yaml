@@ -1,0 +1,8 @@
+myers: |
+  The basic greedy diff algorithm. Currently, this is the default.
+minimal: |
+  Spend extra time to make sure the smallest possible diff is produced.
+patience: |
+  Use "patience diff" algorithm when generating patches.
+histogram: |
+  Extends the [patience](git://diff-algorithm/patience) algorithm to support low-occurrence common elements.

@@ -1,0 +1,6 @@
+always: |
+  Always show colored diff. `--color` (without `=<when>`) is the same as `--color=always`.
+auto: |
+  Show colored diff only when output is to the terminal.
+never: |
+  Never show colored diff. Same as `--color=never`.

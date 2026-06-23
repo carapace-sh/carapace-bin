@@ -13,5 +13,5 @@ func ActionCleanupModes() carapace.Action {
 		"verbatim", "do not change the message at all",
 		"scissors", "same as whitespace except that everything from (and including) the line found below is truncated",
 		"default", " Same as strip if the message is to be edited. Otherwise whitespace",
-	).Tag("cleanup modes")
+	).Tag("cleanup modes").Uid("git", "cleanup-mode")
 }

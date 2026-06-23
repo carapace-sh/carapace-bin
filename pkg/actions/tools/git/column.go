@@ -19,5 +19,5 @@ func ActionColumnLayoutModes() carapace.Action {
 		"nodense", "make equal size columns",
 		"plain", "show in one column",
 		"row", "fill rows before columns",
-	).StyleF(style.ForKeyword)
+	).StyleF(style.ForKeyword).Uid("git", "column-layout-mode")
 }

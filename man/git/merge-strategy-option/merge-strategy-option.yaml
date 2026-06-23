@@ -1,0 +1,26 @@
+ours: |
+  Auto-resolve conflicting notes in favor of the local version (the current notes ref).
+theirs: |
+  Auto-resolve conflicting notes in favor of the remote version (the given notes ref being merged).
+patience: |
+  Spend extra time to avoid mismerges when using the recursive merge strategy.
+ignore-space-change: |
+  Ignore changes in amount of whitespace when merging.
+ignore-all-space: |
+  Ignore all whitespace when merging.
+ignore-space-at-eol: |
+  Ignore whitespace at end of line when merging.
+ignore-cr-at-eol: |
+  Ignore carriage return at end of line when merging.
+renormalize: |
+  Enable renormalize mode — renormalize the blob representation before merging.
+no-renormalize: |
+  Disable renormalize mode.
+no-renames: |
+  Turn off rename detection.
+find-renames: |
+  Turn on rename detection.
+subtree: |
+  Advance subtree strategy.
+diff-algorithm: |
+  Set the diff algorithm used by the recursive strategy. Value should be one of the [diff algorithms](git://diff-algorithm).

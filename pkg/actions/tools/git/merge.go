@@ -13,7 +13,7 @@ func ActionMergeStrategies() carapace.Action {
 		"recursive", "recursively resolve two heads using a 3-way merge algorithm",
 		"resolve", "resolve two heads using a 3-way merge algorithm",
 		"subtree", "modified recursive straty with tree adjustment",
-	).Tag("merge strategies")
+	).Tag("merge strategies").Uid("git", "merge-strategy")
 }
 
 // ActionMergeStrategyOptions completes merge strategy options
@@ -41,10 +41,10 @@ func ActionMergeStrategyOptions(strategy string) carapace.Action {
 							"no-renames", "turn off rename detection",
 							"find-renames", "turn on rename detection",
 							"subtree", "advance subtree stratebgy",
-						),
+						).Uid("git", "merge-strategy-option"),
 						carapace.ActionValuesDescribed(
 							"diff-algorithm", "set diff allgorithm",
-						).Suffix("="),
+						).Suffix("=").Uid("git", "merge-strategy-option"),
 					).ToA()
 				default:
 					switch c.Parts[0] {
