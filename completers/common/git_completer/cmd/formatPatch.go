@@ -16,10 +16,10 @@ var formatPatchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(formatPatchCmd).Standalone()
 
-	formatPatchCmd.Flags().String("add-header", "", "add email header")
+	formatPatchCmd.Flags().StringArray("add-header", nil, "add email header")
 	formatPatchCmd.Flags().String("attach", "", "attach the patch")
 	formatPatchCmd.Flags().String("base", "", "add prerequisite tree info to the patch series")
-	formatPatchCmd.Flags().String("cc", "", "add Cc: header")
+	formatPatchCmd.Flags().StringArray("cc", nil, "add Cc: header")
 	formatPatchCmd.Flags().String("cover-from-description", "", "generate parts of a cover letter based on a branch's description")
 	formatPatchCmd.Flags().Bool("cover-letter", false, "generate a cover letter")
 	formatPatchCmd.Flags().String("creation-factor", "", "percentage by which creation is weighted ")
@@ -49,7 +49,7 @@ func init() {
 	formatPatchCmd.Flags().String("subject-prefix", "", "use [<prefix>] instead of [PATCH]")
 	formatPatchCmd.Flags().String("suffix", "", "use <sfx> instead of '.patch'")
 	formatPatchCmd.Flags().String("thread", "", "enable message threading, styles: shallow, deep")
-	formatPatchCmd.Flags().String("to", "", "add To: header")
+	formatPatchCmd.Flags().StringArray("to", nil, "add To: header")
 	formatPatchCmd.Flags().Bool("zero-commit", false, "output all-zero hash in From header")
 
 	formatPatchCmd.Flag("from").NoOptDefVal = " "

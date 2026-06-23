@@ -53,7 +53,7 @@ func init() {
 	mergeCmd.Flags().Bool("signoff", false, "add a Signed-off-by trailer")
 	mergeCmd.Flags().Bool("squash", false, "create a single commit instead of doing a merge")
 	mergeCmd.Flags().Bool("stat", false, "show a diffstat at the end of the merge")
-	mergeCmd.Flags().StringP("strategy", "s", "", "merge strategy to use")
+	mergeCmd.Flags().StringArrayP("strategy", "s", nil, "merge strategy to use")
 	mergeCmd.Flags().StringP("strategy-option", "X", "", "option for selected merge strategy")
 	mergeCmd.Flags().Bool("summary", false, "(synonym to --stat)")
 	mergeCmd.Flags().BoolP("verbose", "v", false, "be more verbose")

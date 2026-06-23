@@ -43,7 +43,7 @@ func init() {
 	cloneCmd.Flags().Bool("remote-submodules", false, "any cloned submodules will use their remote-tracking branch")
 	cloneCmd.Flags().String("separate-git-dir", "", "separate git dir from working tree")
 	cloneCmd.Flags().String("server-option", "", "option to transmit")
-	cloneCmd.Flags().String("shallow-exclude", "", "deepen history of shallow clone, excluding rev")
+	cloneCmd.Flags().StringArray("shallow-exclude", nil, "deepen history of shallow clone, excluding rev")
 	cloneCmd.Flags().String("shallow-since", "", "create a shallow clone since a specific time")
 	cloneCmd.Flags().Bool("shallow-submodules", false, "any cloned submodules will be shallow")
 	cloneCmd.Flags().BoolP("shared", "s", false, "setup as shared repository")

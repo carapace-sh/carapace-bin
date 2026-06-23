@@ -25,10 +25,10 @@ func init() {
 	describeCmd.Flags().Bool("debug", false, "debug search strategy on stderr")
 	describeCmd.Flags().String("dirty", "", "append <mark> on dirty working tree (default: \"-dirty\")")
 	describeCmd.Flags().Bool("exact-match", false, "only output exact matches")
-	describeCmd.Flags().String("exclude", "", "do not consider tags matching <pattern>")
+	describeCmd.Flags().StringArray("exclude", nil, "do not consider tags matching <pattern>")
 	describeCmd.Flags().Bool("first-parent", false, "only follow first parent")
 	describeCmd.Flags().Bool("long", false, "always use long format")
-	describeCmd.Flags().String("match", "", "only consider tags matching <pattern>")
+	describeCmd.Flags().StringArray("match", nil, "only consider tags matching <pattern>")
 	describeCmd.Flags().Bool("tags", false, "use any tag, even unannotated")
 	rootCmd.AddCommand(describeCmd)
 

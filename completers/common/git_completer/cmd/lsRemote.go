@@ -22,7 +22,7 @@ func init() {
 	lsRemoteCmd.Flags().BoolP("quiet", "q", false, "do not print remote URL")
 	lsRemoteCmd.Flags().Bool("refs", false, "do not show peeled tags")
 	lsRemoteCmd.Flags().StringP("server-option", "o", "", "option to transmit")
-	lsRemoteCmd.Flags().String("sort", "", "field name to sort on")
+	lsRemoteCmd.Flags().StringArray("sort", nil, "field name to sort on")
 	lsRemoteCmd.Flags().Bool("symref", false, "show underlying ref in addition to the object pointed by it")
 	lsRemoteCmd.Flags().BoolP("tags", "t", false, "limit to tags")
 	lsRemoteCmd.Flags().String("upload-pack", "", "path of git-upload-pack on the remote host")

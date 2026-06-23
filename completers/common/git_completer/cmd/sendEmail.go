@@ -74,7 +74,7 @@ func init() {
 	sendEmailCmd.Flags().String("suppress-cc", "", "author, self, sob, cc, cccmd, body, bodycc, misc-by, all.")
 	sendEmailCmd.Flags().Bool("suppress-from", false, "Send to self. Default off.")
 	sendEmailCmd.Flags().Bool("thread", false, "Use In-Reply-To: field. Default on.")
-	sendEmailCmd.Flags().String("to", "", "Email To:")
+	sendEmailCmd.Flags().StringArray("to", nil, "Email To:")
 	sendEmailCmd.Flags().String("to-cmd", "", "Email To: via `<str> $patch_path`.")
 	sendEmailCmd.Flags().Bool("to-cover", false, "Email To: addresses in the cover letter.")
 	sendEmailCmd.Flags().String("transfer-encoding", "", "Transfer encoding to use (quoted-printable, 8bit, base64)")

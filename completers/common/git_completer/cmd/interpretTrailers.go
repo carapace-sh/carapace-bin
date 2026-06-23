@@ -21,7 +21,7 @@ func init() {
 	interpretTrailerCmd.Flags().Bool("only-input", false, "do not apply config rules")
 	interpretTrailerCmd.Flags().Bool("only-trailers", false, "output only the trailers")
 	interpretTrailerCmd.Flags().Bool("parse", false, "set parsing options")
-	interpretTrailerCmd.Flags().String("trailer", "", "trailer(s) to add")
+	interpretTrailerCmd.Flags().StringArray("trailer", nil, "trailer(s) to add")
 	interpretTrailerCmd.Flags().Bool("trim-empty", false, "trim empty trailers")
 	interpretTrailerCmd.Flags().Bool("unfold", false, "join whitespace-continued values")
 	interpretTrailerCmd.Flags().String("where", "", "where to place the new trailer")

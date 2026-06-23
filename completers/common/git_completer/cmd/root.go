@@ -56,7 +56,7 @@ func init() {
 	rootCmd.Flags().StringS("C", "C", "", "run as if git was started in given path")
 	rootCmd.Flags().String("attr-source", "", "Read gitattributes from <tree-ish> instead of the worktree")
 	rootCmd.Flags().Bool("bare", false, "use $PWD as repository")
-	rootCmd.Flags().StringS("c", "c", "", "pass configuration parameter to command")
+	rootCmd.Flags().StringArrayS("c", "c", nil, "pass configuration parameter to command")
 	rootCmd.Flags().StringArray("config-env", nil, "give configuration variable <name> a value")
 	rootCmd.Flags().String("exec-path", "", "path containing core git-programs")
 	rootCmd.Flags().String("git-dir", "", "path to repository")
@@ -91,7 +91,7 @@ func init() {
 			default:
 				return carapace.ActionValues()
 			}
-		}),
+		}).UniqueList(" "),
 		"config-env": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -143,6 +143,7 @@ func addAliasCompletion(args []string) {
 	cmd := &cobra.Command{}
 	cmd.FParseErrWhitelist.UnknownFlags = true
 	cmd.Flags().StringS("C", "C", "", "run as if git was started in given path")
+	cmd.Flags().StringArrayS("c", "c", nil, "pass configuration parameter to command")
 	cmd.Flags().String("git-dir", "", "path to repository")
 
 	cmd.ParseFlags(args[:len(args)-1])

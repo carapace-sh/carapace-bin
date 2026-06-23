@@ -26,7 +26,7 @@ func init() {
 	archiveCmd.Flags().BoolS("7", "7", false, "set compression level")
 	archiveCmd.Flags().BoolS("8", "8", false, "set compression level")
 	archiveCmd.Flags().BoolS("9", "9", false, "set compression level")
-	archiveCmd.Flags().String("add-file", "", "add untracked file to archive")
+	archiveCmd.Flags().StringArray("add-file", nil, "add untracked file to archive")
 	archiveCmd.Flags().String("exec", "", "path to the remote git-upload-archive command")
 	archiveCmd.Flags().String("format", "", "archive format")
 	archiveCmd.Flags().BoolP("list", "l", false, "list supported archive formats")

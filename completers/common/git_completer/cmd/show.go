@@ -20,10 +20,10 @@ var showCmd = &cobra.Command{
 func init() {
 	carapace.Gen(showCmd).Standalone()
 
-	showCmd.Flags().StringS("L", "L", "", "Process line range n,m in file, counting from 1")
+	showCmd.Flags().StringArrayS("L", "L", nil, "Process line range n,m in file, counting from 1")
 	showCmd.Flags().String("decorate", "", "decorate options")
-	showCmd.Flags().String("decorate-refs", "", "only decorate refs that match <pattern>")
-	showCmd.Flags().String("decorate-refs-exclude", "", "do not decorate refs that match <pattern>")
+	showCmd.Flags().StringArray("decorate-refs", nil, "only decorate refs that match <pattern>")
+	showCmd.Flags().StringArray("decorate-refs-exclude", nil, "do not decorate refs that match <pattern>")
 	showCmd.Flags().Bool("mailmap", false, "alias of --use-mailmap")
 	showCmd.Flags().Bool("source", false, "show source")
 	showCmd.Flags().Bool("use-mailmap", false, "Use mail map file")
