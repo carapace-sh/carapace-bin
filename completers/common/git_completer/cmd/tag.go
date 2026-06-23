@@ -38,7 +38,7 @@ func init() {
 	tagCmd.Flags().String("no-merged", "", "print only tags that are not merged")
 	tagCmd.Flags().String("points-at", "", "print only tags of the object")
 	tagCmd.Flags().BoolP("sign", "s", false, "annotated and GPG-signed tag")
-	tagCmd.Flags().String("sort", "", "field name to sort on")
+	tagCmd.Flags().StringArray("sort", nil, "field name to sort on")
 	tagCmd.Flags().BoolP("verify", "v", false, "verify tags")
 	rootCmd.AddCommand(tagCmd)
 

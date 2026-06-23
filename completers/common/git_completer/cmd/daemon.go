@@ -32,7 +32,7 @@ func init() {
 	daemonCmd.Flags().Bool("informative-errors", false, "Report more verbose errors to the client")
 	daemonCmd.Flags().String("init-timeout", "", "Timeout (in seconds) between the moment the connection is established and the client request is received")
 	daemonCmd.Flags().String("interpolated-path", "", "Use an interpolated path template can be used to dynamically construct alternate paths")
-	daemonCmd.Flags().String("listen", "", "Listen on a specific IP address or hostname")
+	daemonCmd.Flags().StringArray("listen", nil, "Listen on a specific IP address or hostname")
 	daemonCmd.Flags().String("log-destination", "", "Send log messages to the specified destination")
 	daemonCmd.Flags().String("max-connections", "", "Maximum number of concurrent clients")
 	daemonCmd.Flags().Bool("no-informative-errors", false, "Do not report more verbose errors to the client")

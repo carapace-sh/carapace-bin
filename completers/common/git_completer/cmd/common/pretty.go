@@ -11,7 +11,7 @@ func AddPrettyFlags(cmd *cobra.Command) {
 	// TODO check if pretty is stil relevant
 	// TODO add missing flags fix completions
 	cmd.Flags().Bool("no-notes", false, "do not show notes")
-	cmd.Flags().String("notes", "", "show the notes that annotate the commit")
+	cmd.Flags().StringArray("notes", nil, "show the notes that annotate the commit")
 	cmd.Flags().Bool("show-notes-by-default", false, "show the default notes")
 
 	cmd.Flag("notes").NoOptDefVal = " "

@@ -30,7 +30,7 @@ func init() {
 	packObjectsCmd.Flags().Bool("include-tag", false, "include unasked-for annotated tags if the object they reference was included in the resulting packfile")
 	packObjectsCmd.Flags().Bool("incremental", false, "ignore object already in a pack")
 	packObjectsCmd.Flags().String("index-version", "", "force the version for the generated pack index")
-	packObjectsCmd.Flags().String("keep-pack", "", "ignore object already in given pack")
+	packObjectsCmd.Flags().StringArray("keep-pack", nil, "ignore object already in given pack")
 	packObjectsCmd.Flags().Bool("keep-unreachable", false, "objects unreachable from the refs in named packs are added to the resulting pack")
 	packObjectsCmd.Flags().String("local", "", "object that is borrowed from an alternate object store ")
 	packObjectsCmd.Flags().String("max-pack-size", "", "split the output packfile into multiple independent packfiles")

@@ -19,7 +19,7 @@ func init() {
 	carapace.Gen(blameCmd).Standalone()
 
 	blameCmd.Flags().StringSliceS("C", "C", nil, "find line copies within and across files")
-	blameCmd.Flags().StringS("L", "L", "", "process only line range <start>,<end> or function :<funcname>")
+	blameCmd.Flags().StringArrayS("L", "L", nil, "process only line range <start>,<end> or function :<funcname>")
 	blameCmd.Flags().StringS("M", "M", "", "find line movements within and across files")
 	blameCmd.Flags().StringS("S", "S", "", "use revisions from <file> instead of calling git-rev-list")
 	blameCmd.Flags().String("abbrev", "", "use <n> digits to display object names")
@@ -28,7 +28,7 @@ func init() {
 	blameCmd.Flags().Bool("color-by-age", false, "color lines by age")
 	blameCmd.Flags().Bool("color-lines", false, "color redundant metadata from previous line differently")
 	blameCmd.Flags().String("contents", "", "use <file>'s contents as the final image")
-	blameCmd.Flags().String("ignore-rev", "", "ignore <rev> when blaming")
+	blameCmd.Flags().StringArray("ignore-rev", nil, "ignore <rev> when blaming")
 	blameCmd.Flags().String("ignore-revs-file", "", "ignore revisions from <file>")
 	blameCmd.Flags().Bool("incremental", false, "show blame entries as we find them, incrementally")
 	blameCmd.Flags().BoolS("l", "l", false, "show long commit SHA1 ")

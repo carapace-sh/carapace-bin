@@ -26,7 +26,7 @@ func init() {
 	repackCmd.Flags().String("expire-to", "", "pack prefix to store a pack containing pruned objects")
 	repackCmd.Flags().BoolS("f", "f", false, "pass --no-reuse-delta to git-pack-objects")
 	repackCmd.Flags().StringP("geometric", "g", "", "find a geometric progression with factor <N>")
-	repackCmd.Flags().String("keep-pack", "", "do not repack this pack")
+	repackCmd.Flags().StringArray("keep-pack", nil, "do not repack this pack")
 	repackCmd.Flags().BoolP("keep-unreachable", "k", false, "with -a, repack unreachable objects")
 	repackCmd.Flags().BoolP("local", "l", false, "pass --local to git-pack-objects")
 	repackCmd.Flags().String("max-pack-size", "", "maximum size of each packfile")

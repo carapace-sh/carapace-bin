@@ -17,10 +17,10 @@ var whatchangedCmd = &cobra.Command{
 func init() {
 	carapace.Gen(whatchangedCmd).Standalone()
 
-	whatchangedCmd.Flags().StringS("L", "L", "", "trace the evolution of line range")
+	whatchangedCmd.Flags().StringArrayS("L", "L", nil, "trace the evolution of line range")
 	whatchangedCmd.Flags().String("decorate", "", "decorate options")
-	whatchangedCmd.Flags().String("decorate-refs", "", "only decorate refs that match <pattern>")
-	whatchangedCmd.Flags().String("decorate-refs-exclude", "", "do not decorate refs that match <pattern>")
+	whatchangedCmd.Flags().StringArray("decorate-refs", nil, "only decorate refs that match <pattern>")
+	whatchangedCmd.Flags().StringArray("decorate-refs-exclude", nil, "do not decorate refs that match <pattern>")
 	whatchangedCmd.Flags().Bool("mailmap", false, "alias of --use-mailmap")
 	whatchangedCmd.Flags().BoolP("quiet", "q", false, "suppress diff output")
 	whatchangedCmd.Flags().Bool("source", false, "show source")

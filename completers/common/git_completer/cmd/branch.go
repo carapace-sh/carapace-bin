@@ -47,7 +47,7 @@ func init() {
 	branchCmd.Flags().BoolP("remotes", "r", false, "List or delete (if used with -d) the remote-tracking branches.")
 	branchCmd.Flags().String("set-upstream-to", "", "Set up <branchname>s tracking information so <upstream> is considered <branchname>s upstream branch.")
 	branchCmd.Flags().Bool("show-current", false, "Print the name of the current branch.")
-	branchCmd.Flags().String("sort", "", "Sort based on the key given.")
+	branchCmd.Flags().StringArray("sort", nil, "Sort based on the key given.")
 	branchCmd.Flags().StringP("track", "t", "", "When creating a new branch, set up branch.<name>.remote and branch.<name>.merge configuration entries to mark the start-point branch as upstream from the new branch.")
 	branchCmd.Flags().Bool("unset-upstream", false, "Remove the upstream information for <branchname>.")
 	branchCmd.Flags().CountP("verbose", "v", "Verbose output")
