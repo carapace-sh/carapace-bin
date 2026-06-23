@@ -14,5 +14,5 @@ func ActionMaintenanceTasks() carapace.Action {
 		"loose-objects", "Clean up loose objects and places them into pack-files",
 		"incremental-repack", "Repack the object directory using the multi-pack-index feature",
 		"pack-refs", "Collect the loose reference files and collects them into a single file",
-	)
+	).Uid("git", "maintenance-task")
 }

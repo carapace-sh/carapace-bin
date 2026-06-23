@@ -1,0 +1,8 @@
+color: |
+  Highlight changed words using only colors. Implies `--color`.
+plain: |
+  Show words as `[-removed-]` and `{+added+}`. Makes no attempts to escape the delimiters if they appear in the input, so output may be ambiguous.
+porcelain: |
+  Use a special line-based format intended for script consumption. Added/removed/unchanged runs use unified diff format with `+`/`-`/` ` prefix. Newlines in input represented by `~` on a line of its own.
+none: |
+  Disable word diff again.

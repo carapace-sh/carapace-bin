@@ -20,7 +20,7 @@ func ActionDiffAlgorithms() carapace.Action {
 		"minimal", "Spend extra time to make sure the smallest possible diff is produced",
 		"patience", "Use patience diff algorithm when generating patches",
 		"histogram", "This algorithm extends the patience algorithm to support low-occurrence common elements",
-	).Tag("diff algorithms")
+	).Tag("diff algorithms").Uid("git", "diff-algorithm")
 }
 
 // ActionDiffFilters completes diff filters
@@ -39,7 +39,7 @@ func ActionDiffFilters() carapace.Action {
 		"X", "Unknown",
 		"B", "Broken",
 		"*", "All-or-none",
-	)
+	).Uid("git", "diff-filter")
 }
 
 // ActionColorMovedModes completes color moved modes
@@ -54,7 +54,7 @@ func ActionColorMovedModes() carapace.Action {
 		"blocks", "greedily detects blocks",
 		"zebra", "Blocks of moved text are detected as in blocks mode",
 		"dimmed-zebra", "Similar to zebra, but additional dimming of uninteresting parts of moved code",
-	)
+	).Uid("git", "color-moved-mode")
 }
 
 // ActionColorMovedWsModes completed color moved whitespace modes
@@ -68,7 +68,7 @@ func ActionColorMovedWsModes() carapace.Action {
 		"ignore-space-change", "Ignore changes in amount of whitespace.",
 		"ignore-all-space", "Ignore whitespace when comparing lines.",
 		"allow-indentation-change", "Initially ignore any whitespace in the move detection",
-	)
+	).Uid("git", "color-moved-ws-mode")
 }
 
 // ActionWordDiffModes completes word diff modes
@@ -81,7 +81,7 @@ func ActionWordDiffModes() carapace.Action {
 		"plain", "Show words as [-removed-] and {+added+}",
 		"porcelain", "Use a special line-based format intended for script consumption",
 		"none", "Disable word diff again",
-	)
+	).Uid("git", "word-diff-mode")
 }
 
 // ActionWsErrorHighlightModes completes whitespace error highlight modes
@@ -96,7 +96,7 @@ func ActionWsErrorHighlightModes() carapace.Action {
 		"none", "reset previous values",
 		"default", "reset to new",
 		"all", "shorthand for old,new,context",
-	)
+	).Uid("git", "ws-error-highlight-mode")
 }
 
 // ActionDiffTools completes diff tools
@@ -127,7 +127,7 @@ func ActionDiffTools() carapace.Action {
 		"vimdiff",
 		"winmerge",
 		"xxdiff",
-	)
+	).Uid("git", "diff-tool")
 }
 
 // ActionRefDiffs completes changes beetween refs

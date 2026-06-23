@@ -1,0 +1,12 @@
+commit-graph: |
+  Updates the commit-graph files incrementally, then verifies the written data is correct. Safe to run alongside concurrent Git processes.
+prefetch: |
+  Updates the object directory with the latest objects from all registered remotes. For each remote, runs `git fetch` with refspec modified to place refs within `refs/prefetch/`. Tags are not updated.
+gc: |
+  Clean up unnecessary files and optimize the local repository. "GC" stands for "garbage collection," but performs many smaller tasks. Can be expensive for large repositories as it repacks all Git objects into a single pack-file.
+loose-objects: |
+  Cleans up loose objects and places them into pack-files. Two-step process: deletes loose objects that already exist in a pack-file, then creates a new pack-file containing a batch of loose objects.
+incremental-repack: |
+  Repacks the object directory using the multi-pack-index feature. Two-step process: calls `git multi-pack-index expire` then `git multi-pack-index repack`.
+pack-refs: |
+  Collects loose reference files into a single file. Speeds up operations that need to iterate across many references.

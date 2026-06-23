@@ -28,7 +28,7 @@ func ActionObjectFilters() carapace.Action {
 		default:
 			switch c.Parts[0] {
 			case "object:type":
-				return carapace.ActionValues("tag", "commit", "tree", "blob")
+				return carapace.ActionValues("tag", "commit", "tree", "blob").Uid("git", "object-type")
 			default:
 				return carapace.ActionValues()
 			}

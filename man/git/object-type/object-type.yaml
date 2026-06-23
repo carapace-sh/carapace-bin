@@ -1,0 +1,8 @@
+tag: |
+  A tag object — points to another Git object (typically a commit) and includes an optional message and signature.
+commit: |
+  A commit object — records a snapshot of the project tree, the parent commits, author, and committer info.
+tree: |
+  A tree object — lists the contents of a directory: references to blobs (files) and other trees (subdirectories).
+blob: |
+  A blob object — stores raw file content. Blobs have no filename or path; those are determined by the tree that references them.

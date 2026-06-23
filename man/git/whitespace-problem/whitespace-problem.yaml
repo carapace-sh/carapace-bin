@@ -1,0 +1,16 @@
+blank-at-eol: |
+  Treats trailing whitespaces at the end of the line as an error (enabled by default).
+space-before-tab: |
+  Treats a space character that appears immediately before a tab character in the initial indent part of the line as an error (enabled by default).
+indent-with-non-tab: |
+  Treats a line that is indented with space characters instead of the equivalent tabs as an error (not enabled by default).
+tab-in-indent: |
+  Treats a tab character in the initial indent part of the line as an error (not enabled by default).
+blank-at-eof: |
+  Treats blank lines added at the end of file as an error (enabled by default).
+trailing-space: |
+  Short-hand to cover both [blank-at-eol](git://whitespace-problem/blank-at-eol) and [blank-at-eof](git://whitespace-problem/blank-at-eof).
+cr-at-eol: |
+  Treats a carriage-return at the end of line as part of the line terminator (not enabled by default).
+tabwidth: |
+  Tells how many character positions a tab occupies (default 8, allowed 1-63). Relevant for [indent-with-non-tab](git://whitespace-problem/indent-with-non-tab) and fixing [tab-in-indent](git://whitespace-problem/tab-in-indent) errors.

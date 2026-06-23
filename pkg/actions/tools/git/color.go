@@ -10,5 +10,5 @@ import (
 //	always
 //	auto
 func ActionColorModes() carapace.Action {
-	return carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword)
+	return carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword).Uid("git", "color-mode")
 }

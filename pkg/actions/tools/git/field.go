@@ -42,5 +42,5 @@ func ActionFieldNames() carapace.Action {
 		"type", "the type header-field",
 		"upstream", "name of a local ref which can be considered “upstream” from the displayed ref",
 		"version:refname", "sort by versions",
-	)
+	).Uid("git", "field-name")
 }

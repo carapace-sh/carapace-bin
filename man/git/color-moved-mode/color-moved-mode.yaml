@@ -1,0 +1,12 @@
+no: |
+  Moved lines are not highlighted.
+default: |
+  Synonym for [zebra](git://color-moved-mode/zebra). May change to a more sensible mode in the future.
+plain: |
+  Any line added in one location and removed in another is colored with `color.diff.newMoved`/`color.diff.oldMoved`. Picks up any moved line, but not very useful to determine if a block was moved without permutation.
+blocks: |
+  Blocks of moved text of at least 20 alphanumeric characters are detected greedily. Adjacent blocks cannot be told apart.
+zebra: |
+  Blocks detected as in [blocks](git://color-moved-mode/blocks) mode, painted using `color.diff.(old|new)Moved` or `color.diff.(old|new)MovedAlternative`. The change between the two colors indicates a new block was detected.
+dimmed-zebra: |
+  Similar to [zebra](git://color-moved-mode/zebra), but additional dimming of uninteresting parts of moved code. Bordering lines of two adjacent blocks are considered interesting, the rest is uninteresting. `dimmed_zebra` is a deprecated synonym.

@@ -13,7 +13,7 @@ func ActionWhitespaceModes() carapace.Action {
 		"fix", "outputs warnings for a few such errors, and applies the patch after fixing them",
 		"error", "outputs warnings for a few such errors, and refuses to apply the patch",
 		"error-all", "is similar to error but shows all errors",
-	)
+	).Uid("git", "whitespace-mode")
 }
 
 // ActionWhitespaceProblems completes whitespace problems
@@ -30,5 +30,5 @@ func ActionWhitespaceProblems() carapace.Action {
 		"trailing-space", "is a short-hand to cover both blank-at-eol and blank-at-eof",
 		"cr-at-eol", "treats a carriage-return at the end of line as part of the line terminator",
 		"tabwidth", "tells how many character positions a tab occupies",
-	)
+	).Uid("git", "whitespace-problem")
 }

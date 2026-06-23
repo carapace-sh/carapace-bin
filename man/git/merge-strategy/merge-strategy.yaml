@@ -1,0 +1,10 @@
+octopus: |
+  Resolves cases with more than two heads, but refuses to do a complex merge that needs manual resolution. Primarily meant for bundling topic branch heads together. Default when pulling or merging more than one branch.
+ours: |
+  Resolves any number of heads, but the resulting tree is always that of the current branch head, effectively ignoring all changes from all other branches. Meant to supersede old development history of side branches.
+recursive: |
+  Now a synonym for `ort`. Was an alternative implementation until Git v2.49.0, redirected to mean `ort` in v2.50.0. Resolves two heads using 3-way merge. When more than one common ancestor exists, creates a merged tree of common ancestors as reference. Detects and handles renames.
+resolve: |
+  Can only resolve two heads using 3-way merge. Tries to carefully detect criss-cross merge ambiguities. Does not handle renames.
+subtree: |
+  Modified `ort` strategy. When merging trees A and B, if B corresponds to a subtree of A, B is first adjusted to match the tree structure of A.

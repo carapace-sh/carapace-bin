@@ -34,5 +34,5 @@ func ActionNotesMergeStrategies() carapace.Action {
 		"theirs", "favor the remote version",
 		"union", "concatenate the local and remote versions",
 		"cat_sort_uniq", "similar to \"union\", but also sorts removes duplicate lines",
-	)
+	).Uid("git", "notes-merge-strategy")
 }
