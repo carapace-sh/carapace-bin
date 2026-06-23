@@ -43,7 +43,7 @@ func ActionHeads() carapace.Action {
 					vals = append(vals, ref, strings.TrimSpace(line))
 				}
 				return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Head)
-			}).Suppress("unknown revision"))
+			}).Suppress(ref)) // suppresses "unknown revision" which gets translated (ref should be included in all translations)
 		}
 		return batch.ToA().Tag("heads").UidF(Uid("ref"))
 	})
