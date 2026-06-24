@@ -20,6 +20,7 @@ func init() {
 
 	logCmd.Flags().StringArrayS("G", "G", nil, "Look for differences whose patch text contains added/removed lines that match <regex>.")
 	logCmd.Flags().StringArrayS("L", "L", nil, "Trace the evolution of the line range given by <start>,<end>, or by the function name regex <funcname>, within the <file>.")
+	logCmd.Flags().Bool("clear-decorations", false, "clear all previous decorate-refs options")
 	logCmd.Flags().Bool("combined-all-paths", false, "This flag causes combined diffs (used for merge commits) to list the name of the file from all parents.")
 	logCmd.Flags().String("decorate", "", "Print out the ref names of any commits that are shown.")
 	logCmd.Flags().StringArray("decorate-refs", nil, "Decorate refs matching pattern.")

@@ -23,6 +23,7 @@ func init() {
 	cherryPickCmd.Flags().String("cleanup", "", "set commit message cleanup mode")
 	cherryPickCmd.Flags().Bool("continue", false, "ontinue the operation in progress")
 	cherryPickCmd.Flags().BoolP("edit", "e", false, "edit the commit message prior to committing")
+	cherryPickCmd.Flags().String("empty", "", "how to handle commits that become empty")
 	cherryPickCmd.Flags().Bool("ff", false, "fast forward")
 	cherryPickCmd.Flags().StringP("gpg-sign", "S", "", "GPG-sign commits")
 	cherryPickCmd.Flags().Bool("keep-redundant-commits", false, "preserve redundant commits")
@@ -43,6 +44,7 @@ func init() {
 
 	carapace.Gen(cherryPickCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":  git.ActionCleanupModes(),
+		"empty":    carapace.ActionValues("keep", "drop", "stop"),
 		"gpg-sign": os.ActionGpgKeyIds(),
 		"mainline": carapace.ActionValues("1", "2", "3", "4", "5"),
 		"strategy": git.ActionMergeStrategies(),

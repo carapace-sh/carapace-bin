@@ -25,6 +25,7 @@ func init() {
 	revertCmd.Flags().StringP("mainline", "m", "", "select mainline parent")
 	revertCmd.Flags().BoolP("no-commit", "n", false, "don't automatically commit")
 	revertCmd.Flags().Bool("quit", false, "end revert or cherry-pick sequence")
+	revertCmd.Flags().Bool("reference", false, "use the 'reference' format for merge commits")
 	revertCmd.Flags().Bool("rerere-autoupdate", false, "update the index with reused conflict resolution if possible")
 	revertCmd.Flags().BoolP("signoff", "s", false, "add Signed-off-by:")
 	revertCmd.Flags().Bool("skip", false, "skip current commit and continue")

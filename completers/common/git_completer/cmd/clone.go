@@ -16,8 +16,10 @@ var cloneCmd = &cobra.Command{
 func init() {
 	carapace.Gen(cloneCmd).Standalone()
 
+	cloneCmd.Flags().Bool("also-filter-submodules", false, "apply partial clone filter to submodules")
 	cloneCmd.Flags().Bool("bare", false, "create a bare repository")
 	cloneCmd.Flags().StringP("branch", "b", "", "checkout <branch> instead of the remote's HEAD")
+	cloneCmd.Flags().String("bundle-uri", "", "fetch additional objects from this URI")
 	cloneCmd.Flags().StringP("config", "c", "", "set config inside the new repository")
 	cloneCmd.Flags().String("depth", "", "create a shallow clone of that depth")
 	cloneCmd.Flags().Bool("dissociate", false, "use --reference only while cloning")
@@ -51,6 +53,7 @@ func init() {
 	cloneCmd.Flags().BoolP("shared", "s", false, "setup as shared repository")
 	cloneCmd.Flags().Bool("single-branch", false, "clone only one branch, HEAD or --branch")
 	cloneCmd.Flags().Bool("sparse", false, "initialize sparse-checkout file to include only files at root")
+	cloneCmd.Flags().Bool("tags", false, "clone tags")
 	cloneCmd.Flags().String("template", "", "directory from which templates will be used")
 	cloneCmd.Flags().StringP("upload-pack", "u", "", "path to git-upload-pack on the remote")
 	cloneCmd.Flags().BoolP("verbose", "v", false, "be more verbose")

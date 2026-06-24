@@ -15,7 +15,9 @@ var hook_runCmd = &cobra.Command{
 func init() {
 	carapace.Gen(hook_runCmd).Standalone()
 
+	hook_runCmd.Flags().Bool("allow-unknown-hook-name", false, "allow running a hook with a non-native hook name")
 	hook_runCmd.Flags().Bool("ignore-missing", false, "ignore any missing hook by quietly returning zero")
+	hook_runCmd.Flags().StringP("jobs", "j", "", "number of hooks to run in parallel")
 	hook_runCmd.Flags().String("to-stdin", "", "specify a file which will be streamed into the hook’s stdin")
 	hookCmd.AddCommand(hook_runCmd)
 

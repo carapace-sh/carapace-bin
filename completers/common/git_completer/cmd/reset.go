@@ -20,6 +20,7 @@ var resetCmd = &cobra.Command{
 func init() {
 	carapace.Gen(resetCmd).Standalone()
 
+	resetCmd.Flags().Bool("auto-advance", false, "auto-advance to the next hunk after applying")
 	resetCmd.Flags().Bool("hard", false, "reset HEAD, index and working tree")
 	resetCmd.Flags().BoolP("intent-to-add", "N", false, "record only the fact that removed paths will be added later")
 	resetCmd.Flags().Bool("keep", false, "reset HEAD but keep local changes")

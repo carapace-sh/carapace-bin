@@ -20,12 +20,14 @@ func init() {
 	formatPatchCmd.Flags().String("attach", "", "attach the patch")
 	formatPatchCmd.Flags().String("base", "", "add prerequisite tree info to the patch series")
 	formatPatchCmd.Flags().StringArray("cc", nil, "add Cc: header")
+	formatPatchCmd.Flags().String("commit-list-format", "", "format for commit list in cover letter")
 	formatPatchCmd.Flags().String("cover-from-description", "", "generate parts of a cover letter based on a branch's description")
 	formatPatchCmd.Flags().Bool("cover-letter", false, "generate a cover letter")
 	formatPatchCmd.Flags().String("creation-factor", "", "percentage by which creation is weighted ")
+	formatPatchCmd.Flags().String("description-file", "", "read cover letter description from file")
 	formatPatchCmd.Flags().String("filename-max-length", "", "max length of output filename")
+	formatPatchCmd.Flags().Bool("force-in-body-from", false, "force From: header in body even if it matches the author")
 	formatPatchCmd.Flags().String("from", "", "set From address to <ident> (or committer ident if absent)")
-	formatPatchCmd.Flags().Bool("ignore-if-in-upstream", false, "don't include a patch matching a commit upstream")
 	formatPatchCmd.Flags().String("in-reply-to", "", "make first mail a reply to <message-id>")
 	formatPatchCmd.Flags().String("inline", "", "inline the patch")
 	formatPatchCmd.Flags().String("interdiff", "", "show changes against <rev> in cover letter or single patch")
@@ -60,6 +62,7 @@ func init() {
 	rootCmd.AddCommand(formatPatchCmd)
 
 	carapace.Gen(formatPatchCmd).FlagCompletion(carapace.ActionMap{
+		"description-file": carapace.ActionFiles(),
 		"output-directory": carapace.ActionDirectories(),
 		"thread":           carapace.ActionValues("shallow", "deep"),
 	})

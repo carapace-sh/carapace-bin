@@ -19,7 +19,7 @@ func init() {
 	statusCmd.Flags().Bool("ahead-behind", false, "display detailed ahead/behind counts for the branch relative to its upstream branch")
 	statusCmd.Flags().BoolP("branch", "b", false, "Show the branch and tracking info even in short-format.")
 	statusCmd.Flags().String("column", "", "Display untracked files in columns.")
-	statusCmd.Flags().String("find-renames", "", "turn on rename detection, optionally setting the similarity threshold")
+	statusCmd.Flags().StringP("find-renames", "M", "", "turn on rename detection, optionally setting the similarity threshold")
 	statusCmd.Flags().String("ignore-submodules", "", "Ignore changes to submodules when looking for changes.")
 	statusCmd.Flags().String("ignored", "", "Show ignored files as well")
 	statusCmd.Flags().Bool("long", false, "Give the output in the long-format. This is the default.")
