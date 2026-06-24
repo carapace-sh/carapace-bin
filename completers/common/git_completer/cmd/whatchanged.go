@@ -22,6 +22,7 @@ func init() {
 	whatchangedCmd.Flags().String("decorate", "", "decorate options")
 	whatchangedCmd.Flags().StringArray("decorate-refs", nil, "only decorate refs that match <pattern>")
 	whatchangedCmd.Flags().StringArray("decorate-refs-exclude", nil, "do not decorate refs that match <pattern>")
+	whatchangedCmd.Flags().Bool("i-still-use-this", false, "acknowledge deprecation and continue using whatchanged")
 	whatchangedCmd.Flags().Bool("mailmap", false, "alias of --use-mailmap")
 	whatchangedCmd.Flags().Bool("source", false, "show source")
 	whatchangedCmd.Flags().Bool("use-mailmap", false, "use mail map file")

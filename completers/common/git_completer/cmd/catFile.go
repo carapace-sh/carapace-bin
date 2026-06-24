@@ -22,17 +22,25 @@ func init() {
 	catFileCmd.Flags().String("batch-check", "", "show info about objects fed from the standard input")
 	catFileCmd.Flags().Bool("buffer", false, "buffer --batch output")
 	catFileCmd.Flags().BoolS("e", "e", false, "exit with zero when there's no error")
+	catFileCmd.Flags().String("filter", "", "omit objects from the list of printed objects (batch mode)")
 	catFileCmd.Flags().Bool("filters", false, "for blob objects, run filters on object's content")
 	catFileCmd.Flags().Bool("follow-symlinks", false, "follow in-tree symlinks (used with --batch or --batch-check)")
+	catFileCmd.Flags().Bool("mailmap", false, "use mailmap file to map author/committer names")
+	catFileCmd.Flags().Bool("no-filter", false, "do not omit objects from the list of printed objects")
+	catFileCmd.Flags().Bool("no-mailmap", false, "do not use mailmap file")
+	catFileCmd.Flags().Bool("no-use-mailmap", false, "do not use mailmap file")
 	catFileCmd.Flags().BoolS("p", "p", false, "pretty-print object's content")
 	catFileCmd.Flags().String("path", "", "use a specific path for --textconv/--filters")
 	catFileCmd.Flags().BoolS("s", "s", false, "show object size")
 	catFileCmd.Flags().BoolS("t", "t", false, "show object type")
 	catFileCmd.Flags().Bool("textconv", false, "for blob objects, run textconv on object's content")
 	catFileCmd.Flags().Bool("unordered", false, "do not order --batch-all-objects output")
+	catFileCmd.Flags().Bool("use-mailmap", false, "use mailmap file to map author/committer names")
 	rootCmd.AddCommand(catFileCmd)
 
-	// TODO completions
+	carapace.Gen(catFileCmd).FlagCompletion(carapace.ActionMap{
+		"filter": git.ActionObjectFilters(),
+	})
 	carapace.Gen(catFileCmd).PositionalCompletion(
 		carapace.ActionValues("blob", "tree", "commit", "tag"),
 		git.ActionRefs(git.RefOption{}.Default()),

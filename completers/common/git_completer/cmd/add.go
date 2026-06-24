@@ -31,6 +31,7 @@ func init() {
 	addCmd.Flags().BoolP("intent-to-add", "N", false, "Record only the fact that the path will be added later. ")
 	addCmd.Flags().BoolP("interactive", "i", false, "Add modified contents in the working tree interactively to the index.")
 	addCmd.Flags().Bool("no-all", false, "Update the index by adding new files that are unknown to the index and files modified in the working tree, but ignore files that have been removed from the working tree.")
+	addCmd.Flags().Bool("no-auto-advance", false, "Do not auto advance to the next file when selecting hunks interactively")
 	addCmd.Flags().Bool("no-ignore-removal", false, "Update the index not only where the working tree has a file matching <pathspec> but also where the index already has an entry.")
 	addCmd.Flags().Bool("no-warn-embedded-repo", false, "By default, git add will warn when adding an embedded repository to the index without using git submodule add to create an entry in .gitmodules.")
 	addCmd.Flags().BoolP("patch", "p", false, "Interactively choose hunks of patch between the index and the work tree and add them to the index.")

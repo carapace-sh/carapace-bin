@@ -21,6 +21,7 @@ func init() {
 	mergeTreeCmd.Flags().Bool("messages", false, "Write any informational messages such as \"Auto-merging <path>\" or CONFLICT notices to the end of stdout")
 	mergeTreeCmd.Flags().Bool("name-only", false, "In the Conflicted file info section")
 	mergeTreeCmd.Flags().Bool("no-messages", false, "Do not write any informational messages such as \"Auto-merging <path>\" or CONFLICT notices to the end of stdout")
+	mergeTreeCmd.Flags().Bool("quiet", false, "Disable all output; only exit status matters")
 	mergeTreeCmd.Flags().BoolS("z", "z", false, "Do not quote filenames in the <Conflicted file info> section")
 	rootCmd.AddCommand(mergeTreeCmd)
 

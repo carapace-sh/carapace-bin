@@ -10,7 +10,8 @@ func ActionMergeStrategies() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"octopus", "resolve cases with more than two heads",
 		"ours", "auto-resolve cleanly by favoring our version",
-		"recursive", "recursively resolve two heads using a 3-way merge algorithm",
+		"ort", "replace recursive with a new algorithm",
+		"recursive", "alias for ort (deprecated)",
 		"resolve", "resolve two heads using a 3-way merge algorithm",
 		"subtree", "modified recursive straty with tree adjustment",
 	).Tag("merge strategies").Uid("git", "merge-strategy")
@@ -23,7 +24,7 @@ func ActionMergeStrategies() carapace.Action {
 func ActionMergeStrategyOptions(strategy string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		switch strategy {
-		case "recursive":
+		case "ort", "recursive":
 			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
