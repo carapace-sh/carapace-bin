@@ -1,6 +1,8 @@
 package git
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 )
@@ -56,4 +58,31 @@ func ActionHookEvents() carapace.Action {
 		"p4-pre-submit", "invoked before submit",
 		"post-index-change", "invoked when the index is written in read-cache.c do_write_locked_index",
 	).Tag("hook events").Uid("git", "hook-event")
+}
+
+// ActionHookNames completes configured hook names
+//
+//	linter
+//	no-leaks
+func ActionHookNames() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("git", "config", "--get-regexp", "^hook\\.", "--name-only")(func(output []byte) carapace.Action {
+			names := make(map[string]bool)
+			for _, line := range strings.Split(string(output), "\n") {
+				line = strings.TrimSpace(line)
+				if line == "" {
+					continue
+				}
+				parts := strings.SplitN(line, ".", 3)
+				if len(parts) >= 2 {
+					names[parts[1]] = true
+				}
+			}
+			vals := make([]string, 0, len(names))
+			for name := range names {
+				vals = append(vals, name)
+			}
+			return carapace.ActionValues(vals...).Tag("hook names")
+		})
+	}).UidF(Uid("hook-name"))
 }
