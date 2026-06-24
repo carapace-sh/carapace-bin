@@ -15,9 +15,14 @@ var verifyPackCmd = &cobra.Command{
 func init() {
 	carapace.Gen(verifyPackCmd).Standalone()
 
+	verifyPackCmd.Flags().String("object-format", "", "specify the hash algorithm to use")
 	verifyPackCmd.Flags().BoolP("stat-only", "s", false, "only show the histogram of delta chain length")
 	verifyPackCmd.Flags().BoolP("verbose", "v", false, "show the list of objects contained in the pack")
 	rootCmd.AddCommand(verifyPackCmd)
+
+	carapace.Gen(verifyPackCmd).FlagCompletion(carapace.ActionMap{
+		"object-format": carapace.ActionValues("sha1", "sha256"),
+	})
 
 	carapace.Gen(verifyPackCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(".idx").FilterArgs(),

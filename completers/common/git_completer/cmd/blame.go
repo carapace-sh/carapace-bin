@@ -28,6 +28,7 @@ func init() {
 	blameCmd.Flags().Bool("color-by-age", false, "color lines by age")
 	blameCmd.Flags().Bool("color-lines", false, "color redundant metadata from previous line differently")
 	blameCmd.Flags().String("contents", "", "use <file>'s contents as the final image")
+	blameCmd.Flags().String("diff-algorithm", "", "choose diff algorithm")
 	blameCmd.Flags().StringArray("ignore-rev", nil, "ignore <rev> when blaming")
 	blameCmd.Flags().String("ignore-revs-file", "", "ignore revisions from <file>")
 	blameCmd.Flags().Bool("incremental", false, "show blame entries as we find them, incrementally")
@@ -55,6 +56,7 @@ func init() {
 	carapace.Gen(blameCmd).FlagCompletion(carapace.ActionMap{
 		"S":                carapace.ActionFiles(),
 		"contents":         carapace.ActionFiles(),
+		"diff-algorithm":   carapace.ActionValues("myers", "minimal", "patience", "histogram"),
 		"ignore-rev":       git.ActionRefs(git.RefOption{}.Default()),
 		"ignore-revs-file": carapace.ActionFiles(),
 	})

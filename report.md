@@ -181,17 +181,17 @@ These items were initially flagged as potentially missing but verified as alread
 
 ---
 
-## Lower Priority Items (Not Addressed)
+## Lower Priority Items (Now Addressed ✅)
 
-These commands have minor flag gaps that were not addressed due to lower impact:
-
-- `bisect`: missing `--first-parent`, `--term-new`, `--term-old`
-- `blame`: missing `--diff-algorithm`
-- `multi-pack-index`: missing several flags
-- `name-rev`: missing flags
-- `pack-objects`: missing flags
-- `send-pack`: missing flags
-- `show-branch`: missing flags
-- `update-index`: missing flags
-- `update-ref`: missing flags
-- `verify-pack`: missing flags
+| Command | Change | Details |
+|---------|--------|---------|
+| `bisect` | Added `next` subcommand | No flags |
+| `bisect terms` | Fixed flag parent | `--term-bad`, `--term-good` were on `bisectCmd` instead of `bisect_termsCmd` |
+| `blame` | Added `--diff-algorithm` | String with completion: myers/minimal/patience/histogram |
+| `multi-pack-index` | Added subcommands | `repack` (--batch-size), `write` (--base, --bitmap, --incremental, --no-write-chain-file, --preferred-pack, --refs-snapshot, --stdin-packs), `compact` (--base, --bitmap, --incremental, --no-write-chain-file), `verify`, `expire` |
+| `name-rev` | Fixed `--no-undefined` → `--undefined` | Git source has `--undefined` as positive Bool, not `--no-undefined` |
+| `pack-objects` | Added missing flags | `--indexed-objects`, `--keep-true-parents`, `--name-hash-version` (1/2 completion), `--path-walk`, `--reflog`, `--reuse-delta`, `--reuse-object`, `--use-bitmap-index`, `--write-bitmap-index` |
+| `send-pack` | Added missing flags | `--force-with-lease`, `--force-if-includes`, `--helper-status`, `--mirror`, `--progress`, `--push-option` (changed to StringArray), `--remote`, `--stateless-rpc`; added `-f` shorthand to `--force` |
+| `update-index` | Added `--clear-resolve-undo` | |
+| `update-ref` | Added `--batch-updates/-0` | |
+| `verify-pack` | Added `--object-format` | String with completion: sha1/sha256 |

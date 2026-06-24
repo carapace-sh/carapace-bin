@@ -13,8 +13,9 @@ var bisect_termsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(bisect_termsCmd).Standalone()
-	bisectCmd.Flags().Bool("term-bad", false, "show term for bad/new")
-	bisectCmd.Flags().Bool("term-good", false, "show term for good/old")
+
+	bisect_termsCmd.Flags().Bool("term-bad", false, "show term for bad/new")
+	bisect_termsCmd.Flags().Bool("term-good", false, "show term for good/old")
 
 	bisectCmd.AddCommand(bisect_termsCmd)
 
