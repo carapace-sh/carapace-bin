@@ -19,6 +19,7 @@ func init() {
 	initCmd.Flags().StringP("initial-branch", "b", "", "override the name of the initial branch")
 	initCmd.Flags().String("object-format", "", "specify the hash algorithm to use")
 	initCmd.Flags().BoolP("quiet", "q", false, "be quiet")
+	initCmd.Flags().String("ref-format", "", "specify the reference format for the repository")
 	initCmd.Flags().String("separate-git-dir", "", "separate git dir from working tree")
 	initCmd.Flags().String("shared", "", "specify that the git repository is to be shared amongst several users")
 	initCmd.Flags().String("template", "", "directory from which templates will be used")
@@ -28,6 +29,7 @@ func init() {
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
 		"object-format":    carapace.ActionValues("sha1", "sha256"),
+		"ref-format":       carapace.ActionValues("files", "flat", "tree"),
 		"separate-git-dir": carapace.ActionFiles(),
 		"shared": carapace.ActionValuesDescribed(
 			"false", "use permissions reported by umask",

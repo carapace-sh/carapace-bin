@@ -21,6 +21,7 @@ func init() {
 	updateIndexCmd.Flags().Bool("assume-unchanged", false, "set the \"assume unchanged\" bit for paths")
 	updateIndexCmd.Flags().String("cacheinfo", "", "directly insert the specified info into the index")
 	updateIndexCmd.Flags().String("chmod", "", "set the execute permissions on the updated files")
+	updateIndexCmd.Flags().Bool("clear-resolve-undo", false, "forget saved unresolved conflicts")
 	updateIndexCmd.Flags().Bool("force-remove", false, "remove the file from the index even when the working directory still has such a file")
 	updateIndexCmd.Flags().Bool("force-untracked-cache", false, "same as --untracked-cache")
 	updateIndexCmd.Flags().Bool("fsmonitor", false, "enable files system monitor feature")

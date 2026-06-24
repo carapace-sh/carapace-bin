@@ -23,6 +23,7 @@ func init() {
 	rmCmd.Flags().String("pathspec-from-file", "", "read pathspec from file")
 	rmCmd.Flags().BoolP("quiet", "q", false, "do not list removed files")
 	rmCmd.Flags().BoolS("r", "r", false, "allow recursive removal")
+	rmCmd.Flags().Bool("sparse", false, "allow removing files outside sparse-checkout cone")
 	rootCmd.AddCommand(rmCmd)
 
 	carapace.Gen(rmCmd).FlagCompletion(carapace.ActionMap{

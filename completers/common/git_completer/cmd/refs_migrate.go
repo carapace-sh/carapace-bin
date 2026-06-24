@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(refs_migrateCmd).Standalone()
 
 	refs_migrateCmd.Flags().Bool("dry-run", false, "perform the migration, but do not modify the repository")
+	refs_migrateCmd.Flags().Bool("no-reflog", false, "do not migrate reflogs")
 	refs_migrateCmd.Flags().String("ref-format", "", "the ref format to migrate the ref store to")
 	refsCmd.AddCommand(refs_migrateCmd)
 

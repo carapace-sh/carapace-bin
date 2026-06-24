@@ -25,24 +25,31 @@ func init() {
 	packObjectsCmd.Flags().Bool("delta-islands", false, "restrict delta matches based on \"islands\"")
 	packObjectsCmd.Flags().String("depth", "", "affect how the objects contained in the pack are stored using delta compression")
 	packObjectsCmd.Flags().Bool("exclude-promisor-objects", false, "omit objects that are known to be in the promisor remote")
-	packObjectsCmd.Flags().String("filter", "", "omit certain objects from the resulting packfile")
+	packObjectsCmd.Flags().StringArray("filter", nil, "omit certain objects from the resulting packfile")
 	packObjectsCmd.Flags().Bool("honor-pack-keep", false, "ignore object already in a local pack that has a .keep file,")
 	packObjectsCmd.Flags().Bool("include-tag", false, "include unasked-for annotated tags if the object they reference was included in the resulting packfile")
 	packObjectsCmd.Flags().Bool("incremental", false, "ignore object already in a pack")
 	packObjectsCmd.Flags().String("index-version", "", "force the version for the generated pack index")
+	packObjectsCmd.Flags().Bool("indexed-objects", false, "include objects referred to by the index")
 	packObjectsCmd.Flags().StringArray("keep-pack", nil, "ignore object already in given pack")
+	packObjectsCmd.Flags().Bool("keep-true-parents", false, "keep true parents even with grafts")
 	packObjectsCmd.Flags().Bool("keep-unreachable", false, "objects unreachable from the refs in named packs are added to the resulting pack")
-	packObjectsCmd.Flags().String("local", "", "object that is borrowed from an alternate object store ")
+	packObjectsCmd.Flags().Bool("local", false, "object that is borrowed from an alternate object store ")
 	packObjectsCmd.Flags().String("max-pack-size", "", "split the output packfile into multiple independent packfiles")
 	packObjectsCmd.Flags().String("missing", "", "specify how missing objects are handled")
+	packObjectsCmd.Flags().String("name-hash-version", "", "name hash version for pack index")
 	packObjectsCmd.Flags().Bool("no-filter", false, "turn off any previous --filter= argument")
 	packObjectsCmd.Flags().Bool("no-reuse-delta", false, "do not reuse existing deltas")
 	packObjectsCmd.Flags().Bool("no-reuse-object", false, "do not reuse existing object data at all")
 	packObjectsCmd.Flags().Bool("no-sparse", false, "disable \"sparse\" algorithm")
 	packObjectsCmd.Flags().Bool("non-empty", false, "only create a packed archive if it would contain at least one object")
 	packObjectsCmd.Flags().Bool("pack-loose-unreachable", false, "pack unreachable loose objects")
+	packObjectsCmd.Flags().Bool("path-walk", false, "sort objects by path for better compression")
 	packObjectsCmd.Flags().Bool("progress", false, "progress status is reported on the standard error stream")
 	packObjectsCmd.Flags().BoolS("q", "q", false, "do not to report progress on the standard error stream")
+	packObjectsCmd.Flags().Bool("reflog", false, "pretend as if all objects mentioned by reflogs are specified to be included")
+	packObjectsCmd.Flags().Bool("reuse-delta", false, "reuse existing deltas")
+	packObjectsCmd.Flags().Bool("reuse-object", false, "reuse existing object data")
 	packObjectsCmd.Flags().Bool("revs", false, "read the revision arguments from the standard input")
 	packObjectsCmd.Flags().Bool("shallow", false, "optimize a pack that will be provided to a client with a shallow repository")
 	packObjectsCmd.Flags().Bool("sparse", false, "enable \"sparse\" algorithm")
@@ -52,8 +59,10 @@ func init() {
 	packObjectsCmd.Flags().String("threads", "", "number of threads to spawn when searching for best delta matches")
 	packObjectsCmd.Flags().Bool("unpack-unreachable", false, "keep unreachable objects in loose form")
 	packObjectsCmd.Flags().Bool("unpacked", false, "limit the objects packed to those that are not already packed")
+	packObjectsCmd.Flags().Bool("use-bitmap-index", false, "use a bitmap index if available to speed up counting objects")
 	packObjectsCmd.Flags().String("window", "", "affect how the objects contained in the pack are stored using delta compression")
 	packObjectsCmd.Flags().String("window-memory", "", "additional limit on top of --window")
+	packObjectsCmd.Flags().Bool("write-bitmap-index", false, "write a bitmap index alongside the packfile")
 	rootCmd.AddCommand(packObjectsCmd)
 
 	carapace.Gen(packObjectsCmd).FlagCompletion(carapace.ActionMap{
@@ -62,5 +71,6 @@ func init() {
 			"allow-any", "allow object traversal to continue if a missing object is encountered",
 			"allow-promisor", "only allow object traversal to continue for EXPECTED promisor missing objects",
 		),
+		"name-hash-version": carapace.ActionValues("1", "2"),
 	})
 }

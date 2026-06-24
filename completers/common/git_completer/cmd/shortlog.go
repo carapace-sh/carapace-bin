@@ -22,7 +22,7 @@ func init() {
 	shortlogCmd.Flags().Bool("all", false, "Pretend as if all the refs in refs/, along with HEAD, are listed on the command line as <commit>.")
 	shortlogCmd.Flags().Bool("all-match", false, "Limit the commits output to ones that match all given --grep, instead of ones that match at least one.")
 	shortlogCmd.Flags().Bool("alternate-refs", false, "Pretend as if all objects mentioned as ref tips of alternate repositories were listed on the command line.")
-	shortlogCmd.Flags().Bool("ancestry-path", false, "Limit the displayed commits to those directly on the ancestry chain between the “from” and “to” commits in the given commit range.")
+	shortlogCmd.Flags().Bool("ancestry-path", false, "Limit the displayed commits to those directly on the ancestry chain between the \"from\" and \"to\" commits in the given commit range.")
 	shortlogCmd.Flags().StringArray("author", nil, "Limit the commits output to ones with author header lines that match the specified pattern.")
 	shortlogCmd.Flags().Bool("basic-regexp", false, "Consider the limiting patterns to be basic regular expressions; this is the default.")
 	shortlogCmd.Flags().String("before", "", "Show commits older than a specific date.")
@@ -30,7 +30,7 @@ func init() {
 	shortlogCmd.Flags().Bool("boundary", false, "Output excluded boundary commits. Boundary commits are prefixed with -.")
 	shortlogCmd.Flags().Bool("cherry", false, "A synonym for --right-only --cherry-mark --no-merges.")
 	shortlogCmd.Flags().Bool("cherry-mark", false, "Like --cherry-pick (see below) but mark equivalent commits with = rather than omitting them, and inequivalent ones with +.")
-	shortlogCmd.Flags().Bool("cherry-pick", false, "Omit any commit that introduces the same change as another commit on the “other side” when the set of commits are limited with symmetric difference.")
+	shortlogCmd.Flags().Bool("cherry-pick", false, "Omit any commit that introduces the same change as another commit on the \"other side\" when the set of commits are limited with symmetric difference.")
 	shortlogCmd.Flags().BoolP("committer", "c", false, "This is an alias for --group=committer.")
 	shortlogCmd.Flags().Bool("dense", false, "Only the selected commits are shown, plus some to have a meaningful history.")
 	shortlogCmd.Flags().BoolP("email", "e", false, "Show the email address of each author.")
@@ -50,7 +50,7 @@ func init() {
 	shortlogCmd.Flags().Bool("left-only", false, "List only commits on the respective side of a symmetric difference.")
 	shortlogCmd.Flags().String("max-count", "", "Limit the number of commits to output.")
 	shortlogCmd.Flags().String("max-parents", "", "Show only commits which have at most that many parent commits.")
-	shortlogCmd.Flags().Bool("merge", false, "After a failed merge, show refs that touch files having a conflict and don’t exist on all heads to merge.")
+	shortlogCmd.Flags().Bool("merge", false, "After a failed merge, show refs that touch files having a conflict and don't exist on all heads to merge.")
 	shortlogCmd.Flags().Bool("merges", false, "Print only merge commits.")
 	shortlogCmd.Flags().String("min-parents", "", "Show only commits which have at least that many parent commits.")
 	shortlogCmd.Flags().Bool("no-max-parents", false, "")
@@ -59,6 +59,7 @@ func init() {
 	shortlogCmd.Flags().Bool("not", false, "Reverses the meaning of the ^ prefix (or lack thereof) for all following revision specifiers, up to the next --not.")
 	shortlogCmd.Flags().BoolP("numbered", "n", false, "Sort output according to the number of commits per author instead of author alphabetic order.")
 	shortlogCmd.Flags().BoolP("perl-regexp", "P", false, "Consider the limiting patterns to be Perl-compatible regular expressions.")
+	shortlogCmd.Flags().String("pretty", "", "Pretty-print the contents of the commit logs in a given format.")
 	shortlogCmd.Flags().Bool("reflog", false, "Pretend as if all objects mentioned by reflogs are listed on the command line as <commit>.")
 	shortlogCmd.Flags().BoolP("regexp-ignore-case", "i", false, "Match the regular expression limiting patterns without regard to letter case.")
 	shortlogCmd.Flags().StringArray("remotes", nil, "Pretend as if all the refs in refs/remotes are listed on the command line as <commit>.")
@@ -98,8 +99,9 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"since": time.ActionDate(),
-		"until": time.ActionDate(),
+		"pretty": carapace.ActionValues("oneline", "short", "medium", "full", "fuller", "reference", "email", "raw", "format:"),
+		"since":  time.ActionDate(),
+		"until":  time.ActionDate(),
 	})
 
 	carapace.Gen(shortlogCmd).PositionalAnyCompletion(

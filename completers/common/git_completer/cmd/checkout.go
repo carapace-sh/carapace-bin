@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/git_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -47,6 +48,7 @@ func init() {
 	checkoutCmd.Flags().String("recurse-submodules", "", "control recursive updating of submodules")
 	checkoutCmd.Flags().BoolP("theirs", "3", false, "checkout their version for unmerged files")
 	checkoutCmd.Flags().StringP("track", "t", "", "set upstream info for new branch")
+	common.AddPatchContextFlags(checkoutCmd)
 	rootCmd.AddCommand(checkoutCmd)
 
 	checkoutCmd.Flag("track").NoOptDefVal = " "

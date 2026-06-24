@@ -20,8 +20,8 @@ func init() {
 	nameRevCmd.Flags().Bool("annotate-stdin", false, "transform stdin by substituting all the 40-character SHA-1 hexes")
 	nameRevCmd.Flags().StringArray("exclude", nil, "do not use any ref whose name matches a given shell pattern")
 	nameRevCmd.Flags().Bool("name-only", false, "print only the name")
-	nameRevCmd.Flags().Bool("no-undefined", false, "die with error code != 0 when a reference is undefined")
 	nameRevCmd.Flags().StringArray("refs", nil, "only use refs whose names match a given shell pattern")
 	nameRevCmd.Flags().Bool("tags", false, "only use tags to name the commits")
+	nameRevCmd.Flags().Bool("undefined", false, "allow to print undefined names")
 	rootCmd.AddCommand(nameRevCmd)
 }

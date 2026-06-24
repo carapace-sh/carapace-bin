@@ -22,8 +22,10 @@ func init() {
 	worktree_addCmd.Flags().BoolP("force", "f", false, "checkout <branch> even if already checked out in other worktree")
 	worktree_addCmd.Flags().Bool("guess-remote", false, "try to match the new branch name with a remote-tracking branch")
 	worktree_addCmd.Flags().Bool("lock", false, "keep the new working tree locked")
+	worktree_addCmd.Flags().Bool("orphan", false, "create unborn branch")
 	worktree_addCmd.Flags().BoolP("quiet", "q", false, "suppress progress reporting")
 	worktree_addCmd.Flags().String("reason", "", "reason for locking")
+	worktree_addCmd.Flags().Bool("relative-paths", false, "use relative paths for worktrees")
 	worktree_addCmd.Flags().Bool("track", false, "set up tracking mode")
 	worktreeCmd.AddCommand(worktree_addCmd)
 

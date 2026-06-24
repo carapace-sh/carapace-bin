@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/git_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -19,6 +20,7 @@ var resetCmd = &cobra.Command{
 func init() {
 	carapace.Gen(resetCmd).Standalone()
 
+	resetCmd.Flags().Bool("auto-advance", false, "auto-advance to the next hunk after applying")
 	resetCmd.Flags().Bool("hard", false, "reset HEAD, index and working tree")
 	resetCmd.Flags().BoolP("intent-to-add", "N", false, "record only the fact that removed paths will be added later")
 	resetCmd.Flags().Bool("keep", false, "reset HEAD but keep local changes")
@@ -30,6 +32,7 @@ func init() {
 	resetCmd.Flags().BoolP("quiet", "q", false, "be quiet, only report errors")
 	resetCmd.Flags().String("recurse-submodules", "", "control recursive updating of submodules")
 	resetCmd.Flags().Bool("soft", false, "reset only HEAD")
+	common.AddPatchContextFlags(resetCmd)
 	rootCmd.AddCommand(resetCmd)
 
 	resetCmd.Flag("recurse-submodules").NoOptDefVal = " "

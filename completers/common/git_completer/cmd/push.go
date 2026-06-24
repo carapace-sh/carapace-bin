@@ -20,6 +20,7 @@ func init() {
 
 	pushCmd.Flags().Bool("all", false, "push all refs")
 	pushCmd.Flags().Bool("atomic", false, "request atomic transaction on remote side")
+	pushCmd.Flags().Bool("branches", false, "push all branches")
 	pushCmd.Flags().BoolP("delete", "d", false, "delete refs")
 	pushCmd.Flags().BoolP("dry-run", "n", false, "dry run")
 	pushCmd.Flags().String("exec", "", "receive pack program")

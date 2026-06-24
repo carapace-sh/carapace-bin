@@ -16,6 +16,7 @@ var lsRemoteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(lsRemoteCmd).Standalone()
 
+	lsRemoteCmd.Flags().BoolP("branches", "b", false, "limit to branches")
 	lsRemoteCmd.Flags().Bool("exit-code", false, "exit with exit code 2 if no matching refs are found")
 	lsRemoteCmd.Flags().Bool("get-url", false, "take url.<base>.insteadOf into account")
 	lsRemoteCmd.Flags().BoolP("heads", "h", false, "limit to heads")

@@ -22,6 +22,7 @@ func init() {
 	mergeCmd.Flags().Bool("autostash", false, "automatically stash/stash pop before and after")
 	mergeCmd.Flags().String("cleanup", "", "how to strip spaces and #comments from message")
 	mergeCmd.Flags().Bool("commit", false, "perform a commit if the merge succeeds (default)")
+	mergeCmd.Flags().Bool("compact-summary", false, "show a condensed summary of extended header information")
 	mergeCmd.Flags().Bool("continue", false, "continue the current in-progress merge")
 	mergeCmd.Flags().BoolP("edit", "e", false, "edit message before committing")
 	mergeCmd.Flags().Bool("ff", false, "allow fast-forward (default)")

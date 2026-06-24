@@ -20,9 +20,11 @@ func init() {
 	amCmd.Flags().BoolP("3way", "3", false, "allow fall back on 3way merging if needed")
 	amCmd.Flags().StringS("C", "C", "", "pass it through git-apply")
 	amCmd.Flags().Bool("abort", false, "restore the original branch and abort the patching operation")
+	amCmd.Flags().Bool("allow-empty", false, "record the empty patch as an empty commit")
 	amCmd.Flags().Bool("committer-date-is-author-date", false, "lie about committer date")
 	amCmd.Flags().Bool("continue", false, "continue applying patches after resolving a conflict")
 	amCmd.Flags().String("directory", "", "pass it through git-apply")
+	amCmd.Flags().String("empty", "", "how to handle empty patches")
 	amCmd.Flags().StringArray("exclude", nil, "pass it through git-apply")
 	amCmd.Flags().StringP("gpg-sign", "S", "", "GPG-sign commits")
 	amCmd.Flags().Bool("ignore-date", false, "use current timestamp for author date")
@@ -44,6 +46,7 @@ func init() {
 	amCmd.Flags().Bool("rerere-autoupdate", false, "update the index with reused conflict resolution if possible")
 	amCmd.Flags().BoolP("resolved", "r", false, "synonyms for --continue")
 	amCmd.Flags().String("resolvemsg", "", "override error message when patch failure occurs")
+	amCmd.Flags().Bool("retry", false, "try to apply current patch again")
 	amCmd.Flags().BoolP("scissors", "c", false, "strip everything before a scissors line")
 	amCmd.Flags().String("show-current-patch", "", "show the patch being applied")
 	amCmd.Flags().BoolP("signoff", "s", false, "add a Signed-off-by trailer to the commit message")
@@ -57,6 +60,7 @@ func init() {
 
 	carapace.Gen(amCmd).FlagCompletion(carapace.ActionMap{
 		"directory":    carapace.ActionDirectories(),
+		"empty":        carapace.ActionValues("stop", "drop", "keep"),
 		"exclude":      carapace.ActionDirectories(),
 		"gpg-sign":     os.ActionGpgKeyIds(),
 		"include":      carapace.ActionDirectories(),

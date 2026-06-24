@@ -135,3 +135,10 @@ func AddDiffFlags(cmd *cobra.Command) {
 		"ws-error-highlight": git.ActionWsErrorHighlightModes().UniqueList(","),
 	})
 }
+
+// AddPatchContextFlags adds flags for patch-mode context control
+// used by commands like add, checkout, commit, reset, restore, stash push.
+func AddPatchContextFlags(cmd *cobra.Command) {
+	cmd.Flags().String("inter-hunk-context", "", "Show context between diff hunks up to the specified number of lines")
+	cmd.Flags().StringP("unified", "U", "", "Generate diffs with <n> lines of context instead of the usual three")
+}

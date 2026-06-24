@@ -16,6 +16,7 @@ var updateRefCmd = &cobra.Command{
 func init() {
 	carapace.Gen(updateRefCmd).Standalone()
 
+	updateRefCmd.Flags().BoolS("0", "batch-updates", false, "batch reference updates")
 	updateRefCmd.Flags().Bool("create-reflog", false, "create a reflog")
 	updateRefCmd.Flags().BoolS("d", "d", false, "delete the reference")
 	updateRefCmd.Flags().Bool("deref", false, "opposite of --no-deref")

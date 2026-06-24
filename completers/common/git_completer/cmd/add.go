@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/git_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -19,6 +20,7 @@ func init() {
 	carapace.Gen(addCmd).Standalone()
 
 	addCmd.Flags().BoolP("all", "A", false, "Update the index not only where the working tree has a file matching <pathspec> but also where the index already has an entry.")
+	addCmd.Flags().Bool("auto-advance", false, "Auto advance to the next file when selecting hunks interactively")
 	addCmd.Flags().String("chmod", "", "Override the executable bit of the added files.")
 	addCmd.Flags().BoolP("dry-run", "n", false, "Don't actually add the file(s), just show if they exist and/or will be ignored.")
 	addCmd.Flags().BoolP("edit", "e", false, "Open the diff vs. the index in an editor and let the user edit it.")
@@ -39,6 +41,7 @@ func init() {
 	addCmd.Flags().Bool("sparse", false, "Allow updating index entries outside of the sparse-checkout cone")
 	addCmd.Flags().BoolP("update", "u", false, "Update the index just where it already has an entry matching <pathspec>.")
 	addCmd.Flags().BoolP("verbose", "v", false, "Be verbose.")
+	common.AddPatchContextFlags(addCmd)
 	rootCmd.AddCommand(addCmd)
 
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{

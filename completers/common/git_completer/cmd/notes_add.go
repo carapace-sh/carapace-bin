@@ -16,10 +16,13 @@ func init() {
 	carapace.Gen(notes_addCmd).Standalone()
 
 	notes_addCmd.Flags().Bool("allow-empty", false, "Allow an empty note object to be stored")
+	notes_addCmd.Flags().BoolP("edit", "e", false, "Edit note message in editor")
 	notes_addCmd.Flags().StringP("file", "F", "", "Take the note message from the given file")
 	notes_addCmd.Flags().StringP("message", "m", "", "Use the given note message")
 	notes_addCmd.Flags().StringP("reedit-message", "c", "", "Like -C, but with -c the editor is invoked")
 	notes_addCmd.Flags().StringP("reuse-message", "C", "", "Take the given blob object as the note message")
+	notes_addCmd.Flags().String("separator", "", "Insert <paragraph-break> between paragraphs")
+	notes_addCmd.Flags().Bool("stripspace", false, "Remove unnecessary whitespace")
 	notesCmd.AddCommand(notes_addCmd)
 
 	carapace.Gen(notes_addCmd).FlagCompletion(carapace.ActionMap{
