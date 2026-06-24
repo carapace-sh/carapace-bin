@@ -25,6 +25,7 @@ func ActionConfigs() carapace.Action {
 			replacer := strings.NewReplacer(
 				"*", "<*>",
 				"branch.<name>", "branch.<branch>",
+				"hook.<friendly-name>", "hook.<hook>",
 				"remote.<name>", "remote.<remote>",
 				"submodule.<name>", "submodule.<submodule>",
 			)
@@ -39,6 +40,8 @@ func ActionConfigs() carapace.Action {
 					switch placeholder {
 					case "<branch>":
 						return ActionLocalBranches()
+					case "<hook>":
+						return ActionHookNames()
 					case "<remote>":
 						return ActionRemotes()
 					case "<submodule>":
@@ -902,6 +905,15 @@ func ActionConfigValues(config string) carapace.Action {
 					"trustExitCode": _bool,
 					"wordRegex":     carapace.ActionValues().Usage("word regex"),
 					"xfuncname":     carapace.ActionValues().Usage("extended function name regex"),
+				}[splitted[2]]
+			}
+		case "hook":
+			switch len(splitted) {
+			case 3:
+				return carapace.ActionMap{
+					"command": bridge.ActionCarapaceBin().SplitP(),
+					"enabled": _bool,
+					"event":   ActionHookEvents(),
 				}[splitted[2]]
 			}
 		case "remote":
