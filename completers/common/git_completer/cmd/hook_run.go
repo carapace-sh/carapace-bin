@@ -24,6 +24,6 @@ func init() {
 	})
 
 	carapace.Gen(hook_runCmd).PositionalCompletion(
-		git.ActionHooks(),
+		git.ActionHookEvents(),
 	)
 }

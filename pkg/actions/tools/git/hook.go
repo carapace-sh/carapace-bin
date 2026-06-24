@@ -66,9 +66,12 @@ func ActionHookEvents() carapace.Action {
 //	no-leaks
 func ActionHookNames() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("git", "config", "--get-regexp", "^hook\\.", "--name-only")(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommandE("git", "config", "--name-only", "--get-regexp", "^hook\\.")(func(output []byte, err error) carapace.Action {
+			if err != nil {
+				return carapace.ActionValues()
+			}
 			names := make(map[string]bool)
-			for _, line := range strings.Split(string(output), "\n") {
+			for line := range strings.SplitSeq(string(output), "\n") {
 				line = strings.TrimSpace(line)
 				if line == "" {
 					continue
