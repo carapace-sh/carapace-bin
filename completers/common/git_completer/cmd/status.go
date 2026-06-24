@@ -26,13 +26,13 @@ func init() {
 	statusCmd.Flags().Bool("no-ahead-behind", false, "do not display detailed ahead/behind counts for the branch relative to its upstream branch")
 	statusCmd.Flags().Bool("no-column", false, "Do not display untracked files in columns.")
 	statusCmd.Flags().Bool("no-renames", false, "turn off rename detection")
+	statusCmd.Flags().BoolP("null", "z", false, "Terminate entries with NUL, instead of LF.")
 	statusCmd.Flags().String("porcelain", "", "Give the output in an easy-to-parse format for scripts.")
 	statusCmd.Flags().Bool("renames", false, "turn on rename detection")
 	statusCmd.Flags().BoolP("short", "s", false, "Give the output in the short-format.")
 	statusCmd.Flags().Bool("show-stash", false, "Show the number of entries currently stashed away.")
 	statusCmd.Flags().StringP("untracked-files", "u", "", "Show untracked files")
 	statusCmd.Flags().BoolP("verbose", "v", false, "also show the textual changes")
-	statusCmd.Flags().BoolS("z", "z", false, "Terminate entries with NUL, instead of LF.")
 	rootCmd.AddCommand(statusCmd)
 
 	statusCmd.Flag("column").NoOptDefVal = " "

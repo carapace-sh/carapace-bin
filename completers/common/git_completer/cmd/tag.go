@@ -36,9 +36,11 @@ func init() {
 	tagCmd.Flags().BoolS("n", "n", false, "print <n> lines of each tag message")
 	tagCmd.Flags().String("no-contains", "", "print only tags that don't contain the commit")
 	tagCmd.Flags().String("no-merged", "", "print only tags that are not merged")
+	tagCmd.Flags().Bool("omit-empty", false, "do not output empty tags")
 	tagCmd.Flags().String("points-at", "", "print only tags of the object")
 	tagCmd.Flags().BoolP("sign", "s", false, "annotated and GPG-signed tag")
 	tagCmd.Flags().StringArray("sort", nil, "field name to sort on")
+	tagCmd.Flags().StringArray("trailer", nil, "add trailer to the tag message")
 	tagCmd.Flags().BoolP("verify", "v", false, "verify tags")
 	rootCmd.AddCommand(tagCmd)
 

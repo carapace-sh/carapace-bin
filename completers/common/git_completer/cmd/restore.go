@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/git_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -33,6 +34,7 @@ func init() {
 	restoreCmd.Flags().BoolP("staged", "S", false, "restore the index")
 	restoreCmd.Flags().BoolP("theirs", "3", false, "checkout their version for unmerged files")
 	restoreCmd.Flags().BoolP("worktree", "W", false, "restore the working tree (default)")
+	common.AddPatchContextFlags(restoreCmd)
 	rootCmd.AddCommand(restoreCmd)
 
 	carapace.Gen(restoreCmd).FlagCompletion(carapace.ActionMap{

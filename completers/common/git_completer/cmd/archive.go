@@ -27,9 +27,11 @@ func init() {
 	archiveCmd.Flags().BoolS("8", "8", false, "set compression level")
 	archiveCmd.Flags().BoolS("9", "9", false, "set compression level")
 	archiveCmd.Flags().StringArray("add-file", nil, "add untracked file to archive")
+	archiveCmd.Flags().StringArray("add-virtual-file", nil, "add untracked file to archive with given content")
 	archiveCmd.Flags().String("exec", "", "path to the remote git-upload-archive command")
 	archiveCmd.Flags().String("format", "", "archive format")
 	archiveCmd.Flags().BoolP("list", "l", false, "list supported archive formats")
+	archiveCmd.Flags().String("mtime", "", "set modification time for archive entries")
 	archiveCmd.Flags().StringP("output", "o", "", "write the archive to this file")
 	archiveCmd.Flags().String("prefix", "", "prepend prefix to each pathname in the archive")
 	archiveCmd.Flags().String("remote", "", "retrieve the archive from remote repository <repo>")
@@ -39,9 +41,18 @@ func init() {
 
 	carapace.Gen(archiveCmd).FlagCompletion(carapace.ActionMap{
 		"add-file": carapace.ActionFiles(),
-		"format":   carapace.ActionValues("tar", "zip"),
-		"output":   carapace.ActionFiles(),
-		"remote":   git.ActionRemotes(),
+		"add-virtual-file": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionFiles().NoSpace()
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+		"format": carapace.ActionValues("tar", "zip"),
+		"mtime":  carapace.ActionValues(), // TODO date completion
+		"output": carapace.ActionFiles(),
+		"remote": git.ActionRemotes(),
 	})
 
 	carapace.Gen(archiveCmd).PositionalCompletion(

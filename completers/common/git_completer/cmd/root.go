@@ -69,7 +69,7 @@ func init() {
 	rootCmd.Flags().Bool("literal-pathspecs", false, "treat pathspecs literally, rather than as glob patterns")
 	rootCmd.Flags().Bool("man-path", false, "print the manpath for the man pages for this version of Git and exit")
 	rootCmd.Flags().String("namespace", "", "set the Git namespace")
-	rootCmd.Flags().Bool("no-advise", false, "Disable all advice hints from being printed")
+	rootCmd.Flags().Bool("no-advice", false, "Disable all advice hints from being printed")
 	rootCmd.Flags().Bool("no-lazy-fetch", false, "Do not fetch missing objects from the promisor remote on demand")
 	rootCmd.Flags().Bool("no-optional-locks", false, "Do not perform optional operations that require locks")
 	rootCmd.Flags().BoolP("no-pager", "P", false, "don't pipe git output into a pager")
@@ -102,7 +102,7 @@ func init() {
 		}),
 		"exec-path": carapace.ActionDirectories(),
 		"git-dir":   carapace.ActionDirectories(),
-		"list-cmds": carapace.ActionValues("main", "others", "alias", "nohelpers"),
+		"list-cmds": carapace.ActionValues("main", "others", "alias", "nohelpers", "builtins", "config", "deprecated"),
 		"work-tree": carapace.ActionDirectories(),
 	})
 

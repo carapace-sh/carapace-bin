@@ -25,6 +25,7 @@ func init() {
 	pullCmd.Flags().Bool("autostash", false, "automatically stash/stash pop before and after")
 	pullCmd.Flags().String("cleanup", "", "how to strip spaces and #comments from message")
 	pullCmd.Flags().Bool("commit", false, "perform a commit if the merge succeeds (default)")
+	pullCmd.Flags().Bool("compact-summary", false, "show a condensed summary of extended header information")
 	pullCmd.Flags().String("deepen", "", "deepen history of shallow clone")
 	pullCmd.Flags().String("depth", "", "deepen history of shallow clone")
 	pullCmd.Flags().Bool("dry-run", false, "dry run")
@@ -75,6 +76,7 @@ func init() {
 	pullCmd.Flags().Bool("update-shallow", false, "accept refs that update .git/shallow")
 	pullCmd.Flags().String("upload-pack", "", "path to upload pack on remote end")
 	pullCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
+	pullCmd.Flags().Bool("verify", false, "verify pre-merge-commit and commit-msg hooks")
 	pullCmd.Flags().Bool("verify-signatures", false, "verify that the named commit has a valid GPG signature")
 	rootCmd.AddCommand(pullCmd)
 

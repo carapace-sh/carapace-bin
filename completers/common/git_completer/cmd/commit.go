@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/git_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
@@ -61,6 +62,7 @@ func init() {
 	commitCmd.Flags().StringSlice("trailer", nil, "add custom trailer(s)")
 	commitCmd.Flags().StringP("untracked-files", "u", "", "show untracked files")
 	commitCmd.Flags().BoolP("verbose", "v", false, "show diff in commit message template")
+	common.AddPatchContextFlags(commitCmd)
 	rootCmd.AddCommand(commitCmd)
 
 	commitCmd.Flag("gpg-sign").NoOptDefVal = " "

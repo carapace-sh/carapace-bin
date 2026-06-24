@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/git_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -30,6 +31,7 @@ func init() {
 	resetCmd.Flags().BoolP("quiet", "q", false, "be quiet, only report errors")
 	resetCmd.Flags().String("recurse-submodules", "", "control recursive updating of submodules")
 	resetCmd.Flags().Bool("soft", false, "reset only HEAD")
+	common.AddPatchContextFlags(resetCmd)
 	rootCmd.AddCommand(resetCmd)
 
 	resetCmd.Flag("recurse-submodules").NoOptDefVal = " "
