@@ -20,7 +20,7 @@ func init() {
 	cloneCmd.Flags().Bool("bare", false, "create a bare repository")
 	cloneCmd.Flags().StringP("branch", "b", "", "checkout <branch> instead of the remote's HEAD")
 	cloneCmd.Flags().String("bundle-uri", "", "fetch additional objects from this URI")
-	cloneCmd.Flags().StringP("config", "c", "", "set config inside the new repository")
+	cloneCmd.Flags().StringArrayP("config", "c", nil, "set config inside the new repository")
 	cloneCmd.Flags().String("depth", "", "create a shallow clone of that depth")
 	cloneCmd.Flags().Bool("dissociate", false, "use --reference only while cloning")
 	cloneCmd.Flags().StringArray("filter", nil, "object filtering")
@@ -40,13 +40,13 @@ func init() {
 	cloneCmd.Flags().String("recurse-submodules", "", "initialize submodules in the clone")
 	cloneCmd.Flags().String("recursive", "", "alias of --recurse-submodules")
 	cloneCmd.Flags().String("ref-format", "", "specify the reference format for the repository")
-	cloneCmd.Flags().String("reference", "", "reference repository")
-	cloneCmd.Flags().String("reference-if-able", "", "reference repository")
+	cloneCmd.Flags().StringArray("reference", nil, "reference repository")
+	cloneCmd.Flags().StringArray("reference-if-able", nil, "reference repository")
 	cloneCmd.Flags().Bool("reject-shallow", false, "do not clone shallow repository")
 	cloneCmd.Flags().Bool("remote-submodules", false, "any cloned submodules will use their remote-tracking branch")
-	cloneCmd.Flags().Bool("revision", false, "clone a specific revision")
+	cloneCmd.Flags().String("revision", "", "clone a specific revision")
 	cloneCmd.Flags().String("separate-git-dir", "", "separate git dir from working tree")
-	cloneCmd.Flags().String("server-option", "", "option to transmit")
+	cloneCmd.Flags().StringArray("server-option", nil, "option to transmit")
 	cloneCmd.Flags().StringArray("shallow-exclude", nil, "deepen history of shallow clone, excluding rev")
 	cloneCmd.Flags().String("shallow-since", "", "create a shallow clone since a specific time")
 	cloneCmd.Flags().Bool("shallow-submodules", false, "any cloned submodules will be shallow")
@@ -57,6 +57,9 @@ func init() {
 	cloneCmd.Flags().String("template", "", "directory from which templates will be used")
 	cloneCmd.Flags().StringP("upload-pack", "u", "", "path to git-upload-pack on the remote")
 	cloneCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
+	cloneCmd.Flag("recurse-submodules").NoOptDefVal = "."
+	cloneCmd.Flag("recursive").NoOptDefVal = "."
+
 	rootCmd.AddCommand(cloneCmd)
 
 	carapace.Gen(cloneCmd).FlagCompletion(carapace.ActionMap{
@@ -68,7 +71,9 @@ func init() {
 		}),
 		"filter":           git.ActionObjectFilters(),
 		"ref-format":       carapace.ActionValues("files", "flat", "tree"),
+		"revision":         git.ActionRefs(git.RefOption{}.Default()),
 		"separate-git-dir": carapace.ActionFiles(),
+		"server-option":    carapace.ActionValues(),
 		"template":         carapace.ActionDirectories(),
 	})
 

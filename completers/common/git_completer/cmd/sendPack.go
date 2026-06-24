@@ -28,12 +28,14 @@ func init() {
 	sendPackCmd.Flags().String("force-with-lease", "", "require old value of ref to be at this value")
 	sendPackCmd.Flags().Bool("helper-status", false, "print status from remote helper")
 	sendPackCmd.Flags().Bool("mirror", false, "mirror all refs")
-	sendPackCmd.Flags().Bool("no-signed", false, "do not GPG-sign the push request")
 	sendPackCmd.Flags().Bool("progress", false, "force progress reporting")
 	sendPackCmd.Flags().StringArray("push-option", nil, "pass the specified string as a push option")
 	sendPackCmd.Flags().String("receive-pack", "", "path to the git-receive-pack program on the remote end")
 	sendPackCmd.Flags().String("remote", "", "remote name")
 	sendPackCmd.Flags().String("signed", "", "GPG-sign the push request")
+
+	sendPackCmd.Flag("force-with-lease").NoOptDefVal = " "
+	sendPackCmd.Flag("signed").NoOptDefVal = "if-asked"
 	sendPackCmd.Flags().Bool("stateless-rpc", false, "use stateless RPC protocol")
 	sendPackCmd.Flags().Bool("stdin", false, "take the list of refs from stdin, one per line")
 	sendPackCmd.Flags().Bool("thin", false, "send a \"thin\" pack")

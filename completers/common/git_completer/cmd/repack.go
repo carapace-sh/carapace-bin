@@ -45,8 +45,9 @@ func init() {
 	repackCmd.Flags().String("window", "", "size of the window used for delta compression")
 	repackCmd.Flags().String("window-memory", "", "same as the above, but limit memory size instead of entries count")
 	repackCmd.Flags().BoolP("write-bitmap-index", "b", false, "write bitmap index")
-	repackCmd.Flags().BoolP("write-midx", "m", false, "write a multi-pack index of the resulting packs")
+	repackCmd.Flags().StringP("write-midx", "m", "", "write a multi-pack index of the resulting packs")
 	rootCmd.AddCommand(repackCmd)
+	repackCmd.Flag("write-midx").NoOptDefVal = " "
 
 	carapace.Gen(repackCmd).FlagCompletion(carapace.ActionMap{
 		"cruft-expiration":   carapace.ActionValues(), // TODO

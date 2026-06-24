@@ -42,7 +42,7 @@ func init() {
 	formatPatchCmd.Flags().BoolP("quiet", "q", false, "don't print the patch filenames")
 	formatPatchCmd.Flags().String("range-diff", "", "show changes against <refspec> in cover letter or single patch")
 	formatPatchCmd.Flags().StringP("reroll-count", "v", "", "mark the series as Nth re-roll")
-	formatPatchCmd.Flags().Bool("rfc", false, "use [RFC PATCH] instead of [PATCH]")
+	formatPatchCmd.Flags().String("rfc", "", "use [RFC PATCH] instead of [PATCH]")
 	formatPatchCmd.Flags().String("signature", "", "add a signature")
 	formatPatchCmd.Flags().String("signature-file", "", "add a signature from a file")
 	formatPatchCmd.Flags().BoolP("signoff", "s", false, "add a Signed-off-by trailer")
@@ -57,6 +57,7 @@ func init() {
 	formatPatchCmd.Flag("from").NoOptDefVal = " "
 	formatPatchCmd.Flag("attach").NoOptDefVal = " "
 	formatPatchCmd.Flag("inline").NoOptDefVal = " "
+	formatPatchCmd.Flag("rfc").NoOptDefVal = "RFC"
 	formatPatchCmd.Flag("thread").NoOptDefVal = " "
 
 	rootCmd.AddCommand(formatPatchCmd)
