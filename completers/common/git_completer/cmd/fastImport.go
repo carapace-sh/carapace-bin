@@ -33,6 +33,8 @@ func init() {
 	fastImportCmd.Flags().Bool("relative-marks", false, "Paths are relative to an internal directory")
 	fastImportCmd.Flags().String("rewrite-submodules-from", "", "Rewrite the object IDs for the submodule specified by <name>")
 	fastImportCmd.Flags().String("rewrite-submodules-to", "", "Rewrite the object IDs for the submodule specified by <name>")
+	fastImportCmd.Flags().String("signed-commits", "", "Handle signed commits according to mode")
+	fastImportCmd.Flags().String("signed-tags", "", "Handle signed tags according to mode")
 	fastImportCmd.Flags().Bool("stats", false, "Display some basic statistics about the objects fast-import has created")
 	rootCmd.AddCommand(fastImportCmd)
 
@@ -44,5 +46,23 @@ func init() {
 		"import-marks-if-exists":  carapace.ActionFiles(),
 		"rewrite-submodules-from": carapace.ActionValues(), // TODO
 		"rewrite-submodules-to":   carapace.ActionValues(), // TODO
+		"signed-commits": carapace.ActionValuesDescribed(
+			"verbatim", "store signatures as-is",
+			"warn-verbatim", "warn if signature does not verify and store as-is",
+			"warn-strip", "warn if signature does not verify and strip it",
+			"strip", "strip any signature",
+			"strip-if-invalid", "strip only invalid signatures",
+			"sign-if-invalid", "replace invalid signatures with newly created ones",
+			"abort", "abort if signature does not verify",
+		),
+		"signed-tags": carapace.ActionValuesDescribed(
+			"verbatim", "store signatures as-is",
+			"warn-verbatim", "warn if signature does not verify and store as-is",
+			"warn-strip", "warn if signature does not verify and strip it",
+			"strip", "strip any signature",
+			"strip-if-invalid", "strip only invalid signatures",
+			"sign-if-invalid", "replace invalid signatures with newly created ones",
+			"abort", "abort if signature does not verify",
+		),
 	})
 }
