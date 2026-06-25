@@ -7,6 +7,22 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
+// ActionSkillListFields completes skill list fields
+//
+//	agentHosts
+//	path
+func ActionSkillListFields() carapace.Action {
+	return carapace.ActionValues(
+		"agentHosts",
+		"path",
+		"pinned",
+		"scope",
+		"skillName",
+		"sourceURL",
+		"version",
+	)
+}
+
 // ActionSkills completes skills
 //
 //	re-codebase-knowledge

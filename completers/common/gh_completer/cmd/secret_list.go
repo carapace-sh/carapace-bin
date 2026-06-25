@@ -17,7 +17,7 @@ var secret_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(secret_listCmd).Standalone()
 
-	secret_listCmd.Flags().StringP("app", "a", "", "List secrets for a specific application: {actions|codespaces|dependabot}")
+	secret_listCmd.Flags().StringP("app", "a", "", "List secrets for a specific application: {actions|agents|codespaces|dependabot}")
 	secret_listCmd.Flags().StringP("env", "e", "", "List secrets for an environment")
 	secret_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	secret_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
@@ -27,7 +27,7 @@ func init() {
 	secretCmd.AddCommand(secret_listCmd)
 
 	carapace.Gen(secret_listCmd).FlagCompletion(carapace.ActionMap{
-		"app":  carapace.ActionValues("actions", "codespaces", "dependabot"),
+		"app":  carapace.ActionValues("actions", "agents", "codespaces", "dependabot"),
 		"env":  action.ActionEnvironments(secret_listCmd),
 		"json": gh.ActionSecretFields().UniqueList(","),
 		"org":  gh.ActionOrganizations(gh.HostOpts{}),

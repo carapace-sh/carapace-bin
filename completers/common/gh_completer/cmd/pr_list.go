@@ -21,7 +21,7 @@ func init() {
 
 	pr_listCmd.Flags().String("app", "", "Filter by GitHub App author")
 	pr_listCmd.Flags().StringP("assignee", "a", "", "Filter by assignee")
-	pr_listCmd.Flags().StringP("author", "A", "", "Filter by author")
+	pr_listCmd.Flags().StringP("author", "A", "", "Filter by author (use --app to filter by a GitHub App)")
 	pr_listCmd.Flags().StringP("base", "B", "", "Filter by base branch")
 	pr_listCmd.Flags().BoolP("draft", "d", false, "Filter by draft state")
 	pr_listCmd.Flags().StringP("head", "H", "", "Filter by head branch (\"<owner>:<branch>\" syntax not supported)")

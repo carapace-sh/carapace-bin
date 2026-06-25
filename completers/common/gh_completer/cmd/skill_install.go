@@ -21,6 +21,7 @@ func init() {
 	carapace.Gen(skill_installCmd).Standalone()
 
 	skill_installCmd.Flags().String("agent", "", "Target agent (see supported values above)")
+	skill_installCmd.Flags().Bool("all", false, "Install all skills without prompting for skill selection")
 	skill_installCmd.Flags().Bool("allow-hidden-dirs", false, "Include skills in hidden directories (e.g. .claude/skills/, .agents/skills/)")
 	skill_installCmd.Flags().String("dir", "", "Install to a custom directory (overrides --agent and --scope)")
 	skill_installCmd.Flags().BoolP("force", "f", false, "Overwrite existing skills without prompting")

@@ -21,7 +21,7 @@ func init() {
 
 	issue_listCmd.Flags().String("app", "", "Filter by GitHub App author")
 	issue_listCmd.Flags().StringP("assignee", "a", "", "Filter by assignee")
-	issue_listCmd.Flags().StringP("author", "A", "", "Filter by author")
+	issue_listCmd.Flags().StringP("author", "A", "", "Filter by author (use --app to filter by a GitHub App)")
 	issue_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	issue_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	issue_listCmd.Flags().StringSliceP("label", "l", nil, "Filter by label")
@@ -31,6 +31,7 @@ func init() {
 	issue_listCmd.Flags().StringP("search", "S", "", "Search issues with `query`")
 	issue_listCmd.Flags().StringP("state", "s", "", "Filter by state: {open|closed|all}")
 	issue_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
+	issue_listCmd.Flags().String("type", "", "Filter by issue type `name`")
 	issue_listCmd.Flags().BoolP("web", "w", false, "List issues in the web browser")
 	issueCmd.AddCommand(issue_listCmd)
 
@@ -43,5 +44,6 @@ func init() {
 		"mention":   action.ActionMentionableUsers(issue_listCmd),
 		"milestone": action.ActionMilestones(issue_listCmd),
 		"state":     carapace.ActionValues("open", "closed", "all").StyleF(styles.Gh.ForState),
+		"type":      action.ActionIssueTypes(issue_listCmd),
 	})
 }

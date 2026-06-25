@@ -25,6 +25,46 @@ func (c ContentOpts) repo() RepoOpts {
 	return RepoOpts{Host: c.Host, Owner: c.Owner, Name: c.Name}
 }
 
+// ActionReadDirFields completes repo read-dir fields
+//
+//	gitSHA
+//	gitType
+func ActionReadDirFields() carapace.Action {
+	return carapace.ActionValues(
+		"gitSHA",
+		"gitType",
+		"mode",
+		"modeOctal",
+		"name",
+		"nameRaw",
+		"path",
+		"pathRaw",
+		"size",
+		"submodule",
+		"type",
+	)
+}
+
+// ActionReadFileFields completes repo read-file fields
+//
+//	content
+//	downloadUrl
+func ActionReadFileFields() carapace.Action {
+	return carapace.ActionValues(
+		"content",
+		"downloadUrl",
+		"encoding",
+		"gitSHA",
+		"gitUrl",
+		"htmlUrl",
+		"name",
+		"path",
+		"size",
+		"type",
+		"url",
+	)
+}
+
 // ActionContents completes contents
 //
 //	/README.md
