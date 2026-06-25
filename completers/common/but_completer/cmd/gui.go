@@ -10,11 +10,17 @@ var guiCmd = &cobra.Command{
 	Short:   "Open the GitButler GUI for the current project.",
 	Aliases: []string{"."},
 	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "other commands",
 }
 
 func init() {
 	carapace.Gen(guiCmd).Standalone()
 
 	guiCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	guiCmd.Flags().BoolP("new-window", "n", false, "Open the project in a new application window")
 	rootCmd.AddCommand(guiCmd)
+
+	carapace.Gen(guiCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

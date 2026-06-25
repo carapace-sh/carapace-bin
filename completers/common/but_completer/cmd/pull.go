@@ -6,9 +6,10 @@ import (
 )
 
 var pullCmd = &cobra.Command{
-	Use:   "pull",
-	Short: "Updates all applied branches to be up to date with the target branch.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "pull",
+	Short:   "Updates all applied branches to be up to date with the target branch.",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "server interactions",
 }
 
 func init() {

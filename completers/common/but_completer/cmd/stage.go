@@ -8,9 +8,10 @@ import (
 )
 
 var stageCmd = &cobra.Command{
-	Use:   "stage",
-	Short: "Stages a file or hunk to a specific branch.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "stage",
+	Short:   "Stages a file or hunk to a specific branch.",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "branching and committing",
 }
 
 func init() {

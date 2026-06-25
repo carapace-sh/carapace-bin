@@ -15,7 +15,6 @@ var oplog_restoreCmd = &cobra.Command{
 func init() {
 	carapace.Gen(oplog_restoreCmd).Standalone()
 
-	oplog_restoreCmd.Flags().BoolP("force", "f", false, "Skip confirmation prompt")
 	oplog_restoreCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	oplogCmd.AddCommand(oplog_restoreCmd)
 

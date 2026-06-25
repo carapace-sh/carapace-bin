@@ -29,7 +29,7 @@ type butAliases struct {
 }
 
 func Aliases() (*butAliases, error) {
-	output, err := exec.Command("but", "alias", "list", "--json").Output() // TODO support context?
+	output, err := exec.Command("but", "--format", "json", "alias", "list").Output() // TODO support context?
 	if err != nil {
 		return nil, err
 	}

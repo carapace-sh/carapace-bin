@@ -30,22 +30,21 @@ func init() {
 	rootCmd.AddGroup(
 		&cobra.Group{ID: "inspection"},
 		&cobra.Group{ID: "branching and committing"},
-		&cobra.Group{ID: "server interactions"},
 		&cobra.Group{ID: "editing commits"},
 		&cobra.Group{ID: "operation history"},
-		&cobra.Group{ID: "alias"},
+		&cobra.Group{ID: "server interactions"},
+		&cobra.Group{ID: "rules"},
+		&cobra.Group{ID: "other commands"},
 	)
 
 	rootCmd.Flags().StringP("current-dir", "C", "", "Run as if but was started in PATH instead of the current working directory")
-	rootCmd.Flags().StringP("format", "f", "", "Explicitly control how output should be formatted")
+	rootCmd.PersistentFlags().String("format", "", "Explicitly control how output should be formatted")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	rootCmd.PersistentFlags().BoolP("json", "j", false, "Whether to use JSON output format")
-	rootCmd.PersistentFlags().Bool("status-after", false, "After a mutation command completes, also output workspace status")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"current-dir": carapace.ActionDirectories(),
-		"format":      carapace.ActionValues("human", "shell", "json", "none"),
+		"format":      carapace.ActionValues("human", "agent", "shell", "json", "none"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
@@ -78,7 +77,7 @@ func init() {
 				aliasCmd := &cobra.Command{
 					Use:                key,
 					Short:              strings.TrimSpace(value),
-					GroupID:            "alias",
+					GroupID:            "other commands",
 					DisableFlagParsing: true,
 					Run:                func(cmd *cobra.Command, args []string) {},
 				}

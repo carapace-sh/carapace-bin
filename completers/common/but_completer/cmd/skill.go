@@ -6,9 +6,10 @@ import (
 )
 
 var skillCmd = &cobra.Command{
-	Use:   "skill",
-	Short: "Manage AI agent skills for GitButler.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "skill",
+	Short:   "Manage AI agent skills for GitButler.",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "other commands",
 }
 
 func init() {

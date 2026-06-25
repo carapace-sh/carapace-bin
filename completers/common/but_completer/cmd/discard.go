@@ -8,9 +8,10 @@ import (
 )
 
 var discardCmd = &cobra.Command{
-	Use:   "discard",
-	Short: "Discard uncommitted changes from the worktree.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "discard",
+	Short:   "Discard uncommitted changes from the worktree.",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "branching and committing",
 }
 
 func init() {

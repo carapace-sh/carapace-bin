@@ -6,9 +6,10 @@ import (
 )
 
 var setupCmd = &cobra.Command{
-	Use:   "setup",
-	Short: "Sets up a GitButler project from a git repository in the current directory.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "setup",
+	Short:   "Sets up a GitButler project from a git repository in the current directory.",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "other commands",
 }
 
 func init() {

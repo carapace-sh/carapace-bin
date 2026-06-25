@@ -6,9 +6,10 @@ import (
 )
 
 var cleanCmd = &cobra.Command{
-	Use:   "clean",
-	Short: "Remove empty branches from the workspace.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "clean",
+	Short:   "Remove empty branches from the workspace.",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "branching and committing",
 }
 
 func init() {
