@@ -75,7 +75,7 @@ func (e entry) style() string {
 //	b59e6ab3fa3d (2025-11-02 18:15:22 CreateCommit)
 //	ba997064b522 (2025-11-02 18:40:58 CreateCommit)
 func ActionOplogEntries() carapace.Action {
-	return carapace.ActionExecCommand("but", "--json", "oplog")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("but", "--format", "json", "oplog")(func(output []byte) carapace.Action {
 		var entries []entry
 		if err := json.Unmarshal(output, &entries); err != nil {
 			return carapace.ActionMessage(err.Error())

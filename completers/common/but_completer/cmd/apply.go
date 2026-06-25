@@ -7,9 +7,10 @@ import (
 )
 
 var applyCmd = &cobra.Command{
-	Use:   "apply",
-	Short: "Apply a branch to the workspace.",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "apply",
+	Short:   "Apply a branch to the workspace.",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "branching and committing",
 }
 
 func init() {

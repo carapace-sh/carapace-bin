@@ -10,7 +10,7 @@ var markCmd = &cobra.Command{
 	Use:     "mark",
 	Short:   "Mark a commit or branch for auto-stage or auto-commit.",
 	Run:     func(cmd *cobra.Command, args []string) {},
-	GroupID: "branching and committing",
+	GroupID: "rules",
 }
 
 func init() {

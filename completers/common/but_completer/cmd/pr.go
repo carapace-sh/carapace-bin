@@ -10,6 +10,7 @@ var prCmd = &cobra.Command{
 	Short:   "Commands for creating and managing reviews on a forge, e.g. GitHub PRs or GitLab MRs",
 	Aliases: []string{"review", "mr"},
 	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "server interactions",
 }
 
 func init() {

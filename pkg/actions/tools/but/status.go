@@ -64,7 +64,7 @@ type butStatus struct {
 
 func actionStatus(includeCommitted bool, f func(status butStatus) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"status", "--json"}
+		args := []string{"--format", "json", "status"}
 		if includeCommitted {
 			args = append(args, "-f")
 		}

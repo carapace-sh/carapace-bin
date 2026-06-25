@@ -30,7 +30,7 @@ type branchList struct {
 //	branch (branch description)
 //	another (another description)
 func ActionLocalBranches() carapace.Action {
-	return carapace.ActionExecCommand("but", "branch", "list", "--local", "--json")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("but", "--format", "json", "branch", "list", "--local")(func(output []byte) carapace.Action {
 		var list branchList
 		if err := json.Unmarshal(output, &list); err != nil {
 			return carapace.ActionMessage(err.Error())
