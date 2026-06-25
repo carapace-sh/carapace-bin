@@ -25,7 +25,7 @@ func init() {
 	showCmd.Flags().Bool("no-patch", false, "Do not show the patch")
 	showCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
 	showCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or deleted")
-	showCmd.Flags().StringP("template", "T", "", "Render a revision using the given template")
+	showCmd.Flags().StringP("template", "T", "", "Render each revision using the given template")
 	showCmd.Flags().String("tool", "", "Generate diff by external command")
 	showCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	rootCmd.AddCommand(showCmd)
