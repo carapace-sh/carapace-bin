@@ -25,6 +25,7 @@ Load the reference that matches your task. When in doubt, load multiple referenc
 | Setup, shell integration, environment variables, overlays, extensions, install | [references/setup.md](references/setup.md) |
 | Environment variable completion, env YAML, conditions, ActionNames, ActionValues | [references/env.md](references/env.md) |
 | Convert spec to Go, codegen, macro-to-Go mapping, modifier translation | [references/convert.md](references/convert.md) |
+| Update existing completer, incremental update, new flags, new subcommands, surgical edits | [references/update.md](references/update.md) |
 | Scrape spec, generate from source, Docker, supported frameworks, patch-and-container | [references/scrape.md](references/scrape.md) |
 | MCP server, complete tool, list_macros tool, codegen tool, JSON-RPC, stdio transport | [references/mcp.md](references/mcp.md) |
 | Man pages, carapace-man, UID documentation, YAML man pages, inline descriptions, scheme, host, path | [references/man.md](references/man.md) |
@@ -39,6 +40,7 @@ Load the reference that matches your task. When in doubt, load multiple referenc
 - **How do I set up shell completion?** → [references/setup.md](references/setup.md)
 - **How do I add environment variable completions?** → [references/env.md](references/env.md)
 - **How do I convert a spec to a native Go completer?** → [references/convert.md](references/convert.md)
+- **How do I update an existing completer for a new CLI version?** → [references/update.md](references/update.md)
 - **How do I generate a spec from CLI source code?** → [references/scrape.md](references/scrape.md)
 - **How do I use the MCP server?** → [references/mcp.md](references/mcp.md)
 - **How do I add inline documentation for completion values?** → [references/man.md](references/man.md)
