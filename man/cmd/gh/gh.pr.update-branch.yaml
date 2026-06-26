@@ -4,3 +4,6 @@ description: Update a pull request branch
 group: Targeted commands
 flags:
     --rebase: Update PR branch by rebasing on top of latest base branch
+documentation:
+    command: >-
+        Update a pull request branch with changes from the base branch.

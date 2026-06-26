@@ -1,3 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: view <template>
 description: View an available repository gitignore template
+documentation:
+    command: >-
+        View the contents of a .gitignore template.

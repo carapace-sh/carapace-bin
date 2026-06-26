@@ -3,3 +3,6 @@ name: list
 aliases:
     - ls
 description: Lists GPG keys in your GitHub account
+documentation:
+    command: >-
+        List GPG keys registered with your GitHub account.

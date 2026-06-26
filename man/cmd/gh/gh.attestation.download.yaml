@@ -8,3 +8,6 @@ flags:
     -R, --repo=: Repository name in the format <owner>/<repo>
     -d, --digest-alg=: 'The algorithm used to compute a digest of the artifact: {sha256|sha512}'
     -o, --owner=: GitHub organization to scope attestation lookup by
+documentation:
+    command: >-
+        Download attestations associated with an artifact for offline verification. Requires either a file path or a container image URI, plus `--repo` or `--owner`.

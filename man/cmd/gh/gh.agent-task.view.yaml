@@ -10,3 +10,6 @@ flags:
     -w, --web: Open agent task in the browser
 persistentflags:
     -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format
+documentation:
+    command: >-
+        View details about an agent task.

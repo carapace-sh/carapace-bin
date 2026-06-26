@@ -5,3 +5,6 @@ flags:
     --compact: Show only relevant/failed steps
     --exit-status: Exit with non-zero status if run fails
     -i, --interval=: Refresh interval in seconds
+documentation:
+    command: >-
+        Watch a run until it completes, showing its progress. By default, all steps are displayed. Use `--compact` to show only relevant/failed steps.

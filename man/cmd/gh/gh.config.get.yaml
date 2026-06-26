@@ -3,3 +3,6 @@ name: get <key>
 description: Print the value of a given configuration key
 flags:
     -h, --host=: Get per-host setting
+documentation:
+    command: >-
+        Print the value of a given configuration key.

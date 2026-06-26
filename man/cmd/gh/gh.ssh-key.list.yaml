@@ -3,3 +3,6 @@ name: list
 aliases:
     - ls
 description: Lists SSH keys in your GitHub account
+documentation:
+    command: >-
+        List SSH keys registered with your GitHub account.

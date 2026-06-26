@@ -8,3 +8,6 @@ flags:
     -L, --limit=: Maximum number of items to fetch
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        List the items in a project. Use `--query` for advanced search filtering on supported hosts.

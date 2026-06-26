@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: read-dir [<path>] [flags]
+description: List a directory in a repository (preview)
+group: Targeted commands
+documentation:
+    command: Read the contents of a directory in a GitHub repository without cloning it locally.
+flags:
+    --json=*: Output JSON with the specified `fields`
+    --ref=: The branch, tag, or commit to list from
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

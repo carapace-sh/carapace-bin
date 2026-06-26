@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: read-file <path> [flags]
+description: Read a file from a repository (preview)
+group: Targeted commands
+documentation:
+    command: Read the contents of a file in a GitHub repository without cloning it locally.
+flags:
+    --allow-escape-sequences: Allow printing terminal escape sequences
+    --clobber: Overwrite the output path if it already exists
+    --json=*: Output JSON with the specified `fields`
+    --ref=: The branch, tag, or commit to read from
+    -o, --output=: Write the file to a `path` instead of stdout
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

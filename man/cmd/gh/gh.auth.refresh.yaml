@@ -9,3 +9,6 @@ flags:
     -h, --hostname=: The GitHub host to use for authentication
     -r, --remove-scopes=*: Authentication scopes to remove from gh
     -s, --scopes=*: Additional authentication scopes for gh to have
+documentation:
+    command: >-
+        Expand or fix the permission scopes for stored credentials. Use `--scopes` to add scopes, `--remove-scopes` to remove them (the minimum set of `repo`, `read:org`, and `gist` cannot be removed), and `--reset-scopes` to reset to the default set for your auth flow.

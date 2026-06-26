@@ -14,7 +14,8 @@ flags:
     --app=: Filter by GitHub App author
     --json=*: Output JSON with the specified `fields`
     --mention=: Filter by mention
-    -A, --author=: Filter by author
+    --type=: Filter by issue type `name`
+    -A, --author=: Filter by author (use --app to filter by a GitHub App)
     -L, --limit=: Maximum number of issues to fetch
     -S, --search=: Search issues with `query`
     -a, --assignee=: Filter by assignee

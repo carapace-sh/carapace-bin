@@ -3,3 +3,6 @@ name: create [<name>]
 description: Create a new extension
 flags:
     --precompiled=: 'Create a precompiled extension. Possible values: go, other'
+documentation:
+    command: >-
+        Create a new GitHub CLI extension from a template.

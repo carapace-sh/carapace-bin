@@ -4,3 +4,6 @@ description: Add an SSH key to your GitHub account
 flags:
     --type=: 'Type of the ssh key: {authentication|signing}'
     -t, --title=: Title for the new key
+documentation:
+    command: >-
+        Add an SSH key to your GitHub account. The key can be read from a file or standard input.

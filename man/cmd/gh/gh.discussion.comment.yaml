@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: comment {<number> | <discussion-url> | <comment-id> | <comment-url>} [flags]
+description: Add, edit, or delete a comment or a reply on a discussion (preview)
+group: Targeted commands
+documentation:
+    command: Comment on a discussion.
+flags:
+    --delete: Delete the specified comment
+    --edit: Edit the specified comment
+    --yes: Skip the delete confirmation prompt
+    -F, --body-file=: Read body text from file (use "-" to read from standard input)
+    -b, --body=: Comment body text
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

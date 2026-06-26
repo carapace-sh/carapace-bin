@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [flags]
+description: Create a new discussion (preview)
+group: General commands
+documentation:
+    command: Create a new GitHub Discussion in a repository. With `--title`, `--body`, and `--category`, a discussion is created non-interactively. Omitting any of these triggers interactive prompts.
+flags:
+    -F, --body-file=: Read body text from file (use "-" to read from stdin)
+    -b, --body=: Body for the discussion
+    -c, --category=: Category name or slug for the discussion
+    -l, --label=*: Labels to apply to the discussion
+    -t, --title=: Title for the discussion
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

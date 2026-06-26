@@ -8,3 +8,6 @@ flags:
     -b, --base=: Base branch for the pull request (use default branch if not provided)
 persistentflags:
     -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format
+documentation:
+    command: >-
+        Create a new agent task.

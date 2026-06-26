@@ -9,3 +9,6 @@ flags:
     -a, --all: Include disabled workflows
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        List workflow files, hiding disabled workflows by default.

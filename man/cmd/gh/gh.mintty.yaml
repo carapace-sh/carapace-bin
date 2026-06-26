@@ -2,3 +2,6 @@
 name: mintty
 description: Information about using gh with MinTTY
 hidden: true
+documentation:
+    command: >-
+        Display information about terminal compatibility with MinTTY (Cygwin/MSYS2).

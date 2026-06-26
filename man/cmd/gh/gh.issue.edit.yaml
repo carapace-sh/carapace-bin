@@ -11,12 +11,22 @@ documentation:
         and `--remove-project`.
 flags:
     --add-assignee=*: Add assigned users by their `login`. Use "@me" to assign yourself, or "@copilot" to assign Copilot.
+    --add-blocked-by=*: Add 'blocked by' relationships by issue `number` or URL
+    --add-blocking=*: Add 'blocking' relationships by issue `number` or URL
     --add-label=*: Add labels by `name`
     --add-project=*: Add the issue to projects by `title`
+    --add-sub-issue=*: Add sub-issues by `number` or URL
+    --parent=: Set the parent issue by `number` or URL
     --remove-assignee=*: Remove assigned users by their `login`. Use "@me" to unassign yourself, or "@copilot" to unassign Copilot.
+    --remove-blocked-by=*: Remove 'blocked by' relationships by issue `number` or URL
+    --remove-blocking=*: Remove 'blocking' relationships by issue `number` or URL
     --remove-label=*: Remove labels by `name`
     --remove-milestone: Remove the milestone association from the issue
+    --remove-parent: Remove the parent issue
     --remove-project=*: Remove the issue from projects by `title`
+    --remove-sub-issue=*: Remove sub-issues by `number` or URL
+    --remove-type: Remove the issue type from the issue
+    --type=: Set the issue type by `name`
     -F, --body-file=: Read body text from `file` (use "-" to read from standard input)
     -b, --body=: Set the new body.
     -m, --milestone=: Edit the milestone the issue belongs to by `name`

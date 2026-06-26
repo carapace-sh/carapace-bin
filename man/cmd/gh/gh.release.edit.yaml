@@ -13,3 +13,6 @@ flags:
     -F, --notes-file=: Read release notes from `file` (use "-" to read from standard input)
     -n, --notes=: Release notes
     -t, --title=: Release title
+documentation:
+    command: >-
+        Edit an existing GitHub Release.

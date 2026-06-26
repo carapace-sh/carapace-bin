@@ -5,3 +5,6 @@ group: Targeted commands
 flags:
     --confirm&: Confirm deletion without prompting
     --yes: Confirm deletion without prompting
+documentation:
+    command: >-
+        Delete an issue.

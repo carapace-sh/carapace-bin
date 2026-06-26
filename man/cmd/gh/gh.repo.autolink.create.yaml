@@ -5,3 +5,6 @@ aliases:
 description: Create a new autolink reference
 flags:
     -n, --numeric: Mark autolink as numeric
+documentation:
+    command: >-
+        Create an autolink reference for a repository. Autolinks automatically link references in issues and PRs to external services.

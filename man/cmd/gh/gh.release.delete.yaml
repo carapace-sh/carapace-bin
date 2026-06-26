@@ -5,3 +5,6 @@ group: Targeted commands
 flags:
     --cleanup-tag: Delete the specified tag in addition to its release
     -y, --yes: Skip the confirmation prompt
+documentation:
+    command: >-
+        Delete a GitHub Release and its associated git tag.

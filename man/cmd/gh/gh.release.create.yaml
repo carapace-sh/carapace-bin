@@ -18,3 +18,6 @@ flags:
     -n, --notes=: Release notes
     -p, --prerelease: Mark the release as a prerelease
     -t, --title=: Release title
+documentation:
+    command: >-
+        Create a new GitHub Release for a repository. A list of asset files may be given to upload. If a matching git tag does not yet exist, one is automatically created from the default branch. Use `--target` to point to a different branch or commit. Use `--generate-notes` to auto-generate release notes via the GitHub API.

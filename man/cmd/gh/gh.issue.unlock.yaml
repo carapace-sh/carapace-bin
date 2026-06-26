@@ -2,3 +2,6 @@
 name: unlock {<number> | <url>}
 description: Unlock issue conversation
 group: Targeted commands
+documentation:
+    command: >-
+        Unlock issue conversation to allow comments again.

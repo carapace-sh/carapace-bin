@@ -2,10 +2,8 @@
 name: pr <command>
 description: Manage pull requests
 group: core
-persistentdocumentation:
-    command: |
-        Work with GitHub pull requests. Create PRs with `gh pr create`, view them
-        with `gh pr view`, and manage their lifecycle (merge, close, reopen, ready).
-        Use `-R` or `--repo` to operate on PRs in a different repository.
-flags:
+persistentflags:
     -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format
+documentation:
+    command: >-
+        Work with GitHub pull requests.

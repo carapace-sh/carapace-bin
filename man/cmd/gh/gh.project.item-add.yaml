@@ -7,3 +7,6 @@ flags:
     --url=!: URL of the issue or pull request to add to the project
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        Add a pull request or an issue to a project.

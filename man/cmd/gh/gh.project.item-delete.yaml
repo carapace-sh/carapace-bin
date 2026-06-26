@@ -7,3 +7,6 @@ flags:
     --owner=: Login of the owner. Use "@me" for the current user.
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        Delete an item from a project.

@@ -2,11 +2,11 @@
 name: man-docs
 description: >
   Use when writing or updating man page documentation (YAML cmd/ specs) for carapace-bin completers.
-  Covers the documentation workflow, standards, helper tools (split-to, spec-diff, man-to-md),
+  Covers the documentation workflow, standards, helper tools (update, split-to, spec-diff, man-to-md),
   documentation.command and documentation.flag guidelines, and validation.
   Triggers on: "man docs", "cmd docs", "command documentation", "flag documentation",
   "YAML man pages", "spec documentation", "documentation.command", "documentation.flag",
-  "man/cmd", "split-to", "spec-diff", "man-to-md".
+  "man/cmd", "split-to", "spec-diff", "man-to-md", "update".
 user-invocable: true
 ---
 
@@ -33,7 +33,25 @@ The spec structure (flags, subcommands, descriptions) is generated from the comp
 
 ## Tools
 
-### Regenerate specs for a completer
+### Update docs for a completer (recommended)
+
+```bash
+# One-step update: generate spec, split with doc preservation, show diff
+carapace <completer> spec | carapace-man update - man/cmd/<completer>
+
+# Or with a pre-generated spec file
+carapace-man update /tmp/<completer>-spec.yaml man/cmd/<completer>
+
+# Dry run to preview changes without writing files
+carapace-man update --dry-run /tmp/<completer>-spec.yaml man/cmd/<completer>
+```
+
+The `update` command combines spec-diff and split-to into one step. It:
+1. Reports current diff (new/removed subcommands, changed flags, missing docs)
+2. Splits the spec into per-subcommand files, **preserving existing `documentation:` entries**
+3. Creates new files for new subcommands
+
+### Split spec into per-subcommand files
 
 ```bash
 # Generate fresh spec from the completer
@@ -43,7 +61,7 @@ carapace <completer> spec > /tmp/<completer>-spec.yaml
 carapace-man split-to /tmp/<completer>-spec.yaml man/cmd/<completer>
 ```
 
-This overwrites structural fields (name, description, flags, commands) but preserves any `documentation:` entries since the fresh spec has none.
+`split-to` overwrites structural fields (name, description, flags, commands) and **preserves existing `documentation:` entries** from the target files. New files get no documentation.
 
 ### Check for drift
 
@@ -53,7 +71,7 @@ carapace <completer> spec > /tmp/<completer>-spec.yaml
 carapace-man spec-diff /tmp/<completer>-spec.yaml man/cmd/<completer>
 ```
 
-Reports: new/removed subcommands, changed flag descriptions, missing documentation.
+Reports: new/removed subcommands, changed flag descriptions, missing documentation, `[AI]` prefixed entries.
 
 ### Research source material
 
@@ -138,8 +156,8 @@ flags:
 
 For each completer:
 
-1. **Audit**: Run `spec-diff` to see what needs docs
-2. **Regenerate**: Run `split-to` to get fresh spec structure (if needed)
+1. **Update**: Run `carapace-man update` to refresh spec structure while preserving docs
+2. **Audit**: Check the diff output from `update` (or run `spec-diff` separately) to see what needs docs
 3. **Research**: For each subcommand needing `documentation.command`:
    - Check the project's official documentation site first (most authoritative)
    - Run `man-to-md <command>` for system man pages

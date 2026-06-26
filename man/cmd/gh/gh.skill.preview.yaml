@@ -5,3 +5,6 @@ aliases:
 description: Preview a skill from a GitHub repository (preview)
 flags:
     --allow-hidden-dirs: Include skills in hidden directories (e.g. .claude/skills/, .agents/skills/)
+documentation:
+    command: >-
+        Preview an agent skill before installing it.

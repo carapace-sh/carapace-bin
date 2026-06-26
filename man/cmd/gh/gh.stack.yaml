@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stack
+description: Install the official stack extension
+group: extension
+hidden: true
+documentation:
+    command: Install the official stack extension for managing stacked PRs.

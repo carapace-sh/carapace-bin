@@ -4,3 +4,6 @@ description: Print information about relevant issues, pull requests, and notific
 flags:
     -e, --exclude=*: Comma separated list of repos to exclude in owner/name format
     -o, --org=: Report status within an organization
+documentation:
+    command: >-
+        Print information about your work on GitHub across all repositories you're subscribed to, including assigned issues, assigned PRs, review requests, mentions, and repository activity.

@@ -2,3 +2,6 @@
 name: send-telemetry
 description: Send telemetry event to GitHub
 hidden: true
+documentation:
+    command: >-
+        Send telemetry data to GitHub. This is controlled by the `telemetry` config setting.

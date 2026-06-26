@@ -3,3 +3,6 @@ name: list
 aliases:
     - ls
 description: List available repository gitignore templates
+documentation:
+    command: >-
+        List available .gitignore templates for repository creation.

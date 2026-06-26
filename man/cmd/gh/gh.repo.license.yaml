@@ -2,3 +2,6 @@
 name: license <command>
 description: Explore repository licenses
 group: Targeted commands
+documentation:
+    command: >-
+        View license templates available when creating repositories.

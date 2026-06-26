@@ -8,3 +8,6 @@ flags:
     -b, --body=: Specify the body of a review
     -c, --comment: Comment on a pull request
     -r, --request-changes: Request changes on a pull request
+documentation:
+    command: >-
+        Review a pull request. Without an argument, the PR belonging to the current branch is selected. Submit `approve`, `request-changes`, or `comment` as the review type.

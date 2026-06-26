@@ -3,3 +3,6 @@ name: add [<key-file>]
 description: Add a GPG key to your GitHub account
 flags:
     -t, --title=: Title for the new key
+documentation:
+    command: >-
+        Add a GPG key to your GitHub account. The key can be read from a file or standard input.

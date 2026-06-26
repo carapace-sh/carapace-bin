@@ -1,3 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: visibility <port>:{public|private|org}...
 description: Change the visibility of the forwarded port
+documentation:
+    command: >-
+        Change the visibility of a forwarded port in a codespace.

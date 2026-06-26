@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [flags]
+aliases:
+    - ls
+description: List installed skills (preview)
+documentation:
+    command: List installed agent skills.
+flags:
+    --agent=: 'Filter by target agent: {github-copilot|claude-code|cursor|codex|gemini-cli|antigravity|adal|amp|augment|bob|cline|codebuddy|command-code|continue|cortex|crush|deepagents|droid|firebender|goose|iflow-cli|junie|kilo|kimi-cli|kiro-cli|kode|mcpjam|mistral-vibe|mux|neovate|openclaw|opencode|openhands|pi|pochi|qoder|qwen-code|replit|roo|trae|trae-cn|universal|warp|windsurf|zencoder}'
+    --dir=: Scan a custom directory for installed skills
+    --json=*: Output JSON with the specified `fields`
+    --scope=: 'Filter by installation scope: {project|user}'
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

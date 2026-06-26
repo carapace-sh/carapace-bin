@@ -2,11 +2,8 @@
 name: run <command>
 description: View details about workflow runs
 group: actions
-persistentdocumentation:
-    command: |
-        List, view, and watch recent workflow runs from GitHub Actions.
-        Cancel runs with `gh run cancel`, rerun failed ones with `gh run rerun`,
-        and download artifacts with `gh run download`. Use `gh run watch` to
-        monitor a run in real-time.
-flags:
+persistentflags:
     -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format
+documentation:
+    command: >-
+        List, view, and watch recent workflow runs from GitHub Actions.

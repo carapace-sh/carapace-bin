@@ -7,3 +7,6 @@ flags:
     --format=: 'Output format: {json}'
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        Verify a release asset using artifact attestations.

@@ -2,3 +2,6 @@
 name: reference
 description: A comprehensive reference of all gh commands
 hidden: true
+documentation:
+    command: >-
+        Display a quick reference of all gh commands and their short descriptions.

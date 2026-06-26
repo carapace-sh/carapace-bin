@@ -3,3 +3,6 @@ name: list
 aliases:
     - ls
 description: List installed extension commands
+documentation:
+    command: >-
+        List installed GitHub CLI extensions.

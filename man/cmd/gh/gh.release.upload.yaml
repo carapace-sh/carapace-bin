@@ -4,3 +4,6 @@ description: Upload assets to a release
 group: Targeted commands
 flags:
     --clobber: Delete and re-upload existing assets of the same name
+documentation:
+    command: >-
+        Upload asset files to a GitHub Release. Append `#label` after a file name to define a display label. Use `--clobber` to overwrite existing assets.

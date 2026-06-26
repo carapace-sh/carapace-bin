@@ -6,3 +6,6 @@ flags:
     -T, --team=: The team to be linked to this project
 persistentflags:
     -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format
+documentation:
+    command: >-
+        Link a project to a repository or team.

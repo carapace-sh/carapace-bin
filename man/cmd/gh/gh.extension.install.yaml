@@ -4,3 +4,6 @@ description: Install a gh extension from a repository
 flags:
     --force: Force upgrade extension, or ignore if latest already installed
     --pin=: Pin extension to a release tag or commit ref
+documentation:
+    command: >-
+        Install a GitHub CLI extension from a GitHub or local repository. For GitHub repositories, use `OWNER/REPO` format or a full URL. Use `--pin` to specify a version. For local development, use `.` as the repository argument.

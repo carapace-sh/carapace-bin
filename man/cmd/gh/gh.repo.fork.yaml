@@ -9,3 +9,6 @@ flags:
     --org=: Create the fork in an organization
     --remote: Add a git remote for the fork
     --remote-name=: Specify the name for the new remote
+documentation:
+    command: >-
+        Create a fork of a repository. By default, the new fork is set as your `origin` remote and any existing origin is renamed to `upstream`. The `upstream` remote becomes the default remote repository.

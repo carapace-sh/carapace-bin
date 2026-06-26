@@ -5,3 +5,6 @@ flags:
     --all: Upgrade all extensions
     --dry-run: Only display upgrades
     --force: Force upgrade extension
+documentation:
+    command: >-
+        Upgrade installed GitHub CLI extensions. Use `--all` to upgrade all at once.

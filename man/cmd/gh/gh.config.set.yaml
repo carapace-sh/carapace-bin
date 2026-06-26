@@ -3,3 +3,6 @@ name: set <key> <value>
 description: Update configuration with a value for the given key
 flags:
     -h, --host=: Set per-host setting
+documentation:
+    command: >-
+        Update configuration with a value for the given key.

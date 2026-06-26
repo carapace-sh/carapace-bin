@@ -12,3 +12,6 @@ flags:
     -O, --order=: 'Order of releases returned: {asc|desc}'
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        List releases in a repository.

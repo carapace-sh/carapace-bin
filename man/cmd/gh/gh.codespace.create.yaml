@@ -14,3 +14,6 @@ flags:
     -r, --repo-deprecated=&: (Deprecated) Shorthand for --repo
     -s, --status: Show status of post-create command and dotfiles
     -w, --web: Create codespace from browser, cannot be used with --display-name, --idle-timeout, or --retention-period
+documentation:
+    command: >-
+        Create a codespace. Specify the repository and optionally a branch. Use `--machine` to choose the machine type and `--location` for the data center region.

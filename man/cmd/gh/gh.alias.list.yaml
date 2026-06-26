@@ -3,3 +3,6 @@ name: list
 aliases:
     - ls
 description: List your aliases
+documentation:
+    command: >-
+        List configured aliases.

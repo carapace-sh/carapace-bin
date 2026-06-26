@@ -2,3 +2,6 @@
 name: gitignore <command>
 description: List and view available repository gitignore templates
 group: Targeted commands
+documentation:
+    command: >-
+        View .gitignore templates available when creating repositories.

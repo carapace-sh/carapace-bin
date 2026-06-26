@@ -5,7 +5,7 @@ flags:
     --app=: Filter by GitHub App author
     --archived: Filter based on the repository archived state {true|false}
     --assignee=: Filter by assignee
-    --author=: Filter by author
+    --author=: Filter by author (use --app to filter by a GitHub App)
     --checks=: 'Filter based on status of the checks: {pending|success|failure}'
     --closed=: Filter on closed at `date`
     --commenter=: Filter based on comments by `user`
@@ -46,3 +46,6 @@ flags:
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
     -w, --web: Open the search query in the web browser
+documentation:
+    command: >-
+        Search for pull requests on GitHub. Supports GitHub search syntax and advanced filtering via the `--search` query.

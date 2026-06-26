@@ -4,3 +4,6 @@ description: Manage autolink references
 group: Targeted commands
 persistentflags:
     -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format
+documentation:
+    command: >-
+        Manage autolink references for a repository. Autolinks automatically link references like JIRA-123 to external services.

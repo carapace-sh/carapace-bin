@@ -13,3 +13,6 @@ flags:
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
     -u, --user=: The `username` to list codespaces for (used with --org)
     -w, --web: List codespaces in the web browser, cannot be used with --user or --org
+documentation:
+    command: >-
+        List codespaces of the authenticated user. Organization administrators may list all codespaces billed to the organization.

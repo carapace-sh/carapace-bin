@@ -4,3 +4,6 @@ description: Lock issue conversation
 group: Targeted commands
 flags:
     -r, --reason=: Optional reason for locking conversation (off_topic, resolved, spam, too_heated).
+documentation:
+    command: >-
+        Lock issue conversation to prevent further comments.

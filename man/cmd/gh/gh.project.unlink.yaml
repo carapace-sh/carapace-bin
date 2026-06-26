@@ -6,3 +6,6 @@ flags:
     -T, --team=: The team to be unlinked from this project
 persistentflags:
     -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format
+documentation:
+    command: >-
+        Unlink a project from a repository or team.

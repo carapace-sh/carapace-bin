@@ -26,3 +26,6 @@ flags:
     --visibility=: Change the visibility of the repository to {public,private,internal}
     -d, --description=: Description of the repository
     -h, --homepage=: Repository home page `URL`
+documentation:
+    command: >-
+        Edit repository settings. Use `--<flag>=false` to toggle a setting off. Changing visibility has significant consequences; `--accept-visibility-change-consequences` is required when using `--visibility`. When using `--enable-squash-merge`, `--squash-merge-commit-message` controls the default commit message behavior.

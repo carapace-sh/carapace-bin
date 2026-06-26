@@ -2,3 +2,6 @@
 name: transfer {<number> | <url>} <destination-repo>
 description: Transfer issue to another repository
 group: Targeted commands
+documentation:
+    command: >-
+        Transfer an issue to another repository.
