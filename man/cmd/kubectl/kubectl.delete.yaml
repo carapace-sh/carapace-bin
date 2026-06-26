@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: delete ([-f FILENAME] | [-k DIRECTORY] | TYPE [(NAME | -l label | --all)])
 description: Delete resources by file names, stdin, resources and names, or by resources and label selector
-group: basic intermediate
 flags:
     --all: Delete all resources, in the namespace of the specified resource types.
     --cascade?: Must be "background", "orphan", or "foreground". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.
@@ -21,3 +20,9 @@ flags:
     -k, --kustomize=: Process a kustomization directory. This flag can't be used together with -f or -R.
     -l, --selector=: Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.
     -o, --output=: Output mode. Use "-o name" for shorter output (resource/name).
+
+documentation:
+  command: |
+    Delete resources by file names, stdin, resources and names, or by resources and label selector.
+    JSON and YAML formats are accepted. Only one type of argument may be specified: file names, resources and names, or resources and label selector.
+    Some resources, such as pods, support graceful deletion. These resources define a default period before they are forcibly terminated but you may override that value with the --grace-period flag, or pass --now to set a grace-period of 1.

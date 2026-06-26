@@ -3,3 +3,7 @@ name: service
 aliases:
     - svc
 description: Create a service using a specified subcommand
+
+documentation:
+  command: >-
+    Create a service using a specified subcommand.

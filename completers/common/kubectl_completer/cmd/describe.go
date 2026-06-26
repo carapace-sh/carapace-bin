@@ -22,7 +22,7 @@ func init() {
 	describeCmd.Flags().StringP("kustomize", "k", "", "Process the kustomization directory. This flag can't be used together with -f or -R.")
 	describeCmd.Flags().BoolP("recursive", "R", false, "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.")
 	describeCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.")
-	describeCmd.Flags().Bool("show-events", false, "If true, display events related to the described object.")
+	describeCmd.Flags().Bool("show-events", false, "If true, display events related to the described object. Defaults to true for a single object, false for multiple objects and prefix matching.")
 	rootCmd.AddCommand(describeCmd)
 
 	carapace.Gen(describeCmd).FlagCompletion(carapace.ActionMap{

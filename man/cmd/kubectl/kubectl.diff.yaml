@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: diff -f FILENAME
 description: Diff the live version against a would-be applied version
-group: advanced
 flags:
     --concurrency=: Number of objects to process in parallel when diffing against the live version. Larger number = faster, but more memory, I/O and CPU over that shorter period of time.
     --field-manager=: Name of the manager used to track field ownership.
@@ -10,7 +9,13 @@ flags:
     --prune-allowlist=*: Overwrite the default allowlist with <group/version/kind> for --prune
     --server-side: If true, apply runs in the server instead of the client.
     --show-managed-fields: If true, include managed fields in the diff.
+    --show-secrets: If true, do not mask secret values in the diff.
     -R, --recursive: Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.
     -f, --filename=*: Filename, directory, or URL to files contains the configuration to diff
     -k, --kustomize=: Process the kustomization directory. This flag can't be used together with -f or -R.
     -l, --selector=: Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.
+
+documentation:
+  command: |
+    Diff configurations specified by file name or stdin between the current online configuration, and the configuration as it would be if applied.
+    The output is always YAML. KUBECTL_EXTERNAL_DIFF environment variable can be used to select your own diff command. By default, the "diff" command available in your path will be run with the "-u" and "-N" options.

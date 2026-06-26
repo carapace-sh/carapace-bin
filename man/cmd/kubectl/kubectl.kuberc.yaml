@@ -1,3 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: kuberc SUBCOMMAND
 description: Manage kuberc configuration files
+
+documentation:
+  command: |
+    Manage user preferences (kuberc) file.
+    The kuberc file allows you to customize your kubectl experience.

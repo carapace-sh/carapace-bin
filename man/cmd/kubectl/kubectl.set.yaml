@@ -1,4 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: set SUBCOMMAND
 description: Set specific features on objects
-group: basic beginner
+
+documentation:
+  command: |
+    Configure application resources.
+    These commands help you make changes to existing application resources.

@@ -31,3 +31,8 @@ persistentflags:
     -n, --namespace=: If present, the namespace scope for this CLI request
     -s, --server=: The address and port of the Kubernetes API server
     -v, --v=: number for the log level verbosity
+
+documentation:
+  command: |
+    kubectl controls the Kubernetes cluster manager.
+    Find more information at: https://kubernetes.io/docs/reference/kubectl/

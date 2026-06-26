@@ -10,3 +10,8 @@ flags:
     -f, --filename=*: Filename, directory, or URL to files identifying the resource to update
     -k, --kustomize=: Process the kustomization directory. This flag can't be used together with -f or -R.
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).'
+
+documentation:
+  command: |
+    Deny a certificate signing request.
+    kubectl certificate deny allows a cluster admin to deny a certificate signing request (CSR). This action tells a certificate signing controller not to issue a certificate to the requestor.

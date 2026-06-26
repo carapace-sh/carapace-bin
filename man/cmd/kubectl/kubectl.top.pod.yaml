@@ -14,3 +14,7 @@ flags:
     --use-protocol-buffers: Enables using protocol-buffers to access Metrics API.
     -A, --all-namespaces: If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.
     -l, --selector=: Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.
+
+documentation:
+  command: >-
+    Display resource (CPU/memory) usage of pods.

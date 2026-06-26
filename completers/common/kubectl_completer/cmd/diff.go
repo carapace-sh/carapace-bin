@@ -26,6 +26,7 @@ func init() {
 	diffCmd.Flags().StringP("selector", "l", "", "Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.")
 	diffCmd.Flags().Bool("server-side", false, "If true, apply runs in the server instead of the client.")
 	diffCmd.Flags().Bool("show-managed-fields", false, "If true, include managed fields in the diff.")
+	diffCmd.Flags().Bool("show-secrets", false, "If true, do not mask secret values in the diff.")
 	rootCmd.AddCommand(diffCmd)
 
 	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{

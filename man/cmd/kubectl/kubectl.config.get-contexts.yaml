@@ -4,3 +4,7 @@ description: Describe one or many contexts
 flags:
     --no-headers: When using the default or custom-column output format, don't print headers (default print headers).
     -o, --output=: 'Output format. One of: (name).'
+
+documentation:
+  command: >-
+    Display one or many contexts from the kubeconfig file.

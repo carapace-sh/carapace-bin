@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: proxy [--port=PORT] [--www=static-dir] [--www-prefix=prefix] [--api-prefix=prefix]
 description: Run a proxy to the Kubernetes API server
-group: troubleshooting
 flags:
     --accept-hosts=: Regular expression for hosts that the proxy should accept.
     --accept-paths=: Regular expression for paths that the proxy should accept.
@@ -16,3 +15,8 @@ flags:
     -p, --port=: The port on which to run the proxy. Set to 0 to pick a random port.
     -u, --unix-socket=: Unix socket on which to run the proxy.
     -w, --www=: Also serve static files from the given directory under the specified prefix.
+
+documentation:
+  command: |
+    Creates a proxy server or application-level gateway between localhost and the Kubernetes API server.
+    It also allows serving static content over specified HTTP path. All incoming data enters through one port and gets forwarded to the remote Kubernetes API server port, except for the path matching the static content path.

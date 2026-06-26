@@ -22,6 +22,7 @@ func init() {
 	runCmd.Flags().Bool("attach", false, "If true, wait for the Pod to start running, and then attach to the Pod as if 'kubectl attach ...' were called.  Default false, unless '-i/--stdin' is set, in which case the default is true. With '--restart=Never' the exit code of the container process is returned.")
 	runCmd.Flags().String("cascade", "", "Must be \"background\", \"orphan\", or \"foreground\". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.")
 	runCmd.Flags().Bool("command", false, "If true and extra arguments are present, use them as the 'command' field in the container, rather than the 'args' field which is the default.")
+	runCmd.Flags().String("detach-keys", "", "Override the key sequence for detaching a container.")
 	runCmd.Flags().String("dry-run", "", "Must be \"none\", \"server\", or \"client\". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.")
 	runCmd.Flags().StringSlice("env", nil, "Environment variables to set in the container.")
 	runCmd.Flags().Bool("expose", false, "If true, create a ClusterIP service associated with the pod.  Requires `--port`.")

@@ -18,3 +18,7 @@ flags:
     -f, --follow: Specify if the logs should be streamed.
     -l, --selector=: Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.
     -p, --previous: If true, print the logs for the previous instance of the container in a pod if it exists.
+
+documentation:
+  command: >-
+    Print the logs for a container in a pod or specified resource.

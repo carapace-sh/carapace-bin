@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: expose (-f FILENAME | TYPE NAME) [--port=port] [--protocol=TCP|UDP|SCTP] [--target-port=number-or-name] [--name=name] [--external-ip=external-ip-of-service] [--type=type]
 description: Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service
-group: basic beginner
 flags:
     --allow-missing-template-keys: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
     --cluster-ip=: ClusterIP to be assigned to the service. Leave empty to auto-allocate, or set to 'None' to create a headless service.
@@ -27,3 +26,8 @@ flags:
     -k, --kustomize=: Process the kustomization directory. This flag can't be used together with -f or -R.
     -l, --labels=: Labels to apply to the service created by this call.
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).'
+
+documentation:
+  command: |
+    Expose a resource as a new Kubernetes service.
+    Looks up a deployment, service, replica set, replication controller or pod by name and uses the selector for that resource as the selector for a new service on the specified port. A deployment or replica set will be exposed as a service only if its selector is convertible to a selector that service supports, i.e. when the selector contains only the matchLabels component.

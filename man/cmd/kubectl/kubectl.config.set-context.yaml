@@ -6,3 +6,8 @@ flags:
     --current: Modify the current context
     --user=: user for the context entry in kubeconfig
     -n, --namespace=: namespace for the context entry in kubeconfig
+
+documentation:
+  command: |
+    Set a context entry in kubeconfig.
+    Specifying a name that already exists will merge new fields on top of existing values for those fields.

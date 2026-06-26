@@ -1,3 +1,7 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: delete-cluster NAME
 description: Delete the specified cluster from the kubeconfig
+
+documentation:
+  command: >-
+    Delete the specified cluster from the kubeconfig.
