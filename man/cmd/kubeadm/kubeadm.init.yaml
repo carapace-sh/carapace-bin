@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: init
 description: Run this command in order to set up the Kubernetes control plane
+documentation:
+    command: 'Initialize a Kubernetes control-plane node. Executes a sequence of phases: preflight checks, certificate generation, kubeconfig file creation, etcd static pod setup, control-plane static pod manifests, kubelet start, upload-config, mark-control-plane, bootstrap-token, addon installation (CoreDNS and kube-proxy), and kubelet finalization. Supports --skip-phases to skip specific phases, --config for configuration file-based init, --upload-certs to temporarily upload control-plane certificates, and --dry-run.'
 flags:
     --apiserver-advertise-address=: The IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --apiserver-bind-port=: Port for the API Server to bind to.

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: etcd-peer
 description: Generate the certificate for etcd nodes to communicate with each other
+documentation:
+    command: Generate the certificate for etcd nodes to communicate with each other. Default SANs include localhost, 127.0.0.1, and ::1.
 flags:
     --cert-dir=: The path where to save and store the certificates.
     --config=: Path to a kubeadm configuration file.

@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: renew
 description: Renew certificates for a Kubernetes cluster
+documentation:
+    command: Renew certificates for a Kubernetes cluster. Can renew all available certificates or selectively renew individual certificates. Renewals run unconditionally regardless of expiration date. Extra attributes such as SANs are based on the existing files. After renewal, control-plane components must be restarted and renewed certificates re-distributed.

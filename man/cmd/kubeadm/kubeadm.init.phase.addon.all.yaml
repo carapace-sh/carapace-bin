@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: all
 description: Install all the addons
+documentation:
+    command: Install all addon components (CoreDNS and kube-proxy) via the API server. CoreDNS will not be scheduled until a CNI plugin is installed.
 flags:
     --apiserver-advertise-address=: The IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --apiserver-bind-port=: Port for the API Server to bind to.

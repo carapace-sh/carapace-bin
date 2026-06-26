@@ -3,3 +3,5 @@ name: certs
 aliases:
     - certificates
 description: Commands related to handling Kubernetes certificates
+documentation:
+    command: Manage Kubernetes certificates. Provides utilities for renewing certificates, generating certificate keys, checking expiration, and generating certificate signing requests for external CA mode.

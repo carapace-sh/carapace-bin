@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: preflight
 description: Run preflight checks before upgrade
+documentation:
+    command: Run upgrade pre-flight checks to validate that the cluster can be upgraded. Checks version skew policies and verifies the cluster is in a healthy state.
 flags:
     --allow-experimental-upgrades: Show unstable versions of Kubernetes as an upgrade alternative and allow upgrading to an alpha/beta/release candidate versions of Kubernetes.
     --allow-release-candidate-upgrades: Show release candidate versions of Kubernetes as an upgrade alternative and allow upgrading to a release candidate versions of Kubernetes.

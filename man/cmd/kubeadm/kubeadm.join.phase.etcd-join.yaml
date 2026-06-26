@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: etcd-join
 description: Join etcd for control plane nodes
+documentation:
+    command: Add a new local etcd member to the existing etcd cluster. Used when joining an additional control-plane node with stacked etcd.
 flags:
     --apiserver-advertise-address=: If the node should host a new control plane instance, the IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --config=: Path to a kubeadm configuration file.

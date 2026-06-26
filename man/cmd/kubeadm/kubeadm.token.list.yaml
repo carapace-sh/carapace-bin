@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: list
 description: List bootstrap tokens on the server
+documentation:
+    command: List all bootstrap tokens on the server. Supports various output formats (text, json, yaml, etc.).
 flags:
     --allow-missing-template-keys: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
     --show-managed-fields: If true, keep the managedFields when printing objects in JSON or YAML format.

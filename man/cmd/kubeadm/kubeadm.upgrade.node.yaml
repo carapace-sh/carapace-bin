@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: node
 description: Upgrade commands for a node in the cluster
+documentation:
+    command: 'Upgrade a node (worker or additional control-plane) in the cluster. Runs phases: preflight, control-plane (if present), kubelet-config, addon, and post-upgrade. Automatically renews certificates by default (opt-out with --certificate-renewal=false).'
 flags:
     --certificate-renewal: Perform the renewal of certificates used by component changed during upgrades.
     --config=: Path to a kubeadm configuration file.

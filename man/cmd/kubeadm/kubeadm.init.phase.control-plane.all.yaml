@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: all
 description: Generate all static Pod manifest files
+documentation:
+    command: 'Generate all static Pod manifests for the control plane: API server, controller manager, and scheduler.'
 flags:
     --apiserver-advertise-address=: The IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --apiserver-bind-port=: Port for the API Server to bind to.

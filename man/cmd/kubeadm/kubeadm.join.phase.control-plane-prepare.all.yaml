@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: all [api-server-endpoint]
 description: Prepare the machine for serving a control plane
+documentation:
+    command: 'Run all control-plane preparation steps: download certificates, generate certificates and kubeconfig files, and create the control-plane manifest.'
 flags:
     --apiserver-advertise-address=: If the node should host a new control plane instance, the IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --apiserver-bind-port=: If the node should host a new control plane instance, the port for the API Server to bind to.

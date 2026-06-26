@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: all
 description: Generate all certificates
+documentation:
+    command: Generate all certificates for the cluster, including CA, API server, etcd, front-proxy, and service account keys. If existing files are present they will not be overwritten.
 flags:
     --apiserver-advertise-address=: The IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --apiserver-cert-extra-sans=*: Optional extra Subject Alternative Names (SANs) to use for the API Server serving certificate. Can be both IP addresses and DNS names.

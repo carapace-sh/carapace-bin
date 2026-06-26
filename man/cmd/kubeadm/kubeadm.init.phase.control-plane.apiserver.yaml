@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: apiserver
 description: Generates the kube-apiserver static Pod manifest
+documentation:
+    command: Generate the kube-apiserver static Pod manifest. Configures the API server with appropriate flags, volumes, and certificates.
 flags:
     --apiserver-advertise-address=: The IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --apiserver-bind-port=: Port for the API Server to bind to.

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: remove-etcd-member
 description: Remove a local etcd member.
+documentation:
+    command: Remove a local etcd member from the etcd cluster. Only applicable for control-plane nodes using stacked etcd.
 flags:
     --dry-run: Don't apply any changes; just output what would be done.
     --kubeconfig=: The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.

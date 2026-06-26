@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: apiserver
 description: Renew the certificate for serving the Kubernetes API
+documentation:
+    command: Renew the certificate for serving the Kubernetes API server.
 flags:
     --cert-dir=: The path where to save the certificates
     --config=: Path to a kubeadm configuration file.

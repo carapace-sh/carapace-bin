@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: kube-proxy
 description: Upgrade the kube-proxy addon
+documentation:
+    command: Upgrade the kube-proxy addon on the node during the upgrade node process.
 flags:
     --config=: Path to a kubeadm configuration file.
     --dry-run: Do not change any state, just output the actions that would be performed.

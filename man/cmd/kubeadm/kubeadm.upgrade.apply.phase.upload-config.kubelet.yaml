@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: kubelet
 description: Upload the kubelet configuration to a ConfigMap
+documentation:
+    command: Upload the updated kubelet configuration to the kubelet-config ConfigMap after the control-plane upgrade.
 flags:
     --config=: Path to a kubeadm configuration file.
     --dry-run: Do not change any state, just output what actions would be performed.

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: all
 description: Upload all configuration to a config map
+documentation:
+    command: Upload both kubeadm ClusterConfiguration and kubelet configuration to ConfigMaps in the cluster.
 flags:
     --config=: Path to a kubeadm configuration file.
     --cri-socket=: Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.

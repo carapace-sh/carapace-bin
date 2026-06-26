@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: coredns
 description: Install the CoreDNS addon to a Kubernetes cluster
+documentation:
+    command: Install the CoreDNS addon to a Kubernetes cluster via the API server. CoreDNS provides DNS-based service discovery. Will not be scheduled until a CNI plugin is installed.
 flags:
     --config=: Path to a kubeadm configuration file.
     --dry-run: Don't apply any changes; just output what would be done.

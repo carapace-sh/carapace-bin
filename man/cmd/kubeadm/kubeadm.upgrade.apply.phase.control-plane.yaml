@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: control-plane
 description: Upgrade the control plane
+documentation:
+    command: Upgrade the control-plane static pod manifests to the new Kubernetes version during the upgrade apply process.
 flags:
     --certificate-renewal: Perform the renewal of certificates used by component changed during upgrades.
     --config=: Path to a kubeadm configuration file.

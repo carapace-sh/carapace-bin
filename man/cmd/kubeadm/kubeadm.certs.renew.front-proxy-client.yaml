@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: front-proxy-client
 description: Renew the certificate for the front proxy client
+documentation:
+    command: Renew the certificate for the front proxy client.
 flags:
     --cert-dir=: The path where to save the certificates
     --config=: Path to a kubeadm configuration file.

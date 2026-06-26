@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: apiserver
 description: Generate the certificate for serving the Kubernetes API
+documentation:
+    command: Generate the certificate for serving the Kubernetes API. Includes SANs for the advertise address, control-plane endpoint, service CIDR, and service DNS domain.
 flags:
     --apiserver-advertise-address=: The IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --apiserver-cert-extra-sans=*: Optional extra Subject Alternative Names (SANs) to use for the API Server serving certificate. Can be both IP addresses and DNS names.

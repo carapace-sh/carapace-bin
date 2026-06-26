@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: token
 description: Manage bootstrap tokens
+documentation:
+    command: Manage bootstrap tokens used for establishing bidirectional trust between a joining node and the control-plane node. Kubeadm init creates an initial token with a 24-hour TTL. Token format is [a-z0-9]{6}.[a-z0-9]{16}.
 persistentflags:
     --dry-run: Whether to enable dry-run mode or not
     --kubeconfig=: The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.

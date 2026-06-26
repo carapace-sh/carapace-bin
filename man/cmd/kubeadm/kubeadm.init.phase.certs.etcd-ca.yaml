@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: etcd-ca
 description: Generate the self-signed CA to provision identities for etcd
+documentation:
+    command: Generate the self-signed CA to provision identities for etcd.
 flags:
     --cert-dir=: The path where to save and store the certificates.
     --config=: Path to a kubeadm configuration file.

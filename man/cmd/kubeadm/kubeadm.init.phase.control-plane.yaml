@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: control-plane
 description: Generate all static Pod manifest files necessary to establish the control plane
+documentation:
+    command: Generate all static Pod manifest files necessary to establish the control plane. Manifests are written to /etc/kubernetes/manifests and the kubelet watches this directory for Pods to create on startup.

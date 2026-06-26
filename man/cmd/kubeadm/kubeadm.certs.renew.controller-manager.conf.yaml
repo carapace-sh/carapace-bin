@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: controller-manager.conf
 description: Renew the certificate embedded in the kubeconfig file for the controller manager to use
+documentation:
+    command: Renew the certificate embedded in the kubeconfig file for the controller manager.
 flags:
     --cert-dir=: The path where to save the certificates
     --config=: Path to a kubeadm configuration file.

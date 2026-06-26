@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: pull
 description: Pull images used by kubeadm
+documentation:
+    command: Pull the images used by kubeadm for the control plane. Useful to pre-pull images before running kubeadm init.
 persistentflags:
     --config=: Path to a kubeadm configuration file.
     --cri-socket=: Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.

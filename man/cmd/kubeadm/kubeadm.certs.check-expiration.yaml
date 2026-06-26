@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: check-expiration
 description: Check certificates expiration for a Kubernetes cluster
+documentation:
+    command: Check expiration for the certificates in the local PKI managed by kubeadm. Displays remaining validity for all certificates in the cluster.
 flags:
     --allow-missing-template-keys: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
     --cert-dir=: The path where to save the certificates

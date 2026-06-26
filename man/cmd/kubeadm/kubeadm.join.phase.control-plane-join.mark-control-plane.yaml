@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: mark-control-plane
 description: Mark a node as a control-plane
+documentation:
+    command: Mark a joined node as a control-plane by applying the node-role.kubernetes.io/control-plane label and the node-role.kubernetes.io/control-plane:NoSchedule taint.
 flags:
     --config=: Path to a kubeadm configuration file.
     --control-plane: Create a new control plane instance on this node

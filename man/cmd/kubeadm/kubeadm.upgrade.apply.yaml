@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: apply [version]
 description: Upgrade your Kubernetes cluster to the specified version
+documentation:
+    command: 'Upgrade the Kubernetes control-plane node to the specified version. Runs phases: preflight, control-plane, upload-config, kubelet-config, bootstrap-token, addon, and post-upgrade. Supports --force for non-interactive mode, --certificate-renewal (default true), --etcd-upgrade (default true), and --yes to skip confirmation.'
 flags:
     --allow-experimental-upgrades: Show unstable versions of Kubernetes as an upgrade alternative and allow upgrading to an alpha/beta/release candidate versions of Kubernetes.
     --allow-release-candidate-upgrades: Show release candidate versions of Kubernetes as an upgrade alternative and allow upgrading to a release candidate versions of Kubernetes.

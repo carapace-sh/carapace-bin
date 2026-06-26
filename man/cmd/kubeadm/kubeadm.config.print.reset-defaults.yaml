@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: reset-defaults
 description: Print default reset configuration, that can be used for 'kubeadm reset'
+documentation:
+    command: Print default reset configuration for kubeadm reset. Output can be used as a starting point for a custom configuration file.
