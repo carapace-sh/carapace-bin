@@ -12,3 +12,6 @@ flags:
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
     -v, --verbose: Show job steps
     -w, --web: Open run in the browser
+documentation:
+    command: >-
+        View a summary of a workflow run. Due to platform limitations, gh may not always associate jobs with their logs when fetching in zip format. In such cases, individual job logs are fetched via the API, which is slower.

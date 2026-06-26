@@ -9,3 +9,6 @@ persistentflags:
     --repo-owner=: Filter codespace selection by repository owner (username or org)
     -R, --repo=: Filter codespace selection by repository name (user/repo)
     -c, --codespace=: Name of the codespace
+documentation:
+    command: >-
+        View details about a codespace including its machine type, idle timeout, and creation time.

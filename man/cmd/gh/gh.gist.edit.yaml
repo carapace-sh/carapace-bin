@@ -6,3 +6,6 @@ flags:
     -d, --desc=: New description for the gist
     -f, --filename=: Select a file to edit
     -r, --remove=: Remove a file from the gist
+documentation:
+    command: >-
+        Edit one of your gists in a text editor.

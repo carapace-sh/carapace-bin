@@ -1,3 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: version
 hidden: true
+documentation:
+    command: >-
+        Print the current version of the GitHub CLI.

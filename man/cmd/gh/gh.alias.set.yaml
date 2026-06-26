@@ -4,3 +4,6 @@ description: Create a shortcut for a gh command
 flags:
     --clobber: Overwrite existing aliases of the same name
     -s, --shell: Declare an alias to be passed through a shell interpreter
+documentation:
+    command: >-
+        Define a word that expands to a full gh command. If the expansion includes positional placeholders like `$1`, extra arguments are inserted appropriately. Use `-` as the expansion argument to read from standard input. If the expansion starts with `!` or `--shell` is given, it is a shell expression.

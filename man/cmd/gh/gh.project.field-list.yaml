@@ -7,3 +7,6 @@ flags:
     -L, --limit=: Maximum number of fields to fetch
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        List the fields in a project.

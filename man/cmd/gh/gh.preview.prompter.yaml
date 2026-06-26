@@ -1,3 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: prompter [prompt type]
 description: Execute a test program to preview the prompter
+documentation:
+    command: >-
+        Preview the prompter interface for testing and development.

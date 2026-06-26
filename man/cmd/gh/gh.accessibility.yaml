@@ -6,3 +6,6 @@ description: Learn about GitHub CLI's accessibility experiences
 hidden: true
 flags:
     -w, --web: Open the GitHub Accessibility site in your browser
+documentation:
+    command: >-
+        Display information about accessibility features in the GitHub CLI.

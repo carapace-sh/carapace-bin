@@ -5,3 +5,6 @@ group: Targeted commands
 flags:
     --confirm&: Skip the confirmation prompt
     -y, --yes: Skip the confirmation prompt
+documentation:
+    command: >-
+        Archive a GitHub repository. With no argument, archives the current repository.

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view {<number> | <discussion-url> | <comment-id> | <comment-url>} [flags]
+description: View a discussion (preview)
+group: Targeted commands
+documentation:
+    command: View details about a discussion. Use `--comments` to see comments. Pass a comment node ID or URL as the argument to view a specific comment thread.
+flags:
+    --after=: Cursor for the next page
+    --json=*: Output JSON with the specified `fields`
+    --order=: 'Order of comments or replies: {oldest|newest}'
+    -L, --limit=: Maximum number of comments or replies to fetch
+    -c, --comments: View discussion comments
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open a discussion in the browser
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

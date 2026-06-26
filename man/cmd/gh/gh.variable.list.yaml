@@ -9,3 +9,6 @@ flags:
     -o, --org=: List variables for an organization
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        List variables at the repository (default), environment, or organization level.

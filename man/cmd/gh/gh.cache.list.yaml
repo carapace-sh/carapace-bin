@@ -12,3 +12,6 @@ flags:
     -q, --jq=: Filter JSON output using a jq `expression`
     -r, --ref=: Filter by ref, formatted as refs/heads/<branch name> or refs/pull/<number>/merge
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        List GitHub Actions caches for a repository.

@@ -9,3 +9,6 @@ flags:
     --recurse-submodules: Update all submodules after checkout
     -b, --branch=: Local branch name to use (default [the name of the head branch])
     -f, --force: Reset the existing local branch to the latest state of the pull request
+documentation:
+    command: >-
+        Check out a pull request in git, creating a local branch for the PR head.

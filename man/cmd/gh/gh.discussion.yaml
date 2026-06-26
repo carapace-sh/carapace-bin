@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: discussion <command>
+description: Work with GitHub Discussions (preview)
+group: core
+documentation:
+    command: Work with GitHub Discussions. This feature is in preview and subject to change.
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

@@ -5,3 +5,6 @@ flags:
     -c, --color=: Color of the label
     -d, --description=: Description of the label
     -f, --force: Update the label color and description if label already exists
+documentation:
+    command: >-
+        Create a new label with a name, color, and optional description.

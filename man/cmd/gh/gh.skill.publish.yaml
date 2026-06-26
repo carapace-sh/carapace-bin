@@ -5,3 +5,6 @@ flags:
     --dry-run: Validate without publishing
     --fix: Auto-fix issues where possible without publishing (e.g. strip install metadata)
     --tag=: Version tag for the release (e.g. v1.0.0)
+documentation:
+    command: >-
+        Publish an agent skill to a GitHub repository.

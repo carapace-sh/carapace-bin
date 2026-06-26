@@ -12,7 +12,11 @@ documentation:
         Use `--editor` to write title and body in your configured editor, or `--web`
         to create the issue in the browser.
 flags:
+    --blocked-by=*: Mark the new issue as blocked by these issue `numbers` or URLs
+    --blocking=*: Mark the new issue as blocking these issue `numbers` or URLs
+    --parent=: Add the new issue as a sub-issue of the specified parent `number` or URL
     --recover=: Recover input from a failed run of create
+    --type=: Set the issue type by `name`
     -F, --body-file=: Read body text from `file` (use "-" to read from standard input)
     -T, --template=: Template `name` to use as starting body text
     -a, --assignee=*: Assign people by their `login`. Use "@me" to self-assign.

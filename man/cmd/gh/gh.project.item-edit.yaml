@@ -16,3 +16,6 @@ flags:
     --title=: Title of the draft issue item
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        Edit a project item. Requires the item ID. For non-draft issues, the project ID is also required, and only a single field value can be updated per invocation. Use `--clear` to remove a field value.

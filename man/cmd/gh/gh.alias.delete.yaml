@@ -3,3 +3,6 @@ name: delete {<alias> | --all}
 description: Delete set aliases
 flags:
     --all: Delete all aliases
+documentation:
+    command: >-
+        Delete an alias.

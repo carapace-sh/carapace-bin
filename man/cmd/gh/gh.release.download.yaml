@@ -9,3 +9,6 @@ flags:
     -D, --dir=: The `directory` to download files into
     -O, --output=: The `file` to write a single asset to (use "-" to write to standard output)
     -p, --pattern=*: Download only assets that match a glob pattern
+documentation:
+    command: >-
+        Download assets from a GitHub release. Without an explicit tag name, assets are downloaded from the latest release (requires `--pattern` or `--archive`).

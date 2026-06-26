@@ -8,3 +8,6 @@ flags:
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
     -w, --web: List autolink references in the web browser
+documentation:
+    command: >-
+        List autolink references for a repository.

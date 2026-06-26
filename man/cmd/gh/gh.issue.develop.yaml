@@ -9,3 +9,6 @@ flags:
     -i, --issue-repo=&: Name or URL of the issue's repository
     -l, --list: List linked branches for the issue
     -n, --name=: Name of the branch to create
+documentation:
+    command: >-
+        Manage linked branches for an issue. When using `--base`, the new development branch is created from the specified remote branch and configured as the base for pull requests created with [gh pr create](cmd://gh/pr/create).

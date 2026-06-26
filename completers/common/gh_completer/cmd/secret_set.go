@@ -16,7 +16,7 @@ var secret_setCmd = &cobra.Command{
 func init() {
 	carapace.Gen(secret_setCmd).Standalone()
 
-	secret_setCmd.Flags().StringP("app", "a", "", "Set the application for a secret: {actions|codespaces|dependabot}")
+	secret_setCmd.Flags().StringP("app", "a", "", "Set the application for a secret: {actions|agents|codespaces|dependabot}")
 	secret_setCmd.Flags().StringP("body", "b", "", "The value for the secret (reads from standard input if not specified)")
 	secret_setCmd.Flags().StringP("env", "e", "", "Set deployment `environment` secret")
 	secret_setCmd.Flags().StringP("env-file", "f", "", "Load secret names and values from a dotenv-formatted `file`")
@@ -29,7 +29,7 @@ func init() {
 	secretCmd.AddCommand(secret_setCmd)
 
 	carapace.Gen(secret_setCmd).FlagCompletion(carapace.ActionMap{
-		"app":        carapace.ActionValues("actions", "codespaces", "dependabot"),
+		"app":        carapace.ActionValues("actions", "agents", "codespaces", "dependabot"),
 		"env":        action.ActionEnvironments(secret_setCmd),
 		"env-file":   carapace.ActionFiles(),
 		"org":        gh.ActionOrganizations(gh.HostOpts{}),

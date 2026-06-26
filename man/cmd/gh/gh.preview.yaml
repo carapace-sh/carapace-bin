@@ -1,3 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: preview <command>
 description: Execute previews for gh features
+documentation:
+    command: >-
+        Preview commands for testing and development purposes. Unstable and subject to change.

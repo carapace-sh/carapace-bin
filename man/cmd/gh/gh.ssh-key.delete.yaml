@@ -4,3 +4,6 @@ description: Delete an SSH key from your GitHub account
 flags:
     --confirm&: Skip the confirmation prompt
     -y, --yes: Skip the confirmation prompt
+documentation:
+    command: >-
+        Delete an SSH key from your GitHub account.

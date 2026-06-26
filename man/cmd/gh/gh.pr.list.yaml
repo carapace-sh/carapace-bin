@@ -14,7 +14,7 @@ documentation:
 flags:
     --app=: Filter by GitHub App author
     --json=*: Output JSON with the specified `fields`
-    -A, --author=: Filter by author
+    -A, --author=: Filter by author (use --app to filter by a GitHub App)
     -B, --base=: Filter by base branch
     -H, --head=: Filter by head branch ("<owner>:<branch>" syntax not supported)
     -L, --limit=: Maximum number of items to fetch

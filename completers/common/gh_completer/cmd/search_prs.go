@@ -21,7 +21,7 @@ func init() {
 	search_prsCmd.Flags().String("app", "", "Filter by GitHub App author")
 	search_prsCmd.Flags().Bool("archived", false, "Filter based on the repository archived state {true|false}")
 	search_prsCmd.Flags().String("assignee", "", "Filter by assignee")
-	search_prsCmd.Flags().String("author", "", "Filter by author")
+	search_prsCmd.Flags().String("author", "", "Filter by author (use --app to filter by a GitHub App)")
 	search_prsCmd.Flags().StringP("base", "B", "", "Filter on base branch name")
 	search_prsCmd.Flags().String("checks", "", "Filter based on status of the checks: {pending|success|failure}")
 	search_prsCmd.Flags().String("closed", "", "Filter on closed at `date`")

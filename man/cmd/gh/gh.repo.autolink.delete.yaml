@@ -3,3 +3,6 @@ name: delete <id>
 description: Delete an autolink reference
 flags:
     --yes: Confirm deletion without prompting
+documentation:
+    command: >-
+        Delete an autolink reference from a repository.

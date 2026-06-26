@@ -5,3 +5,6 @@ group: Targeted commands
 hidden: true
 flags:
     -s, --static: Print a static version of the credits
+documentation:
+    command: >-
+        View credits for a repository, showing contributors and their contributions.

@@ -4,3 +4,6 @@ description: Enter a UI for browsing, adding, and removing extensions
 flags:
     --debug: Log to /tmp/extBrowse-*
     -s, --single-column: Render TUI with only one column of text
+documentation:
+    command: >-
+        Browse extensions in the web browser.

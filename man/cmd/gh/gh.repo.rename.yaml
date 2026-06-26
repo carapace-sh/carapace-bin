@@ -7,3 +7,6 @@ flags:
     -y, --yes: Skip the confirmation prompt
 persistentflags:
     -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format
+documentation:
+    command: >-
+        Rename a GitHub repository. The argument is the new name without the owner. By default, the current repository is renamed. To transfer ownership, additional steps are required on github.com.

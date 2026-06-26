@@ -11,3 +11,6 @@ flags:
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
     -w, --web: Open the search query in the web browser
+documentation:
+    command: >-
+        Search for gh extensions. With no arguments, lists extensions sorted by stars. For a finer-grained search, use [gh search repos](cmd://gh/search/repos) with `--topic "gh-extension"`.

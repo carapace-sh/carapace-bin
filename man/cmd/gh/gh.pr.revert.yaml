@@ -7,3 +7,6 @@ flags:
     -b, --body=: Body for the revert pull request
     -d, --draft: Mark revert pull request as a draft
     -t, --title=: Title for the revert pull request
+documentation:
+    command: >-
+        Create a new pull request that reverts the changes from a merged PR.

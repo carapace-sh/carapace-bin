@@ -9,3 +9,6 @@ flags:
     --public: Show only public gists
     --secret: Show only secret gists
     -L, --limit=: Maximum number of gists to fetch
+documentation:
+    command: >-
+        List your gists. Use `--public` or `--secret` to filter by visibility.

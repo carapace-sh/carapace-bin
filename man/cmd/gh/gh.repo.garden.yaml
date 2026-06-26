@@ -3,3 +3,6 @@ name: garden [<repository>]
 description: Explore a git repository as a garden
 group: Targeted commands
 hidden: true
+documentation:
+    command: >-
+        Visualize the repository's git history as a garden visualization in the terminal.

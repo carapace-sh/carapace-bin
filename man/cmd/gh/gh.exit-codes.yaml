@@ -2,3 +2,6 @@
 name: exit-codes
 description: Exit codes used by gh
 hidden: true
+documentation:
+    command: >-
+        Display information about exit codes used by gh commands.

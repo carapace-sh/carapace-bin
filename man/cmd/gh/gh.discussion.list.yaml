@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [flags]
+aliases:
+    - ls
+description: List discussions in a repository (preview)
+group: General commands
+documentation:
+    command: List discussions in a GitHub repository. By default, only open discussions are shown.
+flags:
+    --after=: Cursor for the next page of results
+    --answered: Filter by answered state
+    --json=*: Output JSON with the specified `fields`
+    --order=: 'Order of results: {asc|desc}'
+    --sort=: 'Sort by field: {created|updated}'
+    -A, --author=: Filter by author
+    -L, --limit=: Maximum number of discussions to fetch
+    -S, --search=: Search discussions with `query`
+    -c, --category=: Filter by category name or slug
+    -l, --label=*: Filter by label
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -s, --state=: 'Filter by state: {open|closed|all}'
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: List discussions in the web browser
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

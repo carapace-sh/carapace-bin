@@ -7,6 +7,7 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/ghrepo"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -128,6 +129,16 @@ func ActionPinnedIssues(cmd *cobra.Command) carapace.Action {
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
+	})
+}
+
+func ActionIssueTypes(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		repo, err := repoOverride(cmd, c)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+		return gh.ActionIssueTypes(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
 	})
 }
 

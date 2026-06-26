@@ -1,3 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: remove <name>
+aliases:
+    - uninstall
 description: Remove an installed extension
+documentation:
+    command: >-
+        Remove an installed GitHub CLI extension.

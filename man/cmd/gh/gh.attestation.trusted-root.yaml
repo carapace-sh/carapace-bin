@@ -6,3 +6,6 @@ flags:
     --tuf-root=: Path to the TUF root.json file on disk
     --tuf-url=: URL to the TUF repository mirror
     --verify-only: Don't output trusted_root.jsonl contents
+documentation:
+    command: >-
+        View the trusted root for attestation verification.

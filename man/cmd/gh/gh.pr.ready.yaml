@@ -4,3 +4,6 @@ description: Mark a pull request as ready for review
 group: Targeted commands
 flags:
     --undo: Convert a pull request to "draft"
+documentation:
+    command: >-
+        Mark a draft pull request as ready for review.

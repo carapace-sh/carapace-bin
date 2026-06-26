@@ -2,3 +2,6 @@
 name: unlock {<number> | <url>}
 description: Unlock pull request conversation
 group: Targeted commands
+documentation:
+    command: >-
+        Unlock pull request conversation to allow comments again.

@@ -1,4 +1,7 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: pin {<number> | <url>}
-description: Pin a issue
+description: Pin an issue
 group: Targeted commands
+documentation:
+    command: >-
+        Pin an issue to the top of the issue list.

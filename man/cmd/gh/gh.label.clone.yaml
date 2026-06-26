@@ -3,3 +3,6 @@ name: clone <source-repository>
 description: Clones labels from one repository to another
 flags:
     -f, --force: Overwrite labels in the destination repository
+documentation:
+    command: >-
+        Clone labels from another repository to the current repository.

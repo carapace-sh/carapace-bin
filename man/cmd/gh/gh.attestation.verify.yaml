@@ -24,3 +24,6 @@ flags:
     -o, --owner=: GitHub organization to scope attestation lookup by
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        Verify the integrity and provenance of an artifact using its associated cryptographically signed attestations. Requires either `--owner` or `--repo` to validate the actor identity. Use `--signer-workflow` for precise identity enforcement. By default, enforces the SLSA provenance v1 predicate type.

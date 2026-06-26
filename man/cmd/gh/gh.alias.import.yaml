@@ -3,3 +3,6 @@ name: import [<filename> | -]
 description: Import aliases from a YAML file
 flags:
     --clobber: Overwrite existing aliases of the same name
+documentation:
+    command: >-
+        Import aliases from a YAML file or standard input.

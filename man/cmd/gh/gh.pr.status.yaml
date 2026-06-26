@@ -7,3 +7,6 @@ flags:
     -c, --conflict-status: Display the merge conflict status of each pull request
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        Show status of relevant pull requests across repositories you're subscribed to.

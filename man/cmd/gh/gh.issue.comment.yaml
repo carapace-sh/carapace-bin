@@ -11,3 +11,6 @@ flags:
     -b, --body=: The comment body `text`
     -e, --editor: Skip prompts and open the text editor to write the body in
     -w, --web: Open the web browser to write the comment
+documentation:
+    command: >-
+        Add a comment to a GitHub issue. Without body text supplied through flags, the command will interactively prompt for the comment text.

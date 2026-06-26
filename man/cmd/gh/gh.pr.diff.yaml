@@ -8,3 +8,6 @@ flags:
     --patch: Display diff in patch format
     -e, --exclude=*: Exclude files matching glob `patterns` from the diff
     -w, --web: Open the pull request diff in the browser
+documentation:
+    command: >-
+        View changes in a pull request. Without an argument, the PR belonging to the current branch is selected.

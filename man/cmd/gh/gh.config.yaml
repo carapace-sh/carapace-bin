@@ -1,3 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: config <command>
 description: Manage configuration for gh
+documentation:
+    command: >-
+        Display or change configuration settings for gh. Respected settings include `git_protocol`, `editor`, `prompt`, `prefer_editor_prompt`, `pager`, `browser`, `color_labels`, `accessible_colors`, `accessible_prompter`, `spinner`, and `telemetry`.

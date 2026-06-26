@@ -4,3 +4,6 @@ description: Setup git with GitHub CLI
 flags:
     -f, --force: Force setup even if the host is not known. Must be used in conjunction with `--hostname`
     -h, --hostname=: The hostname to configure git for
+documentation:
+    command: >-
+        Configure git to use GitHub CLI as a credential helper. By default, gh is set as the credential helper for all authenticated hosts. Use `--hostname` to configure a single host.

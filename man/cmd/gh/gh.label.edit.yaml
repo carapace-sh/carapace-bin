@@ -5,3 +5,6 @@ flags:
     -c, --color=: Color of the label
     -d, --description=: Description of the label
     -n, --name=: New name of the label
+documentation:
+    command: >-
+        Edit a label's name, color, or description.

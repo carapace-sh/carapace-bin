@@ -5,6 +5,7 @@ aliases:
 description: Install agent skills from a GitHub repository (preview)
 flags:
     --agent=: Target agent (see supported values above)
+    --all: Install all skills without prompting for skill selection
     --allow-hidden-dirs: Include skills in hidden directories (e.g. .claude/skills/, .agents/skills/)
     --dir=: Install to a custom directory (overrides --agent and --scope)
     --from-local: Treat the argument as a local directory path instead of a repository
@@ -12,3 +13,6 @@ flags:
     --scope=: 'Installation scope: {project|user}'
     --upstream: Install from the upstream source when a re-published skill is detected
     -f, --force: Overwrite existing skills without prompting
+documentation:
+    command: >-
+        Install an agent skill from a GitHub repository.

@@ -3,3 +3,6 @@ name: list
 aliases:
     - ls
 description: List common repository licenses
+documentation:
+    command: >-
+        List available license templates for repository creation.

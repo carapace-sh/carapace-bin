@@ -21,7 +21,7 @@ func init() {
 	search_issuesCmd.Flags().String("app", "", "Filter by GitHub App author")
 	search_issuesCmd.Flags().Bool("archived", false, "Filter based on the repository archived state {true|false}")
 	search_issuesCmd.Flags().String("assignee", "", "Filter by assignee")
-	search_issuesCmd.Flags().String("author", "", "Filter by author")
+	search_issuesCmd.Flags().String("author", "", "Filter by author (use --app to filter by a GitHub App)")
 	search_issuesCmd.Flags().String("closed", "", "Filter on closed at `date`")
 	search_issuesCmd.Flags().String("commenter", "", "Filter based on comments by `user`")
 	search_issuesCmd.Flags().String("comments", "", "Filter on `number` of comments")

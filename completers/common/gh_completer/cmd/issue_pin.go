@@ -8,7 +8,7 @@ import (
 
 var issue_pinCmd = &cobra.Command{
 	Use:     "pin {<number> | <url>}",
-	Short:   "Pin a issue",
+	Short:   "Pin an issue",
 	GroupID: "Targeted commands",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

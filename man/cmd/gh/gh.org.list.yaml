@@ -6,3 +6,6 @@ description: List organizations for the authenticated user.
 group: General commands
 flags:
     -L, --limit=: Maximum number of organizations to list
+documentation:
+    command: >-
+        List organizations the authenticated user belongs to.

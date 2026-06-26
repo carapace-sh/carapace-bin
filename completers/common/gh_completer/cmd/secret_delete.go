@@ -17,14 +17,14 @@ var secret_deleteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(secret_deleteCmd).Standalone()
 
-	secret_deleteCmd.Flags().StringP("app", "a", "", "Delete a secret for a specific application: {actions|codespaces|dependabot}")
+	secret_deleteCmd.Flags().StringP("app", "a", "", "Delete a secret for a specific application: {actions|agents|codespaces|dependabot}")
 	secret_deleteCmd.Flags().StringP("env", "e", "", "Delete a secret for an environment")
 	secret_deleteCmd.Flags().StringP("org", "o", "", "Delete a secret for an organization")
 	secret_deleteCmd.Flags().BoolP("user", "u", false, "Delete a secret for your user")
 	secretCmd.AddCommand(secret_deleteCmd)
 
 	carapace.Gen(secret_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"app": carapace.ActionValues("actions", "codespaces", "dependabot"),
+		"app": carapace.ActionValues("actions", "agents", "codespaces", "dependabot"),
 		"env": action.ActionEnvironments(secret_deleteCmd),
 		"org": gh.ActionOrganizations(gh.HostOpts{}),
 	})

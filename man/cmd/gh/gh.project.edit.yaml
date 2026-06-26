@@ -10,3 +10,6 @@ flags:
     -d, --description=: New description of the project
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+documentation:
+    command: >-
+        Edit a project's title, description, or other settings.

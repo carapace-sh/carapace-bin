@@ -1,3 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: licenses
 description: View third-party license information
+documentation:
+    command: >-
+        View license information for third-party libraries used in this build of the GitHub CLI.

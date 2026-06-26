@@ -3,3 +3,6 @@ name: view {<license-key> | <spdx-id>}
 description: View a specific repository license
 flags:
     -w, --web: Open https://choosealicense.com/ in the browser
+documentation:
+    command: >-
+        View the contents of a license template.

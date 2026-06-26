@@ -3,3 +3,6 @@ name: copilot [flags] [args]
 description: Run the GitHub Copilot CLI (preview)
 flags:
     --remove: Remove the downloaded Copilot CLI
+documentation:
+    command: >-
+        Run the GitHub Copilot CLI for AI-assisted command suggestions. This feature is in preview.

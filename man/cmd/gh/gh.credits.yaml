@@ -4,3 +4,6 @@ description: View credits for this tool
 hidden: true
 flags:
     -s, --static: Print a static version of the credits
+documentation:
+    command: >-
+        View credits for third-party libraries used in this build of the GitHub CLI.

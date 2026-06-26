@@ -6,3 +6,6 @@ flags:
     --force: Hard reset the branch of the destination repository to match the source repository
     -b, --branch=: Branch to sync (default [default branch])
     -s, --source=: Source repository
+documentation:
+    command: >-
+        Sync a destination repository from its source repository. A fast-forward update is used by default; use `--force` for a hard reset. The source repository is the parent by default; override with `--source`.

@@ -5,3 +5,6 @@ aliases:
 description: Print a list of configuration keys and values
 flags:
     -h, --host=: Get per-host configuration
+documentation:
+    command: >-
+        List configuration values and their current settings.

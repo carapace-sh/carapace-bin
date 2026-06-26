@@ -4,3 +4,6 @@ description: Manage deploy keys in a repository
 group: Targeted commands
 persistentflags:
     -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format
+documentation:
+    command: >-
+        Manage deploy keys for a repository. Deploy keys provide read-only or read-write access via SSH.

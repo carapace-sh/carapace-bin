@@ -1,3 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: exec <name> [args]
 description: Execute an installed extension
+documentation:
+    command: >-
+        Execute an extension by name, even if it conflicts with a core gh command.

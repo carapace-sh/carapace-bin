@@ -11,3 +11,6 @@ flags:
     -q, --jq=: Filter JSON output using a jq `expression`
     -t, --template=: Format JSON output using a Go template; see "gh help formatting"
     -w, --web: Open the web browser to show details about checks
+documentation:
+    command: >-
+        Show CI status for a single pull request. Without an argument, the PR belonging to the current branch is selected. Exit code 8 indicates checks pending.

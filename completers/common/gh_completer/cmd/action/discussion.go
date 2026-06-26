@@ -2,35 +2,26 @@ package action
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
-type discussionCategory struct {
-	Name        string
-	Description string
-}
-
-type discussionCategoriesQuery struct {
-	Data struct {
-		Repository struct {
-			DiscussionCategories struct {
-				Nodes []discussionCategory
-			}
+func ActionDiscussions(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		repo, err := repoOverride(cmd, c)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
 		}
-	}
+		return gh.ActionDiscussions(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
+	})
 }
 
 func ActionDiscussionCategories(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		var queryResult discussionCategoriesQuery
-		return GraphQlAction(cmd, `repository(owner: $owner, name: $repo){ discussionCategories( first: 100) { nodes { name, description } } }`, &queryResult, func() carapace.Action {
-			categories := queryResult.Data.Repository.DiscussionCategories.Nodes
-			vals := make([]string, len(categories)*2)
-			for index, category := range categories {
-				vals[index*2] = category.Name
-				vals[index*2+1] = category.Description
-			}
-			return carapace.ActionValuesDescribed(vals...)
-		})
-	}).Tag("discussion categories")
+		repo, err := repoOverride(cmd, c)
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+		return gh.ActionDiscussionCategories(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
+	})
 }

@@ -4,3 +4,6 @@ description: Add a deploy key to a GitHub repository
 flags:
     -t, --title=: Title of the new key
     -w, --allow-write: Allow write access for the key
+documentation:
+    command: >-
+        Add a deploy key to a repository. The key can be read from a file or standard input.
