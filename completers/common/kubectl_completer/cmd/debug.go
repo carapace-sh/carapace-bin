@@ -31,7 +31,7 @@ func init() {
 	debugCmd.Flags().Bool("keep-liveness", false, "If true, keep the original pod liveness probes.(This flag only works when used with '--copy-to')")
 	debugCmd.Flags().Bool("keep-readiness", false, "If true, keep the original pod readiness probes.(This flag only works when used with '--copy-to')")
 	debugCmd.Flags().Bool("keep-startup", false, "If true, keep the original startup probes.(This flag only works when used with '--copy-to')")
-	debugCmd.Flags().String("profile", "", "Options are \"legacy\", \"general\", \"baseline\", \"netadmin\", \"restricted\" or \"sysadmin\".")
+	debugCmd.Flags().String("profile", "", "Options are \"general\", \"baseline\", \"restricted\", \"netadmin\" or \"sysadmin\". Defaults to \"general\"")
 	debugCmd.Flags().BoolP("quiet", "q", false, "If true, suppress informational messages.")
 	debugCmd.Flags().Bool("replace", false, "When used with '--copy-to', delete the original Pod.")
 	debugCmd.Flags().Bool("same-node", false, "When used with '--copy-to', schedule the copy of target Pod on the same node.")
@@ -45,6 +45,6 @@ func init() {
 	// TODO flag completion
 	carapace.Gen(debugCmd).FlagCompletion(carapace.ActionMap{
 		"env":     env.ActionNameValues(false),
-		"profile": carapace.ActionValues("legacy", "general", "baseline", "netadmin", "restricted", "sysadmin"),
+		"profile": carapace.ActionValues("general", "baseline", "restricted", "netadmin", "sysadmin"),
 	})
 }

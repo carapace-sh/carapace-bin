@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var alpha_kubercCmd = &cobra.Command{
+var kubercCmd = &cobra.Command{
 	Use:   "kuberc SUBCOMMAND",
 	Short: "Manage kuberc configuration files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(alpha_kubercCmd).Standalone()
+	carapace.Gen(kubercCmd).Standalone()
 
-	alphaCmd.AddCommand(alpha_kubercCmd)
+	rootCmd.AddCommand(kubercCmd)
 }
