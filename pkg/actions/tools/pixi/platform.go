@@ -17,9 +17,9 @@ func ActionPlatforms() carapace.Action {
 		vals := make([]string, 0)
 		for _, env := range info.EnvironmentsInfo {
 			for _, p := range env.Platforms {
-				if !seen[p] {
-					seen[p] = true
-					vals = append(vals, p)
+				if !seen[p.Name] {
+					seen[p.Name] = true
+					vals = append(vals, p.Name)
 				}
 			}
 		}
