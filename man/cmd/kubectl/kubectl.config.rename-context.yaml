@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename-context CONTEXT_NAME NEW_NAME
+description: Rename a context from the kubeconfig file

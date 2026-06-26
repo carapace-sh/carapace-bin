@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Read system manual pages using bat as the pager, providing
+    syntax-highlighted man page output.
+description: Read system manual pages (man) using bat

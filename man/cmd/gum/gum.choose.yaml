@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: choose
+description: Choose an option from a list of choices
+flags:
+    --cursor-prefix=: Prefix to show on the cursor item (hidden if limit is 1)
+    --cursor.align=: Text Alignment
+    --cursor.background=: Background Color
+    --cursor.bold: Bold text
+    --cursor.border-background=: Border Background Color
+    --cursor.border-foreground=: Border Foreground Color
+    --cursor.border=: Border Style
+    --cursor.faint: Faint text
+    --cursor.foreground=: Foreground Color
+    --cursor.height=: Text height
+    --cursor.italic: Italicize text
+    --cursor.margin=: Text margin
+    --cursor.padding=: Text padding
+    --cursor.strikethrough: Strikethrough text
+    --cursor.underline: Underline text
+    --cursor.width=: Text width
+    --cursor=: Prefix to show on item that corresponds to the cursor position
+    --header.align=: Text Alignment
+    --header.background=: Background Color
+    --header.bold: Bold text
+    --header.border-background=: Border Background Color
+    --header.border-foreground=: Border Foreground Color
+    --header.border=: Border Style
+    --header.faint: Faint text
+    --header.foreground=: Foreground Color
+    --header.height=: Text height
+    --header.italic: Italicize text
+    --header.margin=: Text margin
+    --header.padding=: Text padding
+    --header.strikethrough: Strikethrough text
+    --header.underline: Underline text
+    --header.width=: Text width
+    --header=: Header value
+    --height=: Height of the list
+    --input-delimiter=: Option delimiter when reading from STDIN
+    --item.align=: Text Alignment
+    --item.background=: Background Color
+    --item.bold: Bold text
+    --item.border-background=: Border Background Color
+    --item.border-foreground=: Border Foreground Color
+    --item.border=: Border Style
+    --item.faint: Faint text
+    --item.foreground=: Foreground Color
+    --item.height=: Text height
+    --item.italic: Italicize text
+    --item.margin=: Text margin
+    --item.padding=: Text padding
+    --item.strikethrough: Strikethrough text
+    --item.underline: Underline text
+    --item.width=: Text width
+    --label-delimiter=: Allows to set a delimiter, so options can be set as label:value
+    --limit=: Maximum number of options to pick
+    --no-limit: Pick unlimited number of options (ignores limit)
+    --ordered: Maintain the order of the selected options
+    --output-delimiter=: Option delimiter when writing to STDOUT
+    --padding=: Padding
+    --select-if-one: Select the given option if there is only one
+    --selected-prefix=: Prefix to show on selected items (hidden if limit is 1)
+    --selected.align=: Text Alignment
+    --selected.background=: Background Color
+    --selected.bold: Bold text
+    --selected.border-background=: Border Background Color
+    --selected.border-foreground=: Border Foreground Color
+    --selected.border=: Border Style
+    --selected.faint: Faint text
+    --selected.foreground=: Foreground Color
+    --selected.height=: Text height
+    --selected.italic: Italicize text
+    --selected.margin=: Text margin
+    --selected.padding=: Text padding
+    --selected.strikethrough: Strikethrough text
+    --selected.underline: Underline text
+    --selected.width=: Text width
+    --selected=*: Options that should start as selected (selects all if given *)
+    --show-help: Show help keybinds
+    --strip-ansi: Strip ANSI sequences when reading from STDIN
+    --timeout=: Timeout until choose returns selected element
+    --unselected-prefix=: Prefix to show on unselected items (hidden if limit is 1)

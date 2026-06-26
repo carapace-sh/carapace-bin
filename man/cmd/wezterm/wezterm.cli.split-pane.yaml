@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: split-pane [OPTIONS] [PROG]...
+description: Move a pane into a new tab
+flags:
+    --bottom: Split vertically, with the new pane on the bottom
+    --cells=: The number of cells that the new split should have
+    --cwd=: Specify the current working directory for the initially spawned program
+    --horizontal: Equivalent to `--right`
+    --left: Split horizontally, with the new pane on the left
+    --move-pane-id=: Move the specified pane into the newly created split
+    --pane-id=: Specify the pane that should be split
+    --percent=: Specify the number of cells that the new split should have
+    --right: Split horizontally, with the new pane on the right
+    --top: Split vertically, with the new pane on the top
+    --top-level: Rather than splitting the active pane, split the entire window
+    -h, --help: Print help

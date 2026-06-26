@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: join
+description: Join the active SSH or Kubernetes session.
+flags:
+    --invite=: A comma separated list of people to mark as invited for the session.
+    --reason=: The purpose of the session.
+    -c, --cluster=: Specify the Teleport cluster to connect
+    -m, --mode=: Mode of joining the session, valid modes are observer, moderator and peer.
+
+documentation:
+  command: >-
+    Join an active SSH or Kubernetes session for collaborative debugging or oversight.

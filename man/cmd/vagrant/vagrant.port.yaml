@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: port
+description: displays information about guest port mappings
+flags:
+    --guest=: Output the host port that maps to the given guest port

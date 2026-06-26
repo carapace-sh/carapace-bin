@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cache
+description: Inspect and manage pip's wheel cache

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-default [<repository>]
+description: Configure default repository for this directory
+group: Targeted commands
+flags:
+    -u, --unset: Unset the current default repository
+    -v, --view: View the current default repository

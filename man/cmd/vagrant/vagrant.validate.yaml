@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: validate
+description: Validates a Vagrantfile config
+flags:
+    -p, --ignore-provider: Ignores provider config options

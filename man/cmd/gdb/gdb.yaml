@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gdb
+description: This is the GNU debugger
+flags:
+    --args: Arguments after executable-file are passed to inferior.
+    --batch: Exit after processing options.
+    --batch-silent: Like --batch, but suppress all gdb stdout output.
+    --cd=: Change current directory to DIR.
+    --configuration: Print details about GDB configuration and then exit.
+    --core=: Analyze the core dump COREFILE.
+    --dbx: DBX compatibility mode.
+    --directory=: Search for source files in DIR.
+    --eval-command=: Execute a single GDB command.
+    --exec=: Use EXECFILE as the executable.
+    --fullname: Output information used by emacs-GDB interface.
+    --help: Print this message and then exit.
+    --init-command=: Like -x but execute commands before loading inferior.
+    --init-eval-command=: Like -ex but before loading inferior.
+    --interpreter=: Select a specific interpreter / user interface.
+    --nh: Do not read ~/.gdbinit.
+    --nw: Do not use the GUI interface.
+    --nx: Do not read any .gdbinit files in any directory.
+    --pid=: Attach to running process PID.
+    --readnever: Do not read symbol files.
+    --readnow: Fully read symbol files on first access.
+    --return-child-result: GDB exit code will be the child's exit code.
+    --se=: Use FILE as symbol file and executable file.
+    --silent: Do not print version number on startup.
+    --symbols=: Read symbols from SYMFILE.
+    --tty=: Use TTY for input/output by the program being debugged.
+    --tui: Use a terminal user interface.
+    --version: Print version information and then exit.
+    --write: Set writing into executable and core files.
+    -D, --data-directory=: Set GDB's data-directory to DIR.
+    -b=: Set serial port baud rate used for remote debugging.
+    -l=: Set timeout in seconds for remote debugging.
+    -q, --quiet: Do not print version number on startup.
+    -w: Use the GUI interface.
+    -x, --command=: Execute GDB commands from FILE.

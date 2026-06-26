@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bottle
+description: Generate a bottle (binary package) from a formula that was installed with `--build-bottle`
+group: developer
+flags:
+    --committer: Specify a committer name and email in `git`'s standard author format.
+    --debug: Display any debugging information.
+    --force-core-tap: Build a bottle even if <formula> is not in `homebrew/core` or any installed taps.
+    --help: Show this message.
+    --json: Write bottle information to a JSON file, which can be used as the value for `--merge`.
+    --keep-old: If the formula specifies a rebuild version, attempt to preserve its value in the generated DSL.
+    --merge: Generate an updated bottle block for a formula and optionally merge it into the formula file. Instead of a formula name, requires the path to a JSON file generated with `brew bottle --json` <formula>.
+    --no-all-checks: Don't try to create an `all` bottle or stop a no-change upload.
+    --no-commit: When passed with `--write`, a new commit will not generated after writing changes to the formula file.
+    --no-rebuild: If the formula specifies a rebuild version, remove it from the generated DSL.
+    --only-json-tab: When passed with `--json`, the tab will be written to the JSON file but not the bottle.
+    --quiet: Make some output more quiet.
+    --root-url: Use the specified <URL> as the root of the bottle's URL instead of Homebrew's default.
+    --root-url-using: Use the specified download strategy class for downloading the bottle's URL instead of Homebrew's default.
+    --skip-relocation: Do not check if the bottle can be marked as relocatable.
+    --verbose: Make some output more verbose.
+    --write: Write changes to the formula file. A new commit will be generated unless `--no-commit` is passed.

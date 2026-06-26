@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: telescope:resume
+description: Unpause all Telescope watchers

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unstar
+description: Remove an item from your favorite packages
+flags:
+    --otp=: one-time password
+    --unicode: use unicode in output

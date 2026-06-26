@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename
+description: rename files
+flags:
+    -V, --version: display version
+    -a, --all: replace all occurrences
+    -h, --help: display this help
+    -i, --interactive: prompt before overwrite
+    -l, --last: replace only the last occurrence
+    -n, --no-act: do not make any changes
+    -o, --no-overwrite: don't overwrite existing files
+    -s, --symlink: act on the target of symlinks
+    -v, --verbose: explain what is being done

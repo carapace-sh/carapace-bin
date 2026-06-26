@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repo
+description: add, list, remove, update, and index chart repositories
+group: main

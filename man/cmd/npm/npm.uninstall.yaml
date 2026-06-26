@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: Remove a package
+flags:
+    --no-save: Prevents saving to `dependencies`
+    --save-dev: Package will appear in your `devDependencies`
+    --save-optional: Package will appear in your `optionalDependencies`
+    --save-peer: Package will appear in your `peerDependencies`
+    --save-prod: Package will appear in your `dependencies`.
+    --workspaces: Enable running a command in the context fo all workspaces
+    -S, --save: Package will appear in your `dependencies`
+    -w, --workspace=*: Enable running a command in the context of the given workspace

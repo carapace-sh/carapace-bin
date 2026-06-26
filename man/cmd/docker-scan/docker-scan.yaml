@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: docker-scan
+description: A tool to scan your images
+flags:
+    --accept-license: Accept using a third party scanning provider
+    --dependency-tree: Show dependency tree with scan results
+    --exclude-base: Exclude base image from vulnerability scanning (requires --file)
+    --group-issues: Aggregate duplicated vulnerabilities and group them to a single one (requires --json)
+    --json: Output results in JSON format
+    --login: Authenticate to the scan provider using an optional token (with --token), or web base token if empty
+    --reject-license: Reject using a third party scanning provider
+    --severity=: Only report vulnerabilities of provided level or higher (low|medium|high)
+    --token=: Authentication token to login to the third party scanning provider
+    --version: Display version of the scan plugin
+    -f, --file=: Dockerfile associated with image, provides more detailed results

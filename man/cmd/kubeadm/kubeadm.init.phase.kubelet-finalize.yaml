@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kubelet-finalize
+description: Updates settings relevant to the kubelet after TLS bootstrap

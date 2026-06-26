@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kexec
+description: Shut down and reboot the system with kexec
+group: system
+documentation:
+  command: |
+    Shut down and reboot the system via kexec. This will load a kexec kernel
+    if one was not loaded yet, or fail. A kernel may be loaded earlier by a
+    separate step using `kexec --load`. The `--force` can be used to continue
+    without a kexec kernel, i.e. to perform a normal reboot. Uses UEFI boot
+    loader specification to find and load the default boot entry.

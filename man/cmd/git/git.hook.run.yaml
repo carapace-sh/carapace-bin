@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run [--ignore-missing] [--to-stdin=<path>] <hook-name> [-- <hook-args>]
+description: Run git hooks
+flags:
+  --ignore-missing: ignore any missing hook by quietly returning zero
+  --to-stdin=: specify a file which will be streamed into the hook’s stdin

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: trusted-root [--tuf-url <url> --tuf-root <file-path>] [--verify-only]
+description: Output trusted_root.jsonl contents, likely for offline verification
+flags:
+    --hostname=: Configure host to use
+    --tuf-root=: Path to the TUF root.json file on disk
+    --tuf-url=: URL to the TUF repository mirror
+    --verify-only: Don't output trusted_root.jsonl contents

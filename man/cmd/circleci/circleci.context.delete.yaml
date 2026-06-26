@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Delete the named context
+flags:
+    -f, --force: Delete the context without asking for confirmation.

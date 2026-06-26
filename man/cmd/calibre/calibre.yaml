@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Comprehensive e-book management software. Launches the calibre
+    GUI for managing, converting, and reading e-books. Supports
+    library selection, plugins, and running in the system tray.
+description: Comprehensive e-book software
+flags:
+    --detach: Detach from the controlling terminal, if any (Linux only)
+    --ignore-plugins: Ignore custom plugins
+    --no-update-check: Do not check for updates
+    --start-in-tray: Start minimized to system tray.
+    --version: show program's version number and exit
+    --with-library=: Use the library located at the specified path.
+    -h, --help: show this help message and exit
+    -s, --shutdown-running-calibre: Cause a running calibre instance, if any, to be shutdown.
+    -v, --verbose: Ignored, do not use. Present only for legacy reasons

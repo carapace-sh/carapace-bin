@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create an ACL role
+flags:
+    --description=: A description of the role
+    --format=: Output format.
+    --meta: Indicates that role metadata such as the content hash and raft indices should be shown for each entry
+    --name=: The new role's name.
+    --namespace=: Specifies the namespace to query.
+    --node-identity=: Name of a node identity to use for this role.
+    --policy-id=: ID of a policy to use for this role.
+    --policy-name=: Name of a policy to use for this role.
+    --service-identity=: Name of a service identity to use for this role.

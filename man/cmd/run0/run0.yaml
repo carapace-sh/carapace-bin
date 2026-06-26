@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run0
+description: Elevate privileges interactively
+flags:
+    --area=: Home area to log into
+    --background=: Set ANSI color for background
+    --description=: Description for unit
+    --empower: Give privileges to selected or current user
+    --lightweight: Control whether to register a session with service manager or without
+    --machine=: Operate on local container
+    --nice=: Nice level
+    --no-ask-password: Do not prompt for password
+    --pipe: Request direct pipe for stdio
+    --property=*: Set service or scope unit property
+    --pty: Request allocation of a pseudo TTY for stdio
+    --pty-late: Just like --pty, but leave TTY access to agents until unit is started up
+    --setenv=*: Set environment variable
+    --shell-prompt-prefix=: Set $SHELL_PROMPT_PREFIX
+    --slice-inherit: Inherit the slice
+    --slice=: Run in the specified slice
+    --unit=: Run under the specified unit name
+    --via-shell: Invoke command via target user's login shell
+    -D, --chdir=: Set working directory
+    -V, --version: Show package version
+    -g, --group=: Run as system group
+    -h, --help: Show this help
+    -i: Shortcut for --via-shell --chdir='~'
+    -u, --user=: Run as system user

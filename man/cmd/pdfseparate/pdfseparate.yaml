@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdfseparate
+description: Portable Document Format (PDF) page extractor
+flags:
+    -?: print usage information
+    -f=: first page to extract
+    -h: print usage information
+    -help, --help: print usage information
+    -l=: last page to extract
+    -v: print copyright and version info

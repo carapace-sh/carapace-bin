@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: Remove dependencies from a Cargo.toml manifest file
+flags:
+    --build: Remove from build-dependencies
+    --dev: Remove from dev-dependencies
+    --manifest-path=: Path to Cargo.toml
+    --target=: Remove from target-dependencies
+    -h, --help: Print help
+    -n, --dry-run: Don't actually write the manifest
+    -p, --package=: Package to remove from
+documentation:
+  command: |
+    Remove dependencies from a Cargo.toml manifest file. Pass the package name
+    as an argument. Use `--build`, `--dev`, or `--target` to specify which
+    dependency table to remove from. Use `--dry-run` to preview the change
+    without modifying the manifest.

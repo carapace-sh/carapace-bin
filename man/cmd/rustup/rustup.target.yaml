@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: target
+description: Modify a toolchain's supported targets
+flags:
+    -h, --help: Print help

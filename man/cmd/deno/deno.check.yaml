@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check
+description: Type-check the dependencies
+flags:
+    --cert=: Load certificate authority from PEM encoded file
+    --import-map=: Load import map file
+    --lock=: Check the specified lock file
+    --no-config: Disable automatic loading of the configuration file.
+    --no-remote: Do not resolve remote modules
+    --remote: Type-check all modules, including remote
+    --unstable: Enable unstable features and APIs
+    -c, --config=: Specify the configuration file
+    -h, --help: Print help information
+    -q, --quiet: Suppress diagnostic output
+    -r, --reload?: Reload source code cache (recompile TypeScript)

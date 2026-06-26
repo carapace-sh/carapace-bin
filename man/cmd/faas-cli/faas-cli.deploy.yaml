@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deploy
+description: Deploy OpenFaaS functions
+flags:
+    --annotation=*: Set one or more annotation (ANNOTATION=VALUE)
+    --constraint=*: Apply a constraint to the function
+    --envsubst: Substitute environment variables in stack.yml file
+    --fprocess=: fprocess value to be run as a serverless function by the watchdog
+    --handler=: Directory with handler for function, e.g. handler.js
+    --image=: Docker image name to build
+    --lang=: Programming language template
+    --name=: Name of the deployed function
+    --network=: Name of the network
+    --read-template: Read the function's template
+    --readonly: Force the root container filesystem to be read only
+    --replace: Remove and re-create existing function(s)
+    --secret=*: Give the function access to a secure secret
+    --tag=: Override latest tag on function Docker image, accepts 'latest', 'sha', 'branch', or 'describe'
+    --tls-no-verify: Disable TLS validation
+    --update: Perform rolling update on existing function(s)
+    -e, --env=*: Set one or more environment variables (ENVVAR=VALUE)
+    -g, --gateway=: Gateway URL starting with http(s)://
+    -k, --token=: Pass a JWT token to use instead of basic auth
+    -l, --label=*: Set one or more label (LABEL=VALUE)
+    -n, --namespace=: Namespace of the function

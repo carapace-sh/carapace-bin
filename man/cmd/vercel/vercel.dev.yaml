@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dev
+description: Start a local development server
+flags:
+    -l, --listen=: Specify a URI endpoint on which to listen
+
+documentation:
+  command: >-
+    Start a local development server that emulates the Vercel runtime, including serverless functions and edge middleware.

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lua
+description: Lua interpreter
+flags:
+    -E: ignore environment variables
+    -W: turn warnings on
+    -e=: execute string 'stat'
+    -i: enter interactive mode after executing 'script'
+    -l=: require library 'name' into global 'name'
+    -v: show version information

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: add a chart repository
+flags:
+    --allow-deprecated-repos: by default, this command will not allow adding official repos that have been permanently deleted. This disables that behavior
+    --ca-file=: verify certificates of HTTPS-enabled servers using this CA bundle
+    --cert-file=: identify HTTPS client using this SSL certificate file
+    --force-update: replace (overwrite) the repo if it already exists
+    --insecure-skip-tls-verify: skip tls certificate checks for the repository
+    --key-file=: identify HTTPS client using this SSL key file
+    --no-update: Ignored. Formerly, it would disabled forced updates. It is deprecated by force-update.
+    --pass-credentials: pass credentials to all domains
+    --password=: chart repository password
+    --username=: chart repository username

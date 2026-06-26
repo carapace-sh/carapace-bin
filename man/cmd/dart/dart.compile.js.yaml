@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: js
+description: Compile Dart to JavaScript
+flags:
+    --verbosity=: Sets the verbosity level of the compilation.
+    -D, --define=: Define an environment declaration.
+    -h, --help: Print this usage information.
+    -m, --minified: Generate minified output.
+    -o, --output=: Write the output to <file name>.
+
+documentation:
+  command: >-
+    Compile a Dart program to JavaScript for running in web browsers or Node.js.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bin
+description: Display npm bin folder
+flags:
+    -g, --global: operate in global mode

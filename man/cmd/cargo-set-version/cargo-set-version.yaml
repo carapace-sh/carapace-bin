@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Change a package's version in the local Cargo.toml manifest file.
+    Supports bumping versions and setting the metadata field.
+description: Change a package's version in the local manifest file
+flags:
+    --all: '[deprecated in favor of `--workspace`]'
+    --bump=: Increment manifest version
+    --dry-run: Print changes to be made without making them
+    --exclude=: Crates to exclude and not modify
+    --manifest-path=: Path to the manifest to upgrade
+    --workspace: Modify all packages in the workspace
+    -V, --version: Prints version information
+    -h, --help: Prints help information
+    -m, --metadata=: Specify the version metadata field (e.g. a wrapped libraries version)
+    -p, --package=: Package id of the crate to change the version of

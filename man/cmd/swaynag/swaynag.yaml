@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: swaynag
+description: Show a warning or error message with buttons
+flags:
+    --background=: Background color.
+    --border-bottom-size=: Thickness of the bar border.
+    --border-bottom=: Bottom border color.
+    --border=: Border color.
+    --button-background=: Button background color.
+    --button-border-size=: Thickness for the button border.
+    --button-dismiss-gap=: Size of the gap for dismiss button.
+    --button-gap=: Size of the gap between buttons
+    --button-margin-right=: Margin from dismiss button to edge.
+    --button-padding=: Padding for the button text.
+    --button-text=: Button text color.
+    --details-background=: Details background color.
+    --details-border-size=: Thickness for the details border.
+    --message-padding=: Padding for the message.
+    --text=: Text color.
+    -B, --button-no-terminal=: Like --button, but doesnot run the action in a terminal.
+    -L, --detailed-button=: Set the text of the detail button.
+    -Z, --button-dismiss-no-terminal=: Like --button-dismiss, but does not run the action in a terminal.
+    -b, --button=: Create a button with text that executes action in a terminal when pressed.
+    -c, --config=: Path to config file.
+    -d, --debug: Enable debugging.
+    -e, --edge=: Set the edge to use.
+    -f, --font=: Set the font to use.
+    -h, --help: Show help message and quit.
+    -l, --detailed-message: Read a detailed message from stdin.
+    -m, --message=: Set the message text.
+    -o, --output=: Set the output to use.
+    -s, --dismiss-button=: Set the dismiss button text.
+    -t, --type=: Se, t the message type.
+    -v, --version: Show the version number and quit.
+    -y, --layer=: Set the layer to use.
+    -z, --button-dismiss=: Create a button with text that dismisses swaynag, and executes action in a terminal when pressed.

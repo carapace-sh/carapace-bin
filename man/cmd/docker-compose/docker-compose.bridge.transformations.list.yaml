@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List available transformations
+flags:
+    --format=: 'Format the output. Values: [table | json]'
+    -q, --quiet: Only display transformer names

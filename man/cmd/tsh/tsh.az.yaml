@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: az
+description: Access Azure API.
+flags:
+    --app=: Optional name of the Azure application to use if logged into multiple.

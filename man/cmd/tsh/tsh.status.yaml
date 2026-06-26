@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: Display the list of proxy servers and retrieved certificates.
+flags:
+    --no-verbose&: Show extra status information after successful login
+    -f, --format=: Format output (text, json, yaml)
+    -v, --verbose: Show extra status information after successful login
+
+documentation:
+  command: >-
+    Display active proxy servers and the status of retrieved certificates.

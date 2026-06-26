@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-remove [OPTIONS] [PKGNAME...]
+description: XBPS utility to remove packages
+flags:
+    -C, --config=: Path to confdir (xbps.d)
+    -F, --force-revdeps: Force package removal even with revdeps or unresolved shared libraries
+    -O, --clean-cache: Remove outdated packages from the cache. If specified twice, also remove uninstalled packages
+    -R, --recursive: Recursively remove dependencies
+    -V, --version: Show XBPS version
+    -c, --cachedir=: Path to cachedir
+    -d, --debug: Debug mode shown to stderr
+    -f, --force: Force package re-installation. If specified twice, all files will be overwritten.
+    -h, --help: Show usage
+    -n, --dry-run: Dry-run mode
+    -o, --remove-orphans: Remove package orphans
+    -r, --rootdir=: Full path to rootdir
+    -v, --verbose: Verbose messages
+    -y, --yes: Assume yes to all questions

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: field-list [<number>]
+description: List the fields in a project
+flags:
+    --format=: 'Output format: {json}'
+    --owner=: Login of the owner. Use "@me" for the current user.
+    -L, --limit=: Maximum number of fields to fetch
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

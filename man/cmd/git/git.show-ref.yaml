@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show-ref
+description: List references in a local repository
+group: low-level interrogator
+flags:
+  --abbrev=: use <n> digits to display SHA-1s
+  --exclude-existing=: show refs from stdin that aren't in local repository
+  --head: show the HEAD reference, even if it would be filtered out
+  --heads: only show heads (can be combined with tags)
+  --tags: only show tags (can be combined with heads)
+  --verify: stricter reference checking, requires exact ref path
+  -d, --dereference: dereference tags into object IDs
+  -q, --quiet: do not print results to stdout (useful with --verify)
+  -s, --hash=: only show SHA1 hash using <n> digits
+documentation:
+  command: |-
+    Displays references available in a local repository along with the associated
+    commit IDs. Results can be filtered using a pattern and tags can be
+    dereferenced into object IDs. Additionally, it can be used to test whether a
+    particular ref exists.
+
+    By default, shows the tags, heads, and remote refs.
+
+    The `--exclude-existing` form is a filter that does the inverse. It reads
+    refs from stdin, one ref per line, and shows those that don't exist in
+    the local repository.
+
+    The `--exists` form can be used to check for the existence of a single
+    references. This form does not verify whether the reference resolves to an
+    actual object.
+
+    Use of this utility is encouraged in favor of directly accessing files under
+    the `.git` directory.

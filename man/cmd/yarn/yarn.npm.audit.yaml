@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: audit
+description: Perform a vulnerability audit against the installed packages
+flags:
+    --environment=: Which environments to cover
+    --exclude=: Array of glob patterns of packages to exclude from audit
+    --ignore=: Array of glob patterns of advisory ID's to ignore in the audit report
+    --json: Format the output as an NDJSON stream
+    --severity=: Minimal severity requested for packages to be displayed
+    -A, --all: Audit dependencies from all workspaces
+    -R, --recursive: Audit transitive dependencies as well

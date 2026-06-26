@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vercel
+description: Develop. Preview. Ship.
+flags:
+    --prod: Create a production deployment
+    --regions=: Set default regions to enable the deployment on
+    --with-cache: Retain build cache when using "--force"
+    -A, --local-config=: Path to the local `vercel.json` file
+    -C, --no-clipboard: Do not attempt to copy URL to clipboard
+    -Q, --global-config=: Path to the global `.vercel` directory
+    -S, --scope=: Set a custom scope
+    -V, --platform-version: Set the platform version to deploy to
+    -b, --build-env=*: Similar to `--env` but for build time only.
+    -c, --confirm: Confirm default options and skip questions
+    -d, --debug: Debug mode
+    -e, --env=*: 'Include an env var during run time (e.g.: `-e KEY=value`). Can appear many times.'
+    -f, --force: Force a new deployment even if nothing has changed
+    -m, --meta=*: 'Add metadata for the deployment (e.g.: `-m KEY=value`). Can appear many times.'
+    -p, --public: Deployment is public (`/_src` is exposed)
+    -t, --token=: Login token
+    -v, --version: Output the version number
+persistentflags:
+    -h, --help: Output usage information
+
+documentation:
+  command: >-
+    Vercel CLI for deploying and managing web applications. Develop locally, preview deployments, and ship to production from the command line.

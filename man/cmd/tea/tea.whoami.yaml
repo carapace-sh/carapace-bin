@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: whoami
+description: Show current logged in user
+group: MISCELLANEOUS

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check-update
+aliases:
+    - update
+description: Check for latest glab releases.

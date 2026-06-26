@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ln
+description: Symlink all of <formula>'s installed files into Homebrew's prefix
+flags:
+    --HEAD: Link the HEAD version of the formula if it is installed.
+    --debug: Display any debugging information.
+    --dry-run: List files which would be linked or deleted by `brew link --overwrite` without actually linking or deleting any files.
+    --force: Allow keg-only formulae to be linked.
+    --help: Show this message.
+    --overwrite: Delete files that already exist in the prefix while linking.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

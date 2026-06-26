@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: link
+description: Connect the local project to another one
+group: general
+flags:
+    -A, --all: Link all workspaces belonging to the target project to the current one
+    -p, --private: Also link private workspaces belonging to the target project to the current one
+    -r, --relative: Link workspaces using relative paths instead of absolute paths

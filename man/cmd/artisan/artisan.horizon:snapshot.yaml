@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: horizon:snapshot
+description: Store a snapshot of the queue metrics

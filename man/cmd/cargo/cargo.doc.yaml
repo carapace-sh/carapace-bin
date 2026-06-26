@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: doc
+description: Build a package's documentation
+group: build
+flags:
+    --all: Alias for --workspace (deprecated)
+    --all-features: Activate all available features
+    --bin=*: Document only the specified binary
+    --bins: Document all binaries
+    --document-private-items: Document private items
+    --example=*: Document only the specified example
+    --examples: Document all examples
+    --exclude=*: Exclude packages from the build
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --keep-going: Do not abort the build as soon as there is an error
+    --lib: Document only this package's library
+    --manifest-path=: Path to Cargo.toml
+    --message-format=*: Error format
+    --no-default-features: Do not activate the `default` feature
+    --no-deps: Don't build documentation for dependencies
+    --open: Opens the docs in a browser after the operation
+    --profile=: Build artifacts with the specified profile
+    --target-dir=: Directory for all generated artifacts
+    --target=*: Build for the target triple
+    --timings: Output a build timing report at the end of the build
+    --unit-graph: Output build graph in JSON (unstable)
+    --workspace: Document all packages in the workspace
+    -F, --features=*: Space or comma separated list of features to activate
+    -h, --help: Print help
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs.'
+    -p, --package=*: Package to document
+    -r, --release: Build artifacts in release mode, with optimizations
+documentation:
+  command: |
+    Build a package's documentation and output it to `target/doc`. By default,
+    only public items are documented. Use `--document-private-items` to include
+    private items in the documentation. The `--open` flag opens the docs in a
+    browser after building. Use `--no-deps` to skip building documentation for
+    dependencies, which speeds up the process for large workspaces.

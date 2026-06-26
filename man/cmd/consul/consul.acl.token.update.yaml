@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Update an ACL token
+flags:
+    --ca-file=: Path to a CA file to use for TLS when communicating with Consul.
+    --ca-path=: Path to a directory of CA certificates to use for TLS when communicating with Consul.
+    --client-cert=: Path to a client cert file to use for TLS when 'verify_incoming' is enabled.
+    --client-key=: Path to a client key file to use for TLS when 'verify_incoming' is enabled.
+    --datacenter=: Name of the datacenter to query.
+    --description=: A description of the token
+    --format=: Output format.
+    --http-addr=: The `address` and port of the Consul HTTP agent.
+    --id=: The Accessor ID of the token to update.
+    --merge-node-identities: Merge the new node identities with the existing node identities
+    --merge-policies: Merge the new policies with the existing policies
+    --merge-roles: Merge the new roles with the existing roles
+    --merge-service-identities: Merge the new service identities with the existing service identities
+    --meta: Indicates that token metadata such as the content hash and raft indices should be shown for each entry
+    --namespace=: Specifies the namespace to query.
+    --node-identity=: Name of a node identity to use for this token.
+    --policy-id=: ID of a policy to use for this token.
+    --policy-name=: Name of a policy to use for this token.
+    --role-id=: ID of a role to use for this token.
+    --role-name=: Name of a role to use for this token.
+    --service-identity=: Name of a service identity to use for this token.
+    --stale: Permit any Consul server (non-leader) to respond to this request.
+    --tls-server-name=: The server name to use as the SNI host when connecting via TLS.
+    --token-file=: File containing the ACL token to use in the request.
+    --token=: ACL token to use in the request.
+    --upgrade-legacy: Add new polices to a legacy token replacing all existing rules.

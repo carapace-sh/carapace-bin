@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check
+description: Check version constraints
+flags:
+    -c, --constraint=: the version constraint to check against
+    -v, --version=: the semver version string to check

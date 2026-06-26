@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pkcs12
+description: PKCS#12 Data Management
+group: standard
+flags:
+    -CAfile=: PEM-format file of CA's
+    -CApath=: PEM-format directory of CA's
+    -CAstore=: URI to store of CA's
+    -CSP=: Microsoft CSP name
+    -LMK: Add local machine keyset attribute to private key
+    -cacerts: Only output CA certificates
+    -caname=: Use name as CA friendly name (can be repeated)
+    -certfile=: Extra certificates for PKCS12 output
+    -certpbe=: Certificate PBE algorithm (default PBES2 with PBKDF2 and AES-256 CBC)
+    -chain: Build and add certificate chain for EE cert, which is the 1st cert from -in matching the private key (if given)
+    -clcerts: Only output client certificates
+    -descert: Encrypt output with 3DES (default PBES2 with PBKDF2 and AES-256 CBC)
+    -export: Create PKCS12 file
+    -in=: Input file
+    -info: Print info about PKCS#12 structure
+    -inkey=: Private key, else read from -in input file
+    -iter=: Specify the iteration count for encryption and MAC
+    -jdktrust=: Mark certificate in PKCS#12 store as trusted for JDK compatibility
+    -keyex: Set key type to MS key exchange
+    -keypbe=: Private key PBE algorithm (default AES-256 CBC)
+    -keysig: Set key type to MS key signature
+    -legacy: 'Use legacy encryption: 3DES_CBC for keys, RC2_CBC for certs'
+    -macalg=: Digest algorithm to use in MAC (default SHA256)
+    -maciter: Unused, kept for backwards compatibility
+    -macsaltlen=: Specify the salt len for MAC
+    -name=: Use name as friendly name
+    -no-CAfile: Do not load the default certificates file
+    -no-CApath: Do not load certificates from the default certificates directory
+    -no-CAstore: Do not load certificates from the default certificates store
+    -nocerts: Don't output certificates
+    -nodes: Don't encrypt private keys; deprecated
+    -noenc: Don't encrypt private keys
+    -noiter: Don't use encryption iteration
+    -nokeys: Don't output private keys
+    -nomac: Don't generate MAC
+    -nomaciter: Don't use MAC iteration)
+    -nomacver: Don't verify integrity MAC
+    -noout: Don't output anything, just verify PKCS#12 input
+    -out=: Output file
+    -passcerts=: Certificate file pass phrase source
+    -passin=: Input file pass phrase source
+    -passout=: Output file pass phrase source
+    -password=: Set PKCS#12 import/export password source
+    -pbmac1_pbkdf2: Use PBMAC1 with PBKDF2 instead of MAC
+    -pbmac1_pbkdf2_md=: Digest to use for PBMAC1 KDF (default SHA256)
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -rand=: Load the given file(s) into the random number generator
+    -twopass: Separate MAC, encryption passwords
+    -untrusted=: Untrusted certificates for chain building
+    -writerand=: Write random data to the specified file

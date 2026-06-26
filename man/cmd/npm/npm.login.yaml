@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Log out of the registry
+flags:
+    --scope=: associate with scope

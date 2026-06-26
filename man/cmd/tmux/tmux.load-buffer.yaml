@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: load-buffer
+flags:
+    -b=: buffer-name
+    -t=: target-client

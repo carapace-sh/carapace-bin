@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: default-host
+description: The triple used to identify toolchains when not specified
+flags:
+    -h, --help: Print help

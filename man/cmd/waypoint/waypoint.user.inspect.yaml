@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect
+description: Show details about a single user
+flags:
+    --plain: Plain output
+    --username=: The user to lookup.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

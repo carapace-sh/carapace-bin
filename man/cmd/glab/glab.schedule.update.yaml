@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update <id> [flags]
+description: Update a pipeline schedule.
+flags:
+    --active: Whether or not the schedule is active.
+    --create-variable=*: Pass new variables to schedule in format <key>:<value>.
+    --cron=: Cron interval pattern.
+    --cronTimeZone=: Cron timezone.
+    --delete-variable=*: Pass variables you want to delete from schedule in format <key>.
+    --description=: Description of the schedule.
+    --ref=: Target branch or tag.
+    --update-variable=*: Pass updated variables to schedule in format <key>:<value>.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: copy-mode
+flags:
+    -s=: src-pane
+    -t=: target-pane

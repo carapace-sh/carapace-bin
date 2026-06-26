@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: version
+description: Prints the version of the package manager
+flags:
+    -h, --help: help for version

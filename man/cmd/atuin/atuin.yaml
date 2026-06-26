@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: atuin
+description: Magical shell history
+flags:
+    -V, --version: Print version
+    -h, --help: Print help

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Install or remove packages to satisfy dependency strings in the
+    format used by Debian control files and Build-Depends fields.
+    Supports architecture restrictions and conflict resolution with
+    the `Conflicts:` prefix syntax.
+description: satisfy causes apt-get to satisfy the given dependency strings

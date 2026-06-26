@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: refresh
+description: Refresh stored authentication credentials
+flags:
+    --insecure-storage: Save authentication credentials in plain text instead of credential store
+    --reset-scopes: Reset authentication scopes to the default minimum set of scopes
+    --secure-storage&: Save authentication credentials in secure credential store
+    -c, --clipboard: Copy one-time OAuth device code to clipboard
+    -h, --hostname=: The GitHub host to use for authentication
+    -r, --remove-scopes=*: Authentication scopes to remove from gh
+    -s, --scopes=*: Additional authentication scopes for gh to have

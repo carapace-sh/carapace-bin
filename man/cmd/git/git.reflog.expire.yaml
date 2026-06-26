@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: expire
+description: Prune older reflog entries
+flags:
+  --all: Process the reflogs of all references
+  --expire-unreachable=: Prune entries older than <time> that are not reachable from the current tip of the branch
+  --expire=: Prune entries older than the specified time
+  --rewrite: Adjust a reflogs "old" SHA-1 to be equal to the "new" SHA-1 field of the entry that now precedes it
+  --single-worktree: Limit the processing to reflogs from the current working tree only
+  --stale-fix: Prune any reflog entries that point to "broken commits"
+  --updateref: Update the reference to the value of the top reflog entry
+  --verbose: Print extra information on screen.
+  -n, --dry-run: Do not actually prune any entries
+documentation:
+  flag:
+    all: Drop the reflogs of all references from all worktrees.
+    dry-run: |-
+      Do not actually prune any entries; just show what would have
+      been pruned.
+    expire: |-
+      Prune entries older than the specified time. If this option is
+      not specified, the expiration time is taken from the
+      configuration setting `gc.reflogExpire`, which in turn
+      defaults to 90 days. `--expire=all` prunes entries regardless
+      of their age; `--expire=never` turns off pruning of reachable
+      entries (but see `--expire-unreachable`).
+    expire-unreachable: |-
+      Prune entries older than `<time>` that are not reachable from
+      the current tip of the branch. If this option is not
+      specified, the expiration time is taken from the configuration
+      setting `gc.reflogExpireUnreachable`, which in turn defaults
+      to 30 days. `--expire-unreachable=all prunes unreachable entries regardless of their age; `--expire-unreachable=never
+      turns off early pruning of unreachable entries (but see
+      `--expire`).
+    rewrite: |-
+      If a reflog entry's predecessor is pruned, adjust its "old"
+      SHA-1 to be equal to the "new" SHA-1 field of the entry that
+      now precedes it.
+    single-worktree: |-
+      By default when `--all` is specified, reflogs from all working
+      trees are dropped. This option limits the processing to reflogs
+      from the current working tree only.
+
+      Options for `expire`
+    stale-fix: |-
+      Prune any reflog entries that point to "broken commits". A
+      broken commit is a commit that is not reachable from any of
+      the reference tips and that refers, directly or indirectly, to
+      a missing commit, tree, or blob object.
+
+      This computation involves traversing all the reachable objects, i.e. it
+      has the same cost as `git prune`.  It is primarily intended to fix
+      corruption caused by garbage collecting using older versions of Git,
+      which didn't protect objects referred to by reflogs.
+    updateref: |-
+      Update the reference to the value of the top reflog entry (i.e.
+      <ref>@\{0\}) if the previous top entry was pruned.  (This
+      option is ignored for symbolic references.)
+    verbose: Print extra information on screen.

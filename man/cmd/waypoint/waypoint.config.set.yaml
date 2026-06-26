@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set
+description: Set a config variable
+flags:
+    --label-scope=: Only set if the deployment or operation has a matching label set.
+    --plain: Plain output
+    --runner: Expose this configuration on runners.
+    --scope=: The scope for this configuration.
+    --workspace-scope=: Specify that the configuration is only available within a specific workspace.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

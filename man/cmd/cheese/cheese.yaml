@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Take pictures and videos from a webcam. GNOME application with
+    support for various camera devices, fullscreen mode, and effects.
+description: tool to take pictures and videos from your webcam
+flags:
+    --display=: X display to use
+    --help-all: Show all help options
+    --help-gapplication: Show GApplication options
+    --help-gtk: Show GTK+ Options
+    -d, --device=: Device to use as a camera
+    -f, --fullscreen: Start in fullscreen mode
+    -h, --help: Show help options
+    -v, --version: Output version information and exit
+    -w, --wide: Start in wide mode

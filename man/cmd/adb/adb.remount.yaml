@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remount
+description: remount partitions read-write
+flags:
+    -R: automatically reboot the device if needed

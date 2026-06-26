@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show
+description: Give some inforemation about the remote
+flags:
+  -n: do not query remotes
+documentation:
+  command: |-
+    Give some information about the remote _<name>_.
+
+    With `-n` option, the remote heads are not queried first with
+    `git ls-remote <name>`; cached information is used instead.

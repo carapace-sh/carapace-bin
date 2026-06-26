@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+description: Inspect configuration values
+flags:
+    -h, --help: Print help

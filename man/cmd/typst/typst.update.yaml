@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Self update the Typst CLI
+flags:
+    --backup-path=: Custom path to the backup file created on update and used by `--revert`, defaults to system-dependent location
+    --force: Forces a downgrade to an older version (required for downgrading)
+    --revert: Reverts to the version from before the last update (only possible if `typst update` has previously ran)

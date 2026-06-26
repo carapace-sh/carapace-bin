@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [advisory-spec]...
+description: list advisories
+flags:
+    --advisory-severities=: include advisories with specified severity
+    --all: show advisories containing any version of installed packages
+    --available: show advisories containing newer versions of installed packages
+    --bugfix: include bugfix advisories
+    --bzs=: include advisories that fix Bugzilla ID
+    --contains-pkgs=: show only advisories containing packages with specified names
+    --cves=: include advisories that fix CVE ID
+    --enhancement: include enhancement advisories
+    --installed: show advisories containing equal and older versions of installed packages
+    --json: request JSON output format
+    --newpackage: include newpackage advisories
+    --security: include security advisories
+    --updates: show advisories containing newer versions of installed packages
+    --with-bz: show only advisories referencing a Bugzilla ticket
+    --with-cve: show only advisories referencing a CVE ticket

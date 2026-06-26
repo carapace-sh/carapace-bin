@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: checkout [OPTIONS] PR_ID
+description: Check out a pull request in git
+flags:
+    --help: Show this message and exit.

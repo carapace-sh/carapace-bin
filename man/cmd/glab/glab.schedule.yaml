@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: schedule <command> [flags]
+aliases:
+    - sched
+    - skd
+description: Work with GitLab CI/CD schedules.
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.

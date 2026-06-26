@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: identify
+description: describe an image or image sequence
+flags:
+    -debug=*: display copious debugging information
+    -define=*: Coder/decoder specific options
+    -density=*: horizontal and vertical density of the image
+    -depth=*: image depth
+    -format=*: output formatted image characteristics
+    -help: print program options
+    -interlace=*: None, Line, Plane, or Partition
+    -log=*: format of debugging information
+    -monitor*: show progress indication
+    -ping*: efficiently determine image attributes
+    -sampling-factor=*: horizontal and vertical sampling factors
+    -size=*: width and height of image
+    -verbose: print detailed information about the image
+    -version: print version information
+    -virtual-pixel=*: Constant, Edge, Mirror, or Tile

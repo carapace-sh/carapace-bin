@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info [group-spec]...
+description: print detailed information about groups
+flags:
+    --available: show only available groups
+    --contains-pkgs=: show only groups containing packages
+    --hidden: show also hidden groups
+    --installed: show only installed groups

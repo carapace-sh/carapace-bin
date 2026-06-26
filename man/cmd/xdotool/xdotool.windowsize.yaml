@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: windowsize
+description: Set the window size of the given window
+flags:
+    --sync: After sending the window size request, wait until the window is actually resized
+    --usehints: Use window sizing hints (when available) to set width and height

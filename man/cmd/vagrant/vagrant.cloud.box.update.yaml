@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Updates a box entry on Vagrant Cloud
+flags:
+    --no-private: Makes box private
+    -d, --description=: Full description of the box
+    -p, --private: Makes box private
+    -s, --short-description=: Short description of the box

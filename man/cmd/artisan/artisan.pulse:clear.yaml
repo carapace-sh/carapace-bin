@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pulse:clear [--type [TYPE]] [--force]
+aliases:
+    - pulse:purge
+description: Delete all Pulse data from storage
+flags:
+    --force: Force the operation to run when in production
+    --type=: Only clear the specified type(s)

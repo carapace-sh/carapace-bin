@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: db:wipe [--database [DATABASE]] [--drop-views] [--drop-types] [--force]
+description: Drop all tables, views, and types
+flags:
+    --database=: The database connection to use
+    --drop-types: Drop all tables and types (Postgres only)
+    --drop-views: Drop all tables and views
+    --force: Force the operation to run when in production

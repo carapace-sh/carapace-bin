@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Update dependencies as recorded in the local Cargo.lock file.
+    Supports workspace upgrades, dry-run mode, and skipping
+    semver-compatible updates.
+description: Update dependencies as recorded in the local lock file
+flags:
+    --all: '[deprecated in favor of `--workspace`]'
+    --allow-prerelease: Include prerelease versions when fetching from crates.io (e.g. 0.6.0-alpha')
+    --dry-run: Print changes to be made without making them
+    --exclude=: Crates to exclude and not upgrade
+    --manifest-path=: Path to the manifest to upgrade
+    --offline: Run without accessing the network
+    --skip-compatible: Only update a dependency if the new version is semver incompatible
+    --to-lockfile: Upgrade all packages to the version in the lockfile
+    --workspace: Upgrade all packages in the workspace
+    -V, --version: Prints version information
+    -h, --help: Prints help information
+    -p, --package=: Package id of the crate to add this dependency to

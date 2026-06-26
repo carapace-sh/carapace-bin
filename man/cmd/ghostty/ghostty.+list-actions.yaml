@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +list-actions
+description: list all the available keybind actions for Ghostty
+flags:
+    --docs: print out the documentation for each action
+    --help: show help

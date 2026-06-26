@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: shellcompletion
+aliases:
+    - autocomplete
+description: Install shell completion for tea
+group: SETUP
+flags:
+    --install: Persist in shell config instead of printing commands

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: all
+description: download all information for a named release
+flags:
+    --revision=: get the named release with revision
+    --template=: 'go template for formatting the output, eg: {{.Release.Name}}'

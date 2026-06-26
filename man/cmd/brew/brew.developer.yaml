@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: developer
+description: Control Homebrew's developer mode
+group: main
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

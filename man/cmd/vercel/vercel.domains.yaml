@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: domains
+description: Manages your domain names
+
+documentation:
+  command: >-
+    Manage custom domain names for your Vercel projects.

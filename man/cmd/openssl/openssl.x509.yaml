@@ -1,0 +1,76 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: x509
+description: X.509 Certificate Data Management
+group: standard
+flags:
+    -CA=: Use the given CA certificate, conflicts with -key
+    -CAcreateserial: Create CA serial number file if it does not exist
+    -CAform=: CA cert format (PEM/DER/P12); has no effect
+    -CAkey=: The corresponding CA key; default is -CA arg
+    -CAkeyform=: CA key format (DER/PEM)
+    -CAserial=: File that keeps track of CA-generated serial number
+    -addreject=: Reject certificate for a given purpose
+    -addtrust=: Trust certificate for a given purpose
+    -alias: Print certificate alias
+    -badsig: Corrupt last byte of certificate signature (for test)
+    -certopt=*: Various certificate text printing options
+    -checkemail=: Check certificate matches email
+    -checkend=: Check whether cert expires in the next arg seconds Exit 1 (failure) if so, 0 if not
+    -checkhost=: Check certificate matches host
+    -checkip=: Check certificate matches ipaddr
+    -clrext: Do not take over any extensions from the source certificate or request
+    -clrreject: Clears all the prohibited or rejected uses of the certificate
+    -clrtrust: Clear all trusted purposes
+    -copy_extensions=: copy extensions when converting from CSR to x509 or vice versa
+    -dateopt=*: Datetime format used for printing. (rfc_822/iso_8601). Default is rfc_822.
+    -dates: Print both notBefore and notAfter fields
+    -days=: Number of days until newly generated certificate expires - default 30
+    -email: Print email address(es)
+    -enddate: Print the notAfter field
+    -ext=: Restrict which X.509 extensions to print and/or copy
+    -extensions=: 'Section of extfile to use - default: unnamed section'
+    -extfile=: Config file with X509V3 extensions to add
+    -fingerprint: Print the certificate fingerprint
+    -force_pubkey=: Key to be placed in new certificate or certificate request
+    -hash: Synonym for -subject_hash (for backward compat)
+    -in=: Certificate input, or CSR input file with -req (default stdin)
+    -inform=: CSR input format to use (PEM or DER; by default try PEM first)
+    -issuer: Print issuer DN
+    -issuer_hash: Print issuer hash value
+    -issuer_hash_old: Print old-style (MD5) issuer hash value
+    -key=: Key for signing, and to include unless using -force_pubkey
+    -keyform=: Key input format (DER/PEM)
+    -modulus: Print the RSA key modulus
+    -multi: Process multiple certificates
+    -nameopt=*: Certificate subject/issuer name printing options
+    -new: Generate a certificate from scratch
+    -next_serial: Increment current certificate serial number
+    -nocert: No cert output (except for requested printing)
+    -noout: No output (except for requested printing)
+    -not_after=: '[CC]YYMMDDHHMMSSZ value for notAfter certificate field, overrides -days'
+    -not_before=: '[CC]YYMMDDHHMMSSZ value for notBefore certificate field'
+    -ocsp_uri: Print OCSP Responder URL(s)
+    -ocspid: Print OCSP hash values for the subject name and public key
+    -out=: Output file - default stdout
+    -outform=: Output format (DER or PEM) - default PEM
+    -passin=: Private key and cert file pass-phrase source
+    -preserve_dates: Preserve existing validity dates
+    -pubkey: Print the public key in PEM format
+    -purpose: Print out certificate purposes
+    -req: Input is a CSR file (rather than a certificate)
+    -serial: Print serial number value
+    -set_issuer=: Set or override certificate issuer
+    -set_serial=: Serial number to use, overrides -CAserial
+    -set_subject=: Set or override certificate subject (and issuer)
+    -setalias=: Set certificate alias (nickname)
+    -signkey=: Same as -key
+    -sigopt=*: Signature parameter, in n:v form
+    -startdate: Print the notBefore field
+    -subj=: Alias for -set_subject
+    -subject: Print subject DN
+    -subject_hash: Print subject hash value
+    -subject_hash_old: Print old-style (MD5) subject hash value
+    -text: Print the certificate in text form
+    -trustout: Mark certificate PEM output as trusted
+    -vfyopt=*: CSR verification parameter in n:v form
+    -x509toreq: Output a certification request (rather than a certificate)

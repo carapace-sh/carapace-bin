@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scriptlive
+description: re-run session typescripts, using timing information
+flags:
+    -B, --log-io=: script stdin and stdout log file
+    -E, --echo=: echo input in session (auto, always or never)
+    -I, --log-in=: script stdin log file
+    -T, --log-timing=: alias to -t
+    -V, --version: display version
+    -c, --command=: run command rather than interactive shell
+    -d, --divisor=: speed up or slow down execution with time divisor
+    -h, --help: display this help
+    -m, --maxdelay=: wait at most this many seconds between updates
+    -t, --timing=: script timing log file

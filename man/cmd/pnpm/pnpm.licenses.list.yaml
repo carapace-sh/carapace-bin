@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: Check the licenses of the installed packages
+flags:
+    --json: Show information in JSON format
+    --long: Show more details (such as a link to the repo) are
+    --no-optional: Don't check "optionalDependencies"
+    -D, --dev: Check only "devDependencies"
+    -P, --prod: Check only "dependencies" and "optionalDependencies"

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+description: Edit a codespace
+flags:
+    --displayName=&: Display name
+    -d, --display-name=: Set the display name
+    -m, --machine=: Set hardware specifications for the VM
+persistentflags:
+    --repo-owner=: Filter codespace selection by repository owner (username or org)
+    -R, --repo=: Filter codespace selection by repository name (user/repo)
+    -c, --codespace=: Name of the codespace

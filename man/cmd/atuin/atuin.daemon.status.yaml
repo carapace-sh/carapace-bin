@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: Show the daemon's current status
+flags:
+    -h, --help: Print help

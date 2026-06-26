@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: start [OPTIONS] [PROG]...
+description: Start the GUI, optionally running an alternative program
+flags:
+    --always-new-process: Do not try to ask an existing wezterm GUI instance to start the command
+    --attach: Attach to already running pane of domain
+    --class=: Override the default windowing system class
+    --cwd=: Specify the current working directory for the initially spawned program
+    --domain=: Name of the multiplexer domain section from the configuration to which you'd like to connect
+    --no-auto-connect: Do not connect to domains marked as connect_automatically
+    --position=: Override the position for the initial window launched by this process
+    --workspace=: Override the default workspace with the provided name
+    -h, --help: Print help (see more with '--help')

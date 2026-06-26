@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-timers
+description: List timer units currently in memory, ordered by next elapse
+group: unit
+documentation:
+  command: |
+    List timer units currently in memory, ordered by the time they elapse
+    next. Shows NEXT (next time the timer will run), LEFT (how long till
+    next run), LAST (last time the timer ran), PASSED (time since last run),
+    UNIT (name of the timer), and ACTIVATES (name of the service the timer
+    activates).

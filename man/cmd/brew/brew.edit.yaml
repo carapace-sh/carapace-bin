@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+description: Open a <formula>, <cask> or <tap> in the editor set by `EDITOR` or `HOMEBREW_EDITOR`, or open the Homebrew repository for editing if no argument is provided
+group: developer
+flags:
+    --cask: Treat all named arguments as casks.
+    --debug: Display any debugging information.
+    --formula: Treat all named arguments as formulae.
+    --help: Show this message.
+    --print-path: Print the file path to be edited, without opening an editor.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

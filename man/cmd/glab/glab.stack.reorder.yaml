@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reorder
+description: Reorder a stack of merge requests. (EXPERIMENTAL)

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: enable ADDON_NAME
+description: 'Enables the addon w/ADDON_NAME within minikube. For a list of available addons use: minikube addons list '
+flags:
+    --force: If true, will perform potentially dangerous operations. Use with discretion.
+    --images=: Images used by this addon. Separated by commas.
+    --refresh: If true, pods might get deleted and restarted on addon enable
+    --registries=: Registries used by this addon. Separated by commas.

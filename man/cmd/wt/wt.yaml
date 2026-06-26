@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wt
+description: Git worktree management for parallel AI agent workflows
+flags:
+    -V, --version: Print version
+    -h, --help: Print help (see more with '--help')
+persistentflags:
+    --config=: User config file path
+    -C=: Working directory for this command
+    -v, --verbose*: 'Verbose output (-v: hooks, templates; -vv: debug report)'

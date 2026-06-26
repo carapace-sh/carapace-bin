@@ -1,0 +1,66 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: composite
+description: composite images together
+flags:
+    -affine=*: affine transform matrix
+    -authenticate=*: decrypt image with this password
+    -blue-primary=*: chomaticity blue primary point
+    -colors*: preferred number of colors in the image
+    -colorspace=*: alternate image colorspace
+    -comment=*: annotate image with comment
+    -compose=*: composite operator
+    -compress=*: image compression type
+    -debug=*: display copious debugging information
+    -define=*: Coder/decoder specific options
+    -density=*: horizontal and vertical density of the image
+    -depth=*: image depth
+    -displace=*: shift image pixels defined by a displacement map
+    -display=*: get image or font from this X server
+    -dispose=*: Undefined, None, Background, Previous
+    -dissolve=*: dissolve the two images a given percent
+    -dither*: apply Floyd/Steinberg error diffusion to image
+    -encoding=*: text encoding type
+    -endian=*: multibyte word order (LSB, MSB, or Native)
+    -filter=*: use this filter when resizing an image
+    -flag*: affine transform image
+    -font=*: render text with this font
+    -geometry=*: location of the composite image
+    -gravity=*: which direction to gravitate towards
+    -green-primary=*: chomaticity green primary point
+    -help: print program options
+    -interlace=*: None, Line, Plane, or Partition
+    -label=*: ssign a label to an image
+    -limit=*: Disk, File, Map, Memory, Pixels, Width, Height, Threads, Read, or Write resource limit
+    -log=*: format of debugging information
+    -matte*: store matte channel if the image has one
+    -monitor*: show progress indication
+    -monochrome*: transform image to black and white
+    -negate*: 'replace every pixel with its complementary color '
+    -page=*: size and location of an image canvas
+    -profile=*: add ICM or IPTC information profile to image
+    -quality=*: JPEG/MIFF/PNG compression level
+    -recolor=*: apply a color translation matrix to image channels
+    -red-primary=*: chomaticity red primary point
+    -repage=*: adjust current page offsets by geometry
+    -resize=*: resize the image
+    -rotate=*: apply Paeth rotation to the image
+    -sampling-factor=*: horizontal and vertical sampling factors
+    -scene=*: image scene number
+    -set=*: set image attribute
+    -sharpen=*: sharpen the image
+    -size=*: width and height of image
+    -stegano=*: hide watermark within an image
+    -stereo*: combine two image to create a stereo anaglyph
+    -strip*: strip all profiles and text attributes from image
+    -thumbnail=*: resize the image (optimized for thumbnails)
+    -tile*: repeat composite operation across image
+    -treedepth=*: color tree depth
+    -type=*: image type
+    -units=*: PixelsPerInch, PixelsPerCentimeter, or Undefined
+    -unsharp=*: sharpen the image
+    -verbose: print detailed information about the image
+    -version: print version information
+    -virtual-pixel=*: Constant, Edge, Mirror, or Tile
+    -watermark=*: percent brightness and saturation of a watermark
+    -white-point=*: chomaticity white point
+    -write=*: write image to this file

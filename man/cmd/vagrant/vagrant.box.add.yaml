@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: add a box
+flags:
+    --box-version=: Constrain version of the added box
+    --cacert=: CA certificate for SSL download
+    --capath=: CA certificate directory for SSL download
+    --cert=: A client SSL cert, if needed
+    --checksum-type=: Checksum type (md5, sha1, sha256)
+    --checksum=: Checksum for the box
+    --insecure: Do not validate SSL certificates
+    --location-trusted: Trust 'Location' header from HTTP redirects and use the same credentials for subsequent urls as for the initial one
+    --name=: Name of the box
+    --provider=: Provider the box should satisfy
+    -c, --clean: Clean any temporary download files
+    -f, --force: Overwrite an existing box if it exists

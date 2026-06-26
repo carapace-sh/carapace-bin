@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: termux-apt-repo
+description: Create a repository with deb files
+flags:
+    --use-hard-links: use hard links instead of copying deb files. Will not work
+    -h, --help: show this help message and exit

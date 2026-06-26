@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: download PACKAGE@VERSION
+description: Download a package to the current directory

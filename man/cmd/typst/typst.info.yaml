@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Displays debugging information about Typst
+flags:
+    --pretty: Whether to pretty-print the serialized output
+    -f, --format=: The format to serialize in, if it should be machine-readable

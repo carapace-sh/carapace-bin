@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    ClamAV daemon — the on-access and on-demand scanning service.
+    Listens for scan requests from clamdscan and other clients
+    over a local socket.
+description: an anti-virus daemon
+flags:
+    --debug: Enable debug mode
+    -F, --foreground: Run in foreground; do not daemonize
+    -V, --version: Show version number
+    -c, --config-file=: Read configuration from FILE
+    -h, --help: Show this help
+    -l, --log=: Log into FILE

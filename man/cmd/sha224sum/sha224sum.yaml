@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sha224sum
+description: Print or check SHA224 (224-bit) checksums
+flags:
+    --help: display this help and exit
+    --ignore-missing: don't fail or report status for missing files
+    --quiet: don't print OK for each successfully verified file
+    --status: don't output anything, status code shows success
+    --strict: exit non-zero for improperly formatted checksum lines
+    --tag: create a BSD-style checksum
+    --version: output version information and exit
+    -b, --binary: read in binary mode
+    -c, --check: read checksums from the FILEs and check them
+    -t, --text: read in text mode
+    -w, --warn: warn about improperly formatted checksum lines
+    -z, --zero: end each output line with NUL

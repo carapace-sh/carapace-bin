@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: transmission-create [flags] PATH
+description: A command-line utility to create .torrent files
+flags:
+    --anonymize: Omit the optional "created by" and "created date" keys
+    -V, --version: Show version number and exit
+    -c, --comment=*: Add a comment to the torrent file
+    -h, --help: Show a short help page and exit
+    -o, --outfile=: Name of output torrent file
+    -p, --private: Flag the torrent as intended for use on private trackers
+    -r, --source=: Set the torrent's source for private trackers
+    -s, --piecesize=: Set the size of the torrent pieces in KiB
+    -t, --tracker=*: Add a tracker's announce URL to the torrent
+    -w, --webseed=*: Add a webseed URL

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug
+description: Records a debugging archive for operators
+flags:
+    --archive: Boolean value for if the files should be archived and compressed.
+    --capture=*: One or more types of information to capture.
+    --duration=: The total time to record information.
+    --interval=: The interval in which to capture dynamic information.
+    --output=: The path to the compressed archive that will be created with the information after collection.
+
+documentation:
+  command: >-
+    Collect debug information from Consul servers and clients for troubleshooting.

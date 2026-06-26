@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new-keymap
+description: Creates a new keymap for the keyboard of your choosing
+flags:
+    --keyboard=: Specify keyboard name.
+    --keymap=: Specify the name for the new keymap directory
+    -h, --help: show this help message and exit

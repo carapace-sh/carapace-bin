@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pkcs8
+description: PKCS#8 format private key conversion command
+group: standard
+flags:
+    -in=: Input file
+    -inform=: Input format (DER or PEM)
+    -iter=: Specify the iteration count
+    -nocrypt: Use or expect unencrypted private key
+    -noiter: Use 1 as iteration count
+    -out=: Output file
+    -outform=: Output format (DER or PEM)
+    -passin=: Input file pass phrase source
+    -passout=: Output file pass phrase source
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -rand=: Load the given file(s) into the random number generator
+    -saltlen=: 'Specify the salt length (in bytes) Default: 8 (For PBE1) or 16 (for PBE2)'
+    -scrypt: Use scrypt algorithm
+    -scrypt_N=: Set scrypt N parameter
+    -scrypt_p=: Set scrypt p parameter
+    -scrypt_r=: Set scrypt r parameter
+    -topk8: Output PKCS8 file
+    -traditional: use traditional format private key
+    -v1=: Use PKCS#5 v1.5 and cipher
+    -v2prf=: Set the PRF algorithm to use with PKCS#5 v2.0
+    -v2=: Use PKCS#5 v2.0 and cipher
+    -writerand=: Write random data to the specified file

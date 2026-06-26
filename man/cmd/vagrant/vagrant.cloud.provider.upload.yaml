@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upload
+description: Uploads a box file to Vagrant Cloud for a specific provider
+flags:
+    --no-direct: Do not upload asset directly to backend storage
+    -D, --direct: Upload asset directly to backend storage

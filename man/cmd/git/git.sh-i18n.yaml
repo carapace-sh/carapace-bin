@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sh-i18n
+description: Git's i18n setup code for shell scripts
+group: low-level helper
+documentation:
+  command: |-
+    This is not a command the end user would want to run.  Ever.
+    This documentation is meant for people who are studying the
+    Porcelain-ish scripts and/or are writing new ones.
+
+    The 'git sh-i18n scriptlet is designed to be sourced (using
+    `.`) by Git's porcelain programs implemented in shell
+    script. It provides wrappers for the GNU `gettext` and
+    `eval_gettext` functions accessible through the `gettext.sh`
+    script, and provides pass-through fallbacks on systems
+    without GNU gettext.

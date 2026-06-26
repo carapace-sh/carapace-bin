@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm
+aliases:
+    - remove
+description: Removes a deployment
+
+documentation:
+  command: >-
+    Remove a specific deployment.

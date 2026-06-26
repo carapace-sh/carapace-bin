@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: api <endpoint>
+description: Make an authenticated GitHub API request
+documentation:
+    command: |
+        Make an authenticated HTTP request to the GitHub API and print the response.
+        The endpoint argument should be a path of a GitHub API v3 endpoint, or `graphql`
+        to access the GitHub API v4. Placeholder values `{owner}`, `{repo}`, and `{branch}`
+        get replaced with values from the repository of the current directory.
+    flag:
+        field: |
+            Add a typed parameter in key=value format. Values starting with `@` read
+            from a file (use `@<path>` or `@-` for stdin). Has magic type conversion:
+            literal values `true`, `false`, `null`, and integers convert to JSON types;
+            placeholders `{owner}`, `{repo}`, `{branch}` get populated automatically.
+        header: |
+            Add an HTTP request header in key:value format. Multiple headers can be
+            specified by using this flag multiple times.
+        hostname: |
+            The GitHub hostname for the request. Defaults to "github.com" but can be
+            changed to support GitHub Enterprise Server instances.
+        input: |
+            The file to use as body for the HTTP request. Use `-` to read from standard input.
+        method: |
+            The HTTP method for the request. Defaults to "GET" for most requests.
+            Use "POST", "PUT", "PATCH", or "DELETE" as needed.
+        paginate: |
+            Make additional HTTP requests to fetch all pages of results. For GraphQL queries,
+            requires the query to accept `$endCursor: String` and fetch `pageInfo{ hasNextPage, endCursor }`.
+        slurp: |
+            Use with `--paginate` to return an array of all pages of either JSON arrays or objects
+            combined into a single output.
+flags:
+    --cache=: Cache the response, e.g. "3600s", "60m", "1h"
+    --hostname=: The GitHub hostname for the request (default "github.com")
+    --input=: The `file` to use as body for the HTTP request (use "-" to read from standard input)
+    --paginate: Make additional HTTP requests to fetch all pages of results
+    --silent: Do not print the response body
+    --slurp: Use with "--paginate" to return an array of all pages of either JSON arrays or objects
+    --verbose: Include full HTTP request and response in the output
+    -F, --field=*: Add a typed parameter in `key=value` format (use "@<path>" or "@-" to read value from file or stdin)
+    -H, --header=*: Add a HTTP request header in `key:value` format
+    -X, --method=: The HTTP method for the request
+    -f, --raw-field=*: Add a string parameter in `key=value` format
+    -i, --include: Include HTTP response status line and headers in the output
+    -p, --preview=*: Opt into GitHub API previews (names should omit '-preview')
+    -q, --jq=: Query to select values from the response using jq syntax
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

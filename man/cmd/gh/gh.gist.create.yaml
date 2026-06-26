@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [<filename>... | <pattern>... | -]
+aliases:
+    - new
+description: Create a new gist
+documentation:
+    command: |
+        Create a new gist. Pass file names as arguments, or use `-` to read from
+        standard input. Provide a description with `-d`, make it public with `-p`
+        (default is secret/unlisted), and open in browser with `-w`. For stdin
+        input, use `-f` to specify the filename.
+flags:
+    -d, --desc=: A description for this gist
+    -f, --filename=: Provide a filename to be used when reading from standard input
+    -p, --public: List the gist publicly (default "secret")
+    -w, --web: Open the web browser with created gist

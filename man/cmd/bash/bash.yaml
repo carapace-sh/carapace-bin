@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    GNU Bourne-Again SHell — an sh-compatible command interpreter
+    that executes commands read from standard input or a file. Also
+    supports interactive use with job control, command-line editing,
+    and programmable completion.
+description: GNU Bourne-Again SHell
+flags:
+    --debugger: Arrange for the debugger profile to be executed before the shell starts.
+    --dump-po-strings: Equivalent to -D, but the output is in the GNU gettext po file format
+    --init-file=: ""
+    --noediting: do not use the GNU readline library to read command lines
+    --noprofile: skip profile initialization files
+    --norc: skip ~/.bashrc
+    --posix: match posix behavior
+    --rcfile=: execute commands from file instead of the default
+    --restricted: The shell becomes restricted.
+    --version: 'Show version information '
+    --x: Print commands and their arguments as they are executed.
+    -D, --dump-strings: A list of all double-quoted strings preceded by $ is printed on the standard output.
+    -c: commands are read from the first non-option argument command_string
+    -i: If the -i option is present, the shell is interactive.
+    -l, --login: act as if invoked as a login shell
+    -r: restricted shell
+    -s: then commands are read from the standard input
+    -v, --verbose: verbose mode

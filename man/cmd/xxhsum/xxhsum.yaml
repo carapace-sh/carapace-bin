@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xxhsum
+description: Create or verify checksums using fast non-cryptographic algorithm xxHash
+flags:
+    --binary: read in binary mode
+    --filelist: generate hashes for files listed in [files]
+    --files-from: generate hashes for files listed in [files]
+    --ignore-missing: don't fail or report status for missing files
+    --little-endian: 'checksum values use little endian convention (default: big endian)'
+    --status: don't output anything, status code shows success
+    --strict: exit non-zero for improperly formatted lines in [files]
+    --tag: produce BSD-style checksum lines
+    --warn: warn about improperly formatted lines in [files]
+    -H=: select an xxhash algorithm
+    -V, --version: display version information
+    -b=: bench only algorithm variant X
+    -c, --check: read xxHash checksum from [files] and check them
+    -h, --help: display a long help page about advanced options
+    -i=: 'number of times to run the benchmark (default: 3)'
+    -q, --quiet: don't display version header in benchmark mode

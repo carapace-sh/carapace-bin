@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test [options]
+description: Experimental support for module integration testing
+flags:
+    -compact-warnings: Use a more compact representation for warnings
+    -junit-xml?: also write test results to the given file path
+    -no-color: Don't include virtual terminal formatting sequences in the output.

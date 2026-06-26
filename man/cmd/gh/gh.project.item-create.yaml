@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: item-create [<number>]
+description: Create a draft issue item in a project
+flags:
+    --body=: Body for the draft issue
+    --format=: 'Output format: {json}'
+    --owner=: Login of the owner. Use "@me" for the current user.
+    --title=!: Title for the draft issue
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

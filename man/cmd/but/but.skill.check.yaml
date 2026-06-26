@@ -1,0 +1,39 @@
+name: check
+description: Check if installed GitButler skills are up to date with the CLI version
+flags:
+    -g, --global: Only check global installations (in home directory)
+    -h, --help: Print help (see more with '--help')
+    -l, --local: Only check local installations (in current repository)
+    -u, --update: Automatically update any outdated skills found
+documentation:
+    command: |-
+        Check if installed GitButler skills are up to date with the CLI version
+
+        Scans for installed skill files and compares their version with the current
+        CLI version. By default, checks both local (repository) and global installations.
+
+        ## Examples
+
+        Check all installed skills:
+
+        ```text
+        but skill check
+        ```
+
+        Check and automatically update outdated skills:
+
+        ```text
+        but skill check --update
+        ```
+
+        Check only global installations:
+
+        ```text
+        but skill check --global
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

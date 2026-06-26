@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: Get a configuration value from your config.toml file or after defaults and overrides are applied
+flags:
+    -h, --help: Print help
+    -r, --resolved: Print the value after defaults and overrides are applied
+    -v, --verbose: Print both the config file value and the resolved value

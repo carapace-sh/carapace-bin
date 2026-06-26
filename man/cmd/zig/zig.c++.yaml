@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: c++
+description: Use Zig as a drop-in C++ compiler
+group: wrapper

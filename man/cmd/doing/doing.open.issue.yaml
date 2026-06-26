@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: issue
+description: Open a specific WORK_ITEM_ID
+flags:
+    --help: Show this message and exit.

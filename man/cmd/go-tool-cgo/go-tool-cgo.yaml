@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: go-tool-cgo
+description: Cgo enables the creation of Go packages that call C code
+flags:
+    -V: print version and exit
+    -debug-define: 'print relevant #defines'
+    -debug-gcc: print gcc invocations
+    -dynimport=: if non-empty, print dynamic import data for that file
+    -dynlinker: record dynamic linker information in -dynimport mode
+    -dynout=: write -dynimport output to this file
+    -dynpackage=: set Go package for -dynimport output (default "main")
+    -exportheader=: where to write export header if any exported functions
+    -gccgo: generate files for use with gccgo
+    -gccgo_define_cgoincomplete: define cgo.Incomplete for older gccgo/GoLLVM
+    -gccgopkgpath=: -fgo-pkgpath option used with gccgo
+    -gccgoprefix=: -fgo-prefix option used with gccgo
+    -godefs: 'for bootstrap: write Go definitions for C file to standard output'
+    -import_runtime_cgo: import runtime/cgo in generated code (default true)
+    -import_syscall: import syscall in generated code (default true)
+    -importpath=: import path of package being built (for comments in generated files)
+    -objdir=: object directory
+    -srcdir=: source directory
+    -trimpath=: applies supplied rewrites or trims prefixes to recorded source file paths

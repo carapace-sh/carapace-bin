@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm
+description: Remove a credit card
+
+documentation:
+  command: >-
+    Remove a credit card from your Vercel account. You must specify
+    the card ID to remove. Use `vercel billing ls` to view card IDs.
+    Cannot remove a card that is currently set as default.

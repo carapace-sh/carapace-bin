@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: leave [OPTIONS]
+description: Leave the swarm
+flags:
+    -f, --force: Force this node to leave the swarm, ignoring warnings

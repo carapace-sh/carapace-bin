@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xonsh
+description: Python-powered shell
+flags:
+    --cache-everything: Use a cache, even for interactive commands.
+    --no-rc: Do not load the .xonshrc files.
+    --no-script-cache: Do not cache scripts as they are run.
+    --rc=: The xonshrc files to load
+    --shell-type=: What kind of shell should be used.
+    --timings: Prints timing information before the prompt is shown.
+    -D=: Define an environment variable
+    -V, --version: Show version information and exit.
+    -c=: Run a single command and exit.
+    -h, --help: Show help and exit.
+    -i, --interactive: Force running in interactive mode.
+    -l, --login: Run as a login shell.

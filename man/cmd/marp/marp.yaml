@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: marp
+description: A CLI interface for Marp and Marpit based converters
+flags:
+    --allow-local-files: Allow to access local files from Markdown
+    --author=: Define author of the slide deck
+    --bespoke.osc: Use on-screen controller
+    --bespoke.progress: Use progress bar
+    --bespoke.transition: Use transitions
+    --config-file=: Specify path to a configuration file
+    --description=: Define description of the slide deck
+    --engine=: Select Marpit based engine by module name or path
+    --html: Enable or disable HTML tags
+    --image-scale=: The scale factor for rendered images
+    --image=: Convert the first slide page into an image file
+    --images=: Convert slide deck into multiple image files
+    --jpeg-quality=: Set JPEG image quality
+    --keywords=: Define comma-separated keywords for the slide deck
+    --no-config: Prevent looking up for a configuration file
+    --no-config-file: Prevent looking up for a configuration file
+    --notes: Convert slide deck notes into a text file
+    --og-image=: Define Open Graph image URL
+    --pdf: Convert slide deck into PDF
+    --pdf-notes: Add presenter notes to PDF as annotations
+    --pdf-outlines: Add outlines (bookmarks) to PDF
+    --pdf-outlines.headings: Make outlines from Markdown headings
+    --pdf-outlines.pages: Make outlines from slide pages
+    --pptx: Convert slide deck into PowerPoint document
+    --template=: Choose template
+    --theme-set=: Path to additional theme CSS files
+    --theme=: Override theme by name or CSS file
+    --title=: Define title of the slide deck
+    --url=: Define canonical URL
+    -I, --input-dir=: The base directory to find markdown and theme CSS
+    -c, --config=: Specify path to a configuration file
+    -h, --help: Show help
+    -o, --output=: Output file path
+    -p, --preview: Open preview window
+    -s, --server: Enable server mode
+    -v, --version: Show versions
+    -w, --watch: Watch input markdowns for changes

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check [<branch>]
+description: View rules that would apply to a given branch
+flags:
+    --default: Check rules on default branch
+    -w, --web: Open the branch rules page in a web browser

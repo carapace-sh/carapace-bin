@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:request [-f|--force] [--] <name>
+description: Create a new form request class
+flags:
+    --force: Create the class even if the request already exists

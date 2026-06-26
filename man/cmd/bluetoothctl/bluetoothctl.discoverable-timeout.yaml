@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: discoverable-timeout [value]
+description: Set controller discoverable timeout

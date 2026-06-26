@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List agent tasks (preview)
+flags:
+    --json=*: Output JSON with the specified `fields`
+    -L, --limit=: Maximum number of agent tasks to fetch
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open agent tasks in the browser

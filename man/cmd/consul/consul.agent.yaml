@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: agent
+description: Runs a Consul agent
+flags:
+    --advertise-wan=: Sets address to advertise on WAN instead of -advertise address.
+    --advertise=: Sets the advertise address to use.
+    --allow-write-http-from=*: Only allow write endpoint calls from given network.
+    --alt-domain=: Alternate domain to use for DNS interface.
+    --bind=: Sets the bind address for cluster communication.
+    --bootstrap: Sets server to bootstrap mode.
+    --bootstrap-expect=: Sets server to expect bootstrap mode.
+    --check_output_max_size=: Sets the maximum output size for checks on this agent
+    --client=: Sets the address to bind for client access.
+    --config-dir=: Path to a directory to read configuration files from.
+    --config-file=*: Path to a file in JSON or HCL format with a matching file extension.
+    --config-format=: Config files are in this format irrespective of their extension.
+    --data-dir=: Path to a data directory to store agent state.
+    --default-query-time=: the amount of time a blocking query will wait before Consul will force a response.
+    --dev: Starts the agent in development mode.
+    --disable-host-node-id: generate a random node ID.
+    --disable-keyring-file: Disables the backing up of the keyring to a file.
+    --dns-port=: DNS port to use.
+    --domain=: Domain to use for DNS interface.
+    --enable-local-script-checks: Enables health check scripts from configuration file.
+    --enable-script-checks: Enables health check scripts.
+    --encrypt=: Provides the gossip encryption key.
+    --grpc-port=: Sets the gRPC API port to listen on (currently needed for Envoy xDS only).
+    --hcl=*: hcl config fragment. Can be specified multiple times.
+    --http-port=: Sets the HTTP API port to listen on.
+    --https-port=: Sets the HTTPS API port to listen on.
+    --join-wan=*: Address of an agent to join -wan at start time. Can be specified multiple times.
+    --join=*: Address of an agent to join at start time. Can be specified multiple times.
+    --log-file=: Path to the file the logs get written to
+    --log-json: Output logs in JSON format.
+    --log-level=: Log level of the agent.
+    --log-rotate-bytes=: Maximum number of bytes that should be written to a log file
+    --log-rotate-duration=: Time after which log rotation needs to be performed
+    --log-rotate-max-files=: Maximum number of log file archives to keep
+    --node-meta=*: An arbitrary metadata key/value pair for this node, of the format `key:value`.
+    --node=: Name of this node. Must be unique in the cluster.
+    --non-voting-server: '(Enterprise-only) DEPRECATED: -read-replica should be used instead'
+    --pid-file=: Path to file to store agent PID.
+    --primary-gateway=: Address of a mesh gateway in the primary datacenter to use to bootstrap WAN federation at start time with retries enabled.
+    --protocol=: Sets the protocol version.
+    --raft-protocol=: Sets the Raft protocol version. Defaults to latest.
+    --read-replica: (Enterprise-only) This flag is used to make the server not participate in the Raft quorum
+    --recursor=*: Address of an upstream DNS server. Can be specified multiple times.
+    --rejoin: Ignores a previous leave and attempts to rejoin the cluster.
+    --retry-interval-wan=: Time to wait between join -wan attempts.
+    --retry-interval=: Time to wait between join attempts.
+    --retry-join-wan=*: Address of an agent to join -wan at start time with retries enabled.
+    --retry-join=*: Address of an agent to join at start time with retries enabled.
+    --retry-max-wan=: Maximum number of join -wan attempts. Defaults to 0, which will retry indefinitely.
+    --retry-max=: Maximum number of join attempts. Defaults to 0, which will retry indefinitely.
+    --segment=: (Enterprise-only) Sets the network segment to join.
+    --serf-lan-allowed-cidrs=*: Networks allowed for Serf LAN.
+    --serf-lan-bind=: Address to bind Serf LAN listeners to.
+    --serf-lan-port=: Sets the Serf LAN port to listen on.
+    --serf-wan-allowed-cidrs=*: Networks allowed for Serf WAN (other datacenters).
+    --serf-wan-bind=: Address to bind Serf WAN listeners to.
+    --serf-wan-port=: Sets the Serf WAN port to listen on.
+    --server: Switches agent to server mode.
+    --server-port=: Sets the server port to listen on.
+    --syslog: Enables logging to syslog.
+    --ui: Enables the built-in static web UI server.
+    --ui-content-path=: Sets the external UI path to a string.
+    --ui-dir=: Path to directory containing the web UI resources.
+
+documentation:
+  command: >-
+    Interact with the local Consul agent for service checks, joins, and configuration.

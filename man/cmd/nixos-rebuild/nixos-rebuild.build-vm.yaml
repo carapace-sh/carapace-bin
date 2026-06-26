@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-vm
+description: Build a script that starts a NixOS virtual machine with the configuration

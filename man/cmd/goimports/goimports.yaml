@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: goimports
+description: updates your Go import lines
+flags:
+    -cpuprofile=: CPU profile output
+    -d: display diffs instead of rewriting files
+    -e: report all errors
+    -format-only: don't fix imports and only format
+    -l: list files whose formatting differs from goimport's
+    -local=: put imports beginning with this string after 3rd-party packages
+    -memprofile=: memory profile output
+    -memrate=: if > 0, sets runtime.MemProfileRate
+    -srcdir=: choose imports as if source code is from dir
+    -trace=: trace profile output
+    -v: verbose logging
+    -w: write result to (source) file instead of stdout

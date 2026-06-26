@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cp
+description: copy files and directories
+flags:
+    --attributes-only: don't copy the file data, just the attributes
+    --backup?: make a backup of each existing destination file
+    --context?: like -Z, or if CTX is specified then set the SELinux or SMACK security context to CTX
+    --copy-contents: copy contents of special files when recursive
+    --debug: explain how a file is copied
+    --help: display this help and exit
+    --keep-directory-symlink: follow existing symlinks to directories
+    --no-preserve=*: don't preserve the specified attributes
+    --parents: use full source file name under DIRECTORY
+    --preserve?*: preserve the specified attributes
+    --reflink?: control clone/CoW copies
+    --remove-destination: remove each existing destination file before attempting to open it (contrast with --force)
+    --sparse=: control creation of sparse files.
+    --strip-trailing-slashes: remove any trailing slashes from each SOURCE argument
+    --update?: control which existing files are updated
+    --version: output version information and exit
+    -H: follow command-line symbolic links in SOURCE
+    -L, --dereference: always follow symbolic links in SOURCE
+    -P, --no-dereference: never follow symbolic links in SOURCE
+    -R: copy directories recursively
+    -S, --suffix=: override the usual backup suffix
+    -T, --no-target-directory: treat DEST as a normal file
+    -Z: set SELinux security context of destination file to default type
+    -a, --archive: same as -dR --preserve=all
+    -b: like --backup but does not accept an argument
+    -d: same as --no-dereference --preserve=links
+    -f, --force: if an existing destination file cannot be opened, remove it and try again (this option is ignored when the -n option is also used)
+    -i, --interactive: prompt before overwrite (overrides a previous -n option)
+    -l, --link: hard link files instead of copying
+    -n, --no-clobber: (deprecated) silently skip existing files
+    -p: same as --preserve=mode,ownership,timestamps
+    -r, --recursive: copy directories recursively
+    -s, --symbolic-link: make symbolic links instead of copying
+    -t, --target-directory=: copy all SOURCE arguments into DIRECTORY
+    -u: equivalent to --update[=older]
+    -v, --verbose: explain what is being done
+    -x, --one-file-system: stay on this file system
+
+documentation:
+  command: >-
+    Copy files and directories. cp copies SOURCE to DEST, or multiple
+    SOURCEs into DIRECTORY (use -t to specify target). By default, follows
+    symlinks; use -P to not follow. Archive mode -a preserves permissions,
+    ownership, timestamps, and copies symlinks as symlinks (same as -dR
+    --preserve=all). Hard link with -l instead of copying; symlink with -s.
+    Recursive copy with -R; sparse files handled with --sparse=auto.
+    Update existing files only if newer with --update. Overwrite interactively
+    with -i, never with -n. Make backups with --backup. Use -v for verbose.
+    Copy sparse files efficiently with --reflink for CoW cloning on supported
+    filesystems.

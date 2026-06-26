@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reload
+description: restarts vagrant machine, loads new Vagrantfile configuration
+flags:
+    --no-provision: Disable provisioning
+    --provision: Enable provisioning
+    --provision-with=: Enable only certain provisioners, by type or by name.
+    -f, --force: Force shut down (equivalent of pulling power)

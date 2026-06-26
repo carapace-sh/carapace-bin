@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: migrate:rollback [--database [DATABASE]] [--force] [--path [PATH]] [--realpath] [--pretend] [--step [STEP]] [--batch BATCH]
+description: Rollback the last database migration
+flags:
+    --batch=: The batch of migrations (identified by their batch number) to be reverted
+    --database=: The database connection to use
+    --force: Force the operation to run when in production
+    --path=: The path(s) to the migrations files to be executed
+    --pretend: Dump the SQL queries that would be run
+    --realpath: Indicate any provided migration file paths are pre-resolved absolute paths
+    --step=: The number of migrations to be reverted

@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: restic
+description: Backup and restore files
+flags:
+    -h, --help: help for restic
+persistentflags:
+    --cacert=*: '`file` to load root certificates from (default: use system certificates)'
+    --cache-dir=: 'set the cache `directory`. (default: use system default cache directory)'
+    --cleanup-cache: auto remove old cache directories
+    --insecure-tls: skip TLS certificate verification when connecting to the repo (insecure)
+    --json: set output mode to JSON for commands that support it
+    --key-hint=: '`key` ID of key to try decrypting first (default: $RESTIC_KEY_HINT)'
+    --limit-download=: 'limits downloads to a maximum rate in KiB/s. (default: unlimited)'
+    --limit-upload=: 'limits uploads to a maximum rate in KiB/s. (default: unlimited)'
+    --no-cache: do not use a local cache
+    --no-lock: do not lock the repository, this allows some operations on read-only repositories
+    --password-command=: 'shell `command` to obtain the repository password from (default: $RESTIC_PASSWORD_COMMAND)'
+    --repository-file=: '`file` to read the repository location from (default: $RESTIC_REPOSITORY_FILE)'
+    --tls-client-cert=: path to a `file` containing PEM encoded TLS client certificate and private key
+    -o, --option=*: set extended option (`key=value`, can be specified multiple times)
+    -p, --password-file=: '`file` to read the repository password from (default: $RESTIC_PASSWORD_FILE)'
+    -q, --quiet: do not output comprehensive progress report
+    -r, --repo=: '`repository` to backup to or restore from (default: $RESTIC_REPOSITORY)'
+    -v, --verbose?*: be verbose (specify multiple times or a level using --verbose=`n`, max level/times is 3)
+
+documentation:
+  command: >-
+    Backup and restore files with deduplication, encryption, and compression. Supports local, S3, SFTP, and many other storage backends.

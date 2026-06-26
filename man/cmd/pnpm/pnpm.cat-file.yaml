@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cat-file
+description: Prints the contents of a file based on the hash value stored in the index file
+flags:
+    -h, --help: Output usage information

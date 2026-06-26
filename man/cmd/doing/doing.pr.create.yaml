@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [OPTIONS] WORK_ITEM_ID
+description: Create a pull request from a work item ID
+flags:
+    --auto-complete: Set the PR to complete autom. when all policies have passed
+    --branch-prefix=: The prefix to be prepended to the branch name
+    --checkout: Run git commands to checkout remote branch locally
+    --delete-source-branch: Set to delete source branch when pull request completes
+    --draft: Create draft/WIP pull request
+    --help: Show this message and exit
+    --no-auto-complete: Set the PR to complete autom. when all policies have passed
+    --no-checkout: Do not run git commands to checkout remote branch locally
+    --no-delete-source-branch: Set to delete source branch when pull request completes
+    --no-draft: Do not create draft/WIP pull request
+    --no-self-approve: Do not add yourself as reviewer and add your approval
+    --no-web: Open newly created issue in the web browser
+    --self-approve: Add yourself as reviewer and add your approval
+    -b, --default-branch=: The name of the branch to branch from and to
+    -r, --reviewers=: Space separated list of reviewer emails or aliases
+    -w, --web: Open newly created issue in the web browser

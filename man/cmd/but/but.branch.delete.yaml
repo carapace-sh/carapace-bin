@@ -1,0 +1,18 @@
+name: delete
+description: Deletes a branch from the workspace
+flags:
+    -f, --force: Force deletion without confirmation
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Deletes a branch from the workspace
+
+        This will remove the branch and all its commits from the workspace.
+        If the branch has unpushed commits, you will be prompted for confirmation
+        unless the `--force` flag is used.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

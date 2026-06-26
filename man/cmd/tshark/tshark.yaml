@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tshark
+description: Dump and analyze network traffic
+flags:
+    --capture-comment=: set the capture file comment
+    --color: color output text similarly to the Wireshark GUI
+    --disable-heuristic=: disable dissection of heuristic protocol
+    --disable-protocol=: disable dissection of proto_name
+    --elastic-mapping-filter=: put only the specified protocols within the mapping file
+    --enable-heuristic=: enable dissection of heuristic protocol
+    --enable-protocol: <proto_name>   enable dissection of proto_name
+    --export-objects=: save exported objects for a protocol to a directory
+    --list-time-stamp-types: print list of timestamp types for iface and exit
+    --no-duplicate-keys: merge duplicate keys in an object into a single key
+    --time-stamp-type=: timestamp method for interface
+    "-2": perform a two-pass analysis
+    -B, --buffer-size=: size of kernel buffer
+    -C=: start with specified configuration profile
+    -D, --list-interfaces: print list of interfaces and exit
+    -E=: set options for output
+    -F=: set the output file type
+    -G=: dump one of several available reports and exit
+    -H=: read a list of entries from a hosts file
+    -I, --monitor-mode: capture in monitor mode, if available
+    -J=: top level protocol filter
+    -K=: keytab file to use for kerberos decryption
+    -L, --list-data-link-types: print list of link-layer types of iface and exit
+    -M=: perform session auto reset
+    -N=: enable specific name resolution
+    -O=: Only show packet details of these protocols
+    -P, --print: print packet summary even when writing to a file
+    -Q: only log true errors to stderr
+    -S=: the line separator to print between packets
+    -T=: format of text output
+    -U=: PDUs export mode, see the man page for details
+    -V: add output of packet tree
+    -W=: Save extra information in the file, if supported.
+    -X=*: eXtension options, see the man page for details
+    -a, --autostop=*: 'specify stop criterion '
+    -b, --ring-buffer=*: run in 'multiple files' mode
+    -c=: 'stop after n packets (def: infinite)'
+    -d=*: specify layer type dissection
+    -e=: field to print
+    -f=: packet filter in libpcap filter syntax
+    -g: enable group read access on the output file(s)
+    -h, --help: display this help and exit
+    -i, --interface=: name or idx of interface
+    -j=: protocols layers filter
+    -l: flush standard output after each packet
+    -n: 'disable all name resolutions (def: all enabled)'
+    -o=*: override preference setting
+    -p, --no-promiscuous-mode: don't capture in promiscuous mode
+    -q: be more quiet on stdout
+    -r, --read-file=: set the filename to read from
+    -s, --snapshot-length=: packet snapshot length
+    -t=: output format of time stamps
+    -u=: output format of seconds
+    -v, --version: display version info and exit
+    -w=: write packets to a pcapng-format file named "outfile"
+    -x: add output of hex and ASCII dump (Packet Bytes)
+    -y, --linktype=: link layer type
+    -z=: various statistics, see the man page for details

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: outdated
+description: Analyze your dependencies to find which ones can be upgraded
+flags:
+    --color: Color the output.
+    --dependency-overrides: Show resolutions with `dependency_overrides`.
+    --dev-dependencies: Take dev dependencies into account.
+    --json: Output the results using a json format.
+    --mode=: Highlight versions with PROPERTY.
+    --no-color: Do not color the output.
+    --no-dependency-overrides: Do not show resolutions with `dependency_overrides`.
+    --no-dev-dependencies: Do not take dev dependencies into account.
+    --no-show-all: Do not include dependencies that are already
+    --no-transitive: Do not show transitive dependencies.
+    --show-all: Include dependencies that are already
+    --transitive: Show transitive dependencies.
+    -C, --directory=: Run this in the directory <dir>.
+    -h, --help: Print this usage information.

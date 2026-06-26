@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ui [--auth] [--option [OPTION]] [--] <type>
+description: Swap the front-end scaffolding for the application
+flags:
+    --auth: Install authentication UI scaffolding
+    --option=: Pass an option to the preset command

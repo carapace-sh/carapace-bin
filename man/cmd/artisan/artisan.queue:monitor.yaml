@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: queue:monitor [--max [MAX]] [--] <queues>
+description: Monitor the size of the specified queues
+flags:
+    --max=: The maximum number of jobs that can be on the queue before an event is dispatched

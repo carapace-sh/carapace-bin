@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config-set
+description: Set the server online configuration
+flags:
+    --advertise-addr=: Address to advertise for the server.
+    --advertise-tls: If true, the advertised address should be connected to with TLS.
+    --advertise-tls-skip-verify: 'Do not verify the TLS certificate presented by the server. '
+    --plain: Plain output
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

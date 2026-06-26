@@ -1,0 +1,36 @@
+name: skill
+description: Manage Claude AI skills for GitButler.
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Manage Claude AI skills for GitButler.
+
+        Skills provide enhanced AI capabilities for working with GitButler through
+        Claude Code and other AI assistants.
+
+        Use `but skill install` to install the GitButler skill files. By default,
+        it prompts for scope (repository or global home directory) and then format.
+        When run outside a git repository, local scope is unavailable and the
+        default install location is global (home directory). You can still
+        install to a custom location with `--path` using an absolute or `~` path.
+
+        ## Examples
+
+        Install interactively (prompts for scope and format):
+
+        ```text
+        but skill install
+        ```
+
+        Install the skill globally:
+
+        ```text
+        but skill install --global
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

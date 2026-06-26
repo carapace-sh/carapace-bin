@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+description: edit go.work from tools or scripts
+flags:
+    -dropreplace=*: drop a replacement
+    -dropuse=*: drop a use directive
+    -fmt: reformat the go.work file without making other changes
+    -go=: set the expected Go language version
+    -json: print the final go.work in JSON format
+    -print: print the final go.work in its text format
+    -replace=*: add a replacement
+    -use=*: add a use directive

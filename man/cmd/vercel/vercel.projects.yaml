@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: projects
+description: Manages your Projects
+
+documentation:
+  command: >-
+    Manage your Vercel projects.

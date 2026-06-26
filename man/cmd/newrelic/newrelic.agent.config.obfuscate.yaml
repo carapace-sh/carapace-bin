@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: obfuscate
+description: Obfuscate a configuration value using a key
+flags:
+    -k, --key=: the key to use when obfuscating the clear-text value
+    -v, --value=: the value, in clear text, to be obfuscated

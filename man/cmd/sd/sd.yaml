@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sd
+description: Intuitive find & replace CLI
+flags:
+    -F, --fixed-strings: Treat FIND and REPLACE_WITH args as literal strings
+    -V, --version: Print version
+    -f, --flags=: Regex flags. May be combined
+    -h, --help: Print help (see a summary with '-h')
+    -n, --max-replacements=: Limit the number of replacements that can occur per file. 0 indicates unlimited replacements
+    -p, --preview: Display changes in a human reviewable format (the specifics of the format are likely to change in the future)
+
+documentation:
+  command: >-
+    String delete utility for find-and-replace in text. sd is a simpler,
+    faster alternative to sed for basic find-and-replace operations.
+    Uses regex patterns (default) or string literals (-s flag). Syntax:
+    sd old_pattern new_text files... Replaces all occurrences by default;
+    use -s for substring match (no regex). Output to stdout or edit
+    files in place (-i). Supports capture groups via $1, $2 etc. No
+    complex sed syntax needed; straightforward find/replace paradigm.
+    Often 2-10x faster than sed for simple replacements. Works with
+    stdin redirection for pipeline use.

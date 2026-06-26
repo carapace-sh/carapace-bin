@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get-text [OPTIONS]
+description: Retrieves the textual content of a pane and output it to stdout
+flags:
+    --end-line=: The ending line number
+    --escapes: Include escape sequences that color and style the text
+    --pane-id=: Specify the target pane
+    --start-line=: The starting line number
+    -h, --help: Print help

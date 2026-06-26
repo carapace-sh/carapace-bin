@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit [<number>]
+description: Edit a project
+flags:
+    --format=: 'Output format: {json}'
+    --owner=: Login of the owner. Use "@me" for the current user.
+    --readme=: New readme for the project
+    --title=: New title for the project
+    --visibility=: 'Change project visibility: {PUBLIC|PRIVATE}'
+    -d, --description=: New description of the project
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

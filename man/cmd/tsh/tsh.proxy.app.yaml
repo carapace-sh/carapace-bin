@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: app
+description: Start local TLS proxy for app connection when using Teleport in single-port mode.
+flags:
+    -p, --port=: Specifies the source port used by by the proxy app listener

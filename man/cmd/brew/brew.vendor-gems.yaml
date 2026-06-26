@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vendor-gems
+description: Install and commit Homebrew's vendored gems
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --no-commit: Do not generate a new commit upon completion.
+    --quiet: Make some output more quiet.
+    --update: Update the specified list of vendored gems to the latest version.
+    --verbose: Make some output more verbose.

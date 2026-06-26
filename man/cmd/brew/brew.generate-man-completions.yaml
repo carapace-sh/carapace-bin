@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate-man-completions
+description: Generate Homebrew's manpages and shell completions
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

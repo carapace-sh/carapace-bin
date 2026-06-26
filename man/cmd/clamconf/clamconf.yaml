@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Print ClamAV configuration and system information, including
+    database status, install paths, and compilation settings.
+description: Clam AntiVirus configuration utility
+flags:
+    -V, --version: Show version
+    -c, --config-dir=: Read configuration files from DIR
+    -g, --generate-config=: Generate example config file
+    -h, --help: Show this help
+    -n, --non-default: Only display non-default settings

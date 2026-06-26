@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lock {<number> | <url>}
+description: Lock pull request conversation
+group: Targeted commands
+flags:
+    -r, --reason=: Optional reason for locking conversation (off_topic, resolved, spam, too_heated).

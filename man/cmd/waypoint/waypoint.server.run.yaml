@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Manually run the builtin server
+flags:
+    --accept-tos: Pass to accept the Terms of Service and Privacy Policy to use the Waypoint URL Service.
+    --advertise-addr=: Address to advertise for the server.
+    --advertise-tls: If true, the advertised address should be connected to with TLS
+    --advertise-tls-skip-verify: Do not verify the TLS certificate presented by the server.
+    --db=: Path to the database file.
+    --disable-ui: Disable the embedded web interface The default is false.
+    --listen-grpc=: Address to bind to for gRPC connections.
+    --listen-http-insecure=: Address to bind to for insecure HTTP connections.
+    --listen-http=: Address to bind to for HTTP connections.
+    --plain: Plain output
+    --telemetry-dd-trace-addr=: Address of a DataDog agent available to accept traces.
+    --telemetry-oc-agent-addr=: Address of an OpenCensus agent or collector.
+    --telemetry-oc-agent-insecure: Disables client transport security for the OpenCensus agent exporter's gRPC connection.
+    --telemetry-oc-zpages-addr=: If set, Waypoint will run an OpenCensus zPages server at this address.
+    --tls-cert-file=: Path to a PEM-encoded certificate file for TLS.
+    --tls-key-file=: Path to a PEM-encoded private key file for the TLS certificate specified with -tls-cert-file.
+    --url-api-addr=: Address to Waypoint URL service API.
+    --url-api-insecure: True if TLS is not enabled for the Waypoint URL service API.
+    --url-auto-app-hostname: Whether apps automatically get a hostname on deploy.
+    --url-control-addr=: Address to Waypoint URL service control API.
+    --url-control-token=: Token for the Waypoint URL server control API.
+    --url-enabled: Enable the URL service.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update-test
+description: Run a test of `brew update` with a new repository clone
+group: developer
+flags:
+    --before: Use the commit at the specified <date> as the start commit.
+    --commit: Use the specified <commit> as the start commit.
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --keep-tmp: Retain the temporary directory containing the new repository clone.
+    --quiet: Make some output more quiet.
+    --to-tag: Set `HOMEBREW_UPDATE_TO_TAG` to test updating between tags.
+    --verbose: Make some output more verbose.

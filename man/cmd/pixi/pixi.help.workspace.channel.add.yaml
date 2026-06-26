@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Adds a channel to the manifest and updates the lockfile

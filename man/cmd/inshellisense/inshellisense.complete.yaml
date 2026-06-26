@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: complete
+description: generates a completion for the provided input
+flags:
+    -h, --help: display help for command

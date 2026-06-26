@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dotfiles
+description: Manage your dotfiles with Atuin
+flags:
+    -h, --help: Print help

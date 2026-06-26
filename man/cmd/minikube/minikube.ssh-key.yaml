@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh-key
+description: Retrieve the ssh identity key path of the specified node
+group: troubleshooting
+flags:
+    -n, --node=: The node to get ssh-key path. Defaults to the primary control plane.

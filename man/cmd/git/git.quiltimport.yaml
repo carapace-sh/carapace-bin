@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: quiltimport
+description: Applies a quilt patchset onto the current branch
+group: interaction
+flags:
+  --author=: author name and email address for patches without any
+  --keep-non-patch: Pass -b to git mailinfo
+  --patches=: path to the quilt patches
+  --series=: path to the quilt series file
+  -n, --dry-run: dry run
+documentation:
+  command: |-
+    Applies a quilt patchset onto the current Git branch, preserving
+    the patch boundaries, patch order, and patch descriptions present
+    in the quilt patchset.
+
+    For each patch the code attempts to extract the author from the
+    patch description.  If that fails it falls back to the author
+    specified with --author.  If the --author flag was not given
+    the patch description is displayed and the user is asked to
+    interactively enter the author of the patch.
+
+    If a subject is not found in the patch description the patch name is
+    preserved as the 1 line subject in the Git description.

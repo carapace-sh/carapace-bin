@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: download <tag>
+description: Download asset files from a GitLab release.
+flags:
+    -D, --dir=: Directory to download the release assets to.
+    -n, --asset-name=*: Download only assets that match the name or a glob pattern.

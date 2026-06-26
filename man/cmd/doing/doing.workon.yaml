@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: workon [OPTIONS] ISSUE
+description: Create issue with PR and switch git branch
+flags:
+    --add-to-current-sprint: Add item to the current sprint
+    --auto-complete: Set the PR to complete autom. when all policies have passed
+    --branch-prefix=: The prefix to be prepended to the branch name
+    --checkout: Run git commands to checkout remote branch locally
+    --delete-source-branch: Set to delete source branch when pull request completes
+    --do-not-add-to-current-sprint: Do not add item to the current sprint
+    --draft: Create draft/WIP pull request
+    --help: Show this message and exit
+    --no-auto-complete: Do not set the PR to complete autom. when all policies have passed
+    --no-checkout: Do not run git commands to checkout remote branch locally
+    --no-delete-source-branch: Set to delete source branch when pull request completes
+    --no-draft: Do not create draft/WIP pull request
+    --no-self-approve: Do not add yourself as reviewer and add your approval
+    --self-approve: Add yourself as reviewer and add your approval
+    --type=: Type of work item
+    -b, --default-branch=: The name of the branch to branch from and to
+    -l, --label=: Attach tags (labels) to work item
+    -p, --parent=: To create a child work item, specify the ID of the parent work item
+    -r, --reviewers=: Space separated list of reviewer emails
+    -s, --story-points=: The number of story points to assign

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: zsh-hist-db
+description: Import history from the zsh history file

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: Retrieve a NerdStorage document.
+flags:
+    -c, --collection=: the collection name to get the document from
+    -d, --documentId=: the document ID
+    -e, --entityGuid=: the entity GUID
+    -p, --packageId=: the external package ID
+    -s, --scope=: the scope to get the document from

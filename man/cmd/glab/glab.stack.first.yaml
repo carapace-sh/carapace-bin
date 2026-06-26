@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: first
+description: Moves to the first diff in the stack. (EXPERIMENTAL)

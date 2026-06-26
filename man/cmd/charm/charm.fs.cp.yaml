@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cp [charm:]PATH [charm:]PATH
+description: Copy a file, preface source or destination with "charm:" to specify a remote path.
+flags:
+    -r, --recursive: copy directories recursively
+
+documentation:
+  command: >-
+    Copy a file between local and Charm Cloud. Prefix source or destination with 'charm:' to indicate a remote path.

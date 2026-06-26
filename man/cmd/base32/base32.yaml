@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Base32 encode or decode data. Reads from FILE or standard input
+    and writes to standard output.
+description: Base32 encode or decode FILE, or standard input, to standard output
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -d, --decode: decode data
+    -i, --ignore-garbage: when decoding, ignore non-alphabet characters
+    -w, --wrap=: wrap encoded lines after COLS character

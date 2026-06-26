@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fmt-merge-msg
+description: Produce a merge commit message
+group: low-level helper
+flags:
+  --into-name=: Prepare the merge message as if merging to the branch <branch>
+  --log=: At most <n> commits from each merge parent will be used (20 if <n> is omitted)
+  --no-log: Do not list one-line descriptions from the actual commits being merged
+  -F, --file=: Take the list of merged objects from <file> instead of stdin
+  -m, --message=: Use <message> instead of the branch names for the first line of the log message
+documentation:
+  command: |-
+    Takes the list of merged objects on stdin and produces a suitable
+    commit message to be used for the merge commit, usually to be
+    passed as the '<merge-message>' argument of 'git merge'.
+
+    This command is intended mostly for internal use by scripts
+    automatically invoking 'git merge'.

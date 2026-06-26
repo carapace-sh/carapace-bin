@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dispatch-build-bottle
+description: Build bottles for these formulae with GitHub Actions
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --issue: If specified, post a comment to this issue number if the job fails.
+    --linux: Dispatch bottle for Linux (using GitHub runners).
+    --linux-self-hosted: Dispatch bottle for Linux (using self-hosted runner).
+    --linux-wheezy: Use Debian Wheezy container for building the bottle on Linux.
+    --macos: macOS version (or comma-separated list of versions) the bottle should be built for.
+    --quiet: Make some output more quiet.
+    --tap: 'Target tap repository (default: `homebrew/core`).'
+    --timeout: 'Build timeout (in minutes, default: 60).'
+    --upload: Upload built bottles.
+    --verbose: Make some output more verbose.
+    --workflow: 'Dispatch specified workflow (default: `dispatch-build-bottle.yml`).'

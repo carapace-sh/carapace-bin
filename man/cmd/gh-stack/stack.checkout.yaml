@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: checkout [<pr-number> | <branch>]
+description: Checkout a stack from a PR number or branch name

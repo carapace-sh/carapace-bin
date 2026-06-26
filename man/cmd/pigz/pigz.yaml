@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pigz
+description: compress or expand files
+flags:
+    --best: Compression levels 9
+    --fast: Compression levels 1
+    "-0": Compression level 0
+    "-1": Compression level 1
+    "-2": Compression level 2
+    "-3": Compression level 3
+    "-4": Compression level 4
+    "-5": Compression level 5
+    "-6": Compression level 6
+    "-7": Compression level 7
+    "-8": Compression level 8
+    "-9": Compression level 9
+    "-11": Compression level 11, zopfli
+    -A, --alias=: Use xxx as the name for any --zip entry from stdin
+    -C, --comment=: Put comment ccc in the gzip or zip header
+    -F, --first: Do iterations first, before block split for -11
+    -H, --huffman: Use only Huffman coding for compression
+    -I, --iterations=: Number of iterations for -11 optimization
+    -J, --maxsplits=: Maximum number of split blocks for -11
+    -K, --zip: Compress to PKWare zip (.zip) single entry format
+    -L, --license: Display the pigz license and quit
+    -M, --time: Store or restore mod time
+    -N, --name: Store or restore file name and mod time
+    -O, --oneblock: Do not split into smaller blocks for -11
+    -R, --rsyncable: Input-determined block locations for rsync
+    -S, --suffix=: Use suffix .sss instead of .gz (for compression)
+    -U, --rle: Use run-length encoding for compression
+    -V, --version: Show the version of pigz
+    -Y, --synchronous: Force output file write to permanent storage
+    -b, --blocksize=: Set compression block size to mmmK (default 128K)
+    -c, --stdout: Write all processed output to stdout (won't delete)
+    -d, --decompress: Decompress the compressed input
+    -f, --force: Force overwrite, compress .gz, links, and to terminal
+    -h, --help: Display a help screen and quit
+    -i, --independent: Compress blocks independently for damage recovery
+    -k, --keep: Do not delete original file after processing
+    -l, --list: List the contents of the compressed input
+    -m, --no-time: Do not store or restore mod time
+    -n, --no-name: Do not store or restore file name or mod time
+    -p, --processes=: Allow up to n compression threads (default is the
+    -q, --quiet: Print no messages, even on error
+    -r, --recursive: Process the contents of all subdirectories
+    -t, --test: Test the integrity of the compressed input
+    -v, --verbose: Provide more verbose output
+    -z, --zlib: Compress to zlib (.zz) instead of gzip format

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: listen
+aliases:
+    - l
+description: Starts the engine server
+hidden: true
+flags:
+    --allow-cors: allow Cross-Origin Resource Sharing (CORS) requests
+    --disable-host-read-write: disable host read/write access
+    --listen=: Listen on network address ADDR
+persistentflags:
+    --focus: Only show output for focused commands
+    -m, --mod=: Path to dagger.json config file for the module or a directory containing that file. Either local path (e.g. "/path/to/some/dir") or a github repo (e.g. "github.com/dagger/dagger/path/to/some/subdir")

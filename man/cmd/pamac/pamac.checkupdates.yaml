@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: checkupdates
+description: Safely check for updates
+flags:
+    --builddir=: build directory (use with --devel)
+    --devel: also check development packages updates (use with --aur)
+    --no-aur: do not check updates in AUR
+    --no-devel: do not check development packages updates
+    -a, --aur: also check updates in AUR
+    -q, --quiet: only print one line per update

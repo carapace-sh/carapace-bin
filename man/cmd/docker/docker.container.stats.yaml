@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stats [OPTIONS] [CONTAINER...]
+description: Display a live stream of container(s) resource usage statistics
+flags:
+    --format=: 'Format output using a custom template:'
+    --no-stream: Disable streaming stats and only pull the first result
+    --no-trunc: Do not truncate output
+    -a, --all: Show all containers (default shows just running)

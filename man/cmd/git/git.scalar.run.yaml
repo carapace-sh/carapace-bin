@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run a Scalar maintenance task
+flags:
+    --task=: run a specific task
+
+documentation:
+  command: >-
+    Run the given maintenance task (or all tasks, if `all` was specified). Except for `all` and `config`, this subcommand hands off to [git-maintenance](cmd://git/maintenance) (mapping `fetch` to `prefetch` and `pack-files` to `incremental-repack`). The `config` task is specific to Scalar and configures opinionated default settings that make Git work more efficiently with large repositories.

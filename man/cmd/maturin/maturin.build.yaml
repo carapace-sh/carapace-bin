@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+description: Build the crate into python packages
+flags:
+    --all-features: Activate all available features
+    --auditwheel=: Audit wheel for manylinux compliance
+    --color=: 'Coloring: auto, always, never'
+    --compatibility=*: Control the platform tag and PyPI compatibility
+    --compression-enable-large-file-support: Whether to use large file support for ZIP files
+    --compression-level=: Zip compression level. Defaults to method default
+    --compression-method=: Zip compression method
+    --config=: Override a configuration value (unstable)
+    --frozen: Require Cargo.lock and cache are up to date
+    --future-incompat-report: Outputs a future incompatibility report at the end of the build (unstable)
+    --generate-stubs: Auto generate Python type stubs by introspecting the binary
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --include-debuginfo: Include debug info files in the wheel
+    --locked: Require Cargo.lock is up to date
+    --no-default-features: Do not activate the `default` feature
+    --offline: Run without accessing the network
+    --pgo: Build with Profile-Guided Optimization (PGO)
+    --profile=: Build artifacts with the specified Cargo profile
+    --sbom-include=*: Additional SBOM files to include in the `.dist-info/sboms` directory
+    --sdist: Build a source distribution and build wheels from it
+    --strip?: Strip the library for minimum file size
+    --target-dir=: Directory for all generated artifacts
+    --target=: Build for the target triple
+    --timings=: 'Timing output formats (unstable) (comma separated): html, json'
+    --zig: For manylinux targets, use zig to ensure compliance for the chosen manylinux version
+    -F, --features=*: Space or comma separated list of features to activate
+    -Z=: Unstable (nightly-only) flags to Cargo
+    -b, --bindings=: Which kind of bindings to use
+    -f, --find-interpreter: Find interpreters from the host machine
+    -i, --interpreter=*: The python versions to build wheels for, given as the executables of interpreters
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs'
+    -m, --manifest-path=: Path to Cargo.toml
+    -o, --out=: The directory to store the built wheels in
+    -q, --quiet: Do not print cargo log messages
+    -r, --release: Build artifacts in release mode, with optimizations
+    -v, --verbose*: Use verbose output (-vv very verbose/build.rs output)

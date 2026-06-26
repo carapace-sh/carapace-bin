@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deps
+description: Pull the most recent version of the dependencies listed in packages.yml
+flags:
+    --profile=: Which profile to load. Overrides setting in dbt_project.yml
+    --project-dir=: Which directory to look in for the dbt_project.yml file
+    --vars=: Supply variables to the project
+    -t, --target=: Which target to load for the given profile

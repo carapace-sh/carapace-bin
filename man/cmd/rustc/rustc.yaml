@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rustc
+description: compiler for the Rust programming language
+flags:
+    --cap-lints=: Set the most restrictive lint level
+    --cfg=: Configure the compilation environment
+    --check-cfg=: Provide list of expected cfgs for checking
+    --crate-name=: Specify the name of the crate being built
+    --crate-type=: Comma separated list of types of crates for the compiler to emit
+    --edition=: Specify which edition of the compiler to use when compiling code
+    --emit=: Comma separated list of types of output for the compiler to emit
+    --explain=: Provide a detailed explanation of an error message
+    --force-warn=: Set lint force-warn
+    --out-dir=: Write output to compiler-chosen filename in DIR
+    --print=: Compiler information to print on stdout
+    --target=: Target triple for which the code is compiled
+    --test: Build a test harness
+    -A, --allow=: Set lint allowed
+    -C, --codegen=: Set a codegen option
+    -D, --deny=: Set lint denied
+    -F, --forbid=: Set lint forbidden
+    -L=*: Add a directory to the library search path
+    -O: Equivalent to -C opt-level=3
+    -V, --version: Print version info and exit
+    -W, --warn=: Set lint warnings
+    -g: Equivalent to -C debuginfo=2
+    -h, --help: Display this message
+    -l=*: Link the generated crate(s) to the specified native library NAME
+    -o=: Write output to FILENAME
+    -v, --verbose: Use verbose output

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mkfs
+description: Make a Linux filesystem
+flags:
+    --verbose: explain what is being done;
+    -V, --version: display version
+    -h, --help: display this help
+    -t, --type=: filesystem type; when unspecified, ext2 is used

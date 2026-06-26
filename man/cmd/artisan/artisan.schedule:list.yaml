@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: schedule:list [--timezone [TIMEZONE]] [--next]
+description: List all scheduled tasks
+flags:
+    --next: Sort the listed tasks by their next due date
+    --timezone=: The timezone that times should be displayed in

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gnome-terminal
+description: A terminal emulator for GNOME
+flags:
+    --display=: X display to use
+    --help-all: Show all help options
+    --help-gtk: Show GTK+ Options
+    --help-terminal: Show terminal options
+    --help-terminal-options: Show per-terminal options
+    --help-window-options: Show per-window options
+    --load-config=: Load a terminal configuration file
+    --no-environment: Do not pass the environment
+    --preferences: Show preferences window
+    -h, --help: Show help options
+    -p, --print-environment: Print environment variables to interact with the terminal
+    -q, --quiet: Suppress output
+    -v, --verbose: Increase diagnostic verbosity

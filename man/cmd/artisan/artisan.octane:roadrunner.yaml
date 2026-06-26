@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: octane:roadrunner [--host [HOST]] [--port [PORT]] [--rpc-host [RPC-HOST]] [--rpc-port [RPC-PORT]] [--workers [WORKERS]] [--max-requests [MAX-REQUESTS]] [--rr-config [RR-CONFIG]] [--watch] [--poll] [--log-level [LOG-LEVEL]]
+description: Start the Octane RoadRunner server
+flags:
+    --host=: The IP address the server should bind to
+    --log-level=: Log messages at or above the specified log level
+    --max-requests=: The number of requests to process before reloading the server
+    --poll: Use file system polling while watching in order to watch files over a network
+    --port=: The port the server should be available on
+    --rpc-host=: The RPC IP address the server should bind to
+    --rpc-port=: The RPC port the server should be available on
+    --rr-config=: The path to the RoadRunner .rr.yaml file
+    --watch: Automatically reload the server when the application is modified
+    --workers=: The number of workers that should be available to handle requests

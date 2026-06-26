@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: detach-client
+flags:
+    -E=: shell-command
+    -P: TODO description
+    -a: TODO description
+    -s=: target-session
+    -t=: target-client

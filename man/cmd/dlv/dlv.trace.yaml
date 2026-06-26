@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: trace
+description: Compile and begin tracing program.
+flags:
+    --ebpf: Trace using eBPF (experimental).
+    --output=: Output path for the binary.
+    -e, --exec=: Binary file to exec and trace.
+    -p, --pid=: Pid to attach to.
+    -s, --stack=: Show stack trace with given depth. (Ignored with -ebpf)
+    -t, --test: Trace a test binary.

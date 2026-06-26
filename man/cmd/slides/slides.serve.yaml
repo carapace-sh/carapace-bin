@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serve
+description: Start an SSH server to run slide
+flags:
+    --host=: Server host to bind to (default "localhost")
+    --keyPath=: Server private key path (default "slides")
+    --port=: Server port to bind to (default 53531)
+    -h, --help: help for serve

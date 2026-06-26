@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install [flags] MODULE
+aliases:
+    - use
+description: Add a new dependency to a Dagger module
+group: module
+flags:
+    --focus: Only show output for focused commands
+    -m, --mod=: Path to dagger.json config file for the module or a directory containing that file. Either local path (e.g. "/path/to/some/dir") or a github repo (e.g. "github.com/dagger/dagger/path/to/some/subdir")
+    -n, --name=: Name to use for the dependency in the module. Defaults to the name of the module being installed.

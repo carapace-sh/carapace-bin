@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push
+description: Push all branches in the current stack to the remote
+flags:
+    --remote=: Remote to push to (defaults to auto-detected remote)

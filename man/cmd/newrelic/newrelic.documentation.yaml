@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: documentation
+description: Generate CLI documentation
+flags:
+    --format=: Documentation format [markdown, manpage] default 'markdown'
+    -o, --outputDir=: Output directory for generated documentation

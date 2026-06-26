@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: play
+description: Replay the recorded session (SSH, Kubernetes, App, DB).
+flags:
+    -c, --cluster=: Specify the Teleport cluster to connect
+    -f, --format=: Format output (pty, json, yaml)
+
+documentation:
+  command: >-
+    Replay a recorded SSH, Kubernetes, or database session for auditing purposes.

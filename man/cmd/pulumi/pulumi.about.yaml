@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: about
+description: Print information about the Pulumi environment.
+persistentflags:
+    -j, --json: Emit output as JSON
+    -t, --transitive: Include transitive dependencies

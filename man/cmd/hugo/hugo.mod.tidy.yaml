@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tidy
+description: Remove unused entries in go.mod and go.sum.

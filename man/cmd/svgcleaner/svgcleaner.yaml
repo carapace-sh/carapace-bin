@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: svgcleaner <in-file> <out-file>
+description: clean up your SVG files from the unnecessary data
+flags:
+    --allow-bigger-file: Allow bigger file
+    --apply-transform-to-gradients=: Apply transformations to gradients
+    --apply-transform-to-paths=: Apply transformations to paths
+    --apply-transform-to-shapes=: Apply transformations to shapes
+    --convert-segments=: Convert path segments into shorter ones
+    --convert-shapes=: Convert basic shapes into paths
+    --coordinates-precision=: Set coordinates numeric precision
+    --copy-on-error: Copy an original file to the destination on error
+    --group-by-style=: Group elements by equal styles
+    --indent=: Set XML nodes indent
+    --join-arcto-flags=: Join ArcTo flags
+    --join-style-attributes=: Join presentational attributes
+    --list-separator=: Set number list separator
+    --merge-gradients=: Merge gradients
+    --multipass: Clean a file multiple times
+    --no-defaults: Reset default flags to 'no'
+    --paths-coordinates-precision=: Set path's coordinates numeric precision
+    --paths-to-relative=: Convert path segments into relative ones
+    --properties-precision=: Set properties numeric precision
+    --quiet: Show only warnings and errors
+    --regroup-gradient-stops=: Regroup gradient 'stop' elements
+    --remove-comments=: Remove XML comments
+    --remove-declarations=: Remove XML declarations
+    --remove-default-attributes=: Remove attributes with default values
+    --remove-desc=: Remove 'desc' element
+    --remove-dupl-cmd-in-paths=: Remove subsequent segments command from paths
+    --remove-dupl-fegaussianblur=: Remove duplicated 'feGaussianBlur' elements
+    --remove-dupl-lineargradient=: Remove duplicated 'linearGradient' elements
+    --remove-dupl-radialgradient=: Remove duplicated 'radialGradient' elements
+    --remove-gradient-attributes=: Remove inheritable gradient attributes
+    --remove-invalid-stops=: Remove invalid 'stop' elements
+    --remove-invisible-elements=: Remove invisible elements
+    --remove-metadata=: Remove 'metadata' element
+    --remove-needless-attributes=: Remove attributes that doesn't belong to this element
+    --remove-nonsvg-attributes=: Remove non-SVG attributes
+    --remove-nonsvg-elements=: Remove non-SVG elements
+    --remove-text-attributes=: Remove text-related attributes if there is no text
+    --remove-title=: Remove 'title' element
+    --remove-unreferenced-ids=: Remove unreferenced 'id' attributes
+    --remove-unresolved-classes=: Remove unresolved classes from 'class' attributes
+    --remove-unused-coordinates=: Remove unused coordinate attributes
+    --remove-unused-defs=: Remove unused referenced elements
+    --remove-unused-segments=: Remove unused path segments
+    --remove-version=: Remove 'version' and 'baseProfile' attributes
+    --remove-xmlns-xlink-attribute=: Remove an unused 'xmlns:xlink' attribute
+    --resolve-use=: Resolve 'use' elements
+    --simplify-transforms=: Simplify transform matrices
+    --transforms-precision=: Set transform values numeric precision
+    --trim-colors=: 'Use #RGB notation'
+    --trim-ids=: Trim 'id' attributes
+    --trim-paths=: Use compact notation for paths
+    --ungroup-defs=: Ungroup 'defs' element
+    --ungroup-groups=: Ungroup groups
+    --use-implicit-cmds=: Use implicit LineTo commands
+    -V, --version: Print version information
+    -c, --stdout: Print result to the standard output
+    -h, --help: Print help information

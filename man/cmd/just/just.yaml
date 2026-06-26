@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: just
+description: Just a command runner
+flags:
+    --alias-style=: Set list command alias display style
+    --allow-missing: Ignore missing recipe and module errors
+    --ceiling=: Do not ascend above <CEILING> directory when searching for a justfile.
+    --changelog: Print changelog
+    --check: Run `--fmt` in 'check' mode. Exits with 0 if justfile is formatted correctly. Exits with 1 and prints a diff if formatting is required.
+    --choose: Select one or more recipes to run using a binary chooser. If `--chooser` is not passed the chooser defaults to the value of $JUST_CHOOSER, falling back to `fzf`
+    --chooser=: Override binary invoked by `--choose`
+    --clear-shell-args: Clear shell arguments
+    --color=: Print colorful output
+    --command-color=: Echo recipe lines in <COMMAND-COLOR>
+    --complete-aliases: Auto-complete recipe aliases
+    --completions=: Print shell completion script for <SHELL>
+    --cygpath=: Use binary at <CYGPATH> to convert between unix and Windows paths.
+    --dotenv-filename=: Search for environment file named <DOTENV-FILENAME> instead of `.env`
+    --dump: Print justfile
+    --dump-format=: Dump justfile as <FORMAT>
+    --eval&: Evaluate and print all variables. If a variable name is given as an argument, only print that variable's value.
+    --evaluate: Evaluate and print all variables. If a variable name is given as an argument, only print that variable's value.
+    --evaluate-format=: Print evaluated variables in <FORMAT>
+    --explain: Print recipe doc comment before running it
+    --fmt: Format and overwrite justfile
+    --format&: Format and overwrite justfile
+    --group=*: Only list recipes in <GROUP>
+    --groups: List recipe groups
+    --highlight: Highlight echoed recipe lines in bold
+    --indentation=: Indent recipes bodies with <INDENTATION>
+    --init: Initialize new justfile in project root
+    --initialize&: Initialize new justfile in project root
+    --json: Print justfile as JSON
+    --justfile-name=*: Search for justfile named <NAME>
+    --list-heading=: Print <TEXT> before list
+    --list-prefix=: Print <TEXT> before each list item
+    --list-submodules: List recipes in submodules
+    --man: Print man page
+    --no-aliases: Don't show aliases in list
+    --no-dependencies&: Don't run recipe dependencies
+    --no-deps: Don't run recipe dependencies
+    --no-dotenv: Don't load `.env` file
+    --no-highlight: Don't highlight echoed recipe lines in bold
+    --one: Forbid multiple recipes from being invoked on the command line
+    --set=*: Override <VARIABLE> with <VALUE>
+    --shell-arg=*: Invoke shell with <SHELL-ARG> as an argument
+    --shell-command: Invoke <COMMAND> with the shell used to run recipe lines and backticks
+    --shell=: Invoke <SHELL> to run recipes
+    --summary: List names of available recipes
+    --tempdir=: Save temporary files to <TEMPDIR>.
+    --time: Print recipe execution time
+    --timestamp: Print recipe command timestamps
+    --timestamp-format=: Timestamp format string
+    --unstable: Enable unstable features
+    --usage=*: Print recipe usage information
+    --variables: List names of variables
+    --yes: Automatically confirm all recipes.
+    -E, --dotenv-path=: Load <DOTENV-PATH> as environment file instead of searching for one
+    -V, --version: Print version
+    -c, --command=*: Run an arbitrary command with the working directory, `.env`, overrides, and exports set
+    -d, --working-directory=: Use <WORKING-DIRECTORY> as working directory. --justfile must also be set
+    -e, --edit: Edit justfile with editor given by $VISUAL or $EDITOR, falling back to `vim`
+    -f, --justfile=: Use <JUSTFILE> as justfile
+    -g, --global-justfile: Use global justfile
+    -h, --help: Print help
+    -l, --list=*: List available recipes in <MODULE> or root if omitted
+    -n, --dry-run: Print what just would do without doing it
+    -q, --quiet: Suppress all output
+    -s, --show=*: Show recipe at <PATH>
+    -u, --unsorted: Return list and summary entries in source order
+    -v, --verbose*: Use verbose output

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: adjust-pane-size [OPTIONS] <DIRECTION>
+description: Adjust the size of a pane directionally
+flags:
+    --amount=: Specify the number of cells to resize by, defaults to 1
+    --pane-id=: Specify the target pane
+    -h, --help: Print help

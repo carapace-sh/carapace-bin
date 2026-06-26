@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +validate-config
+description: validate a Ghostty config file
+flags:
+    --config-file=: validate a specific target config file
+    --help: show help

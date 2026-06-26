@@ -1,0 +1,1319 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mpv
+description: a media player
+flags:
+    --{: ""
+    --}: ""
+    --ab-loop-a?: Set loop point
+    --ab-loop-b?: Set loop Point
+    --ab-loop-count?: Run A-B only N times
+    --access-references?: Follow any references in the file being opened
+    --ad-lavc-ac3drc?: Select the Dynamic Range Compression level for AC-3 audio streams
+    --ad-lavc-downmix?: Whether  to request audio channel downmixing from the decoder
+    --ad-lavc-o-add?: ""
+    --ad-lavc-o-append?: ""
+    --ad-lavc-o-clr?: ""
+    --ad-lavc-o-del?: ""
+    --ad-lavc-o-remove?: ""
+    --ad-lavc-o-set?: ""
+    --ad-lavc-o?: Pass AVOptions to libavcodec decoder
+    --ad-lavc-threads?: Number  of threads to use for decoding
+    --ad-queue-enable?: 'Enable running the audio decoder on a separate thread '
+    --ad-queue-max-bytes?: Maximum approximate allowed size of the queue
+    --ad-queue-max-samples?: Maximum number samples of the queue
+    --ad-queue-max-secs?: Maximum number of seconds of media in the queue
+    --ad?: Specify a priority list of audio decoders to be used
+    --af-add?: ""
+    --af-append?: ""
+    --af-clr?: ""
+    --af-help?: ""
+    --af-pre?: ""
+    --af-remove?: ""
+    --af-set?: ""
+    --af-toggle?: ""
+    --af?: Specify a list of audio filters to  apply  to  the  audio stream
+    --aid?: Select audio track
+    --alang-add?: ""
+    --alang-append?: ""
+    --alang-clr?: ""
+    --alang-del?: ""
+    --alang-pre?: ""
+    --alang-remove?: ""
+    --alang-set?: ""
+    --alang-toggle?: ""
+    --alang?: Specify a prioritized list of audio languages to use, as IETF language tags
+    --allow-delayed-peak-detect?: When using --hdr-compute-peak, allow delaying the detected peak by a frame when beneficial for performance
+    --alsa-buffer-time?: Set the requested buffer time in microseconds
+    --alsa-ignore-chmap?: Don't read or set the channel map of the ALSA device
+    --alsa-mixer-device?: Set the mixer device used with ao-volume
+    --alsa-mixer-index?: Set the index of the mixer channel
+    --alsa-mixer-name?: Set the name of the mixer element
+    --alsa-non-interleaved?: Allow output of non-interleaved formats
+    --alsa-periods?: Number of periods requested from the ALSA API
+    --alsa-resample?: Enable ALSA resampling plugin
+    --ao-add?: ""
+    --ao-append?: ""
+    --ao-clr?: ""
+    --ao-help?: ""
+    --ao-null-broken-delay?: Simulate broken audio drivers, which don't report latency correctly
+    --ao-null-broken-eof?: Simulate broken audio drivers, which always add the fixed device latency to the reported audio playback position
+    --ao-null-buffer?: Simulated buffer length in seconds
+    --ao-null-channel-layouts?: If not empty, this is a , separated list of channel layouts the AO allows
+    --ao-null-format?: Force the audio output format the AO will accept
+    --ao-null-latency?: Simulated device latency
+    --ao-null-outburst?: Simulated chunk size in samples
+    --ao-null-speed?: Simulated audio playback speed as a multiplier
+    --ao-null-untimed?: Do not simulate timing of a perfect audio device
+    --ao-pcm-append?: Append to the file, instead of overwriting it
+    --ao-pcm-file?: Write the sound to <filename> instead of the default audiodump.wav
+    --ao-pcm-waveheader?: Include or do not include the WAVE header
+    --ao-pre?: ""
+    --ao-remove?: ""
+    --ao-set?: ""
+    --ao-toggle?: ""
+    --ao?: Specify a priority list of audio output drivers to be used
+    --archive-exts-add?: ""
+    --archive-exts-append?: ""
+    --archive-exts-clr?: ""
+    --archive-exts-del?: ""
+    --archive-exts-pre?: ""
+    --archive-exts-remove?: ""
+    --archive-exts-set?: ""
+    --archive-exts-toggle?: ""
+    --archive-exts?: Archive file extensions to try to match when using --autocreate-playlist or --directory-filter-types
+    --audio-backward-batch?: Number of keyframe ranges to decode at once when backward decoding
+    --audio-backward-overlap?: Number of overlapping keyframe ranges to use for backward decoding
+    --audio-buffer?: Set the audio output minimum buffer
+    --audio-channels?: Control which audio channels are output
+    --audio-client-name?: The application name the player reports to the audio API
+    --audio-delay?: Audio delay in seconds
+    --audio-demuxer?: Use this audio demuxer type when using --audio-file
+    --audio-device?: Use the given audio device
+    --audio-display?: Determines whether to display cover art when playing audio files and with what priority
+    --audio-exclusive?: Enable exclusive output mode
+    --audio-exts-add?: ""
+    --audio-exts-append?: ""
+    --audio-exts-clr?: ""
+    --audio-exts-del?: ""
+    --audio-exts-pre?: ""
+    --audio-exts-remove?: ""
+    --audio-exts-set?: ""
+    --audio-exts-toggle?: ""
+    --audio-exts?: Audio file extensions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types
+    --audio-fallback-to-null?: If no audio device can be opened, behave as if --ao=null was given
+    --audio-file-auto-exts?: alias for audio-exts
+    --audio-file-auto?: Load additional audio files matching the video filename
+    --audio-file-paths-add?: ""
+    --audio-file-paths-append?: ""
+    --audio-file-paths-clr?: ""
+    --audio-file-paths-del?: ""
+    --audio-file-paths-pre?: ""
+    --audio-file-paths-remove?: ""
+    --audio-file-paths-set?: ""
+    --audio-file-paths-toggle?: ""
+    --audio-file-paths?: Analogous to --sub-file-paths option, but for auto-loaded audio files
+    --audio-file?: CLI/config file only alias for --audio-files-append
+    --audio-files-add?: ""
+    --audio-files-append?: ""
+    --audio-files-clr?: ""
+    --audio-files-del?: ""
+    --audio-files-pre?: ""
+    --audio-files-remove?: ""
+    --audio-files-set?: ""
+    --audio-files-toggle?: ""
+    --audio-files?: Play audio from an external file while viewing a video
+    --audio-format?: Select the sample format used for output from the audio filter layer to the sound card
+    --audio-normalize-downmix?: Enable/disable normalization if surround audio is downmixed to stereo
+    --audio-pitch-correction?: If this is enabled (default), playing with a speed different from normal automatically inserts the scaletempo2 audio filter
+    --audio-resample-cutoff?: Cutoff frequency
+    --audio-resample-filter-size?: Length of the filter with respect to the lower sampling rate
+    --audio-resample-linear?: If set then filters will be linearly interpolated between polyphase entries
+    --audio-resample-max-output-size?: Limit maximum size of audio frames filtered at once, in ms
+    --audio-resample-phase-shift?: Log2 of the number of polyphase entries
+    --audio-reversal-buffer?: For backward decoding
+    --audio-samplerate?: 'Select the output sample rate to be used '
+    --audio-set-media-role?: If enabled, mpv will set the appropriate media role on supported audio servers to indicate whether mpv is playing a video or an audio-only file
+    --audio-spdif?: List of codecs for which compressed audio passthrough should be used
+    --audio-stream-silence?: Cash-grab consumer audio hardware (such as A/V receivers) often ignore initial audio sent over HDMI
+    --audio-swresample-o-add?: ""
+    --audio-swresample-o-append?: ""
+    --audio-swresample-o-clr?: ""
+    --audio-swresample-o-del?: ""
+    --audio-swresample-o-remove?: ""
+    --audio-swresample-o-set?: ""
+    --audio-swresample-o?: Set AVOptions on the SwrContext or AVAudioResampleContext
+    --audio-wait-open?: This makes sense for use with --audio-stream-silence=yes. If this option is given, the player will wait for the given amount of seconds after opening the audio device before sending actual audio data to it
+    --audio?: alias for --aid
+    --auto-window-resize?: By default, mpv will automatically resize itself if the video's size changes
+    --autocreate-playlist?: When opening a local file, act as if the parent directory is opened and create a playlist automatically
+    --autofit-larger?: This option behaves exactly like --autofit, except that it sets the maximum size of the window
+    --autofit-smaller?: This option behaves exactly like --autofit, except that it sets the minimum size of the window
+    --autofit?: Set the initial window size to a maximum size specified by WxH, without changing the window's aspect ratio
+    --autoload-files?: Automatically load/select external files
+    --autosync?: Gradually adjusts the A/V sync based on audio delay measurements
+    --backdrop-type?: Controls the backdrop/border style
+    --background-blur-radius?: The blur radius (in pixels) to use for --border-background=blur
+    --background-color?: Color used to draw parts of the mpv window not covered by video
+    --background-tile-color-0?: Colors used to draw parts of the mpv window not covered by video in --background=tiles mode
+    --background-tile-color-1?: Colors used to draw parts of the mpv window not covered by video in --background=tiles mode
+    --background-tile-size?: Tile size used to draw parts of the mpv window not covered by video in --background=tiles mode
+    --background?: If the frame has an alpha component, decide what kind of background, if any, to blend it with
+    --blend-subtitles?: Blend subtitles directly onto upscaled video frames, before interpolation and/or color management
+    --bluray-angle?: Some Blu-ray discs contain scenes that can be viewed from multiple angles. This option tells mpv which angle to use
+    --bluray-device?: Specify the Blu-ray disc location
+    --border-background?: Same as --background but only applies to the black bar/border area of the window
+    --border?: Play video with window border and decorations
+    --brightness?: Adjust the brightness of the video signal
+    --cache-on-disk?: Write packet data to a temporary file, instead of keeping them in memory
+    --cache-pause-initial?: Enter "buffering" mode before starting playback
+    --cache-pause-wait?: Number of seconds the packet cache should have buffered before starting playback again if "buffering" was entered
+    --cache-pause?: Whether the player should automatically pause when the cache runs out of data and stalls decoding/playback
+    --cache-secs?: How many seconds of audio/video to prefetch if the cache is active
+    --cache?: Decide whether to use network cache settings
+    --cdda-cdtext?: Print CD text
+    --cdda-device?: Specify the CD device for CDDA playback
+    --cdda-overlap?: Force minimum overlap search during verification to <value> sectors
+    --cdda-paranoia?: Set paranoia level
+    --cdda-sector-size?: Set atomic read size
+    --cdda-skip?: (Never) accept imperfect data reconstruction
+    --cdda-speed?: Set CD spin speed
+    --cdda-toc-offset?: Add <value> sectors to the values reported when addressing tracks
+    --chapter-merge-threshold?: Threshold for merging almost consecutive ordered chapter parts in milliseconds
+    --chapter-seek-threshold?: Distance in seconds from the beginning of a chapter within which a backward chapter seek will go to the previous chapter
+    --chapters-file?: Load chapters from this file, instead of using the chapter metadata found in the main file
+    --clipboard-backends-add?: ""
+    --clipboard-backends-append?: ""
+    --clipboard-backends-clr?: ""
+    --clipboard-backends-help?: ""
+    --clipboard-backends-pre?: ""
+    --clipboard-backends-remove?: ""
+    --clipboard-backends-set?: ""
+    --clipboard-backends-toggle?: ""
+    --clipboard-backends?: Specify a priority list of the clipboard backends to be used
+    --clipboard-monitor?: Enable clipboard monitoring so that the clipboard property can be observed for content changes
+    --clipboard-xwayland?: Enable X11 clipboard backend in suspected Wayland environments
+    --config-dir?: Force a different configuration directory
+    --config?: ""
+    --container-fps-override?: Override video framerate
+    --contrast?: Adjust the contrast of the video signal
+    --cookies-file?: Read HTTP cookies from <filename>
+    --cookies?: Support cookies when making HTTP requests
+    --corner-rounding?: If set to a value above 0.0, the output will be rendered with rounded corners, as if an alpha transparency mask had been applied
+    --correct-downscaling?: When using convolution based filters, extend the filter size when downscaling
+    --correct-pts?: --correct-pts=no switches mpv to a mode where video timing is determined using a fixed framerate value
+    --cover-art-auto-exts?: alias for image-exts
+    --cover-art-auto?: Whether to load _external_ cover art automatically
+    --cover-art-file?*: CLI/config file only alias for --cover-art-files-append
+    --cover-art-files-add?: ""
+    --cover-art-files-append?: ""
+    --cover-art-files-clr?: ""
+    --cover-art-files-del?: ""
+    --cover-art-files-pre?: ""
+    --cover-art-files-remove?: ""
+    --cover-art-files-set?: ""
+    --cover-art-files-toggle?: ""
+    --cover-art-files?: Use an external file as cover art while playing audio
+    --cover-art-whitelist-add?: ""
+    --cover-art-whitelist-append?: ""
+    --cover-art-whitelist-clr?: ""
+    --cover-art-whitelist-del?: ""
+    --cover-art-whitelist-pre?: ""
+    --cover-art-whitelist-remove?: ""
+    --cover-art-whitelist-set?: ""
+    --cover-art-whitelist-toggle?: ""
+    --cover-art-whitelist?: Filenames to load as cover art, sorted by descending priority
+    --cscale-antiring?: Set the antiringing strength
+    --cscale-blur?: Kernel scaling factor
+    --cscale-clamp?: Specifies a weight bias to multiply into negative coefficients
+    --cscale-param1?: Set filter parameters
+    --cscale-param2?: Set filter parameters
+    --cscale-radius?: Set radius for tunable filters, must be a float number between 0.5 and 16.0
+    --cscale-taper?: Kernel/window taper factor
+    --cscale-window?: Choose a custom windowing function for the kernel
+    --cscale-wparam?: Configure the parameter for the window function given by --scale-window etc
+    --cscale-wtaper?: Kernel/window taper factor
+    --cscale?: As --scale, but for interpolating chroma information
+    --cuda-decode-device?: Choose the GPU device used for decoding when using the cuda or nvdec hwdecs with the OpenGL GPU backend, and with the cuda-copy or nvdec-copy hwdecs in all cases
+    --cursor-autohide-fs-only?: If this option is given, the cursor is always visible in windowed mode
+    --cursor-autohide?: Make mouse cursor automatically hide after given number of milliseconds
+    --d3d11va-zero-copy?: By default, when using hardware decoding with --gpu-api=d3d11, the video image will be copied (GPU-to-GPU) from the decoder surface to a shader resource. Set this option to avoid that copy by sampling directly from the decoder image
+    --d3d11-adapter?: Select a specific D3D11 adapter to utilize for D3D11 rendering
+    --d3d11-composition-size?: Set size of the output for d3d11 composition mode
+    --d3d11-exclusive-fs?: Switches the D3D11 swap chain fullscreen state to 'fullscreen' when fullscreen video is requested
+    --d3d11-feature-level?: Select a specific feature level when using the D3D11 GPU backend
+    --d3d11-flip?: Enable flip-model presentation, which avoids unnecessarily copying the backbuffer by sharing surfaces with the DWM
+    --d3d11-output-csp?: Select a specific D3D11 output color space to utilize for D3D11 rendering
+    --d3d11-output-format?: Select a specific D3D11 output format to utilize for D3D11 rendering
+    --d3d11-output-mode?: Use a specific output mode for creating the D3D11 swapchain
+    --d3d11-sync-interval?: Schedule each frame to be presented for this number of VBlank intervals
+    --d3d11-warp?: Use WARP (Windows Advanced Rasterization Platform) with the D3D11 GPU backend
+    --deband-grain?: Add some extra noise to the image
+    --deband-iterations?: The number of debanding steps to perform per sample
+    --deband-range?: The debanding filter's initial radius
+    --deband-threshold?: The debanding filter's cut-off threshold
+    --deband?: Enable the debanding algorithm
+    --deinterlace-field-parity?: Specify the field parity/order when deinterlacing
+    --deinterlace?: Enable or disable deinterlacing
+    --demuxer-backward-playback-step?: Number of seconds the demuxer should seek back to get new packets during backward playback
+    --demuxer-cache-dir?: Directory where to create temporary files
+    --demuxer-cache-unlink-files?: Whether or when to unlink cache files
+    --demuxer-cache-wait?: Before starting playback, read data until either the end of the file was reached, or the demuxer cache has reached maximum capacity
+    --demuxer-donate-buffer?: Whether to let the back buffer use part of the forward buffer
+    --demuxer-hysteresis-secs?: Once the demuxer limit is reached (--demuxer-max-bytes, --demuxer-readahead-secs or --cache-secs), this value can be used to specify a hysteresis before the demuxer will buffer ahead again
+    --demuxer-lavf-allow-mimetype?: Allow deriving the format from the HTTP MIME type
+    --demuxer-lavf-analyzeduration?: Maximum length in seconds to analyze the stream properties
+    --demuxer-lavf-buffersize?: Size  of the stream read buffer allocated for libavformat in bytes
+    --demuxer-lavf-format?: Force a specific libavformat demuxer
+    --demuxer-lavf-hacks?: By default, some formats will be handled differently from other formats by explicitly checking for them
+    --demuxer-lavf-linearize-timestamps?: Attempt to linearize timestamp resets in demuxed streams
+    --demuxer-lavf-o-add?: ""
+    --demuxer-lavf-o-append?: ""
+    --demuxer-lavf-o-clr?: ""
+    --demuxer-lavf-o-del?: ""
+    --demuxer-lavf-o-remove?: ""
+    --demuxer-lavf-o-set?: ""
+    --demuxer-lavf-o?: Pass AVOptions to libavformat demuxer
+    --demuxer-lavf-probe-info?: Whether to probe stream information
+    --demuxer-lavf-probescore?: Minimum required libavformat probe score
+    --demuxer-lavf-probesize?: Maximum amount of data to probe during the detection phase
+    --demuxer-lavf-propagate-opts?: Propagate FFmpeg-level options to recursively opened connections
+    --demuxer-max-back-bytes?: This controls how much past data the demuxer is allowed to preserve
+    --demuxer-max-bytes?: This controls how much the demuxer is allowed to buffer ahead
+    --demuxer-mkv-crop-compat?: Enable compatibility mode for files that do not fully comply with the Matroska specification
+    --demuxer-mkv-probe-start-time?: Check the start time of Matroska files
+    --demuxer-mkv-probe-video-duration?: When  opening  the file, seek to the end of it, and check what timestamp the last video packet has, and report that as file duration
+    --demuxer-mkv-subtitle-preroll-secs-index?: See --demuxer-mkv-subtitle-preroll
+    --demuxer-mkv-subtitle-preroll-secs?: See --demuxer-mkv-subtitle-preroll
+    --demuxer-mkv-subtitle-preroll?: Try harder to show embedded soft subtitles when seeking somewhere
+    --demuxer-rawaudio-channels?: Number of channels (or channel layout) if --demuxer=rawaudio is used
+    --demuxer-rawaudio-format?: Sample format for --demuxer=rawaudio
+    --demuxer-rawaudio-rate?: Sample rate for --demuxer=rawaudio
+    --demuxer-rawvideo-codec?: Set the video codec instead of selecting the rawvideo codec when using --demuxer=rawvideo
+    --demuxer-rawvideo-format?: Color space (fourcc) in hex or string for --demuxer=rawvideo
+    --demuxer-rawvideo-fps?: Rate in frames per second for --demuxer=rawvideo
+    --demuxer-rawvideo-h?: Image dimension in pixels for --demuxer=rawvideo
+    --demuxer-rawvideo-mp-format?: Color space by internal video format for --demuxer=rawvideo
+    --demuxer-rawvideo-size?: Frame size in bytes when using --demuxer=rawvideo
+    --demuxer-rawvideo-w?: Image dimension in pixels for --demuxer=rawvideo
+    --demuxer-readahead-secs?: If --demuxer-thread is enabled, this controls how much the demuxer should buffer ahead in seconds
+    --demuxer-seekable-cache?: Debugging option to control whether seeking can use the demuxer cache
+    --demuxer-termination-timeout?: Number of seconds the player should wait to shutdown the demuxer
+    --demuxer-thread?: Run the demuxer in a separate thread, and let it prefetch a certain amount of packets
+    --demuxer?: Force demuxer type
+    --directory-filter-types-add?: ""
+    --directory-filter-types-append?: ""
+    --directory-filter-types-clr?: ""
+    --directory-filter-types-del?: ""
+    --directory-filter-types-pre?: ""
+    --directory-filter-types-remove?: ""
+    --directory-filter-types-set?: ""
+    --directory-filter-types-toggle?: ""
+    --directory-filter-types?: Media file types to filter when opening directory
+    --directory-mode?: When opening a directory, open subdirectories lazily, recursively or not at all
+    --display-fps-override?: Set the display FPS used with the --video-sync=display-* modes
+    --display-tags-add?: ""
+    --display-tags-append?: ""
+    --display-tags-clr?: ""
+    --display-tags-del?: ""
+    --display-tags-pre?: ""
+    --display-tags-remove?: ""
+    --display-tags-set?: ""
+    --display-tags-toggle?: ""
+    --display-tags?: Set the list of tags that should be displayed on the terminal and stats
+    --dither-depth?: Set dither target depth to N
+    --dither-size-fruit?: Set the size of the dither matrix
+    --dither?: Select dithering algorithm
+    --drag-and-drop?: Controls the default behavior of drag and drop on platforms that support this
+    --drm-connector?: Select the connector to use
+    --drm-device?: Select the DRM device file to use
+    --drm-draw-plane?: Select the DRM plane to which video and OSD is drawn to, under normal circumstances
+    --drm-draw-surface-size?: Sets the size of the surface used on the draw plane
+    --drm-drmprime-video-plane?: Select the DRM plane to use for video with the drmprime-overlay hwdec interop
+    --drm-format?: Select the DRM format to use
+    --drm-mode?: Mode to use
+    --drm-vrr-enabled?: Toggle use of Variable Refresh Rate (VRR), aka Freesync or Adaptive Sync on compatible systems
+    --dscale-antiring?: Set the antiringing strength
+    --dscale-blur?: Kernel scaling factor
+    --dscale-clamp?: Specifies a weight bias to multiply into negative coefficients
+    --dscale-param1?: Set filter parameters
+    --dscale-param2?: Set filter parameters
+    --dscale-radius?: Set radius for tunable filters, must be a float number between 0.5 and 16.0
+    --dscale-taper?: Kernel/window taper factor
+    --dscale-window?: Choose a custom windowing function for the kernel
+    --dscale-wparam?: ""
+    --dscale-wtaper?: Kernel/window taper factor
+    --dscale?: Like --scale, but apply these filters on downscaling instead
+    --dump-stats?: Write certain statistics to the given file
+    --dvbin-card?: Specifies using card number 0-15
+    --dvbin-channel-switch-offset?: This value is not meant for setting via configuration, but used in channel switching
+    --dvbin-file?: Instructs mpv to read the channels list from <filename>
+    --dvbin-full-transponder?: Apply no filters on program PIDs, only tune to frequency and pass full transponder to demuxer
+    --dvbin-prog?: This defines the program to tune to
+    --dvbin-timeout?: Maximum number of seconds to wait when trying to tune a frequency before giving up
+    --dvd-angle?: Some DVDs contain scenes that can be viewed from multiple angles
+    --dvd-device?: Specify the DVD device or .iso filename
+    --dvd-speed?: Try to limit DVD speed
+    --edition?: (Matroska files only) Specify the edition (set of chapters) to use, where 0 is the first
+    --egl-config-id?: (EGL only) Select EGLConfig with specific EGL_CONFIG_ID
+    --egl-output-format?: (EGL only) Select a specific EGL output format to utilize for OpenGL rendering
+    --embeddedfonts?: Use fonts embedded in Matroska container files and ASS scripts
+    --end?: Stop at given time
+    --error-diffusion?: The error diffusion kernel to use when --dither=error-diffusion is set
+    --external-file?: CLI/config file only alias for --external-files-append
+    --external-files-add?: ""
+    --external-files-append?: ""
+    --external-files-clr?: ""
+    --external-files-del?: ""
+    --external-files-pre?: ""
+    --external-files-remove?: ""
+    --external-files-set?: ""
+    --external-files-toggle?: ""
+    --external-files?: Load a file and add all of its tracks
+    --fbo-format?: Selects the internal format of textures used for FBOs
+    --focus-on?: (macOS only) Focus the video window and make it the front most window on specific events
+    --force-media-title?: Force the contents of the media-title property to this value.
+    --force-render?: Forces mpv to always render frames regardless of the visibility of the window
+    --force-rgba-osd-rendering?: Change how some video outputs render the OSD and text subtitles
+    --force-seekable?: If the player thinks that the media is not seekable (e.g. playing from a pipe, or it's an http stream with a server that doesn't support range requests), seeking will be disabled
+    --force-window-position?: Forcefully move mpv's video output window to default location whenever there is a change in video parameters, video stream or file
+    --force-window?: Create a video output window even if there is no video
+    --framedrop?: Skip displaying some frames to maintain A/V sync on slow systems, or playing high framerate video on video outputs that have an upper framerate limit
+    --frames?: Play/convert only first <number> video frames, then quit
+    --fs-screen-name?: In multi-monitor configurations, this option tells mpv which screen to go fullscreen to based on the screen name from the video backend
+    --fs-screen?: In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to go fullscreen to
+    --fs?: fullscreen playback
+    --fullscreen?: Fullscreen playback
+    --gamma-factor?: Set an additional raw gamma factor
+    --gamma?: Adjust the gamma of the video signal
+    --gamut-mapping-mode?: Specifies the algorithm used for reducing the gamut of images for the target display, after any tone mapping is done
+    --gapless-audio?: Try to play consecutive audio files with no silence or disruption at the point of file change
+    --geometry?: Adjust the initial window position or size
+    --glsl-shader-opts-add?: ""
+    --glsl-shader-opts-append?: ""
+    --glsl-shader-opts-clr?: ""
+    --glsl-shader-opts-del?: ""
+    --glsl-shader-opts-remove?: ""
+    --glsl-shader-opts-set?: ""
+    --glsl-shader-opts?: Specifies the options to use for tunable shader parameters
+    --glsl-shader?*: Custom GLSL hooks
+    --glsl-shaders-add?: ""
+    --glsl-shaders-append?: ""
+    --glsl-shaders-clr?: ""
+    --glsl-shaders-del?: ""
+    --glsl-shaders-pre?: ""
+    --glsl-shaders-remove?: ""
+    --glsl-shaders-set?: ""
+    --glsl-shaders-toggle?: ""
+    --glsl-shaders?: Custom GLSL hooks
+    --gpu-api-add?: ""
+    --gpu-api-append?: ""
+    --gpu-api-clr?: ""
+    --gpu-api-help?: ""
+    --gpu-api-pre?: ""
+    --gpu-api-remove?: ""
+    --gpu-api-set?: ""
+    --gpu-api-toggle?: ""
+    --gpu-api?: Specify a priority list of accepted graphics APIs
+    --gpu-context-add?: ""
+    --gpu-context-append?: ""
+    --gpu-context-clr?: ""
+    --gpu-context-help?: ""
+    --gpu-context-pre?: ""
+    --gpu-context-remove?: ""
+    --gpu-context-set?: ""
+    --gpu-context-toggle?: ""
+    --gpu-context?: Specify a priority list of the GPU contexts to be used
+    --gpu-debug?: Enables GPU debugging
+    --gpu-dumb-mode?: This mode is extremely restricted, and will disable most extended features. That includes high quality scalers and custom shaders!
+    --gpu-hwdec-interop?: This option is for troubleshooting hwdec interop issues
+    --gpu-shader-cache-dir?: The directory where gpu shader cache is stored
+    --gpu-shader-cache?: Store and load compiled GLSL shaders in the cache directory
+    --gpu-sw?: Continue even if a software renderer is detected
+    --gpu-tex-pad-x?: Enlarge the video source textures by this many pixels
+    --gpu-tex-pad-y?: Enlarge the video source textures by this many pixels
+    --h?: Show short summary of options
+    --hdr-compute-peak?: Compute the HDR peak and frame average brightness per-frame instead of relying on tagged metadata
+    --hdr-contrast-recovery?: Enables the HDR contrast recovery algorithm, which is to designed to enhance contrast of HDR video after tone mapping
+    --hdr-contrast-smoothness?: Enables the HDR contrast recovery algorithm, which is to designed to enhance contrast of HDR video after tone mapping
+    --hdr-peak-decay-rate?: The decay rate used for the HDR peak detection algorithm
+    --hdr-peak-percentile?: Which percentile of the input image brightness histogram to consider as the true peak of the scene
+    --hdr-reference-white?: Specifies the assumed peak brightness of the mastering display for SDR content, in cd/m² (nits)
+    --hdr-scene-threshold-high?: The upper thresholds (in dB) for a brightness difference to be considered a scene change
+    --hdr-scene-threshold-low?: The lower thresholds (in dB) for a brightness difference to be considered a scene change
+    --help?: Show short summary of options
+    --hidpi-window-scale?: Scale the window size according to the backing DPI scale factor from the OS
+    --hls-bitrate?: If HLS streams are played, this option controls what streams are selected by default
+    --hr-seek-demuxer-offset?: This option exists to work around failures to do precise seeks (as in --hr-seek) caused by bugs or limitations in the demuxers for some file formats
+    --hr-seek-framedrop?: Allow the video decoder to drop frames during seek, if these frames are before the seek target
+    --hr-seek?: Select when to use precise seeks that are not limited to keyframes
+    --http-header-fields-add?: ""
+    --http-header-fields-append?: ""
+    --http-header-fields-clr?: ""
+    --http-header-fields-del?: ""
+    --http-header-fields-pre?: ""
+    --http-header-fields-remove?: ""
+    --http-header-fields-set?: ""
+    --http-header-fields-toggle?: ""
+    --http-header-fields?: Set custom HTTP fields when accessing HTTP stream
+    --http-proxy?: URL of the HTTP/HTTPS proxy
+    --hue?: Adjust the hue of the video signal
+    --hwdec-add?: ""
+    --hwdec-append?: ""
+    --hwdec-clr?: ""
+    --hwdec-codecs?: ""
+    --hwdec-del?: ""
+    --hwdec-extra-frames?: ""
+    --hwdec-image-format?: ""
+    --hwdec-pre?: ""
+    --hwdec-remove?: ""
+    --hwdec-set?: ""
+    --hwdec-software-fallback?: Fallback to software decoding if the hardware-accelerated decoder fails
+    --hwdec-threads?: Number of threads used for hardware decoding
+    --hwdec-toggle?: ""
+    --hwdec?: Specify the hardware video decoding API that should be used if possible
+    --icc-3dlut-size?: Size of the 3D LUT generated from the ICC profile in each dimension
+    --icc-cache-dir?: The directory where icc cache is stored
+    --icc-cache?: Store and load 3DLUTs created from the ICC profile on disk in the cache directory
+    --icc-force-contrast?: Override the target device's detected contrast ratio by a specific value
+    --icc-intent?: Specifies the ICC intent used for the color transformation
+    --icc-profile-auto?: Automatically select the ICC display profile currently specified by the display settings of the operating system
+    --icc-profile?: Load an ICC profile and use it to transform video RGB to screen output
+    --icc-use-luma?: Use ICC profile luminance value
+    --idle?: Makes mpv wait idly instead of quitting when there is no file to play
+    --ignore-path-in-watch-later-config?: Ignore path (i.e. use filename only) when using watch later feature
+    --image-display-duration?: If the current file is an image, play the image for the given amount of seconds
+    --image-exts-add?: ""
+    --image-exts-append?: ""
+    --image-exts-clr?: ""
+    --image-exts-del?: ""
+    --image-exts-pre?: ""
+    --image-exts-remove?: ""
+    --image-exts-set?: ""
+    --image-exts-toggle?: ""
+    --image-exts?: Image file extensions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types
+    --image-lut-type?: Controls the interpretation of color values fed to and from the LUT specified as --image-lut
+    --image-lut?: Specifies a custom LUT file (in Adobe .cube format) to apply to the colors during image decoding
+    --image-subs-hdr-peak?: Controls the image subtitle diffuse white level in cd/m² (nits) for HDR output
+    --image-subs-video-resolution?: Override the image subtitle resolution with the video resolution
+    --include?: Specify configuration file to be parsed after the default ones
+    --index?: Controls how to seek in files
+    --initial-audio-sync?: When starting a video file or after events such as seeking, mpv will by default modify the audio stream to make it start from the same timestamp as video, by either inserting silence at the start or cutting away the first samples
+    --input-ar-delay?: Delay in milliseconds before we start to autorepeat a key
+    --input-ar-rate?: Number of key presses to generate per second on autorepeat
+    --input-builtin-bindings?: Enable loading of built-in key bindings during start-up
+    --input-builtin-dragging?: Enable the built-in window-dragging behavior
+    --input-cmdlist?: Prints all commands that can be bound to keys
+    --input-commands-add?: ""
+    --input-commands-append?: ""
+    --input-commands-clr?: ""
+    --input-commands-del?: ""
+    --input-commands-pre?: ""
+    --input-commands-remove?: ""
+    --input-commands-set?: ""
+    --input-commands-toggle?: ""
+    --input-commands?: Define a list of commands for mpv to run
+    --input-conf?: Specify input configuration file other than the default location in the mpv configuration directory
+    --input-cursor-passthrough?: Tell the backend windowing system to allow pointer events to passthrough the mpv window
+    --input-cursor?: Permit mpv to receive pointer events reported by the video output driver
+    --input-default-bindings?: Enable default-level ("weak") key bindings
+    --input-doubleclick-time?: Time in milliseconds to recognize two consecutive button presses as a double-click
+    --input-dragging-deadzone?: Begin the built-in window dragging when the mouse moves outside a deadzone of N pixels while the mouse button is being held down
+    --input-ime?: Enable keyboard input via an active input method (IME) connected to the VO
+    --input-ipc-client?: Connect a single IPC client to the given FD
+    --input-ipc-server?: Enable the IPC support and create the listening socket at the given path
+    --input-key-fifo-size?: Specify the size of the FIFO that buffers key events
+    --input-keylist?: Prints all keys that can be bound to commands
+    --input-media-keys?: On systems where mpv can choose between receiving media keys or letting the system handle them - this option controls whether mpv should receive them
+    --input-preprocess-wheel?: Preprocess WHEEL_* events so that while scrolling on the horizontal or vertical direction, the events aren't generated for another direction even when the two directions are scrolled together
+    --input-right-alt-gr?: (macOS and Windows only) Use the right Alt key as Alt Gr to produce special characters
+    --input-tablet-emulate-mouse?: Emulate mouse move and button presses for tablet events
+    --input-terminal?: --input-terminal=no prevents the player from reading key events from standard input
+    --input-test?: Input test mode
+    --input-touch-emulate-mouse?: When multi-touch support is enabled (either required by the platform, or enabled by --native-touch), emulate mouse move and button presses for the touch events
+    --input-vo-keyboard?: Disable all keyboard input on for VOs which can't participate in proper keyboard input dispatching
+    --interpolation-preserve?: Preserve the previous frames' interpolated results even when renderer parameters are changed - with the exception of options related to cropping and video placement, which always invalidate the cache
+    --interpolation-threshold?: Threshold below which frame ratio interpolation gets disabled
+    --interpolation?: Reduce stuttering caused by mismatches in the video fps and display refresh rate
+    --inverse-tone-mapping?: If set, allows inverse tone mapping (expanding SDR to HDR)
+    --jack-autostart?: Automatically start jackd if necessary
+    --jack-connect?: Automatically create connections to output ports
+    --jack-name?: Client name that is passed to JACK
+    --jack-port?: Connects to the ports with the given name
+    --jack-std-channel-layout?: Select the standard channel layout
+    --js-memory-report?: Enable memory reporting for javascript scripts in the stats overlay
+    --keep-open-pause?: If set to no, instead of pausing when --keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again
+    --keep-open?: Do not terminate when playing or seeking beyond the end of the file, and there is no next file to be played (and --loop is not used). Instead, pause the player.
+    --keepaspect-window?: --keepaspect-window=yes (the default) will lock the window size to the video aspect
+    --keepaspect?: --keepaspect=no will always stretch the video to window size, and will disable the window manager hints that force the window aspect ratio
+    --lavfi-complex?: Set a "complex" libavfilter filter, which means a single filter graph can take input from multiple source audio and video tracks
+    --length?: Stop after a given time relative to the start time
+    --libplacebo-opts-add?: ""
+    --libplacebo-opts-append?: ""
+    --libplacebo-opts-clr?: ""
+    --libplacebo-opts-del?: ""
+    --libplacebo-opts-remove?: ""
+    --libplacebo-opts-set?: ""
+    --libplacebo-opts?: Passes extra raw option to the libplacebo rendering backend
+    --linear-downscaling?: Scale in linear light when downscaling
+    --linear-upscaling?: Scale in linear light when upscaling
+    --list-options: list all mpv options
+    --list-properties?: Print a list of the available properties
+    --list-protocols?: Print a list of the supported protocols
+    --load-auto-profiles?: Enable the builtin script that does auto profiles
+    --load-commands?: Enable the built-in script to enter commands in the console
+    --load-console?: Enable the built-in script to handle textual input
+    --load-context-menu?: Enable the builtin script that implements a context menu
+    --load-positioning?: Enable the builtin script that provides various keybindings to pan videos and images
+    --load-scripts?: If set to no, don't auto-load scripts from the scripts configuration subdirectory
+    --load-select?: Enable the builtin script that lets you select from lists of items
+    --load-stats-overlay?: Enable the builtin script that shows useful playback information on a key binding
+    --load-unsafe-playlists?: Load URLs from playlists which are considered unsafe
+    --log-file?: Opens the given path for writing, and print log messages to it
+    --loop-file?: Loop a single file N times
+    --loop-playlist?: Loops playback N times
+    --loop?: Loop a single file N times
+    --lut-type?: Controls the interpretation of color values fed to and from the LUT specified as --lut
+    --lut?: Specifies a custom LUT (in Adobe .cube format) to apply to the colors as part of color conversion
+    --mc?: Maximum A-V sync correction per frame
+    --media-controls?: (Windows only) Enable integration of media control interface SystemMediaTransportControls
+    --merge-files?: Pretend that all files passed to mpv are concatenated into a single, big file
+    --metadata-codepage?: Codepage for various input metadata
+    --mf-fps?: Framerate used when decoding from multiple PNG or JPEG files with mf://
+    --mf-type?: Input file type for mf://
+    --monitoraspect?: Set the aspect ratio of your monitor or TV screen
+    --monitorpixelaspect?: Set the aspect of a single pixel of your monitor or TV screen
+    --msg-color?: Enable colorful console output on terminals
+    --msg-level?: Control verbosity directly for each module
+    --msg-module?: Prepend module name to each console message
+    --msg-time?: Prepend timing information to each console message
+    --mute?: Set startup audio mute status
+    --native-fs?: (macOS only) Uses the native fullscreen mechanism of the OS
+    --native-keyrepeat?: Use system settings for keyrepeat delay and rate, instead of --input-ar-delay and --input-ar-rate
+    --native-touch?: (Windows only) For platforms which send emulated mouse inputs for touch-unaware clients, such as Windows, use system native touch events, instead of receiving them as emulated mouse events
+    --network-timeout?: Specify the network timeout in seconds
+    --no-audio: do not play sound
+    --no-config: Do not load default configuration or any user files
+    --no-video: do not play video
+    --o?: Enables encoding mode and specifies the output file name
+    --oac?: Specifies the output audio codec
+    --oacopts-add?: ""
+    --oacopts-append?: ""
+    --oacopts-clr?: ""
+    --oacopts-del?: ""
+    --oacopts-remove?: ""
+    --oacopts-set?: ""
+    --oacopts?: Specifies the output audio codec options for libavcodec
+    --ocopy-metadata?: Copy metadata from input files to output files when encoding
+    --of?: Specifies the output format
+    --ofopts-add?: ""
+    --ofopts-append?: ""
+    --ofopts-clr?: ""
+    --ofopts-del?: ""
+    --ofopts-remove?: ""
+    --ofopts-set?: ""
+    --ofopts?: Specifies the output format options for libavformat
+    --on-all-workspaces?: (X11 and macOS only) Show the video window on all virtual desktops
+    --ontop-level?: (macOS only) Sets the level of an on-top window
+    --ontop?: Makes the player window stay on top of other windows
+    --openal-direct-channels?: Enable OpenAL Soft's direct channel extension when available to avoid tinting the sound with ambisonics or HRTF
+    --openal-num-buffers?: Specify the number of audio buffers to use
+    --openal-num-samples?: Specify the number of complete samples to use for each buffer
+    --opengl-check-pattern-a?: ""
+    --opengl-check-pattern-b?: ""
+    --opengl-dwmflush?: Calls DwmFlush after swapping buffers on Windows
+    --opengl-early-flush?: Call glFlush() after rendering a frame and before attempting to display it
+    --opengl-es?: Controls which type of OpenGL context will be accepted
+    --opengl-glfinish?: Call glFinish() before swapping buffers
+    --opengl-pbo?: Enable use of PBOs
+    --opengl-rectangle-textures?: Force use of rectangle textures
+    --opengl-swapinterval?: Interval in displayed frames between two buffer swaps
+    --opengl-waitvsync?: Call glXWaitVideoSyncSGI after each buffer swap
+    --orawts?: Copies input pts to the output video
+    --ordered-chapters-files?: Loads the given file as playlist, and tries to use the files contained in it as reference files when opening a Matroska file that uses ordered chapters
+    --ordered-chapters?: Enable support for Matroska ordered chapters
+    --oremove-metadata-add?: ""
+    --oremove-metadata-append?: ""
+    --oremove-metadata-clr?: ""
+    --oremove-metadata-del?: ""
+    --oremove-metadata-pre?: ""
+    --oremove-metadata-remove?: ""
+    --oremove-metadata-set?: ""
+    --oremove-metadata-toggle?: ""
+    --oremove-metadata?: Specifies metadata to exclude from the output file when copying from the input file
+    --osc?: Whether to load the on-screen-controller
+    --osd-align-x?: Control to which corner of the screen OSD should be aligned to
+    --osd-align-y?: 'Vertical position (default: top). Details see --osd-align-x'
+    --osd-back-color?: See --sub-color. Color used for OSD text background
+    --osd-bar-align-x?: Position of the OSD bar
+    --osd-bar-align-y?: Position of the OSD bar
+    --osd-bar-border-size?: alias for --osd-bar-outline-size
+    --osd-bar-h?: Height of the OSD bar, in percentage of the screen height
+    --osd-bar-marker-min-size?: Minimum OSD bar marker size
+    --osd-bar-marker-scale?: Factor for the OSD bar marker size relative to the OSD bar outline size
+    --osd-bar-marker-style?: Set the OSD bar marker style
+    --osd-bar-outline-size?: Size of the outline of the OSD bar in scaled pixels
+    --osd-bar-w?: Width of the OSD bar, in percentage of the screen width
+    --osd-bar?: Enable display of the OSD bar
+    --osd-bitmap-max-size?: Set the maximum bitmap cache size in libass cache for the OSD
+    --osd-blur?: Gaussian blur factor applied to the OSD font border
+    --osd-bold?: Format text on bold
+    --osd-border-color?: alias for --osd-outline-color
+    --osd-border-size?: alias for --osd-outline-size
+    --osd-border-style?: See --sub-border-style. Style used for OSD text border
+    --osd-color?: Specify the color used for OSD
+    --osd-duration?: Set the duration of the OSD messages in ms
+    --osd-font-provider?: See --sub-font-provider for details and accepted values
+    --osd-font-size?: Specify the OSD font size
+    --osd-font?: Specify font to use for OSD
+    --osd-fonts-dir?: See --sub-fonts-dir for details
+    --osd-fractions?: Show OSD times with fractions of seconds
+    --osd-glyph-limit?: Set the maximum number of cached glyphs in libass cache for the OSD
+    --osd-italic?: Format text on italic
+    --osd-justify?: ""
+    --osd-level?: Specifies which mode the OSD should start in
+    --osd-margin-x?: Left and right screen margin for the OSD in scaled pixels
+    --osd-margin-y?: Top and bottom screen margin for the OSD in scaled pixels
+    --osd-msg1?: Show this string as message on OSD with OSD level 1
+    --osd-msg2?: Similar to --osd-msg1, but for OSD level 2
+    --osd-msg3?: Similar to --osd-msg1, but for OSD level 3
+    --osd-on-seek?: Set what is displayed on the OSD during seeks
+    --osd-outline-color?: See --sub-color. Color used for the OSD font outline
+    --osd-outline-size?: Size of the OSD font outline in scaled pixels
+    --osd-playing-msg-duration?: Set the duration of osd-playing-msg in ms
+    --osd-playing-msg?: Show a message on OSD when playback starts
+    --osd-playlist-entry?: Whether to display the media title, filename, or both
+    --osd-prune-delay?: Set the delay for automatic pruning of events from memory in libass
+    --osd-scale-by-window?: Whether to scale the OSD with the window size
+    --osd-scale?: OSD font size multiplier, multiplied with --osd-font-size value
+    --osd-selected-color?: The color of the selected item in lists
+    --osd-selected-outline-color?: The outline color of the selected item in lists
+    --osd-shadow-color?: alias for --osd-back-color
+    --osd-shadow-offset?: Displacement of the OSD shadow in scaled pixels
+    --osd-shaper?: Horizontal OSD/sub font spacing in scaled pixels (see --sub-font-size for details)
+    --osd-spacing?: Horizontal OSD/sub font spacing in scaled pixels
+    --osd-status-msg?: Show a custom string during playback instead of the standard status text
+    --oset-metadata-add?: ""
+    --oset-metadata-append?: ""
+    --oset-metadata-clr?: ""
+    --oset-metadata-del?: ""
+    --oset-metadata-remove?: ""
+    --oset-metadata-set?: ""
+    --oset-metadata?: Specifies metadata to include in the output file
+    --ovc?: Specifies the output video codec
+    --ovcopts-add?: ""
+    --ovcopts-append?: ""
+    --ovcopts-clr?: ""
+    --ovcopts-del?: ""
+    --ovcopts-remove?: ""
+    --ovcopts-set?: ""
+    --ovcopts?: Specifies the output video codec options for libavcodec
+    --panscan?: Enables pan-and-scan functionality
+    --pause?: Start the player in paused state
+    --pipewire-buffer?: Set the audio buffer size in milliseconds
+    --pipewire-remote?: Specify the PipeWire remote daemon name to connect to via local UNIX sockets
+    --pipewire-volume-mode?: Specify if the ao-volume property should apply to the channel volumes or the global volume
+    --pitch?: Raise or lower the audio's pitch by the factor given as parameter
+    --play-direction?: Control the playback direction
+    --player-operation-mode?: For enabling "pseudo GUI mode", which means that the defaults for some options are changed
+    --playlist-exts-add?: ""
+    --playlist-exts-append?: ""
+    --playlist-exts-clr?: ""
+    --playlist-exts-del?: ""
+    --playlist-exts-pre?: ""
+    --playlist-exts-remove?: ""
+    --playlist-exts-set?: ""
+    --playlist-exts-toggle?: ""
+    --playlist-exts?: Playlist file extensions to try to match when using --autocreate-playlist or --directory-filter-types
+    --playlist-start?: Set which file on the internal playlist to start playback with
+    --playlist?: specify playlist file
+    --prefetch-playlist?: Prefetch next playlist entry while playback of the current entry is ending
+    --priority?: Set process priority for mpv according to the predefined priorities available under Windows
+    --profile-add?: ""
+    --profile-append?: ""
+    --profile-clr?: ""
+    --profile-del?: ""
+    --profile-pre?: ""
+    --profile-remove?: ""
+    --profile-set?: ""
+    --profile-toggle?: ""
+    --profile?: Use the given profile(s)
+    --pulse-allow-suspended?: Allow mpv to use PulseAudio even if the sink is suspended
+    --pulse-buffer?: Set the audio buffer size in milliseconds
+    --pulse-host?: Specify the host to use
+    --pulse-latency-hacks?: Enable hacks to workaround PulseAudio timing bugs
+    --quiet?: Make console output less verbose
+    --rar-list-all-volumes?: When opening multi-volume rar files, open all volumes to create a full list of contained files
+    --really-quiet?: Display even less output and status messages than with --quiet
+    --rebase-start-time?: Whether to move the file start time to 00:00:00
+    --referrer?: Specify a referrer path or URL for HTTP requests
+    --register-rpath?: When registering with --register, this option allows you to specify the path(s) to prepend so that mpv can find the necessary DLLs
+    --register?: Registers mpv as a media player on Windows
+    --replaygain-clip?: Allow the volume gain to clip
+    --replaygain-fallback?: Gain in dB to apply if the file has no replay gain tags
+    --replaygain-preamp?: Pre-amplification gain in dB to apply to the selected replaygain gain
+    --replaygain?: Adjust volume gain according to replaygain values stored in the file metadata
+    --reset-on-next-file-add?: ""
+    --reset-on-next-file-append?: ""
+    --reset-on-next-file-clr?: ""
+    --reset-on-next-file-del?: ""
+    --reset-on-next-file-pre?: ""
+    --reset-on-next-file-remove?: ""
+    --reset-on-next-file-set?: ""
+    --reset-on-next-file-toggle?: ""
+    --reset-on-next-file?: Normally, mpv will try to keep all settings when playing the next file on the playlist, even if they were changed by the user during playback
+    --resume-playback-check-mtime?: Only restore the playback position from the watch_later configuration subdirectory if the file's modification time is the same as at the time of saving
+    --resume-playback?: Restore playback position from the watch_later configuration subdirectory usually ~/.config/mpv/watch_later/
+    --rtsp-transport?: Select RTSP transport method
+    --saturation?: Adjust the saturation of the video signal
+    --save-position-on-quit?: Always save the current playback position on quit, and also when the loadfile command is used to replace the current playlist
+    --save-watch-history?: Whether to save which files are played
+    --scale-antiring?: Set the antiringing strength
+    --scale-blur?: Kernel scaling factor
+    --scale-clamp?: Specifies a weight bias to multiply into negative coefficients
+    --scale-param1?: Set filter parameters
+    --scale-param2?: Set filter parameters
+    --scale-radius?: Set radius for tunable filters, must be a float number between 0.5 and 16.0
+    --scale-taper?: Kernel/window taper factor
+    --scale-window?: Choose a custom windowing function for the kernel
+    --scale-wparam?: Configure the parameter for the window function given by --scale-window etc
+    --scale-wtaper?: Kernel/window taper factor
+    --scale?: The filter function to use when upscaling video
+    --scaler-resizes-only?: Disable the scaler if the video image is not resized
+    --screen-name?: In multi-monitor configurations, this option tells mpv which screen to display the video on based on the screen name from the video backend
+    --screen?: In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on
+    --screenshot-avif-encoder?: Specify the AV1 encoder to be used by libavcodec for encoding avif screenshots
+    --screenshot-avif-opts-add?: ""
+    --screenshot-avif-opts-append?: ""
+    --screenshot-avif-opts-clr?: ""
+    --screenshot-avif-opts-del?: ""
+    --screenshot-avif-opts-remove?: ""
+    --screenshot-avif-opts-set?: ""
+    --screenshot-avif-opts?: Specifies libavcodec options for selected encoder
+    --screenshot-avif-pixfmt?: Specify the pixel format for the libavcodec encoder
+    --screenshot-dir?: Store screenshots in this directory
+    --screenshot-directory?: alias for --screenshot-dir
+    --screenshot-format?: Set the image file type used for saving screenshots
+    --screenshot-high-bit-depth?: If possible, write screenshots with a bit depth similar to the source video
+    --screenshot-jpeg-quality?: Set the JPEG quality level
+    --screenshot-jpeg-source-chroma?: Write JPEG files with the same chroma subsampling as the video
+    --screenshot-jxl-distance?: Set the JPEG XL Butteraugli distance
+    --screenshot-jxl-effort?: Set the JPEG XL compression effort
+    --screenshot-png-compression?: Set the PNG compression level
+    --screenshot-png-filter?: Set the filter applied prior to PNG compression
+    --screenshot-sw?: Whether to use software rendering for screenshots
+    --screenshot-tag-colorspace?: Tag screenshots with the appropriate colorspace
+    --screenshot-template?: Specify the filename template used to save screenshots
+    --screenshot-webp-compression?: Set the WebP compression level
+    --screenshot-webp-lossless?: Write lossless WebP files
+    --screenshot-webp-quality?: Set the WebP quality level
+    --script-opt?*: Set options for scripts
+    --script-opts-add?: ""
+    --script-opts-append?: ""
+    --script-opts-clr?: ""
+    --script-opts-del?: ""
+    --script-opts-remove?: ""
+    --script-opts-set?: ""
+    --script-opts?: Set options for scripts
+    --script?: Load a Lua script
+    --scripts-add?: ""
+    --scripts-append?: ""
+    --scripts-clr?: ""
+    --scripts-del?: ""
+    --scripts-pre?: ""
+    --scripts-remove?: ""
+    --scripts-set?: ""
+    --scripts-toggle?: ""
+    --scripts?: Load a Lua script
+    --sdr-adjust-gamma?: This option controls whether SDR content should have its gamma adjusted
+    --secondary-sid?: Select a secondary subtitle stream
+    --secondary-sub-ass-override?: Control whether user secondary substyle overrides should be applied
+    --secondary-sub-delay?: Delays secondary subtitles by <sec> seconds
+    --secondary-sub-pos?: Specify the position of secondary subtitles on the screen
+    --secondary-sub-visibility?: Can be used to disable display of secondary subtitles, but still select and decode them
+    --sharpen?: If set to a value other than 0, enable an unsharp masking filter
+    --show-in-taskbar?: (Windows and X11 only) Show mpv in the taskbar
+    --show-profile?: Show the description and content of a profile
+    --shuffle?: Play files in random order
+    --sid?: Display the subtitle stream specified by <ID>
+    --sigmoid-center?: The center of the sigmoid curve used for --sigmoid-upscaling
+    --sigmoid-slope?: The slope of the sigmoid curve used for --sigmoid-upscaling
+    --sigmoid-upscaling?: When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts
+    --slang-add?: ""
+    --slang-append?: ""
+    --slang-clr?: ""
+    --slang-del?: ""
+    --slang-pre?: ""
+    --slang-remove?: ""
+    --slang-set?: ""
+    --slang-toggle?: ""
+    --slang?: Analogous to --alang, for subtitle tracks
+    --snap-window?: (Windows only) Snap the player window to screen edges
+    --speed?: Slow down or speed up playback by the factor given as parameter
+    --spirv-compiler?: Controls which compiler is used to translate GLSL to SPIR-V
+    --sstep?: Skip <sec> seconds after every frame
+    --start?: seek to given (percent, seconds, or hh:mm:ss) position
+    --stop-playback-on-init-failure?: Stop playback if either audio or video fails to initialize
+    --stop-screensaver?: Turns off the screensaver (or screen blanker and similar mechanisms) at startup and turns it on again on exit
+    --stream-buffer-size?: Size of the low level stream byte buffer
+    --stream-dump?: Instead of playing a file, read its byte stream and write it to the given destination file
+    --stream-lavf-o-add?: ""
+    --stream-lavf-o-append?: ""
+    --stream-lavf-o-clr?: ""
+    --stream-lavf-o-del?: ""
+    --stream-lavf-o-remove?: ""
+    --stream-lavf-o-set?: ""
+    --stream-lavf-o?: Set AVOptions on streams opened with libavformat
+    --stream-record?: Write received/read data from the demuxer to the given output file
+    --stretch-dvd-subs?: Stretch DVD subtitles when playing anamorphic videos for better looking fonts on badly mastered DVDs
+    --stretch-image-subs-to-screen?: Stretch DVD and other image subtitles to the screen, ignoring the video margins
+    --sub-align-x?: Control to which corner of the screen text subtitles should be aligned to
+    --sub-align-y?: Vertical position
+    --sub-ass-force-margins?: Enables placing toptitles and subtitles in black borders when they are available, if the subtitles are in the ASS format.
+    --sub-ass-justify?: Applies justification as defined by --sub-justify on ASS subtitles if --sub-ass-override is not set to no
+    --sub-ass-override?: Control whether user style overrides should be applied
+    --sub-ass-prune-delay?: Set the delay for automatic pruning of events from memory in libass
+    --sub-ass-scale-with-window?: Like --sub-scale-with-window, but affects subtitles in ASS format only
+    --sub-ass-style-overrides-add?: ""
+    --sub-ass-style-overrides-append?: ""
+    --sub-ass-style-overrides-clr?: ""
+    --sub-ass-style-overrides-del?: ""
+    --sub-ass-style-overrides-pre?: ""
+    --sub-ass-style-overrides-remove?: ""
+    --sub-ass-style-overrides-set?: ""
+    --sub-ass-style-overrides-toggle?: ""
+    --sub-ass-style-overrides?: Override some style or script info parameters
+    --sub-ass-styles?: Load all SSA/ASS styles found in the specified file and use them for rendering text subtitles
+    --sub-ass-use-video-data?: Controls which information about the video stream is passed to libass
+    --sub-ass-video-aspect-override?: Allows passing any arbitrary aspect ratio to libass instead of the video’s actual aspect ratio
+    --sub-ass-vsfilter-color-compat?: Mangle colors like (xy-)vsfilter do
+    --sub-ass?: Render ASS subtitles natively
+    --sub-auto-exts-add?: ""
+    --sub-auto-exts-append?: ""
+    --sub-auto-exts-clr?: ""
+    --sub-auto-exts-del?: ""
+    --sub-auto-exts-pre?: ""
+    --sub-auto-exts-remove?: ""
+    --sub-auto-exts-set?: ""
+    --sub-auto-exts-toggle?: ""
+    --sub-auto-exts?: Subtitle extensions to try and match when using --sub-auto
+    --sub-auto?: Load additional subtitle files matching the video filename
+    --sub-back-color?: Color used for sub text background
+    --sub-bitmap-max-size?: Set the maximum bitmap cache size in libass cache for the subtitle track
+    --sub-blur?: Gaussian blur factor applied to the sub font border
+    --sub-bold?: Format text on bold
+    --sub-border-color?: alias for --sub-outline-color
+    --sub-border-size?: alias for --sub-outline-size
+    --sub-border-style?: The style of the border
+    --sub-clear-on-seek?: Can be used to play broken mkv files with duplicate ReadOrder fields
+    --sub-codepage?: You can use this option to specify the subtitle codepage
+    --sub-color?: Specify the color used for unstyled text subtitles
+    --sub-create-cc-track?: For every video stream, create a closed captions track
+    --sub-delay?: Delays primary subtitles by <sec> seconds
+    --sub-demuxer?: Force subtitle demuxer type for --sub-file
+    --sub-file-paths-add?: ""
+    --sub-file-paths-append?: ""
+    --sub-file-paths-clr?: ""
+    --sub-file-paths-del?: ""
+    --sub-file-paths-pre?: ""
+    --sub-file-paths-remove?: ""
+    --sub-file-paths-set?: ""
+    --sub-file-paths-toggle?: ""
+    --sub-file-paths?: Specify extra directories to search for subtitles matching the video
+    --sub-file?: specify subtitle file to use
+    --sub-files-add?: ""
+    --sub-files-append?: ""
+    --sub-files-clr?: ""
+    --sub-files-del?: ""
+    --sub-files-pre?: ""
+    --sub-files-remove?: ""
+    --sub-files-set?: ""
+    --sub-files-toggle?: ""
+    --sub-files?: Add a subtitle file to the list of external subtitles
+    --sub-filter-jsre-add?: ""
+    --sub-filter-jsre-append?: ""
+    --sub-filter-jsre-clr?: ""
+    --sub-filter-jsre-del?: ""
+    --sub-filter-jsre-pre?: ""
+    --sub-filter-jsre-remove?: ""
+    --sub-filter-jsre-set?: ""
+    --sub-filter-jsre-toggle?: ""
+    --sub-filter-jsre?: Same as --sub-filter-regex but with JavaScript regular expressions
+    --sub-filter-regex-add?: ""
+    --sub-filter-regex-append?: ""
+    --sub-filter-regex-clr?: ""
+    --sub-filter-regex-del?: ""
+    --sub-filter-regex-enable?: Whether to enable regex filtering
+    --sub-filter-regex-plain?: Whether to first convert the ASS "Text" field to plain-text
+    --sub-filter-regex-pre?: ""
+    --sub-filter-regex-remove?: ""
+    --sub-filter-regex-set?: ""
+    --sub-filter-regex-toggle?: ""
+    --sub-filter-regex-warn?: Log dropped lines with warning log level, instead of verbose
+    --sub-filter-regex?: Set a list of regular expressions to match on text subtitles, and remove any lines that match
+    --sub-filter-sdh-enclosures-add?: ""
+    --sub-filter-sdh-enclosures-append?: ""
+    --sub-filter-sdh-enclosures-clr?: ""
+    --sub-filter-sdh-enclosures-del?: ""
+    --sub-filter-sdh-enclosures-pre?: ""
+    --sub-filter-sdh-enclosures-remove?: ""
+    --sub-filter-sdh-enclosures-set?: ""
+    --sub-filter-sdh-enclosures-toggle?: ""
+    --sub-filter-sdh-enclosures?: Specify a string of characters that --sub-filter-sdh will use to potentially remove text
+    --sub-filter-sdh-harder?: Do harder SDH filtering
+    --sub-filter-sdh?: Applies filter removing subtitle additions for the deaf or hard-of-hearing
+    --sub-fix-timing-keep?: Set the minimum duration in milliseconds for subtitle events to be considered for timing fixes
+    --sub-fix-timing-threshold?: Set the threshold in milliseconds for fixing subtitle timing
+    --sub-fix-timing?: Adjust subtitle timing is to remove minor gaps or overlaps between subtitles
+    --sub-font-provider?: Which libass font provider backend to use
+    --sub-font-size?: Specify the sub font size
+    --sub-font?: Specify font to use for subtitles that do not themselves specify a particular font
+    --sub-fonts-dir?: Font files in this directory are used by mpv/libass for subtitles
+    --sub-forced-events-only?: Enabling this displays only forced events within subtitle streams
+    --sub-fps?: Specify the framerate of the subtitle file
+    --sub-gauss?: Apply Gaussian blur to image subtitles
+    --sub-glyph-limit?: Set the maximum number of cached glyphs in libass cache for the subtitle track
+    --sub-gray?: Convert image subtitles to grayscale
+    --sub-hdr-peak?: Controls the text subtitle and OSD diffuse white level in cd/m² (nits) for HDR output
+    --sub-hinting?: Set font hinting type
+    --sub-italic?: Format text on italic
+    --sub-justify?: Control how multi line subs are justified irrespective of where they are aligned
+    --sub-lavc-o-add?: ""
+    --sub-lavc-o-append?: ""
+    --sub-lavc-o-clr?: ""
+    --sub-lavc-o-del?: ""
+    --sub-lavc-o-remove?: ""
+    --sub-lavc-o-set?: ""
+    --sub-lavc-o?: Pass AVOptions to libavcodec decoder
+    --sub-line-spacing?: Set line spacing value for SSA/ASS renderer
+    --sub-margin-x?: Left and right screen margin for the subs in scaled pixels
+    --sub-margin-y?: Top and bottom screen margin for the subs in scaled pixels
+    --sub-outline-color?: Color used for the sub font outline
+    --sub-outline-size?: Size of the sub font outline in scaled pixels
+    --sub-past-video-end?: After the last frame of video, if this option is enabled, subtitles will continue to update based on audio timestamps
+    --sub-pos?: Specify the position of subtitles on the screen
+    --sub-scale-by-window?: Whether to scale subtitles with the window size
+    --sub-scale-signs?: When set to yes, also apply --sub-scale to typesetting (or "signs")
+    --sub-scale-with-window?: Make the subtitle font size relative to the window
+    --sub-scale?: Factor for the text subtitle font size
+    --sub-shadow-color?: alias for --sub-back-color
+    --sub-shadow-offset?: Displacement of the sub text shadow in scaled pixels
+    --sub-shaper?: Set the text layout engine used by libass
+    --sub-spacing?: Horizontal sub font spacing in scaled pixels
+    --sub-speed?: Multiply the subtitle event timestamps with the given value
+    --sub-stretch-durations?: Stretch a subtitle duration so it ends when the next one starts
+    --sub-use-margins?: Enables placing toptitles and subtitles in black borders when they are available, if the subtitles are in a plain text format
+    --sub-visibility?: Can be used to disable display of subtitles, but still select and decode them
+    --sub-vsfilter-bidi-compat?: Set implicit bidi detection to ltr instead of auto to match ASS' default
+    --sub?: alias for --sid
+    --subs-fallback-forced?: When autoselecting a subtitle track, the default value of yes will prefer using a forced subtitle track if the subtitle language matches the audio language and matches your list of preferred languages
+    --subs-fallback?: When autoselecting a subtitle track, if no tracks match your preferred languages, select a full track even if it doesn't match your preferred subtitle language
+    --subs-match-os-language?: When autoselecting a subtitle track, select the track that matches the language of your OS if the audio stream is in a different language if suitable
+    --subs-with-matching-audio?: When autoselecting a subtitle track, select it even if the selected audio stream matches you preferred subtitle language
+    --swapchain-depth?: Allow up to N in-flight frames
+    --sws-allow-zimg?: Allow using zimg
+    --sws-bitexact?: Unknown functionality
+    --sws-cgb?: Software scaler Gaussian blur filter
+    --sws-chs?: Software scaler chroma horizontal shifting
+    --sws-cs?: Software scaler sharpen filter
+    --sws-cvs?: Software scaler chroma vertical shifting
+    --sws-fast?: Allow optimizations that help with performance, but reduce quality
+    --sws-lgb?: Software scaler Gaussian blur filter
+    --sws-ls?: Software scaler sharpen filter
+    --sws-scaler?: Specify the software scaler algorithm to be used with --vf=scale
+    --target-colorspace-hint-mode?: Select which metadata to use for the --target-colorspace-hint
+    --target-colorspace-hint-strict?: When enabled (default), the configured swapchain colorspace (with the hint) will be respected
+    --target-colorspace-hint?: Automatically configure the output colorspace of the display to pass through the input values of the stream (e.g. for HDR passthrough), if possible
+    --target-contrast?: Specifies the measured contrast of the output display
+    --target-gamut?: Constrains the gamut of the display
+    --target-lut?: Specifies a custom LUT file (in Adobe .cube format) to apply to the colors before display on-screen
+    --target-peak?: Specifies the measured peak brightness of the output display, in cd/m^2 (AKA nits)
+    --target-prim?: Specifies the primaries of the display
+    --target-trc?: Specifies the transfer characteristics (gamma) of the display
+    --taskbar-progress?: (Windows only) Enable/disable playback progress rendering in taskbar
+    --teletext-page?: Select a teletext page number to decode
+    --temporal-dither-period?: Determines how often the dithering pattern is updated when --temporal-dither is in use
+    --temporal-dither?: Enable temporal dithering
+    --term-osd-bar-chars?: Customize the --term-osd-bar feature
+    --term-osd-bar?: Enable printing a progress bar under the status line on the terminal
+    --term-osd?: Control whether OSD messages are shown on the console when no video output is available
+    --term-playing-msg?: Print out a string after starting playback
+    --term-status-msg?: Print out a custom string during playback instead of the standard status line
+    --term-title?: Set the terminal title
+    --terminal?: --terminal=no disables any use of the terminal and stdin/stdout/stderr
+    --title-bar?: (Windows and X11 only) Play video with the window title bar
+    --title?: Set the window title
+    --tls-ca-file?: Certificate authority database file for use with TLS
+    --tls-cert-file?: A file containing a certificate to use in the handshake with the peer
+    --tls-key-file?: A file containing the private key for the certificate
+    --tls-verify?: Verify peer certificates when using TLS (e.g. with https://...). (Silently fails with older FFmpeg versions.)
+    --tone-mapping-max-boost?: Upper limit for how much the tone mapping algorithm is allowed to boost the average brightness by over-exposing the image
+    --tone-mapping-param?: Set tone mapping parameters
+    --tone-mapping-visualize?: Display a (PQ-PQ) graph of the active tone-mapping LUT
+    --tone-mapping?: Specifies the algorithm used for tone-mapping images onto the target display
+    --track-auto-selection?: Enable the default track auto-selection
+    --treat-srgb-as-power22?: When enabled, sRGB is (de)linearized using a pure power 2.2 curve instead of the standard sRGB piecewise transfer function
+    --tscale-antiring?: Set the antiringing strength
+    --tscale-blur?: Kernel scaling factor
+    --tscale-clamp?: Specifies a weight bias to multiply into negative coefficients
+    --tscale-param1?: Set filter parameters
+    --tscale-param2?: Set filter parameters
+    --tscale-radius?: Set radius for tunable filters, must be a float number between 0.5 and 16.0
+    --tscale-taper?: Kernel/window taper factor
+    --tscale-window?: Choose a custom windowing function for the kernel
+    --tscale-wparam?: Configure the parameter for the window function given by --scale-window etc
+    --tscale-wtaper?: Kernel/window taper factor
+    --tscale?: The filter used for interpolating the temporal axis
+    --unregister?: Unregisters mpv as a media player on Windows, undoing all changes made by the --register option
+    --untimed?: Do not sleep when outputting video frames
+    --use-embedded-icc-profile?: Load the embedded ICC profile contained in media files such as PNG images
+    --use-filedir-conf?: Look for a file-specific configuration file in the same directory as the file that is being played
+    --user-agent?: Use <string> as user agent for HTTP streaming
+    --vaapi-device?: Choose the DRM device for vaapi-copy
+    --vd-apply-cropping?: Certain video codecs support cropping, meaning that only a sub-rectangle of the decoded frame is intended for display
+    --vd-lavc-assume-old-x264?: Assume the video was encoded by an old, buggy x264 version
+    --vd-lavc-bitexact?: Only use bit-exact algorithms in all decoding steps
+    --vd-lavc-check-hw-profile?: Check hardware decoder profile
+    --vd-lavc-dr?: Enable direct rendering
+    --vd-lavc-fast?: Enable optimizations which do not comply with the format specification and potentially cause problems, like simpler dequantization, simpler motion compensation, assuming use of the default quantization matrix, assuming YUV 4:2:0 and skipping a few checks to detect damaged bitstreams
+    --vd-lavc-film-grain?: Enables film grain application on the GPU
+    --vd-lavc-framedrop?: Set framedropping mode used with --framedrop
+    --vd-lavc-o-add?: ""
+    --vd-lavc-o-append?: ""
+    --vd-lavc-o-clr?: ""
+    --vd-lavc-o-del?: ""
+    --vd-lavc-o-remove?: ""
+    --vd-lavc-o-set?: ""
+    --vd-lavc-o?: Pass AVOptions to libavcodec decoder
+    --vd-lavc-show-all?: Show even broken/corrupt frames
+    --vd-lavc-skipframe?: Skips decoding of frames completely
+    --vd-lavc-skipidct?: Skips the IDCT step
+    --vd-lavc-skiploopfilter?: Skips the loop filter (AKA deblocking) during decoding
+    --vd-lavc-threads?: Number of threads to use for decoding
+    --vd-queue-enable?: Enable running the video decoder on a separate thread
+    --vd-queue-max-bytes?: Maximum approximate allowed size of the queue
+    --vd-queue-max-samples?: Maximum number of frames (video) or samples (audio) of the queue
+    --vd-queue-max-secs?: Maximum number of seconds of media in the queue
+    --vd?: Specify a priority list of video decoders to be used
+    --vf-add?: ""
+    --vf-append?: ""
+    --vf-clr?: ""
+    --vf-help?: ""
+    --vf-pre?: ""
+    --vf-remove?: ""
+    --vf-set?: ""
+    --vf-toggle?: ""
+    --vf?: Setup a chain of video filters
+    --vid?: Select video channel
+    --video-align-x?: When the video is bigger than the window, these move the displayed rectangle to show different parts of the video. --video-align-y=-1 would display the top of the video, 0 would display the center (default), and 1 would display the bottom
+    --video-align-y?: When the video is bigger than the window, these move the displayed rectangle to show different parts of the video. --video-align-y=-1 would display the top of the video, 0 would display the center (default), and 1 would display the bottom
+    --video-aspect-method?: This sets the default video aspect determination method
+    --video-aspect-override?: Override video aspect ratio, in case aspect information is incorrect or missing in the file being played
+    --video-backward-batch?: Number of keyframe ranges to decode at once when backward decoding
+    --video-backward-overlap?: Number of overlapping keyframe ranges to use for backward decoding
+    --video-crop?: Crop the video by starting at the x, y offset for w, h pixels
+    --video-exts-add?: ""
+    --video-exts-append?: ""
+    --video-exts-clr?: ""
+    --video-exts-del?: ""
+    --video-exts-pre?: ""
+    --video-exts-remove?: ""
+    --video-exts-set?: ""
+    --video-exts-toggle?: ""
+    --video-exts?: Video file extensions to try to match when using --autocreate-playlist or --directory-filter-types
+    --video-latency-hacks?: Enable some things which tend to reduce video latency by 1 or 2 frames
+    --video-margin-ratio-bottom?: Set extra video margin on bottom border
+    --video-margin-ratio-left?: Set extra video margin on left border
+    --video-margin-ratio-right?: Set extra video margin on right border
+    --video-margin-ratio-top?: Set extra video margin on top border
+    --video-osd?: Enabled OSD rendering on the video window
+    --video-output-levels?: RGB color levels used with YUV to RGB conversion
+    --video-pan-x?: Moves the displayed video rectangle by the given value in the X direction
+    --video-pan-y?: Moves the displayed video rectangle by the given value in the Y direction
+    --video-recenter?: Whether to behave as if --video-align-x and --video-align-y were 0 when the video becomes smaller than the window in the respective direction
+    --video-reversal-buffer?: For backward decoding
+    --video-rotate?: Rotate the video clockwise, in degrees
+    --video-scale-x?: Multiply the video display size with the given value
+    --video-scale-y?: Multiply the video display size with the given value
+    --video-sync-max-audio-change?: Maximum additional speed difference in percent that is applied to audio with --video-sync=display-...
+    --video-sync-max-factor?: Maximum multiple for which to try to fit the video's FPS to the display's FPS
+    --video-sync-max-video-change?: 'Maximum speed difference in percent that is applied to video with --video-sync=display-... '
+    --video-sync?: How the player synchronizes audio and video
+    --video-timing-offset?: Control how long before video display target time the frame should be rendered
+    --video-unscaled?: Disable scaling of the video
+    --video-zoom?: Adjust the video display scale factor by the given value
+    --video?: alias for --vid
+    --vlang-add?: ""
+    --vlang-append?: ""
+    --vlang-clr?: ""
+    --vlang-del?: ""
+    --vlang-pre?: ""
+    --vlang-remove?: ""
+    --vlang-set?: ""
+    --vlang-toggle?: ""
+    --vlang?: Analogous to --alang and --slang, for video tracks
+    --vo-add?: ""
+    --vo-append?: ""
+    --vo-clr?: ""
+    --vo-direct3d-disable-texture-align?: Normally texture sizes are always aligned to 16. With this option enabled, the video texture will always have exactly the same size as the video itself
+    --vo-direct3d-exact-backbuffer?: Always resize the backbuffer to window size
+    --vo-direct3d-force-power-of-2?: Always force textures to power of 2, even if the device reports non-power-of-2 texture sizes as supported
+    --vo-direct3d-swap-discard?: Use D3DSWAPEFFECT_DISCARD, which might be faster
+    --vo-direct3d-texture-memory?: Only affects operation with shaders/texturing enabled, and (E)OSD
+    --vo-help?: ""
+    --vo-image-avif-encoder?: ""
+    --vo-image-avif-opts-add?: ""
+    --vo-image-avif-opts-append?: ""
+    --vo-image-avif-opts-clr?: ""
+    --vo-image-avif-opts-del?: ""
+    --vo-image-avif-opts-remove?: ""
+    --vo-image-avif-opts-set?: ""
+    --vo-image-avif-opts?: ""
+    --vo-image-avif-pixfmt?: ""
+    --vo-image-format?: Select the image file format
+    --vo-image-high-bit-depth?: ""
+    --vo-image-jpeg-quality?: JPEG quality factor
+    --vo-image-jpeg-source-chroma?: ""
+    --vo-image-jxl-distance?: ""
+    --vo-image-jxl-effort?: ""
+    --vo-image-outdir?: Specify the directory to save the image files to
+    --vo-image-png-compression?: PNG compression factor
+    --vo-image-png-filter?: Filter applied prior to PNG compression
+    --vo-image-tag-colorspace?: ""
+    --vo-image-webp-compression?: WebP compression factor
+    --vo-image-webp-lossless?: Enable writing lossless WebP files
+    --vo-image-webp-quality?: WebP quality
+    --vo-kitty-alt-screen?: Whether or not to use the alternate screen buffer and return the terminal to its previous state on exit
+    --vo-kitty-auto-multiplexer-passthrough?: Automatically detect terminal multiplexer to passthrough escape sequences
+    --vo-kitty-cols?: Specify the terminal size in character cells, otherwise (0) read it from the terminal, or fall back to 80x25
+    --vo-kitty-config-clear?: Whether or not to clear the terminal whenever the output is reconfigured
+    --vo-kitty-height?: Specify the available size in pixels, otherwise (0) read it from the terminal, or fall back to 320x240
+    --vo-kitty-left?: Specify the position in character cells where the image starts
+    --vo-kitty-rows?: Specify the terminal size in character cells, otherwise (0) read it from the terminal, or fall back to 80x25
+    --vo-kitty-top?: Specify the position in character cells where the image starts
+    --vo-kitty-use-shm?: Use shared memory objects to transfer image data to the terminal
+    --vo-kitty-width?: Specify the available size in pixels, otherwise (0) read it from the terminal, or fall back to 320x240
+    --vo-mmcss-profile?: Set the MMCSS profile for the video renderer thread
+    --vo-null-fps?: Simulate display FPS
+    --vo-pre?: ""
+    --vo-remove?: ""
+    --vo-set?: ""
+    --vo-sixel-alt-screen?: Whether or not to use the alternate screen buffer and return the terminal to its previous state on exit
+    --vo-sixel-buffered?: Buffers the full output sequence before writing it to the terminal
+    --vo-sixel-cols?: Specify the terminal size in character cells, otherwise (0) read it from the terminal, or fall back to 80x25
+    --vo-sixel-config-clear?: Whether or not to clear the terminal whenever the output is reconfigured
+    --vo-sixel-dither?: Selects the dither algorithm which libsixel should apply
+    --vo-sixel-fixedpalette?: Use libsixel's built-in static palette using the XTERM256 profile for dither
+    --vo-sixel-height?: Specify the available size in pixels, otherwise (0) read it from the terminal, or fall back to 320x240
+    --vo-sixel-left?: Specify the position in character cells where the image starts
+    --vo-sixel-pad-x?: Specify the number of padding pixels which are included at the size which the terminal reports
+    --vo-sixel-pad-y?: Specify the number of padding pixels which are included at the size which the terminal reports
+    --vo-sixel-reqcolors?: Has no effect with fixed palette
+    --vo-sixel-rows?: Specify the terminal size in character cells, otherwise (0) read it from the terminal, or fall back to 80x25
+    --vo-sixel-threshold?: Has no effect with fixed palette
+    --vo-sixel-top?: Specify the position in character cells where the image starts
+    --vo-sixel-width?: Specify the available size in pixels, otherwise (0) read it from the terminal, or fall back to 320x240
+    --vo-tct-256?: Use 256 colors - for terminals which don't support true color
+    --vo-tct-algo?: Select how to write the pixels to the terminal
+    --vo-tct-buffering?: Specifies the size of data batches buffered before being sent to the terminal
+    --vo-tct-height?: Assume the terminal has the specified character height
+    --vo-tct-width?: Assume the terminal has the specified character width
+    --vo-toggle?: ""
+    --vo-vaapi-scaled-osd?: If enabled, then the OSD is rendered at video resolution and scaled to display resolution
+    --vo-vaapi-scaling?: ""
+    --vo-vdpau-chroma-deint?: Makes temporal deinterlacers operate both on luma and chroma
+    --vo-vdpau-colorkey?: Set the VDPAU presentation queue background color, which in practice is the colorkey used if VDPAU operates in overlay mode
+    --vo-vdpau-composite-detect?: The player tries to detect whether a compositing window manager is active. If one is detected, the player disables timing adjustments as if the user had specified fps=-1
+    --vo-vdpau-denoise?: Apply a noise reduction algorithm to the video
+    --vo-vdpau-force-yuv?: Never accept RGBA input
+    --vo-vdpau-fps?: Override autodetected display refresh rate value
+    --vo-vdpau-hqscaling?: Use default VDPAU scaling
+    --vo-vdpau-output-surfaces?: Allocate this many output surfaces to display video frames
+    --vo-vdpau-pullup?: Try to apply inverse telecine, needs motion adaptive temporal deinterlacing
+    --vo-vdpau-queuetime-fs?: Use VDPAU's presentation queue functionality to queue future video frame changes at most this many milliseconds in advance
+    --vo-vdpau-queuetime-windowed?: Use VDPAU's presentation queue functionality to queue future video frame changes at most this many milliseconds in advance
+    --vo-vdpau-sharpen?: For positive values, apply a sharpening algorithm to the video, for negative values a blurring algorithm
+    --vo?: Specify the video output backend to be used
+    --volume-gain-max?: Set the volume gain range in dB
+    --volume-gain-min?: Set the volume gain range in dB
+    --volume-gain?: Set the volume gain in dB
+    --volume-max?: Set the maximum amplification level in percent
+    --volume?: Set the startup volume
+    --vulkan-async-compute?: Enables the use of async compute queues on supported vulkan devices
+    --vulkan-async-transfer?: Enables the use of async transfer queues on supported vulkan devices
+    --vulkan-device?: The name or UUID of the Vulkan device to use for rendering and presentation
+    --vulkan-display-display?: The index of the display, on the selected Vulkan device, to present on when using the displayvk GPU context
+    --vulkan-display-mode?: The index of the display mode, of the selected Vulkan display, to use when using the displayvk GPU contex
+    --vulkan-display-plane?: The index of the plane, on the selected Vulkan device, to present on when using the displayvk GPU context
+    --vulkan-queue-count?: Controls the number of VkQueues used for rendering
+    --vulkan-swap-mode?: Controls the presentation mode of the vulkan swapchain
+    --wasapi-exclusive-buffer?: Set buffer duration in exclusive mode
+    --watch-history-path?: The path in which to store the watch history
+    --watch-later-dir?: The directory in which to store the "watch later" temporary files
+    --watch-later-directory?: alias for --watch-later-dir
+    --watch-later-options-add?: ""
+    --watch-later-options-append?: ""
+    --watch-later-options-clr?: ""
+    --watch-later-options-del?: ""
+    --watch-later-options-pre?: ""
+    --watch-later-options-remove?: ""
+    --watch-later-options-set?: ""
+    --watch-later-options-toggle?: ""
+    --watch-later-options?: The options that are saved in "watch later" files if they have been changed since when mpv started
+    --wayland-app-id?: Set the client app id for Wayland-based video output methods
+    --wayland-configure-bounds?: Controls whether or not mpv opts into the configure bounds event if sent by the compositor
+    --wayland-content-type?: If supported by the compositor, mpv will send a hint using the content-type protocol telling the compositor what type of content is being displayed
+    --wayland-edge-pixels-pointer?: 'Defines the size of an edge border (default: 16) to initiate client side resize events in the wayland contexts with the mouse'
+    --wayland-edge-pixels-touch?: 'Defines the size of an edge border (default: 32) to initiate client side resizes events in the wayland contexts with touch events'
+    --wayland-internal-vsync?: Controls whether to use mpv's internal vsync for Wayland-base video outputs
+    --wayland-present?: Enable the use of wayland's presentation time protocol for more accurate frame presentation if it is supported by the compositor
+    --wid?: This tells mpv to attach to an existing window
+    --window-affinity?: Controls the window affinity behavior of mpv
+    --window-corners?: Set the preference for window corner rounding
+    --window-dragging?: Move the window when clicking on it and moving the mouse pointer
+    --window-maximized?: Whether the video window is maximized or not
+    --window-minimized?: Whether the video window is minimized or not
+    --window-scale?: Resize the video window to a multiple (or fraction) of the video size
+    --write-filename-in-watch-later-config?: Prepend the watch later config files with the name of the file they refer to
+    --x11-bypass-compositor?: If set to yes, then ask the compositor to unredirect the mpv window
+    --x11-name?: Set the window instance name for X11-based video output methods
+    --x11-netwm?: (X11 only) Control the use of NetWM protocol features
+    --x11-present?: Whether or not to use presentation statistics from X11's presentation extension
+    --x11-wid-title?: Whether or not to set the window title when mpv is embedded on X11
+    --xv-adaptor?: Select a specific XVideo adapter
+    --xv-buffers?: Number of image buffers to use for the internal ringbuffer
+    --xv-ck-method?: Sets the color key drawing method
+    --xv-ck?: Select the source from which the color key is taken
+    --xv-colorkey?: Changes the color key to an RGB value of your choice
+    --xv-port?: Select a specific XVideo port
+    --ytdl-format?: Video format/quality that is directly passed to youtube-dl
+    --ytdl-raw-options-add?: ""
+    --ytdl-raw-options-append?: ""
+    --ytdl-raw-options-clr?: ""
+    --ytdl-raw-options-del?: ""
+    --ytdl-raw-options-remove?: ""
+    --ytdl-raw-options-set?: ""
+    --ytdl-raw-options?: Pass arbitrary options to youtube-dl
+    --ytdl?: Enable the youtube-dl hook-script
+    --zimg-dither?: Dithering
+    --zimg-fast?: Allow optimizations that help with performance, but reduce quality
+    --zimg-scaler-chroma-param-a?: Same as --zimg-scaler-param-a, for chroma
+    --zimg-scaler-chroma-param-b?: Same as --zimg-scaler-param-b, for chroma
+    --zimg-scaler-chroma?: Same as --zimg-scaler, for for chroma interpolation
+    --zimg-scaler-param-a?: Set scaler parameters
+    --zimg-scaler-param-b?: Set scaler parameters
+    --zimg-scaler?: Zimg luma scaler to use
+    --zimg-threads?: Set the maximum number of threads to use for scaling
+    -V, --version?: Print version string and exit
+    -v, --v*: Increment verbosity level, one level for each -v found on the command line
+
+documentation:
+  command: >-
+    Video and audio player based on MPlayer/mplayer2. mpv plays local
+    files, URLs, and streams (HTTP, HTTPS, RTMP, etc.). Keyboard controls:
+    Space (pause/play), Left/Right (seek 5s), Up/Down (seek 1min), q (quit),
+    f (fullscreen), m (mute), 9/0 (volume). Scripting with Lua and JavaScript
+    scripts in ~/.config/mpv/scripts/. Input conf: ~/.config/mpv/input.conf.
+    Hardware decoding with --hwdec=auto. Subtitle options with --sub.
+    Stream quality with --ytdl-format. Loop with --loop. Scale with
+    --vf scale. Crop with --vf=crop. Extract audio with --audio-only.
+    Widevine CDM support for Netflix/YouTube with --ytdl.

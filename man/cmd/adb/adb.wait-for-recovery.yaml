@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wait-for-recovery
+description: wait for device to be in given state

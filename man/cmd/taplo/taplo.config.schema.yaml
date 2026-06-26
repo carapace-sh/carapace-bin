@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: schema
+description: Print the JSON schema of the `.taplo.toml` configuration file

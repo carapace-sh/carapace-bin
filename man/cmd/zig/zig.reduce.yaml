@@ -1,0 +1,185 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reduce [options] [file]
+description: Minimize a bug report
+group: source
+flags:
+    --Bsymbolic: Bind global references locally
+    --ObjC: 'Darwin: force load all members of static archives that implement ObjC class/category'
+    --PIC: Force-enable Position Independent Code
+    --PIE: Force-enable Position Independent Executable
+    --allow-shlib-undefined: Allows undefined symbols in shared libraries
+    --allow-so-scripts: Allows .so files to be GNU ld scripts
+    --async-unwind-tables: Always produce asynchronous unwind table entries for all functions
+    --build-id?: Embed a build ID in binaries
+    --builtin: Enable implicit builtin knowledge of functions
+    --cache-dir=: Override the local cache directory
+    --cflags=: Set extra flags for the next positional C source files
+    --clang: Force using Clang as the C/C++ compilation backend
+    --color=: Enable or disable colored error messages
+    --compiler-rt: Always include compiler-rt symbols in output
+    --compress-debug-sections=: Debug section compression
+    --data-sections: Places each data in a separate section
+    --dead-strip: 'Darwin: remove functions and data unreachable by entry point or exported symbols'
+    --dead-strip-dylibs: 'Darwin: remove dylibs unreachable by entry point or exported symbols'
+    --debug-compile-errors: Crash with helpful diagnostics at the first compile error
+    --debug-incremental: Enable incremental compilation debug features
+    --debug-link-snapshot: Enable dumping of the linker's state in JSON format
+    --debug-log=: Enable printing debug/info log messages for scope
+    --debug-rt?: Build compiler runtime libraries with optimization
+    --define=*: Define C macro to value
+    --dep=: Add an entry to the next module's import table
+    --disable-new-dtags: Use the old behavior for dynamic tags (RPATH)
+    --dll-export-fns: Mark exported functions as DLL exports (Windows)
+    --dynamic: Force output to be dynamically linked
+    --dynamic-linker=: Set the dynamic interpreter path (usually ld.so)
+    --each-lib-rpath: Ensure adding rpath for each used dynamic library
+    --eh-frame-hdr: Enable C++ exception handling by passing --eh-frame-hdr to linker
+    --embed-dir=: Add directory to embed search path
+    --emit-asm?: Output .s (assembly code)
+    --emit-bin?: Output machine code
+    --emit-docs?: Create a docs/ dir with html documentation
+    --emit-h?: Generate a C header file (.h)
+    --emit-implib?: Produce an import .lib when building a Windows DLL
+    --emit-llvm-bc?: Produce an optimized LLVM module as a .bc file
+    --emit-llvm-ir?: Produce a .ll file with optimized LLVM IR
+    --emit-relocs: Enable output of relocation sections for post build tools
+    --enable-new-dtags: Use the new behavior for dynamic tags (RUNPATH)
+    --entitlements=: 'Darwin: add path to entitlements file for embedding in code signature'
+    --entry?: Enable entry point with default symbol name
+    --error-limit=: Set the maximum amount of distinct error values
+    --error-tracing: Enable error tracing in release builds
+    --export-memory: 'WebAssembly: export memory to the host'
+    --export-table: 'WebAssembly: export function table to the host environment'
+    --export=: 'WebAssembly: Force a symbol to be exported'
+    --force-undefined=: Specify the symbol must be defined for the link to succeed
+    --framework=: 'Darwin: link against framework'
+    --function-sections: Places each function in a separate section
+    --fuzz: Enable fuzz testing instrumentation
+    --gc-sections: Force removal of unreachable functions and data
+    --global-base=: 'WebAssembly: where to start placing global data'
+    --global-cache-dir=: Override the global cache directory
+    --headerpad-max-install-names: 'Darwin: set enough space as if all paths were MAXPATHLEN'
+    --headerpad=: 'Darwin: set minimum space for future expansion of load commands'
+    --idirafter=: Add directory to AFTER include search path
+    --image-base=: Set base address for executable image
+    --import-memory: 'WebAssembly: import memory from the environment'
+    --import-symbols: 'WebAssembly: import missing symbols from the host environment'
+    --import-table: 'WebAssembly: import function table from the host environment'
+    --include=*: Add directory to include search path
+    --incremental: Enable incremental compilation
+    --initial-memory=: 'WebAssembly: initial size of linear memory'
+    --install-name=: 'Darwin: add dylib''s install name'
+    --isystem=: Add directory to SYSTEM include search path
+    --job-count=: Limit concurrent jobs (default is to use all CPU cores)
+    --libc=: Provide a file which specifies libc paths
+    --libllvm: Force using the LLVM API in the codegen backend
+    --library-directory=: Add a directory to the library search path
+    --library=*: Link against system library (only if actually used)
+    --listen=: Listen on address for IDE integration
+    --lld: Force using LLD as the linker
+    --llvm: Force using LLVM as the codegen backend
+    --lto: Force-enable Link Time Optimization
+    --lto-mode=: Set LTO mode
+    --max-memory=: 'WebAssembly: maximum size of linear memory'
+    --mcmodel=: Limit range of code and data virtual addresses
+    --mcpu=: Specify target CPU and feature set
+    --mexec-model=: Execution model (WASI)
+    --mno-red-zone: Force-disable the "red-zone"
+    --mred-zone: Force-enable the "red-zone"
+    --municode: Use wmain/wWinMain as entry point (Windows)
+    --name=: Compilation unit name (not a file path)
+    --needed-framework=: 'Darwin: link against framework (even if unused)'
+    --needed-library=*: Link against system library (even if unused)
+    --new-linker: Force using the new linker (Zig linker)
+    --no-PIC: Force-disable Position Independent Code
+    --no-PIE: Force-disable Position Independent Executable
+    --no-allow-shlib-undefined: Disallows undefined symbols in shared libraries
+    --no-allow-so-scripts: .so files must be ELF files
+    --no-builtin: Disable implicit builtin knowledge of functions
+    --no-clang: Prevent using Clang as the C/C++ compilation backend
+    --no-compiler-rt: Prevent including compiler-rt symbols in output
+    --no-data-sections: All data go into same section
+    --no-dll-export-fns: Force-disable marking exported functions as DLL exports
+    --no-dynamic-linker: Do not set any dynamic interpreter path
+    --no-each-lib-rpath: Prevent adding rpath for each used dynamic library
+    --no-eh-frame-hdr: Disable C++ exception handling by passing --no-eh-frame-hdr to linker
+    --no-emit-asm: Do not output .s (assembly code)
+    --no-emit-bin: Do not output machine code
+    --no-emit-docs: Do not produce docs/ dir with html documentation
+    --no-emit-h: Do not generate a C header file (.h)
+    --no-emit-implib: Do not produce an import .lib when building a Windows DLL
+    --no-emit-llvm-bc: Do not produce an optimized LLVM module as a .bc file
+    --no-emit-llvm-ir: Do not produce a .ll file with optimized LLVM IR
+    --no-entry: Do not output any entry point
+    --no-error-tracing: Disable error tracing in debug builds
+    --no-function-sections: All functions go into same section
+    --no-fuzz: Disable fuzz testing instrumentation
+    --no-gc-sections: Don't force removal of unreachable functions and data
+    --no-incremental: Disable incremental compilation
+    --no-libllvm: Prevent using the LLVM API in the codegen backend
+    --no-lld: Prevent using LLD as the linker
+    --no-llvm: Prevent using LLVM as the codegen backend
+    --no-lto: Force-disable Link Time Optimization
+    --no-new-linker: Prevent using the new linker
+    --no-omit-frame-pointer: Store the stack frame pointer
+    --no-reference-trace: Disable reference trace
+    --no-sanitize-c: Disable C undefined behavior detection in safe builds
+    --no-sanitize-thread: Disable Thread Sanitizer
+    --no-single-threaded: Code may not assume there is only one thread
+    --no-soname: Disable emitting a SONAME
+    --no-stack-check: Disable stack probing in safe builds
+    --no-stack-protector: Disable stack protection in safe builds
+    --no-strip: Keep debug symbols
+    --no-structured-cfg: Force SPIR-V kernels to not use structured control flow
+    --no-ubsan-rt: Prevent including ubsan-rt symbols in the output
+    --no-undefined-version: Disallow version scripts from referring to undefined symbols
+    --no-unwind-tables: Never produce unwind table entries
+    --no-valgrind: Omit valgrind client requests in debug builds
+    --ofmt=: Override target object format
+    --omit-frame-pointer: Omit the stack frame pointer
+    --opt-bisect-limit?: Only run first N LLVM optimization passes
+    --optimize=: Choose what to optimize for
+    --pagezero-size=: 'Darwin: size of __PAGEZERO segment in hexadecimal'
+    --rcflags=: Set extra flags for the next positional .rc source files
+    --rcincludes=: Set the type of includes for .rc files
+    --rdynamic: Add all symbols to the dynamic symbol table
+    --reference-trace?: Show num lines of reference trace per compile error
+    --rpath=*: Add directory to the runtime library search path
+    --sanitize-c?: Enable C undefined behavior detection
+    --sanitize-thread: Enable Thread Sanitizer
+    --script=: Use a custom linker script
+    --shared-memory: 'WebAssembly: use shared linear memory'
+    --show-builtin: Output the source of @import("builtin") then exit
+    --single-threaded: Code assumes there is only one thread
+    --soname?: Override the default SONAME value
+    --sort-section=: Sort wildcard section patterns by 'name' or 'alignment'
+    --stack-check: Enable stack probing in unsafe builds
+    --stack-protector: Enable stack protection in unsafe builds
+    --stack-report: Print stack size diagnostics
+    --stack=: Override default stack size
+    --static: Force output to be statically linked
+    --strip: Omit debug symbols
+    --structured-cfg: Force SPIR-V kernels to use structured control flow
+    --subsystem=: Windows /SUBSYSTEM:<subsystem> to the linker
+    --sysroot=: Set the system root directory (usually /)
+    --target=: Target triple (e.g. x86_64-linux-gnu)
+    --time-report: Send timing diagnostics to '--listen' clients
+    --ubsan-rt: Always include ubsan-rt symbols in the output
+    --undefined-version: Allow version scripts to refer to undefined symbols
+    --unwind-tables: Always produce unwind table entries for all functions
+    --valgrind: Include valgrind client requests in release builds
+    --verbose-air: Enable compiler debug output for Zig AIR
+    --verbose-cc: Display C compiler invocations
+    --verbose-cimport: Enable compiler debug output for C imports
+    --verbose-generic-instances: Enable compiler debug output for generic instance generation
+    --verbose-intern-pool: Enable compiler debug output for InternPool
+    --verbose-link: Display linker invocations
+    --verbose-llvm-bc?: Enable compiler debug output for unoptimized LLVM BC
+    --verbose-llvm-cpu-features: Enable compiler debug output for LLVM CPU features
+    --verbose-llvm-ir?: Enable compiler debug output for unoptimized LLVM IR
+    --version-script=: Provide a version .map file
+    --version=: Dynamic library semver
+    --weak-framework=: 'Darwin: link against framework and mark it and all referenced symbols as weak'
+    --weak-library=*: Link against system library marking it and all referenced symbols as weak
+    --zig-lib-dir=: Override path to Zig installation lib directory
+    -h, --help: Print this help and exit

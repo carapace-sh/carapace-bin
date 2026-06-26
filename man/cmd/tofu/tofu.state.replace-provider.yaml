@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: replace-provider [options] FROM_PROVIDER_FQN TO_PROVIDER_FQN
+description: Replace provider in the state
+flags:
+    -auto-approve: Skip interactive approval.
+    -ignore-remote-version: A rare option used for the remote backend only.
+    -lock: Don't hold a state lock during the operation.
+    -lock-timeout?: Duration to retry a state lock.

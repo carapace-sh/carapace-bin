@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: makepkg
+description: make packages compatible for use with pacman
+flags:
+    --allsource: Generate a source-only tarball including downloaded sources
+    --asdeps: Install packages as non-explicitly installed
+    --check: Run the check() function in the PKGBUILD
+    --config=: Use an alternate config file (instead of '/etc/makepkg.conf')
+    --holdver: Do not update VCS sources
+    --key=: Specify a key to use for gpg signing instead of the default
+    --needed: Do not reinstall the targets that are already up to date
+    --noarchive: Do not create package archive
+    --nocheck: Do not run the check() function in the PKGBUILD
+    --noconfirm: Do not ask for confirmation when resolving dependencies
+    --noprepare: Do not run the prepare() function in the PKGBUILD
+    --noprogressbar: Do not show a progress bar when downloading files
+    --nosign: Do not create a signature for the package
+    --packagelist: Only list package filepaths that would be produced
+    --printsrcinfo: Print the generated SRCINFO and exit
+    --sign: Sign the resulting package with gpg
+    --skipchecksums: Do not verify checksums of the source files
+    --skipinteg: Do not perform any verification checks on source files
+    --skippgpcheck: Do not verify source files with PGP signatures
+    --verifysource: Download source files (if needed) and perform integrity checks
+    -A, --ignorearch: Ignore incomplete arch field in PKGBUILD
+    -C, --cleanbuild: Remove $srcdir/ dir before building the package
+    -D, --dir=: Change to directory <dir> before processing PKGBUILD
+    -L, --log: Log package build process
+    -R, --repackage: Repackage contents of the package without rebuilding
+    -S, --source: Generate a source-only tarball without downloaded sources
+    -V, --version: Show version information and exit
+    -c, --clean: Clean up work files after build
+    -d, --nodeps: Skip all dependency checks
+    -e, --noextract: Do not extract source files (use existing $srcdir/ dir)
+    -f, --force: Overwrite existing package
+    -g, --geninteg: Generate integrity checks for source files
+    -h, --help: Show this help message and exit
+    -i, --install: Install package after successful build
+    -m, --nocolor: Disable colorized output messages
+    -o, --nobuild: Download and extract files only
+    -p=: Use an alternate build script (instead of 'PKGBUILD')
+    -r, --rmdeps: Remove installed dependencies after a successful build
+    -s, --syncdeps: Install missing dependencies with pacman

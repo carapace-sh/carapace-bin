@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh [OPTIONS] <USER_AT_HOST_AND_PORT> [PROG]...
+description: Establish an ssh session
+flags:
+    --class=: Override the default windowing system class
+    --position=: Override the position for the initial window launched by this process
+    -h, --help: Print help (see more with '--help')
+    -o, --ssh-option=: Override specific SSH configuration options
+    -v: Enable verbose ssh protocol tracing

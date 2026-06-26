@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: readlink
+description: print resolved symbolic links or canonical file names
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -e, --canonicalize-existing: canonicalize by following every symlink in
+    -f, --canonicalize: canonicalize by following every symlink in
+    -m, --canonicalize-missing: canonicalize by following every symlink in
+    -n, --no-newline: do not output the trailing delimiter
+    -q, --quiet: ""
+    -s, --silent: suppress most error messages (on by default)
+    -v, --verbose: report error messages
+    -z, --zero: end each output line with NUL, not newline

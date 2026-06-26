@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-fbulk [OPTIONS] /path/to/void-packages [pkg pkg+N]
+description: XBPS utility to perform a fast bulk build of void-packages
+flags:
+    -V, --verbose: Enable verbose mode
+    -h, --help: Show usage
+    -j, --jobs=: Number of parallel builds
+    -l, --logdir=: Path to store logs
+    -s, --system: System rebuild mode
+    -v, --version: Show XBPS version

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Graphical disk usage analyzer for GNOME. Scan directories to see
+    disk space usage with an interactive treemap or ring chart
+    visualization.
+  flag:
+    all-file-systems: Do not skip directories on different file systems.
+description: A graphical disk usage analyzer for the GNOME deskto
+flags:
+    -a, --all-file-systems: Do not skip directories on different file systems. Ignored if DIRECTORY is not specified.
+    -h, --help: Show help options
+    -v, --version: Print version information and exit

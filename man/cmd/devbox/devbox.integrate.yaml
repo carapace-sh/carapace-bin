@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: integrate
+description: integrate with an IDE
+hidden: true

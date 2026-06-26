@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tee
+description: read from standard input and write to standard output and files
+flags:
+    --help: display this help and exit
+    --output-error=: set behavior on write error.
+    --version: output version information and exit
+    -a, --append: append to the given FILEs, do not overwrite
+    -i, --ignore-interrupts: ignore interrupt signals
+    -p: diagnose errors writing to non pipes

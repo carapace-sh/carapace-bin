@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: script
+description: make typescript of terminal session
+flags:
+    --force: use output file even when it is a link
+    -B, --log-io=: log stdin and stdout to file
+    -E, --echo=: echo input in session (auto, always or never)
+    -I, --log-in=: log stdin to file
+    -O, --log-out=: log stdout to file (default)
+    -T, --log-timing=: log timing information to file
+    -V, --version: display version
+    -a, --append: append to the log file
+    -c, --command=: run command rather than interactive shell
+    -e, --return: return exit code of the child process
+    -f, --flush: run flush after each write
+    -h, --help: display this help
+    -m, --logging-format=: force to 'classic' or 'advanced' format
+    -o, --output-limit=: terminate if output files exceed size
+    -q, --quiet: be quiet
+    -t, --timing?: deprecated alias to -T (default file is stderr)

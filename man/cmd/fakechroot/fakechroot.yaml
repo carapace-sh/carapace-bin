@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fakechroot
+description: gives a fake chroot environment
+flags:
+    -b, --bindir=: Specify a directory which contains the replacement executables shipped with fakechroot.
+    -c, --config-dir=: Specify a directory which contains additional configuration for fakechroot.
+    -d, --elfloader=: Specify an alternative dynamic linker.
+    -e, --environment=: Load additional configuration with environment.
+    -h, --help: Display help.
+    -l, --lib=: Specify an alternative wrapper library.
+    -s, --use-system-libs: Use system libraries before chroot's libraries.
+    -v, --version: Display version.

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: typst
+description: A new markup-based typesetting system that is powerful and easy to learn.
+flags:
+    --cert=: Path to a custom CA certificate to use when making network requests
+    --color=: Whether to use color
+    -V, --version: Print version
+persistentflags:
+    -h, --help: Print help

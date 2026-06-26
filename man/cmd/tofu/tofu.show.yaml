@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show [options] [path]
+description: Show the current state or a saved plan
+flags:
+    -json: output in a machine-readable form
+    -no-color: output without color

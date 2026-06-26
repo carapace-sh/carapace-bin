@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+description: Build a Gatsby project
+flags:
+    --graphql-tracing: Trace every graphql resolver, may have performance implications.
+    --no-uglify: Build site without uglifying JS bundles.
+    --open-tracing-config-file=: Tracer configuration file.
+    --prefix-paths: Build site with link paths prefixed with the pathPrefix.
+    --profile: Build site with react profiling.

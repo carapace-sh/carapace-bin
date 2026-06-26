@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: enum
+description: Generates a new, generic enum definition for the given or default project
+flags:
+    --project=: The name of the project in which to create the enum.
+    --type=: Adds a developer-defined type to the filename, in the format "name.type.ts".

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unexpand
+description: convert spaces to tabs
+flags:
+    --first-only: convert only leading sequences of blanks (overrides -a)
+    --help: display this help and exit
+    --version: output version information and exit
+    -a, --all: convert all blanks, instead of just initial blanks
+    -t, --tabs=: have tabs N characters apart instead of 8 (enables -a) or use comma separated list of tab positions

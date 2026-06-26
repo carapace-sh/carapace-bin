@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: electron
+description: Build cross platform desktop apps with JavaScript, HTML, and CSS
+flags:
+    -a, --abi: Print the Node ABI version.
+    -i, --interactive: Open a REPL to the main process.
+    -r, --require: Module to preload (option can be repeated).
+    -v, --version: Print the version.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+flags:
+    --schema=: validate against common schema
+    -h, --help: display help for command

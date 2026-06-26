@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: 'add OPTIONS NAME REPOSITORY [REPOSITORY...] '
+description: Add a signer
+flags:
+    --key=: Path to the signer's public key file

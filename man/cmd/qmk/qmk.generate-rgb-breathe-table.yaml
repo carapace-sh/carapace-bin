@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate-rgb-breathe-table
+description: Generates an RGB Light breathing table header
+flags:
+    -c, --center=: The breathing center value
+    -h, --help: show this help message and exit
+    -m, --max=: The breathing maximum value
+    -o, --output=: File to write to
+    -q, --quiet: Quiet mode, only output error messages

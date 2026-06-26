@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: shell
+description: run remote shell command
+flags:
+    -T: disable pty allocation
+    -e=: choose escape character, or "none"; default '~'
+    -n: don't read from stdin
+    -t: 'allocate a pty if on a tty (-tt: force pty allocation)'
+    -x: disable remote exit codes and stdout/stderr separation
+
+documentation:
+  command: >-
+    Run a remote shell command on the device. Execute single commands with arguments directly, or start an interactive shell by running without additional arguments. Use `-T` to disable pseudo-terminal (PTY) allocation for non-interactive commands. The `-t` flag allocates a PTY (use `-tt` to force); `-n` prevents reading from stdin. Escape character defaults to `~` (use `-e` to change or "none" to disable). For scripts, `-x` disables exit code and stdout/stderr separation.

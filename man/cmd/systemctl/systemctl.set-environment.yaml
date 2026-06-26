@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-environment
+description: Set one or more environment variables
+group: environment
+documentation:
+  command: |
+    Set one or more systemd manager environment variables, as specified
+    on the command line. This command will fail if variable names and
+    values do not conform to the rules (ASCII letters, digits, underscore;
+    names cannot be empty or start with a digit).

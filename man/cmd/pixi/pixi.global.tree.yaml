@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tree
+aliases:
+    - t
+description: Show a tree of dependencies for a specific global environment
+flags:
+    -e, --environment=!: The environment to list packages for
+    -i, --invert: Invert tree and show what depends on a given package in the regex argument

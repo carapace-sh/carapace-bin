@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: plugin
+description: Useful commands relating to Gatsby plugins

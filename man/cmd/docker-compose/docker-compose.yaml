@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: docker-compose
+description: Docker Compose
+flags:
+    --all-resources: Include all resources, even those not used by services
+    --ansi=: Control when to print ANSI control characters ("never"|"always"|"auto")
+    --compatibility: Run compose in backward compatibility mode
+    --env-file=*: Specify an alternate environment file
+    --insecure-registry=*&: Use insecure registry to pull Compose OCI artifacts. Doesn't apply to images
+    --no-ansi&: Do not print ANSI control characters (DEPRECATED)
+    --parallel=: Control max parallelism, -1 for unlimited
+    --profile=*: Specify a profile to enable
+    --progress=: Set type of progress output (auto, tty, plain, json, quiet)
+    --project-directory=: Specify an alternate working directory
+    --verbose&: Show more output
+    --workdir=&: DEPRECATED! USE --project-directory INSTEAD.
+    -f, --file=*: Compose configuration files
+    -p, --project-name=: Project name
+    -v, --version&: Show the Docker Compose version information
+persistentflags:
+    --dry-run: Execute command in dry run mode

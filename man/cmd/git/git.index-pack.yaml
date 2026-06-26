@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: index-pack
+description: Build pack index file for an existing packed archive
+group: low-level manipulator
+documentation:
+  command: |-
+    Reads a packed archive (.pack) from the specified file,
+    builds a pack index file (.idx) for it, and optionally writes a
+    reverse-index (.rev) for the specified pack. The packed
+    archive, together with the pack index, can then be placed in
+    the objects/pack/ directory of a Git repository.

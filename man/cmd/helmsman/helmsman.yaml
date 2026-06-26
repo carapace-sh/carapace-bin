@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: helmsman
+description: Helmsman is a Helm Charts as Code tool
+flags:
+    --always-upgrade: upgrade release even if no changes are found
+    --apply: apply the plan directly
+    --context-override=: override releases context defined in release state with this one
+    --debug: show the debug execution logs and actual helm/kubectl commands. This can log secrets and should only be used for debugging purposes.
+    --destroy: delete all deployed releases.
+    --diff-context=: number of lines of context to show around changes in helm diff output
+    --dry-run: apply the dry-run option for helm commands.
+    --force-upgrades: use --force when upgrading helm releases. May cause resources to be recreated.
+    --group=: limit execution to specific group of apps.
+    --keep-untracked-releases: keep releases that are managed by Helmsman from the used DSFs in the command, and are no longer tracked in your desired state.
+    --kubeconfig=: path to the kubeconfig file to use for CLI requests
+    --kubectl-diff: use kubectl diff instead of helm diff. Defalts to false if the helm diff plugin is installed.
+    --migrate-context: updates the context name for all apps defined in the DSF and applies Helmsman labels. Using this flag is required if you want to change context name after it has been set.
+    --no-banner: don't show the banner
+    --no-cleanup: keeps any credentials files that has been downloaded on the host where helmsman runs.
+    --no-color: don't use colors
+    --no-env-subst: turn off environment substitution globally
+    --no-fancy: don't display the banner and don't use colors
+    --no-ns: don't create namespaces
+    --no-ssm-subst: turn off SSM parameter substitution globally
+    --no-update: skip updating helm repos
+    --ns-override=: override defined namespaces with this one
+    --replace-on-rename: Uninstall the existing release when a chart with a different name is used.
+    --show-diff: show helm diff results. Can expose sensitive information.
+    --skip-validation: skip desired state validation
+    --subst-env-values: turn on environment substitution in values files.
+    --subst-ssm-values: turn on SSM parameter substitution in values files.
+    --target=: limit execution to specific app.
+    --update-deps: run 'helm dep up' for local charts
+    --verbose: show verbose execution logs.
+    -e=*: file(s) to load environment variables from (default .env), may be supplied more than once
+    -f=*: desired state file name(s), may be supplied more than once to merge state files
+    -p=: max number of concurrent helm releases to run
+    -v: show the version

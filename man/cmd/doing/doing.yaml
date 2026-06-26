@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: doing [OPTIONS] COMMAND [ARGS]...
+description: CLI for repository/issue workflow on Azure Devops
+flags:
+    --help: Show this message and exit.
+    --version: Show the version and exit.

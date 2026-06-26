@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Print information about the ClamAV installation, including
+    compiler flags, library paths, and linking options used to
+    build the ClamAV libraries.
+description: clamav config
+flags:
+    --cflags: print pre-processor and compiler flags
+    --help: display this help and exit
+    --libs: print library linking information
+    --prefix=: change libclamav prefix [default /usr]
+    --version: output version information

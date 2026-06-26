@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Compile SQL and execute against the current target database
+flags:
+    --defer: Defer to the state variable for resolving unselected nodes
+    --exclude=*: Specify the models to exclude
+    --favor-state: Defer to the state variable for resolving unselected nodes
+    --log-path=: Configure the 'log-path'
+    --no-defer: Do not defer to the state variable for resolving unselected nodes
+    --no-favor-state: If defer is set, expect standard defer behaviour
+    --no-version-check: Skip ensuring dbt's version matches the one specified in the dbt_project.yml
+    --profile=: Which profile to load. Overrides setting in dbt_project.yml
+    --project-dir=: Which directory to look in for the dbt_project.yml file
+    --selector=: The selector name to use
+    --state=: Use the given directory as the source for json files to compare
+    --target-path=: Configure the 'target-path'
+    --threads=: Specify number of threads to use while executing models
+    --vars=: Supply variables to the project
+    -f, --full-refresh: Drop incremental models and fully-recalculate
+    -h, --help: show this help message and exit
+    -m, --models=*: Specify the nodes to include
+    -s, --select=*: Specify the nodes to include
+    -t, --target=: Which target to load for the given profile
+    -x, --fail-fast: Stop execution upon a first failure

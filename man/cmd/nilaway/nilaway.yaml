@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nilaway [-flag] [package]
+description: Static Analysis tool to detect potential Nil panics in Go code
+flags:
+    -V: print version and exit
+    -c=: display offending line with this many lines of context
+    -cpuprofile=: write CPU profile to this file
+    -debug=: debug flags, any subset of "fpstv"
+    -exclude-errors-in-files=: A comma-separated list of file prefixes to exclude from error reporting
+    -exclude-file-docstrings=: Comma-separated list of docstrings to exclude from analysis
+    -exclude-pkgs=: Comma-separated list of packages to exclude from analysis
+    -fix: apply all suggested fixes
+    -flags: print analyzer flags in JSON
+    -include-errors-in-files=: A comma-separated list of file prefixes to report errors
+    -include-pkgs=: Comma-separated list of packages to analyze
+    -json: emit JSON output
+    -memprofile=: write memory profile to this file
+    -pretty-print=: Pretty print the error messages
+    -test: indicates whether test files should be analyzed, too
+    -trace=: write trace log to this file

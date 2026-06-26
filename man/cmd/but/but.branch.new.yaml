@@ -1,0 +1,21 @@
+name: new
+description: Creates a new branch in the workspace
+flags:
+    -a, --anchor=: Anchor point - either a commit ID or branch name to create the new branch from
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Creates a new branch in the workspace
+
+        If no branch name is provided, a new parallel branch with a generated
+        name will be created.
+
+        You can also specify an anchor point using the `--anchor` option,
+        which can be either a commit ID or an existing branch name to create
+        the new branch from. This allows you to create stacked branches.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

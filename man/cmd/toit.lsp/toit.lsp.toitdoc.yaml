@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: toitdoc
+description: Generates a toitdoc json file
+flags:
+    --exclude-sdk: if set, will remove the sdk libraries from the toitdoc
+    --include-private: if set, will include private toitdoc for private elements
+    --out=: the output file
+    --root-path=: root path to build paths from
+    --sdk=: the SDK path to use
+    --toitc=: the toit compiler to use
+    --version=: version of the package to build toitdoc for
+    -p, --parallel=: parallelism
+    -v, --verbose: ""

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [flags] -t <title> <file1> [<file2>...]
+aliases:
+    - new
+description: Create a new snippet.
+flags:
+    -d, --description=: Description of the snippet.
+    -f, --filename=: Filename of the snippet in GitLab.
+    -p, --personal: Create a personal snippet.
+    -t, --title=: (required) Title of the snippet.
+    -v, --visibility=: 'Limit by visibility: ''public'', ''internal'', or ''private'''

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm SERVICE [SERVICE...]
+aliases:
+    - remove
+description: Remove one or more services

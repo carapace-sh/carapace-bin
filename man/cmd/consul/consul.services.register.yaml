@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: register
+description: Register services with the local agent
+flags:
+    --address=: Address of the service to register for arg-based registration.
+    --ca-file=: Path to a CA file to use for TLS when communicating with Consul.
+    --ca-path=: Path to a directory of CA certificates to use for TLS when communicating with Consul.
+    --client-cert=: Path to a client cert file to use for TLS when 'verify_incoming' is enabled.
+    --client-key=: Path to a client key file to use for TLS when 'verify_incoming' is enabled.
+    --datacenter=: Name of the datacenter to query.
+    --http-addr=: The `address` and port of the Consul HTTP agent.
+    --id=: ID of the service to register for arg-based registration.
+    --kind=: The services 'kind'
+    --meta=: Metadata to set on the service, formatted as key=value.
+    --name=: Name of the service to register for arg-based registration.
+    --namespace=: Specifies the namespace to query.
+    --port=: Port of the service to register for arg-based registration.
+    --stale: Permit any Consul server (non-leader) to respond to this request.
+    --tag=: Tag to add to the service.
+    --tagged-address=: Tagged address to set on the service, formatted as key=value.
+    --tls-server-name=: The server name to use as the SNI host when connecting via TLS.
+    --token-file=: File containing the ACL token to use in the request.
+    --token=: ACL token to use in the request.

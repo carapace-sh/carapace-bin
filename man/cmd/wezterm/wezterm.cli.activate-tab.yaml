@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: activate-tab [OPTIONS]
+description: Activate a tab
+flags:
+    --no-wrap: Prevents wrapping around
+    --pane-id=: Specify the current pane
+    --tab-id=: Specify the target tab by its id
+    --tab-index=: Specify the target tab by its index
+    --tab-relative=: Specify the target tab by its relative offset
+    -h, --help: Print help (see more with '--help')

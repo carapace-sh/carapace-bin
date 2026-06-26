@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: render-json
+description: Render the final terragrunt config as json
+group: terragrunt

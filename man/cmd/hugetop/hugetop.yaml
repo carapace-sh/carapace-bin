@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hugetop
+description: report huge page information
+flags:
+    -H, --human: display human-readable output
+    -V, --version: output version information and exit
+    -d, --delay=: delay updates
+    -h, --help: display this help and exit
+    -n, --numa: display per NUMA nodes Huge pages information
+    -o, --once: only display once, then exit

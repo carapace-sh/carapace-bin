@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: save
+description: Take a snapshot of the current state of the machine
+flags:
+    -f, --force: Replace snapshot without confirmation

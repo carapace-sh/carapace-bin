@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    General purpose syntax highlighter in Go. Supports many lexers,
+    styles, and output formats including HTML, JSON, and SVG. Can
+    list available lexers, styles, and formatters.
+description: Chroma is a general purpose syntax highlighter
+flags:
+    --check: Do not format, check for tokenisation errors instead.
+    --fail: Exit silently with status 1 if no specific lexer was found.
+    --filename=: Filename to use for selecting a lexer when reading from stdin.
+    --html: Convenience flag to use HTML formatter.
+    --html-all-styles: Output all HTML CSS styles, including redundant ones.
+    --html-base-line=: Base line number.
+    --html-highlight-style=: Style used for highlighting lines.
+    --html-highlight=: Highlight these lines.
+    --html-inline-styles: Output HTML with inline styles (no classes).
+    --html-lines: Include line numbers in output.
+    --html-lines-style=: Style for line numbers.
+    --html-lines-table: Split line numbers and code in a HTML table
+    --html-linkable-lines: Make the line numbers linkable and be a link to themselves.
+    --html-only: Output HTML fragment.
+    --html-prefix=: HTML CSS class prefix.
+    --html-prevent-surrounding-pre: Prevent the surrounding pre tag.
+    --html-styles: Output HTML CSS styles.
+    --html-tab-width=: Set the HTML tab width.
+    --json: Convenience flag to use JSON formatter.
+    --list: List lexers, styles and formatters.
+    --profile=: Enable profiling to file.
+    --svg: Convenience flag to use SVG formatter.
+    --trace: Trace lexer states as they are traversed.
+    --unbuffered: Do not buffer output.
+    --version: Show version.
+    --xml=: Generate XML lexer definitions.
+    -f, --formatter=: Formatter to use.
+    -h, --help: Show context-sensitive help.
+    -l, --lexer=: Lexer to use when formatting or path to an XML file to load.
+    -s, --style=: Style to use for formatting or path to an XML file to load.

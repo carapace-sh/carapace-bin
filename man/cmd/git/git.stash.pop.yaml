@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pop
+aliases:
+- apply
+description: remove a single stashed state
+flags:
+  --index: try to reinstate index changes as well
+  -q, --quiet: suppress feedback messages
+documentation:
+  command: |-
+    Remove a single stashed state from the stash list and apply it
+    on top of the current working tree state, i.e., do the inverse
+    operation of `git stash push`. The working directory must
+    match the index.
+
+    Applying the state can fail with conflicts; in this case, it is not
+    removed from the stash list. You need to resolve the conflicts by hand
+    and call `git stash drop` manually afterwards.
+  flag:
+    index: |-
+      This option is only valid for `pop` and `apply` commands.
+
+      Tries to reinstate not only the working tree's changes, but also
+      the index's ones. However, this can fail, when you have conflicts
+      (which are stored in the index, where you therefore can no longer
+      apply the changes as they were originally).
+    quiet: |-
+      This option is only valid for `apply`, `drop`, `pop`, `push`,
+      `save`, `store` commands.
+
+      Quiet, suppress feedback messages.

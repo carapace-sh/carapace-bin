@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: i3-scrot
+description: simple screenshot script
+flags:
+    -d, --desk: full screen
+    -h, --help: display this information
+    -s, --select: selection
+    -w, --window: active window

@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: replace
+description: Create, list, delete refs to replace objects
+group: manipulator
+flags:
+  --convert-graft-file: Creates graft commits for all entries in $GIT_DIR/info/grafts and deletes that file upon success
+  --edit=: Edit an object’s content interactively
+  --format=: When listing, use the specified <format>
+  --graft=: Create a graft commit
+  --raw: When editing, provide the raw object contents rather than pretty-printed ones
+  -d, --delete: Delete existing replace refs for the given objects
+  -f, --force: If an existing replace ref for the same object exists, it will be overwritten
+  -l, --list=: List replace refs for objects that match the given pattern
+documentation:
+  command: |-
+    Adds a 'replace' reference in `refs/replace/` namespace.
+
+    The name of the `replace` reference is the SHA-1 of the object that is
+    replaced. The content of the 'replace' reference is the SHA-1 of the
+    replacement object.
+
+    The replaced object and the replacement object must be of the same type.
+    This restriction can be bypassed using `-f`.
+
+    Unless `-f` is given, the `replace` reference must not yet exist.
+
+    There is no other restriction on the replaced and replacement objects.
+    Merge commits can be replaced by non-merge commits and vice versa.
+
+    Replacement references will be used by default by all Git commands
+    except those doing reachability traversal (prune, pack transfer and
+    fsck).
+
+    It is possible to disable the use of replacement references for any
+    command using the `--no-replace-objects` option just after `git`.
+
+    For example if commit 'foo' has been replaced by commit 'bar':
+
+    ```
+    $ git --no-replace-objects cat-file commit foo
+    ```
+
+    shows information about commit 'foo', while:
+
+    ```
+    $ git cat-file commit foo
+    ```
+
+    shows information about commit 'bar'.
+
+    The `GIT_NO_REPLACE_OBJECTS` environment variable can be set to
+    achieve the same effect as the `--no-replace-objects` option.

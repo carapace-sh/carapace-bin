@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: demote NODE [NODE...]
+description: Demote one or more nodes from manager in the swarm

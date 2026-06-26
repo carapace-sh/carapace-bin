@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [options] [address...]
+description: List resources in the state
+flags:
+    -id=: Filters the results by id
+    -state=: Path to a Terraform state file

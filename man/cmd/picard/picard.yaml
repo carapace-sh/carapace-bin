@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: picard
+description: Picard is a cross-platform music tagger written in Python
+flags:
+    -M, --no-player: disable built-in media player
+    -N, --no-restore: do not restore positions and/or sizes
+    -P, --no-plugins: do not load any plugins
+    -V, --long-version: display long version information and exit
+    -c, --config-file=: location of the configuration file
+    -d, --debug: enable debug-level logging
+    -h, --help: show this help message and exit
+    -v, --version: display version information and exit

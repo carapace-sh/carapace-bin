@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: queue:flush [--hours [HOURS]]
+description: Flush all of the failed queue jobs
+flags:
+    --hours=: The number of hours to retain failed job data

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pixi
+description: Developer Workflow and Environment Management
+flags:
+    --list: List all installed commands (built-in and extensions)
+    -V, --version: Print version
+persistentflags:
+    --color=: Whether the log needs to be colored
+    --no-progress: Hide all progress bars, always turned on if stderr is not a terminal
+    -h, --help: Display help information
+    -q, --quiet*: Decrease logging verbosity (quiet mode)
+    -v, --verbose*: Increase logging verbosity (-v for warnings, -vv for info, -vvv for debug, -vvvv for trace)

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fold
+description: wrap each input line to fit in specified width
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -b, --bytes: count bytes rather than columns
+    -s, --spaces: break at spaces
+    -w, --width=: use WIDTH columns instead of 80

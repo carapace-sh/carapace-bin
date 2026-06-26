@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune [OPTIONS]
+description: Remove unused data
+flags:
+    --filter=: Provide filter values (e.g. "label=<key>=<value>")
+    --volumes: Prune anonymous volumes
+    -a, --all: Remove all unused images not just dangling ones
+    -f, --force: Do not prompt for confirmation

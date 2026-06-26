@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: avd
+description: Deletes an Android Virtual Device
+flags:
+    -n, --name=: Name of the AVD to delete.

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: select
+description: Select a Codespace
+hidden: true
+flags:
+    -f, --file=: Output file path
+persistentflags:
+    --repo-owner=: Filter codespace selection by repository owner (username or org)
+    -R, --repo=: Filter codespace selection by repository name (user/repo)
+    -c, --codespace=: Name of the codespace

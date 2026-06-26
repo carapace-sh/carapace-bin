@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run-graph
+description: Generate a graph of the execution order
+flags:
+    -l, --label=: Label used in graph nodes (it could be either "stack.name" or "stack.dir"
+    -o, --outfile=: Output .dot file

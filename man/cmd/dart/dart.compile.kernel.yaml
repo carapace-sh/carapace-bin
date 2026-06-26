@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kernel
+description: Compile Dart to a kernel snapshot
+flags:
+    --verbosity=: Sets the verbosity level of the compilation.
+    -h, --help: Print this usage information.
+    -o, --output=: Write the output to <file name>.
+
+documentation:
+  command: >-
+    Compile a Dart program to a kernel snapshot (.dill) for faster analysis and incremental compilation.

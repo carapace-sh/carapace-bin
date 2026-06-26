@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: powertop
+description: The Linux PowerTOP tool
+flags:
+    --auto-tune: sets all tunable options to their GOOD setting
+    --debug: run in "debug" mode
+    --extech?: uses an Extech Power Analyzer for measurements
+    -C, --csv?: generate a csv report
+    -V, --version: print version information
+    -c, --calibrate: runs powertop in calibration mode
+    -h, --help: print this help menu
+    -i, --iteration?: number of times to run each test
+    -q, --quiet: suppress stderr output
+    -r, --html?: generate a html report
+    -s, --sample?: interval for power consumption measurement
+    -t, --time?: generate a report for 'x' seconds
+    -w, --workload?: file to execute for workload

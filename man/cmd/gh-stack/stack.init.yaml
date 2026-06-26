@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init [branches...]
+description: Initialize a new stack
+flags:
+    -a, --adopt: Track existing branches as part of a stack
+    -b, --base=: Trunk branch for stack (defaults to default branch)
+    -n, --numbered: Use auto-incrementing numbered branch names (requires --prefix)
+    -p, --prefix=: Branch name prefix for the stack

@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dfc
+description: report file system space usage information with style
+flags:
+    -M: do not print "mounted on"
+    -T: show filesystem type
+    -W: wide filename (un truncate)
+    -a: print all mounted filesystem
+    -b: do not show the graph bar
+    -c=: choose color mode.
+    -d: show used size
+    -e=: export to specified format.
+    -f: disable auto-adjust mode (force display)
+    -h: print this message
+    -i: info about inodes
+    -l: only show information about locally mounted file systems
+    -m: use metric (SI unit)
+    -n: do not print header
+    -o: show mount flags
+    -p=: filter by file system name.
+    -q=: sort the output.
+    -s: sum the total usage
+    -t=: filter by file system type.
+    -u=: choose the unit in which to show the values.
+    -v: print program version
+    -w: use a wider bar

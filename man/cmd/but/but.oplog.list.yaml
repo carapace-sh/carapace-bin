@@ -1,0 +1,23 @@
+name: list
+description: List operation history.
+flags:
+    --since=: Start from this oplog SHA instead of the head
+    -h, --help: Print help (see more with '--help')
+    -s, --snapshot: Show only on-demand snapshot entries
+documentation:
+    command: |-
+        List operation history.
+
+        Displays a list of past operations performed in the repository,
+        including their timestamps and descriptions.
+
+        This allows you to restore to any previous point in the history of the
+        project. All state is preserved in operations, including uncommitted changes.
+
+        You can use `but oplog restore <oplog-sha>` to restore to a specific state.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

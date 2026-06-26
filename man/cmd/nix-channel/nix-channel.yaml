@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nix-channel
+description: manage Nix channels
+flags:
+    --add: Adds a channel named name with URL url to the list  of subscribed channels
+    --help: show help
+    --list: Prints the names and URLs of all subscribed channels on standard output
+    --remove: Removes the channel named name from the list of sub‐ scribed channels
+    --rollback: Reverts the previous call to nix-channel --update
+    --update: Downloads the Nix expressions of all subscribed channels

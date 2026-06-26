@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fork
+aliases:
+    - f
+description: Fork an existing repository
+flags:
+    -O, --owner=: name of fork's owner, defaults to current user
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -l, --login=: Use a different Gitea Login. Optional
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional

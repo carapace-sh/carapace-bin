@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: optimize
+description: Cache framework bootstrap, configuration, and metadata to increase performance

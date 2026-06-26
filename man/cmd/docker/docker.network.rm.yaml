@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm NETWORK [NETWORK...]
+aliases:
+    - remove
+description: Remove one or more networks
+flags:
+    -f, --force: Do not error if the network does not exist

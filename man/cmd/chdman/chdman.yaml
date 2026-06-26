@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    MAME Compressed Hunks of Data (CHD) manager. Creates, extracts,
+    and manipulates CHD disk image files used by MAME and related
+    emulators.
+description: MAME Compressed Hunks of Data (CHD) manager

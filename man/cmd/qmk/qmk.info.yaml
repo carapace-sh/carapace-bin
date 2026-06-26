@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Keyboard information
+flags:
+    --ascii: Render layout box drawings in ASCII only.
+    --keyboard=: Keyboard to show info for.
+    --keymap=: Show the layers for a JSON keymap too.
+    -f, --format=: Format to display the data in
+    -h, --help: show this help message and exit
+    -l, --layouts: Render the layouts.
+    -m, --matrix: Render the layouts with matrix information.
+    -r, --rules-mk: Render the parsed values of the keyboard's rules.mk file.

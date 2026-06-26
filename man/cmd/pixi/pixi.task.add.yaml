@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+aliases:
+    - a
+description: Add a command to the workspace
+flags:
+    --arg=*: The arguments to pass to the task
+    --clean-env: Isolate the task from the shell environment, and only use the pixi environment to run the task
+    --cwd=: The working directory relative to the root of the workspace
+    --default-environment=: Add a default environment for the task
+    --depends-on=*: Depends on these other commands
+    --description=: A description of the task to be added
+    --env=*: The environment variable to set, use --env key=value multiple times for more than one variable
+    -f, --feature=: The feature for which the task should be added
+    -p, --platform=: The platform for which the task should be added

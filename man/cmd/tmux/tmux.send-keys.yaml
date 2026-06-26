@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: send-keys
+flags:
+    -F: TODO description
+    -H: TODO description
+    -M: TODO description
+    -N=: repeat-count
+    -R: TODO description
+    -X: TODO description
+    -l: TODO description
+    -t=: target-pane

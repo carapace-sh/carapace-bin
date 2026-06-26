@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: name-rev
+description: Find symbolic names for given revs
+group: low-level interrogator
+flags:
+  --all: list all commits reachable from all refs
+  --always: show abbreviated commit object as fallback
+  --exclude=: ignore refs matching <pattern>
+  --name-only: print only names (no SHA-1)
+  --refs=: only use refs matching <pattern>
+  --stdin: read from stdin
+  --tags: only use tags to name the commits
+  --undefined: allow to print `undefined` names (default)
+documentation:
+  command: |-
+    Finds symbolic names suitable for human digestion for revisions given in any
+    format parsable by `git rev-parse`.

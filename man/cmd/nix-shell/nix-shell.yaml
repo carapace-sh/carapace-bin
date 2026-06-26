@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nix-shell
+description: start an interactive shell based on a Nix expression
+flags:
+    --arg=*: Pass [name] [expr] to Nix functions.
+    --argstr=*: Pass [name] [string] to Nix functions
+    --command=: Run the command in an interactive shell
+    --exclude=: Do not build any dependencies whose store path matches the regexp
+    --help: Show usage information
+    --keep=: Environment variable to keep in --pure
+    --pure: Clear most of the environment for the shell
+    --run=: Run the command in a non-interactive shell
+    -E, --expr=: Nix expression to build
+    -I, --include=: Include paths
+    -p, --packages=*: Packages to add from nixpkgs

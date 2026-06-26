@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: backup DIR
+description: Save all files to a directory
+flags:
+    --kind=: Filter to one kind of package

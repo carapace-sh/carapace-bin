@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rotate <token-name|token-id>
+aliases:
+    - rotate
+    - rot
+description: Rotate user, group, or project access tokens
+flags:
+    -D, --duration=: 'Sets the token duration, in hours. Maximum of 8760. Examples: 24h, 168h, 504h.'
+    -E, --expires-at=: Sets the token's expiration date and time, in YYYY-MM-DD format. If not specified, --duration is used.
+    -F, --output=: 'Format output as: text, json. ''text'' provides the new token value; ''json'' outputs the token with metadata.'
+    -U, --user=: Rotate personal access token. Use @me for the current user.
+    -g, --group=: Rotate group access token. Ignored if a user or repository argument is set.
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unlink
+description: Unlink the current directory from your Vercel organization and disable Remote Caching

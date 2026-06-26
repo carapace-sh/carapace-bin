@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new
+description: Create a new Pulumi Policy Pack
+persistentflags:
+    --dir=: The location to place the generated Policy Pack; if not specified, the current directory is used
+    -f, --force: Forces content to be generated even if it would change existing files
+    -g, --generate-only: Generate the Policy Pack only; do not install dependencies
+    -o, --offline: Use locally cached templates without making any network requests

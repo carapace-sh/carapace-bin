@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+aliases:
+    - new
+description: Create a new access request.
+flags:
+    --no-nowait&: Finish without waiting for request resolution
+    --nowait: Finish without waiting for request resolution
+    --reason=: Reason for requesting
+    --request-ttl=: Expiration time for the access request
+    --resource=: Resource ID to be requested
+    --reviewers=: Suggested reviewers
+    --roles=: Roles to be requested
+    --session-ttl=: Expiration time for the elevated certificate

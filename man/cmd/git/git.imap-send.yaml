@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: imap-send
+description: Send a collection of patches from stdin to an IMAP folder
+group: interaction
+flags:
+  --curl: use libcurl to communicate with the IMAP server
+  --no-curl: do not use libcurl to communicate with the IMAP server
+  -q, --quiet: be more quiet
+  -v, --verbose: be more verbose
+documentation:
+  command: |-
+    This command uploads a mailbox generated with `git format-patch`
+    into an IMAP drafts folder.  This allows patches to be sent as
+    other email is when using mail clients that cannot read mailbox
+    files directly. The command also works with any general mailbox
+    in which emails have the fields `From`, `Date`, and `Subject` in
+    that order.
+
+    Typical usage is something like:
+
+    ```
+    $ git format-patch --signoff --stdout --attach origin | git imap-send
+    ```
+  flag:
+    curl: |-
+      Use libcurl to communicate with the IMAP server, unless tunneling
+      into it.  Ignored if Git was built without the USE_CURL_FOR_IMAP_SEND
+      option set.
+    no-curl: |-
+      Talk to the IMAP server using git's own IMAP routines instead of
+      using libcurl.  Ignored if Git was built with the NO_OPENSSL option
+      set.
+    quiet: Be quiet.
+    verbose: Be verbose.

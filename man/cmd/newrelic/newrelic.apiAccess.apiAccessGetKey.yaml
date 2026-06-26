@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: apiAccessGetKey
+description: Fetch a single key by ID and type.
+flags:
+    --id=: The `id` of the key. This can be used to identify a key without revealing the key itself (used to update and delete).
+    --keyType=: The type of key.

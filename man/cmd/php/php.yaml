@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: php
+description: PHP Command Line Interface
+flags:
+    --ini: Show configuration file names
+    --rc=: Show information about class <name>
+    --re=: Show information about extension <name>
+    --rf=: Show information about function <name>
+    --ri=: Show configuration for extension <name>
+    --rz=: Show information about Zend extension <name>
+    -B=: Run PHP <begin_code> before processing input lines
+    -E=: Run PHP <end_code> after processing all input lines
+    -F=: Parse and execute <file> for every input line
+    -H: Hide any passed arguments from external tools
+    -R=: Run PHP <code> for every input line
+    -S: Run with built-in web server
+    -a: Run as interactive shell (requires readline extension)
+    -c: Look for php.ini file in this directory
+    -d=: Define INI entry foo with value 'bar'
+    -e: Generate extended information for debugger/profiler
+    -f=: Parse and execute <file>
+    -h: This help
+    -i: PHP information
+    -l: Syntax check only (lint)
+    -m: Show compiled in modules
+    -n: No configuration (ini) files will be used
+    -r=: Run PHP <code> without using script tags <?..?>
+    -s: Output HTML syntax highlighted source
+    -t=: Specify document root <docroot> for built-in web server
+    -v: Version number
+    -w: Output source with stripped comments and whitespace
+    -z=: Load Zend extension <file>

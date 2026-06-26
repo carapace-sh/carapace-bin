@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+aliases:
+    - new
+description: Create a new issue
+group: General commands
+documentation:
+    command: |
+        Create a new issue in a repository. Provide a title with `-t` or `--title`,
+        and body with `-b` or `--body-file`. Assign users with `-a` or `--assignee`,
+        add labels with `-l` or `--label`, and add to milestones with `-m` or `--milestone`.
+        Use `--editor` to write title and body in your configured editor, or `--web`
+        to create the issue in the browser.
+flags:
+    --recover=: Recover input from a failed run of create
+    -F, --body-file=: Read body text from `file` (use "-" to read from standard input)
+    -T, --template=: Template `name` to use as starting body text
+    -a, --assignee=*: Assign people by their `login`. Use "@me" to self-assign.
+    -b, --body=: Supply a body. Will prompt for one otherwise.
+    -e, --editor: Skip prompts and open the text editor to write the title and body in. The first line is the title and the remaining text is the body.
+    -l, --label=*: Add labels by `name`
+    -m, --milestone=: Add the issue to a milestone by `name`
+    -p, --project=*: Add the issue to projects by `title`
+    -t, --title=: Supply a title. Will prompt for one otherwise.
+    -w, --web: Open the browser to create an issue

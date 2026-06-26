@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pair
+description: pair with a device for secure TCP/IP communication

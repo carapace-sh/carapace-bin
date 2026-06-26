@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh-host
+description: Retrieve the ssh host key of the specified node
+group: troubleshooting
+flags:
+    --append-known: Add host key to SSH known_hosts file
+    -n, --node=: The node to ssh into. Defaults to the primary control plane.

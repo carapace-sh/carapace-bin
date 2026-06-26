@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sm4-cbc
+aliases:
+    - sm4-cfb
+    - sm4-ctr
+    - sm4-ecb
+    - sm4-ofb
+description: SM4 Cipher
+group: cipher

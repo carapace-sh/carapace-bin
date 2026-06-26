@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make-current
+description: Make branch of application current
+group: run
+flags:
+    --arch=: Arch to make current for
+    --installation=: Work on a non-default system-wide installation
+    --ostree-verbose: Show OSTree debug information
+    --system: Work on the system-wide installation (default)
+    -h, --help: Show help options
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tmux
+description: terminal multiplexer
+flags:
+    "-2": Force tmux to assume the terminal supports 256 colours
+    -C: Start in control mode
+    -D: Do not start the tmux server as a daemon
+    -L=: specify socket name
+    -N: Do not start the server even if the command would normally do so
+    -S=: Specify a full alternative path to the server socket
+    -T=: Set terminal features for the client
+    -V: Report the tmux version.
+    -c=: Execute shell-command using the default shell
+    -f=: Specify an alternative configuration file
+    -l: Behave as a login shell
+    -u: Write UTF-8 output to the terminal
+    -v: Request verbose logging
+
+documentation:
+  command: >-
+    Terminal multiplexer: run multiple sessions, windows, and panes
+    in one terminal. tmux keeps sessions alive after disconnect.
+    Key commands: tmux new -s name (create session), tmux attach
+    (reconnect). Within tmux: Ctrl+b (prefix) then: c (new window),
+    % (split vertical), " (split horizontal), d (detach), $ (rename).
+    Navigate panes: arrow keys after prefix. Resize panes with
+    Ctrl+b :resize. Scroll with Ctrl+b [ then arrow keys, q to quit.
+    Send commands to panes: Ctrl+b :send-keys. Copy mode with
+    Ctrl+b [. Sessions: tmux ls (list), tmux kill-session -t name.
+    Config: ~/.tmux.conf. Chain commands: tmux new-session -d -s name.
+    Share sessions: tmux attach -t name (multiple can attach).

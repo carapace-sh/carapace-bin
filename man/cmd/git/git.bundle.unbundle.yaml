@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unbundle
+description: passes the objects in the bundle for storage in the repository

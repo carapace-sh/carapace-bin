@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init [flags] [PATH]
+description: Initialize a new Dagger module
+group: module
+flags:
+    --license=: License identifier to generate - see https://spdx.org/licenses/
+    --name=: Name of the new module (defaults to parent directory name)
+    --sdk=: Optionally initialize module for development in the given SDK
+    --source=: Directory to store the module implementation source code in (defaults to "dagger/ if "--sdk" is provided)

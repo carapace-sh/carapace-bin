@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: checkout [<id> | <branch> | <url>]
+description: Check out an open merge request.
+flags:
+    -b, --branch=: Check out merge request with name <branch>.
+    -t, --track&: Set checked out branch to track the remote branch.
+    -u, --set-upstream-to=: Set tracking of checked-out branch to [REMOTE/]BRANCH.

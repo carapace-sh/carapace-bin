@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List all aliases
+flags:
+    --sort-by=: Sort results by field
+    -h, --help: Print help (see more with '--help')
+    -n, --name=: Filter aliases by name (substring match)
+    -r, --reverse: Sort in reverse (descending) order
+    -v, --value=: Filter aliases by value (substring match)

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vendor
+description: Vendor all dependencies for a project locally
+flags:
+    --manifest-path=: Path to Cargo.toml
+    --no-delete: Don't delete older crates in the vendor directory
+    --respect-source-config: Respect `[source]` config in `.cargo/config`
+    --versioned-dirs: Always include version in subdir name
+    -h, --help: Print help
+    -s, --sync=*: Additional `Cargo.toml` to sync and vendor
+documentation:
+  command: |
+    Vendor all dependencies for a project locally into a `vendor` directory.
+    This allows offline builds by serving dependencies from the local directory.
+    Use `--no-delete` to keep older crate versions instead of replacing them.
+    The `--versioned-dirs` flag ensures version numbers are included in
+    subdirectory names. Use `--respect-source-config` to respect `[source]` config.

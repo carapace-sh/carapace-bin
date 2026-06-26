@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: use [OPTIONS] NAME
+description: Set the current builder instance
+flags:
+    --default: Set builder as default for current context
+    --global: Builder persists context changes

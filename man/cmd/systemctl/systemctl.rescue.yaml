@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rescue
+description: Enter system rescue mode
+group: system
+documentation:
+  command: |
+    Enter rescue mode. This is equivalent to `systemctl isolate rescue.target`.
+    This operation is blocking by default; use `--no-block` for asynchronous
+    behavior. In rescue mode, only the basic essential services are started
+    and users are given a maintenance shell.

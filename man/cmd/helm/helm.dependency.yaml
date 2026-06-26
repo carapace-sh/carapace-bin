@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dependency
+description: manage a chart's dependencies
+group: main

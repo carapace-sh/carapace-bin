@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [OPTIONS] [SOURCE] [SOURCE...]
+description: Create a new image based on source images
+flags:
+    --append: Append to existing manifest
+    --dry-run: Show final image instead of pushing
+    --progress=: Set type of progress output ("auto", "plain", "tty"). Use plain to show container output
+    -f, --file=*: Read source descriptor from file
+    -t, --tag=*: Set reference for new image

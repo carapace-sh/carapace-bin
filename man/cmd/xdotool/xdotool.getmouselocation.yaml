@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: getmouselocation
+description: Outputs the x, y, screen, and window id of the mouse cursor
+flags:
+    --shell: This makes getmouselocation output shell data you can eval

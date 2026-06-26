@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tr
+description: translate or delete characters
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -d, --delete: delete characters in SET1, do not translate
+    -s, --squeeze-repeats: replace each sequence of a repeated character
+    -t, --truncate-set1: first truncate SET1 to length of SET2

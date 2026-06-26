@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: list algorithms and features
+group: standard
+flags:
+    "-1": List in one column
+    -all-algorithms: List of all algorithms
+    -all-tls-groups: List implemented TLS key exchange 'groups' and all aliases
+    -asymcipher-algorithms: List of asymmetric cipher algorithms
+    -cipher-algorithms: List of symmetric cipher algorithms
+    -cipher-commands: List of cipher commands (deprecated)
+    -commands: List of standard commands
+    -decoders: List of decoding methods
+    -digest-algorithms: List of message digest algorithms
+    -digest-commands: List of message digest commands (deprecated)
+    -disabled: List of disabled features
+    -encoders: List of encoding methods
+    -kdf-algorithms: List of key derivation and pseudo random function algorithms
+    -kem-algorithms: List of key encapsulation mechanism algorithms
+    -key-exchange-algorithms: List of key exchange algorithms
+    -key-managers: List of key managers
+    -mac-algorithms: List of message authentication code algorithms
+    -objects: List built in objects (OID<->name mappings)
+    -options=: List options for specified command
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -providers: List of provider information
+    -provparam=: Set a provider key-value parameter
+    -public-key-algorithms: List of public key algorithms
+    -public-key-methods: List of public key methods
+    -random-generators: List of random number generators
+    -random-instances: List the primary, public and private random number generator details
+    -select=: Select a single algorithm
+    -signature-algorithms: List of signature algorithms
+    -skey-managers: List of symmetric key managers
+    -standard-commands: List of standard commands
+    -store-loaders: List of store loaders
+    -tls-groups: List implemented TLS key exchange 'groups'
+    -tls-signature-algorithms: List of TLS signature algorithms
+    -tls1_2: When listing 'groups', list those compatible with TLS1.2
+    -tls1_3: When listing 'groups', list those compatible with TLS1.3
+    -verbose: Verbose listing

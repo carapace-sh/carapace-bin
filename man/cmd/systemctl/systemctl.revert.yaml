@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: revert
+description: Revert one or more unit files to vendor version
+group: unit file
+documentation:
+  command: |
+    Revert one or more unit files to their vendor versions. This removes
+    drop-in configuration files and any user-configured unit files that
+    override a matching vendor-supplied unit file. For a unit "foo.service",
+    it removes "foo.service.d/" directories and any persistent or runtime
+    unit files that override it. If a unit is masked, it is unmasked.
+    Effectively undoes all changes made with edit, set-property, and mask.

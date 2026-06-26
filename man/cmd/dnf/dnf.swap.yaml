@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: swap <remove-spec> <install-spec>
+description: remove software and install another in a single transaction
+flags:
+    --allowerasing: allow removing of installed packages

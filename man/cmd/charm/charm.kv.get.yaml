@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get KEY[@DB]
+description: Get a value for a key with an optional @ db.
+flags:
+    -b, --show-binary: print binary values
+
+documentation:
+  command: >-
+    Retrieve the value for a key. Append @db to the key to specify a non-default database.

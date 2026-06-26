@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tail
+description: Output the last part of process log
+flags:
+    -f: continuous tail

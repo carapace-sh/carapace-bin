@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: head
+description: output the first part of files
+flags:
+    --help: display this help and exit
+    --silent: never print headers giving file names
+    --version: output version information and exit
+    -c, --bytes=: print the first NUM bytes of each file;
+    -n, --lines=: print the first NUM lines instead of the first 10;
+    -q, --quiet: never print headers giving file names
+    -v, --verbose: always print headers giving file names
+    -z, --zero-terminated: line delimiter is NUL, not newline

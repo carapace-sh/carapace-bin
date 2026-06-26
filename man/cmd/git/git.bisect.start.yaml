@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: start
+description: reset bisect state and start bisection
+flags:
+  --first-parent: follow only the first parent commit upon seeing a merge commit
+  --no-checkout: do not checkout the new working tree at each iteration
+  --term-bad=: set term for new/bad
+  --term-good=: set term for old/good
+  --term-new=: set term for new/bad
+  --term-old=: set term for old/good
+documentation:
+  flag:
+    first-parent: |-
+      Follow only the first parent commit upon seeing a merge commit.
+
+      In detecting regressions introduced through the merging of a branch, the merge
+      commit will be identified as introduction of the bug and its ancestors will be
+      ignored.
+
+      This option is particularly useful in avoiding false positives when a merged
+      branch contained broken or non-buildable commits, but the merge itself was OK.
+    no-checkout: |-
+      Do not checkout the new working tree at each iteration of the bisection
+      process. Instead just update the reference named `BISECT_HEAD` to make
+      it point to the commit that should be tested.
+
+      This option may be useful when the test you would perform in each step
+      does not require a checked out tree.
+
+      If the repository is bare, `--no-checkout` is assumed.

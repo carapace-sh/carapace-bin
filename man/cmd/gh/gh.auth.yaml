@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: auth <command>
+description: Authenticate gh and git with GitHub
+group: core
+documentation:
+    command: |
+        Authenticate gh and git with GitHub. Run `gh auth login` to authenticate,
+        or `gh auth setup-git` to configure git credential helper after authentication.
+        Use `gh auth status` to check your authentication state.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: output [options] [NAME]
+description: Show output values from your root module
+flags:
+    -json: Machine readable output will be printed in JSON format
+    -no-color: Output won't contain any color
+    -raw: print the raw string directly
+    -state=: Path to the state file to read

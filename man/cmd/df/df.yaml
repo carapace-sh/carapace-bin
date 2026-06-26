@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: df
+description: report file system disk space usage
+flags:
+    --help: display this help and exit
+    --no-sync: do not invoke sync before getting usage info (default)
+    --output?: use the output format defined by FIELD_LIST, or print all fields if FIELD_LIST is omitted.
+    --sync: invoke sync before getting usage info
+    --total: elide all entries insignificant to available space, and produce a grand total
+    --version: output version information and exit
+    -B, --block-size=: scale sizes by SIZE before printing them
+    -H, --si: print sizes in powers of 1000 (e.g., 1.1G)
+    -P, --portability: use the POSIX output format
+    -T, --print-type: print file system type
+    -a, --all: include pseudo, duplicate, inaccessible file systems
+    -h, --human-readable: print sizes in powers of 1024 (e.g., 1023M)
+    -i, --inodes: list inode information instead of block usage
+    -k: like --block-size=1K
+    -l, --local: limit listing to local file systems
+    -t, --type=: limit listing to file systems of type TYPE
+    -v: (ignored)
+    -x, --exclude-type=: limit listing to file systems not of type TYPE
+
+documentation:
+  command: >-
+    Report filesystem disk space usage. df displays available space on
+    each mounted filesystem. With FILE arguments, shows space for the
+    filesystem containing those files. Default unit is 1K blocks (512-byte
+    if POSIXLY_CORRECT is set). Human-readable with -h (powers of 1024) or
+    -H (powers of 1000). Inode usage instead of blocks with -i. Limit to
+    local filesystems with -l; show filesystem type with -T. Include
+    pseudo/inaccessible filesystems with -a. Block size with -B (e.g., -BM).
+    Custom output fields with --output (source,fsize,used,avail,puse,target,
+    fstype,ivory,etc.). Grand total with --total. Exclude or include by type
+    with -x and -t.

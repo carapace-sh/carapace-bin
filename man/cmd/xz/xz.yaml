@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xz
+description: Compress or decompress .xz and .lzma files
+flags:
+    "-0": compression preset
+    "-1": compression preset
+    "-2": compression preset
+    "-3": compression preset
+    "-4": compression preset
+    "-5": compression preset
+    "-6": compression preset
+    "-7": compression preset
+    "-8": compression preset
+    "-9": compression preset
+    -H, --long-help: display the long help (lists also the advanced options)
+    -T, --threads=: use at most NUM threads; the default is 1; set to 0
+    -V, --version: display the version number and exit
+    -c, --stdout: write to standard output and don't delete input files
+    -d, --decompress: force decompression
+    -e, --extreme: try to improve compression ratio by using more CPU time;
+    -f, --force: force overwrite of output file and (de)compress links
+    -h, --help: display this short help and exit
+    -k, --keep: keep (don't delete) input files
+    -l, --list: list information about .xz files
+    -q, --quiet: suppress warnings; specify twice to suppress errors too
+    -t, --test: test compressed file integrity
+    -v, --verbose: be verbose; specify twice for even more verbose
+    -z, --compress: force compression

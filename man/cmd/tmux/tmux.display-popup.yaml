@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: display-popup
+flags:
+    -C: TODO description
+    -E: TODO description
+    -c=: target-client
+    -d=: start-directory
+    -h=: height
+    -t=: target-pane
+    -w=: width
+    -x=: position
+    -y=: position

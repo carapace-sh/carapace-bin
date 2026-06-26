@@ -1,0 +1,76 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: input
+description: Prompt for some input
+flags:
+    --char-limit=: Maximum value length (0 for no limit)
+    --cursor.align=: Text Alignment
+    --cursor.background=: Background Color
+    --cursor.bold: Bold text
+    --cursor.border-background=: Border Background Color
+    --cursor.border-foreground=: Border Foreground Color
+    --cursor.border=: Border Style
+    --cursor.faint: Faint text
+    --cursor.foreground=: Foreground Color
+    --cursor.height=: Text height
+    --cursor.italic: Italicize text
+    --cursor.margin=: Text margin
+    --cursor.mode=: Cursor mode
+    --cursor.padding=: Text padding
+    --cursor.strikethrough: Strikethrough text
+    --cursor.underline: Underline text
+    --cursor.width=: Text width
+    --header.align=: Text Alignment
+    --header.background=: Background Color
+    --header.bold: Bold text
+    --header.border-background=: Border Background Color
+    --header.border-foreground=: Border Foreground Color
+    --header.border=: Border Style
+    --header.faint: Faint text
+    --header.foreground=: Foreground Color
+    --header.height=: Text height
+    --header.italic: Italicize text
+    --header.margin=: Text margin
+    --header.padding=: Text padding
+    --header.strikethrough: Strikethrough text
+    --header.underline: Underline text
+    --header.width=: Text width
+    --header=: Header value
+    --padding=: Padding
+    --password: Mask input characters
+    --placeholder.align=: Text Alignment
+    --placeholder.background=: Background Color
+    --placeholder.bold: Bold text
+    --placeholder.border-background=: Border Background Color
+    --placeholder.border-foreground=: Border Foreground Color
+    --placeholder.border=: Border Style
+    --placeholder.faint: Faint text
+    --placeholder.foreground=: Foreground Color
+    --placeholder.height=: Text height
+    --placeholder.italic: Italicize text
+    --placeholder.margin=: Text margin
+    --placeholder.padding=: Text padding
+    --placeholder.strikethrough: Strikethrough text
+    --placeholder.underline: Underline text
+    --placeholder.width=: Text width
+    --placeholder=: Placeholder value
+    --prompt.align=: Text Alignment
+    --prompt.background=: Background Color
+    --prompt.bold: Bold text
+    --prompt.border-background=: Border Background Color
+    --prompt.border-foreground=: Border Foreground Color
+    --prompt.border=: Border Style
+    --prompt.faint: Faint text
+    --prompt.foreground=: Foreground Color
+    --prompt.height=: Text height
+    --prompt.italic: Italicize text
+    --prompt.margin=: Text margin
+    --prompt.padding=: Text padding
+    --prompt.strikethrough: Strikethrough text
+    --prompt.underline: Underline text
+    --prompt.width=: Text width
+    --prompt=: Prompt to display
+    --show-help: Show help keybinds
+    --strip-ansi: Strip ANSI sequences when reading from STDIN
+    --timeout=: Timeout until input aborts
+    --value=: Initial value (can also be passed via stdin)
+    --width=: Input width (0 for terminal width)

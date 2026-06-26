@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Change the shell working directory. A shell built-in that
+    changes the current directory to the specified path. With
+    no arguments, changes to the user's home directory.
+description: Change the shell working directory
+flags:
+    -@: present a file with extended attributes as a directory containing the file attributes
+    -L: force symbolic links to be followed
+    -P: use the physical directory structure without following symbolic links
+    -e: if the -P option is supplied, exit with a non-zero status if the current working directory cannot be determined successfully

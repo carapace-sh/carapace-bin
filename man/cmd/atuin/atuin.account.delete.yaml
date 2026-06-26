@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Delete your account, and all synced data
+flags:
+    -h, --help: Print help
+    -p, --password=: ""
+    -t, --totp-code=: The two-factor authentication code for your account, if any

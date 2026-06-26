@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-export [OPTION…] LOCATION DIRECTORY [BRANCH]
+description: Create a repository from a build directory
+group: build
+flags:
+    --arch=: Architecture to export for (must be host compatible)
+    --collection-id=: Collection ID
+    --disable-fsync: Do not invoke fsync()
+    --disable-sandbox: Do not sandbox icon validator
+    --end-of-life-rebase=: Mark build as end-of-life, to be replaced with the given ID
+    --end-of-life=: Mark build as end-of-life
+    --exclude=: Files to exclude
+    --files=: Use alternative directory for the files
+    --gpg-homedir=: GPG Homedir to use when looking for keyrings
+    --gpg-sign=: GPG Key ID to sign the commit with
+    --include=: Excluded files to include
+    --metadata=: Use alternative file for the metadata
+    --no-summary-index: Don't generate a summary index
+    --no-update-summary: Don't update the summary
+    --ostree-verbose: Show OSTree debug information
+    --subset=: Add to a named subset
+    --timestamp=: Override the timestamp of the commit
+    --token-type=: Set type of token needed to install this commit
+    --update-appstream: Update the appstream branch
+    -b, --body=: Full description
+    -h, --help: Show help options
+    -r, --runtime: Commit runtime (/usr), not /app
+    -s, --subject=: One line subject
+    -v, --verbose: Show debug information, -vv for more detail

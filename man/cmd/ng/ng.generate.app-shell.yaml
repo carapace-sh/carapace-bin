@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: app-shell
+description: Generates an app shell for running a server-side version of an app
+flags:
+    --app-dir=: The name of the application directory.
+    --app-id=: The app ID to use in withServerTransition().
+    --main=: The name of the main entry-point file.
+    --project=: The name of the related client app.
+    --root-module-class-name=: The name of the root module class.
+    --root-module-file-name=: The name of the root module file
+    --route=: Route path used to produce the app shell.

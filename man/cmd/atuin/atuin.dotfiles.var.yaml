@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: var
+description: Manage shell and environment variables with Atuin
+flags:
+    -h, --help: Print help

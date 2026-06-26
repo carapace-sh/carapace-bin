@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+description: Retrieves or sets Angular configuration values in the angular.json file for the workspace
+flags:
+    -g, --global: Access the global configuration in the caller's home directory.

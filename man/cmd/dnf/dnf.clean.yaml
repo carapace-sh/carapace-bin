@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean [options] <cache_types>...
+description: remove or invalidate cached data

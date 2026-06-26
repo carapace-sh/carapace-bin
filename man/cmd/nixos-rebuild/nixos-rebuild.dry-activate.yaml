@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dry-activate
+description: Build the new configuration, but show what changes would occur on activation instead of activating the configuration

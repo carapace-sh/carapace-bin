@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mv [options] SOURCE DESTINATION
+description: Move an item in the state
+flags:
+    -dry-run: only print out what would've been moved
+    -ignore-remote-version: A rare option used for the remote backend only
+    -lock: Don't hold a state lock during the operation
+    -lock-timeout?: Duration to retry a state lock

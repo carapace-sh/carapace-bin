@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Update the tool to the latest version
+persistentflags:
+    --check: Check if there are any updates available without installing

@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gimp
+description: an image manipulation and paint program
+flags:
+    --batch-interpreter=: The procedure to process batch commands with
+    --class=: Program class as used by the window manager
+    --debug-handlers: Enable non-fatal debugging signal handlers
+    --display=: X display to use
+    --dump-gimprc: Output a gimprc file with default settings
+    --g-fatal-warnings: Make all warnings fatal
+    --gegl-cache-size=: How much memory to (approximately) use for caching imagery
+    --gegl-disable-opencl: Disable OpenCL
+    --gegl-quality=: The quality of rendering, a value between 0.0 (fast) and 1.0 (reference)
+    --gegl-swap-compression=: Compression algorithm used for data stored in the swap
+    --gegl-swap=: Where GEGL stores its swap
+    --gegl-threads=: The number of concurrent processing threads to use
+    --gegl-tile-size=: Default size of tiles in GeglBuffers
+    --gtk-g-fatal-warnings: Make all warnings fatal
+    --gtk-module=: Load additional GTK+ modules
+    --help-all: Show all help options
+    --help-gegl: Show GEGL Options
+    --help-gtk: Show GTK+ Options
+    --license: Show license information and exit
+    --name=: Program name as used by the window manager
+    --no-cpu-accel: Do not use special CPU acceleration functions
+    --no-shm: Do not use shared memory between GIMP and plug-ins
+    --pdb-compat-mode=: PDB compatibility mode (off|on|warn)
+    --screen=: X screen to use
+    --session=: Use an alternate sessionrc file
+    --show-playground: Show a preferences page with experimental features
+    --stack-trace-mode=: Debug in case of a crash (never|query|always)
+    --sync: Make X calls synchronous
+    --system-gimprc=: Use an alternate system gimprc file
+    --verbose: Be more verbose
+    -a, --as-new: Open images as new
+    -b, --batch=: Batch command to run (can be used multiple times)
+    -c, --console-messages: Send messages to console instead of using a dialog
+    -d, --no-data: Do not load brushes, gradients, patterns, ...
+    -f, --no-fonts: Do not load any fonts
+    -g, --gimprc=: Use an alternate user gimprc file
+    -h, --help: Show help options
+    -i, --no-interface: Run without a user interface
+    -n, --new-instance: Start a new GIMP instance
+    -s, --no-splash: Do not show a splash screen
+    -v, --version: Show version information and exit

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fmt
+description: Rewrite waypoint.hcl configuration to a canonical format
+flags:
+    --plain: Plain output
+    --write: Overwrite the input file.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

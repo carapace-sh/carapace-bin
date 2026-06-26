@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logs [OPTIONS] SERVICE|TASK
+description: Fetch the logs of a service or task
+flags:
+    --details: Show extra details provided to logs
+    --no-resolve: Do not map IDs to Names in output
+    --no-task-ids: Do not include task IDs in output
+    --no-trunc: Do not truncate output
+    --raw: Do not neatly format logs
+    --since=: Show logs since timestamp (e.g. "2013-01-02T13:23:37Z") or relative (e.g. "42m" for 42 minutes)
+    -f, --follow: Follow log output
+    -n, --tail=: Number of lines to show from the end of the logs
+    -t, --timestamps: Show timestamps

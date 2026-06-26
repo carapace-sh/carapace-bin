@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+description: Builds and analyzes a docker image from a Dockerfile (this is a thin wrapper for the `docker build` command).

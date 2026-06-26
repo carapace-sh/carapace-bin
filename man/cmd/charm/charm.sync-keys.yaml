@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sync-keys
+description: Re-encrypt encrypt keys for all linked public keys
+hidden: true
+
+documentation:
+  command: >-
+    Re-encrypt encryption keys for all linked public keys, used after adding a new linked machine.

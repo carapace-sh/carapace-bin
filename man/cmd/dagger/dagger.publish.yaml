@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: publish
+description: Publish a Dagger module to the Daggerverse
+group: module
+hidden: true
+flags:
+    --focus: Only show output for focused commands
+    -f, --force: Force publish even if the git repository is not clean
+    -m, --mod=: Path to dagger.json config file for the module or a directory containing that file. Either local path (e.g. "/path/to/some/dir") or a github repo (e.g. "github.com/dagger/dagger/path/to/some/subdir")

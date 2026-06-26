@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove <fileID>
+aliases:
+    - rm
+    - delete
+description: Remove a secure file.
+flags:
+    -y, --yes: Skip the confirmation prompt.

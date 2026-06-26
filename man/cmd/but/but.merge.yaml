@@ -1,0 +1,32 @@
+name: merge
+description: Merge a branch into your local target branch.
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Merge a branch into your local target branch.
+
+        If the target branch is local (`gb-local`), finds the local branch that the target
+        references (e.g., `gb-local/master` becomes `master`) and merges the specified
+        branch into that local branch. After merging, runs the equivalent of `but pull`
+        to update all branches.
+
+        ## Examples
+
+        Merge a branch by its CLI ID:
+
+        ```text
+        but merge bu
+        ```
+
+        Merge a branch by name:
+
+        ```text
+        but merge my-feature-branch
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kill [OPTION…] INSTANCE
+description: Stop a running application
+group: run
+flags:
+    --ostree-verbose: Show OSTree debug information
+    -h, --help: Show help options
+    -v, --verbose: Show debug information, -vv for more detail

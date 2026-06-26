@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-dep
+description: build-dep causes apt-get to install/remove packages in an attempt to satisfy the build dependencies

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+flags:
+    -h, --help: Print help
+    -s, --script: Display only the executable script with shebang

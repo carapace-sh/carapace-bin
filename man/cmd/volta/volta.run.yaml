@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run a command with custom Node, npm, and/or Yarn versions
+flags:
+    --bundled-npm: Forces npm to be the version bundled with Node
+    --env=: Set an environment variable (can be used multiple times)
+    --no-yarn: Disables Yarn
+    --node=: Set the custom Node version
+    --npm=: Set the custom npm version
+    --quiet: Prevents unnecessary output
+    --verbose: Enables verbose diagnostics
+    --yarn=: Set the custom Yarn version
+    -h, --help: Prints help information

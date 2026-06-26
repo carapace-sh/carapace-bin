@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hibernate
+description: Hibernate the system
+group: system
+documentation:
+  command: |
+    Hibernate the system. This will trigger a system hibernate state where
+    system memory is written to disk and the system is powered off. The
+    system will resume from disk once powered on.

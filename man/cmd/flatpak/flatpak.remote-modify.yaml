@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remote-modify [OPTION…] NAME
+description: Modify a remote repository
+group: repository
+flags:
+    --authenticator-install: Autoinstall authenticator
+    --authenticator-name=: Name of authenticator
+    --authenticator-option=: Authenticator options
+    --collection-id=: Collection ID
+    --comment=: A one-line comment for this remote
+    --default-branch=: Default branch to use for this remote
+    --description=: A full-paragraph description for this remote
+    --disable: Disable the remote
+    --enable: Enable the remote
+    --enumerate: Mark the remote as enumerate
+    --filter=: Set path to local filter FILE
+    --follow-redirect: Follow the redirect set in the summary file
+    --gpg-import=: Import GPG key from FILE (- for stdin)
+    --gpg-verify: Enable GPG verification
+    --homepage=: URL for a website for this remote
+    --icon=: URL for an icon for this remote
+    --installation=: Work on a non-default system-wide installation
+    --no-authenticator-install: Don't autoinstall authenticator
+    --no-enumerate: Mark the remote as don't enumerate
+    --no-filter: Disable local filter
+    --no-follow-redirect: Don't follow the redirect set in the summary file
+    --no-gpg-verify: Disable GPG verification
+    --no-use-for-deps: Mark the remote as don't use for deps
+    --ostree-verbose: Show OSTree debug information
+    --prio=: Set priority (default 1, higher is more prioritized)
+    --subset=: Set a new subset to use
+    --system: Work on the system-wide installation (default)
+    --title=: A nice name to use for this remote
+    --update-metadata: Update extra metadata from the summary file
+    --url=: Set a new url
+    --use-for-deps: Mark the remote as used for dependencies
+    -h, --help: Show help options
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

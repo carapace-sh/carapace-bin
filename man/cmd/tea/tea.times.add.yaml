@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+aliases:
+    - a
+description: Track spent time on an issue
+flags:
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -l, --login=: Use a different Gitea Login. Optional
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional

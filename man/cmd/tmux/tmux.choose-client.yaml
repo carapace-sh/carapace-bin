@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: choose-client
+flags:
+    -F=: format
+    -K=: key-format
+    -O=: sort-order
+    -f=: filter
+    -t=: target-pane

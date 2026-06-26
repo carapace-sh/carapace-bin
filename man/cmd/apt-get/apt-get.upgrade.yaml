@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upgrade
+description: install the newest versions of all packages currently installed

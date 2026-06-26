@@ -1,0 +1,15 @@
+name: list-users
+description: List authenticated forge accounts known to GitButler
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        List authenticated forge accounts known to GitButler.
+
+        Shows all configured accounts and their authentication status.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

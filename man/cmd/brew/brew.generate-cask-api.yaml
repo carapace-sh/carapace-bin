@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate-cask-api
+description: Generate `homebrew/cask` API data files for <https://formulae.brew.sh>
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --dry-run: Generate API data without writing it to files.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

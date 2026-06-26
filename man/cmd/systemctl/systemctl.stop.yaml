@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stop
+description: Stop (deactivate) one or more units
+group: unit
+documentation:
+  command: |
+    Stop (deactivate) one or more units specified on the command line.
+    This command will fail if the unit does not exist or if stopping is
+    prohibited (see RefuseManualStop= in systemd.unit(5)). If a unit
+    that gets stopped can still be triggered by other units, a warning
+    containing the triggering units is shown. Use `--no-warn` to
+    suppress the warning.

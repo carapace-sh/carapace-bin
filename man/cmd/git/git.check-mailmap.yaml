@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check-mailmap
+description: Show canonical names and email addresses of contacts
+group: low-level helper
+flags:
+  --stdin: also read contacts from stdin
+documentation:
+  command: |-
+    For each `Name <user@host>*, `<user@host>*, or *user@host*
+    from the command-line or standard input (when using `--stdin`), look up the
+    person's canonical name and email address (see "Mapping Authors" below). If
+    found, print them; otherwise print the input as-is.

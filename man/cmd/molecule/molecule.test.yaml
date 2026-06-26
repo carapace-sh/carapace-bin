@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test [flags] [ANSIBLE_ARGS]...
+description: Use the provisioner to test the role
+flags:
+    --all: Test all scenarios
+    --destroy=: The destroy strategy used to conclude the run
+    --help: Show help message and exit
+    --no-all: Don't test all scenarios (default)
+    --no-parallel: Disable parallel mode (default)
+    --parallel: Enabe parallel mode
+    -d, --driver-name=: Name of the driver to use
+    -p, --platform-name=: Restrict testing to specified platform
+    -s, --scenario-name=: Name of the scenario to target

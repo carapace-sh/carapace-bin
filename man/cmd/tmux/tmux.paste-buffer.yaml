@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: paste-buffer
+flags:
+    -b=: buffer-name
+    -d: TODO description
+    -p: TODO description
+    -r: TODO description
+    -s=: separator
+    -t=: target-pane

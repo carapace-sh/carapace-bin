@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: Display active account and authentication state on each known GitHub host
+documentation:
+    command: |
+        Display active account and authentication state on each known GitHub host.
+        Use `-a` to show only the active account, `-h` to check a specific hostname,
+        and `-t` to display the auth token. Get structured output with `--json`.
+flags:
+    --jq=: Filter JSON output using a jq `expression`
+    --json=*: Output JSON with the specified `fields`
+    --template=: Format JSON output using a Go template; see "gh help formatting"
+    -a, --active: Display the active account only
+    -h, --hostname=: Check only a specific hostname's auth status
+    -t, --show-token: Display the auth token

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: Get config variables
+flags:
+    --json: Output in JSON The default is false.
+    --label=: Labels to set for this operation.
+    --plain: Plain output
+    --raw: Output in key=val The default is false.
+    --runner: Show configuration that is set on runners.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

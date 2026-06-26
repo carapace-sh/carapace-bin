@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: switch
+description: Switch to a different team
+
+documentation:
+  command: >-
+    Switch the active Vercel context to a different team. Changes the
+    current team for subsequent commands, affecting which team's
+    projects and settings are targeted by default.

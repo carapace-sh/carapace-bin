@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-property
+description: Sets one or more properties of a unit
+group: unit
+documentation:
+  command: |
+    Set the specified unit properties at runtime where supported. This allows
+    changing configuration parameters such as resource control settings at
+    runtime. Many resource control settings (primarily those in
+    systemd.resource-control(5)) may be changed at runtime. Changes are
+    applied immediately and stored on disk for future boots unless
+    `--runtime` is passed. The syntax of the property assignment follows
+    closely the syntax of assignments in unit files. Multiple properties
+    can be set at the same time.

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: publish
+description: Create and release a new Vagrant Box on Vagrant Cloud
+flags:
+    --box-version=: Version of box to create
+    --direct-upload: Upload asset directly to backend storage
+    --no-direct-upload: Do not upload asset directly to backend storage
+    --no-force: Enables confirmation to create or update box
+    --no-private: Makes box public
+    --no-release: Does not elease box
+    --url=: Remote URL to download this provider (cannot be used with provider-file)
+    --version-description=: Description of the version to create
+    -C, --checksum-type=: Type of checksum used (md5, sha1, sha256, sha384, sha512). --checksum option is required.
+    -c, --checksum=: Checksum of the box for this provider. --checksum-type option is required.
+    -d, --description=: Full description of box
+    -f, --force: Disables confirmation to create or update box
+    -p, --private: Makes box private
+    -r, --release: Releases box
+    -s, --short-description=: Short description of the box

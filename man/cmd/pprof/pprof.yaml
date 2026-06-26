@@ -1,0 +1,86 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pprof
+description: pprof is a tool for visualization and analysis of profiling data
+flags:
+    -add_comment=: Free-form annotation to add to the profile
+    -addresses: Aggregate at the address level
+    -alloc_objects: Same as -sample_index=alloc_objects
+    -alloc_space: Same as -sample_index=alloc_space
+    -base=: Source of base profile for profile subtraction
+    -buildid=: Override build id for main binary
+    -call_tree: Create a context-sensitive call tree
+    -callgrind: Outputs a graph in callgrind format
+    -comments: Output all profile comments
+    -compact_labels: Show minimal headers
+    -contentions: Same as -sample_index=contentions
+    -cum: Sort entries based on cumulative weight
+    -diff_base=: Source of base profile for comparison
+    -disasm: Output assembly listings annotated with samples
+    -divide_by=: Ratio to divide all samples before visualization
+    -dot: Outputs a graph in DOT format
+    -drop_negative: Ignore negative differences
+    -edgefraction=: Hide edges below <f>*total
+    -eog: Visualize graph through eog
+    -evince: Visualize graph through evince
+    -filefunctions: Aggregate at the function level
+    -files: Aggregate at the file level
+    -flat: Sort entries based on own weight
+    -focus=: Restricts to samples going through a node matching regexp
+    -functions: Aggregate at the function level
+    -gif: Outputs a graph image in GIF format
+    -gv: Visualize graph through gv
+    -hide=: Skips nodes matching regexp
+    -http=: Provide web interface at host:port
+    -ignore=: Skips paths going through any nodes matching regexp
+    -intel_syntax: Show assembly in Intel syntax
+    -inuse_objects: Same as -sample_index=inuse_objects
+    -inuse_space: Same as -sample_index=inuse_space
+    -kcachegrind: Visualize report in KCachegrind
+    -lines: Aggregate at the source code line level
+    -list: Output annotated source for functions matching regexp
+    -mean: Average sample value over first value (count)
+    -mean_delay: Same as -mean -sample_index=delay
+    -no_browser: Skip opening a browser for the interactive web UI
+    -nodecount=: Max number of nodes to show
+    -nodefraction=: Hide nodes below <f>*total
+    -noinlines: Ignore inlines
+    -normalize: Scales profile based on the base profile
+    -output=: Output filename for file-based outputs
+    -pdf: Outputs a graph in PDF format
+    -peek=: Output callers/callees of functions matching regexp
+    -png: Outputs a graph image in PNG format
+    -proto: Outputs the profile in compressed protobuf format
+    -prune_from=: Drops any functions below the matched frame
+    -ps: Outputs a graph in PS format
+    -raw: Outputs a text representation of the raw profile
+    -relative_percentages: Show percentages relative to focused subgraph
+    -sample_index?: Sample value to report (0-based index or name)
+    -seconds=: Duration for time-based profile collection
+    -show=: Only show nodes matching regexp
+    -show_from=: Drops functions above the highest matched frame
+    -source_path=: Search path for source files
+    -svg: Outputs a graph in SVG format
+    -symbolize?: Controls source of symbol information
+    -tagfocus=: Restricts to samples with tags in range or matched by regexp
+    -taghide=: Skip tags matching this regexp
+    -tagignore=: Discard samples with tags in range or matched by regexp
+    -tagleaf=: Adds pseudo stack frames for labels key/value pairs at the callstack leaf
+    -tagroot=: Adds pseudo stack frames for labels key/value pairs at the callstack root
+    -tags: Outputs all tags in the profile
+    -tagshow=: Only consider tags matching this regexp
+    -text: Outputs top entries in text form
+    -timeout=: Timeout in seconds for profile collection
+    -tls_ca=: TLS CA certs file for fetching profile and symbols
+    -tls_cert=: TLS client certificate file for fetching profile and symbols
+    -tls_key=: TLS private key file for fetching profile and symbols
+    -tools=: Search path for object tools
+    -top: Outputs top entries in text form
+    -topproto: Outputs top entries in compressed protobuf format
+    -total_delay: Same as -sample_index=delay
+    -traces: Outputs all profile samples in text form
+    -tree: Outputs a text rendering of call graph
+    -trim: Honor nodefraction/edgefraction/nodecount defaults
+    -trim_path=: Path to trim from source paths before search
+    -unit=: Measurement units to display
+    -web: Visualize graph through web browser
+    -weblist: Display annotated source in a web browser

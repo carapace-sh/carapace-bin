@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: query [flags] [OPERATION]
+aliases:
+    - q
+description: Send API queries to a dagger engine
+group: exec
+flags:
+    --doc=: Read query from file (defaults to reading from stdin)
+    --var-json=: Query variables in JSON format (overrides --var)
+    --var=*: List of query variables, in key=value format
+persistentflags:
+    --focus: Only show output for focused commands
+    -m, --mod=: Path to dagger.json config file for the module or a directory containing that file. Either local path (e.g. "/path/to/some/dir") or a github repo (e.g. "github.com/dagger/dagger/path/to/some/subdir")

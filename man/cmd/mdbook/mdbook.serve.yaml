@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serve
+description: Serves a book at http://localhost:3000, and rebuilds it on changes
+flags:
+    --watcher=: The filesystem watching technique
+    -V, --version: Print version
+    -d, --dest-dir=: Output directory for the book
+    -h, --help: Print help
+    -n, --hostname=: Hostname to listen on for HTTP connections
+    -o, --open: Opens the compiled book in a web browser
+    -p, --port=: Port to use for HTTP connections

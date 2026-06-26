@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: disconnect [OPTIONS] NETWORK CONTAINER
+description: Disconnect a container from a network
+flags:
+    -f, --force: Force the container to disconnect from a network

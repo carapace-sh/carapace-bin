@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: watch
+description: Watches a book's files and rebuilds it on changes

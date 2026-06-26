@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vim
+description: Vi IMproved, a programmer's text editor
+flags:
+    --clean: '''nocompatible'', Vim defaults, no plugins, no viminfo'
+    --cmd=: Execute <command> before loading any vimrc file
+    --log=: Start logging to <file> early
+    --noplugin: Do not load plugin scripts
+    --not-a-term: Skip warning for input/output not being a terminal
+    --startuptime=: Write startup timing messages to <file>
+    --ttyfail: Exit if input or output is not a terminal
+    --version: Print version information and exit
+    -A: Start in Arabic mode
+    -C: 'Compatible with Vi: ''compatible'''
+    -D: Debugging mode
+    -E: Improved Ex mode
+    -H: Start in Hebrew mode
+    -L: Same as -r
+    -M: Modifications in text not allowed
+    -N: 'Not fully Vi compatible: ''nocompatible'''
+    -O=: Like -o but split vertically
+    -R: Readonly mode
+    -S=: Source file <session> after loading the first file
+    -T=: Set terminal type to <terminal>
+    -V=: Be verbose
+    -W=: Write all typed commands to file <scriptout>
+    -Z: Restricted mode
+    -b: Binary mode
+    -c=: Execute <command> after loading the first file
+    -d: Diff mode
+    -e: Ex mode
+    -h, --help: Print Help (this message) and exit
+    -i=: Use <viminfo> instead of .viminfo
+    -l: Lisp mode
+    -m: Modifications (writing files) not allowed
+    -n: No swap file, use memory only
+    -o=: Open N windows
+    -p=: Open N tab pages
+    -r: List swap files or recover crashed session
+    -s=: Read Normal mode commands from file <scriptin>
+    -u=: Use <vimrc> instead of any .vimrc
+    -v: Vi mode
+    -w=: Append all typed commands to file <scriptout>
+    -x: Edit encrypted files
+    -y: Easy mode

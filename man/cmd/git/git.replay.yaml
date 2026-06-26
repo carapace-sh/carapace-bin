@@ -1,0 +1,677 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: replay
+description: 'EXPERIMENTAL: Replay commits on a new base, works with bare repos too'
+group: low-level manipulator
+flags:
+  --abbrev-commit: Show a prefix that names the object uniquely
+  --advance=: starting point at which to create the new commits
+  --after=: Show commits more recent than a specific date
+  --all: Pretend as if all the refs in refs/ are listed on the command line
+  --all-match: Limit output to ones matching all given --grep
+  --alternate-refs: Pretend as if all alternate ref tips are listed on the command line
+  --ancestry-path?: Only display commits in that range that are ancestors of <commit>, descendants of <commit>, or <commit> itself
+  --author-date-order: Show commits in the author timestamp order
+  --author=: Limit output to ones with matching author header
+  --basic-regexp: Consider the limiting patterns to be basic regular expressions
+  --before=: Show commits older than a specific date.
+  --boundary: Output excluded boundary commits
+  --branches?: Pretend as if all the refs in refs/heads are listed on the command line
+  --cherry: A synonym for --right-only --cherry-mark --no-merges
+  --cherry-mark: Like --cherry-pick but mark commits rather than omitting them
+  --cherry-pick: Omit any commit that introduces the same change as another commit
+  --children: Print also the children of the commit
+  --commit-header: Overrides a previous --no-commit-header
+  --committer=: Limit output to ones with matching committer header
+  --count: Only print a number stating how many commits would have been listed
+  --date-order: Show commits in the commit timestamp order
+  --date=: Date format
+  --dense: Only the selected commits are shown, plus some to have a meaningful history
+  --disk-usage?: Suppress normal output and print disk usage
+  --do-walk: Overrides a previous --no-walk
+  --encoding=: Re-code the commit log message in given encoding
+  --exclude-first-parent-only: For excluded commits follow only the first parent commit upon merge
+  --exclude-hidden?: Do not include refs that would be hidden
+  --exclude-promisor-objects: Prefilter object traversal at promisor boundary
+  --exclude=: Do not include matching refs the next option would consider
+  --expand-tabs=: Perform a tab expansion
+  --filter-print-omitted: Print a list of the objects omitted by the filter
+  --filter-provided-objects: Filter the list of explicitly provided objects
+  --filter=: Omits objects from the list of printed objects
+  --first-parent: For included commits follow only the first parent commit upon merge
+  --format=: Pretty-print the contents of the commit logs in a given format
+  --full-history: Same as the default mode, but does not prune some history
+  --glob=: Pretend as if all matching refs are listed on the command line
+  --graph: Draw a text-based graphical representation of the commit history
+  --grep-reflog=: Limit output to ones with matching reflog entries
+  --grep=: Limit output to ones with matching log message
+  --header: Print the contents of the commit in raw-format
+  --ignore-missing: Pretend as if the bad input was not given
+  --in-commit-order: Print tree and blob ids in order of the commits
+  --indexed-objects: Pretend as if all trees and blobs used by the index are listed on the command line
+  --invert-grep: Limit output to ones with non-matching log message
+  --left-only: List only commits on the left side of a symmetric difference
+  --left-right: Mark which side of a symmetric difference a commit is reachable from
+  --max-age=: Limit the commits output to specified time range
+  --max-parents=: Show only commits which have at most that many parent commits
+  --merge: Show refs that touch files having a conflict and don’t exist on all heads to merge
+  --merges: Print only merge commits
+  --min-age=: Limit the commits output to specified time range
+  --min-parents=: Show only commits which have at least that many parent commits
+  --missing=: Specify how missing objects are handled
+  --no-abbrev-commit: Show the full 40-byte hexadecimal commit object name
+  --no-commit-header: Suppress the header line containing "commit"
+  --no-expand-tabs: Do not perform a tab expansion
+  --no-filter: Turn off any previous --filter= argument
+  --no-max-parents: Reset max-partents limit
+  --no-merges: Do not print commits with more than one parent
+  --no-min-parents: Reset min-parents limit
+  --no-object-names: Do not print the names of the object IDs that are found
+  --no-walk=: Only show the given commits, but do not traverse their ancestors
+  --not: Reverses the meaning of the ^ prefix
+  --object-names: Print the names of the object IDs that are found
+  --objects: Print the object IDs of any object referenced by the listed commits
+  --objects-edge: Similar to --objects, but also print the IDs of excluded commits
+  --objects-edge-aggressive: Similar to --objects-edge, but it tries harder to find excluded commits
+  --oneline: This is a shorthand for "--pretty=oneline --abbrev-commit" used together
+  --onto=: starting point at which to create the new commits
+  --parents: Print also the parents of the commit
+  --pretty=: Pretty-print the contents of the commit logs in a given format
+  --progress=: Show progress reports on stderr as objects are considered
+  --quiet: Don’t print anything to standard output
+  --reflog: Pretend as if all reflog objects are listed on the command line
+  --relative-date: Synonym for --date=relative
+  --remotes?: Pretend as if all the refs in refs/remotes are listed on the command line
+  --remove-empty: Stop when a given path disappears from the tree
+  --reverse: Output the commits in reverse order
+  --right-only: List only commits on the right side of a symmetric difference
+  --show-linear-break=: Put a barrier in between branches in graph output
+  --show-pulls: Include also any merge commits that are not TREESAME to the first parent but are TREESAME to a later parent
+  --show-signature: Check the validity of a signed commit object
+  --simplify-by-decoration: Commits that are referred by some branch or tag are selected
+  --simplify-merges: Additional option to --full-history to remove some needless merges from the resulting history
+  --since-as-filter=: Show all commits more recent than a specific date
+  --since=: Show commits more recent than a specific date
+  --single-worktree: Examine the current working tree only
+  --skip=: Skip number commits before starting to show the commit output
+  --sparse: All commits in the simplified history are shown
+  --stdin: Read arguments from standard input as well
+  --tags?: Pretend as if all the refs in refs/tags are listed on the command line
+  --timestamp: Print the raw commit timestamp
+  --topo-order: Avoid showing commits on multiple lines of history intermixed
+  --unpacked: Print the object IDs that are not in packs
+  --until=: Show commits older than a specific date.
+  --use-bitmap-index: Try to speed up the traversal using the pack bitmap index
+  -E, --extended-regexp: Consider the limiting patterns to be extended regular expressions
+  -F, --fixed-strings: Consider the limiting patterns to be fixed strings
+  -P, --perl-regexp: Consider the limiting patterns to be Perl-compatible regular expressions
+  -g, --walk-reflogs: Walk reflog entries from the most recent one to older ones
+  -i, --regexp-ignore-case: Match the regular expression case insensitive
+  -n, --max-count=: Limit the number of commits to output
+documentation:
+  command: |-
+    Takes a range of commits and replays them onto a new location. Leaves
+    the working tree and the index untouched. By default, updates the
+    relevant references using an atomic transaction (all refs update or
+    none). Use `--ref-action=print to avoid automatic ref updates and instead get update commands that can be piped to `git update-ref --stdin
+    (see the OUTPUT section below).
+
+    THIS COMMAND IS EXPERIMENTAL. THE BEHAVIOR MAY CHANGE.
+  flag:
+    abbrev-commit: |-
+      Instead of showing the full 40-byte hexadecimal commit object
+      name, show a prefix that names the object uniquely.
+      `--abbrev=<n>` (which also modifies diff output, if it is displayed)
+      option can be used to specify the minimum length of the prefix.
+
+      This should make `--pretty=oneline` a whole lot more readable for
+      people using 80-column terminals.
+    after: |-
+      Show commits more recent than _<date>_.  As a special case,
+      `today` means the last midnight.
+    all: |-
+      Pretend as if all the refs in `refs/`, along with `HEAD`, are
+      listed on the command line as _<commit>_.
+    all-match: |-
+      Limit the commits output to ones that match all given `--grep`,
+      instead of ones that match at least one.
+    alternate-refs: |-
+      Pretend as if all objects mentioned as ref tips of alternate
+      repositories were listed on the command line. An alternate
+      repository is any repository whose object directory is specified
+      in `objects/info/alternates`.  The set of included objects may
+      be modified by `core.alternateRefsCommand`, etc. See
+      [git-config](cmd://git/config).
+    author-date-order: |-
+      Show no parents before all of its children are shown, but
+      otherwise show commits in the author timestamp order.
+    basic-regexp: |-
+      Consider the limiting patterns to be basic regular expressions;
+      this is the default.
+    before: Show commits older than _<date>_.
+    boundary: |-
+      Output excluded boundary commits. Boundary commits are
+      prefixed with `-`.
+    cherry: |-
+      A synonym for `--right-only --cherry-mark --no-merges`; useful to
+      limit the output to the commits on our side and mark those that
+      have been applied to the other side of a forked history with
+      `git log --cherry upstream...mybranch`, similar to
+      `git cherry upstream mybranch`.
+    cherry-mark: |-
+      Like `--cherry-pick` (see below) but mark equivalent commits
+      with `=` rather than omitting them, and inequivalent ones with `+`.
+    cherry-pick: |-
+      Omit any commit that introduces the same change as
+      another commit on the `other` side* when the set of
+      commits are limited with symmetric difference.
+
+      For example, if you have two branches, `A` and `B`, a usual way
+      to list all commits on only one side of them is with
+      `--left-right` (see the example below in the description of
+      the `--left-right` option). However, it shows the commits that were
+      cherry-picked from the other branch (for example, `3rd on b* may be`
+      cherry-picked from branch A). With this option, such pairs of commits are
+      excluded from the output.
+    children: |-
+      Print also the children of the commit (in the form "commit child...").
+      Also enables parent rewriting, see `History Simplification` above.
+    commit-header: Overrides a previous `--no-commit-header`.
+    committer: |-
+      Limit the commits output to ones with author/committer
+      header lines that match the _<pattern>_ regular
+      expression.  With more than one `--author=<pattern>`,
+      commits whose author matches any of the _<pattern>_ are
+      chosen (similarly for multiple `--committer=<pattern>`).
+    count: |-
+      Print a number stating how many commits would have been
+      listed, and suppress all other output.  When used together
+      with `--left-right`, instead print the counts for left and
+      right commits, separated by a tab. When used together with
+      `--cherry-mark`, omit patch equivalent commits from these
+      counts and print the count for equivalent commits separated
+      by a tab.
+    date-order: |-
+      Show no parents before all of its children are shown, but
+      otherwise show commits in the commit timestamp order.
+    date: |-
+      Only takes effect for dates shown in human-readable format, such
+      as when using `--pretty`. `log.date` config variable sets a default
+      value for the log command's `--date` option. By default, dates
+      are shown in the original time zone (either committer's or
+      author's). If `-local` is appended to the format (e.g.,
+      `iso-local`), the user's local time zone is used instead.
+    dense: |-
+      Only the selected commits are shown, plus some to have a
+      meaningful history.
+    disk-usage: |-
+      Suppress normal output; instead, print the sum of the bytes used
+      for on-disk storage by the selected commits or objects. This is
+      equivalent to piping the output into `git` cat-file
+      --batch-check=`%(objectsize:disk)`, except that it runs much
+      faster (especially with `--use-bitmap-index`). See the `CAVEATS`
+      section in [git-cat-file](cmd://git/cat-file) for the limitations of what
+      "on-disk storage" means.
+      With the optional value `human`, on-disk storage size is shown
+      in human-readable string(e.g. 12.24 Kib, 3.50 Mib).
+    do-walk: |-
+      Overrides a previous `--no-walk`.
+
+      Commit Formatting
+    encoding: |-
+      Commit objects record the character encoding used for the log message
+      in their encoding header; this option can be used to tell the
+      command to re-code the commit log message in the encoding
+      preferred by the user.  For non plumbing commands this
+      defaults to UTF-8. Note that if an object claims to be encoded
+      in `X` and we are outputting in `X`, we will output the object
+      verbatim; this means that invalid sequences in the original
+      commit may be copied to the output. Likewise, if iconv(3) fails
+      to convert the commit, we will quietly output the original
+      object verbatim.
+    exclude-first-parent-only: |-
+      When finding commits to exclude (with a `^`), follow only
+      the first parent commit upon seeing a merge commit.
+      This can be used to find the set of changes in a topic branch
+      from the point where it diverged from the remote branch, given
+      that arbitrary merges can be valid topic branch changes.
+    exclude-hidden: |-
+      Do not include refs that would be hidden by `git-fetch`,
+      `git-receive-pack` or `git-upload-pack` by consulting the appropriate
+      `fetch.hideRefs`, `receive.hideRefs` or `uploadpack.hideRefs`
+      configuration along with `transfer.hideRefs` (see
+      [git-config](cmd://git/config)). This option affects the next pseudo-ref option
+      `--all` or `--glob` and is cleared after processing them.
+    exclude-promisor-objects: |-
+      (For internal use only.)  Prefilter object traversal at
+      promisor boundary.  This is used with partial clone.  This is
+      stronger than `--missing=allow-promisor` because it limits the
+      traversal, rather than just silencing errors about missing
+      objects.
+    exclude: |-
+      Do not include refs matching _<glob-pattern>_ that the next `--all`,
+      `--branches`, `--tags`, `--remotes`, or `--glob` would otherwise
+      consider. Repetitions of this option accumulate exclusion patterns
+      up to the next `--all`, `--branches`, `--tags`, `--remotes`, or
+      `--glob` option (other options or arguments do not clear
+      accumulated patterns).
+
+      The patterns given should not begin with `refs/heads`, `refs/tags`, or
+      `refs/remotes` when applied to `--branches`, `--tags`, or `--remotes, respectively, and they must begin with `refs/` when applied to `--glob
+      or `--all`. If a trailing `/*` is intended, it must be given
+      explicitly.
+    filter-print-omitted: |-
+      Only useful with `--filter=`; prints a list of the objects omitted
+      by the filter.  Object IDs are prefixed with a *~* character.
+    filter-provided-objects: |-
+      Filter the list of explicitly provided objects, which would otherwise
+      always be printed even if they did not match any of the filters. Only
+      useful with `--filter=`.
+    filter: |-
+      Only useful with one of the `--objects*`; omits objects (usually
+      blobs) from the list of printed objects.  The _<filter-spec>_
+      may be one of the following:
+
+      The form `--filter=blob:none` omits all blobs.
+
+      The form `--filter=blob:limit=<n>[kmg]` omits blobs of size at least _<n>_
+      bytes or units.  _<n>_ may be zero.  The suffixes `k`, `m`, and `g can be used to name units in KiB, MiB, or GiB.  For example, `blob:limit=1k
+      is the same as `blob:limit=1024`.
+
+      The form `--filter=object:type=(tag|commit|tree|blob)` omits all objects
+      which are not of the requested type. Note that explicitly provided objects
+      ignore filters and are always printed unless `--filter-provided-objects` is
+      also specified.
+
+      The form `--filter=sparse:oid=<blob-ish>` uses a sparse-checkout
+      specification contained in the blob (or blob-expression) _<blob-ish>_
+      to omit blobs that would not be required for a sparse checkout on
+      the requested refs.
+
+      The form `--filter=tree:<depth>` omits all blobs and trees whose depth
+      from the root tree is >= _<depth>_ (minimum depth if an object is located
+      at multiple depths in the commits traversed). _<depth>_=0 will not include
+      any trees or blobs unless included explicitly in the command-line (or
+      standard input when `--stdin` is used). _<depth>_=1 will include only the
+      tree and blobs which are referenced directly by a commit reachable from
+      _<commit>_ or an explicitly-given object. _<depth>_=2 is like <depth>=1
+      while also including trees and blobs one more level removed from an
+      explicitly-given commit or tree.
+
+      Note that the form `--filter=sparse:path=<path>` that wants to read
+      from an arbitrary path on the filesystem has been dropped for security
+      reasons.
+
+      Multiple `--filter=` flags can be specified to combine filters. Only
+      objects which are accepted by every filter are included.
+
+      The form `--filter=combine:<filter1>+<filter2>+...<filterN>` can also be
+      used to combined several filters, but this is harder than just repeating
+      the `--filter` flag and is usually not necessary. Filters are joined by
+      `+` and individual filters are %-encoded (i.e. URL-encoded).
+      Besides the '+' and '%' characters, the following characters are
+      reserved and also must be encoded: `~!@#$^&*()[]{}\;",<>?`+&#39;&#96;
+      as well as all characters with ASCII code &lt;= `0x20`, which includes
+      space and newline.
+
+      Other arbitrary characters can also be encoded. For instance,
+      `combine:tree:3+blob:none` and `combine:tree%3A3+blob%3Anone` are
+      equivalent.
+    first-parent: |-
+      When finding commits to include, follow only the first
+      parent commit upon seeing a merge commit.  This option
+      can give a better overview when viewing the evolution of
+      a particular topic branch, because merges into a topic
+      branch tend to be only about adjusting to updated upstream
+      from time to time, and this option allows you to ignore
+      the individual commits brought in to your history by such
+      a merge.
+
+      This option also changes default diff format for merge commits
+      to `first-parent`, see `--diff-merges=first-parent` for details.
+    format: |-
+      Pretty-print the contents of the commit logs in a given format,
+      where `<format>` can be one of `oneline`, `short`, `medium`,
+      `full`, `fuller`, `reference`, `email`, `raw`, `format:<string>`
+      and `tformat:<string>`.  When _<format>_ is none of the above,
+      and has `%<placeholder>` in it, it acts as if
+      `--pretty=tformat:<format>` were given.
+
+      See the "PRETTY FORMATS" section for some additional details for each
+      format.  When `=<format>` part is omitted, it defaults to `medium`.
+
+      NOTE: you can specify the default pretty format in the repository
+      configuration (see [git-config](cmd://git/config)).
+    full-history: Same as the default mode, but does not prune some history.
+    glob: |-
+      Pretend as if all the refs matching shell glob _<glob-pattern>_
+      are listed on the command line as _<commit>_. Leading `refs/`,
+      is automatically prepended if missing. If pattern lacks '?', '*',
+      or '[', '/*' at the end is implied.
+    graph: |-
+      Draw a text-based graphical representation of the commit history
+      on the left hand side of the output.  This may cause extra lines
+      to be printed in between commits, in order for the graph history
+      to be drawn properly.
+      Cannot be combined with `--no-walk`.
+
+      This enables parent rewriting, see `History Simplification` above.
+
+      This implies the `--topo-order` option by default, but the
+      `--date-order` option may also be specified.
+    grep-reflog: |-
+      Limit the commits output to ones with reflog entries that
+      match the _<pattern>_ regular expression. With
+      more than one `--grep-reflog`, commits whose reflog message
+      matches any of the given patterns are chosen.  It is an
+      error to use this option unless `--walk-reflogs` is in use.
+    grep: |-
+      Limit the commits output to ones with a log message that
+      matches the _<pattern>_ regular expression.  With
+      more than one `--grep=<pattern>`, commits whose message
+      matches any of the _<pattern>_ are chosen (but see
+      `--all-match`).
+
+      When `--notes` is in effect, the message from the notes is
+      matched as if it were part of the log message.
+    header: |-
+      Print the contents of the commit in raw-format; each record is
+      separated with a NUL character.
+    ignore-missing: |-
+      Upon seeing an invalid object name in the input, pretend as if
+      the bad input was not given.
+    in-commit-order: |-
+      Print tree and blob ids in order of the commits. The tree
+      and blob ids are printed after they are first referenced
+      by a commit.
+    indexed-objects: |-
+      Pretend as if all trees and blobs used by the index are listed
+      on the command line.  Note that you probably want to use
+      `--objects`, too.
+    invert-grep: |-
+      Limit the commits output to ones with a log message that do not
+      match the _<pattern>_ specified with `--grep=<pattern>`.
+    left-right: |-
+      Mark which side of a symmetric difference a commit is reachable from.
+      Commits from the left side are prefixed with `<` and those from
+      the right with `>`.  If combined with `--boundary`, those
+      commits are prefixed with `-`.
+
+      For example, if you have this topology:
+
+      ```
+           y---b---b  branch B
+          / \ /
+         /   .
+        /   / \
+       o---x---a---a  branch A
+      ```
+
+      you would get an output like this:
+
+      ```
+      $ git rev-list --left-right --boundary --pretty=oneline A...B
+
+      >bbbbbbb... 3rd on b
+      >bbbbbbb... 2nd on b
+      <aaaaaaa... 3rd on a
+      <aaaaaaa... 2nd on a
+      -yyyyyyy... 1st on b
+      -xxxxxxx... 1st on a
+      ```
+    merge: |-
+      Show commits touching conflicted paths in the range `HEAD...<other>`,
+      where `<other>` is the first existing pseudoref in `MERGE_HEAD`,
+      `CHERRY_PICK_HEAD`, `REVERT_HEAD` or `REBASE_HEAD`. Only works
+      when the index has unmerged entries. This option can be used to show
+      relevant commits when resolving conflicts from a 3-way merge.
+    merges: Print only merge commits. This is exactly the same as `--min-parents=2`.
+    min-age: Limit the commits output to specified time range.
+    missing: |-
+      A debug option to help with future "partial clone" development.
+      This option specifies how missing objects are handled.
+
+      The form `--missing=error` requests that rev-list stop with an error if
+      a missing object is encountered.  This is the default action.
+
+      The form `--missing=allow-any` will allow object traversal to continue
+      if a missing object is encountered.  Missing objects will silently be
+      omitted from the results.
+
+      The form `--missing=allow-promisor` is like `allow-any`, but will only
+      allow object traversal to continue for EXPECTED promisor missing objects.
+      Unexpected missing objects will raise an error.
+
+      The form `--missing=print` is like `allow-any`, but will also print a
+      list of the missing objects.  Object IDs are prefixed with a *?* character.
+
+      The form `--missing=print-info` is like `print`, but will also print additional
+      information about the missing object inferred from its containing object. The
+      information is all printed on the same line with the missing object ID in the
+      form: `?<oid> [<token>=<value>]...`. The `<token>=<value>` pairs containing
+      additional information are separated from each other by a _SP_. The value is
+      encoded in a token specific fashion, but _SP_ or _LF_ contained in value are always
+      expected to be represented in such a way that the resulting encoded value does
+      not have either of these two problematic bytes. Each `<token>=<value>` may be
+      one of the following:
+    no-abbrev-commit: |-
+      Show the full 40-byte hexadecimal commit object name. This negates
+      `--abbrev-commit`, either explicit or implied by other options such
+      as `--oneline`. It also overrides the `log.abbrevCommit` variable.
+    no-commit-header: |-
+      Suppress the header line containing "commit" and the object ID printed before
+      the specified format.  This has no effect on the built-in formats; only custom
+      formats are affected.
+    no-expand-tabs: |-
+      Perform a tab expansion (replace each tab with enough spaces
+      to fill to the next display column that is a multiple of _<n>_)
+      in the log message before showing it in the output.
+      `--expand-tabs` is a short-hand for `--expand-tabs=8`, and
+      `--no-expand-tabs` is a short-hand for `--expand-tabs=0`,
+      which disables tab expansion.
+
+      By default, tabs are expanded in pretty formats that indent the log
+      message by 4 spaces (i.e.  `medium`, which is the default, `full`,
+      and `fuller`).
+    no-filter: Turn off any previous `--filter=` argument.
+    no-max-parents: |-
+      Show only commits which have at least (or at most) that many parent
+      commits. In particular, `--max-parents=1` is the same as `--no-merges`,
+      `--min-parents=2` is the same as `--merges`.  `--max-parents=0`
+      gives all root commits and `--min-parents=3` all octopus merges.
+
+      `--no-min-parents` and `--no-max-parents` reset these limits (to no limit)
+      again.  Equivalent forms are `--min-parents=0` (any commit has 0 or more
+      parents) and `--max-parents=-1` (negative numbers denote no upper limit).
+    no-merges: |-
+      Do not print commits with more than one parent. This is
+      exactly the same as `--max-parents=1`.
+    no-object-names: |-
+      Only useful with `--objects`; does not print the names of the object
+      IDs that are found. This inverts `--object-names`. This flag allows
+      the output to be more easily parsed by commands such as
+      [git-cat-file](cmd://git/cat-file).
+    not: |-
+      Reverses the meaning of the `^` prefix (or lack thereof)
+      for all following revision specifiers, up to the next `--not`.
+      When used on the command line before --stdin, the revisions passed
+      through stdin will not be affected by it. Conversely, when passed
+      via standard input, the revisions passed on the command line will
+      not be affected by it.
+    object-names: |-
+      Only useful with `--objects`; print the names of the object IDs
+      that are found. This is the default behavior. Note that the
+      "name" of each object is ambiguous, and mostly intended as a
+      hint for packing objects. In particular: no distinction is made between
+      the names of tags, trees, and blobs; path names may be modified
+      to remove newlines; and if an object would appear multiple times
+      with different names, only one name is shown.
+    objects: |-
+      Print the object IDs of any object referenced by the listed
+      commits.  `--objects foo ^bar` thus means "send me
+      all object IDs which I need to download if I have the commit
+      object `bar` but not `foo`". See also `--object-names` below.
+    objects-edge: |-
+      Similar to `--objects`, but also print the IDs of excluded
+      commits prefixed with a "`-`" character.  This is used by
+      [git-pack-objects](cmd://git/pack-objects) to build a *thin* pack, which records
+      objects in deltified form based on objects contained in these
+      excluded commits to reduce network traffic.
+    objects-edge-aggressive: |-
+      Similar to `--objects-edge`, but it tries harder to find excluded
+      commits at the cost of increased time.  This is used instead of
+      `--objects-edge` to build *thin* packs for shallow repositories.
+    oneline: |-
+      This is a shorthand for `--pretty=oneline --abbrev-commit`
+      used together.
+    parents: |-
+      Print also the parents of the commit (in the form "commit parent...").
+      Also enables parent rewriting, see `History Simplification` above.
+    progress: |-
+      Show progress reports on stderr as objects are considered. The
+      `<header>` text will be printed with each progress update.
+    quiet: |-
+      Don't print anything to standard output.  This form
+      is primarily meant to allow the caller to
+      test the exit status to see if a range of objects is fully
+      connected (or not).  It is faster than redirecting stdout
+      to `/dev/null` as the output does not have to be formatted.
+    reflog: |-
+      Pretend as if all objects mentioned by reflogs are listed on the
+      command line as _<commit>_.
+    relative-date: Synonym for `--date=relative`.
+    remove-empty: Stop when a given path disappears from the tree.
+    reverse: |-
+      Output the commits chosen to be shown (see `Commit Limiting`
+      section above) in reverse order. Cannot be combined with
+      `--walk-reflogs`.
+
+      Object Traversal
+    right-only: |-
+      List only commits on the respective side of a symmetric difference,
+      i.e. only those which would be marked `<` resp. `>` by
+      `--left-right`.
+
+      For example, `--cherry-pick --right-only A...B` omits those
+      commits from `B` which are in `A` or are patch-equivalent to a commit in
+      `A`. In other words, this lists the `+` commits from `git cherry A B`.
+      More precisely, `--cherry-pick --right-only --no-merges` gives the exact
+      list.
+    show-pulls: |-
+      Include all commits from the default mode, but also any merge
+      commits that are not TREESAME to the first parent but are
+      TREESAME to a later parent. This mode is helpful for showing
+      the merge commits that "first introduced" a change to a branch.
+    show-signature: |-
+      Check the validity of a signed commit object by passing the signature
+      to `gpg --verify` and show the output.
+    simplify-by-decoration: |-
+      Commits that are referred by some branch or tag are selected.
+
+      Note that extra commits can be shown to give a meaningful history.
+
+      The following options affect the way the simplification is performed:
+    simplify-merges: |-
+      Additional option to `--full-history` to remove some needless
+      merges from the resulting history, as there are no selected
+      commits contributing to this merge.
+    since-as-filter: |-
+      Show all commits more recent than _<date>_. This visits
+      all commits in the range, rather than stopping at the first commit which
+      is older than _<date>_.
+    single-worktree: |-
+      By default, all working trees will be examined by the
+      following options when there are more than one (see
+      [git-worktree](cmd://git/worktree)): `--all`, `--reflog` and
+      `--indexed-objects`.
+      This option forces them to examine the current working tree
+      only.
+    skip: Skip _<number>_ commits before starting to show the commit output.
+    sparse: All commits in the simplified history are shown.
+    stdin: |-
+      In addition to getting arguments from the command line, read
+      them from standard input as well. This accepts commits and
+      pseudo-options like `--all` and `--glob=`. When a `--` separator
+      is seen, the following input is treated as paths and used to
+      limit the result. Flags like `--not` which are read via standard input
+      are only respected for arguments passed in the same way and will not
+      influence any subsequent command line arguments.
+    timestamp: Print the raw commit timestamp.
+    topo-order: |-
+      Show no parents before all of its children are shown, and
+      avoid showing commits on multiple lines of history
+      intermixed.
+      
+      For example, in a commit history like this:
+      
+      ```
+      
+          ---1----2----4----7
+      \	       \
+       3----5----6----8---
+      
+      ```
+      
+      where the numbers denote the order of commit timestamps, `git rev-list` and friends with `--date-order` show the commits in the
+      timestamp order: 8 7 6 5 4 3 2 1.
+      
+      With `--topo-order`, they would show 8 6 5 3 7 4 2 1 (or 8 7 4 2 6 5
+      3 1); some older commits are shown before newer ones in order to
+      avoid showing the commits from two parallel development track mixed
+      together.
+    unpacked: |-
+      Only useful with `--objects`; print the object IDs that are not
+      in packs.
+    use-bitmap-index: |-
+      Try to speed up the traversal using the pack bitmap index (if
+      one is available). Note that when traversing with `--objects`,
+      trees and blobs will not have their associated path printed.
+    extended-regexp: |-
+      Consider the limiting patterns to be extended regular expressions
+      instead of the default basic regular expressions.
+    fixed-strings: |-
+      Consider the limiting patterns to be fixed strings (don't interpret
+      pattern as a regular expression).
+    perl-regexp: |-
+      Consider the limiting patterns to be Perl-compatible regular
+      expressions.
+
+      Support for these types of regular expressions is an optional
+      compile-time dependency. If Git wasn't compiled with support for them
+      providing this option will cause it to die.
+    walk-reflogs: |-
+      Instead of walking the commit ancestry chain, walk
+      reflog entries from the most recent one to older ones.
+      When this option is used you cannot specify commits to
+      exclude (that is, `^<commit>`, `<commit1>..<commit2>`,
+      and `<commit1>...<commit2>` notations cannot be used).
+
+      With `--pretty` format other than `oneline` and `reference` (for obvious reasons),
+      this causes the output to have two extra lines of information
+      taken from the reflog.  The reflog designator in the output may be shown
+      as `ref@{<Nth>}` (where _<Nth>_ is the reverse-chronological index in the
+      reflog) or as `ref@{<timestamp>}` (with the _<timestamp>_ for that entry),
+      depending on a few rules:
+    regexp-ignore-case: |-
+      Match the regular expression limiting patterns without regard to letter
+      case.
+    max-count: Limit the output to the first _<number>_ commits that would be shown.
+    expand-tabs: |-
+      Perform a tab expansion (replace each tab with enough spaces
+      to fill to the next display column that is a multiple of _<n>_)
+      in the log message before showing it in the output.
+      `--expand-tabs` is a short-hand for `--expand-tabs=8`, and
+      `--no-expand-tabs` is a short-hand for `--expand-tabs=0`,
+      which disables tab expansion.
+
+      By default, tabs are expanded in pretty formats that indent the log
+      message by 4 spaces (i.e.  `medium`, which is the default, `full`,
+      and `fuller`).
+    max-parents: |-
+      Show only commits which have at least (or at most) that many parent
+      commits. In particular, `--max-parents=1` is the same as `--no-merges`,
+      `--min-parents=2` is the same as `--merges`.  `--max-parents=0`
+      gives all root commits and `--min-parents=3` all octopus merges.
+
+      `--no-min-parents` and `--no-max-parents` reset these limits (to no limit)
+      again.  Equivalent forms are `--min-parents=0` (any commit has 0 or more
+      parents) and `--max-parents=-1` (negative numbers denote no upper limit).

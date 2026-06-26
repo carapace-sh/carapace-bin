@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: certificate SUBCOMMAND
+description: Modify certificate resources
+group: cluster management

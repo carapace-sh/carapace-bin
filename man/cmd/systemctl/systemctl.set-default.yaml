@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-default
+description: Set the default target
+group: unit file
+documentation:
+  command: |
+    Set the default target to boot into. This sets (symlinks) the
+    default.target alias to the given target unit.

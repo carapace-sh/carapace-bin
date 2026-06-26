@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdfattach
+description: Portable Document Format (PDF) document embedded file creator (version 3.03)
+flags:
+    -?: print usage information
+    -h: print usage information
+    -help, --help: print usage information
+    -replace: replace embedded file with same name (if it exists)
+    -v: print copyright and version info

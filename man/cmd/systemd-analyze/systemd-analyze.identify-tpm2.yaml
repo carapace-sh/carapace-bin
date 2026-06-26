@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: identify-tpm2
+description: Show TPM2 vendor information

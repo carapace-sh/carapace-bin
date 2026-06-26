@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Installs the defined packages in a globally accessible location and exposes their command line applications.

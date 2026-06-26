@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: systemd-analyze
+description: Analyze and debug system manager
+persistentflags:
+    --base-time=: Calculate calendar times relative to specified time
+    --debugger=: Use the given debugger
+    --detailed: Add more details to SVG plot, e.g. show activation timestamps
+    --drm-device=: Use this DRM device sysfs path to get EDID
+    --from-pattern=: Show only origins in the graph
+    --fuzz=: Also print services which finished SECONDS earlier than the latest in the branch
+    --generators?: Do [not] run unit generators (requires privileges)
+    --global: Operate on global user configuration
+    --image-policy=: Specify disk image dissection policy
+    --image=: Operate on disk image as filesystem root
+    --instance=: Specify fallback instance name for template units
+    --iterations=: Show the specified number of iterations
+    --json=: Generate JSON output of the security analysis table, or plot's raw time data
+    --man?: Do [not] check for existence of man pages
+    --no-legend: Disable column headers and hints in plot with either --table or --json=
+    --no-pager: Do not pipe output into a pager
+    --offline=: Perform a security review on unit file(s)
+    --order: Show only order in the graph
+    --profile=: Include the specified profile in the security review of the unit(s)
+    --recursive-errors=: Control which units are verified
+    --require: Show only requirement in the graph
+    --root=: Operate on an alternate filesystem root
+    --scale-svg=: Stretch x-axis of plot by FACTOR
+    --security-policy=: Use custom JSON security policy instead of built-in one
+    --system: Operate on system systemd instance
+    --table: Output plot's raw time data as a table
+    --threshold=: Exit with a non-zero status when overall exposure level is over threshold value
+    --tldr: Skip comments and empty lines
+    --to-pattern=: Show only destinations in the graph
+    --unit=: Evaluate conditions and asserts of unit
+    --user: Operate on user systemd instance
+    --version: Show package version
+    -A, --debugger-arguments=: Pass the given arguments to the debugger
+    -H, --host=: Operate on remote host
+    -M, --machine=: Operate on local container
+    -h, --help: Show this help
+    -m, --mask: Parse parameter as numeric capability mask
+    -q, --quiet: Do not emit hints

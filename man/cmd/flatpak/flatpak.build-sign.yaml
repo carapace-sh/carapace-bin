@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-sign [OPTION…] LOCATION [ID [BRANCH]]
+description: Sign an application or runtime
+group: build
+flags:
+    --arch=: Arch to install for
+    --gpg-homedir=: GPG Homedir to use when looking for keyrings
+    --gpg-sign=: GPG Key ID to sign the commit with
+    --ostree-verbose: Show OSTree debug information
+    --runtime: Look for runtime with the specified name
+    -h, --help: Show help options
+    -v, --verbose: Show debug information, -vv for more detail

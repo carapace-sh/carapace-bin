@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kill-pane
+flags:
+    -a: TODO description
+    -t=: target-pane

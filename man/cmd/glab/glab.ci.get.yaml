@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get [flags]
+aliases:
+    - stats
+description: Get JSON of a running CI/CD pipeline on the current or other specified branch.
+flags:
+    --with-variables: Show variables in pipeline. Requires the Maintainer role.
+    -F, --output=: 'Format output. Options: text, json.'
+    -b, --branch=: Check pipeline status for a branch. (default current branch)
+    -d, --with-job-details: Show extended job information.
+    -o, --output-format=&: Use output.
+    -p, --pipeline-id=: Provide pipeline ID.

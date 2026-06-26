@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: go-tool-link
+description: go linker
+flags:
+    -B=: add an ELF NT_GNU_BUILD_ID note when using ELF
+    -E=: set entry symbol name
+    -H=: set header type
+    -I=: use linker as ELF dynamic linker
+    -L=*: add specified directory to library path
+    -R=: set address rounding quantum (default -1)
+    -T=: set text segment address (default -1)
+    -X=: add string value definition of the form importpath.name=value
+    -asan: enable ASan interface
+    -aslr: enable ASLR for buildmode=c-shared on windows (default true)
+    -benchmark=: set to 'mem' or 'cpu' to enable phase benchmarking
+    -benchmarkprofile=: emit phase profiles to base_phase.{cpu,mem}prof
+    -buildid=: record id as Go toolchain build id
+    -buildmode=: set build mode
+    -c: dump call graph
+    -capturehostobjs=: capture host object files loaded during internal linking to specified dir
+    -compressdwarf: compress DWARF if possible (default true)
+    -cpuprofile=: write cpu profile to file
+    -d: disable dynamic executable
+    -debugnosplit: dump nosplit call graph
+    -debugtextsize=: debug text section max size
+    -debugtramp=: debug trampolines
+    -dumpdep: dump symbol dependency graph
+    -extar=: archive program for buildmode=c-archive
+    -extld=: use linker when linking in external mode
+    -extldflags=: pass flags to external linker
+    -f: ignore version mismatch
+    -g: disable go package data checks
+    -h: halt on error
+    -importcfg=: read import configuration from file
+    -installsuffix=: set package directory suffix
+    -k=: set field tracking symbol
+    -libgcc=: compiler support lib for internal linking
+    -linkmode=: set link mode
+    -linkshared: link against installed Go shared libraries
+    -memprofile=: write memory profile to file
+    -memprofilerate=: set runtime.MemProfileRate to rate
+    -msan: enable MSan interface
+    -n=: symbol table
+    -o=: write output to file
+    -pluginpath=: full path name for plugin
+    -r=: set the ELF dynamic linker search path to dir1:dir2:...
+    -race: enable race detector
+    -s: disable symbol table
+    -strictdups=: sanity check duplicate symbol contents during object file reading (1=warn 2=err)
+    -tmpdir=: use directory for temporary files
+    -v: print link trace
+    -w: disable DWARF generation

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tesseract
+description: command-line OCR engine
+flags:
+    --dpi=: Specify the resolution N in DPI for the input image(s).
+    --help-extra: Show extra help for advanced users.
+    --help-oem: Show OCR Engine modes.
+    --help-psm: Show page segmentation modes.
+    --list-langs: List available languages for tesseract engine.
+    --oem=: Specify OCR Engine mode.
+    --print-parameters: Print tesseract parameters.
+    --psm=: Set Tesseract to only run a subset of layout analysis and assume a certain form of image.
+    --tessdata-dir=: Specify the location of tessdata path.
+    --user-patterns=: Specify the location of user patterns file.
+    --user-words=: Specify the location of user words file.
+    -c=: Set value for parameter CONFIGVAR to VALUE.
+    -h, --help: Show help message.
+    -l=: The language or script to use.
+    -v, --version: Returns the current version of the tesseract(1) executable.

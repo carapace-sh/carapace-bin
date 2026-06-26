@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deps
+description: Show dependencies for <formula>
+group: main
+flags:
+    --HEAD: Show dependencies for HEAD version instead of stable version.
+    --annotate: Mark any build, test, implicit, optional, or recommended dependencies as such in the output.
+    --cask: Treat all named arguments as casks.
+    --debug: Display any debugging information.
+    --direct: Show only the direct dependencies declared in the formula.
+    --dot: Show text-based graph description in DOT format.
+    --eval-all: Evaluate all available formulae and casks, whether installed or not, to list their dependencies.
+    --for-each: Switch into the mode used by the `--eval-all` option, but only list dependencies for each provided <formula>, one formula per line. This is used for debugging the `--installed`/`--eval-all` display mode.
+    --formula: Treat all named arguments as formulae.
+    --full-name: List dependencies by their full name.
+    --graph: Show dependencies as a directed graph.
+    --help: Show this message.
+    --include-build: Include `:build` dependencies for <formula>.
+    --include-optional: Include `:optional` dependencies for <formula>.
+    --include-requirements: Include requirements in addition to dependencies for <formula>.
+    --include-test: Include `:test` dependencies for <formula> (non-recursive).
+    --installed: List dependencies for formulae that are currently installed. If <formula> is specified, list only its dependencies that are currently installed.
+    --missing: Show only missing dependencies.
+    --quiet: Make some output more quiet.
+    --skip-recommended: Skip `:recommended` dependencies for <formula>.
+    --topological: Sort dependencies in topological order.
+    --tree: Show dependencies as a tree. When given multiple formula arguments, show individual trees for each formula.
+    --union: Show the union of dependencies for multiple <formula>, instead of the intersection.
+    --verbose: Make some output more verbose.

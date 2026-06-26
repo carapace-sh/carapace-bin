@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cover
+description: analyze coverage profiles
+flags:
+    -func=: output coverage profile information for each function
+    -html=: generate HTML representation of coverage profile
+    -mode=: 'coverage mode: set, count, atomic'
+    -o=: file for output
+    -outfilelist=: file containing list of output files (one per line) if -pkgcfg is in use
+    -pkgcfg=: enable full-package instrumentation mode using params from specified config file
+    -var=: name of coverage variable to generate (default "GoCover")

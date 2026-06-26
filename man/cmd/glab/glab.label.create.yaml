@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [flags]
+aliases:
+    - new
+description: Create labels for a repository or project.
+flags:
+    -c, --color=: Color of the label, in plain or HEX code.
+    -d, --description=: Label description.
+    -n, --name=!: Name of the label.

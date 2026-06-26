@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: keytool
+description: Key and Certificate Management Tool
+flags:
+    -h, --help: show help

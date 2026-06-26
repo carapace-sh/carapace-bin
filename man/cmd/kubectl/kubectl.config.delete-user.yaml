@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete-user NAME
+description: Delete the specified user from the kubeconfig

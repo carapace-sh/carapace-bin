@@ -1,0 +1,160 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: youtube-dl
+description: download videos from youtube.com or other video platforms
+flags:
+    --abort-on-error: Abort downloading of further videos (in the
+    --abort-on-unavailable-fragment: Abort downloading when some fragment is not
+    --add-header=: Specify a custom HTTP header and its value,
+    --add-metadata: Write metadata to the video file
+    --age-limit=: Download only videos suitable for the given
+    --all-formats: Download all available video formats
+    --all-subs: Download all the available subtitles of the
+    --ap-list-mso: List all supported multiple-system
+    --ap-mso=: Adobe Pass multiple-system operator (TV
+    --ap-password=: Multiple-system operator account password.
+    --ap-username=: Multiple-system operator account login
+    --audio-format=: 'Specify audio format: "best", "aac",'
+    --audio-quality=: Specify ffmpeg/avconv audio quality, insert
+    --autonumber-start=: Specify the start value for %(autonumber)s
+    --bidi-workaround: Work around terminals that lack
+    --buffer-size=: Size of download buffer (e.g. 1024 or 16K)
+    --cache-dir=: Location in the filesystem where youtube-dl
+    --config-location=: Location of the configuration file; either
+    --console-title: Display progress in console titlebar
+    --convert-subs=: Convert the subtitles to other format
+    --cookies=: File to read cookies from and dump cookie
+    --date=: Download only videos uploaded in this date
+    --dateafter=: Download only videos uploaded on or after
+    --datebefore=: Download only videos uploaded on or before
+    --default-search=: Use this prefix for unqualified URLs. For
+    --download-archive=: Download only videos not listed in the
+    --dump-pages: Print downloaded pages encoded using base64
+    --dump-user-agent: Display the current browser identification
+    --embed-subs: Embed subtitles in the video (only for mp4,
+    --embed-thumbnail: Embed thumbnail in the audio as cover art
+    --encoding=: Force the specified encoding (experimental)
+    --exec=: Execute a command on the file after
+    --external-downloader-args=: Give these arguments to the external
+    --external-downloader=: Use the specified external downloader.
+    --extractor-descriptions: Output descriptions of all supported
+    --ffmpeg-location=: Location of the ffmpeg/avconv binary;
+    --fixup=: Automatically correct known faults of the
+    --flat-playlist: Do not extract the videos of a playlist,
+    --force-generic-extractor: Force extraction to use the generic
+    --fragment-retries=: Number of retries for a fragment (default
+    --geo-bypass: Bypass geographic restriction via faking
+    --geo-bypass-country=: Force bypass geographic restriction with
+    --geo-bypass-ip-block=: Force bypass geographic restriction with
+    --geo-verification-proxy=: Use this proxy to verify the IP address for
+    --get-description: Simulate, quiet but print video description
+    --get-duration: Simulate, quiet but print video length
+    --get-filename: Simulate, quiet but print output filename
+    --get-format: Simulate, quiet but print output format
+    --get-id: Simulate, quiet but print id
+    --get-thumbnail: Simulate, quiet but print thumbnail URL
+    --hls-prefer-ffmpeg: Use ffmpeg instead of the native HLS
+    --hls-prefer-native: Use the native HLS downloader instead of
+    --hls-use-mpegts: Use the mpegts container for HLS videos,
+    --http-chunk-size=: Size of a chunk for chunk-based HTTP
+    --id: Use only video ID in file name
+    --ignore-config: Do not read configuration files. When given
+    --include-ads: Download advertisements as well
+    --keep-fragments: Keep downloaded fragments on disk after
+    --list-extractors: List all supported extractors
+    --list-subs: List all available subtitles for the video
+    --list-thumbnails: Simulate and list all available thumbnail
+    --load-info-json=: JSON file containing the video information
+    --mark-watched: Mark videos watched (YouTube only)
+    --match-filter=: Generic video filter. Specify any key (see
+    --match-title=: Download only matching titles (regex or
+    --max-downloads=: Abort after downloading NUMBER files
+    --max-filesize=: Do not download any videos larger than SIZE
+    --max-sleep-interval.: ""
+    --max-sleep-interval=: Upper bound of a range for randomized sleep
+    --max-views=: Do not download any videos with more than
+    --merge-output-format=: If a merge is required (e.g.
+    --metadata-from-title=: Parse additional metadata like song title /
+    --min-filesize=: Do not download any videos smaller than
+    --min-views=: Do not download any videos with less than
+    --newline: Output progress bar as new lines
+    --no-cache-dir: Disable filesystem caching
+    --no-call-home: Do NOT contact the youtube-dl server for
+    --no-check-certificate: Suppress HTTPS certificate validation
+    --no-color: Do not emit color codes in output
+    --no-continue: Do not resume partially downloaded files
+    --no-geo-bypass: Do not bypass geographic restriction via
+    --no-mark-watched: Do not mark videos watched (YouTube only)
+    --no-mtime: Do not use the Last-modified header to set
+    --no-part: Do not use .part files - write directly
+    --no-playlist: Download only the video, if the URL refers
+    --no-post-overwrites: Do not overwrite post-processed files; the
+    --no-progress: Do not print progress bar
+    --no-resize-buffer: Do not automatically adjust the buffer
+    --no-warnings: Ignore warnings
+    --playlist-end=: Playlist video to end at (default is last)
+    --playlist-items=: Playlist video items to download. Specify
+    --playlist-random: Download playlist videos in random order
+    --playlist-reverse: Download playlist videos in reverse order
+    --playlist-start=: Playlist video to start at (default is 1)
+    --postprocessor-args=: Give these arguments to the postprocessor
+    --prefer-avconv: Prefer avconv over ffmpeg for running the
+    --prefer-ffmpeg: Prefer ffmpeg over avconv for running the
+    --prefer-free-formats: Prefer free video formats unless a specific
+    --prefer-insecure: Use an unencrypted connection to retrieve
+    --print-json: Be quiet and print the video information as
+    --print-traffic: Display sent and read HTTP traffic
+    --proxy=: Use the specified HTTP/HTTPS/SOCKS proxy.
+    --recode-video=: Encode the video to another format if
+    --referer=: Specify a custom referer, use if the video
+    --reject-title=: Skip download for matching titles (regex or
+    --restrict-filenames: Restrict filenames to only ASCII
+    --rm-cache-dir: Delete all filesystem cache files
+    --skip-download: Do not download the video
+    --skip-unavailable-fragments: Skip unavailable fragments (DASH, hlsnative
+    --sleep-interval=: Number of seconds to sleep before each
+    --socket-timeout=: Time to wait before giving up, in seconds
+    --source-address=: Client-side IP address to bind to
+    --sub-format=: Subtitle format, accepts formats
+    --sub-lang=: Languages of the subtitles to download
+    --user-agent=: Specify a custom user agent
+    --version: Print program version and exit
+    --video-password=: Video password (vimeo, smotri, youku)
+    --write-all-thumbnails: Write all thumbnail image formats to disk
+    --write-annotations: Write video annotations to a
+    --write-auto-sub: Write automatically generated subtitle file
+    --write-description: Write video description to a .description
+    --write-info-json: Write video metadata to a .info.json file
+    --write-pages: Write downloaded intermediary pages to
+    --write-sub: Write subtitle file
+    --write-thumbnail: Write thumbnail image to disk
+    --xattr-set-filesize: Set file xattribute ytdl.filesize with
+    --xattrs: Write metadata to the video file's xattrs
+    --yes-playlist: Download the playlist, if the URL refers to
+    --youtube-skip-dash-manifest: Do not download the DASH manifests and
+    -2, --twofactor=: Two-factor authentication code
+    -4, --force-ipv4: Make all connections via IPv4
+    -6, --force-ipv6: Make all connections via IPv6
+    -C, --call-home: Contact the youtube-dl server for debugging
+    -F, --list-formats: List all available formats of requested
+    -J, --dump-single-json: Simulate, quiet but print JSON information
+    -R, --retries=: Number of retries (default is 10), or
+    -U, --update: Update this program to latest version. Make
+    -a, --batch-file=: File containing URLs to download ('-' for
+    -c, --continue: Force resume of partially downloaded files.
+    -e, --get-title: Simulate, quiet but print title
+    -f, --format=: Video format code, see the "FORMAT
+    -g, --get-url: Simulate, quiet but print URL
+    -h, --help: Print this help text and exit
+    -i, --ignore-errors: Continue on download errors, for example to
+    -j, --dump-json: Simulate, quiet but print JSON information.
+    -k, --keep-video: Keep the video file on disk after the post-
+    -n, --netrc: Use .netrc authentication data
+    -o, --output=: Output filename template, see the "OUTPUT
+    -p, --password=: Account password. If this option is left
+    -q, --quiet: Activate quiet mode
+    -r, --limit-rate=: Maximum download rate in bytes per second
+    -s, --simulate: Do not download the video and do not write
+    -u, --username=: Login with this account ID
+    -v, --verbose: Print various debugging information
+    -w, --no-overwrites: Do not overwrite files
+    -x, --extract-audio: Convert video files to audio-only files

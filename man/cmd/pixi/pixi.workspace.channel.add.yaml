@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+aliases:
+    - a
+description: Adds a channel to the manifest and updates the lockfile
+flags:
+    --auth-file=: Path to the file containing the authentication token
+    --concurrent-downloads=: Max concurrent network requests, default is `50`
+    --concurrent-solves=: Max concurrent solves, default is the number of CPUs
+    --frozen: Install the environment as defined in the lockfile, doesn't update lockfile if it isn't up-to-date with the manifest file
+    --locked: Check if lockfile is up-to-date before installing the environment, aborts when lockfile isn't up-to-date with the manifest file
+    --no-install: Don't modify the environment, only modify the lock-file
+    --pinning-strategy=: Set pinning strategy
+    --prepend: Add the channel(s) to the beginning of the channels list, making them the highest priority
+    --priority=: Specify the channel priority
+    --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
+    --run-post-link-scripts: Run post-link scripts (insecure)
+    --tls-no-verify: Do not verify the TLS certificate of the server
+    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --use-environment-activation-cache: Use environment activation cache (experimental)
+    -f, --feature=: The name of the feature to modify

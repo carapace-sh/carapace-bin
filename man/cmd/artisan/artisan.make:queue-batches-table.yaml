@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:queue-batches-table
+aliases:
+    - queue:batches-table
+description: Create a migration for the batches database table

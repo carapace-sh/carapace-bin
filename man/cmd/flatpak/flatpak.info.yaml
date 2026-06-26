@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info [OPTION…] NAME [BRANCH]
+description: Get info about an installed app or runtime
+group: install
+flags:
+    --arch=: Arch to use
+    --file-access=: Query file access
+    --installation=: Show specific system-wide installations
+    --ostree-verbose: Show OSTree debug information
+    --show-runtime: Show runtime
+    --show-sdk: Show sdk
+    --system: Show system-wide installations
+    --user: Show user installations
+    -M, --show-permissions: Show permissions
+    -c, --show-commit: Show commit
+    -e, --show-extensions: Show extensions
+    -h, --help: Show help options
+    -l, --show-location: Show location
+    -m, --show-metadata: Show metadata
+    -o, --show-origin: Show origin
+    -r, --show-ref: Show ref
+    -s, --show-size: Show size
+    -v, --verbose: Show debug information, -vv for more detail

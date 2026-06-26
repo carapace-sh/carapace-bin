@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fc-cache
+description: Build font information caches
+flags:
+    -E, --error-on-no-fonts: raise an error if no fonts in a directory
+    -V, --version: display font config version and exit
+    -f, --force: scan directories with apparently valid caches
+    -h, --help: display this help and exit
+    -r, --really-force: erase all existing caches, then rescan
+    -s, --system-only: scan system-wide directories only
+    -v, --verbose: display status information while busy
+    -y, --sysroot=: prepend SYSROOT to all paths for scanning

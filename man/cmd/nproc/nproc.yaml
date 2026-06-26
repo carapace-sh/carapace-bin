@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nproc
+description: print the number of processing units available
+flags:
+    --all: print the number of installed processors
+    --help: display this help and exit
+    --ignore=: if possible, exclude N processing units
+    --version: output version information and exit

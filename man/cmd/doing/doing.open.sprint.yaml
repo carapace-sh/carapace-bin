@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sprint
+description: Open current sprint view
+flags:
+    --help: Show this message and exit.

@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Give detailed information about packages or repositories
+group: querying package information
+flags:
+    --allow-untrusted: Install packages with untrusted signature or no signature
+    --arch=: Temporarily override architecture
+    --cache-dir=: Temporarily override the cache directory
+    --cache-max-age=: Maximum AGE (in minutes) for index in cache before it's refreshed
+    --force-binary-stdout: Continue even if binary data will be printed to the terminal
+    --force-broken-world: 'DANGEROUS: Delete world constraints until a solution without conflicts is found'
+    --force-missing-repositories: Continue even if some of the repository indexes are not available
+    --force-non-repository: Continue even if packages may be lost on reboot
+    --force-old-apk: Continue even if packages use unsupported features
+    --force-overwrite: Overwrite files in other packages
+    --force-refresh: Do not use cached files (local or from proxy)
+    --from=: search packages from given source
+    --install-if: List the package's install_if rule
+    --keys-dir=: Override directory of trusted keys
+    --license: Print the package SPDX license identifier
+    --no-cache: Do not use any local cache path
+    --no-check-certificate: Do not validate the HTTPS server certificates
+    --no-interactive: Disable interactive mode
+    --no-network: Do not use the network
+    --no-progress: Disable progress bar even for TTYs
+    --print-arch: Print default arch and exit
+    --progress: Show progress
+    --progress-fd=: Write progress to the specified file descriptor
+    --purge: Purge modified configuration and cached packages
+    --replaces: List the other packages for which this package is marked as a replacement
+    --repositories-file=: Override system repositories
+    --rinstall-if: List other packages whose install_if rules refer to this package
+    --timeout=: Timeout network connections if no progress is made in TIME seconds
+    --wait=: Wait for TIME seconds to get an exclusive repository lock before failing
+    -L, --contents: List files included in the package
+    -P, --provides: List what the package provides
+    -R, --depends: List the dependencies of the package
+    -U, --update-cache: Alias for '--cache-max-age 1'
+    -V, --version: Print program version and exit
+    -W, --who-owns: Print the package which owns the specified file
+    -X, --repository=: Specify additional package repository
+    -a, --all: List all information known about the package
+    -d, --description: Print the package description
+    -e, --installed: Check package installed status
+    -f, --force: Enable selected --force-* options (deprecated)
+    -i, --interactive: Ask confirmation before performing certain operations
+    -p, --root=: Manage file system at ROOT
+    -q, --quiet: Print less information
+    -r, --rdepends: List reverse dependencies of the package
+    -s, --size: Print the package's installed size
+    -t, --triggers: Print active triggers for the package
+    -v, --verbose: Print more information (can be specified twice)
+    -w, --webpage: Print the URL for the package's upstream webpage

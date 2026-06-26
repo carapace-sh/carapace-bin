@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set
+description: Change a configuration settings
+flags:
+    --json: Set complex configuration settings to JSON values
+    -H, --home: Update the home configuration instead of the project configuration

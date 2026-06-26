@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: seq
+description: print a sequence of numbers
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -f, --format=: use printf style floating-point FORMAT
+    -s, --separator=: "use STRING to separate numbers (default: \n)"
+    -w, --equal-width: equalize width by padding with leading zeroes

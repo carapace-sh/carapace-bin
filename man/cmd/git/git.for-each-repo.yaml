@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: for-each-repo
+description: Run a Git command on a list of repositories
+group: low-level interrogator
+flags:
+  --config=: use the given config variable as a multi-valued list storing absolute path names.
+  --keep-going: continue with the remaining repositories if the command failed on a repository
+documentation:
+  command: |-
+    Run a Git command on a list of repositories. The arguments after the
+    known options or `--` indicator are used as the arguments for the Git
+    subprocess.
+
+    THIS COMMAND IS EXPERIMENTAL. THE BEHAVIOR MAY CHANGE.
+
+    For example, we could run maintenance on each of a list of repositories
+    stored in a `maintenance.repo` config variable using
+
+    ```
+    git for-each-repo --config=maintenance.repo maintenance run
+    ```
+
+    This will run `git -C <repo> maintenance run` for each value `<repo>`
+    in the multi-valued config variable `maintenance.repo`.

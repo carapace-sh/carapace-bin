@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pidof
+description: find the process ID of a running program
+flags:
+    -S, --separator=: use SEP as separator put between PIDs
+    -V, --version: output version information and exit
+    -c, --check-root: omit processes with different root
+    -h, --help: display this help and exit
+    -o, --omit-pid=: omit processes with PID
+    -q: quiet mode, only set the exit code
+    -s, --single-shot: return one PID only
+    -t, --lightweight: list threads too
+    -w, --with-workers: show kernel workers too
+    -x: also find shells running the named scripts

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [OPTIONS]
+description: List issues related to the project
+flags:
+    --help: Show this message and exit
+    --story_points=: Filter on number of story points
+    -A, --author=: Filter by author
+    -a, --assignee=: Filter by assignee
+    -l, --label=: Filter by labels
+    -o, --output_format=: Output format
+    -s, --state=: Filter by state
+    -t, --type=: Type of work item

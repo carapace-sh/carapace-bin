@@ -1,0 +1,99 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ocsp
+description: Online Certificate Status Protocol command
+group: standard
+flags:
+    -CA=: CA certificates
+    -CAfile=: Trusted certificates file
+    -CApath=: Trusted certificates directory
+    -CAstore=: Trusted certificates store URI
+    -VAfile=: Validator certificates file
+    -allow_proxy_certs: allow the use of proxy certificates
+    -attime=: verification epoch time
+    -auth_level=: chain authentication security level
+    -badsig: Corrupt last byte of loaded OCSP response signature (for test)
+    -cert=*: Certificate to check; may be given multiple times
+    -check_ss_sig: check root CA self-signatures
+    -crl_check: check leaf certificate revocation
+    -crl_check_all: check full chain revocation
+    -explicit_policy: set policy variable require-explicit-policy
+    -extended_crl: enable extended CRL features
+    -header=: key=value header to add
+    -host=: TCP/IP hostname:port to connect to
+    -ignore_critical: permit unhandled critical extensions
+    -ignore_err: Ignore error on OCSP request or response and continue running
+    -index=: Certificate status index file
+    -inhibit_any: set policy variable inhibit-any-policy
+    -inhibit_map: set policy variable inhibit-policy-mapping
+    -issuer=: Issuer certificate
+    -issuer_checks: (deprecated)
+    -multi=: run multiple responder processes
+    -ndays=: Number of days before next update
+    -nmin=: Number of minutes before next update
+    -no-CAfile: Do not load the default certificates file
+    -no-CApath: Do not load certificates from the default certificates directory
+    -no-CAstore: Do not load certificates from the default certificates store
+    -no_alt_chains: (deprecated)
+    -no_cert_checks: Don't do additional checks on signing certificate
+    -no_cert_verify: Don't check signing certificate
+    -no_certs: Don't include any certificates in signed request
+    -no_chain: Don't chain verify response
+    -no_check_time: ignore certificate validity time
+    -no_explicit: Do not explicitly check the chain, just verify the root
+    -no_intern: Don't search certificates contained in response for signer
+    -no_nonce: Don't add OCSP nonce to request
+    -no_proxy=: List of addresses of servers not to use HTTP(S) proxy for Default from environment variable 'no_proxy', else 'NO_PROXY', else none
+    -no_signature_verify: Don't check signature on response
+    -nonce: Add OCSP nonce to request
+    -noverify: Don't verify response at all
+    -nrequest=: Number of requests to accept (default unlimited)
+    -out=: Output filename
+    -partial_chain: accept chains anchored by intermediate trust-store CAs
+    -passin=: Responder key pass phrase source
+    -path=: Path to use in OCSP request
+    -policy=: adds policy to the acceptable policy set
+    -policy_check: perform rfc5280 policy checks
+    -policy_print: print policy processing diagnostics
+    -port=: Port to run responder on
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -proxy=: '[http[s]://]host[:port][/path] of HTTP(S) proxy to use; path is ignored'
+    -purpose=: certificate chain purpose
+    -rcid=: Use specified algorithm for cert id in response
+    -req_text: Print text form of request
+    -reqin=: File with the DER-encoded request
+    -reqout=: Output file for the DER-encoded request
+    -resp_key_id: Identify response by signing certificate key ID
+    -resp_no_certs: Don't include any certificates in response
+    -resp_text: Print text form of response
+    -respin=: File with the DER-encoded response
+    -respout=: Output file for the DER-encoded response
+    -rkey=: Responder key to sign responses with
+    -rmd=: Digest Algorithm to use in signature of OCSP response
+    -rother=: Other certificates to include in response
+    -rsigner=: Responder certificate to sign responses with
+    -rsigopt=*: OCSP response signature parameter in n:v form
+    -serial=: Serial number to check; may be given multiple times
+    -sign_other=: Additional certificates to include in signed request
+    -signer=: Certificate to sign OCSP request with
+    -signkey=: Private key to sign OCSP request with
+    -status_age=: Maximum status age in seconds
+    -suiteB_128: Suite B 128-bit mode allowing 192-bit algorithms
+    -suiteB_128_only: Suite B 128-bit-only mode
+    -suiteB_192: Suite B 192-bit-only mode
+    -text: Print text form of request and response
+    -timeout=: Connection timeout (in seconds) to the OCSP responder
+    -trust_other: Don't verify additional certificates
+    -trusted_first: search trust store first (default)
+    -url=: Responder URL
+    -use_deltas: use delta CRLs
+    -validity_period=: Maximum validity discrepancy in seconds
+    -verify_depth=: chain depth limit
+    -verify_email=: expected peer email
+    -verify_hostname=: expected peer hostname
+    -verify_ip=: expected peer IP address
+    -verify_name=: verification policy name
+    -verify_other=: Additional certificates to search for signer
+    -x509_strict: disable certificate compatibility work-arounds

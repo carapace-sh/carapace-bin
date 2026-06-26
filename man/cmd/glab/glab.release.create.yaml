@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create <tag> [<files>...]
+description: Create a new GitLab release, or update an existing one.
+flags:
+    --experimental-notes-text-or-file=&: (EXPERIMENTAL) Value to use as release notes. If a file exists with this value as path, its content will be used. Otherwise, the value itself will be used as text.
+    --no-close-milestone: Prevent closing milestones after creating the release.
+    --no-update: Prevent updating the existing release.
+    --package-name=: The package name, when uploading assets to the generic package release with --use-package-registry.
+    --publish-to-catalog: (EXPERIMENTAL) Publish the release to the GitLab CI/CD catalog.
+    --use-package-registry: Upload release assets to the generic package registry of the project. Overrides the GITLAB_RELEASE_ASSETS_USE_PACKAGE_REGISTRY environment variable.
+    -D, --released-at=: ISO 8601 datetime when the release was ready. Defaults to the current datetime.
+    -F, --notes-file=: Read release notes 'file'. To read from stdin, use '-'.
+    -N, --notes=: The release notes or description. Accepts Markdown.
+    -T, --tag-message=: Message to use if creating a new annotated tag.
+    -a, --assets-links=: JSON string representation of assets links. See documentation for example.
+    -m, --milestone=*: The title of each milestone the release is associated with.
+    -n, --name=: The release name or title.
+    -r, --ref=: If the specified tag doesn't exist, create a release from the ref and tag it with the specified tag name. Accepts a commit SHA, tag name, or branch name.

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pr-automerge
+description: Find pull requests that can be automatically merged using `brew pr-publish`
+group: developer
+flags:
+    --autosquash: Instruct `brew pr-publish` to automatically reformat and reword commits in the pull request to the preferred format.
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --ignore-failures: Include pull requests that have failing status checks.
+    --publish: Run `brew pr-publish` on matching pull requests.
+    --quiet: Make some output more quiet.
+    --tap: 'Target tap repository (default: `homebrew/core`).'
+    --verbose: Make some output more verbose.
+    --with-label: Pull requests must have this label.
+    --without-approval: Pull requests do not require approval to be merged.
+    --without-labels: 'Pull requests must not have these labels (default: `do not merge`, `new formula`, `automerge-skip`, `pre-release`, `CI-published-bottle-commits`).'
+    --workflow: Workflow file to use with `brew pr-publish`.

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deadcode
+description: The deadcode command reports unreachable functions in Go programs
+flags:
+    -cpuprofile=: write CPU profile to this file
+    -filter=: report only packages matching this regular expression
+    -generated: report dead functions in generated Go files
+    -line: show output in a line-oriented format
+    -memprofile=: write memory profile to this file
+    -tags=: comma-separated list of extra build tags
+    -test: include implicit test packages and executables

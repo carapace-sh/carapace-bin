@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pkeyparam
+description: Public key algorithm parameter management
+group: standard
+flags:
+    -check: Check key param consistency
+    -in=: Input file
+    -noout: Don't output encoded parameters
+    -out=: Output file
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -text: Print parameters as text

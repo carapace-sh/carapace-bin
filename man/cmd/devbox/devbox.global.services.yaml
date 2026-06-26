@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: services
+description: Interact with devbox services.
+persistentflags:
+    --env-file=: path to a file containing environment variables to set in the devbox environment
+    --environment=: environment to use, when supported (e.g. secrets support dev, prod, preview.)
+    --run-in-current-shell&: run the command in the current shell instead of a new shell
+    -c, --config=: path to directory containing a devbox.json config file
+    -e, --env=: environment variables to set in the devbox environment

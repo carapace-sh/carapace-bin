@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Search the Docker Hub for images
+group: common
+flags:
+    --format=: Pretty-print search using a Go template
+    --limit=: Max number of search results
+    --no-trunc: Don't truncate output
+    -f, --filter=: Filter output based on conditions provided

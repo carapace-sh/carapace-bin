@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: optimize
+description: Optimize ref storage
+
+documentation:
+  command: >-
+    Optimize references to improve repository performance and reduce disk usage. This subcommand is an alias for [git-pack-refs](cmd://git/pack-refs) and offers identical functionality.

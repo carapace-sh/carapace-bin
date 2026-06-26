@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: conda-environment
+description: Export workspace environment to a conda environment.yaml file
+flags:
+    -e, --environment=: The environment to render the environment file for. Defaults to the default environment
+    -n, --name=: The name to use for the rendered conda environment. Defaults to the environment name
+    -p, --platform=: The platform to render the environment file for. Defaults to the current platform

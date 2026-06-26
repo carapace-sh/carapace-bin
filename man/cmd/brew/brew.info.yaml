@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+aliases:
+    - abv
+description: Display brief statistics for your Homebrew installation
+flags:
+    --analytics: List global Homebrew analytics data
+    --cask: Treat all named arguments as casks
+    --category=: Which type of analytics data to retrieve
+    --days=: How many days of analytics data to retrieve
+    --debug: Display any debugging information
+    --eval-all: Evaluate all available formulae and casks
+    --formula: Treat all named arguments as formulae
+    --github: Open the GitHub source page for <formula> and <cask> in a browser
+    --help: Show this message
+    --installed: Print JSON of formulae that are currently installed
+    --json: Print a JSON representation
+    --quiet: Make some output more quiet
+    --variations: Include the variations hash in each formula's JSON output
+    --verbose: Show more verbose analytics data for <formula>

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cat
+description: Show files and drop-ins of specified units
+group: unit
+documentation:
+  command: |
+    Show backing files of one or more units. Prints the "fragment" and
+    "drop-ins" (source files) of units. Each file is preceded by a comment
+    which includes the file name. Note that this shows the contents of the
+    backing files on disk, which might not match the system manager's
+    understanding if unit files were updated and daemon-reload was not run.

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push
+description: Fast-forward target to current branch
+flags:
+    --no-ff: Create a merge commit (no fast-forward)
+    -h, --help: Print help (see more with '--help')

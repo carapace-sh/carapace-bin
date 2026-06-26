@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: git-browse-ci
+description: Opens the current git repository CI page in your default web browser
+flags:
+    --help: show help

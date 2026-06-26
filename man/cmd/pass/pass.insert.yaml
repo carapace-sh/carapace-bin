@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: insert
+description: insert new password
+flags:
+    -e, --echo: echo the password back to the console
+    -f, --force: overwrite existing entry without prompt
+    -m, --multiline: multiline entry

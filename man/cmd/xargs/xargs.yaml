@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xargs
+description: build and execute command lines from standard input
+flags:
+    --help: display this help and exit
+    --process-slot-var=: set environment variable VAR in child processes
+    --show-limits: show limits on command-line length
+    --version: output version information and exit
+    -0, --null: items are separated by a null
+    -E=: set logical EOF string
+    -I=: same as --replace=R
+    -L, --max-lines=: use at most MAX-LINES non-blank input lines per command line
+    -P, --max-procs=: run at most MAX-PROCS processes at a time
+    -a, --arg-file=: read arguments from FILE
+    -d, --delimiter=: items in input stream are separated by CHARACTER
+    -e, --eof?: equivalent to -E END if END is specified
+    -i, --replace?: replace R in INITIAL-ARGS with names
+    -l=: similar to -L but defaults to at most one non- blank input line
+    -n, --max-args=: use at most MAX-ARGS arguments per command line
+    -o, --open-tty: Reopen stdin as /dev/tty in the child process
+    -p, --interactive: prompt before running commands
+    -r, --no-run-if-empty: if there are no arguments, then do not run COMMAND
+    -s, --max-chars=: limit length of command line to MAX-CHARS
+    -t, --verbose: print commands before executing them
+    -x, --exit: exit if the size (see -s) is exceeded
+
+documentation:
+  command: >-
+    Build and execute commands from stdin input. xargs reads items
+    from stdin (whitespace-delimited, or null-delimited with -0),
+    and executes COMMAND once or more times with those items appended.
+    Default COMMAND is echo. The command line is built until it reaches
+    system limits; control size with -n (items per invocation) or -s
+    (max chars). Run multiple invocations in parallel with -P N. Use
+    -I {} to insert items at a placeholder in the command string. If
+    any invocation exits 255, xargs stops immediately. When input
+    contains spaces or newlines, use -0 with find -print0 for safe
+    handling. Combine with --interactive (-p) to confirm each command.

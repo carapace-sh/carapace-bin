@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: profile
+aliases:
+    - profiles
+description: Manage the authentication profiles for this tool
+
+documentation:
+  command: >-
+    Manage authentication profiles for the New Relic CLI. Add, list, switch, and delete credential profiles.

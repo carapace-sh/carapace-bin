@@ -1,0 +1,1082 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: magick
+description: convert between image formats as well as resize an image, blur, crop, despeckle, dither, draw on, flip, join, re-sample, and much more
+flags:
+    -adaptive-blur*=: adaptively blur pixels; decrease effect near edges
+    -adaptive-resize*=: adaptively resize image with data dependent triangulation.
+    -adaptive-sharpen*=: adaptively sharpen pixels; increase effect near edges
+    -adjoin*: join images into a single multi-image file
+    -affine*=: affine transform matrix
+    -alpha*: on, activate, off, deactivate, set, opaque, copy", transparent, extract, background, or shape the alpha channel
+    -annotate*=: annotate the image with text
+    -antialias*: remove pixel-aliasing
+    -append*: append an image sequence
+    -authenticate*=: decipher image with this password
+    -auto-gamma*: automagically adjust gamma level of image
+    -auto-level*: automagically adjust color levels of image
+    -auto-orient*: automagically orient image
+    -background*=: background color
+    -bench*=: measure performance
+    -bias*=: add bias when convolving an image
+    -bilateral-blur*=: non-linear, edge-preserving, and noise-reducing smoothing filter
+    -black-threshold*=: force all pixels below the threshold into black
+    -blue-primary*=: chromaticity blue primary point
+    -blue-shift*=: simulate a scene at nighttime in the moonlight
+    -blur*=: reduce image noise and reduce detail levels
+    -border*=: surround image with a border of color
+    -bordercolor*=: border color
+    -brightness-contrast*=: improve brightness / contrast of the image
+    -canny*=: use a multi-stage algorithm to detect a wide range of edges in the image
+    -caption*=: assign a caption to an image
+    -cdl*=: color correct with a color decision list
+    -channel*=: apply option to select image channels
+    -charcoal*=: simulate a charcoal drawing
+    -chop*=: remove pixels from the image interior
+    -clahe*=: contrast limited adaptive histogram equalization
+    -clamp*: set each pixel whose value is below zero to zero and any the pixel whose value is above the quantum range to the quantum range (e.g. 65535) otherwise the pixel value remains unchanged.
+    -clip*: clip along the first path from the 8BIM profile
+    -clip-mask*=: associate clip mask with the image
+    -clip-path*=: clip along a named path from the 8BIM profile
+    -clone*=: clone an image
+    -clut*: apply a color lookup table to the image
+    -coalesce*: merge a sequence of images
+    -color-matrix*=: apply color correction to the image.
+    -colorize*=: colorize the image with the fill color
+    -colors*=: preferred number of colors in the image
+    -colorspace*=: set image colorspace
+    -combine*: combine a sequence of images
+    -comment*=: annotate image with comment
+    -compare*: compare image
+    -complex*=: perform complex mathematics on an image sequence
+    -compose*=: set image composite operator
+    -composite*: composite image
+    -compress*=: image compression type
+    -connected-components*=: connected-components uniquely labeled, choose from 4 or 8 way connectivity
+    -contrast*: enhance or reduce the image contrast
+    -contrast-stretch*=: improve the contrast in an image by `stretching' the range of intensity value
+    -convolve*=: apply a convolution kernel to the image
+    -copy*=: copy pixels from one area of an image to another
+    -crop*=: crop the image
+    -cycle*=: cycle the image colormap
+    -debug*=: display copious debugging information
+    -decipher*=: convert cipher pixels to plain
+    -deconstruct*: break down an image sequence into constituent parts
+    -define*=: define one or more image format options
+    -delay*=: display the next image after pausing
+    -delete*=: delete the image from the image sequence
+    -density*=: horizontal and vertical density of the image
+    -depth*=: image depth
+    -despeckle*: reduce the speckles within an image
+    -direction*=: render text right-to-left or left-to-right
+    -display*=: get image or font from this X server
+    -dispose*=: layer disposal method
+    -distort*=: distort image
+    -distribute-cache*=: launch a distributed pixel cache server
+    -dither*=: apply error diffusion to image
+    -draw*=: annotate the image with a graphic primitive
+    -duplicate*=: duplicate an image one or more times
+    -edge*=: apply a filter to detect edges in the image
+    -emboss*=: emboss an image
+    -encipher*=: convert plain pixels to cipher pixels
+    -encoding*=: text encoding type
+    -endian*=: endianness (MSB or LSB) of the image
+    -enhance*: apply a digital filter to enhance a noisy image
+    -equalize*: perform histogram equalization to an image
+    -evaluate*=: evaluate an arithmetic, relational, or logical expression
+    -evaluate-sequence*=: evaluate an arithmetic, relational, or logical expression for an image sequence
+    -extent*=: set the image size
+    -extract*=: extract area from image
+    -family*=: render text with this font family
+    -features*=: analyze image features (e.g. contract, correlations, etc.).
+    -fft*: implements the discrete Fourier transform (DFT)
+    -fill*=: color to use when filling a graphic primitive
+    -filter*=: use this filter when resizing an image
+    -flatten*: flatten a sequence of images
+    -flip*: flip image in the vertical direction
+    -floodfill*=: floodfill the image with color
+    -flop*: flop image in the horizontal direction
+    -font*=: render text with this font
+    -format*=: output formatted image characteristics
+    -frame*=: surround image with an ornamental border
+    -function*=: apply a function to the image
+    -fuzz*=: colors within this distance are considered equal
+    -fx*=: apply mathematical expression to an image channel(s)
+    -gamma*=: level of gamma correction
+    -gaussian-blur*=: reduce image noise and reduce detail levels
+    -geometry*=: preferred size or location of the image
+    -gravity*=: horizontal and vertical text placement
+    -grayscale*=: convert image to grayscale
+    -green-primary*=: chromaticity green primary point
+    -help: print program options
+    -hough-lines*=: identify lines in the image
+    -identify*: identify the format and characteristics of the image
+    -ift*: implements the inverse discrete Fourier transform (DFT)
+    -illuminant*=: reference illuminant
+    -implode*=: implode image pixels about the center
+    -insert*=: insert last image into the image sequence
+    -integral*: Calculate the sum of values (pixel values) in the image
+    -intensity*=: method to generate an intensity value from a pixel
+    -intent*=: type of rendering intent when managing the image color
+    -interlace*=: type of image interlacing scheme
+    -interline-spacing*=: the space between two text lines
+    -interpolate*=: pixel color interpolation method
+    -interword-spacing*=: the space between two words
+    -kerning*=: the space between two characters
+    -kuwahara*=: edge preserving noise reduction filter
+    -label*=: assign a label to an image
+    -lat*=: local adaptive thresholding
+    -layers*=: optimize or compare image layers
+    -level*=: adjust the level of image contrast
+    -limit*=: pixel cache resource limit
+    -linear-stretch*=: linear with saturation histogram stretch
+    -liquid-rescale*=: rescale image with seam-carving
+    -list*=: Color, Configure, Delegate, Format, Magic, Module, Resource, or Type
+    -log*=: format of debugging information
+    -loop*=: add Netscape loop extension to your GIF animation
+    -mask*=: associate a mask with the image
+    -mattecolor*=: frame color
+    -mean-shift*=: delineate arbitrarily shaped clusters in the image
+    -median*=: apply a median filter to the image
+    -metric*=: measure differences between images with this metric
+    -mode*=: make each pixel the 'predominant color' of the neighborhood
+    -modulate*=: vary the brightness, saturation, and hue
+    -moments*: display image moments.
+    -monitor*: monitor progress
+    -monochrome*: transform image to black and white
+    -morph*=: morph an image sequence
+    -morphology*=: apply a morphology method to the image
+    -motion-blur*=: simulate motion blur
+    -negate*: replace each pixel with its complementary color
+    -noise*=: add or reduce noise in an image
+    -normalize*: transform image to span the full range of colors
+    -opaque*=: change this color to the fill color
+    -ordered-dither*=: ordered dither the image
+    -orient*=: image orientation
+    -page*=: size and location of an image canvas (setting)
+    -paint*=: simulate an oil painting
+    -perceptible*: set each pixel whose value is less than |epsilon| to -epsilon or epsilon (whichever is closer) otherwise the pixel value remains unchanged.
+    -ping*: efficiently determine image attributes
+    -pointsize*=: font point size
+    -polaroid*=: simulate a Polaroid picture
+    -poly*=: build a polynomial from the image sequence and the corresponding terms (coefficients and degree pairs).
+    -posterize*=: reduce the image to a limited number of color levels
+    -precision*=: set the maximum number of significant digits to be printed
+    -preview*=: image preview type
+    -print*=: interpret string and print to console
+    -process*=: process the image with a custom image filter
+    -profile*=: add, delete, or apply an image profile
+    -quality*=: JPEG/MIFF/PNG compression level
+    -quantize*=: reduce image colors in this colorspace
+    -quiet*: suppress all warning messages
+    -raise*=: lighten/darken image edges to create a 3-D effect
+    -random-threshold*=: random threshold the image
+    -red-primary*=: chromaticity red primary point
+    -regard-warnings*: pay attention to warning messages.
+    -region*=: apply options to a portion of the image
+    -remap*=: transform image colors to match this set of colors
+    -render*: render vector graphics
+    -repage*=: size and location of an image canvas
+    -resample*=: change the resolution of an image
+    -reshape*=: reshape the image
+    -resize*=: resize the image
+    -respect-parentheses*: settings remain in effect until parenthesis boundary.
+    -roll*=: roll an image vertically or horizontally
+    -rotate*=: apply Paeth rotation to the image
+    -rotational-blur*=: radial blur the image
+    -sample*=: scale image with pixel sampling
+    -sampling-factor*=: horizontal and vertical sampling factor
+    -scale*=: scale the image
+    -scene*=: image scene number
+    -seed*=: seed a new sequence of pseudo-random numbers
+    -segment*=: segment an image
+    -selective-blur*=: selectively blur pixels within a contrast threshold
+    -separate*: separate an image channel into a grayscale image
+    -sepia-tone*=: simulate a sepia-toned photo
+    -set*=: set an image attribute
+    -shade*=: shade the image using a distant light source
+    -shadow*=: simulate an image shadow
+    -sharpen*=: sharpen the image
+    -shave*=: shave pixels from the image edges
+    -shear*=: slide one edge of the image along the X or Y axis
+    -sigmoidal-contrast*=: increase the contrast without saturating highlights or shadows
+    -size*=: width and height of image
+    -sketch*=: simulate a pencil sketch
+    -smush*=: smush an image sequence together
+    -solarize*=: negate all pixels above the threshold level
+    -sort-pixels*: sorts pixels within each scanline in ascending order of intensity
+    -splice*=: splice the background color into the image
+    -spread*=: displace image pixels by a random amount
+    -statistic*=: replace each pixel with corresponding statistic from the neighborhood
+    -stretch*=: render text with this font stretch
+    -strip*: strip image of all profiles and comments
+    -stroke*=: graphic primitive stroke color
+    -strokewidth*=: graphic primitive stroke width
+    -style*=: render text with this font style
+    -swap*=: swap two images in the image sequence
+    -swirl*=: swirl image pixels about the center
+    -synchronize*: synchronize image to storage device
+    -taint*: mark the image as modified
+    -texture*=: name of texture to tile onto the image background
+    -threshold*=: threshold the image
+    -thumbnail*=: create a thumbnail of the image
+    -tile*=: tile image when filling a graphic primitive
+    -tile-offset*=: set the image tile offset
+    -tint*=: tint the image with the fill color
+    -transform*: affine transform image
+    -transparent*=: make this color transparent within the image
+    -transparent-color*=: transparent color
+    -transpose*: flip image in the vertical direction and rotate 90 degrees
+    -transverse*: flop image in the horizontal direction and rotate 270 degrees
+    -treedepth*=: color tree depth
+    -trim*: trim image edges
+    -type*=: image type
+    -undercolor*=: annotation bounding box color
+    -unique-colors*: discard all but one of any pixel color.
+    -units*=: the units of image resolution
+    -unsharp*=: sharpen the image
+    -verbose: print detailed information about the image
+    -version: print version information
+    -view*: FlashPix viewing transforms
+    -vignette*=: soften the edges of the image in vignette style
+    -virtual-pixel*=: access method for pixels outside the boundaries of the image
+    -wave*=: alter an image along a sine wave
+    -wavelet-denoise*=: removes noise from the image using a wavelet transform
+    -weight*=: render text with this font weight
+    -white-point*=: chromaticity white point
+    -white-threshold*=: force all pixels above the threshold into white
+    -word-break*=: sets whether line breaks appear wherever the text would otherwise overflow its content box. Choose from normal, the default, or break-word.
+    -write*=: write images to this file
+commands:
+    - name: animate
+      description: animate an image sequence on any X server.
+      flags:
+        -alpha*: on, activate, off, deactivate, set, opaque, copy", transparent, extract, background, or shape the alpha channel
+        -antialias*: remove pixel-aliasing
+        -authenticate*=: decrypt image with this password
+        -backdrop*: display the image centered on a backdrop
+        -background*=: background color
+        -border*=: surround image with a border of color
+        -bordercolor*=: border color
+        -channel*=: apply option to select image channels
+        -clip*: clip along the first path from the 8BIM profile
+        -clip-path*=: clip along a named path from the 8BIM profile
+        -coalesce*: merge a sequence of images
+        -colormap*=: Shared or Private
+        -colors*=: preferred number of colors in the image
+        -colorspace*=: set image colorspace
+        -comment*=: annotate image with comment
+        -compress*=: image compression type
+        -contrast*: enhance or reduce the image contrast
+        -crop*=: preferred size and location of the cropped image
+        -debug*=: animate copious debugging information
+        -decipher*=: convert cipher pixels to plain
+        -define*=: define one or more image format options
+        -delay*=: animate the next image after pausing
+        -density*=: horizontal and vertical density of the image
+        -depth*=: image depth
+        -despeckle*: reduce the speckles within an image
+        -display*=: get image or font from this X server
+        -dispose*=: layer disposal method
+        -dither*=: apply error diffusion to image
+        -edge*=: apply a filter to detect edges in the image
+        -endian*=: endianness (MSB or LSB) of the image
+        -enhance*: apply a digital filter to enhance a noisy image
+        -extract*=: extract area from image
+        -filter*=: use this filter when resizing an image
+        -flatten*: flatten a sequence of images
+        -flip*: flip image in the vertical direction
+        -flop*: flop image in the horizontal direction
+        -frame*=: surround image with an ornamental border
+        -gamma*=: level of gamma correction
+        -geometry*=: preferred size or location of the image
+        -gravity*=: horizontal and vertical backdrop placement
+        -help: print program options
+        -identify*: identify the format and characteristics of the image
+        -immutable*=: prohibit image edits
+        -interlace*=: type of image interlacing scheme
+        -interpolate*=: pixel color interpolation method
+        -label*=: assign a label to an image
+        -limit*=: pixel cache resource limit
+        -log*=: format of debugging information
+        -map*=: transform image colors to match this set of colors
+        -mattecolor*=: frame color
+        -monitor*: monitor progress
+        -monochrome*: transform image to black and white
+        -negate*: replace each pixel with its complementary color
+        -page*=: size and location of an image canvas (setting)
+        -profile*=: add, delete, or apply an image profile
+        -quantize*=: reduce image colors in this colorspace
+        -quiet*: suppress all warning messages
+        -raise*=: lighten/darken image edges to create a 3-D effect
+        -regard-warnings*: pay attention to warning messages.
+        -remote*=: execute a command in an remote animate process
+        -resample*=: change the resolution of an image
+        -resize*=: resize the image
+        -respect-parentheses*: settings remain in effect until parenthesis boundary.
+        -roll*=: roll an image vertically or horizontally
+        -rotate*=: apply Paeth rotation to the image
+        -sample*=: scale image with pixel sampling
+        -sampling-factor*=: horizontal and vertical sampling factor
+        -scene*=: image scene number
+        -seed*=: seed a new sequence of pseudo-random numbers
+        -segment*=: segment an image
+        -set*=: set an image attribute
+        -sharpen*=: sharpen the image
+        -size*=: width and height of image
+        -strip*: strip image of all profiles and comments
+        -thumbnail*=: create a thumbnail of the image
+        -transparent-color*=: transparent color
+        -trim*: trim image edges
+        -update*=: detect when image file is modified and reanimate
+        -verbose: print detailed information about the image
+        -version: print version information
+        -virtual-pixel*=: access method for pixels outside the boundaries of the image
+        -visual*: animate image using this visual type
+        -window*=: animate images to background of this window
+        -window-group*=: exit program when this window id is destroyed
+    - name: compare
+      description: mathematically and visually annotate the difference between an image and its reconstruction.
+      flags:
+        -adjoin*: join images into a single multi-image file
+        -alpha*: on, activate, off, deactivate, set, opaque, copy", transparent, extract, background, or shape the alpha channel
+        -authenticate*=: decrypt image with this password
+        -auto-orient*: automagically orient image
+        -background*=: background color
+        -brightness-contrast*=: improve brightness / contrast of the image
+        -channel*=: apply option to select image channels
+        -colorspace*=: set image colorspace
+        -compose*=: set image composite operator
+        -crop*=: crop the image
+        -debug*=: display copious debugging information
+        -decipher*=: convert cipher pixels to plain
+        -define*=: define one or more image format options
+        -density*=: horizontal and vertical density of the image
+        -depth*=: image depth
+        -dissimilarity-threshold*=: maximum distortion for (sub)image match (default 0.2)
+        -distort*=: distort image
+        -encipher*=: convert plain pixels to cipher pixels
+        -extract*=: extract area from image
+        -fuzz*=: colors within this distance are considered equal
+        -gravity*=: horizontal and vertical text placement
+        -help: print program options
+        -highlight-color*=: emphasize pixel differences with this color
+        -identify*: identify the format and characteristics of the image
+        -interlace*=: type of image interlacing scheme
+        -level*=: adjust the level of image contrast
+        -limit*=: pixel cache resource limit
+        -log*=: format of debugging information
+        -lowlight-color*=: de-emphasize pixel differences with this color
+        -metric*=: measure differences between images with this metric.  The default metric is RMSE.
+        -negate*: replace each pixel with its complementary color
+        -profile*=: add, delete, or apply an image profile
+        -quality*=: JPEG/MIFF/PNG compression level
+        -quantize*=: reduce image colors in this colorspace
+        -quiet*: suppress all warning messages
+        -read-mask*=: associate a read mask with the image
+        -regard-warnings*: pay attention to warning messages.
+        -repage*=: size and location of an image canvas
+        -resize*=: resize the image
+        -respect-parentheses*: settings remain in effect until parenthesis boundary.
+        -rotate*=: apply Paeth rotation to the image
+        -sampling-factor*=: horizontal and vertical sampling factor
+        -seed*=: seed a new sequence of pseudo-random numbers
+        -separate*: separate an image channel into a grayscale image
+        -set*=: set an image attribute
+        -sigmoidal-contrast*=: increase the contrast without saturating highlights or shadows
+        -similarity-threshold*=: minimum distortion for (sub)image match (default 0.0)
+        -size*=: width and height of image
+        -subimage-search*: search for subimage
+        -synchronize*: synchronize image to storage device
+        -taint*: mark the image as modified
+        -transparent-color*=: transparent color
+        -trim*: trim image edges
+        -verbose: print detailed information about the image
+        -version: print version information
+        -virtual-pixel*=: access method for pixels outside the boundaries of the image
+        -write-mask *=: associate a write mask with the image
+    - name: composite
+      description: overlap one image over another.
+      flags:
+        -affine*=: affine transform matrix
+        -alpha*: on, activate, off, deactivate, set, opaque, copy", transparent, extract, background, or shape the alpha channel
+        -authenticate*=: decrypt image with this password
+        -blend*=: blend images
+        -blue-primary*=: chromaticity blue primary point
+        -border*=: surround image with a border of color
+        -bordercolor*=: border color
+        -channel*=: apply option to select image channels
+        -colors*=: preferred number of colors in the image
+        -colorspace*=: set image colorspace
+        -comment*=: annotate image with comment
+        -compose*=: set image composite operator
+        -compress*=: image compression type
+        -debug*=: display copious debugging information
+        -decipher*=: convert cipher pixels to plain
+        -define*=: define one or more image format options
+        -density*=: horizontal and vertical density of the image
+        -depth*=: image depth
+        -displace*=: shift image pixels defined by a displacement map
+        -dissolve*=: dissolve the two images a given percent
+        -dither*=: apply error diffusion to image
+        -encipher*=: convert plain pixels to cipher pixels
+        -encoding*=: text encoding type
+        -endian*=: endianness (MSB or LSB) of the image
+        -extract*=: extract area from image
+        -filter*=: use this filter when resizing an image
+        -font*=: render text with this font
+        -geometry*=: preferred size or location of the image
+        -gravity*=: horizontal and vertical text placement
+        -green-primary*=: chromaticity green primary point
+        -help: print program options
+        -identify*: identify the format and characteristics of the image
+        -interlace*=: type of image interlacing scheme
+        -interpolate*=: pixel color interpolation method
+        -label*=: assign a label to an image
+        -level*=: adjust the level of image contrast
+        -limit*=: pixel cache resource limit
+        -log*=: format of debugging information
+        -monitor*: monitor progress
+        -monochrome*: transform image to black and white
+        -negate*: replace each pixel with its complementary color
+        -page*=: size and location of an image canvas (setting)
+        -pointsize*=: font point size
+        -profile*=: add, delete, or apply an image profile
+        -quality*=: JPEG/MIFF/PNG compression level
+        -quantize*=: reduce image colors in this colorspace
+        -quiet*: suppress all warning messages
+        -red-primary*=: chromaticity red primary point
+        -regard-warnings*: pay attention to warning messages.
+        -respect-parentheses*: settings remain in effect until parenthesis boundary.
+        -rotate*=: apply Paeth rotation to the image
+        -sampling-factor*=: horizontal and vertical sampling factor
+        -scene*=: image scene number
+        -seed*=: seed a new sequence of pseudo-random numbers
+        -set*=: set an image attribute
+        -sharpen*=: sharpen the image
+        -shave*=: shave pixels from the image edges
+        -size*=: width and height of image
+        -stegano*=: hide watermark within an image
+        -stereo*=: combine two image to create a stereo anaglyph
+        -strip*: strip image of all profiles and comments
+        -swap*=: swap two images in the image sequence
+        -synchronize*: synchronize image to storage device
+        -taint*: mark the image as modified
+        -thumbnail*=: create a thumbnail of the image
+        -tile*: repeat composite operation across and down image
+        -transform*: affine transform image
+        -transparent-color*=: transparent color
+        -treedepth*=: color tree depth
+        -type*=: image type
+        -units*=: the units of image resolution
+        -unsharp*=: sharpen the image
+        -verbose: print detailed information about the image
+        -version: print version information
+        -virtual-pixel*=: access method for pixels outside the boundaries of the image
+        -watermark*=: percent brightness and saturation of a watermark
+        -white-point*=: chromaticity white point
+        -white-threshold*=: force all pixels above the threshold into white
+        -write*=: write images to this file
+    - name: conjure
+      description: interpret and execute scripts written in the Magick Scripting Language (MSL).
+      flags:
+        -debug*=: display copious debugging information
+        -help: print program options
+        -log*=: format of debugging information
+        -monitor*: monitor progress
+        -quiet*: suppress all warning messages
+        -regard-warnings*: pay attention to warning messages.
+        -seed*=: seed a new sequence of pseudo-random numbers
+        -verbose: print detailed information about the image
+        -version: print version information
+    - name: display
+      description: display an image or image sequence on any X server.
+      flags:
+        -alpha*: on, activate, off, deactivate, set, opaque, copy", transparent, extract, background, or shape the alpha channel
+        -antialias*: remove pixel-aliasing
+        -authenticate*=: decrypt image with this password
+        -backdrop*: display image centered on a backdrop
+        -background*=: background color
+        -black-threshold*=: force all pixels below the threshold into black
+        -border*=: surround image with a border of color
+        -bordercolor*=: border color
+        -channel*=: apply option to select image channels
+        -clip*: clip along the first path from the 8BIM profile
+        -clip-path*=: clip along a named path from the 8BIM profile
+        -coalesce*: merge a sequence of images
+        -colormap*=: Shared or Private
+        -colors*=: preferred number of colors in the image
+        -colorspace*=: set image colorspace
+        -comment*=: annotate image with comment
+        -compress*=: image compression type
+        -contrast*: enhance or reduce the image contrast
+        -crop*=: preferred size and location of the cropped image
+        -debug*=: display copious debugging information
+        -decipher*=: convert cipher pixels to plain
+        -define*=: define one or more image format options
+        -delay*=: display the next image after pausing
+        -density*=: horizontal and vertical density of the image
+        -depth*=: image depth
+        -despeckle*: reduce the speckles within an image
+        -display*=: get image or font from this X server
+        -dispose*=: layer disposal method
+        -dither*=: apply error diffusion to image
+        -edge*=: apply a filter to detect edges in the image
+        -endian*=: endianness (MSB or LSB) of the image
+        -enhance*: apply a digital filter to enhance a noisy image
+        -equalize*: perform histogram equalization to an image
+        -extract*=: extract area from image
+        -filter*=: use this filter when resizing an image
+        -flatten*: flatten a sequence of images
+        -flip*: flip image in the vertical direction
+        -flop*: flop image in the horizontal direction
+        -frame*=: surround image with an ornamental border
+        -fuzz*=: colors within this distance are considered equal
+        -gamma*=: level of gamma correction
+        -geometry*=: preferred size or location of the image
+        -gravity*=: horizontal and vertical backdrop placement
+        -help: print program options
+        -identify*: identify the format and characteristics of the image
+        -immutable*=: prohibit image edits
+        -interlace*=: type of image interlacing scheme
+        -interpolate*=: pixel color interpolation method
+        -label*=: assign a label to an image
+        -limit*=: pixel cache resource limit
+        -log*=: format of debugging information
+        -map*=: transform image colors to match this set of colors
+        -mattecolor*=: frame color
+        -monitor*: monitor progress
+        -monochrome*: transform image to black and white
+        -negate*: replace each pixel with its complementary color
+        -normalize*: transform image to span the full range of colors
+        -page*=: size and location of an image canvas (setting)
+        -profile*=: add, delete, or apply an image profile
+        -quantize*=: reduce image colors in this colorspace
+        -quiet*: suppress all warning messages
+        -raise*=: lighten/darken image edges to create a 3-D effect
+        -regard-warnings*: pay attention to warning messages.
+        -remote*=: execute a command in an remote display process
+        -resample*=: change the resolution of an image
+        -resize*=: resize the image
+        -respect-parentheses*: settings remain in effect until parenthesis boundary.
+        -roll*=: roll an image vertically or horizontally
+        -rotate*=: apply Paeth rotation to the image
+        -sample*=: scale image with pixel sampling
+        -sampling-factor*=: horizontal and vertical sampling factor
+        -scene*=: image scene number
+        -seed*=: seed a new sequence of pseudo-random numbers
+        -segment*=: segment an image
+        -set*=: set an image attribute
+        -sharpen*=: sharpen the image
+        -size*=: width and height of image
+        -strip*: strip image of all profiles and comments
+        -thumbnail*=: create a thumbnail of the image
+        -transparent-color*=: transparent color
+        -trim*: trim image edges
+        -update*=: detect when image file is modified and redisplay
+        -verbose: print detailed information about the image
+        -version: print version information
+        -virtual-pixel*=: access method for pixels outside the boundaries of the image
+        -visual*: display image using this visual type
+        -window*=: display image to background of this window
+        -window-group*=: exit program when this window id is destroyed
+        -write*=: write images to this file
+    - name: identify
+      description: describe the format and characteristics of one or more image files.
+      flags:
+        -alpha*: on, activate, off, deactivate, set, opaque, copy", transparent, extract, background, or shape the alpha channel
+        -antialias*: remove pixel-aliasing
+        -authenticate*=: decrypt image with this password
+        -auto-orient*: automagically orient image
+        -channel*=: apply option to select image channels
+        -clip*: clip along the first path from the 8BIM profile
+        -clip-mask*: associate clip mask with the image
+        -clip-path*=: clip along a named path from the 8BIM profile
+        -colorspace*=: set image colorspace
+        -crop*=: crop the image
+        -debug*=: display copious debugging information
+        -define*=: define one or more image format options
+        -density*=: horizontal and vertical density of the image
+        -depth*=: image depth
+        -endian*=: endianness (MSB or LSB) of the image
+        -extract*=: extract area from image
+        -features*=: analyze image features (e.g. contract, correlations, etc.).
+        -format*=: output formatted image characteristics
+        -gamma*=: level of gamma correction
+        -grayscale*=: convert image to grayscale
+        -help: print program options
+        -interlace*=: type of image interlacing scheme
+        -interpolate*=: pixel color interpolation method
+        -limit*=: pixel cache resource limit
+        -list*=: Color, Configure, Delegate, Format, Magic, Module, Resource, or Type
+        -log*=: format of debugging information
+        -mask*=: associate a mask with the image
+        -moments*: display image moments and perceptual hash.
+        -monitor*: monitor progress
+        -negate*: replace each pixel with its complementary color
+        -ping*: by default, efficiently determine certain image characteristics by only reading the requisite image metadata.  To accurately identify all the image metadata and pixel characteristics, use
+        -precision*=: set the maximum number of significant digits to be printed
+        -quiet*: suppress all warning messages
+        -regard-warnings*: pay attention to warning messages.
+        -respect-parentheses*: settings remain in effect until parenthesis boundary.
+        -sampling-factor*=: horizontal and vertical sampling factor
+        -set*=: set an image attribute
+        -size*=: width and height of image
+        -strip*: strip image of all profiles and comments
+        -unique*: display image the number of unique colors in the image.
+        -units*=: the units of image resolution
+        -verbose: print detailed information about the image
+        -version: print version information
+        -virtual-pixel*=: access method for pixels outside the boundaries of the image
+    - name: import
+      description: save any visible window on an X server and outputs it as an image file. You can capture a single window, the entire screen, or any rectangular portion of the screen.
+      flags:
+        -adjoin*: join images into a single multi-image file
+        -annotate*=: annotate the image with text
+        -border*: include window border in the output image
+        -channel*=: apply option to select image channels
+        -colors*=: preferred number of colors in the image
+        -colorspace*=: set image colorspace
+        -comment*=: annotate image with comment
+        -compress*=: image compression type
+        -contrast*: enhance or reduce the image contrast
+        -crop*=: preferred size and location of the cropped image
+        -debug*=: import copious debugging information
+        -define*=: define one or more image format options
+        -delay*=: import the next image after pausing
+        -density*=: horizontal and vertical density of the image
+        -depth*=: image depth
+        -descend*: obtain image by descending window hierarchy
+        -display*=: get image or font from this X server
+        -dispose*=: layer disposal method
+        -dither*=: apply error diffusion to image
+        -encipher*=: convert plain pixels to cipher pixels
+        -encoding*=: text encoding type
+        -endian*=: endianness (MSB or LSB) of the image
+        -filter*=: use this filter when resizing an image
+        -frame*: include window manager frame
+        -geometry*=: preferred size or location of the image
+        -gravity*=: horizontal and vertical text placement
+        -help: print program options
+        -identify*: identify the format and characteristics of the image
+        -interlace*=: type of image interlacing scheme
+        -interpolate*=: pixel color interpolation method
+        -label*=: assign a label to an image
+        -limit*=: pixel cache resource limit
+        -log*=: format of debugging information
+        -monitor*: monitor progress
+        -monochrome*: transform image to black and white
+        -negate*: replace each pixel with its complementary color
+        -page*=: size and location of an image canvas (setting)
+        -pause*=: seconds delay between snapshots
+        -quality*=: JPEG/MIFF/PNG compression level
+        -quantize*=: reduce image colors in this colorspace
+        -quiet*: suppress all warning messages
+        -regard-warnings*: pay attention to warning messages.
+        -repage*=: size and location of an image canvas
+        -resize*=: resize the image
+        -respect-parentheses*: settings remain in effect until parenthesis boundary.
+        -rotate*=: apply Paeth rotation to the image
+        -sampling-factor*=: horizontal and vertical sampling factor
+        -scene*=: image scene number
+        -screen*: select image from root window
+        -seed*=: seed a new sequence of pseudo-random numbers
+        -set*=: set an image attribute
+        -silent*: operate silently, i.e. don't ring any bells
+        -strip*: strip image of all profiles and comments
+        -synchronize*: synchronize image to storage device
+        -taint*: mark the image as modified
+        -transparent-color*=: transparent color
+        -trim*: trim image edges
+        -type*=: image type
+        -verbose: print detailed information about the image
+        -version: print version information
+        -virtual-pixel*=: access method for pixels outside the boundaries of the image
+        -window*=: select window with this id or name
+    - name: mogrify
+      description: resize an image, blur, crop, despeckle, dither, draw on, flip, join, re-sample, and much more. Mogrify overwrites the original image file, whereas, magick writes to a different image file.
+      flags:
+        -adaptive-blur*=: adaptively blur pixels; decrease effect near edges
+        -adaptive-resize*=: adaptively resize image with data dependent triangulation.
+        -adaptive-sharpen*=: adaptively sharpen pixels; increase effect near edges
+        -adjoin*: join images into a single multi-image file
+        -affine*=: affine transform matrix
+        -alpha*: on, activate, off, deactivate, set, opaque, copy", transparent, extract, background, or shape the alpha channel
+        -annotate*=: annotate the image with text
+        -antialias*: remove pixel-aliasing
+        -append*: append an image sequence
+        -authenticate*=: decipher image with this password
+        -auto-gamma*: automagically adjust gamma level of image
+        -auto-level*: automagically adjust color levels of image
+        -auto-orient*: automagically orient image
+        -auto-threshold*=: automatically perform image thresholding
+        -background*=: background color
+        -bench*=: measure performance
+        -bias*=: add bias when convolving an image
+        -bilateral-blur*=: non-linear, edge-preserving, and noise-reducing smoothing filter
+        -black-threshold*=: force all pixels below the threshold into black
+        -blue-primary*=: chromaticity blue primary point
+        -blue-shift*=: simulate a scene at nighttime in the moonlight
+        -blur*=: reduce image noise and reduce detail levels
+        -border*=: surround image with a border of color
+        -bordercolor*=: border color
+        -brightness-contrast*=: improve brightness / contrast of the image
+        -canny*=: use a multi-stage algorithm to detect a wide range of edges in the image
+        -caption*=: assign a caption to an image
+        -cdl*=: color correct with a color decision list
+        -channel*=: apply option to select image channels
+        -charcoal*=: simulate a charcoal drawing
+        -chop*=: remove pixels from the image interior
+        -clahe*=: contrast limited adaptive histogram equalization
+        -clamp*: set each pixel whose value is below zero to zero and any the pixel whose value is above the quantum range to the quantum range (e.g. 65535) otherwise the pixel value remains unchanged.
+        -clip*: clip along the first path from the 8BIM profile
+        -clip-mask*: associate clip mask with the image
+        -clip-path*=: clip along a named path from the 8BIM profile
+        -clut*: apply a color lookup table to the image
+        -coalesce*: merge a sequence of images
+        -color-matrix*=: apply color correction to the image.
+        -color-threshold*=: force all pixels in the color range to white otherwise black
+        -colorize*=: colorize the image with the fill color
+        -colors*=: preferred number of colors in the image
+        -colorspace*=: set image colorspace
+        -combine*: combine a sequence of images
+        -comment*=: annotate image with comment
+        -complex*: perform complex mathematics on an image sequence
+        -compose*=: set image composite operator
+        -composite*: composite image
+        -compress*=: image compression type
+        -connected-components*=: connected-components uniquely labeled, choose from 4 or 8 way connectivity
+        -contrast*: enhance or reduce the image contrast
+        -contrast-stretch*=: improve the contrast in an image by `stretching' the range of intensity value
+        -convolve*=: apply a convolution kernel to the image
+        -copy*=: copy pixels from one area of an image to another
+        -crop*=: crop the image
+        -cycle*=: cycle the image colormap
+        -debug*=: display copious debugging information
+        -decipher*=: convert cipher pixels to plain
+        -deconstruct*: break down an image sequence into constituent parts
+        -define*=: define one or more image format options
+        -delay*=: display the next image after pausing
+        -delete*=: delete the image from the image sequence
+        -density*=: horizontal and vertical density of the image
+        -depth*=: image depth
+        -despeckle*: reduce the speckles within an image
+        -direction*=: render text right-to-left or left-to-right
+        -display*=: get image or font from this X server
+        -dispose*=: layer disposal method
+        -distort*=: distort image
+        -distribute-cache*=: launch a pixel cache server
+        -dither*=: apply error diffusion to image
+        -draw*=: annotate the image with a graphic primitive
+        -duplicate*=: duplicate an image one or more times
+        -edge*=: apply a filter to detect edges in the image
+        -emboss*=: emboss an image
+        -encipher*=: convert plain pixels to cipher pixels
+        -encoding*=: text encoding type
+        -endian*=: endianness (MSB or LSB) of the image
+        -enhance*: apply a digital filter to enhance a noisy image
+        -equalize*: perform histogram equalization to an image
+        -evaluate*=: evaluate an arithmetic, relational, or logical expression
+        -evaluate-sequence*=: evaluate an arithmetic, relational, or logical expression for an image sequence
+        -extent*=: set the image size
+        -extract*=: extract area from image
+        -family*=: render text with this font family
+        -features*=: analyze image features (e.g. contract, correlations, etc.).
+        -fft*: implements the discrete Fourier transform (DFT)
+        -fill*=: color to use when filling a graphic primitive
+        -filter*=: use this filter when resizing an image
+        -flatten*: flatten a sequence of images
+        -flip*: flip image in the vertical direction
+        -floodfill*=: floodfill the image with color
+        -flop*: flop image in the horizontal direction
+        -font*=: render text with this font
+        -format*=: output formatted image characteristics
+        -frame*=: surround image with an ornamental border
+        -function*=: apply a function to the image
+        -fuzz*=: colors within this distance are considered equal
+        -fx*=: apply mathematical expression to an image channel(s)
+        -gamma*=: level of gamma correction
+        -gaussian-blur*=: reduce image noise and reduce detail levels
+        -geometry*=: preferred size or location of the image
+        -gravity*=: horizontal and vertical text placement
+        -grayscale*=: convert image to grayscale
+        -green-primary*=: chromaticity green primary point
+        -help: print program options
+        -hough-lines*=: identify lines in the image
+        -identify*: identify the format and characteristics of the image
+        -ifft*: implements the inverse discrete Fourier transform (DFT)
+        -illuminant*=: reference illuminant
+        -implode*=: implode image pixels about the center
+        -insert*=: insert last image into the image sequence
+        -integral*: Calculate the sum of values (pixel values) in the image
+        -intensity*=: method to generate an intensity value from a pixel
+        -intent*=: type of rendering intent when managing the image color
+        -interlace*=: type of image interlacing scheme
+        -interline-spacing*=: the space between two text lines
+        -interpolate*=: pixel color interpolation method
+        -interword-spacing*=: the space between two words
+        -kerning*=: the space between two characters
+        -kmeans*=: K means color reduction
+        -kuwahara*=: edge preserving noise reduction filter
+        -label*=: assign a label to an image
+        -lat*=: local adaptive thresholding
+        -layers*=: optimize or compare image layers
+        -level*=: adjust the level of image contrast
+        -limit*=: pixel cache resource limit
+        -linear-stretch*=: linear with saturation histogram stretch
+        -liquid-rescale*=: rescale image with seam-carving
+        -log*=: format of debugging information
+        -loop*=: add Netscape loop extension to your GIF animation
+        -mattecolor*=: frame color
+        -mean-shift*=: delineate arbitrarily shaped clusters in the image
+        -median*=: apply a median filter to the image
+        -metric*=: measure differences between images with this metric
+        -mode*=: make each pixel the 'predominant color' of the neighborhood
+        -modulate*=: vary the brightness, saturation, and hue
+        -monitor*: monitor progress
+        -monochrome*: transform image to black and white
+        -morph*=: morph an image sequence
+        -morphology*=: apply a morphology method to the image
+        -motion-blur*=: simulate motion blur
+        -negate*: replace each pixel with its complementary color
+        -noise*=: add or reduce noise in an image
+        -normalize*: transform image to span the full range of colors
+        -opaque*=: change this color to the fill color
+        -ordered-dither*=: ordered dither the image
+        -orient*=: image orientation
+        -page*=: size and location of an image canvas (setting)
+        -paint*=: simulate an oil painting
+        -path*=: write images to this path on disk
+        -perceptible*: set each pixel whose value is less than |
+        -ping*: efficiently determine image attributes
+        -pointsize*=: font point size
+        -polaroid*=: simulate a Polaroid picture
+        -poly*=: build a polynomial from the image sequence and the corresponding terms (coefficients and degree pairs).
+        -posterize*=: reduce the image to a limited number of color levels
+        -precision*=: set the maximum number of significant digits to be printed
+        -preview*=: image preview type
+        -print*=: interpret string and print to console
+        -process*=: process the image with a custom image filter
+        -profile*=: add, delete, or apply an image profile
+        -quality*=: JPEG/MIFF/PNG compression level
+        -quantize*=: reduce image colors in this colorspace
+        -quiet*: suppress all warning messages
+        -raise*=: lighten/darken image edges to create a 3-D effect
+        -random-threshold*=: random threshold the image
+        -range-threshold*=: perform either hard or soft thresholding within some range of values in an image
+        -read-mask*=: associate a read mask with the image
+        -red-primary*=: chromaticity red primary point
+        -regard-warnings*: pay attention to warning messages.
+        -region*=: apply options to a portion of the image
+        -remap*=: transform image colors to match this set of colors
+        -render*: render vector graphics
+        -repage*=: size and location of an image canvas
+        -resample*=: change the resolution of an image
+        -reshape*=: reshape the image
+        -resize*=: resize the image
+        -respect-parentheses*: settings remain in effect until parenthesis boundary.
+        -roll*=: roll an image vertically or horizontally
+        -rotate*=: apply Paeth rotation to the image
+        -rotational-blur*=: radial blur the image
+        -sample*=: scale image with pixel sampling
+        -sampling-factor*=: horizontal and vertical sampling factor
+        -scale*=: scale the image
+        -scene*=: image scene number
+        -seed*=: seed a new sequence of pseudo-random numbers
+        -segment*=: segment an image
+        -selective-blur*=: selectively blur pixels within a contrast threshold
+        -separate*: separate an image channel into a grayscale image
+        -sepia-tone*=: simulate a sepia-toned photo
+        -set*=: set an image attribute
+        -shade*=: shade the image using a distant light source
+        -shadow*=: simulate an image shadow
+        -sharpen*=: sharpen the image
+        -shave*=: shave pixels from the image edges
+        -shear*=: slide one edge of the image along the X or Y axis
+        -sigmoidal-contrast*=: increase the contrast without saturating highlights or shadows
+        -size*=: width and height of image
+        -sketch*=: simulate a pencil sketch
+        -smush*=: smush an image sequence together
+        -solarize*=: negate all pixels above the threshold level
+        -sort-pixels*: sorts pixels within each scanline in ascending order of intensity
+        -splice*=: splice the background color into the image
+        -spread*=: displace image pixels by a random amount
+        -statistic*=: replace each pixel with corresponding statistic from the neighborhood
+        -stretch*=: render text with this font stretch
+        -strip*: strip image of all profiles and comments
+        -stroke*=: graphic primitive stroke color
+        -strokewidth*=: graphic primitive stroke width
+        -style*=: render text with this font style
+        -swap*=: swap two images in the image sequence
+        -swirl*=: swirl image pixels about the center
+        -synchronize*: synchronize image to storage device
+        -texture*=: name of texture to tile onto the image background
+        -threshold*=: threshold the image
+        -thumbnail*=: create a thumbnail of the image
+        -tile*=: tile image when filling a graphic primitive
+        -tile-offset*=: set the image tile offset
+        -tint*=: tint the image with the fill color
+        -transform*: affine transform image
+        -transparent*=: make this color transparent within the image
+        -transparent-color*=: transparent color
+        -transpose*: flip image in the vertical direction and rotate 90 degrees
+        -transverse*: flop image in the horizontal direction and rotate 270 degrees
+        -treedepth*=: color tree depth
+        -trim*: trim image edges
+        -type*=: image type
+        -undercolor*=: annotation bounding box color
+        -unique-colors*: discard all but one of any pixel color.
+        -units*=: the units of image resolution
+        -unsharp*=: sharpen the image
+        -verbose: print detailed information about the image
+        -version: print version information
+        -view*: FlashPix viewing transforms
+        -vignette*=: soften the edges of the image in vignette style
+        -virtual-pixel*=: access method for pixels outside the boundaries of the image
+        -wave*=: alter an image along a sine wave
+        -wavelet-denoise*=: removes noise from the image using a wavelet transform
+        -weight*=: render text with this font weight
+        -white-point*=: chromaticity white point
+        -white-threshold*=: force all pixels above the threshold into white
+        -word-break*=: sets whether line breaks appear wherever the text would otherwise overflow its content box. Choose from normal, the default, or break-word.
+        -write*=: write images to this file
+        -write-mask*=: associate a write mask with the image
+    - name: montage
+      description: create a composite image by combining several separate images. The images are tiled on the composite image optionally adorned with a border, frame, image name, and more.
+      flags:
+        -adaptive-sharpen*=: adaptively sharpen pixels; increase effect near edges
+        -adjoin*: join images into a single multi-image file
+        -affine*=: affine transform matrix
+        -alpha*: on, activate, off, deactivate, set, opaque, copy", transparent, extract, background, or shape the alpha channel
+        -annotate*=: annotate the image with text
+        -authenticate*=: decrypt image with this password
+        -auto-orient*: automagically orient image
+        -background*=: background color
+        -blue-primary*=: chromaticity blue primary point
+        -blur*=: reduce image noise and reduce detail levels
+        -border*=: surround image with a border of color
+        -bordercolor*=: border color
+        -caption*=: assign a caption to an image
+        -channel*=: apply option to select image channels
+        -clone*=: clone an image
+        -coalesce*: merge a sequence of images
+        -colors*=: preferred number of colors in the image
+        -colorspace*=: set image colorspace
+        -comment*=: annotate image with comment
+        -compose*=: set image composite operator
+        -composite*: composite image
+        -compress*=: image compression type
+        -crop*=: preferred size and location of the cropped image
+        -debug*=: display copious debugging information
+        -define*=: define one or more image format options
+        -delay*=: display the next image after pausing
+        -density*=: horizontal and vertical density of the image
+        -depth*=: image depth
+        -display*=: get image or font from this X server
+        -dispose*=: layer disposal method
+        -distort*=: distort image
+        -dither*=: apply error diffusion to image
+        -draw*=: annotate the image with a graphic primitive
+        -duplicate*=: duplicate an image one or more times
+        -endian*=: endianness (MSB or LSB) of the image
+        -extent*=: set the image size
+        -extract*=: extract area from image
+        -family*=: render text with this font family
+        -fill*=: color to use when filling a graphic primitive
+        -filter*=: use this filter when resizing an image
+        -flatten*: flatten a sequence of images
+        -flip*: flip image in the vertical direction
+        -flop*: flop image in the horizontal direction
+        -font*=: render text with this font
+        -frame*=: surround image with an ornamental border
+        -gamma*=: level of gamma correction
+        -geometry*=: preferred size or location of the image
+        -gravity*=: horizontal and vertical text placement
+        -green-primary*=: chromaticity green primary point
+        -help: print program options
+        -identify*: identify the format and characteristics of the image
+        -interlace*=: type of image interlacing scheme
+        -interpolate*=: pixel color interpolation method
+        -kerning*=: the space between two characters
+        -label*=: assign a label to an image
+        -limit*=: pixel cache resource limit
+        -log*=: format of debugging information
+        -mattecolor*=: frame color
+        -mode*=: framing style
+        -monitor*: monitor progress
+        -monochrome*: transform image to black and white
+        -origin*=: image origin
+        -page*=: size and location of an image canvas (setting)
+        -pointsize*=: font point size
+        -polaroid*=: simulate a Polaroid picture
+        -profile*=: add, delete, or apply an image profile
+        -quality*=: JPEG/MIFF/PNG compression level
+        -quantize*=: reduce image colors in this colorspace
+        -quiet*: suppress all warning messages
+        -red-primary*=: chromaticity red primary point
+        -regard-warnings*: pay attention to warning messages.
+        -repage*=: size and location of an image canvas
+        -resize*=: resize the image
+        -respect-parentheses*: settings remain in effect until parenthesis boundary.
+        -rotate*=: apply Paeth rotation to the image
+        -sampling-factor*=: horizontal and vertical sampling factor
+        -scale*=: scale the image
+        -scenes*=: image scene range
+        -seed*=: seed a new sequence of pseudo-random numbers
+        -shadow*=: simulate an image shadow
+        -size*=: width and height of image
+        -strip*: strip image of all profiles and comments
+        -stroke*=: graphic primitive stroke color
+        -synchronize*: synchronize image to storage device
+        -taint*: mark the image as modified
+        -texture*=: name of texture to tile onto the image background
+        -tile*=: number of tiles per row and column (e.g. -tile 8x)
+        -tile-offset*=: set the image tile offset
+        -title*: decorate the montage image with a title
+        -transform*: affine transform image
+        -transparent*=: make this color transparent within the image
+        -transparent-color*=: transparent color
+        -transpose*: flip image in the vertical direction and rotate 90 degrees
+        -treedepth*=: color tree depth
+        -trim*: trim image edges
+        -type*=: image type
+        -units*=: the units of image resolution
+        -unsharp*=: sharpen the image
+        -verbose: print detailed information about the image
+        -version: print version information
+        -view*: FlashPix viewing transforms
+        -virtual-pixel*=: access method for pixels outside the boundaries of the image
+        -white-point*=: chromaticity white point
+    - name: stream
+      description: a lightweight tool to stream one or more pixel components of the image or portion of the image to your choice of storage formats. It writes the pixel components as they are read from the input image a row at a time making stream desirable when working with large images or when you require raw pixel components.
+      flags:
+        -authenticate*=: decrypt image with this password
+        -channel*=: apply option to select image channels
+        -colorspace*=: set image colorspace
+        -debug*=: display copious debugging information
+        -define*=: define one or more image format options
+        -density*=: horizontal and vertical density of the image
+        -depth*=: image depth
+        -extract*=: extract area from image
+        -help: print program options
+        -interlace*=: type of image interlacing scheme
+        -interpolate*=: pixel color interpolation method
+        -limit*=: pixel cache resource limit
+        -list*=: Color, Configure, Delegate, Format, Magic, Module, Resource, or Type
+        -log*=: format of debugging information
+        -map*=: store pixels in this format.
+        -monitor*: monitor progress
+        -quantize*=: reduce image colors in this colorspace
+        -quiet*: suppress all warning messages
+        -regard-warnings*: pay attention to warning messages.
+        -respect-parentheses*: settings remain in effect until parenthesis boundary.
+        -sampling-factor*=: horizontal and vertical sampling factor
+        -seed*=: seed a new sequence of pseudo-random numbers
+        -set*=: set an image attribute
+        -size*=: width and height of image
+        -storage-type*=: store pixels with this storage type.
+        -synchronize*: synchronize image to storage device
+        -taint*: mark the image as modified
+        -transparent-color*=: transparent color
+        -verbose: print detailed information about the image
+        -version: print version information
+        -virtual-pixel*=: access method for pixels outside the boundaries of the image

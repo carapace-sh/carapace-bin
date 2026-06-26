@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect [OPTIONS] NAME|ID [NAME|ID...]
+description: Return low-level information on Docker objects
+hidden: true
+flags:
+    --type=: Only inspect objects of the given type
+    -f, --format=: 'Format output using a custom template:'
+    -s, --size: Display total file sizes if the type is container

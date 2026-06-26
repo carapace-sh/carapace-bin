@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: woeusb
+description: A Linux program to create a Windows USB stick installer
+flags:
+    --about: Show info about this application
+    --debug: Enable script debugging
+    --no-color: Disable message coloring
+    --target-filesystem=: Specify the filesystem to use as the target
+    --tgt-fs=: Specify the filesystem to use as the target
+    --workaround-bios-boot-flag: Workaround BIOS bug that won't include the device in boot menu
+    -V, --version: Print application version
+    -d, --device: Completely WIPE the entire USB storage device
+    -h, --help: show this help message and exit
+    -l, --label=: Specify label for the newly created file system
+    -p, --partition: Copy Windows files to an existing partition
+    -v, --verbose: Verbose mode

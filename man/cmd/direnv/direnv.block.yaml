@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: block
+aliases:
+    - deny
+    - revoke
+description: Revokes the authorization of a given .envrc or .env file.

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gpg-key <command>
+description: Manage GPG keys
+documentation:
+    command: |
+        Manage GPG keys registered with your GitHub account. Add keys with
+        `gh gpg-key add`, list them with `gh gpg-key list`, and remove them
+        with `gh gpg-key delete`. GPG keys are used to sign commits and tags
+        for verification.

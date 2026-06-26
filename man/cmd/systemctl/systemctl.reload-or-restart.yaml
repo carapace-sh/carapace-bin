@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reload-or-restart
+description: Reload one or more units if possible, otherwise start or restart
+group: unit
+documentation:
+  command: |
+    Reload one or more units if they support it. If not, stop and then
+    start them instead. If the units are not running yet, they will be
+    started.

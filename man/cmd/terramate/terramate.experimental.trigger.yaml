@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: trigger
+description: Triggers a stack
+flags:
+    --cloud-status=: Filter by status
+    --experimental-status=: Filter by status (Deprecated)
+    --reason=: Reason for the stack being triggered

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: suggest
+description: Suggest a command based on a natural language description of the desired output effect
+flags:
+    -h, --help: help for suggest
+    -t, --target=: Target for suggestion; must be shell, gh, git

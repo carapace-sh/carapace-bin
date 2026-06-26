@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+description: Opens PATH_TO_RC or the current .envrc or .env into an $EDITOR and allow the file to be loaded afterwards

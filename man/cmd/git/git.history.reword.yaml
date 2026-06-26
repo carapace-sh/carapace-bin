@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reword
+description: reword a commit message
+documentation:
+  command: |-
+    Rewrite the commit message of the specified commit. All the other
+    details of this commit remain unchanged. This command will spawn an
+    editor with the current message of that commit.

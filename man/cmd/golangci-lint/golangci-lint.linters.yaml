@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: linters
+description: List current linters configuration.
+flags:
+    --default=: Default set of linters to enable
+    --enable-only=*: Override linters configuration section to only run the specific linter(s)
+    --fast-only: Filter enabled linters to run only fast linters
+    --json: Display as JSON
+    --no-config: Don't read config file
+    -D, --disable=*: Disable specific linter
+    -E, --enable=*: Enable specific linter
+    -c, --config=: Read config from file path `PATH`

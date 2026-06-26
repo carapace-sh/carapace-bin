@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pm
+description: More commands for managing packages
+flags:
+    --backend=: Platform-specific optimizations for installing dependencies
+    --cache-dir=: Store & load cached data from a specific directory path
+    --cwd=: Set a specific cwd
+    --dry-run: Don't install anything
+    --help: Print this help menu
+    --ignore-scripts: Skip lifecycle scripts in the project's package.json
+    --link-native-bins=: Link "bin" from a matching platform-specific "optionalDependencies" instead
+    --lockfile=: Store & load a lockfile at a specific filepath
+    --no-cache: Ignore manifest cache entirely
+    --no-progress: Disable the progress bar
+    --no-save: Don't save a lockfile
+    --no-summary: Don't print a summary
+    --no-verify: Skip verifying integrity of newly downloaded packages
+    --silent: Don't log anything
+    --verbose: Excessively verbose logging
+    -c, --config=: Load config
+    -f, --force: Always request the latest versions from the registry & reinstall all dependencies
+    -g, --global: Install globally
+    -p, --production: Don't install devDependencies
+    -y, --yarn: Write a yarn.lock file

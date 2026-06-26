@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List plugins
+persistentflags:
+    -j, --json: Emit output as JSON
+    -p, --project: List only the plugins used by the current project

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: convert
+description: Convert your content to different formats
+persistentflags:
+    --unsafe: enable less safe operations, please backup first
+    -o, --output=: filesystem path to write files to

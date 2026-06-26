@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: source [pattern]...
+description: download source package
+flags:
+    --allow-change-held-packages: allow changing held packages
+    --allow-downgrades: allow downgrades
+    --allow-insecure-repositories: allow insecure repositories
+    --allow-remove-essential: allow removal of essential packages
+    --allow-unauthenticated: allow unauthenticated packages
+    --arch-only: only process architecture-dependent build-dependencies
+    --assume-no: automatic "no" to all prompts
+    --compile: compile source packages after downloading them
+    --debian-only: download only the debian file
+    --diff-only: download only the diff
+    --download: download the given binary package into the current directory
+    --dry-run: perform a simulation of events taken
+    --dsc-only: download only the dsc file
+    --fix-missing: fix missing packages
+    --fix-policy: fix policies
+    --ignore-hold: ignore package holds
+    --install-recommends: install recommended packages
+    --install-suggests: install suggested packages
+    --no-install-recommends: do not install recommended packages
+    --no-install-suggests: do not install suggested packages
+    --only-upgrade: only updgrade packages
+    --print-uris: print file URIs
+    --remove: remove packages
+    --tar-only: download only the tar file
+    --trivial-only: only perform operations that are 'trivial'
+    --upgrade: upgrade and install new dependencies
+    -P, --build-profiles: activated build profiles
+    -b, --build: compile source packages after downloading them
+    -d, --download-only: do not unpack source package
+    -m, --ignore-missing: ignore missing packages
+    -s, --simulate: perform a simulation of events taken
+    -u, --show-upgraded: show upgraded packages
+    -y, --assume-yes: automatic "yes" to all prompts

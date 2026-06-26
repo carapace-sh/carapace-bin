@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sess_id
+description: SSL/TLS session handling command
+group: standard
+flags:
+    -cert: Output certificate
+    -context=: Set the session ID context
+    -in=: Input file - default stdin
+    -inform=: Input format - default PEM (DER or PEM)
+    -noout: Don't output the encoded session info
+    -out=: Output file - default stdout
+    -outform=: Output format - default PEM (PEM, DER or NSS)
+    -text: Print ssl session id details

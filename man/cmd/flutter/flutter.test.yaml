@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: Run Flutter unit tests for the current project
+flags:
+    --coverage: Whether to collect coverage information.
+    --coverage-path=: Where to store coverage information (if coverage is enabled).
+    --dart-define=*: Additional key-value pairs that will be available as constants.
+    --dds-port=: Dart Development Service (DDS) will be bound to the provided port.
+    --device-user=: Identifier number for a user or work profile on Android only.
+    --merge-coverage: Whether to merge coverage data with "coverage/lcov.base.info".
+    --name=: A regular expression matching substrings of the names of tests to run.
+    --no-null-assertions: Do not perform additional null assertions on the boundaries of migrated and un-migrated code.
+    --no-pub: Do not run "flutter pub get" before executing this command.
+    --no-run-skipped: Do not run skipped tests instead of skipping them.
+    --no-test-assets: Do not build the assets bundle for testing.
+    --no-track-widget-creation: Do not track widget creation locations.
+    --null-assertions: Perform additional null assertions on the boundaries of migrated and un-migrated code.
+    --plain-name=: A plain-text substring of the names of tests to run.
+    --pub: Run "flutter pub get" before executing this command.
+    --run-skipped: Run skipped tests instead of skipping them.
+    --shard-index=: Tests can be sharded with the "--total-shards" and "--shard-index" arguments.
+    --start-paused: Start in a paused mode and wait for a debugger to connect.
+    --test-assets: Build the assets bundle for testing.
+    --test-randomize-ordering-seed: The seed to randomize the execution order of test cases within test files.
+    --timeout=: The default test timeout, specified either in seconds.
+    --total-shards=: Tests can be sharded with the "--total-shards" and "--shard-index" arguments.
+    --track-widget-creation: Track widget creation locations.
+    --update-goldens: Whether "matchesGoldenFile()" calls within your test methods should update the golden files rather than test for an existing match.
+    --web-renderer: The renderer implementation to use when building for the web.
+    -h, --help: Print this usage information.
+    -j, --concurrency=: The number of concurrent test processes to run.
+    -r, --reporter=: Set how to print test results.
+    -t, --tags: Run only tests associated with the specified tags.
+    -x, --exclude-tags: Run only tests that do not have the specified tags.

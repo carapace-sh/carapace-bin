@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upx
+description: compress or expand executable files
+flags:
+    --8mib-ram: '8 megabyte memory limit [default: 2 MiB]'
+    --8-bit: 'uses 8 bit size compression [default: 32 bit]'
+    --8086: make compressed exe/sys/com work on any 8086
+    --boot-only: disables client/host transfer compatibility
+    --brute: try all available compression methods & filters [slow]
+    --coff: produce COFF output
+    --color: change look
+    --compress-exports?: ""
+    --compress-icons?: ""
+    --compress-resources?: ""
+    --keep-resource?: do not compress resources specified by list
+    --le: 'produce LE output [default: EXE]'
+    --mono: change look
+    --no-align: 'don''t align to 2048 bytes [enables: --console-run]'
+    --no-backup: no backup files [default]
+    --no-color: change look
+    --no-progress: change look
+    --no-reloc: put no relocations in to the exe header
+    --overlay?: ""
+    --preserve-build-id: copy .gnu.note.build-id to compressed output
+    --strip-relocs?: ""
+    --ultra-brute: try even more compression variants [very slow]
+    "-1": compress faster
+    "-2": ""
+    "-3": ""
+    "-4": ""
+    "-5": ""
+    "-6": ""
+    "-7": ""
+    "-8": ""
+    "-9": compress better
+    -L: display software license
+    -V: display version number
+    -d: decompress
+    -f: force compression of suspicious files
+    -h: give this help
+    -k, --backup: keep backup files
+    -l: list compressed file
+    -o=: write output to file
+    -q: be quiet
+    -t: test compressed file
+    -v: be verbose

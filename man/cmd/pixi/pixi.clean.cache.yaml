@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cache
+description: Clean the cache of your system which are touched by pixi
+flags:
+    --assume-yes&: Answer yes to all questions
+    --build: Clean only the build related cache
+    --build-backends: Clean only the build backends environments cache
+    --conda: Clean only the conda related cache
+    --exec: Clean only `exec` cache
+    --mapping: Clean only the mapping cache
+    --pypi: Clean only the pypi related cache
+    --repodata: Clean only the repodata cache
+    -y, --yes: Answer yes to all questions

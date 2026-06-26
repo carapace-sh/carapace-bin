@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scp
+description: Transfer files to a remote SSH node.
+flags:
+    --no-preserve&: Preserves access and modification times from the original file
+    --no-quiet&: Quiet mode
+    --no-recursive&: Recursive copy of subdirectories
+    -P, --port=: Port to connect to on the remote host
+    -c, --cluster=: Specify the Teleport cluster to connect
+    -p, --preserve: Preserves access and modification times from the original file
+    -q, --quiet: Quiet mode
+    -r, --recursive: Recursive copy of subdirectories
+
+documentation:
+  command: >-
+    Transfer files between the local machine and a remote SSH node using the Teleport cluster.

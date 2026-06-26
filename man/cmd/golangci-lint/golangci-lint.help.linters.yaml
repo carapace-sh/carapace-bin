@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: linters
+description: Display help for linters.
+flags:
+    --json: Display as JSON

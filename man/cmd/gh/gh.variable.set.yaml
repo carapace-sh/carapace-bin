@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set <variable-name>
+description: Create or update variables
+documentation:
+    command: |
+        Create or update a variable. Set the value with `-b` or `--body`, or read from
+        stdin. For organization variables, set visibility with `-v` (all, private,
+        selected) and list repos with `-r`. For environment variables, use `-e`.
+        Load multiple variables from a file with `-f` or `--env-file`. Unlike secrets,
+        variables are not encrypted and are visible in workflow logs.
+flags:
+    -b, --body=: The value for the variable (reads from standard input if not specified)
+    -e, --env=: Set deployment `environment` variable
+    -f, --env-file=: Load variable names and values from a dotenv-formatted `file`
+    -o, --org=: Set `organization` variable
+    -r, --repos=*: List of `repositories` that can access an organization variable
+    -v, --visibility=: 'Set visibility for an organization variable: {all|private|selected}'

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: group <group-id> <package-spec>...
+description: mark package as installed by group
+flags:
+    --skip-unavailable: allow skipping packages that are not installed

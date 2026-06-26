@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: approvers [<id> | <branch>] [flags]
+description: List eligible approvers for merge requests in any state.

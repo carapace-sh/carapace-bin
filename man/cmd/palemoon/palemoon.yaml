@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: palemoon
+description: Pale Moon browser
+flags:
+    --ProfileManager: Start with ProfileManager.
+    --UILocale=: Start with <locale> resources as UI Locale.
+    --browser: Open a browser window.
+    --browserconsole: Open the Browser Console.
+    --devtools: Open DevTools on initial load.
+    --display?: X display to use.
+    --g-fatal-warnings: Make all warnings fatal.
+    --jsconsole: Open the Error console.
+    --jsdebugger: Open the Browser Toolbox.
+    --new-instance: Open new instance
+    --new-tab=: Open <url> in a new tab.
+    --new-window=: Open <url> in a new window.
+    --no-remote: Do not accept or send remote commands;
+    --preferences: Open Preferences dialog.
+    --private-window=: Open <url> in a new private window.
+    --profile=: Start with profile at <path>.
+    --recording-output=: Specify destination file for a drawing recording.
+    --recording=: Record drawing for a given URL.
+    --safe-mode: Disables extensions and themes for this session.
+    --search=: Search <term> with your default search engine.
+    --setDefaultBrowser: Set this app as the default browser.
+    --start-debugger-server=: Start the debugger server on a TCP port or socket.
+    --sync: Make X calls synchronous.
+    -P=: Start with <profile>.
+    -h, --help: Print this message.
+    -v, --version: Print Pale Moon version.

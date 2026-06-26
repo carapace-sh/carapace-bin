@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Dagger CLI — a programmable CI/CD engine. Run pipelines locally
+    or with any CI provider using Dagger's SDK and Dagger Cloud
+    integration.
+description: The Dagger CLI provides a command-line interface to Dagger.
+persistentflags:
+    --api=&: Dagger Cloud API URL
+    --debug: Show more information for debugging
+    --progress=: progress output format (auto, plain, tty)
+    --workdir=&: The host workdir loaded into dagger
+    -h, --help&: Print usage
+    -s, --silent: disable terminal UI and progress output

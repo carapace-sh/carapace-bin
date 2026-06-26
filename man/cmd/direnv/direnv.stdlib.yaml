@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stdlib
+description: Displays the stdlib available in the .envrc execution context

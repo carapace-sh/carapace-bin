@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: whereis
+description: Locate the binary, source, and manual-page files for a command
+flags:
+    -B: define binaries lookup path
+    -M: define man and info lookup path
+    -S: define sources lookup path
+    -V, --version: display version
+    -b: search only for binaries
+    -f: terminate <dirs> argument list
+    -h, --help: display this help
+    -l: output effective lookup paths
+    -m: search only for manuals and infos
+    -s: search only for sources
+    -u: search for unusual entries

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set_desktop_viewport
+description: Move the viewport to the given position

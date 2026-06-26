@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: foreach
+description: Run a command on all workspaces
+flags:
+    --exclude=: An array of glob pattern idents; matching workspaces won't be traversed
+    --from=: An array of glob pattern idents from which to base any recursion
+    --include=: An array of glob pattern idents; only matching workspaces will be traversed
+    --no-private: Avoid running the command on private workspaces
+    --since: Only include workspaces that have been changed since the specified ref.
+    --topological-dev: Run the command after all workspaces it depends on (regular + dev) have finished
+    -A, --all: Run the command on all workspaces of a project
+    -R, --recursive: Find packages via dependencies/devDependencies instead of using the workspaces field
+    -i, --interlaced: Print the output of commands in real-time instead of buffering it
+    -j, --jobs=: The maximum number of parallel tasks that the execution will be limited to; or unlimited
+    -p, --parallel: Run the commands in parallel
+    -t, --topological: Run the command after all workspaces it depends on (regular) have finished
+    -v, --verbose: Prefix each output line with the name of the originating workspace

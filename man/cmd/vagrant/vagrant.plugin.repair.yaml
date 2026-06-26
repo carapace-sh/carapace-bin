@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repair
+description: repair plugins
+flags:
+    --local: Repair plugins in local project

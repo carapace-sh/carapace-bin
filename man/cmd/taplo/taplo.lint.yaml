@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lint
+aliases:
+    - check
+    - validate
+description: Lint TOML documents
+flags:
+    --cache-path=: Set a cache path
+    --default-schema-catalogs: Use the default online catalogs for schemas
+    --no-auto-config: Do not search for a configuration file
+    --no-schema: Disable all schema validations
+    --schema-catalog=: URL to a schema catalog (index) that is compatible with Schema Store or Taplo catalogs
+    --schema=: URL to the schema to be used for validation
+    -c, --config=: Path to the Taplo configuration file

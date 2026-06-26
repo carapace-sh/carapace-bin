@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List issues in a repository
+group: General commands
+documentation:
+    command: |
+        List issues in a repository. Filter by state with `-s` (open, closed, all),
+        by author with `-A`, by assignee with `-a`, and by label with `-l`. Use
+        `-S` to search issues with a query string. Limit results with `-L` (default 30).
+        Output in web browser with `-w` or get structured JSON with `--json`.
+flags:
+    --app=: Filter by GitHub App author
+    --json=*: Output JSON with the specified `fields`
+    --mention=: Filter by mention
+    -A, --author=: Filter by author
+    -L, --limit=: Maximum number of issues to fetch
+    -S, --search=: Search issues with `query`
+    -a, --assignee=: Filter by assignee
+    -l, --label=*: Filter by label
+    -m, --milestone=: Filter by milestone number or title
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -s, --state=: 'Filter by state: {open|closed|all}'
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: List issues in the web browser

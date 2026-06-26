@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rollback
+description: Rollback to a previous generation
+flags:
+    -R, --bypass-root-check: Don't panic if calling nh as root
+    -S, --no-specialisation: Ignore specialisations
+    -a, --ask: Ask for confirmation
+    -d, --diff=: Whether to display a package diff
+    -n, --dry: Only print actions, without performing them
+    -s, --specialisation=: Explicitly select some specialisation
+    -t, --to=: Rollback to a specific generation number

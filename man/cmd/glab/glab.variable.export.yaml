@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: export
+aliases:
+    - ex
+description: Export variables from a project or group.
+flags:
+    -F, --format=: 'Format of output: json, export, env.'
+    -P, --per-page=: Number of items to list per page.
+    -p, --page=: Page number.
+    -s, --scope=: 'The environment_scope of the variables. Values: ''*'' (default), or specific environments.'
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.
+    -g, --group=: Select a group or subgroup. Ignored if a repository argument is set.

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rerun [<run-id>]
+description: Rerun a run
+documentation:
+    command: |
+        Rerun a failed or completed workflow run. By default, reruns all jobs in the run.
+        Use `--failed` to rerun only jobs that failed, including their dependencies.
+        Use `-j` or `--job` to rerun a specific job ID. Pass `--debug` to enable
+        debug logging for the rerun. If no run ID is provided, uses the most recent run.
+flags:
+    --failed: Rerun only failed jobs, including dependencies
+    -d, --debug: Rerun with debug logging
+    -j, --job=: Rerun a specific job ID from a run, including dependencies

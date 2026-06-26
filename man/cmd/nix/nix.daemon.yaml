@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: daemon
+description: daemon to perform store operations on behalf of non-root clients
+group: utility
+flags:
+    --arg=*: Pass the value expr as the argument name to Nix functions
+    --argstr=*: Pass the string string as the argument name to Nix functions
+    --debug: Set the logging verbosity level to 'debug'
+    --debugger: Start an interactive environment if evaluation fail
+    --default-trust: Use Nix's default trust
+    --eval-store=: The Nix store to use for evaluations
+    --force-trusted: Force the daemon to trust connecting clients
+    --force-untrusted: Force the daemon to not trust connecting clients
+    --impure: Allow access to mutable paths and repositories
+    --log-format=: Set the format of log output
+    --override-flake=: Override the flake registries, redirecting original-ref to resolved-ref
+    --quiet: Decrease the logging verbosity level
+    --stdio: Attach to standard I/O instead of trying to bind to a Unix socket
+    -I, --include: Add path to the list of locations used to look up <...> file names
+    -L, --print-build-logs: Print full build logs on standard error
+    -v, --verbose: Increase the logging verbosity level

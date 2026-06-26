@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: livewire:upgrade [--run-only [RUN-ONLY]]
+description: Interactive upgrade helper to migrate from v2 to v3
+flags:
+    --run-only=: ""

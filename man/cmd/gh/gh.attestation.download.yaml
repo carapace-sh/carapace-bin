@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: download [<file-path> | oci://<image-uri>] [--owner | --repo]
+description: Download an artifact's attestations for offline use
+flags:
+    --hostname=: Configure host to use
+    --predicate-type=: Filter attestations by provided predicate type
+    -L, --limit=: Maximum number of attestations to fetch
+    -R, --repo=: Repository name in the format <owner>/<repo>
+    -d, --digest-alg=: 'The algorithm used to compute a digest of the artifact: {sha256|sha512}'
+    -o, --owner=: GitHub organization to scope attestation lookup by

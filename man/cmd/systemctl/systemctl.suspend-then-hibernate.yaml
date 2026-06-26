@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: suspend-then-hibernate
+description: Suspend the system, wake after a period of
+group: system
+documentation:
+  command: |
+    Suspend the system and hibernate after a period of delay if the
+    system remains suspended. The delay is determined by the system's
+    sleep configuration (see systemd-sleep(7)). If the system wakes from
+    suspend before the delay expires, it will not hibernate.

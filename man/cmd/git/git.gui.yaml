@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gui
+description: A portable graphical interface to Git
+group: main
+documentation:
+  command: |-
+    A Tcl/Tk based graphical user interface to Git.  'git gui' focuses
+    on allowing users to make changes to their repository by making
+    new commits, amending existing ones, creating branches, performing
+    local merges, and fetching/pushing to remote repositories.
+
+    Unlike 'gitk', 'git gui' focuses on commit generation
+    and single file annotation and does not show project history.
+    It does however supply menu actions to start a 'gitk' session from
+    within 'git gui'.
+
+    'git gui' is known to work on all popular UNIX systems, Mac OS X,
+    and Windows (under both Cygwin and MSYS).  To the extent possible
+    OS specific user interface guidelines are followed, making 'git gui'
+    a fairly native interface for users.

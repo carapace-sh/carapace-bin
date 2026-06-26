@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bin
+description: Get the path to a binary script
+group: general
+flags:
+    --json: Format the output as an NDJSON stream
+    -v, --verbose: Print both the binary name and the locator of the package that provides the binary

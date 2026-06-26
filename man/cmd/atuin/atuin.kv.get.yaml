@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: Retrieve a saved value
+flags:
+    -h, --help: Print help
+    -n, --namespace=: Namespace for the key-value pair

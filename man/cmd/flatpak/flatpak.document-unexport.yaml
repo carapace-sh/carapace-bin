@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: document-unexport [OPTION…] FILE
+description: Unexport a file to apps
+group: access
+flags:
+    --doc-id: Specify the document ID
+    --ostree-verbose: Show OSTree debug information
+    -h, --help: Show help options
+    -v, --verbose: Show debug information, -vv for more detail

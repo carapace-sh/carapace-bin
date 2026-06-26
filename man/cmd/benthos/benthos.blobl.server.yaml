@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: server
+description: 'EXPERIMENTAL: Run a web server that hosts a Bloblang app'
+flags:
+    --host=: the host to bind to.
+    -i, --input-file=: an optional path to an input file to load as the initial input to the mapping within the app.
+    -m, --mapping-file=: an optional path to a mapping file to load as the initial mapping within the app.
+    -n, --no-open: do not open the app in the browser automatically.
+    -p, --port=: the port to bind to.
+    -w, --write: when editing a mapping and/or input file write changes made back to the respective source file, if the file does not exist it will be created.

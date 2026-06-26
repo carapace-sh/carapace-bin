@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show [pattern]...
+description: show package details
+flags:
+    -a, --all-versions: print full records for all available versions

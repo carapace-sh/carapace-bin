@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: yay
+description: An AUR Helper written in Go
+flags:
+    -V, --version: show version

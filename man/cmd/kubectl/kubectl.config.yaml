@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config SUBCOMMAND
+description: Modify kubeconfig files
+persistentflags:
+    --kubeconfig=: use a particular kubeconfig file

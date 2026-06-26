@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reset [@DB]
+description: Delete local db and pull down fresh copy from Charm Cloud.
+
+documentation:
+  command: >-
+    Delete the local database and pull a fresh copy from Charm Cloud.

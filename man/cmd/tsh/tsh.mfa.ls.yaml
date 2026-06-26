@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: Get a list of registered MFA devices.
+flags:
+    --no-verbose&: Print more information about MFA devices
+    -f, --format=: Format output (text, json, yaml)
+    -v, --verbose: Print more information about MFA devices

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rustup
+description: The Rust toolchain installer
+flags:
+    -V, --version: Print version
+    -h, --help: Print help
+    -q, --quiet: Disable progress output, set log level to 'WARN' if 'RUSTUP_LOG' is unset
+    -v, --verbose: Set log level to 'DEBUG' if 'RUSTUP_LOG' is unset

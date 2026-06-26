@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect
+description: Perform code inspection on the specified project
+flags:
+    -changes: Run inspections only on local uncommitted changes
+    -d=: Specify the full path to the subdirectory if you don't want to inspect the whole project
+    -format=: Specify the format of the output file with inspection results
+    -v0: Set the verbosity level of the output
+    -v1: Set the verbosity level of the output
+    -v2: Set the verbosity level of the output

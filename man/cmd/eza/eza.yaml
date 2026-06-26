@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: eza
+description: a modern replacement for ls
+flags:
+    --absolute?: display entries with their absolute path
+    --changed: use the changed timestamp field
+    --color-scale-mode=: use gradient or fixed colors in --color-scale
+    --color-scale?: highlight levels of 'field' distinctly
+    --color?: when to use terminal colours
+    --colour-scale-mode=: use gradient or fixed colors in --color-scale
+    --colour-scale?: highlight levels of 'field' distinctly
+    --colour?: when to use terminal colours
+    --follow-symlinks: drill down into symbolic links that point to directories
+    --git: list each file's Git status, if tracked or ignored
+    --git-ignore: ignore files mentioned in '.gitignore'
+    --git-repos: list root of git-tree status
+    --git-repos-no-status: list each git-repos branch name
+    --group-directories-first: list directories before other files
+    --group-directories-last: list directories after other files
+    --hyperlink: display entries as hyperlinks
+    --icons?: when to display icons
+    --no-filesize: suppress the filesize field
+    --no-git: suppress Git status
+    --no-permissions: suppress the permissions field
+    --no-quotes: don't quote file names with spaces
+    --no-symlinks: do not show symbolic links
+    --no-time: suppress the time field
+    --no-user: suppress the user field
+    --show-symlinks: explicitly show symbolic links
+    --smart-group: only show group if it has a different name from owner
+    --stdin: read file names from stdin
+    --time-style=: how to format timestamps
+    --total-size: show the size of a directory as the size of all
+    -?, --help: show list of command-line options
+    -@, --extended: list each file's extended attributes and sizes
+    -1, --oneline: display one entry per line
+    -A, --almost-all*: equivalent to --all
+    -B, --bytes: list file sizes in bytes, without any prefixes
+    -D, --only-dirs: list only directories
+    -F, --classify?: display type indicator by file names
+    -G, --grid: display entries as a grid
+    -H, --links: list each file's number of hard links
+    -I, --ignore-glob=: glob patterns (pipe-separated) of files to ignore
+    -L, --level=: limit the depth of recursion
+    -M, --mounts: show mount details
+    -O, --flags: list file flags
+    -R, --recurse: recurse into directories
+    -S, --blocksize: show size of allocated file system blocks
+    -T, --tree: recurse into directories as a tree
+    -U, --created: use the created timestamp field
+    -X, --dereference: dereference symbolic links when displaying information
+    -Z, --context: list each file's security context
+    -a, --all*: show hidden and 'dot' files
+    -b, --binary: list file sizes with binary prefixes
+    -d, --treat-dirs-as-files: list directories as files
+    -f, --only-files: list only files
+    -g, --group: list each file's group
+    -h, --header: add a header row to each column
+    -i, --inode: list each file's inode number
+    -l, --long: display extended file metadata as a table
+    -m, --modified: use the modified timestamp field
+    -n, --numeric: list numeric user and group IDs
+    -o, --octal-permissions: list each file's permission in octal format
+    -r, --reverse: reverse the sort order
+    -s, --sort=: which field to sort by
+    -t, --time=: which timestamp field to list
+    -u, --accessed: use the accessed timestamp field
+    -v, --version: show version of eza
+    -w, --width=: set screen width in columns
+    -x, --across: sort the grid across, rather than downwards
+
+documentation:
+  command: >-
+    Modern replacement for ls with colors and Git integration. eza
+    displays directory contents with color-coded file types (executable,
+    symlink, directory). Long format (-l) shows permissions, size, date,
+    and name. Git support with --git shows file modification status
+    relative to HEAD. Tree view (-T) recursively lists directories.
+    Grid view (-2) shows contents in columns (default in terminal).
+    Sort by size (-SS), modified (-SM), extensions (-sX), version (-v).
+    Filter by type (-t f/d/l) or extension (-e). Icons with --icons.
+    Hyperlink mode with --hyperlink for terminal navigation. Hide
+    hidden files with --ignore-hidden. Combine flags for custom views.

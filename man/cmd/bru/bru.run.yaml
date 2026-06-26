@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run a request
+flags:
+    --bail: Stop execution after a failure of a request, test, or assertion
+    --cacert=: CA certificate to verify peer against
+    --env-var=: Overwrite a single environment variable, multiple usages possible
+    --env=: Environment variables
+    --insecure: Allow insecure server connections
+    --tests-only: Only run requests that have a test
+    --version: Show version number
+    -f, --format=: Format of the file results
+    -h, --help: Show help
+    -o, --output=: Path to write file results to
+    -r: Indicates a recursive run

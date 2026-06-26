@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: swaylock
+description: Screen locker for Wayland
+flags:
+    --bs-hl-color=: Sets the color of backspace highlight segments.
+    --caps-lock-bs-hl-color=: Sets the color of backspace highlight segments when Caps Lock is active.
+    --caps-lock-key-hl-color=: Sets the color of the key press highlight segments when Caps Lock is active.
+    --font-size=: Sets a fixed font size for the indicator text.
+    --font=: Sets the font of the text.
+    --indicator-idle-visible: Sets the indicator to show even if idle.
+    --indicator-radius=: Sets the indicator radius.
+    --indicator-thickness=: Sets the indicator thickness.
+    --indicator-x-position=: Sets the horizontal position of the indicator.
+    --indicator-y-position=: Sets the vertical position of the indicator.
+    --inside-caps-lock-color=: Sets the color of the inside of the indicator when Caps Lock is active.
+    --inside-clear-color=: Sets the color of the inside of the indicator when cleared.
+    --inside-color=: Sets the color of the inside of the indicator.
+    --inside-ver-color=: Sets the color of the inside of the indicator when verifying.
+    --inside-wrong-color=: Sets the color of the inside of the indicator when invalid.
+    --key-hl-color=: Sets the color of the key press highlight segments.
+    --layout-bg-color=: Sets the background color of the box containing the layout text.
+    --layout-border-color=: Sets the color of the border of the box containing the layout text.
+    --layout-text-color=: Sets the color of the layout text.
+    --line-caps-lock-color=: Sets the color of the line between the inside and ring when Caps Lock is active.
+    --line-clear-color=: Sets the color of the line between the inside and ring when cleared.
+    --line-color=: Sets the color of the line between the inside and ring.
+    --line-ver-color=: Sets the color of the line between the inside and ring when verifying.
+    --line-wrong-color=: Sets the color of the line between the inside and ring when invalid.
+    --ring-caps-lock-color=: Sets the color of the ring of the indicator when Caps Lock is active.
+    --ring-clear-color=: Sets the color of the ring of the indicator when cleared.
+    --ring-color=: Sets the color of the ring of the indicator.
+    --ring-ver-color=: Sets the color of the ring of the indicator when verifying.
+    --ring-wrong-color=: Sets the color of the ring of the indicator when invalid.
+    --separator-color=: Sets the color of the lines that separate highlight segments.
+    --text-caps-lock-color=: Sets the color of the text when Caps Lock is active.
+    --text-clear-color=: Sets the color of the text when cleared.
+    --text-color=: Sets the color of the text.
+    --text-ver-color=: Sets the color of the text when verifying.
+    --text-wrong-color=: Sets the color of the text when invalid.
+    -C, --config=: Path to the config file.
+    -F, --show-failed-attempts: Show current count of failed authentication attempts.
+    -K, --hide-keyboard-layout: Hide the current xkb layout while typing.
+    -L, --disable-caps-lock-text: Disable the Caps Lock text.
+    -c, --color=: Turn the screen into the given color instead of white.
+    -d, --debug: Enable debugging output.
+    -e, --ignore-empty-password: When an empty password is provided, do not validate it.
+    -f, --daemonize: Detach from the controlling terminal after locking.
+    -h, --help: Show help message and quit.
+    -i, --image=: Display the given image, optionally only on the given output.
+    -k, --show-keyboard-layout: Display the current xkb layout while typing.
+    -l, --indicator-caps-lock: Show the current Caps Lock state also on the indicator.
+    -n, --line-uses-inside: Use the inside color for the line between the inside and ring.
+    -r, --line-uses-ring: Use the ring color for the line between the inside and ring.
+    -s, --scaling=: 'Image scaling mode: stretch, fill, fit, center, tile, solid_color.'
+    -t, --tiling: Same as --scaling=tile.
+    -u, --no-unlock-indicator: Disable the unlock indicator.
+    -v, --version: Show the version number and quit.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info [OPTIONS]
+description: Display system-wide information
+flags:
+    -f, --format=: 'Format output using a custom template:'

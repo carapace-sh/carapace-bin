@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rerere
+description: Perform merge without touching index or working tree
+group: interrogator
+flags:
+  --rerere-autoupdate: register clean resolutions in index
+documentation:
+  command: |-
+    In a workflow employing relatively long lived topic branches,
+    the developer sometimes needs to resolve the same conflicts over
+    and over again until the topic branches are done (either merged
+    to the "release" branch, or sent out and accepted upstream).
+
+    This command assists the developer in this process by recording
+    conflicted automerge results and corresponding hand resolve results
+    on the initial manual merge, and applying previously recorded
+    hand resolutions to their corresponding automerge results.
+
+    You need to set the configuration variable `rerere.enabled` in order to
+    enable this command.

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: passwd
+description: change user password
+flags:
+    -R, --root=: directory to chroot into
+    -S, --status: report password status on the named account
+    -a, --all: report password status on all accounts
+    -d, --delete: delete the password for the named account
+    -e, --expire: force expire the password for the named account
+    -h, --help: display this help message and exit
+    -i, --inactive=: set password inactive after expiration to INACTIVE
+    -k, --keep-tokens: change password only if expired
+    -l, --lock: lock the password of the named account
+    -n, --mindays=: set minimum number of days before password change to MIN_DAYS
+    -q, --quiet: quiet mode
+    -r, --repository=: change password in REPOSITORY repository
+    -u, --unlock: unlock the password of the named account
+    -w, --warndays=: set expiration warning days to WARN_DAYS
+    -x, --maxdays=: set maximum number of days before password change to MAX_DAYS

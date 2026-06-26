@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wc
+description: print newline, word, and byte counts for each file
+flags:
+    --files0-from=: read input from the files specified by
+    --help: display this help and exit
+    --version: output version information and exit
+    -L, --max-line-length: print the maximum display width
+    -c, --bytes: print the byte counts
+    -l, --lines: print the newline counts
+    -m, --chars: print the character counts
+    -w, --words: print the word counts

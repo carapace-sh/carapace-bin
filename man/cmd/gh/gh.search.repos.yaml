@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repos [<query>]
+description: Search for repositories
+flags:
+    --archived: Filter based on the repository archived state {true|false}
+    --created=: Filter based on created at `date`
+    --followers=: Filter based on `number` of followers
+    --forks=: Filter on `number` of forks
+    --good-first-issues=: Filter on `number` of issues with the 'good first issue' label
+    --help-wanted-issues=: Filter on `number` of issues with the 'help wanted' label
+    --include-forks=: 'Include forks in fetched repositories: {false|true|only}'
+    --json=*: Output JSON with the specified `fields`
+    --language=: Filter based on the coding language
+    --license=*: Filter based on license type
+    --match=*: 'Restrict search to specific field of repository: {name|description|readme}'
+    --number-topics=: Filter on `number` of topics
+    --order=: 'Order of repositories returned, ignored unless ''--sort'' flag is specified: {asc|desc}'
+    --owner=*: Filter on owner
+    --size=: Filter on a size range, in kilobytes
+    --sort=: 'Sort fetched repositories: {forks|help-wanted-issues|stars|updated}'
+    --stars=: Filter on `number` of stars
+    --topic=*: Filter on topic
+    --updated=: Filter on last updated at `date`
+    --visibility=*: 'Filter based on visibility: {public|private|internal}'
+    -L, --limit=: Maximum number of repositories to fetch
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open the search query in the web browser

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vagrant
+description: tool for building and managing virtual machine environments
+persistentflags:
+    --color: Enable color output
+    --debug: Enable debug output
+    --debug-timestamp: Enable debug output with timestamps
+    --machine-readable: Enable machine readable output
+    --no-color: Disable color output
+    --no-tty: Enable non-interactive output
+    --timestamp: Enable timestamps on log output
+    -h, --help: Print this help
+    -v, --version: Display Vagrant version
+
+documentation:
+  command: >-
+    Tool for building and managing virtual machine environments. Define VMs in a Vagrantfile and use consistent workflows across VirtualBox, VMware, Hyper-V, and more.

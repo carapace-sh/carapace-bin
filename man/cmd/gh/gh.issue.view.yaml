@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view {<number> | <url>}
+description: View an issue
+group: Targeted commands
+documentation:
+    command: |
+        View an issue in the terminal. Pass the issue number or URL as argument.
+        Use `-c` or `--comments` to include issue comments in the output.
+        Use `-w` to open in browser, or get structured JSON with `--json`.
+flags:
+    --json=*: Output JSON with the specified `fields`
+    -c, --comments: View issue comments
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open an issue in the browser

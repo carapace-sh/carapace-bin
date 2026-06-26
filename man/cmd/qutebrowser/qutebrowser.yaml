@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qutebrowser
+description: a keyboard-driven, vim-like browser based on PyQt5
+flags:
+    --backend=: Which backend to use
+    --enable-webengine-inspector: Enable the web inspector
+    --force-color: Force colored logging
+    --json-logging: Output log lines in JSON format (one object per line)
+    --logfilter=: Comma-separated list of things to be logged
+    --loglines=: How many lines of the debug log to keep in RAM
+    --no-err-windows: Don't show any error windows
+    --nocolor: Turn off colored logging
+    --nowindow: Don't show the main window
+    --qt-flag=: Pass an argument to Qt as flag
+    --target=: How URLs should be opened
+    -B, --basedir=: Base directory for all storage
+    -C, --config-py=: Path to config.py
+    -D, --debug-flag=: Pass name of debugging feature to be turned on
+    -R, --override-restore: Don't restore a session even if one would be restored
+    -T, --temp-basedir: Use a temporary basedir
+    -V, --version: Show version and quit
+    -d, --debug: Turn on debugging options
+    -h, --help: show this help message and exit
+    -l, --loglevel=: Override the configured console loglevel
+    -r, --restore=: Restore a named session

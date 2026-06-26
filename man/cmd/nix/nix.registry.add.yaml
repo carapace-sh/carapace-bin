@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: add/replace flake in user flake registry
+flags:
+    --arg=*: Pass the value expr as the argument name to Nix functions
+    --argstr=*: Pass the string string as the argument name to Nix functions
+    --debug: Set the logging verbosity level to 'debug'
+    --debugger: Start an interactive environment if evaluation fail
+    --eval-store=: The Nix store to use for evaluations
+    --impure: Allow access to mutable paths and repositories
+    --log-format=: Set the format of log output
+    --override-flake=: Override the flake registries, redirecting original-ref to resolved-ref
+    --quiet: Decrease the logging verbosity level
+    --registry=: The registry to operate on
+    -I, --include: Add path to the list of locations used to look up <...> file names
+    -L, --print-build-logs: Print full build logs on standard error
+    -v, --verbose: Increase the logging verbosity level

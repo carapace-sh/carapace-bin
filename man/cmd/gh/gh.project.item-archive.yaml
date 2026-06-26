@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: item-archive [<number>]
+description: Archive an item in a project
+flags:
+    --format=: 'Output format: {json}'
+    --id=!: ID of the item to archive
+    --owner=: Login of the owner. Use "@me" for the current user.
+    --undo: Unarchive an item
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List available OpenFaaS functions in a store
+flags:
+    -v, --verbose: Enable verbose output to see the full description of each function in the store

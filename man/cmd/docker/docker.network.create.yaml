@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [OPTIONS] NETWORK
+description: Create a network
+flags:
+    --attachable: Enable manual container attachment
+    --aux-address=: Auxiliary IPv4 or IPv6 addresses used by Network driver
+    --config-from=: The network from which to copy the configuration
+    --config-only: Create a configuration only network
+    --gateway=*: IPv4 or IPv6 Gateway for the master subnet
+    --ingress: Create swarm routing-mesh network
+    --internal: Restrict external access to the network
+    --ip-range=*: Allocate container ip from a sub-range
+    --ipam-driver=: IP Address Management Driver
+    --ipam-opt=: Set IPAM driver specific options
+    --ipv4: Enable or disable IPv4 address assignment
+    --ipv6: Enable or disable IPv6 address assignment
+    --label=: Set metadata on a network
+    --scope=: Control the network's scope
+    --subnet=*: Subnet in CIDR format that represents a network segment
+    -d, --driver=: Driver to manage the Network
+    -o, --opt=: Set driver specific options

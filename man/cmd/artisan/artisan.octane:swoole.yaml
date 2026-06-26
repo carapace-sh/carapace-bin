@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: octane:swoole [--host [HOST]] [--port [PORT]] [--workers [WORKERS]] [--task-workers [TASK-WORKERS]] [--max-requests [MAX-REQUESTS]] [--watch] [--poll]
+description: Start the Octane Swoole server
+flags:
+    --host=: The IP address the server should bind to
+    --max-requests=: The number of requests to process before reloading the server
+    --poll: Use file system polling while watching in order to watch files over a network
+    --port=: The port the server should be available on
+    --task-workers=: The number of task workers that should be available to handle tasks
+    --watch: Automatically reload the server when the application is modified
+    --workers=: The number of workers that should be available to handle requests

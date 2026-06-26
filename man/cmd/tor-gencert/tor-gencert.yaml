@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tor-gencert
+description: Generate certs and keys for Tor directory authorities
+flags:
+    --create-identity-key: Generate a new identity key
+    --passphrase-fd=: Filedescriptor to read the passphrase from
+    -a=: advertise the address:port combination as this authority’s preferred directory port
+    -c=: Write the certificate to the specified file
+    -h, --help: Display help text and exit
+    -i=: Read the identity key from the specified file
+    -m=: Number of months that the certificate should be valid
+    -r, --reuse: Generate a new certificate, but not a new signing key
+    -s=: Write the signing key to the specified file
+    -v: Display verbose output

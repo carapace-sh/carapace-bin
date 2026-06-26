@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune
+description: Remove extraneous packages
+flags:
+    --dry-run: only report changes
+    --json: output as json
+    --omit=*: omit package type
+    --workspaces: Enable running a command in the context fo all workspaces
+    -w, --workspace=*: Enable running a command in the context of the given workspace

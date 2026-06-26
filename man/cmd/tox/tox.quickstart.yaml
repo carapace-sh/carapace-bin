@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: quickstart
+aliases:
+    - q
+description: Command line script to quickly create a tox config file for a Python project

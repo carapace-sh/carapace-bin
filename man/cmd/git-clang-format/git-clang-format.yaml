@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: git-clang-format
+description: run clang-format on lines that differ
+flags:
+    --Cached,: format lines in the stage instead of the working dir
+    --binary=: path to clang-format
+    --commit=: default commit to use if none is specified
+    --diff: print a diff instead of applying the changes
+    --diffstat: print a diffstat instead of applying the changes
+    --extensions=: comma-separated list of file extensions to format
+    --staged: format lines in the stage instead of the working dir
+    --style=: passed to clang-format
+    -f, --force: allow changes to unstaged files
+    -h, --help: show this help message and exit
+    -p, --patch: select hunks interactively
+    -q, --quiet: print less information
+    -v, --verbose: print extra information

@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bench
+description: Run benchmarks
+flags:
+    --allow-env?: Allow environment access
+    --allow-ffi?: Allow loading dynamic libraries
+    --allow-hrtime: Allow high resolution time measurement
+    --allow-net?: Allow network access
+    --allow-read?: Allow file system read access
+    --allow-run?: Allow running subprocesses
+    --allow-write?: Allow file system write access
+    --cached-only: Require that remote dependencies are already cached
+    --cert=: Load certificate authority from PEM encoded file
+    --check?: Type check modules
+    --compat: 'UNSTABLE: Node compatibility mode.'
+    --filter=: Run benchmarks with this string or pattern in the bench name
+    --ignore?: Ignore files
+    --import-map=: Load import map file
+    --location=: Value of 'globalThis.location' used by some web APIs
+    --lock-write: Write lock file (use with --lock)
+    --lock=: Check the specified lock file
+    --no-check?: Skip type checking modules
+    --no-clear-screen: Do not clear terminal screen when under watch mode
+    --no-config: Disable automatic loading of the configuration file.
+    --no-prompt: Always throw if required permission wasn't passed
+    --no-remote: Do not resolve remote modules
+    --seed=: Set the random number generator seed
+    --unsafely-ignore-certificate-errors?: 'DANGER: Disables verification of TLS certificates'
+    --unstable: Enable unstable features and APIs
+    --v8-flags?: Set V8 command line options
+    --watch: 'UNSTABLE: Watch for file changes and restart automatically'
+    -A, --allow-all: Allow all permissions
+    -c, --config=: Specify the configuration file
+    -h, --help: Print help information
+    -q, --quiet: Suppress diagnostic output
+    -r, --reload?: Reload source code cache (recompile TypeScript)

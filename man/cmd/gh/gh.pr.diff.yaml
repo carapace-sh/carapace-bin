@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff [<number> | <url> | <branch>]
+description: View changes in a pull request
+group: Targeted commands
+flags:
+    --color=: 'Use color in diff output: {always|never|auto}'
+    --name-only: Display only names of changed files
+    --patch: Display diff in patch format
+    -e, --exclude=*: Exclude files matching glob `patterns` from the diff
+    -w, --web: Open the pull request diff in the browser

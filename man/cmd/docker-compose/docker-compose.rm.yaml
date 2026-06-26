@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm [OPTIONS] [SERVICE...]
+description: Removes stopped service containers
+flags:
+    -a, --all&: Deprecated - no effect
+    -f, --force: Don't ask to confirm removal
+    -s, --stop: Stop the containers, if required, before removing
+    -v, --volumes: Remove any anonymous volumes attached to containers

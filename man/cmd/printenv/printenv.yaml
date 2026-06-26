@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: printenv
+description: print all or part of environment
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -0, --null: end each output line with NUL, not newline

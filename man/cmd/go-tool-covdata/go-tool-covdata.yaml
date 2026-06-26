@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: go-tool-covdata
+description: read and manipulate coverage data files

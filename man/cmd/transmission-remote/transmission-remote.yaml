@@ -1,0 +1,91 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: transmission-remote [host[:port]] [flags]
+description: A remote control utility for transmission-daemon and transmission
+flags:
+    --alt-speed-days=*: Set the numbers days on which to enable the alternate speed scheduler (e.g. "2", "2,4-6")
+    --alt-speed-time-begin=: Time to start using the alt speed limits (hhmm)
+    --alt-speed-time-end=: Time to stop using the alt speed limits (hhmm)
+    --blocklist-update: Update blocklist from URL in remote client's settings
+    --exit: Initiate a shutdown
+    --find=: Tell transmission where to look for the current torrent's data
+    --incomplete-dir=: When adding new torrents, store their contents in directory until torrent is done
+    --move=: Move the current torrent's data to the specified directory
+    --no-start-paused: Start added torrents unpaused
+    --no-torrent-done-script: Don't run any script when a torrent finishes
+    --no-trash-torrent: Don't delete torrent files after adding
+    --no-utp: Disable uTP for peer connections
+    --path=: Provide original path for the rename command
+    --reannounce: Reannounce the current torrent(s)
+    --rename=: Rename files or root folder of a torrent
+    --start-paused: Start added torrents paused
+    --torrent-done-script=: Specify a file to run each time a torrent finishes
+    --trash-torrent: Delete torrent files after adding
+    --utp: Enable uTP for peer connections
+    -AS, --no-alt-speed: Don't use the alternate limits
+    -ASC, --no-alt-speed-scheduler: Don't use the alternate scheduled on/off times
+    -Bh, --bandwidth-high: Give this torrent first chance at available bandwith
+    -Bl, --bandwidth-low: Give this torrent the bandwith leftover after high and normal priority torrents
+    -Bn, --bandwidth-normal: Give this torrent the bandwidth leftover after high priority torrents
+    -C, --no-incomplete-dir: Don't store incomplete torrents in a different directory
+    -D, --no-downlimit: Don't limit the maximum download speed
+    -F, --filter=*: Filter selected torrents (may be specified more than once)
+    -G, --no-get=*: Marke file(s) for not downloading (e.g. "all", "1", "1,3-5")
+    -GSR: All torrents, unless overriden by a per-torrent setting, should seed regardless of ratio
+    -HL, --no-honor-session: Make the current torrent(s) not honor the session limits
+    -L, --labels=*: Set the specified torrent's labels
+    -M, --no-portmap: Disable portmapping
+    -N, --netrc=: Use the specified netrc file for authentication
+    -O, --no-dht: Disable distributed hash table
+    -S, --stop: Stop the current torrent(s) from downloading or seeding
+    -SR, --no-seedratio: Let the current torrent(s) seed regardless of ratio
+    -U, --no-uplimit: Don't limit the upload speed
+    -V, --version: Show version number and exit
+    -X, --no-pex: Disable peer exchange (PEX)
+    -Y, --no-lds: Disable local peer discovery (LPD)
+    -a, --add=*: Add torrents
+    -as, --alt-speed: Use the alternate limits
+    -asc, --alt-speed-scheduler: Use the alternate scheduled on/off times
+    -asd, --alt-speed-downlimit=: Limit the alternate download speed in KB/s
+    -asu, --alt-speed-uplimit=: Limit the alternate upload speed in KB/s
+    -b, --debug: Enable debugging mode
+    -d, --downlimit=: Limit the maximum download speed in KB/s
+    -e, --cache=: Set the session's maximum memory cache size in MiB
+    -ep, --encryption-preferred: Prefer encrypted peer connections
+    -er, --encryption-required: Encrypt all peer connections
+    -et, --encryption-tolerated: Prefer unencrypted peer connections
+    -f, --files: Get a file list for the current torrent(s)
+    -g, --get=*: Mark file(s) for download. (e.g. "all", "1", "1,3-5")
+    -gsr=: All torrents, unless overriden by a per-torrent setting, should seed until this ratio
+    -h, --help: Prints a short usage summary
+    -hl, --honor-session: Make the current torrent(s) honor the session limits
+    -i, --info: Show details of current torrent(s)
+    -ic, --info-pieces: List the specified torrent's pieces
+    -ids, --print-ids: Print a list of the specified torrent's ids in a format suitable for -t
+    -if, --info-files: List the specified torrent's files
+    -ip, --info-peers: List the specified torrent's peers
+    -it, --info-trackers: List the specified torrent's trackers
+    -j, --json: Return the RPC response as JSON
+    -l, --list: List all torrents
+    -m, --portmap: Enable port mapping via NAT-PMP or UPnP
+    -n, --auth=: Set the username:password for authentication
+    -ne, --authenv: Use the TR_AUTH environment variable for authentication
+    -o, --dht: Enable distributed hash table
+    -p, --port=: Set the port to listen for incoming peers
+    -ph, --priority-high=*: Try to download the specified file(s) first (e.g. "all", "1", "1,3-5")
+    -pi, --peer-info: List the current torrent's connected peers
+    -pl, --priority-low=*: Try to download the specified file(s) last (e.g. "all", "1", "1,3-5")
+    -pn, --priority-normal=*: Try to download the specified file(s) normally (e.g. "all", "1", "1,3-5")
+    -pr, --peers=: Set the maximum number of peers globally, or on current torrents if selected
+    -r, --remove: Remove the current torrent(s) without deleting their downloaded data
+    -rad, --remove-and-delete: Remove the current torrent(s) and delete their downloaded data
+    -s, --start: Start the current torrent(s)
+    -si, --session-info: List sessions from the server
+    -sr, --seedratio=: Let the current torrent(s) seed until a specific ratio
+    -srd, --seedratio-default: Let the current torrent(s) seed until the global seedratio
+    -st, --session-stats: List statistical information from the server
+    -t, --torrent=*: Set the current torrent(s) for use by subsequent options
+    -u, --uplimit=: Set the maximum upload speed in KB/s
+    -v, --verify: Verify the torrent's downloaded data
+    -w, --download-dir=: Where to save downloaded data
+    -x, --pex: Enable peer exchange (PEX)
+    -y, --lds: Enable local peer discovery (LPD)

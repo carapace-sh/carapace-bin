@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new-session
+flags:
+    -A: TODO description
+    -D: TODO description
+    -E: TODO description
+    -F=: format
+    -P: TODO description
+    -X: TODO description
+    -c=: start-directory
+    -d: TODO description
+    -e=: environment
+    -f=: flags
+    -n=: window-name
+    -s=: session-name
+    -t=: target-session
+    -x=: width
+    -y=: height

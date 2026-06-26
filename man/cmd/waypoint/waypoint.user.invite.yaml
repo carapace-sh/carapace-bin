@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: invite
+description: Invite a user to join the Waypoint server
+flags:
+    --expires-in=: The duration until the token expires.
+    --plain: Plain output
+    --username=: Invite a new user and provide a username hint.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

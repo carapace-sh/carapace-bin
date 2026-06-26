@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exec
+aliases:
+    - x
+description: Run a command and install it in a temporary environment
+flags:
+    --auth-file=: Path to the file containing the authentication token
+    --concurrent-downloads=: Max concurrent network requests, default is `50`
+    --concurrent-solves=: Max concurrent solves, default is the number of CPUs
+    --force-reinstall: If specified a new environment is always created even if one already exists
+    --list?: Before executing the command, list packages in the environment Specify `--list=some_regex` to filter the shown packages
+    --no-modify-ps1: Disable modification of the PS1 prompt to indicate the temporary environment
+    --pinning-strategy=: Set pinning strategy
+    --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
+    --run-post-link-scripts: Run post-link scripts (insecure)
+    --tls-no-verify: Do not verify the TLS certificate of the server
+    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --use-environment-activation-cache: Use environment activation cache (experimental)
+    -c, --channel=*: The channels to consider as a name or a url. Multiple channels can be specified by using this field multiple times
+    -p, --platform=: The platform to create the environment for
+    -s, --spec=*: Matchspecs of package to install. If this is not provided, the package is guessed from the command
+    -w, --with=*: Matchspecs of package to install, while also guessing a package from the command

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sync
+description: Sync and submit progress on a stacked diff. (EXPERIMENTAL)

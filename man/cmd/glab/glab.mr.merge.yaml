@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: merge {<id> | <branch>}
+aliases:
+    - accept
+description: Merge or accept a merge request.
+flags:
+    --auto-merge: Set auto-merge.
+    --sha=: Merge commit SHA.
+    --squash-message=: Custom squash commit message.
+    --when-pipeline-succeeds&: Merge only when pipeline succeeds
+    -d, --remove-source-branch: Remove source branch on merge.
+    -m, --message=: Custom merge commit message.
+    -r, --rebase: Rebase the commits onto the base branch.
+    -s, --squash: Squash commits on merge.
+    -y, --yes: Skip submission confirmation prompt.

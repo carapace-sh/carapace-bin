@@ -1,0 +1,18 @@
+name: snapshot
+description: Create an on-demand snapshot with optional message
+flags:
+    -h, --help: Print help (see more with '--help')
+    -m, --message=: Message to include with the snapshot
+documentation:
+    command: |-
+        Create an on-demand snapshot with optional message.
+
+        This allows you to create a named snapshot of the current state, which can be helpful to always be able to return to a known good state.
+
+        You can provide an optional message to describe the snapshot.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

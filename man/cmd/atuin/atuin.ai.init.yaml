@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Initialize shell integration
+flags:
+    -h, --help: Print help

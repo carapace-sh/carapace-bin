@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: avd
+description: Creates a new Android Virtual Device
+flags:
+    -a, --snapshot=: Place a snapshots file in the AVD, to enable persistence.
+    -b, --abi=: The ABI to use for the AVD.
+    -c, --sdcard=: Path to a shared SD card image, or size of a new sdcard for the new AVD.
+    -d, --device=: The optional device definition to use.
+    -f, --force: Forces creation (overwrites an existing AVD)
+    -g, --tag=: The sys-img tag to use for the AVD.
+    -k, --package=: Package path of the system image for this AVD
+    -n, --name=: Name of the new AVD.
+    -p, --path=: Directory where the new AVD will be created.

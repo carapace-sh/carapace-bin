@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: summary
+description: Show commit summary between the given commit and working tree
+flags:
+  --cached: ''
+  --files: ''
+  --summary-limit=: ''
+documentation:
+  command: |-
+    Show commit summary between the given commit (defaults to `HEAD`) and
+    working tree/index. For a submodule in question, a series of commits
+    in the submodule between the given super project commit and the
+    index or working tree (switched by `--cached`) are shown. If the option
+    `--files` is given, show the series of commits in the submodule between
+    the index of the super project and the working tree of the submodule
+    (this option doesn't allow to use the `--cached` option or to provide an
+    explicit commit).
+
+    Using the `--submodule=log` option with [git-diff](cmd://git/diff) will provide that
+    information too.
+  flag:
+    cached: |-
+      Use the index to determine the commit instead of the `HEAD`.
+      This option is only valid for `status` and `summary` commands.
+    files: |-
+      Make the `summary` command compare the commit in the index with that in
+      the submodule `HEAD`.
+    summary-limit: |-
+      Limit the `summary` size (number of commits shown in total) to _<n>_.
+      Giving 0 will disable the summary; a negative number means unlimited
+      (the default). This limit only applies to modified submodules. The
+      size is always limited to 1 for added/deleted/typechanged submodules.

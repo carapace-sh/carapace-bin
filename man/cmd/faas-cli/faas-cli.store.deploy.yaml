@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deploy
+description: Deploy OpenFaaS functions from a store
+flags:
+    --annotation=*: Set one or more annotation (ANNOTATION=VALUE)
+    --constraint=*: Apply a constraint to the function
+    --name=: Name of the deployed function (overriding name from the store)
+    --network=: Name of the network
+    --replace: Replace any existing function
+    --secret=*: Give the function access to a secure secret
+    --tls-no-verify: Disable TLS validation
+    --update: Update existing functions
+    -e, --env=*: Adds one or more environment variables to the defined ones by store (ENVVAR=VALUE)
+    -g, --gateway=: Gateway URL starting with http(s)://
+    -k, --token=: Pass a JWT token to use instead of basic auth
+    -l, --label=*: Set one or more label (LABEL=VALUE)
+    -n, --namespace=: Namespace of the function

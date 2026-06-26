@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: queue:retry-batch [--isolated [ISOLATED]] [--] <id>
+description: Retry the failed jobs for a batch
+flags:
+    --isolated=: Do not run the command if another instance of the command is already running

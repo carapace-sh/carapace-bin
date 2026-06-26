@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Store authentication information for a given host
+flags:
+    --conda-token=: The token to use on anaconda.org / quetz authentication
+    --password=: The password to use (for basic HTTP authentication)
+    --s3-access-key-id=: The S3 access key ID
+    --s3-secret-access-key=: The S3 secret access key
+    --s3-session-token=: The S3 session token
+    --token=: The token to use (for authentication with prefix.dev)
+    --username=: The username to use (for basic HTTP authentication)

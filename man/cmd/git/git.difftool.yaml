@@ -1,0 +1,174 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: difftool
+description: Show changes using common diff tools
+group: interrogator
+flags:
+  --abbrev=: show only a partial prefix
+  --anchored=: Generate a diff using the "anchored diff" algorithm
+  --binary: output a binary diff
+  --cached: View the changes you staged in the index/cache
+  --check: Warn if changes introduce conflict markers or whitespace errors
+  --color-moved-ws?: This configures how whitespace is ignored when performing the move detection
+  --color-moved?: Moved lines of code are colored differently
+  --color-words=: Equivalent to --word-diff=color plus (if a regex was specified)
+  --color=: Show colored diff
+  --compact-summary: Output a condensed summary of extended header information
+  --cumulative: Synonym for --dirstat=cumulative
+  --diff-algorithm=: ''
+  --diff-filter=: filter files
+  --dirstat-by-file=: Synonym for --dirstat=files,param1,param2...
+  --dst-prefix=: Show the given destination prefix instead of "b/"
+  --exit-code: Make the program exit with codes similar to diff(1)
+  --ext-diff: Allow an external diff helper to be executed
+  --find-copies-harder: inspect unmodified files as candidates for the source of copy
+  --find-object=: Look for differences that change the number of occurrences of the specified object
+  --full-index: show the full pre- and post-image blob object names
+  --histogram: Generate a diff using the "histogram diff" algorithm
+  --ignore-blank-lines: Ignore changes whose lines are all blank
+  --ignore-cr-at-eol: Ignore carriage-return at the end of line when doing a comparison
+  --ignore-space-at-eol: Ignore changes in whitespace at EOL
+  --ignore-submodules=: Ignore changes to submodules in the diff generation
+  --indent-heuristic: Enable the heuristic that shifts diff hunk boundaries to make patches easier to read
+  --inter-hunk-context=: Show the context between diff hunks
+  --ita-invisible-in-index: this option makes the entry appear as a new file
+  --line-prefix=: Prepend an additional prefix to every line of output
+  --minimal: Spend extra time to make sure the smallest possible diff is produced
+  --name-only: Show only names of changed files
+  --name-status: Show only names and status of changed files
+  --no-color: Turn off colored diff
+  --no-color-moved: Turn off move detection
+  --no-color-moved-ws: Do not ignore whitespace when performing move detection
+  --no-ext-diff: Disallow external diff drivers
+  --no-indent-heuristic: Disable the indent heuristic
+  --no-index: Compare paths on the file system
+  --no-prefix: Do not show any source or destination prefix
+  --no-rename-empty: Whether to use empty blobs as rename source
+  --no-renames: Turn off rename detection
+  --numstat: Similar to --stat, but shows number of added and deleted lines in decimal notation
+  --output-indicator-context=: Specify the character used to indicate context lines in the generated patch
+  --output-indicator-new=: Specify the character used to indicate new lines in the generated patch
+  --output-indicator-old=: Specify the character used to indicate old lines in the generated patch
+  --output=: Output to a specific file instead of stdout
+  --patch-with-raw: Synonym for -p --raw
+  --patch-with-stat: Synonym for -p --stat
+  --patience: Generate a diff using the "patience diff" algorithm
+  --pickaxe-all: When -S or -G finds a change, show all the changes in that changeset
+  --pickaxe-regex: Treat the <string> given to -S as an extended POSIX regular expression to match
+  --raw: Generate the diff in raw format
+  --relative,=: exclude changes outside the directory
+  --rename-empty: Whether to use empty blobs as rename source
+  --shortstat: Output only the last line of the --stat format
+  --src-prefix=: Show the given source prefix instead of "a/"
+  --stat-count=: Generate diffstat with limited lines
+  --stat-graph-width=: Generate diffstat with a given graph width
+  --stat-name-width=: Generate diffstat with a given filename width
+  --stat-width=: Generate diffstat with a given width
+  --stat=: Generate a diffstat
+  --submodule=: Specify how differences in submodules are shown
+  --summary: Output a condensed summary of extended header information
+  --symlinks: use symlinks in dir-diff mode
+  --textconv=: Allow (or disallow) external text conversion filters to be run when comparing binary files
+  --tool-help: print a list of diff tools that may be used with `--tool`
+  --trust-exit-code: exit when an invoked diff tool returns a non - zero exit code
+  --word-diff-regex=: Use <regex> to decide what a word is
+  --word-diff?: Show a word diff, using the <mode> to delimit changed words
+  --ws-error-highlight=: Highlight whitespace errors in the context, old or new lines of the diff
+  '-0': Omit diff output for unmerged entries
+  -1, --base: compare with base
+  -2, --ours: compare with our branch
+  -3, --theirs: compare with their branch
+  -B, --break-rewrites=: Break complete rewrite changes into pairs of delete and create
+  -C, --find-copies=: Detect copies as well as renames
+  -D, --irreversible-delete: Omit the preimage for deletes
+  -M, --find-renames=: Detect renames
+  -O=: Control the order in which files appear in the output
+  -R: Swap two inputs
+  -S=: Look for differences that change the number of occurrences of the specified string
+  -U, --unified=: Generate diffs with <n> lines of context instead of the usual three
+  -W, --function-context: Show whole surrounding functions of changes
+  -X, --dirstat=: Output the distribution of relative amount of changes for each sub-directory
+  -a, --text: Treat all files as text
+  -b, --ignore-space-change: Ignore changes in amount of whitespace
+  -d, --dir-diff: perform a full-directory diff
+  -g, --gui: use `diff.guitool` instead of `diff.tool`
+  -l=: prevent rename/copy detection from running if the number of rename/copy targets exceeds the specified number
+  -p, --patch: Generate patch
+  -s, --no-patch: Suppress diff output
+  -t, --tool=: use the specified diff tool
+  -u: Generate patch
+  -w, --ignore-all-space: Ignore whitespace when comparing lines
+  -x, --extcmd=: specify a custom command for viewing diffs
+  -y, --no-prompt: do not prompt before launching a diff tool
+  -z: do not munge pathnames and use NULs as output field terminators
+documentation:
+  command: |-
+    `git difftool` is a Git command that allows you to compare and edit files
+    between revisions using common diff tools. `git difftool` is a frontend
+    to `git diff` and accepts the same options and arguments. See
+    [git-diff](cmd://git/diff).
+  flag:
+    dir-diff: |-
+      Copy the modified files to a temporary location and perform
+      a directory diff on them. This mode never prompts before
+      launching the diff tool.
+    extcmd: |-
+      Specify a custom command for viewing diffs.
+      `git-difftool` ignores the configured defaults and runs
+      `<command> $LOCAL $REMOTE` when this option is specified.
+      Additionally, `$BASE` is set in the environment.
+    no-prompt: Do not prompt before launching a diff tool.
+    tool: |-
+      Use the diff tool specified by _<tool>_. Valid values include
+      emerge, kompare, meld, and vimdiff. Run `git difftool --tool-help`
+      for the list of valid _<tool>_ settings.
+
+      If a diff tool is not specified, `git difftool`
+      will use the configuration variable `diff.tool.`  If the configuration variable `diff.tool` is not set, `git` difftool
+      will pick a suitable default.
+
+      You can explicitly provide a full path to the tool by setting the
+      configuration variable `difftool.<tool>.path`. For example, you
+      can configure the absolute path to kdiff3 by setting
+      `difftool.kdiff3.path`. Otherwise, `git difftool` assumes the
+      tool is available in PATH.
+
+      Instead of running one of the known diff tools,
+      `git difftool` can be customized to run an alternative program
+      by specifying the command line to invoke in a configuration
+      variable `difftool.<tool>.cmd`.
+
+      When `git difftool` is invoked with this tool (either through the
+      `-t` or `--tool` option or the `diff.tool` configuration variable)
+      the configured command line will be invoked with the following
+      variables available: `$LOCAL` is set to the name of the temporary file containing the contents of the diff pre-image and `$REMOTE`
+      is set to the name of the temporary file containing the contents
+      of the diff post-image.  `$MERGED` is the name of the file which is
+      being compared. `$BASE` is provided for compatibility
+      with custom merge tool commands and has the same value as `$MERGED`.
+    tool-help: Print a list of diff tools that may be used with `--tool`.
+    symlinks: |-
+      `git difftool`'s default behavior is to create symlinks to the
+      working tree when run in `--dir-diff` mode and the right-hand
+      side of the comparison yields the same content as the file in
+      the working tree.
+
+      Specifying `--no-symlinks` instructs `git difftool` to create copies
+      instead.  `--no-symlinks` is the default on Windows.
+    trust-exit-code: |-
+      Errors reported by the diff tool are ignored by default.
+      Use `--trust-exit-code` to make `git-difftool` exit when an
+      invoked diff tool returns a non-zero exit code.
+
+      `git-difftool` will forward the exit code of the invoked tool when
+      `--trust-exit-code` is used.
+
+      See [git-diff](cmd://git/diff) for the full list of supported options.
+    gui: |-
+      When `git-difftool` is invoked with the `-g` or `--gui` option
+      the default diff tool will be read from the configured
+      `diff.guitool` variable instead of `diff.tool`. This may be
+      selected automatically using the configuration variable
+      `difftool.guiDefault`. The `--no-gui` option can be used to
+      override these settings. If `diff.guitool` is not set, we will
+      fallback in the order of `merge.guitool`, `diff.tool`,
+      `merge.tool` until a tool is found.

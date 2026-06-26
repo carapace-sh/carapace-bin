@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: event:cache
+description: Discover and cache the application's events and listeners

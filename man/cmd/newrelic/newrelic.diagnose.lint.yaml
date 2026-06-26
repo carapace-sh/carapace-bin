@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lint
+description: Validate your agent config file
+flags:
+    --config-file=: Path to the config file to be validated.

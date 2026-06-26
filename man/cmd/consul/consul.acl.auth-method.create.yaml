@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create an ACL auth method
+flags:
+    --ca-file=: Path to a CA file to use for TLS when communicating with Consul.
+    --ca-path=: Path to a directory of CA certificates to use for TLS when communicating with Consul.
+    --client-cert=: Path to a client cert file to use for TLS when 'verify_incoming' is enabled.
+    --client-key=: Path to a client key file to use for TLS when 'verify_incoming' is enabled.
+    --config=: The configuration for the auth method.
+    --datacenter=: Name of the datacenter to query.
+    --description=: A description of the auth method.
+    --display-name=: An optional name to use instead of the name when displaying this auth method in a UI.
+    --format=: Output format.
+    --http-addr=: The `address` and port of the Consul HTTP agent.
+    --kubernetes-ca-cert=: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+    --kubernetes-host=: Address of the Kubernetes API server.
+    --kubernetes-service-account-jwt=: A Kubernetes service account JWT used to access the TokenReview API to validate other JWTs during login.
+    --max-token-ttl=: Duration of time all tokens created by this auth method should be valid for
+    --meta: Indicates that auth method metadata such as the raft indices should be shown for each entry.
+    --name=: The new auth method's name.
+    --namespace=: Specifies the namespace to query.
+    --stale: Permit any Consul server (non-leader) to respond to this request.
+    --tls-server-name=: The server name to use as the SNI host when connecting via TLS.
+    --token-file=: File containing the ACL token to use in the request.
+    --token-locality=: Defines the kind of token that this auth method should produce.
+    --token=: ACL token to use in the request.
+    --type=: The new auth method's type.

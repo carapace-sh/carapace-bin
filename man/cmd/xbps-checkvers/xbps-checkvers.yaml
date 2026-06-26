@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-checkvers [OPTIONS] [FILES...]
+description: XBPS utility to check for outdated packages
+flags:
+    --staging: Enable use of staged packages
+    -C, --config=: Path to confdir (xbps.d)
+    -D, --distdir=: Set (or override) the path to void-packages (defaults to ~/void-packages)
+    -I, --installed: Check for outdated packages in rootdir, rather than in the XBPS repositories
+    -R, --repository=*: Append repository to the head of repository list
+    -d, --debug: Debug mode shown to stderr
+    -e, --removed: List packages present in repos, but not in distdir
+    -h, --help: Show usage
+    -i, --ignore-conf-repos: Ignore repositories defined in xbps.d
+    -m, --manual: Only process listed files
+    -r, --rootdir=: Full path to rootdir
+    -s, --show-all: List all packages, in the format 'pkgname repover srcver'

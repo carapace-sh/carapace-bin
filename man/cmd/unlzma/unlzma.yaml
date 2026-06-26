@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unlzma
+description: Compress or decompress .xz and .lzma files

@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+aliases:
+    - a
+description: Adds dependencies to an environment
+flags:
+    --auth-file=: Path to the file containing the authentication token
+    --branch=: The git branch
+    --concurrent-downloads=: Max concurrent network requests, default is `50`
+    --concurrent-solves=: Max concurrent solves, default is the number of CPUs
+    --expose=*: Add one or more mapping which describe which executables are exposed. The syntax is `exposed_name=executable_name`, so for example `python3.10=python`. Alternatively, you can input only an executable_name and `executable_name=executable_name` is assumed
+    --git=: The git url, e.g. `https://github.com/user/repo.git`
+    --path=: The path to the local package
+    --pinning-strategy=: Set pinning strategy
+    --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
+    --rev=: The git revision
+    --run-post-link-scripts: Run post-link scripts (insecure)
+    --subdir=: The subdirectory within the git repository
+    --tag=: The git tag
+    --tls-no-verify: Do not verify the TLS certificate of the server
+    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --use-environment-activation-cache: Use environment activation cache (experimental)
+    -e, --environment=!: Specifies the environment that the dependencies need to be added to

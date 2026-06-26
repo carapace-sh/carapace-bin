@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scout:import [-c|--chunk [CHUNK]] [--] <model>
+description: Import the given model into the search index
+flags:
+    --chunk=: 'The number of records to import at a time (Defaults to configuration value: `scout.chunk.searchable`)'

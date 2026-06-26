@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-dependencies
+description: Recursively show units which are required or wanted
+group: unit
+documentation:
+  command: |
+    Show units required and wanted by the specified units, recursively
+    following Requires=, Requisite=, Wants=, ConsistsOf=, BindsTo=, and
+    Upholds= dependencies. If no units are specified, default.target is
+    implied. Use `--reverse`, `--after`, `--before` to change what types
+    of dependencies are shown. Note that this only lists units currently
+    loaded into memory.

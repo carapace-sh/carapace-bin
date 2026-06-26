@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hash
+description: compute and convert cryptographic hashes
+group: utility

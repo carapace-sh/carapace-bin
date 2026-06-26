@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [flags]
+aliases:
+    - new
+description: Create an issue.
+flags:
+    --due-date=: A date in 'YYYY-MM-DD' format.
+    --epic=: ID of the epic to add the issue to.
+    --link-type=: Type for the issue link
+    --linked-issues=*: The IIDs of issues that this issue links to.
+    --linked-mr=: The IID of a merge request in which to resolve all issues.
+    --no-editor: Don't open editor to enter a description. If set to true, uses prompt. (default false)
+    --recover: Save the options to a file if the issue fails to be created. If the file exists, the options will be loaded from the recovery file. (EXPERIMENTAL)
+    --web: Continue issue creation with web interface.
+    -a, --assignee=*: Assign issue to people by their `usernames`.
+    -c, --confidential: Set an issue to be confidential. (default false)
+    -d, --description=: Issue description.
+    -e, --time-estimate=: Set time estimate for the issue.
+    -l, --label=*: Add label by name. Multiple labels should be comma-separated.
+    -m, --milestone=: The global ID or title of a milestone to assign.
+    -s, --time-spent=: Set time spent for the issue.
+    -t, --title=: Issue title.
+    -w, --weight=: Issue weight. Valid values are greater than or equal to 0.
+    -y, --yes: Don't prompt for confirmation to submit the issue.

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: watch [SERVICE...]
+description: Watch build context for service and rebuild/refresh containers when files are updated
+flags:
+    --no-up: Do not build & start services before watching
+    --prune: Prune dangling images on rebuild
+    --quiet: hide build output

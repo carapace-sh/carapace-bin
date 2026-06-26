@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fc-cat
+description: read font information cache files
+flags:
+    -V, --version: display font config version and exit
+    -h, --help: display this help and exit
+    -r, --recurse: recurse into subdirectories
+    -v, --verbose: be verbose

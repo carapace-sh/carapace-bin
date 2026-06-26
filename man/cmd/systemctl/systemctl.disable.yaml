@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: disable
+description: Disable one or more unit files
+group: unit file
+documentation:
+  command: |
+    Disable one or more units. This removes all symlinks to the unit files
+    from the unit configuration directory, undoing any changes made by enable
+    or link. Note that this removes all symlinks to matching unit files,
+    including manually created symlinks, not just those created by enable.
+    This command also disables all units listed in the Also= setting of any
+    of the unit files being operated on. This command does not implicitly
+    stop the units being disabled; use `--now` to also stop them.

@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lock
+description: Lock administrative files from being pruned automatically
+flags:
+  --expire=: add 'prunable' annotation to worktrees older than <time>
+  --porcelain: machine-readable output
+  -v, --verbose: show extended annotations and reasons, if available
+  -z: terminate records with a NUL character
+documentation:
+  command: |-
+    If a worktree is on a portable device or network share which is not always
+    mounted, lock it to prevent its administrative files from being pruned
+    automatically. This also prevents it from being moved or deleted.
+    Optionally, specify a reason for the lock with `--reason`.
+  flag:
+    porcelain: |-
+      With `list`, output in an easy-to-parse format for scripts.
+      This format will remain stable across Git versions and regardless of user
+      configuration.  It is recommended to combine this with `-z`.
+      See below for details.
+    verbose: |-
+      With `prune`, report all removals.
+
+      With `list`, output additional information about worktrees (see below).
+    z: |-
+      Terminate each line with a _NUL_ rather than a newline when
+      `--porcelain` is specified with `list`. This makes it possible
+      to parse the output when a worktree path contains a newline
+      character.

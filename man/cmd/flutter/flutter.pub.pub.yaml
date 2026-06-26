@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pub
+description: Pass the remaining arguments to Dart's "pub" tool
+flags:
+    -h, --help: Print this usage information.

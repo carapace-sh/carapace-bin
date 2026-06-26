@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: global-status
+description: outputs status Vagrant environments for this user
+flags:
+    --prune: Prune invalid entries.

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: env:decrypt [--key [KEY]] [--cipher [CIPHER]] [--env [ENV]] [--force] [--path [PATH]] [--filename [FILENAME]]
+description: Decrypt an environment file
+flags:
+    --cipher=: The encryption cipher
+    --env=: The environment to be decrypted
+    --filename=: Filename of the decrypted file
+    --force: Overwrite the existing environment file
+    --key=: The encryption key
+    --path=: Path to write the decrypted file

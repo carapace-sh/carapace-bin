@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dict
+description: Query a dictd server for the definition of a word
+flags:
+    --client=: additional text for client command
+    --debug=: set debugging flag
+    --help: display this help
+    --pipesize=: specify buffer size for pipelining (256)
+    "-4": forces dict to use IPv4 addresses only.
+    "-6": forces dict to use IPv6 addresses only.
+    -C, --nocorrect: disable attempted spelling correction
+    -D, --dbs: show available databases
+    -H, --serverhelp: show server help
+    -I, --serverinfo: show information about the server
+    -L, --license: display copyright and license information
+    -M, --mime: send OPTION MIME command if server supports it
+    -S, --strats: show available search strategies
+    -V, --version: display version information
+    -a, --noauth: disable authentication
+    -c, --config=: specify configuration file
+    -d, --database=: select a database to search
+    -f, --formatted: use strict tabbed format of output
+    -h, --host=: specify server
+    -i, --info=: show information about a database
+    -k, --key=: shared secret for authentication
+    -m, --match: match instead of define
+    -p, --port=: specify port
+    -r, --raw: trace raw transaction
+    -s, --strategy=: strategy for matching or defining
+    -u, --user=: username for authentication
+    -v, --verbose: be verbose

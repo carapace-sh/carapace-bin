@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: completion
+description: A helper command to be used for command completion
+flags:
+    -b, --bash: Emit completion code for bash
+    -f, --fish: Emit completion code for fish
+    -z, --zsh: Emit completion code for zsh

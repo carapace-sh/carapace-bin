@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pulls
+aliases:
+    - pull
+    - pr
+description: Manage and checkout pull requests
+group: ENTITIES
+flags:
+    --comments: Whether to display comments (will prompt if not provided & run interactively)
+    --limit=: specify limit of items per page
+    --state=: Filter by state (all|open|closed)
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -f, --fields=: 'Comma-separated list of fields to print. Available values:'
+    -l, --login=: Use a different Gitea Login. Optional
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -p, --page=: specify page, default is 1
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional

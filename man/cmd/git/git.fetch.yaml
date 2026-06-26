@@ -1,0 +1,256 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fetch
+description: Download objects and refs from another repository
+group: main
+flags:
+  --all: fetch from all remotes
+  --auto-gc: run 'gc --auto' after fetching
+  --deepen=: deepen history of shallow clone
+  --depth=: deepen history of shallow clone
+  --dry-run: dry run
+  --filter=: object filtering
+  --negotiation-tip=: report that we have only objects reachable from this object
+  --progress: force progress reporting
+  --recurse-submodules=: control recursive fetching of submodules
+  --refmap=: specify fetch refmap
+  --set-upstream: set upstream for git pull/fetch
+  --shallow-exclude=: deepen history of shallow clone, excluding rev
+  --shallow-since=: deepen history of shallow repository based on time
+  --show-forced-updates: check for forced-updates on all updated branches
+  --unshallow: convert to a complete repository
+  --update-shallow: accept refs that update .git/shallow
+  --upload-pack=: path to upload pack on remote end
+  --write-commit-graph: write the commit-graph after fetching
+  -4, --ipv4: use IPv4 addresses only
+  -6, --ipv6: use IPv6 addresses only
+  -P, --prune-tags: prune local tags no longer on remote and clobber changed tags
+  -a, --append: append to .git/FETCH_HEAD instead of overwriting
+  -f, --force: force overwrite of local reference
+  -j, --jobs=: number of submodules fetched in parallel
+  -k, --keep: keep downloaded pack
+  -m, --multiple: fetch from multiple remotes
+  -n: do not fetch all tags (--no-tags)
+  -o, --server-option=: option to transmit
+  -p, --prune: prune remote-tracking branches no longer on remote
+  -q, --quiet: be more quiet
+  -t, --tags: fetch all tags and associated objects
+  -u, --update-head-ok: allow updating of HEAD ref
+  -v, --verbose: be more verbose
+documentation:
+  command: |-
+    Fetch branches and/or tags (collectively, "refs") from one or more
+    other repositories, along with the objects necessary to complete their
+    histories.  Remote-tracking branches are updated (see the description
+    of _<refspec>_ below for ways to control this behavior).
+
+    By default, any tag that points into the histories being fetched is
+    also fetched; the effect is to fetch tags that
+    point at branches that you are interested in.  This default behavior
+    can be changed by using the `--tags` or `--no-tags` options or by
+    configuring `remote.<name>.tagOpt`.  By using a refspec that fetches tags
+    explicitly, you can fetch tags that do not point into branches you
+    are interested in as well.
+
+    `git fetch` can fetch from either a single named repository or URL,
+    or from several repositories at once if _<group>_ is given and
+    there is a `remotes.<group>` entry in the configuration file.
+    (See [git-config](cmd://git/config)).
+
+    When no remote is specified, by default the `origin` remote will be used,
+    unless there's an upstream branch configured for the current branch.
+
+    The names of refs that are fetched, together with the object names
+    they point at, are written to `.git/FETCH_HEAD`.  This information
+    may be used by scripts or other git commands, such as [git-pull](cmd://git/pull).
+  flag:
+    append: |-
+      Append ref names and object names of fetched refs to the
+      existing contents of `.git/FETCH_HEAD`.  Without this
+      option old data in `.git/FETCH_HEAD` will be overwritten.
+    deepen: |-
+      Similar to `--depth`, except it specifies the number of commits
+      from the current shallow boundary instead of from the tip of
+      each remote branch history.
+    depth: |-
+      Limit fetching to the specified number of commits from the tip of
+      each remote branch history. If fetching to a `shallow` repository
+      created by `git clone` with `--depth=<depth>` option (see
+      [git-clone](cmd://git/clone)), deepen or shorten the history to the specified
+      number of commits. Tags for the deepened commits are not fetched.
+    dry-run: Show what would be done, without making any changes.
+    filter: |-
+      Use the partial clone feature and request that the server sends
+      a subset of reachable objects according to a given object filter.
+      When using `--filter`, the supplied _<filter-spec>_ is used for
+      the partial fetch.
+
+      If `--filter=auto` is used, the filter specification is determined
+      automatically by combining the filter specifications advertised by
+      the server for the promisor remotes that the client accepts (see
+      [gitprotocol-v2](man://gitprotocol-v2/5) and the `promisor.acceptFromServer`
+      configuration option in [git-config](cmd://git/config)).
+
+      For details on all other available filter specifications, see the
+      `--filter=<filter-spec>` option in [git-rev-list](cmd://git/rev-list).
+
+      For example, `--filter=blob:none` will filter out all blobs (file
+      contents) until needed by Git. Also, `--filter=blob:limit=<size>` will
+      filter out all blobs of size at least _<size>_.
+    force: |-
+      When `git fetch` is used with `<src>:<dst>` refspec, it may
+      refuse to update the local branch as discussed
+      in the _<refspec>_ part of the [git-fetch](cmd://git/fetch)
+      documentation.
+
+      When `git fetch` is used with `<src>:<dst>` refspec, it may
+      refuse to update the local branch as discussed in the _<refspec>_ part below.
+
+      This option overrides that check.
+    ipv4: Use IPv4 addresses only, ignoring IPv6 addresses.
+    ipv6: Use IPv6 addresses only, ignoring IPv4 addresses.
+    jobs: |-
+      Parallelize all forms of fetching up to _<n>_ jobs at a time.
+
+      A value of 0 will use some reasonable default.
+
+      If the `--multiple` option was specified, the different remotes will be fetched
+      in parallel. If multiple submodules are fetched, they will be fetched in
+      parallel. To control them independently, use the config settings
+      `fetch.parallel` and `submodule.fetchJobs` (see [git-config](cmd://git/config)).
+
+      Typically, parallel recursive and multi-remote fetches will be faster. By
+      default fetches are performed sequentially, not in parallel.
+    keep: Keep downloaded pack.
+    multiple: |-
+      Allow several _<repository>_ and _<group>_ arguments to be
+      specified. No **<refspec>**s may be specified.
+    negotiation-tip: |-
+      By default, Git will report, to the server, commits reachable
+      from all local refs to find common commits in an attempt to
+      reduce the size of the to-be-received packfile. If specified,
+      Git will only report commits reachable from the given tips.
+      This is useful to speed up fetches when the user knows which
+      local ref is likely to have commits in common with the
+      upstream ref being fetched.
+
+      `--negotiation-restrict` is the preferred name for this option;
+      `--negotiation-tip` is accepted as a synonym.
+
+      This option may be specified more than once; if so, Git will report
+      commits reachable from any of the given commits.
+
+      The argument to this option may be a glob on ref names, a ref, or the (possibly
+      abbreviated) SHA-1 of a commit. Specifying a glob is equivalent to specifying
+      this option multiple times, one for each matching ref name.
+
+      See also the `fetch.negotiationAlgorithm` and `push.negotiate`
+      configuration variables documented in [git-config](cmd://git/config), and the
+      `--negotiate-only` option below.
+    progress: |-
+      Progress status is reported on the standard error stream
+      by default when it is attached to a terminal, unless `-q`
+      is specified. This flag forces progress status even if the
+      standard error stream is not directed to a terminal.
+    prune: |-
+      Before fetching, remove any remote-tracking references that no
+      longer exist on the remote.  Tags are not subject to pruning
+      if they are fetched only because of the default tag
+      auto-following or due to a `--tags` option.  However, if tags
+      are fetched due to an explicit refspec (either on the command
+      line or in the remote configuration, for example if the remote
+      was cloned with the `--mirror` option), then they are also
+      subject to pruning. Supplying `--prune-tags` is a shorthand for
+      providing the tag refspec.
+
+      See the PRUNING section below for more details.
+    prune-tags: |-
+      Before fetching, remove any local tags that no longer exist on
+      the remote if `--prune` is enabled. This option should be used
+      more carefully, unlike `--prune` it will remove any local
+      references (local tags) that have been created. This option is
+      a shorthand for providing the explicit tag refspec along with
+      `--prune`, see the discussion about that in its documentation.
+
+      See the PRUNING section below for more details.
+    quiet: |-
+      Pass `--quiet` to `git-fetch-pack` and silence any other internally
+      used git commands. Progress is not reported to the standard error
+      stream.
+    refmap: |-
+      When fetching refs listed on the command line, use the
+      specified refspec (can be given more than once) to map the
+      refs to remote-tracking branches, instead of the values of
+      `remote.<name>.fetch` configuration variables for the remote
+      repository.  Providing an empty _<refspec>_ to the
+      `--refmap` option causes Git to ignore the configured
+      refspecs and rely entirely on the refspecs supplied as
+      command-line arguments. See section on "Configured Remote-tracking
+      Branches" for details.
+    server-option: |-
+      Transmit the given string to the server when communicating using
+      protocol version 2.  The given string must not contain a _NUL_ or _LF_
+      character.  The server's handling of server options, including
+      unknown ones, is server-specific.
+      When multiple `--server-option=<option>` are given, they are all
+      sent to the other side in the order listed on the command line.
+      When no `--server-option=<option> is given from the command line, the values of configuration variable `remote.<name>.serverOption
+      are used instead.
+    set-upstream: |-
+      If the remote is fetched successfully, add upstream
+      (tracking) reference, used by argument-less
+      [git-pull](cmd://git/pull) and other commands. For more information,
+      see `branch.<name>.merge` and `branch.<name>.remote` in
+      [git-config](cmd://git/config).
+    shallow-exclude: |-
+      Deepen or shorten the history of a shallow repository to
+      exclude commits reachable from a specified remote branch or tag.
+      This option can be specified multiple times.
+    shallow-since: |-
+      Deepen or shorten the history of a shallow repository to
+      include all reachable commits after _<date>_.
+    show-forced-updates: |-
+      By default, git checks if a branch is force-updated during
+      fetch. This can be disabled through `fetch.showForcedUpdates`, but
+      the `--show-forced-updates` option guarantees this check occurs.
+      See [git-config](cmd://git/config).
+    tags: |-
+      Fetch all tags from the remote (i.e., fetch remote tags
+      `refs/tags/*` into local tags with the same name), in addition
+      to whatever else would otherwise be fetched.  Using this
+      option alone does not subject tags to pruning, even if `--prune`
+      is used (though tags may be pruned anyway if they are also the
+      destination of an explicit refspec; see `--prune`).
+    unshallow: |-
+      If the source repository is complete, convert a shallow
+      repository to a complete one, removing all the limitations
+      imposed by shallow repositories.
+
+      If the source repository is shallow, fetch as much as possible so that
+      the current repository has the same history as the source repository.
+    update-head-ok: |-
+      By default `git fetch` refuses to update the head which
+      corresponds to the current branch.  This flag disables the
+      check.  This is purely for the internal use for `git pull`
+      to communicate with `git fetch`, and unless you are
+      implementing your own Porcelain you are not supposed to
+      use it.
+    update-shallow: |-
+      By default when fetching from a shallow repository,
+      `git fetch` refuses refs that require updating
+      `.git/shallow`. This option updates `.git/shallow` and accepts such
+      refs.
+    verbose: Be verbose.
+    all: |-
+      Fetch all remotes, except for the ones that have the
+      `remote.<name>.skipFetchAll` configuration variable set.
+      This overrides the configuration variable `fetch.all`.
+    auto-gc: |-
+      Run `git maintenance run --auto` at the end to perform automatic
+      repository maintenance if needed.
+      This is enabled by default.
+    recurse-submodules: |-
+      Disable recursive fetching of submodules (this has the same effect as
+      using the `--recurse-submodules=no` option).
+    write-commit-graph: |-
+      Write a commit-graph after fetching. This overrides the config
+      setting `fetch.writeCommitGraph`.

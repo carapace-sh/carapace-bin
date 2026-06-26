@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: use-context CONTEXT_NAME
+aliases:
+    - use
+description: Set the current-context in a kubeconfig file

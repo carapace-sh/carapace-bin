@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pkcs7
+description: PKCS#7 Data Management
+group: standard
+flags:
+    -in=: Input file
+    -inform=: Input format - DER or PEM
+    -noout: Don't output encoded data
+    -out=: Output file
+    -outform=: Output format - DER or PEM
+    -print: Print out all fields of the PKCS7 structure
+    -print_certs: Print_certs  print any certs or crl in the input
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -quiet: When used with -print_certs, it produces a cleaner output
+    -text: Print full details of certificates

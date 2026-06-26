@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dial-stdio
+description: Proxy the stdio stream to the daemon connection. Should not be invoked manually.
+hidden: true

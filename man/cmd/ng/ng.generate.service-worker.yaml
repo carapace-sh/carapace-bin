@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: service-worker
+description: Pass this schematic to the "run" command to create a service worker
+flags:
+    --project=: The name of the project.
+    --target=: The target to apply service worker to.

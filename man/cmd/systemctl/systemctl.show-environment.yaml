@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show-environment
+description: Dump environment
+group: environment
+documentation:
+  command: |
+    Dump the systemd manager environment block. This is the environment
+    block that is passed to all processes the manager spawns. The output
+    is in the form "VARIABLE=value", suitable for sourcing into shells.
+    If special characters or whitespace are present, dollar-single-quote
+    escaping is used.

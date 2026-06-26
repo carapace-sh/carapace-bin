@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config <command> [flags]
+description: Work with GitLab CI/CD configuration.

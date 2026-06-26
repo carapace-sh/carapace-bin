@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: apt
+description: apt is a commandline package manager
+flags:
+    -a, --host-architecture=: architecture
+    -c=: config file
+    -h, --help: show help
+    -o, --option=: config string
+    -t, --target-release=: target release
+    -v, --version: show version
+
+documentation:
+  command: >-
+    APT (Advanced Package Tool) is the command-line package manager for Debian-based distributions (Debian, Ubuntu, etc.). Manages packages in `.deb` format from configured repositories. Key commands: `apt install` (install packages), `apt remove` (remove packages), `apt update` (refresh package lists), `apt upgrade` (upgrade all packages), `apt search` (search packages), `apt show` (show package details), `apt list` (list packages). Use `-y` for automatic yes to prompts, `-s` for simulation, `-d` to only download. Configuration files: `/etc/apt/sources.list` and `/etc/apt/apt.conf.d/`.

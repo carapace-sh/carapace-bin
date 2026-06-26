@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: agent <command> [flags]
+description: Manage GitLab Agents for Kubernetes.
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.

@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import
+description: capture an application or X server screen
+flags:
+    -adjoin*: join images into a single multi-image file
+    -border*: include image borders in the output image
+    -colors*: preferred number of colors in the image
+    -colorspace=*: alternate image colorspace
+    -comment=*: annotate image with comment
+    -compress=*: image compression type
+    -crop=*: preferred size and location of the cropped image
+    -debug=*: display copious debugging information
+    -define=*: Coder/decoder specific options
+    -delay=*: display the next image after pausing
+    -density=*: horizontal and vertical density of the image
+    -depth=*: image depth
+    -descend*: obtain image by descending window hierarchy
+    -display=*: X server to contact
+    -dispose=*: Undefined, None, Background, Previous
+    -dither*: apply Floyd/Steinberg error diffusion to image
+    -encoding=*: text encoding type
+    -endian=*: multibyte word order (LSB, MSB, or Native)
+    -frame*: include window manager frame
+    -geometry=*: preferred size or location of the image
+    -help: program options
+    -interlace=*: None, Line, Plane, or Partition
+    -label=*: assign a label to an image
+    -limit=*: Disk, File, Map, Memory, Pixels, Width, Height or Threads resource limit
+    -log=*: format of debugging information
+    -monitor*: show progress indication
+    -monochrome=*: image to black and white
+    -negate*: 'replace every pixel with its complementary color '
+    -page=*: size and location of an image canvas
+    -pause=*: seconds delay between snapshots
+    -pointsize=*: font point size
+    -quality=*: JPEG/MIFF/PNG compression level
+    -resize=*: resize the image
+    -rotate=*: apply Paeth rotation to the image
+    -sampling-factor=*: horizontal and vertical sampling factors
+    -scene=*: image scene number
+    -screen*: select image from root window
+    -set=*: set image attribute
+    -silent*: 'operate silently, i.e. don''t ring any bells '
+    -snaps=*: number of screen snapshots
+    -thumbnail=*: resize the image (optimized for thumbnails)
+    -transparent=*: make this color transparent within the image
+    -treedepth=*: color tree depth
+    -trim*: trim image edges
+    -type=*: image type
+    -verbose: detailed information about the image
+    -version: version information
+    -virtual-pixel=*: Constant, Edge, Mirror, or Tile
+    -window=*: select window with this id or name

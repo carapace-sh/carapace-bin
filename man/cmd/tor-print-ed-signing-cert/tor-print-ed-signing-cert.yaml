@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tor-print-ed-signing-cert
+description: print expiration date of ed25519 signing certificate

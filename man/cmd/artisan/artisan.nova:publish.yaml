@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nova:publish [--force]
+description: Publish all of the Nova resources
+flags:
+    --force: Overwrite any existing files

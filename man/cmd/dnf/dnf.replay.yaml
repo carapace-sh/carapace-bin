@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: replay [options] <transaction-path>
+description: replay stored transactions
+flags:
+    --ignore-extras: don't consider extra packages as errors
+    --ignore-installed: don't consider mismatches as errors
+    --skip-broken: resolve dependency problems
+    --skip-unavailable: skip unavailable packages

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gen FILE
+description: Generate CLI reference documentation
+hidden: true
+flags:
+    --frontmatter=: Prepend content to beginning of generated file
+    --include-experimental: Show experimental commands in the generated documentation
+    -o, --output=: Save to file

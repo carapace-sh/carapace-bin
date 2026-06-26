@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate
+description: Generates and/or modifies files based on a schematic
+flags:
+    --defaults: Disable interactive input prompts for options with a default.
+    --dry-run: Run through and reports activity without writing out results.
+    --force: Force overwriting of existing files.
+    --interactive: Enable interactive input prompts.

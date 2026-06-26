@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+aliases:
+    - new
+description: Create a pull request
+group: General commands
+documentation:
+    command: |
+        Create a pull request. Specify the base branch with `-B` (defaults to main)
+        and the head branch with `-H` (defaults to current branch). Use `--fill`
+        to auto-fill title and body from commits, `--fill-first` for just the first
+        commit, or `--fill-verbose` to include all commit messages. Add reviewers
+        with `-r`, assignees with `-a`, labels with `-l`, and milestones with `-m`.
+        Use `--draft` to create as a draft PR, or `--web` to open in the browser.
+flags:
+    --dry-run: Print details instead of creating the PR. May still push git changes.
+    --fill-first: Use first commit info for title and body
+    --fill-verbose: Use commits msg+body for description
+    --no-maintainer-edit: Disable maintainer's ability to modify pull request
+    --recover=: Recover input from a failed run of create
+    -B, --base=: The `branch` into which you want your code merged
+    -F, --body-file=: Read body text from `file` (use "-" to read from standard input)
+    -H, --head=: The `branch` that contains commits for your pull request (default [current branch])
+    -T, --template=: Template `file` to use as starting body text
+    -a, --assignee=*: Assign people by their `login`. Use "@me" to self-assign.
+    -b, --body=: Body for the pull request
+    -d, --draft: Mark pull request as a draft
+    -e, --editor: Skip prompts and open the text editor to write the title and body in. The first line is the title and the remaining text is the body.
+    -f, --fill: Use commit info for title and body
+    -l, --label=*: Add labels by `name`
+    -m, --milestone=: Add the pull request to a milestone by `name`
+    -p, --project=*: Add the pull request to projects by `title`
+    -r, --reviewer=*: Request reviews from people or teams by their `handle`
+    -t, --title=: Title for the pull request
+    -w, --web: Open the web browser to create a pull request

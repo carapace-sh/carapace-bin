@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete <id> [flags]
+description: Delete CI/CD pipelines.
+flags:
+    --dry-run: Simulate process, but do not delete anything.
+    --older-than=: 'Filter pipelines older than the given duration. Valid units: h, m, s, ms, us, ns.'
+    --page=: Page number.
+    --paginate: Make additional HTTP requests to fetch all pages of projects before cloning. Respects '--per-page'.
+    --per-page=: Number of items to list per page.
+    --source=: 'Filter pipelines by source: api, chat, external, external_pull_request_event, merge_request_event, ondemand_dast_scan, ondemand_dast_validation, parent_pipeline, pipeline, push, schedule, security_orchestration_policy, trigger, web, webide.'
+    -s, --status=: 'Delete pipelines by status: running, pending, success, failed, canceled, skipped, created, manual.'

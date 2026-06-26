@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: review
+description: Review an access request.
+flags:
+    --approve: Review proposes approval
+    --deny: Review proposes denial
+    --no-approve&: Review proposes approval
+    --no-deny&: Review proposes denial
+    --reason=: Review reason message

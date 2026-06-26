@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qmk
+description: CLI wrapper for running QMK commands
+flags:
+    --color: Enable color in output
+    --config-file=: The location for the configuration file
+    --datetime-fmt=: Format string for datetimes
+    --interactive: Force interactive mode even when stdout is not a tty.
+    --log-file-fmt=: Format string for log file.
+    --log-file-level=: Logging level for log file.
+    --log-file=: File to write log messages to
+    --log-fmt=: Format string for printed log output
+    --no-color: Disable color in output
+    --no-unicode: Disable unicode loglevels
+    --unicode: Enable unicode loglevels
+    -V, --version: Display the version and exit
+    -h, --help: show this help message and exit
+    -v, --verbose: Make the logging more verbose

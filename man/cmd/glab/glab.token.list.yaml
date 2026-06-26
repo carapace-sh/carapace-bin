@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List user, group, or project access tokens.
+flags:
+    -F, --output=: 'Format output as: text, json. text provides a readable table, json outputs the tokens with metadata.'
+    -U, --user=: List personal access tokens. Use @me for the current user.
+    -a, --active: List only the active tokens.
+    -g, --group=: List group access tokens. Ignored if a user or repository argument is set.
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.

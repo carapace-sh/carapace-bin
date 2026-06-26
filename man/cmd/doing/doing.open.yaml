@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: open [OPTIONS] COMMAND [ARGS]...
+description: Quickly open certain links
+flags:
+    --help: Show this message and exit.

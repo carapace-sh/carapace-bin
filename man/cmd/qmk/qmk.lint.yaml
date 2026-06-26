@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lint
+description: Check keyboard and keymap for common mistakes
+flags:
+    --keyboard=: The keyboard to check.
+    --keymap=: The keymap to check.
+    --strict: Treat warnings as errors.
+    -h, --help: show this help message and exit

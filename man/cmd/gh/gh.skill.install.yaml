@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install <repository> [<skill[@version]>] [flags]
+aliases:
+    - add
+description: Install agent skills from a GitHub repository (preview)
+flags:
+    --agent=: Target agent (see supported values above)
+    --allow-hidden-dirs: Include skills in hidden directories (e.g. .claude/skills/, .agents/skills/)
+    --dir=: Install to a custom directory (overrides --agent and --scope)
+    --from-local: Treat the argument as a local directory path instead of a repository
+    --pin=: Pin to a specific git tag or commit SHA
+    --scope=: 'Installation scope: {project|user}'
+    --upstream: Install from the upstream source when a re-published skill is detected
+    -f, --force: Overwrite existing skills without prompting

@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Quickly search through files using ripgrep, with syntax
+    highlighting provided by bat. Supports case-sensitive,
+    case-insensitive, and smart-case search modes.
+description: Quickly search through and highlight files using ripgrep
+flags:
+    --color: Force color output.
+    --no-color: Force disable color output.
+    --no-follow: Do not follow symlinks.
+    --no-highlight: Do not highlight matching lines.
+    --no-separator: Disable printing separator between files
+    --no-snip: Do not show the snip decoration.
+    --pager=: Specify the pager to use.
+    --paging=: Enable/disable paging.
+    --terminal-width=: Generate output for the specified terminal width.
+    -A, --after-context=: Display the next n lines after a matched line.
+    -B, --before-context=: Display the previous n lines before a matched line.
+    -C, --context=: A combination of --after-context and --before-context.
+    -S, --smart-case: Use smart case searching.
+    -i, --ignore-case: Use case insensitive searching.
+    -p, --search-pattern: 'Tell pager to search for PATTERN. Currently supported pagers: less.'
+    -s, --case-sensitive: Use case sensitive searching.

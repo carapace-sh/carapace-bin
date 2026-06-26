@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: format-rev
+description: 'EXPERIMENTAL: Pretty format revisions on demand'
+group: low-level interrogator
+flags:
+    --format=: Pretty format to use
+    --notes?*: Display notes for pretty format
+    --null-input: Use NUL for input termination
+    --null-output: Use NUL for output termination
+    --stdin-mode=: How revs are processed
+    -z, --null: Use NUL for input and output termination
+
+documentation:
+  command: >-
+    Pretty format revisions from standard input. THIS COMMAND IS EXPERIMENTAL; THE BEHAVIOR MAY CHANGE.

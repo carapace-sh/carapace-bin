@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cat
+
+documentation:
+  command: >-
+    Concatenate files and print to stdout. cat reads FILE arguments in
+    sequence and writes their contents to standard output. With no FILE
+    or when FILE is -, reads stdin. Number all output lines with -n; number
+    only nonblank lines with -b. Show ends with -E (display $) and tabs with
+    -T (display ^I). Show nonprinting characters with -v (uses ^ and M-
+    notation). Squeeze multiple blank lines into one with -s. Combine flags:
+    -A is -vET. Use - to read stdin as one of multiple inputs (e.g., cat file -).

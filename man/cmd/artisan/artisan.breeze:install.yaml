@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: breeze:install [--dark] [--pest] [--ssr] [--typescript] [--composer [COMPOSER]] [--] <stack>
+description: Install the Breeze controllers and resources
+flags:
+    --composer=: Absolute path to the Composer binary which should be used to install packages
+    --dark: Indicate that dark mode support should be installed
+    --pest: Indicate that Pest should be installed
+    --ssr: Indicates if Inertia SSR support should be installed
+    --typescript: Indicates if TypeScript is preferred for the Inertia stack

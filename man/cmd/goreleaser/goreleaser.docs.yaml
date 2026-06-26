@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: docs
+description: Generates GoReleaser's command line docs
+hidden: true

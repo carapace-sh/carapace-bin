@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: list releases
+group: main
+flags:
+    --deployed: show deployed releases. If no other is specified, this will be automatically enabled
+    --failed: show failed releases
+    --offset=: next release index in the list, used to offset from start value
+    --pending: show pending releases
+    --superseded: show superseded releases
+    --time-format=: 'format time using golang time formatter. Example: --time-format "2006-01-02 15:04:05Z0700"'
+    --uninstalled: show uninstalled releases (if 'helm uninstall --keep-history' was used)
+    --uninstalling: show releases that are currently being uninstalled
+    -A, --all-namespaces: list releases across all namespaces
+    -a, --all: show all releases without any filter applied
+    -d, --date: sort by release date
+    -f, --filter=: a regular expression (Perl compatible). Any releases that match the expression will be included in the results
+    -l, --selector=: Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2). Works only for secret(default) and configmap storage backends.
+    -m, --max=: maximum number of releases to fetch
+    -o, --output=: 'prints the output in the specified format. Allowed values: table, json, yaml'
+    -q, --short: output short (quiet) listing format
+    -r, --reverse: reverse the sort order

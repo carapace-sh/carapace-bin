@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+description: Opens the glab configuration file.
+flags:
+    -l, --local: Open '.git/glab-cli/config.yml' file instead of the global '~/.config/glab-cli/config.yml' file.

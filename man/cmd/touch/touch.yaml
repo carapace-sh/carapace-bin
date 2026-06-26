@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: touch
+description: change file timestamps
+flags:
+    --help: display this help and exit
+    --time=: change the specified time
+    --version: output version information and exit
+    -a: change only the access time
+    -c, --no-create: do not create any files
+    -d, --date=: parse STRING and use it instead of current time
+    -f: (ignored)
+    -h, --no-dereference: affect each symbolic link instead of any referenced file
+    -m: change only the modification time
+    -r, --reference=: use this file's times instead of current time
+    -t=: use [[CC]YY]MMDDhhmm[.ss] instead of current time

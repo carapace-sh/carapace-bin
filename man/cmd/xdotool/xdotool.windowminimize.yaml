@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: windowminimize
+description: Minimize a window
+flags:
+    --sync: After requesting the window minimize, wait until the window is actually minimized

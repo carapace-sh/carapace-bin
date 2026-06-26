@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nc
+description: simple Unix utility which reads and writes data across network connections

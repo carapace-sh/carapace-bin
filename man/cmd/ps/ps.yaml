@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ps
+description: report a snapshot of the current processes
+flags:
+    --cols=: Set screen width.
+    --columns=: Set screen width.
+    --context: Display security context format (for SELinux).
+    --cumulative: Include some dead child process data (as a sum with the parent).
+    --deselect: Select all processes except those that fulfill the specified conditions
+    --forest: ASCII art process tree.
+    --headers: Repeat header lines, one per page of output.
+    --help=: Print a help message
+    --info: Print debugging info.
+    --lines=: Set screen height.
+    --no-headers: Print no header line at all
+    --ppid=: Select by parent process ID
+    --rows=: Set screen height.
+    --sid=: Select by session ID
+    --sort=: Specify sorting order
+    --version: Print the procps-ng version.
+    --width=: Set screen width.
+    -A: Select all processes
+    -F: Extra full format
+    -G, --Group=: Select by real group ID  or name
+    -H: Show process hierarchy (forest).
+    -L: Show threads, possibly with LWP and NLWP columns.
+    -M: Add a column of security data.
+    -N: Select all processes except those that fulfill the specified conditions
+    -O=: Like -o, but preloaded with some default columns
+    -T: Show threads, possibly with SPID column.
+    -U, --User=: Select by real user ID (RUID) or name
+    -V: Print the procps-ng version.
+    -a: Select all processes except both session leaders and processes not associated with a terminal
+    -c: Show different scheduler information for the -l option.
+    -d: Select all processes except session leaders
+    -e: Select all processes
+    -f: Do full-format listing
+    -g, --group=: Select by session OR by effective group name
+    -j: Jobs format.
+    -l: Long format.  The -y option is often useful with this.
+    -m: Show threads after processes.
+    -o, --format=: user-defined format
+    -p, --pid=: Select by PID
+    -q, --quick-pid=: Select by process ID (quick mode)
+    -s=: Select by session ID
+    -t, --tty=: Select by tty
+    -u, --user=: Select by effective user ID (EUID) or name
+    -w: Wide output
+    -y: Do not show flags

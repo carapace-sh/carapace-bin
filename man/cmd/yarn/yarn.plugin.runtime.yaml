@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: runtime
+description: List the active plugins
+flags:
+    --json: Format the output as an NDJSON stream

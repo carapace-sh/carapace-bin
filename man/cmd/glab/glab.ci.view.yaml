@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view [branch/tag]
+description: View, run, trace, log, and cancel CI/CD job's current pipeline.
+flags:
+    -b, --branch=: Check pipeline status for a branch or tag. Defaults to the current branch.
+    -w, --web: Open pipeline in a browser. Uses default browser, or browser specified in BROWSER variable.

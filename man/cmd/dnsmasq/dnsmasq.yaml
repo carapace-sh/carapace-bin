@@ -1,0 +1,165 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dnsmasq
+description: A lightweight DHCP and caching DNS server
+flags:
+    --add-cpe-id=: Add client identification to forwarded DNS queries.
+    --add-mac=: Add requestor's MAC address to forwarded DNS queries.
+    --all-servers: Always perform DNS queries to all servers.
+    --auth-peer=: Peers which are allowed to do zone transfer
+    --auth-sec-servers=: Secondary authoritative nameservers for forward domains
+    --auth-server=: Export local names to global DNS
+    --auth-soa=: Set authoritative zone information
+    --auth-ttl=: Set TTL for authoritative replies
+    --auth-zone=: Domain to export to global DNS
+    --bind-dynamic: Bind to interfaces in use - check for new interfaces
+    --bridge-interface=: Treat DHCP requests on aliases as arriving from interface.
+    --caa-record=: Specify certification authority authorization record
+    --clear-on-reload: Clear DNS cache when reloading /etc/resolv.conf.
+    --cname=: Specify alias name for LOCAL DNS name.
+    --conntrack: Copy connection-track mark from queries to upstream connections.
+    --dhcp-alternate-port=: Use alternative ports for DHCP.
+    --dhcp-broadcast=: Force broadcast replies for hosts with tag set.
+    --dhcp-circuitid=: Map RFC3046 circuit-id to tag.
+    --dhcp-client-update: Allow DHCP clients to do their own DDNS updates.
+    --dhcp-duid=: Specify DUID_EN-type DHCPv6 server DUID
+    --dhcp-fqdn: Use only fully qualified domain names for DHCP clients.
+    --dhcp-generate-names=: Generate hostnames based on MAC address for nameless clients.
+    --dhcp-hostsdir=: Read DHCP host specs from a directory.
+    --dhcp-hostsfile=: Read DHCP host specs from file.
+    --dhcp-ignore-clid: Ignore client identifier option sent by DHCP clients.
+    --dhcp-ignore-names=: Ignore hostnames provided by DHCP clients.
+    --dhcp-luascript=: Lua script to run on DHCP lease creation and destruction.
+    --dhcp-match=: Set tag if client includes matching option in request.
+    --dhcp-name-match=: Set tag if client provides given name.
+    --dhcp-no-override: Do NOT reuse filename and server fields for extra DHCP options.
+    --dhcp-option-force=: DHCP option sent even if the client does not request it.
+    --dhcp-optsdir=: Read DHCP options from a directory.
+    --dhcp-optsfile=: Read DHCP option specs from file.
+    --dhcp-proxy=: Use these DHCP relays as full proxies.
+    --dhcp-pxe-vendor=: Specify vendor class to match for PXE requests.
+    --dhcp-rapid-commit: Enables DHCPv4 Rapid Commit option.
+    --dhcp-relay=: Relay DHCP requests to a remote server
+    --dhcp-remoteid=: Map RFC3046 remote-id to tag.
+    --dhcp-reply-delay=: Delay DHCP replies for at least number of seconds.
+    --dhcp-scriptuser=: Run lease-change scripts as this user.
+    --dhcp-sequential-ip: Attempt to allocate sequential IP addresses to DHCP clients.
+    --dhcp-subscrid=: Map RFC3993 subscriber-id to tag.
+    --dhcp-ttl=: Set TTL in DNS responses with DHCP-derived addresses.
+    --dns-loop-detect: Detect and remove DNS forwarding loops.
+    --dns-rr=: Specify arbitrary DNS resource record
+    --dnssec: Activate DNSSEC validation
+    --dnssec-check-unsigned: Ensure answers without DNSSEC are in unsigned zones.
+    --dnssec-debug: Disable upstream checking for DNSSEC debugging.
+    --dnssec-no-timecheck: Don't check DNSSEC signature timestamps until first cache-reload
+    --dnssec-timestamp=: Timestamp file to verify system clock for DNSSEC
+    --dumpfile=: Path to debug packet dump file
+    --dumpmask=: Mask which packets to dump
+    --enable-ra: Send router-advertisements for interfaces doing DHCPv6
+    --enable-tftp=: Enable integrated read-only TFTP server.
+    --enable-ubus=: Enable the UBus interface.
+    --host-record=: Specify host (A/AAAA and PTR) records
+    --hostsdir=: Read hosts files from a directory.
+    --ignore-address=: Ignore DNS responses containing ipaddr.
+    --interface-name=: Give DNS name to IPv4 address of interface.
+    --ipset=: Specify ipsets to which matching domains should be added
+    --local-service: Accept queries only from directly-connected networks.
+    --local=: Never forward queries to specified domains.
+    --log-async=: Enable async. logging; optionally set queue length.
+    --log-debug: Log debugging information.
+    --log-dhcp: Extra logging for DHCP.
+    --max-cache-ttl=: Specify time-to-live ceiling for cache.
+    --max-port=: Specify highest port available for DNS query transmission.
+    --max-ttl=: Specify time-to-live in seconds for maximum TTL to send to clients.
+    --min-cache-ttl=: Specify time-to-live floor for cache.
+    --min-port=: Specify lowest port available for DNS query transmission.
+    --naptr-record=: Specify NAPTR DNS record.
+    --neg-ttl=: Specify time-to-live in seconds for negative caching.
+    --proxy-dnssec: Proxy DNSSEC validation results from upstream nameservers.
+    --ptr-record=: Specify PTR DNS record.
+    --pxe-prompt=: Prompt to send to PXE clients.
+    --pxe-service=: Boot service for PXE menu.
+    --quiet-dhcp: Do not log routine DHCP.
+    --quiet-dhcp6: Do not log routine DHCPv6.
+    --quiet-ra: Do not log RA.
+    --rebind-domain-ok=: Inhibit DNS-rebind protection on this domain.
+    --rebind-localhost-ok: Allow rebinding of 127.0.0.0/8, for RBL servers.
+    --rev-server=: Specify address of upstream servers for reverse address queries
+    --script-arp: Call dhcp-script with changes to local ARP table.
+    --script-on-renewal: Call dhcp-script when lease expiry changes.
+    --servers-file=: Specify path to file with server= options
+    --shared-network=: Specify extra networks sharing a broadcast domain for DHCP
+    --stop-dns-rebind: Stop DNS rebinding. Filter private IP ranges when resolving.
+    --synth-domain=: Specify a domain and address range for synthesised names
+    --tag-if=: Evaluate conditional tag expression.
+    --test: Check configuration syntax.
+    --tftp-lowercase: Convert TFTP filenames to lowercase
+    --tftp-max=: Maximum number of concurrent TFTP transfers (defaults to 50).
+    --tftp-mtu=: Maximum MTU to use for TFTP transfers.
+    --tftp-no-blocksize: Disable the TFTP blocksize extension.
+    --tftp-no-fail: Do not terminate the service if TFTP directories are inaccessible.
+    --tftp-port-range=: Ephemeral port range for use by TFTP transfers.
+    --tftp-root=: Export files by TFTP only from the specified subtree.
+    --tftp-secure: Allow access only to files owned by the user running dnsmasq.
+    --tftp-single-port: Use only one port for TFTP server.
+    --tftp-unique-root=: Add client IP or hardware address to tftp-root.
+    --trust-anchor=: Specify trust anchor key digest.
+    -0, --dns-forward-max=: Maximum number of concurrent DNS queries. (defaults to 150)
+    -1, --enable-dbus=: Enable the DBus interface for setting upstream servers, etc.
+    -2, --no-dhcp-interface=: Do not provide DHCP on this interface, only provide DNS.
+    -3, --bootp-dynamic=: Enable dynamic address allocation for bootp.
+    -5, --no-ping: Disable ICMP echo address checking in the DHCP server.
+    -6, --dhcp-script=: Shell script to run on DHCP lease creation and destruction.
+    -7, --conf-dir=: Read configuration from all the files in this directory.
+    -8, --log-facility=: Log to this syslog facility or file. (defaults to DAEMON)
+    -9, --leasefile-ro: Do not use leasefile.
+    -A, --address=: Return ipaddr for all hosts in specified domains.
+    -B, --bogus-nxdomain=: Treat ipaddr as NXDOMAIN (defeats Verisign wildcard).
+    -C, --conf-file=: Specify configuration file (defaults to /etc/dnsmasq.conf).
+    -D, --domain-needed: Do NOT forward queries with no domain part.
+    -E, --expand-hosts: Expand simple names in /etc/hosts with domain-suffix.
+    -F, --dhcp-range=: Enable DHCP in the range given with lease duration.
+    -G, --dhcp-host=: Set address or hostname for a specified machine.
+    -H, --addn-hosts=: Specify a hosts file to be read in addition to /etc/hosts.
+    -I, --except-interface=: Specify interface(s) NOT to listen on.
+    -J, --dhcp-ignore=: Don't do DHCP for hosts with tag set.
+    -K, --dhcp-authoritative: Assume we are the only DHCP server on the local network.
+    -L, --localmx: Return MX records for local hosts.
+    -N, --no-negcache: Do NOT cache failed search results.
+    -O, --dhcp-option=: Specify options to be sent to DHCP clients.
+    -P, --edns-packet-max=: Maximum supported UDP packet size for EDNS.0 (defaults to 4096).
+    -Q, --query-port=: Force the originating port for upstream DNS queries.
+    -R, --no-resolv: Do NOT read resolv.conf.
+    -S, --server=: Specify address(es) of upstream servers with optional domains.
+    -T, --local-ttl=: Specify time-to-live in seconds for replies from /etc/hosts.
+    -U, --dhcp-vendorclass=: Map DHCP vendor class to tag.
+    -V, --alias=: Translate IPv4 addresses from upstream servers.
+    -W, --srv-host=: Specify a SRV record.
+    -X, --dhcp-lease-max=: Specify maximum number of DHCP leases (defaults to 1000).
+    -Y, --txt-record=: Specify TXT DNS record.
+    -Z, --read-ethers: Read DHCP static host information from /etc/ethers.
+    -a, --listen-address=: Specify local address(es) to listen on.
+    -b, --bogus-priv: Fake reverse lookups for RFC1918 private address ranges.
+    -c, --cache-size=: Specify the size of the cache in entries (defaults to 150).
+    -d, --no-daemon: 'Do NOT fork into the background: run in debug mode.'
+    -e, --selfmx: Return self-pointing MX records for local hosts.
+    -f, --filterwin2k: Don't forward spurious DNS requests from Windows hosts.
+    -g, --group=: Change to this group after startup (defaults to dip).
+    -h, --no-hosts: Do NOT load /etc/hosts file.
+    -i, --interface=: Specify interface(s) to listen on.
+    -j, --dhcp-userclass=: Map DHCP user class to tag.
+    -k, --keep-in-foreground: Do NOT fork into the background, do NOT run in debug mode.
+    -l, --dhcp-leasefile=: Specify where to store DHCP leases (defaults to /var/lib/misc/dnsmasq.leases).
+    -m, --mx-host=: Specify an MX record.
+    -n, --no-poll: Do NOT poll /etc/resolv.conf file, reload only on SIGHUP.
+    -o, --strict-order: Use nameservers strictly in the order given in /etc/resolv.conf.
+    -p, --port=: Specify port to listen for DNS requests on (defaults to 53).
+    -q, --log-queries: Log DNS queries.
+    -r, --resolv-file=: Specify path to resolv.conf (defaults to /etc/resolv.conf).
+    -s, --domain=: Specify the domain to be assigned in DHCP leases.
+    -t, --mx-target=: Specify default target in an MX record.
+    -u, --user=: Change to this user after startup. (defaults to nobody).
+    -v, --version: Display dnsmasq version and copyright information.
+    -w, --help: Display this message. Use --help dhcp or --help dhcp6 for known DHCP options.
+    -x, --pid-file=: Specify path of PID file (defaults to /var/run/dnsmasq.pid).
+    -y, --localise-queries: Answer DNS queries based on the interface a query was sent to.
+    -z, --bind-interfaces: Bind only to interfaces in use.

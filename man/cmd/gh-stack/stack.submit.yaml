@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: submit
+description: Create a stack of PRs on GitHub
+flags:
+    --auto: Use auto-generated PR titles without prompting
+    --draft: Create PRs as drafts
+    --remote=: Remote to push to (defaults to auto-detected remote)

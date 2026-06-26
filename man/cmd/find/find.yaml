@@ -1,0 +1,94 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: find
+description: search for files in a directory hierarchy
+flags:
+    -D=: Print diagnostic information
+    -H: Do not follow symbolic links
+    -L: Follow symbolic links
+    -O0: Equivalent to optimisation level 1
+    -O1: This  is  the default optimisation level and corresponds to the traditional behaviour.
+    -O2: Any -type or -xtype tests are performed after any tests based only on the names of files.
+    -O3: At  this  optimisation level, the full cost-based query optimiser is enabled.
+    -P: Never follow symbolic links
+    -amin=: File was last accessed less than, more than or exactly n minutes ago.
+    -anewer=: Time of the last access of the current file is more recent than that  of  the  last  data modification of the reference file.
+    -atime=: File was last accessed less than, more than or exactly n*24 hours ago.
+    -cmin=: File's status was last changed less than, more than or exactly n minutes ago.
+    -cnewer=: Time  of  the last status change of the current file is more recent than that of the last data modification of the reference file.
+    -context=: Security context of the file matches glob pattern.
+    -ctime=: File's status was last changed less than, more than or exactly n*24 hours ago.
+    -daystart: Measure times from the beginning of today rather than from 24 hours ago.
+    -delete: Delete  files.
+    -depth: Process each directory's contents before the directory itself.
+    -exec=: Execute command.
+    -execdir=: Like -exec, but the specified command is run from the subdirectory containing the matched file.
+    -executable: Matches files which are executable and directories which are searchable by the current user.
+    -false: Always false.
+    -fls: Unusual characters are always escaped.
+    -fprint: Quoting is handled in the same way as for -printf and -fprintf.
+    -fprint0: Always print the exact filename, unchanged, even if the output is going to a terminal.
+    -fprintf: If the output is not going to a terminal, it is printed as-is.
+    -fstype=: File  is  on  a filesystem of type type.
+    -gid=: File's numeric group ID is less than, more than or exactly n.
+    -group=: File belongs to group gname (numeric group ID allowed).
+    -help, --help: Print a summary of the command-line usage of find and exit.
+    -ignore_readdir_race: Do not  emit an error message when find fails to stat a file.
+    -ilname=: Like -lname, but the match is case insensitive.
+    -iname=: Like -name, but the match is case insensitive.
+    -inum=: File  has inode number smaller than, greater than or exactly n.
+    -ipath=: Like -path.  but the match is case insensitive.
+    -iregex=: Like -regex, but the match is case insensitive.
+    -iwholename=: See -ipath.  This alternative is less portable than -ipath.
+    -links=: File has less than, more than or exactly n hard links.
+    -lname=: File is a symbolic link whose contents match shell pattern pattern.
+    -ls: List current file in ls -dils format on standard output.
+    -maxdepth=: Descend at most levels of directories below the startingpoints.
+    -mindepth=: Do  not  apply  any tests or actions at levels less than levels.
+    -mmin=: File's data was last modified less than, more than or exactly n minutes ago.
+    -mount: Don't descend directories on other filesystems.
+    -mtime=: File's data was last modified less than, more than or exactly n*24 hours  ago.
+    -name=: Base of file name matches  shell  pattern pattern.
+    -newer=: Time of the last data modification of the current file is more recent than that of the last data modification of the reference file.
+    -nogroup: No group corresponds to file's numeric group ID.
+    -noignore_readdir_race: Turns off the effect of -ignore_readdir_race.
+    -noleaf: Do  not  optimize  by assuming that directories contain 2 fewer subdirectories than their hard link count.
+    -nouser: No user corresponds to file's numeric user ID.
+    -nowarn: Turn  warning  messages  off.
+    -ok=: Like  -exec but ask the user first.
+    -okdir=: Like -execdir but ask the user first in the same way as for -ok.
+    -path=: File name matches shell pattern pattern.
+    -perm=: File's permission bits are exactly mode (octal or symbolic).
+    -print: Print the full file name on the standard output, followed by a newline.
+    -print0: Print the full file name on the standard output, followed by a null character.
+    -printf=: Print  format on the standard output, interpreting `\' escapes and `%' directives.
+    -prune: If the file is a directory, do not descend into it.
+    -quit: Exit immediately.
+    -readable: Matches  files  which  are  readable by the current user.
+    -regex=: File  name  matches regular expression pattern.
+    -regextype=: Changes the regular expression syntax understood by -regex and -iregex tests which  occur later  on the command line.
+    -samefile=: File  refers  to the same inode as name.
+    -size=: File uses less than, more than or exactly n units of space, rounding up.
+    -true: Always true.
+    -type=: file type
+    -used=: File  was  last accessed less than, more than or exactly n days after its status was last changed.
+    -user=: File is owned by user uname.
+    -version, --version: Print the find version number and exit.
+    -warn: Turn  warning  messages  on.
+    -wholename=: See -path.  This alternative is less portable than -path.
+    -writable: Matches files which are writable by the current user.
+    -xdev: Don't descend directories on other filesystems.
+    -xtype=: The same as -type unless the file is a symbolic link.
+
+documentation:
+  command: >-
+    Search for files in a directory hierarchy. find evaluates expression
+    tests (name, type, size, time, permissions) and actions (-print,
+    -exec, -delete) from left to right until a result is known. The
+    default starting point is the current directory; specify one or more
+    starting-point paths. Tests: -name pattern (glob), -regex pattern
+    (regex), -type f/d/l/b/c/p/s, -size +/-N, -mtime -N (modified days ago),
+    -user username, -group gname. Actions: -print (default), -exec cmd
+    {} \; (per file), -exec cmd {} + (batch), -delete. Combine with -and,
+    -or, -not; use ( ) for grouping. Control symlink traversal with -P
+    (default, don't follow), -L (follow), -H (follow only cmd-line args).
+    Use -print0 with xargs -0 for safe null-separated output.

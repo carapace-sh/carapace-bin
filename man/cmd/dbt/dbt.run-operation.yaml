@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run-operation
+description: Run the named macro with any supplied arguments
+flags:
+    --args=: Supply arguments to the macro
+    --profile=: Which profile to load. Overrides setting in dbt_project.yml
+    --project-dir=: Which directory to look in for the dbt_project.yml file
+    --vars=: Supply variables to the project
+    -t, --target=: Which target to load for the given profile

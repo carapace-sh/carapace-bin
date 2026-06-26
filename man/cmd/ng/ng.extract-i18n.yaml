@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: extract-i18n
+description: Extracts i18n messages from source code
+flags:
+    --browser-target=: A browser builder target to extract i18n messages
+    --format=: Output format for the generated file.
+    --out-file=: Name of the file to output.
+    --output-path=: Path where output will be placed.
+    --progress: Log progress to the console.
+    -c, --configuration=: One or more named builder configurations

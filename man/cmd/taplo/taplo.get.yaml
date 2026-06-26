@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: Extract a value from the given TOML document
+flags:
+    --separator=: A string that separates array values when printing to stdout
+    -f, --file-path=: Path to the TOML document, if omitted the standard input will be used
+    -o, --output-format=: The format specifying how the output is printed
+    -s, --strip-newline: Strip the trailing newline from the output

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upload <tag> <files>...
+description: Upload assets to a release
+group: Targeted commands
+flags:
+    --clobber: Delete and re-upload existing assets of the same name

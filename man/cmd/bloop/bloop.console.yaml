@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: console <project>
+description: start console
+flags:
+    --ammonite-version=: the Ammonite version to use
+    --args=*: the arguments to pass in to Ammonite
+    --exclude-root: start up the console compiling only the target project's dependencies
+    --incremental: compile the project incrementally
+    --out-file=: the output file where the Ammonite command is written
+    --pipeline: pipeline the compilation of modules in your build
+    --projects=*: the projects to run the console at
+    --repl=: pick REPL to run console
+    --reporter=: pick reporter to show compilation messages
+    -p, --project=*: the projects to run the console at

@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdfinfo
+description: Portable Document Format (PDF) document information extractor (version 3.03)
+flags:
+    -?: print usage information
+    -box: print the page bounding boxes
+    -custom: print both custom and standard metadata
+    -dests: print all named destinations in the PDF
+    -enc=: output text encoding name
+    -f=: first page to convert
+    -h: print usage information
+    -help, --help: print usage information
+    -isodates: print the dates in ISO-8601 format
+    -js: print all JavaScript in the PDF
+    -l=: last page to convert
+    -listenc: list available encodings
+    -meta: print the document metadata (XML)
+    -opw=: owner password (for encrypted files)
+    -rawdates: print the undecoded date strings directly from the PDF file
+    -struct: print the logical document structure (for tagged files)
+    -struct-text: print text contents along with document structure (for tagged files)
+    -upw=: user password (for encrypted files)
+    -url: print all URLs inside PDF objects (does not scan text content)
+    -v: print copyright and version info

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: preset-all
+description: Enable/disable all unit files based on preset configuration
+group: unit file
+documentation:
+  command: |
+    Reset all installed unit files to the defaults configured in the
+    preset policy files. Use `--preset-mode=` to control whether units
+    shall be enabled and disabled, or only enabled, or only disabled.

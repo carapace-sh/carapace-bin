@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wineboot
+description: perform Wine initialization, startup, and shutdown task
+flags:
+    -e, --end-session: End the current session cleanly
+    -f, --force: Force exit for processes that don't exit cleanly
+    -h, --help: Display this help message
+    -i, --init: Perform initialization for first Wine instance
+    -k, --kill: Kill running processes without any cleanup
+    -r, --restart: Restart only, don't do normal startup operations
+    -s, --shutdown: Shutdown only, don't reboot
+    -u, --update: Update the wineprefix directory

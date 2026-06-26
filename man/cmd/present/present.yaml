@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: present
+description: present implements parsing and rendering of present file
+flags:
+    -base=: base path for slide template and static resources
+    -content=: base path for presentation content
+    -h, -h: show help
+    -http=: HTTP service address
+    -notes: enable presenter notes
+    -orighost=: host component of web origin URL
+    -play: enable playground
+    -use_playground: run code snippets using play.golang.org

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: expose
+aliases:
+    - e
+description: Interact with the exposure of binaries in the global environment

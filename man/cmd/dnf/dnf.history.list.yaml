@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [transaction-spec]...
+description: list transactions
+flags:
+    --contains-pkgs=: show only transactions containing packages
+    --json: request JSON output format
+    --reverse: reverse the order of transactions

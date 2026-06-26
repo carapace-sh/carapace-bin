@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pull <file> | <url>
+description: Pull a config from a file or URL
+flags:
+    --environment=: environment to use, when supported (e.g.secrets support dev, prod, preview.)
+    -c, --config=&: path to directory containing a devbox.json config file
+    -f, --force: Force overwrite of existing [global] config files

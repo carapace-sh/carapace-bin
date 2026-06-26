@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove-marker
+description: Remove the currently set marker, if any.
+flags:
+    --self: Apply marker to the window this command is run in, rather than the active window
+    -h, --help: Show help for this command
+    -m, --match=: The window to match

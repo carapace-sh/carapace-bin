@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: request
+aliases:
+    - requests
+description: Manage access requests.
+
+documentation:
+  command: >-
+    Manage access requests for role-based access control (RBAC) in Teleport Enterprise.

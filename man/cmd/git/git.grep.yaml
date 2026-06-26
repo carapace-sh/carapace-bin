@@ -1,0 +1,169 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: grep
+description: Print lines matching a pattern
+group: main
+flags:
+  --all-match: show only matches from files that match all patterns
+  --and: combine patterns specified with -e
+  --break: print empty line between matches from different files
+  --cached: search in index instead of in the work tree
+  --color?: highlight matches
+  --column: show column number of first match
+  --exclude-standard: ignore files specified via '.gitignore'
+  --ext-grep: allow calling of grep(1) (ignored by this build)
+  --full-name: show filenames relative to top directory
+  --heading: show filename only once above matches from same file
+  --max-depth=: descend at most <depth> levels
+  --name-only: synonym for --files-with-matches
+  --no-index: find in contents not managed by git
+  --not: ''
+  --or: ''
+  --recurse-submodules: recursively search in each submodule
+  --textconv: process binary files with textconv filters
+  --threads=: use <n> worker threads
+  --untracked: search in both tracked and untracked files
+  -A, --after-context=: show <n> context lines after matches
+  -B, --before-context=: show <n> context lines before matches
+  -C, --context=: show <n> context lines before and after matches
+  -E, --extended-regexp: use extended POSIX regular expressions
+  -F, --fixed-strings: interpret patterns as fixed strings
+  -G, --basic-regexp: use basic POSIX regular expressions (default)
+  -H: show filenames
+  -I: don't match patterns in binary files
+  -L, --files-without-match: show only the names of files without match
+  -O, --open-files-in-pager?: show matching files in the pager
+  -P, --perl-regexp: use Perl-compatible regular expressions
+  -a, --text: process binary files as text
+  -c, --count: show the number of matches instead of matching lines
+  -e=: match <pattern>
+  -f=: read patterns from file
+  -h: don't show filenames
+  -i, --ignore-case: case insensitive matching
+  -l, --files-with-matches: show only filenames instead of matching lines
+  -n, --line-number: show line numbers
+  -o, --only-matching: show only matching parts of a line
+  -p, --show-function: show a line with the function name before matches
+  -q, --quiet: indicate hit with exit status without output
+  -r, --recursive: search in subdirectories (default)
+  -v, --invert-match: show non-matching lines
+  -w, --word-regexp: match patterns only at word boundaries
+  -z, --null: print NUL after filenames
+documentation:
+  command: |-
+    Look for specified patterns in the tracked files in the work tree, blobs
+    registered in the index file, or blobs in given tree objects.  Patterns
+    are lists of one or more search expressions separated by newline
+    characters.  An empty string as search expression matches all lines.
+  flag:
+    I: Don't match the pattern in binary files.
+    all-match: |-
+      When giving multiple pattern expressions combined with `--or`,
+      this flag is specified to limit the match to files that
+      have lines to match all of them.
+    basic-regexp: |-
+      Use POSIX extended/basic regexp for patterns.  Default
+      is to use basic regexp.
+    break: Print an empty line between matches from different files.
+    cached: |-
+      Instead of searching tracked files in the working tree, search
+      blobs registered in the index file.
+    column: |-
+      Prefix the 1-indexed byte-offset of the first match from the start of the
+      matching line.
+    count: |-
+      Instead of showing every matched line, show the number of
+      lines that match.
+    e: |-
+      The next parameter is the pattern. This option has to be
+      used for patterns starting with `-` and should be used in
+      scripts passing user input to grep.  Multiple patterns are
+      combined by `or`.
+    exclude-standard: |-
+      Do not pay attention to ignored files specified via the `.gitignore`
+      mechanism.  Only useful when searching files in the current directory
+      with `--no-index`.
+    files-without-match: |-
+      Instead of showing every matched line, show only the
+      names of files that contain (or do not contain) matches.
+      For better compatibility with `git diff`, `--name-only` is a
+      synonym for `--files-with-matches`.
+    fixed-strings: |-
+      Use fixed strings for patterns (don't interpret pattern
+      as a regex).
+    full-name: |-
+      When run from a subdirectory, the command usually
+      outputs paths relative to the current directory.  This
+      option forces paths to be output relative to the project
+      top directory.
+    h: |-
+      By default, the command shows the filename for each
+      match.  `-h` option is used to suppress this output.
+      `-H` is there for completeness and does not do anything
+      except it overrides `-h` given earlier on the command
+      line.
+    heading: |-
+      Show the filename above the matches in that file instead of
+      at the start of each shown line.
+    ignore-case: |-
+      Ignore case differences between the patterns and the
+      files.
+    invert-match: Select non-matching lines.
+    line-number: Prefix the line number to matching lines.
+    no-index: |-
+      Search files in the current directory that is not managed by Git,
+      or by ignoring that the current directory is managed by Git.  This
+      is rather similar to running the regular `grep`(1) utility with its
+      `-r` option specified, but with some additional benefits, such as
+      using pathspec patterns to limit paths;  see the `pathspec` entry
+      in [gitglossary](man://gitglossary/7) for more information.
+
+      This option cannot be used together with `--cached` or `--untracked`.
+      See also `grep.fallbackToNoIndex` in `CONFIGURATION` below.
+    not: |-
+      Specify how multiple patterns are combined using Boolean
+      expressions.  `--or` is the default operator.  `--and` has
+      higher precedence than `--or`.  `-e` has to be used for all
+      patterns.
+    'null': |-
+      Use \0 as the delimiter for pathnames in the output, and print
+      them verbatim. Without this option, pathnames with "unusual"
+      characters are quoted as explained for the configuration
+      variable `core.quotePath` (see [git-config](cmd://git/config)).
+    only-matching: |-
+      Print only the matched (non-empty) parts of a matching line, with each such
+      part on a separate output line.
+    perl-regexp: |-
+      Use Perl-compatible regular expressions for patterns.
+
+      Support for these types of regular expressions is an optional
+      compile-time dependency. If Git wasn't compiled with support for them
+      providing this option will cause it to die.
+    quiet: |-
+      Do not output matched lines; instead, exit with status 0 when
+      there is a match and with non-zero status when there isn't.
+    recurse-submodules: |-
+      Recursively search in each submodule that is active and
+      checked out in the repository.  When used in combination with the
+      _<tree>_ option the prefix of all submodule output will be the name of
+      the parent project's _<tree>_ object.  This option cannot be used together
+      with `--untracked`, and it has no effect if `--no-index` is specified.
+    recursive: Same as `--max-depth=-1`; this is the default.
+    show-function: |-
+      Show the preceding line that contains the function name of
+      the match, unless the matching line is a function name itself.
+      The name is determined in the same way as `git diff` works out
+      patch hunk headers (see `Defining a custom hunk-header` in
+      [gitattributes](man://gitattributes/5)).
+    text: Process binary files as if they were text.
+    textconv: Honor textconv filter settings.
+    untracked: |-
+      In addition to searching in the tracked files in the working
+      tree, search also in untracked files.
+    word-regexp: |-
+      Match the pattern only at word boundary (either begin at the
+      beginning of a line, or preceded by a non-word character; end at
+      the end of a line or followed by a non-word character).
+    color: |-
+      Turn off match highlighting, even when the configuration file
+      gives the default to color output.
+      Same as `--color=never`.

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lightdm
+description: a display manager
+flags:
+    --cache-dir=: Directory to cache information
+    --log-dir=: Directory to write logs to
+    --pid-file=: File to write PID into
+    --run-dir=: Directory to store running state
+    --show-config: Show combined configuration
+    --test-mode: Run as unprivileged user, skipping things that require root access
+    -c, --config=: Use configuration file
+    -d, --debug: Print debugging messages
+    -h, --help: Show help options
+    -v, --version: Show release version

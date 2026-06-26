@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: plugin [flags]
+description: Provides utilities for interacting with plugins

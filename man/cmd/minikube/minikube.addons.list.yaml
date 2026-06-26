@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: Lists all available minikube addons as well as their current statuses (enabled/disabled)
+flags:
+    -d, --docs: If true, print web links to addons' documentation if using --output=list (default).
+    -o, --output=: minikube addons list --output OUTPUT. json, list

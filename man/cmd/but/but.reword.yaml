@@ -1,0 +1,24 @@
+name: reword
+description: Edit the commit message of the specified commit.
+flags:
+    -f, --format: Format the existing commit message to 72-char line wrapping without opening an editor
+    -h, --help: Print help (see more with '--help')
+    -m, --message=: The new commit message or branch name. If not provided, opens an editor
+documentation:
+    command: |-
+        Edit the commit message of the specified commit.
+
+        You can easily change the commit message of any of your commits by
+        running `but reword <commit-id>` and providing a new message in the
+        editor.
+
+        This will rewrite the commit with the new message and then rebase any
+        dependent commits on top of it.
+
+        You can also use `but reword <branch-id>` to rename the branch.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

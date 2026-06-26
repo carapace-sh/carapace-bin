@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: firefox
+description: Firefox Browser
+flags:
+    --ProfileManager: Start with ProfileManager.
+    --allow-downgrade: Allows downgrading a profile.
+    --browser: Open a browser window.
+    --devtools: Open DevTools on initial load.
+    --display=: X display to use
+    --first-startup: Run post-install actions before opening a new window.
+    --full-version: Print Firefox version, build and platform build ids.
+    --headless: Run without a GUI.
+    --jsconsole: Open the Browser Console.
+    --migration: Start with migration wizard.
+    --new-instance: Open new instance, not a new window in running instance.
+    --new-tab=: Open <url> in a new tab.
+    --no-remote: Do not accept or send remote commands
+    --preferences: Open Preferences dialog.
+    --profile=: Start with profile at <path>.
+    --safe-mode: Disables extensions and themes for this session.
+    --search=: Search <term> with your default search engine.
+    --ssb=: Open a site specific browser for <uri>.
+    --start-debugger-server=: Start the devtools server
+    --sync: Make X calls synchronous
+    -P=: Start with <profile>.
+    -h, --help: Print this message.
+    -v, --version: Print Firefox version.

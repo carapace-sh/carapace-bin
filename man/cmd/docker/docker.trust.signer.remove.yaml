@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove [OPTIONS] NAME REPOSITORY [REPOSITORY...]
+description: Remove a signer
+flags:
+    -f, --force: Do not prompt for confirmation before removing the most recent signer

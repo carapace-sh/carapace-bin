@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: version
+description: print the client version information
+group: main
+flags:
+    --short: print the version number
+    --template=: template for version string format
+    -c, --client: display client version information

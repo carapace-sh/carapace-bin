@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: open [OPTIONS] [PULLREQUEST_ID]
+description: 'Alias: `doing open pr`'
+flags:
+    --help: Show this message and exit.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check [flags]
+description: Use the provisioner to perform a Dry-Run
+flags:
+    --help: Show help message and exit
+    --no-parallel: Disable parallel mode (default)
+    --parallel: Enabe parallel mode
+    -s, --scenario-name=: Name of the scenario to target

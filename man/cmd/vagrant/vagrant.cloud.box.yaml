@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: box
+description: For managing a Vagrant box entry on Vagrant Cloud

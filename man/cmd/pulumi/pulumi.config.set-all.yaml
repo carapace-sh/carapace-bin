@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-all
+description: Set multiple configuration values
+persistentflags:
+    --path: Parse the keys as paths in a map or list rather than raw strings
+    --plaintext=*: Marks a value as plaintext (unencrypted)
+    --secret=*: Marks a value as secret to be encrypted

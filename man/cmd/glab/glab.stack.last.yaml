@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: last
+description: Moves to the last diff in the stack. (EXPERIMENTAL)

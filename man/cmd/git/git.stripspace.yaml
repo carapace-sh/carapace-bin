@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stripspace
+description: Remove unnecessary whitespace
+group: low-level helper
+flags:
+  -c, --comment-lines: prepend comment character and space to each line
+  -s, --strip-comments: skip and remove all lines starting with comment character
+documentation:
+  command: |-
+    Read text, such as commit messages, notes, tags and branch
+    descriptions, from the standard input and clean it in the manner
+    used by Git.
+
+    With no arguments, this will:
+
+    - remove trailing whitespace from all lines
+    - collapse multiple consecutive empty lines into one empty line
+    - remove empty lines from the beginning and end of the input
+    - add a missing '\n' to the last line if necessary.
+
+    In the case where the input consists entirely of whitespace characters, no
+    output will be produced.
+
+    *NOTE*: This is intended for cleaning metadata. Prefer the `--whitespace=fix`
+    mode of [git-apply](cmd://git/apply) for correcting whitespace of patches or files in
+    the repository.

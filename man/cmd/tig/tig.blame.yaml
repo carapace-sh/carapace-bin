@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: blame
+description: Show what revision and author last modified each line of a file

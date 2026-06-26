@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: suspend
+description: Suspend the system
+group: system
+documentation:
+  command: |
+    Suspend the system. This will trigger a system suspend state where
+    system memory is kept powered on but most devices are powered off.
+    The system will resume from memory once woken.

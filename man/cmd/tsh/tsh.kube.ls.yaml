@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: Get a list of Kubernetes clusters.
+flags:
+    --no-all&: List Kubernetes clusters from all clusters and proxies.
+    --no-quiet&: Quiet mode.
+    --no-verbose&: Show an untruncated list of labels.
+    --query=: Query by predicate language enclosed in single quotes. Supports ==, !=, &&, and || (e.g. --query='labels["key1"] == "value1" && labels["key2"] != "value2"')
+    --search=: List of comma separated search keywords or phrases enclosed in quotations (e.g. --search=foo,bar,"some phrase")
+    -R, --all: List Kubernetes clusters from all clusters and proxies.
+    -c, --cluster=: Specify the Teleport cluster to connect
+    -f, --format=: Format output (text, json, yaml)
+    -q, --quiet: Quiet mode.
+    -v, --verbose: Show an untruncated list of labels.

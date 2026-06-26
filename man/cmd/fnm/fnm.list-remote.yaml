@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-remote
+aliases:
+    - ls-remote
+description: List all remote Node.js versions
+flags:
+    --filter=: Filter versions by a user-defined version or a semver range
+    --latest: Only show the latest matching version
+    --lts=: Show only LTS versions (optionally filter by LTS codename)
+    --sort=: Version sorting order

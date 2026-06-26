@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: download <state> [<serial>]
+description: Download the given state and output as JSON to stdout.

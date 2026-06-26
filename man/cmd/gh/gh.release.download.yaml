@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: download [<tag>]
+description: Download release assets
+group: Targeted commands
+flags:
+    --clobber: Overwrite existing files of the same name
+    --skip-existing: Skip downloading when files of the same name exist
+    -A, --archive=: Download the source code archive in the specified `format` (zip or tar.gz)
+    -D, --dir=: The `directory` to download files into
+    -O, --output=: The `file` to write a single asset to (use "-" to write to standard output)
+    -p, --pattern=*: Download only assets that match a glob pattern

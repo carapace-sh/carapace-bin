@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: download [options] <package-spec>...
+description: download packages
+flags:
+    --alldeps: download all dependencies
+    --allmirrors: print URLs from all available mirrors
+    --arch=: limit to packages of given architectures
+    --debuginfo: download the debuginfo rpm
+    --debugsource: download the debugsource rpm
+    --destdir=: set directory for downloading packages
+    --resolve: resolve dependencies and download missing ones
+    --skip-unavailable: allow skipping packages that are not available
+    --srpm: download the source rpm
+    --url: print list of URLs where the rpms can be downloaded
+    --urlprotocol=: filter URLs by protocol

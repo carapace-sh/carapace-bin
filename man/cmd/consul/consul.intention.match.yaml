@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: match
+description: Show intentions that match a source or destination
+flags:
+    --destination: Match intentions with the given destination.
+    --namespace=: Specifies the namespace to query.
+    --source: Match intentions with the given source.

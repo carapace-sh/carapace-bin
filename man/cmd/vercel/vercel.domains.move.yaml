@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: move
+description: Move a domain to another user or team
+
+documentation:
+  command: >-
+    Transfer domain ownership to another Vercel user or team. Specify
+    the domain and the target email address or team slug. The recipient
+    must accept the transfer to complete the process.

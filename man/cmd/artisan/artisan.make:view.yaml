@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:view [--extension [EXTENSION]] [-f|--force] [--test] [--pest] [--phpunit] [--] <name>
+description: Create a new view
+flags:
+    --extension=: The extension of the generated view
+    --force: Create the view even if the view already exists
+    --pest: Generate an accompanying Pest test for the View
+    --phpunit: Generate an accompanying PHPUnit test for the View
+    --test: Generate an accompanying Test test for the View

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sync-schema
+description: Synchronizes the schema of this Benthos instance with a studio session
+flags:
+    -s, --session=: The session ID to synchronize with.
+    -t, --token=: The single use token used to authenticate the request.

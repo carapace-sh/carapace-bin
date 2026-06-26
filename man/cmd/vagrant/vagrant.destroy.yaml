@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: destroy
+description: stops and deletes all traces of the vagrant machine
+flags:
+    --no-parallel: Disable parallelism if provider supports it (automatically enables force)
+    --parallel: Enable parallelism if provider supports it (automatically enables force)
+    -f, --force: Destroy without confirmation.
+    -g, --graceful: Gracefully poweroff of VM

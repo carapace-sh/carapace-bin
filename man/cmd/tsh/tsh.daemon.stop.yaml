@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stop
+description: Gracefully stops a process on Windows by sending Ctrl-Break to it.
+hidden: true
+flags:
+    --pid=: PID to be stopped

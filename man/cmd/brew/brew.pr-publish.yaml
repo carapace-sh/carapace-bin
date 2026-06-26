@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pr-publish
+description: Publish bottles for a pull request with GitHub Actions
+group: developer
+flags:
+    --autosquash: If supported on the target tap, automatically reformat and reword commits to our preferred format.
+    --branch: 'Branch to use the workflow from (default: `master`).'
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --large-runner: Run the upload job on a large runner.
+    --message: Message to include when autosquashing revision bumps, deletions, and rebuilds.
+    --quiet: Make some output more quiet.
+    --tap: 'Target tap repository (default: `homebrew/core`).'
+    --verbose: Make some output more verbose.
+    --workflow: 'Target workflow filename (default: `publish-commit-bottles.yml`).'

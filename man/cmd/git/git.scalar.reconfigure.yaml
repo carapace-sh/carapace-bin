@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reconfigure
+description: Reconfigure Scalar enlistment
+flags:
+    --all: reconfigure all enlistments
+    --maintenance=: maintenance mode
+
+documentation:
+  command: >-
+    After a Scalar upgrade, or when the configuration of a Scalar enlistment was somehow corrupted or changed by mistake, reconfigure the enlistment. Use `--all` to reconfigure all enlistments currently registered with Scalar.

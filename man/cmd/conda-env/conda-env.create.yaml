@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create an environment based on an environment definition file
+flags:
+    --force: Force creation of environment
+    --json: Report all output as json
+    --no-default-packages: Ignore create_default_packages in the .condarc file
+    --offline: Offline mode
+    --solver=: Choose which solver backend to use
+    -C, --use-index-cache: Use cache of channel index files, even if it has expired
+    -d, --dry-run: Only display what can be done with the current command, arguments, and other flags
+    -f, --file=: Environment definition file
+    -h, --help: Show this help message and exit
+    -k, --insecure: Allow conda to perform "insecure" SSL connections and transfers
+    -n, --name=: Name of environment
+    -p, --prefix=: Full path to environment location
+    -q, --quiet: Do not display progress bar
+    -v, --verbose: Use once for info, twice for debug, three times for trace

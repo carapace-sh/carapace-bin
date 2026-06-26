@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: completions
+description: Generate shell completions for your shell to stdout
+flags:
+    -V, --version: Print version
+    -h, --help: Print help

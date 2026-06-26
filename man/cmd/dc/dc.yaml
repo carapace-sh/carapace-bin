@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dc
+description: an arbitrary precision calculator
+flags:
+    -V, --version: output version information and exit
+    -e, --expression=: evaluate expression
+    -f, --file=: evaluate contents of file
+    -h, --help: display this help and exit

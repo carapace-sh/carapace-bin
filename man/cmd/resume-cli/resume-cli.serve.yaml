@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serve
+flags:
+    -d, --dir=: indicate a public directory path
+    -h, --help: display help for command
+    -p, --port=: 'port used (default: 4000)'
+    -r, --resume=: resume file
+    -s, --silent: open browser
+    -t, --theme=: theme name

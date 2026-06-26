@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: volume COMMAND
+description: Manage volumes
+group: management

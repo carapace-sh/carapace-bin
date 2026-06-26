@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: commands
+description: Show lists of built-in and external commands
+group: main
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --include-aliases: Include aliases of internal commands.
+    --quiet: List only the names of commands without category headers.
+    --verbose: Make some output more verbose.

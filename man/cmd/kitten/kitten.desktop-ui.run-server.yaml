@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run-server
+description: Start the various servers used to integrate with the Linux desktop
+flags:
+    -c, --config=: Specify a path to the configuration file(s) to use
+    -h, --help: Show help for this command
+    -o, --override=: Override individual configuration options, can be specified multiple times

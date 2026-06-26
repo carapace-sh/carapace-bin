@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: statusline
+description: Single-line status for shell prompts
+flags:
+    --format=: Output format (table, json, claude-code)
+    -h, --help: Print help (see more with '--help')

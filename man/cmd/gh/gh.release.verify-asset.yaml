@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify-asset [<tag>] <file-path>
+description: Verify that a given asset originated from a release
+group: Targeted commands
+flags:
+    --custom-trusted-root=&: Path to a trusted_root.jsonl file; likely for offline verification.
+    --format=: 'Output format: {json}'
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

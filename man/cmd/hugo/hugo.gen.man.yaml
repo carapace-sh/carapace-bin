@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: man
+description: Generate man pages for the Hugo CLI
+persistentflags:
+    --dir=: the directory to write the man pages.

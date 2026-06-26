@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create a New Relic APM deployment
+flags:
+    --change-log=: the change log stored with the deployment
+    --description=: the description stored with the deployment
+    --user=: the user creating with the deployment
+    -r, --revision=: a freeform string representing the revision of the deployment

@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test <project>
+description: run tests
+flags:
+    --args=*: the arguments to pass in to the test framework
+    --cascade: test a project and all projects depending on it
+    --include-dependencies: test a project and all its dependencies
+    --incremental: compile the project incrementally
+    --parallel: run tests in parallel
+    --pipeline: pipeline the compilation of modules in your build
+    --projects=*: the projects to test
+    --propagate: test a project and all its dependencies
+    --reporter=: pick reporter to show compilation messages
+    -o, --only=: the list of test suite filters to test for only
+    -p, --project=*: the projects to test
+    -w, --watch: run the command when projects' source files change

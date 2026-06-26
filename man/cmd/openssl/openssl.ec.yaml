@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ec
+description: EC (Elliptic curve) key processing
+group: standard
+flags:
+    -check: check key consistency
+    -conv_form=: Specifies the point conversion form
+    -in=: Input file
+    -inform=: Input format (DER/PEM/P12)
+    -no_public: exclude public key from private key
+    -noout: Don't print key out
+    -out=: Output file
+    -outform=: Output format - DER or PEM
+    -param_enc=: Specifies the way the ec parameters are encoded
+    -param_out: Print the elliptic curve parameters
+    -passin=: Input file pass phrase source
+    -passout=: Output file pass phrase source
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -pubin: Expect a public key in input file
+    -pubout: Output public key, not private
+    -text: Print the key

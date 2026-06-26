@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run a command with an environment configured for a given toolchain
+flags:
+    --install: Install the requested toolchain if needed
+    -h, --help: Print help

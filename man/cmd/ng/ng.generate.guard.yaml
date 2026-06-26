@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: guard
+description: Generates a new, generic route guard definition in the given or default project
+flags:
+    --flat: Creates the new files at the top level of the current project.
+    --implements=: Specifies which interfaces to implement.
+    --project=: The name of the project.
+    --skip-tests: Do not create "spec.ts" test files for the new guard.

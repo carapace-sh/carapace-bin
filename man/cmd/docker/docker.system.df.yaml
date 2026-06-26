@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: df [OPTIONS]
+description: Show docker disk usage
+flags:
+    --format=: 'Format output using a custom template:'
+    -v, --verbose: Show detailed information on space usage

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logout [SERVER]
+description: Log out from a registry
+group: common

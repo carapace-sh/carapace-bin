@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bump-unversioned-casks
+description: Check all casks with unversioned URLs in a given <tap> for updates
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --dry-run: Do everything except caching state and opening pull requests.
+    --help: Show this message.
+    --limit: Maximum runtime in minutes.
+    --quiet: Make some output more quiet.
+    --state-file: File for caching state.
+    --verbose: Make some output more verbose.

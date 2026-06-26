@@ -1,0 +1,51 @@
+name: empty
+description: Insert a blank commit before or after the specified commit.
+flags:
+    --after=: Insert the blank commit after this commit or branch
+    --before=: Insert the blank commit before this commit or branch
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Insert a blank commit before or after the specified commit.
+
+        This is useful for creating a placeholder commit that you can
+        then amend changes into later using `but mark`, `but rub` or `but absorb`.
+
+        You can modify the empty commit message at any time using `but reword`.
+
+        This allows for a more Jujutsu style workflow where you create commits
+        first and then fill them in as you work. Create an empty commit, mark it
+        for auto-commit, and then just work on your changes. Write the commit
+        message whenever you prefer.
+
+        ## Examples
+
+        Insert at the top of the first branch (no arguments):
+
+        ```text
+        but commit empty
+        ```
+
+        Insert before a commit:
+
+        ```text
+        but commit empty ab
+        ```
+
+        Explicitly insert before a commit:
+
+        ```text
+        but commit empty --before ab
+        ```
+
+        Insert after a commit (at the top of the stack if target is a branch):
+
+        ```text
+        but commit empty --after ab
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-init [OPTION…] DIRECTORY APPNAME SDK RUNTIME [BRANCH]
+description: Initialize a directory for building
+group: build
+flags:
+    --arch=: Arch to use
+    --base-extension=: Include this base extension
+    --base-version=: Specify version for --base
+    --base=: Initialize apps from named app
+    --extension-tag=: Extension tag to use if building extension
+    --extension=: Add extension point info
+    --ostree-verbose: Show OSTree debug information
+    --sdk-dir=: Where to store sdk (defaults to 'usr')
+    --sdk-extension=: Include this sdk extension in /usr
+    --tag=: Add a tag
+    --type=: Specify the build type (app, runtime, extension)
+    --update: Re-initialize the sdk/var
+    --verbose: Show debug information, -vv for more detail
+    -h, --help: Show help options
+    -v, --var=: Initialize var from named runtime
+    -w, --writable-sdk: Initialize /usr with a writable copy of the sdk

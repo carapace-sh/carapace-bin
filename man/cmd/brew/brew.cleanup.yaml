@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cleanup
+description: Remove stale lock files and outdated downloads for all formulae and casks, and remove old versions of installed formulae
+group: main
+flags:
+    --debug: Display any debugging information.
+    --dry-run: Show what would be removed, but do not actually remove anything.
+    --help: Show this message.
+    --prune-prefix: Only prune the symlinks and directories from the prefix and remove no other files.
+    --prune=: Remove all cache files older than specified <days>. If you want to remove everything, use `--prune=all`.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.
+    -s: 'Scrub the cache, including downloads for even the latest versions. Note that downloads for any installed formulae or casks will still not be deleted. If you want to delete those too: `rm -rf "$(brew --cache)"`'

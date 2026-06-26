@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exit
+description: Request user instance or container exit
+group: system
+documentation:
+  command: |
+    Request user instance or container exit. With no arguments, this
+    terminates the current user manager (for --user) or the container's
+    PID 1. Takes an optional exit code and/or status string argument.

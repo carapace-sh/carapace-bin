@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: label <command>
+description: Manage labels
+documentation:
+    command: |
+        Work with GitHub labels. Create labels with `gh label create`, clone them
+        from one repository to another with `gh label clone`, and manage existing
+        labels (edit, delete). Labels organize issues and PRs by category, priority,
+        or type.
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

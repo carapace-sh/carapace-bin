@@ -1,0 +1,157 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: range-diff
+description: Compare two commit ranges
+group: main
+flags:
+  --abbrev=: show only a partial prefix
+  --anchored=: Generate a diff using the "anchored diff" algorithm
+  --binary: output a binary diff
+  --cached: View the changes you staged in the index/cache
+  --check: Warn if changes introduce conflict markers or whitespace errors
+  --color-moved-ws?: This configures how whitespace is ignored when performing the move detection
+  --color-moved?: Moved lines of code are colored differently
+  --color-words=: Equivalent to --word-diff=color plus (if a regex was specified)
+  --color=: Show colored diff
+  --compact-summary: Output a condensed summary of extended header information
+  --creation-factor=: Set the creation/deletion cost fudge factor to <percent>
+  --cumulative: Synonym for --dirstat=cumulative
+  --diff-algorithm=: ''
+  --diff-filter=: filter files
+  --dirstat-by-file=: Synonym for --dirstat=files,param1,param2...
+  --dst-prefix=: Show the given destination prefix instead of "b/"
+  --exit-code: Make the program exit with codes similar to diff(1)
+  --ext-diff: Allow an external diff helper to be executed
+  --find-copies-harder: inspect unmodified files as candidates for the source of copy
+  --find-object=: Look for differences that change the number of occurrences of the specified object
+  --full-index: show the full pre- and post-image blob object names
+  --histogram: Generate a diff using the "histogram diff" algorithm
+  --ignore-blank-lines: Ignore changes whose lines are all blank
+  --ignore-cr-at-eol: Ignore carriage-return at the end of line when doing a comparison
+  --ignore-space-at-eol: Ignore changes in whitespace at EOL
+  --ignore-submodules=: Ignore changes to submodules in the diff generation
+  --indent-heuristic: Enable the heuristic that shifts diff hunk boundaries to make patches easier to read
+  --inter-hunk-context=: Show the context between diff hunks
+  --ita-invisible-in-index: this option makes the entry appear as a new file
+  --line-prefix=: Prepend an additional prefix to every line of output
+  --minimal: Spend extra time to make sure the smallest possible diff is produced
+  --name-only: Show only names of changed files
+  --name-status: Show only names and status of changed files
+  --no-color: Turn off colored diff
+  --no-color-moved: Turn off move detection
+  --no-color-moved-ws: Do not ignore whitespace when performing move detection
+  --no-dual-color: Do not recreate the original diffs’ coloring
+  --no-ext-diff: Disallow external diff drivers
+  --no-indent-heuristic: Disable the indent heuristic
+  --no-index: Compare paths on the file system
+  --no-notes?: This flag is passed to the git log progeram
+  --no-prefix: Do not show any source or destination prefix
+  --no-rename-empty: Whether to use empty blobs as rename source
+  --no-renames: Turn off rename detection
+  --notes?: This flag is passed to the git log program
+  --numstat: Similar to --stat, but shows number of added and deleted lines in decimal notation
+  --output-indicator-context=: Specify the character used to indicate context lines in the generated patch
+  --output-indicator-new=: Specify the character used to indicate new lines in the generated patch
+  --output-indicator-old=: Specify the character used to indicate old lines in the generated patch
+  --output=: Output to a specific file instead of stdout
+  --patch-with-raw: Synonym for -p --raw
+  --patch-with-stat: Synonym for -p --stat
+  --patience: Generate a diff using the "patience diff" algorithm
+  --pickaxe-all: When -S or -G finds a change, show all the changes in that changeset
+  --pickaxe-regex: Treat the <string> given to -S as an extended POSIX regular expression to match
+  --raw: Generate the diff in raw format
+  --relative,=: exclude changes outside the directory
+  --rename-empty: Whether to use empty blobs as rename source
+  --shortstat: Output only the last line of the --stat format
+  --src-prefix=: Show the given source prefix instead of "a/"
+  --stat-count=: Generate diffstat with limited lines
+  --stat-graph-width=: Generate diffstat with a given graph width
+  --stat-name-width=: Generate diffstat with a given filename width
+  --stat-width=: Generate diffstat with a given width
+  --stat=: Generate a diffstat
+  --submodule=: Specify how differences in submodules are shown
+  --summary: Output a condensed summary of extended header information
+  --textconv=: Allow (or disallow) external text conversion filters to be run when comparing binary files
+  --word-diff-regex=: Use <regex> to decide what a word is
+  --word-diff?: Show a word diff, using the <mode> to delimit changed words
+  --ws-error-highlight=: Highlight whitespace errors in the context, old or new lines of the diff
+  '-0': Omit diff output for unmerged entries
+  -1, --base: compare with base
+  -2, --ours: compare with our branch
+  -3, --theirs: compare with their branch
+  -B, --break-rewrites=: Break complete rewrite changes into pairs of delete and create
+  -C, --find-copies=: Detect copies as well as renames
+  -D, --irreversible-delete: Omit the preimage for deletes
+  -M, --find-renames=: Detect renames
+  -O=: Control the order in which files appear in the output
+  -R: Swap two inputs
+  -S=: Look for differences that change the number of occurrences of the specified string
+  -U, --unified=: Generate diffs with <n> lines of context instead of the usual three
+  -W, --function-context: Show whole surrounding functions of changes
+  -X, --dirstat=: Output the distribution of relative amount of changes for each sub-directory
+  -a, --text: Treat all files as text
+  -b, --ignore-space-change: Ignore changes in amount of whitespace
+  -l=: prevent rename/copy detection from running if the number of rename/copy targets exceeds the specified number
+  -p, --patch: Generate patch
+  -s, --no-patch: Suppress diff output
+  -u: Generate patch
+  -w, --ignore-all-space: Ignore whitespace when comparing lines
+  -z: do not munge pathnames and use NULs as output field terminators
+documentation:
+  command: |-
+    This command shows the differences between two versions of a patch
+    series, or more generally, two commit ranges (ignoring merge commits).
+
+    In the presence of _<path>_ arguments, these commit ranges are limited
+    accordingly.
+
+    To that end, it first finds pairs of commits from both commit ranges
+    that correspond with each other. Two commits are said to correspond when
+    the diff between their patches (i.e. the author information, the commit
+    message and the commit diff) is reasonably small compared to the
+    patches' size. See 'Algorithm' below for details.
+
+    Finally, the list of matching commits is shown in the order of the
+    second commit range, with unmatched commits being inserted just after
+    all of their ancestors have been shown.
+
+    There are three ways to specify the commit ranges:
+
+    - `<range1> <range2>`: Either commit range can be of the form
+      `<base>..<rev>`, `<rev>^!` or `<rev>^-<n>`. See `SPECIFYING RANGES`
+      in [gitrevisions](man://gitrevisions/7) for more details.
+
+    - `<rev1>...<rev2>`. This is equivalent to
+      `<rev2>..<rev1> <rev1>..<rev2>`.
+
+    - `<base> <rev1> <rev2>`: This is equivalent to `<base>..<rev1> <base>..<rev2>`.
+  flag:
+    creation-factor: |-
+      Set the creation/deletion cost fudge factor to _<percent>_.
+      Defaults to 60. Try a larger value if `git range-diff` erroneously
+      considers a large change a total rewrite (deletion of one commit
+      and addition of another), and a smaller one in the reverse case.
+      See the `Algorithm` section below for an explanation of why this is
+      needed.
+    no-dual-color: |-
+      When the commit diffs differ, `git range-diff` recreates the
+      original diffs` coloring, and adds outer -/+ diff markers with`
+      the *background* being red/green to make it easier to see e.g.
+      when there was a change in what exact lines were added.
+
+      Additionally, the commit diff lines that are only present in the first commit
+      range are shown "dimmed" (this can be overridden using the `color.diff.<slot>`
+      config setting where _<slot>_ is one of `contextDimmed`, `oldDimmed` and
+      `newDimmed`), and the commit diff lines that are only present in the second
+      commit range are shown in bold (which can be overridden using the config
+      settings `color.diff.<slot>` with _<slot>_ being one of `contextBold`,
+      `oldBold` or `newBold`).
+
+      This is known to `range-diff` as "dual coloring". Use `--no-dual-color`
+      to revert to color all lines according to the outer diff markers
+      (and completely ignore the inner diff when it comes to color).
+    no-notes: |-
+      This flag is passed to the `git log` program
+      (see [git-log](cmd://git/log)) that generates the patches.
+    notes: |-
+      This flag is passed to the `git log` program
+      (see [git-log](cmd://git/log)) that generates the patches.

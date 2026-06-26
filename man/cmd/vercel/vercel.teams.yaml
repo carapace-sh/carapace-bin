@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: teams
+description: Manages your teams
+
+documentation:
+  command: >-
+    Manage teams for collaborative development on Vercel.

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: api-resources
+description: Print the supported API resources on the server
+flags:
+    --api-group=: Limit to resources in the specified API group.
+    --cached: Use the cached list of resources if available.
+    --categories=*: Limit to resources that belong to the specified categories.
+    --namespaced: If false, non-namespaced resources will be returned, otherwise returning namespaced resources by default.
+    --no-headers: When using the default or custom-column output format, don't print headers (default print headers).
+    --show-managed-fields: If true, keep the managedFields when printing objects in JSON or YAML format.
+    --sort-by=: If non-empty, sort list of resources using specified field. The field can be either 'name' or 'kind'.
+    --verbs=*: Limit to resources that support the specified verbs.
+    -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, wide).'

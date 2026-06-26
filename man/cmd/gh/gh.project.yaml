@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: project <command>
+description: Work with GitHub Projects.
+group: core
+documentation:
+    command: |
+        Work with GitHub Projects (beta). Create and manage project boards,
+        add and edit items (issues, PRs, notes), and organize work with fields.
+        The minimum required token scope is `project`. Verify your scope with
+        `gh auth status` and add it with `gh auth refresh -s project`.

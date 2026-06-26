@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: display-menu
+flags:
+    -O: TODO description
+    -T=: title
+    -c=: target-client
+    -t=: target-pane
+    -x=: position
+    -y=: position

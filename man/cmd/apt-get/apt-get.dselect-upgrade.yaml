@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Process package selections made by dselect. Reads the Status field
+    changes made by dselect and performs the corresponding package
+    install, remove, and upgrade operations.
+description: dselect-upgrade is used in conjunction with the traditional Debian packaging front-end

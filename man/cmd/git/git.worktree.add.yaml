@@ -1,0 +1,99 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Create a worktree at <path> and checkout <commit-ish> into it
+flags:
+  --checkout: populate the new working tree
+  --guess-remote: try to match the new branch name with a remote-tracking branch
+  --lock: keep the new working tree locked
+  --reason=: reason for locking
+  --track: set up tracking mode
+  -B=: create or reset a branch
+  -b=: create a new branch
+  -d, --detach: detach HEAD at named commit
+  -f, --force: checkout <branch> even if already checked out in other worktree
+  -q, --quiet: suppress progress reporting
+documentation:
+  command: |-
+    Create a worktree at _<path>_ and checkout _<commit-ish>_ into it. The new worktree
+    is linked to the current repository, sharing everything except per-worktree
+    files such as `HEAD`, `index`, etc. As a convenience, _<commit-ish>_ may
+    be a bare "`-`", which is synonymous with `@{-1}`.
+
+    If _<commit-ish>_ is a branch name (call it _<branch>_) and is not found,
+    and neither `-b` nor `-B` nor `--detach` are used, but there does
+    exist a tracking branch in exactly one remote (call it _<remote>_)
+    with a matching name, treat as equivalent to:
+
+    ```
+    $ git worktree add --track -b <branch> <path> <remote>/<branch>
+    ```
+
+    If the branch exists in multiple remotes and one of them is named by
+    the `checkout.defaultRemote` configuration variable, we'll use that
+    one for the purposes of disambiguation, even if the _<branch>_ isn't
+    unique across all remotes. Set it to
+    e.g. `checkout.defaultRemote=origin` to always checkout remote
+    branches from there if _<branch>_ is ambiguous but exists on the
+    `origin` remote. See also `checkout.defaultRemote` in
+    [git-config](cmd://git/config).
+
+    If _<commit-ish>_ is omitted and neither `-b` nor `-B` nor `--detach` used,
+    then, as a convenience, the new worktree is associated with a branch (call
+    it _<branch>_) named after `$(basename <path>)`.  If _<branch>_ doesn't
+    exist, a new branch based on `HEAD` is automatically created as if
+    `-b <branch>` was given.  If _<branch>_ does exist, it will be checked out
+    in the new worktree, if it's not checked out anywhere else, otherwise the
+    command will refuse to create the worktree (unless `--force` is used).
+
+    If _<commit-ish>_ is omitted, neither `--detach`, or `--orphan` is
+    used, and there are no valid local branches (or remote branches if
+    `--guess-remote` is specified) then, as a convenience, the new worktree is
+    associated with a new unborn branch named _<branch>_ (after
+    `$(basename <path>)` if neither `-b` or `-B` is used) as if `--orphan` was
+    passed to the command. In the event the repository has a remote and
+    `--guess-remote` is used, but no remote or local branches exist, then the
+    command fails with a warning reminding the user to fetch from their remote
+    first (or override by using `-f`/`--force`).
+  flag:
+    detach: |-
+      With `add`, detach `HEAD` in the new worktree. See "DETACHED HEAD"
+      in [git-checkout](cmd://git/checkout).
+    force: |-
+      By default, `add` refuses to create a new worktree when
+      _<commit-ish>_ is a branch name and is already checked out by
+      another worktree, or if _<path>_ is already assigned to some
+      worktree but is missing (for instance, if _<path>_ was deleted
+      manually). This option overrides these safeguards. To add a missing but
+      locked worktree path, specify `--force` twice.
+
+      `move` refuses to move a locked worktree unless `--force` is specified
+      twice. If the destination is already assigned to some other worktree but is
+      missing (for instance, if _<new-path>_ was deleted manually), then `--force`
+      allows the move to proceed; use `--force` twice if the destination is locked.
+
+      `remove` refuses to remove an unclean worktree unless `--force` is used.
+      To remove a locked worktree, specify `--force` twice.
+    lock: |-
+      Keep the worktree locked after creation. This is the
+      equivalent of `git worktree lock` after `git worktree add`,
+      but without a race condition.
+    quiet: With `add`, suppress feedback messages.
+    checkout: |-
+      By default, `add` checks out _<commit-ish>_, however, `--no-checkout` can
+      be used to suppress checkout in order to make customizations,
+      such as configuring sparse-checkout. See "Sparse checkout"
+      in [git-read-tree](cmd://git/read-tree).
+    guess-remote: |-
+      With `worktree add <path>`, without _<commit-ish>_, instead
+      of creating a new branch from `HEAD`, if there exists a tracking
+      branch in exactly one remote matching the basename of _<path>_,
+      base the new branch on the remote-tracking branch, and mark
+      the remote-tracking branch as "upstream" from the new branch.
+
+      This can also be set up as the default behaviour by using the
+      `worktree.guessRemote` config option.
+    track: |-
+      When creating a new branch, if _<commit-ish>_ is a branch,
+      mark it as "upstream" from the new branch.  This is the
+      default if _<commit-ish>_ is a remote-tracking branch.  See
+      `--track` in [git-branch](cmd://git/branch) for details.

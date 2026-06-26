@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: List and refresh application statuses
+flags:
+    --all-projects: Output status about every project in a workspace.
+    --json: Output the status information as JSON.
+    --plain: Plain output
+    --refresh: Refresh application status for the requested app or apps in a project.
+    --verbose: Display more details.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

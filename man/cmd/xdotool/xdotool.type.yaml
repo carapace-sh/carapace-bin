@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: type
+description: Type as if you had typed it
+flags:
+    --clearmodifiers: Clear modifiers before sending keystrokes
+    --delay=: Delay between keystrokes
+    --window=: Send keystrokes to a specific window id

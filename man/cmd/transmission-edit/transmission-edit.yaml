@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: transmission-edit [flags] torrentfile...
+description: A command-line utility to modify .torrent files' announce URLs
+flags:
+    -V, --version: Show version number and exit
+    -a, --add=: Add an announce URL to the torrent's announce-list
+    -d, --delete=: Remove an announce URL from the torrent's announce-list
+    -h, --help: Show a short help page and exit
+    -r, --replace=*: Substring search-and-replace inside a torrent's announce-list URLs
+    -s, --source=: Sets the source tag within a torrent

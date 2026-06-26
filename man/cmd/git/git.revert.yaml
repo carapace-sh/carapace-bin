@@ -1,0 +1,77 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: revert
+description: Revert some existing commits
+group: main
+flags:
+  --abort: cancel revert or cherry-pick sequence
+  --cleanup=: 'how to strip spaces and #comments from message'
+  --continue: resume revert or cherry-pick sequence
+  --quit: end revert or cherry-pick sequence
+  --rerere-autoupdate: update the index with reused conflict resolution if possible
+  --skip: skip current commit and continue
+  --strategy=: merge strategy
+  -S, --gpg-sign?: GPG sign commit
+  -X, --strategy-option=: option for merge strategy
+  -e, --edit: edit the commit message
+  -m, --mainline=: select mainline parent
+  -n, --no-commit: don't automatically commit
+  -s, --signoff: 'add Signed-off-by:'
+documentation:
+  command: |-
+    Given one or more existing commits, revert the changes that the
+    related patches introduce, and record some new commits that record
+    them.  This requires your working tree to be clean (no modifications
+    from the HEAD commit).
+
+    Note: 'git revert' is used to record some new commits to reverse the
+    effect of some earlier commits (often only a faulty one).  If you want to
+    throw away all uncommitted changes in your working directory, you
+    should see [git-reset](cmd://git/reset), particularly the `--hard` option.  If
+    you want to extract specific files as they were in another commit, you
+    should see [git-restore](cmd://git/restore), specifically the `--source`
+    option. Take care with these alternatives as
+    both will discard uncommitted changes in your working directory.
+
+    See "Reset, restore and revert" in [git](man://git/1) for the differences
+    between the three commands.
+  flag:
+    edit: |-
+      With `--edit` (the default), `git revert` will open the editor
+      before committing the revert so that the user can edit the commit
+      message.
+    gpg-sign: |-
+      GPG-sign commits. The `keyid` argument is optional and defaults
+      to the committer identity. `--no-gpg-sign` is useful to
+      countermand both `commit.gpgSign` configuration variable and
+      earlier `--gpg-sign`.
+    mainline: |-
+      When reverting a merge commit, specify the parent number (1-based)
+      relative to which the revert should be considered. The revert
+      undoes the changes introduced by the merge relative to this
+      parent. See [git-merge](cmd://git/merge) for the format of the
+      merge commit message, which lists the parent numbers.
+    no-commit: |-
+      Usually `git revert` will create a new commit that reverts the
+      changes from the specified commit. With `--no-commit`, the
+      changes are applied to the index and working tree but no commit
+      is created, allowing you to make further modifications before
+      committing.
+    rerere-autoupdate: |-
+      After the rerere mechanism reuses a recorded resolution on
+      the current conflict to update the files in the working
+      tree, allow it to also update the index with the result of
+      resolution.  `--no-rerere-autoupdate` is a good way to
+      double-check what [git-rerere](cmd://git/rerere) did and catch potential
+      mismerges, before committing the result to the index with a
+      separate [git-add](cmd://git/add).
+    signoff: |-
+      Add a `Signed-off-by` trailer at the end of the commit message.
+    strategy: |-
+      Use the given merge strategy. Should be one of `ort`, `ours`,
+      `recursive`, `octopus`, or `subtree`. For further details, see
+      the section "MERGE STRATEGIES" in [git-merge](cmd://git/merge).
+      The `ort` strategy is the default.
+    strategy-option: |-
+      Pass the merge strategy-specific option through to the merge
+      strategy. This implies `--merge` and, if no strategy has been
+      specified, `-s ort`.

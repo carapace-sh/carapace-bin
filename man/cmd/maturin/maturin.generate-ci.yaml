@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate-ci
+description: Generate CI configuration
+flags:
+    --platform=*: Platform support
+    --pytest: Enable pytest
+    --skip-attestation: Skip artifact attestation
+    --zig: Use zig to do cross compilation
+    -m, --manifest-path=: Path to Cargo.toml
+    -o, --output=: Output path
+    -v, --verbose*: Use verbose output

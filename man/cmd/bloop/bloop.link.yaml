@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: link <link>
+description: link projects
+flags:
+    --incremental: compile the project incrementally
+    --pipeline: pipeline the compilation of modules in your build
+    --projects=*: the projects to link
+    --reporter: pick reporter to show compilation messages
+    -O, --optimize=: optimization level of the linker
+    -m, --main=: the main class to link
+    -p, --project=*: the projects to link
+    -w, --watch: run the command whenever projects' source files change

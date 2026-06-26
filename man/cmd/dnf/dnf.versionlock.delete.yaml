@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete <package-spec>...
+description: remove matching versionlock entries

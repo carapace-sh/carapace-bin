@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unmet
+description: unmet displays a summary of all unmet dependencies

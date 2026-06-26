@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create a resource-class
+persistentflags:
+    --generate-token: Generate a default token

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: whoami
+description: Return unit caller or specified PIDs are part of
+group: unit
+documentation:
+  command: |
+    Return the units the processes referenced by the given PIDs belong to
+    (one per line). If no PID is specified, returns the unit the systemctl
+    command is invoked in.

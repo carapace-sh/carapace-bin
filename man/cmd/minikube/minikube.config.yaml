@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config SUBCOMMAND [flags]
+description: Modify persistent configuration values
+group: configuration

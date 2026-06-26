@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-color-scheme
+description: Change the color scheme
+flags:
+    -h, --help: Show help for this command

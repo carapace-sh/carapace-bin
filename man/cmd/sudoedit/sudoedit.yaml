@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sudoedit
+description: edit files as another user
+flags:
+    --help: display help message and exit
+    -A, --askpass: use a helper program for password prompting
+    -B, --bell: ring bell when prompting
+    -C, --close-from=: close all file descriptors >= num
+    -D, --chdir=: change the working directory before running command
+    -R, --chroot=: change the root directory before running command
+    -S, --stdin: read password from standard input
+    -V, --version: display version information and exit
+    -g, --group=: run command as the specified group name or ID
+    -h, --host=: run command on host (if supported by plugin)
+    -k, --reset-timestamp: invalidate timestamp file
+    -n, --non-interactive: non-interactive mode, no prompts are used
+    -p, --prompt=: use the specified password prompt
+    -u, --user=: run command (or edit file) as specified user name or ID

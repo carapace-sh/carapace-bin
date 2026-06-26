@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Display information from the /proc or /sys filesystem about ACPI
+    devices, including battery status, thermal information, AC adapter
+    status, and cooling device information. By default reads from /sys/class;
+    use `-p` to fall back to the legacy /proc/acpi interface.
+description: Shows information from the /proc filesystem
+flags:
+    -V, --everything: show every device, overrides above options
+    -a, --ac-adapter: ac adapter information
+    -b, --battery: battery information
+    -c, --cooling: cooling information
+    -d, --directory=: path to ACPI info (/sys/class resp. /proc/acpi)
+    -f, --fahrenheit: use fahrenheit as the temperature unit
+    -h, --help: display this help and exit
+    -i, --details: 'show additional details if available:'
+    -k, --kelvin: use kelvin as the temperature unit
+    -p, --proc: use old proc interface instead of new sys interface
+    -s, --show-empty: show non-operational devices
+    -t, --thermal: thermal information
+    -v, --version: output version information and exit

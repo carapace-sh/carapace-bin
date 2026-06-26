@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deploy [OPTIONS] STACK
+aliases:
+    - up
+description: Deploy a new stack or update an existing stack
+flags:
+    --prune: Prune services that are no longer referenced
+    --resolve-image=: Query the registry to resolve image digest and supported platforms ("always", "changed", "never")
+    --with-registry-auth: Send registry authentication details to Swarm agents
+    -c, --compose-file=*: Path to a Compose file, or "-" to read from stdin
+    -d, --detach: Exit immediately instead of waiting for the stack services to converge
+    -q, --quiet: Suppress progress output

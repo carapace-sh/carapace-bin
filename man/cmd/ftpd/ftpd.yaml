@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ftpd
+description: File Transfer Protocol daemon
+flags:
+    --non-rfc2577: neglect RFC 2577 by giving info on missing users
+    --usage: give a short usage message
+    -?, --help: give this help list
+    -4, --ipv4: restrict daemon to IPv4
+    -6, --ipv6: restrict daemon to IPv6
+    -A, --anonymous-only: server configured for anonymous service only
+    -D, --daemon: start the ftpd standalone
+    -T, --max-timeout=: set maximum value of timeout allowed
+    -V, --version: print program version
+    -a, --auth=: use AUTH for authentication
+    -d, --debug: debug mode
+    -l, --logging: increase verbosity of syslog messages
+    -p, --pidfile=: change default location of pidfile
+    -q, --no-version: do not display version in banner
+    -t, --timeout=: set default idle timeout
+    -u, --umask=: set default umask

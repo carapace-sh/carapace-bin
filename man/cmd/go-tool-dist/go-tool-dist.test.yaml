@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: run Go test(s)
+flags:
+    -asan: run in address sanitizer builder mode
+    -banner=: banner prefix
+    -compile-only: compile tests, but don't run them
+    -k: keep going even when error occurred
+    -list: list available tests
+    -msan: run in memory sanitizer builder mode
+    -no-rebuild: overrides -rebuild (historical dreg)
+    -race: run in race builder mode (different set of tests)
+    -rebuild: rebuild everything first
+    -run=: run only those tests matching the regular expression
+    -v: verbosity

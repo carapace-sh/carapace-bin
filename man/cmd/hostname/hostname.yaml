@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hostname
+description: show or set system host name
+flags:
+    --usage: give a short usage message
+    -?, --help: give this help list
+    -F, --file=: set host name or NIS domain name from FILE
+    -V, --version: print program version
+    -a, --aliases: alias names
+    -d, --domain: DNS domain name
+    -f, --fqdn,=: DNS host name or FQDN
+    -i, --ip-addresses: addresses for the host name
+    -s, --short: short host name
+    -y, --yp,=: NIS/YP domain name

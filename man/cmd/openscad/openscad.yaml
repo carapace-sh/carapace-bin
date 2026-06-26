@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: openscad
+description: script file based graphical CAD environment
+flags:
+    --autocenter: adjust camera to look at object's center
+    --camera=: 'camera parameters when exporting png: '
+    --check-parameter-ranges=: configure the parameter range check for builtin modules
+    --check-parameters=: configure the parameter check for user modules and functions
+    --colorscheme=: colorscheme
+    --csglimit=: stop rendering at n CSG elements
+    --debug=: special debug info
+    --hardwarnings: Stop on the first warning
+    --imgsize=: width,height of exported png
+    --info: print information about the build process
+    --preview=: 'preview '
+    --projection=: =(o)rtho or (p)erspective when exporting png
+    --render=: for full geometry evaluation when exporting png
+    --view=: view option
+    --viewall: adjust camera to fit object
+    -D, --D=: pre-define variables
+    -P, --P=: customizer parameter set
+    -d, --d=: generate a dependency file for make
+    -h, --help: print this help message and exit
+    -m, --m=: runs make_cmd file if file is missing
+    -o, --o=: output specified file instead of running the GUI
+    -p, --p=: customizer parameter file
+    -q, --quiet: quiet mode
+    -v, --version: print the version

@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hyperfine
+description: A command-line benchmarking tool.
+flags:
+    --export-asciidoc=: Export the timing summary statistics as an AsciiDoc table to the given FILE. The output time unit can be changed using the --time-unit option.
+    --export-csv=: Export the timing summary statistics as CSV to the given FILE. If you need the timing results for each individual run, use the JSON export format. The output time unit is always seconds.
+    --export-json=: Export the timing summary statistics and timings of individual runs as JSON to the given FILE. The output time unit is always seconds
+    --export-markdown=: Export the timing summary statistics as a Markdown table to the given FILE. The output time unit can be changed using the --time-unit option.
+    --export-orgmode=: Export the timing summary statistics as an Emacs org-mode table to the given FILE. The output time unit can be changed using the --time-unit option.
+    --input=: Control where the input of the benchmark comes from.
+    --output=*: Control where the output of the benchmark is redirected. Note that some programs like 'grep' detect when standard output is /dev/null and apply certain optimizations. To avoid that, consider using '--output=pipe'.
+    --reference-name=: Give a meaningful name to the reference command.
+    --reference=: The reference command for the relative comparison of results. If this is unset, results are compared with the fastest command as reference.
+    --show-output: Print the stdout and stderr of the benchmark instead of suppressing it. This will increase the time it takes for benchmarks to run, so it should only be used for debugging purposes or when trying to benchmark output speed.
+    --sort=: 'Specify the sort order of the speed comparison summary and the exported tables for markup formats (Markdown, AsciiDoc, org-mode):'
+    --style=: 'Set output style type (default: auto). Set this to ''basic'' to disable output coloring and interactive elements. Set it to ''full'' to enable all effects even if no interactive terminal was detected. Set this to ''nocolor'' to keep the interactive output without any colors. Set this to ''color'' to keep the colors without any interactive output. Set this to ''none'' to disable all the output of the tool.'
+    -C, --conclude=*: Execute CMD after each timing run. This is useful for killing long-running processes started (e.g. a web server started in --prepare), for example.
+    -D, --parameter-step-size=: This argument requires --parameter-scan to be specified as well. Traverse the range MIN..MAX in steps of DELTA.
+    -L, --parameter-list=*: Perform benchmark runs for each value in the comma-separated list VALUES. Replaces the string '{VAR}' in each command by the current parameter value.
+    -M, --max-runs=: Perform at most NUM runs for each command. By default, there is no limit.
+    -N: An alias for '--shell=none'.
+    -P, --parameter-scan=: Perform benchmark runs for each value in the range MIN..MAX. Replaces the string '{VAR}' in each command by the current parameter value.
+    -S, --shell=: Set the shell to use for executing benchmarked commands. This can be the name or the path to the shell executable, or a full command line like "bash --norc". It can also be set to "default" to explicitly select the default shell on this platform. Finally, this can also be set to "none" to disable the shell. In this case, commands will be executed directly. They can still have arguments, but more complex things like "sleep 0.1; sleep 0.2" are not possible without a shell.
+    -V, --version: Print version
+    -c, --cleanup=: Execute CMD after the completion of all benchmarking runs for each individual command to be benchmarked. This is useful if the commands to be benchmarked produce artifacts that need to be cleaned up.
+    -h, --help: Print help
+    -i, --ignore-failure?: Ignore failures of the benchmarked programs. Without a value or with 'all-non-zero', all non-zero exit codes are ignored. You can also provide a comma-separated list of exit codes to ignore (e.g., --ignore-failure=1,2).
+    -m, --min-runs=: 'Perform at least NUM runs for each command (default: 10).'
+    -n, --command-name=*: Give a meaningful name to a command. This can be specified multiple times if several commands are benchmarked.
+    -p, --prepare=*: Execute CMD before each timing run. This is useful for clearing disk caches, for example.
+    -r, --runs=: Perform exactly NUM runs for each command. If this option is not specified, hyperfine automatically determines the number of runs.
+    -s, --setup=: Execute CMD before each set of timing runs. This is useful for compiling your software with the provided parameters, or to do any other work that should happen once before a series of benchmark runs, not every time as would happen with the --prepare option.
+    -u, --time-unit=: 'Set the time unit to be used. Possible values: microsecond, millisecond, second. If the option is not given, the time unit is determined automatically. This option affects the standard output as well as all export formats except for CSV and JSON.'
+    -w, --warmup=: Perform NUM warmup runs before the actual benchmark. This can be used to fill (disk) caches for I/O-heavy programs.
+
+documentation:
+  command: >-
+    Command-line benchmarking tool with statistical analysis. hyperfine
+    runs commands multiple times, measures execution time, and reports
+    mean, standard deviation, and min/max. Use -r or --runs to set
+    iterations; -w or --warmup for warmup runs before measurement.
+    Compare multiple commands: hyperfine 'cmd1' 'cmd2'. Parameterized
+    benchmarks with --parameter-scan (scan a variable through a range).
+    Export results to CSV (--export-csv), JSON (--export-json), or
+    Markdown (--export-markdown). Hide output with --hide-output.
+    Prepare environment with --prepare (cache clearing) and --setup.
+    Sort results by mean with --sort mean. Shell integration with
+    --shell. Useful for comparing tools (e.g., hyperfine 'ripgrep' 'grep').

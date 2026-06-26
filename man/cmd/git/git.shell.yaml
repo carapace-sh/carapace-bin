@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: shell
+description: Restricted login shell for Git-only SSH access
+flags:
+  --c: run command
+documentation:
+  command: |-
+    This is a login shell for SSH accounts to provide restricted Git access.
+    It permits execution only of server-side Git commands implementing the
+    pull/push functionality, plus custom commands present in a subdirectory
+    named `git-shell-commands` in the user's home directory.

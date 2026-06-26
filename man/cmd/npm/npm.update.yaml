@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Update packages
+flags:
+    --audit: submit audit reports
+    --bin-links: Create symlinks for package executables
+    --dry-run: Only report changes
+    --fund: Display funding message
+    --global-style: Use global layout
+    --ignore-scripts: do not run scripts specified in package.json
+    --legacy-bundling: Use legacy bundling
+    --omit=*: omit dependency types
+    --package-lock: Only update package-lock.json
+    --strict-peer-deps: Fail and abort for any conflicting `peerDependencies`
+    --workspaces: Enable running a command in the context fo all workspaces
+    -g, --global: operate in global mode
+    -w, --workspace=*: Enable running a command in the context of the given workspace

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Delete codespaces
+flags:
+    --all: Delete all codespaces
+    --days=: Delete codespaces older than `N` days
+    -f, --force: Skip confirmation for codespaces that contain unsaved changes
+    -o, --org=: The `login` handle of the organization (admin-only)
+    -r, --repo-deprecated=&: (Deprecated) Shorthand for --repo
+    -u, --user=: The `username` to delete codespaces for (used with --org)
+persistentflags:
+    --repo-owner=: Filter codespace selection by repository owner (username or org)
+    -R, --repo=: Filter codespace selection by repository name (user/repo)
+    -c, --codespace=: Name of the codespace

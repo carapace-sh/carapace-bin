@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kill [OPTIONS] CONTAINER [CONTAINER...]
+description: Kill one or more running containers
+flags:
+    -s, --signal=: Signal to send to the container

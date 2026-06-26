@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify
+description: Verify that all records in the store can be decrypted with the current key

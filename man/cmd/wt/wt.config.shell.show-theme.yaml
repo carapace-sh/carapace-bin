@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show-theme
+description: Show output theme samples
+flags:
+    -h, --help: Print help (see more with '--help')

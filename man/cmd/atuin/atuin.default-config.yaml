@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: default-config
+description: Print the default atuin configuration (config.toml)
+flags:
+    -h, --help: Print help

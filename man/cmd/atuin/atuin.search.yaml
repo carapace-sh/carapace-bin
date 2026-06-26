@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Interactive history search
+flags:
+    --after=: Only include results after this date
+    --author=*: Filter by author. Supports $all-user (non-agents), $all-agent, or literal names. Can be specified multiple times
+    --cmd-only: Show only the text of the command
+    --delete: Delete anything matching this query. Will not print out the match
+    --delete-it-all: Delete EVERYTHING!
+    --exclude-cwd=: Exclude directory from results
+    --exclude-exit=: Exclude results with this exit code
+    --filter-mode=: Allow overriding filter mode over config
+    --human: Use human-readable formatting for time
+    --include-duplicates: Include duplicate commands in the output (non-interactive only)
+    --inline-height=: Set the maximum number of lines Atuin's interface should take up
+    --keymap-mode=: Notify the keymap at the shell's side
+    --limit=: How many entries to return at most
+    --offset=: Offset from the start of the results
+    --print0: Terminate the output with a null, for better multiline handling
+    --search-mode=: Allow overriding search mode over config
+    --timezone=: Display the command time in another timezone other than the configured default
+    --tz=: Display the command time in another timezone other than the configured default
+    -b, --before=: Only include results added before this date
+    -c, --cwd=: Filter search result by directory
+    -e, --exit=: Filter search result by exit code
+    -f, --format=: 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {time}, {exit} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"'
+    -h, --help: Print help (see more with '--help')
+    -i, --interactive: Open interactive search UI
+    -r, --reverse: Reverse the order of results, oldest first

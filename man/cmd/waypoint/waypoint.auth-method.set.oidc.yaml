@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: oidc
+description: Configure an OIDC auth method
+flags:
+    --access-selector=: Selector expression to control access based on claims.
+    --allowed-redirect-uri=: Allowed URI for auth redirection.
+    --claim-mapping=: Mapping of a claim to a variable value for the access selector.
+    --claim-scope=: The optional claims scope requested.
+    --client-id=: The OAuth 2.0 Client Identifier.
+    --client-secret=: The client secret corresponding with the client ID.
+    --description=: Short description of this auth method
+    --display-name=: Display name for the UI
+    --issuer-ca-pem=: PEM-encoded certificates for connecting to the issuer.
+    --issuer=: Discovery URL of the OIDC provider.
+    --list-claim-mapping=: Same as claim-mapping but for list values.
+    --plain: Plain output
+    --signing-algorithm=: The allowed signing algorithm.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

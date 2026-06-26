@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fmt
+description: simple optimal text formatter
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -c, --crown-margin: preserve indentation of first two lines
+    -g, --goal=: goal width (default of 93% of width)
+    -p, --prefix=: reformat only lines beginning with STRING,
+    -s, --split-only: split long lines, but do not refill
+    -t, --tagged-paragraph: indentation of first line different from second
+    -u, --uniform-spacing: one space between words, two after sentences
+    -w, --width=: maximum line width (default of 75 columns)

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: emergency
+description: Enter system emergency mode
+group: system
+documentation:
+  command: |
+    Enter emergency mode. This is equivalent to `systemctl isolate emergency.target`.
+    This operation is blocking by default; use `--no-block` for asynchronous
+    behavior. In emergency mode, only a minimal set of services is started
+    and users are given a recovery shell with minimal resources available.

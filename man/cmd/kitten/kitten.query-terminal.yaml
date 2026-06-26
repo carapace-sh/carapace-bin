@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: query-terminal
+description: Query the terminal for various capabilities
+flags:
+    --wait-for=: The amount of time (in seconds) to wait for a response from the terminal, after querying it.
+    -h, --help: Show help for this command
+
+documentation:
+  command: >-
+    Query the terminal for capabilities and supported features.

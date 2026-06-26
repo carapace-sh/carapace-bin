@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dump-metadata
+description: dump the meta in human-readable format
+flags:
+    --root=: path to state directory

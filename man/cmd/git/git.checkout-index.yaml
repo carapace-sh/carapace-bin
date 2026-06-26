@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: checkout-index
+description: Copy files from the index to the working tree
+group: low-level manipulator
+flags:
+  --ignore-skip-worktree-bits: do not skip files with skip-worktree set
+  --prefix=: when creating files, prepend <string>
+  --stage=: copy out the files from named stage
+  --stdin: read list of paths from the standard input
+  --temp: write the content to temporary files
+  -a, --all: check out all files in the index
+  -f, --force: force overwrite of existing files
+  -n, --no-create: don't checkout new files
+  -q, --quiet: no warning for existing files and files not in index
+  -u, --index: update stat information in the index file
+  -z: paths are separated with NUL character
+documentation:
+  command: |-
+    Copies all listed files from the index to the working directory
+    (not overwriting existing files).

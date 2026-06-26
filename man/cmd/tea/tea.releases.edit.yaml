@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+aliases:
+    - e
+description: Edit one or more releases
+flags:
+    --tag=: Change Tag
+    --target=: Change Target
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -d, --draft=: Mark as Draft [True/false]
+    -l, --login=: Use a different Gitea Login. Optional
+    -n, --note=: Change Notes
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -p, --prerelease=: Mark as Pre-Release [True/false]
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional
+    -t, --title=: Change Title

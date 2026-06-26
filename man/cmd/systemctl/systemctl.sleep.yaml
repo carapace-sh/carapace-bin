@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sleep
+description: Put the system to sleep
+group: system
+documentation:
+  command: |
+    Put the system to sleep. This delegates to the suspend, hibernate,
+    hybrid-sleep, or suspend-then-hibernate command depending on the
+    current configuration and state.

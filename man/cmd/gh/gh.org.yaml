@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: org <command>
+description: Manage organizations
+group: core
+documentation:
+    command: |
+        Manage GitHub organizations. List your organizations with `gh org list`,
+        and view their details. Use organization membership to access repos,
+        projects, and settings across the organization.

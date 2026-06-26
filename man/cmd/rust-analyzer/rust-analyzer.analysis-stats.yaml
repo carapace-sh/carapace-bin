@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: analysis-stats
+description: Batch typecheck project and print summary statistics
+flags:
+    --disable-build-scripts: Don't run build scripts or load `OUT_DIR` values by running `cargo check` before analysis
+    --disable-proc-macros: Don't use expand proc macros
+    --memory-usage: Collect memory usage statistics
+    --no-sysroot: Don't load sysroot crates (`std`, `core` & friends)
+    --output=: ""
+    --parallel: Run type inference in parallel
+    --randomize: Randomize order in which crates, modules, and items are processed
+    --skip-inference: Only resolve names, don't run type inference
+    --source-stats: Print the total length of all source and macro files (whitespace is not counted)
+    --with-deps: Also analyze all dependencies
+    -o, --only=: Only analyze items matching this path

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff CONTAINER
+description: Inspect changes to files or directories on a container's filesystem

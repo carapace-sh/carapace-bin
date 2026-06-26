@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clone
+aliases:
+    - C
+description: Clone a repository locally
+group: HELPERS
+flags:
+    -d, --depth=: num commits to fetch, defaults to all
+    -l, --login=: Use a different Gitea Login. Optional

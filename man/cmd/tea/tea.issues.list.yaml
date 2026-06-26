@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List issues of the repository
+flags:
+    --limit=: specify limit of items per page
+    --state=: Filter by state (all|open|closed)
+    -A, --author=: ""
+    -F, --from=: Filter by activity after this date
+    -K, --kind=: Whether to return `issues`, `pulls`, or `all` (you can use this to apply advanced search filters to PRs)
+    -L, --labels=: Comma-separated list of labels to match issues against.
+    -M, --mentions=: ""
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -a, --assignee=: ""
+    -f, --fields=: 'Comma-separated list of fields to print. Available values:'
+    -k, --keyword=: Filter by search string
+    -l, --login=: Use a different Gitea Login. Optional
+    -m, --milestones=: Comma-separated list of milestones to match issues against.
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -p, --page=: specify page, default is 1
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional
+    -u, --until=: Filter by activity before this date

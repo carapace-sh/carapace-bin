@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nohup
+description: run a command immune to hangups, with output to a non-tty
+flags:
+    --help: display this help and exit
+    --version: output version information and exit

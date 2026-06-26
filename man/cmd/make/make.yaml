@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make
+description: GNU make utility to maintain groups of programs
+flags:
+    --assume-new=: Consider FILE to be infinitely new.
+    --assume-old=: Consider FILE to be very old and don't remake it.
+    --debug=: Print various types of debugging information.
+    --dry-run: Don't actually run any recipe; just print them.
+    --makefile=: Read FILE as a makefile.
+    --max-load=: Don't start multiple jobs unless load is below N.
+    --new-file=: Consider FILE to be infinitely new.
+    --no-print-directory: Turn off -w, even if it was turned on implicitly.
+    --no-silent: Echo recipes (disable --silent mode).
+    --quiet: Don't echo recipes.
+    --recon: Don't actually run any recipe; just print them.
+    --stop: Turns off -k.
+    --trace: Print tracing information.
+    --warn-undefined-variables: Warn when an undefined variable is referenced.
+    -B, --always-make: Unconditionally make all targets.
+    -C, --directory=: Change to DIRECTORY before doing anything.
+    -E, --eval=: Evaluate STRING as a makefile statement.
+    -I, --include-dir=: Search DIRECTORY for included makefiles.
+    -L, --check-symlink-times: Use the latest mtime between symlinks and target.
+    -O, --output-sync=: Synchronize output of parallel jobs by TYPE.
+    -R, --no-builtin-variables: Disable the built-in variable settings.
+    -S, --no-keep-going: Turns off -k.
+    -W, --what-if=: Consider FILE to be infinitely new.
+    -d: Print lots of debugging information.
+    -e, --environment-overrides: Environment variables override makefiles.
+    -f, --file=: Read FILE as a makefile.
+    -h, --help: Print this message and exit.
+    -i, --ignore-errors: Ignore errors from recipes.
+    -j, --jobs=: Allow N jobs at once; infinite jobs with no arg.
+    -k, --keep-going: Keep going when some targets can't be made.
+    -l, --load-average=: Don't start multiple jobs unless load is below N.
+    -n, --just-print: Don't actually run any recipe; just print them.
+    -o, --old-file=: Consider FILE to be very old and don't remake it.
+    -p, --print-data-base: Print make's internal database.
+    -q, --question: Run no recipe; exit status says if up to date.
+    -r, --no-builtin-rules: Disable the built-in implicit rules.
+    -s, --silent: Don't echo recipes.
+    -t, --touch: Touch targets instead of remaking them.
+    -v, --version: Print the version number of make and exit.
+    -w, --print-directory: Print the current directory.

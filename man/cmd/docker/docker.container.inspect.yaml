@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect [OPTIONS] CONTAINER [CONTAINER...]
+description: Display detailed information on one or more containers
+flags:
+    -f, --format=: 'Format output using a custom template:'
+    -s, --size: Display total file sizes

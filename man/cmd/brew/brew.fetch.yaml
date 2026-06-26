@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fetch
+description: Download a bottle (if available) or source packages for <formula>e and binaries for <cask>s
+group: main
+flags:
+    --HEAD: Fetch HEAD version instead of stable version.
+    --arch: Download for the given CPU architecture. (Pass `all` to download for all architectures.)
+    --bottle-tag: Download a bottle for given tag.
+    --build-bottle: Download source packages (for eventual bottling) rather than a bottle.
+    --build-from-source: Download source packages rather than a bottle.
+    --cask: Treat all named arguments as casks.
+    --debug: Display any debugging information.
+    --deps: Also download dependencies for any listed <formula>.
+    --force: Remove a previously cached version and re-fetch.
+    --force-bottle: Download a bottle if it exists for the current or newest version of macOS, even if it would not be used during installation.
+    --formula: Treat all named arguments as formulae.
+    --help: Show this message.
+    --no-quarantine: 'Disable/enable quarantining of downloads (default: enabled).'
+    --os: Download for the given operating system. (Pass `all` to download for all operating systems.)
+    --quarantine: 'Disable/enable quarantining of downloads (default: enabled).'
+    --quiet: Make some output more quiet.
+    --retry: Retry if downloading fails or re-download if the checksum of a previously cached version no longer matches. Tries at most 5 times with exponential backoff.
+    --verbose: Do a verbose VCS checkout, if the URL represents a VCS. This is useful for seeing if an existing VCS cache has been updated.

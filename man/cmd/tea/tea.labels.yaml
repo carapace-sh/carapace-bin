@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: labels
+aliases:
+    - label
+description: Manage issue labels
+group: ENTITIES
+flags:
+    --limit=: specify limit of items per page
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -l, --login=: Use a different Gitea Login. Optional
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -p, --page=: specify page, default is 1
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional
+    -s, --save: Save all the labels as a file

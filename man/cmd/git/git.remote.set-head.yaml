@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-head
+description: Sets or deletes the default branch
+flags:
+  -a, --auto: set refs/remotes/<name>/HEAD according to remote
+  -d, --delete: delete refs/remotes/<name>/HEAD
+documentation:
+  command: |-
+    Set or delete the default branch (i.e. the target of the
+    symbolic-ref `refs/remotes/<name>/HEAD`) for
+    the named remote. Having a default branch for a remote is not required,
+    but allows the name of the remote to be specified in lieu of a specific
+    branch. For example, if the default branch for `origin` is set to
+    `master`, then `origin` may be specified wherever you would normally
+    specify `origin/master`.
+
+    With `-d` or `--delete`, the symbolic ref `refs/remotes/<name>/HEAD` is deleted.
+
+    With `-a` or `--auto`, the remote is queried to determine its `HEAD`, then the
+    symbolic-ref `refs/remotes/<name>/HEAD` is set to the same branch. e.g., if the remote
+    `HEAD` is pointed at `next`, `git remote set-head origin -a` will set
+    the symbolic-ref `refs/remotes/origin/HEAD` to `refs/remotes/origin/next`. This will
+    only work if `refs/remotes/origin/next` already exists; if not it must be
+    fetched first.
+
+    Use _<branch>_ to set the symbolic-ref `refs/remotes/<name>/HEAD` explicitly. e.g., `git remote set-head origin master` will set the symbolic-ref `refs/remotes/origin/HEAD` to
+    `refs/remotes/origin/master`. This will only work if
+    `refs/remotes/origin/master` already exists; if not it must be fetched first.

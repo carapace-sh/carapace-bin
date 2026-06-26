@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repo
+description: search repositories for a keyword in charts
+flags:
+    --devel: use development versions (alpha, beta, and release candidate releases), too. Equivalent to version '>0.0.0-0'. If --version is set, this is ignored
+    --max-col-width=: maximum column width for output table
+    --version=: search using semantic versioning constraints on repositories you have added
+    -l, --versions: show the long listing, with each version of each chart on its own line, for repositories you have added
+    -o, --output=: 'prints the output in the specified format. Allowed values: table, json, yaml'
+    -r, --regexp: use regular expressions for searching repositories you have added

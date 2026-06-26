@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get-url
+description: Retrieves the URLs for a remote
+flags:
+  --all: return all URLs
+  --push: query push URLs rather than fetch URLs
+documentation:
+  command: |-
+    Retrieves the URLs for a remote. Configurations for `insteadOf` and
+    `pushInsteadOf` are expanded here. By default, only the first URL is listed.
+
+    With `--push`, push URLs are queried rather than fetch URLs.
+
+    With `--all`, all URLs for the remote will be listed.

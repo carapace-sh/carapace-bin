@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logs
+description: Show log output for running Flutter apps
+flags:
+    --device-timeout=: Time in seconds to wait for devices to attach.
+    -c, --clear: Clear log history before reading from logs.
+    -h, --help: Print this usage information.

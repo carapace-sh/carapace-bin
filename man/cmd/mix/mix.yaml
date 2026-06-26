@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mix
+description: A build automation tool for working with applications written in the Elixir programming language
+flags:
+    -h, --help: show help
+    -v, --version: show version

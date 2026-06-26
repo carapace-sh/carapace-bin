@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unpack-objects
+description: Unpack objects from a packed archive
+group: low-level manipulator
+documentation:
+  command: |-
+    Read a packed archive (.pack) from the standard input, expanding
+    the objects contained within and writing them into the repository in
+    "loose" (one object per file) format.
+
+    Objects that already exist in the repository will *not* be unpacked
+    from the packfile.  Therefore, nothing will be unpacked if you use
+    this command on a packfile that exists within the target repository.
+
+    See [git-repack](cmd://git/repack) for options to generate
+    new packs and replace existing ones.

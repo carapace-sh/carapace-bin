@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdftoppm
+description: Portable Document Format (PDF) to Portable Pixmap (PPM) converter (version 3.03)
+flags:
+    -?: print usage information
+    -H=: height of crop area in pixels (default is 0)
+    -W=: width of crop area in pixels (default is 0)
+    -aa=: enable font anti-aliasing
+    -aaVector=: enable vector anti-aliasing
+    -cropbox: use the crop box rather than media box
+    -defaultcmykprofile=: ICC color profile to use as the DefaultCMYK color space
+    -defaultgrayprofile=: ICC color profile to use as the DefaultGray color space
+    -defaultrgbprofile=: ICC color profile to use as the DefaultRGB color space
+    -displayprofile=: ICC color profile to use as the display profile
+    -e: print only even pages
+    -f=: first page to print
+    -forcenum: force page number even if there is only one page
+    -freetype=: enable FreeType font rasterizer
+    -gray: generate a grayscale PGM file
+    -h: print usage information
+    -help, --help: print usage information
+    -hide-annotations: do not show annotations
+    -jpeg: generate a JPEG file
+    -jpegcmyk: generate a CMYK JPEG file
+    -jpegopt=: jpeg options, with format <opt1>=<val1>[,<optN>=<valN>]*
+    -l=: last page to print
+    -mono: generate a monochrome PBM file
+    -o: print only odd pages
+    -opw=: owner password (for encrypted files)
+    -overprint: enable overprint
+    -png: generate a PNG file
+    -progress: print progress info
+    -q: don't print any messages or errors
+    -r=: resolution, in DPI (default is 150)
+    -rx=: X resolution, in DPI (default is 150)
+    -ry=: Y resolution, in DPI (default is 150)
+    -scale-dimension-before-rotation: for rotated pdf, resize dimensions before the rotation
+    -scale-to-x=: scales each page horizontally to fit in scale-to-x pixels
+    -scale-to-y=: scales each page vertically to fit in scale-to-y pixels
+    -scale-to=: scales each page to fit within scale-to*scale-to pixel box
+    -sep=: single character separator between name and page number, default -
+    -singlefile: write only the first page and do not add digits
+    -sz=: size of crop square in pixels (sets W and H)
+    -thinlinemode=: set thin line mode
+    -tiff: generate a TIFF file
+    -tiffcompression=: set TIFF compression
+    -upw=: user password (for encrypted files)
+    -v: print copyright and version info
+    -x=: x-coordinate of the crop area top left corner
+    -y=: y-coordinate of the crop area top left corner

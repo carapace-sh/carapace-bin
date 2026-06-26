@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: next
+description: find next bisection commit
+
+documentation:
+  command: >-
+    After marking a revision as good or bad, Git normally computes and checks out the next revision to test automatically. Use this command to explicitly request the next bisection step, for example to resume the bisection process after interrupting it by checking out a different revision.

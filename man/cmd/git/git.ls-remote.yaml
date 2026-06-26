@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls-remote
+description: List references in a remote repository
+group: low-level interrogator
+flags:
+  --exit-code: exit with exit code 2 if no matching refs are found
+  --get-url: take url.<base>.insteadOf into account
+  --refs: do not show peeled tags
+  --sort?: field name to sort on
+  --symref: show underlying ref in addition to the object pointed by it
+  --upload-pack=: path of git-upload-pack on the remote host
+  -h, --heads: limit to heads
+  -o, --server-option=: option to transmit
+  -q, --quiet: do not print remote URL
+  -t, --tags: limit to tags
+documentation:
+  command: |-
+    Displays references available in a remote repository along with the associated
+    commit IDs.

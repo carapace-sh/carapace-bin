@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pack
+description: Create a tarball from a package
+flags:
+    --dry-run: only report changes
+    --json: output as json
+    --workspaces: Enable running a command in the context fo all workspaces
+    -w, --workspace=*: Enable running a command in the context of the given workspace

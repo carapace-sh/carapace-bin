@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import [OPTIONS] file|URL|- [REPOSITORY[:TAG]]
+description: Import the contents from a tarball to create a filesystem image
+flags:
+    --platform=: Set platform if server is multi-platform capable
+    -c, --change=: Apply Dockerfile instruction to the created image
+    -m, --message=: Set commit message for imported image

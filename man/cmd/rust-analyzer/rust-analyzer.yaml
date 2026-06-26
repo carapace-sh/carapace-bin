@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rust-analyzer
+description: LSP server for the Rust programming language
+flags:
+    --log-file=: Log to the specified file instead of stderr
+    --no-log-buffering: Flush log records to the file immediately
+    --print-config-schema: Dump a LSP config JSON schema
+    --version: Print version
+    --wait-dbg: Wait until a debugger is attached to (requires debug build)
+    -h, --help: Print help
+    -q, --quiet: Verbosity level
+    -v, --verbose*: Verbosity level, can be repeated multiple times

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vendor
+description: Vendor remote modules into a local directory
+flags:
+    --cert=: Load certificate authority from PEM encoded file
+    --import-map=: Load import map file
+    --lock=: Check the specified lock file
+    --no-config: Disable automatic loading of the configuration file.
+    --output=: The directory to output the vendored modules to
+    --unstable: Enable unstable features and APIs
+    -c, --config=: Specify the configuration file
+    -f, --force: Forcefully overwrite conflicting files in existing output directory
+    -h, --help: Print help information
+    -q, --quiet: Suppress diagnostic output
+    -r, --reload?: Reload source code cache (recompile TypeScript)

@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: alsamixer
+description: soundcard mixer for ALSA soundcard driver, with ncurses interface
+flags:
+  -D, --device=: mixer device name
+  -F, --no-config: do not load configuration file
+  -M, --no-mouse: disable mouse
+  -V, --view=: 'starting view mode: playback/capture/all'
+  -a, --abstraction=: 'mixer abstraction level: none/basic'
+  -c, --card=: sound card number or id
+  -f, --config=: configuration file
+  -g, --no-color: toggle using of colors
+  -h, --help: this help
+  -m, --mouse: enable mouse
+documentation:
+  command: >-
+    Ncurses-based mixer program for the ALSA soundcard driver. Displays
+    and controls the volume levels of available sound cards, supporting
+    playback, capture, and all views. Configure the sound card with `-c`,
+    the mixer device with `-D`, and the initial view mode with `-V`.
+    Settings can be persisted through a configuration file.
+  flag:
+    view: 'Starting view mode: playback, capture, or all.'
+    abstraction: 'Mixer abstraction level: none or basic.'

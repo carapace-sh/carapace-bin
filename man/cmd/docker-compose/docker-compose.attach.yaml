@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: attach [OPTIONS] SERVICE
+description: Attach local standard input, output, and error streams to a service's running container
+flags:
+    --detach-keys=: Override the key sequence for detaching from a container.
+    --index=: index of the container if service has multiple replicas.
+    --no-stdin: Do not attach STDIN
+    --sig-proxy: Proxy all received signals to the process

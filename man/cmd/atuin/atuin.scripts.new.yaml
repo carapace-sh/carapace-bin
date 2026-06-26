@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new
+flags:
+    --last=: Use the last command as the script content Optionally specify a number to use the last N commands
+    --no-edit: Skip opening editor when using --last
+    --script=: ""
+    -d, --description=: ""
+    -h, --help: Print help
+    -s, --shebang=: ""
+    -t, --tags=*: ""

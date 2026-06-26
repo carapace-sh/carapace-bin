@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: transmission-daemon [flags]
+description: A daemon-based BitTorrent client
+flags:
+    --incomplete-dir=: When adding new torrents, store their contents in directory until torrent is done
+    --log-debug: Show error, info, and debug messages
+    --log-error: Show error messages
+    --log-info: Show error and info messages
+    --no-incomplete-dir: Don't store incomplete torrents in a different directory
+    --no-utp: Disable uTP for peer connections
+    --paused: Pause all torrents on startup
+    --utp: Enable uTP for peer connections
+    -B, --no-blocklist: Disable peer blocklists
+    -C: Do not watch for new .torrent files
+    -GSR, --no-global-seedratio: All torrents, unless overriden by a per-torrent setting, should seed regardless of ratio
+    -I, --bind-address-ipv6=: Listen for IPv6 connections on a specific address
+    -L, --peerlimit-global=: Overall peer limit
+    -M, --no-portmap: Disable portmapping
+    -O, --no-dht: Disable distributed hash table
+    -P, --peerport=: Set the port to listen for incoming peers
+    -T, --no-auth: Don't require authentication from clients
+    -V, --version: Show version number and exit
+    -a, --allowed=*: Allow RPC access to a comma-delimited whiteliste of IP addresses
+    -b, --blocklist: Enable peer blocklists
+    -c=: Directory to watch for new .torrent files to be added
+    -d, --dump: Dump transmission-daemon's settings to stderr
+    -e, --logfile=: Where to send log output
+    -ep, --encryption-preferred: Prefer encrypted peer connections
+    -er, --encryption-required: Encrypt all peer connections
+    -et, --encryption-tolerated: Prefer unencrypted peer connections
+    -f, --foreground: Run in the foreground and print errors to stderr
+    -g, --config-dir=: Directory to look for configuratinon files in
+    -gsr=: All torrents, unless overriden by a per-torrent setting, should seed until this ratio
+    -h, --help: Prints a short usage summary
+    -i, --bind-address-ipv4=: Listen for IPv4 connections on a specific address
+    -l, --peerlimit-torrent=: Peer limit per torrent
+    -m, --portmap: Enable port mapping via NAT-PMP or UPnP
+    -o, --dht: Enable distributed hash table
+    -p, --port=: Port to open and listen for RPC requests on
+    -r, --rpc-bind-address=: Listen for RPC connections on a specific IPv4 or IPv6 address
+    -t, --auth: Require clients to authenticate themselves
+    -u, --username=: Client authentication username
+    -v, --password=: Client authentication password
+    -w, --download-dir=: Where to save downloaded data
+    -x, --pid-file=: Name of the daemon PID file

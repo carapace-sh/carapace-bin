@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List all visible plugin executables on a user's PATH
+flags:
+    --name-only: If true, display only the binary name of each plugin, rather than its full path

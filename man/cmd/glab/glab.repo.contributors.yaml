@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: contributors
+aliases:
+    - users
+description: Get repository contributors list.
+flags:
+    -P, --per-page=: Number of items to list per page.
+    -o, --order=: Return contributors ordered by name, email, or commits (orders by commit date) fields.
+    -p, --page=: Page number.
+    -s, --sort=: 'Return contributors. Sort options: asc, desc.'
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.

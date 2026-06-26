@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gopls
+description: gopls is a Go language server
+flags:
+    -debug=: serve debug information on the supplied address
+    -listen.timeout=: when used with -listen, shut down the server when there are no connected clients for this duration
+    -listen=: address on which to listen for remote connections. If prefixed by 'unix;', the subsequent address is assumed to be a unix domain socket. Otherwise, TCP is used.
+    -logfile=: filename to log to. if value is "auto", then logging to a default output file is enabled
+    -mode=: no effect
+    -ocagent=: the address of the ocagent (e.g. http://localhost:55678), or off (default "off")
+    -port=: port on which to run gopls for debugging purposes
+    -profile.alloc=: write alloc profile to this file
+    -profile.cpu=: write CPU profile to this file
+    -profile.mem=: write memory profile to this file
+    -profile.trace=: write trace log to this file
+    -remote.debug=: when used with -remote=auto, the -debug value used to start the daemon
+    -remote.listen.timeout=: when used with -remote=auto, the -listen.timeout value used to start the daemon (default 1m0s)
+    -remote.logfile=: when used with -remote=auto, the -logfile value used to start the daemon
+    -remote=: forward all commands to a remote lsp specified by this flag. With no special prefix, this is assumed to be a TCP address. If prefixed by 'unix;', the subsequent address is assumed to be a unix domain socket. If 'auto', or prefixed by 'auto;', the remote address is automatically resolved based on the executing environment.
+    -rpc.trace: print the full rpc trace in lsp inspector format
+    -v, -v: verbose output
+    -vv, -vv: very verbose output

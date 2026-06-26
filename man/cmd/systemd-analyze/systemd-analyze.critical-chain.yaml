@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: critical-chain
+description: Print a tree of the time critical chain of units

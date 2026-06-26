@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: Show status of relevant pull requests
+group: General commands
+flags:
+    --json=*: Output JSON with the specified `fields`
+    -c, --conflict-status: Display the merge conflict status of each pull request
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

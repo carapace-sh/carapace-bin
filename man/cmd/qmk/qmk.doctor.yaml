@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: doctor
+description: Basic QMK environment checks
+flags:
+    -h, --help: show this help message and exit
+    -n, --no: Answer no to all questions.
+    -y, --yes: Answer yes to all questions.

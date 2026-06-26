@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Data build tool — an ELT tool for managing SQL transformations
+    and data models. Compiles and runs SQL against data warehouses,
+    supporting testing, documentation, and CI workflows.
+description: An ELT tool for managing your SQL transformations and data models
+flags:
+    --cache-selected-only: Pre cache database objects relevant to selected resource only
+    --log-format=: Specify the log format
+    --no-anonymous-usage-stats: Do not send anonymous usage stat to dbt Labs
+    --no-cache-selected-only: Pre cache all database objects related to the project
+    --no-partial-parse: Disallow partial parsing
+    --no-print: Suppress all {{ print() }} macro calls
+    --no-static-parser: Disables the static parser
+    --no-use-colors: Do not colorize the output DBT prints to the terminal
+    --no-version-check: Skip ensuring dbt's version matches the one specified in the dbt_project.yml
+    --no-write-json: Skip writing the manifest and run_results.json files to disk
+    --partial-parse: Allow for partial parsing by looking for and writing to a pickle file
+    --printer-width=: Sets the width of terminal output
+    --use-colors: Colorize the output DBT prints to the terminal
+    --use-experimental-parser: Enables experimental parsing features
+    --version: Show version information
+    --warn-error: If dbt would normally warn, instead raise an exception
+    --warn-error-options=: If dbt would normally warn, instead raise an exception based on include/exclude configuration
+    -d, --debug: Display debug logging during dbt execution
+    -q, --quiet: Suppress all non-error logging to stdout
+    -r, --record-timing-info=: Output low-level timing stats to the specified file
+    -x, --fail-fast: Stop execution upon a first failure
+persistentflags:
+    --profiles-dir=: Which directory to look in for the profiles.yml file
+    -h, --help: show this help message and exit

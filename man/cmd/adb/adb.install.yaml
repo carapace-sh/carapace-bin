@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: push a single package to the device and install it
+flags:
+    --instant: cause the app to be installed as an ephemeral install app
+    -d: TODO no flag description
+    -g: grant all runtime permissions
+    -l: TODO no flag description
+    -r: replace existing application
+    -s: TODO no flag description
+    -t: allow test packages
+
+documentation:
+  command: >-
+    Push a single APK package to the device and install it. Use `-r` to replace an existing application, `-g` to grant all runtime permissions, and `-t` to allow installation of test packages. The `-d` flag allows downgrades, and `-s` installs to SD card if available. For instant apps, use `--instant`. Supports installing multiple split APKs by passing them as separate arguments.

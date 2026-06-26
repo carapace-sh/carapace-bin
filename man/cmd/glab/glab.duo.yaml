@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: duo <command> prompt
+description: Work with GitLab Duo

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: compact
+description: Compact a multi-pack-index
+flags:
+    --base=: base MIDX for incremental writes
+    --bitmap: write multi-pack bitmap
+    --incremental: write a new incremental MIDX
+    --no-write-chain-file: do not write the multi-pack-index chain file
+    --object-dir=: use given directory for the location of Git objects
+    --progress: force progress reporting
+
+documentation:
+  command: >-
+    Write a new MIDX layer containing only objects and packs present in the range `<from>` to `<to>`, where both arguments are checksums of existing layers in the MIDX chain. Note that the compact command requires writing a version-2 midx that cannot be read by versions of Git prior to v2.54.

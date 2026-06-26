@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: save [OPTIONS] IMAGE [IMAGE...]
+description: Save one or more images to a tar archive (streamed to STDOUT by default)
+flags:
+    --platform=*: Save only the given platform(s). Formatted as a comma-separated list of "os[/arch[/variant]]" (e.g., "linux/amd64,linux/arm64/v8")
+    -o, --output=: Write to a file, instead of STDOUT

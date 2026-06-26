@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdftops
+description: Portable Document Format (PDF) to PostScript converter (version 3.03)
+flags:
+    -?: print usage information
+    -aaRaster=: enable anti-aliasing on rasterization
+    -binary: write binary data in Level 1 PostScript
+    -defaultcmykprofile=: ICC color profile to use as the DefaultCMYK color space
+    -defaultgrayprofile=: ICC color profile to use as the DefaultGray color space
+    -defaultrgbprofile=: ICC color profile to use as the DefaultRGB color space
+    -duplex: enable duplex printing
+    -eps: generate Encapsulated PostScript (EPS)
+    -expand: expand pages smaller than the paper size
+    -f=: first page to print
+    -form: generate a PostScript form
+    -h: print usage information
+    -help, --help: print usage information
+    -l=: last page to print
+    -level1: generate Level 1 PostScript
+    -level1sep: generate Level 1 separable PostScript
+    -level2: generate Level 2 PostScript
+    -level2sep: generate Level 2 separable PostScript
+    -level3: generate Level 3 PostScript
+    -level3sep: generate Level 3 separable PostScript
+    -nocenter: don't center pages smaller than the paper size
+    -nocrop: don't crop pages to CropBox
+    -noembcidps: don't embed CID PostScript fonts
+    -noembcidtt: don't embed CID TrueType fonts
+    -noembt1: don't embed Type 1 fonts
+    -noembtt: don't embed TrueType fonts
+    -noshrink: don't shrink pages larger than the paper size
+    -opi: generate OPI comments
+    -optimizecolorspace: convert gray RGB images to gray color space
+    -opw=: owner password (for encrypted files)
+    -origpagesizes: conserve original page sizes
+    -overprint: enable overprint emulation during rasterization
+    -paper=: paper size (letter, legal, A4, A3, match)
+    -paperh=: paper height, in points
+    -paperw=: paper width, in points
+    -passfonts: don't substitute missing fonts
+    -passlevel1customcolor: pass custom color in level1sep
+    -preload: preload images and forms
+    -processcolorformat=: color format that is used during rasterization and transparency reduction
+    -processcolorprofile=: ICC color profile to use as the process color profile during rasterization and transparency reduction
+    -q: don't print any messages or errors
+    -r=: resolution for rasterization, in DPI (default is 300)
+    -rasterize=: control rasterization
+    -upw=: user password (for encrypted files)
+    -v: print copyright and version info

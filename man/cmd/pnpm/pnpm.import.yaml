@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import
+description: Generates pnpm-lock.yaml from an npm package-lock.json
+group: manage

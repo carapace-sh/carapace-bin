@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pr [OPTIONS] COMMAND [ARGS]...
+description: Work with pull requests
+flags:
+    --help: Show this message and exit.

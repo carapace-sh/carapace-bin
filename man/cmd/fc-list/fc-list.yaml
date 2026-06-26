@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fc-list
+description: list available fonts
+flags:
+    -V, --version: display font config version and exit
+    -b, --brief: display entire font pattern briefly
+    -f, --format=: use the given output format
+    -h, --help: display this help and exit
+    -q, --quiet: suppress all normal output, exit 1 if no fonts matched
+    -v, --verbose: display entire font pattern verbosely

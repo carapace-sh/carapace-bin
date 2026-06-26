@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: flatpak
+description: Linux application sandboxing and distribution framework
+flags:
+    --default-arch: Print default arch and exit
+    --gl-drivers: Print active gl drivers and exit
+    --installations: Print paths for system installations and exit
+    --ostree-verbose: Show OSTree debug information
+    --print-system-only: Only include the system installation with --print-updated-env
+    --print-updated-env: Print the updated environment needed to run flatpaks
+    --supported-arches: Print supported arches and exit
+    --version: Print version information and exit
+    -h, --help: Show help options
+    -v, --verbose*: Show debug information, -vv for more detail

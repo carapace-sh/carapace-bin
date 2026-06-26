@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xonsh
+description: Import history from xonsh json files
+flags:
+    -h, --help: Print help

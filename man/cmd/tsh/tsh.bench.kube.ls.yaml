@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: Run a benchmark test to list Pods
+hidden: true

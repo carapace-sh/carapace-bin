@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bugs
+description: Report bugs for a package in a web browser
+flags:
+    --browser=: browser called to open websites

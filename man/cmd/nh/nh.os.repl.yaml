@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repl
+description: Load system in a repl
+flags:
+    -H, --hostname=: Select this hostname from nixosConfigurations

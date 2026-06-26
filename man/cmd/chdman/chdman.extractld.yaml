@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: extractld
+description: extract laserdisc AVI from a CHD input file
+flags:
+    -f, --force: force overwriting an existing file
+    -i, --input=: input file name
+    -if, --inputframes=: effective length of input in frames
+    -ip, --inputparent=: parent file name for input CHD
+    -isf, --inputstartframe=: starting frame within the input
+    -o, --output=: output file name

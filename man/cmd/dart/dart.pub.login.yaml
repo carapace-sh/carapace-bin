@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Log into pub.dev
+flags:
+    -h, --help: Print this usage information.
+
+documentation:
+  command: >-
+    Check or establish OAuth2 authentication with pub.dev. Reports the current login status and stored credentials. For managing API tokens for custom package servers, use [dart-pub-token](man://dart-pub-token/1) instead.

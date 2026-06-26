@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: version [OPTIONS]
+description: Show the Docker version information
+group: common
+flags:
+    -f, --format=: 'Format output using a custom template:'

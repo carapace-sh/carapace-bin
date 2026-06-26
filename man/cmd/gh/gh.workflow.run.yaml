@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run [<workflow-id> | <workflow-name>]
+description: Run a workflow by creating a workflow_dispatch event
+documentation:
+    command: |
+        Trigger a workflow_dispatch event to run a workflow manually. Pass the
+        workflow ID or name as argument. Use `-f` to provide input parameters,
+        `-r` to specify the branch or tag, `--json` to read inputs as JSON via stdin.
+flags:
+    --json: Read workflow inputs as JSON via STDIN
+    -F, --field=*: Add a string parameter in `key=value` format, respecting @ syntax (see "gh help api").
+    -f, --raw-field=*: Add a string parameter in `key=value` format
+    -r, --ref=: Branch or tag name which contains the version of the workflow file you'd like to run

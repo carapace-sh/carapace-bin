@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set PROPERTY_NAME PROPERTY_VALUE
+description: Set an individual value in a kubeconfig file
+flags:
+    --set-raw-bytes?: When writing a []byte PROPERTY_VALUE, write the given string directly without base64 decoding.

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: devcontainer
+description: Generate Dockerfile and devcontainer.json files under .devcontainer/ directory
+flags:
+    --root-user: Use root as default user inside the container
+    -f, --force: force overwrite on existing files

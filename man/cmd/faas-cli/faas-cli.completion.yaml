@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: completion
+description: Generates shell auto completion
+flags:
+    --shell=: Outputs shell completion, must be bash or zsh

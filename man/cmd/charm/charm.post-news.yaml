@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: post-news
+description: Post news to the self-hosted Charm server.
+hidden: true
+flags:
+    --data-dir=: Directory to store SQLite db, SSH keys and file data
+    -s, --subject=: Subject for news post
+    -t, --tags=: Tags for news post, comma separated
+
+documentation:
+  command: >-
+    Post a news item to a self-hosted Charm server. Reads content from a file argument and stores it in the server's SQLite database. Intended for server administrators.

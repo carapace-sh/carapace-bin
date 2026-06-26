@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: eval
+description: Eval expression
+flags:
+    --as-json: Outputs the result as a JSON value
+    -g, --global=*: 'set/override globals. eg.: --global name=<expr>'

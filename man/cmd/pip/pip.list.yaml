@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List installed packages
+flags:
+    --exclude-editable: Exclude editable package from output.
+    --exclude=: Exclude specified package from the output
+    --extra-index-url=: Extra URLs of package indexes to use in addition to --index-url.
+    --format=: Select the output format
+    --include-editable: Include editable package from output.
+    --no-index: Ignore package index
+    --not-required: List packages that are not dependencies of installed packages.
+    --path=: Restrict to the specified installation path for listing packages
+    --pre: Include pre-release and development versions.
+    --user: Only output packages installed in user-site.
+    -e, --editable: List editable projects.
+    -f, --find-links=: parse file for links to archives
+    -i, --index-url=: Base URL of the Python Package Index
+    -l, --local: do not list globally-installed packages.
+    -o, --outdated: List outdated packages
+    -u, --uptodate: List uptodate packages

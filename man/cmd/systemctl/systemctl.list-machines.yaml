@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-machines
+description: List local containers and host
+group: machine
+documentation:
+  command: |
+    List the host and all running local containers with their state.
+    If one or more PATTERNs are specified, only containers matching one
+    of them are shown.

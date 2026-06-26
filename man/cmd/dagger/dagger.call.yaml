@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: call [flags] [FUNCTION]...
+description: Call a module function
+group: module
+persistentflags:
+    --focus: Only show output for focused commands
+    --json: Present result as JSON
+    -m, --mod=: Path to dagger.json config file for the module or a directory containing that file. Either local path (e.g. "/path/to/some/dir") or a github repo (e.g. "github.com/dagger/dagger/path/to/some/subdir")
+    -o, --output=: Path in the host to save the result to

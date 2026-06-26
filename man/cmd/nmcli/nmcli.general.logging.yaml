@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logging
+description: Get or change NetworkManager logging level and domains

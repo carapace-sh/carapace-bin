@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mark-template [<number>]
+description: Mark a project as a template
+flags:
+    --format=: 'Output format: {json}'
+    --owner=: Login of the org owner.
+    --undo: Unmark the project as a template.
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

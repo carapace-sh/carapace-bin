@@ -1,0 +1,152 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reset
+description: Reset current HEAD to the specified state
+group: main
+flags:
+  --hard: reset HEAD, index and working tree
+  --keep: reset HEAD but keep local changes
+  --merge: reset HEAD, index and working tree
+  --mixed: reset HEAD and index
+  --pathspec-file-nul: pathspec elements are separated with NUL character
+  --pathspec-from-file=: read pathspec from file
+  --recurse-submodules?: control recursive updating of submodules
+  --soft: reset only HEAD
+  -N, --intent-to-add: record only the fact that removed paths will be added later
+  -p, --patch: select hunks interactively
+  -q, --quiet: be quiet, only report errors
+documentation:
+  command: |-
+    `git reset` does either of the following:
+
+    1. `git reset [<mode>] <commit>` changes which commit `HEAD` points to. This
+       makes it possible to undo various Git operations, for example commit, merge,
+       rebase, and pull.
+    2. When you specify files or directories or pass `--patch`, `git reset` updates
+       the staged version of the specified files.
+
+    **git reset [<mode>] [<commit>]**
+    Set the current branch head (`HEAD`) to point at _<commit>_.
+    Depending on _<mode>_, also update the working directory and/or index
+    to match the contents of _<commit>_.
+    _<commit>_ defaults to `HEAD`.
+    Before the operation, `ORIG_HEAD` is set to the tip of the current branch.
+
+    The _<mode>_ must be one of the following (default `--mixed`):
+
+    **--mixed**
+    Leave your working directory unchanged.
+    Update the index to match the new `HEAD`, so nothing will be staged.
+
+    If `-N` is specified, mark removed paths as intent-to-add (see
+    [git-add](cmd://git/add)).
+
+    **--soft**
+    Leave your working tree files and the index unchanged.
+    For example, if you have no staged changes, you can use
+    `git reset --soft HEAD~5; git commit`
+    to combine the last 5 commits into 1 commit. This works even with
+    changes in the working tree, which are left untouched, but such usage
+    can lead to confusion.
+
+    **--hard**
+    Overwrite all files and directories with the version from _<commit>_,
+    and may overwrite untracked files. Tracked files not in _<commit>_ are
+    removed so that the working tree matches _<commit>_.
+    Update the index to match the new `HEAD`, so nothing will be staged.
+
+    **--merge**
+    Reset the index and update the files in the working tree that are
+    different between _<commit>_ and `HEAD`, but keep those which are
+    different between the index and working tree (i.e. which have changes
+    which have not been added).
+    Mainly exists to reset unmerged index entries, like those left behind by
+    `git am -3` or `git switch -m` in certain situations.
+    If a file that is different between _<commit>_ and the index has
+    unstaged changes, reset is aborted.
+
+    **--keep**
+    Resets index entries and updates files in the working tree that are
+    different between _<commit>_ and `HEAD`.
+    If a file that is different between _<commit>_ and `HEAD` has local
+    changes, reset is aborted.
+
+    **--recurse-submodules**
+    **--no-recurse-submodules**
+    When the working tree is updated, using `--recurse-submodules` will
+    also recursively reset the working tree of all active submodules
+    according to the commit recorded in the superproject, also setting
+    the submodules` `HEAD` to be detached at that commit`.
+
+    **git reset [-q] [<tree-ish>] [--] <pathspec>...**
+    **git reset [-q] [--pathspec-from-file=<file> [--pathspec-file-nul]] [<tree-ish>]**
+    For all specified files or directories, set the staged version to
+    the version from the given commit or tree (which defaults to `HEAD`).
+
+    This means that `git reset <pathspec>` is the opposite of `git add <pathspec>`: it unstages all changes to the specified file(s) or
+    directories. This is equivalent to `git restore --staged <pathspec>...`.
+
+    In this mode, `git reset` updates only the index (without updating the `HEAD` or
+    working tree files). If you want to update the files as well as the index
+    entries, use [git-restore](cmd://git/restore).
+
+    **git reset (--patch | -p) [<tree-ish>] [--] [<pathspec>...]**
+    Interactively select changes from the difference between the index
+    and the specified commit or tree (which defaults to `HEAD`).
+    The index is modified using the chosen changes.
+
+    This means that `git reset -p` is the opposite of `git add -p`, i.e.
+    you can use it to selectively unstage changes. See the "Interactive Mode"
+    section of [git-add](cmd://git/add) to learn how to use the `--patch` option.
+
+    See "Reset, restore and revert" in [git](man://git/1) for the differences
+    between the three commands.
+  flag:
+    hard: |-
+      Overwrite all files and directories with the version from _<commit>_,
+      and may overwrite untracked files. Tracked files not in _<commit>_ are
+      removed so that the working tree matches _<commit>_.
+      Update the index to match the new `HEAD`, so nothing will be staged.
+    keep: |-
+      Resets index entries and updates files in the working tree that are
+      different between _<commit>_ and `HEAD`.
+      If a file that is different between _<commit>_ and `HEAD` has local
+      changes, reset is aborted.
+    merge: |-
+      Reset the index and update the files in the working tree that are
+      different between _<commit>_ and `HEAD`, but keep those which are
+      different between the index and working tree (i.e. which have changes
+      which have not been added).
+      Mainly exists to reset unmerged index entries, like those left behind by
+      `git am -3` or `git switch -m` in certain situations.
+      If a file that is different between _<commit>_ and the index has
+      unstaged changes, reset is aborted.
+    mixed: |-
+      Leave your working directory unchanged.
+      Update the index to match the new `HEAD`, so nothing will be staged.
+
+      If `-N` is specified, mark removed paths as intent-to-add (see
+      [git-add](cmd://git/add)).
+    pathspec-file-nul: |-
+      Only meaningful with `--pathspec-from-file`. Pathspec elements are
+      separated with _NUL_ character and all other characters are taken
+      literally (including newlines and quotes).
+    pathspec-from-file: |-
+      Pathspec is passed in _<file>_ instead of commandline args. If
+      _<file>_ is exactly `-` then standard input is used. Pathspec
+      elements are separated by _LF_ or _CR_/_LF_. Pathspec elements can be
+      quoted as explained for the configuration variable `core.quotePath`
+      (see [git-config](cmd://git/config)). See also `--pathspec-file-nul` and
+      global `--literal-pathspecs`.
+    quiet: Be quiet, only report errors.
+    soft: |-
+      Leave your working tree files and the index unchanged.
+      For example, if you have no staged changes, you can use
+      `git reset --soft HEAD~5; git commit`
+      to combine the last 5 commits into 1 commit. This works even with
+      changes in the working tree, which are left untouched, but such usage
+      can lead to confusion.
+    recurse-submodules: |-
+      When the working tree is updated, using `--recurse-submodules` will
+      also recursively reset the working tree of all active submodules
+      according to the commit recorded in the superproject, also setting
+      the submodules` `HEAD` to be detached at that commit`.

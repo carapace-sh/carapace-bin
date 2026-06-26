@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reload
+description: Reload one or more units
+group: unit
+documentation:
+  command: |
+    Ask all units listed on the command line to reload their configuration.
+    Note that this reloads the service-specific configuration (e.g. Apache's
+    httpd.conf), not the systemd unit file. To reload systemd's configuration
+    of a unit, use daemon-reload instead.

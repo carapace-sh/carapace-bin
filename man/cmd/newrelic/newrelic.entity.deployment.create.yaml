@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create a New Relic entity deployment marker
+flags:
+    --changelog=: a URL for the changelog or list of changes if not linkable
+    --commit=: the commit identifier, for example, a Git commit SHA
+    --deepLink=: a link back to the system generating the deployment
+    --deploymentType=: type of deployment, one of BASIC, BLUE_GREEN, CANARY, OTHER, ROLLING or SHADOW
+    --description=: a description of the deployment
+    --groupId=: string that can be used to correlate two or more events
+    -g, --guid=: the GUID of the entity associated with this deployment. guid is required.
+    -t, --timestamp=: the start time of the deployment, the number of milliseconds since the Unix epoch, defaults to now
+    -u, --user=: username of the deployer or bot
+    -v, --version=: the version of the deployed software, for example, something like v1.1. version is required.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Deletes a resource from a stack's state
+flags:
+    --force: Force deletion of protected resources
+    -y, --yes: Skip confirmation prompts
+persistentflags:
+    -s, --stack=: The name of the stack to operate on. Defaults to the current stack

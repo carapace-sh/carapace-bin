@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: move-pane-to-new-tab [OPTIONS]
+description: Move a pane into a new tab
+flags:
+    --new-window: Create tab in a new window
+    --pane-id=: Specify the pane that should be moved
+    --window-id=: Specify the window into which the new tab will be created
+    --workspace=: Override the default workspace name with the provided name
+    -h, --help: Print help

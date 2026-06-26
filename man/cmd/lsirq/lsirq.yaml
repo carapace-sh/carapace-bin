@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lsirq
+description: utility to display kernel interrupt information
+flags:
+    -C, --cpu-list=: only show counters for these CPUs
+    -J, --json: use JSON output format
+    -P, --pairs: use key="value" output format
+    -S, --softirq: show softirqs instead of interrupts
+    -V, --version: display version
+    -h, --help: display this help
+    -n, --noheadings: don't print headings
+    -o, --output=: define which output columns to use
+    -s, --sort=: specify sort column
+    -t, --threshold=: only IRQs with counters above <N>

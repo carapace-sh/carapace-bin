@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mosh
+description: mobile shell with roaming and intelligent local echo
+flags:
+    --bind-server=: ask the server to reply from an IP address
+    --client=: mosh client on local machine
+    --experimental-remote-ip=: select the method for discovering the remote IP address
+    --family=: 'net family '
+    --help: show help message
+    --local: run mosh-server locally without using ssh
+    --no-init: do not send terminal initialization string
+    --no-ssh-pty: do not allocate a pseudo tty on ssh connection
+    --predict=: predict setting
+    --server=: mosh server on remote machine
+    --ssh=: ssh command to run when setting up session
+    --version: version and copyright information
+    "-4": use IPv4 only
+    "-6": use IPv6 only
+    -a: use local echo even on fast links
+    -n: never use local echo
+    -p, --port=: server-side UDP port or range

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: aot-snapshot
+description: Compile Dart to an AOT snapshot
+flags:
+    --enable-asserts: Enable assert statements.
+    --no-sound-null-safety: Do not respect the nullability of types at runtime.
+    --sound-null-safety: Respect the nullability of types at runtime.
+    --verbosity=: Sets the verbosity level of the compilation.
+    -D, --define=*: Define an environment declaration.
+    -S, --save-debugging-info=: Remove debugging information from the output and save it separately to the specified file.
+    -h, --help: Print this usage information.
+    -o, --output=: Write the output to <file name>.
+    -p, --packages=: Get package locations from the specified file instead of .packages.
+
+documentation:
+  command: >-
+    Compile a Dart program to an AOT (ahead-of-time) snapshot for faster startup. Requires the Dart VM to run.

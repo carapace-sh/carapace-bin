@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: untaint [options] name
+description: Remove the 'tainted' state from a resource instance
+flags:
+    -allow-missing: succeed even if the resource is missing.
+    -ignore-remote-version: A rare option used for the remote backend only.
+    -lock: Don't hold a state lock during the operation.
+    -lock-timeout?: Duration to retry a state lock.

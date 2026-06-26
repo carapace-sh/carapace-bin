@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: disconnect
+description: disconnect from given TCP/IP device or all

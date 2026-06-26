@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mousemove
+description: Move the mouse to the specific X and Y coordinates on the screen
+flags:
+    --clearmodifiers: See CLEARMODIFIERS
+    --polar: Use polar coordinates
+    --screen=: Move the mouse to the specified screen to move to
+    --sync: After sending the mouse move request, wait until the mouse is actually moved
+    --window=: Specify a window to move relative to

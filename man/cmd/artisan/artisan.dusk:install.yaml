@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dusk:install [--proxy [PROXY]] [--ssl-no-verify]
+description: Install Dusk into the application
+flags:
+    --proxy=: 'The proxy to download the binary through (example: "tcp://127.0.0.1:9000")'
+    --ssl-no-verify: Bypass SSL certificate verification when installing through a proxy

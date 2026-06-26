@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new-keyboard
+description: Creates a new keyboard directory
+flags:
+    --keyboard=: Specify the name for the new keyboard directory
+    -h, --help: show this help message and exit
+    -n, --realname=: Specify your real name if you want to use that.
+    -t, --type=: Specify the keyboard type
+    -u, --username=: Specify your username

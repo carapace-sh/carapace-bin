@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: force-leave
+description: Forces a member of the cluster to enter the left state
+flags:
+    --prune: Remove agent completely from list of members

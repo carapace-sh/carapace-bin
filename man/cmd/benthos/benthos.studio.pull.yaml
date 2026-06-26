@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pull
+description: Run deployments configured within a Benthos Studio session
+flags:
+    --name=: An explicit name to adopt in this instance, used to identify its connection to the session. Each running node must have a unique name, if left unset a name is generated each time the command is run.
+    --send-traces: Whether to send trace data back to Studio during execution. This is opt-in and is used as a way to add trace events to the graph editor for testing and debugging configs. This is a very useful feature but should be used with caution as it exports information about messages passing through the stream.
+    --token-secret=: A token secret the session, used to authenticate requests. If left blank the environment variable BSTDIO_NODE_SECRET will be used instead.
+    --token=: A token for the session, used to authenticate requests. If left blank the environment variable BSTDIO_NODE_TOKEN will be used instead.
+    -s, --session=: The session ID to synchronise with.

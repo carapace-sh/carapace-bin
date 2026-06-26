@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dms
+description: A UPnP DLNA Digital Media Server
+flags:
+    -allowedIps=: allowed ip of clients, separated by comma
+    -config=: json configuration file
+    -deviceIcon=: device icon
+    -fFprobeCachePath=: path to FFprobe cache file (default "~/.dms-ffprobe-cache")
+    -forceTranscodeTo=: 'force transcoding to certain format, supported: ''chromecast'', ''vp8'', ''web'''
+    -friendlyName=: server friendly name
+    -http=: http server port (default ":1338")
+    -ifname=: specific SSDP network interface
+    -ignoreHidden: ignore hidden files and directories
+    -ignoreUnreadable: ignore unreadable files and directories
+    -logHeaders: log HTTP headers
+    -noProbe: disable media probing with ffprobe
+    -noTranscode: disable transcoding
+    -notifyInterval=: interval between SSPD announces (default 30s)
+    -path=: browse root path
+    -stallEventSubscribe: workaround for some bad event subscribers

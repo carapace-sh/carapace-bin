@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: s3
+description: Options for uploading to S3
+flags:
+    --access-key-id=: The access key ID for the S3 bucket
+    --addressing-style=: How to address the bucket
+    --endpoint-url=: The endpoint URL of the S3 backend
+    --force: Replace files if it already exists
+    --region=: The region of the S3 backend
+    --secret-access-key=: The secret access key for the S3 bucket
+    --session-token=: The session token for the S3 bucket
+    -c, --channel=!: The channel URL in the S3 bucket to upload the package to, e.g., `s3://my-bucket/my-channel`

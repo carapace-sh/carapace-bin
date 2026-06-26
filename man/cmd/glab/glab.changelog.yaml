@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: changelog <command> [flags]
+description: Interact with the changelog API.

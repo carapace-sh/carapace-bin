@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: can-i VERB [TYPE | TYPE/NAME | NONRESOURCEURL]
+description: Check whether an action is allowed
+flags:
+    --list: If true, prints all allowed actions.
+    --no-headers: If true, prints allowed actions without headers
+    --subresource=: SubResource such as pod/log or deployment/scale
+    -A, --all-namespaces: If true, check the specified action in all namespaces.
+    -q, --quiet: If true, suppress output and just return the exit code.

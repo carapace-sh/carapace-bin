@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: seal
+description: Seal a secret for usage with OpenFaaS Cloud
+flags:
+    --download: Download the kubeseal binary required for this command, see also --download-version
+    --download-to=: Specify download path for kubeseal, leave empty for a temp dir
+    --download-version=: Specify a kubeseal version to download
+    --name=: Secret name
+    -c, --cert=: Filename of public certificate
+    -i, --from-file=*: Read a secret from a from file
+    -l, --literal=*: Secret literal key-value data
+    -n, --namespace=: Secret name
+    -o, --output-file=: Output file for secrets

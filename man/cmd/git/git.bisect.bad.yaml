@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bad
+aliases:
+- new
+description: mark a known-bad revision

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: modinfo
+description: Show information about a Linux Kernel module
+flags:
+    -0, --null: Use \0 instead of \n
+    -F, --field=: Print only provided FIELD
+    -V, --version: Show version
+    -a, --author: Print only 'author'
+    -b, --basedir=: Use DIR as filesystem root for /lib/modules
+    -d, --description: Print only 'description'
+    -h, --help: Show this help
+    -k, --set-version=: Use VERSION instead of `uname -r`
+    -l, --license: Print only 'license'
+    -n, --filename: Print only 'filename'
+    -p, --parameters: Print only 'parm'

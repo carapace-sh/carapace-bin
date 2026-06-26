@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bootstrap
+description: rebuild everything
+flags:
+    -a: rebuild all
+    -d: enable debugging of bootstrap process
+    -no-banner: do not print banner
+    -no-clean: print deprecation warning
+    -v: verbosity

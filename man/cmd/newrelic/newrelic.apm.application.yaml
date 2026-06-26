@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: application
+description: Interact with New Relic APM applications
+persistentflags:
+    -g, --guid=: search for results matching the given APM application GUID

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Search packages in the registry. Default registry is crates.io
+group: package
+flags:
+    --index=: Registry index URL to search packages in
+    --limit=: 'Limit the number of results (default: 10, max: 100)'
+    --registry=: Registry to search packages in
+    -h, --help: Print help
+documentation:
+  command: |
+    Search packages in the registry. Default registry is crates.io. Accepts
+    a search query and returns matching packages with their name, version,
+    and description. Use `--limit` to control the number of results (default:
+    10, max: 100). Use `--registry` to search a different registry.

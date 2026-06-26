@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List all keys in a namespace, or in all namespaces
+flags:
+    --all&: List all keys in all namespaces
+    -a, --all-namespaces: List all keys in all namespaces
+    -h, --help: Print help
+    -n, --namespace=: Namespace to list keys from

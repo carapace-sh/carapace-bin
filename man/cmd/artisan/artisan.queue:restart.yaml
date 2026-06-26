@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: queue:restart
+description: Restart queue worker daemons after their current job

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: shell
+description: Start a new shell with access to your packages
+flags:
+    --environment=: environment to use, when supported (e.g.secrets support dev, prod, preview.)
+    --omit-nix-env&: shell environment will omit the env-vars from print-dev-env
+    --print-env: print script to setup shell environment
+    --pure: if this flag is specified, devbox creates an isolated shell inheriting almost no variables from the current environment. A few variables, in particular HOME, USER and DISPLAY, are retained.
+    --recompute: recompute environment if needed
+    -c, --config=: path to directory containing a devbox.json config file
+persistentflags:
+    --env-file=: path to a file containing environment variables to set in the devbox environment
+    -e, --env=: environment variables to set in the devbox environment

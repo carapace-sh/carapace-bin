@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tcp
+description: Run the language server and listen on a TCP address
+flags:
+    --address=: The address to listen on

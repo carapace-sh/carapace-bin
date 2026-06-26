@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vars
+description: Interact with environment variables associated with Conda environments

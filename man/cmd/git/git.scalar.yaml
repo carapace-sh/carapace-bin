@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scalar
+description: A tool for managing large Git repositories
+group: main
+
+documentation:
+  command: >-
+    A repository management tool that optimizes Git for use in large repositories. Scalar improves performance by configuring advanced Git settings, maintaining repositories in the background, and helping to reduce data sent across the network. An important Scalar concept is the enlistment: the top-level directory of the project, usually containing the subdirectory `src/` which is a Git worktree.

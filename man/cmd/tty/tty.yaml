@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tty
+description: print the file name of the terminal connected to standard input
+flags:
+    --help: display this help and exit
+    --quiet: print nothing, only return an exit status
+    --version: output version information and exit
+    -s, --silent: print nothing, only return an exit status

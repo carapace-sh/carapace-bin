@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: Remove dependencies from the project
+group: general
+flags:
+    --mode=: Change what artifacts installs generate
+    -A, --all: Apply the operation to all workspaces from the current project

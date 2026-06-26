@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: issues [<id> | <branch>]
+aliases:
+    - issue
+description: Get issues related to a particular merge request.

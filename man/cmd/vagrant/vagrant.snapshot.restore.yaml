@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: restore
+description: Restore a snapshot taken previously with snapshot save
+flags:
+    --no-provision: Disable provisioning
+    --no-start: Don't start the snapshot after the restore
+    --provision: Enable provisioning
+    --provision-with=: Enable only certain provisioners, by type or by name.

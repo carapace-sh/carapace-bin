@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sway
+description: An i3-compatible Wayland compositor
+flags:
+    --get-socketpath: Gets the IPC socket path and prints it, then exits.
+    -C, --validate: Check the validity of the config file, then exit.
+    -V, --verbose: Enables more verbose logging.
+    -c, --config=: Specify a config file.
+    -d, --debug: Enables full logging, including debug information.
+    -h, --help: Show help message and quit.
+    -v, --version: Show the version number and quit.

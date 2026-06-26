@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [@DB]
+description: List all key value pairs with an optional @ db.
+flags:
+    -b, --show-binary: print binary values
+    -d, --delimiter=: delimiter to separate keys and values
+    -k, --keys-only: only print keys and don't fetch values from the db
+    -r, --reverse: list in reverse lexicographic order
+    -v, --values-only: only print values
+
+documentation:
+  command: >-
+    List all key-value pairs. Append @db to list from a specific database.

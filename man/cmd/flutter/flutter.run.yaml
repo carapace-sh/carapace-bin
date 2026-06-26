@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run your Flutter app on an attached device
+flags:
+    --await-first-frame-when-tracing: Wait for the first frame when tracing startup.
+    --build: If necessary, build the app before running.
+    --cache-sksl: Cache the shader in the SkSL format instead of in binary or GLSL formats.
+    --dart-define=*: Additional key-value pairs that will be available as constants.
+    --dds-port=: When this value is provided, the Dart Development Service (DDS) will be bound to the provided port.
+    --debug: Build a debug version of your app (default mode).
+    --device-timeout=: Time in seconds to wait for devices to attach.
+    --device-user=: Identifier number for a user or work profile on Android only.
+    --device-vmservice-port=: Look for vmservice connections only from the specified port.
+    --dump-skp-on-shader-compilation: Automatically dump the skp that triggers new shader compilations.
+    --enable-software-rendering: Enable rendering using the Skia software backend.
+    --endless-trace-buffer: Enable tracing to an infinite buffer, instead of a ring buffer.
+    --flavor: Build a custom app flavor as defined by platform-specific build setup.
+    --host-vmservice-port=: When a device-side vmservice port is forwarded to a host-side port, use this value as the host port.
+    --hot: Run with support for hot reloading.
+    --no-await-first-frame-when-tracing: Do not wait for the first frame when tracing startup.
+    --no-build: If necessary, do not build the app before running.
+    --no-hot: Run without support for hot reloading.
+    --no-null-assertions: Do not perform additional null assertions on the boundaries of migrated and un-migrated code.
+    --no-pub: Do not run "flutter pub get" before executing this command.
+    --no-start-paused: Do not start in a paused mode and wait for a debugger to connect.
+    --no-track-widget-creation: Do not track widget creation locations.
+    --no-use-test-fonts: Disable the "Ahem" font.
+    --null-assertions: Perform additional null assertions on the boundaries of migrated and un-migrated code.
+    --pid-file=: Specify a file to write the process ID to.
+    --profile: Build a version of your app specialized for performance profiling.
+    --pub: Run "flutter pub get" before executing this command.
+    --purge-persistent-cache: Removes all existing persistent caches.
+    --release: Build a release version of your app.
+    --route: Which route to load when running the app.
+    --skia-deterministic-rendering: Provide completely deterministic (i.e. reproducible) Skia rendering.
+    --start-paused: Start in a paused mode and wait for a debugger to connect.
+    --trace-skia: Enable tracing of Skia code.
+    --trace-startup: Trace application startup, then exit, saving the trace to a file.
+    --trace-systrace: Enable tracing to the system tracer.
+    --track-widget-creation: Track widget creation locations.
+    --use-application-binary=: Specify a pre-built application binary to use when running.
+    --use-test-fonts: Enable the "Ahem" font.
+    --verbose-system-logs: Include verbose logging from the Flutter engine.
+    --web-renderer: The renderer implementation to use when building for the web.
+    -P, --android-project-arg=: Additional arguments specified as key=value that are passed directly to the gradle project via the -P flag.
+    -a, --dart-entrypoint-args=: Pass a list of arguments to the Dart entrypoint at application startup.
+    -h, --help: Print this usage information.
+    -t, --target=: The main entry-point file of the application, as run on the device.

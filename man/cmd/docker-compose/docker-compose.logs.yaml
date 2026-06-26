@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logs [OPTIONS] [SERVICE...]
+description: View output from containers
+flags:
+    --index=: index of the container if service has multiple replicas
+    --no-color: Produce monochrome output
+    --no-log-prefix: Don't print prefix in logs
+    --since=: Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
+    --until=: Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
+    -f, --follow: Follow log output
+    -n, --tail=: Number of lines to show from the end of the logs for each container
+    -t, --timestamps: Show timestamps

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scout:flush <model>
+description: Flush all of the model's records from the index

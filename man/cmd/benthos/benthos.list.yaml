@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List all Benthos component types
+flags:
+    --format=: Print the component list in a specific format. Options are text, json or cue.
+    --status=: Filter the component list to only those matching the given status. Options are stable, beta or experimental.

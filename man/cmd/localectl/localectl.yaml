@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: localectl
+description: Query or change system locale and keyboard settings
+flags:
+    --no-ask-password: Do not prompt for password
+    --no-convert: Don't convert keyboard mappings
+    --no-pager: Do not pipe output into a pager
+    --version: Show package version
+    -H, --host=: Operate on remote host
+    -M, --machine=: Operate on local container
+    -h, --help: Show this help

@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mv
+description: Move or rename a file, a directory, or a symlink
+group: main
+flags:
+  -f, --force: force move/rename even if target exists
+  -k: skip move/rename errors
+  -n, --dry-run: dry run
+  -v, --verbose: be verbose
+documentation:
+  command: |-
+    Move or rename a file, directory, or symlink.
+
+    In the first form, it renames _<source>_, which must exist and be either
+    a file, symlink or directory, to _<destination>_.
+    In the second form, _<destination-directory>_ has to be an existing
+    directory; the given sources will be moved into this directory.
+
+    The index is updated after successful completion, but the change must still be
+    committed.
+  flag:
+    dry-run: Do nothing; only show what would happen
+    force: Force renaming or moving of a file even if the <destination> exists.
+    k: |-
+      Skip move or rename actions which would lead to an error
+      condition. An error happens when a source is neither existing nor
+      controlled by Git, or when it would overwrite an existing
+      file unless `-f` is given.
+    verbose: Report the names of files as they are moved.

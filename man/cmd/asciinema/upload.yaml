@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upload
+description: Upload locally saved terminal session to asciinema.org
+documentation:
+  command: >-
+    Upload a local `.cast` file to asciinema.org (or a self-hosted server) and
+    return a shareable URL. Use `--title` or `--description` to add context,
+    `--visibility` to set public/unlisted/private, and `--server-url` for custom
+    servers.

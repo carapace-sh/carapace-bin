@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rollback [OPTIONS] SERVICE
+description: Revert changes to a service's configuration
+flags:
+    -d, --detach: Exit immediately instead of waiting for the service to converge
+    -q, --quiet: Suppress progress output

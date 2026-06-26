@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:model [-a|--all] [-c|--controller] [-f|--factory] [--force] [-m|--migration] [--morph-pivot] [--policy] [-s|--seed] [-p|--pivot] [-r|--resource] [--api] [-R|--requests] [--test] [--pest] [--phpunit] [--] <name>
+description: Create a new Eloquent model class
+flags:
+    --all: Generate a migration, seeder, factory, policy, resource controller, and form request classes for the model
+    --api: Indicates if the generated controller should be an API resource controller
+    --controller: Create a new controller for the model
+    --factory: Create a new factory for the model
+    --force: Create the class even if the model already exists
+    --migration: Create a new migration file for the model
+    --morph-pivot: Indicates if the generated model should be a custom polymorphic intermediate table model
+    --pest: Generate an accompanying Pest test for the Model
+    --phpunit: Generate an accompanying PHPUnit test for the Model
+    --pivot: Indicates if the generated model should be a custom intermediate table model
+    --policy: Create a new policy for the model
+    --requests: Create new form request classes and use them in the resource controller
+    --resource: Indicates if the generated controller should be a resource controller
+    --seed: Create a new seeder for the model
+    --test: Generate an accompanying Test test for the Model

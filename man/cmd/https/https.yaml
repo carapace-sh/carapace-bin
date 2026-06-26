@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: https
+description: command-line HTTP client for the API era
+
+documentation:
+  command: >-
+    Send HTTPS requests using URL syntax. https defaults to HTTPS for
+    all requests, refusing plain HTTP connections. Same syntax as http:
+    https example.com (GET), https POST example.com field=value.
+    Use http:// prefix explicitly for plain HTTP. Certificate verification
+    is on by default; bypass with --verify=no (insecure). Provide client
+    cert with --cert and --key. Specify CA bundle with --cacert. Other
+    options mirror http: headers, body, auth, timeouts, session cookies,
+    redirect following. Useful for testing HTTPS endpoints and APIs
+    without worrying about scheme prefixes.

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: count-objects
+description: Count unpacked number of objects and their disk consumption
+group: interrogator
+flags:
+  -H, --human-readable: print sizes in human readable format
+  -v, --verbose: be verbose
+documentation:
+  command: |-
+    Counts the number of unpacked object files and disk space consumed by
+    them, to help you decide when it is a good time to repack.

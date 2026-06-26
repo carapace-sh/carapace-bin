@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unplug
+description: Force the unpacking of a list of packages
+group: general
+flags:
+    --json: Format the output as an NDJSON stream
+    -A, --all: Unplug direct dependencies from the entire project
+    -R, --recursive: Unplug both direct and transitive dependencies

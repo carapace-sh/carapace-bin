@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+description: edit go.mod from tools or scripts
+flags:
+    -C=: Change to dir before running the command
+    -dropexclude=*: drop an exclusion
+    -dropgodebug=*: drop any existing godebug lines
+    -dropignore=*: drop a ignore declaration
+    -dropreplace=*: drop a module replacement
+    -droprequire=*: drop a requirement
+    -dropretract=*: drop a retraction
+    -droptool=*: drop a tool declaration
+    -exclude=*: add an exclusion
+    -fmt: reformats the go.mod file without making other changes
+    -go=: set the expected Go language version
+    -godebug=*: add a godebug key=value line
+    -ignore=*: add a ignore declaration
+    -json: print the final go.mod file in JSON format instead instead of writing back
+    -module=: changes the module's path
+    -n: print the commands but do not run them
+    -print: print the final go.mod in its text format instead of writing back
+    -replace=*: add a module replacement
+    -require=*: add a requirement
+    -retract=*: add a retraction
+    -tool=*: add a tool declaration
+    -toolchain=: set the Go toolchain to use
+    -x: print the commands

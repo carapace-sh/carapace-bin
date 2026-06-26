@@ -1,0 +1,40 @@
+name: list
+description: List the branches in the repository
+flags:
+    --empty: Include branches with no commits on them (hidden by default)
+    --no-ahead: Don't calculate and show number of commits ahead of base (faster)
+    --no-check: Don't check if each branch merges cleanly into upstream
+    --review: Fetch and display review information (PRs, MRs, etc.)
+    -a, --all: Show all branches (not just active + 20 most recent)
+    -h, --help: Print help (see more with '--help')
+    -l, --local: Show only local branches
+    -r, --remote: Show only remote branches
+documentation:
+    command: |-
+        List the branches in the repository
+
+        By default, shows the active branch and the 20 most recently updated branches.
+
+        You can use the `--all` flag to show all branches, `--local` to show only
+        local branches, or `--remote` to show only remote branches.
+
+        You can also filter branch names by specifying a substring, such as
+        `but branch list feature` to show only branches with "feature" in the name.
+
+        If you want to check for review status, you can add `--review` to fetch
+        and display pull request or merge request information for each branch.
+        This will make the command slower as it needs to query the forge.
+
+        By default, the command checks if each branch merges cleanly into
+        the *upstream base target branch* (not your workspace).
+        You can disable this check with `--no-check` to make the command faster.
+
+        By default it also calculates the number of commits each branch is ahead
+        of the base branch. You can disable this with `--no-ahead` to
+        make the command faster.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

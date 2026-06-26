@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: branch
+description: Open a specific BRANCH_NAME
+flags:
+    --help: Show this message and exit.

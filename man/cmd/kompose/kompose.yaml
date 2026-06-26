@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kompose
+description: A tool helping Docker Compose users move to Kubernetes
+flags:
+    -h, --help: help for kompose
+persistentflags:
+    --error-on-warning: Treat any warning as an error
+    --provider=: Specify a provider. Kubernetes or OpenShift.
+    --suppress-warnings: Suppress all warnings
+    -f, --file=*: Specify an alternative compose file
+    -v, --verbose: verbose output

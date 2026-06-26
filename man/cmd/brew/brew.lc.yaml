@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lc
+description: Check for newer versions of formulae and/or casks from upstream
+flags:
+    --cask: Only check casks.
+    --debug: Display any debugging information.
+    --eval-all: Evaluate all available formulae and casks, whether installed or not, to check them.
+    --formula: Only check formulae.
+    --full-name: Print formulae and casks with fully-qualified names.
+    --help: Show this message.
+    --installed: Check formulae and casks that are currently installed.
+    --json: Output information in JSON format.
+    --newer-only: Show the latest version only if it's newer than the formula/cask.
+    --quiet: Suppress warnings, don't print a progress bar for JSON output.
+    --resources: Also check resources for formulae.
+    --tap: Check formulae and casks within the given tap, specified as <user>`/`<repo>.
+    --verbose: Make some output more verbose.

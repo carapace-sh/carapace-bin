@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Bytecode analysis and testing tool for ClamAV bytecode
+    signatures. Used for debugging and testing ClamAV bytecode
+    detection rules.
+description: Bytecode Analysis and Testing Tool
+flags:
+    --debug: Show debug
+    --statistics=: Collect and print bytecode execution statistics
+    -T, --trace=: Set bytecode trace level 0..7 (default 7)
+    -V, --version: Show version
+    -c, --printbcir: Print IR of bytecode signature
+    -f, --force-interpreter: Force using the interpreter instead of the JIT
+    -h, --help: Show this help
+    -i, --info: Print information about bytecode
+    -p, --printsrc: Print bytecode source
+    -r, --input: Input file to run the bytecode on
+    -s, --no-trace-showsource: Don't show source line during tracing
+    -t, --trust-bytecode: Trust loaded bytecode (default yes)

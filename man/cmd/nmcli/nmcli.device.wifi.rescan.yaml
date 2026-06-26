@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rescan
+description: Request that NetworkManager immediately re-scan for available access points

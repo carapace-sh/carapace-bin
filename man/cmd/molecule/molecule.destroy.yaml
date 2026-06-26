@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: destroy [flags]
+description: Use the provisioner to destroy the instances
+flags:
+    --all: Destroy all scenarios
+    --help: Show help message and exit
+    --no-all: Don't destroy all scenarios (default)
+    --no-parallel: Disable parallel mode (default)
+    --parallel: Enabe parallel mode
+    -d, --driver-name=: Name of the driver to use
+    -s, --scenario-name=: Name of the scenario to target

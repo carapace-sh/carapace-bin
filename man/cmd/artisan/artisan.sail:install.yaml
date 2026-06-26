@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sail:install [--with [WITH]] [--devcontainer]
+description: Install Laravel Sail's default Docker Compose file
+flags:
+    --devcontainer: Create a .devcontainer configuration directory
+    --with=: The services that should be included in the installation

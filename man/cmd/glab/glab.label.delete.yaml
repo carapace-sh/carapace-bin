@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete [flags]
+description: Delete labels for a repository or project.

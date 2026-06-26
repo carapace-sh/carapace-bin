@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: join [OPTIONS] HOST:PORT
+description: Join a swarm as a node and/or manager
+flags:
+    --advertise-addr=: 'Advertised address (format: "<ip|interface>[:port]")'
+    --availability=: Availability of the node ("active", "pause", "drain")
+    --data-path-addr=: 'Address or interface to use for data path traffic (format: "<ip|interface>")'
+    --listen-addr=: 'Listen address (format: "<ip|interface>[:port]")'
+    --token=: Token for entry into the swarm

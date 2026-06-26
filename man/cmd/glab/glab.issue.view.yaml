@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view <id>
+aliases:
+    - show
+description: Display the title, body, and other information about an issue.
+flags:
+    -F, --output=: 'Format output as: text, json.'
+    -P, --per-page=: Number of items to list per page.
+    -c, --comments: Show issue comments and activities.
+    -p, --page=: Page number.
+    -s, --system-logs: Show system activities and logs.
+    -w, --web: Open issue in a browser. Uses the default browser, or the browser specified in the $BROWSER variable.

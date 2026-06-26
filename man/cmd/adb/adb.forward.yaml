@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: forward
+description: forward socket connection
+flags:
+    --list: list all forward socket connections
+    --no-rebind: don't replace existing connection
+    --remove: remove specific forward socket connections
+    --remove-all: remove all forward socket connections

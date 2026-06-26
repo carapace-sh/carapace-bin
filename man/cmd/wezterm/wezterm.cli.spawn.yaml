@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: spawn [OPTIONS] [PROG]...
+description: Spawn a command into a new window or tab
+flags:
+    --cwd=: Specify the current working directory for the initially spawned program
+    --domain-name=: ""
+    --new-window: Spawn into a new window, rather than a new tab
+    --pane-id=: Specify the current pane
+    --window-id=: Specify the window into which to spawn a tab
+    --workspace=: Override the default workspace name with the provided name
+    -h, --help: Print help

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pipe
+description: Open latest pipeline runs for repository view
+flags:
+    --help: Show this message and exit.

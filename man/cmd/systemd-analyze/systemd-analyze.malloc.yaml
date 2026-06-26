@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: malloc
+description: Dump malloc stats of a D-Bus service

@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Search the manual page names and descriptions for instances of a
+    keyword. Each keyword is interpreted as a regular expression by
+    default. The database is updated by the mandb program. Use `-e`
+    for exact matching, `-w` for shell wildcard patterns, or `-r` to
+    explicitly treat keywords as regular expressions. Limit searches
+    to specific manual sections with `-s` or `--section`.
+  flag:
+    sections: Colon-separated list of manual sections to search.
+description: search the manual page names and descriptions
+flags:
+    --section=: search only these sections (colon-separated)
+    --usage: give a short usage message
+    -?, --help: give this help list
+    -C, --config-file=: use this user configuration file
+    -L, --locale=: define the locale for this search
+    -M, --manpath=: set search path for manual pages to PATH
+    -V, --version: print program version
+    -a, --and: require all keywords to match
+    -d, --debug: emit debugging messages
+    -e, --exact: search each keyword for exact match
+    -l, --long: do not trim output to terminal width
+    -m, --systems=: use manual pages from other systems
+    -r, --regex: interpret each keyword as a regex
+    -s, --sections=: search only these sections (colon-separated)
+    -v, --verbose: print verbose warning messages
+    -w, --wildcard: the keyword(s) contain wildcards

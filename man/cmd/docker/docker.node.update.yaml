@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update [OPTIONS] NODE
+description: Update a node
+flags:
+    --availability=: Availability of the node ("active", "pause", "drain")
+    --label-add=: Add or update a node label ("key=value")
+    --label-rm=: Remove a node label if exists
+    --role=: Role of the node ("worker", "manager")

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: commit-graph
+description: Write and verify Git commit-graph files
+group: low-level manipulator
+documentation:
+  command: Manage the serialized commit-graph file.

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pack
+description: Generate a tarball from the active workspace
+group: general
+flags:
+    --install-if-needed: Run a preliminary yarn install if the package contains build scripts
+    --json: Format the output as an NDJSON stream
+    -n, --dry-run: Print the file paths without actually generating the package archive
+    -o, --out=: Create the archive at the specified path

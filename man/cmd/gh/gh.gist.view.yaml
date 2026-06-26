@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view [<id> | <url>]
+description: View a gist
+documentation:
+    command: |
+        View a gist by ID or URL. Use `--files` to list all file names, `-f` to
+        display a specific file, `-r` to show raw content instead of rendered,
+        and `-w` to open in the browser.
+flags:
+    --files: List file names from the gist
+    -f, --filename=: Display a single file from the gist
+    -r, --raw: Print raw instead of rendered gist contents
+    -w, --web: Open gist in the browser

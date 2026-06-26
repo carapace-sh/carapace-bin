@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: certs
+description: Manages your SSL certificates
+flags:
+    --ca=: CA certificate chain file
+    --challenge-only: Only show challenges needed to issue a cert
+    --crt=: Certificate file
+    --key=: Certificate key file
+    -N, --next: Show next page of results
+
+documentation:
+  command: >-
+    Manage SSL certificates for your domains.

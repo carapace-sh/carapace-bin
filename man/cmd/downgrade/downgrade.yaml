@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: downgrade
+description: Downgrade Arch Linux packages
+flags:
+    --ala-only: only use ALA server
+    --ala-url=: location of ALA server
+    --cached-only: only use cached packages
+    --maxdepth=: maximum depth to search for cached packages
+    --pacman-cache=: pacman cache directory
+    --pacman-conf=: pacman configuration file
+    --pacman-log=: pacman log file
+    --pacman=: pacman command to use
+    --version: show downgrade version
+    -h, --help: show help script

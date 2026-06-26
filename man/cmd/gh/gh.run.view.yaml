@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view [<run-id>]
+description: View a summary of a workflow run
+flags:
+    --exit-status: Exit with non-zero status if run failed
+    --json=*: Output JSON with the specified `fields`
+    --log: View full log for either a run or specific job
+    --log-failed: View the log for any failed steps in a run or specific job
+    -a, --attempt=: The attempt number of the workflow run
+    -j, --job=: View a specific job ID from a run
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -v, --verbose: Show job steps
+    -w, --web: Open run in the browser

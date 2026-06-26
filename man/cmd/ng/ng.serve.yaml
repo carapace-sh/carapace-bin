@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serve
+description: Builds and serves your app, rebuilding on file changes
+flags:
+    --allowed-hosts=: List of hosts that are allowed to access the dev server.
+    --browser-target=: A browser builder target to serve
+    --disable-host-check: Don't verify connected clients are part of allowed hosts.
+    --hmr: Enable hot module replacement.
+    --host=: Host to listen on.
+    --live-reload: Whether to reload the page on change, using live-reload.
+    --poll=: Enable and define the file watching poll time period in milliseconds.
+    --port=: Port to listen on.
+    --proxy-config=: Proxy configuration file.
+    --public-host=: The URL that the browser client should use to connect to the development server.
+    --serve-path=: The pathname where the app will be served.
+    --ssl: Serve using HTTPS.
+    --ssl-cert=: SSL certificate to use for serving HTTPS.
+    --ssl-key=: SSL key to use for serving HTTPS.
+    --verbose: Adds more details to output logging.
+    --watch: Rebuild on change.
+    -c, --configuration=: One or more named builder configurations
+    -o, --open: Opens the url in default browser.

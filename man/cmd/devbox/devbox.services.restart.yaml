@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: restart [service]...
+description: Restart service. If no service is specified, restarts all services

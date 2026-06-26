@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+aliases:
+    - c
+description: Create a repository
+flags:
+    --branch=: use custom default branch (need --init)
+    --description=: add description to repo
+    --gitignores=: list of gitignore templates (need --init)
+    --init: initialize repo
+    --labels=: name of label set to add
+    --license=: add license (need --init)
+    --name=: name of new repo
+    --private: make repo private
+    --readme=: use readme template (need --init)
+    --template: make repo a template repo
+    --trustmodel=: select trust model (committer,collaborator,collaborator+committer)
+    -O, --owner=: name of repo owner
+    -l, --login=: Use a different Gitea Login. Optional
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)

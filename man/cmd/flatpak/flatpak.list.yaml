@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [OPTION…]
+description: List installed apps and/or runtimes
+group: install
+flags:
+    --app: List installed applications
+    --app-runtime=: List all applications using RUNTIME
+    --arch=: Arch to show
+    --columns=: What information to show
+    --installation=: Work on a non-default system-wide installation
+    --ostree-verbose: Show OSTree debug information
+    --runtime: List installed runtimes
+    --system: Work on the system-wide installation (default)
+    -a, --all: List all refs (including locale/debug)
+    -d, --show-details: Show extra information
+    -h, --help: Show help options
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

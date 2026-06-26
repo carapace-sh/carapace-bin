@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit [<number> | <url> | <branch>]
+description: Edit a pull request
+group: Targeted commands
+documentation:
+    command: |
+        Edit a pull request. Update title with `-t`, body with `-b`, base branch
+        with `-B`, milestone with `-m`. Add or remove assignees with `--add-assignee`
+        and `--remove-assignee`. Add or remove reviewers with `--add-reviewer` and
+        `--remove-reviewer`. Add or remove labels with `--add-label` and `--remove-label`.
+        Add or remove projects with `--add-project` and `--remove-project`.
+flags:
+    --add-assignee=*: Add assigned users by their `login`. Use "@me" to assign yourself, or "@copilot" to assign Copilot.
+    --add-label=*: Add labels by `name`
+    --add-project=*: Add the pull request to projects by `title`
+    --add-reviewer=*: Add or re-request reviewers by their `login`. Use "@copilot" to request review from Copilot.
+    --remove-assignee=*: Remove assigned users by their `login`. Use "@me" to unassign yourself, or "@copilot" to unassign Copilot.
+    --remove-label=*: Remove labels by `name`
+    --remove-milestone: Remove the milestone association from the pull request
+    --remove-project=*: Remove the pull request from projects by `title`
+    --remove-reviewer=*: Remove reviewers by their `login`. Use "@copilot" to remove review request from Copilot.
+    -B, --base=: Change the base `branch` for this pull request
+    -F, --body-file=: Read body text from `file` (use "-" to read from standard input)
+    -b, --body=: Set the new body.
+    -m, --milestone=: Edit the milestone the pull request belongs to by `name`
+    -t, --title=: Set the new title.

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-default
+description: Make a credit card your default one
+
+documentation:
+  command: >-
+    Set a credit card as the default payment method for your account.
+    The specified card will be used for all future charges. Use
+    `vercel billing ls` to see available card IDs.

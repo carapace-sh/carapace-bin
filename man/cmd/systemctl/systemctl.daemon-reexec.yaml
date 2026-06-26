@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: daemon-reexec
+description: Reexecute systemd manager
+group: manager state
+documentation:
+  command: |
+    Reexecute the systemd manager. This will serialize the manager state,
+    reexecute the process and deserialize the state again. This command is
+    of little use except for debugging and package upgrades. Sometimes it
+    might be helpful as a heavy-weight daemon-reload.

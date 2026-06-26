@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+aliases:
+    - uninstall
+    - rm
+    - delete
+    - del
+description: Remove a component from a Rust toolchain
+flags:
+    --target=: ""
+    --toolchain=: Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see `rustup help toolchain`
+    -h, --help: Print help

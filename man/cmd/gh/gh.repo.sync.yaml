@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sync [<destination-repository>]
+description: Sync a repository
+group: Targeted commands
+flags:
+    --force: Hard reset the branch of the destination repository to match the source repository
+    -b, --branch=: Branch to sync (default [default branch])
+    -s, --source=: Source repository

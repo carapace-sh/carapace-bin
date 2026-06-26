@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: shred
+description: overwrite a file to hide its contents, and optionally delete it
+flags:
+    --help: display this help and exit
+    --random-source=: get random bytes from FILE
+    --remove=: like -u but give control on HOW to delete;  See below
+    --version: output version information and exit
+    -f, --force: change permissions to allow writing if necessary
+    -n, --iterations=: overwrite N times instead of the default (3)
+    -s, --size=: shred this many bytes (suffixes like K, M, G accepted)
+    -u: deallocate and remove file after overwriting
+    -v, --verbose: show progress
+    -x, --exact: do not round file sizes up to the next full block;
+    -z, --zero: add a final overwrite with zeros to hide shredding

@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Install script as an executable
+flags:
+    --allow-env?: Allow environment access
+    --allow-ffi?: Allow loading dynamic libraries
+    --allow-hrtime: Allow high resolution time measurement
+    --allow-net?: Allow network access
+    --allow-read?: Allow file system read access
+    --allow-run?: Allow running subprocesses
+    --allow-write?: Allow file system write access
+    --cached-only: Require that remote dependencies are already cached
+    --cert=: Load certificate authority from PEM encoded file
+    --import-map=: Load import map file
+    --inspect-brk?: Activate inspector on host:port and break at start of user script
+    --inspect?: 'Activate inspector on host:port (default: 127.0.0.1:9229)'
+    --location=: Value of 'globalThis.location' used by some web APIs
+    --lock-write: Write lock file (use with --lock)
+    --lock=: Check the specified lock file
+    --no-check: Skip type checking modules
+    --no-remote: Do not resolve remote modules
+    --prompt: Fallback to prompt if required permission wasn't passed
+    --root=: Installation root
+    --seed=: Seed Math.random()
+    --unsafely-ignore-certificate-errors?: 'DANGER: Disables verification of TLS certificates'
+    --v8-flags?: 'Set V8 command line options (for help: --v8-flags=--help'
+    -A, --allow-all: Allow all permissions
+    -c, --config=: Load configuration file
+    -f, --force: Forcefully overwrite existing installation
+    -n, --name=: Executable file name
+    -r, --reload?: Reload source code cache (recompile TypeScript)

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unpack-file
+description: Creates a temporary file with a blob's contents
+group: low-level interrogator
+documentation:
+  command: |-
+    Creates a file holding the contents of the blob specified by sha1. It
+    returns the name of the temporary file in the following format:
+    .merge_file_XXXXX

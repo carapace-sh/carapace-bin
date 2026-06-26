@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logout
+description: Log out from Dagger Cloud
+group: cloud

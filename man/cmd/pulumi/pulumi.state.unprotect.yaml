@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unprotect
+description: Unprotect resources in a stack's state
+flags:
+    --all: Unprotect all resources in the checkpoint
+    -y, --yes: Skip confirmation prompts
+persistentflags:
+    -s, --stack=: The name of the stack to operate on. Defaults to the current stack

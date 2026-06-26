@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dr
+description: Check your system for potential problems
+flags:
+    --audit-debug: Enable debugging and profiling of audit methods.
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --list-checks: List all audit methods, which can be run individually if provided as arguments.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

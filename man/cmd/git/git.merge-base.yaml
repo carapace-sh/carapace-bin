@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: merge-base
+description: Find as good common ancestors as possible for a merge
+group: low-level interrogator
+flags:
+  --fork-point: find where <commit> forked from reflog of <ref>
+  --independent: list revs not reachable from others
+  --is-ancestor: is the first one ancestor of the other?
+  --octopus: find ancestors for a single n-way merge
+  -a, --all: output all common ancestors
+documentation:
+  command: |-
+    'git merge-base' finds the best common ancestor(s) between two commits to use
+    in a three-way merge.  One common ancestor is 'better' than another common
+    ancestor if the latter is an ancestor of the former.  A common ancestor
+    that does not have any better common ancestor is a 'best common
+    ancestor', i.e. a 'merge base'.  Note that there can be more than one
+    merge base for a pair of commits.

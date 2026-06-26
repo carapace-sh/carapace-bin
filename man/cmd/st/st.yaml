@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: st
+description: simple terminal
+flags:
+    -T=: defines the window title (default 'st').
+    -a: disable alternate screens in terminal
+    -c=: defines the window class (default $TERM).
+    -e=: st executes command instead of the shell.
+    -f=: defines the font to use when st is run.
+    -g=: defines the X11 geometry string.
+    -i: will fixate the position given with the -g option.
+    -l=: use a tty line instead of a pseudo terminal.
+    -n=: defines the window instance name (default $TERM).
+    -o=: writes all the I/O to iofile.
+    -t=: defines the window title (default 'st').
+    -v: prints version information to stderr, then exits.
+    -w=: embeds st within the window identified by windowid

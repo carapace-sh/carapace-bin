@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: confirm
+description: Ask a user to confirm an action
+flags:
+    --affirmative=: The title of the affirmative action
+    --default: Default confirmation action
+    --negative=: The title of the negative action
+    --padding=: Padding
+    --prompt.align=: Text Alignment
+    --prompt.background=: Background Color
+    --prompt.bold: Bold text
+    --prompt.border-background=: Border Background Color
+    --prompt.border-foreground=: Border Foreground Color
+    --prompt.border=: Border Style
+    --prompt.faint: Faint text
+    --prompt.foreground=: Foreground Color
+    --prompt.height=: Text height
+    --prompt.italic: Italicize text
+    --prompt.margin=: Text margin
+    --prompt.padding=: Text padding
+    --prompt.strikethrough: Strikethrough text
+    --prompt.underline: Underline text
+    --prompt.width=: Text width
+    --selected.align=: Text Alignment
+    --selected.background=: Background Color
+    --selected.bold: Bold text
+    --selected.border-background=: Border Background Color
+    --selected.border-foreground=: Border Foreground Color
+    --selected.border=: Border Style
+    --selected.faint: Faint text
+    --selected.foreground=: Foreground Color
+    --selected.height=: Text height
+    --selected.italic: Italicize text
+    --selected.margin=: Text margin
+    --selected.padding=: Text padding
+    --selected.strikethrough: Strikethrough text
+    --selected.underline: Underline text
+    --selected.width=: Text width
+    --show-help: Show help key binds
+    --show-output: Print prompt and chosen action to output
+    --timeout=: Timeout until confirm returns selected value or default if provided
+    --unselected.align=: Text Alignment
+    --unselected.background=: Background Color
+    --unselected.bold: Bold text
+    --unselected.border-background=: Border Background Color
+    --unselected.border-foreground=: Border Foreground Color
+    --unselected.border=: Border Style
+    --unselected.faint: Faint text
+    --unselected.foreground=: Foreground Color
+    --unselected.height=: Text height
+    --unselected.italic: Italicize text
+    --unselected.margin=: Text margin
+    --unselected.padding=: Text padding
+    --unselected.strikethrough: Strikethrough text
+    --unselected.underline: Underline text
+    --unselected.width=: Text width

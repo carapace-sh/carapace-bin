@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: launch
+description: Run an arbitrary process in a new window/tab
+flags:
+    --add-to-session=: Add the newly created window/tab to the specified session
+    --allow-remote-control: Programs running in this window can control kitty
+    --bias=: The bias used to alter the size of the window
+    --color=: Change colors in the newly launched window
+    --copy-cmdline: Ignore any specified command line and instead use the command line from the source window
+    --copy-colors: Set the colors of the newly created window to be the same as the source window
+    --copy-env: Copy the environment variables from the source window into the newly launched child process
+    --cwd=: The working directory for the newly launched child
+    --dont-take-focus: Keep the focus on the currently active window instead of switching to the newly opened window
+    --env=: Environment variables to set in the child process
+    --hold: Keep the window open even after the command being executed exits
+    --hold-after-ssh: Run a local shell after disconnecting from the remote host
+    --location=: Where to place the newly created window
+    --logo-alpha=: The amount the window logo should be faded into the background
+    --logo-position=: The position for the window logo
+    --logo=: Path to a PNG image to use as the logo for the newly created window
+    --marker=: Create a marker that highlights text in the newly created window
+    --next-to=: A match expression to select the window next to which the new window is created
+    --no-response: Do not print out the id of the newly created window
+    --os-panel=: Options to control the creation of desktop panels
+    --os-window-class=: Set the WM_CLASS property on X11 and the application id property on Wayland
+    --os-window-name=: Set the WM_NAME property on X11 for the newly created OS Window
+    --os-window-state=: The initial state for the newly created OS Window
+    --os-window-title=: Set the title for the newly created OS window
+    --remote-control-password=: Restrict the actions remote control is allowed to take
+    --response-timeout=: The time in seconds to wait for the started process to exit
+    --self: Use the tab containing the window this command is run in instead of the active tab
+    --source-window=: A match expression to select the window from which data is copied
+    --spacing=: Set the margin and padding for the newly created window
+    --stdin-add-formatting: When using --stdin-source add formatting escape codes
+    --stdin-add-line-wrap-markers: When using --stdin-source add a carriage return at every line wrap location
+    --stdin-source=: Pass the screen contents as STDIN to the child process
+    --tab-title=: The title for the new tab if launching in a new tab
+    --title=: The title to set for the new window
+    --type=: Where to launch the child process
+    --var=: User variables to set in the created window
+    --wait-for-child-to-exit: Wait until the launched program exits and print out its exit code
+    -h, --help: Show help for this command
+    -m, --match=: The tab to match
+    -w, --watcher=: Path to a Python file for event callbacks

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unbind-key
+flags:
+    -T=: key-table
+    -a: TODO description
+    -n: TODO description
+    -q: TODO description

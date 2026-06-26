@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upload-config
+aliases:
+    - uploadconfig
+description: Upload the kubeadm and kubelet configurations to ConfigMaps

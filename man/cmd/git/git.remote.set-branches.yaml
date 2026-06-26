@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-branches
+description: Changes the list of branches tracked
+flags:
+  --add: add branch
+documentation:
+  command: |-
+    Change the list of branches tracked by the named remote.
+    This can be used to track a subset of the available remote branches
+    after the initial setup for a remote.
+
+    The named branches will be interpreted as if specified with the
+    `-t` option on the `git remote add` command line.
+
+    With `--add`, instead of replacing the list of currently tracked
+    branches, adds to that list.

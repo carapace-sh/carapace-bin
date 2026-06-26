@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: close {<number> | <url> | <branch>}
+description: Close a pull request
+group: Targeted commands
+documentation:
+    command: |
+        Close a pull request without merging. Optionally leave a closing comment
+        with `-c` or `--comment`. Use `-d` or `--delete-branch` to delete the
+        local and remote branch after closing.
+flags:
+    -c, --comment=: Leave a closing comment
+    -d, --delete-branch: Delete the local and remote branch after close

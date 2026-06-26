@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logs
+description: '[PREVIEW] Show aggregated resource logs for a stack'
+persistentflags:
+    --config-file=: Use the configuration values in the specified file rather than detecting the file name
+    --since=: Only return logs newer than a relative duration ('5s', '2m', '3h') or absolute timestamp.  Defaults to returning the last 1 hour of logs.
+    -f, --follow: Follow the log stream in real time (like tail -f)
+    -j, --json: Emit output as JSON
+    -r, --resource=: Only return logs for the requested resource ('name', 'type::name' or full URN).  Defaults to returning all logs.
+    -s, --stack=: The name of the stack to operate on. Defaults to the current stack

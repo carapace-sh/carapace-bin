@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: formatting
+description: Formatting options for JSON data exported from gh
+hidden: true

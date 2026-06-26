@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Installs a list of packages into a specified conda environment
+flags:
+    --all: Update all installed packages in the environment.
+    --clobber: Allow clobbering of overlapping file paths within packages, and suppress related warnings.
+    --copy: Install all packages using copies instead of hard- or soft-linking.
+    --dev: Use `sys.executable -m conda` in wrapper scripts instead of CONDA_EXE.
+    --download-only: Solve an environment and ensure package caches are populated
+    --file=*: Read package versions from the given file.
+    --force-reinstall: Ensure that any user-requested package for the current operation is uninstalled and reinstalled
+    --freeze-installed: Do not update or change already-installed dependencies.
+    --json: Report all output as json.
+    --no-channel-priority: Package version takes precedence over channel priority.
+    --no-deps: Do not install, update, remove, or change dependencies.
+    --no-pin: Ignore pinned file.
+    --no-update-deps: Do not update or change already-installed dependencies.
+    --offline: Offline mode.
+    --only-deps: Only install dependencies.
+    --override-channels: Do not search default or .condarc channels.
+    --repodata-fn=: Specify name of repodata on remote server.
+    --revision=: Revert to the specified REVISION.
+    --show-channel-urls: Show channel urls.
+    --strict-channel-priority: Packages in lower priority channels are not considered if a package with the same name appears in a higher priority channel.
+    --update-all: Update all installed packages in the environment.
+    --update-deps: Update dependencies.
+    --update-specs: Update based on provided specifications.
+    --use-local: Use locally built packages. Identical to '-c local'.
+    -C, --use-index-cache: Use cache of channel index files, even if it has expired.
+    -S, --satisfied-skip-solve: Exit early and do not run the solver if the requested specs are satisfied.
+    -c, --channel=: Additional channel to search for packages.
+    -d, --dry-run: Only display what would have been done.
+    -h, --help: Show this help message and exit.
+    -k, --insecure: Allow conda to perform "insecure" SSL connections and transfers.
+    -m, --mkdir: Create the environment directory if necessary.
+    -n, --name=: Name of environment.
+    -p, --prefix=: Full path to environment location (i.e. prefix).
+    -q, --quiet: Do not display progress bar.
+    -v, --verbose: Once for INFO, twice for DEBUG, three times for TRACE.
+    -y, --yes: Do not ask for confirmation.

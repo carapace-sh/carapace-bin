@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wheel
+description: Build Wheel archives for your requirements and dependencies
+flags:
+    --build-option=: Extra arguments to be supplied to 'setup.py bdist_wheel'.
+    --extra-index-url=: Extra URLs of package indexes to use in addition to --index-url.
+    --global-option=: Extra global options to be supplied to the setup.py call.
+    --ignore-requires-python: Ignore the Requires-Python information.
+    --no-binary=: Do not use binary packages.
+    --no-build-isolation: Disable isolation when building a modern source distribution.
+    --no-clean: Don't clean up build directories.
+    --no-deps: Don't install package dependencies.
+    --no-index: Ignore package index.
+    --only-binary=: Do not use source packages.
+    --pre: Include pre-release and development versions.
+    --prefer-binary: Prefer older binary packages over newer source packages.
+    --progress-bar=: Specify type of progress to be displayed
+    --require-hashes: Require a hash to check each requirement against
+    --src=: Directory to check out editable projects into.
+    --use-pep517: Use PEP 517 for building source distributions.
+    -c, --constraint=: Constrain versions using the given constraints file.
+    -e, --editable=: Install a project in editable mode from path.
+    -f, --find-links=: parse file for links to archives
+    -i, --index-url=: Base URL of the Python Package Index
+    -r, --requirement=: Install from the given requirements file.
+    -w, --wheel-dir=: Build wheels into <dir>

@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add a remote
+flags:
+  --mirror?: set up remote as a mirror to push to or fetch from
+  --tags: import all tags and associated objects when fetching
+  -f, --fetch: fetch the remote branches
+  -m, --master=: master branch
+  -t, --track*=: branch(es) to track
+documentation:
+  command: |-
+    Add a remote named _<name>_ for the repository at
+    _<URL>_.  The command `git fetch <name>` can then be used to create and
+    update remote-tracking branches `<name>/<branch>`.
+
+    With `-f` option, `git fetch <name>` is run immediately after
+    the remote information is set up.
+
+    With `--tags` option, `git fetch <name>` imports every tag from the
+    remote repository.
+
+    With `--no-tags` option, `git fetch <name>` does not import tags from
+    the remote repository.
+
+    By default, only tags on fetched branches are imported
+    (see [git-fetch](cmd://git/fetch)).
+
+    With `-t <branch>` option, instead of the default glob
+    refspec for the remote to track all branches under
+    the `refs/remotes/<name>/` namespace, a refspec to track only _<branch>_
+    is created.  You can give more than one `-t <branch>` to track
+    multiple branches without grabbing all branches.
+
+    With `-m <master>` option, a symbolic-ref `refs/remotes/<name>/HEAD` is set
+    up to point at remote's _<master>_ branch. See also the set-head command.
+
+    When a fetch mirror is created with `--mirror=fetch`, the refs will not
+    be stored in the `refs/remotes/` namespace, but rather everything in
+    `refs/` on the remote will be directly mirrored into `refs/` in the
+    local repository. This option only makes sense in bare repositories,
+    because a fetch would overwrite any local commits.
+
+    When a push mirror is created with `--mirror=push`, then `git push`
+    will always behave as if `--mirror` was passed.

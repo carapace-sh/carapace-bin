@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lsp
+description: Start LSP server
+flags:
+    -goplsLog=: The file to log gopls output, or leave empty to disable logging.
+    -goplsRPCTrace: Set gopls to log input and output messages
+    -help: Print help and exit
+    -http=: Enable http debug server by setting a listen address
+    -log=: The file to log templ LSP output to, or leave empty to disable logging
+    -pprof: Enable pprof web server

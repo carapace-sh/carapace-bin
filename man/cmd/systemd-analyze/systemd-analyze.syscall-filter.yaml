@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: syscall-filter
+description: List syscalls in seccomp filters

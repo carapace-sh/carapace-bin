@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diag
+description: Run FIDO2 diagnostics
+hidden: true

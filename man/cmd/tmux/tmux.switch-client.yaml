@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: switch-client
+flags:
+    -E: TODO description
+    -T=: key-table
+    -Z: TODO description
+    -c=: target-client
+    -l: TODO description
+    -n: TODO description
+    -p: TODO description
+    -r: TODO description
+    -t=: target-session

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: join
+description: Join an active Kubernetes session.
+flags:
+    -c, --cluster=: Specify the Teleport cluster to connect
+    -m, --mode=: Mode of joining the session, valid modes are observer, moderator and peer.

@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: Remove a worktree
+flags:
+  -f, --force: force removal even if worktree is dirty or locked
+documentation:
+  command: |-
+    Remove a worktree. Only clean worktrees (no untracked files and no
+    modification in tracked files) can be removed. Unclean worktrees or ones
+    with submodules can be removed with `--force`. The main worktree cannot be
+    removed.
+  flag:
+    force: |-
+      By default, `add` refuses to create a new worktree when
+      _<commit-ish>_ is a branch name and is already checked out by
+      another worktree, or if _<path>_ is already assigned to some
+      worktree but is missing (for instance, if _<path>_ was deleted
+      manually). This option overrides these safeguards. To add a missing but
+      locked worktree path, specify `--force` twice.
+
+      `move` refuses to move a locked worktree unless `--force` is specified
+      twice. If the destination is already assigned to some other worktree but is
+      missing (for instance, if _<new-path>_ was deleted manually), then `--force`
+      allows the move to proceed; use `--force` twice if the destination is locked.
+
+      `remove` refuses to remove an unclean worktree unless `--force` is used.
+      To remove a locked worktree, specify `--force` twice.

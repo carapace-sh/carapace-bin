@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: style
+description: Apply coloring, borders, spacing to text
+flags:
+    --align=: Text Alignment
+    --background=: Background Color
+    --bold: Bold text
+    --border-background=: Border Background Color
+    --border-foreground=: Border Foreground Color
+    --border=: Border Style
+    --faint: Faint text
+    --foreground=: Foreground Color
+    --height=: Text height
+    --italic: Italicize text
+    --margin=: Text margin
+    --padding=: Text padding
+    --strikethrough: Strikethrough text
+    --strip-ansi: Strip ANSI sequences when reading from STDIN
+    --trim: Trim whitespaces on every input line
+    --underline: Underline text
+    --width=: Text width

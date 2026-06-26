@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pinky
+description: lightweight finger
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -b: omit the user's home directory and shell in long format
+    -f: omit the line of column headings in short format
+    -h: omit the user's project file in long format
+    -i: omit the user's full name and remote host in short format
+    -l: produce long format output for the specified USERs
+    -p: omit the user's plan file in long format
+    -q: omit the user's full name, remote host and idle time
+    -s: do short format output, this is the default
+    -w: omit the user's full name in short format

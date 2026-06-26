@@ -1,0 +1,107 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff-pairs
+description: Diff from raw pair input
+group: low-level interrogator
+flags:
+    --abbrev=: show only a partial prefix
+    --anchored=*: Generate a diff using the "anchored diff" algorithm
+    --binary: output a binary diff
+    --cached: View the changes you staged in the index/cache
+    --check: Warn if changes introduce conflict markers or whitespace errors
+    --color-moved-ws?: This configures how whitespace is ignored when performing the move detection
+    --color-moved?: Moved lines of code are colored differently
+    --color-words=: Equivalent to --word-diff=color plus (if a regex was specified)
+    --color?: Show colored diff
+    --compact-summary: Output a condensed summary of extended header information
+    --cumulative: Synonym for --dirstat=cumulative
+    --default-prefix: Use the default source and destination prefixes
+    --diff-algorithm=: ""
+    --diff-filter=: filter files
+    --dirstat-by-file=: Synonym for --dirstat=files,param1,param2...
+    --dst-prefix=: Show the given destination prefix instead of "b/"
+    --exit-code: Make the program exit with codes similar to diff(1)
+    --ext-diff: Allow an external diff helper to be executed
+    --find-copies-harder: inspect unmodified files as candidates for the source of copy
+    --find-object=: Look for differences that change the number of occurrences of the specified object
+    --follow=: Continue listing the history of a file beyond renames
+    --full-index: show the full pre- and post-image blob object names
+    --histogram: Generate a diff using the "histogram diff" algorithm
+    --ignore-blank-lines: Ignore changes whose lines are all blank
+    --ignore-cr-at-eol: Ignore carriage-return at the end of line when doing a comparison
+    --ignore-space-at-eol: Ignore changes in whitespace at EOL
+    --ignore-submodules=: Ignore changes to submodules in the diff generation
+    --indent-heuristic: Enable the heuristic that shifts diff hunk boundaries to make patches easier to read
+    --inter-hunk-context=: Show the context between diff hunks
+    --ita-invisible-in-index: this option makes the entry appear as a new file
+    --line-prefix=: Prepend an additional prefix to every line of output
+    --minimal: Spend extra time to make sure the smallest possible diff is produced
+    --name-only: Show only names of changed files
+    --name-status: Show only names and status of changed files
+    --no-abbrev: Show the full 40-byte hexadecimal commit object name
+    --no-color: Turn off colored diff
+    --no-color-moved: Turn off move detection
+    --no-color-moved-ws: Do not ignore whitespace when performing move detection
+    --no-ext-diff: Disallow external diff drivers
+    --no-follow: Do not continue listing the history of a file beyond renames.
+    --no-indent-heuristic: Disable the indent heuristic
+    --no-index: Compare paths on the file system
+    --no-prefix: Do not show any source or destination prefix
+    --no-rename-empty: Whether to use empty blobs as rename source
+    --no-renames: Turn off rename detection
+    --no-textconv=: Disallow external text conversion filters to be run when comparing binary files
+    --numstat: Similar to --stat, but shows number of added and deleted lines in decimal notation
+    --output-indicator-context=: Specify the character used to indicate context lines in the generated patch
+    --output-indicator-new=: Specify the character used to indicate new lines in the generated patch
+    --output-indicator-old=: Specify the character used to indicate old lines in the generated patch
+    --output=: Output to a specific file instead of stdout
+    --patch-with-raw: Synonym for -p --raw
+    --patch-with-stat: Synonym for -p --stat
+    --patience: Generate a diff using the "patience diff" algorithm
+    --pickaxe-all: When -S or -G finds a change, show all the changes in that changeset
+    --pickaxe-regex: Treat the <string> given to -S as an extended POSIX regular expression to match
+    --raw: Generate the diff in raw format
+    --relative=: exclude changes outside the directory
+    --rename-empty: Whether to use empty blobs as rename source
+    --rotate-to=: Move the files before the named <file> to the end
+    --shortstat: Output only the last line of the --stat format
+    --skip-to=: Discard the files before the named <file> from the output
+    --src-prefix=: Show the given source prefix instead of "a/"
+    --stat-count=: Generate diffstat with limited lines
+    --stat-graph-width=: Generate diffstat with a given graph width
+    --stat-name-width=: Generate diffstat with a given filename width
+    --stat-width=: Generate diffstat with a given width
+    --stat=: Generate a diffstat
+    --submodule=: Specify how differences in submodules are shown
+    --summary: Output a condensed summary of extended header information
+    --textconv=: Allow external text conversion filters to be run when comparing binary files
+    --word-diff-regex=: Use <regex> to decide what a word is
+    --word-diff?: Show a word diff, using the <mode> to delimit changed words
+    --ws-error-highlight=: Highlight whitespace errors in the context, old or new lines of the diff
+    "-0": Omit diff output for unmerged entries
+    -1, --base: compare with base
+    -2, --ours: compare with our branch
+    -3, --theirs: compare with their branch
+    -B, --break-rewrites=: Break complete rewrite changes into pairs of delete and create
+    -C, --find-copies=: Detect copies as well as renames
+    -D, --irreversible-delete: Omit the preimage for deletes
+    -I, --ignore-matching-lines=*: Ignore changes whose all lines match <regex>
+    -M, --find-renames=: Detect renames
+    -O=: Control the order in which files appear in the output
+    -R: Swap two inputs
+    -S=: Look for differences that change the number of occurrences of the specified string
+    -U, --unified=: Generate diffs with <n> lines of context instead of the usual three
+    -W, --function-context: Show whole surrounding functions of changes
+    -X, --dirstat=: Output the distribution of relative amount of changes for each sub-directory
+    -a, --text: Treat all files as text
+    -b, --ignore-space-change: Ignore changes in amount of whitespace
+    -c, --cc: Combined diff format for merge commits
+    -l=: prevent rename/copy detection from running if the number of rename/copy targets exceeds the specified number
+    -p, --patch: Generate patch
+    -s, --no-patch: Suppress diff output
+    -u: Generate patch
+    -w, --ignore-all-space: Ignore whitespace when comparing lines
+    -z: do not munge pathnames and use NULs as output field terminators
+
+documentation:
+  command: >-
+    Show changes for file pairs provided on stdin. Input must be in the NUL-terminated raw output format as generated by commands such as `git diff-tree -z -r --raw`. By default, the outputted diffs are computed and shown in the patch format when stdin closes.

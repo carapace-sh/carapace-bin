@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: select
+description: Switch the current workspace to the given stack
+persistentflags:
+    --secrets-provider=: Use with --create flag, The type of the provider that should be used to encrypt and decrypt secrets
+    -c, --create: If selected stack does not exist, create it

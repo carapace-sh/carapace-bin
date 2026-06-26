@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view [<workflow-id> | <workflow-name> | <filename>]
+description: View the summary of a workflow
+documentation:
+    command: |
+        View workflow summary including recent runs. Pass workflow ID, name, or
+        filename. Use `-r` to view a specific branch or tag version, `-y` to view
+        the raw workflow YAML file, or `-w` to open in browser.
+flags:
+    -r, --ref=: The branch or tag name which contains the version of the workflow file you'd like to view
+    -w, --web: Open workflow in the browser
+    -y, --yaml: View the workflow yaml file

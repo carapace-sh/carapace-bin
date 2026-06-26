@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: drop
+description: remove a single stash entry
+flags:
+  -q, --quiet: suppress feedback messages
+documentation:
+  command: Remove a single stash entry from the list of stash entries.
+  flag:
+    quiet: |-
+      This option is only valid for `apply`, `drop`, `pop`, `push`,
+      `save`, `store` commands.
+
+      Quiet, suppress feedback messages.

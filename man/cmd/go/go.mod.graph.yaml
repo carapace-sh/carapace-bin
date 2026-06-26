@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: graph
+description: print module requirement graph
+flags:
+    -go=: report the module graph as loaded by their given Go version
+    -x: print the commands graph executes

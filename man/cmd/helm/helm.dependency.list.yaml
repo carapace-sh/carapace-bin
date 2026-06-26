@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: list the dependencies for the given chart
+flags:
+    --max-col-width=: maximum column width for output table

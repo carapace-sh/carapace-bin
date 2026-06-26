@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:factory [-m|--model [MODEL]] [--] <name>
+description: Create a new model factory
+flags:
+    --model=: The name of the model

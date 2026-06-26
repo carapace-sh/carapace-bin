@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: saw <command>
+description: A fast, multipurpose tool for AWS CloudWatch Logs
+persistentflags:
+    --endpoint-url=: override default endpoint URL
+    --profile=: override default AWS profile
+    --region=: override profile AWS region

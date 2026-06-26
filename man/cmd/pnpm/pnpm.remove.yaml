@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+aliases:
+    - rm
+    - uninstall
+    - un
+description: Removes packages from `node_modules` and from the project's `package.json`
+group: manage
+flags:
+    --aggregate-output: Aggregate output from child processes that are run in parallel
+    --changed-files-ignore-pattern=: Defines files to ignore when filtering for changed projects since the specified commit/branch
+    --color: Controls colors in the output
+    --filter-prod=: Restricts the scope to package names matching the given pattern
+    --filter=: set filter
+    --global-dir: Specify a custom directory to store global packages
+    --loglevel=: What level of logs to report
+    --no-color: Controls colors in the output
+    --stream: Stream output from child processes immediately
+    --test-pattern=: Defines files related to tests
+    --use-stderr: Divert all output to stderr
+    -C, --dir=: Change to directory <dir>
+    -D, --save-dev: Remove the dependency only from "devDependencies"
+    -O, --save-optional: Remove the dependency only from "optionalDependencies"
+    -P, --save-prod: Remove the dependency only from "dependencies"
+    -h, --help: Output usage information
+    -r, --recursive: Remove from every package found in subdirectories or from every workspace package
+    -w, --workspace-root: Run the command on the root workspace project

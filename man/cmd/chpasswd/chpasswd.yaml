@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: chpasswd
+description: update passwords in batch mode
+flags:
+    -R, --root=: directory to chroot into
+    -c, --crypt-method=: the crypt method
+    -e, --encrypted: supplied passwords are encrypted
+    -h, --help: display this help message and exit
+    -m, --md5: encrypt the clear text password using the MD5 algorithm
+    -s, --sha-rounds=: number of rounds for the SHA or BCRYPT crypt algorithms

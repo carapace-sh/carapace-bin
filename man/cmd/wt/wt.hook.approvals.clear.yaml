@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clear
+description: Clear approved commands from approvals.toml
+flags:
+    -g, --global: Clear global approvals
+    -h, --help: Print help (see more with '--help')

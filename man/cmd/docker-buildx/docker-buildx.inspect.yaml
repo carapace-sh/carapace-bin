@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect [NAME]
+description: Inspect current builder instance
+flags:
+    --bootstrap: Ensure builder has booted before inspecting

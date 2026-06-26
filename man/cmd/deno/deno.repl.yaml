@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repl
+description: Read Eval Print Loop
+flags:
+    --cached-only: Require that remote dependencies are already cached
+    --cert=: Load certificate authority from PEM encoded file
+    --eval=: Evaluates the provided code when the REPL starts.
+    --import-map=: Load import map file
+    --inspect-brk?: Activate inspector on host:port and break at start of user script
+    --inspect?: 'Activate inspector on host:port (default: 127.0.0.1:9229)'
+    --location=: Value of 'globalThis.location' used by some web APIs
+    --lock-write: Write lock file (use with --lock)
+    --lock=: Check the specified lock file
+    --no-check: Skip type checking modules
+    --no-remote: Do not resolve remote modules
+    --seed=: Seed Math.random()
+    --v8-flags?: 'Set V8 command line options (for help: --v8-flags=--help'
+    -c, --config=: Load configuration file
+    -r, --reload?: Reload source code cache (recompile TypeScript)

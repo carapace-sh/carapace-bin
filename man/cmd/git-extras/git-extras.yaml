@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: git-extras
+description: Awesome GIT utilities
+flags:
+    -h, --help: Show this help
+    -v, --version: Show git-extras version number

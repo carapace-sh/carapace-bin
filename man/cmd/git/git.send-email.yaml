@@ -1,0 +1,91 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: send-email
+description: Send a collection of patches as email
+group: interaction
+flags:
+  --8bit-encoding=: Encoding to assume 8bit mails if undeclared
+  --annotate: Review each patch that will be sent in an editor.
+  --batch-size=: send max  message per connection.
+  --bcc*=: 'Email Bcc:'
+  --cc*=: 'Email Cc:'
+  --cc-cmd=: 'Email Cc: via `<str> $patch_path`.'
+  --cc-cover: 'Email Cc: addresses in the cover letter.'
+  --chain-reply-to: 'Chain In-Reply-To: fields. Default off.'
+  --compose: Open an editor for introduction.
+  --compose-encoding=: Encoding to assume for introduction.
+  --confirm=: Confirm recipients before sending;
+  --dry-run: Don't actually send the emails.
+  --dump-aliases: Dump configured aliases and exit.
+  --envelope-sender=: Email envelope sender.
+  --force: Send even if safety checks would prevent it.
+  --format-patch: understand any non optional arguments as
+  --from=: 'Email From:'
+  --header-cmd=: Add headers via `<str> $patch_path`.
+  --identity=: Use the sendemail.<id> options.
+  --in-reply-to=: Email "In-Reply-To:"
+  --no-annotate: Review each patch that will be sent in an editor.
+  --no-bcc: 'Email Bcc:'
+  --no-cc: 'Email Cc:'
+  --no-cc-cover: 'Email Cc: addresses in the cover letter.'
+  --no-chain-reply-to: 'Chain In-Reply-To: fields. Default off.'
+  --no-format-patch: understand any non optional arguments as
+  --no-header-cmd: Disable any header command in use.
+  --no-signed-off-by-cc: 'Send to Signed-off-by: addresses. Default on.'
+  --no-smtp-auth: Disable SMTP authentication. Shorthand for
+  --no-suppress-from: Send to self. Default off.
+  --no-thread: 'Use In-Reply-To: field. Default on.'
+  --no-to: 'Email To:'
+  --no-to-cover: 'Email To: addresses in the cover letter.'
+  --no-validate: Perform patch sanity checks. Default on.
+  --no-xmailer: Add "X-Mailer:" header (default).
+  --quiet: Output one line of info per email.
+  --relogin-delay=: delay seconds between two successive login.
+  --reply-to=: Email "Reply-To:"
+  --sendmail-cmd=: Command to run to send email.
+  --signed-off-by-cc: 'Send to Signed-off-by: addresses. Default on.'
+  --smtp-auth=: Space-separated list of allowed AUTH mechanisms, or
+  --smtp-debug=: Disable, enable Net::SMTP debug.
+  --smtp-domain=: The domain name sent to HELO/EHLO handshake
+  --smtp-encryption=: tls or ssl; anything else disables.
+  --smtp-pass=: Password for SMTP-AUTH; not necessary.
+  --smtp-server-option*=: Outgoing SMTP server option to use.
+  --smtp-server-port=: Outgoing SMTP server port.
+  --smtp-server=: Outgoing SMTP server to use. The port
+  --smtp-ssl: Deprecated. Use '--smtp-encryption ssl'.
+  --smtp-ssl-cert-path=: Path to ca-certificates (either directory or file).
+  --smtp-user=: Username for SMTP-AUTH.
+  --subject=: Email "Subject:"
+  --suppress-cc=: author, self, sob, cc, cccmd, body, bodycc, misc-by, all.
+  --suppress-from: Send to self. Default off.
+  --thread: 'Use In-Reply-To: field. Default on.'
+  --to-cmd=: 'Email To: via `<str> $patch_path`.'
+  --to-cover: 'Email To: addresses in the cover letter.'
+  --to=: 'Email To:'
+  --transfer-encoding=: Transfer encoding to use (quoted-printable, 8bit, base64)
+  --validate: Perform patch sanity checks. Default on.
+  --xmailer: Add "X-Mailer:" header (default).
+documentation:
+  command: |-
+    Takes the patches given on the command line and emails them out.
+    Patches can be specified as files, directories (which will send all
+    files in the directory), or directly as a revision list.  In the
+    last case, any format accepted by [git-format-patch](cmd://git/format-patch) can
+    be passed to `git send-email`, as well as options understood by
+    [git-format-patch](cmd://git/format-patch).
+
+    The header of the email is configurable via command-line options.  If not
+    specified on the command line, the user will be prompted with a ReadLine
+    enabled interface to provide the necessary information.
+
+    There are two formats accepted for patch files:
+
+    1. mbox format files
+
+    This is what [git-format-patch](cmd://git/format-patch) generates.  Most headers and MIME
+    formatting are ignored.
+
+    2. The original format used by Greg Kroah-Hartman's `send_lots_of_email.pl`
+       script
+
+    This format expects the first line of the file to contain the `Cc:` value
+    and the `Subject:` of the message as the second line.

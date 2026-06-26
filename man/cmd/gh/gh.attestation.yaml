@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: attestation [subcommand]
+aliases:
+    - at
+description: Work with artifact attestations
+documentation:
+    command: |
+        Download and verify artifact attestations. Attestations provide
+        provenance for artifacts, linking them to the source and build process.
+        Use `gh attestation verify` to verify an artifact's attestation,
+        `gh attestation download` to download attestations, and
+        `gh attestation trusted-root` to manage trusted roots.

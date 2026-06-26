@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rebase [<id> | <branch>] [flags]
+description: Rebase the source branch of a merge request against its target branch.
+flags:
+    --skip-ci: Rebase merge request while skipping CI/CD pipeline.

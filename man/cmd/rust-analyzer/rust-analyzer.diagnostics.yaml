@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diagnostics
+flags:
+    --disable-build-scripts: Don't run build scripts or load `OUT_DIR` values by running `cargo check` before analysis.
+    --disable-proc-macros: Don't use expand proc macros.

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: extract
+description: Look through repository history to find the most recent version of <formula> and create a copy in <tap>
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --force: Overwrite the destination formula if it already exists.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.
+    --version: Extract the specified <version> of <formula> instead of the most recent.

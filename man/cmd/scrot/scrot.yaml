@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scrot
+description: command line screen capture utility
+flags:
+    -C, --class=: 'Window class name. Associative with options: -k'
+    -D, --display: Set DISPLAY target other than current
+    -S, --script=: Imlib2 script commands
+    -a, --autoselect: non-interactively choose a rectangle of x,y,w,h
+    -b, --border: When selecting a window, grab wm border too
+    -c, --count: show a countdown before taking the shot
+    -d, --delay=: wait NUM seconds before taking a shot
+    -e, --exec=: run APP on the resulting screenshot
+    -f, --freeze: 'Freeze the screen when the selection is used: --select'
+    -h, --help: display this help and exit
+    -k, --stack: Capture stack/overlapped windows and join them together.
+    -l, --line: 'Indicates the style of the line when the selection is used: --select'
+    -m, --multidisp: For multiple heads, grab shot from each and join them together.
+    -n, --note: Draw a text note.
+    -o, --overwrite: By default scrot does not overwrite the files, use this option to allow it.
+    -p, --pointer: Capture the mouse pointer.
+    -q, --quality=: Image quality (1-100) high value means high size, low compression
+    -s, --select: interactively choose a window or rectangle with the mouse
+    -t, --thumb=: generate thumbnail too
+    -u, --focused: use the currently focused window
+    -v, --version: output version information and exit
+    -z, --silent: Prevent beeping

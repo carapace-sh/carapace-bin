@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: directive
+description: Creates a new, generic directive definition in the given or default project
+flags:
+    --export: The declaring NgModule exports this directive.
+    --flat: Creates the new files at the top level of the current project.
+    --project=: The name of the project.
+    --selector=: The HTML selector to use for this directive.
+    --skip-import: Do not import this directive into the owning NgModule.
+    --skip-tests: Do not create "spec.ts" test files for the new class.
+    -m, --module=: The declaring NgModule.
+    -p, --prefix=: A prefix to apply to generated selectors.

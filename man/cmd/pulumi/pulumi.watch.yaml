@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: watch
+description: '[PREVIEW] Continuously update the resources in a stack'
+persistentflags:
+    --config-file=: Use the configuration values in the specified file rather than detecting the file name
+    --config-path: Config keys contain a path to a property in a map or list to set
+    --exec-kind=: ""
+    --path=*: Specify one or more relative or absolute paths that need to be watched. A path can point to a folder or a file. Defaults to working directory
+    --policy-pack-config=*: Path to JSON file containing the config for the policy pack of the corresponding "--policy-pack" flag
+    --policy-pack=*: Run one or more policy packs as part of each update
+    --secrets-provider=: 'The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault). Onlyused when creating a new stack from an existing template'
+    --show-config: Show configuration keys and variables
+    --show-replacement-steps: Show detailed resource replacement creates and deletes instead of a single step
+    --show-sames: Show resources that don't need be updated because they haven't changed, alongside those that do
+    -c, --config=*: Config to use during the update
+    -d, --debug: Print detailed debugging output during resource operations
+    -m, --message=: Optional message to associate with each update operation
+    -p, --parallel=: Allow P resource operations to run in parallel at once (1 for no parallelism). Defaults to unbounded.
+    -r, --refresh: Refresh the state of the stack's resources before each update
+    -s, --stack=: The name of the stack to operate on. Defaults to the current stack

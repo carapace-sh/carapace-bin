@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upload
+description: Upload python packages to pypi
+flags:
+    --non-interactive: Do not interactively prompt for username/password if the required credentials are missing
+    --repository-url=: The URL of the registry where the wheels are uploaded to
+    --skip-existing: Continue uploading files if one already exists
+    -p, --password=: Password for pypi or your custom registry
+    -r, --repository=: The repository (package index) to upload the package to
+    -u, --username=: Username for pypi or your custom registry
+    -v, --verbose*: Use verbose output

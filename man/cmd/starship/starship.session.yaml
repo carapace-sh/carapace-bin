@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: session
+description: Generate random session key
+flags:
+    -V, --version: Prints version information
+    -h, --help: Prints help information

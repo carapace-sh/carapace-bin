@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Initialize a new repository
+flags:
+    --copy-chunker-params: copy chunker parameters from the secondary repository (useful with the copy command)
+    --key-hint2=: 'key ID of key to try decrypting the secondary repository first (default: $RESTIC_KEY_HINT2)'
+    --password-command2=: 'shell `command` to obtain the secondary repository password from (default: $RESTIC_PASSWORD_COMMAND2)'
+    --password-file2=: '`file` to read the secondary repository password from (default: $RESTIC_PASSWORD_FILE2)'
+    --repo2=: 'secondary `repository` to copy chunker parameters from (default: $RESTIC_REPOSITORY2)'
+    --repository-file2=: '`file` from which to read the secondary repository location to copy chunker parameters from (default: $RESTIC_REPOSITORY_FILE2)'
+
+documentation:
+  command: >-
+    Initialize a new backup repository at the specified location. Prompts for and encrypts with a password.

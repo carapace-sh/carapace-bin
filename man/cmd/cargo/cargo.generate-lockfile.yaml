@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate-lockfile
+description: Generate the lockfile for a package
+flags:
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --manifest-path=: Path to Cargo.toml
+    --publish-time=: Latest publish time allowed for registry packages (unstable)
+    -h, --help: Print help

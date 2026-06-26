@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: podman-env
+description: Configure environment to use minikube's Podman service
+group: images
+flags:
+    --shell=: 'Force environment to be configured for a specified shell: [fish, cmd, powershell, tcsh, bash, zsh], default is auto-detect'
+    -u, --unset: Unset variables instead of setting them

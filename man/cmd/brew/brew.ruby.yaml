@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ruby
+description: Run a Ruby instance with Homebrew's libraries loaded
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.
+    -e: Execute the given text string as a script.
+    -r: Load a library using `require`.

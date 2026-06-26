@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: convert
+description: Convert a Docker Compose file
+flags:
+    --build-branch=: Specify repository branch to use for buildconfig (default master)
+    --build-repo=: Specify source repository for buildconfig (default remote origin)
+    --build=: Set the type of build ("local"|"build-config"(OpenShift only)|"none")
+    --controller=: Set the output controller ("deployment"|"daemonSet"|"replicationController")
+    --daemon-set: Generate a Kubernetes daemonset object (deprecated, use --controller instead)
+    --deployment-config: Generate an OpenShift deploymentconfig object
+    --emptyvols: Use Empty Volumes. Do not generate PVCs
+    --indent=: Spaces length to indent generated yaml files
+    --insecure-repository: Use an insecure Docker repository for OpenShift ImageStream
+    --multiple-container-mode: Create multiple containers grouped by 'kompose.service.group' label
+    --push-image: If we should push the docker image we built
+    --push-image-registry=: Specify registry for pushing image, which will override registry from image name.
+    --pvc-request-size=: Specify the size of pvc storage requests in the generated resource spec
+    --replicas=: Specify the number of replicas in the generated resource spec
+    --replication-controller: Generate a Kubernetes replication controller object (deprecated, use --controller instead)
+    --service-group-mode=: Group multiple service to create single workload by `label`(`kompose.service.group`) or `volume`(shared volumes)
+    --service-group-name=: Using with --service-group-mode=volume to specific a final service name for the group
+    --stdout: Print converted objects to stdout
+    --volumes=: Volumes to be generated ("persistentVolumeClaim"|"emptyDir"|"hostPath" | "configMap")
+    --with-kompose-annotation: Add kompose annotations to generated resource
+    -c, --chart: Create a Helm chart for converted objects
+    -d, --deployment: Generate a Kubernetes deployment object (deprecated, use --controller instead)
+    -j, --json: Generate resource files into JSON format
+    -o, --out=: Specify a file name or directory to save objects to (if path does not exist, a file will be created)
+    -y, --yaml: Generate resource files into YAML format

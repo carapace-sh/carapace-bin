@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Bluetooth Control Command Line Tool. Manages Bluetooth adapters,
+    devices, and connections. Supports agent registration, media
+    endpoints, and non-interactive mode with timeout.
+description: Bluetooth Control Command Line Tool
+flags:
+    -a, --agent=: 'Register agent handler: <capability>'
+    -e, --endpoints: Register media endpoints
+    -h, --help: Display help
+    -m, --monitor: Enable monitor output
+    -t, --timeout=: Timeout in seconds for non-interactive mode
+    -v, --version: Display version

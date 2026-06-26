@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: migrate
+description: Migrate ref store between different formats
+flags:
+  --dry-run: perform the migration, but do not modify the repository
+  --ref-format=: the ref format to migrate the ref store to
+documentation:
+  command: Migrate ref store between different formats.
+  flag:
+    dry-run: |-
+      Perform the migration, but do not modify the repository. The migrated
+      refs will be written into a separate directory that can be inspected
+      separately. The name of the directory will be reported on stdout. This
+      can be used to double check that the migration works as expected before
+      performing the actual migration.
+    ref-format: |-
+      The ref format to migrate the ref store to. Can be one of:
+
+      `files`;; for loose files with packed-refs.
+
+      This is the default.
+
+      `reftable`;; for the reftable format.
+
+      This is the default.

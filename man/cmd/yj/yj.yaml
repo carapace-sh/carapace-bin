@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: yj
+description: Convert between YAML, TOML, JSON, and HCL
+flags:
+    -e: Escape HTML (JSON out only)
+    -h: Show this help message
+    -i: Indent output (JSON or TOML out only)
+    -k: Attempt to parse keys as objects or numbers types (YAML out only)
+    -n: Do not covert inf, -inf, and NaN to/from strings (YAML or TOML only)
+    -v: Show version
+
+documentation:
+  command: >-
+    Convert between YAML, TOML, and JSON. yj transforms structured data
+    between formats via stdin/stdout pipelines. Usage: echo '{"key":"value"}'
+    | yj -tj (JSON to YAML) or yj -yt (YAML to TOML). Supported conversions:
+    -yj (YAML out), -tj (TOML out), -jj (JSON out). Read from file with -f.
+    Pretty-print with -p; compact with -c. Handles streams (multiple
+    documents) with -s. No configuration needed; no external dependencies.
+    Useful for config format conversion in CI/CD pipelines and scripts.

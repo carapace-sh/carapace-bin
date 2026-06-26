@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: horizon:publish
+description: Publish all of the Horizon resources

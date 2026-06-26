@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdfimages
+description: Portable Document Format (PDF) image extractor (version 3.03)
+flags:
+    -?: print usage information
+    -all: equivalent to -png -tiff -j -jp2 -jbig2 -ccitt
+    -ccitt: write CCITT images as CCITT files
+    -f=: first page to convert
+    -h: print usage information
+    -help, --help: print usage information
+    -j: write JPEG images as JPEG files
+    -jbig2: write JBIG2 images as JBIG2 files
+    -jp2: write JPEG2000 images as JP2 files
+    -l=: last page to convert
+    -list: print list of images instead of saving
+    -opw=: owner password (for encrypted files)
+    -p: include page numbers in output file names
+    -png: change the default output format to PNG
+    -print-filenames: print image filenames to stdout
+    -q: don't print any messages or errors
+    -tiff: change the default output format to TIFF
+    -upw=: user password (for encrypted files)
+    -v: print copyright and version info

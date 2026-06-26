@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List available applications.
+flags:
+    --no-all&: List apps from all clusters and proxies.
+    --no-verbose&: Show extra application fields.
+    --query=: Query by predicate language enclosed in single quotes. Supports ==, !=, &&, and || (e.g. --query='labels["key1"] == "value1" && labels["key2"] != "value2"')
+    --search=: List of comma separated search keywords or phrases enclosed in quotations (e.g. --search=foo,bar,"some phrase")
+    -R, --all: List apps from all clusters and proxies.
+    -c, --cluster=: Specify the Teleport cluster to connect
+    -f, --format=: Format output (text, json, yaml)
+    -v, --verbose: Show extra application fields.

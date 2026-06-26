@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diagnose
+description: Generate a zip archive of diagnostic information
+group: interrogator
+flags:
+  --mode=: specify the type of diagnostics that should be collected
+  -o, --output-directory=: place the resulting diagnostics archive in <path>
+  -s, --suffix=: specify an alternate suffix for the diagnostics archive name
+documentation:
+  command: |-
+    Collects detailed information about the user's machine, Git client, and
+    repository state and packages that information into a zip archive. The
+    generated archive can then, for example, be shared with the Git mailing list to
+    help debug an issue or serve as a reference for independent debugging.
+
+    By default, the following information is captured in the archive:
+
+      * 'git version --build-options'
+      * The path to the repository root
+      * The available disk space on the filesystem
+      * The name and size of each packfile, including those in alternate object
+        stores
+      * The total count of loose objects, as well as counts broken down by
+        `.git/objects` subdirectory
+
+    Additional information can be collected by selecting a different diagnostic mode
+    using the `--mode` option.
+
+    This tool differs from [git-bugreport](cmd://git/bugreport) in that it collects much more
+    detailed information with a greater focus on reporting the size and data shape
+    of repository contents.

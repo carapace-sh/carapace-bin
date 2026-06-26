@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clear
+description: Clear hints (re-show on next trigger)
+flags:
+    -h, --help: Print help (see more with '--help')

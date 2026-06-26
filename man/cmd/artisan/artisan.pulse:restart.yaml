@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pulse:restart
+description: Restart any running "work" and "check" commands

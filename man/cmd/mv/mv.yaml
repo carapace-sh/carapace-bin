@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mv
+description: move (rename) files
+flags:
+    --backup=: make a backup of each existing destination file
+    --help: display this help and exit
+    --strip-trailing-slashes: remove any trailing slashes from each SOURCE argument
+    --version: output version information and exit
+    -S, --suffix=: override the usual backup suffix
+    -T, --no-target-directory: treat DEST as a normal file
+    -Z, --context: set SELinux security context of destination file to default type
+    -b: like --backup but does not accept an argument
+    -f, --force: do not prompt before overwriting
+    -i, --interactive: prompt before overwrite
+    -n, --no-clobber: do not overwrite an existing file
+    -t, --target-directory=: move all SOURCE arguments into DIRECTORY
+    -u, --update: move only when the SOURCE file is newer than the destination file or when the destination file is missing
+    -v, --verbose: explain what is being done
+
+documentation:
+  command: >-
+    Move or rename files and directories. mv renames a single SOURCE to
+    DEST, or moves multiple SOURCE files into DIRECTORY (use -t to specify
+    target). By default, overwrites existing files without prompting; use
+    -i for interactive prompts, -n to never overwrite. Make backups of
+    existing destinations with --backup or -b (control suffix with -S).
+    Handle existing files with --update (only replace if source is newer)
+    or --no-clobber. Strip trailing slashes from source with --strip-trailing-slashes.
+    Use -v for verbose output. The --debug flag explains copy operations.

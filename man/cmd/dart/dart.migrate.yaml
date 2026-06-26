@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: migrate
+description: Perform null safety migration on a project
+flags:
+    --apply-changes: Apply the proposed null safety changes to the files on disk.
+    --ignore-errors: Attempt to perform null safety analysis even if the project has analysis errors.
+    --no-web-preview: Print proposed changes to the console.
+    --preview-hostname=: Run the preview server on the specified hostname.
+    --preview-port=: Run the preview server on the specified port.
+    --skip-import-check: Go ahead with migration even if some imported files have not yet been migrated.
+    --summary=: Output a machine-readable summary of migration changes.
+    --web-preview: Show an interactive preview of the proposed null safety changes in a browser window.
+    -h, --help: Print this usage information.
+    -v, --verbose: Show additional command output.
+
+documentation:
+  command: >-
+    Migrate a Dart package to null safety. Analyzes code and applies nullability annotations automatically.

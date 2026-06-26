@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: split
+description: split a file into pieces
+flags:
+    --additional-suffix=: append an additional SUFFIX to file names
+    --filter=: write to shell COMMAND; file name is $FILE
+    --help: display this help and exit
+    --hex-suffixes=: same as -x, but allow setting the start value
+    --numeric-suffixes=: same as -d, but allow setting the start value
+    --verbose: print a diagnostic just before each
+    --version: output version information and exit
+    -C, --line-bytes=: put at most SIZE bytes of records per output file
+    -a, --suffix-length=: generate suffixes of length N (default 2)
+    -b, --bytes=: put SIZE bytes per output file
+    -d: use numeric suffixes starting at 0, not alphabetic
+    -e, --elide-empty-files: do not generate empty output files with '-n'
+    -l, --lines=: put NUMBER lines/records per output file
+    -n, --number=: generate CHUNKS output files; see explanation below
+    -t, --separator=: use SEP instead of newline as the record separator;
+    -u, --unbuffered: immediately copy input to output with '-n r/...'
+    -x: use hex suffixes starting at 0, not alphabetic

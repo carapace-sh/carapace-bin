@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: branches
+description: Open an overview of the repositories' branches
+flags:
+    --help: Show this message and exit.

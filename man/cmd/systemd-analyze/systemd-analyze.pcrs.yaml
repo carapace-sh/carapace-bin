@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pcrs
+description: Show TPM2 PCRs and their names

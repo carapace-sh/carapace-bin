@@ -1,0 +1,108 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rg
+description: recursively search current directory for lines matching a pattern
+flags:
+    --binary: Enabling this flag will cause ripgrep to search binary files
+    --block-buffered: When enabled, ripgrep will use block buffering
+    --color=: When to use colors
+    --colors=: Color settings for use in the output
+    --column: Show column numbers (1-based)
+    --context-separator=: The string used to separate non-contiguous context lines in the output
+    --count-matches: Suppress normal output and show the number of individual matches
+    --crlf: When enabled, ripgrep will treat CRLF as a line terminator instead
+    --debug: Show debug messages
+    --dfa-size-limit=: The upper size limit of the regex DFA. The default limit is 10M
+    --engine=: Specify which regular expression engine to use
+    --field-context-separator=: Set the field context separator for contextual lines
+    --field-match-separator=: Set the field match separator for matching lines
+    --files: Print each file that would be searched without actually performing the search
+    --files-without-match: Only print the paths that contain zero matches
+    --generate=: Generate special output of man pages and completion scripts
+    --glob-case-insensitive: Process glob patterns given with the -g/--glob flag case insensitively
+    --heading: Print the file path above clusters of matches from each file instead
+    --hostname-bin=: Control how ripgrep determines this system's hostname
+    --hyperlink-format=: Set the format of hyperlinks to use when printing results
+    --iglob=: Include or exclude files and directories for searching that match the given
+    --ignore-file-case-insensitive: Process ignore files (.gitignore, .ignore, etc.) case insensitively
+    --ignore-file=: Specifies a path to one or more .gitignore format rules files
+    --include-zero: When used with --count or --count-matches, print the number of matches for
+    --json: Enable printing results in a JSON Lines format
+    --line-buffered: When enabled, ripgrep will use line buffering
+    --max-columns-preview: When the '--max-columns' flag is used, ripgrep will by default completely
+    --max-filesize=: Ignore files larger than NUM in size. This does not apply to directories
+    --mmap: Search using memory maps when possible
+    --multiline-dotall: Enable "dot all" mode, which causes '.' to match line terminators
+    --no-config: Never read configuration files
+    --no-heading: Don't group matches by each file
+    --no-ignore: Don't respect ignore files (.gitignore, .ignore, etc.)
+    --no-ignore-dot: Don't respect .ignore files
+    --no-ignore-exclude: Don't respect ignore files that are manually configured for the repository
+    --no-ignore-files: When set, any --ignore-file flags, even ones that come after this flag, are
+    --no-ignore-global: Don't respect ignore files that come from "global" sources such as git's
+    --no-ignore-messages: Suppresses all error messages related to parsing ignore files such as .ignore
+    --no-ignore-parent: Don't respect ignore files (.gitignore, .ignore, etc.) in parent directories
+    --no-ignore-vcs: Don't respect version control ignore files (.gitignore, etc.)
+    --no-messages: Suppress all error messages related to opening and reading files
+    --no-mmap: Never use memory maps, even when they might be faster
+    --no-pcre2-unicode: DEPRECATED. Use --no-unicode instead
+    --no-require-git: Respect source control ignore files even if no git repository is present
+    --no-unicode: By default, ripgrep will enable "Unicode mode" in all of its regexes
+    --null-data: Enabling this option causes ripgrep to use NUL as a line terminator instead of
+    --one-file-system: Do not cross file system boundaries relative to where the search started from
+    --passthru: Print both matching and non-matching lines
+    --path-separator=: Set the path separator to use when printing file paths
+    --pcre2-version: When this flag is present, ripgrep will print the version of PCRE2 in use,
+    --pre-glob=: Works in conjunction with the --pre flag to limit which files a preprocessor is run with
+    --pre=: Search the standard output of COMMAND PATH instead of the contents of PATH
+    --regex-size-limit=: ""
+    --sort=: Sort results in ascending order
+    --sortr=: Sort results in descending order
+    --stats: Print aggregate statistics about this ripgrep search
+    --stop-on-nonmatch: Stop searching after a non-match
+    --trace: Show trace messages with even more detail than --debug
+    --trim: When set, all ASCII whitespace at the beginning of each line printed will be
+    --type-add=: Add a new glob for a particular file type
+    --type-clear=: Clear the file type globs previously defined for TYPE
+    --type-list: Show all supported file types and their corresponding globs
+    --vimgrep: Show results with every match on its own line, including line numbers and
+    -., --hidden: Search hidden files and directories
+    -0, --null: Whenever a file path is printed, follow it with a NUL byte
+    -A, --after-context=: Show NUM lines after each match
+    -B, --before-context=: Show NUM lines before each match
+    -C, --context=: Show NUM lines before and after each match
+    -E, --encoding=: Specify the text encoding that ripgrep will use on all files searched
+    -F, --fixed-strings: Treat the pattern as a literal string instead of a regular expression
+    -H, --with-filename: Display the file path for matches
+    -I, --no-filename: Never print the file path with the matched lines
+    -L, --follow: When this flag is enabled, ripgrep will follow symbolic links while traversing
+    -M, --max-columns=: Don't print lines longer than this limit in bytes
+    -N, --no-line-number: Suppress line numbers. This is enabled by default when not searching in a
+    -P, --pcre2: When this flag is present, ripgrep will use the PCRE2 regex engine instead of
+    -S, --smart-case: Searches case insensitively if the pattern is all lowercase
+    -T, --type-not=: Do not search files matching TYPE
+    -U, --multiline: Enable matching across multiple lines
+    -V, --version: Prints version information
+    -a, --text: Search binary files as if they were text
+    -b, --byte-offset: Print the 0-based byte offset within the input file before each line of output
+    -c, --count: Suppress normal output and show the number of lines that match
+    -d, --max-depth=: Limit the depth of directory traversal to NUM levels beyond the paths given
+    -e, --regexp=: A pattern to search for
+    -f, --file=: Search for patterns from the given file, with one pattern per line
+    -g, --glob=: Include or exclude files and directories for searching that match the given
+    -h, --help: Prints help information
+    -i, --ignore-case: When this flag is provided, the given patterns will be searched case
+    -j, --threads=: The approximate number of threads to use
+    -l, --files-with-matches: Only print the paths with at least one match
+    -m, --max-count=: Limit the number of matching lines per file searched to NUM
+    -n, --line-number: Show line numbers (1-based)
+    -o, --only-matching: Print only the matched (non-empty) parts of a matching line, with each such
+    -p, --pretty: This is a convenience alias for '--color always --heading --line-number'
+    -q, --quiet: Do not print anything to stdout
+    -r, --replace=: Replace every match with the text given when printing results
+    -s, --case-sensitive: Search case sensitively
+    -t, --type=: Only search files matching TYPE
+    -u, --unrestricted: Reduce the level of smart searching
+    -v, --invert-match: Show lines that do not match the given patterns
+    -w, --word-regexp: Only show matches surrounded by word boundaries
+    -x, --line-regexp: Only show matches surrounded by line boundaries
+    -z, --search-zip: Search in compressed files

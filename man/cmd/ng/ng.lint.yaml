@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lint
+description: Runs linting tools on Angular app code in a given project folder
+flags:
+    -c, --configuration=: One or more named builder configurations

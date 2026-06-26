@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List all installed formulae and casks
+group: main
+flags:
+    --cask: List only casks, or treat all named arguments as casks.
+    --debug: Display any debugging information.
+    --formula: List only formulae, or treat all named arguments as formulae.
+    --full-name: Print formulae with fully-qualified names. Unless `--full-name`, `--versions` or `--pinned` are passed, other options (i.e. `-1`, `-l`, `-r` and `-t`) are passed to `ls`(1) which produces the actual output.
+    --help: Show this message.
+    --multiple: Only show formulae with multiple versions installed.
+    --pinned: List only pinned formulae, or only the specified (pinned) formulae if <formula> are provided. See also `pin`, `unpin`.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.
+    --versions: Show the version number for installed formulae, or only the specified formulae if <formula> are provided.
+    "-1": Force output to be one entry per line. This is the default when output is not to a terminal.
+    -l: List formulae and/or casks in long format. Has no effect when a formula or cask name is passed as an argument.
+    -r: Reverse the order of the formulae and/or casks sort to list the oldest entries first. Has no effect when a formula or cask name is passed as an argument.
+    -t: Sort formulae and/or casks by time modified, listing most recently modified first. Has no effect when a formula or cask name is passed as an argument.

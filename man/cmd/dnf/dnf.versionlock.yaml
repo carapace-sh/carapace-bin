@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: versionlock <subcommand> <package-spec>...
+description: protect packages from updates to newer versions

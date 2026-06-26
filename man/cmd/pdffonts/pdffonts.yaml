@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdffonts
+description: Portable Document Format (PDF) font analyzer (version 3.03)
+flags:
+    -?: print usage information
+    -f=: first page to examine
+    -h: print usage information
+    -help, --help: print usage information
+    -l=: last page to examine
+    -opw=: owner password (for encrypted files)
+    -subst: show font substitutions
+    -upw=: user password (for encrypted files)
+    -v: print copyright and version info

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: attobj
+description: Parse a stored attestation object
+hidden: true

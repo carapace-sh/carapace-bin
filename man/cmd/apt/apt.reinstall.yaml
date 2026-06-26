@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reinstall [pattern]...
+description: reinstall packages
+flags:
+    --allow-change-held-packages: allow changing held packages
+    --allow-downgrades: allow downgrades
+    --allow-insecure-repositories: allow insecure repositories
+    --allow-remove-essential: allow removal of essential packages
+    --allow-unauthenticated: allow unauthenticated packages
+    --arch-only: only process architecture-dependent build-dependencies
+    --assume-no: automatic "no" to all prompts
+    --auto-remove: automatically remove packages
+    --download: download the given binary package into the current directory
+    --dry-run: perform a simulation of events taken
+    --fix-missing: fix missing packages
+    --fix-policy: fix policies
+    --force-yes: continue without prompting if it is changing held packages
+    --ignore-hold: ignore package holds
+    --install-recommends: install recommended packages
+    --install-suggests: install suggested packages
+    --no-install-recommends: do not install recommended packages
+    --no-install-suggests: do not install suggested packages
+    --no-list-columns: display package lists without arranging them in columns
+    --no-strict-pinning: consider all versions of a package
+    --only-upgrade: only updgrade packages
+    --print-uris: print file URIs
+    --purge: remove and purge packages
+    --reinstall: reinstall package
+    --remove: remove packages
+    --show-progress: show progress
+    --solver=: set solver
+    --trivial-only: only perform operations that are 'trivial'
+    --upgrade: upgrade and install new dependencies
+    --verbose-versions: show full versions
+    -d, --download-only: do not unpack source package
+    -m, --ignore-missing: ignore missing packages
+    -s, --simulate: perform a simulation of events taken
+    -u, --show-upgraded: show upgraded packages
+    -y, --assume-yes: automatic "yes" to all prompts

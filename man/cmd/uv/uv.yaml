@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uv
+
+documentation:
+  command: >-
+    Python package installer and resolver written in Rust. uv is an
+    extremely fast replacement for pip, pip-tools, and pipx. Install
+    packages with uv pip install, create venvs with uv venv. Use uv
+    run to execute scripts in isolated environments. Manage tool chains
+    with uv tool install (like pipx). Resolve dependencies with uv
+    pip compile (replaces pip-compile). Sync environments with uv pip
+    sync. Manage multiple Python versions with uv python (like pyenv).
+    Drop-in pip replacement: uv pip install package. Lock files ensure
+    reproducible installs. No cache by default; use --cache for caching.

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unpin {<number> | <url>}
+description: Unpin a issue
+group: Targeted commands

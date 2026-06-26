@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repo <command>
+description: Manage repositories
+group: core
+documentation:
+    command: |
+        Work with GitHub repositories. Create new repos with `gh repo create`,
+        clone existing ones with `gh repo clone`, and manage repository settings
+        like visibility, features, and deploy keys.

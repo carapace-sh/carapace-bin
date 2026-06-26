@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nm
+description: Nm lists the symbols defined or used by an object file, archive, or executabl
+flags:
+    -n: an alias for -sort address (numeric)
+    -size: print symbol size in decimal between address and type
+    -sort=: sort output in the given order (default name)
+    -type: print symbol type after name

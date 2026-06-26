@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+description: Manage the npm configuration files
+persistentflags:
+    -g, --global: operate in global mode

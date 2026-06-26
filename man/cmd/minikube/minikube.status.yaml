@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: Gets the status of a local Kubernetes cluster
+group: basic
+flags:
+    -f, --format=: 'Go template format string for the status output.  The format for Go templates can be found here: https://pkg.go.dev/text/template'
+    -l, --layout=: 'output layout (EXPERIMENTAL, JSON only): ''nodes'' or ''cluster'''
+    -n, --node=: The node to check status for. Defaults to control plane. Leave blank with default format for status on all nodes.
+    -o, --output=: minikube status --output OUTPUT. json, text
+    -w, --watch?: Continuously listing/getting the status with optional interval duration.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: jekyll
+description: hugo import from Jekyll
+flags:
+    --force: allow import into non-empty target directory

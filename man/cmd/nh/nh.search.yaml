@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Search packages by querying search.nixos.org
+flags:
+    -P, --platforms: Show supported platforms for each package
+    -c, --channel=: Name of the channel to query
+    -j, --json: Output results as JSON
+    -l, --limit=: Number of search results to display

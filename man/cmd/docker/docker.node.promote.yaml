@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: promote NODE [NODE...]
+description: Promote one or more nodes to manager in the swarm

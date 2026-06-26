@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: invoke
+description: Invoke an OpenFaaS function
+flags:
+    --content-type=: The content-type HTTP header such as application/json
+    --envsubst: Substitute environment variables in stack.yml file
+    --key=: key to be used to sign the request (must be used with --sign)
+    --name=: Name of the deployed function
+    --query=*: pass query-string options
+    --sign=: name of HTTP request header to hold the signature
+    --tls-no-verify: Disable TLS validation
+    -H, --header=*: pass HTTP request header
+    -a, --async: Invoke the function asynchronously
+    -g, --gateway=: Gateway URL starting with http(s)://
+    -m, --method=: pass HTTP request method
+    -n, --namespace=: Namespace of the deployed function

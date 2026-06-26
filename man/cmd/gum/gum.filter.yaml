@@ -1,0 +1,163 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: filter
+description: Filter items from a list
+flags:
+    --cursor-text.align=: Text Alignment
+    --cursor-text.background=: Background Color
+    --cursor-text.bold: Bold text
+    --cursor-text.border-background=: Border Background Color
+    --cursor-text.border-foreground=: Border Foreground Color
+    --cursor-text.border=: Border Style
+    --cursor-text.faint: Faint text
+    --cursor-text.foreground=: Foreground Color
+    --cursor-text.height=: Text height
+    --cursor-text.italic: Italicize text
+    --cursor-text.margin=: Text margin
+    --cursor-text.padding=: Text padding
+    --cursor-text.strikethrough: Strikethrough text
+    --cursor-text.underline: Underline text
+    --cursor-text.width=: Text width
+    --fuzzy: Enable fuzzy matching; otherwise match from start of word
+    --fuzzy-sort: Sort fuzzy results by their scores
+    --header.align=: Text Alignment
+    --header.background=: Background Color
+    --header.bold: Bold text
+    --header.border-background=: Border Background Color
+    --header.border-foreground=: Border Foreground Color
+    --header.border=: Border Style
+    --header.faint: Faint text
+    --header.foreground=: Foreground Color
+    --header.height=: Text height
+    --header.italic: Italicize text
+    --header.margin=: Text margin
+    --header.padding=: Text padding
+    --header.strikethrough: Strikethrough text
+    --header.underline: Underline text
+    --header.width=: Text width
+    --header=: Header value
+    --height=: Input height
+    --indicator.align=: Text Alignment
+    --indicator.background=: Background Color
+    --indicator.bold: Bold text
+    --indicator.border-background=: Border Background Color
+    --indicator.border-foreground=: Border Foreground Color
+    --indicator.border=: Border Style
+    --indicator.faint: Faint text
+    --indicator.foreground=: Foreground Color
+    --indicator.height=: Text height
+    --indicator.italic: Italicize text
+    --indicator.margin=: Text margin
+    --indicator.padding=: Text padding
+    --indicator.strikethrough: Strikethrough text
+    --indicator.underline: Underline text
+    --indicator.width=: Text width
+    --indicator=: Character for selection
+    --input-delimiter=: Option delimiter when reading from STDIN
+    --limit=: Maximum number of options to pick
+    --match.align=: Text Alignment
+    --match.background=: Background Color
+    --match.bold: Bold text
+    --match.border-background=: Border Background Color
+    --match.border-foreground=: Border Foreground Color
+    --match.border=: Border Style
+    --match.faint: Faint text
+    --match.foreground=: Foreground Color
+    --match.height=: Text height
+    --match.italic: Italicize text
+    --match.margin=: Text margin
+    --match.padding=: Text padding
+    --match.strikethrough: Strikethrough text
+    --match.underline: Underline text
+    --match.width=: Text width
+    --no-limit: Pick unlimited number of options (ignores limit)
+    --output-delimiter=: Option delimiter when writing to STDOUT
+    --padding=: Padding
+    --placeholder.align=: Text Alignment
+    --placeholder.background=: Background Color
+    --placeholder.bold: Bold text
+    --placeholder.border-background=: Border Background Color
+    --placeholder.border-foreground=: Border Foreground Color
+    --placeholder.border=: Border Style
+    --placeholder.faint: Faint text
+    --placeholder.foreground=: Foreground Color
+    --placeholder.height=: Text height
+    --placeholder.italic: Italicize text
+    --placeholder.margin=: Text margin
+    --placeholder.padding=: Text padding
+    --placeholder.strikethrough: Strikethrough text
+    --placeholder.underline: Underline text
+    --placeholder.width=: Text width
+    --placeholder=: Placeholder value
+    --prompt.align=: Text Alignment
+    --prompt.background=: Background Color
+    --prompt.bold: Bold text
+    --prompt.border-background=: Border Background Color
+    --prompt.border-foreground=: Border Foreground Color
+    --prompt.border=: Border Style
+    --prompt.faint: Faint text
+    --prompt.foreground=: Foreground Color
+    --prompt.height=: Text height
+    --prompt.italic: Italicize text
+    --prompt.margin=: Text margin
+    --prompt.padding=: Text padding
+    --prompt.strikethrough: Strikethrough text
+    --prompt.underline: Underline text
+    --prompt.width=: Text width
+    --prompt=: Prompt to display
+    --reverse: Display from the bottom of the screen
+    --select-if-one: Select the given option if there is only one
+    --selected-indicator.align=: Text Alignment
+    --selected-indicator.background=: Background Color
+    --selected-indicator.bold: Bold text
+    --selected-indicator.border-background=: Border Background Color
+    --selected-indicator.border-foreground=: Border Foreground Color
+    --selected-indicator.border=: Border Style
+    --selected-indicator.faint: Faint text
+    --selected-indicator.foreground=: Foreground Color
+    --selected-indicator.height=: Text height
+    --selected-indicator.italic: Italicize text
+    --selected-indicator.margin=: Text margin
+    --selected-indicator.padding=: Text padding
+    --selected-indicator.strikethrough: Strikethrough text
+    --selected-indicator.underline: Underline text
+    --selected-indicator.width=: Text width
+    --selected-prefix=: Character to indicate selected items (hidden if limit is 1)
+    --selected=*: Options that should start as selected (selects all if given *)
+    --show-help: Show help keybinds
+    --sort: Sort fuzzy results by their scores
+    --strict: Only returns if anything matched. Otherwise return Filter
+    --strip-ansi: Strip ANSI sequences when reading from STDIN
+    --text.align=: Text Alignment
+    --text.background=: Background Color
+    --text.bold: Bold text
+    --text.border-background=: Border Background Color
+    --text.border-foreground=: Border Foreground Color
+    --text.border=: Border Style
+    --text.faint: Faint text
+    --text.foreground=: Foreground Color
+    --text.height=: Text height
+    --text.italic: Italicize text
+    --text.margin=: Text margin
+    --text.padding=: Text padding
+    --text.strikethrough: Strikethrough text
+    --text.underline: Underline text
+    --text.width=: Text width
+    --timeout=: Timeout until filter command aborts
+    --unselected-prefix.align=: Text Alignment
+    --unselected-prefix.background=: Background Color
+    --unselected-prefix.bold: Bold text
+    --unselected-prefix.border-background=: Border Background Color
+    --unselected-prefix.border-foreground=: Border Foreground Color
+    --unselected-prefix.border=: Border Style
+    --unselected-prefix.faint: Faint text
+    --unselected-prefix.foreground=: Foreground Color
+    --unselected-prefix.height=: Text height
+    --unselected-prefix.italic: Italicize text
+    --unselected-prefix.margin=: Text margin
+    --unselected-prefix.padding=: Text padding
+    --unselected-prefix.strikethrough: Strikethrough text
+    --unselected-prefix.underline: Underline text
+    --unselected-prefix.width=: Text width
+    --unselected-prefix=: Character to indicate unselected items (hidden if limit is 1)
+    --value=: Initial filter value
+    --width=: Input width

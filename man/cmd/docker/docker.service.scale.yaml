@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scale SERVICE=REPLICAS [SERVICE=REPLICAS...]
+description: Scale one or multiple replicated services
+flags:
+    -d, --detach: Exit immediately instead of waiting for the service to converge

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install-multiple
+description: push multiple APKs to the device for a single package and install them
+flags:
+    --instant: cause the app to be installed as an ephemeral install app
+    -d: TODO no flag description
+    -g: grant all runtime permissions
+    -l: TODO no flag description
+    -r: replace existing application
+    -s: TODO no flag description
+    -t: allow test packages

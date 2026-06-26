@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: shutdown
+description: Stops the %{product} server.
+flags:
+    --iff_heap_size_greater_than=: Iff non-zero, then shutdown will only shut down the server if the total memory (in MB) consumed by the JVM exceeds this value.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: events [OPTIONS]
+description: Get real time events from the server
+flags:
+    --format=: 'Format output using a custom template:'
+    --since=: Show all events created since timestamp
+    --until=: Stream events until this timestamp
+    -f, --filter=: Filter output based on conditions provided

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scale [SERVICE=REPLICAS...]
+description: 'Scale services '
+flags:
+    --no-deps: Don't start linked services

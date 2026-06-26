@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+aliases:
+    - list
+description: List access requests.
+flags:
+    --my-requests: Only show requests created by current user
+    --no-my-requests&: Only show requests created by current user
+    --no-reviewable&: Only show requests reviewable by current user
+    --no-suggested&: Only show requests that suggest current user as reviewer
+    --reviewable: Only show requests reviewable by current user
+    --suggested: Only show requests that suggest current user as reviewer
+    -f, --format=: Format output (text, json, yaml)

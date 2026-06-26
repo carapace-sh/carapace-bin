@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: write
+description: Write a commit-graph file based on the commits found in packfiles
+flags:
+  --append: Include all commits that are present in the existing commit-graph file
+  --changed-paths: Compute and write information about the paths changed between a commit and its first parent
+  --max-new-filters=: Generate at most n new Bloom filters
+  --no-max-new-filters: Do not limit Bloom filters
+  --no-progress: Turn progress off explicitly
+  --object-dir=: Use given directory for the location of packfiles and commit-graph file
+  --progress: Turn progress on explicitly
+  --reachable: Generate the new commit graph by walking commits starting at all refs.
+  --split?: Write the commit-graph as a chain of multiple commit-graph files stored in <dir>/info/commit-graphs
+  --stdin-commits: Generate the new commit graph by walking commits starting at the commits specified in stdin as a list of OIDs in hex, one OID per line
+  --stdin-packs: Generate the new commit graph by walking objects only in the specified  pack-indexe

@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh-keygen
+description: OpenSSH authentication key utility
+flags:
+    -A: Generate missing host keys for each of the key types
+    -B: Show the bubblebabble digest of specified private or public key file
+    -C=: Provides a new comment
+    -D=: Download the public keys provided by the PKCS#11 shared library pkcs11
+    -E=: Specifies the hash algorithm used when displaying key fingerprints
+    -F=: Search for the specified hostname in a known_hosts file
+    -H: Hash a known_hosts file
+    -I=: Specify the key identity when signing a public key
+    -K: Download resident keys from a FIDO authenticator
+    -L: Prints the contents of one or more certificates
+    -M=: Moduli
+    -N=: Provides the new passphrase
+    -O=*: Specify a key/value option
+    -P=: Provides the (old) passphrase
+    -Q: Test whether keys have been revoked in a KRL
+    -R=: Removes all keys belonging to the specified hostname from a known_hosts file
+    -U: Indicates that a CA key resides in a ssh-agent
+    -V=: Specify a validity interval when signing a certificate
+    -Y=: Operation
+    -Z=: Specifies the cipher to use for encryption when writing an OpenSSH-format private key file
+    -a=: Number of KDF rounds used when saving a private key
+    -b=: Specifies the number of bits in the key to create
+    -c: Requests changing the comment in the private and public key files
+    -e: This option will read a private or public OpenSSH key file and print to stdout
+    -f=: Specifies the filename of the key file
+    -g: Use generic DNS format when printing fingerprint resource records
+    -h: When signing a key, create a host certificate instead of a user certificate
+    -i: Read an unencrypted key file and print an OpenSSH compatible key to stdout
+    -k: Generate a KRL file
+    -l: Show fingerprint of specified public key file
+    -m=: Specify a key format for key generation
+    -n=: Specify one or more principals to be included in a certificate
+    -p: Requests changing the passphrase of a private key file
+    -q: Silence ssh-keygen
+    -r=: Print the SSHFP fingerprint resource record named hostname for the specified public key file
+    -s=: Certify (sign) a public key using the specified CA key
+    -t=: Specifies the type of key to create
+    -u: Update a KRL
+    -v: Verbose mode
+    -w=: Specifies a path to a library that will be used when creating FIDO authenticator-hosted keys
+    -y: This option will read a private OpenSSH format file and print an OpenSSH public key to stdout
+    -z=: Specifies a serial number to be embedded in the certificate

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nova:partition <name>
+description: Create a new metric (partition) class

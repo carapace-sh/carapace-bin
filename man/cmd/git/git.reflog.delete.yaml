@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Delete single entries from the reflog
+flags:
+  --rewrite: Adjust a reflogs "old" SHA-1 to be equal to the "new" SHA-1 field of the entry that now precedes it
+  --updateref: Update the reference to the value of the top reflog entry
+  --verbose: Print extra information on screen.
+  -n, --dry-run: Do not actually prune any entries
+documentation:
+  flag:
+    dry-run: |-
+      Do not actually prune any entries; just show what would have
+      been pruned.
+    rewrite: |-
+      If a reflog entry's predecessor is pruned, adjust its "old"
+      SHA-1 to be equal to the "new" SHA-1 field of the entry that
+      now precedes it.
+    updateref: |-
+      Update the reference to the value of the top reflog entry (i.e.
+      <ref>@\{0\}) if the previous top entry was pruned.  (This
+      option is ignored for symbolic references.)
+    verbose: Print extra information on screen.

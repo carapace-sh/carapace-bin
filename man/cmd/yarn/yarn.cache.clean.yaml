@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean
+description: Remove the shared cache files
+flags:
+    --all: Remove both the global cache files and the local cache files of the current project
+    --mirror: Remove the global cache files instead of the local cache files

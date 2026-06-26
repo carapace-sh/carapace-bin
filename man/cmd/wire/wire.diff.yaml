@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff
+description: output a diff between existing wire_gen.go files and what gen would generate
+flags:
+    -header_file=: path to file to insert as a header in wire_gen.go
+    -tags=: append build tags to the default wirebuild

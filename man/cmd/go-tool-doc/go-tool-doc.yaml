@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: go-tool-doc
+description: show documentation for package or symbol
+flags:
+    -C=: Change to dir before running the command
+    -all: Show all the documentation for the package
+    -c: Respect case when matching symbols
+    -cmd: Treat a command like a regular package
+    -http: Serve HTML docs over HTTP
+    -short: One-line representation for each symbol
+    -src: Show the full source code for the symbol
+    -u: Show documentation for unexported as well

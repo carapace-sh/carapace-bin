@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mr <command> [flags]
+description: Create, view, and manage merge requests.
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.
+
+documentation:
+  command: >-
+    Create, view, and manage GitLab merge requests. Key subcommands: `glab mr create` (open a new MR), `glab mr list` (show MRs), `glab mr view` (show MR details), `glab mr checkout` (checkout locally), `glab mr merge` (merge the MR), `glab mr close` (close an MR), `glab mr update` (modify MR), `glab mr approve` / `glab mr revoke` (change approval status), `glab mr subscribe` / `glab mr todo` (notifications). Use `-R` to target a specific repository.

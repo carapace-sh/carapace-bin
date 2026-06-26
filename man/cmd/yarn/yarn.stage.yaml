@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stage
+description: Add all yarn files to your vcs
+group: general
+flags:
+    -c, --commit: Commit the staged files
+    -n, --dry-run: Print the commit message and the list of modified files without staging / committing
+    -r, --reset: Remove all files from the staging area

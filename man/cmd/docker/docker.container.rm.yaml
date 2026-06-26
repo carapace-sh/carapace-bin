@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm [OPTIONS] CONTAINER [CONTAINER...]
+aliases:
+    - rm
+    - remove
+description: Remove one or more containers
+flags:
+    -f, --force: Force the removal of a running container (uses SIGKILL)
+    -l, --link: Remove the specified link
+    -v, --volumes: Remove anonymous volumes associated with the container

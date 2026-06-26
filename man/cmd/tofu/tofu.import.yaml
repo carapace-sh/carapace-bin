@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import [options] ADDR ID
+description: Associate existing infrastructure with a Terraform resource
+flags:
+    -config?: Path to a directory of Terraform configuration files
+    -ignore-remote-version: A rare option used for the remote backend only
+    -input: Disable interactive input prompts
+    -lock: Don't hold a state lock during the operation
+    -lock-timeout?: Duration to retry a state lock
+    -no-color: If specified, output won't contain any color
+    -var-file?*: Set variables in the Terraform configuration from a file
+    -var=*: Set a variable in the Terraform configuration

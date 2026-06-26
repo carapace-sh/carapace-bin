@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: viewnior
+description: simple, fast and elegant image viewer
+flags:
+    --display=: X display to use
+    --fullscreen: ""
+    --help-all: Show all help options
+    --help-gtk: Show GTK+ Options
+    --slideshow: ""
+    --version: ""
+    -h, --help: Show help options

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remote-delete [OPTION…] NAME
+description: Delete a remote repository
+group: repository
+flags:
+    --force: Remove remote even if in use
+    --installation=: Work on a non-default system-wide installation
+    --ostree-verbose: Show OSTree debug information
+    --system: Work on the system-wide installation (default)
+    -h, --help: Show help options
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

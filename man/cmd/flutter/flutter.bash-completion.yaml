@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bash-completion
+description: Output command line shell completion setup scripts
+flags:
+    --no-overwrite: Causes the given shell completion setup script not to be overwritten if it already exists.
+    --overwrite: Causes the given shell completion setup script to be overwritten if it already exists.
+    -h, --help: Print this usage information.

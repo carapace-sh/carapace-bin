@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: link
+description: Create a custom toolchain by symlinking to a directory
+flags:
+    -h, --help: Print help

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: export [OPTIONS] CONTAINER
+description: Export a container's filesystem as a tar archive
+flags:
+    -o, --output=: Write to a file, instead of STDOUT

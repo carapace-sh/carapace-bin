@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: windowfocus
+description: Focus a window
+flags:
+    --sync: After sending the window focus request, wait until the window is actually focused

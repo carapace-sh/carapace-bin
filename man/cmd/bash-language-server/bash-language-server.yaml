@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    A language server for Bash shell scripts, providing IDE features
+    like diagnostics, autocompletion, hover information, and go-to-
+    definition for shell script editing.
+description: A language server for Bash
+flags:
+    -h, --help: show help
+    -v, --version: show version

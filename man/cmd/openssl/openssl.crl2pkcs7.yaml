@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: crl2pkcs7
+description: CRL to PKCS#7 Conversion
+group: standard
+flags:
+    -certfile=: File of chain of certs to a trusted CA; can be repeated
+    -in=: Input file
+    -inform=: Input format - DER or PEM
+    -nocrl: No crl to load, just certs from '-certfile'
+    -out=: Output file
+    -outform=: Output format - DER or PEM
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter

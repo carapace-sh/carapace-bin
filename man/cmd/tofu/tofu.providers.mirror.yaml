@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mirror [options] <target-dir>
+description: Save local copies of all required provider plugin
+flags:
+    -platform?: Choose which target platform to build a mirror for

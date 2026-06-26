@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: list the stash entries that you currently have
+documentation:
+  command: |-
+    List the stash entries that you currently have.  Each 'stash entry' is
+    listed with its name (e.g. `stash@{0}` is the latest entry, `stash@{1}` is
+    the one before, etc.), the name of the branch that was current when the
+    entry was made, and a short description of the commit the entry was
+    based on.
+
+    ```
+    stash@{0}: WIP on submit: 6ebd0e2... Update git-stash documentation
+    stash@{1}: On master: 9cc0589... Add git-stash
+    ```
+
+    The command takes options applicable to the `git log`
+    command to control what is shown and how. See [git-log](cmd://git/log).

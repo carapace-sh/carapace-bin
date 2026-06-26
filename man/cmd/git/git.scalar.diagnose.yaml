@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diagnose
+description: Collect diagnostic information for a Scalar enlistment
+
+documentation:
+  command: >-
+    Collect diagnostic information for a Scalar enlistment. When reporting issues with Scalar, it is often helpful to provide the information gathered by this command, including logs and certain statistics describing the data shape of the current enlistment. The output is a `.zip` file written into a directory adjacent to the worktree in the `src` directory.

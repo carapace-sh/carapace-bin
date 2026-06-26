@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [OPTIONS]
+description: List pull requests related to the project
+flags:
+    --help: Show this message and exit
+    --no-web: Open overview of issues in the web browser
+    -L, --limit=: Maximum number of items to fetch
+    -a, --assignee=: Filter by assigned reviewers
+    -l, --label=: Filter by labels
+    -s, --state=: Filter by state
+    -w, --web: Open overview of issues in the web browser

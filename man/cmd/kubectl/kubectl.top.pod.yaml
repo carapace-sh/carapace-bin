@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pod [NAME | -l label]
+aliases:
+    - pods
+    - po
+description: Display resource (CPU/memory) usage of pods
+flags:
+    --containers: If present, print usage of containers within a pod.
+    --field-selector=: Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.
+    --no-headers: If present, print output without headers.
+    --show-swap: Print pod resources related to swap memory.
+    --sort-by=: If non-empty, sort pods list using specified field. The field can be either 'cpu' or 'memory'.
+    --sum: Print the sum of the resource usage
+    --use-protocol-buffers: Enables using protocol-buffers to access Metrics API.
+    -A, --all-namespaces: If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.
+    -l, --selector=: Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.

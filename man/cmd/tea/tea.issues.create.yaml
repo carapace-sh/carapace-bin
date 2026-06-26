@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+aliases:
+    - c
+description: Create an issue on repository
+flags:
+    -D, --deadline=: Deadline timestamp to assign
+    -L, --labels=: Comma-separated list of labels to assign
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -a, --assignees=: Comma-separated list of usernames to assign
+    -d, --description=: ""
+    -l, --login=: Use a different Gitea Login. Optional
+    -m, --milestone=: Milestone to assign
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional
+    -t, --title=: ""
+    -v, --referenced-version=: commit-hash or tag name to assign

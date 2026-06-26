@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: release <command>
+description: Manage releases
+group: core
+documentation:
+    command: |
+        Manage GitHub releases. Create releases with `gh release create`,
+        view them with `gh release view`, and upload assets with `gh release upload`.
+        Use `-R` or `--repo` to operate on releases in a different repository.
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

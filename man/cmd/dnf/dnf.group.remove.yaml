@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove [options] <group-spec>...
+description: remove groups
+flags:
+    --no-packages: operate on groups without manipulating packages
+    --with-optional: include optional packages

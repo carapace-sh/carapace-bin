@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: images [OPTIONS] [SERVICE...]
+description: List images used by the created containers
+flags:
+    --format=: 'Format the output. Values: [table | json]'
+    -q, --quiet: Only display IDs

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: chibios-confmigrate
+description: Generates a migrated ChibiOS configuration file
+flags:
+    -d, --delete: migration will delete the input file
+    -f, --force: Re-migrates an already migrated file
+    -h, --help: show this help message and exit
+    -i, --input=: Specify input config file.
+    -o, --overwrite: Overwrites the input file during migration.
+    -r, --reference=: Specify the reference file to compare against

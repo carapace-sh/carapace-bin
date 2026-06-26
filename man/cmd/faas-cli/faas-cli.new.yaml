@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new
+description: Create a new template in the current folder with the name given as name
+flags:
+    --cpu-limit=: Set a limit for the CPU
+    --cpu-request=: Set a request value for the CPU
+    --handler=: directory the handler will be written to
+    --lang=: Language or template to use
+    --list: List available languages
+    --memory-limit=: Set a limit for the memory
+    --memory-request=: Set a request or the memory
+    -a, --append=: Append to existing YAML file
+    -g, --gateway=: Gateway URL to store in YAML stack file
+    -p, --prefix=: Set prefix for the function image
+    -q, --quiet: Skip template notes

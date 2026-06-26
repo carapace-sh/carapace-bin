@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: showkey
+description: examine the codes sent by the keyboard
+flags:
+    -V, --version: print version number
+    -a, --ascii: display the decimal/octal/hex values of the keys
+    -h, --help: print this usage message
+    -k, --keycodes: display only the interpreted keycodes (default)
+    -s, --scancodes: display only the raw scan-codes

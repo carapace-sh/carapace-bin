@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exec
+aliases:
+    - e
+description: execute an arbitrary command within a tox environment
+flags:
+    --develop: 'install package in development mode (default: False)'
+    --discover=*: 'for Python discovery first try these Python executables (default: [])'
+    --hashseed=: 'set PYTHONHASHSEED to SEED before running commands. Defaults to a random integer in the range [1, 4294967295] ([1, 1024] on Windows). Passing ''notset'' suppresses this behavior. (default: 264197440)'
+    --installpkg=: 'use specified package for installation into venv, instead of packaging the project (default: None)'
+    --list-dependencies: 'list the dependencies installed during environment setup (default: False)'
+    --no-list-dependencies: 'never list the dependencies installed during environment setup (default: True)'
+    --no-recreate-pkg: 'if recreate is set do not recreate packaging tox environment(s) (default: False)'
+    --result-json=: 'write a JSON file with detailed information about all commands and results involved (default: None)'
+    --sdistonly: only perform the packaging activity
+    --skip-env=: 'exclude all environments selected that match this regular expression (default: '''')'
+    --skip-pkg-install: 'skip package installation for this run (default: False)'
+    -b, --pkg-only: only perform the packaging activity
+    -e=: 'environment to run (default: py)'
+    -n, --notest: 'do not run the test commands (default: False)'
+    -s, --skip-missing-interpreters=: 'don''t fail tests for missing interpreters: {config,true,false} choice (default: config)'

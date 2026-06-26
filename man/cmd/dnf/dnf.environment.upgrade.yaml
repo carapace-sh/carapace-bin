@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upgrade [options] <group-spec|environment-spec>...
+description: upgrade environments
+flags:
+    --allow-downgrade: enable downgrade of dependencies
+    --allowerasing: allow removing of installed packages
+    --downloadonly: download packages without executing transaction
+    --no-allow-downgrade: disable downgrade of dependencies
+    --no-packages: operate on environments without manipulating packages
+    --skip-broken: resolve dependency problems
+    --skip-unavailable: allow skipping packages
+    --with-optional: include optional packages

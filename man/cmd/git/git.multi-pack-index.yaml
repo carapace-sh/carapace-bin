@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: multi-pack-index
+description: Write and verify multi-pack-indexes
+group: low-level manipulator
+flags:
+  --batch-size=: during repack, collect pack-files of smaller size into a batch that is larger than this size
+  --object-dir=: object directory containing set of packfile and pack-index pairs
+  --progress: force progress reporting
+documentation:
+  command: Write or verify a multi-pack-index (MIDX) file.

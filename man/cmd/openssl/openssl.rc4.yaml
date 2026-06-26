@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rc4
+aliases:
+    - rc4-40
+description: RC4 Cipher
+group: cipher

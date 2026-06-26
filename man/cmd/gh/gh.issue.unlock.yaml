@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unlock {<number> | <url>}
+description: Unlock issue conversation
+group: Targeted commands

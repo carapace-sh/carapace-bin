@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: aws
+description: Access AWS API.
+flags:
+    --app=: Optional Name of the AWS application to use if logged into multiple.
+    --exec=: Execute different commands (e.g. terraform) under Teleport credentials
+    --no-endpoint-url&: Run local proxy to serve as an AWS endpoint URL. If not specified, local proxy serves as an HTTPS proxy.
+    -e, --endpoint-url&: Run local proxy to serve as an AWS endpoint URL. If not specified, local proxy serves as an HTTPS proxy.
+
+documentation:
+  command: >-
+    Access AWS API through Teleport, managing temporary credentials for S3 and other services.

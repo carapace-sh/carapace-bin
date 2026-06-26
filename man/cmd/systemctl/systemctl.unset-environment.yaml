@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unset-environment
+description: Unset one or more environment variables
+group: environment
+documentation:
+  command: |
+    Unset one or more systemd manager environment variables. If only a
+    variable name is specified, it will be removed regardless of its
+    value. If a variable and a value are specified, the variable is only
+    removed if it has the specified value.

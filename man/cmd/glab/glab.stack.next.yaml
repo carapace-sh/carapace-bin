@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: next
+description: Moves to the next diff in the stack. (EXPERIMENTAL)

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: Run the test method provided by an installed formula
+group: developer
+flags:
+    --HEAD: Test the HEAD version of a formula.
+    --debug: Display any debugging information.
+    --force: Test formulae even if they are unlinked.
+    --help: Show this message.
+    --keep-tmp: Retain the temporary files created for the test.
+    --quiet: Make some output more quiet.
+    --retry: Retry if a testing fails.
+    --verbose: Make some output more verbose.

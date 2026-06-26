@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: List hints that have been shown
+flags:
+    -h, --help: Print help (see more with '--help')

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run an executable from a package
+flags:
+    --enable-asserts: Enable assert statements.
+    --enable-experiment=: Runs the executable in a VM with the given experiments enabled.
+    --no-enable-asserts: Disable assert statements.
+    --no-sound-null-safety: Do not override the default null safety execution mode.
+    --sound-null-safety: Override the default null safety execution mode.
+    -h, --help: Print this usage information.
+
+documentation:
+  command: >-
+    Run an executable from a globally activated package without modifying the current project.

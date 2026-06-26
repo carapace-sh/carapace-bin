@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import
+description: Import stash entries from a commit
+
+documentation:
+  command: >-
+    Import the specified stashes from the specified commit, which must have been created by `export`, and add them to the list of stashes. To replace the existing stashes, use `clear` first.

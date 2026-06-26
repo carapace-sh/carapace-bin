@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run [flags]
+aliases:
+    - create
+description: Create or run a new CI/CD pipeline.
+flags:
+    --mr: Run merge request pipeline instead of branch pipeline.
+    --variables-env=*: Pass variables to pipeline in format <key>:<value>. Cannot be used for MR pipelines.
+    --variables-file=*: Pass file contents as a file variable to pipeline in format <key>:<filename>. Cannot be used for MR pipelines.
+    --variables=*: Pass variables to pipeline in format <key>:<value>. Cannot be used for MR pipelines.
+    -b, --branch=: Create pipeline on branch/ref <string>.
+    -f, --variables-from=: JSON file with variables for pipeline execution. Expects array of hashes, each with at least 'key' and 'value'. Cannot be used for MR pipelines.
+    -i, --input=*: Pass inputs to pipeline in format '<key>:<value>'. Cannot be used for merge request pipelines. See documentation for examples.
+    -w, --web: Open pipeline in a browser. Uses default browser, or browser specified in BROWSER environment variable.

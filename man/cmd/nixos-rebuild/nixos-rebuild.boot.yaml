@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: boot
+description: Build the new configuration and make it the boot default, but do not activate it

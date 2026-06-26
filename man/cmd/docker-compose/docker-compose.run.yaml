@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run [OPTIONS] SERVICE [COMMAND] [ARGS...]
+description: Run a one-off command on a service
+flags:
+    --build: Build image before starting container
+    --cap-add=: Add Linux capabilities
+    --cap-drop=: Drop Linux capabilities
+    --entrypoint=: Override the entrypoint of the image
+    --env-from-file=*: Set environment variables from file
+    --name=: Assign a name to the container
+    --no-deps: Don't start linked services
+    --pull=: Pull image before running ("always"|"missing"|"never")
+    --quiet-build: Suppress progress output from the build process
+    --quiet-pull: Pull without printing progress information
+    --remove-orphans: Remove containers for services not defined in the Compose file
+    --rm: Automatically remove the container when it exits
+    --use-aliases: Use the service's network useAliases in the network(s) the container connects to
+    -P, --service-ports: Run command with all service's ports enabled and mapped to the host
+    -T, --no-TTY: 'Disable pseudo-TTY allocation (default: auto-detected)'
+    -d, --detach: Run container in background and print container ID
+    -e, --env=*: Set environment variables
+    -i, --interactive: Keep STDIN open even if not attached
+    -l, --label=*: Add or override a label
+    -p, --publish=*: Publish a container's port(s) to the host
+    -q, --quiet: Don't print anything to STDOUT
+    -t, --tty&: Allocate a pseudo-TTY
+    -u, --user=: Run as specified username or uid
+    -v, --volume=*: Bind mount a volume
+    -w, --workdir=: Working directory inside the container

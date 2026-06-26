@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: split-window
+flags:
+    -F=: format
+    -I: TODO description
+    -P: TODO description
+    -Z: TODO description
+    -b: TODO description
+    -c=: start-directory
+    -d: TODO description
+    -e=: environment
+    -h: TODO description
+    -l=: size
+    -t=: target-pane
+    -v: TODO description

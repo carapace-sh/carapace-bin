@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get <key>
+description: Get a variable for a project or group.
+flags:
+    -F, --output=: 'Format output as: text, json.'
+    -g, --group=: Get variable for a group.
+    -s, --scope=: 'The environment_scope of the variable. Values: all (*), or specific environments.'

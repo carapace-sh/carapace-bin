@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: history
+description: Retrieve NRQL query history
+flags:
+    -l, --limit=: 'history items to return (default: 10, max: 100)'

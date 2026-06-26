@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ar
+description: Combine object files into static archive
+group: wrapper

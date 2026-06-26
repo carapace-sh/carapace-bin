@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nfpm
+description: Packages apps on RPM, Deb and APK formats based on a YAML configuration file
+flags:
+    -h, --help: help for nfpm
+    -v, --version: version for nfpm

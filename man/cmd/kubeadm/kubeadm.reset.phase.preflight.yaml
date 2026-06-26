@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: preflight
+aliases:
+    - pre-flight
+description: Run reset pre-flight checks
+flags:
+    --dry-run: Don't apply any changes; just output what would be done.
+    --ignore-preflight-errors=*: 'A list of checks whose errors will be shown as warnings. Example: ''IsPrivilegedUser,Swap''. Value ''all'' ignores errors from all checks.'
+    -f, --force: Reset the node without prompting for confirmation.

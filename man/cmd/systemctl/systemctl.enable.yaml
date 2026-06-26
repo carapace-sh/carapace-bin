@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: enable
+description: Enable one or more unit files
+group: unit file
+documentation:
+  command: |
+    Enable one or more units or unit instances. This creates symlinks as
+    encoded in the [Install] sections of the indicated unit files. After
+    the symlinks have been created, the system manager configuration is
+    reloaded. Note that this does not start any of the units being enabled;
+    use `--now` to also start them. Enabling and starting units is orthogonal:
+    enabling hooks the unit into suggested places (e.g. boot), while starting
+    actually spawns the daemon process. Using enable on masked units is not
+    supported and results in an error.

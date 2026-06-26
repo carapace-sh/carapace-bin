@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: commit [OPTIONS] SERVICE [REPOSITORY[:TAG]]
+description: Create a new image from a service container's changes
+flags:
+    --index=: index of the container if service has multiple replicas.
+    -a, --author=: Author (e.g., "John Hannibal Smith <hannibal@a-team.com>")
+    -c, --change=: Apply Dockerfile instruction to the created image
+    -m, --message=: Commit message
+    -p, --pause: Pause container during commit

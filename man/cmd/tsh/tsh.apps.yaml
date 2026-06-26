@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: apps
+aliases:
+    - app
+description: View and control proxied applications.
+
+documentation:
+  command: >-
+    View and access proxised applications through Teleport. Generates URLs for web application access.

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clone <gist> [<directory>] [-- <gitflags>...]
+description: Clone a gist locally

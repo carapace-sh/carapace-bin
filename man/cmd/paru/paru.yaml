@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: paru
+description: Feature packed AUR helper
+flags:
+    --gendb: Generates development package DB used for updating
+    -V, --version: show version
+    -c, --clean: Remove unneeded dependencies
+    -h, --help: show help

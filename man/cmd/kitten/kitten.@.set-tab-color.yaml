@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-tab-color
+description: Change the color of the specified tabs in the tab bar
+flags:
+    --self: Close the tab this command is run in, rather than the active tab
+    -h, --help: Show help for this command
+    -m, --match=: The tab to match

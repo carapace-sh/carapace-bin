@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logs
+description: display build logs
+flags:
+    --progress=: progress output type
+    --trace: show opentelemetry trace

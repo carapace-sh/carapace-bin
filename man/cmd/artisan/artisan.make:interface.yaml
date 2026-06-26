@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:interface [-f|--force] [--] <name>
+description: Create a new interface
+flags:
+    --force: Create the interface even if the interface already exists

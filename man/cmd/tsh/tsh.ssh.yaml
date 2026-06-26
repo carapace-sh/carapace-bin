@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh
+description: Run shell or execute a command on a remote SSH node.
+flags:
+    --disable-access-request: Disable automatic resource access requests
+    --local: Execute command on localhost after connecting to SSH node
+    --no-disable-access-request&: Disable automatic resource access requests
+    --no-forward-agent&: Forward agent to target node
+    --no-local&: Execute command on localhost after connecting to SSH node
+    --no-no-remote-exec&: Don't execute remote command, useful for port forwarding
+    --no-participant-req&: Displays a verbose list of required participants in a moderated session.
+    --no-tty&: Allocate TTY
+    --no-x11-trusted&: Requests trusted (insecure) X11 forwarding for this session. This can make your local machine vulnerable to attacks, use with caution
+    --no-x11-untrusted&: Requests untrusted (secure) X11 forwarding for this session
+    --participant-req: Displays a verbose list of required participants in a moderated session.
+    --request-reason=: Reason for requesting access
+    --x11-untrusted-timeout=: Sets a timeout for untrusted X11 forwarding, after which the client will reject any forwarding requests from the server
+    -A, --forward-agent: Forward agent to target node
+    -D, --dynamic-forward=: Forward localhost connections to remote server using SOCKS5
+    -L, --forward=: Forward localhost connections to remote server
+    -N, --no-remote-exec: Don't execute remote command, useful for port forwarding
+    -X, --x11-untrusted: Requests untrusted (secure) X11 forwarding for this session
+    -Y, --x11-trusted: Requests trusted (insecure) X11 forwarding for this session. This can make your local machine vulnerable to attacks, use with caution
+    -c, --cluster=: Specify the Teleport cluster to connect
+    -o, --option=: OpenSSH options in the format used in the configuration file
+    -p, --port=: SSH port on a remote host
+    -t, --tty: Allocate TTY
+
+documentation:
+  command: >-
+    SSH into a node registered with the Teleport cluster. Uses short-lived certificates instead of SSH keys.

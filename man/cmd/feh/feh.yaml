@@ -1,0 +1,101 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: feh
+description: a fast and light image viewer
+flags:
+    --action1=: Extra action triggered with number key 1
+    --action2=: Extra action triggered with number key 2
+    --action3=: Extra action triggered with number key 3
+    --action4=: Extra action triggered with number key 4
+    --action5=: Extra action triggered with number key 5
+    --action6=: Extra action triggered with number key 6
+    --action7=: Extra action triggered with number key 7
+    --action8=: Extra action triggered with number key 8
+    --action9=: Extra action triggered with number key 9
+    --auto-reload: automatically reload shown image if file was changed
+    --auto-rotate: Rotate images according to Exif info (if compiled with exif=1)
+    --bg-center=: Set FILE as centered desktop background
+    --bg-fill=: Like --bg-scale, but preserves aspect ratio by zooming the image until it fits. May cut off corners
+    --bg-max=: Like --bg-fill, but scale the image to the maximum size that fits the screen with black borders on one side
+    --bg-scale=: Set FILE as scaled desktop background. This will fill the whole background, but the images' aspect ratio may not be preserved
+    --bg-tile=: Set FILE as tiled desktop background
+    --cache-size=: imlib cache size in mebibytes (0 .. 2048)
+    --class=: Set the X11 class hint to class
+    --conversion-timeout: 'INT  Load unknown files with dcraw or ImageMagick, timeout after INT seconds (0: no timeout)'
+    --draw-exif: Show some Exif information (if compiled with exif=1)
+    --draw-tinted: Show overlay texts on semi-transparent background
+    --edit: Make flip/rotation keys flip/rotate the underlying file
+    --force-aliasing: Disable antialiasing
+    --index-info=: Show FORMAT below images in index/thumbnail mode
+    --info=: Run CMD and show its output in the image window
+    --insecure: Disable peer/host verification when using HTTPS.
+    --keep-zoom-vp: Keep viewport zoom and settings while changing images
+    --max-dimension=: Only show images with width <= W and height <= H
+    --min-dimension=: Only show images with width >= W and height >= H
+    --no-fehbg: Do not write a ~/.fehbg file
+    --no-jump-on-resort: Don't jump to the first image when the filelist is resorted
+    --no-recursive: Do not recursively expand directories (this is the default)
+    --no-screen-clip: Do not limit window size to screen size
+    --no-xinerama: Disable Xinerama support
+    --on-last-slide=: Exit after one loop through the slide show (old --cycle-once)
+    --scroll-step=: scroll COUNT pixels when movement key is pressed
+    --tap-zones: Enable tap zones for previous/next file in slide show mode
+    --version-sort: Natural sort of (version) numbers within text
+    --window-id=: Draw to an existing X11 window by its ID
+    --xinerama-index=: Assumee that I is the active xinerama screen
+    --zoom-step=: 'Zoom images in and out by PERCENT (default: 25) when using the zoom keys / buttons'
+    --zoom=: Zooms images by a PERCENT, when in full screen mode or when window geometry is fixed. If combined with --auto-zoom, zooming will be limited to the the size. Also support "max" and "fill"
+    -., --scale-down: Automatically scale down images to fit screen size
+    -@, --title-font=: Use FONT to print a title on the index, if no font is specified, a title will not be printed
+    -^, --title=: Set window title (see FORMAT SPECIFIERS)
+    -|, --start-at=: Start at FILENAME in the filelist
+    -~, --thumb-title=: Title for windows opened from thumbnail mode
+    -A, --action=: Specify action to perform when pressing <return>
+    -B, --image-bg=: 'Set background for transparent images and the like. Accepted values: default, checks, or a XColor (eg. #428bdd)'
+    -C, --fontpath=: Specify an extra directory to look in for fonts, can be used multiple times to add multiple paths.
+    -D, --slideshow-delay=: Set delay between automatically changing slides
+    -E, --thumb-height=: Set thumbnail height in pixels
+    -F, --fullscreen: Make the window full screen
+    -G, --draw-actions: Show the defined actions in the image window
+    -H, --limit-height=: Limit the height of the montage in pixels (at least one of these two must be specified)
+    -I, --fullindex: Index mode with additional image information
+    -J, --thumb-redraw=: Redraw thumbnail window every N images
+    -K, --caption-path=: Path to caption directory, enables caption display
+    -L, --customlist=: list mode with custom output, see FORMAT SPECIFIERS
+    -M, --menu-font=: Use FONT for the font in menus.
+    -N, --no-menus: Don't load or show any menus.
+    -O, --output-only=: Just save the created montage to FILE WITHOUT displaying it
+    -P, --cache-thumbnails: Enable thumbnail caching for thumbnail mode. Only works with thumbnails <= 256x256 pixels
+    -R, --reload=: Reload images after NUM seconds
+    -S, --sort=: 'Sort files by:'
+    -T, --theme=: Load options with name THEME
+    -U, --loadable: List all loadable files. No image display
+    -V, --verbose: Show progress bars and other extra information
+    -W, --limit-width=: Limit the width of the montage in pixels
+    -X, --ignore-aspect: Set thumbnail to specified width/height without retaining aspect ratio
+    -Y, --hide-pointer: Hide the pointer
+    -Z, --auto-zoom: Zoom picture to screen size in fullscreen/geom mode
+    -a, --alpha=: Set thumbnail transparency level (0 .. 255)
+    -b, --bg=: Set montage background
+    -d, --draw-filename: Show the filename in the image window
+    -e, --font=: Set font for thumbnail information, in the form fontname/pointsize
+    -f, --filelist=: Load/save images from/to the FILE filelist
+    -g, --geometry=: Limit the window size to DIMENSION[+OFFSET]
+    -h, --help: Show help and exit
+    -i, --index: Create an index print of all images
+    -j, --output-dir: 'With -k: Output directory for saved files'
+    -k, --keep-http: Keep local copies when viewing HTTP/FTP files
+    -l, --list: 'list mode: ls-style output with image information'
+    -m, --montage: Enable montage mode
+    -n, --reverse: Reverse sort order
+    -o, --output=: Save the created montage to FILE
+    -p, --preload: Remove unloadable files from the internal filelist before attempting to display anything
+    -q, --quiet: Hide non-fatal errors. May be used with --verbose
+    -r, --recursive: Recursively expand any directories in FILE to the content of those directories
+    -s, --stretch: Scale up images if they are smaller than the specified thumbnail size
+    -t, --thumbnails: Show images as clickable thumbnails
+    -u, --unloadable: List all unloadable files. No image display
+    -v, --version: Show version information and exit
+    -w, --multiwindow: Open all files at once, one window per image
+    -x, --borderless: Create borderless windows
+    -y, --thumb-width=: Set thumbnail width in pixels
+    -z, --randomize: Randomize the filelist

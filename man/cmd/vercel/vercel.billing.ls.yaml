@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: Show all of your credit cards
+
+documentation:
+  command: >-
+    List all credit cards configured for your Vercel account. Shows
+    card type, last four digits, expiration date, and whether each
+    card is set as the default payment method.

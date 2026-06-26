@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: livewire:attribute [--force] [--] <name>
+description: Create a new Livewire attribute class
+flags:
+    --force: ""

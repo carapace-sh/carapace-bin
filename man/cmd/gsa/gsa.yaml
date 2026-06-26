@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gsa <file> [<diff file>]
+description: A tool for analyzing the size of compiled Go binaries
+flags:
+    --compact: Hide function details, replacement with size
+    --height=: Height of the svg treemap
+    --hide-main: Hide main package
+    --hide-sections: Hide sections
+    --hide-std: Hide standard library
+    --imports: Try analyze package imports from source
+    --indent=: Indentation for json output
+    --listen=: listen address
+    --margin-box=: Margin between boxes
+    --no-disasm: Skip disassembly pass
+    --no-dwarf: Skip dwarf pass
+    --no-symbol: Skip symbol pass
+    --open: Open browser
+    --padding-box=: Padding between box border and content
+    --padding-root=: Padding around root content
+    --tui: Use terminal interface to explore the details
+    --update-cache: Update the cache file for the web UI
+    --verbose: Verbose output
+    --version: Show version
+    --web: use web interface to explore the details
+    --width=: Width of the svg treemap
+    -f, --format=: Output format
+    -h, --help: Show context-sensitive help
+    -o, --output=: Write to file

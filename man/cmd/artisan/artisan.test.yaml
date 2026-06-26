@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test [--without-tty] [--compact] [--coverage] [--min [MIN]] [-p|--parallel] [--profile] [--recreate-databases] [--drop-databases] [--without-databases]
+description: Run the application tests
+flags:
+    --compact: Indicates whether the compact printer should be used
+    --coverage: Indicates whether code coverage information should be collected
+    --drop-databases: Indicates if the test databases should be dropped
+    --min=: Indicates the minimum threshold enforcement for code coverage
+    --parallel: Indicates if the tests should run in parallel
+    --profile: Lists top 10 slowest tests
+    --recreate-databases: Indicates if the test databases should be re-created
+    --without-databases: Indicates if database configuration should be performed
+    --without-tty: Disable output to TTY

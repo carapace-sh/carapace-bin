@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+description: Edit one or more unit files
+group: unit file
+documentation:
+  command: |
+    Edit or replace a drop-in snippet or the main unit file to extend or
+    override the definition of the specified unit. If `--full` is specified,
+    a replacement for the main unit file will be created. Otherwise, a
+    drop-in file will be created. Use `--drop-in=` to specify a drop-in file
+    name instead of the default override.conf. Use `--force` to edit a
+    nonexistent unit or create a drop-in for one. Use `--stdin` to read new
+    contents from standard input.

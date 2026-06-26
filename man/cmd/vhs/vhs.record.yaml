@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: record
+description: Create a new tape file by recording your actions
+flags:
+    -s, --shell=: shell for recording

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import CONTEXT FILE|-
+description: Import a context from a tar or zip file

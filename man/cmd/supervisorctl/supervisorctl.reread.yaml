@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reread
+description: Reload the daemon’s configuration files, without add/remove (no restarts)

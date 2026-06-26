@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: application
+description: Generates a new basic app definition in the projects subfolder of the workspace
+flags:
+    --minimal: Create a bare-bones project without any testing frameworks.
+    --routing: Create a routing NgModule.
+    --skip-install: Skip installing dependency packages.
+    --skip-package-json: Do not add dependencies to the "package.json" file.
+    --strict: Creates an application with stricter bundle budgets settings.
+    --style=: The file extension or preprocessor to use for style files.
+    --view-encapsulation=: The view encapsulation strategy to use in the new application.
+    -S, --skip-tests: Do not create "spec.ts" test files for the application.
+    -p, --prefix: A prefix to apply to generated selectors.
+    -s, --inline-style: Include styles inline in the root component.ts file.
+    -t, --inline-template: Include template inline in the root component.ts file.

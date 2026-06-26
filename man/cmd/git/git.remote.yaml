@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remote
+description: Manage set of tracked repositories
+group: manipulator
+flags:
+  -v, --verbose: be verbose; must be placed before a subcommand
+documentation:
+  command: Manage the set of repositories ("remotes") whose branches you track.
+  flag:
+    verbose: |-
+      Be a little more verbose and show remote url after name.
+      For promisor remotes, also show which filters (`blob:none` etc.)
+      are configured.
+      NOTE: This must be placed between `remote` and subcommand.

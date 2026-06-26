@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stat
+description: display file or file system status
+flags:
+    --cached=: specify how to use cached attributes;
+    --help: display this help and exit
+    --printf=: like --format, but interpret backslash escapes,
+    --version: output version information and exit
+    -L, --dereference: follow links
+    -c, --format=: use the specified FORMAT instead of the default;
+    -f, --file-system: display file system status instead of file status
+    -t, --terse: print the information in terse form

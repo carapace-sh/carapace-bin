@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cd
+description: Go to QMK Home
+flags:
+    -h, --help: show this help message and exit

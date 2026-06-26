@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: graph-dependencies
+description: Prints the terragrunt dependency graph to stdout
+group: terragrunt

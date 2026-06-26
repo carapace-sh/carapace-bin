@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scc
+description: 'Sloc, Cloc and Code: count lines of code in a directory with complexity estimation'
+flags:
+    --avg-wage=: average wage value used for basic COCOMO calculation
+    --binary: disable binary file detection
+    --by-file: display output for every file
+    --ci: enable CI output settings where stdout is ASCII
+    --cocomo-project-type=: change COCOMO model type [organic, semi-detached, embedded, custom]
+    --count-as=: count extension as language
+    --count-ignore: allow .gitignore and .ignore files to be counted
+    --currency-symbol=: set currency symbol
+    --debug: enable debug output
+    --directory-walker-job-workers=: maximum number of workers which will walk the directory tree
+    --eaf=: effort adjustment factor derived from cost drivers
+    --exclude-dir=*: directories to exclude
+    --file-gc-count=: number of files to parse before turning the GC on
+    --file-list-queue-size=: size of the queue of files found and ready to be read into memory
+    --file-process-job-workers=: number of goroutine workers that process files
+    --file-summary-job-queue-size=: size of the queue used to hold processed file statistics
+    --format-multi=: multiple format output overriding --format
+    --gen: identify generated files
+    --generated-markers=*: string markers in head of generated files
+    --include-symlinks: count symlink files
+    --large-byte-count=: number of bytes a file can contain before being removed from output
+    --large-line-count=: number of lines a file can contain before being removed from output
+    --min: identify minified files
+    --min-gen-line-length=: bytes per average line for file to be considered minified or generated
+    --no-cocomo: remove COCOMO calculation output
+    --no-gen: ignore generated files in output
+    --no-gitignore: disables .gitignore file logic
+    --no-gitmodule: disables .gitmodules file logic
+    --no-hborder: remove horizontal borders between sections
+    --no-ignore: disables .ignore file logic
+    --no-large: ignore files over certain byte and line size
+    --no-min: ignore minified files in output
+    --no-min-gen: ignore minified or generated files in output
+    --no-scc-ignore: disables .sccignore file logic
+    --no-size: remove size calculation output
+    --overhead=: overhead multiplier for corporate overhead
+    --remap-all=: inspect every file and remap by checking for a string
+    --remap-unknown=: inspect files of unknown type and remap by checking for a string
+    --size-unit=: set size unit
+    --sloccount-format: print a more SLOCCount like COCOMO calculation
+    --sql-project=: project identifier for SQL output
+    --version: version for scc
+    -M, --not-match=*: ignore files and directories matching regular expression
+    -a, --dryness: calculate the DRYness of the project
+    -c, --no-complexity: skip calculation of code complexity
+    -d, --no-duplicates: remove duplicate files from stats and output
+    -f, --format=: set output format
+    -i, --include-ext=*: limit to file extensions
+    -l, --languages: print supported languages and extensions
+    -m, --character: calculate max and mean characters per line
+    -n, --exclude-file=*: ignore files with matching names
+    -o, --output=: output filename
+    -p, --percent: include percentage values in output
+    -s, --sort=: column to sort by
+    -t, --trace: enable trace output
+    -u, --uloc: calculate the number of unique lines of code
+    -v, --verbose: verbose output
+    -w, --wide: wider output with additional statistics
+    -x, --exclude-ext=*: ignore file extensions
+    -z, --min-gen: identify minified or generated files

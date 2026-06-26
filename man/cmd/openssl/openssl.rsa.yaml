@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rsa
+description: RSA key management
+group: standard
+flags:
+    -RSAPublicKey_in: Input is an RSAPublicKey
+    -RSAPublicKey_out: Output is an RSAPublicKey
+    -check: Verify key consistency
+    -in=: Input file
+    -inform=: Input format (DER/PEM/P12)
+    -modulus: Print the RSA key modulus
+    -noout: Don't print key out
+    -out=: Output file
+    -outform=: Output format, one of DER PEM PVK
+    -passin=: Input file pass phrase source
+    -passout=: Output file pass phrase source
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -pubin: Expect a public key in input file
+    -pubout: Output a public key
+    -pvk-none: Don't enforce PVK encoding
+    -pvk-strong: Enable 'Strong' PVK encoding level (default)
+    -pvk-weak: Enable 'Weak' PVK encoding level
+    -text: Print the key in text
+    -traditional: Use traditional format for private keys

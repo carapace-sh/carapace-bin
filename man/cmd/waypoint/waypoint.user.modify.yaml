@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: modify
+description: Modify details about a user
+flags:
+    --display-name=: The display name for a user.
+    --new-username=: Set a new username for this user.
+    --plain: Plain output
+    --username=: The user to modify.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

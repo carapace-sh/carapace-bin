@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: console
+description: Opens the current stack in the Pulumi Console
+persistentflags:
+    -s, --stack=: The name of the stack to view

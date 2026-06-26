@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-categories
+description: List orb categories
+persistentflags:
+    --json: print output as json instead of human-readable

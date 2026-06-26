@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pipe
+description: Creates a new, generic pipe definition in the given or default project
+flags:
+    --export: The declaring NgModule exports this pipe.
+    --flat: When true (the default) creates files at the top level of the project.
+    --project=: The name of the project.
+    --skip-import: Do not import this pipe into the owning NgModule.
+    --skip-tests: Do not create "spec.ts" test files for the new pipe.
+    -m, --module: The declaring NgModule.

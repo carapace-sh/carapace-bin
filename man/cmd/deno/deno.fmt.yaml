@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fmt
+description: Format source files
+flags:
+    --check: Check if the source files are formatted
+    --ext=: 'Set standard input (stdin) content type [default: ts]  [possible values: ts, tsx, js, jsx, md, json, jsonc]'
+    --ignore=: Ignore formatting particular source files
+    --options-indent-width=: Define indentation width. Defaults to 2.
+    --options-line-width=: Define maximum line width. Defaults to 80.
+    --options-prose-wrap=: 'Define how prose should be wrapped. Defaults to always. [possible values: always, never, preserve]'
+    --options-single-quote: Use single quotes. Defaults to false.
+    --options-use-tabs: Use tabs instead of spaces for indentation. Defaults to false.
+    --watch: 'UNSTABLE: Watch for file changes and restart process automatically'
+    -c, --config=: Load configuration file

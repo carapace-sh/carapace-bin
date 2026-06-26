@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ""
+
+documentation:
+  command: >-
+    Run a command from a local or remote npm package without installing
+    it globally. npx resolves the package specifier and executes the
+    matching binary from the package's `bin` field. If the package is
+    not present in local project dependencies, it is installed to a
+    folder in the npm cache and added to the `PATH` of the executed
+    process. A prompt is displayed before installing unless overridden
+    with `--yes` or `--no`.
+
+    Package names without a version specifier match whatever version
+    exists in the local project. Use `npx <pkg>@<version>` to run a
+    specific version. Provide one or more `--package` options to
+    install additional packages into the execution environment. Use
+    `-c <cmd>` to run an arbitrary shell script with the specified
+    packages on the `PATH`.
+
+    When no `--package` is given, npx infers the executable name from
+    the first positional argument: if the package has a single `bin`
+    entry, that binary is used; if it has multiple entries matching
+    the package name, that one is preferred. To run a binary other
+    than the named one, specify `--package` explicitly, which
+    prevents the automatic inference. All flags and options must be
+    placed before positional arguments when using the `npx` binary.
+    This differs from `npm exec`, which accepts a `--` separator.

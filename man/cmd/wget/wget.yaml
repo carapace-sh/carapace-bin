@@ -1,0 +1,155 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wget
+description: a non-interactive network retriever
+flags:
+    --accept-regex=: regex matching accepted URLs
+    --ask-password: prompt for passwords
+    --auth-no-challenge: send Basic HTTP authentication information without first waiting for the server's challenge
+    --backups=: before writing file X, rotate up to N backup files
+    --bind-address=: bind to ADDRESS (hostname or IP) on local host
+    --body-data=: send STRING as data. --method MUST be set
+    --body-file=: send contents of FILE. --method MUST be set
+    --ca-certificate=: file with the bundle of CAs
+    --ca-directory=: directory where hash list of CAs is stored
+    --certificate-type=: client certificate type, PEM or DER
+    --certificate=: client certificate file
+    --ciphers=: Set the priority string (GnuTLS) or cipher list string (OpenSSL) directly.
+    --compression=: choose compression
+    --config=: specify config file to use
+    --connect-timeout=: set the connect timeout to SECS
+    --content-disposition: honor the Content-Disposition header when choosing local file names
+    --content-on-error: output the received content on server errors
+    --convert-file-only: convert the file part of the URLs only (usually known as the basename)
+    --crl-file=: file with bundle of CRLs
+    --cut-dirs=: ignore NUMBER remote directory components
+    --default-page=: change the default page name
+    --delete-after: delete files locally after downloading them
+    --dns-timeout=: set the DNS lookup timeout to SECS
+    --exclude-domains=: comma-separated list of rejected domains
+    --follow-ftp: follow FTP links from HTML documents
+    --follow-tags=: comma-separated list of followed HTML tags
+    --ftp-password=: set ftp password to PASS
+    --ftp-user=: set ftp user to USER
+    --ftps-clear-data-connection: cipher the control channel only; all the data will be in plaintext
+    --ftps-fallback-to-ftp: fall back to FTP if FTPS is not supported in the target server
+    --ftps-implicit: use implicit FTPS (default port is 990)
+    --ftps-resume-ssl: resume the SSL/TLS session started in the control connection
+    --header=*: insert STRING among the headers
+    --hsts-file: path of HSTS database (will override default)
+    --http-password=: set http password to PASS
+    --http-user=: set http user to USER
+    --https-only: only follow secure HTTPS links
+    --ignore-case: ignore case when matching files/directories
+    --ignore-length: ignore 'Content-Length' header field
+    --ignore-tags=: comma-separated list of ignored HTML tags
+    --keep-session-cookies: load and save session (non-permanent) cookies
+    --limit-rate=: limit download rate to RATE
+    --load-cookies=: load cookies from FILE before session
+    --local-encoding=: use ENC as the local encoding for IRIs
+    --max-redirect: maximum redirections allowed per page
+    --method=: use method "HTTPMethod" in the request
+    --no-cache: disallow server-cached data
+    --no-check-certificate: don't validate the server's certificate
+    --no-clobber: skip downloads that would download to existing files
+    --no-config: do not read any config file
+    --no-cookies: don't use cookies
+    --no-directories: don't create directories
+    --no-dns-cache: disable caching DNS lookups
+    --no-glob: turn off FTP file name globbing
+    --no-host-directories: don't create host directories
+    --no-hsts: disable HSTS
+    --no-http-keep-alive: disable HTTP keep-alive (persistent connections)
+    --no-if-modified-since: don't use conditional if-modified-since get requests in timestamping mode
+    --no-iri: turn off IRI support
+    --no-netrc: don't try to obtain credentials from .netrc
+    --no-parent: don't ascend to the parent directory
+    --no-passive-ftp: disable the "passive" transfer mode
+    --no-proxy: explicitly turn off proxy
+    --no-remove-listing: don't remove '.listing' files
+    --no-use-server-timestamps: don't set the local file's timestamp by the one on the server
+    --no-verbose: turn off verboseness, without being quiet
+    --no-warc-compression: do not compress WARC files with GZIP
+    --no-warc-digests: do not calculate SHA1 digests
+    --no-warc-keep-log: do not store the log file in a WARC record
+    --password=: set both ftp and http password to PASS
+    --pinnedpubkey=: Public key (PEM/DER) file, or any number of base64 encoded sha256 hashes
+    --post-data=: use the POST method; send STRING as the data
+    --post-file=: use the POST method; send contents of FILE
+    --prefer-family=: connect first to addresses of specified family
+    --preserve-permissions: preserve remote file permissions
+    --private-key-type=: private key type, PEM or DER
+    --private-key=: private key file
+    --progress=: select progress gauge type
+    --protocol-directories: use protocol name in directories
+    --proxy-password=: set PASS as proxy password
+    --proxy-user=: set USER as proxy username
+    --random-wait: wait from 0.5*WAIT...1.5*WAIT secs between retrievals
+    --read-timeout=: set the read timeout to SECS
+    --referer=: 'include ''Referer: URL'' header in HTTP request'
+    --regex-type=: regex type (posix|pcre)
+    --reject-regex=: regex matching rejected URLs
+    --rejected-log=: log reasons for URL rejection to FILE
+    --remote-encoding=: use ENC as the default remote encoding
+    --report-speed=: output bandwidth as TYPE.  TYPE can be bits
+    --restrict-file-names=: restrict chars in file names to ones OS allows
+    --retr-symlinks: when recursing, get linked-to files (not dir)
+    --retry-connrefused: retry even if connection is refused
+    --retry-on-http-error=: comma-separated list of HTTP errors to retry
+    --save-cookies=: save cookies to FILE after session
+    --save-headers: save the HTTP headers to file
+    --secure-protocol=: choose secure protocol, one of auto, SSLv2,
+    --show-progress: display the progress bar in any verbosity mode
+    --spider: don't download anything
+    --start-pos=: start downloading from zero-based position OFFSET
+    --strict-comments: turn on strict (SGML) handling of HTML comments
+    --trust-server-names: use the name specified by the redirection URL's last component
+    --unlink: remove file before clobber
+    --use-askpass=: specify credential handler for requesting username and password
+    --user=: set both ftp and http user to USER
+    --waitretry=: wait 1..SECONDS between retries of a retrieval
+    --warc-cdx: write CDX index files
+    --warc-dedup=: do not store records listed in this CDX file
+    --warc-file=: save request/response data to a .warc.gz file
+    --warc-header=: insert STRING into the warcinfo record
+    --warc-max-size=: set maximum size of WARC files to NUMBER
+    --warc-tempdir=: location for temporary files created by the
+    --xattr: turn on storage of metadata in extended file attributes
+    -4, --inet4-only: connect only to IPv4 addresses
+    -6, --inet6-only: connect only to IPv6 addresses
+    -A, --accept=: comma-separated list of accepted extensions
+    -B, --base=: resolves HTML input-file links relative to URL
+    -D, --domains=: comma-separated list of accepted domains
+    -E, --adjust-extension: save HTML/CSS documents with proper extensions
+    -F, --force-html: treat input file as HTML
+    -H, --span-hosts: go to foreign hosts when recursive
+    -I, --include-directories=: list of allowed directories
+    -K, --backup-converted: before converting file X, back up as X.orig
+    -L, --relative: follow relative links only
+    -N, --timestamping: don't re-retrieve files unless newer than local
+    -O, --output-document=: write documents to FILE
+    -P, --directory-prefix=: save files to PREFIX/..
+    -Q, --quota=: set retrieval quota to NUMBER
+    -R, --reject=: comma-separated list of rejected extensions
+    -S, --server-response: print server response
+    -T, --timeout=: set all timeout values to SECONDS
+    -U, --user-agent=: identify as AGENT instead of Wget/VERSION
+    -V, --version: display the version of Wget and exit
+    -X, --exclude-directories=: list of excluded directories
+    -a, --append-output=: append messages to FILE
+    -b, --background: go to background after startup
+    -c, --continue: resume getting a partially-downloaded file
+    -d, --debug: print lots of debugging information
+    -e, --execute=: execute a `.wgetrc'-style command
+    -h, --help: print this help
+    -i, --input-file=: download URLs found in local or external FILE
+    -k, --convert-links: make links in downloaded HTML or CSS point to local files
+    -l, --level=: maximum recursion depth (inf or 0 for infinite)
+    -m, --mirror: shortcut for -N -r -l inf --no-remove-listing
+    -o, --output-file=: log messages to FILE
+    -p, --page-requisites: get all images, etc. needed to display HTML page
+    -q, --quiet: quiet (no output)
+    -r, --recursive: specify recursive download
+    -t, --tries=: set number of retries to NUMBER (0 unlimits)
+    -v, --verbose: be verbose (this is the default)
+    -w, --wait=: wait SECONDS between retrievals
+    -x, --force-directories: force creation of directories

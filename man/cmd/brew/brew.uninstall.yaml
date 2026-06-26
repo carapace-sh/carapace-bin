@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: Uninstall a <formula> or <cask>
+group: main
+flags:
+    --cask: Treat all named arguments as casks.
+    --debug: Display any debugging information.
+    --force: Delete all installed versions of <formula>. Uninstall even if <cask> is not installed, overwrite existing files and ignore errors when removing files.
+    --formula: Treat all named arguments as formulae.
+    --help: Show this message.
+    --ignore-dependencies: Don't fail uninstall, even if <formula> is a dependency of any installed formulae.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.
+    --zap: Remove all files associated with a <cask>. *May remove files which are shared between applications.*

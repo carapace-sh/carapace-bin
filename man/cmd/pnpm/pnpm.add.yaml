@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Installs a package and any packages that it depends on
+group: manage
+flags:
+    --aggregate-output: Aggregate output from child processes that are run in parallel
+    --allow-build=: List of package names that are allowed to run postinstall scripts
+    --changed-files-ignore-pattern=: Defines files to ignore when filtering for changed projects since the specified commit/branch
+    --color: Controls colors in the output
+    --config: Save to configDependencies
+    --cpu=: Override CPU architecture for optional native dependencies
+    --filter-prod=: Restricts the scope to package names matching the given pattern
+    --filter=: set filter
+    --ignore-scripts: Don't run lifecycle scripts
+    --ignore-workspace-root-check: Permit adding dependencies to the workspace root
+    --libc=: Override libc for optional native dependencies
+    --loglevel=: What level of logs to report
+    --no-color: Controls colors in the output
+    --no-save-exact: Do not install exact version
+    --no-save-workspace-protocol: Do not save packages from the workspace with a "workspace:" protocol
+    --offline: Trigger an error if any required dependencies are not available
+    --os=: Override OS for optional native dependencies
+    --prefer-offline: Skip staleness checks for cached data
+    --save-catalog: Save to the default catalog
+    --save-catalog-name=: Save to a named catalog
+    --save-peer: Save package to your `peerDependencies` and `devDependencies`
+    --save-workspace-protocol: Save packages from the workspace with a "workspace:" protocol
+    --silent: turn off all logging
+    --store-dir=: The directory in which all the packages are saved on the disk
+    --stream: Stream output from child processes immediately
+    --test-pattern=: Defines files related to tests
+    --use-stderr: Divert all output to stderr
+    --virtual-store-dir=: The directory with links to the store
+    --workspace: Only adds the new dependency if it is found in the workspace
+    -C, --dir=: Change to directory <dir>
+    -D, --save-dev: Save package to your `devDependencies`
+    -E, --save-exact: Install exact version
+    -O, --save-optional: Save package to your `optionalDependencies`
+    -P, --save-prod: Save package to your `dependencies`
+    -g, --global: Install as a global package
+    -h, --help: Output usage information
+    -r, --recursive: Run installation recursively in every package found in subdirectories
+    -w, --workspace-root: Run the command on the root workspace project

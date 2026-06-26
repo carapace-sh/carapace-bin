@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: halt
+description: Shut down and halt the system
+group: system
+documentation:
+  command: |
+    Shut down and halt the system. This is mostly equivalent to
+    `systemctl start halt.target --Job-mode=replace-irreversibly --no-block`,
+    but also prints a wall message to all users. Note that this will simply
+    halt the OS kernel after shutting down, leaving the hardware powered on.
+    Use poweroff for powering off the system. If combined with `--force`,
+    shutdown of all running services is skipped and all processes are killed
+    immediately. If `--force` is specified twice, the operation is executed
+    without terminating any processes or unmounting any file systems.

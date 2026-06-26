@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: merge
+description: Merge current branch into target
+flags:
+    --no-commit: Skip commit and squash
+    --no-ff: Create a merge commit (no fast-forward)
+    --no-rebase: Skip rebase (fail if not already rebased)
+    --no-remove: Keep worktree after merge
+    --no-squash: Skip commit squashing
+    --no-verify: Skip hooks
+    --stage=: 'What to stage before committing [default: all]'
+    -h, --help: Print help (see more with '--help')
+    -y, --yes: Skip approval prompts

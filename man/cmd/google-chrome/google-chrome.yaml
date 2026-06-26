@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: google-chrome
+description: chrome browser
+flags:
+    --app=: Runs URL in app mode
+    --new-window: If PATH or URL is given, open it in a new window.
+    --no-proxy-server: Disables  the  proxy  server
+    --password-store=: Set the password store to use
+    --proxy-auto-detect: Autodetect proxy configuration
+    --proxy-pac-url=: Specify proxy autoconfiguration URL
+    --proxy-server=: Specify the HTTP/SOCKS4/SOCKS5 proxy server to use for requests.
+    --user-data-dir=: Specifies the directory that user data is  kept  in
+    --version: Show version information.

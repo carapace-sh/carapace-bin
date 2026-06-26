@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ciphers
+description: Cipher Suite Description Determination
+group: standard
+flags:
+    -V: Even more verbose
+    -ciphersuites=: Configure the TLSv1.3 ciphersuites to use
+    -convert=: Convert standard name into OpenSSL name
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -psk: Include ciphersuites requiring PSK
+    -s: Only supported ciphers
+    -srp: (deprecated) Include ciphersuites requiring SRP
+    -stdname: Show standard cipher names
+    -tls1: Ciphers compatible with TLS1
+    -tls1_1: Ciphers compatible with TLS1.1
+    -tls1_2: Ciphers compatible with TLS1.2
+    -tls1_3: Ciphers compatible with TLS1.3
+    -v: Verbose listing of the SSL/TLS ciphers

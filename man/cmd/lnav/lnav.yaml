@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lnav
+description: ncurses-based log file viewer
+flags:
+    -C: Check configuration and then exit.
+    -H: Display the internal help text.
+    -I=: An additional configuration directory.
+    -R: Load older rotated log files as well.
+    -V: Print version information.
+    -a: Load all of the most recent log file types.
+    -c=: Execute a command after the files have been loaded.
+    -d=: Write debug messages to the given file.
+    -f=: Execute the commands in the given file.
+    -h: Print this message, then exit.
+    -i: Install the given format files and exit.  Pass 'extra'
+    -n: Run without the curses UI. (headless mode)
+    -q: Do not print the log messages after executing all
+    -r: Recursively load files from the given directory hierarchies.
+    -t: Prepend timestamps to the lines of data being read in
+    -u: Update formats installed from git repositories.
+    -w=: Write the contents of the standard input to this file.

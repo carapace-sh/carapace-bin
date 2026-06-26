@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm MANIFEST_LIST [MANIFEST_LIST...]
+description: Delete one or more manifest lists from local storage

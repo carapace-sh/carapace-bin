@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mount [flags] <source directory>:<target directory>
+description: Mounts the specified directory into minikube
+group: advanced
+flags:
+    --9p-version=: Specify the 9p version that the mount should use
+    --gid=: Default group id used for the mount
+    --ip=: Specify the ip that the mount should be setup on
+    --kill: Kill the mount process spawned by minikube start
+    --msize=: The number of bytes to use for 9p packet payload
+    --options=*: Additional mount options, such as cache=fscache
+    --port=: Specify the port that the mount should be setup on, where 0 means any free port.
+    --type=: 'Specify the mount filesystem type (supported types: 9p)'
+    --uid=: Default user id used for the mount

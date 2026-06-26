@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: http-push
+description: push objects to a remote repository via HTTP
+documentation:
+  command: |-
+    Sends missing objects to the remote repository, and updates the
+    remote branch.
+
+    *NOTE*: This command is temporarily disabled if your libcurl
+    is older than 7.16, as the combination has been reported
+    not to work and sometimes corrupts the repository.

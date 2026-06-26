@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view:cache
+description: Compile all of the application's Blade templates

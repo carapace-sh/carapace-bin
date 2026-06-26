@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: zsh
+description: Generate the autocompletion script for zsh
+flags:
+    --no-descriptions: disable completion descriptions

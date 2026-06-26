@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: last-modified
+description: 'EXPERIMENTAL: Show when files were last modified'
+group: low-level interrogator
+flags:
+    --max-depth=: Maximum tree depth to recurse
+    -r, --recursive: Recurse into subtrees
+    -t, --show-trees: Show tree entries when recursing into subtrees
+    -z: Lines are separated with NUL character
+
+documentation:
+  command: >-
+    Show which commit last modified each of the relevant files and subdirectories. A commit renaming a path or changing its mode is also taken into account. THIS COMMAND IS EXPERIMENTAL; THE BEHAVIOR MAY CHANGE.

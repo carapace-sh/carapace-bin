@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm-all
+description: Remove multiple configuration values
+persistentflags:
+    --path: Parse the keys as paths in a map or list rather than raw strings

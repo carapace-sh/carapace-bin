@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rebase [branch]
+description: Rebase a stack of branches
+flags:
+    --abort: Abort rebase and restore all branches
+    --continue: Continue rebase after resolving conflicts
+    --downstack: Only rebase branches from trunk to current branch
+    --remote=: Remote to fetch from (defaults to auto-detected remote)
+    --upstack: Only rebase branches from current branch to top

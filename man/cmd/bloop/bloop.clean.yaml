@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean <project>
+description: clean compilation caches
+flags:
+    --cascade: clean a project and all projects depending on it
+    --include-dependencies: clean a project and all its dependencies
+    --projects=*: the projects to clean
+    --propagate: clean a project and all its dependencies
+    -p, --project=*: the projects to clean

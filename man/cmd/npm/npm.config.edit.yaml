@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+description: Opens the config file in an editor
+flags:
+    --editor=: editor to use

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: setup
+description: Setup the CLI with your credentials
+flags:
+    --integration-testing: Enable test mode to bypass interactive UI.
+    --no-prompt: Disable prompt to bypass interactive UI. (MUST supply --host and --token)

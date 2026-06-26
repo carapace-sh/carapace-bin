@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: merge [<number> | <url> | <branch>]
+description: Merge a pull request
+group: Targeted commands
+documentation:
+    command: |
+        Merge a pull request. Use `-m` for a merge commit, `-s` for squash merge,
+        or `-r` for rebase. The default is squash merge. Use `--auto` to enable
+        auto-merge (wait for required checks), or `--disable-auto` to turn it off.
+        Use `-d` to delete the branch after merging. Add custom commit message
+        with `-b` or `--body-file`.
+flags:
+    --admin: Use administrator privileges to merge a pull request that does not meet requirements
+    --auto: Automatically merge only after necessary requirements are met
+    --disable-auto: Disable auto-merge for this pull request
+    --match-head-commit=: Commit `SHA` that the pull request head must match to allow merge
+    -A, --author-email=: Email `text` for merge commit author
+    -F, --body-file=: Read body text from `file` (use "-" to read from standard input)
+    -b, --body=: Body `text` for the merge commit
+    -d, --delete-branch: Delete the local and remote branch after merge
+    -m, --merge: Merge the commits with the base branch
+    -r, --rebase: Rebase the commits onto the base branch
+    -s, --squash: Squash the commits into one commit and merge it into the base branch
+    -t, --subject=: Subject `text` for the merge commit

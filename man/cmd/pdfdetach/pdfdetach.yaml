@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdfdetach
+description: Portable Document Format (PDF) document embedded file extractor (version 3.03)
+flags:
+    -?: print usage information
+    -enc=: output text encoding name
+    -h: print usage information
+    -help, --help: print usage information
+    -list: list all embedded files
+    -o=: file name for the saved embedded file
+    -opw=: owner password (for encrypted files)
+    -save=: save the specified embedded file (file number)
+    -saveall: save all embedded files
+    -savefile=: save the specified embedded file (file name)
+    -upw=: user password (for encrypted files)
+    -v: print copyright and version info

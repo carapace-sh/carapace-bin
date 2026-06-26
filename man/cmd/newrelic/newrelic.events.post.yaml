@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: post
+description: Post a custom event to New Relic
+flags:
+    -e, --event=: a JSON-formatted event payload to post

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: supervisorctl
+description: control applications run by supervisord from the cmd line
+flags:
+    -c, --configuration=: configuration file path
+    -h, --help: print usage message and exit
+    -i, --interactive: start an interactive shell after executing commands
+    -p, --password=: password to use for authentication with server
+    -r, --history-file: keep a readline history
+    -s, --serverurl=: URL on which supervisord server is listening
+    -u, --username=: username to use for authentication with server

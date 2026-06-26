@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: load [OPTIONS]
+description: Load an image from a tar archive or STDIN
+flags:
+    --platform=*: Load only the given platform(s). Formatted as a comma-separated list of "os[/arch[/variant]]" (e.g., "linux/amd64,linux/arm64/v8").
+    -i, --input=: Read from tar archive file, instead of STDIN
+    -q, --quiet: Suppress the load output

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Display or manipulate a disk partition table with a curses-based
+    interactive interface. Supports creating, deleting, resizing, and
+    modifying partition types on disk devices.
+description: display or manipulate a disk partition table
+flags:
+    --lock?: use exclusive device lock
+    -L, --color?: colorize output
+    -V, --version: display version
+    -b, --sector-size=: physical and logical sector size
+    -h, --help: display this help
+    -r, --read-only: forced open cfdisk in read-only mode
+    -z, --zero: start with zeroed partition table

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: link
+description: Link your local directory to a Vercel organization and enable remote caching

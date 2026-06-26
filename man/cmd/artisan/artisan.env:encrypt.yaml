@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: env:encrypt [--key [KEY]] [--cipher [CIPHER]] [--env [ENV]] [--prune] [--force]
+description: Encrypt an environment file
+flags:
+    --cipher=: The encryption cipher
+    --env=: The environment to be encrypted
+    --force: Overwrite the existing encrypted environment file
+    --key=: The encryption key
+    --prune: Delete the original environment file

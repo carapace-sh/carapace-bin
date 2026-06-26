@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exclude <package-spec>...
+description: add an exclude within versionlock

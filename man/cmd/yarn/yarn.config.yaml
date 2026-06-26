@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+description: Display the current configuration
+group: general
+flags:
+    --json: Format the output as an NDJSON stream
+    --why: Print the reason why a setting is set a particular way
+    -v, --verbose: Print the setting description on top of the regular key/value information

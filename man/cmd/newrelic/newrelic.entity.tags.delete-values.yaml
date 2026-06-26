@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete-values
+description: Delete the given tag/value pairs from the given entity
+flags:
+    -g, --guid=: the entity GUID to delete tag values on
+    -v, --value=*: the tag key:value pairs to delete from the entity

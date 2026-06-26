@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: renew
+description: Renew certificates for a Kubernetes cluster

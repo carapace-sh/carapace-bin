@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update-report
+description: The Ruby implementation of `brew update`
+group: main
+flags:
+    --auto-update: Run in 'auto-update' mode (faster, less output).
+    --debug: Display any debugging information.
+    --force: Treat installed and updated formulae as if they are from the same taps and migrate them anyway.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

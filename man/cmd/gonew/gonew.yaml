@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gonew
+description: Gonew starts a new Go module by copying a template module

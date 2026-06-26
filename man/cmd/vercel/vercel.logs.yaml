@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logs
+description: Displays the logs for a deployment
+
+documentation:
+  command: >-
+    Display real-time or historical logs for a deployment.

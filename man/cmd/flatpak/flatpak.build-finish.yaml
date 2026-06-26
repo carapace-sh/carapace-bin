@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-finish [OPTION…] DIRECTORY
+description: Finalize a build directory
+group: build
+flags:
+    --add-policy=: Add generic policy option
+    --allow=: Allow feature
+    --command=: Command to set
+    --device=: Expose device to app
+    --disallow=: Don't allow feature
+    --env-fd=: Read environment variables in env -0 format from FD
+    --env=: Set environment variable
+    --extension-priority=: Set extension priority (only for extensions)
+    --extension=: Add extension point info
+    --extra-data: Extra data info
+    --filesystem=: Expose filesystem to app (:ro for read-only)
+    --help-all: Show all help options
+    --metadata=: Set generic metadata option
+    --no-exports: Don't process exports
+    --no-inherit-permissions: Don't inherit permissions from runtime
+    --no-talk-name=: Don't allow app to talk to name on the session bus
+    --nodevice=: Don't expose device to app
+    --nofilesystem=: Don't expose filesystem to app
+    --nosocket=: Don't expose socket to app
+    --ostree-verbose: Show OSTree debug information
+    --own-name=: Allow app to own name on the session bus
+    --persist=: Persist home directory subpath
+    --remove-extension=: Remove extension point info
+    --remove-policy=: Remove generic policy option
+    --require-version=: Flatpak version to require
+    --runtime=: Change the runtime used for the app
+    --sdk=: Change the sdk used for the app
+    --share=: Share with host
+    --socket=: Expose socket to app
+    --system-no-talk-name=: Don't allow app to talk to name on the system bus
+    --system-own-name=: Allow app to own name on the system bus
+    --system-talk-name=: Allow app to talk to name on the system bus
+    --talk-name=: Allow app to talk to name on the session bus
+    --unset-env=: Remove variable from environment
+    --unshare=: Unshare with host
+    -h, --help: Show help options
+    -v, --verbose: Show debug information, -vv for more detail

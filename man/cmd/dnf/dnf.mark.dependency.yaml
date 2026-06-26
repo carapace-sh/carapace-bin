@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dependency <package-spec>...
+description: mark package as a dependency
+flags:
+    --skip-unavailable: allow skipping packages that are not installed

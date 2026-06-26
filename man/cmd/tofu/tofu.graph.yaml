@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: graph [options]
+description: Generate a Graphviz graph of the steps in an operation
+flags:
+    -draw-cycles: Highlight any cycles in the graph with colored edges
+    -plan?: Render graph using the specified plan file
+    -type?: Type of graph to output

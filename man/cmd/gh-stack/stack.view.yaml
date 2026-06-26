@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view
+description: View the current stack
+flags:
+    --json: Output stack data as JSON
+    -s, --short: Show compact output

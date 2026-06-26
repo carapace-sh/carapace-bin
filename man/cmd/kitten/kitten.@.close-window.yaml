@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: close-window
+description: Close the specified windows
+flags:
+    --ignore-no-match: Do not return an error if no windows are matched to be closed
+    --no-response: Don't wait for a response indicating the success of the action
+    --self: Close the window this command is run in, rather than the active window
+    -h, --help: Show help for this command
+    -m, --match=: The window to match

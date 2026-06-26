@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: Displays the current toolchain
+flags:
+    --format=: 'Specify the output format [possible values: human, plain]'
+    --quiet: Prevents unnecessary output
+    --verbose: Enables verbose diagnostics
+    -c, --current: Show the currently-active tool(s)
+    -d, --default: Show your default tool(s).
+    -h, --help: Prints help information

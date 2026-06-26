@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-pkgdb [OPTIONS] [PKGNAME...]
+description: XBPS utility to report/fix issues and modify the package database (pkgdb)
+flags:
+    --checks=*: Choose checks to run
+    -C, --config=: Path to confdir (xbps.d)
+    -V, --version: Show XBPS version
+    -a, --all: Process all packages
+    -d, --debug: Debug mode shown to stderr
+    -h, --help: Show usage
+    -m, --mode=: Change PKGNAME to this mode
+    -r, --rootdir=: Full path to rootdir
+    -u, --update: Update pkgdb to the latest format
+    -v, --verbose: Verbose messages

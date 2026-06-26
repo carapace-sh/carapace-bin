@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clone
+description: Clone an existing connection profile
+flags:
+    --temporary: only temporary

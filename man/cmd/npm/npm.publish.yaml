@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: publish
+description: Publish a package
+flags:
+    --access=: publish as public or restricted
+    --dry-run: only report changes
+    --otp=: one-time password
+    --tag=: register with given tag
+    --workspaces: Enable running a command in the context fo all workspaces
+    -w, --workspace=*: Enable running a command in the context of the given workspace

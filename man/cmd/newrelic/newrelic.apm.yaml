@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: apm
+description: Interact with New Relic APM
+persistentflags:
+    --applicationId=: A New Relic APM application ID
+
+documentation:
+  command: >-
+    Interact with New Relic APM (Application Performance Monitoring). Manage applications and deployments.

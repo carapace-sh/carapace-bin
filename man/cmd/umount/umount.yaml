@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: umount
+description: Unmount filesystems
+flags:
+    --fake: dry run; skip the umount(2) syscall
+    -A, --all-targets: unmount all mountpoints for the given device in the current namespace
+    -N, --namespace=: perform umount in another namespace
+    -O, --test-opts=: limit the set of filesystems (use with -a)
+    -R, --recursive: recursively unmount a target with all its children
+    -V, --version: display version
+    -a, --all: unmount all filesystems
+    -c, --no-canonicalize: don't canonicalize paths
+    -d, --detach-loop: if mounted loop device, also free this loop device
+    -f, --force: force unmount (in case of an unreachable NFS system)
+    -h, --help: display this help
+    -i, --internal-only: don't call the umount.<type> helpers
+    -l, --lazy: detach the filesystem now, clean up things later
+    -n, --no-mtab: don't write to /etc/mtab
+    -q, --quiet: suppress 'not mounted' error messages
+    -r, --read-only: in case unmounting fails, try to remount read-only
+    -t, --types=: limit the set of filesystem types
+    -v, --verbose: say what is being done

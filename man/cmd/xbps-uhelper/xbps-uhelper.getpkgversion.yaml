@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: getpkgversion <pkgver...>
+description: Prints version from pkgvers

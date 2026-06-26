@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check
+description: Check the repository for errors
+flags:
+    --check-unused: find unused blobs
+    --read-data: read all data blobs
+    --read-data-subset=: read a `subset` of data packs, specified as 'n/t' for specific subset or either 'x%' or 'x.y%' for random subset
+    --with-cache: use the cache
+
+documentation:
+  command: >-
+    Verify the repository for errors by checking integrity, consistency, and that all data can be decrypted. Use --read-data for full verification.

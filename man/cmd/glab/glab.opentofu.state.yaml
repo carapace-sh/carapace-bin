@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: state <command> [flags]
+description: Work with the OpenTofu or Terraform states.

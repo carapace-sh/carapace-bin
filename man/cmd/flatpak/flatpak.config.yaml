@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config [OPTION…] [KEY [VALUE]]
+description: Manage configuration
+group: install
+flags:
+    --get: Get configuration for KEY
+    --installation=: Work on a non-default system-wide installation
+    --list: List configuration keys and values
+    --ostree-verbose: Show OSTree debug information
+    --set: Set configuration for KEY to VALUE
+    --system: Work on the system-wide installation (default)
+    --unset: Unset configuration for KEY
+    -h, --help: Show help options
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

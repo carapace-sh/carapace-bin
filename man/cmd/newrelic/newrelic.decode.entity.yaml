@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: entity
+description: 'Decodes NR1 Entitys '
+flags:
+    -k, --key=: the key you require back from an entity

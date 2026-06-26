@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mintty
+description: Information about using gh with MinTTY
+hidden: true

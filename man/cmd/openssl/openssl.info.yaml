@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Display diverse information built into the OpenSSL libraries
+group: standard
+flags:
+    -configdir: Default configuration file directory
+    -cpusettings: CPU settings info
+    -dirnamesep: Directory-filename separator
+    -dsoext: Configured extension for modules
+    -listsep: List separator character
+    -modulesdir: Default module directory (other than engine modules)
+    -seeds: Seed sources
+    -windowscontext: Windows install context

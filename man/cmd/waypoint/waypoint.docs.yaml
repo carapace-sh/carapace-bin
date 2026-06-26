@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: docs
+description: Show documentation for components
+flags:
+    --builtin: Show documentation on all builtin plugins The default is false.
+    --label=: Labels to set for this operation.
+    --markdown: Show documentation in markdown format The default is false.
+    --plain: Plain output
+    --plugin=: Only show documentation for plugins with this name
+    --remote: True to use a remote runner to execute.
+    --remote-source=: Override configurations for how remote runners source data.
+    --type=: Only show documentation for this type of plugin
+    --var-file=: HCL or JSON file containing variable values to set for this operation.
+    --var=: Variable value to set for this operation.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

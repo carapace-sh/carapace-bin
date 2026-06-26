@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: print
+description: Display a line of text
+flags:
+    -D: interpret escape sequences
+    -R: like -e
+    -n: do not output a trailing newline
+    -z: push arguments onto editing buffer stack

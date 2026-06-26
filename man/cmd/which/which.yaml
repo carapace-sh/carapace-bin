@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: which
+description: Write the full path of COMMAND(s) to standard output
+flags:
+    --help: Print this help and exit successfully.
+    --read-functions: Read shell functions from stdin.
+    --show-dot: Don't expand a dot to current directory in output.
+    --show-tilde: Output a tilde for HOME directory for non-root.
+    --skip-alias: Ignore option --read-alias; don't read stdin.
+    --skip-dot: Skip directories in PATH that start with a dot.
+    --skip-functions: Ignore option --read-functions; don't read stdin.
+    --skip-tilde: Skip directories in PATH that start with a tilde.
+    --tty-only: Stop processing options on the right if not on tty.
+    -a, --all: Print all matches in PATH, not just the first
+    -i, --read-alias: Read list of aliases from stdin.
+    -v, --version: Print version and exit successfully.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: migrate
+description: Migrate configuration file from v1 to v2.
+flags:
+    --format=: Output file format.
+    --no-config: Don't read config file
+    --skip-validation: Skip validation of the configuration file against the JSON Schema for v1.
+    -c, --config=: Read config from file path `PATH`

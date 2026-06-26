@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pathchk
+description: check whether file names are valid or portable
+flags:
+    --help: display this help and exit
+    --portability: check for all POSIX systems (equivalent to -p -P)
+    --version: output version information and exit
+    -P: check for empty names and leading "-"
+    -p: check for most POSIX systems

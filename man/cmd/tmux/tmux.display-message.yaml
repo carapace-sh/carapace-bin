@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: display-message
+flags:
+    -F=: format
+    -I: TODO description
+    -N: TODO description
+    -a: TODO description
+    -c=: target-client
+    -d=: delay
+    -p: TODO description
+    -t=: target-pane
+    -v: TODO description

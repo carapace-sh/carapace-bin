@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Authenticate with a GitLab instance.
+flags:
+    --hostname=: The hostname of the GitLab instance to authenticate with.
+    --stdin: Read token from standard input.
+    --use-keyring: Store token in your operating system's keyring.
+    -a, --api-host=: API host url.
+    -g, --git-protocol=: 'Git protocol: ssh, https, http'
+    -j, --job-token=: CI job token.
+    -p, --api-protocol=: 'API protocol: https, http'
+    -t, --token=: Your GitLab access token.

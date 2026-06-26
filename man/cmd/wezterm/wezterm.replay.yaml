@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: replay [OPTIONS] <CAST_FILE>
+description: Replay an asciicast terminal session
+flags:
+    --cat: Just emit raw escape sequences all at once, with no timing information
+    --explain: Explain what is being sent/received
+    --explain-only: Don't replay, just show the explanation
+    -h, --help: Print help

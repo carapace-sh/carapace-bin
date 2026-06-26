@@ -1,0 +1,134 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: file
+description: Pick a file from a folder
+flags:
+    --cursor.align=: Text Alignment
+    --cursor.background=: Background Color
+    --cursor.bold: Bold text
+    --cursor.border-background=: Border Background Color
+    --cursor.border-foreground=: Border Foreground Color
+    --cursor.border=: Border Style
+    --cursor.faint: Faint text
+    --cursor.foreground=: Foreground Color
+    --cursor.height=: Text height
+    --cursor.italic: Italicize text
+    --cursor.margin=: Text margin
+    --cursor.padding=: Text padding
+    --cursor.strikethrough: Strikethrough text
+    --cursor.underline: Underline text
+    --cursor.width=: Text width
+    --directory: Allow directories selection
+    --directory.align=: Text Alignment
+    --directory.background=: Background Color
+    --directory.bold: Bold text
+    --directory.border-background=: Border Background Color
+    --directory.border-foreground=: Border Foreground Color
+    --directory.border=: Border Style
+    --directory.faint: Faint text
+    --directory.foreground=: Foreground Color
+    --directory.height=: Text height
+    --directory.italic: Italicize text
+    --directory.margin=: Text margin
+    --directory.padding=: Text padding
+    --directory.strikethrough: Strikethrough text
+    --directory.underline: Underline text
+    --directory.width=: Text width
+    --file: Allow files selection
+    --file-size.align=: Text Alignment
+    --file-size.background=: Background Color
+    --file-size.bold: Bold text
+    --file-size.border-background=: Border Background Color
+    --file-size.border-foreground=: Border Foreground Color
+    --file-size.border=: Border Style
+    --file-size.faint: Faint text
+    --file-size.foreground=: Foreground Color
+    --file-size.height=: Text height
+    --file-size.italic: Italicize text
+    --file-size.margin=: Text margin
+    --file-size.padding=: Text padding
+    --file-size.strikethrough: Strikethrough text
+    --file-size.underline: Underline text
+    --file-size.width=: Text width
+    --file.align=: Text Alignment
+    --file.background=: Background Color
+    --file.bold: Bold text
+    --file.border-background=: Border Background Color
+    --file.border-foreground=: Border Foreground Color
+    --file.border=: Border Style
+    --file.faint: Faint text
+    --file.foreground=: Foreground Color
+    --file.height=: Text height
+    --file.italic: Italicize text
+    --file.margin=: Text margin
+    --file.padding=: Text padding
+    --file.strikethrough: Strikethrough text
+    --file.underline: Underline text
+    --file.width=: Text width
+    --header.align=: Text Alignment
+    --header.background=: Background Color
+    --header.bold: Bold text
+    --header.border-background=: Border Background Color
+    --header.border-foreground=: Border Foreground Color
+    --header.border=: Border Style
+    --header.faint: Faint text
+    --header.foreground=: Foreground Color
+    --header.height=: Text height
+    --header.italic: Italicize text
+    --header.margin=: Text margin
+    --header.padding=: Text padding
+    --header.strikethrough: Strikethrough text
+    --header.underline: Underline text
+    --header.width=: Text width
+    --header=: Header value
+    --height=: Maximum number of files to display
+    --permissions.align=: Text Alignment
+    --permissions.background=: Background Color
+    --permissions.bold: Bold text
+    --permissions.border-background=: Border Background Color
+    --permissions.border-foreground=: Border Foreground Color
+    --permissions.border=: Border Style
+    --permissions.faint: Faint text
+    --permissions.foreground=: Foreground Color
+    --permissions.height=: Text height
+    --permissions.italic: Italicize text
+    --permissions.margin=: Text margin
+    --permissions.padding=: Text padding
+    --permissions.strikethrough: Strikethrough text
+    --permissions.underline: Underline text
+    --permissions.width=: Text width
+    --selected.align=: Text Alignment
+    --selected.background=: Background Color
+    --selected.bold: Bold text
+    --selected.border-background=: Border Background Color
+    --selected.border-foreground=: Border Foreground Color
+    --selected.border=: Border Style
+    --selected.faint: Faint text
+    --selected.foreground=: Foreground Color
+    --selected.height=: Text height
+    --selected.italic: Italicize text
+    --selected.margin=: Text margin
+    --selected.padding=: Text padding
+    --selected.strikethrough: Strikethrough text
+    --selected.underline: Underline text
+    --selected.width=: Text width
+    --show-help: Show help key binds
+    --symlink.align=: Text Alignment
+    --symlink.background=: Background Color
+    --symlink.bold: Bold text
+    --symlink.border-background=: Border Background Color
+    --symlink.border-foreground=: Border Foreground Color
+    --symlink.border=: Border Style
+    --symlink.faint: Faint text
+    --symlink.foreground=: Foreground Color
+    --symlink.height=: Text height
+    --symlink.italic: Italicize text
+    --symlink.margin=: Text margin
+    --symlink.padding=: Text padding
+    --symlink.strikethrough: Strikethrough text
+    --symlink.underline: Underline text
+    --symlink.width=: Text width
+    --timeout=: Timeout until command aborts without a selection
+    -a, --all: Show hidden and 'dot' files
+    -c, --cursor=: The cursor character
+    -p, --permissions: Show file permissions
+    -s, --size: Show file size

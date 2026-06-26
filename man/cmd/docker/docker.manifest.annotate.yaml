@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: annotate [OPTIONS] MANIFEST_LIST MANIFEST
+description: Add additional information to a local image manifest
+flags:
+    --arch=: Set architecture
+    --os-features=*: Set operating system feature
+    --os-version=: Set operating system version
+    --os=: Set operating system
+    --variant=: Set architecture variant

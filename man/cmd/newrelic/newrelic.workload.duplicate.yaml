@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: duplicate
+description: Duplicate a New Relic One workload.
+flags:
+    -g, --guid=: the GUID of the workload you want to duplicate
+    -n, --name=: the name of the workload to duplicate

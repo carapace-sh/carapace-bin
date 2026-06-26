@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fsck
+description: Verifies the connectivity and validity of the objects in the database
+group: interrogator
+flags:
+  --cache: Consider any object recorded in the index also as a head node for an unreachability trace
+  --connectivity-only: Check only the connectivity of reachable objects
+  --dangling: Print objects that exist but that are never directly used
+  --full: Check not just objects in GIT_OBJECT_DIRECTORY
+  --lost-found: Write dangling objects into .git/lost-found/commit/ or .git/lost-found/other/
+  --name-objects: Also display a name that describes how objects are reachable
+  --no-dangling: Do not print objects that exist but that are never directly used
+  --no-full: Check only objects in GIT_OBJECT_DIRECTORY
+  --no-progress: Do no report progress status
+  --no-reflogs: Do not consider commits that are referenced only by an entry in a reflog to be reachable
+  --progress: Report progress status
+  --root: Report root nodes
+  --strict: Enable more strict checking
+  --tags: Report tags
+  --unreachable: Print out objects that exist but that aren’t reachable from any of the reference nodes
+  --verbose: Be chatty
+documentation:
+  command: Verifies the connectivity and validity of the objects in the database.

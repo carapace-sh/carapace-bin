@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm [options] ADDRESS...
+description: Remove instances from the state
+flags:
+    -backup?: Path where Terraform should write the backup state.
+    -dry-run: Only print out what would've been removed
+    -ignore-remote-version: Continue even if remote and local Terraform versions are incompatible.
+    -lock: Don't hold a state lock during the operation.
+    -lock-timeout?: Duration to retry a state lock.
+    -state?: Path to the state file to update.

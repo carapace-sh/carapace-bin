@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gpg-agent
+description: Secret key management for GnuPG
+flags:
+    --allow-emacs-pinentry: allow passphrase to be prompted through Emacs
+    --allow-preset-passphrase: allow presetting passphrase
+    --daemon: run in daemon mode (background)
+    --default-cache-ttl=: expire cached PINs after N seconds
+    --disable-scdaemon: do not use the SCdaemon
+    --enable-ssh-support: enable ssh support
+    --extra-socket=: accept some commands via NAME
+    --ignore-cache-for-signing: do not use the PIN cache when signing
+    --keep-display: ignore requests to change the X display
+    --keep-tty: ignore requests to change the TTY
+    --log-file: use a log file for the server
+    --no-allow-external-cache: disallow the use of an external password cache
+    --no-allow-loopback-pinentry: disallow caller to override the pinentry
+    --no-allow-mark-trusted: disallow clients to mark keys as "trusted"
+    --no-detach: do not detach from the console
+    --options=: read options from FILE
+    --pinentry-program=: use PGM as the PIN-Entry program
+    --scdaemon-program=: use PGM as the SCdaemon program
+    --server: run in server mode (foreground)
+    --ssh-fingerprint-digest=: use ALGO to show ssh fingerprints
+    --supervised: run in supervised mode
+    -c, --csh: csh-style command output
+    -q, --quiet: be somewhat more quiet
+    -s, --sh: sh-style command output
+    -v, --verbose: verbose

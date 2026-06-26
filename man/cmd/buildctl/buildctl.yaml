@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    BuildKit CLI — build utility for interacting with buildkitd
+    daemon. Supports building containers with advanced caching and
+    concurrent execution.
+description: build utility
+flags:
+    --addr=: buildkitd address
+    --debug: enable debug output in logs
+    --log-format=: log formatter
+    --timeout=: timeout backend connection after value seconds
+    --tlscacert=: CA certificate for validation
+    --tlscert=: client certificate
+    --tlsdir=: directory containing CA certificate, client certificate, and client key
+    --tlskey=: client key
+    --tlsservername=: buildkitd server name for certificate validation
+    --wait: block RPCs until the connection becomes available
+    -v, --version: print the version
+persistentflags:
+    -h, --help: show help

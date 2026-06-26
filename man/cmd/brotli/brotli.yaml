@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Compress or decompress files using the Brotli compression format.
+    Supports quality levels 0-11, large-window mode, and file integrity
+    testing.
+description: compress or decompress files
+flags:
+    --large_window=: use incompatible large-window brotli
+    "-0": compression level
+    "-1": compression level
+    "-2": compression level
+    "-3": compression level
+    "-4": compression level
+    "-5": compression level
+    "-6": compression level
+    "-7": compression level
+    "-8": compression level
+    "-9": compression level
+    -S, --suffix=: output file suffix (default:'.br')
+    -V, --version: display version and exit
+    -Z, --best: use best compression level (11) (default)
+    -c, --stdout: write on standard output
+    -d, --decompress: decompress
+    -f, --force: force output file overwrite
+    -h, --help: display this help and exit
+    -j, --rm: remove source file(s)
+    -k, --keep: keep source file(s) (default)
+    -n, --no-copy-stat: do not copy source file(s) attributes
+    -o, --output=: output file (only if 1 input file)
+    -q, --quality=: compression level (0-11)
+    -t, --test: test compressed file integrity
+    -v, --verbose: verbose mode
+    -w, --lgwin=: set LZ77 window size

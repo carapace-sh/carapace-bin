@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: formatters
+description: List current formatters configuration.
+flags:
+    --json: Display as JSON
+    --no-config: Don't read config file
+    -E, --enable=*: Enable specific formatter
+    -c, --config=: Read config from file path `PATH`

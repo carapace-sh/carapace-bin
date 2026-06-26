@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: append
+description: Append a value to a list configuration key
+flags:
+    -g, --global: Operation on global configuration
+    -l, --local: Operation on project-local configuration
+    -s, --system: Operation on system configuration
+persistentflags:
+    -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory

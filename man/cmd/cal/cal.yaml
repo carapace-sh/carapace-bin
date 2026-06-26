@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Display a calendar. Supports showing a single month, three months,
+    the whole year, or a custom number of months. Monday or Sunday
+    may be set as the first day of the week.
+description: display a calendar
+flags:
+    --color?: colorize messages
+    --iso: alias for --reform=iso
+    --reform=: Gregorian reform date
+    -1, --one: show only a single month (default)
+    -3, --three: show three months spanning the date
+    -S, --span: span the date when displaying multiple months
+    -V, --version: display version
+    -Y, --twelve: show the next twelve months
+    -c, --columns=: amount of columns to use
+    -h, --help: display this help
+    -j, --julian: use day-of-year for all calendars
+    -m, --monday: Monday as first day of week
+    -n, --months=: show num months starting with date's month
+    -s, --sunday: Sunday as first day of week
+    -v, --vertical: show day vertically instead of line
+    -w, --week?: show US or ISO-8601 week numbers
+    -y, --year: show the whole year

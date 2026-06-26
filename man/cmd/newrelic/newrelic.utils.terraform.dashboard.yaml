@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dashboard
+description: Generate HCL for the newrelic_one_dashboard resource
+flags:
+    -f, --file=: a file that contains exported dashboard JSON
+    -l, --label=: the resource label to use when generating resource HCL
+    -o, --out=: the file to send the generated HCL to
+    -w, --shiftWidth=: the indentation shift with of the output

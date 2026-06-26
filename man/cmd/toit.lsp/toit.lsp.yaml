@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: toit.lsp
+description: start the lsp server
+flags:
+    --cpuprofile=: write cpu profile to `file`
+    --memprofile=: write mem profile to `file`
+    --sdk=: the default SDK path to use
+    --toitc=: the default toit compiler to use
+    -h, --help: help for toitlsp
+    -v, --verbose: ""

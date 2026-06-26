@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: grep
+description: print lines that match patterns
+flags:
+    --binary-files=: assume that binary files are TYPE;
+    --color?: ""
+    --colour?: use markers to highlight the matching strings;
+    --exclude-dir=: skip directories that match GLOB
+    --exclude-from=: skip files that match any file pattern from FILE
+    --exclude=: skip files that match GLOB
+    --help: display this help text and exit
+    --include=: search only files that match GLOB (a file pattern)
+    --label=: use LABEL as the standard input file name prefix
+    --line-buffered: flush output on every line
+    --no-ignore-case: do not ignore case distinctions (default)
+    --silent: suppress all normal output
+    -A, --after-context=: print NUM lines of trailing context
+    -B, --before-context=: print NUM lines of leading context
+    -C, --context=: print NUM lines of output context
+    -D, --devices=: how to handle devices, FIFOs and sockets;
+    -E, --extended-regexp: PATTERNS are extended regular expressions
+    -F, --fixed-strings: PATTERNS are strings
+    -G, --basic-regexp: PATTERNS are basic regular expressions
+    -H, --with-filename: print file name with output lines
+    -I: equivalent to --binary-files=without-match
+    -L, --files-without-match: print only names of FILEs with no selected lines
+    -P, --perl-regexp: PATTERNS are Perl regular expressions
+    -R, --dereference-recursive: likewise, but follow all symlinks
+    -T, --initial-tab: make tabs line up (if needed)
+    -U, --binary: do not strip CR characters at EOL (MSDOS/Windows)
+    -V, --version: display version information and exit
+    -Z, --null: print 0 byte after FILE name
+    -a, --text: equivalent to --binary-files=text
+    -b, --byte-offset: print the byte offset with output lines
+    -c, --count: print only a count of selected lines per FILE
+    -d, --directories=: how to handle directories;
+    -e, --regexp=: use PATTERNS for matching
+    -f, --file=: take PATTERNS from FILE
+    -h, --no-filename: suppress the file name prefix on output
+    -i, --ignore-case: ignore case distinctions in patterns and data
+    -l, --files-with-matches: print only names of FILEs with selected lines
+    -m, --max-count=: stop after NUM selected lines
+    -n, --line-number: print line number with output lines
+    -o, --only-matching: show only nonempty parts of lines that match
+    -q, --quiet: suppress all normal output
+    -r, --recursive: like --directories=recurse
+    -s, --no-messages: suppress error messages
+    -v, --invert-match: select non-matching lines
+    -w, --word-regexp: match only whole words
+    -x, --line-regexp: match only whole lines
+    -z, --null-data: a data line ends in 0 byte, not newline
+
+documentation:
+  command: >-
+    Print lines matching patterns in files. grep searches the named
+    FILEs (or stdin if none) for lines containing a match to the given
+    PATTERN. By default, patterns are basic regular expressions (BRE);
+    use -E for extended (ERE) or -F for fixed strings. Multiple
+    patterns can be given with -e; read patterns from files with -f.
+    Control output with -c (count), -l (files with matches), -L
+    (files without), -o (only match), -v (invert). Show context with
+    -B/-A (before/after lines) or -C (both). Output line numbers with
+    -n; suppress with -h. Binary files are treated as non-matching
+    by default; search them with -a/--text. Color output is automatic
+    in terminals, controlled by GREP_OPTIONS or --color.

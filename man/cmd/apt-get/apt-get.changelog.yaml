@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: changelog
+description: changelog tries to download the changelog of a package

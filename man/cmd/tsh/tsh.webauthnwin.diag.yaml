@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diag
+description: Run windows webauthn diagnostics
+hidden: true

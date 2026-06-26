@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: groups
+description: List log groups
+flags:
+    --prefix=: log group prefix filter

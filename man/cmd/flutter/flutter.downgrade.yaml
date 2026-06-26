@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: downgrade
+description: Downgrade Flutter to the last active version for the current channel
+flags:
+    -h, --help: Print this usage information.

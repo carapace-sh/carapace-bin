@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kitten
+description: kitten serves as a launcher for running individual kittens
+flags:
+    --version: The current kitten version
+    -h, --help: Show help for this command
+
+documentation:
+  command: >-
+    Launcher for kitty terminal kittens, small programs that extend kitty with features like image display, SSH, clipboard integration, and more.

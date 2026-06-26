@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tox
+description: automation project
+flags:
+    --alwayscopy: 'deprecated use VIRTUALENV_ALWAYS_COPY=1, override always copy setting to True in all envs (default: False)'
+    --develop: 'install package in development mode (default: False)'
+    --devenv=: 'sets up a development environment at ENVDIR based on the env''s tox configuration specified by`-e` (-e defaults to py) (default: None)'
+    --discover=*: 'for Python discovery first try these Python executables (default: [])'
+    --force-dep=*: 'Forces a certain version of one of the dependencies when configuring the virtual environment. REQ Examples ''pytest<6.1'' or ''django>=2.2''. (default: [])'
+    --hashseed=: 'set PYTHONHASHSEED to SEED before running commands. Defaults to a random integer in the range [1, 4294967295] ([1, 1024] on Windows). Passing ''notset'' suppresses this behavior. (default: 264197440)'
+    --help-ini: 'show live configuration (default: False)'
+    --hi: 'show live configuration (default: False)'
+    --installpkg=: 'use specified package for installation into venv, instead of packaging the project (default: None)'
+    --list-dependencies: 'list the dependencies installed during environment setup (default: False)'
+    --no-list-dependencies: 'never list the dependencies installed during environment setup (default: True)'
+    --no-recreate-pkg: 'if recreate is set do not recreate packaging tox environment(s) (default: False)'
+    --parallel-no-spinner: run tox environments in parallel, but don't show the spinner, implies --parallel
+    --pre: 'deprecated use PIP_PRE in set_env instead - install pre-releases and development versions ofdependencies; this will set PIP_PRE=1 environment variable (default: False)'
+    --result-json=: 'write a JSON file with detailed information about all commands and results involved (default: None)'
+    --sdistonly: only perform the packaging activity
+    --showconfig: 'show live configuration (by default all env, with -l only default targets, specific via TOXENV/-e) (default: False)'
+    --sitepackages: 'deprecated use VIRTUALENV_SYSTEM_SITE_PACKAGES=1, override sitepackages setting to True in all envs (default: False)'
+    --skip-env=: 'exclude all environments selected that match this regular expression (default: '''')'
+    --skip-pkg-install: 'skip package installation for this run (default: False)'
+    -a, --listenvs-all: 'show list of all defined environments (with description if verbose) (default: False)'
+    -b, --pkg-only: only perform the packaging activity
+    -e=: 'enumerate, comma separated (ALL -> all environments, not set -> use <env_list> from config) (default: <env_list>)'
+    -f=*: 'factors to evaluate (passing multiple factors means ''AND'', passing this option multiple times means ''OR'') (default: [])'
+    -l, --listenvs: 'show list of test environments (with description if verbose) (default: False)'
+    -m=*: 'labels to evaluate (default: [])'
+    -n, --notest: 'do not run the test commands (default: False)'
+    -o, --parallel-live: connect to stdout while running environments
+    -p, --parallel=: 'run tox environments in parallel, the argument controls limit: all, auto - cpu count, some positive number, zero is turn off (default: 0)'
+    -s, --skip-missing-interpreters=: 'don''t fail tests for missing interpreters: {config,true,false} choice (default: config)'
+persistentflags:
+    --colored=: 'should output be enriched with colors, default is yes unless TERM=dumb or NO_COLOR is defined. (default: no)'
+    --exit-and-dump-after=: 'dump tox threads after n seconds and exit the app - useful to debug when tox hangs, 0 means disabled (default: 0)'
+    --no-provision=: 'do not perform provision, but fail and if a path was provided write provision metadata as JSON to it (default: False)'
+    --no-recreate-provision: 'if recreate is set do not recreate provision tox environment (default: False)'
+    --root=: 'project root directory (if not specified will be the folder of the config file) (default: None)'
+    --runner=: 'the tox run engine to use when not explicitly stated in tox env configuration (default: virtualenv)'
+    --version: show program's and plugins version number and exit
+    --workdir=: 'tox working directory (if not specified will be the folder of the config file) (default: None)'
+    -c, --conf=: 'configuration file/folder for tox (if not specified will discover one) (default: None)'
+    -h, --help: show this help message and exit
+    -q, --quiet*: 'decrease verbosity (default: 0)'
+    -r, --recreate: 'recreate the tox environments (default: False)'
+    -v, --verbose*: 'increase verbosity (default: 2)'
+    -x, --override=*: 'configuration override(s), e.g., -x testenv:pypy3.ignore_errors=True (default: [])'

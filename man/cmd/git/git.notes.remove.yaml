@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: Remove the notes for given objects
+flags:
+  --ignore-missing: Do not consider it an error to request removing non existing notes
+  --stdin: Also read the object names to remove notes from the standard input
+documentation:
+  flag:
+    ignore-missing: |-
+      Do not consider it an error to request removing notes from an
+      object that does not have notes attached to it.
+    stdin: Only valid for `remove` and `copy`. See the respective subcommands.

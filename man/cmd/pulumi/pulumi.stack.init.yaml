@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Create an empty stack with the given name, ready for updates
+persistentflags:
+    --copy-config-from=: The name of the stack to copy existing config from
+    --secrets-provider=: The type of the provider that should be used to encrypt and decrypt secrets

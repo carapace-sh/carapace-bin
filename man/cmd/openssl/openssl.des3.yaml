@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: des3
+aliases:
+    - desx
+    - des-ede3
+    - des-ede3-cbc
+    - des-ede3-cfb
+    - des-ede3-ofb
+description: Triple-DES Cipher
+group: cipher

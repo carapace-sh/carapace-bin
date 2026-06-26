@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Scan files and directories for viruses using the clamd daemon.
+    Faster than clamscan as it reuses the already-loaded virus
+    database and engine from the running clamd service.
+description: scan files and directories for viruses using Clam AntiVirus Daemon
+flags:
+    --config-file=: Read configuration from FILE.
+    --copy=: Copy infected files into DIRECTORY
+    --fdpass: Pass filedescriptor to clamd (useful if clamd is running as a different user)
+    --move=: Move infected files into DIRECTORY
+    --no-summary: Disable summary at end of scanning
+    --quiet: Be quiet, only output error messages
+    --reload: Request clamd to reload virus database
+    --remove: Remove infected files. Be careful!
+    --stdout: Write to stdout instead of stderr. Does not affect 'debug' messages.
+    --stream: Force streaming files to clamd (for debugging and unit testing)
+    -V, --version: Print version number and exit
+    -f, --file-list=: Scan files from FILE
+    -h, --help: Show this help
+    -i, --infected: Only print infected files
+    -l, --log=: Save scan report in FILE
+    -m, --multiscan: Force MULTISCAN mode
+    -p, --ping=: Ping clamd up to [A] times at optional interval [I] until it responds.
+    -v, --verbose: Be verbose
+    -w, --wait: Wait up to 30 seconds for clamd to start. Optionally use alongside --ping to set attempts [A] and interval [I] to check clamd.
+    -z, --allmatch: Continue scanning within file after finding a match.

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unpause CONTAINER [CONTAINER...]
+description: Unpause all processes within one or more containers

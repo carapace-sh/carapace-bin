@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: resize-window
+description: Resize the specified windows
+flags:
+    --self: Resize the window this command is run in, rather than the active window
+    -a, --axis=: The axis along which to resize
+    -h, --help: Show help for this command
+    -i, --increment=: The number of cells to change the size by
+    -m, --match=: The window to match

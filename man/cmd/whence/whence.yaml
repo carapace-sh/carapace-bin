@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: whence
+description: Identify command types
+flags:
+    -c: list all commands matching
+    -f: use functions
+    -v: verbose output
+    -w: describe how word would be interpreted

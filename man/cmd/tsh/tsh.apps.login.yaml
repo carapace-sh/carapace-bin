@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Retrieve short-lived certificate for an app.
+flags:
+    --aws-role=: (For AWS CLI access only) Amazon IAM role ARN or role name.
+    --azure-identity=: (For Azure CLI access only) Azure managed identity name.
+    --gcp-service-account=: (For GCP CLI access only) GCP service account name.
+    --no-quiet&: Quiet mode
+    -c, --cluster=: Specify the Teleport cluster to connect
+    -q, --quiet: Quiet mode

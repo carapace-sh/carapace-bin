@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set
+description: Set the default branch
+flags:
+    -h, --help: Print help (see more with '--help')

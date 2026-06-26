@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm
+description: Remove a certificate by id
+
+documentation:
+  command: >-
+    Remove an SSL certificate by its ID.

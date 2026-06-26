@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-update-repo [OPTION…] LOCATION
+description: Update repository metadata
+group: build
+flags:
+    --authenticator-install: Autoinstall authenticator for this repository
+    --authenticator-name=: Name of authenticator for this repository
+    --authenticator-option=: Authenticator option
+    --collection-id=: Collection ID
+    --comment=: A one-line comment for this repository
+    --default-branch=: Default branch to use for this repository
+    --deploy-collection-id: Permanently deploy collection ID to client remote configurations
+    --deploy-sideload-collection-id: Permanently deploy collection ID to client remote configurations, only for sideload support
+    --description=: A full-paragraph description for this repository
+    --generate-static-deltas: Generate delta files
+    --gpg-homedir=: GPG Homedir to use when looking for keyrings
+    --gpg-import=: Import new default GPG public key from FILE
+    --gpg-sign=: GPG Key ID to sign the summary with
+    --homepage=: URL for a website for this repository
+    --icon=: URL for an icon for this repository
+    --no-authenticator-install: Don't autoinstall authenticator for this repository
+    --no-summary-index: Don't generate a summary index
+    --no-update-appstream: Don't update the appstream branch
+    --no-update-summary: Don't update the summary
+    --ostree-verbose: Show OSTree debug information
+    --prune: Prune unused objects
+    --prune-depth=: 'Only traverse DEPTH parents for each commit (default: -1=infinite)'
+    --prune-dry-run: Prune but don't actually remove anything
+    --redirect-url=: Redirect this repo to a new URL
+    --static-delta-ignore-ref=: Don't create deltas matching refs
+    --static-delta-jobs=: 'Max parallel jobs when creating deltas (default: NUMCPUs)'
+    --title=: A nice name to use for this repository
+    -h, --help: Show help options
+    -v, --verbose: Show debug information, -vv for more detail

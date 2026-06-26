@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sqlite3
+description: A command-line interface for SQLite
+flags:
+    -A=: run ".archive ARGS" and exit
+    -append: Append the database to the end of the file
+    -ascii: Set output mode to 'ascii'
+    -bail: Stop after hitting an error
+    -batch: Force batch I/O
+    -box: Set output mode to 'box'
+    -cmd=: run "COMMAND" before reading stdin
+    -column: Set output mode to 'column'
+    -csv: Set output mode to 'csv'
+    -deserialize: open the database using sqlite3_deserialize()
+    -echo: print inputs before execution
+    -header: turn headers on or off
+    -help: show this message
+    -html: set output mode to HTML
+    -init=: read/process named file
+    -interactive: force interactive I/O
+    -json: set output mode to 'json'
+    -line: set output mode to 'line'
+    -list: set output mode to 'list'
+    -lookaside=: use N entries of SZ bytes for lookaside memory
+    -markdown: set output mode to 'markdown'
+    -maxsize=: maximum size for a --deserialize database
+    -memtrace: trace all memory allocations and deallocations
+    -mmap=: default mmap size set to N
+    -newline=: 'set output row separator. Default: ''\n'''
+    -no-rowid-in-view: Disable rowid-in-view using sqlite3_config()
+    -nofollow: refuse to open symbolic links to database files
+    -nonce=: set the safe-mode escape nonce
+    -nullvalue=: set text string for NULL values. Default ''
+    -pagecache=: use N slots of SZ bytes each for page cache memory
+    -pcachetrace: trace all page cache operations
+    -quote: set output mode to 'quote'
+    -readonly: open the database read-only
+    -safe: enable safe-mode
+    -separator=: 'set output column separator. Default: ''|'
+    -stats: print memory stats before each finalize
+    -table: set output mode to 'table'
+    -tabs: set output mode to 'tabs'
+    -unsafe-testing: allow unsafe commands and modes for testing
+    -version: show SQLite version
+    -vfs=: use NAME as the default VFS
+    -vfstrace: enable tracing of all VFS calls
+    -zip: open the file as a ZIP Archive

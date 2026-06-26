@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show MODEL
+description: Show information for a model
+flags:
+    --license: Show license of a model
+    --modelfile: Show Modelfile of a model
+    --parameters: Show parameters of a model
+    --system: Show system message of a model
+    --template: Show template of a model

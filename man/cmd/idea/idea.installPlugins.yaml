@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: installPlugins
+description: Install plugins by plugin ID from JetBrains Marketplace or a custom plugin repository

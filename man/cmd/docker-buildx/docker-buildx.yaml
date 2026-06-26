@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: docker-buildx
+description: Docker Buildx
+flags:
+    -h, --help: help for ./buildx
+persistentflags:
+    --builder=: Override the configured builder instance
+
+documentation:
+  command: >-
+    Docker Buildx is a Docker plugin that extends the standard `docker build` command with full support for the Moby BuildKit builder toolkit. Build multi-platform images, create builder instances, and manage build caches. Key commands: `docker buildx build` (build with advanced features), `docker buildx create` (create a builder), `docker buildx ls` (list builders), `docker buildx inspect` (show builder details), `docker buildx rm` (remove a builder), `docker buildx bake` (build from file), `docker buildx prune` (clean build cache). Supports multi-platform builds with `--platform`, inline caching with `--cache-from` and `--cache-to`, and pushing images directly with `--push`.

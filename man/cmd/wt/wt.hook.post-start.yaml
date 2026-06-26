@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: post-start
+description: Run post-start hooks
+flags:
+    --foreground: Run in foreground (block until complete)
+    --var=*: Override built-in template variable (KEY=VALUE)
+    -h, --help: Print help (see more with '--help')
+    -y, --yes: Skip approval prompts

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: home
+description: Open a <formula> or <cask>'s homepage in a browser, or open Homebrew's own homepage if no argument is provided
+group: main
+flags:
+    --cask: Treat all named arguments as casks.
+    --debug: Display any debugging information.
+    --formula: Treat all named arguments as formulae.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

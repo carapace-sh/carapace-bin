@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cancel
+description: Cancel a stack's currently running update, if any
+persistentflags:
+    -s, --stack=: The name of the stack to operate on. Defaults to the current stack
+    -y, --yes: Skip confirmation prompts, and proceed with cancellation anyway

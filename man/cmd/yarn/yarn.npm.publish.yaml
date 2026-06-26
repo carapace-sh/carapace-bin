@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: publish
+description: Publish the active workspace to the npm registry
+flags:
+    --access=: The access for the published package (public or restricted)
+    --otp=: The OTP token to use with the command
+    --tag=: The tag on the registry that the package should be attached to
+    --tolerate-republish: Warn and exit when republishing an already existing version of a package

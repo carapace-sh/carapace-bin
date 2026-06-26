@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mac
+description: Message Authentication Code Calculation
+group: standard
+flags:
+    -binary: Output in binary format (default is hexadecimal)
+    -cipher=: Cipher
+    -digest=: Digest See 'PARAMETER NAMES' in the EVP_MAC_ docs
+    -in=: Input file to MAC (default is stdin)
+    -macopt=*: MAC algorithm parameters in n:v form
+    -out=: Output to filename rather than stdout
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter

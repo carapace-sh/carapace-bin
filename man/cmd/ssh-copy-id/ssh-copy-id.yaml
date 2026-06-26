@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh-copy-id
+description: use locally available keys to authorise logins on a remote machine
+flags:
+    -?: Print Usage summary
+    -f: Forced mode
+    -h: Print Usage summary
+    -i=: Use only the key(s) contained in identity_file
+    -n: do a dry-run
+    -o=: ssh option
+    -p=: ssh port
+    -s: SFTP mode

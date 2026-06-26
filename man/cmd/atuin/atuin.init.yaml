@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Print Atuin's shell init script
+flags:
+    --disable-ai: Disable the binding of ? to Atuin AI
+    --disable-ctrl-r: Disable the binding of CTRL-R to atuin
+    --disable-up-arrow: Disable the binding of the Up Arrow key to atuin
+    -h, --help: Print help (see more with '--help')

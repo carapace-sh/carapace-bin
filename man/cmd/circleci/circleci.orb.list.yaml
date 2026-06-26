@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List orbs
+persistentflags:
+    --json: print output as json instead of human-readable
+    --private: exclusively list private orbs within a namespace
+    --sort=: one of "builds"|"projects"|"orgs"
+    -d, --details: output all the commands, executors, and jobs, along with a tree of their parameters
+    -u, --uncertified: include uncertified orbs

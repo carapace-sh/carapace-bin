@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: git-standup
+description: Recall the commit history
+flags:
+    -B: Display the commits in branch groups
+    -D=: The date format displayed in commit history
+    -L: Enable the inclusion of symbolic links in recursive directory search
+    -a=: The author of commits
+    -d=: The start of commit history
+    -f: Fetch the latest commits before showing commit history
+    -g: Display if commit is GPG signed (G) or not (N) in commit message
+    -h: Display help message
+    -m=: The depth of recursive directory search
+    -n=: Limit the number of commits displayed per group

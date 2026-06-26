@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check-ignore
+description: Debug gitignore / exclude files
+group: low-level helper
+flags:
+  --no-index: ignore index when checking
+  --stdin: read file names from stdin
+  -n, --non-matching: show non-matching input paths
+  -q, --quiet: suppress progress reporting
+  -v, --verbose: be verbose
+  -z: terminate input and output records by a NUL character
+documentation:
+  command: |-
+    For each pathname given via the command-line or from a file via
+    `--stdin`, check whether the file is excluded by .gitignore (or other
+    input files to the exclude mechanism) and output the path if it is
+    excluded.
+
+    By default, tracked files are not shown at all since they are not
+    subject to exclude rules; but see `--no-index`.

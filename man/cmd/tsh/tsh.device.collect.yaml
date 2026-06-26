@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: collect
+description: Simulate enroll/authn device data collection
+hidden: true

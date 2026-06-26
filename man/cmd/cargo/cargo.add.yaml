@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add dependencies to a Cargo.toml manifest file
+group: manifest
+flags:
+    --base=: The path base to use when adding from a local crate (unstable).
+    --branch=: Git branch to download the crate from
+    --build: Add as build dependency
+    --default-features: Re-enable the default features
+    --dev: Add as development dependency
+    --git=: Git repository location
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --manifest-path=: Path to Cargo.toml
+    --no-default-features: Disable the default features
+    --no-optional: Mark the dependency as required
+    --no-public: Mark the dependency as private (unstable)
+    --optional: Mark the dependency as optional
+    --path=: Filesystem path to local crate to add
+    --public: Mark the dependency as public (unstable)
+    --registry=: Package registry for this dependency
+    --rename=: Rename the dependency
+    --rev=: Git reference to download the crate from
+    --tag=: Git tag to download the crate from
+    --target=: Add as dependency to the given target platform
+    -F, --features=*: Space or comma separated list of features to activate
+    -h, --help: Print help (see more with '--help')
+    -n, --dry-run: Don't actually write the manifest
+    -p, --package=: Package to modify
+documentation:
+  command: |
+    Add dependencies to a Cargo.toml manifest file. Without arguments, interactive
+    mode prompts for the dependency to add. With a dependency argument (e.g.,
+    `cargo add serde`), fetches from the default registry (crates.io). Supports
+    multiple sources: crates.io packages, git repositories, local paths, and
+    directory dependencies. Use `--features` to enable specific features, and
+    `--target` to add platform-specific dependencies.

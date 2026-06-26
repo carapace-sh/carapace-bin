@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete-context NAME
+description: Delete the specified context from the kubeconfig

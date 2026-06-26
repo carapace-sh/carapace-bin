@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: docs [<page> [<section>]]
+description: Access the Laravel documentation

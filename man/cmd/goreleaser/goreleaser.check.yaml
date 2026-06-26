@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check [configuration files]
+aliases:
+    - c
+description: Checks if configuration is valid
+flags:
+    --deprecated&: Force print the deprecation message - tests only
+    -f, --config=&: Configuration file(s) to check
+    -q, --quiet: 'Quiet mode: no output'

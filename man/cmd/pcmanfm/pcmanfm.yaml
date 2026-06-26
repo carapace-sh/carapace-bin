@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pcmanfm
+description: A lightweight Gtk+ based file manager for X Window
+flags:
+    --class=: Program class as used by the window manager
+    --desktop: Launch desktop manager
+    --desktop-off: Turn off desktop manager if it's running
+    --desktop-pref: Open desktop preference dialog
+    --display=: X display to use
+    --g-fatal-warnings: Make all warnings fatal
+    --gtk-module=: Load additional GTK+ modules
+    --help-all: Show all help options
+    --help-gtk: Show GTK+ Options
+    --name=: Program name as used by the window manager
+    --no-desktop: No function. Just to be compatible with nautilus
+    --one-screen: Use --desktop option only for one screen
+    --role=: Window role for usage by window manager
+    --screen=: X screen to use
+    --show-pref=: Open Preferences dialog on the page N
+    --sync: Make X calls synchronous
+    --wallpaper-mode=: Set mode of desktop wallpaper
+    -d, --daemon-mode: Run PCManFM as a daemon
+    -f, --find-files: Open a Find Files window
+    -h, --help: Show help options
+    -n, --new-win: Open new window
+    -p, --profile=: Name of configuration profile
+    -w, --set-wallpaper=: Set desktop wallpaper from image FILE

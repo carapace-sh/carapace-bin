@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: blame
+description: Start a blame viewer on the specified file on the given version
+flags:
+  --line=: Loads annotations as described above and automatically scrolls the view

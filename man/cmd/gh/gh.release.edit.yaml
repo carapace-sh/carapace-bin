@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit <tag>
+description: Edit a release
+group: Targeted commands
+flags:
+    --discussion-category=: Start a discussion in the specified category when publishing a draft
+    --draft: Save the release as a draft instead of publishing it
+    --latest: Explicitly mark the release as "Latest"
+    --prerelease: Mark the release as a prerelease
+    --tag=: The name of the tag
+    --target=: Target `branch` or full commit SHA (default [main branch])
+    --verify-tag: Abort in case the git tag doesn't already exist in the remote repository
+    -F, --notes-file=: Read release notes from `file` (use "-" to read from standard input)
+    -n, --notes=: Release notes
+    -t, --title=: Release title

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exec [OPTIONS] CONTAINER COMMAND [ARG...]
+description: Execute a command in a running container
+flags:
+    --detach-keys=: Override the key sequence for detaching a container
+    --env-file=: Read in a file of environment variables
+    --privileged: Give extended privileges to the command
+    -d, --detach: 'Detached mode: run command in the background'
+    -e, --env=: Set environment variables
+    -i, --interactive: Keep STDIN open even if not attached
+    -t, --tty: Allocate a pseudo-TTY
+    -u, --user=: 'Username or UID (format: "<name|uid>[:<group|gid>]")'
+    -w, --workdir=: Working directory inside the container

@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add or modify constraints in WORLD and commit changes
+group: package installation and removal
+flags:
+    --allow-untrusted: Install packages with untrusted signature or no signature
+    --arch=: Temporarily override architecture
+    --cache-dir=: Temporarily override the cache directory
+    --cache-max-age=: Maximum AGE (in minutes) for index in cache before it's refreshed
+    --clean-protected: Do not create .apk-new files in configuration directories
+    --force-binary-stdout: Continue even if binary data will be printed to the terminal
+    --force-broken-world: 'DANGEROUS: Delete world constraints until a solution without conflicts is found'
+    --force-missing-repositories: Continue even if some of the repository indexes are not available
+    --force-non-repository: Continue even if packages may be lost on reboot
+    --force-old-apk: Continue even if packages use unsupported features
+    --force-overwrite: Overwrite files in other packages
+    --force-refresh: Do not use cached files (local or from proxy)
+    --initdb: Initialize a new package database
+    --initramfs-diskless-boot: Used by initramfs when it's recreating root tmpfs
+    --keys-dir=: Override directory of trusted keys
+    --no-cache: Do not use any local cache path
+    --no-check-certificate: Do not validate the HTTPS server certificates
+    --no-chown: Do not change file owner or group
+    --no-commit-hooks: Skip pre/post hook scripts
+    --no-interactive: Disable interactive mode
+    --no-network: Do not use the network
+    --no-progress: Disable progress bar even for TTYs
+    --no-scripts: Do not execute any scripts
+    --overlay-from-stdin: Read list of overlay files from stdin
+    --print-arch: Print default arch and exit
+    --progress: Show progress
+    --progress-fd=: Write progress to the specified file descriptor
+    --purge: Purge modified configuration and cached packages
+    --repositories-file=: Override system repositories
+    --timeout=: Timeout network connections if no progress is made in TIME seconds
+    --wait=: Wait for TIME seconds to get an exclusive repository lock before failing
+    -U, --update-cache: Alias for '--cache-max-age 1'
+    -V, --version: Print program version and exit
+    -X, --repository=: Specify additional package repository
+    -f, --force: Enable selected --force-* options (deprecated)
+    -i, --interactive: Ask confirmation before performing certain operations
+    -l, --latest: Always choose the latest package by version
+    -p, --root=: Manage file system at ROOT
+    -q, --quiet: Print less information
+    -s, --simulate: Simulate the requested operation without making any changes
+    -t, --virtual=: Create virtual package NAME with given dependencies
+    -u, --upgrade: Upgrade PACKAGES and it's dependencies
+    -v, --verbose: Print more information (can be specified twice)

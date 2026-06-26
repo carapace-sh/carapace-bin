@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: usermod
+description: modify a user account
+flags:
+    -G, --groups=: new list of supplementary GROUPS
+    -L, --lock: lock the user account
+    -P, --prefix=: prefix directory where are located the /etc/* files
+    -R, --root=: directory to chroot into
+    -U, --unlock: unlock the user account
+    -V, --del-subuids=: remove range of subordinate uids
+    -W, --del-subgids=: remove range of subordinate gids
+    -a, --append: append the user to the supplemental GROUPS
+    -b, --badnames: allow bad names
+    -c, --comment=: new value of the GECOS field
+    -d, --home=: new home directory for the user account
+    -e, --expiredate=: set account expiration date to EXPIRE_DATE
+    -f, --inactive=: set password inactive after expiration
+    -g, --gid=: force use GROUP as new primary group
+    -h, --help: display this help message and exit
+    -l, --login=: new value of the login name
+    -m, --move-home: move contents of the home directory to the
+    -o, --non-unique: allow using duplicate (non-unique) UID
+    -p, --password=: use encrypted password for the new password
+    -s, --shell=: new login shell for the user account
+    -u, --uid=: new UID for the user account
+    -v, --add-subuids=: add range of subordinate uids
+    -w, --add-subgids=: add range of subordinate gids

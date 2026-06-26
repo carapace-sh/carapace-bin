@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gocryptfs
+description: Encrypted overlay filesystem written in Go
+flags:
+    -aessiv: Use AES-SIV encryption (with -init)
+    -allow_other: Allow other users to access the mount
+    -config: Custom path to config file
+    -ctlsock: Create control socket at location
+    -extpass: Call external program to prompt for the password
+    -fg: Stay in the foreground
+    -fsck: Check filesystem integrity
+    -fusedebug: Debug FUSE calls
+    -h, -h: Short help text
+    -hh: Long help text with all options
+    -i, -i: Unmount automatically after specified idle duration
+    -info: Display information about encrypted directory
+    -init: Initialize encrypted directory
+    -masterkey: Mount with explicit master key instead of password
+    -nonempty: Allow mounting over non-empty directory
+    -nosyslog: Do not redirect log messages to syslog
+    -passfile: Read password from plain text file(s)
+    -passwd: Change password
+    -plaintextnames: Do not encrypt file names (with -init)
+    -q, -q: Silence informational messages
+    -reverse: Enable reverse mode
+    -ro: Mount read-only
+    -speed: Run crypto speed test
+    -version: Print version information

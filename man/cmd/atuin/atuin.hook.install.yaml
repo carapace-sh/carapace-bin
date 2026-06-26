@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Install hooks for an AI agent to capture commands in atuin history
+flags:
+    -h, --help: Print help

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init [options]
+description: Prepare your working directory for other commands
+group: main
+flags:
+    -backend: Configure the backend for this configuration
+    -backend-config?*: Backend configuration
+    -force-copy: Suppress prompts about copying state data
+    -from-module?: Copy the contents of the given module into the target directory before initialization
+    -get: Download any modules for this configuration
+    -ignore-remote-version: A rare option used for the remote backend only
+    -input: Ask for input if necessary
+    -lock: Don't hold a state lock during backend migration
+    -lockfile?: Set a dependency lockfile mode
+    -migrate-state: Reconfigure the backend, and attempt to migrate any existing state
+    -no-color: If specified, output won't contain any color
+    -plugin-dir: Directory containing plugin binaries
+    -reconfigure: Reconfigure the backend, ignoring any saved configuration
+    -upgrade: ignore previously-downloaded objects and install the latest version allowed

@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dnf
+description: DNF5 is a package manager for RPM-based Linux distributions
+flags:
+    --assumeno: Automatically answer no for all questions
+    --best: Try the best available package versions in transactions
+    --color=: Control whether color is used in terminal output
+    --comment=: Add a comment to the transaction history
+    --debugsolver: Dump additional data from solver for debugging
+    --disable-plugin=: Disable specified libdnf5 library plugins
+    --disable-repo=: Temporarily disable active repositories
+    --dump-main-config: Print main configuration values to stdout
+    --dump-repo-config=: Print repository configuration values to stdout
+    --dump-variables: Print variable values to stdout
+    --enable-plugin=: Enable specified libdnf5 library plugins
+    --enable-repo=: Temporarily enable additional repositories
+    --forcearch=: Force the use of a specific architecture
+    --installroot=: Setup installroot path
+    --no-best: Do not limit the transaction to the best candidates only
+    --no-docs: Do not install any files marked as documentation
+    --no-gpgchecks: Skip checking OpenPGP signatures on packages
+    --no-plugins: Disable all libdnf5 plugins
+    --refresh: Force refreshing metadata before running the command
+    --releasever-major=: Override the releasever_major variable
+    --releasever-minor=: Override the releasever_minor variable
+    --releasever=: Override the value of the distribution release
+    --repo=: Enable just specified repositories
+    --repofrompath=: Specify a repository to add to the repositories only for this run
+    --setopt=: Override a configuration option
+    --setvar=: Override a DNF5 variable value
+    --show-new-leaves: Show newly installed leaf packages
+    --skip-file-locks: Skip acquiring file locks
+    --use-host-config: Use configuration files from the host system
+    --version: Display the version of dnf5
+    -C, --cacheonly: Use only cached data
+    -c, --config=: Define configuration file location
+    -h, --help: Show help
+    -q, --quiet: In combination with a non-interactive command, shows just the relevant content
+    -x, --exclude=: Exclude packages from the transaction
+    -y, --assumeyes: Automatically answer yes for all questions

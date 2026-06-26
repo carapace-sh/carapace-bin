@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +show-face
+description: show what font face Ghostty will use to render a specific codepoint
+flags:
+    --cp=: Find the face for a single codepoint
+    --help: show help
+    --presentation=: force searching for a specific presentation style
+    --string=: Find the face for all of the codepoints in a string
+    --style=: Search for a specific style

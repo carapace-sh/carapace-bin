@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add <pkg>...
+description: Add a new package to your devbox
+flags:
+    --allow-insecure=*: allow adding packages marked as insecure.
+    --disable-plugin: disable plugin (if any) for this package.
+    --environment=: environment to use, when supported (e.g.secrets support dev, prod, preview.)
+    --patch-glibc&: patch any ELF binaries to use the latest glibc version in nixpkgs
+    --patch=: allow Devbox to patch the package to fix known issues (auto, always, never)
+    -c, --config=&: path to directory containing a devbox.json config file
+    -e, --exclude-platform=*: exclude packages from a specific platform.
+    -o, --outputs=*: specify the outputs to select for the nix package
+    -p, --platform=*: add packages to run on only this platform.

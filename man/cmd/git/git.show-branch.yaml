@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show-branch
+description: Show branches and their commits
+group: interrogator
+flags:
+  --color?: color '*!+-' corresponding to the branch
+  --current: include the current branch
+  --date-order: topologically sort, maintaining date order where possible
+  --independent: show refs unreachable from any other ref
+  --list: synonym to more=-1
+  --merge-base: show possible merge bases
+  --more?: show <n> more commits after the common ancestor
+  --no-name: suppress naming strings
+  --sha1-name: name commits with their object names
+  --sparse: show merges reachable from only one tip
+  --topics: show only commits not on the first branch
+  --topo-order: show commits in topological order
+  -a, --all: show remote-tracking and local branches
+  -g, --reflog?: show <n> most recent ref-log entries starting at base
+  -r, --remotes: show remote-tracking branches
+documentation:
+  command: |-
+    Shows the commit ancestry graph starting from the commits named
+    with <rev>s or <glob>s (or all refs under refs/heads
+    and/or refs/tags) semi-visually.
+
+    It cannot show more than 26 branches and commits at a time.
+
+    It uses `showbranch.default` multi-valued configuration items if
+    no <rev> or <glob> is given on the command line.

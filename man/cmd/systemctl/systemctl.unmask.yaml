@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unmask
+description: Unmask one or more units
+group: unit file
+documentation:
+  command: |
+    Unmask one or more unit files, undoing the effect of mask. This
+    command expects valid unit names only; it does not accept unit file
+    paths.

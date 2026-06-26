@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Log in to a Waypoint server
+flags:
+    --auth-method=: Auth method to use for login.
+    --from-kubernetes: Perform the initial authentication after Waypoint is installed to Kubernetes.
+    --from-kubernetes-namespace=: The name of the Kubernetes namespace that has the Waypoint token.
+    --from-kubernetes-secret=: The name of the Kubernetes secret that has the Waypoint token.
+    --from-kubernetes-service=: The name of the Kubernetes service to get the server address from.
+    --plain: Plain output
+    --server-addr=: Address for the server.
+    --server-tls: Connected to via TLS.
+    --server-tls-skip-verify: Skip verification of the TLS certificate advertised by the server.
+    --token=: Auth with a token.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

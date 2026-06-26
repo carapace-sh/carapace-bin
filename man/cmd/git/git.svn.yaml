@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: svn
+description: Bidirectional operation between a Subversion repository and Git
+group: interaction
+documentation:
+  command: |-
+    'git svn' is a simple conduit for changesets between Subversion and Git.
+    It provides a bidirectional flow of changes between a Subversion and a Git
+    repository.
+
+    'git svn' can track a standard Subversion repository,
+    following the common "trunk/branches/tags" layout, with the --stdlayout option.
+    It can also follow branches and tags in any layout with the -T/-t/-b options
+    (see options to 'init' below, and also the 'clone' command).
+
+    Once tracking a Subversion repository (with any of the above methods), the Git
+    repository can be updated from Subversion by the 'fetch' command and
+    Subversion updated from Git by the 'dcommit' command.

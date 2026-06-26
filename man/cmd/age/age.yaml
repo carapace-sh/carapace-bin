@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: age
+description: simple, modern, and secure file encryption
+flags:
+    -R, --recipients-file=*: Encrypt to recipients listed at PATH. Can be repeated.
+    -a, --armor: Encrypt to a PEM encoded format.
+    -d, --decrypt: Decrypt the input to the output.
+    -e, --encrypt: Encrypt the input to the output. Default if omitted.
+    -i, --identity=*: Use the identity file at PATH. Can be repeated.
+    -o, --output=: Write the result to the file at path OUTPUT.
+    -p, --passphrase: Encrypt with a passphrase.
+    -r, --recipient=*: Encrypt to the specified RECIPIENT. Can be repeated.

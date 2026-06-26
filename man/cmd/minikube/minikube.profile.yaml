@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: profile [MINIKUBE_PROFILE_NAME].  You can return to the default minikube profile by running `minikube profile default`
+description: Get or list the current profiles (clusters)
+group: configuration

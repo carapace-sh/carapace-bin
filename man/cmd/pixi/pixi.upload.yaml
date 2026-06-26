@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upload
+description: Upload conda packages to various channels
+flags:
+    --allow-insecure-host=*: List of hosts for which SSL certificate verification should be skipped

@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: enc
+description: Encryption, decryption, and encoding
+group: standard
+flags:
+    -A: Used with -[base64|a] to specify base64 buffer as a single line
+    -K=: Raw key, in hex
+    -P: Print the iv/key and exit
+    -S=: Salt, in hex
+    -a: Base64 encode/decode, depending on encryption flag
+    -base64: Same as option -a
+    -bufsize=: Buffer size
+    -ciphers: Alias for -list
+    -d: Decrypt
+    -debug: Print debug info
+    -e: Encrypt
+    -in=: Input file
+    -iter=: 'Specify the iteration count and force the use of PBKDF2 Default: 10000'
+    -iv=: IV in hex
+    -k=: Passphrase (Deprecated)
+    -kfile=: Read passphrase from file (Deprecated)
+    -list: List ciphers
+    -md=: Use specified digest to create a key from the passphrase
+    -none: Don't encrypt
+    -nopad: Disable standard block padding
+    -nosalt: Do not use salt in the KDF
+    -out=: Output file
+    -p: Print the iv/key
+    -pass=: Passphrase source
+    -pbkdf2: Use password-based key derivation function 2 (PBKDF2) Use -iter to change the iteration count from 10000
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -rand=: Load the given file(s) into the random number generator
+    -salt: Use salt in the KDF (default)
+    -saltlen=: 'Specify the PBKDF2 salt length (in bytes) Default: 16'
+    -skeymgmt=: Symmetric key management name for opaque symmetric key handling
+    -skeyopt=*: Key options as opt:value for opaque symmetric key handling
+    -skeyuri=: Symmetric key object URI
+    -storepass=: Store pass phrase source when skeyuri is used (optional)
+    -v: Verbose output
+    -writerand=: Write random data to the specified file
+    -z: Compress or decompress encrypted data using zlib

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pack
+description: 'Experimental: Prepares and writes a composite package.json file for your project.'

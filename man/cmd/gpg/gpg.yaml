@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gpg
+description: OpenPGP encryption and signing tool
+flags:
+    --card-status: print the card status
+    --change-passphrase: change a passphrase
+    --change-pin: change a card's PIN
+    --check-signatures: list and check key signatures
+    --clear-sign: make a clear text signature
+    --delete-keys: remove keys from the public keyring
+    --delete-secret-keys: remove keys from the secret keyring
+    --edit-card: change data on a card
+    --edit-key: sign or edit a key
+    --export: export keys
+    --fingerprint: list keys and fingerprints
+    --full-generate-key: full featured key pair generation
+    --generate-key: generate a new key pair
+    --generate-revocation: generate a revocation certificate
+    --import: import/merge keys
+    --list-signatures: list keys and signatures
+    --lsign-key: sign a key locally
+    --openpgp: use strict OpenPGP behavior
+    --print-md: print message digests
+    --quick-add-uid: quickly add a new user-id
+    --quick-generate-key: quickly generate a new key pair
+    --quick-lsign-key: quickly sign a key locally
+    --quick-revoke-sig: quickly revoke a key signature
+    --quick-revoke-uid: quickly revoke a user-id
+    --quick-set-expire: quickly set a new expiration date
+    --quick-sign-key: quickly sign a key
+    --receive-keys: import keys from a keyserver
+    --refresh-keys: update all keys from a keyserver
+    --search-keys: search for keys on a keyserver
+    --send-keys: export keys to a keyserver
+    --server: run in server mode
+    --sign-key: sign a key
+    --textmode: use canonical text mode
+    --tofu-policy=: set the TOFU policy for a key
+    --update-trustdb: update the trust database
+    --verify: verify a signature
+    -K, --list-secret-keys: list secret keys
+    -a, --armor: create ascii armored output
+    -b, --detach-sign: make a detached signature
+    -c, --symmetric: encryption only with symmetric cipher
+    -d, --decrypt: decrypt data (default)
+    -e, --encrypt: encrypt data
+    -i, --interactive: prompt before overwriting
+    -k, --list-keys: list keys
+    -n, --dry-run: do not make any changes
+    -o, --output=: write output to FILE
+    -r, --recipient=: encrypt for USER-ID
+    -s, --sign: make a signature
+    -u, --local-user=: use USER-ID to sign or decrypt
+    -v, --verbose: verbose
+    -z=: set compress level to N (0 disables)

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: select-pane
+flags:
+    -D: TODO description
+    -L: TODO description
+    -M: TODO description
+    -R: TODO description
+    -T=: title
+    -U: TODO description
+    -Z: TODO description
+    -d: TODO description
+    -e: TODO description
+    -l: TODO description
+    -m: TODO description
+    -t=: target-pane

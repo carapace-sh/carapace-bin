@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: c2json
+description: Creates a keymap.json from a keymap.c file
+flags:
+    --keyboard=: The keyboard's name
+    --keymap=: The keymap's name
+    --no-cpp: Do not use 'cpp' on keymap.c
+    -h, --help: show this help message and exit
+    -o, --output=: File to write to
+    -q, --quiet: Quiet mode, only output error messages

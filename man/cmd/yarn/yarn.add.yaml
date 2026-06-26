@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add dependencies to the project
+group: general
+flags:
+    --cached: Reuse the highest version already used somewhere within the project
+    --json: Format the output as an NDJSON stream
+    --mode=: Change what artifacts installs generate
+    --prefer-dev: Add / upgrade a package to a dev dependency
+    -C, --caret: Use the ^ semver modifier on the resolved range
+    -D, --dev: Add a package as a dev dependency
+    -E, --exact: Don't use any semver modifier on the resolved range
+    -O, --optional: Add / upgrade a package to an optional regular / peer dependency
+    -P, --peer: Add a package as a peer dependency
+    -T, --tilde: Use the ~ semver modifier on the resolved range
+    -i, --interactive: Reuse the specified package from other workspaces in the project

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cancel
+description: Cancel all, one, or more jobs
+group: job
+documentation:
+  command: |
+    Cancel one or more jobs specified on the command line by their
+    numeric job IDs. If no job ID is specified, cancel all pending jobs.

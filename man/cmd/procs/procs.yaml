@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: procs
+description: a replacement for `ps` written in Rust
+flags:
+    --gen-completion-out=: Generate shell completion file and write to stdout
+    --gen-completion=: Generate shell completion file
+    --gen-config: Generate configuration sample file
+    --interval=: Interval to calculate throughput
+    --json: JSON output
+    --load-config=: Load configuration from file
+    --no-header: Suppress header
+    --only=: Specified column only
+    --procfs: Path to procfs
+    --sorta=: Sort column by ascending
+    --sortd=: Sort column by descending
+    --theme=: Theme mode
+    --thread: Show thread
+    --use-config=: Use built-in configuration
+    -V, --version: Print version
+    -W, --watch-interval=: Watch mode with custom interval
+    -a, --and: AND  logic for multi-keyword
+    -c, --color=: Color mode
+    -d, --nand: NAND logic for multi-keyword
+    -h, --help: Print help
+    -i, --insert=*: Insert column to slot
+    -l, --list: Show list of kind
+    -o, --or: OR   logic for multi-keyword
+    -p, --pager=: Pager mode
+    -r, --nor: NOR  logic for multi-keyword
+    -t, --tree: Tree view
+    -w, --watch: Watch mode with default interval (1s)
+
+documentation:
+  command: >-
+    Modern replacement for ps written in Rust. procs displays running
+    processes with colored, human-readable output. Search processes
+    by name, user, or other attributes. Sort by any column (cpu, mem,
+    time, pid). Multiple display modes: --tree (parent-child hierarchy),
+    --watch (live updates). Show detailed info with --info (ports, sockets,
+    cwd, cmdline). Filter with --kind to show only threads or hide kernel
+    threads. Search by regex with search term. Wide output with --wide.
+    Paginate with --Pager. Color by category (user, memory, cpu).
+    Defaults to smart columns (owner, CPU%, MEM%, TTY, WCHAN, COMMAND).

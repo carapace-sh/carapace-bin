@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: apply [options] [PLAN]
+description: Create or update infrastructure
+group: main
+flags:
+    -auto-approve: Skip interactive approval of plan before applying
+    -backup?: Path to backup the existing state file before modifying
+    -compact-warnings: Show wanings in a more compact form that includes only the summary messages
+    -destroy: Destroy Terraform-managed infrastructure
+    -input: Ask for input for variables if not directly set
+    -lock: Don't hold a state lock during the operation dangerous if others might concurrently run commands against the same workspace.
+    -lock-timeout?: Duration to retry a state lock
+    -no-color: If specified, output won't contain any color
+    -parallelism?: Limit the number of parallel resource operations
+    -state-out?: Path to write state to that is different than "-state"
+    -state?: Path to read and save state

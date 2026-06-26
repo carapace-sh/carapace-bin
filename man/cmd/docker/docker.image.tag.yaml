@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+description: Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE

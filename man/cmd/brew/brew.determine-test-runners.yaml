@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: determine-test-runners
+description: Determines the runners used to test formulae or their dependents
+group: developer
+flags:
+    --all-supported: Instead of selecting runners based on the chosen formula, return all supported runners.
+    --debug: Display any debugging information.
+    --dependents: Determine runners for testing dependents. Requires `--eval-all` or `HOMEBREW_EVAL_ALL`.
+    --eval-all: Evaluate all available formulae, whether installed or not, to determine testing dependents.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: log-level
+description: Get/set logging threshold for manager
+group: manager state
+documentation:
+  command: |
+    If no argument is given, print the current log level of the manager.
+    If an optional argument LEVEL is provided, change the current log
+    level to LEVEL. Accepts values: emerg, alert, crit, err, warning,
+    notice, info, debug (or numeric values 0-7).

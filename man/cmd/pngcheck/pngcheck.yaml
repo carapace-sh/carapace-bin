@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pngcheck
+description: Test PNG, JNG or MNG image files for corruption
+flags:
+    "-7": print contents of tEXt chunks, escape chars >=128 (for 7-bit terminals)
+    -c: colorize output (for ANSI terminals)
+    -p: print contents of PLTE, tRNS, hIST, sPLT and PPLT (can be used with -q)
+    -q: test quietly (output only errors)
+    -s: search for PNGs within another file
+    -t: print contents of tEXt chunks (can be used with -q)
+    -v*: test verbosely (print most chunk data)
+    -w: suppress windowBits test (a more-stringent compression check)
+    -x: search for PNGs within another file and extract them when found

@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+aliases:
+    - uninstall
+description: Remove a list of packages from a specified conda environment
+flags:
+    --all: Remove all packages, i.e., the entire environment.
+    --dev: Use `sys.executable -m conda` in wrapper scripts instead of CONDA_EXE.
+    --features: Remove features (instead of packages).
+    --force: Forces removal of a package without removing packages that depend on it.
+    --force-remove: Forces removal of a package without removing packages that depend on it.
+    --json: Report all output as json.
+    --no-pin: Ignore pinned file.
+    --offline: Offline mode. Don't connect to the Internet.
+    --override-channels: Do not search default or .condarc channels.
+    --repodata-fn=: Specify name of repodata on remote server.
+    --use-local: Use locally built packages.
+    -C, --use-index-cache: Use cache of channel index files, even if it has expired.
+    -c, --channel=: Additional channel to search for packages.
+    -d, --dry-run: Only display what would have been done.
+    -h, --help: Show this help message and exit.
+    -k, --insecure: Allow conda to perform "insecure" SSL connections and transfers.
+    -n, --name=: Name of environment.
+    -p, --prefix=: Full path to environment location (i.e. prefix).
+    -q, --quiet: Do not display progress bar.
+    -v, --verbose: Once for INFO, twice for DEBUG, three times for TRACE.
+    -y, --yes: Do not ask for confirmation.

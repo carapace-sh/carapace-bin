@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Ultimaker Cura — a 3D printer slicing application. Prepares
+    3D models for printing by generating G-code.
+description: Powerful, easy-to-use 3D printing software
+flags:
+    --debug: Turn on the debug mode by setting this option.
+    --external-backend: Use an externally started backend instead of starting
+    --headless: Hides all GUI elements.
+    --single-instance: run a single instance only
+    --version: show program's version number and exit
+    -h, --help: show help

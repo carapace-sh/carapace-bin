@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Information about the system, workspace and environments for the current machine
+flags:
+    --extended: Show cache and environment size
+    --json: Whether to show the output as JSON or not
+persistentflags:
+    -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory

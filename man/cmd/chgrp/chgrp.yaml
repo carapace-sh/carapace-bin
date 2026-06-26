@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Change the group ownership of files or directories. Operates
+    recursively with `-R`, supports symbolic links, and can change
+    ownership based on a reference file's group.
+description: change group ownership
+flags:
+    --dereference: affect the referent of each symbolic link (this is the default), rather than the symbolic link itself
+    --from=: change the ownership of each file only if its current owner and/or group match those specified here
+    --help: display this help and exit
+    --no-preserve-root: do not treat '/' specially (the default)
+    --preserve-root: fail to operate recursively on '/'
+    --quiet: suppress most error messages
+    --reference=: use RFILE's group rather than specifying a GROUP value
+    --version: output version information and exit
+    -H: if a command line argument is a symbolic link to a directory, traverse it
+    -L: traverse every symbolic link to a directory encountered
+    -P: do not traverse any symbolic links (default)
+    -R, --recursive: operate on files and directories recursively
+    -c, --changes: like verbose but report only when a change is made
+    -f, --silent: suppress most error messages
+    -h, --no-dereference: affect symbolic links instead of any referenced file (useful only on systems that can change the ownership of a symlink)
+    -v, --verbose: output a diagnostic for every file processed

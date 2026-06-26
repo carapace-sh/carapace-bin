@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: permission-set [OPTION…] TABLE ID APP_ID [PERMISSION...]
+description: Set permissions
+group: permission
+flags:
+    --data=: Associate DATA with the entry
+    --ostree-verbose: Show OSTree debug information
+    -h, --help: Show help options
+    -v, --verbose: Show debug information, -vv for more detail

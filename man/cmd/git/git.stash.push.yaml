@@ -1,0 +1,77 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push
+description: save your local modifications to a new stash
+flags:
+  --no-keep-index: also apply to index
+  --pathspec-file-nul: pathspec elemts are seperated by NUL
+  --pathspec-from-file=: read pathspec from file
+  -a, --all: also stash ignored and untracked
+  -k, --keep-index: keep changed added to index
+  -m, --message=: set description
+  -p, --patch: interactively select hunks between HEAD and working tree
+  -q, --quiet: suppress feedback messages
+  -u, --include-untracked: also stash untracked
+documentation:
+  command: |-
+    Save your local modifications to a new 'stash entry' and roll them
+    back to `HEAD` (in the working tree and in the index).
+    The _<message>_ part is optional and gives
+    the description along with the stashed state.
+
+    For quickly making a snapshot, you can omit "push".  In this mode,
+    pathspec elements are only allowed after a double hyphen `--`
+    to prevent a misspelled subcommand from making an unwanted stash entry.
+  flag:
+    all: |-
+      This option is only valid for `push` and `save` commands.
+
+      All ignored and untracked files are also stashed and then cleaned
+      up with `git clean`.
+    no-keep-index: |-
+      This option is only valid for `push` and `save` commands.
+
+      All changes already added to the index are left intact.
+    patch: |-
+      This option is only valid for `push` and `save` commands.
+
+      Interactively select hunks from the diff between HEAD and the
+      working tree to be stashed.  The stash entry is constructed such
+      that its index state is the same as the index state of your
+      repository, and its worktree contains only the changes you selected
+      interactively.  The selected changes are then rolled back from your
+      worktree. See the *Interactive Mode* section of [git-add](cmd://git/add)
+      to learn how to operate the `--patch` mode.
+
+      The `--patch` option implies `--keep-index`.  You can use
+      `--no-keep-index` to override this.
+    pathspec-file-nul: |-
+      This option is only valid for `push` command.
+
+      Only meaningful with `--pathspec-from-file`. Pathspec elements are
+      separated with NUL character and all other characters are taken
+      literally (including newlines and quotes).
+    pathspec-from-file: |-
+      This option is only valid for `push` command.
+
+      Pathspec is passed in _<file>_ instead of commandline args. If
+      _<file>_ is exactly `-` then standard input is used. Pathspec
+      elements are separated by LF or CR/LF. Pathspec elements can be
+      quoted as explained for the configuration variable `core.quotePath`
+      (see [git-config](cmd://git/config)). See also `--pathspec-file-nul` and
+      global `--literal-pathspecs`.
+    quiet: |-
+      This option is only valid for `apply`, `drop`, `pop`, `push`,
+      `save`, `store` commands.
+
+      Quiet, suppress feedback messages.
+    keep-index: |-
+      This option is only valid for `push` and `save` commands.
+
+      All changes already added to the index are left intact.
+    include-untracked: |-
+      When used with the `push` and `save` commands,
+      all untracked files are also stashed and then cleaned up with
+      `git clean`.
+
+      When used with the `show` command, show the untracked files in the stash
+      entry as part of the diff.

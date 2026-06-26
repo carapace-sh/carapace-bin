@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Display information about current conda install
+flags:
+    --base: Display base environment path.
+    --json: Report all output as json. Suitable for using conda
+    --unsafe-channels: Display list of channels with tokens exposed.
+    -a, --all: Show all information.
+    -e, --envs: List all known conda environments.
+    -h, --help: Show this help message and exit.
+    -q, --quiet: Do not display progress bar.
+    -s, --system: List environment variables.
+    -v, --verbose: Use once for info, twice for debug, three times for

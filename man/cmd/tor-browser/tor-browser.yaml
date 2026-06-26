@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tor-browser
+description: Tor Browser
+flags:
+    --dir=: The Tor-Browser directory to use
+    -e, --erase: Erase the copy in your home directory
+    -h, --help: Show this help message and exit
+    -r, --refresh: Refresh the copy in your home directory and launch tor-browser
+    -u, --update: Search in AUR for a new release and install it

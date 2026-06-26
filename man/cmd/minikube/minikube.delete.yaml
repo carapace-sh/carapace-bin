@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Deletes a local Kubernetes cluster
+group: basic
+flags:
+    --all: Set flag to delete all profiles
+    --purge: Set this flag to delete the '.minikube' folder from your user directory.
+    -o, --output=: 'Format to print stdout in. Options include: [text,json]'

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: version
+description: Display the golangci-lint version.
+flags:
+    --debug: Add build information
+    --json: Display as JSON
+    --short: Display only the version number

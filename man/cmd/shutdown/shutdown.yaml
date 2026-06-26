@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: shutdown
+description: Shut down the system
+flags:
+    --help: Show this help
+    --no-wall: Don't send wall message before halt/power-off/reboot
+    --show: Show pending shutdown
+    -H, --halt: Halt the machine
+    -P, --poweroff: Power-off the machine
+    -c: Cancel a pending shutdown
+    -h: Equivalent to --poweroff, overridden by --halt
+    -k: Don't halt/power-off/reboot, just send warnings
+    -r, --reboot: Reboot the machine

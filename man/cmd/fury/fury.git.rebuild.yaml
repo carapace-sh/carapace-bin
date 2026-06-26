@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rebuild REPO
+description: Run the builder on the repo
+flags:
+    -r, --revision=: Revision

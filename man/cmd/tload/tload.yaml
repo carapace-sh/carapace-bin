@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tload
+description: graphic representation of system load average
+flags:
+    -V, --version: output version information and exit
+    -d, --delay=: update delay in seconds
+    -h, --help: display this help and exit
+    -s, --scale=: vertical scale

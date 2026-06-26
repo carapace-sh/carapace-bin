@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gdown
+description: Google Drive Public File Downloader when Curl/Wget Fails
+flags:
+    --folder: download entire folder instead of a single file
+    --format=: Format of Google Docs, Spreadsheets, and Slides
+    --fuzzy: extract Google Drive's file ID
+    --no-check-certificate: don't check the server's TLS certificate
+    --no-cookies: don't use cookies in ~/.cache/gdown/cookies.txt
+    --proxy=: download using the specified proxy
+    --remaining-ok: asserts that is ok to download max 50 files per folder
+    --speed=: download speed limit in second
+    --user-agent=: User-Agent to use for downloading file
+    -O, --output=: output file name/path
+    -V, --version: display version
+    -c, --continue: resume getting partially-downloaded files
+    -h, --help: show this help message and exit
+    -q, --quiet: suppress logging except errors

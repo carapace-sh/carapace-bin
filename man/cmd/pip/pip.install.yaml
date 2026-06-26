@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Install packages
+flags:
+    --abi=*: Only use wheels compatible with Python abi
+    --compile: Compile Python source files to bytecode
+    --extra-index-url=: Extra URLs of package indexes to use in addition to --index-url
+    --force-reinstall: Reinstall all packages even if they are already up-to-date
+    --global-option=: Extra global options to be supplied to the setup.py call before the install command
+    --ignore-requires-python: Ignore the Requires-Python information
+    --implementation=: Only use wheels compatible with Python implementation <implementation>
+    --install-option=*: Extra arguments to be supplied to the setup.py install command
+    --no-binary=*: Do not use binary packages
+    --no-build-isolation: Disable isolation when building a modern source distribution
+    --no-clean: Don't clean up build directories
+    --no-compile: Do not compile Python source files to bytecode
+    --no-deps: Don't install package dependencies
+    --no-index: Ignore package index
+    --no-warn-conflicts: Do not warn about broken dependencies
+    --no-warn-script-location: Do not warn when installing scripts outside PATH
+    --only-binary=*: Do not use source packages
+    --platform=*: Only use wheels compatible with <platform>
+    --pre: Include pre-release and development versions
+    --prefer-binary: Prefer older binary packages over newer source packages
+    --prefix=: Installation prefix where lib, bin and other top-level folders are placed
+    --progress-bar=: Specify type of progress to be displayed
+    --python-version=: The Python interpreter version to use for wheel
+    --require-hashes: Require a hash to check each requirement against
+    --root=: Install everything relative to this alternate root directory
+    --src=: Directory to check out editable projects into
+    --upgrade-strategy=: Determines how dependency upgrading should be handled
+    --use-pep517: Use PEP 517 for building source distributions
+    --user: Install to the Python user install directory for
+    -I, --ignore-installed: Ignore the installed packages, overwriting them
+    -U, --upgrade: Upgrade all specified packages to the newest available version
+    -c, --constraint=*: Constrain versions using the given constraints file
+    -e, --editable=: Install a project in editable mode
+    -f, --find-links=: If a URL or path to an html file, then parse for links to archives such as sdist
+    -i, --index-url=: Base URL of the Python Package Index
+    -r, --requirement=*: Install from the given requirements file
+    -t, --target=: Install packages into <dir>

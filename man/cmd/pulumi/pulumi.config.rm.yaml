@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm
+description: Remove configuration value
+persistentflags:
+    --path: The key contains a path to a property in a map or list to remove

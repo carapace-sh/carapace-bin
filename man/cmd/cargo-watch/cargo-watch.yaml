@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cargo-watch
+description: Watches over your Cargo project’s source
+flags:
+    --debug: Show debug output
+    --env-file=*: Set environment variables from a .env file
+    --features=: List of features passed to cargo invocations
+    --ignore-nothing: Ignore nothing, not even target/ and .git/
+    --no-dot-ignores: Don’t use .ignore files
+    --no-process-group: Do not use a process group when running the command
+    --no-restart: Don’t restart command while it’s still running
+    --no-vcs-ignores: Don’t use .gitignore files
+    --poll: Force use of polling for file changes
+    --postpone: Postpone first run until a file changes
+    --skip-local-deps: Don't try to find local dependencies of the current crate and watch their working directories. Only watch the current directory.
+    --use-shell=: Use a different shell. E.g. --use-shell=bash
+    --watch-when-idle: Ignore events emitted while the commands run.
+    --why: Show paths that changed
+    -B=: Inject RUST_BACKTRACE=VALUE (generally you want to set it to 1) into the environment
+    -C, --workdir=: 'Change working directory before running command [default: crate root]'
+    -E, --env=*: Set environment variables for the command
+    -L=: Inject RUST_LOG=VALUE into the environment --use-shell <use-shell>
+    -N, --notify: Send a desktop notification when watchexec notices a change (experimental, behaviour may change)
+    -V, --version: Display version information
+    -c, --clear: Clear the screen before each run
+    -d, --delay=: 'File updates debounce delay in seconds [default: 0.5]'
+    -h, --help: Display this message
+    -i, --ignore=*: Ignore a glob/gitignore-style pattern
+    -q, --quiet: Suppress output from cargo-watch itself
+    -s, --shell=*: Shell command(s) to execute on changes
+    -w, --watch=*: Watch specific file(s) or folder(s). Disables finding and watching local dependencies.
+    -x, --exec=*: 'Cargo command(s) to execute on changes [default: check]'

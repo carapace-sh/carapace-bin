@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run a program on the computer in which kitty is running and get the output
+flags:
+    --allow-remote-control: The executed program will have privileges to run remote control commands in kitty
+    --env=: Environment variables to set in the child process
+    --remote-control-password=: Restrict the actions remote control is allowed to take
+    -h, --help: Show help for this command

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [repo-spec]...
+description: list available repositories
+flags:
+    --all: show information about all known repositories
+    --disabled: show information about disabled repositories
+    --enabled: show information about enabled repositories
+    --json: show information in JSON format

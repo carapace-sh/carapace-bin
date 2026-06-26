@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Initialize conda for shell interaction
+flags:
+    --all: Initialize all currently available shells.
+    --json: Report all output as json. Suitable for using conda
+    --reverse: Undo past effects of conda init.
+    -d, --dry-run: Only display what would have been done.
+    -h, --help: Show this help message and exit.
+    -q, --quiet: Do not display progress bar.
+    -v, --verbose: Use once for info, twice for debug, three times for trace.

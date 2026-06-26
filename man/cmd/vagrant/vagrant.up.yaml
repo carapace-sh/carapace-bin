@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: up
+description: starts and provisions the vagrant environment
+flags:
+    --destroy-on-error: Destroy machine if any fatal error happens
+    --install-provider: If possible, install the provider if it isn't installed
+    --no-destroy-on-error: Do not destroy machine if any fatal error happens
+    --no-install-provider: Do not install the provider if it isn't installed
+    --no-parallel: Disable parallelism if provider supports it
+    --no-provision: Disable provisioning
+    --parallel: Enable parallelism if provider supports it
+    --provider=: Back the machine with a specific provider
+    --provision: Enable provisioning
+    --provision-with=: Enable only certain provisioners, by type or by name.

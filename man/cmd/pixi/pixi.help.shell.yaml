@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: shell
+description: Start a shell in a pixi environment, run `exit` to leave the shell

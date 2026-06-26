@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: toit.pkg
+description: The Toit package manager
+persistentflags:
+    --project-root=: Specify the project root

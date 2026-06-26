@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cvsserver
+description: A CVS server emulator for Git
+group: interaction
+flags:
+  --base-path=: Prepend path to requested CVSROOT
+  --export-all: 'Don’t check for gitcvs.enabled in config '
+  --strict-paths: Don’t allow recursing into subdirectories
+  -V, --version: Print version information and exit
+  -h, --help: Print usage information and exit
+documentation:
+  command: |-
+    This application is a CVS emulation layer for Git.
+
+    It is highly functional. However, not all methods are implemented,
+    and for those methods that are implemented,
+    not all switches are implemented.
+
+    Testing has been done using both the CLI CVS client, and the Eclipse CVS
+    plugin. Most functionality works fine with both of these clients.

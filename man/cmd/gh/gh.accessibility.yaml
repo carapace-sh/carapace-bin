@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: accessibility
+aliases:
+    - a11y
+description: Learn about GitHub CLI's accessibility experiences
+hidden: true
+flags:
+    -w, --web: Open the GitHub Accessibility site in your browser

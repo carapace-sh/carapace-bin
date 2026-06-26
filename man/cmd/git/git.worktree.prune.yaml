@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune
+description: Prune worktree information in $GIT_DIR/worktrees
+flags:
+  --expire=: expire working trees older than <time>
+  -n, --dry-run: do not remove, show only
+  -v, --verbose: report pruned working trees
+documentation:
+  command: |-
+    Remove worktree information in `$GIT_DIR/worktrees` for worktrees
+    whose working trees are missing.  Useful after manually removing
+    a working tree that is no longer needed (but use "git worktree
+    remove" next time you want to do so).  Also, if you _moved_ a
+    working tree elsewhere causing the worktree information to become
+    dangling, see "git worktree repair" to reconnect the worktree to
+    the new working tree location.
+  flag:
+    dry-run: |-
+      With `prune`, do not remove anything; just report what it would
+      remove.
+    verbose: |-
+      With `prune`, report all removals.
+
+      With `list`, output additional information about worktrees (see below).

@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-commit-from [OPTION…] DST-REPO [DST-REF…]
+description: Make a new commit from existing commits
+group: build
+flags:
+    --disable-fsync: Do not invoke fsync()
+    --end-of-life-rebase=: Mark refs matching the OLDID prefix as end-of-life, to be replaced with the given NEWID
+    --end-of-life=: Mark build as end-of-life
+    --extra-collection-id=: Add an extra collection id ref and binding
+    --force: Always commit, even if same content
+    --gpg-homedir=: GPG Homedir to use when looking for keyrings
+    --gpg-sign=: GPG Key ID to sign the commit with
+    --no-summary-index: Don't generate a summary index
+    --no-update-summary: Don't update the summary
+    --ostree-verbose: Show OSTree debug information
+    --src-ref=: Source repo ref
+    --src-repo=: Source repo dir
+    --subset=: Add to a named subset
+    --timestamp=: Override the timestamp of the commit (NOW for current time)
+    --token-type=: Set type of token needed to install this commit
+    --untrusted: Do not trust SRC-REPO
+    --update-appstream: Update the appstream branch
+    -b, --body=: Full description
+    -h, --help: Show help options
+    -s, --subject=: One line subject
+    -v, --verbose: Show debug information, -vv for more detail

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: realisation
+description: manipulate a Nix realisation
+group: utility

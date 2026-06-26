@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: outdated
+description: Check for outdated packages
+flags:
+    --json: output as json
+    --workspaces: Enable running a command in the context fo all workspaces
+    -a, --all: show all
+    -g, --global: operate globally
+    -l, --long: show extended information
+    -p, --parseable: output parseable results
+    -w, --workspace=*: Enable running a command in the context of the given workspace

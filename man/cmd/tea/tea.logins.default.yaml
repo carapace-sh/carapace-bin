@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: default
+description: Get or Set Default Login
+flags:
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)

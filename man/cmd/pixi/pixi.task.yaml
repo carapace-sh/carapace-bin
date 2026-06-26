@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: task
+description: Interact with tasks in the workspace
+persistentflags:
+    -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory

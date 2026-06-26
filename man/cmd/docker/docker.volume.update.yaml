@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update [OPTIONS] [VOLUME]
+description: Update a volume (cluster volumes only)
+flags:
+    --availability=: Cluster Volume availability ("active", "pause", "drain")

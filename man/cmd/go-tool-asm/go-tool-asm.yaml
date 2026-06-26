@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: go-tool-asm
+description: go assembler
+flags:
+    -D=*: predefined symbol with optional simple value -D=identifier=value
+    -I=*: include directory
+    -compiling-runtime: source to be compiled is part of the Go runtime
+    -d=: enable debugging settings
+    -debug: dump instructions as they are parsed
+    -dynlink: support references to Go symbols defined in other shared libraries
+    -gensymabis: write symbol ABI information to output file, don't assemble
+    -linkshared: generate code that will be linked against Go shared libraries
+    -o=: output file
+    -p=: set expected package import to path
+    -shared: generate code that can be linked into a shared library
+    -spectre=: enable spectre mitigations in list
+    -trimpath=: remove prefix from recorded source file paths

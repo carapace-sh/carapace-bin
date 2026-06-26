@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run a binary or example of the local package
+group: build
+flags:
+    --all-features: Activate all available features
+    --bin=*: Name of the bin target to run
+    --example=*: Name of the example target to run
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --keep-going: Do not abort the build as soon as there is an error
+    --manifest-path=: Path to Cargo.toml
+    --message-format=*: Error format
+    --no-default-features: Do not activate the `default` feature
+    --profile=: Build artifacts with the specified profile
+    --target-dir=: Directory for all generated artifacts
+    --target=*: Build for the target triple
+    --timings: Output a build timing report at the end of the build
+    --unit-graph: Output build graph in JSON (unstable)
+    -F, --features=*: Space or comma separated list of features to activate
+    -h, --help: Print help
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs.'
+    -p, --package=: Package with the target to run
+    -r, --release: Build artifacts in release mode, with optimizations
+documentation:
+  command: |
+    Run a binary or example of the local package. Builds the specified target
+    (or the first binary if none is specified) and runs it immediately. Any
+    arguments after `--` are passed to the program. Use `--bin` or `--example`
+    to select a specific target. The `--release` flag builds in release mode.

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: freeze
+description: Output installed packages in requirements format
+flags:
+    --all: Do not skip pip, distribute, setuptools, wheel
+    --exclude-editable: Exclude editable package from output.
+    --exclude=: Exclude specified package from the output
+    --path=*: Restrict to the specified installation path for listing packages
+    --user: Only output packages installed in user-site.
+    -f, --find-links=: URL for finding packages, which will be added to the output.
+    -l, --local: If in a virtualenv that has global access, do not output globally-installed packages.
+    -r, --requirement=*: Use the order in the given requirements file and its comments when generating output.

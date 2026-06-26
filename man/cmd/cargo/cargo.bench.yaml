@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bench
+description: Execute all benchmarks of a local package
+group: build
+flags:
+    --all: Alias for --workspace (deprecated)
+    --all-features: Activate all available features
+    --all-targets: Benchmark all targets
+    --bench=*: Benchmark only the specified bench target
+    --benches: Benchmark all targets that have `bench = true` set
+    --bin=*: Benchmark only the specified binary
+    --bins: Benchmark all binaries
+    --example=*: Benchmark only the specified example
+    --examples: Benchmark all examples
+    --exclude=*: Exclude packages from the benchmark
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --lib: Benchmark only this package's library
+    --manifest-path=: Path to Cargo.toml
+    --message-format=*: Error format
+    --no-default-features: Do not activate the `default` feature
+    --no-fail-fast: Run all benchmarks regardless of failure
+    --no-run: Compile, but don't run benchmarks
+    --profile=: Build artifacts with the specified profile
+    --target-dir=: Directory for all generated artifacts
+    --target=*: Build for the target triple
+    --test=*: Benchmark only the specified test target
+    --tests: Benchmark all targets that have `test = true` set
+    --timings: Output a build timing report at the end of the build
+    --unit-graph: Output build graph in JSON (unstable)
+    --workspace: Benchmark all packages in the workspace
+    -F, --features=*: Space or comma separated list of features to activate
+    -h, --help: Print help
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs.'
+    -p, --package=*: Package to run benchmarks for
+documentation:
+  command: |
+    Execute all benchmarks of a local package. Runs the `bench` target for each
+    benchmark in the package. Benchmarks are built with the `release` profile.
+    Use `--no-run` to compile only. Use `--no-fail-fast` to run all benchmarks
+    regardless of failure. The `-j` flag controls parallelism.

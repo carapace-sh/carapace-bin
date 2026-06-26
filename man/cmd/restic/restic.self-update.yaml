@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: self-update
+description: Update the restic binary
+flags:
+    --output=: 'Save the downloaded file as `filename` (default: running binary itself)'
+
+documentation:
+  command: >-
+    Download the latest stable restic release from GitHub and replace the current binary. Verifies the download's authenticity using the GPG signature on the release files. Only available when built with the `selfupdate` tag.

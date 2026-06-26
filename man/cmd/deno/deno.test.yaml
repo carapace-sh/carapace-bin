@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: Run tests
+flags:
+    --allow-env?: Allow environment access
+    --allow-ffi?: Allow loading dynamic libraries
+    --allow-hrtime: Allow high resolution time measurement
+    --allow-net?: Allow network access
+    --allow-none: Don't return error code if no test files are found
+    --allow-read?: Allow file system read access
+    --allow-run?: Allow running subprocesses
+    --allow-write?: Allow file system write access
+    --cached-only: Require that remote dependencies are already cached
+    --cert=: Load certificate authority from PEM encoded file
+    --coverage?: 'UNSTABLE: Collect coverage profile data into DIR'
+    --doc: 'UNSTABLE: type check code blocks'
+    --fail-fast?: Stop after N errors. Defaults to stopping after first failure.
+    --filter=: Run tests with this string or pattern in the test name
+    --ignore?: Ignore files
+    --import-map=: Load import map file
+    --inspect-brk?: Activate inspector on host:port and break at start of user script
+    --inspect?: 'Activate inspector on host:port (default: 127.0.0.1:9229)'
+    --location=: Value of 'globalThis.location' used by some web APIs
+    --lock-write: Write lock file (use with --lock)
+    --lock=: Check the specified lock file
+    --no-check: Skip type checking modules
+    --no-remote: Do not resolve remote modules
+    --no-run: Cache test modules, but don't run tests
+    --prompt: Fallback to prompt if required permission wasn't passed
+    --seed=: Seed Math.random()
+    --shuffle?: '(UNSTABLE): Shuffle the order in which the tests are run'
+    --unsafely-ignore-certificate-errors?: 'DANGER: Disables verification of TLS certificates'
+    --v8-flags?: 'Set V8 command line options (for help: --v8-flags=--help'
+    --watch: 'UNSTABLE: Watch for file changes and restart process automatically'
+    -A, --allow-all: Allow all permissions
+    -c, --config=: Load configuration file
+    -j, --jobs=: 'Number of parallel workers, defaults to # of CPUs when no value is provided. Defaults to 1 when the option is not present.'
+    -r, --reload?: Reload source code cache (recompile TypeScript)

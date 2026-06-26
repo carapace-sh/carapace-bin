@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: credits
+description: View credits for this tool
+hidden: true
+flags:
+    -s, --static: Print a static version of the credits

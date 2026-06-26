@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ncdu
+description: NCurses Disk Usage
+flags:
+    --color=: Set color scheme
+    --confirm-quit: Confirm quitting ncdu
+    --exclude-caches: Exclude directories containing CACHEDIR.TAG
+    --exclude-kernfs: Exclude Linux pseudo filesystems
+    --exclude=: Exclude files that match PATTERN
+    --si: Use base 10 (SI) prefixes instead of base 2
+    "-0": UI to use when scanning
+    "-1": UI to use when scanning
+    "-2": UI to use when scanning
+    -L, --follow-symlinks: Follow symbolic links
+    -V: Print version
+    -X, --exclude-from=: Exclude files that match any pattern in FILE
+    -e: Enable extended information
+    -f=: Import scanned directory from FILE
+    -h, --help: This help message
+    -o=: Export scanned directory to FILE
+    -q: Quiet mode, refresh interval 2 seconds
+    -r: Read only
+    -v, --version: Print version
+    -x: Same filesystem

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mousepad
+description: Mousepad is a simple text editor for the Xfce desktop environment
+flags:
+    --disable-server: Do not register with the D-BUS session message bus
+    --display=: X display to use
+    --help-all: Show all help options
+    --help-gapplication: Show GApplication options
+    --help-gtk: Show GTK+ Options
+    --list-encodings: Display a list of possible encodings to open files
+    --preferences: Open the preferences dialog
+    -c, --column=: Column number the cursor to position to (COLUMN >= 0 from start, COLUMN < 0 from end)
+    -e, --encoding=: Encoding to be used to open files (leave empty to open files in the encoding dialog)
+    -h, --help: Show help options
+    -l, --line=: Line number the cursor to position to (LINE > 0 from top, LINE < 0 from bottom)
+    -o, --opening-mode=: 'File opening mode: "tab", "window" or "mixed" (open tabs in a new window)'
+    -q, --quit: Quit a running Mousepad primary instance
+    -v, --version: Print version information and exit

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serial [OPTIONS] <PORT>
+description: Open a serial port
+flags:
+    --baud=: Set the baud rate
+    --class=: Override the default windowing system class
+    --position=: Override the position for the initial window launched by this process
+    -h, --help: Print help (see more with '--help')

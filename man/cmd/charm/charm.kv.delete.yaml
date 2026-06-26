@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete KEY[@DB]
+description: Delete a key with an optional @ db.
+
+documentation:
+  command: >-
+    Delete a key-value pair. Append @db to specify a non-default database.

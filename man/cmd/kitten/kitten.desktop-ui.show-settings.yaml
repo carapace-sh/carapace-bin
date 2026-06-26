@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show-settings
+description: Print the current values of the desktop settings
+flags:
+    --allow-other-backends: Normally, after printing the settings, if the settings did not come from the desktop-ui kitten the command prints an error and exits. This prevents that.
+    --as-json: Show the settings as JSON for machine consumption
+    --in-namespace=: Show only settings in the specified namespaces
+    -h, --help: Show help for this command

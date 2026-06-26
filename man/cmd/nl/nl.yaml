@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nl
+description: number lines of files
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -b, --body-numbering=: use STYLE for numbering body lines
+    -d, --section-delimiter=: use CC for logical page delimiters
+    -f, --footer-numbering=: use STYLE for numbering footer lines
+    -h, --header-numbering=: use STYLE for numbering header lines
+    -i, --line-increment=: line number increment at each line
+    -l, --join-blank-lines=: group of NUMBER empty lines counted as one
+    -n, --number-format=: insert line numbers according to FORMAT
+    -p, --no-renumber: do not reset line numbers for each section
+    -s, --number-separator=: add STRING after (possible) line number
+    -v, --starting-line-number=: first line number for each section
+    -w, --number-width=: use NUMBER columns for line numbers

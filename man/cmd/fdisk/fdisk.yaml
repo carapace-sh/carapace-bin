@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fdisk
+description: manipulate disk partition table
+flags:
+    --bytes: print SIZE in bytes rather than in human readable format
+    --lock?: use exclusive device lock (yes, no or nonblock)
+    -B, --protect-boot: don't erase bootbits when creating a new label
+    -C, --cylinders=: specify the number of cylinders
+    -H, --heads=: specify the number of heads
+    -L, --color?: colorize output
+    -S, --sectors=: specify the number of sectors per track
+    -V, --version: display version
+    -W, --wipe-partitions=: wipe signatures from new partitions (auto, always or never)
+    -b, --sector-size=: physical and logical sector size
+    -c, --compatibility?: mode is 'dos' or 'nondos' (default)
+    -h, --help: display this help
+    -l, --list: display partitions and exit
+    -n, --noauto-pt: don't create default partition table on empty devices
+    -o, --output=: output columns
+    -s, --getsz: display device size in 512-byte sectors [DEPRECATED]
+    -t, --type=: recognize specified partition table type only
+    -u, --units?: 'display units: ''cylinders'' or ''sectors'' (default)'
+    -w, --wipe=: wipe signatures (auto, always or never)
+    -x, --list-details: like --list but with more details

@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fast-import
+description: Backend for fast Git data importers
+group: manipulator
+flags:
+  --active-branches=: Maximum number of branches to maintain active at once
+  --allow-unsafe-features: Enable unsafe options
+  --big-file-threshold=: Maximum size of a blob that fast-import will attempt to create a delta for
+  --cat-blob-fd=: Write responses to get-mark, cat-blob, and ls queries to the file descriptor <fd> instead of stdout
+  --date-format=: Specify the type of dates the frontend will supply
+  --depth=: Maximum delta depth, for blob and tree deltification
+  --done: Terminate with error if there is no done command at the end of the stream
+  --export-marks=: Dumps the internal marks table to <file> when complete
+  --export-pack-edges=: After creating a packfile, print a line of data to <file>
+  --force: Force updating modified existing branches
+  --import-marks-if-exists=: Like --import-marks but instead of erroring out
+  --import-marks=: Before processing any input, load the marks specified in <file>
+  --max-pack-size=: Maximum size of each output packfile
+  --no-relative-marks: Paths are not relative to an internal direcotyr
+  --quiet: Disable the output shown by --stats
+  --relative-marks: Paths are relative to an internal directory
+  --rewrite-submodules-from=: Rewrite the object IDs for the submodule specified by <name>
+  --rewrite-submodules-to=: Rewrite the object IDs for the submodule specified by <name>
+  --stats: Display some basic statistics about the objects fast-import has created
+documentation:
+  command: |-
+    This program is usually not what the end user wants to run directly.
+    Most end users want to use one of the existing frontend programs,
+    which parses a specific type of foreign source and feeds the contents
+    stored there to 'git fast-import'.
+
+    fast-import reads a mixed command/data stream from standard input and
+    writes one or more packfiles directly into the current repository.
+    When EOF is received on standard input, fast import writes out
+    updated branch and tag refs, fully updating the current repository
+    with the newly imported data.
+
+    The fast-import backend itself can import into an empty repository (one that
+    has already been initialized by 'git init') or incrementally
+    update an existing populated repository.  Whether or not incremental
+    imports are supported from a particular foreign source depends on
+    the frontend program in use.

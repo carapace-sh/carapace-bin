@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sign IMAGE:TAG
+description: Sign an image
+flags:
+    --local: Sign a locally tagged image

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: redo <transaction-spec>
+description: repeat the specified transaction
+flags:
+    --skip-unavailable: allow skipping packages

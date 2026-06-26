@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nvim
+description: edit text
+flags:
+    --api-info: Write msgpack-encoded API metadata to stdout
+    --cmd=: Execute <cmd> before any config
+    --embed: Use stdin/stdout as a msgpack-rpc channel
+    --headless: Don't start a user interface
+    --listen=: Serve RPC API from this address
+    --noplugin: Don't load plugins
+    --startuptime=: Write startup timing messages to <file>
+    -M: Modifications in text not allowed
+    -O=: 'Open N vertical windows (default: one per file)'
+    -R: Read-only mode
+    -S=: Source <session> after loading the first file
+    -V=: Verbose [level][file]
+    -Z: Restricted mode
+    -b: Binary mode
+    -d: Diff mode
+    -h, --help: Print this help message
+    -i=: Use this shada file
+    -m: Modifications (writing files) not allowed
+    -n: No swap file, use memory only
+    -o=: 'Open N windows (default: one per file)'
+    -p=: 'Open N tab pages (default: one per file)'
+    -r=: Recover edit state for this file
+    -s=: Read Normal mode commands from <scriptin>
+    -u=: Use this config file
+    -v, --version: Print version information
+documentation:
+  command: >-
+    Edit text files with a modal, extensible text editor. Neovim (nvim)
+    extends Vim with a built-in terminal, LSP client, and Lua scripting.
+    Modes: Normal (navigation), Insert (typing), Visual (selection),
+    Command-line (ex commands). Start editing with i, save with :w, quit
+    with :q. Open files with nvim file.txt, or multiple files with -o (horizontal)
+    or -O (vertical splits), -p (tabs). Use -d for diff mode, -R for
+    read-only. In ex mode, pipe text through external commands with :!cmd.
+    Configuration lives in init.lua or init.vim; plugins are managed via
+    a plugin manager. The --headless mode is useful for scripting and
+    running ex commands from the command line.

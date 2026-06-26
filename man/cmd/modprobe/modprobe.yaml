@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: modprobe
+description: Add and remove modules from the Linux Kernel
+flags:
+    --dump-modversions: Same as --show-modversions
+    --first-time: Fail if module already inserted or removed
+    --force-modversion: Ignore module's version
+    --force-vermagic: Ignore module's version magic
+    --ignore-install: Ignore install commands
+    --ignore-remove: Ignore remove commands
+    --remove-dependencies: Also remove modules depending on it
+    --show: Same as --dry-run
+    --show-config: Same as --showconfig
+    --show-exports: Only print module exported symbol versions and exit
+    --show-modversions: Dump module symbol version and exit
+    -C, --config=: Use FILE instead of default search paths
+    -D, --show-depends: Only print module dependencies and exit
+    -R, --resolve-alias: Only lookup and print alias and exit
+    -S, --set-version=: Use VERSION instead of `uname -r`
+    -V, --version: show version
+    -a, --all: Consider every non-argument to be a module name
+    -b, --use-blacklist: Apply blacklist to resolved alias.
+    -c, --showconfig: Print out known configuration and exit
+    -d, --dirname=: Use DIR as filesystem root for /lib/modules
+    -f, --force: Force module insertion or removal.
+    -h, --help: show this help
+    -i: Ignore commands
+    -n, --dry-run: Do not execute operations, just print out
+    -q, --quiet: disable messages
+    -r, --remove: Remove modules instead of inserting
+    -s, --syslog: print to syslog, not stderr
+    -v, --verbose: enables more messages

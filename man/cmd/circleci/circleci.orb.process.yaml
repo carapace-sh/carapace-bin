@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: process
+description: Validate an orb and print its form after all pre-registration processing

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+description: Git web interface (web frontend to Git repositories)
+group: interrogator
+name: gitweb

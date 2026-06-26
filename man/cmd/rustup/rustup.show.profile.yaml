@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: profile
+description: Show the default profile used for the `rustup install` command
+flags:
+    -h, --help: Print help

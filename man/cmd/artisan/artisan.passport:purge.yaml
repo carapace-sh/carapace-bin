@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: passport:purge [--revoked] [--expired] [--hours [HOURS]]
+description: Purge revoked and / or expired tokens and authentication codes
+flags:
+    --expired: Only purge expired tokens and authentication codes
+    --hours=: The number of hours to retain expired tokens
+    --revoked: Only purge revoked tokens and authentication codes

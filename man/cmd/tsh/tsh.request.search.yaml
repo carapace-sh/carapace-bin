@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Search for resources to request access to.
+flags:
+    --all-kube-namespaces: Search Pods in every namespace
+    --kind=!: Resource kind to search for (node, kube_cluster, db, app, windows_desktop, user_group, pod, secret, configmap, namespace, service, serviceaccount, kube_node, persistentvolume, persistentvolumeclaim, deployment, replicaset, statefulset, daemonset, clusterrole, role, clusterrolebinding, rolebinding, cronjob, job, certificatesigningrequest, ingress)
+    --kube-cluster=: Kubernetes Cluster to search for Pods
+    --kube-namespace=: Kubernetes Namespace to search for Pods
+    --labels=: List of comma separated labels to filter by labels (e.g. key1=value1,key2=value2)
+    --no-all-kube-namespaces&: Search Pods in every namespace
+    --query=: Query by predicate language enclosed in single quotes. Supports ==, !=, &&, and || (e.g. --query='labels["key1"] == "value1" && labels["key2"] != "value2"')
+    --search=: List of comma separated search keywords or phrases enclosed in quotations (e.g. --search=foo,bar,"some phrase")

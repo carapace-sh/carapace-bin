@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set
+description: Create or update a runner profile
+flags:
+    --default: Indicates that this on-demand runner should be used as default.
+    --env-vars=: Environment variable to expose to the on-demand runner.
+    --name=: The name of an existing runner profile to update.
+    --oci-url=: The url for the OCI image to launch for the on-demand runner.
+    --plain: Plain output
+    --plugin-config=: Path to an hcl file that contains the configuration for the plugin.
+    --plugin-type=: The type of the plugin to launch for the on-demand runner.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

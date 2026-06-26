@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Updates your application and its dependencies
+flags:
+    --allow-dirty: Whether to allow updating when the repository contains modified or untracked files.
+    --force: Ignore peer dependency version mismatches.
+    --from=: Version from which to migrate from.
+    --migrate-only: Only perform a migration, do not update the installed version.
+    --next: Use the prerelease version, including beta and RCs.
+    --packages=: The names of package(s) to update.
+    --to=: Version up to which to apply migrations.
+    --verbose: Display additional details about internal operations during execution.
+    -C, --create-commits: Create source control commits for updates and migrations.

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lsusb
+description: list USB devices
+flags:
+    -D=: Selects which device lsusb will examine
+    -V, --version: Show version of program
+    -d=: Show only devices with the specified vendor and product ID numbers
+    -h, --help: Show usage and help
+    -s=: Show only devices with specified device and/or bus numbers
+    -t, --tree: Dump the physical USB device hierarchy as a tree
+    -v, --verbose: Increase verbosity

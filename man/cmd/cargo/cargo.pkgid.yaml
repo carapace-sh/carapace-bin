@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pkgid
+description: Print a fully qualified package specification
+flags:
+    --manifest-path=: Path to Cargo.toml
+    -h, --help: Print help
+    -p, --package=: Argument to get the package ID specifier for

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+
+documentation:
+  command: >-
+    List directory contents. ls displays information about FILEs (default:
+    current directory), sorted alphabetically by default. Common flags: -l
+    long format (permissions, owner, size, date, name); -a shows hidden
+    files starting with .; -A shows hidden except . and ..; -h human-readable
+    sizes; -R recurses into subdirectories. Sort by time with -t (ctime -c,
+    mtime default, atime -u); reverse with -r. Color output with --color
+    (auto for tty, never for pipe). -d lists directories themselves; -F
+    appends indicators (* executable, / dir, @ symlink, = socket). -i shows
+    inode numbers; -s shows allocation size. Control output format with
+    --format (across -x, commas -m, long -l, single-column -1).

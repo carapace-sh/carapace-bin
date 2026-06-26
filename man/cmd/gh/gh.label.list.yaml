@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List labels in a repository
+flags:
+    --json=*: Output JSON with the specified `fields`
+    --order=: 'Order of labels returned: {asc|desc}'
+    --sort=: 'Sort fetched labels: {created|name}'
+    -L, --limit=: Maximum number of labels to fetch
+    -S, --search=: Search label names and descriptions
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: List labels in the web browser

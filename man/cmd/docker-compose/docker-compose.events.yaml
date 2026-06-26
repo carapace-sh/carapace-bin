@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: events [OPTIONS] [SERVICE...]
+description: Receive real time events from containers
+flags:
+    --json: Output events as a stream of json objects
+    --since=: Show all events created since timestamp
+    --until=: Stream events until this timestamp

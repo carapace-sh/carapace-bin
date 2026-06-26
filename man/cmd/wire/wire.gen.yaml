@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gen
+description: generate the wire_gen.go file for each package
+flags:
+    -header_file=: path to file to insert as a header in wire_gen.go
+    -output_file_prefix=: string to prepend to output file names.
+    -tags=: append build tags to the default wirebuild

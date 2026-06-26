@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    A resource monitor that shows usage and stats for CPU, memory,
+    disks, network, and processes. Supports presets, color modes,
+    and custom update rates.
+description: A monitor of resources
+flags:
+    --force-utf: Override automatic UTF locale detection
+    --no-tty: Force disable tty mode
+    -V, --version: Show a version message and exit (more with --version)
+    -c, --config=: Path to a config file
+    -d, --debug: Start in debug mode with additional logs and metrics
+    -f, --filter=: Set an initial process filter
+    -h, --help: Show this help message and exit
+    -l, --low-color: Disable true color, 256 colors only
+    -p, --preset=: Start with a preset (0-9)
+    -t, --tty: Force tty mode with ANSI graph symbols and 16 colors only
+    -u, --update=: Set an initial update rate in milliseconds

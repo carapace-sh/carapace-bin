@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prefetch-file
+description: download a file into the Nix store
+flags:
+    --debug: Set the logging verbosity level to 'debug'
+    --executable: Make the resulting file executable
+    --expected-hash=: The expected hash of the file
+    --hash-type=: hash algorithm
+    --json: Produce output in JSON format
+    --log-format=: Set the format of log output
+    --name=: Override the name component of the resulting store path
+    --quiet: Decrease the logging verbosity level
+    -L, --print-build-logs: Print full build logs on standard error
+    -v, --verbose: Increase the logging verbosity level

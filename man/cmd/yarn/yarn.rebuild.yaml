@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rebuild
+description: Rebuild the project's native packages
+group: general

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: doas
+description: execute a command as another user
+flags:
+    -C=: Parse and check configuration file, do not execute command
+    -L: Clear any persisted authentications and exit
+    -n: Non interactive mode, fail if password entry is needed
+    -s: Execute shell from $SHELL or /etc/passwd
+    -u=: Execute command as specified user

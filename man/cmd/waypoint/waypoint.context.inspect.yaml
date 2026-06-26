@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect
+description: Output context info
+flags:
+    --json: Output information in JSON format The default is false.
+    --plain: Plain output
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

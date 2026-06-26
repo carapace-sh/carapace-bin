@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: downgrade [options] <package-spec>...
+aliases:
+    - dg
+description: downgrade packages
+flags:
+    --allow-downgrade: enable downgrade of dependencies
+    --allowerasing: allow removing of installed packages
+    --downloadonly: download packages without executing transaction
+    --no-allow-downgrade: disable downgrade of dependencies
+    --skip-broken: resolve dependency problems
+    --skip-unavailable: allow skipping packages

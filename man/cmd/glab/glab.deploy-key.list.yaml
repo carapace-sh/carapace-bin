@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: Get a list of deploy keys for the current project.
+flags:
+    --show-id: Shows IDs of deploy keys.
+    -P, --per-page=: Number of items to list per page.
+    -p, --page=: Page number.

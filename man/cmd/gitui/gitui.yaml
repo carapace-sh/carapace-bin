@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gitui
+description: blazing fast terminal-ui for git
+flags:
+    --bugreport=: Generate a bug report
+    --polling: Poll folder for changes instead of using file system events
+    -V, --version: Print version information
+    -d, --directory=: Set the git directory
+    -h, --help: Print help information
+    -l, --logging: Stores logging output into a cache directory
+    -t, --theme=: Set the color theme
+    -w, --workdir=: Set the working directory

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-enabled-layouts
+description: Set the enabled layouts in tabs
+flags:
+    --configured: Change the default enabled layout value so that the new value takes effect for all newly created tabs as well
+    -h, --help: Show help for this command
+    -m, --match=: The tab to match

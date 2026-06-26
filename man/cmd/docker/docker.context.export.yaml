@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: export [OPTIONS] CONTEXT [FILE|-]
+description: Export a context to a tar archive FILE or a tar stream on STDOUT.

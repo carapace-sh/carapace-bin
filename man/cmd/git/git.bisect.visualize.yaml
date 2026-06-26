@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: visualize
+aliases:
+- view
+description: show bisect status in gitk
+flags:
+  --p: ''
+  --stat: ''

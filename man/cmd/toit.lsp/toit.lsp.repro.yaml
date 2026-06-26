@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repro
+flags:
+    --sdk-path=: override the sdk path to use
+    --timeout=: timeout to use

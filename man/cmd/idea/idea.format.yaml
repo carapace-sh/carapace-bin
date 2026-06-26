@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: format
+description: Apply code style formatting to the specified files
+flags:
+    -allowDefaults: Use the default code style settings when the code style is not defined for a file
+    -charset=: Preserve encoding and enforce the charset for reading and writing source files
+    -d, -d: Run the formatter in the validation mode
+    -h: Show help for format command
+    -m, -m=: Specify a comma-separated list of file masks that define the files to be processed
+    -r, -r: Process specified directories recursively
+    -s, -s=: Specify the code style settings file to use for formatting

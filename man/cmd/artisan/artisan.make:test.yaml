@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:test [-f|--force] [-u|--unit] [--pest] [--phpunit] [--] <name>
+description: Create a new test class
+flags:
+    --force: Create the test even if the test already exists
+    --pest: Create a Pest test
+    --phpunit: Create a PHPUnit test
+    --unit: Create a unit test

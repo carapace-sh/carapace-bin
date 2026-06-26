@@ -1,0 +1,154 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: write
+description: Prompt for long-form text
+flags:
+    --base.align=: Text Alignment
+    --base.background=: Background Color
+    --base.bold: Bold text
+    --base.border-background=: Border Background Color
+    --base.border-foreground=: Border Foreground Color
+    --base.border=: Border Style
+    --base.faint: Faint text
+    --base.foreground=: Foreground Color
+    --base.height=: Text height
+    --base.italic: Italicize text
+    --base.margin=: Text margin
+    --base.padding=: Text padding
+    --base.strikethrough: Strikethrough text
+    --base.underline: Underline text
+    --base.width=: Text width
+    --char-limit=: Maximum value length (0 for no limit)
+    --cursor-line-number.align=: Text Alignment
+    --cursor-line-number.background=: Background Color
+    --cursor-line-number.bold: Bold text
+    --cursor-line-number.border-background=: Border Background Color
+    --cursor-line-number.border-foreground=: Border Foreground Color
+    --cursor-line-number.border=: Border Style
+    --cursor-line-number.faint: Faint text
+    --cursor-line-number.foreground=: Foreground Color
+    --cursor-line-number.height=: Text height
+    --cursor-line-number.italic: Italicize text
+    --cursor-line-number.margin=: Text margin
+    --cursor-line-number.padding=: Text padding
+    --cursor-line-number.strikethrough: Strikethrough text
+    --cursor-line-number.underline: Underline text
+    --cursor-line-number.width=: Text width
+    --cursor-line.align=: Text Alignment
+    --cursor-line.background=: Background Color
+    --cursor-line.bold: Bold text
+    --cursor-line.border-background=: Border Background Color
+    --cursor-line.border-foreground=: Border Foreground Color
+    --cursor-line.border=: Border Style
+    --cursor-line.faint: Faint text
+    --cursor-line.foreground=: Foreground Color
+    --cursor-line.height=: Text height
+    --cursor-line.italic: Italicize text
+    --cursor-line.margin=: Text margin
+    --cursor-line.padding=: Text padding
+    --cursor-line.strikethrough: Strikethrough text
+    --cursor-line.underline: Underline text
+    --cursor-line.width=: Text width
+    --cursor.align=: Text Alignment
+    --cursor.background=: Background Color
+    --cursor.bold: Bold text
+    --cursor.border-background=: Border Background Color
+    --cursor.border-foreground=: Border Foreground Color
+    --cursor.border=: Border Style
+    --cursor.faint: Faint text
+    --cursor.foreground=: Foreground Color
+    --cursor.height=: Text height
+    --cursor.italic: Italicize text
+    --cursor.margin=: Text margin
+    --cursor.mode=: Cursor mode
+    --cursor.padding=: Text padding
+    --cursor.strikethrough: Strikethrough text
+    --cursor.underline: Underline text
+    --cursor.width=: Text width
+    --end-of-buffer.align=: Text Alignment
+    --end-of-buffer.background=: Background Color
+    --end-of-buffer.bold: Bold text
+    --end-of-buffer.border-background=: Border Background Color
+    --end-of-buffer.border-foreground=: Border Foreground Color
+    --end-of-buffer.border=: Border Style
+    --end-of-buffer.faint: Faint text
+    --end-of-buffer.foreground=: Foreground Color
+    --end-of-buffer.height=: Text height
+    --end-of-buffer.italic: Italicize text
+    --end-of-buffer.margin=: Text margin
+    --end-of-buffer.padding=: Text padding
+    --end-of-buffer.strikethrough: Strikethrough text
+    --end-of-buffer.underline: Underline text
+    --end-of-buffer.width=: Text width
+    --header.align=: Text Alignment
+    --header.background=: Background Color
+    --header.bold: Bold text
+    --header.border-background=: Border Background Color
+    --header.border-foreground=: Border Foreground Color
+    --header.border=: Border Style
+    --header.faint: Faint text
+    --header.foreground=: Foreground Color
+    --header.height=: Text height
+    --header.italic: Italicize text
+    --header.margin=: Text margin
+    --header.padding=: Text padding
+    --header.strikethrough: Strikethrough text
+    --header.underline: Underline text
+    --header.width=: Text width
+    --header=: Header value
+    --height=: Text area height
+    --line-number.align=: Text Alignment
+    --line-number.background=: Background Color
+    --line-number.bold: Bold text
+    --line-number.border-background=: Border Background Color
+    --line-number.border-foreground=: Border Foreground Color
+    --line-number.border=: Border Style
+    --line-number.faint: Faint text
+    --line-number.foreground=: Foreground Color
+    --line-number.height=: Text height
+    --line-number.italic: Italicize text
+    --line-number.margin=: Text margin
+    --line-number.padding=: Text padding
+    --line-number.strikethrough: Strikethrough text
+    --line-number.underline: Underline text
+    --line-number.width=: Text width
+    --max-lines=: Maximum number of lines (0 for no limit)
+    --padding=: Padding
+    --placeholder.align=: Text Alignment
+    --placeholder.background=: Background Color
+    --placeholder.bold: Bold text
+    --placeholder.border-background=: Border Background Color
+    --placeholder.border-foreground=: Border Foreground Color
+    --placeholder.border=: Border Style
+    --placeholder.faint: Faint text
+    --placeholder.foreground=: Foreground Color
+    --placeholder.height=: Text height
+    --placeholder.italic: Italicize text
+    --placeholder.margin=: Text margin
+    --placeholder.padding=: Text padding
+    --placeholder.strikethrough: Strikethrough text
+    --placeholder.underline: Underline text
+    --placeholder.width=: Text width
+    --placeholder=: Placeholder value
+    --prompt.align=: Text Alignment
+    --prompt.background=: Background Color
+    --prompt.bold: Bold text
+    --prompt.border-background=: Border Background Color
+    --prompt.border-foreground=: Border Foreground Color
+    --prompt.border=: Border Style
+    --prompt.faint: Faint text
+    --prompt.foreground=: Foreground Color
+    --prompt.height=: Text height
+    --prompt.italic: Italicize text
+    --prompt.margin=: Text margin
+    --prompt.padding=: Text padding
+    --prompt.strikethrough: Strikethrough text
+    --prompt.underline: Underline text
+    --prompt.width=: Text width
+    --prompt=: Prompt to display
+    --show-cursor-line: Show cursor line
+    --show-help: Show help key binds
+    --show-line-numbers: Show line numbers
+    --strip-ansi: Strip ANSI sequences when reading from STDIN
+    --timeout=: Timeout until choose returns selected element
+    --value=: Initial value (can be passed via stdin)
+    --width=: Text area width (0 for terminal width)

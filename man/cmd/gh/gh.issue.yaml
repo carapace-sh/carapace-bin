@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: issue <command>
+description: Manage issues
+group: core
+persistentdocumentation:
+    command: |
+        Work with GitHub issues. Create issues with `gh issue create`, list them
+        with `gh issue list`, and manage their state (close, reopen, pin, lock).
+        Use `-R` or `--repo` to operate on issues in a different repository.
+flags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

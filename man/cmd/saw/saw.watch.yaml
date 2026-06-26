@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: watch <log group>
+description: Continuously stream log events
+flags:
+    --expand: indent JSON log messages
+    --filter=: event filter pattern
+    --invert: invert colors for light terminal themes
+    --prefix=: log stream prefix filter
+    --raw: print raw log event without timestamp or stream prefix
+    --rawString: print JSON strings without escaping

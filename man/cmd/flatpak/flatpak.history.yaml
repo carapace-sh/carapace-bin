@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: history [OPTION…]
+description: Show history
+group: install
+flags:
+    --columns=: What information to show
+    --installation=: Work on a non-default system-wide installation
+    --ostree-verbose: Show OSTree debug information
+    --reverse: Show newest entries first
+    --since=: Only show changes after TIME
+    --system: Work on the system-wide installation (default)
+    --until=: Only show changes before TIME
+    -h, --help: Show help options
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

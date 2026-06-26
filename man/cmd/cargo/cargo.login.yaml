@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Log in to a registry.
+flags:
+    --registry=: Registry to use
+    -h, --help: Print help
+documentation:
+  command: |
+    Log in to a registry by saving an API token to `~/.cargo/credentials.toml`.
+    After authentication, you can publish packages to that registry. Use
+    `--registry` to log in to a specific registry other than the default
+    (crates.io). The token can be obtained from the registry's website.

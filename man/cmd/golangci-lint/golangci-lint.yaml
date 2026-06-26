@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: golangci-lint
+description: golangci-lint is a smart linters runner.
+flags:
+    --version: Print version
+persistentflags:
+    --color=: Use color when printing; can be 'always', 'auto', or 'never'
+    -h, --help: Help for a command
+    -v, --verbose: Verbose output

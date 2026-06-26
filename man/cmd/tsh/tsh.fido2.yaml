@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fido2
+description: FIDO2 commands
+hidden: true

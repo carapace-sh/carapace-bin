@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show-windowoptions
+flags:
+    -g: TODO description
+    -t=: target-window
+    -v: TODO description

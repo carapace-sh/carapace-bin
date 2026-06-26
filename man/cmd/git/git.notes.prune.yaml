@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune
+description: Remove all notes for non-existing/unreachable objects
+flags:
+  -n, --dry-run: Do not remove anything, just report
+  -v, --verbose: When merging notes, be more verbose
+documentation:
+  flag:
+    dry-run: |-
+      Do not remove anything; just report the object names whose notes
+      would be removed.
+    verbose: |-
+      When merging notes, be more verbose.
+      When pruning notes, report all object names whose notes are
+      removed.

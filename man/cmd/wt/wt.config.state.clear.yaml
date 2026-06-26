@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clear
+description: Clear all stored state
+flags:
+    -h, --help: Print help (see more with '--help')

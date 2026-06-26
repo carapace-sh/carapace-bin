@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: structure
+description: show repository structure
+documentation:
+  command: |-
+    Retrieve statistics about the current repository structure. The
+    following kinds of information are reported:
+
+    * Reference counts categorized by type
+    * Reachable object counts categorized by type
+    * Total inflated size of reachable objects by type
+    * Total disk size of reachable objects by type
+    * Largest reachable objects in the repository by type
+
+    The output format can be chosen through the flag `--format`. Three formats are
+    supported:
+
+    **table**
+    Outputs repository stats in a human-friendly table. This format may
+    change and is not intended for machine parsing. This is the default
+    format.
+
+    **lines**
+    Each line of output contains a key-value pair for a repository stat.
+    The `=` character is used to delimit between the key and the value.
+    Values containing "unusual" characters are quoted as explained for the
+    configuration variable `core.quotePath` (see [git-config](cmd://git/config)).
+
+    **nul**
+    Similar to `lines`, but uses a _NUL_ character to delimit between
+    key-value pairs instead of a newline. Also uses a newline character as
+    the delimiter between the key and value instead of `=`. Unlike the
+    `lines` format, values containing "unusual" characters are never
+    quoted.
+
+    `-z` is an alias for `--format=nul`.

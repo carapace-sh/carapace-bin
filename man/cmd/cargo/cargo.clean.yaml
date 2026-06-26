@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean
+description: Remove artifacts that cargo has generated in the past
+group: build
+flags:
+    --doc: Whether or not to clean just the documentation directory
+    --manifest-path=: Path to Cargo.toml
+    --profile=: Clean artifacts of the specified profile
+    --target-dir=: Directory for all generated artifacts
+    --target=*: Target triple to clean output for
+    --workspace: Clean artifacts of the workspace members
+    -h, --help: Print help
+    -n, --dry-run: Display what would be deleted without deleting anything
+    -p, --package=*: Package to clean artifacts for
+    -r, --release: Whether or not to clean release artifacts
+documentation:
+  command: |
+    Remove artifacts that cargo has generated in the past. By default, cleans
+    all build artifacts in the `target` directory. Use `--profile` to target a
+    specific build profile, `--target` to clean for a specific target triple,
+    or `--doc` to clean only documentation. Use `--dry-run` to preview what
+    would be deleted without actually deleting anything.

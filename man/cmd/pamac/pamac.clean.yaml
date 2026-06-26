@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean
+description: Clean packages cache or build files
+flags:
+    --no-confirm: bypass any and all confirmation messages
+    -b, --build-files: remove all build files
+    -d, --dry-run: do not remove files, only find candidate packages
+    -k, --keep=: specify how many versions of each package are kept
+    -u, --uninstalled: only target uninstalled packages
+    -v, --verbose: also display all files names

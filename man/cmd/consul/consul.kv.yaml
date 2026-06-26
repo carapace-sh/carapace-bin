@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kv
+description: Interact with the key-value store
+
+documentation:
+  command: >-
+    Interact with the Consul key-value store. Get, set, delete, and list key-value pairs for configuration and coordination.

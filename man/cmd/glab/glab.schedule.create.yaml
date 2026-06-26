@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [flags]
+description: Schedule a new pipeline.
+flags:
+    --active: Whether or not the schedule is active.
+    --cron=!: Cron interval pattern.
+    --cronTimeZone=: Cron timezone.
+    --description=!: Description of the schedule.
+    --ref=!: Target branch or tag.
+    --variable=*: Pass variables to schedule in the format <key>:<value>.

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pulumi
+description: Pulumi command line
+flags:
+    -h, --help: help for pulumi
+persistentflags:
+    --color=: 'Colorize output. Choices are: always, never, raw, auto'
+    --disable-integrity-checking: Disable integrity checking of checkpoint files
+    --logflow: Flow log settings to child processes (like plugins)
+    --logtostderr: Log to stderr instead of to files
+    --non-interactive: Disable interactive mode for all commands
+    --profiling=: Emit CPU and memory profiles and an execution trace to '[filename].[pid].{cpu,mem,trace}', respectively
+    --tracing-header=: Include the tracing header with the given contents.
+    --tracing=: Emit tracing to the specified endpoint. Use the `file:` scheme to write tracing data to a local file
+    -C, --cwd=: Run pulumi as if it had been started in another directory
+    -e, --emoji: Enable emojis in the output
+    -v, --verbose=: Enable verbose logging (e.g., v=3); anything >3 is very verbose

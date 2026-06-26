@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: swap-window
+flags:
+    -d: TODO description
+    -s=: src-window
+    -t=: dst-window

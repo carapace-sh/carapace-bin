@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tree
+description: Display a tree visualization of a dependency graph
+flags:
+    --all-features: Activate all available features
+    --charset=: Character set to use in output
+    --depth=: Maximum display depth of the dependency tree
+    --duplicate&: Show only dependencies which come in multiple versions (implies -i)
+    --exclude=*: Exclude specific workspace members
+    --manifest-path=: Path to Cargo.toml
+    --no-dedupe: Do not de-duplicate (repeats all shared dependencies)
+    --no-default-features: Do not activate the `default` feature
+    --prefix=: Change the prefix (indentation) of how each entry is displayed
+    --prune=*: Prune the given package from the display of the dependency tree
+    --target=*: Filter dependencies matching the given target-triple (default host platform). Pass `all` to include all targets.
+    --workspace: Display the tree for all packages in the workspace
+    -F, --features=*: Space or comma separated list of features to activate
+    -d, --duplicates: Show only dependencies which come in multiple versions (implies -i)
+    -e, --edges=*: The kinds of dependencies to display
+    -f, --format=: Format string used for printing dependencies
+    -h, --help: Print help
+    -i, --invert=*: Invert the tree direction and focus on the given package
+    -p, --package=*: Package to be used as the root of the tree
+documentation:
+  command: |
+    Display a tree visualization of the dependency graph. By default, shows all
+    direct and indirect dependencies. Use `--invert` to focus on what depends on
+    a given package. Use `--duplicates` or `-d` to find dependency conflicts
+    (packages that appear with multiple versions). The `--depth` flag limits
+    display depth, and `--prune` hides specific packages from the tree.

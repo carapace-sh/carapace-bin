@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-vm
+description: Build a NixOS VM image
+flags:
+    --accept-flake-config: Accept configuration from flakes
+    --build-host=: Build the configuration on a different host over SSH
+    --builders=: Explicitly define remote builders
+    --commit-lock-file: Commit the lock file after updates
+    --cores=: Number of cores Nix should utilize
+    --fallback: Attempt to build locally if substituters fail
+    --impure: Allow impure builds
+    --install-bootloader: Install bootloader for switch and boot commands
+    --json: Output results in JSON format
+    --log-format=: Logging format used by Nix
+    --no-net: Prohibit network usage
+    --no-nom: Don't use nix-output-monitor for the build process
+    --no-registries: Do not use registries (deprecated)
+    --no-update-lock-file: Do not update the flake.lock file
+    --no-use-registries: Do not use registries
+    --no-validate: Skip pre-activation system validation checks
+    --no-write-lock-file: Do not write a lock file
+    --offline: Build without internet access
+    --recreate-lock-file: Recreate the flake.lock file entirely
+    --refresh: Refresh flakes to the latest revision
+    --repair: Repair corrupted store paths
+    --target-host=: Deploy the built configuration to a different host over SSH
+    --use-substitutes: Use substitutes when copying
+    -B, --with-bootloader: Build with bootloader
+    -H, --hostname=: Select this hostname from nixosConfigurations
+    -I, --include=*: Paths to include
+    -K, --keep-failed: Keep build outputs from failed builds
+    -L, --print-build-logs: Print build logs directly to stdout
+    -Q, --no-build-output: Suppress build output
+    -R, --bypass-root-check: Don't panic if calling nh as root
+    -S, --no-specialisation: Ignore specialisations
+    -U, --update-input=*: Update the specified flake input(s)
+    -a, --ask: Ask for confirmation
+    -d, --diff=: Whether to display a package diff
+    -j, --max-jobs=: Number of concurrent jobs Nix should run
+    -k, --keep-going: Continue building despite encountering errors
+    -n, --dry: Only print actions, without performing them
+    -o, --out-link=: Path to save the result link
+    -r, --run: Run the VM immediately after building
+    -s, --specialisation=: Explicitly select some specialisation
+    -t, --show-trace: Display tracebacks on errors
+    -u, --update: Update all flake inputs

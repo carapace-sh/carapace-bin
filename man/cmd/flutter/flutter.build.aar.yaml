@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: aar
+description: Build a repository containing an AAR and a POM file
+flags:
+    --build-number=: An identifier used as an internal version number.
+    --dart-define=*: Additional key-value pairs that will be available as constants.
+    --debug: Build a debug version of the current project.
+    --flavor: Build a custom app flavor as defined by platform-specific build setup.
+    --no-debug: Do not build a debug version of the current project.
+    --no-null-assertions: Do not perform additional null assertions on the boundaries of migrated and un-migrated code.
+    --no-obfuscate: In a release build, this flag does not removes identifiers and replaces them with randomized values for the purposes of source code obfuscation.
+    --no-pub: Do not run "flutter pub get" before executing this command.
+    --no-release: Do not build a release version of the current project.
+    --no-track-widget-creation: Do not track widget creation locations.
+    --no-tree-shake-icons: Do not tree shake icon fonts so that only glyphs used by the application remain.
+    --null-assertions: Perform additional null assertions on the boundaries of migrated and un-migrated code.
+    --obfuscate: In a release build, this flag removes identifiers and replaces them with randomized values for the purposes of source code obfuscation.
+    --output-dir=: The absolute path to the directory where the repository is generated.
+    --profile: Build a version of the current project specialized for performance profiling.
+    --pub: Run "flutter pub get" before executing this command.
+    --split-debug-info=: In a release build, this flag reduces application size by storing Dart program symbols in a separate file on the host rather than in the application.
+    --target-platform=: The target platform for which the project is compiled.
+    --track-widget-creation: Track widget creation locations.
+    --tree-shake-icons: Tree shake icon fonts so that only glyphs used by the application remain.
+    -h, --help: Print this usage information.

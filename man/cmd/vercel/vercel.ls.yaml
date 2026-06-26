@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+aliases:
+    - list
+description: Lists deployments
+
+documentation:
+  command: >-
+    List all deployments for the current project.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete <variable-name>
+aliases:
+    - remove
+description: Delete variables
+flags:
+    -e, --env=: Delete a variable for an environment
+    -o, --org=: Delete a variable for an organization

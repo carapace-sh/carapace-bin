@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List stacks
+persistentflags:
+    -a, --all: List all stacks instead of just stacks for the current project
+    -j, --json: Emit output as JSON
+    -o, --organization=: Filter returned stacks to those in a specific organization
+    -p, --project=: Filter returned stacks to those with a specific project name
+    -t, --tag=: Filter returned stacks to those in a specific tag (tag-name or tag-name=tag-value)

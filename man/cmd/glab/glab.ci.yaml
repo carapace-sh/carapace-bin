@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ci <command> [flags]
+aliases:
+    - pipe
+    - pipeline
+description: Work with GitLab CI/CD pipelines and jobs.
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.
+
+documentation:
+  command: >-
+    Work with GitLab CI/CD pipelines and jobs. Key subcommands: `glab ci run` (trigger a pipeline), `glab ci list` (show pipelines), `glab ci view` (show pipeline details), `glab ci cancel` (cancel a pipeline), `glab ci retry` (retry failed jobs), `glab ci trace` (stream job logs), `glab ci status` (check pipeline status). Aliases: `pipe`, `pipeline`. Use `-R` to target a specific repository. Can filter by branch, status, or ref.

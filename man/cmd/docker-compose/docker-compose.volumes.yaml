@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: volumes [OPTIONS] [SERVICE...]
+description: List volumes
+flags:
+    --format=: 'Format output using a custom template:'
+    -q, --quiet: Only display volume names

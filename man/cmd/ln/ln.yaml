@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ln
+description: make links between files
+flags:
+    --backup?: make a backup of each existing destination file
+    --help: display this help and exit
+    --version: output version information and exit
+    -F: allow the superuser to attempt to hard link directories
+    -L, --logical: dereference TARGETs that are symbolic links
+    -P, --physical: make hard links directly to symbolic links
+    -S, --suffix=: override the usual backup suffix
+    -T, --no-target-directory: treat LINK_NAME as a normal file always
+    -b: like --backup but does not accept an argument
+    -d, --directory: allow the superuser to attempt to hard link directories
+    -f, --force: remove existing destination files
+    -i, --interactive: prompt whether to remove destinations
+    -n, --no-dereference: treat LINK_NAME as a normal file if it is a symbolic link to a directory
+    -r, --relative: create symbolic links relative to link location
+    -s, --symbolic: make symbolic links instead of hard links
+    -t, --target-directory=: specify the DIRECTORY in which to create the links
+    -v, --verbose: print name of each linked file

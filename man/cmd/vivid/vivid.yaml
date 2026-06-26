@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vivid
+description: LS_COLORS manager with multiple themes
+flags:
+    -V, --version: Prints version information
+    -d, --database=: Path to filetypes database (filetypes.yml)
+    -h, --help: Prints help information
+    -m, --color-mode=: Type of ANSI colors to be used

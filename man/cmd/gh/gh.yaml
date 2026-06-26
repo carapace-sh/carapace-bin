@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gh <command> <subcommand> [flags]
+description: GitHub CLI
+flags:
+    --version: Show gh version
+persistentflags:
+    --help: Show help for command
+documentation:
+    command: |
+        gh is GitHub on the command line. It brings pull requests, issues,
+        and other GitHub concepts to the terminal alongside git and your
+        workflow.
+
+        For full documentation, visit [cli.github.com/manual](https://cli.github.com/manual)

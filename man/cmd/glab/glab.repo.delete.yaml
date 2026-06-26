@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete [<NAMESPACE>/]<NAME>
+description: Delete an existing repository on GitLab.
+flags:
+    -y, --yes: Skip the confirmation prompt and immediately delete the repository.

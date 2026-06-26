@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: graph [flags]
+description: Queries the Kubernetes object graph, using the GitLab Agent for Kubernetes. (EXPERIMENTAL)
+flags:
+    --apps: Watch deployments, replicasets, daemonsets, and statefulsets in apps/v1 group.
+    --batch: Watch jobs and cronjobs in the batch/v1 group.
+    --cluster-rbac: Watch clusterroles and clusterrolebindings in the rbac.authorization.k8s.io/v1 group.
+    --core: Watch pods, secrets, configmaps, and serviceaccounts in the core/v1 group
+    --crd: Watch customresourcedefinitions in the apiextensions.k8s.io/v1 group.
+    --ignore-arc-direction: Ignore arc direction when evaluating roots connectivity. GitLab and agent 18.3+ required.
+    --listen-addr=: Address to listen on.
+    --listen-net=: Network on which to listen for connections.
+    --log-watch-request: Log watch request to stdout. Helpful for debugging.
+    --ns-expression=: CEL expression to select namespaces. Evaluated before a namespace is watched and on any updates for the namespace object.
+    --ns-field-selector=: Field selector to select namespaces.
+    --ns-label-selector=: Label selector to select namespaces.
+    --rbac: Watch roles, and rolebindings in the rbac.authorization.k8s.io/v1 group.
+    --root-expression=*: CEL expression to select root objects. GitLab and agent 18.3+ required.
+    --stdin: Read watch request from standard input.
+    -a, --agent=!: The numerical Agent ID to connect to.
+    -n, --namespace=*: Namespaces to watch. If not specified, all namespaces are watched with label and field selectors filtering.
+    -r, --resource=*: A list of resources to watch. You can see the list of resources your cluster supports by running 'kubectl api-resources'.

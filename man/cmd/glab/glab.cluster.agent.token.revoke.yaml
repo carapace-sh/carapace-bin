@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: revoke <agent-id> <token-id>
+description: Revoke a token of an agent.

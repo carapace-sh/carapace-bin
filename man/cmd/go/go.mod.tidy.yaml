@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tidy
+description: add missing and remove unused modules
+flags:
+    -compat=: preserve additional checksums needed for given version
+    -e: attempt to proceed despite errors
+    -go=: update the 'go' directive to given version
+    -v: print information about removed modules

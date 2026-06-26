@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: highlight
+description: Highlight stdin as html
+flags:
+    --rainbow: Enable rainbow highlighting of identifiers

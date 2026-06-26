@@ -1,0 +1,216 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: am
+description: Apply a series of patches from a mailbox
+group: main
+flags:
+  --abort: restore the original branch and abort the patching operation
+  --committer-date-is-author-date: lie about committer date
+  --continue: continue applying patches after resolving a conflict
+  --directory=: pass it through git-apply
+  --exclude=: pass it through git-apply
+  --ignore-date: use current timestamp for author date
+  --ignore-space-change: pass it through git-apply
+  --ignore-whitespace: pass it through git-apply
+  --include=: pass it through git-apply
+  --keep-cr: pass --keep-cr flag to git-mailsplit for mbox format
+  --keep-non-patch: pass -b flag to git-mailinfo
+  --no-keep-cr: do not pass --keep-cr flag to git-mailsplit independent of am.keepcr
+  --patch-format=: format the patch(es) are in
+  --quit: abort the patching operation but keep HEAD where it is
+  --quoted-cr=: pass it through git-mailinfo
+  --reject: pass it through git-apply
+  --rerere-autoupdate: update the index with reused conflict resolution if possible
+  --resolvemsg=: override error message when patch failure occurs
+  --show-current-patch?: show the patch being applied
+  --skip: skip the current patch
+  --whitespace=: pass it through git-apply
+  -3, --3way: allow fall back on 3way merging if needed
+  -C=: pass it through git-apply
+  -S, --gpg-sign?: GPG-sign commits
+  -c, --scissors: strip everything before a scissors line
+  -i, --interactive: run interactively
+  -k, --keep: pass -k flag to git-mailinfo
+  -m, --message-id: pass -m flag to git-mailinfo
+  -p=: pass it through git-apply
+  -q, --quiet: be quiet
+  -r, --resolved: synonyms for --continue
+  -s, --signoff: add a Signed-off-by trailer to the commit message
+  -u, --utf8: recode into utf8 (default)
+documentation:
+  command: |-
+    Splits mail messages in a mailbox into commit log messages,
+    authorship information, and patches, and applies them to the
+    current branch. You could think of it as a reverse operation
+    of [git-format-patch](cmd://git/format-patch) run on a branch with a straight
+    history without merges.
+  flag:
+    3way: |-
+      When the patch does not apply cleanly, fall back on
+      3-way merge if the patch records the identity of blobs
+      it is supposed to apply to and we have those blobs
+      available locally. `--no-3way` can be used to override
+      `am.threeWay` configuration variable. For more information,
+      see `am.threeWay` in [git-config](cmd://git/config).
+    C: |
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    abort: |-
+      Restore the original branch and abort the patching operation.
+      Revert the contents of files involved in the am operation to their
+      pre-am state.
+    committer-date-is-author-date: |-
+      By default the command records the date from the e-mail
+      message as the commit author date, and uses the time of
+      commit creation as the committer date. This allows the
+      user to lie about the committer date by using the same
+      value as the author date.
+
+      WARNING: The history walking machinery assumes that commits have
+      non-decreasing commit timestamps. You should consider if you really need
+      to use this option. Then you should only use this option to override the
+      committer date when applying commits on top of a base which commit is
+      older (in terms of the commit date) than the oldest patch you are
+      applying.
+    continue: |
+      After a patch failure (e.g. attempting to apply conflicting patch),
+      the user has applied it by hand and the index file stores the result
+      of the application. Make a commit using the authorship and commit
+      log extracted from the e-mail message and the current index file,
+      and continue.
+    directory: |
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    exclude: |
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    gpg-sign: |-
+      GPG-sign commits. The _<key-id>_ is optional and
+      defaults to the committer identity; if specified, it must be
+      stuck to the option without a space. `--no-gpg-sign` is useful to
+      countermand both `commit.gpgSign` configuration variable, and
+      earlier `--gpg-sign`.
+    ignore-date: |-
+      By default the command records the date from the e-mail
+      message as the commit author date, and uses the time of
+      commit creation as the committer date. This allows the
+      user to lie about the author date by using the same
+      value as the committer date.
+    ignore-space-change: |
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    ignore-whitespace: |
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    include: |
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    interactive: Run interactively.
+    keep: |
+      Pass `-k` flag to *git mailinfo* (see
+      [git-mailinfo](cmd://git/mailinfo)).
+    keep-cr: |-
+      With `--keep-cr`, call [git-mailsplit](cmd://git/mailsplit)
+      with the same option, to prevent it from stripping CR at the end of
+      lines. `am.keepcr` configuration variable can be used to specify the
+      default behaviour.  `--no-keep-cr` is useful to override `am.keepcr`.
+    keep-non-patch: |
+      Pass `-b` flag to *git mailinfo* (see
+      [git-mailinfo](cmd://git/mailinfo)).
+    message-id: |-
+      Pass the `-m` flag to [git-mailinfo](cmd://git/mailinfo),
+      so that the `Message-ID` header is added to the commit message.
+      The `am.messageid` configuration variable can be used to specify
+      the default behaviour.
+    no-keep-cr: |-
+      With `--keep-cr`, call [git-mailsplit](cmd://git/mailsplit)
+      with the same option, to prevent it from stripping CR at the end of
+      lines. `am.keepcr` configuration variable can be used to specify the
+      default behaviour.  `--no-keep-cr` is useful to override `am.keepcr`.
+    p: |
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    patch-format: |-
+      By default the command will try to detect the patch format
+      automatically. This option allows the user to bypass the automatic
+      detection and specify the patch format that the patch(es) should be
+      interpreted as. Valid formats are mbox, mboxrd,
+      stgit, stgit-series, and hg.
+    quiet: Be quiet. Only print error messages.
+    quit: |-
+      Abort the patching operation but keep `HEAD` and the index
+      untouched.
+    quoted-cr: |
+      This flag will be passed down to *git mailinfo* (see
+      [git-mailinfo](cmd://git/mailinfo)).
+    reject: |-
+      These flags are passed to the [git-apply](cmd://git/apply) program that
+      applies the patch.
+
+      Valid _<action>_ for the `--whitespace` option are:
+      `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    rerere-autoupdate: |-
+      After the rerere mechanism reuses a recorded resolution on
+      the current conflict to update the files in the working
+      tree, allow it to also update the index with the result of
+      resolution.  `--no-rerere-autoupdate` is a good way to
+      double-check what [git-rerere](cmd://git/rerere) did and catch potential
+      mismerges, before committing the result to the index with a
+      separate [git-add](cmd://git/add).
+    resolved: |-
+      After a patch failure (e.g. attempting to apply
+      conflicting patch), the user has applied it by hand and
+      the index file stores the result of the application.
+      Make a commit using the authorship and commit log
+      extracted from the e-mail message and the current index
+      file, and continue.
+    resolvemsg: |-
+      When a patch failure occurs, _<msg>_ will be printed
+      to the screen before exiting.  This overrides the
+      standard message informing you to use `--continue`
+      or `--skip` to handle the failure.  This is solely
+      for internal use between [git-rebase](cmd://git/rebase) and
+      [git-am](cmd://git/am).
+    scissors: |-
+      Remove everything in body before a scissors line (see
+      [git-mailinfo](cmd://git/mailinfo)). Can be activated by default using
+      the `mailinfo.scissors` configuration variable.
+    show-current-patch: |
+      Show the message at which `git am` has stopped due to conflicts. If
+      `raw` is specified, show the raw contents of the e-mail message; if
+      `diff`, show the diff portion only. Defaults to `raw`.
+    signoff: |-
+      Add a `Signed-off-by` trailer to the commit message (see
+      [git-interpret-trailers](cmd://git/interpret-trailers)), using the committer identity
+      of yourself.  See the signoff option in [git-commit](cmd://git/commit)
+      for more information.
+    skip: |-
+      Skip the current patch.  This is only meaningful when
+      restarting an aborted patch.
+    utf8: |-
+      Pass `-u` flag to [git-mailinfo](cmd://git/mailinfo).
+      The proposed commit log message taken from the e-mail
+      is re-coded into UTF-8 encoding (configuration variable
+      `i18n.commitEncoding` can be used to specify the project's
+      preferred encoding if it is not UTF-8).
+
+      This was optional in prior versions of git, but now it is the
+      default.   You can use `--no-utf8` to override this.
+    whitespace: |
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.

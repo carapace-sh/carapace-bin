@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login [OPTIONS] [SERVER]
+description: Log in to a registry
+flags:
+    --password-stdin: Take the password from stdin
+    -p, --password=: Password
+    -u, --username=: Username

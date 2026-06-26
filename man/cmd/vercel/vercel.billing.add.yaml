@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add a new credit card
+
+documentation:
+  command: >-
+    Add a new credit card to your Vercel account for billing purposes.
+    After adding, use `vercel billing set-default` to set it as the
+    active payment method.

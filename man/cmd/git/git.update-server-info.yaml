@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update-server-info
+description: Update auxiliary info file to help dumb servers
+group: low-level synching
+flags:
+  -f, --force: update the info files from scratch
+documentation:
+  command: |-
+    A dumb server that does not do on-the-fly pack generations must
+    have some auxiliary information files in $GIT_DIR/info and
+    $GIT_OBJECT_DIRECTORY/info directories to help clients discover
+    what references and packs the server has.  This command
+    generates such auxiliary files.

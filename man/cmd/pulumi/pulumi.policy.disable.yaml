@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: disable
+description: Disable a Policy Pack for a Pulumi organization
+persistentflags:
+    --policy-group=: The Policy Group for which the Policy Pack will be disabled; if not specified, the default Policy Group is used
+    --version=: The version of the Policy Pack that will be disabled; if not specified, any enabled version of the Policy Pack will be disabled

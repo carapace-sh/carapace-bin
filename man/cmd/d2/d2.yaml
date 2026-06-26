@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Compile and render D2 diagram source files into SVG output.
+    D2 is a declarative diagramming language. Supports multiple
+    layout engines, themes, font customization, sketch mode,
+    and live reload with `--watch`.
+description: compiles and renders d2 diagrams into svgs
+flags:
+    --animate-interval=: multiple boards are packaged as 1 SVG
+    --ascii-mode=: ASCII rendering mode for text outputs
+    --browser=: browser executable that watch opens
+    --check: check that the specified files are formatted correctly
+    --dark-theme=: the theme to use when the viewer's browser is in dark mode
+    --font-bold=: path to .ttf file to use for the bold font
+    --font-italic=: path to .ttf file to use for the italic font
+    --font-mono-bold=: path to .ttf file to use for the monospace bold font
+    --font-mono-italic=: path to .ttf file to use for the monospace italic font
+    --font-mono-semibold=: path to .ttf file to use for the monospace semibold font
+    --font-mono=: path to .ttf file to use for the monospace font
+    --font-regular=: path to .ttf file to use for the regular font
+    --font-semibold=: path to .ttf file to use for the semibold font
+    --force-appendix: add an appendix to SVG exports
+    --img-cache: images used in icons are cached for subsequent compilations
+    --no-xml-tag: omit XML tag (<?xml ...?>) from output SVG files
+    --omit-version: omit D2 version from generated image
+    --pad=: pixels padded around the rendered diagram
+    --salt=: Add a salt value to ensure the output uses unique IDs
+    --scale=: scale the output
+    --stdout-format=: output format when writing to stdout
+    --target=: target board to render
+    --timeout=: the maximum number of seconds that D2 runs
+    -b, --bundle: bundle all assets and layers into the output file
+    -c, --center: center the SVG in the containing viewbox
+    -d, --debug: print debug logs
+    -h, --host=: host listening address when used with watch
+    -l, --layout=: the layout engine used
+    -p, --port=: port listening address when used with watch
+    -s, --sketch: render the diagram to look like it was sketched by hand
+    -t, --theme=: the diagram theme ID
+    -v, --version: get the version
+    -w, --watch: watch for changes to input and live reload

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mfa
+description: Manage multi-factor authentication (MFA) devices.
+
+documentation:
+  command: >-
+    Manage multi-factor authentication devices for added login security.

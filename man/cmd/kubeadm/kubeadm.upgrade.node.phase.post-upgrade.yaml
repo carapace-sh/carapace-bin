@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: post-upgrade
+description: Run post upgrade tasks
+flags:
+    --config=: Path to a kubeadm configuration file.
+    --dry-run: Do not change any state, just output the actions that would be performed.
+    --kubeconfig=: The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.

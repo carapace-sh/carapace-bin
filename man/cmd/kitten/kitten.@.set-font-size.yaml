@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-font-size
+description: Set the font size in the active top-level OS window
+flags:
+    -a, --all: By default, the font size is only changed in the active OS window, this option will cause it to be changed in all OS windows
+    -h, --help: Show help for this command

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: artifact <refName> <jobName> [flags]
+aliases:
+    - push
+description: Download all artifacts from the last pipeline.
+flags:
+    -l, --list-paths: Print the paths of downloaded artifacts.
+    -p, --path=: Path to download the artifact files.

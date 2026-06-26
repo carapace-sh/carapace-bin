@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [flags]
+description: Get the list of schedules.
+flags:
+    -P, --per-page=: Number of items to list per page.
+    -p, --page=: Page number.

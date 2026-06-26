@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: package
+description: package a chart directory into a chart archive
+group: main
+flags:
+    --app-version=: set the appVersion on the chart to this version
+    --key=: name of the key to use when signing. Used if --sign is true
+    --keyring=: location of a public keyring
+    --passphrase-file=: location of a file which contains the passphrase for the signing key. Use "-" in order to read from stdin.
+    --sign: use a PGP private key to sign this package
+    --version=: set the version on the chart to this semver version
+    -d, --destination=: location to write the chart.
+    -u, --dependency-update: update dependencies from "Chart.yaml" to dir "charts/" before packaging

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: show repository info
+documentation:
+  command: |-
+    List all the available keys, one per line. The output format can be chosen
+    through the flag `--format`. The following formats are supported:
+
+    **lines**
+    Output the keys one per line. This is the default.
+
+    **nul**
+    Similar to `lines`, but using a _NUL_ character after each value.

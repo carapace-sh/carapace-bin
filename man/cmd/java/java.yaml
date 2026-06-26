@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: java
+description: Launches a Java application
+flags:
+    -?: print help message
+    -D?*: set a system property
+    -X: print help on non-standard options
+    -XX?*: Advanced options
+    -Xbatch: disable background compilation
+    -Xbootclasspath/a?: append to end of bootstrap class path
+    -Xbootclasspath/p?: prepend in front of bootstrap class path
+    -Xbootclasspath?: set search path for bootstrap classes and resources
+    -Xcheck?: perform additional checks
+    -Xdiag: show additional diagnostic messages
+    -Xfuture: enable strictest checks, anticipating future default
+    -Xincgc: enable incremental garbage collection
+    -Xint: interpreted mode execution only
+    -Xloggc?: log GC status to a file with time stamps
+    -Xmixed: mixed mode execution (default)
+    -Xms?: set initial Java heap size
+    -Xmx?: set maximum Java heap size
+    -Xnoclassgc: disable class garbage collection
+    -Xprof: output cpu profiling data
+    -Xrs: reduce use of OS signals by Java/VM (see documentation)
+    -Xshare?: set shared data usage
+    -XshowSettings?: show all settings and continue
+    -Xss?: set java thread stack size
+    -agentlib?: load native agent library
+    -agentpath?: load native agent library by full pathname
+    -classpath=: class search path of directories and zip/jar files
+    -cp=: class search path of directories and zip/jar files
+    -d32: use a 32-bit data model if available
+    -d64: use a 64-bit data model if available
+    -da?: disable assertions with specified granularity
+    -disableassertions?: disable assertions with specified granularity
+    -disablesystemassertions: disable system assertions
+    -dsa: disable system assertions
+    -ea?: enable assertions with specified granularity
+    -enableassertions?: enable assertions with specified granularity
+    -enablesystemassertions: enable system assertions
+    -esa: enable system assertions
+    -help: print help message
+    -jar=: jar file to execute
+    -javaagent?: load Java programming language agent, see java.lang.instrument
+    -server: to select the "server" VM
+    -showversion: print product version and continue
+    -splash?: show splash screen with specified image
+    -verbose?: enable verbose output
+    -version: print product version and exit

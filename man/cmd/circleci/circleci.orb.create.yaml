@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create an orb in the specified namespace
+flags:
+    --integration-testing: Enable test mode to bypass interactive UI.
+    --no-prompt: Disable prompt to bypass interactive UI.
+persistentflags:
+    --private: Specify that this orb is for private use within your org, unlisted from the public registry.

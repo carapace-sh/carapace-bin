@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tests
+description: Run Homebrew's unit and integration tests
+group: developer
+flags:
+    --byebug: Enable debugging using byebug.
+    --changed: Only runs tests on files that were changed from the master branch.
+    --coverage: Generate code coverage reports.
+    --debug: Display any debugging information.
+    --fail-fast: Exit early on the first failing test.
+    --generic: Run only OS-agnostic tests.
+    --help: Show this message.
+    --online: Include tests that use the GitHub API and tests that use any of the taps for official external commands.
+    --only: Run only <test_script>`_spec.rb`. Appending `:`<line_number> will start at a specific line.
+    --profile: Run the test suite serially to find the <n> slowest tests.
+    --quiet: Make some output more quiet.
+    --seed: Randomise tests with the specified <value> instead of a random seed.
+    --verbose: Make some output more verbose.

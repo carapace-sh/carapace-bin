@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: aw
+description: Install the official aw extension
+group: extension
+hidden: true
+documentation:
+    command: |
+        Install the official `gh-aw` extension for AI-powered workflows.
+        This extension enables developers to create, manage, and execute
+        natural language markdown workflows as GitHub Actions.
+        After installation, use `gh aw` to access the workflow commands.

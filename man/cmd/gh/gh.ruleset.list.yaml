@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List rulesets for a repository or organization
+flags:
+    -L, --limit=: Maximum number of rulesets to list
+    -o, --org=: List organization-wide rulesets for the provided organization
+    -p, --parents: Whether to include rulesets configured at higher levels that also apply
+    -w, --web: Open the list of rulesets in the web browser

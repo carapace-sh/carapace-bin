@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: winrm-config
+description: outputs WinRM configuration to connect to the machine
+flags:
+    --host=: Name the host for the config

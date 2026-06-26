@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: 'document-export [OPTION…] FILE '
+description: Export a file to apps
+group: access
+flags:
+    --forbid-delete: Revoke delete permissions of the app
+    --forbid-grant-permission: Revoke the permission to grant further permissions
+    --forbid-read: Revoke read permissions of the app
+    --forbid-write: Revoke write permissions of the app
+    --ostree-verbose: Show OSTree debug information
+    -a, --app=: Add permissions for this app
+    -d, --allow-delete: Give the app delete permissions
+    -g, --allow-grant-permission: Give the app permissions to grant further permissions
+    -h, --help: Show help options
+    -n, --noexist: Don't require the file to exist already
+    -r, --allow-read: Give the app read permissions
+    -t, --transient: Make the document transient for the current session
+    -u, --unique: Create a unique document reference
+    -v, --verbose: Show debug information, -vv for more detail
+    -w, --allow-write: Give the app write permissions

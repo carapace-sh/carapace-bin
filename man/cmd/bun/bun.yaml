@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bun
+description: a fast bundler, transpiler, JavaScript Runtime and package manager for web software
+flags:
+    --bunfile=: Use a .bun file
+    --cwd=: Absolute path to resolve files & entry points from
+    --disable-hmr: Disable Hot Module Reloading (disables fast refresh too) in bun dev
+    --disable-react-fast-refresh: Disable React Fast Refresh
+    --extension-order=: 'defaults to: .tsx,.ts,.jsx,.js,.json'
+    --hot: Enable auto reload in bun's JavaScript runtime
+    --install=: Install dependencies automatically when no node_modules are present
+    --jsx-factory=: Changes the function called when compiling JSX elements using the classic JSX runtime
+    --jsx-fragment=: Changes the function called when compiling JSX fragments
+    --jsx-import-source=: Declares the module specifier to be used for importing the jsx and jsxs factory functions
+    --jsx-production: Use jsx instead of jsxDEV (default) for the automatic runtime
+    --jsx-runtime=: '"automatic" (default) or "classic"'
+    --main-fields=: Main fields to lookup in package.json
+    --no-install: Disable auto install in bun's JavaScript runtime
+    --no-summary: Don't print a summary (when generating .bun
+    --platform=: '"bun" or "browser" or "node", used when building or bundling'
+    --prefer-latest: Use the latest matching versions of packages in bun's JavaScript runtime, always checking npm
+    --prefer-offline: Skip staleness checks for packages in bun's JavaScript runtime and resolve from disk
+    --public-dir=: Top-level directory for .html files, fonts or anything external
+    --server-bunfile=: Use a .server.bun file
+    --silent: Don't repeat the command for bun run
+    --tsconfig-override=: Load tsconfig from path instead of cwd/tsconfig.json
+    --use=: Choose a framework, e.g. "--use next"
+    --watch: Automatically restart bun's JavaScript runtime on file change
+    -b, --bun: Force a script or package to use Bun.js instead of Node.js
+    -c, --config=: Config file to load bun from
+    -d, --define=: Substitute K:V while parsing, e.g. --define process.env.NODE_ENV:"development"
+    -e, --external=: 'Exclude module from transpilation (can use * wildcards). ex: -e react'
+    -h, --help: Display this help and exit.
+    -i: Automatically install dependencies and use global cache in bun's runtime, equivalent to --install=fallback
+    -l, --loader=: Parse files with .ext:loader, e.g. --loader .js:jsx
+    -p, --port=: Port to serve bun's dev server on
+    -r, --preload=: Import a module before other modules are loaded
+    -u, --origin=: Rewrite import URLs to start with --origin
+    -v, --version: Print version and exit

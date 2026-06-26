@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Display package details
+flags:
+    --no-aur: do not search in AUR
+    -a, --aur: also search in AUR

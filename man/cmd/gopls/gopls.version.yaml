@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: version
+description: print the gopls version information
+flags:
+    --json: outputs in json format

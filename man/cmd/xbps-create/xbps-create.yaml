@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-create [OPTIONS] -A <arch> -n <pkgver> -s "<desc>" destdir
+description: XBPS utility to create binary packages
+flags:
+    --alternatives=: List of available alternatives this pkg provides
+    --build-options=: A string with the used build options
+    --compression=: 'Compression format: none, gzip, bzip2, lz4, xz, zstd (default)'
+    --shlib-provides=: List of provided shared libraries
+    --shlib-requires=: List of required shared libraries
+    -A, --architecture=!: 'Package architecture (e.g: noarch, i686, etc)'
+    -B, --built-with=: 'Package builder string (e.g: xbps-src-30)'
+    -C, --conflicts=: 'Conflicts (blank separated list, e.g: ''foo>=2.0 blah<=2.0'')'
+    -D, --dependencies=: 'Dependencies (blank separated list, e.g: ''foo>=1.0_1 blah<2.1'')'
+    -F, --config-files=: Configuration files (blank separated list)
+    -H, --homepage=: Homepage
+    -M, --mutable-files=: Mutable files list (blank separated list)
+    -P, --provides=: 'Provides (blank separated list, e.g: ''foo-9999 blah-1.0'')'
+    -R, --replaces=: 'Replaces (blank separated list, e.g: ''foo>=1.0 blah<2.0'')'
+    -S, --long-desc=: Long description (80 cols per line)
+    -V, --version: Show XBPS version
+    -c, --changelog=: Changelog URL
+    -h, --help: Show usage
+    -l, --license=: License
+    -m, --maintainer=: Maintainer
+    -n, --pkgver=!: 'Package name/version tuple (e.g: foo-1.0_1)'
+    -p, --preserve: Enable package preserve boolean
+    -q, --quiet: Work silently
+    -r, --reverts=: 'Reverts (blank separated list, e.g: ''1.0_1 2.0_3'')'
+    -s, --desc=!: Short description (max 80 characters)
+    -t, --tags=: A list of tags/categories (blank separated list)

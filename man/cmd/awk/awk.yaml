@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Pattern scanning and text processing language. Reads input files
+    and processes each line matching patterns with corresponding actions.
+    Standard features include field splitting with `-F`, associative
+    arrays, string and arithmetic functions, and user-defined functions.
+description: pattern scanning and processing language
+flags:
+    -C, --copyright: ""
+    -D, --debug?: ""
+    -E, --exec=: ""
+    -F, --field-separator=: ""
+    -L, --lint?: ""
+    -M, --bignum: ""
+    -N, --use-lc-numeric: ""
+    -O, --optimize: ""
+    -P, --posix: ""
+    -S, --sandbox: ""
+    -V, --version: ""
+    -b, --characters-as-bytes: ""
+    -c, --traditional: ""
+    -d, --dump-variables?: ""
+    -e, --source=: ""
+    -f, --file=: ""
+    -g, --gen-pot: ""
+    -h, --help: ""
+    -i, --include=: ""
+    -l, --load=: ""
+    -n, --non-decimal-data: ""
+    -o, --pretty-print?: ""
+    -p, --profile?: ""
+    -r, --re-interval: ""
+    -s, --no-optimize: ""
+    -t, --lint-old: ""
+    -v, --assign=: ""

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show
+description: Show information about one or more installed packages
+flags:
+    -f, --files: Show the full list of installed files for each

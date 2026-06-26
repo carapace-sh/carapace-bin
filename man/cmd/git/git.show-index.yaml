@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show-index
+description: Show packed archive index
+group: low-level interrogator
+documentation:
+  command: |-
+    Read the `.idx` file for a Git packfile (created with
+    [git-pack-objects](cmd://git/pack-objects) or [git-index-pack](cmd://git/index-pack)) from the
+    standard input, and dump its contents. The output consists of one object
+    per line, with each line containing two or three space-separated
+    columns:
+
+      - the first column is the offset in bytes of the object within the
+        corresponding packfile
+
+      - the second column is the object id of the object
+
+      - if the index version is 2 or higher, the third column contains the
+        CRC32 of the object data
+
+    The objects are output in the order in which they are found in the index
+    file, which should be (in a correctly constructed file) sorted by object
+    id.
+
+    Note that you can get more information on a packfile by calling
+    [git-verify-pack](cmd://git/verify-pack). However, as this command considers only the
+    index file itself, it's both faster and more flexible.

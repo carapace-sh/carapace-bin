@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Creates an empty box entry on Vagrant Cloud
+flags:
+    --no-private: Makes box public
+    -d, --description=: Full description of the box
+    -p, --private: Makes box private

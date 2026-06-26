@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: keys
+description: Browse or print linked SSH keys
+flags:
+    -r, --randomart: print SSH 5.1 randomart for each key (the Drunken Bishop algorithm)
+    -s, --simple: simple, non-interactive output (good for scripts)
+
+documentation:
+  command: >-
+    Browse or list SSH keys linked to your Charm account.

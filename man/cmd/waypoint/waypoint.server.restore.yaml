@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: restore
+description: Stage a snapshot on the current server for data restoration
+flags:
+    --exit: After restoring, the server should exit so it can be restarted.

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: activate
+description: Make a package's executables globally available
+flags:
+    --no-executables: Do not put executables on PATH.
+    --overwrite: Overwrite executables from other packages with the same
+    -h, --help: Print this usage information.
+    -s, --source=: The source used to find the package.
+    -u, --hosted-url=: A custom pub server URL for the package.
+    -x, --executable=: Executable(s) to place on PATH.
+
+documentation:
+  command: >-
+    Make a package's executables globally available. The package is cached and its commands become accessible from any directory.

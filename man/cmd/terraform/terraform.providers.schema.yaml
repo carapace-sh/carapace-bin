@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: schema
+description: Show schemas for the providers used in the configuration
+flags:
+    -json: Prints out a json representation

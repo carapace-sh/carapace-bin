@@ -1,0 +1,94 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pandoc
+description: general markup converter
+flags:
+    --abbreviations=: Specifies a custom abbreviations file
+    --ascii: Use only ASCII characters in output
+    --bash-completion: Generate a bash completion script
+    --biblatex: Use biblatex for citations in LaTeX output
+    --bibliography=: Set the bibliography field in the document’s metadata
+    --citation-abbreviations=: Set the citation-abbreviations field in the document’s metadata
+    --citeproc=: Process the citations in the file
+    --columns=: Specify length of lines in characters
+    --csl=: Set the csl field in the document’s metadat
+    --data-dir=: Specify the user data directory
+    --default-image-extension=: Specify a default extension to use when image paths/URLs have no extension
+    --dpi=: Specify the default dpi value for conversion
+    --dump-args: Print information about command-line arguments to stdout
+    --email-obfuscation=: Specify a method for obfuscating mailto
+    --eol=: Manually specify line endings
+    --epub-chapter-level=: Specify the heading level at which to split the EPUB into separate files
+    --epub-cover-image=: Use the specified image as the EPUB cover
+    --epub-embed-font=: Embed the specified font in the EPUB
+    --epub-metadata=: Look in the specified XML file for metadata for the EPUB
+    --epub-subdirectory=: Specify the subdirectory that is to hold the EPUB-specific  contents
+    --extract-media=: Extract images and other media contained in or linked from the source document
+    --fail-if-warnings: Exit with error status if there are any warnings
+    --file-scope: Parse each file individually before combining for multifile documents
+    --gladtex: Enclose TeX math in <eq> tags in HTML output
+    --highlight-style=: Specifies the coloring style to be used in highlighted source code
+    --html-q-tags: Use <q> tags for quotes in HTML
+    --id-prefix=: Specify a prefix to be added to all identifiers and internal links
+    --ignore-args: Ignore command-line arguments
+    --incremental=: Make list items in slide shows display incrementally
+    --indented-code-classes=: Specify classes to use for indented code blocks
+    --ipynb-output=: Determines how ipynb output cells are treated
+    --katex=: Use  KaTeX to display embedded TeX math in HTML output
+    --list-extensions=: List  supported  extensions for FORMAT
+    --list-highlight-languages: List supported languages for syntax highlighting
+    --list-highlight-styles: List supported styles for syntax highlighting
+    --list-input-formats: List supported input formats
+    --list-output-formats: List supported output formats
+    --listings: Use the listings package for LaTeX code blocks
+    --log=: Write log messages in machine-readable JSON format to FILE
+    --markdown-headings=: Specify heading style
+    --mathjax=: Use  MathJax to display embedded TeX math in HTML output
+    --mathml: Convert TeX math to MathML
+    --metadata-file=: Read metadata from the supplied YAML (or JSON) file
+    --natbib: Use natbib for citations in LaTeX output
+    --no-check-certificate: Disable the certificate verification to allow access to unsecure HTTP resources
+    --no-highlight: Disables syntax highlighting for code blocks and inlines
+    --number-offset=: Offset for section headings in HTML output
+    --number-sections=: Number section headings
+    --pdf-engine-opt=: Use the given string as a command-line argument to the pdf-engine
+    --pdf-engine=: Use the specified engine when producing PDF output
+    --print-default-data-file=: Print a system default data file
+    --print-highlight-style=: ""
+    --quiet: Suppress warning messages.
+    --reference-doc=: Use the specified file as a style reference
+    --reference-links: Use reference-style links
+    --reference-location=: Specify whether footnotes are placed
+    --request-header=: Set the request header NAME to the value VAL when making HTTP requests
+    --resource-path=: List of paths to search for images and other resources
+    --section-divs: Wrap sections in <section> tags
+    --self-contained: Produce a standalone HTML file with no external dependencies
+    --shift-heading-level-by=: Shift heading levels by a positive or negative integer
+    --slide-level=: Specifies that headings with the specified level create slides
+    --standalone=: Produce  output with an appropriate header and footer
+    --strip-comments: Strip out HTML comments in the Markdown or Textile source
+    --syntax-definition=: Instructs pandoc to load a KDE XML syntax definition file
+    --tab-stop=: Specify the number of spaces per tab (default is 4)
+    --table-of-contents: Include  an automatically generated table of contents
+    --template=: Use the specified file as a custom template for the  generated  document
+    --toc: Include  an automatically generated table of contents
+    --toc-depth=: Specify the number of section levels to include in the table of  contents
+    --top-level-division=: Treat top-level headings as the given division type
+    --track-changes=: Specifies what to do with insertions, deletions, and comments
+    --verbose: Give verbose debugging output.
+    --webtex=: Convert TeX formulas to <img> tags
+    --wrap=: Determine how text is wrapped in the output
+    -A, --include-after-body=: Include contents of FILE after body
+    -B, --include-before-body=: Include contents of FILE before body
+    -D, --print-default-template=: Print the system default template for an output FORMAT
+    -F, --filter=: Specify  an  executable  to  be used as a filter transforming the pandoc AST
+    -H, --include-in-header=: Include contents of FILE in header
+    -L, --lua-filter=: Transform the document in a similar fashion as JSON filters
+    -d, --defaults=: Specify a set of default option settings
+    -f, --from=: Specify input format
+    -h, --help: Show usage message
+    -o, --output=: Write output to FILE instead of stdout
+    -p, --preserve-tabs: Preserve  tabs  instead  of  converting them to spaces
+    -r, --read=: Specify input format
+    -t, --to=: Specify output format
+    -v, --version: Print version
+    -w, --write=: Specify output format

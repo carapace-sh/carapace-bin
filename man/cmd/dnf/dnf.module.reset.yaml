@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reset <module-spec>...
+description: reset module state
+flags:
+    --skip-broken: resolve dependency problems
+    --skip-unavailable: allow skipping modules

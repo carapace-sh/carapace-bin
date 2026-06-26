@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bind-key
+description: bind a key to a command
+flags:
+    -N=: attach a note to the key
+    -T=: specify key table for the binding
+    -n: make the binding work without the need for the prefix key
+    -r: the key may repeat

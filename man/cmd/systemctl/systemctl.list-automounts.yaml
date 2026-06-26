@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-automounts
+description: List automount units currently in memory, ordered by path
+group: unit
+documentation:
+  command: |
+    List automount units currently in memory, ordered by mount path.
+    If one or more PATTERNs are specified, only automount units matching
+    one of them are shown. Also see --show-types, --all, and --state=.

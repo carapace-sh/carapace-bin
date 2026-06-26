@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ""
+
+documentation:
+  command: >-
+    Fast, drop-in replacement for conda written in C++. mamba uses
+    the same commands and workflow as conda but with a much faster
+    dependency resolver (libsolv) and parallel downloads. Install
+    packages with mamba install, create environments with mamba create.
+    Update with mamba update, search packages with mamba search.
+    Specify channels with -c channelname. Handles complex dependency
+    graphs quickly; significantly faster than conda for large environments.
+    Fully compatible with conda environments and channels. Use mamba
+    repoquery for advanced package queries. Same command syntax as conda,
+    just prefix mamba instead of conda.

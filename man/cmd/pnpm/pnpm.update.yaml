@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+aliases:
+    - up
+    - upgrade
+description: Updates packages to their latest version based on the specified range
+group: manage
+flags:
+    --aggregate-output: Aggregate output from child processes that are run in parallel
+    --changed-files-ignore-pattern=: Defines files to ignore when filtering for changed projects since the specified commit/branch
+    --color: Controls colors in the output
+    --depth=: How deep should levels of dependencies be inspected
+    --filter-prod=: Restricts the scope to package names matching the given pattern
+    --filter=: set filter
+    --global-dir: Specify a custom directory to store global packages
+    --loglevel=: What level of logs to report
+    --no-color: Controls colors in the output
+    --no-optional: Don't update packages in "optionalDependencies"
+    --stream: Stream output from child processes immediately
+    --test-pattern=: Defines files related to tests.
+    --use-stderr: Divert all output to stderr
+    --workspace: Tries to link all packages from the workspace
+    -C, --dir=: Change to directory <dir>
+    -D, --dev: Update packages only in "devDependencies"
+    -L, --latest: Ignore version ranges in package.json
+    -P, --prod: Update packages only in "dependencies" and "optionalDependencies"
+    -g, --global: Update globally installed packages
+    -h, --help: Output usage information
+    -i, --interactive: Show outdated dependencies and select which ones to update
+    -r, --recursive: Update in every package found in subdirectories or every workspace package
+    -w, --workspace-root: Run the command on the root workspace project

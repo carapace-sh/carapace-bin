@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: merge
+description: Open the Merge dialog to merge the specified files

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ts
+description: timestamp input
+flags:
+    -i: print incremental timestamps since ast timestamp
+    -m: use monotonic clock
+    -r: convert existing timestamps to relative times
+    -s: print incremental timestamps since start of program

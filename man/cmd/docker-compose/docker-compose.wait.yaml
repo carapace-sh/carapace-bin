@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wait SERVICE [SERVICE...] [OPTIONS]
+description: Block until containers of all (or specified) services stop.
+flags:
+    --down-project: Drops project when the first container stops

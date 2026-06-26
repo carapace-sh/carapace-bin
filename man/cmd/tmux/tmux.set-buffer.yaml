@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-buffer
+flags:
+    -a: TODO description
+    -b=: buffer-name
+    -n=: new-buffer-name
+    -t=: target-client
+    -w: TODO description

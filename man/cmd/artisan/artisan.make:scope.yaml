@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:scope [-f|--force] [--] <name>
+description: Create a new scope class
+flags:
+    --force: Create the class even if the scope already exists

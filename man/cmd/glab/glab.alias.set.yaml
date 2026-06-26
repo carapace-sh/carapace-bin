@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set <alias name> '<command>' [flags]
+description: Set an alias for a longer command.
+flags:
+    -s, --shell: Declare an alias to be passed through a shell interpreter.

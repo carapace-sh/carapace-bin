@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: visudo
+description: safely edit the sudoers file
+flags:
+    -V, --version: display version information and exit
+    -c, --check: check-only mode
+    -f, --file=: specify sudoers file location
+    -h, --help: display help message and exit
+    -q, --quiet: less verbose (quiet) syntax error messages
+    -s, --strict: strict syntax checking

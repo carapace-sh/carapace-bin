@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: find-window
+flags:
+    -C: TODO description
+    -N: TODO description
+    -T: TODO description
+    -Z: TODO description
+    -i: TODO description
+    -r: TODO description
+    -t=: target-pane

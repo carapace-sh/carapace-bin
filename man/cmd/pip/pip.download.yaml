@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: download
+description: Download packages
+flags:
+    --abi=*: Only use wheels compatible with Python abi <abi>
+    --extra-index-url=: Extra URLs of package indexes to use
+    --global-option=: Extra global options to be supplied to the setup.py call
+    --implementation=: Only use wheels compatible with Python implementation <implementation>
+    --no-binary=*: Do not use binary packages
+    --no-build-isolation: Disable isolation when building a modern source distribution
+    --no-clean: Don't clean up build directories.
+    --no-deps: Don't install package dependencies
+    --no-index: Ignore package index
+    --only-binary=*: Do not use source packages
+    --platform=*: Only use wheels compatible with <platform>
+    --pre: Include pre-release and development versions
+    --prefer-binary: Prefer older binary packages over newer source packages
+    --progress-bar=: Specify type of progress to be displayed
+    --python-version=: The Python interpreter version to use for wheel
+    --require-hashes: Require a hash to check each requirement against
+    --src=: Directory to check out editable projects into
+    --use-pep517: Use PEP 517 for building source distributions
+    -c, --constraint=*: Constrain versions using the given constraints file
+    -d, --dest=: Download packages into <dir>
+    -f, --find-links=: If a URL or path to an html file, then parse for links
+    -i, --index-url=: Base URL of the Python Package Index
+    -r, --requirement=*: Install from the given requirements file

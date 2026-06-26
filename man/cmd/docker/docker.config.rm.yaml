@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm CONFIG [CONFIG...]
+aliases:
+    - remove
+description: Remove one or more configs

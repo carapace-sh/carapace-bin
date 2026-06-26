@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Change the user's login shell. Lists available shells with `-l`
+    and changes the shell with `-s`.
+description: Change your login shell
+flags:
+    -l, --list-shells: print list of shells and exit
+    -s, --shell=: specify login shell
+    -u, --help: display this help
+    -v, --version: display version

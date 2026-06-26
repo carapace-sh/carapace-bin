@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wireshark
+description: Interactively dump and analyze network traffic
+flags:
+    --capture-comment=: set the capture file comment, if supported
+    --disable-heuristic=: disable dissection of heuristic protocol
+    --disable-protocol=: disable dissection of proto_name
+    --display=: X display to use
+    --enable-heuristic=: enable dissection of heuristic protocol
+    --enable-protocol=: enable dissection of proto_name
+    --fullscreen: start Wireshark in full screen
+    --list-time-stamp-types: print list of timestamp types for iface and exit
+    --time-stamp-type=: timestamp method for interface
+    -C=: start with specified configuration profile
+    -D, --list-interfaces: print list of interfaces and exit
+    -H: hide the capture info dialog during packet capture
+    -I, --monitor-mode: capture in monitor mode, if available
+    -J=: jump to the first packet matching the (display) filter
+    -K=: keytab file to use for kerberos decryption
+    -L, --list-data-link-types: print list of link-layer types of iface and exit
+    -N=: enable specific name resolution
+    -P=: personal files
+    -R, --read-filter=: packet filter in Wireshark display filter syntax
+    -S: update packet display when new packets are captured
+    -X=: eXtension options
+    -Y, --display-filter=: start with the given display filter
+    -a, --autostop=*: specify stop criterion
+    -b, --ring-buffer=*: run in 'multiple files' mode
+    -d=*: specify layer type dissection
+    -g=: go to specified packet number after "-r"
+    -h, --help: display this help and exit
+    -i, --interface=: name or idx of interface
+    -j: search backwards for a matching packet after "-J"
+    -k: start capturing immediately
+    -l: turn on automatic scrolling while -S is in use
+    -n: disable all name resolutions
+    -o=*: override preference or recent setting
+    -p, --no-promiscuous-mode: don't capture in promiscuous mode
+    -r, --read-file=: set the filename to read from
+    -s, --snapshot-length=: packet snapshot length
+    -t=: format of time stamps
+    -u=: output format of seconds
+    -v, --version: display version info and exit
+    -w=: set the output filename
+    -z=: show various statistics

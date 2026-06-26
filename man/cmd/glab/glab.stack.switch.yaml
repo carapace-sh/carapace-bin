@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: switch <stack-name>
+description: Switch between stacks. (EXPERIMENTAL)

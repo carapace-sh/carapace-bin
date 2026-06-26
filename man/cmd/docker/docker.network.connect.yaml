@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: connect [OPTIONS] NETWORK CONTAINER
+description: Connect a container to a network
+flags:
+    --alias=*: Add network-scoped alias for the container
+    --driver-opt=*: driver options for the network
+    --gw-priority=: Highest gw-priority provides the default gateway. Accepts positive and negative values.
+    --ip=: IPv4 address (e.g., "172.30.100.104")
+    --ip6=: IPv6 address (e.g., "2001:db8::33")
+    --link-local-ip=*: Add a link-local address for the container
+    --link=: Add link to another container

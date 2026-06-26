@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: livewire:rm [--inline] [--force] [--test] [--] <name>
+description: Delete a Livewire component
+flags:
+    --force: ""
+    --inline: ""
+    --test: ""

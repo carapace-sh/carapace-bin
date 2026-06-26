@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-tab-title
+description: Set the tab title
+flags:
+    -h, --help: Show help for this command
+    -m, --match=: The tab to match

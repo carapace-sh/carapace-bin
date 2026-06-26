@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: seed
+aliases:
+    - seed-cbc
+    - seed-cfb
+    - seed-ecb
+    - seed-ofb
+description: SEED Cipher
+group: cipher

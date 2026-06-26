@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: passport:install [--uuids] [--force] [--length [LENGTH]]
+description: Run the commands necessary to prepare Passport for use
+flags:
+    --force: Overwrite keys they already exist
+    --length=: The length of the private key
+    --uuids: Use UUIDs for all client IDs

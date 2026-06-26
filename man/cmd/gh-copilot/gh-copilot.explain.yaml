@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: explain
+description: Explain a given input command in natural language
+flags:
+    -h, --help: help for explain

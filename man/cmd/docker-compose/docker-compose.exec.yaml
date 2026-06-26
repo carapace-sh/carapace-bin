@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exec [OPTIONS] SERVICE COMMAND [ARGS...]
+description: Execute a command in a running container
+flags:
+    --index=: Index of the container if service has multiple replicas
+    --privileged: Give extended privileges to the process
+    -T, --no-tty: Disable pseudo-TTY allocation. By default 'docker compose exec' allocates a TTY.
+    -d, --detach: 'Detached mode: Run command in the background'
+    -e, --env=*: Set environment variables
+    -i, --interactive&: Keep STDIN open even if not attached
+    -t, --tty&: Allocate a pseudo-TTY
+    -u, --user=: Run the command as this user
+    -w, --workdir=: Path to workdir directory for this command

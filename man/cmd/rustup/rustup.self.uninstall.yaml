@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: Uninstall rustup
+flags:
+    -h, --help: Print help
+    -y: ""

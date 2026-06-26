@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    APT package handling utility — the lower-level command-line interface
+    to the APT package management system. Performs package installation,
+    removal, upgrading, and source fetching. Subcommands available:
+    `install`, `remove`, `purge`, `update`, `upgrade`, `dist-upgrade`,
+    `autoremove`, `source`, `build-dep`, `download`, `clean`, `check`.
+description: APT package handling utility
+persistentflags:
+    --allow-downgrades: Continue without prompting if it is doing downgrades.
+    --allow-releaseinfo-change: Allow the update command to continue downloading data from a repository which changed its information
+    --allow-remove-essential: Force yes
+    --allow-unauthenticated: Ignore if packages can't be authenticated and don't prompt about it.
+    --arch-only: Only process architecture-dependent build-dependencies.
+    --assume-no: Automatic "no" to all prompts
+    --assume-yes: Automatic yes to prompts
+    --auto-remove: acts like running the autoremove command
+    --autoremove: acts like running the autoremove command
+    --build: Compile source packages after downloading them.
+    --default-release: This option controls the default input to the policy engine
+    --diff-only: Download only the diff file of a source archive.
+    --dry-run: No action
+    --dsc-only: Download only the dsc file of a source archive.
+    --error-on?: Fail the update command if any error occured, even a transient one.
+    --fix-missing: Ignore missing packages
+    --force-yes: Force yes
+    --ignore-hold: Ignore package holds
+    --indep-only: Only process architecture-independent build-dependencies.
+    --install-suggests: Consider suggested packages as a dependency for installing.
+    --just-print: No action
+    --list-cleanup: Automatically manage the contents of /var/lib/apt/lists
+    --no-act: No action
+    --no-allow-insecure-repositories: Forbid the update command to acquire unverifiable data from configured sources.
+    --no-download: Disables downloading of packages.
+    --no-install-recommends: Do not consider recommended packages as a dependency for installing.
+    --no-remove: If any packages are to be removed apt-get immediately aborts without prompting.
+    --no-show-upgraded: Do not show a list of all packages that are to be upgraded.
+    --no-upgrade: Do not upgrade packages
+    --only-source: Indicates that the given source names are not to be mapped through the binary table.
+    --only-upgrade: Do not install new packages
+    --print-uris: Instead of fetching the files to install their URIs are printed.
+    --purge: Use purge instead of remove for anything that would be removed.
+    --recon: No action
+    --reinstall: Re-install packages that are already installed and at the newest version.
+    --show-progress: Show user friendly progress information in the terminal window when packages are installed
+    --tar-only: Download only the tar file of a source archive.
+    --trivial-only: Only perform operations that are 'trivial'.
+    --with-new-pkgs: Allow installing new packages when used in conjunction with upgrade.
+    --with-source=: Adds the given file as a source for metadata.
+    -P, --build-profiles: This option controls the activated build profiles
+    -V, --verbose-versions: Show full versions for upgraded and installed packages.
+    -a, --host-architecture: This option controls the architecture packages are built for
+    -b, --compile: Compile source packages after downloading them.
+    -c, --config-file: Configuration File
+    -d, --download-only: Download only
+    -f, --fix-broken: Fix
+    -h, --help: Show a short usage summary.
+    -m, --ignore-missing: Ignore missing packages
+    -o, --option: Set a Configuration Option
+    -q, --quiet: Quiet
+    -s, --simulate: No action
+    -t, --target-release: This option controls the default input to the policy engine
+    -v, --version: Show the program version.
+    -y, --yes: Automatic yes to prompts

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete <key-id>
+description: Deletes a single SSH key specified by the ID.
+flags:
+    -P, --per-page=: Number of items to list per page.
+    -p, --page=: Page number.

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uses
+description: Show formulae and casks that specify <formula> as a dependency; that is, show dependents of <formula>
+group: main
+flags:
+    --cask: Include only casks.
+    --debug: Display any debugging information.
+    --eval-all: Evaluate all available formulae and casks, whether installed or not, to show their dependents.
+    --formula: Include only formulae.
+    --help: Show this message.
+    --include-build: Include formulae that specify <formula> as a `:build` dependency.
+    --include-optional: Include formulae that specify <formula> as an `:optional` dependency.
+    --include-test: Include formulae that specify <formula> as a `:test` dependency.
+    --installed: Only list formulae and casks that are currently installed.
+    --missing: Only list formulae and casks that are not currently installed.
+    --quiet: Make some output more quiet.
+    --recursive: Resolve more than one level of dependencies.
+    --skip-recommended: Skip all formulae that specify <formula> as a `:recommended` dependency.
+    --verbose: Make some output more verbose.

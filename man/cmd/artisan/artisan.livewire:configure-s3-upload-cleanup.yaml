@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: livewire:configure-s3-upload-cleanup
+description: Configure temporary file upload s3 directory to automatically cleanup files older than 24hrs

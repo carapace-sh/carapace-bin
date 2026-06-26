@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: horizon:forget [--all] [--] [<id>]
+description: Delete a failed queue job
+flags:
+    --all: Delete all failed jobs

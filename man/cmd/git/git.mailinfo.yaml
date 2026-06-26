@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mailinfo
+description: Extracts patch and authorship from a single e-mail message
+group: low-level helper
+flags:
+  --quoted-cr=: action when quoted CR is found
+  --scissors: use scissors
+  -b: keep non patch brackets in subject
+  -k: keep subject
+  -m, --message-id: copy Message-ID to the end of commit message
+  -n: disable charset re-coding of metadata
+  -u: re-code metadata to i18n.commitEncoding
+documentation:
+  command: |-
+    Reads a single e-mail message from the standard input, and
+    writes the commit log message in <msg> file, and the patches in
+    <patch> file.  The author name, e-mail and e-mail subject are
+    written out to the standard output to be used by 'git am'
+    to create a commit.  It is usually not necessary to use this
+    command directly.  See [git-am](cmd://git/am) instead.

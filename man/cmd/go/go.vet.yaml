@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vet
+description: report likely mistakes in packages
+flags:
+    -C=: Change to dir before running the command
+    -a: force rebuilding of packages that are already up-to-date
+    -asan: enable interoperation with address sanitizer
+    -asmflags=: arguments to pass on each go tool asm invocation
+    -buildmode=: build mode to use
+    -buildvcs?: whether to stamp binaries with version control information
+    -compiler=: name of compiler to use
+    -gccgoflags=: arguments to pass on each gccgo compiler/linker invocation
+    -gcflags=: arguments to pass on each go tool compile invocation
+    -installsuffix=: a suffix to use in the name of the package installation directory
+    -ldflags=: arguments to pass on each go tool link invocation
+    -linkshared: build code that will be linked against shared libraries
+    -msan: enable interoperation with memory sanitizer
+    -n: print the commands but do not run them
+    -overlay=: read a JSON config file that provides an overlay for build operations
+    -p=: the number of programs to run in parallel
+    -pgo=: specify the file path of a profile for profile-guided optimization
+    -pkgdir=: install and load all packages from dir
+    -race: enable data race detection
+    -tags=: a comma-separated list of build tags to consider satisfied during the
+    -toolexec=: a program to use to invoke toolchain programs like vet and asm
+    -trimpath: remove all file system paths from the resulting executable
+    -v: print the names of packages as they are compiled
+    -vettool=: select a different analysis tool
+    -work: print the name of the temporary work directory
+    -x: print the commands

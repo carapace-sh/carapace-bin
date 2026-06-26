@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upload-archive
+description: send archive of repository
+documentation:
+  command: |-
+    Invoked by 'git archive --remote' and sends a generated archive to the
+    other end over the Git protocol.
+
+    This command is usually not invoked directly by the end user.  The UI
+    for the protocol is on the 'git archive' side, and the program pair
+    is meant to be used to get an archive from a remote repository.

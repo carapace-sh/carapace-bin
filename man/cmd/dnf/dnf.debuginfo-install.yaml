@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debuginfo-install [options] <package-spec>...
+description: install the associated debuginfo packages
+flags:
+    --allowerasing: allow removing of installed packages
+    --skip-broken: resolve dependency problems by removing problematic packages
+    --skip-unavailable: allow skipping packages that are not available

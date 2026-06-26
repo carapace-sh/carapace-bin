@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update-self
+description: Update this kitten binary
+flags:
+    --fetch-version=: 'The version to fetch. The special words latest and nightly fetch the latest stable and nightly release respectively. Other values can be, for example: 0.45.0.'
+    -h, --help: Show help for this command

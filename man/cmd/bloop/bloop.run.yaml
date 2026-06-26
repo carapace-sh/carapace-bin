@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run <project>
+description: run a project
+flags:
+    --args=*: the arguments to pass in to the main class
+    --incremental: compile the project incrementally
+    --pipeline: pipeline the compilation of modules in your build
+    --projects=*: the projects to run
+    --reporter=: pick reporter to show compilation messages
+    --skip-jargs: ignore arguments starting with `-J` and forward them instead
+    -O, --optimize=: if an optimizer is used, run it in `debug` or `release` mode
+    -m, --main=: the main class to run
+    -p, --project=*: the projects to run
+    -w, --watch: run the command whenever projects' source files change

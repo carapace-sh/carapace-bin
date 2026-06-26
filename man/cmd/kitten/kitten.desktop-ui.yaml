@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: desktop-ui
+description: Implement various desktop components for use with lightweight compositors/window managers on Linux
+flags:
+    -h, --help: Show help for this command

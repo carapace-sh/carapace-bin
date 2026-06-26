@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: skill <command>
+aliases:
+    - skills
+description: Install and manage agent skills (preview)
+group: core
+documentation:
+    command: |
+        Install and manage agent skills from GitHub repositories. This feature
+        is in preview and subject to change. Skills extend the capabilities of
+        the GitHub Agent. Use `gh skill install` to add a skill, `gh skill list`
+        to see installed skills, and `gh skill search` to find available skills.

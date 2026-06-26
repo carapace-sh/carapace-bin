@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Troubleshoot your New Relic-instrumented application
+flags:
+    --attachment-key=: Attachment key for automatic upload to a support ticket (get key from an existing ticket).
+    --list-suites: List the task suites available for the --suites argument.
+    --suites=: The task suite or comma-separated list of suites to run. Use --list-suites for a list of available suites.
+    --verbose: Display verbose logging during task execution.

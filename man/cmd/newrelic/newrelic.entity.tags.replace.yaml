@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: replace
+description: Replace tag:value pairs for the given entity
+flags:
+    -g, --guid=: the entity GUID to replace tag values on
+    -t, --tag=*: the tag names to replace on the entity

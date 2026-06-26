@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: merge-tree
+description: Perform merge without touching index or working tree
+group: interrogator
+flags:
+  --allow-unrelated-histories: Override common history check check and make the merge proceed anyway.
+  --merge-base=: Specify a merge-base for the merge
+  --messages: Write any informational messages such as "Auto-merging <path>" or CONFLICT notices to the end of stdout
+  --name-only: In the Conflicted file info section
+  --no-messages: Do not write any informational messages such as "Auto-merging <path>" or CONFLICT notices to the end of stdout
+  -z: Do not quote filenames in the <Conflicted file info> section
+documentation:
+  command: |-
+    This command has a modern `--write-tree` mode and a deprecated
+    `--trivial-merge` mode.  With the exception of the
+    DEPRECATED DESCRIPTION section at the end, the rest of
+    this documentation describes the modern `--write-tree` mode.
+
+    Performs a merge, but does not make any new commits and does not read
+    from or write to either the working tree or index.
+
+    The performed merge will use the same features as the "real"
+    [git-merge](cmd://git/merge), including:
+
+      * three way content merges of individual files
+      * rename detection
+      * proper directory/file conflict handling
+      * recursive ancestor consolidation (i.e. when there is more than one
+        merge base, creating a virtual merge base by merging the merge bases)
+      * etc.
+
+    After the merge completes, a new toplevel tree object is created.  See
+    `OUTPUT` below for details.

@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify-commit
+description: Check the GPG signature of commits
+group: interrogator
+flags:
+  --raw: print raw gpg status output
+  -v, --verbose: print commit contents
+documentation:
+  command: |-
+    Validates the GPG signature created by `git commit -S`
+    on the commit objects given on the command line.
+  flag:
+    raw: |-
+      Print the raw gpg status output to standard error instead of the normal
+      human-readable output.
+    verbose: Print the contents of the commit object before validating it.

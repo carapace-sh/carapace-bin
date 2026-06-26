@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: free
+description: Display amount of free and used memory in the system
+flags:
+    --giga: show output in gigabytes
+    --help: display this help and exit
+    --kilo: show output in kilobytes
+    --mega: show output in megabytes
+    --pebi: show output in pebibytes
+    --peta: show output in petabytes
+    --si: use powers of 1000 not 1024
+    --tebi: show output in tebibytes
+    --tera: show output in terabytes
+    -L, --line: show output on a single line
+    -V, --version: output version information and exit
+    -b, --bytes: show output in bytes
+    -c, --count=: repeat printing N times, then exit
+    -g, --gibi: show output in gibibytes
+    -h, --human: show human-readable output
+    -k, --kibi: show output in kibibytes
+    -l, --lohi: show detailed low and high memory statistics
+    -m, --mebi: show output in mebibytes
+    -s, --seconds=: repeat printing every N seconds
+    -t, --total: show total for RAM + swap
+    -v, --committed: show committed memory and commit limit
+    -w, --wide: wide output

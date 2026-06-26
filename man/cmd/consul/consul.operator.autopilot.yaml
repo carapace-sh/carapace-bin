@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: autopilot
+description: Provides tools for modifying Autopilot configuration

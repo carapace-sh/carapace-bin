@@ -1,0 +1,245 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: yt-dlp
+description: A youtube-dl fork with additional features and fixes
+flags:
+    --abort-on-error: Abort downloading of further videos if an error occurs
+    --abort-on-unavailable-fragments: Abort download if a fragment is unavailable
+    --add-headers=*: Specify a custom HTTP header and its value
+    --age-limit=: Download only videos suitable for the given age
+    --alias=*: Create aliases for an option string
+    --allow-dynamic-mpd: Process dynamic DASH manifests
+    --ap-list-mso: List all supported multiple-system operators
+    --ap-mso=: Adobe Pass multiple-system operator
+    --ap-password=: Multiple-system operator account password
+    --ap-username=: Multiple-system operator account login
+    --audio-format=: Format to convert the audio to when -x is used
+    --audio-multistreams: Allow multiple audio streams to be merged into a single file
+    --audio-quality=: Specify ffmpeg audio quality to use when converting the audio with -x
+    --bidi-workaround: Work around terminals that lack bidirectional text support
+    --break-match-filters=: Same as "--match-filters" but stops the download process when a video is rejected
+    --break-on-existing: Stop the download process when encountering a file that is in the archive
+    --break-per-input: Reset per input URL
+    --buffer-size=: Size of download buffer
+    --cache-dir=: Location in the filesystem where yt-dlp can store some downloaded information
+    --check-all-formats: Check all formats for whether they are actually downloadable
+    --check-formats: Make sure formats are selected only from those that are actually downloadable
+    --clean-info-json: Remove some private fields such as filenames from the infojson
+    --client-certificate-key=: Path to private key file for client certificate
+    --client-certificate-password=: Password for client certificate private key
+    --client-certificate=: Path to client certificate file in PEM format
+    --compat-options=: Options that can help keep compatibility with youtube-dl or youtube-dlc
+    --concat-playlist=: Concatenate videos in a playlist
+    --config-locations=*: Location of the main configuration file
+    --console-title: Display progress in console titlebar
+    --convert-subs=: Convert the subtitles to another format
+    --convert-thumbnails=: Convert the thumbnails to another format
+    --cookies-from-browser=: The name of the browser to load cookies from
+    --cookies=: Netscape formatted file to read cookies from and dump cookie jar in
+    --date=: Download only videos uploaded on this date
+    --dateafter=: Download only videos uploaded on or after this date
+    --datebefore=: Download only videos uploaded on or before this date
+    --default-search=: Use this prefix for unqualified URLs
+    --download-archive=: Download only videos not listed in the archive file
+    --download-sections=: Download only chapters whose title matches the given regular expression
+    --downloader-args=: Give these arguments to the external downloader
+    --downloader=: Name or path of the external downloader to use
+    --dump-pages: Print downloaded pages encoded using base64 to debug problems
+    --dump-user-agent: Display the current user-agent and exit
+    --embed-chapters: Add chapter markers to the video file
+    --embed-info-json: Embed the infojson as an attachment to mkv/mka video files
+    --embed-metadata: Embed metadata to the video file
+    --embed-subs: Embed subtitles in the video
+    --embed-thumbnail: Embed thumbnail in the video as cover art
+    --enable-file-urls: Enable file:// URLs
+    --encoding=: Force the specified encoding
+    --exec=: Execute a command
+    --extractor-args=: Pass ARGS arguments to the IE_KEY extractor
+    --extractor-descriptions: Output descriptions of all supported extractors and exit
+    --extractor-retries=: Number of retries for known extractor errors
+    --ffmpeg-location=: Location of the ffmpeg binary
+    --file-access-retries=: Number of times to retry on file access error
+    --fixup=: Automatically correct known faults of the file
+    --flat-playlist: Do not extract the videos of a playlist, only list them
+    --force-keyframes-at-cuts: Force keyframes at cuts when downloading/splitting/removing sections
+    --force-overwrites: Overwrite all video and metadata files
+    --force-write-archive: Force download archive entries to be written as far as no errors occur
+    --format-sort-force: Force user specified sort order to have precedence over all fields
+    --fragment-retries=: Number of retries for a fragment
+    --geo-bypass: Bypass geographic restriction via faking X-Forwarded-For HTTP header
+    --geo-bypass-country=: Force bypass geographic restriction with explicitly provided two-letter ISO 3166-2 country code
+    --geo-bypass-ip-block=: Force bypass geographic restriction with explicitly provided IP block in CIDR notation
+    --geo-verification-proxy=: Use this proxy to verify the IP address for some geo-restricted sites
+    --hls-split-discontinuity: Split HLS playlists to different formats at discontinuities such as ad breaks
+    --hls-use-mpegts: Use the mpegts container for HLS videos
+    --http-chunk-size=: Size of a chunk for chunk-based HTTP downloading
+    --ignore-config: Don't load any more configuration files
+    --ignore-dynamic-mpd: Do not process dynamic DASH manifests
+    --ignore-no-formats-error: Ignore "No video formats" error
+    --keep-fragments: Keep downloaded fragments on disk after downloading is finished
+    --lazy-playlist: Process entries in the playlist as they are received
+    --legacy-server-connect: Explicitly allow HTTPS connection to servers
+    --list-extractors: List all supported extractors and exit
+    --list-subs: List available subtitles of each video
+    --list-thumbnails: List available thumbnails of each video
+    --live-from-start: Download livestreams from the start
+    --load-info-json=: JSON file containing the video information
+    --mark-watched: Mark videos watched
+    --match-filters=: Generic video filter
+    --max-downloads=: Abort after downloading NUMBER files
+    --max-filesize=: Abort download if filesize is larger than SIZE
+    --max-sleep-interval=: Maximum number of seconds to sleep
+    --merge-output-format=: Containers that may be used when merging formats
+    --min-filesize=: Abort download if filesize is smaller than SIZE
+    --mtime: Use the Last-modified header to set the file modification time
+    --netrc-location=: Location of .netrc authentication data
+    --newline: Output progress bar as new lines
+    --no-abort-on-error: Continue with next video on download errors
+    --no-audio-multistreams: Only one audio stream is downloaded for each output file
+    --no-batch-file: Do not read URLs from batch file
+    --no-break-match-filters: Do not use any --break-match-filters
+    --no-break-per-input: --break-on-existing and similar options terminates the entire download queue
+    --no-cache-dir: Disable filesystem caching
+    --no-check-certificates: Suppress HTTPS certificate validation
+    --no-check-formats: Do not check that the formats are actually downloadable
+    --no-clean-info-json: Write all fields to the infojson
+    --no-colors: Do not emit color codes in output
+    --no-config-locations: Do not load any custom configuration files
+    --no-continue: Do not resume partially downloaded fragments
+    --no-cookies: Do not read/dump cookies from/to file
+    --no-cookies-from-browser: Do not load cookies from browser
+    --no-download-archive: Do not use archive file
+    --no-embed-chapters: Do not add chapter markers
+    --no-embed-info-json: Do not embed the infojson as an attachment to the video file
+    --no-embed-metadata: Do not add metadata to file
+    --no-embed-subs: Do not embed subtitles
+    --no-embed-thumbnail: Do not embed thumbnail
+    --no-exec: Remove any previously defined --exec
+    --no-flat-playlist: Extract the videos of a playlist
+    --no-force-keyframes-at-cuts: Do not force keyframes around the chapters when cutting/splitting
+    --no-force-overwrites: Do not overwrite the video, but overwrite related files
+    --no-format-sort-force: Some fields have precedence over the user specified sort order
+    --no-geo-bypass: Do not bypass geographic restriction via faking X-Forwarded-For
+    --no-hls-split-discontinuity: Do not split HLS playlists to different formats at discontinuities such as ad breaks
+    --no-hls-use-mpegts: Do not use the mpegts container for HLS videos
+    --no-ignore-no-formats-error: Throw error when no downloadable video formats are found
+    --no-keep-fragments: Delete downloaded fragments after downloading is finished
+    --no-keep-video: Delete the intermediate video file after post-processing
+    --no-lazy-playlist: Process videos in the playlist only after the entire playlist is parsed
+    --no-live-from-start: Download livestreams from the current time
+    --no-mark-watched: Do not mark videos watched
+    --no-match-filter: Do not use any --match-filter
+    --no-mtime: Do not use the Last-modified header to set the file modification time
+    --no-part: Do not use .part files - write directly into output file
+    --no-playlist: Download only the video
+    --no-post-overwrites: Do not overwrite post-processed files
+    --no-prefer-free-formats: Don't give any special preference to free containers
+    --no-progress: Do not print progress bar
+    --no-remove-chapters: Do not remove any chapters from the file
+    --no-resize-buffer: Do not automatically adjust the buffer size
+    --no-restrict-filenames: Allow Unicode characters
+    --no-simulate: Download the video even if printing/listing options are used
+    --no-split-chapters: Do not split video based on chapters
+    --no-sponsorblock: Disable both --sponsorblock-mark and --sponsorblock-remove
+    --no-update: Do not check for updates
+    --no-video-multistreams: Only one video stream is downloaded for each output file
+    --no-wait-for-video: Do not wait for scheduled streams
+    --no-warnings: Ignore warnings
+    --no-windows-filenames: Make filenames Windows-compatible only if using Windows
+    --no-write-auto-subs: Do not write auto-generated subtitles
+    --no-write-comments: Do not retrieve video comments unless the extraction is known to be quick
+    --no-write-description: Do not write video description
+    --no-write-info-json: Do not write video metadata
+    --no-write-playlist-metafiles: Do not write playlist metadata
+    --no-write-subs: Do not write subtitle file
+    --no-write-thumbnail: Do not write thumbnail image to disk
+    --output-na-placeholder=: Placeholder for unavailable fields in "OUTPUT TEMPLATE"
+    --parse-metadata=: Parse additional metadata like title/artist from other fields
+    --part: Use .part files instead of writing directly into output file
+    --playlist-random: Download playlist videos in random order
+    --post-overwrites: Overwrite post-processed files
+    --postprocessor-args=: Give these arguments to the postprocessors
+    --prefer-free-formats: Prefer video formats with free containers over non-free ones of same quality
+    --prefer-insecure: Use an unencrypted connection to retrieve information about the video
+    --print-to-file=*: Append given template to the file
+    --print-traffic: Display sent and read HTTP traffic
+    --progress: Show progress bar, even if in quiet mode
+    --progress-template=: Template for progress outputs
+    --proxy=: Use the specified HTTP/HTTPS/SOCKS proxy
+    --recode-video=: Re-encode the video into another format if necessary
+    --remove-chapters=: Remove chapters whose title matches the given regular expression
+    --remux-video=: Remux the video into another container if necessary
+    --replace-in-metadata=*: Replace text in a metadata field using the given regex
+    --resize-buffer: The buffer size is automatically resized from an initial value
+    --restrict-filenames: Restrict filenames to only ASCII characters
+    --retry-sleep=: Time to sleep between retries in seconds
+    --rm-cache-dir: Delete all filesystem cache files
+    --skip-download: Do not download the video but write all related files
+    --skip-playlist-after-errors=: Number of allowed failures until the rest of the playlist is skipped
+    --skip-unavailable-fragments: Skip unavailable fragments for DASH, hlsnative and ISM downloads
+    --sleep-interval=: Number of seconds to sleep before each download
+    --sleep-requests=: Number of seconds to sleep between requests during data extraction
+    --sleep-subtitles=: Number of seconds to sleep before each subtitle download
+    --socket-timeout=: Time to wait before giving up, in seconds
+    --source-address=: Client-side IP address to bind to
+    --split-chapters: Split video into multiple files based on internal chapters
+    --sponsorblock-api=: SponsorBlock API location
+    --sponsorblock-chapter-title=: An output template for the title of the SponsorBlock chapters
+    --sponsorblock-mark=: SponsorBlock categories to create chapters for
+    --sponsorblock-remove=: SponsorBlock categories to be removed from the video file
+    --sub-format=: Subtitle format
+    --sub-langs=: Languages of the subtitles to download
+    --throttled-rate=: Minimum download rate in bytes per second
+    --trim-filenames=: Limit the filename length
+    --update-to=: Upgrade/downgrade to a specific version
+    --use-extractors=: Extractor names to use separated by commas
+    --use-postprocessor=: The (case sensitive) name of plugin postprocessors to be enabled
+    --version: Print program version and exit
+    --video-multistreams: Allow multiple video streams to be merged into a single file
+    --video-password=: Video password
+    --wait-for-video=: Wait for scheduled streams to become available
+    --windows-filenames: Force filenames to be Windows-compatible
+    --write-all-thumbnails: Write all thumbnail image formats to disk
+    --write-auto-subs: Write automatically generated subtitle file
+    --write-comments: Retrieve video comments to be placed in the infojson
+    --write-description: Write video description to a .description file
+    --write-desktop-link: Write a .desktop Linux internet shortcut
+    --write-info-json: Write video metadata to a .info.json file
+    --write-link: Write an internet shortcut file
+    --write-pages: Write downloaded intermediary pages to files in the current directory
+    --write-playlist-metafiles: Write playlist metadata in addition to the video metadata
+    --write-subs: Write subtitle file
+    --write-thumbnail: Write thumbnail image to disk
+    --write-url-link: Write a .url Windows internet shortcut
+    --write-webloc-link: Write a .webloc macOS internet shortcut
+    --xattr-set-filesize: Set file xattribute ytdl.filesize with expected file size
+    --xattrs: Write metadata to the video file's xattrs
+    --yes-playlist: Download the playlist
+    -2, --twofactor=: Two-factor authentication code
+    -4, --force-ipv4: Make all connections via IPv4
+    -6, --force-ipv6: Make all connections via IPv6
+    -F, --list-formats: List available formats of each video
+    -I, --playlist-items=: Comma separated playlist_index of the items to download
+    -J, --dump-single-json: Quiet, but print JSON information for each url or infojson passed
+    -N, --concurrent-fragments=: Number of fragments of a dash/hlsnative video that should be downloaded concurrently
+    -O, --print=: Field name or output template to print to screen
+    -P, --paths=: The paths where the files should be downloaded
+    -R, --retries=: Number of retries
+    -S, --format-sort=: Sort the formats by the fields given
+    -U, --update: Check if updates are available
+    -a, --batch-file=: File containing URLs to download
+    -c, --continue: Resume partially downloaded files/fragments
+    -f, --format=: Video format code
+    -h, --help: Print this help text and exit
+    -i, --ignore-errors: Ignore download and postprocessing errors
+    -j, --dump-json: Quiet, but print JSON information for each video
+    -k, --keep-video: Keep the intermediate video file on disk after post-processing
+    -n, --netrc: Use .netrc authentication data
+    -o, --output=: Output filename template
+    -p, --password=: Account password
+    -q, --quiet: Activate quiet mode
+    -r, --limit-rate=: Maximum download rate in bytes per second
+    -s, --simulate: Do not download the video and do not write anything to disk
+    -u, --username=: Login with this account ID
+    -v, --verbose: Print various debugging information
+    -w, --no-overwrites: Do not overwrite any files
+    -x, --extract-audio: Convert video files to audio-only files

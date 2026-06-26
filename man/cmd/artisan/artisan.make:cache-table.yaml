@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:cache-table
+aliases:
+    - cache:table
+description: Create a migration for the cache database table

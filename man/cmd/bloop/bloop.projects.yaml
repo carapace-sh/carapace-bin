@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: projects
+description: list projects
+flags:
+    --dot-graph: print out a dot graph you can pipe into `dot`

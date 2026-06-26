@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gm
+description: command-line utility to create, edit, compare, convert, or display images
+flags:
+    -help: program options
+    -version: print version information

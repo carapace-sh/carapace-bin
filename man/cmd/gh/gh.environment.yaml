@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: environment
+description: Environment variables that can be used with gh
+hidden: true
+documentation:
+    command: |
+        Display help about environment variables for the GitHub CLI command.
+        Key variables include `GH_TOKEN` for authentication, `GH_HOST` for
+        Enterprise Server instances, `GH_REPO` to set the default repository,
+        `GH_EDITOR` for the editor, `GH_BROWSER` to control browser opening,
+        `GH_DEBUG` for debug logging, `GH_PAGER` for output pagination, and
+        `NO_COLOR` to disable colored output.

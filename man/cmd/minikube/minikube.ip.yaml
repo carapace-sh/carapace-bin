@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ip
+description: Retrieves the IP address of the specified node
+flags:
+    -n, --node=: The node to get IP. Defaults to the primary control plane.

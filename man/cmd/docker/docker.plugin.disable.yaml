@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: disable [OPTIONS] PLUGIN
+description: Disable a plugin
+flags:
+    -f, --force: Force the disable of an active plugin

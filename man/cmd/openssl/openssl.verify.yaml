@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify
+description: X.509 Certificate Verification
+group: standard
+flags:
+    -CAfile=: A file of trusted certificates
+    -CApath=: A directory of files with trusted certificates
+    -CAstore=: URI to a store of trusted certificates
+    -CRLfile=: File containing one or more CRL's (in PEM format) to load
+    -allow_proxy_certs: allow the use of proxy certificates
+    -attime=: verification epoch time
+    -auth_level=: chain authentication security level
+    -check_ss_sig: check root CA self-signatures
+    -crl_check: check leaf certificate revocation
+    -crl_check_all: check full chain revocation
+    -crl_download: Try downloading CRL information for certificates via their CDP entries
+    -explicit_policy: set policy variable require-explicit-policy
+    -extended_crl: enable extended CRL features
+    -ignore_critical: permit unhandled critical extensions
+    -inhibit_any: set policy variable inhibit-any-policy
+    -inhibit_map: set policy variable inhibit-policy-mapping
+    -issuer_checks: (deprecated)
+    -nameopt=*: Certificate subject/issuer name printing options
+    -no-CAfile: Do not load the default trusted certificates file
+    -no-CApath: Do not load trusted certificates from the default directory
+    -no-CAstore: Do not load trusted certificates from the default certificates store
+    -no_alt_chains: (deprecated)
+    -no_check_time: ignore certificate validity time
+    -partial_chain: accept chains anchored by intermediate trust-store CAs
+    -policy=: adds policy to the acceptable policy set
+    -policy_check: perform rfc5280 policy checks
+    -policy_print: print policy processing diagnostics
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -purpose=: certificate chain purpose
+    -show_chain: Display information about the certificate chain
+    -suiteB_128: Suite B 128-bit mode allowing 192-bit algorithms
+    -suiteB_128_only: Suite B 128-bit-only mode
+    -suiteB_192: Suite B 192-bit-only mode
+    -trusted=: A file of trusted certificates
+    -trusted_first: search trust store first (default)
+    -untrusted=: A file of untrusted certificates
+    -use_deltas: use delta CRLs
+    -verbose: Print extra information about the operations being performed.
+    -verify_depth=: chain depth limit
+    -verify_email=: expected peer email
+    -verify_hostname=: expected peer hostname
+    -verify_ip=: expected peer IP address
+    -verify_name=: verification policy name
+    -vfyopt=*: Verification parameter in n:v form
+    -x509_strict: disable certificate compatibility work-arounds

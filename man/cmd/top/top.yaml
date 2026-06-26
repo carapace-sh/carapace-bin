@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: top
+description: display Linux processes
+flags:
+    -1, --single-cpu-toggle: Starts top with the last remembered Cpu States portion of the summary area reversed.
+    -A, --apply-defaults: Run top with build defaults only, ignoring all configuration files except /etc/toprc.
+    -E, --scale-summary-mem=: Instructs top to force summary area memory to be scaled as
+    -H, --threads-show: Instructs top to display individual threads.
+    -O, --list-fields=: print available field names
+    -S, --accum-time-toggle: Starts top with the last remembered 'S' state reversed.
+    -U, --filter-any-user=: Display only processes with a user id or user name matching that given.
+    -V, --version: Display version information, then quit.
+    -b, --batch: Starts top in Batch mode
+    -c, --cmdline-toggle: Starts top with the last remembered 'c' state reversed.
+    -d, --delay=: Specifies the delay between screen updates
+    -e, --scale-task-mem=: Instructs top to force task area memory to be scaled as
+    -h, --help: Display usage help text, then quit.
+    -i, --idle-toggle: Starts top with the last remembered 'i' state reversed.
+    -n, --iterations=: Specifies the maximum number of iterations, or frames, top should produce before ending.
+    -o, --sort-override=: Specifies the name of the field on which tasks will be sorted
+    -p, --pid=: Monitor only processes with specified process IDs.
+    -s, --secure-mode: Starts top with secure mode forced, even for root.
+    -u, --filter-only-euser=: Display only processes with a user id or user name matching that given.
+    -w, --width: In Batch mode, when used without an argument top will format output using the COLUMNS= and LINES= environment variables, if set.

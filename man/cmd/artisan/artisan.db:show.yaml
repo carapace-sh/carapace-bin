@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: db:show [--database [DATABASE]] [--json] [--counts] [--views] [--types]
+description: Display information about the given database
+flags:
+    --counts: 'Show the table row count <bg=red;options=bold> Note: This can be slow on large databases </>'
+    --database=: The database connection
+    --json: Output the database information as JSON
+    --types: Show the user defined types
+    --views: 'Show the database views <bg=red;options=bold> Note: This can be slow on large databases </>'

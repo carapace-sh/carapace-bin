@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info [environment-spec]...
+description: print detailed information about environments
+flags:
+    --available: show only available environments
+    --installed: show only installed environments

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set <key> <value>
+description: Updates configuration with the value of a given key.
+flags:
+    --host=: Set per-host setting.
+    -g, --global: Write to global '~/.config/glab-cli/config.yml' file rather than the repository's '.git/glab-cli/config.yml' file.

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-units
+description: List units currently in memory
+group: unit
+documentation:
+  command: |
+    List units that systemd currently has in memory. This includes units
+    that are referenced directly or through a dependency, units pinned by
+    applications programmatically, or units that were active in the past
+    and have failed. By default, only units which are active, have pending
+    jobs, or have failed are shown; use `--all` to see loaded but inactive
+    units too. Use `--type=` and `--state=` to filter by unit type and state.

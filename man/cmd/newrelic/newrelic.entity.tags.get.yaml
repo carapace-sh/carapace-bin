@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: Get the tags for a given entity
+flags:
+    -g, --guid=: the entity GUID to retrieve tags for

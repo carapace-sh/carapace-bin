@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pipeline <id> [flags]
+description: Cancel CI/CD pipelines.
+flags:
+    --dry-run: Simulates process, but does not cancel anything.

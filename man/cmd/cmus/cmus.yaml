@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Curses-based music player with keyboard-driven interface.
+    Supports various audio formats and a remote control socket.
+description: Curses based music player
+flags:
+    --help: display this help and exit
+    --listen=: listen on ADDR instead of $CMUS_SOCKET or $XDG_RUNTIME_DIR/cmus-socket
+    --plugins: list available plugins and exit
+    --show-cursor: always visible cursor
+    --version: show version

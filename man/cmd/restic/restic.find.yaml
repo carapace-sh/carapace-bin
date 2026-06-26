@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: find
+description: Find a file, a directory or restic IDs
+flags:
+    --blob: pattern is a blob-ID
+    --pack: pattern is a pack-ID
+    --path=*: only consider snapshots which include this (absolute) `path`, when no snapshot-ID is given
+    --show-pack-id: display the pack-ID the blobs belong to (with --blob or --tree)
+    --tag=*: only consider snapshots which include this `taglist`, when no snapshot-ID is given
+    --tree: pattern is a tree-ID
+    -H, --host=*: only consider snapshots for this `host`, when no snapshot ID is given (can be specified multiple times)
+    -N, --newest=: newest modification date/time
+    -O, --oldest=: oldest modification date/time
+    -i, --ignore-case: ignore case for pattern
+    -l, --long: use a long listing format showing size and mode
+    -s, --snapshot=*: snapshot `id` to search in (can be given multiple times)
+
+documentation:
+  command: >-
+    Search for a file, directory, or blob across all snapshots in the repository.

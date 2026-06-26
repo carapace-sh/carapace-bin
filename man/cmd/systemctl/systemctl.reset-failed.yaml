@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reset-failed
+description: Reset failed state for all, one, or more units
+group: unit
+documentation:
+  command: |
+    Reset the "failed" state of the specified units, or if no unit name is
+    passed, reset the state of all units. When a unit fails, it enters the
+    "failed" state and its exit code and status is recorded until the service
+    is stopped/re-started or reset with this command. Also resets start rate
+    limit counters and restart counters of service units.

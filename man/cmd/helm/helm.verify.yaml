@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify
+description: verify that a chart at the given path has been signed and is valid
+group: main
+flags:
+    --keyring=: keyring containing public keys

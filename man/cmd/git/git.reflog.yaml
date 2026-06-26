@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reflog
+description: Manage reflog information
+group: manipulator
+documentation:
+  command: |-
+    This command manages the information recorded in the reflogs.
+
+    Reference logs, or "reflogs", record when the tips of branches and
+    other references were updated in the local repository. Reflogs are
+    useful in various Git commands, to specify the old value of a
+    reference. For example, `HEAD@{2}` means "where HEAD used to be two
+    moves ago", `master@{one.week.ago}` means "where master used to point
+    to one week ago in this local repository", and so on. See
+    [gitrevisions](man://gitrevisions/7) for more details.
+
+    The command takes various subcommands, and different options
+    depending on the subcommand:
+
+    The "show" subcommand (which is also the default, in the absence of
+    any subcommands) shows the log of the reference provided in the
+    command-line (or `HEAD`, by default). The reflog covers all recent
+    actions, and in addition the `HEAD` reflog records branch switching.
+    `git reflog show` is an alias for `git log -g --abbrev-commit --pretty=oneline`; see [git-log](cmd://git/log) for more information.
+
+    The "list" subcommand lists all refs which have a corresponding reflog.
+
+    The "exists" subcommand checks whether a ref has a reflog.  It exits
+    with zero status if the reflog exists, and non-zero status if it does
+    not.
+
+    The "write" subcommand writes a single entry to the reflog of a given
+    reference. This new entry is appended to the reflog and will thus become
+    the most recent entry. The reference name must be fully qualified. Both the old
+    and new object IDs must not be abbreviated and must point to existing objects.
+    The reflog message gets normalized.
+
+    The "delete" subcommand deletes single entries from the reflog, but
+    not the reflog itself. Its argument must be an _exact_ entry (e.g. "`git reflog delete master@{2}`"). This subcommand is also typically not used
+    directly by end users.
+
+    The "drop" subcommand completely removes the reflog for the specified
+    references. This is in contrast to "expire" and "delete", both of which
+    can be used to delete reflog entries, but not the reflog itself.
+
+    The "expire" subcommand prunes older reflog entries. Entries older
+    than `expire` time, or entries older than `expire-unreachable` time
+    and not reachable from the current tip, are removed from the reflog.
+    This is typically not used directly by end users -- instead, see
+    [git-gc](cmd://git/gc).

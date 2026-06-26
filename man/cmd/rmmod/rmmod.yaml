@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rmmod
+description: Simple program to remove a module from the Linux Kernel
+flags:
+    -V, --version: show version
+    -f, --force: forces a module unload and may crash your
+    -h, --help: show this help
+    -s, --syslog: print to syslog, not stderr
+    -v, --verbose: enables more messages

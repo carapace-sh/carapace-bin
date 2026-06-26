@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pacman-key
+description: Manage pacman's list of trusted keys
+flags:
+    --config=: Use an alternate config file
+    --edit-key: Present a menu for key management task on keyids
+    --gpgdir=: Set an alternate directory for GnuPG
+    --import: Imports pubring.gpg from dir(s)
+    --import-trustdb: Imports ownertrust values from trustdb.gpg in dir(s)
+    --init: Ensure the keyring is properly initialized
+    --keyserver=: Specify a keyserver to use if necessary
+    --list-sigs: List keys and their signatures
+    --lsign-key: Locally sign the specified keyid
+    --populate: Reload the default keys from the (given) keyrings in '/usr/share/pacman/keyrings'
+    --populate-from=: Set an alternate directory for --populate (instead of '/usr/share/pacman/keyrings')
+    --refresh-keys: Update specified or all keys from a keyserver
+    --verbose: Show extra information
+    -V, --version: Show program version
+    -a, --add: Add the specified keys (empty for stdin)
+    -d, --delete: Remove the specified keyids
+    -e, --export: Export the specified or all keyids
+    -f, --finger: List fingerprint for specified or all keyids
+    -h, --help: Show this help message and exit
+    -l, --list-keys: List the specified or all keys
+    -r, --recv-keys: Fetch the specified keyids
+    -u, --updatedb: Update the trustdb of pacman
+    -v, --verify: Verify the file(s) specified by the signature(s)

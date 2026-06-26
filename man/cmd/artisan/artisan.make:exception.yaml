@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:exception [-f|--force] [--render] [--report] [--] <name>
+description: Create a new custom exception class
+flags:
+    --force: Create the class even if the exception already exists
+    --render: Create the exception with an empty render method
+    --report: Create the exception with an empty report method

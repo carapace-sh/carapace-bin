@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fmt
+description: Format Go source files.
+flags:
+    --diff-colored: Display diffs instead of rewriting files (with colors)
+    --no-config: Don't read config file
+    --stdin: Use standard input for piping source files
+    -E, --enable=*: Enable specific formatter
+    -c, --config=: Read config from file path `PATH`
+    -d, --diff: Display diffs instead of rewriting files

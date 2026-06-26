@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dart
+description: A command-line utility for Dart development
+flags:
+    --disable-analytics: Disable analytics.
+    --enable-analytics: Enable analytics.
+    --version: Print the Dart SDK version.
+    -h, --help: Print this usage information.
+    -v, --verbose: Show additional command output.
+
+documentation:
+  command: >-
+    A command-line utility for Dart development. Compile, run, test, and manage Dart packages and projects.

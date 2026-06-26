@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: completion
+description: Generate completion script
+flags:
+    --shell=: Output completion for the specified shell.  (bash, powershell, zsh)

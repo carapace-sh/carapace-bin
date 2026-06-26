@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: buy
+description: Buy a domain that you don't yet own
+
+documentation:
+  command: >-
+    Purchase a new domain through Vercel.

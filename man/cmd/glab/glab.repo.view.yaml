@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view [repository] [flags]
+description: View a project or repository.
+flags:
+    -F, --output=: 'Format output as: text, json.'
+    -b, --branch=: View a specific branch of the repository.
+    -w, --web: Open a project in the browser.

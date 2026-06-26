@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Bruno CLI — command-line interface for the Bruno API client.
+description: Bruno CLI
+flags:
+    --version: Show version number
+    -h, --help: Show help

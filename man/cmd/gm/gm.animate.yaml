@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: animate
+description: animate a sequence of images
+flags:
+    -authenticate=*: decrypt image with this password
+    -backdrop*: display image centered on a backdrop
+    -background=*: the background color
+    -bordercolor=*: the border color
+    -borderwidth=*: the border width
+    -colormap=*: Shared or Private
+    -colors*: preferred number of colors in the image
+    -colorspace=*: alternate image colorspace
+    -debug=*: display copious debugging information
+    -define=*: Coder/decoder specific options
+    -delay=*: display the next image after pausing
+    -density=*: horizontal and vertical density of the image
+    -depth=*: image depth
+    -display=*: display image to this X server
+    -dither*: apply Floyd/Steinberg error diffusion to image
+    -font=*: use this font when annotating the image with text
+    -foreground=*: define the foreground color
+    -gamma=*: level of gamma correction
+    -geometry=*: preferred size and location of the cropped image
+    -help: print program options
+    -iconGeometry=*: specify the icon geometry
+    -iconic=*: iconic animation
+    -interlace=*: None, Line, Plane, or Partition
+    -limit=*: Disk, File, Map, Memory, Pixels, Width, Height, Threads, Read, or Write resource limit
+    -log=*: format of debugging information
+    -map=*: display image using this Standard Colormap
+    -matte*: store matte channel if the image has one
+    -mattecolor=*: specify the color to be used with the -frame option
+    -monitor*: show progress indication
+    -monochrome*: transform image to black and white
+    -name=*: name an image
+    -noop*: do not apply options to image
+    -pause*: seconds to pause before reanimating
+    -remote=*: execute a command in a remote display process
+    -rotate=*: apply Paeth rotation to the image
+    -sampling-factor=*: horizontal and vertical sampling factors
+    -scenes=*: image scene range
+    -shared-memory*: use shared memory
+    -size=*: width and height of image
+    -title=*: assign title to displayed image
+    -treedepth=*: color tree depth
+    -trim*: trim image edges
+    -type=*: image type
+    -verbose: print detailed information about the image
+    -version: print version information
+    -virtual-pixel=*: Constant, Edge, Mirror, or Tile
+    -visual=*: display image using this visual type
+    -window=*: display image to background of this window

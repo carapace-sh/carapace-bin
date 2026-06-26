@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stream
+description: Stream a terminal session
+flags:
+    --headless: Use headless mode - don't use TTY for input/output
+    --log-file=: Log file path
+    --tty-size=: Override terminal size for the session
+    -I, --input: Enable input capture
+    -c, --command=: Command to stream
+    -r, --relay=: Relay the stream via an asciinema server
+    -s, --serve=: Serve the stream with the built-in HTTP server
+documentation:
+  command: >-
+    Stream a terminal session live. Use `-s` for a local HTTP server (LAN viewing)
+    or `-r` for a remote asciinema server (public sharing). End with Ctrl+D or
+    `exit`; pause/resume with Ctrl+\. Use `-c` to stream a specific command.

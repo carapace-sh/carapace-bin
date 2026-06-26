@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bake [OPTIONS] [TARGET...]
+aliases:
+    - f
+description: Build from a file
+flags:
+    --load: Shorthand for "--set=*.output=type=docker"
+    --metadata-file=: Write build result metadata to the file
+    --no-cache: Do not use cache when building the image
+    --print: Print the options without building
+    --progress=: Set type of progress output ("auto", "plain", "tty"). Use plain to show container output
+    --pull: Always attempt to pull all referenced images
+    --push: Shorthand for "--set=*.output=type=registry"
+    --set=*: Override target value (e.g., "targetpattern.key=value")
+    -f, --file=*: Build definition file

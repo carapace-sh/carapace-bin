@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kill [OPTIONS] [SERVICE...]
+description: Force stop service containers
+flags:
+    --remove-orphans: Remove containers for services not defined in the Compose file
+    -s, --signal=: SIGNAL to send to the container

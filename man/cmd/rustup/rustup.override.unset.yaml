@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unset
+aliases:
+    - remove
+    - rm
+    - delete
+    - del
+description: Remove the override toolchain for a directory
+flags:
+    --nonexistent: Remove override toolchain for all nonexistent directories
+    --path=: Path to the directory
+    -h, --help: Print help

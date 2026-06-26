@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-sockets
+description: List socket units currently in memory, ordered by address
+group: unit
+documentation:
+  command: |
+    List socket units currently in memory, ordered by listening address.
+    Shows LISTEN (address being listened on), UNIT (socket unit name), and
+    ACTIVATES (service activated by the socket). Note that because addresses
+    might contain spaces, this output is not suitable for programmatic
+    consumption.

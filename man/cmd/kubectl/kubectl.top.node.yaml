@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: node [NAME | -l label]
+aliases:
+    - nodes
+    - "no"
+description: Display resource (CPU/memory) usage of nodes
+flags:
+    --no-headers: If present, print output without headers
+    --show-capacity: Print node resources based on Capacity instead of Allocatable(default) of the nodes.
+    --show-swap: Print node resources related to swap memory.
+    --sort-by=: If non-empty, sort nodes list using specified field. The field can be either 'cpu' or 'memory'.
+    --use-protocol-buffers: Enables using protocol-buffers to access Metrics API.
+    -l, --selector=: Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.

@@ -1,0 +1,19 @@
+name: branch
+description: Commands for managing branches.
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Commands for managing branches.
+
+        This includes creating, deleting, listing, and showing details about branches.
+
+        By default without a subcommand, it will list the branches.
+
+        To apply or unapply branches, use `but apply` and `but unapply`.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

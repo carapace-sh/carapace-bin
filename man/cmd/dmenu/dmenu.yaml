@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dmenu
+description: dynamic menu
+flags:
+    -b: dmenu appears at the bottom of the screen.
+    -f: dmenu grabs the keyboard before reading stdin if not reading from a tty.
+    -fn=: defines the font or font set used.
+    -h=: dmenu uses a menu line of at least 'height' pixels tall, but no less than 8.
+    -i: dmenu matches menu items case insensitively.
+    -l=: dmenu lists items vertically, with the given number of lines.
+    -m=: dmenu is displayed on the monitor number supplied.
+    -nb=: defines the normal background color.
+    -nf=: defines the normal foreground color.
+    -p=: defines the prompt to be displayed to the left of the input field.
+    -sb=: defines the selected background color.
+    -sf=: defines the selected foreground color.
+    -v: prints version information to stdout, then exits.
+    -w=: sets the width of the dmenu window.
+    -x=: dmenu is placed at this offset measured from the left side of the monitor.
+    -y=: dmenu is placed at this offset measured from the top of the monitor.

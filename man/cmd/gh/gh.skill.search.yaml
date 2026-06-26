@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search <query> [flags]
+description: Search for skills across GitHub (preview)
+flags:
+    --json=*: Output JSON with the specified `fields`
+    --owner=: Filter results to a specific GitHub user or organization
+    --page=: Page number of results to fetch
+    -L, --limit=: Maximum number of results per page
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: query
+description: Execute a raw GraphQL query request to the NerdGraph API
+flags:
+    --queryFile=: the query to use, represented as a JSON file
+    --variables=: the variables to pass to the GraphQL query, represented as a JSON string (this will overwrite duplicate variables that are set through variablesFile
+    --variablesFile=: the variables to pass to GraphQL query, represented as a JSON file

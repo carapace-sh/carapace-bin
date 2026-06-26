@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mount
+description: mount a filesystem
+flags:
+    --make-private: mark a subtree as private
+    --make-rprivate: recursively mark a whole subtree as private
+    --make-rshared: recursively mark a whole subtree as shared
+    --make-rslave: recursively mark a whole subtree as slave
+    --make-runbindable: recursively mark a whole subtree as unbindable
+    --make-shared: mark a subtree as shared
+    --make-slave: mark a subtree as slave
+    --make-unbindable: mark a subtree as unbindable
+    --options-mode=: what to do with options loaded from fstab
+    --options-source-force: force use of options from fstab/mtab
+    --options-source=: mount options source
+    --source=: explicitly specifies source (path, label, uuid)
+    --target-prefix=: specifies path used for all mountpoints
+    --target=: explicitly specifies mountpoint
+    -B, --bind: mount a subtree somewhere else (same as -o bind)
+    -F, --fork: fork off for each device (use with -a)
+    -L, --label=: synonym for LABEL=<label>
+    -M, --move: move a subtree to some other place
+    -N, --namespace=: perform mount in another namespace
+    -O, --test-opts=: limit the set of filesystems (use with -a)
+    -R, --rbind: mount a subtree and all submounts somewhere else
+    -T, --fstab=: alternative file to /etc/fstab
+    -U, --uuid=: synonym for UUID=<uuid>
+    -V, --version: display version
+    -a, --all: mount all filesystems mentioned in fstab
+    -c, --no-canonicalize: don't canonicalize paths
+    -f, --fake: dry run; skip the mount(2) syscall
+    -h, --help: display this help
+    -i, --internal-only: don't call the mount.<type> helpers
+    -l, --show-labels: show also filesystem labels
+    -n, --no-mtab: don't write to /etc/mtab
+    -o, --options=: comma-separated list of mount options
+    -r, --read-only: mount the filesystem read-only (same as -o ro)
+    -t, --types=: limit the set of filesystem types
+    -v, --verbose: say what is being done
+    -w, --rw=: mount the filesystem read-write (default)

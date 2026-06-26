@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List your gists
+flags:
+    --filter=: Filter gists using a regular `expression`
+    --include-content: Include gists' file content when filtering
+    --public: Show only public gists
+    --secret: Show only secret gists
+    -L, --limit=: Maximum number of gists to fetch

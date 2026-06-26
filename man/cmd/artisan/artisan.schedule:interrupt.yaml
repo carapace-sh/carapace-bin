@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: schedule:interrupt
+description: Interrupt the current schedule run

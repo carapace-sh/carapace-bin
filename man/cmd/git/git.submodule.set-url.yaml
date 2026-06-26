@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-url
+description: Sets the URL of the specified submodule
+documentation:
+  command: |-
+    Set the URL of the specified submodule to _<newurl>_. Then, it will
+    automatically synchronize the submodule's new remote URL
+    configuration.

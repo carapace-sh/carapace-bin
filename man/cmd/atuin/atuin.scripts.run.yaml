@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+flags:
+    -h, --help: Print help
+    -v, --var=*: 'Specify template variables in the format KEY=VALUE Example: -v name=John -v greeting="Hello there"'

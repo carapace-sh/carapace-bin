@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: benthos
+description: A stream processor for mundane tasks
+flags:
+    --chilled: continue to execute a config containing linter errors
+    --log.level=: 'override the configured log level, options are: off, error, warn, info, debug, trace'
+    -c, --config=: a path to a configuration file
+    -e, --env-file=: import environment variables from a dotenv file
+    -h, --help: show help
+    -r, --resources=: pull in extra resources from a file, which can be referenced the same as resources defined in the main config, supports glob patterns (requires quotes)
+    -s, --set=: set a field (identified by a dot path) in the main configuration file, e.g. `"metrics.type=prometheus"`
+    -t, --templates=: 'EXPERIMENTAL: import Benthos templates, supports glob patterns (requires quotes)'
+    -v, --version: display version info, then exit
+    -w, --watcher: 'EXPERIMENTAL: watch config files for changes and automatically apply them'

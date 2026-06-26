@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: halt
+description: halt the machine
+flags:
+    --halt: Halt the machine
+    --help: Show this help
+    --no-wall: Don't send wall message before halt/power-off/reboot
+    --reboot: Reboot the machine
+    -d, --no-wtmp: Don't write wtmp record
+    -f, --force: Force immediate halt/power-off/reboot
+    -n, --no-sync: Don't sync hard disks/storage media before power-off, reboot, or halt
+    -p, --poweroff: Switch off the machine
+    -w, --wtmp-only: Don't halt/power-off/reboot, just write wtmp record

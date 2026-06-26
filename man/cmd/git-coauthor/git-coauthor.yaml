@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: git-coauthor
+description: Add a co-author to the last commit
+flags:
+    --help: show help

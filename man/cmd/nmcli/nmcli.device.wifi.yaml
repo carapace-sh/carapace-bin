@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wifi
+description: Perform operation on Wi-Fi devices

@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: typecheck
+description: Check for typechecking errors using Sorbet
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --dir: Typecheck all files in a specific directory.
+    --file: Typecheck a single file.
+    --fix: Automatically fix type errors.
+    --help: Show this message.
+    --ignore: Ignores input files that contain the given string in their paths (relative to the input path passed to Sorbet).
+    --quiet: Silence all non-critical errors.
+    --suggest-typed: Try upgrading `typed` sigils.
+    --update: Update RBI files.
+    --update-all: Update all RBI files rather than just updated gems.
+    --verbose: Make some output more verbose.

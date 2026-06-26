@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-query [OPTIONS] MODE [ARGUMENTS]
+description: XBPS utility to query for package and repository information
+flags:
+    --cat=: Print FILE from PKG binpkg to stdout
+    --fulldeptree: Full dependency tree for -x/--deps
+    --list-repolock-pkgs: List repolocked packages
+    --regex: Use Extended Regular Expressions to match
+    --repository=*: Add repository to the top of the list. This option can be specified multiple times
+    --staging: Enable use of staged packages
+    -C, --config=: Path to confdir (xbps.d)
+    -H, --list-hold-pkgs: List packages on hold state
+    -L, --list-repos: List registered repositories
+    -M, --memory-sync: Remote repository data is fetched and stored in memory, ignoring on-disk repodata archives
+    -O, --list-orphans: List package orphans
+    -R, --R: Enable repository mode. This mode explicitly looks for packages in repositories
+    -S, --show=: Show information for PKG [default mode]
+    -V, --version: Show XBPS version
+    -X, --revdeps=: Show reverse dependencies for PKG
+    -c, --cachedir=: Path to cachedir
+    -d, --debug: Debug mode shown to stderr
+    -f, --files=: Show package files for PKG
+    -h, --help: Show usage
+    -i, --ignore-conf-repos: Ignore repositories defined in xbps.d
+    -l, --list-pkgs: List installed packages
+    -m, --list-manual-pkgs: List packages installed explicitly
+    -o, --ownedby=: Search for package files by matching STRING or REGEX
+    -p, --property=: Show properties for PKGNAME
+    -r, --rootdir=: Full path to rootdir
+    -s, --search=: Search for packages by matching PKG, STRING or REGEX
+    -v, --verbose: Verbose messages
+    -x, --deps=: Show dependencies for PKG

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: remove this app package from the device
+flags:
+    -k: keep the data and cache directories

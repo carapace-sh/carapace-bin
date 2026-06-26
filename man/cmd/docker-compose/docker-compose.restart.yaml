@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: restart [OPTIONS] [SERVICE...]
+description: Restart service containers
+flags:
+    --no-deps: Don't restart dependent services
+    -t, --timeout=: Specify a shutdown timeout in seconds

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rails
+description: Rails CLI
+flags:
+    -T, --tasks=: Filter tasks by pattern
+    -h, --help: Show help

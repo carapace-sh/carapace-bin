@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Install the project dependencies
+group: general
+flags:
+    --check-cache: Always refetch the packages and ensure that their checksums are consistent
+    --immutable: Abort with an error exit code if the lockfile was to be modified
+    --immutable-cache: Abort with an error exit code if the cache folder was to be modified
+    --inline-builds: Verbosely print the output of the build steps of dependencies
+    --json: Format the output as an NDJSON stream
+    --mode=: Change what artifacts installs generate

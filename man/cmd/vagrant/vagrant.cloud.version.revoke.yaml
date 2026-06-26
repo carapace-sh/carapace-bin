@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: revoke
+description: Revokes a version entry on Vagrant Cloud
+flags:
+    --no-force: Do not force revocation without confirmation
+    -f, --force: Force revocation without confirmation

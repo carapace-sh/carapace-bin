@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ntpd
+description: NTP daemon program
+flags:
+    -!: extended usage information passed thru pager
+    -?: display extended usage information and exit
+    "-4": Force IPv4 DNS name resolution
+    "-6": Force IPv6 DNS name resolution
+    -A: Do not require crypto authentication
+    -D=: Set the debug verbosity level
+    -G: Step any initial offset correction.
+    -I=: Listen on an interface name or address
+    -L: Do not listen to virtual interfaces
+    -N: Run at high priority
+    -P=: Process priority
+    -U=: interval in seconds between scans for new or dropped interfaces
+    -a: Require crypto authentication
+    -b: Allow us to sync to broadcast servers
+    -c=: configuration file name
+    -d: Increase debug verbosity level
+    -f=: frequency drift file name
+    -g: Allow the first adjustment to be Big
+    -i=: Jail directory
+    -k=: path to symmetric keys
+    -l=: path to the log file
+    -n: Do not fork
+    -p=: path to the PID file
+    -q: Set the time and quit
+    -r=: Broadcast/propagation delay
+    -s=: Statistics file location
+    -t=: Trusted key number
+    -u=: Run as userid (or userid:groupid)
+    -w=: Seconds to wait for first clock sync
+    -x: Slew up to 600 seconds

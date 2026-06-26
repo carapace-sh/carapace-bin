@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ktlint
+description: An anti-bikeshedding Kotlin linter with built-in formatter
+flags:
+    --apply-to-idea: Update Intellij IDEA
+    --apply-to-idea-project: Update Intellij IDEA project
+    --color: Make output colorful
+    --color-name=: Customize the output color
+    --debug: Turn on debug output
+    --disabled_rules=: Comma-separated list of rules to globally disable
+    --editorconfig=: Path to .editorconfig
+    --experimental: Enabled experimental rules (ktlint-ruleset-experimental)
+    --install-git-pre-commit-hook: Install git hook to automatically check files
+    --install-git-pre-push-hook: Install git hook to automatically check files
+    --limit=: 'Maximum number of errors to show (default: show all)'
+    --print-ast: Print AST
+    --relative: Print files relative to the working directory
+    --reporter=: A reporter to use
+    --stdin: Read file from stdin
+    -F, --format: Fix any deviations from the code style
+    -R, --ruleset=: A path to a JAR file containing additional ruleset(s)
+    -V, --version: Print version information and exit.
+    -a, --android: Turn on Android Kotlin Style Guide compatibility
+    -h, --help: Show this help message and exit.
+    -v, --verbose: Show error codes

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: is-active
+description: Check whether units are active
+group: unit
+documentation:
+  command: |
+    Check whether any of the specified units are active (i.e. running).
+    Returns exit code 0 if at least one is active, non-zero otherwise.
+    Unless `--quiet` is specified, this also prints the current unit state
+    to standard output.

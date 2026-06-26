@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clone
+description: Clone or sync packages build files from AUR
+flags:
+    --builddir=: build directory
+    --overwrite: overwrite existing files
+    -q, --quiet: do not print any output
+    -r, --recurse: also clone needed dependencies

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Creates a stack on the project
+flags:
+    --after=*: Add a stack as after
+    --all-terraform: initialize all Terraform directories containing terraform.backend blocks defined
+    --before=*: Add a stack as before
+    --description=: Description of the stack, defaults to the stack name
+    --ensure-stack-ids: generate an UUID for the stack.id of all stacks which does not define it
+    --id=: ID of the stack, defaults to UUID
+    --ignore-existing: If the stack already exists do nothing and don't fail
+    --import=*: Add import block for the given path on the stack
+    --name=: Name of the stack, defaults to stack dir base name
+    --no-generate: Disable code generation for the newly created stacks

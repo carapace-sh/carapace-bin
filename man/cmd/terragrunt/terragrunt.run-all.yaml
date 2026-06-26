@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run-all
+description: Run a terraform command against a 'stack' by running the specified command in each subfolder
+group: terragrunt

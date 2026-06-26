@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: agent-task <command>
+aliases:
+    - agent-tasks
+    - agent
+    - agents
+description: Work with agent tasks (preview)
+documentation:
+    command: |
+        Work with agent tasks in the GitHub CLI. This feature is in preview
+        and subject to change. Agent tasks allow you to create and manage
+        background tasks for the GitHub Agent to work on. Use `gh agent-task create`
+        to create a task, `gh agent-task list` to view tasks, and
+        `gh agent-task view` to see task details.

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: aria-192-cbc
+aliases:
+    - aria-192-cfb
+    - aria-192-cfb1
+    - aria-192-cfb8
+    - aria-192-ctr
+    - aria-192-ecb
+    - aria-192-ofb
+description: Aria-192 Cipher
+group: cipher

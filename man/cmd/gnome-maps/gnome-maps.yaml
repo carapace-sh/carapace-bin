@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gnome-maps
+description: A map application for GNOME
+flags:
+    --display=: X display to use
+    --force-online: Ignore network availability
+    --help-all: Show all help options
+    --help-gapplication: Show GApplication options
+    --help-gtk: Show GTK+ Options
+    --local: A path to a local tiles directory structure
+    --local-tile-size: Tile size for local tiles directory
+    -h, --help: Show help options
+    -v, --version: Show the version of the program

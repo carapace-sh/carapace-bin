@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nova:value <name>
+description: Create a new metric (single value) class

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: insert
+description: Prompt for and insert a new OTP secret
+flags:
+    -a, --account=: specify account
+    -e, --echo: echo input
+    -f, --force: overwrite existing
+    -i, --issuer=: specify issuer
+    -s, --secret: prompt for the secret value
