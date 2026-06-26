@@ -1,4 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: top
 description: Display resource (CPU/memory) usage
-group: cluster management
+
+documentation:
+  command: |
+    Display Resource (CPU/Memory) usage.
+    The top command allows you to see the resource consumption for nodes or pods. This command requires Metrics Server to be correctly configured and working on the server.

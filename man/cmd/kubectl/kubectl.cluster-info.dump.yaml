@@ -10,3 +10,9 @@ flags:
     --template=: Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
     -A, --all-namespaces: If true, dump all namespaces.  If true, --namespaces is ignored.
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).'
+
+documentation:
+  command: |
+    Dump cluster information out suitable for debugging and diagnosing cluster problems.
+    By default, dumps everything to stdout. You can optionally specify a directory with --output-directory. If you specify a directory, Kubernetes will build a set of files in that directory.
+    By default, only dumps things in the current namespace and 'kube-system' namespace, but you can switch to a different namespace with the --namespaces flag, or specify --all-namespaces to dump all namespaces. The command also dumps the logs of all of the pods in the cluster.

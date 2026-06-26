@@ -1,7 +1,11 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: port-forward TYPE/NAME [options] [LOCAL_PORT:]REMOTE_PORT [...[LOCAL_PORT_N:]REMOTE_PORT_N]
 description: Forward one or more local ports to a pod
-group: troubleshooting
 flags:
     --address=*: Addresses to listen on (comma separated). Only accepts IP addresses or localhost as a value. When localhost is supplied, kubectl will try to bind on both 127.0.0.1 and ::1 and will fail if neither of these addresses are available to bind.
     --pod-running-timeout=: The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running
+
+documentation:
+  command: |
+    Forward one or more local ports to a pod.
+    Use resource type/name such as deployment/mydeployment to select a pod. Resource type defaults to 'pod' if omitted. If there are multiple pods matching the criteria, a pod will be selected automatically. The forwarding session ends when the selected pod terminates, and a rerun of the command is needed to resume forwarding.

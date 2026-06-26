@@ -7,3 +7,9 @@ flags:
     --subresource=: SubResource such as pod/log or deployment/scale
     -A, --all-namespaces: If true, check the specified action in all namespaces.
     -q, --quiet: If true, suppress output and just return the exit code.
+
+documentation:
+  command: |
+    Check whether an action is allowed.
+    VERB is a logical Kubernetes API verb like 'get', 'list', 'watch', 'delete', etc. TYPE is a Kubernetes resource. Shortcuts and groups will be resolved. NONRESOURCEURL is a partial URL that starts with "/". NAME is the name of a particular Kubernetes resource.
+    This command pairs nicely with impersonation.

@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: autoscale (-f FILENAME | TYPE NAME | TYPE/NAME) [--min=MINPODS] --max=MAXPODS [--cpu=CPU] [--memory=MEMORY]
 description: Auto-scale a deployment, replica set, stateful set, or replication controller
-group: deploy
 flags:
     --allow-missing-template-keys: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
     --cpu-percent=&: The target average CPU utilization (represented as a percent of requested CPU) over all the pods. If it's not specified or negative, a default autoscaling policy will be used.
@@ -20,3 +19,8 @@ flags:
     -f, --filename=*: Filename, directory, or URL to files identifying the resource to autoscale.
     -k, --kustomize=: Process the kustomization directory. This flag can't be used together with -f or -R.
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).'
+
+documentation:
+  command: |
+    Creates an autoscaler that automatically chooses and sets the number of pods that run in a Kubernetes cluster.
+    Looks up a deployment, replica set, stateful set, or replication controller by name and creates an autoscaler that uses the given resource as a reference. An autoscaler can automatically increase or decrease number of pods deployed within the system as needed.

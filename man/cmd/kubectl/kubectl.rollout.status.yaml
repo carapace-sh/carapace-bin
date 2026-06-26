@@ -9,3 +9,8 @@ flags:
     -k, --kustomize=: Process the kustomization directory. This flag can't be used together with -f or -R.
     -l, --selector=: Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.
     -w, --watch: Watch the status of the rollout until it's done.
+
+documentation:
+  command: |
+    Show the status of the rollout.
+    By default 'rollout status' will watch the status of the latest rollout until it's done. If you don't want to wait for the rollout to finish then you can use --watch=false. Note that if a new rollout starts in-between, then 'rollout status' will continue watching the latest revision.

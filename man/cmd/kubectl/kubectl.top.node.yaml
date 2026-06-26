@@ -11,3 +11,7 @@ flags:
     --sort-by=: If non-empty, sort nodes list using specified field. The field can be either 'cpu' or 'memory'.
     --use-protocol-buffers: Enables using protocol-buffers to access Metrics API.
     -l, --selector=: Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.
+
+documentation:
+  command: >-
+    Display resource (CPU/memory) usage of nodes.

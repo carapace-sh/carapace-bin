@@ -12,3 +12,8 @@ flags:
     -A, --all-namespaces: If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).'
     -w, --watch: After listing the requested events, watch for more events.
+
+documentation:
+  command: |
+    Display events.
+    Prints a table of the most important information about events. You can request events for a namespace, for all namespaces, or filtered to only those pertaining to a specified resource.

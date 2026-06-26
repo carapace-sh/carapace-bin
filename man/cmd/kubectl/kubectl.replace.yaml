@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: replace -f FILENAME
 description: Replace a resource by file name or stdin
-group: advanced
 flags:
     --allow-missing-template-keys: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
     --cascade?: Must be "background", "orphan", or "foreground". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.
@@ -21,3 +20,8 @@ flags:
     -f, --filename=*: The files that contain the configurations to replace.
     -k, --kustomize=: Process a kustomization directory. This flag can't be used together with -f or -R.
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).'
+
+documentation:
+  command: |
+    Replace a resource by file name or stdin.
+    JSON and YAML formats are accepted. If replacing an existing resource, the complete resource spec must be provided.

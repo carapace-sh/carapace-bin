@@ -4,3 +4,7 @@ description: Print the client and server version information
 flags:
     --client: If true, shows client version only (no server required).
     -o, --output=: One of 'yaml' or 'json'.
+
+documentation:
+  command: >-
+    Print the client and server version information for the current context.

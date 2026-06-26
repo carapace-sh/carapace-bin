@@ -11,3 +11,7 @@ flags:
     --sort-by=: If non-empty, sort list of resources using specified field. The field can be either 'name' or 'kind'.
     --verbs=*: Limit to resources that support the specified verbs.
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, wide).'
+
+documentation:
+  command: >-
+    Print the supported API resources on the server.

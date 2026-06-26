@@ -3,3 +3,7 @@ name: use-context CONTEXT_NAME
 aliases:
     - use
 description: Set the current-context in a kubeconfig file
+
+documentation:
+  command: >-
+    Set the current-context in a kubeconfig file.

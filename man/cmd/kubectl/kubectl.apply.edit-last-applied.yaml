@@ -13,3 +13,8 @@ flags:
     -f, --filename=*: Filename, directory, or URL to files to use to edit the resource
     -k, --kustomize=: Process the kustomization directory. This flag can't be used together with -f or -R.
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).'
+
+documentation:
+  command: |
+    Edit the latest last-applied-configuration annotations of resources from the default editor.
+    It will open the editor defined by your KUBE_EDITOR, or EDITOR environment variables, or fall back to 'vi' for Linux or 'notepad' for Windows. The default format is YAML. To edit in JSON, specify "-o json".

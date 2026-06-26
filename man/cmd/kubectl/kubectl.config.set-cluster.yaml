@@ -8,3 +8,8 @@ flags:
     --proxy-url=: proxy-url for the cluster entry in kubeconfig
     --server=: server for the cluster entry in kubeconfig
     --tls-server-name=: tls-server-name for the cluster entry in kubeconfig
+
+documentation:
+  command: |
+    Set a cluster entry in kubeconfig.
+    Specifying a name that already exists will merge new fields on top of existing values for those fields.

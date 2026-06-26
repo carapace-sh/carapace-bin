@@ -1,4 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: rollout SUBCOMMAND
 description: Manage the rollout of a resource
-group: deploy
+
+documentation:
+  command: |
+    Manage the rollout of one or many resources.
+    Valid resource types include: deployments, daemonsets, statefulsets.

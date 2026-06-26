@@ -1,10 +1,14 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: attach (POD | TYPE/NAME) -c CONTAINER
 description: Attach to a running container
-group: troubleshooting
 flags:
+    --detach-keys=: Override the key sequence for detaching a container
     --pod-running-timeout=: The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running
     -c, --container=: Container name. If omitted, use the kubectl.kubernetes.io/default-container annotation for selecting the container to be attached or the first container in the pod will be chosen
     -i, --stdin: Pass stdin to the container
     -q, --quiet: Only print output from the remote session
     -t, --tty: Stdin is a TTY
+
+documentation:
+  command: >-
+    Attach to a process that is already running inside an existing container.

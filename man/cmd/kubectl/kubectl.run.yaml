@@ -1,13 +1,13 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: run NAME --image=image [--env="key=value"] [--port=port] [--dry-run=server|client] [--overrides=inline-json] [--command] -- [COMMAND] [args...]
 description: Run a particular image on the cluster
-group: basic beginner
 flags:
     --allow-missing-template-keys: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
     --annotations=*: Annotations to apply to the pod.
     --attach: If true, wait for the Pod to start running, and then attach to the Pod as if 'kubectl attach ...' were called.  Default false, unless '-i/--stdin' is set, in which case the default is true. With '--restart=Never' the exit code of the container process is returned.
     --cascade?: Must be "background", "orphan", or "foreground". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.
     --command: If true and extra arguments are present, use them as the 'command' field in the container, rather than the 'args' field which is the default.
+    --detach-keys=: Override the key sequence for detaching a container.
     --dry-run?: Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.
     --env=*: Environment variables to set in the container.
     --expose: If true, create a ClusterIP service associated with the pod.  Requires `--port`.
@@ -38,3 +38,7 @@ flags:
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).'
     -q, --quiet: If true, suppress prompt messages.
     -t, --tty: Allocate a TTY for the container in the pod.
+
+documentation:
+  command: >-
+    Create and run a particular image in a pod.

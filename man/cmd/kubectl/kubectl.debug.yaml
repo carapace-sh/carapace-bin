@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: debug (POD | TYPE[[.VERSION].GROUP]/NAME) [ -- COMMAND [args...] ]
 description: Create debugging sessions for troubleshooting workloads and nodes
-group: troubleshooting
 flags:
     --arguments-only: If specified, everything after -- will be passed to the new container as Args instead of Command.
     --attach: If true, wait for the container to start running, and then attach as if 'kubectl attach ...' were called.  Default false, unless '-i/--stdin' is set, in which case the default is true.
@@ -16,7 +15,7 @@ flags:
     --keep-liveness: If true, keep the original pod liveness probes.(This flag only works when used with '--copy-to')
     --keep-readiness: If true, keep the original pod readiness probes.(This flag only works when used with '--copy-to')
     --keep-startup: If true, keep the original startup probes.(This flag only works when used with '--copy-to')
-    --profile=: Options are "legacy", "general", "baseline", "netadmin", "restricted" or "sysadmin".
+    --profile=: Options are "general", "baseline", "restricted", "netadmin" or "sysadmin". Defaults to "general"
     --replace: When used with '--copy-to', delete the original Pod.
     --same-node: When used with '--copy-to', schedule the copy of target Pod on the same node.
     --set-image=: When used with '--copy-to', a list of name=image pairs for changing container images, similar to how 'kubectl set image' works.
@@ -27,3 +26,9 @@ flags:
     -i, --stdin: Keep stdin open on the container(s) in the pod, even if nothing is attached.
     -q, --quiet: If true, suppress informational messages.
     -t, --tty: Allocate a TTY for the debugging container.
+
+documentation:
+  command: |
+    Debug cluster resources using interactive debugging containers.
+    'debug' provides automation for common debugging tasks for cluster objects identified by resource and name. Pods will be used by default if no resource is specified.
+    The action taken by 'debug' varies depending on what resource is specified — workload: create a copy of an existing pod with certain attributes changed, or add an ephemeral container to an already running pod; node: create a new pod that runs in the node's host namespaces and can access the node's filesystem.

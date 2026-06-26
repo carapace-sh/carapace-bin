@@ -12,3 +12,9 @@ flags:
     -f, --filename=*: Filename, directory, or URL to files identifying the resource to reconcile.
     -k, --kustomize=: Process the kustomization directory. This flag can't be used together with -f or -R.
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).'
+
+documentation:
+  command: |
+    Reconciles rules for RBAC role, role binding, cluster role, and cluster role binding objects.
+    Missing objects are created, and the containing namespace is created for namespaced objects, if required. Existing roles are updated to include the permissions in the input objects, and remove extra permissions if --remove-extra-permissions is specified. Existing bindings are updated to include the subjects in the input objects, and remove extra subjects if --remove-extra-subjects is specified.
+    This is preferred to 'apply' for RBAC resources so that semantically-aware merging of rules and subjects is done.

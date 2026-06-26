@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: patch (-f FILENAME | TYPE NAME) [-p PATCH|--patch-file FILE]
 description: Update fields of a resource
-group: advanced
 flags:
     --allow-missing-template-keys: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
     --dry-run?: Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.
@@ -18,3 +17,8 @@ flags:
     -k, --kustomize=: Process the kustomization directory. This flag can't be used together with -f or -R.
     -o, --output=: 'Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).'
     -p, --patch=: The patch to be applied to the resource JSON file.
+
+documentation:
+  command: |
+    Update fields of a resource using strategic merge patch, a JSON merge patch, or a JSON patch.
+    JSON and YAML formats are accepted. Note: Strategic merge patch is not supported for custom resources.

@@ -1,4 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: cluster-info
 description: Display cluster information
-group: cluster management
+
+documentation:
+  command: |
+    Display addresses of the control plane and services with label kubernetes.io/cluster-service=true.
+    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
